@@ -1,0 +1,221 @@
+package TechMan;
+
+import Service.DatabaseConnectionFactory;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class TechManDao {
+
+    @Autowired
+    private DatabaseConnectionFactory databaseConnectionFactory;
+
+    public String createOrdersDatabaseTable() {
+
+        String query = "CREATE TABLE orders("
+                + "item_id INT(6) NOT NULL ) "
+                + "ENGINE = InnoDB "
+                + "DEFAULT CHARACTER SET = utf8;";
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+            statement.close();
+            connection.close();
+            return "Table 'orders' created succesfully";
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return "Table 'orders' could not be created:" + ex;
+        }
+
+    }
+
+    public String deleteOrdersDatabaseTable() {
+        String query = "DROP TABLE orders";
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+            statement.close();
+            connection.close();
+            return "Table 'orders' deleted succesfully";
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return "Table 'orders' could not be deleted:" + ex;
+        }
+    }
+
+    public String createNotesDatabaseTable() {
+        String query = "CREATE TABLE notes("
+                + "item_id INT(6) NOT NULL, "
+                + "note VARCHAR(160) NOT NULL ) "
+                + "ENGINE = InnoDB "
+                + "DEFAULT CHARACTER SET = utf8;";
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+            statement.close();
+            connection.close();
+            return "Table 'notes' created succesfully";
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return "Table 'notes' could not be created:" + ex;
+        }
+    }
+
+    public String deleteNotesDatabaseTable() {
+        String query = "DROP TABLE notes";
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+            statement.close();
+            connection.close();
+            return "Table 'notes' deleted succesfully";
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return "Table 'notes' could not be deleted:" + ex;
+        }
+    }
+
+    public String createSales_1_2022_DatabaseTable() {
+        String query = "CREATE TABLE sales_1_2022("
+                + "code VARCHAR (50) NOT NULL, "
+                + "description VARCHAR (150) NOT NULL,"
+                + "measure_unit VARCHAR (5) NOT NULL, "
+                + "eshop_sales int (5) NULL, "
+                + "shops_supply int (5) NULL, "
+                + "total_sales int (5) NULL, "
+                + "coeficient int (3) NULL, "
+                + "total_sales_in_pieces int (5) NULL) "
+                + "ENGINE = InnoDB "
+                + "DEFAULT CHARACTER SET = utf8;";
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+            statement.close();
+            connection.close();
+            return "Table 'sales_1_2022' created succesfully";
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return "Table 'sales_1_2022' could not be created:" + ex;
+        }
+    }
+
+    public String deleteSales_1_2022_DatabaseTable() {
+        String query = "DROP TABLE sales_1_2022";
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+            statement.close();
+            connection.close();
+            return "Table 'sales_1_2022' deleted succesfully";
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return "Table 'sales_1_2022' could not be deleted:" + ex;
+        }
+    }
+
+    public String createSales_2_2022_DatabaseTable() {
+        String query = "CREATE TABLE sales_2_2022("
+                + "code VARCHAR (50) NOT NULL, "
+                + "description VARCHAR (150) NOT NULL,"
+                + "measure_unit VARCHAR (5) NOT NULL, "
+                + "eshop_sales int (5) NULL, "
+                + "shops_supply int (5) NULL, "
+                + "total_sales int (5) NULL, "
+                + "coeficient int (3) NULL, "
+                + "total_sales_in_pieces int (5) NULL) "
+                + "ENGINE = InnoDB "
+                + "DEFAULT CHARACTER SET = utf8;";
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+            statement.close();
+            connection.close();
+            return "Table 'sales_2_2022' created succesfully";
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return "Table 'sales_2_2022' could not be created:" + ex;
+        }
+    }
+
+    public String deleteSales_2_2022_DatabaseTable() {
+        String query = "DROP TABLE sales_2_2022";
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+            statement.close();
+            connection.close();
+            return "Table 'sales_2_2022' deleted succesfully";
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return "Table 'sales_2_2022' could not be deleted:" + ex;
+        }
+    }
+
+    String createPet4u_DB() {
+        String query = "CREATE DATABASE pet4u_db";
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLInitialConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+            statement.close();
+            connection.close();
+            return "DATABASE 'pet4u_db' created succesfully";
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return "DATABASE 'pet4u_db' could not be created:" + ex;
+        }
+    }
+
+    String createCamelotItemsOfOurInterestTable() {
+        String query = "CREATE TABLE camelot_interest("
+                + "item_code VARCHAR (100) NOT NULL, "
+                + "owner VARCHAR (15) NOT NULL, "
+                + "minimal_stock INT (5) NOT NULL, "
+                + "order_unit VARCHAR (10) NOT NULL, "
+                + "order_quantity INT (5) NOT NULL, "
+                + "weight_coefficient INT (3) NOT NULL, "
+                + "order_total_items INT (5) NOT NULL) "
+                + "ENGINE = InnoDB "
+                + "DEFAULT CHARACTER SET = utf8;";
+
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+            statement.close();
+            connection.close();
+            return "Table 'camelot_interest' created succesfully";
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return "Table 'camelot_interest' could not be created:" + ex;
+        }
+    }
+
+    String deleteCamelotItemsOfOurInterestTable() {
+        String query = "DROP TABLE camelot_interest";
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+            statement.close();
+            connection.close();
+            return "Table 'camelot_interest' deleted succesfully";
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return "Table 'camelot_interest' could not be deleted:" + ex;
+        }
+    }
+}
