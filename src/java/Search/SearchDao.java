@@ -40,8 +40,17 @@ public class SearchDao {
                     item = new Item();
                     item.setCode(resultSet.getString("ABBREVIATION").trim());
                     item.setDescription(resultSet.getString("NAME").trim());
-                    item.setPosition(resultSet.getString("EXPR1").trim());
+                    String position = "";
+                    if (resultSet.getString("EXPR1") != null) {
+                        position = resultSet.getString("EXPR1").trim();
+                    }
+                    item.setPosition(position);
                     item.setQuantity(resultSet.getString("QTYBALANCE").trim());
+                    String state = "";
+                    if (resultSet.getString("EXPR2") != null) {
+                        state = resultSet.getString("EXPR2").trim();
+                    }
+                    item.setState(state);
                     index++;
                 }
                 AltercodeContainer altercodeContainer = new AltercodeContainer();
@@ -119,7 +128,10 @@ public class SearchDao {
                 String description = resultSet.getString("NAME").trim();
                 String position = resultSet.getString("EXPR1");
                 String quantity = resultSet.getString("QTYBALANCE");
-                // String state = resultSet.getString("state");
+                String state = "";
+                if (resultSet.getString("EXPR2") != null) {
+                    state = resultSet.getString("EXPR2");
+                }
 
                 if (items.containsKey(code)) {
                     Item item = items.get(code);
@@ -141,7 +153,7 @@ public class SearchDao {
                     item.setDescription(description);
                     item.setPosition(position);
                     item.setQuantity(quantity);
-                    // item.setState(state);
+                    item.setState(state);
                     items.put(code, item);
                 }
             }
@@ -155,7 +167,7 @@ public class SearchDao {
         return items;
     }
 
-   public LinkedHashMap<String, Item> getItemsByDescriptionMask(String descriptionMask) {
+    public LinkedHashMap<String, Item> getItemsByDescriptionMask(String descriptionMask) {
 
         LinkedHashMap<String, Item> items = new LinkedHashMap<>();
         String sql = "SELECT * FROM WH1 WHERE NAME LIKE '" + descriptionMask + "'";
@@ -180,9 +192,12 @@ public class SearchDao {
                     altercodeStatus = resultSet.getString("CODEDESCRIPTION").trim();
                 }
                 String description = resultSet.getString("NAME").trim();
-                String position = resultSet.getString("EXPR1").trim();
-                String quantity = resultSet.getString("QTYBALANCE").trim();
-                // String state = resultSet.getString("state");
+                String position = resultSet.getString("EXPR1");
+                String quantity = resultSet.getString("QTYBALANCE");
+                String state = "";
+                if (resultSet.getString("EXPR2") != null) {
+                    state = resultSet.getString("EXPR2");
+                }
 
                 if (items.containsKey(code)) {
                     Item item = items.get(code);
@@ -204,7 +219,7 @@ public class SearchDao {
                     item.setDescription(description);
                     item.setPosition(position);
                     item.setQuantity(quantity);
-                    // item.setState(state);
+                    item.setState(state);
                     items.put(code, item);
                 }
             }

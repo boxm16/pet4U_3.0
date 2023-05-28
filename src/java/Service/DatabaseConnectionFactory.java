@@ -48,6 +48,45 @@ public class DatabaseConnectionFactory {
         }
         return connection;
     }
+    
+     public Connection getCamelotMicrosoftSQLConnection() {
+        Basement basement = new Basement();
+        Connection connection = null;
+        String dbName;
+        String serverip;
+        //  String serverport = "1433"; 
+        String url;
+        String driver;
+        String databaseUserName;
+        String databasePassword;
+
+        if (basement.getApplicationHostName().equals("LAPTOP")) {
+            dbName = "camelot";
+            serverip = "localhost";
+            String serverport = "1433";
+            url = "jdbc:sqlserver://" + serverip + "\\PET4U_SQL:" + serverport + ";databaseName=" + dbName + ";encrypt=true;trustServerCertificate=true;";
+            driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
+            databaseUserName = "sa";
+            databasePassword = "1234";
+        } else {
+            dbName = "fotiou";
+            serverip = "192.168.0.252";
+            //  String serverport = "1433"; 
+            url = "jdbc:sqlserver://" + serverip + "\\EPSILON" + ";databaseName=" + dbName + ";encrypt=false;trustServerCertificate=true;";
+            driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
+            databaseUserName = "wh";
+            databasePassword = "2023wh";
+        }
+
+        try {
+            Class.forName(driver).newInstance();
+            connection = DriverManager.getConnection(url, databaseUserName, databasePassword);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return connection;
+    }
+     //-------------------------MySQL---------------------------
 
     public Connection getMySQLInitialConnection() {
         //this connection is only for creating schema

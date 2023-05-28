@@ -10,7 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Item Search Dashboard</title>
-        <Style>
+        <style>
             input[type="text"]
             {
                 font-size:30px;
@@ -23,14 +23,16 @@
     </head>
     <body>
     <center>
-        <div class="container">
+        <div class="container" style="background-color: #35B62F">
             <div class="row">
                 <div class=" col-sm-4">
 
                 </div>
                 <div class=" col-sm-4">
                     <center>
+                        <h1>Pet4u Item Search</h1>
                         <h1><a href='index.htm'>INDEX</a></h1>
+
                         <hr>
                         <h3>Find Multiple Items Using <strong>ALTERCODE MASK</strong></h3>
                         <h4>Use % as wildcard</h4>

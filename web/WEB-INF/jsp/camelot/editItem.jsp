@@ -1,4 +1,4 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -52,12 +52,19 @@
                     </tr>
                     <tr>
                         <td>
-                            Ποσοτητά Σε Τεμάχια
+                            CAMELOT MINIMAL STOCK
                         </td>
                         <td>
-                            <input type="number" name="itemsQuantity" value="${itemOfInterest.orderTotalItems}">
+                            <input type="number" name="camelotMinimalStock" value="${itemOfInterest.camelotMinimalStock}">
                         </td>
-
+                    </tr>
+                    <tr>
+                        <td>
+                            Note
+                        </td>
+                        <td>
+                            <input type="text" name="note" value="${itemOfInterest.note}">
+                        </td>
                     </tr>
                 </table>
                 <br>

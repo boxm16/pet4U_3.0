@@ -1,8 +1,4 @@
-<%-- 
-    Document   : addItemOfInterest
-    Created on : Feb 8, 2023, 11:23:16 PM
-    Author     : Michail Sitmalidis
---%>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -10,6 +6,15 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Add Item Of Interest</title>
+        <style>
+            input[type="text"]
+            {
+                font-size:30px;
+            }
+        </style>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
     </head>
     <body>
@@ -60,12 +65,20 @@
                         </tr>
                         <tr>
                             <td>
-                                Ποσοτητά Σε Τεμάχια
+                                CAMELOT MINIMAL STOCK
                             </td>
                             <td>
-                                <input type="number" name="itemsQuantity" value="${itemOfInterest.orderTotalItems}">
+                                <input type="number" class="form-control input-lg" name="camelotMinimalStock" value="${itemOfInterest.camelotMinimalStock}">
                             </td>
 
+                        </tr>
+                        <tr>
+                            <td>
+                                Note
+                            </td>
+                            <td>
+                                <input type="text" name="note" value="${itemOfInterest.note}">
+                            </td>
                         </tr>
                     </table>
                     <br>

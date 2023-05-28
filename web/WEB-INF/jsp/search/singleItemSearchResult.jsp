@@ -25,7 +25,7 @@
         </style>
     </head>
     <body>
-        <div class="container">
+        <div class="container" >
             <div class="row">
                 <div class=" col-sm-4">
                 </div>
@@ -34,13 +34,13 @@
                 <center>
                     <%
                         Item item = (Item) request.getAttribute("item");
-                        out.println("<table class='table'>");
+                        out.println("<table class='table' style='background-color: #35B62F'>");
                         out.println("</tbody>");
                         out.println("<tr style='background-color:lightblue'>");
                         out.println("<td style='width:70px;'>");
                         out.println("Πε/φη");
                         out.println("</td>");
-                        out.println("<td>");
+                        out.println("<td style='font-size: 20px;'>");
                         out.println("<strong>" + item.getDescription() + "</strong>");
                         out.println("</td>");
                         out.println("</tr>");
@@ -49,7 +49,7 @@
                         out.println("<td style='width:70px;'>");
                         out.println("Θεση");
                         out.println("</td>");
-                        out.println("<td>");
+                        out.println("<td style='font-size: 30px;'>");
                         out.println("<strong>" + item.getPosition() + "</strong>");
                         out.println("</td>");
                         out.println("</tr>");
@@ -58,7 +58,7 @@
                         out.println("<td style='width:70px'>");
                         out.println("Υπλ.");
                         out.println("</td>");
-                        out.println("<td>");
+                        out.println("<td style='font-size: 30px;'>");
                         out.println("<strong>" + item.getQuantity() + "</strong>");
                         out.println("</td>");
                         out.println("</tr>");
@@ -67,13 +67,14 @@
                         out.println("<td style='width:70px'>");
                         out.println("Κατ.");
                         out.println("</td>");
-                        out.println("<td>");
+                        out.println("<td style='font-size: 30px;'>");
                         out.println("<strong>" + item.getState() + "</strong>");
                         out.println("</td>");
                         out.println("</tr>");
 
                         out.println("<tr style='background-color:#F1F1F1'>");
-                        out.println("<td colspan='2'>");
+                        out.println("<td colspan='2' style='font-size: 30px;'>");
+
                         ArrayList<AltercodeContainer> altercodes = item.getAltercodes();
                         for (AltercodeContainer altercodeContainer : altercodes) {
                             if (altercodeContainer.getStatus().equals("eshop")

@@ -36,6 +36,15 @@ public class ExcelController {
     @Autowired
     private ExcelDao excelDao;
 
+    public void createExcelFileFromDatabaseData() {
+        ExcelDao ed=new ExcelDao();
+        ArrayList<ExcelItem> excelItems = ed.getExcelItems();
+        Basement basement = new Basement();
+        String basementDirectory = basement.getBasementDirectory();
+        String fileName = "pet4uExcelData.xlsx";
+        fileName = writeExcel(excelItems, basementDirectory, fileName);
+    }
+
     @RequestMapping(value = "downloadPet4UExcelData")
     public void downloadPet4UExcelData(HttpServletRequest request, HttpServletResponse response) {
 
@@ -43,7 +52,7 @@ public class ExcelController {
         Basement basement = new Basement();
         String basementDirectory = basement.getBasementDirectory();
         String fileName = "pet4uExcelData.xlsx";
-        fileName = writeExcel(excelItems, request, basementDirectory, fileName);
+        fileName = writeExcel(excelItems, basementDirectory, fileName);
 
         File file = new File(basementDirectory + "/" + fileName);
         downloadFile(file, fileName, response);
@@ -81,7 +90,7 @@ public class ExcelController {
         return style;
     }
 
-    private String writeExcel(ArrayList<ExcelItem> excelItems, HttpServletRequest request, String basementDirectory, String fileName) {
+    private String writeExcel(ArrayList<ExcelItem> excelItems, String basementDirectory, String fileName) {
         // keep 100 rows in memory, exceeding rows will be flushed to disk
         try (SXSSFWorkbook workbook = new SXSSFWorkbook(100);
                 OutputStream os = new FileOutputStream(basementDirectory + "/" + fileName)) {

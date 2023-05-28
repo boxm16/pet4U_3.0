@@ -37,11 +37,22 @@
     <context:component-scan base-package="Search"/>
     <context:component-scan base-package="Excel"/>
     <context:component-scan base-package="CamelotItemsOfInterest"/>
+    <context:component-scan base-package="CamelotSearch"/>
+    <context:component-scan base-package="Pet4uItems"/>
+    <context:component-scan base-package="AmazonServerUpload"/>
+    <context:component-scan base-package="LocalUploads"/>
+    <context:component-scan base-package="Sales"/>
+    <context:component-scan base-package="Inventory"/>
+    <context:component-scan base-package="Delivery"/>
     <!--
     Most controllers will use the ControllerClassNameHandlerMapping above, but
     for the index controller we are using ParameterizableViewController, so we must
     define an explicit mapping for it.
     -->
+    <!-- this part is for uploading-->
+    <bean id="multipartResolver"   
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/> 
+    
     <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
         <property name="mappings">
             <props>

@@ -187,7 +187,8 @@ public class TechManDao {
                 + "order_unit VARCHAR (10) NOT NULL, "
                 + "order_quantity INT (5) NOT NULL, "
                 + "weight_coefficient INT (3) NOT NULL, "
-                + "order_total_items INT (5) NOT NULL) "
+                + "camelot_minimal_stock INT (5) NOT NULL, "
+                + "note VARCHAR (500)  NULL) "
                 + "ENGINE = InnoDB "
                 + "DEFAULT CHARACTER SET = utf8;";
 
@@ -218,4 +219,144 @@ public class TechManDao {
             return "Table 'camelot_interest' could not be deleted:" + ex;
         }
     }
+
+    String createCamelotItemsOfOurInterestDayRestTable() {
+        String query = "CREATE TABLE camelot_day_rest("
+                + "item_code VARCHAR (100) NOT NULL, "
+                + "date_stamp DATE NOT NULL, "
+                + "item_rest VARCHAR (30) NOT NULL) "
+                + "ENGINE = InnoDB "
+                + "DEFAULT CHARACTER SET = utf8;";
+
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+            statement.close();
+            connection.close();
+            return "Table 'camelot_day_rest' created succesfully";
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return "Table 'camelot_day_rest' could not be created:" + ex;
+        }
+    }
+
+    String deleteCamelotItemsOfOurInterestDayRestTable() {
+        System.out.println("DELTEING ");
+        String query = "DROP TABLE camelot_day_rest";
+
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+            statement.close();
+            connection.close();
+            return "Table 'camelot_day_rest' deleted succesfully";
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return "Table 'camelot_day_rest' could not be deleted:" + ex;
+        }
+    }
+
+    String createWeightCoefficinetDatabaseTable() {
+        String query = "CREATE TABLE weight_coefficient("
+                + "item_code VARCHAR (100) NOT NULL, "
+                + "coefficient DOUBLE (5,5) NOT NULL) "
+                + "ENGINE = InnoDB "
+                + "DEFAULT CHARACTER SET = utf8;";
+
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+            statement.close();
+            connection.close();
+            return "Table 'weight_coefficient' created succesfully";
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return "Table 'weight_coefficient' could not be created:" + ex;
+        }
+    }
+
+    String deleteWeightCoefficinetDatabaseTable() {
+
+        String query = "DROP TABLE weight_coefficient";
+
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+            statement.close();
+            connection.close();
+            return "Table 'weight_coefficient' deleted succesfully";
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return "Table 'weight_coefficient' could not be deleted:" + ex;
+        }
+    }
+
+    String createSalesDatabaseTable() {
+        String query = "CREATE TABLE sales("
+                + "code VARCHAR (50) NOT NULL, "
+                + "description VARCHAR (150) NOT NULL,"
+                + "measure_unit VARCHAR (5) NOT NULL, "
+                + "eshop_sales int (5) NULL, "
+                + "shops_supply int (5) NULL, "
+                + "total_sales int (5) NULL, "
+                + "coeficient int (3) NULL, "
+                + "total_sales_in_pieces int (5) NULL) "
+                + "ENGINE = InnoDB "
+                + "DEFAULT CHARACTER SET = utf8;";
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+            statement.close();
+            connection.close();
+            return "Table 'sales' created succesfully";
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return "Table 'sales' could not be created:" + ex;
+        }
+    }
+
+    String createInventoryDatabaseTable() {
+        String query = "CREATE TABLE inventory("
+                + "item_code VARCHAR (100) NOT NULL, "
+                + "date_stamp DATE NOT NULL, "
+                + "time_stamp VARCHAR (20) NOT NULL, "
+                + "system_stock VARCHAR (30) NOT NULL, "
+                + "real_stock VARCHAR (30) NOT NULL, "
+                + "note VARCHAR (500) NOT NULL) "
+                + "ENGINE = InnoDB "
+                + "DEFAULT CHARACTER SET = utf8;";
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+            statement.close();
+            connection.close();
+            return "Table 'inventory' created succesfully";
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return "Table 'inventory' could not be created:" + ex;
+        }
+    }
+
+    String deleteInventoryDatabaseTable() {
+        String query = "DROP TABLE inventory";
+
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+            statement.close();
+            connection.close();
+            return "Table 'inventory' deleted succesfully";
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return "Table 'inventory' could not be deleted:" + ex;
+        }
+    }
+
 }

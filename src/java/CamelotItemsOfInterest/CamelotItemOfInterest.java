@@ -8,12 +8,16 @@ public class CamelotItemOfInterest extends Item {
     private int minimalStock;
     private String orderUnit;
     private int orderQuantity;
-    private int orderTotalItems;
+
     private String camelotPosition;
-    private int pet4uStock;
+    private double pet4uStock;
     private int weightCoefficient;
-    private int camelotStock;
-    private int camelotBinded;
+    private double camelotStock;
+    private double camelotBinded;
+    private int camelotMinimalStock;
+
+    private int totalSalesInPieces;
+    private String note;
 
     public String getOwner() {
         return owner;
@@ -47,14 +51,6 @@ public class CamelotItemOfInterest extends Item {
         this.orderQuantity = orderQuantity;
     }
 
-    public int getOrderTotalItems() {
-        return orderTotalItems;
-    }
-
-    public void setOrderTotalItems(int orderTotalItems) {
-        this.orderTotalItems = orderTotalItems;
-    }
-
     public String getCamelotPosition() {
         return camelotPosition;
     }
@@ -63,30 +59,19 @@ public class CamelotItemOfInterest extends Item {
         this.camelotPosition = camelotPosition;
     }
 
-    public int getPet4uStock() {
-        return pet4uStock;
-    }
-
     public void setPet4uStock(int pet4uStock) {
         this.pet4uStock = pet4uStock;
-    }
-
-    public int getCamelotStock() {
-        return camelotStock;
     }
 
     public void setCamelotStock(int camelotStock) {
         this.camelotStock = camelotStock;
     }
 
-    public int getCamelotBinded() {
-        return camelotBinded;
-    }
-
     public void setCamelotBinded(int camelotBinded) {
         this.camelotBinded = camelotBinded;
     }
 
+    @Override
     public int getWeightCoefficient() {
         return weightCoefficient;
     }
@@ -94,5 +79,55 @@ public class CamelotItemOfInterest extends Item {
     public void setWeightCoefficient(int weightCoefficient) {
         this.weightCoefficient = weightCoefficient;
     }
+
+    public double getPet4uStock() {
+        return pet4uStock;
+    }
+
+    public void setPet4uStock(double pet4uStock) {
+        this.pet4uStock = pet4uStock;
+    }
+
+    public double getCamelotStock() {
+        return camelotStock;
+    }
+
+    public void setCamelotStock(double camelotStock) {
+        this.camelotStock = camelotStock;
+    }
+
+    public double getCamelotBinded() {
+        return camelotBinded;
+    }
+
+    public void setCamelotBinded(double camelotBinded) {
+        this.camelotBinded = camelotBinded;
+    }
+
+    public int getCamelotMinimalStock() {
+        return camelotMinimalStock;
+    }
+
+    public void setCamelotMinimalStock(int camelotMinimalStock) {
+        this.camelotMinimalStock = camelotMinimalStock;
+    }
+
+    public int getTotalSalesInPieces() {
+        return totalSalesInPieces;
+    }
+
+    public void setTotalSalesInPieces(int totalSalesInPieces) {
+        this.totalSalesInPieces = totalSalesInPieces;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+    
+    
 
 }

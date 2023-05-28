@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class TechManController {
+
     @Autowired
     private TechManDao techManDao;
 
@@ -49,15 +50,24 @@ public class TechManController {
         // Tests whether the directory denoted by this abstract pathname exists.
         return dir.exists();
     }
+
     //----------------------------------------
     @RequestMapping(value = "createPet4u_DB", method = RequestMethod.GET)
     public String createPet4u_DB(ModelMap model) {
         String pet4uDatabaseCreationResult = techManDao.createPet4u_DB();
-        model.addAttribute("pet4uDatabaseCreationResult", pet4uDatabaseCreationResult+"<br>");
+        model.addAttribute("pet4uDatabaseCreationResult", pet4uDatabaseCreationResult + "<br>");
         return "techMan/techManDashboard";
     }
-    
-     //---------------------------
+
+    //---------------------------
+    @RequestMapping(value = "/createSalesDatabaseTable", method = RequestMethod.GET)
+    public String createSalesDatabaseTable(ModelMap modelMap) {
+        String createSalesDatabaseTableResult = techManDao.createSalesDatabaseTable();
+        createSalesDatabaseTableResult = createSalesDatabaseTableResult + "<br>";
+        modelMap.addAttribute("salesDatabaseTableResult", createSalesDatabaseTableResult);
+        return "techMan/techManDashboard";
+    }
+
     @RequestMapping(value = "/createSales_1_2022_DatabaseTable", method = RequestMethod.GET)
     public String createSales_1_2022_DatabaseTable(ModelMap modelMap) {
         String createSales_1_2022_DatabaseTableResult = techManDao.createSales_1_2022_DatabaseTable();
@@ -89,7 +99,7 @@ public class TechManController {
 
         deleteSales_2_2022_DatabaseTableResult = deleteSales_2_2022_DatabaseTableResult + "<br>";
         modelMap.addAttribute("salesDatabaseTableResult", deleteSales_2_2022_DatabaseTableResult);
-         return "techMan/techManDashboard";
+        return "techMan/techManDashboard";
     }
 
     @RequestMapping(value = "/createOrdersDatabaseTable", method = RequestMethod.GET)
@@ -98,7 +108,7 @@ public class TechManController {
 
         ordersDatabaseTableResult = ordersDatabaseTableResult + "<br>";
         modelMap.addAttribute("ordersDatabaseTableResult", ordersDatabaseTableResult);
-         return "techMan/techManDashboard";
+        return "techMan/techManDashboard";
     }
 
     @RequestMapping(value = "/deleteOrdersDatabaseTable", method = RequestMethod.GET)
@@ -128,20 +138,66 @@ public class TechManController {
         modelMap.addAttribute("notesDatabaseTableResult", notesDatabaseTableResult);
         return "techMan/techManDashboard";
     }
-    
-     //--------------------------------------------------
-    @RequestMapping(value = "/createCamelotItemsOfOurInterestDatabaseTable", method = RequestMethod.GET)
-    public String createCamelotItemsOfOurInterestDatabaseTable(ModelMap modelMap) {
+
+    //--------------------------------------------------
+    @RequestMapping(value = "/createCamelotItemsOfOurInterestDatabaseTables", method = RequestMethod.GET)
+    public String createCamelotItemsOfOurInterestDatabaseTables(ModelMap modelMap) {
 
         String camelotItemsOfOurInterestTableCreationResult = techManDao.createCamelotItemsOfOurInterestTable();
-        modelMap.addAttribute("camelotItemsOfOurInterestDatabaseTableCreationResult", camelotItemsOfOurInterestTableCreationResult);
+        String camelotItemsOfOurInterestDayRestTableCreationResult = techManDao.createCamelotItemsOfOurInterestDayRestTable();
+
+        modelMap.addAttribute("camelotItemsOfOurInterestDatabaseTablesCreationResult", camelotItemsOfOurInterestTableCreationResult + "<br>" + camelotItemsOfOurInterestDayRestTableCreationResult);
         return "techMan/techManDashboard";
     }
 
-    @RequestMapping(value = "/deleteCamelotItemsOfOurInterestDatabaseTable", method = RequestMethod.GET)
-    public String deleteCamelotItemsOfOurInterestDatabaseTable(ModelMap modelMap) {
-        String camelotItemsOfOurInterestTableDeletionResult = techManDao.deleteCamelotItemsOfOurInterestTable();
-        modelMap.addAttribute("camelotItemsOfOurInterestDatabaseTableDeletionResult", camelotItemsOfOurInterestTableDeletionResult);
-       return "techMan/techManDashboard";
+    @RequestMapping(value = "/deleteCamelotItemsOfOurInterestDatabaseTables", method = RequestMethod.GET)
+    public String deleteCamelotItemsOfOurInterestDatabaseTables(ModelMap modelMap) {
+        //  String camelotItemsOfOurInterestTableDeletionResult = techManDao.deleteCamelotItemsOfOurInterestTable();
+        String camelotItemsOfOurInterestTableDeletionResult = "";
+        String camelotItemsOfOurInterestDayRestTableDeletionResult = techManDao.deleteCamelotItemsOfOurInterestDayRestTable();
+
+        modelMap.addAttribute("camelotItemsOfOurInterestDatabaseTablesDeletionResult", camelotItemsOfOurInterestTableDeletionResult + "<br>" + camelotItemsOfOurInterestDayRestTableDeletionResult);
+        return "techMan/techManDashboard";
+    }
+
+    //-------------------------------------
+    //-----------------
+    @RequestMapping(value = "/createWeightCoefficinetDatabaseTable", method = RequestMethod.GET)
+    public String createWeightCoefficinetDatabaseTable(ModelMap modelMap) {
+        String weightCoefficinetTableCreationResult = techManDao.createWeightCoefficinetDatabaseTable();
+
+        weightCoefficinetTableCreationResult = weightCoefficinetTableCreationResult + "<br>";
+        modelMap.addAttribute("weightCoefficinetTableCreationResult", weightCoefficinetTableCreationResult);
+        return "techMan/techManDashboard";
+    }
+
+    @RequestMapping(value = "/deleteWeightCoefficinetDatabaseTable", method = RequestMethod.GET)
+    public String deleteWeightCoefficinetDatabaseTable(ModelMap modelMap) {
+        String weightCoefficinetTableDeletionResult = techManDao.deleteWeightCoefficinetDatabaseTable();
+
+        weightCoefficinetTableDeletionResult = weightCoefficinetTableDeletionResult + "<br>";
+        modelMap.addAttribute("weightCoefficinetTableDeletionResult", weightCoefficinetTableDeletionResult);
+        return "techMan/techManDashboard";
+    }
+    //-------------------------------------
+    //-----------------
+
+    @RequestMapping(value = "/createInventoryDatabaseTable", method = RequestMethod.GET)
+    public String createInventoryDatabaseTable(ModelMap modelMap) {
+        
+        String inventoryTableCreationResult = techManDao.createInventoryDatabaseTable();
+
+        inventoryTableCreationResult = inventoryTableCreationResult + "<br>";
+        modelMap.addAttribute("inventoryTableCreationResult", inventoryTableCreationResult);
+        return "techMan/techManDashboard";
+    }
+
+    @RequestMapping(value = "/deleteInventoryDatabaseTable", method = RequestMethod.GET)
+    public String deleteInventoryDatabaseTable(ModelMap modelMap) {
+        String inventoryTableDeletionResult = techManDao.deleteInventoryDatabaseTable();
+
+        inventoryTableDeletionResult = inventoryTableDeletionResult + "<br>";
+        modelMap.addAttribute("inventoryTableDeletionResult", inventoryTableDeletionResult);
+        return "techMan/techManDashboard";
     }
 }

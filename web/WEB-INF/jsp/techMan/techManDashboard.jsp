@@ -23,9 +23,11 @@
         <br>
         <h1> ${pet4uDatabaseCreationResult} </h1>
         <a href='createPet4u_DB.htm'><h1>Create Pet4U MySQL DATABASE ON My Server</h1> </a>
+        <hr>
+        <a href='createSalesDatabaseTable.htm'><h1>Create Sales Database Table</h1> </a>
 
         <hr>
-        <h1> ${salesDatabaseTableResult} </h1>
+        <h1 style="color:red"> ${salesDatabaseTableResult} </h1>
         <a href='createSales_1_2022_DatabaseTable.htm'><h1>Create Sales 1-6/2022 Database Table</h1> </a>
         <a href='createSales_2_2022_DatabaseTable.htm'><h1>Create Sales 7-12/2022 Database Table</h1> </a>
 
@@ -43,12 +45,20 @@
         <hr>
         <hr>
         <hr>
-        <h1> ${camelotItemsOfOurInterestDatabaseTableCreationResult} </h1>
-        <a href='createCamelotItemsOfOurInterestDatabaseTable.htm'><h1>Create Camelot Items Of Our Interest Database Tables</h1> </a>
+        <h1> ${camelotItemsOfOurInterestDatabaseTablesCreationResult} </h1>
+        <a href='createCamelotItemsOfOurInterestDatabaseTables.htm'><h1>Create Camelot Items Of Our Interest Database Tables</h1> </a>
         <br>
-        <h1> ${camelotItemsOfOurInterestDatabaseTableDeletionResult} </h1>
-        <a href='deleteCamelotItemsOfOurInterestDatabaseTable.htm'><h1>Delete Camelot Items Of Our Interest Database Tables</h1> </a>
+        <h1> ${camelotItemsOfOurInterestDatabaseTablesDeletionResult} </h1>
+        <a href='deleteCamelotItemsOfOurInterestDatabaseTables.htm'><h1>Delete Camelot Items Of Our Interest Database Tables</h1> </a>
         <br>
+        <hr>
+        <h1> ${inventoryTableCreationResult} </h1>
+        <a href='createInventoryDatabaseTable.htm'><h1>Create Inventory Database Tables</h1> </a>
+        <br>
+        <h1> ${inventoryTableDeletionResult} </h1>
+        <a href='deleteInventoryDatabaseTable.htm'><h1>Delete Inventory Database Tables</h1> </a>
+        <br>
+        
 
 
     </center>

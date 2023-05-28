@@ -1,3 +1,5 @@
+<%@page import="Service.Scheduler"%>
+<%@page import="Service.StaticsDispatcher"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
@@ -6,19 +8,51 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Pet4U 3.0</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
     </head>
 
     <body>
-        <center>
-            <a href="searchDashboard.htm"><h1>Find Items</h1></a>
-            <hr>
-            <a href="downloadPet4UExcelData.htm"><h1>Download Pet4u Data In Excel Format</h1></a>
-            <hr>
-            <hr>
-            <hr>
-            <h1><a href='camelotItemsOfOurInterestDashboard.htm'>Camelot: Items Of Our Interest</a></h1>
+        <%
+            if (!StaticsDispatcher.isTimerOn()) {
+                Scheduler scheduler = new Scheduler();
+                scheduler.startScheduledTasks();
+                StaticsDispatcher.setTimerOn();
+            }
+        %>
+        <div class="container">
+            <center>
+                <a href="searchDashboard.htm"><h1 style="color: #35B62F">Find Pet4u Items</h1></a>
+                <hr>
+                <a href="camelotSearchDashboard.htm"><h1 style="color: #D052DB ">Find Camelot Items</h1></a>
+                <hr>
+                <h1><a href='pet4uAllItems.htm'>Pet4u: All Items</a></h1>
+                <hr>
+                <h1><a href='sixMonthsSales.htm'>Pet4u: Six Months Sales (7/2022-12/2022)</a></h1>
+                <hr>
+                <h1><a href='camelotItemsOfOurInterestDashboard.htm'>Camelot: Items Of Our Interest</a></h1>
+                <hr>
+                <h1><a href='camelotAllItems.htm'>Camelot: All Items</a></h1>
+                <hr>
+                <h1><a href='itemsFromCamelot.htm'>Pet4U: All Items From Camelot</a></h1>
+                <hr>
+                <h1><a href='pet4uNegativeStock.htm'>Pet4u Negative Stock</a></h1>
+                <hr>
+                <a href="weightItems.htm"><h1>Show Items With Weight</h1></a>
+                <hr>
+                <a href="downloadPet4UExcelData.htm"><h1>Download Pet4u Data In Excel Format</h1></a>
+                <hr>
+                <hr>
+                <a href="goForSalesUpload.htm"><h1>Go For Sales Upload</h1></a>
+                <hr>
+                <hr>
+                <a href="inventoryDashboard.htm"><h1>Go For Inventory Dashboard</h1></a>
+                <hr>
+                <a href="deliveryDashboard.htm"><h1>Go For Delivery Dashboard</h1></a>
 
-
-        </center>
+            </center>
+        </div>
     </body>
 </html>

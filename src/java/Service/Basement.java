@@ -11,6 +11,9 @@ public class Basement {
         if (getApplicationHostName().equals("LAPTOP")) {
             return "C:\\Users\\Michail Sitmalidis\\pet4U_3.0";
         }
+        if (getApplicationHostName().equals("var-apoth")) {
+            return "C:\\pet4U_3.0";
+        }
         if (getApplicationHostName().equals("pet4uLinuxServer")) {
             return "/home/basement";
         } else {

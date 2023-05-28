@@ -26,7 +26,7 @@
     </head>
     <body>
 
-        <div class="container">
+        <div class="container" >
             <div class="row">
                 <div class=" col-sm-4">
 
@@ -44,7 +44,7 @@
                             LinkedHashMap<Integer, Item> items = (LinkedHashMap) request.getAttribute("items");
                             for (Map.Entry<Integer, Item> entrySet : items.entrySet()) {
                                 Item item = entrySet.getValue();
-                                out.println("<table class='table'>");
+                                out.println("<table class='table' style='background-color: #35B62F'>");
                                 out.println("</tbody>");
                                 out.println("<tr>");
                                 out.println("<td style='width:70px'>");

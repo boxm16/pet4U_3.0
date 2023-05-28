@@ -13,25 +13,24 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class ExcelDao {
 
-    @Autowired
-    private DatabaseConnectionFactory databaseConnectionFactory;
+   
 
     public ArrayList<ExcelItem> getExcelItems() {
         ArrayList<ExcelItem> excelItems = new ArrayList();
+        DatabaseConnectionFactory databaseConnectionFactory=new DatabaseConnectionFactory();
         Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
-        ExcelItem excelItem = null;
+        ExcelItem excelItem ;
         try {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = null;
+            ResultSet resultSet;
 
             resultSet = statement.executeQuery("select * from WH1;");
-            int index = 0;
+           
             while (resultSet.next()) {
 
                 excelItem = new ExcelItem();
