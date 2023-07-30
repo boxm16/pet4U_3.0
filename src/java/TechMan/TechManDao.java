@@ -322,12 +322,15 @@ public class TechManDao {
 
     String createInventoryDatabaseTable() {
         String query = "CREATE TABLE inventory("
+                + "id INT NOT NULL AUTO_INCREMENT, "
                 + "item_code VARCHAR (100) NOT NULL, "
                 + "date_stamp DATE NOT NULL, "
                 + "time_stamp VARCHAR (20) NOT NULL, "
                 + "system_stock VARCHAR (30) NOT NULL, "
                 + "real_stock VARCHAR (30) NOT NULL, "
-                + "note VARCHAR (500) NOT NULL) "
+                + "state VARCHAR (10)  NULL, "
+                + "note VARCHAR (500) NOT NULL, "
+                + "PRIMARY KEY (id)) "
                 + "ENGINE = InnoDB "
                 + "DEFAULT CHARACTER SET = utf8;";
         try {
@@ -356,6 +359,123 @@ public class TechManDao {
         } catch (SQLException ex) {
             Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
             return "Table 'inventory' could not be deleted:" + ex;
+        }
+    }
+    //---------------------------------
+    //------------------------------------
+
+    String createDeliveryTitleDatabaseTable() {
+        String query = "CREATE TABLE delivery_title("
+                + "id VARCHAR(30) NOT NULL, "
+                + "number VARCHAR (30) NOT NULL, "
+                + "supplier VARCHAR (80) NOT NULL, "
+                + "note VARCHAR (500) NOT NULL, "
+                + "PRIMARY KEY (id)) "
+                + "ENGINE = InnoDB "
+                + "DEFAULT CHARACTER SET = utf8;";
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+            statement.close();
+            connection.close();
+            return "Table 'delivery_title' created succesfully";
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return "Table 'delivery_title' could not be created:" + ex;
+        }
+    }
+
+    String createDeliveryDataDatabaseTable() {
+        String query = "CREATE TABLE delivery_data("
+                + "delivery_id  VARCHAR(30) NOT NULL , "
+                + "item_code  VARCHAR (50) , "
+                + "sent VARCHAR (30) NOT NULL, "
+                + "delivered VARCHAR (30) NOT NULL) "
+                + "ENGINE = InnoDB "
+                + "DEFAULT CHARACTER SET = utf8;";
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+            statement.close();
+            connection.close();
+            return "Table 'delivery_data' created succesfully";
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return "Table 'delivery_data' could not be created:" + ex;
+        }
+    }
+
+    String deleteDeliveryTitleDatabaseTable() {
+        String query = "DROP TABLE delivery_title";
+
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+            statement.close();
+            connection.close();
+            return "Table 'delivery_title' deleted succesfully";
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return "Table 'delivery_title' could not be deleted:" + ex;
+        }
+    }
+
+    String deleteDeliveryDataDatabaseTable() {
+        String query = "DROP TABLE delivery_data";
+
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+            statement.close();
+            connection.close();
+            return "Table 'delivery_data' deleted succesfully";
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return "Table 'delivery_data' could not be deleted:" + ex;
+        }
+    }
+
+    String createBestBeforeDatabaseTable() {
+
+        String query = "CREATE TABLE best_before("
+                + "id INT NOT NULL AUTO_INCREMENT, "
+                + "altercode VARCHAR (100) NOT NULL, "
+                + "best_before_date_stamp DATE NOT NULL, "
+                + "note VARCHAR (500) NOT NULL, "
+                + "PRIMARY KEY (id)) "
+                + "ENGINE = InnoDB "
+                + "DEFAULT CHARACTER SET = utf8;";
+
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+            statement.close();
+            connection.close();
+            return "Table 'best_before' created succesfully";
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return "Table 'best_before' could not be created:" + ex;
+        }
+    }
+
+    String deleteBestBeforeDatabaseTable() {
+        String query = "DROP TABLE best_before";
+
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+            statement.close();
+            connection.close();
+            return "Table 'best_before' deleted succesfully";
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return "Table 'best_before' could not be deleted:" + ex;
         }
     }
 

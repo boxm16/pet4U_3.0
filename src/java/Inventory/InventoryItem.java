@@ -14,6 +14,7 @@ import java.util.Date;
  */
 public class InventoryItem extends Item {
 
+    private int id;
     private String dateStampString;
     private Date dateStamp;
     private String timeStampString;
@@ -21,6 +22,15 @@ public class InventoryItem extends Item {
     private String systemStock;
     private String realStock;
     private String note;
+    private String inventarizationState;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getTimeStampString() {
         return timeStampString;
@@ -29,8 +39,6 @@ public class InventoryItem extends Item {
     public void setTimeStampString(String timeStampString) {
         this.timeStampString = timeStampString;
     }
-    
-    
 
     public String getDateStampString() {
         return dateStampString;
@@ -78,6 +86,14 @@ public class InventoryItem extends Item {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    public String getInventarizationState() {
+        return inventarizationState;
+    }
+
+    public void setInventarizationState(String inventarizationState) {
+        this.inventarizationState = inventarizationState;
     }
 
 }

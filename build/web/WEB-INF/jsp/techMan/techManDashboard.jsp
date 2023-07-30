@@ -58,7 +58,24 @@
         <h1> ${inventoryTableDeletionResult} </h1>
         <a href='deleteInventoryDatabaseTable.htm'><h1>Delete Inventory Database Tables</h1> </a>
         <br>
-        
+        <br>
+        <hr>
+        <h1> ${deliveryTablesCreationResult} </h1>
+        <a href='createDeliveryDatabaseTables.htm'><h1>Create Delivery Database Tables</h1> </a>
+        <br>
+        <h1> ${deliveryTablesDeletionResult} </h1>
+        <a href='deleteDeliveryDatabaseTables.htm'><h1>Delete Delivery Database Tables</h1> </a>
+        <br>
+        <br>
+        <br>
+        <hr>
+        <h1> ${bestBeforeTableCreationResult} </h1>
+        <a href='createBestBeforeDatabaseTables.htm'><h1>Create Best_Before Database Tables</h1> </a>
+        <br>
+        <h1> ${bestBeforeTableDeletionResult} </h1>
+        <a href='deleteBestBeforeDatabaseTables.htm'><h1>Delete Best_Before Database Tables</h1> </a>
+        <br>
+
 
 
     </center>

@@ -1,4 +1,5 @@
 
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.util.LinkedHashMap"%>
 <%@page import="java.util.Map"%>
 <%@page import="Inventory.InventoryItem"%>
@@ -36,22 +37,33 @@
 
         <table>
             <thead>
+            <th>ID</th>
             <th>Date</th>
             <th>Time</th>
             <th>Altercode</th>
+            <th>Select</th>
             <th>Description</th>
+
+
+            <th>Archivize Item Inventory</th>
 
             <th>System Stock</th>
             <th>Real Stock</th>
             <th>Note</th>
+            <th>Item State</th>
+            <th>Delete</th>
 
             </thead>
             <%
-                LinkedHashMap<String, InventoryItem> items = (LinkedHashMap) request.getAttribute("inventories");
-                for (Map.Entry<String, InventoryItem> entrySet : items.entrySet()) {
-                    InventoryItem inventoryItem = entrySet.getValue();
+                ArrayList<InventoryItem> items = (ArrayList) request.getAttribute("inventories");
+                for (InventoryItem inventoryItem : items) {
 
                     out.println("<tr>");
+
+                    out.println("<td>");
+                    out.println(inventoryItem.getId());
+                    out.println("</td>");
+
                     out.println("<td>");
                     out.println(inventoryItem.getDateStampString());
                     out.println("</td>");
@@ -65,7 +77,15 @@
                     out.println("</td>");
 
                     out.println("<td>");
+                    out.println("<input type='checkbox' class='inventoryItemId' id='" + inventoryItem.getId() + "' style='width:28px;height:28px'>");
+                    out.println("</td>");
+
+                    out.println("<td>");
                     out.println(inventoryItem.getDescription());
+                    out.println("</td>");
+
+                    out.println("<td>");
+                    out.println("<a href='archivizeInventoryItem.htm?id=" + inventoryItem.getId() + "'>Archivize Inventory Item</a>");
                     out.println("</td>");
 
                     out.println("<td>");
@@ -79,6 +99,15 @@
                     out.println("<td>");
                     out.println(inventoryItem.getNote());
                     out.println("</td>");
+
+                    out.println("<td>");
+                    out.println(inventoryItem.getInventarizationState());
+                    out.println("</td>");
+
+                    out.println("<td>");
+                    out.println("<a href='deleteInventoryItem.htm?id=" + inventoryItem.getId() + "'>Delete Inventory Item</a>");
+                    out.println("</td>");
+
                     /*
 
                     out.println("<td>");
@@ -94,7 +123,41 @@
                 }
             %>
         </table>
+        <hr>
+        <form id="form" action="#" method="POST">
+            <input hidden type="text" id="inventoryItemsInput" name="itemsIds">
+        </form>
+
+        <a href="#" onclick="requestRouter('printMode.htm')"><h4>Print Mode</h4></a>
+        <hr><hr><hr><hr><hr><hr><hr><hr><hr><hr>
+        <a href="#" onclick="requestRouter('archivizeItems.htm')"><h4>Archivize Selected Items</h4></a>
 
     </center>
+
+    <script>
+
+        ////--------------------
+        function requestRouter(requestTarget) {
+            if (requestTarget == "printMode.htm") {
+                form.target = "_blank";
+            } else {
+
+            }
+            form.action = requestTarget;
+            inventoryItemsInput.value = collectSellectedCheckBoxes();
+            console.log(form.action);
+            form.submit();
+        }
+        //this function collects all checked checkbox values, concatinates them in one string and returns that string to send it after by POST method to server
+        function collectSellectedCheckBoxes() {
+            var returnValue = "";
+            var targetCheckBoxes = document.querySelectorAll(".inventoryItemId");
+            for (x = 0; x < targetCheckBoxes.length; x++) {
+                if (targetCheckBoxes[x].checked)
+                    returnValue += targetCheckBoxes[x].id + ",";
+            }
+            return returnValue;
+        }
+    </script>
 </body>
 </html>

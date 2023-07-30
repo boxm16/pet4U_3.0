@@ -184,7 +184,7 @@ public class TechManController {
 
     @RequestMapping(value = "/createInventoryDatabaseTable", method = RequestMethod.GET)
     public String createInventoryDatabaseTable(ModelMap modelMap) {
-        
+
         String inventoryTableCreationResult = techManDao.createInventoryDatabaseTable();
 
         inventoryTableCreationResult = inventoryTableCreationResult + "<br>";
@@ -198,6 +198,49 @@ public class TechManController {
 
         inventoryTableDeletionResult = inventoryTableDeletionResult + "<br>";
         modelMap.addAttribute("inventoryTableDeletionResult", inventoryTableDeletionResult);
+        return "techMan/techManDashboard";
+    }
+
+    //-------------------------------------
+    //-----------------
+    @RequestMapping(value = "/createDeliveryDatabaseTables", method = RequestMethod.GET)
+    public String createDeliveryDatabaseTable(ModelMap modelMap) {
+
+        String deliveryTitleTableCreationResult = techManDao.createDeliveryTitleDatabaseTable();
+        String deliveryDataTableCreationResult = techManDao.createDeliveryDataDatabaseTable();
+
+        String deliveryTablesCreationResult = deliveryTitleTableCreationResult + " : " + deliveryDataTableCreationResult + "<br>";
+        modelMap.addAttribute("deliveryTablesCreationResult", deliveryTablesCreationResult);
+        return "techMan/techManDashboard";
+    }
+
+    @RequestMapping(value = "/deleteDeliveryDatabaseTables", method = RequestMethod.GET)
+    public String deleteDeliveryDatabaseTable(ModelMap modelMap) {
+        String deliveryTitleTableDeletionResult = techManDao.deleteDeliveryTitleDatabaseTable();
+        String deliveryDataTableDeletionResult = techManDao.deleteDeliveryDataDatabaseTable();
+
+        String deliveryTablesDeletionResult = deliveryTitleTableDeletionResult + " : " + deliveryDataTableDeletionResult + "<br>";
+        modelMap.addAttribute("deliveryTablesDeletionResult", deliveryTablesDeletionResult);
+        return "techMan/techManDashboard";
+    }
+
+    //-------------------------------------
+    //-----------------
+    @RequestMapping(value = "/createBestBeforeDatabaseTables", method = RequestMethod.GET)
+    public String createBestBeforeDatabaseTables(ModelMap modelMap) {
+
+        String bestBeforeTableCreationResult = techManDao.createBestBeforeDatabaseTable();
+        bestBeforeTableCreationResult = bestBeforeTableCreationResult + "<br>";
+        modelMap.addAttribute("bestBeforeTableCreationResult", bestBeforeTableCreationResult);
+        return "techMan/techManDashboard";
+    }
+
+    @RequestMapping(value = "/deleteBestBeforeDatabaseTables", method = RequestMethod.GET)
+    public String deleteBestBeforeDatabaseTables(ModelMap modelMap) {
+        String bestBeforeTableDeletionResult = techManDao.deleteBestBeforeDatabaseTable();
+
+        bestBeforeTableDeletionResult = bestBeforeTableDeletionResult + "<br>";
+        modelMap.addAttribute("bestBeforeTableDeletionResult", bestBeforeTableDeletionResult);
         return "techMan/techManDashboard";
     }
 }

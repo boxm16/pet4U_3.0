@@ -137,7 +137,7 @@ public class CamelotItemsOfInterestDao {
                 camelotItemOfInterest.setOrderUnit(resultSet.getString("order_unit"));
                 camelotItemOfInterest.setOrderQuantity(resultSet.getInt("order_quantity"));
                 camelotItemOfInterest.setCamelotMinimalStock(resultSet.getInt("camelot_minimal_stock"));
-
+                camelotItemOfInterest.setNote(resultSet.getString("note"));
             }
             resultSet.close();
             statement.close();

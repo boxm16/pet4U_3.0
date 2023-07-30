@@ -2,9 +2,10 @@ package Inventory;
 
 import BasicModel.Item;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.LinkedHashMap;
-import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -57,13 +58,13 @@ public class InventoryController {
     @RequestMapping(value = "showInventories")
     public String showInventories(ModelMap model) {
 
-        LinkedHashMap<String, InventoryItem> inventories = this.inventoryDao.getAllInventories();
+        ArrayList<InventoryItem> inventories = this.inventoryDao.getAllActiveInventories();
 
         LinkedHashMap<String, Item> pet4UItems = this.inventoryDao.getpet4UItemsRowByRow();
 
-        for (Map.Entry<String, InventoryItem> entrySet : inventories.entrySet()) {
-            String altercode = entrySet.getKey();
-            InventoryItem inventoryItem = entrySet.getValue();
+        for (InventoryItem inventoryItem : inventories) {
+            String altercode = inventoryItem.getCode();
+
             Item pet4uItem = pet4UItems.get(altercode);
 
             if (pet4uItem == null) {
@@ -74,5 +75,66 @@ public class InventoryController {
             model.addAttribute("inventories", inventories);
         }
         return "inventory/inventoriesDisplay";
+    }
+
+    @RequestMapping(value = "deleteInventoryItem", method = RequestMethod.GET)
+    public String deleteInventory(@RequestParam(name = "id") String id) {
+        InventoryDao inventoryDao = new InventoryDao();
+        inventoryDao.deleteInventoryItem(id);
+        return "redirect:showInventories.htm";
+    }
+
+    @RequestMapping(value = "archivizeInventoryItem", method = RequestMethod.GET)
+    public String archivizeInventoryItem(@RequestParam(name = "id") String id) {
+        InventoryDao inventoryDao = new InventoryDao();
+        inventoryDao.archivizeInventoryItem(id);
+        return "redirect:showInventories.htm";
+    }
+
+    @RequestMapping(value = "printMode")
+    public String printMode(@RequestParam("itemsIds") String inventoryItemsIds, ModelMap model) {
+        ArrayList<String> inventoryItemsIdsArray = createItemsIdsArray(inventoryItemsIds);
+
+        ArrayList<InventoryItem> inventories = this.inventoryDao.getInventories(inventoryItemsIdsArray);
+
+        LinkedHashMap<String, Item> pet4UItems = this.inventoryDao.getpet4UItemsRowByRow();
+
+        for (InventoryItem inventoryItem : inventories) {
+            String altercode = inventoryItem.getCode();
+
+            Item pet4uItem = pet4UItems.get(altercode);
+
+            if (pet4uItem == null) {
+                System.out.println("Pet4uItem  not present in the lists from microsoft db");
+            }
+            inventoryItem.setCode(pet4uItem.getCode());
+            inventoryItem.setDescription(pet4uItem.getDescription());
+            model.addAttribute("inventories", inventories);
+        }
+
+        return "inventory/printMode";
+    }
+
+    private ArrayList<String> createItemsIdsArray(String inventoryItemsIds) {
+        ArrayList idsArray = new ArrayList();
+        //trimming and cleaning input
+        inventoryItemsIds = inventoryItemsIds.trim();
+        if (inventoryItemsIds.length() == 0) {
+            return new ArrayList<String>();
+        }
+        if (inventoryItemsIds.substring(inventoryItemsIds.length() - 1, inventoryItemsIds.length()).equals(",")) {
+            inventoryItemsIds = inventoryItemsIds.substring(0, inventoryItemsIds.length() - 1).trim();
+        }
+        String[] ids = inventoryItemsIds.split(",");
+        idsArray.addAll(Arrays.asList(ids));
+        return idsArray;
+
+    }
+
+    @RequestMapping(value = "archivizeItems")
+    public String archivizeItems(@RequestParam("itemsIds") String itemsIds, ModelMap model) {
+        ArrayList<String> itemsIdsArray = createItemsIdsArray(itemsIds);
+        String result = this.inventoryDao.archivizeItems(itemsIdsArray);
+        return "redirect:showInventories.htm";
     }
 }

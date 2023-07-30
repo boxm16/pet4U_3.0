@@ -24,8 +24,8 @@
         <h1><a href='index.htm'>INDEX</a></h1>
         <h1>Pet4u Negative Stock</h1>
 
-        
-      
+
+
         <table>
             <thead>
                 <tr> 
@@ -91,12 +91,26 @@
                                 out.println(item.getQuantity());
                                 out.println("</td>");
 
-                                out.println("<td style='text-align:center; font-size:20px'>");
+                                String quantityAlert = "inherited";
+
+                                double camelotStock = item.getCamelotStock();
+                                if (camelotStock < 1) {
+                                    quantityAlert = "red";
+                                }
+                                out.println("<td style='text-align:center; font-size:20px; background-color:" + quantityAlert + "'>");
                                 out.println(item.getCamelotStock());
                                 out.println("</td>");
 
-                                out.println("<td style='text-align:center; font-size:20px'>");
-                                out.println(item.getSupplier());
+                                String supplierAlert = "inherited";
+
+                                String supplier = item.getSupplier();
+
+                                if (supplier.equals("CAMELOT")) {
+                                } else {
+                                    supplierAlert = "red";
+                                }
+                                out.println("<td style='text-align:center; font-size:20px; background-color:" + supplierAlert + "'>");
+                                out.println(supplier);
                                 out.println("</td>");
 
                                 out.println("</tr>");

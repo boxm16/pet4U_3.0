@@ -62,9 +62,31 @@ public class SalesFactory {
             soldItem.setCode(itemCodeString);
 
             soldItem.setDescription(itemDescriptionString);
+            if (itemMeasureUnitString.equals("ΤΕΜΑΧΙΑ")
+                    || itemMeasureUnitString.equals("ΚΑΡΤΕΛΑ")
+                    || itemMeasureUnitString.equals("ΟΓΚΟΣ (lt)")
+                    || itemMeasureUnitString.equals("ΜΕΤΡΑ")) {
+                itemMeasureUnitString = "PCS";
+            }
+            if (itemMeasureUnitString.equals("KG")) {
+                itemMeasureUnitString = "KGS";
+            }
             soldItem.setMeasureUnit(itemMeasureUnitString);
-            soldItem.setEshopSales(Integer.parseInt(itemEshopSalesString));
-            soldItem.setShopsSupply(Integer.parseInt(itemShopSupplyString));
+            if (itemEshopSalesString == null) {
+                soldItem.setEshopSales(0);
+            } else if (itemEshopSalesString.isEmpty() || itemEshopSalesString.equals("")) {
+                soldItem.setEshopSales(0);
+            } else {
+                soldItem.setEshopSales(Integer.parseInt(itemEshopSalesString));
+            }
+            if (itemShopSupplyString == null) {
+                soldItem.setShopsSupply(0);
+            } else if (itemShopSupplyString.isEmpty() || itemShopSupplyString.equals("")) {
+                soldItem.setShopsSupply(0);
+            } else {
+                soldItem.setShopsSupply(Integer.parseInt(itemShopSupplyString));
+            }
+
             soldItem.setTotalSales(Integer.parseInt(itemTotalSalesString));
             soldItem.setCoeficient(Integer.parseInt(coeficinetString));
             soldItem.setTotalSalesInPieces(Integer.parseInt(itemTotalSalesInPiecesString));

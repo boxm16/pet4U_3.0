@@ -1,9 +1,7 @@
 package Service;
 
-import AmazonServerUpload.AmazonServerUploader;
 import CamelotItemsOfInterest.CamelotItemsOfInterestController;
 import CamelotItemsOfInterest.CamelotItemsOfInterestDao;
-import Excel.ExcelController;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Timer;
@@ -49,11 +47,11 @@ public class Scheduler {
                             }
                             StaticsDispatcher.setLastCamelotSnapshotDate(lastCamelotSnapshotDate);
                         }
-                     System.out.println("----------------------CONCLUSION------------------------");
+                        System.out.println("----------------------CONCLUSION------------------------");
 
                         if (StaticsDispatcher.getLastCamelotSnapshotDate().equals(nowDate.toString())) {
                             //do nothing
-       
+
                             System.out.println("Last Snapshot was taken  today. No need for insertion");
                         } else {
                             System.out.println("Going For Snapshοt Insertion");
@@ -66,15 +64,16 @@ public class Scheduler {
                     }
                     if (hour > 7 && hour < 20) {
                         //time for upload
-                        System.out.println("Time For Upload");
+                        System.out.println("Amazon upload has been stopped, because amazon server has been changed");
                         //first create excelDataFile from DB
-
+                        /*
                         ExcelController excelController = new ExcelController();
                         excelController.createExcelFileFromDatabaseData();
                         // Now upload it on amazon
 
                         AmazonServerUploader amazonServerUploader = new AmazonServerUploader();
                         amazonServerUploader.uploadExcelFile();
+                         */
                     }
                 }
             }

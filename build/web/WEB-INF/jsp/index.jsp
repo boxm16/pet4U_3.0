@@ -28,17 +28,22 @@
                 <hr>
                 <a href="camelotSearchDashboard.htm"><h1 style="color: #D052DB ">Find Camelot Items</h1></a>
                 <hr>
+                <a href='camelotItemsOfOurInterestDashboard.htm'><h1 style="color: blue">Camelot: Items Of Our Interest</h1></a>
+                <hr>
+                <a href='pet4uNegativeStock.htm'><h1 style="color: gray">Pet4u Negative Stock</h1></a>
+                <hr>
+                <a href="deliveryDashboard.htm"><h1 style="color: red">Go For Delivery Dashboard</h1></a>
+                <hr>
+                <a href="inventoryDashboard.htm"><h1 style="color: #999900">Go For Inventory Dashboard</h1></a>
+                <hr><hr><hr>
+                <hr>
                 <h1><a href='pet4uAllItems.htm'>Pet4u: All Items</a></h1>
                 <hr>
-                <h1><a href='sixMonthsSales.htm'>Pet4u: Six Months Sales (7/2022-12/2022)</a></h1>
-                <hr>
-                <h1><a href='camelotItemsOfOurInterestDashboard.htm'>Camelot: Items Of Our Interest</a></h1>
+                <h1><a href='sixMonthsSales.htm'>Pet4u:Last Six Months Sales</a></h1>
                 <hr>
                 <h1><a href='camelotAllItems.htm'>Camelot: All Items</a></h1>
                 <hr>
                 <h1><a href='itemsFromCamelot.htm'>Pet4U: All Items From Camelot</a></h1>
-                <hr>
-                <h1><a href='pet4uNegativeStock.htm'>Pet4u Negative Stock</a></h1>
                 <hr>
                 <a href="weightItems.htm"><h1>Show Items With Weight</h1></a>
                 <hr>
@@ -46,11 +51,9 @@
                 <hr>
                 <hr>
                 <a href="goForSalesUpload.htm"><h1>Go For Sales Upload</h1></a>
+
                 <hr>
-                <hr>
-                <a href="inventoryDashboard.htm"><h1>Go For Inventory Dashboard</h1></a>
-                <hr>
-                <a href="deliveryDashboard.htm"><h1>Go For Delivery Dashboard</h1></a>
+                <a href="deliveryDemo.htm"><h1>Delivery Demo</h1></a>
 
             </center>
         </div>

@@ -99,6 +99,10 @@
                     <a href="searchDashboard.htm"><h3>New Search</h3></a>
                     <hr>
                     <a href="index.htm"><h3>INDEX</h3></a>
+                    <br><br><br><br><br><br><br><br><br><br><br><br>
+                    <hr><hr><hr>
+                    <a href="getItemForInventory.htm?altercode=${item.getCode()}"><h3>Go For Inventory</h3></a>
+                    <hr><hr><hr>
                 </center>
             </div>
             <div class=" col-sm-4">

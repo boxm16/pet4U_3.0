@@ -1,100 +1,29 @@
-<%-- 
-    Document   : deliveryDashboard
-    Created on : May 18, 2023, 8:42:07 PM
-    Author     : Michail Sitmalidis
---%>
-
-<%@page import="BasicModel.AltercodeContainer"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="BasicModel.Item"%>
-<%@page import="java.util.Map"%>
-<%@page import="Inventory.InventoryItem"%>
-<%@page import="java.util.LinkedHashMap"%>
-<%@page import="java.util.LinkedHashMap"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-        <style>
-            table, th, td {
-                border: 1px solid ;
-                border-collapse: collapse;
-            }
-            td {
-                font-size: 20px;
-            }
-            th{
-                font-size: 30px;
-                font-weight: bold;
-            }
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Delivery Dashboard</title>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        
 
-        </style>
     </head>
     <body>
     <center>
-        <h1><a href="index.htm">INDEX</a></h1>
-        <h1>Inventories Display</h1>
+        <h1>Delivery Dashboard</h1>
+        <h4>ROYAL deliveryExport.xlsx file data</h4>
+        <h4>Last modified at:${timeStamp}</h4>
         <hr>
-
-        <table>
-            <thead>
-
-            <th>Altercodes</th>
-            <th>Description</th>
-            <th>Quantity</th>
-
-
-            </thead>
-            <%
-                LinkedHashMap<String, InventoryItem> deliveredItems = (LinkedHashMap) request.getAttribute("deliveredItems");
-                for (Map.Entry<String, InventoryItem> entrySet : deliveredItems.entrySet()) {
-                    Item deliveredItem = entrySet.getValue();
-
-                    out.println("<td>");
-                    ArrayList<AltercodeContainer> altercodes = deliveredItem.getAltercodes();
-                    for (AltercodeContainer altercodeContainer : altercodes) {
-                        if (altercodeContainer.getStatus().equals("eshop")
-                                || altercodeContainer.getStatus().equals("eshop-on")
-                                || altercodeContainer.getStatus().equals("eshop-barf")
-                                || altercodeContainer.getStatus().equals("eshop-pro")) {
-
-                            out.println("<a href='https://www.pet4u.gr/search-products-el.html?subcats=Y&status=A&match=all&pshort=N&pfull=N&pname=Y&pkeywords=N&pcode_from_q=Y&wg_go_direct=Y&search_performed=Y&q=" + altercodeContainer.getAltercode() + "' target='_blank'>" + altercodeContainer.getAltercode() + "</a>");
-                            out.println("<br>");
-                        } else {
-                            out.println(altercodeContainer.getAltercode() + "</strong>");
-                            out.println("<br>");
-                        }
-                    }
-                    out.println("</td>");
-
-                    out.println("<td>");
-                    out.println(deliveredItem.getDescription());
-                    out.println("</td>");
-                    
-                    
-                    out.println("<td>");
-                    out.println(deliveredItem.getQuantity());
-                    out.println("</td>");
-
-
-                    /*
-
-                    out.println("<td>");
-                    out.println("<a href='goForEditingCamelotItemOfInterest.htm?code=" + camelotItemOfInterest.getCode() + "'>Edit</a>");
-                    out.println("</td>");
-
-                    out.println("<td>");
-                    out.println("<a href='itemSnapshots.htm?code=" + camelotItemOfInterest.getCode() + "' target='_blank'>Show Day Rest Snapshots</a>");
-                    out.println("</td>");
-                     */
-                    out.println("</tr>");
-
-                }
-            %>
-        </table>
-
+        <button class='btn-primary' onclick="location.href = 'loadRoyalData.htm'" type="button">
+            Load Data</button>
+        <hr>
     </center>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>
