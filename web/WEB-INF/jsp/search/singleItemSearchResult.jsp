@@ -101,10 +101,12 @@
                     <a href="index.htm"><h3>INDEX</h3></a>
                     <br><br><br><br><br><br><br><br><br><br><br><br>
                     <hr><hr><hr>
-                    <a href="getItemForInventory.htm?altercode=${item.getCode()}"><h3>Go For Inventory</h3></a>
+                    <a href="getItemForInventory.htm?altercode=${item.getCode()}" class="btn btn-outline-secondary  btn-lg" role="button" aria-disabled="true"><h3>Go For Inventory</h3></a>
+                    <hr><hr><hr>
+                    <a href="makeBestBeforeStatement.htm?altercode=${item.getCode()}" class="btn btn-outline-danger btn-lg" role="button" aria-disabled="true"><h3>Go For Best_Before</h3></a>
                     <hr><hr><hr>
                     <hr><hr><hr>
-                    <a href="makeBestBeforeStatement.htm?altercode=${item.getCode()}"><h3>Go For Best_Before</h3></a>
+                    <a href="showItemSales.htm?altercode=${item.getCode()}" class="btn btn-outline-warning btn-lg" role="button" aria-disabled="true"><h3>Show Item Sales</h3></a>
                     <hr><hr><hr>
                 </center>
             </div>

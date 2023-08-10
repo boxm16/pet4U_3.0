@@ -2,8 +2,8 @@ package CamelotItemsOfInterest;
 
 //import Service.StaticsDispatcher;
 import BasicModel.Item;
-import Sales.SalesDao;
-import Sales.SoldItem;
+import SalesX.SalesDaoX;
+import SalesX.SoldItem;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -36,8 +36,8 @@ public class CamelotItemsOfInterestController {
         LinkedHashMap<String, Item> pet4UItems = camelotItemsOfInterestDao.getPet4UItemsRowByRow();
         LinkedHashMap<String, Item> camelotItems = camelotItemsOfInterestDao.getCamelotItemsRowByRow();
 
-        SalesDao salesDao = new SalesDao();
-        HashMap<String, SoldItem> sixMonthsSales = salesDao.getSixMonthsSales();
+        SalesDaoX salesDao = new SalesDaoX();
+        HashMap<String, SoldItem> sixMonthsSales = salesDao.getSixMonthsSalesX();
 
         for (Map.Entry<String, CamelotItemOfInterest> entrySet : camelotItemsOfInterest.entrySet()) {
             String altercode = entrySet.getKey();
@@ -77,7 +77,7 @@ public class CamelotItemsOfInterestController {
                 if (soldCamelotItem == null) {
                     //do nothing
                 } else {
-                    camelotItemOfInterest.setTotalSalesInPieces(soldCamelotItem.getTotalSalesInPieces());
+                    camelotItemOfInterest.setTotalSalesInPieces(soldCamelotItem.getTotalShippedPieces());
                 }
 
                 camelotItemsOfInterestFilled.put(position, camelotItemOfInterest);
@@ -99,8 +99,8 @@ public class CamelotItemsOfInterestController {
         LinkedHashMap<String, Item> pet4UItems = camelotItemsOfInterestDao.getPet4UItemsRowByRow();
         LinkedHashMap<String, Item> camelotItems = camelotItemsOfInterestDao.getCamelotItemsRowByRow();
 
-        SalesDao salesDao = new SalesDao();
-        HashMap<String, SoldItem> sixMonthsSales = salesDao.getSixMonthsSales();
+        SalesDaoX salesDao = new SalesDaoX();
+        HashMap<String, SoldItem> sixMonthsSales = salesDao.getSixMonthsSalesX();
 
         for (Map.Entry<String, CamelotItemOfInterest> entrySet : camelotItemsOfInterest.entrySet()) {
             String altercode = entrySet.getKey();
@@ -140,7 +140,7 @@ public class CamelotItemsOfInterestController {
                 if (soldCamelotItem == null) {
                     //do nothing
                 } else {
-                    camelotItemOfInterest.setTotalSalesInPieces(soldCamelotItem.getTotalSalesInPieces());
+                    camelotItemOfInterest.setTotalSalesInPieces(soldCamelotItem.getTotalShippedPieces());
                 }
 
                 camelotItemsOfInterestFilled.put(position, camelotItemOfInterest);
@@ -162,8 +162,8 @@ public class CamelotItemsOfInterestController {
         LinkedHashMap<String, Item> pet4UItems = camelotItemsOfInterestDao.getPet4UItemsRowByRow();
         LinkedHashMap<String, Item> camelotItems = camelotItemsOfInterestDao.getCamelotItemsRowByRow();
 
-        SalesDao salesDao = new SalesDao();
-        HashMap<String, SoldItem> sixMonthsSales = salesDao.getSixMonthsSales();
+        SalesDaoX salesDao = new SalesDaoX();
+        HashMap<String, SoldItem> sixMonthsSales = salesDao.getSixMonthsSalesX();
 
         for (Map.Entry<String, CamelotItemOfInterest> entrySet : camelotItemsOfInterest.entrySet()) {
             String altercode = entrySet.getKey();
@@ -203,7 +203,7 @@ public class CamelotItemsOfInterestController {
                 if (soldCamelotItem == null) {
                     //do nothing
                 } else {
-                    camelotItemOfInterest.setTotalSalesInPieces(soldCamelotItem.getTotalSalesInPieces());
+                    camelotItemOfInterest.setTotalSalesInPieces(soldCamelotItem.getTotalShippedPieces());
                 }
 
                 camelotItemsOfInterestFilled.put(position, camelotItemOfInterest);

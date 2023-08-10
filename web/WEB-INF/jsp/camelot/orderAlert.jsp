@@ -117,8 +117,10 @@
                         out.println("<td>");
                         out.println(camelotItemOfInterest.getTotalSalesInPieces());
                         out.println("</td>");
+
+                        Double weekSales = camelotItemOfInterest.getTotalSalesInPieces() / 26;
                         out.println("<td>");
-                        out.println(camelotItemOfInterest.getTotalSalesInPieces() / 26);
+                        out.println(weekSales.intValue());
                         out.println("</td>");
 
                         out.println("<td>");

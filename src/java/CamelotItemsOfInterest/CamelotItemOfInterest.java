@@ -16,7 +16,7 @@ public class CamelotItemOfInterest extends Item {
     private double camelotBinded;
     private int camelotMinimalStock;
 
-    private int totalSalesInPieces;
+    private double totalSalesInPieces;
     private String note;
 
     public String getOwner() {
@@ -112,11 +112,11 @@ public class CamelotItemOfInterest extends Item {
         this.camelotMinimalStock = camelotMinimalStock;
     }
 
-    public int getTotalSalesInPieces() {
+    public double getTotalSalesInPieces() {
         return totalSalesInPieces;
     }
 
-    public void setTotalSalesInPieces(int totalSalesInPieces) {
+    public void setTotalSalesInPieces(double totalSalesInPieces) {
         this.totalSalesInPieces = totalSalesInPieces;
     }
 
