@@ -25,14 +25,10 @@
         <a href='createPet4u_DB.htm'><h1>Create Pet4U MySQL DATABASE ON My Server</h1> </a>
         <hr>
         <a href='createSalesDatabaseTable.htm'><h1>Create Sales Database Table</h1> </a>
-
         <hr>
-        <h1 style="color:red"> ${salesDatabaseTableResult} </h1>
-        <a href='createSales_1_2022_DatabaseTable.htm'><h1>Create Sales 1-6/2022 Database Table</h1> </a>
-        <a href='createSales_2_2022_DatabaseTable.htm'><h1>Create Sales 7-12/2022 Database Table</h1> </a>
-
-        <a href='deleteSales_1_2022_DatabaseTable.htm'><h1>Delete Sales 1-6/2022 Database Table</h1> </a>
-        <a href='deleteSales_2_2022_DatabaseTable.htm'><h1>Delete Sales 7-12/2022 Database Table</h1> </a>
+        <h1> ${salesDatabaseTableResult} </h1>
+        <a href='createSalesDatabaseTableX.htm'><h1>Create ---NEW--- Sales Database Table</h1> </a>
+        <a href='deleteSalesDatabaseTableX.htm'><h1>DELETE ---NEW--- Sales Database Table</h1> </a>
         <hr>
         <h1> ${notesDatabaseTableResult} </h1>
         <a href='createNotesDatabaseTable.htm'><h1>Create Notes Database Table</h1> </a>

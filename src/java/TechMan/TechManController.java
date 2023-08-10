@@ -243,4 +243,21 @@ public class TechManController {
         modelMap.addAttribute("bestBeforeTableDeletionResult", bestBeforeTableDeletionResult);
         return "techMan/techManDashboard";
     }
+
+    //---------------------------
+    @RequestMapping(value = "/createSalesDatabaseTableX", method = RequestMethod.GET)
+    public String createSalesDatabaseTableX(ModelMap modelMap) {
+        String result = techManDao.createSalesDatabaseTableX();
+        result = result + "<br>";
+        modelMap.addAttribute("salesDatabaseTableResult", result);
+        return "techMan/techManDashboard";
+    }
+
+    @RequestMapping(value = "/deleteSalesDatabaseTableX", method = RequestMethod.GET)
+    public String deleteSalesDatabaseTableX(ModelMap modelMap) {
+        String result = techManDao.deleteInventoryDatabaseTableX();
+        result = result + "<br>";
+        modelMap.addAttribute("salesDatabaseTableResult", result);
+        return "techMan/techManDashboard";
+    }
 }

@@ -137,8 +137,8 @@ public class SalesDao {
     }
 
     LinkedHashMap<String, SoldItem> getAllPet4uItems() {
-     LinkedHashMap<String, SoldItem> soldItems = new LinkedHashMap<>();
-     DatabaseConnectionFactory databaseConnectionFactory=new DatabaseConnectionFactory();
+        LinkedHashMap<String, SoldItem> soldItems = new LinkedHashMap<>();
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
         Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
 
         try {
@@ -183,6 +183,52 @@ public class SalesDao {
         }
         return soldItems;
     }
+
+    public HashMap<String, SoldItem> getSixMonthsSalesX() {
+        HashMap<String, SoldItem> allSales = new HashMap<>();
+        String sql = "SELECT * FROM sales";
+        Connection connection;
+        Statement statement;
+        ResultSet resultSet;
+
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            connection = databaseConnectionFactory.getMySQLConnection();
+
+            statement = connection.createStatement();
+
+            resultSet = statement.executeQuery(sql);
+            while (resultSet.next()) {
+                String code = resultSet.getString("code");
+                String description = resultSet.getString("description");
+                String measureUnit = resultSet.getString("measure_unit");
+                int eshopSales = resultSet.getInt("eshop_sales");
+                int shopsSupply = resultSet.getInt("shops_supply");
+                int totalSales = resultSet.getInt("total_sales");
+                int coeficient = resultSet.getInt("coeficient");
+                int totalSalesInPiecies = resultSet.getInt("total_sales_in_pieces");
+
+                SoldItem item = new SoldItem();
+                item.setCode(code);
+                item.setDescription(description);
+                item.setMeasureUnit(measureUnit);
+                item.setEshopSales(eshopSales);
+                item.setShopsSupply(shopsSupply);
+                item.setTotalSales(totalSales);
+                item.setTts(resultSet.getInt("total_sales"));
+                item.setCoeficient(coeficient);
+                item.setTotalSalesInPieces(totalSalesInPiecies);
+
+                allSales.put(code, item);
+            }
+
+            resultSet.close();
+            statement.close();
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(SalesDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return allSales;
+    }
 }
-
-

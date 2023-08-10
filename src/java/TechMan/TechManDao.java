@@ -445,6 +445,7 @@ public class TechManDao {
                 + "id INT NOT NULL AUTO_INCREMENT, "
                 + "altercode VARCHAR (100) NOT NULL, "
                 + "best_before_date_stamp DATE NOT NULL, "
+                + "alert_date_stamp DATE NOT NULL, "
                 + "note VARCHAR (500) NOT NULL, "
                 + "PRIMARY KEY (id)) "
                 + "ENGINE = InnoDB "
@@ -476,6 +477,43 @@ public class TechManDao {
         } catch (SQLException ex) {
             Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
             return "Table 'best_before' could not be deleted:" + ex;
+        }
+    }
+
+    String createSalesDatabaseTableX() {
+        String query = "CREATE TABLE sales_X("
+                + "code VARCHAR (50) NOT NULL, "
+                + "description VARCHAR (150) NOT NULL,"
+                + "eshop_sales DOUBLE (10,4) NULL, "
+                + "shops_supply DOUBLE (10,4) NULL)"
+                + "ENGINE = InnoDB "
+                + "DEFAULT CHARACTER SET = utf8;";
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+            statement.close();
+            connection.close();
+            return "Table 'sales_X' created succesfully";
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return "Table 'sales_X' could not be created:" + ex;
+        }
+    }
+
+    String deleteInventoryDatabaseTableX() {
+        String query = "DROP TABLE sales_X";
+
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+            statement.close();
+            connection.close();
+            return "Table 'sales_X' deleted succesfully";
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return "Table 'sales_X' could not be deleted:" + ex;
         }
     }
 

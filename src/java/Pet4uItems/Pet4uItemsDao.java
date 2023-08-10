@@ -11,18 +11,15 @@ import java.sql.Statement;
 import java.util.LinkedHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
 
 public class Pet4uItemsDao {
 
-    @Autowired
-    private DatabaseConnectionFactory databaseConnectionFactory;
-
     public LinkedHashMap<String, Item> getAllItems() {
         LinkedHashMap<String, Item> items = new LinkedHashMap<>();
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
         Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
 
         try {
@@ -70,6 +67,8 @@ public class Pet4uItemsDao {
 
     LinkedHashMap<String, Item> getWeightAllItems() {
         LinkedHashMap<String, Item> items = new LinkedHashMap<>();
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+
         Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
         String sql = "SELECT * FROM WH1 WHERE ALTERNATECODE LIKE '%WE%'";
         try {
@@ -104,6 +103,7 @@ public class Pet4uItemsDao {
 
     LinkedHashMap<String, CamelotItemOfInterest> getNegativeItems() {
         LinkedHashMap<String, CamelotItemOfInterest> items = new LinkedHashMap<>();
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
         Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
 
         try {

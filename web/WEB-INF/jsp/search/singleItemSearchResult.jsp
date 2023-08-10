@@ -35,7 +35,7 @@
                     <%
                         Item item = (Item) request.getAttribute("item");
                         out.println("<table class='table' style='background-color: #35B62F'>");
-                        out.println("</tbody>");
+                        out.println("<tbody>");
                         out.println("<tr style='background-color:lightblue'>");
                         out.println("<td style='width:70px;'>");
                         out.println("Πε/φη");
@@ -102,6 +102,9 @@
                     <br><br><br><br><br><br><br><br><br><br><br><br>
                     <hr><hr><hr>
                     <a href="getItemForInventory.htm?altercode=${item.getCode()}"><h3>Go For Inventory</h3></a>
+                    <hr><hr><hr>
+                    <hr><hr><hr>
+                    <a href="makeBestBeforeStatement.htm?altercode=${item.getCode()}"><h3>Go For Best_Before</h3></a>
                     <hr><hr><hr>
                 </center>
             </div>

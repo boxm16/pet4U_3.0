@@ -70,20 +70,22 @@ public class Item {
 
     public int getWeightCoefficient() {
         int weightCoefficient = 1;
-        if (this.description.contains("20")) {
-            weightCoefficient = 20;
-        }
-        if (this.description.contains("15")) {
-            weightCoefficient = 15;
-        }
-        if (this.description.contains("14")) {
-            weightCoefficient = 14;
-        }
-        if (this.description.contains("12")) {
-            weightCoefficient = 12;
-        }
-        if (this.description.contains("10")) {
-            weightCoefficient = 10;
+        if (this.code.contains("-WE")) {
+            if (this.description.contains("20")) {
+                weightCoefficient = 20;
+            }
+            if (this.description.contains("15")) {
+                weightCoefficient = 15;
+            }
+            if (this.description.contains("14")) {
+                weightCoefficient = 14;
+            }
+            if (this.description.contains("12")) {
+                weightCoefficient = 12;
+            }
+            if (this.description.contains("10")) {
+                weightCoefficient = 10;
+            }
         }
         return weightCoefficient;
     }

@@ -93,7 +93,9 @@ public class SalesController {
         }
 
         modelMap.addAttribute("sixMonthsSales", itemsWithPositions);
-       
         return "sales/sixMonthsSales";
+
     }
+
+    
 }
