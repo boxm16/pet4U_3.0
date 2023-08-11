@@ -525,7 +525,8 @@ public class TechManDao {
             if (connection.isValid(5)) {
                 Statement statement = connection.createStatement();
                 ResultSet resultSet = statement.executeQuery("SELECT * FROM sales");
-                System.out.println("RSL" + resultSet.toString());
+                while (resultSet.next()) {
+                    System.out.println("-+-+-+"+resultSet.getString("code"));            }
                 return "good: "+resultSet.toString();
             }
         } catch (SQLException ex) {

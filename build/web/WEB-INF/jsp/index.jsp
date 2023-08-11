@@ -38,7 +38,7 @@
                 <hr>
                 <a href="bestBeforeDashboard.htm"><h1 style="color: #CB230F">Best Before Dashboard</h1></a>
                 <hr>
-                <a href="shortageAlert.htm"><h1 style="color: #CB230F">Best Before Dashboard</h1></a>
+                <a href="shortageAlert.htm"><h1 style="color: green">shortageAlert</h1></a>
 
                 <hr><hr><hr>
                 <hr>

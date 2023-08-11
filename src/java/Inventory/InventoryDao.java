@@ -180,7 +180,7 @@ public class InventoryDao {
 
             resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
-
+                System.out.println("INVENTORY ITEM ITEM_CODE:"+resultSet.getString("item_code"));
                 String state = resultSet.getString("state");
                 if (state == null) {
 
