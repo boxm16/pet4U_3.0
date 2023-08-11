@@ -2,6 +2,7 @@ package TechMan;
 
 import Service.DatabaseConnectionFactory;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
@@ -515,6 +516,23 @@ public class TechManDao {
             Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
             return "Table 'sales_X' could not be deleted:" + ex;
         }
+    }
+
+    String getMySqlConnectionStatus() {
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+
+            if (connection.isValid(5)) {
+                Statement statement = connection.createStatement();
+                ResultSet resultSet = statement.executeQuery("SELECT * FROM sales");
+                System.out.println("RSL" + resultSet.toString());
+                return "good: "+resultSet.toString();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return ex.toString();
+        }
+        return "???????????";
     }
 
 }

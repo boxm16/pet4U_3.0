@@ -20,7 +20,7 @@
         <hr>
         <h1> ${uploadsDirectoryStatus} </h1>
         <a href='createUploadDirectory.htm'><h1>Create Upload Directory</h1> </a>
-        <h1> ${uploadsDirectoryStatus} </h1>
+        <h1> ${status} </h1>
         <a href='checkMySqlConnection.htm'><h1>Check MySql Connection</h1> </a>
 
         <br>

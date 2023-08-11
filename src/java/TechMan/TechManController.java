@@ -47,6 +47,7 @@ public class TechManController {
 
     @RequestMapping(value = "checkMySqlConnection")
     public String checkMySqlConnection(ModelMap model) {
+        String status = techManDao.getMySqlConnectionStatus();
         model.addAttribute("uploadsDirectoryStatus", status);
         return "techMan/techManDashboard";
     }

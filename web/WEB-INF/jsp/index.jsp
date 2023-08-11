@@ -37,6 +37,9 @@
                 <a href="inventoryDashboard.htm"><h1 style="color: #999900">Inventory Dashboard</h1></a>
                 <hr>
                 <a href="bestBeforeDashboard.htm"><h1 style="color: #CB230F">Best Before Dashboard</h1></a>
+                <hr>
+                <a href="shortageAlert.htm"><h1 style="color: #CB230F">Best Before Dashboard</h1></a>
+
                 <hr><hr><hr>
                 <hr>
                 <h1><a href='pet4uAllItems.htm'>Pet4u: All Items</a></h1>
