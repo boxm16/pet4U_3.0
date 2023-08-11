@@ -43,6 +43,13 @@ public class TechManController {
         model.addAttribute("uploadsDirectoryStatus", status);
         return "techMan/techManDashboard";
     }
+    //---------------------------------------------------------
+
+    @RequestMapping(value = "checkMySqlConnection")
+    public String checkMySqlConnection(ModelMap model) {
+        model.addAttribute("uploadsDirectoryStatus", status);
+        return "techMan/techManDashboard";
+    }
 
     private Boolean uploadsDirectoryExists() {
 

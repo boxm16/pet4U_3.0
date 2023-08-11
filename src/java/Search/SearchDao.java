@@ -22,6 +22,7 @@ public class SearchDao {
     private DatabaseConnectionFactory databaseConnectionFactory;
 
     public Item getItemByAltercode(String altercode) {
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
         Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
         Item item = null;
         try {

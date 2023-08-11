@@ -20,6 +20,9 @@
         <hr>
         <h1> ${uploadsDirectoryStatus} </h1>
         <a href='createUploadDirectory.htm'><h1>Create Upload Directory</h1> </a>
+        <h1> ${uploadsDirectoryStatus} </h1>
+        <a href='checkMySqlConnection.htm'><h1>Check MySql Connection</h1> </a>
+
         <br>
         <h1> ${pet4uDatabaseCreationResult} </h1>
         <a href='createPet4u_DB.htm'><h1>Create Pet4U MySQL DATABASE ON My Server</h1> </a>

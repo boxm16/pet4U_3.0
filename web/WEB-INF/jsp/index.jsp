@@ -32,9 +32,11 @@
                 <hr>
                 <a href='pet4uNegativeStock.htm'><h1 style="color: gray">Pet4u Negative Stock</h1></a>
                 <hr>
-                <a href="deliveryDashboard.htm"><h1 style="color: red">Go For Delivery Dashboard</h1></a>
+                <a href="deliveryDashboard.htm"><h1 style="color: red">Delivery Dashboard</h1></a>
                 <hr>
-                <a href="inventoryDashboard.htm"><h1 style="color: #999900">Go For Inventory Dashboard</h1></a>
+                <a href="inventoryDashboard.htm"><h1 style="color: #999900">Inventory Dashboard</h1></a>
+                <hr>
+                <a href="bestBeforeDashboard.htm"><h1 style="color: #CB230F">Best Before Dashboard</h1></a>
                 <hr><hr><hr>
                 <hr>
                 <h1><a href='pet4uAllItems.htm'>Pet4u: All Items</a></h1>

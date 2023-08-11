@@ -100,14 +100,13 @@
                     <hr>
                     <a href="index.htm"><h3>INDEX</h3></a>
                     <br><br><br><br><br><br><br><br><br><br><br><br>
-                    <hr><hr><hr>
-                    <a href="getItemForInventory.htm?altercode=${item.getCode()}" class="btn btn-outline-secondary  btn-lg" role="button" aria-disabled="true"><h3>Go For Inventory</h3></a>
-                    <hr><hr><hr>
-                    <a href="makeBestBeforeStatement.htm?altercode=${item.getCode()}" class="btn btn-outline-danger btn-lg" role="button" aria-disabled="true"><h3>Go For Best_Before</h3></a>
-                    <hr><hr><hr>
-                    <hr><hr><hr>
-                    <a href="showItemSales.htm?altercode=${item.getCode()}" class="btn btn-outline-warning btn-lg" role="button" aria-disabled="true"><h3>Show Item Sales</h3></a>
-                    <hr><hr><hr>
+                    <hr>
+                    <a href="getItemForInventory.htm?altercode=${item.getCode()}" class="btn btn-primary btn-lg" role="button" aria-disabled="true"><h3>Inventory</h3></a>
+                    <hr>
+                    <a href="makeBestBeforeStatement.htm?altercode=${item.getCode()}" class="btn btn-danger btn-lg" role="button" aria-disabled="true"><h3>Best Before</h3></a>
+                    <hr>
+                    <a href="showItemSales.htm?altercode=${item.getCode()}" class="btn btn-warning btn-lg" role="button" aria-disabled="true"><h3>Show Item Sales</h3></a>
+                    <hr>
                 </center>
             </div>
             <div class=" col-sm-4">

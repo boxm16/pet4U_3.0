@@ -111,5 +111,5 @@ public class SalesDaoX {
         }
         return allSales;
     }
-    
+
 }
