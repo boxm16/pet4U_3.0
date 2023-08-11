@@ -60,9 +60,11 @@ public class InventoryController {
 
         ArrayList<InventoryItem> inventories = this.inventoryDao.getAllActiveInventories();
 
+        System.out.println("invenotry size" + inventories.size());
         LinkedHashMap<String, Item> pet4UItems = this.inventoryDao.getpet4UItemsRowByRow();
-
+        System.out.println("row ba row  size" + pet4UItems.size());
         for (InventoryItem inventoryItem : inventories) {
+            System.out.println("ITETM:"+inventoryItem.getDescription());
             String altercode = inventoryItem.getCode();
 
             Item pet4uItem = pet4UItems.get(altercode);
