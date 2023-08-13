@@ -32,7 +32,7 @@ public class StockShortageController {
                 //do nothing
             } else {
 
-                double daySoldPieces = itemWithSales.getEshopSoldPieces()/ 365 / 2;
+                double daySoldPieces = itemWithSales.getEshopSoldPieces()/ (365 / 2);
                 double stockNowPieces = Double.parseDouble(itemWithStock.getQunatityAsPieces());
                 String position = itemWithStock.getPosition();
                 if (daySoldPieces > 1 && !position.isEmpty() && !position.contains("C-")) {
