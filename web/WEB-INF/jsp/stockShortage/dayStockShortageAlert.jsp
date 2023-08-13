@@ -40,7 +40,7 @@
                     <!--  <th>M.U.<br> UNIT</th> -->
                     <!--     <th>COEF.</th>-->
                     <th>State </th>
-                    <th>Eshop <br> Sales </th>
+                    <th>Eshop <br> Sales<br>For 1 Day</th>
                     <!--   <th>Shop <br>Supply </th>
                     <th>Total<br> Sales </th>
                     <!--     <th>Total<br> Sales In <br>Pieces </th>-->

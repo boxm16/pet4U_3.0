@@ -28,7 +28,6 @@ public class StockShortageController {
             String code = itemWithStock.getCode();
             SoldItem itemWithSales = itemsWithSales.get(code);
 
-            SoldItem shortStockItem = new SoldItem();
             if (itemWithSales == null) {
                 //do nothing
             } else {
@@ -36,6 +35,7 @@ public class StockShortageController {
                 double daySales = totalShippedPieces / 362 / 2;
                 double stockNow = Double.parseDouble(itemWithStock.getQunatityAsPieces());
                 if (stockNow < daySales) {
+                    SoldItem shortStockItem = new SoldItem();
                     shortStockItem.setCode(itemWithStock.getCode());
                     shortStockItem.setDescription(itemWithStock.getDescription());
                     shortStockItem.setAltercodes(itemWithStock.getAltercodes());
@@ -45,10 +45,11 @@ public class StockShortageController {
 
                     shortStockItem.setEshopSales(itemWithSales.getEshopSales());
                     shortStockItem.setShopsSupply(itemWithSales.getShopsSupply());
+                    stockShortage.put(code, shortStockItem);
                 }
 
             }
-            stockShortage.put(code, shortStockItem);
+
         }
         modelMap.addAttribute("stockShortage", stockShortage);
         return "stockShortage/dayStockShortageAlert";
