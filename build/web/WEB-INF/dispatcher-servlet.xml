@@ -46,6 +46,8 @@
     <context:component-scan base-package="Delivery"/>
     <context:component-scan base-package="BestBefore"/>
     <context:component-scan base-package="SalesX"/>
+     <context:component-scan base-package="StockShortage"/>
+    
     <!--
     Most controllers will use the ControllerClassNameHandlerMapping above, but
     for the index controller we are using ParameterizableViewController, so we must
