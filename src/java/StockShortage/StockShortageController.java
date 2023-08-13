@@ -1,9 +1,11 @@
 package StockShortage;
 
+import BasicModel.AltercodeContainer;
 import BasicModel.Item;
 import Pet4uItems.Pet4uItemsDao;
 import SalesX.SalesDaoX;
 import SalesX.SoldItem;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -40,7 +42,8 @@ public class StockShortageController {
                         && stockNowPieces < daySoldPieces
                         && !position.isEmpty()
                         && !state.equals("OFF SITE")
-                        && !position.contains("C-")) {
+                        && !position.contains("C-")
+                        && siteAltercodeIsActive(itemWithStock)) {
                     SoldItem shortStockItem = new SoldItem();
                     shortStockItem.setCode(itemWithStock.getCode());
                     shortStockItem.setDescription(itemWithStock.getDescription());
@@ -62,4 +65,18 @@ public class StockShortageController {
 
     }
 
+    private boolean siteAltercodeIsActive(Item item) {
+        ArrayList<AltercodeContainer> altercodes = item.getAltercodes();
+        for (AltercodeContainer altercodeContainer : altercodes) {
+            if (altercodeContainer.getStatus().equals("eshop")
+                    || altercodeContainer.getStatus().equals("eshop-on")
+                    || altercodeContainer.getStatus().equals("eshop-barf")
+                    || altercodeContainer.getStatus().equals("eshop-pro")) {
+                return true;
+            }
+
+        }
+        return false;
+
+    }
 }
