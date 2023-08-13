@@ -32,10 +32,10 @@ public class StockShortageController {
                 //do nothing
             } else {
 
-                double daySales = itemWithSales.getEshopSoldPieces()/ 365 / 2;
-                double stockNow = Double.parseDouble(itemWithStock.getQunatityAsPieces());
+                double daySoldPieces = itemWithSales.getEshopSoldPieces()/ 365 / 2;
+                double stockNowPieces = Double.parseDouble(itemWithStock.getQunatityAsPieces());
                 String position = itemWithStock.getPosition();
-                if (daySales > 1 && stockNow < daySales && !position.isEmpty() && !position.contains("C-")) {
+                if (daySoldPieces > 1 && stockNowPieces < daySoldPieces && !position.isEmpty() && !position.contains("C-")) {
                     SoldItem shortStockItem = new SoldItem();
                     shortStockItem.setCode(itemWithStock.getCode());
                     shortStockItem.setDescription(itemWithStock.getDescription());
@@ -44,7 +44,7 @@ public class StockShortageController {
                     shortStockItem.setQuantity(itemWithStock.getQuantity());
                     shortStockItem.setState(itemWithStock.getState());
 
-                    shortStockItem.setEshopSales(itemWithSales.getEshopSales());
+                    shortStockItem.setEshopSales(daySoldPieces);
 
                     stockShortage.put(code, shortStockItem);
                 }

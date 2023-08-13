@@ -93,7 +93,7 @@
                         out.println("</td>");
 
                         out.println("<td>");
-                        out.println(entrySet.getValue().getEshopSoldPieces());
+                        out.println(entrySet.getValue().getEshopSales());
                         out.println("</td>");
 
                         out.println("<td>");
