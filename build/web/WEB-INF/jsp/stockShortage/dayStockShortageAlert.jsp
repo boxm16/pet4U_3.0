@@ -93,7 +93,7 @@
                         out.println("</td>");
 
                         out.println("<td>");
-                        out.println(entrySet.getValue().getEshopSales());
+                        out.println(String.format("%.2f", entrySet.getValue().getEshopSales()));
                         out.println("</td>");
 
                         out.println("<td>");
