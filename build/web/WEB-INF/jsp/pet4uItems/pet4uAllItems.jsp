@@ -33,7 +33,7 @@
     <body>
     <center>
         <h1><a href="index.htm">INDEX</a></h1>
-         <h1><a href="pet4uAllItemsOneLine.htm">Show Items With Only One Altercode</a></h1>
+        <h1><a href="pet4uAllItemsOneLine.htm">Show Items With Only One Altercode</a></h1>
 
         <table>
 
@@ -63,7 +63,7 @@
                                     || altercodeContainer.getStatus().equals("eshop-barf")
                                     || altercodeContainer.getStatus().equals("eshop-pro")) {
 
-                                out.println("<a href='https://www.pet4u.gr/search-products-el.html?subcats=Y&status=A&match=all&pshort=N&pfull=N&pname=Y&pkeywords=N&pcode_from_q=Y&wg_go_direct=Y&search_performed=Y&q=" + altercodeContainer.getAltercode() + "' target='_blank'>" + altercodeContainer.getAltercode() + "</a>");
+                                out.println("<a href='https://www.pet4u.gr/search-products-el.html?subcats=Y&status=A&match=all&pshort=N&pfull=N&pname=Y&pkeywords=N&pcode_from_q=Y&wg_go_direct=Y&search_performed=Y&q=" + altercodeContainer.getAltercode() + "' target='_blank'>" + altercodeContainer.getAltercode() + " : " + altercodeContainer.getStatus() + "</a>");
                                 out.println("<br>");
                             } else {
                                 out.println(altercodeContainer.getAltercode() + "</strong>");
