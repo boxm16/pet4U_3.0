@@ -8,20 +8,36 @@ package SuppliersAndStock;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class SuppliersAndStockController {
-    
+
     @RequestMapping(value = "suppliersAndStockDashboard")
-    public String inventoryDashboard() {
-        
+    public String suppliersAndStockDashboard() {
+
         return "suppliersAndStock/suppliersAndStockDashboard";
     }
-    
+
     @RequestMapping(value = "royalStockManagement")
     public String royalStockManagement(ModelMap modelMap) {
-        modelMap.addAttribute("supplier", "Royal");
+        Supplier supplier = new Supplier();
+        supplier.setId(1);
+        supplier.setName("Royal");
+
+        modelMap.addAttribute("supplier", supplier);
         return "suppliersAndStock/stockManagement";
     }
-    
+
+    @RequestMapping(value = "goForAddingItemToSupplier")
+    public String goForAddingItemToSupplier() {
+
+        return "suppliersAndStock/suppliersAndStockDashboard";
+    }
+
+    @RequestMapping(value = "goForAddingItemToSupplier")
+    public String goForEditingCamelotItemOfInterest(@RequestParam(name = "supplierId") String supplierId, ModelMap model) {
+
+        return "/camelot/editItem";
+    }
 }
