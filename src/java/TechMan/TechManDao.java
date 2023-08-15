@@ -20,7 +20,7 @@ public class TechManDao {
         String query = "CREATE TABLE suppliers("
                 + "id INT(6) NOT NULL AUTO_INCREMENT,"
                 + "name VARCHAR(100) NOT NULL, "
-                + "afm VARCHAR(20)  NULL "
+                + "afm VARCHAR(20)  NULL, "
                 + "PRIMARY KEY (id)) "
                 + "ENGINE = InnoDB "
                 + "DEFAULT CHARACTER SET = utf8;";
