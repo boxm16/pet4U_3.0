@@ -12,7 +12,7 @@ public class SuppliersAndStockManagementController {
         return "suppliersAndStockManagement/suppliersAndStockManagementDashboard";
     }
 
-    @RequestMapping(value = "fff")
+    @RequestMapping(value = "ggg")
     public String ff() {
 
         return "inventory/inventoryDashboard";
