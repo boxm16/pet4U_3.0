@@ -15,6 +15,6 @@ public class SuppliersAndStockController {
     @RequestMapping(value = "suppliersAndStockDashboard")
     public String suppliersAndStockDashboard() {
 
-        return "suppliersAndStock/suppliersAndStockDashboard";
+        return "index";
     }  
 }
