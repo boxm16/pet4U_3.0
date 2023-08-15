@@ -29,12 +29,13 @@ public class SuppliersAndStockController {
         return "suppliersAndStock/stockManagement";
     }
 
-    @RequestMapping(value = "goForAddingItemToSupplier")
-    public String goForAddingItemToSupplier() {
+    @RequestMapping(value = "goForAddingSupplier")
+    public String goForAddingSupplier() {
 
         return "suppliersAndStock/suppliersAndStockDashboard";
     }
 
+    //----------------
     @RequestMapping(value = "goForAddingItemToSupplier")
     public String goForEditingCamelotItemOfInterest(@RequestParam(name = "supplierId") String supplierId, ModelMap model) {
 
