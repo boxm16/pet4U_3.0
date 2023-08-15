@@ -36,6 +36,21 @@ public class TechManDao {
         }
     }
 
+    String deleteSuppliersDatabaseTable() {
+        String query = "DROP TABLE suppliers";
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+            statement.close();
+            connection.close();
+            return "Table 'suppliers' deleted succesfully";
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return "Table 'suppliers' could not be deleted:" + ex;
+        }
+    }
+
     public String createOrdersDatabaseTable() {
 
         String query = "CREATE TABLE orders("
@@ -70,6 +85,7 @@ public class TechManDao {
             return "Table 'orders' could not be deleted:" + ex;
         }
     }
+//-------------------------------
 
     public String createNotesDatabaseTable() {
         String query = "CREATE TABLE notes("
@@ -555,10 +571,6 @@ public class TechManDao {
             return ex.toString();
         }
         return "???????????";
-    }
-
-    String deleteSuppliersDatabaseTable() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
