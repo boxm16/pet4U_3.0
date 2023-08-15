@@ -25,6 +25,19 @@ public class SuppliersAndStockController {
         return "suppliersAndStock/addSupplier";
     }
 
+    @RequestMapping(value = "addSupplier")
+    public String addSupplier(@RequestParam(name = "name") String name,
+            @RequestParam(name = "afm") String afm,
+            ModelMap model) {
+
+        Supplier supplier=new Supplier();
+        supplier.setId(0);
+        supplier.setName(name);
+        supplier.setAfm(afm);
+        
+        return "suppliersAndStock/addSupplier";
+    }
+
     //----------------
     @RequestMapping(value = "goForAddingItemToSupplier")
     public String goForEditingCamelotItemOfInterest(@RequestParam(name = "supplierId") String supplierId, ModelMap model) {
