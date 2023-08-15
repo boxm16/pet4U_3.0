@@ -40,7 +40,7 @@
                 <hr>
                 <a href="dayStockShortageAlert.htm"><h1 style="color: green">Day Stock Shortage Alert</h1></a>
                 <hr>
-                <a href="suppliersAndStockManagementDashboard.htm"><h1 style="color: #3059D8">Suppliers And Stock Management Dashboard</h1></a>
+                <a href="ggg.htm"><h1 style="color: #3059D8">Suppliers And Stock Management Dashboard</h1></a>
 
                 <hr><hr><hr>
                 <hr>

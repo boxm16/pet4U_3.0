@@ -12,6 +12,12 @@ public class SuppliersAndStockManagementController {
         return "suppliersAndStockManagement/suppliersAndStockManagementDashboard";
     }
 
+    @RequestMapping(value = "fff")
+    public String ff() {
+
+        return "inventory/inventoryDashboard";
+    }
+
     @RequestMapping(value = "royalStockManagement")
     public String royalStockManagement(ModelMap modelMap) {
         modelMap.addAttribute("supplier", "Royal");
