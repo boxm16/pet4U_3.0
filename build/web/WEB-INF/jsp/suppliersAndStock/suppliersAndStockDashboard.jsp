@@ -24,7 +24,7 @@
 
             }
             th{
-                font-size:20px;
+                font-size:35px;
                 text-align: center;
                 background: #eee;
                 position: sticky;
@@ -38,7 +38,7 @@
         <h1>Suppliers And Stock Dashboard</h1>
         <h3><a href="goForAddingSupplier.htm">Add Supplier</a></h3>
         <hr>
-        <a href="royalStockManagement.htm">Royal Stock Management</a>
+        
 
         <table>
             <thead>
