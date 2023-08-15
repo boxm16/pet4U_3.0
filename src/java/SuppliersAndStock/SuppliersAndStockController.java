@@ -5,6 +5,7 @@
  */
 package SuppliersAndStock;
 
+import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -18,8 +19,9 @@ public class SuppliersAndStockController {
     private SupplierDao supplierDao;
 
     @RequestMapping(value = "suppliersAndStockDashboard")
-    public String suppliersAndStockDashboard() {
-
+    public String suppliersAndStockDashboard(ModelMap modelMap) {
+        ArrayList<Supplier> suppliers = supplierDao.getAllSuppliers();
+        modelMap.addAttribute("suppliers", suppliers);
         return "suppliersAndStock/suppliersAndStockDashboard";
     }
 
