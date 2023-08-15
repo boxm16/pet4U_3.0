@@ -24,7 +24,7 @@
 
             }
             th{
-                font-size: 10px;
+                font-size:20px;
                 text-align: center;
                 background: #eee;
                 position: sticky;
@@ -42,8 +42,8 @@
 
         <table>
             <thead>
-            <th>ID</th>
-            <th>Name</th>
+
+            <th>Supplier</th>
 
 
             </thead>
@@ -53,13 +53,9 @@
 
                     out.println("<tr>");
 
-                    out.println("<td>");
-                    out.println(supplier.getId());
-                    out.println("</td>");
-
-                    out.println("<td>");
-                    out.println("<a href='stockManagement.htm?supplierId=" + supplier.getId() + "'>" + supplier.getName() + "</a>");
-                    out.println("</td>");
+                    out.println("<td>&nbsp;&nbsp;");
+                    out.println("<a href='stockManagement.htm?supplierId=" + supplier.getId() + "'> " + supplier.getName() + "</a>");
+                    out.println("&nbsp;&nbsp;</td>");
 
                     out.println("</tr>");
 
