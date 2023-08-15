@@ -19,16 +19,6 @@ public class SuppliersAndStockController {
         return "suppliersAndStock/suppliersAndStockDashboard";
     }
 
-    @RequestMapping(value = "royalStockManagement")
-    public String royalStockManagement(ModelMap modelMap) {
-        Supplier supplier = new Supplier();
-        supplier.setId(1);
-        supplier.setName("Royal");
-
-        modelMap.addAttribute("supplier", supplier);
-        return "suppliersAndStock/stockManagement";
-    }
-
     @RequestMapping(value = "goForAddingSupplier")
     public String goForAddingSupplier() {
 
@@ -40,5 +30,15 @@ public class SuppliersAndStockController {
     public String goForEditingCamelotItemOfInterest(@RequestParam(name = "supplierId") String supplierId, ModelMap model) {
 
         return "/camelot/editItem";
+    }
+
+    @RequestMapping(value = "royalStockManagement")
+    public String royalStockManagement(ModelMap modelMap) {
+        Supplier supplier = new Supplier();
+        supplier.setId(1);
+        supplier.setName("Royal");
+
+        modelMap.addAttribute("supplier", supplier);
+        return "suppliersAndStock/stockManagement";
     }
 }
