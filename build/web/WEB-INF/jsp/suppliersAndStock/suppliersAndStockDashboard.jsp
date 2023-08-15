@@ -18,12 +18,14 @@
                 border-collapse: collapse;
             }
             td {
-                font-size: 20px;
-            }
-            th{
                 font-size: 30px;
                 font-weight: bold;
-                text-align: left;
+                text-align: center;
+
+            }
+            th{
+                font-size: 10px;
+                text-align: center;
                 background: #eee;
                 position: sticky;
                 top: 0px;
@@ -56,7 +58,7 @@
                     out.println("</td>");
 
                     out.println("<td>");
-                    out.println(supplier.getName());
+                    out.println("<a href='stockManagement.htm?supplierId=" + supplier.getId() + "'>" + supplier.getName() + "</a>");
                     out.println("</td>");
 
                     out.println("</tr>");

@@ -14,28 +14,28 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class SuppliersAndStockController {
-
+    
     @Autowired
     private SupplierDao supplierDao;
-
+    
     @RequestMapping(value = "suppliersAndStockDashboard")
     public String suppliersAndStockDashboard(ModelMap modelMap) {
         ArrayList<Supplier> suppliers = supplierDao.getAllSuppliers();
         modelMap.addAttribute("suppliers", suppliers);
         return "suppliersAndStock/suppliersAndStockDashboard";
     }
-
+    
     @RequestMapping(value = "goForAddingSupplier")
     public String goForAddingSupplier() {
-
+        
         return "suppliersAndStock/addSupplier";
     }
-
+    
     @RequestMapping(value = "addSupplier")
     public String addSupplier(@RequestParam(name = "name") String name,
             @RequestParam(name = "afm") String afm,
             ModelMap modelMap) {
-
+        
         Supplier supplier = new Supplier();
         supplier.setId(0);
         supplier.setName(name);
@@ -45,31 +45,35 @@ public class SuppliersAndStockController {
             modelMap.addAttribute("result", "SOMETHING IS MISSING.");
             modelMap.addAttribute("supplier", supplier);
             return "suppliersAndStock/addSupplier";
-
+            
         }
-
+        
         String result = supplierDao.addSupplier(supplier);
-
+        
         modelMap.addAttribute("resultColor", "green");
         modelMap.addAttribute("result", result);
         modelMap.addAttribute("supplier", supplier);
-
+        
         return "suppliersAndStock/addSupplier";
     }
 
     //----------------
-    @RequestMapping(value = "goForAddingItemToSupplier")
-    public String goForEditingCamelotItemOfInterest(@RequestParam(name = "supplierId") String supplierId, ModelMap model) {
-
-        return "/camelot/editItem";
+    @RequestMapping(value = "stockManagement")
+    public String stockManagement(@RequestParam(name = "supplierId") String supplierId, ModelMap modelMap) {
+        
+        Supplier supplier = new Supplier();
+        supplier.setId(Integer.parseInt(supplierId));
+        supplier.setName("VAKAKARA");
+        modelMap.addAttribute("supplier", supplier);
+        return "suppliersAndStock/stockManagement";
     }
-
+    
     @RequestMapping(value = "royalStockManagement")
     public String royalStockManagement(ModelMap modelMap) {
         Supplier supplier = new Supplier();
         supplier.setId(1);
         supplier.setName("Royal");
-
+        
         modelMap.addAttribute("supplier", supplier);
         return "suppliersAndStock/stockManagement";
     }

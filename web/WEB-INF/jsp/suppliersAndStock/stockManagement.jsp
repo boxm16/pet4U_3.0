@@ -32,6 +32,7 @@
     <body>
     <center>
         <h1><a href="index.htm">INDEX</a></h1>
+        
         <h1>${supplier.name} Stock Management</h1>
         <h3><a href="goForAddingItemToSupplier.htm?supplierId=${supplier.id}">Add Item Of Interest</a></h3>
     </center>
