@@ -18,7 +18,7 @@ public class SupplierDao {
     String addSupplier(Supplier supplier) {
         try {
             Connection connection = this.databaseConnectionFactory.getMySQLConnection();
-            PreparedStatement insertStatement = connection.prepareStatement("INSERT INTO σθππλιερσ (name, afm) VALUES (?,?)");
+            PreparedStatement insertStatement = connection.prepareStatement("INSERT INTO suppliers (name, afm) VALUES (?,?)");
 
             insertStatement.setString(1, supplier.getName());
             insertStatement.setString(2, supplier.getAfm());
