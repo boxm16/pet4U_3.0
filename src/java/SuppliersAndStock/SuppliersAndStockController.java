@@ -14,6 +14,6 @@ public class SuppliersAndStockController {
     @RequestMapping(value = "suppliersAndStockDashboard")
     public String inventoryDashboard() {
        
-        return "sas/sasDashboard";
+        return "sas/suppliersAndStockDashboard";
     }
 }
