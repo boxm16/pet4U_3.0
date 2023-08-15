@@ -38,9 +38,9 @@
         <a href='deleteNotesDatabaseTable.htm'><h1>Delete Notes Database Table</h1> </a>
         <hr>
 
-        <h1> ${ordersDatabaseTableResult} </h1>
-        <a href='createOrdersDatabaseTable.htm'><h1>Create Orders Database Table</h1> </a>
-        <a href='deleteOrdersDatabaseTable.htm'><h1>Delete Orders Database Table</h1> </a>
+        <h1> ${suppliersAndOrdersDatabaseTableResult} </h1>
+        <a href='createSuppliersAndOrdersDatabaseTable.htm'><h1>Create Suppliers And Orders Database Table</h1> </a>
+        <a href='deleteSuppliersAndOrdersDatabaseTable.htm'><h1>Delete Suppliers And Orders Database Table</h1> </a>
         <hr>
         <hr>
         <hr>
@@ -64,9 +64,7 @@
         <br>
         <h1> ${deliveryTablesDeletionResult} </h1>
         <a href='deleteDeliveryDatabaseTables.htm'><h1>Delete Delivery Database Tables</h1> </a>
-        <br>
-        <br>
-        <br>
+
         <hr>
         <h1> ${bestBeforeTableCreationResult} </h1>
         <a href='createBestBeforeDatabaseTables.htm'><h1>Create Best_Before Database Tables</h1> </a>
@@ -74,6 +72,16 @@
         <h1> ${bestBeforeTableDeletionResult} </h1>
         <a href='deleteBestBeforeDatabaseTables.htm'><h1>Delete Best_Before Database Tables</h1> </a>
         <br>
+
+
+        <hr>
+        <h1> ${supplierTableCreationResult} </h1>
+        <a href='createBestBeforeDatabaseTables.htm'><h1>Create Best_Before Database Tables</h1> </a>
+        <br>
+        <h1> ${bestBeforeTableDeletionResult} </h1>
+        <a href='deleteBestBeforeDatabaseTables.htm'><h1>Delete Best_Before Database Tables</h1> </a>
+        <br>
+
 
 
 

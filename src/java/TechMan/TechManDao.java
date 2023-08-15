@@ -16,6 +16,26 @@ public class TechManDao {
     @Autowired
     private DatabaseConnectionFactory databaseConnectionFactory;
 
+    public String createSuppliersDatabaseTable() {
+        String query = "CREATE TABLE suppliers("
+                + "id INT(6) NOT NULL AUTO_INCREMENT,"
+                + "name VARCHAR(100) NOT NULL, "
+                + "afm VARCHAR(20)  NULL) "
+                + "ENGINE = InnoDB "
+                + "DEFAULT CHARACTER SET = utf8;";
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+            statement.close();
+            connection.close();
+            return "Table 'suppliers' created succesfully";
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return "Table 'suppliers' could not be created:" + ex;
+        }
+    }
+
     public String createOrdersDatabaseTable() {
 
         String query = "CREATE TABLE orders("
@@ -526,14 +546,19 @@ public class TechManDao {
                 Statement statement = connection.createStatement();
                 ResultSet resultSet = statement.executeQuery("SELECT * FROM sales");
                 while (resultSet.next()) {
-                    System.out.println("-+-+-+"+resultSet.getString("code"));            }
-                return "good: "+resultSet.toString();
+                    System.out.println("-+-+-+" + resultSet.getString("code"));
+                }
+                return "good: " + resultSet.toString();
             }
         } catch (SQLException ex) {
             Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
             return ex.toString();
         }
         return "???????????";
+    }
+
+    String deleteSuppliersDatabaseTable() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

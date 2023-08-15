@@ -8,5 +8,6 @@
     </head>
     <body>
         <h1>Orders Dashboard</h1>
+        <a href="royalOrderDashboard.htm">Roayl Order Dashboard </a>
     </body>
 </html>

@@ -110,21 +110,24 @@ public class TechManController {
         return "techMan/techManDashboard";
     }
 
-    @RequestMapping(value = "/createOrdersDatabaseTable", method = RequestMethod.GET)
-    public String createOrdersDatabaseTable(ModelMap modelMap) {
+    @RequestMapping(value = "/createSuppliersAndOrdersDatabaseTable", method = RequestMethod.GET)
+    public String createSuppliersAndOrdersDatabaseTable(ModelMap modelMap) {
+        String suppliersDatabaseTableResult = techManDao.createSuppliersDatabaseTable();
         String ordersDatabaseTableResult = techManDao.createOrdersDatabaseTable();
 
-        ordersDatabaseTableResult = ordersDatabaseTableResult + "<br>";
-        modelMap.addAttribute("ordersDatabaseTableResult", ordersDatabaseTableResult);
+        String suppliersAndOrdersDatabaseTableResult = suppliersDatabaseTableResult + "<br>" + ordersDatabaseTableResult + "<br>";
+        modelMap.addAttribute("suppliersAndOrdersDatabaseTableResult", suppliersAndOrdersDatabaseTableResult);
         return "techMan/techManDashboard";
     }
 
-    @RequestMapping(value = "/deleteOrdersDatabaseTable", method = RequestMethod.GET)
-    public String deleteOrdersDatabaseTable(ModelMap modelMap) {
+    @RequestMapping(value = "/deleteSuppliersAndOrdersDatabaseTable", method = RequestMethod.GET)
+    public String deleteSuppliersAndOrdersDatabaseTable(ModelMap modelMap) {
+        String suppliersDatabaseTableResult = techManDao.deleteSuppliersDatabaseTable();
         String ordersDatabaseTableResult = techManDao.deleteOrdersDatabaseTable();
 
-        ordersDatabaseTableResult = ordersDatabaseTableResult + "<br>";
-        modelMap.addAttribute("ordersDatabaseTableResult", ordersDatabaseTableResult);
+        String suppliersAndOrdersDatabaseTableResult = suppliersDatabaseTableResult + "<br>" + ordersDatabaseTableResult + "<br>";
+
+        modelMap.addAttribute("suppliersAndOrdersDatabaseTableResult", suppliersAndOrdersDatabaseTableResult);
         return "techMan/techManDashboard";
     }
 

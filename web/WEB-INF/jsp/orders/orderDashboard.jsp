@@ -4,10 +4,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Orders Dashboard</title>
+        <title>Order Dashboard</title>
     </head>
     <body>
-        <h1>Orders Dashboard</h1>
-        <a href="royalOrderDashboard.htm">Roayl Order Dashboard </a>
+        <h1>${supplier} Order Dashboard</h1>
     </body>
 </html>
