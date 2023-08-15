@@ -11,13 +11,7 @@
             {
                 font-size:30px;
             }
-            table, th, td {
-                border: 1px solid ;
-                border-collapse: collapse;
-            }
-            td {
-                font-size: 20px;
-            }
+
 
         </style>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -38,6 +32,7 @@
                             <td>ΟΝΟΜΑΣΙΑ</td>
                             <td> <input type="text" name="name" value="${supplier.name}"> </td>
                         </tr>
+                        <br>
                         <tr>
                             <td>ΑΦΜ</td>
                             <td>  <input type="number" name="afm" value="${supplier.afm}">  </td> 
