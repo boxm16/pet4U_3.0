@@ -22,7 +22,7 @@ public class SuppliersAndStockController {
     @RequestMapping(value = "goForAddingSupplier")
     public String goForAddingSupplier() {
 
-        return "suppliersAndStock/suppliersAndStockDashboard";
+        return "suppliersAndStock/addSupplier";
     }
 
     //----------------
