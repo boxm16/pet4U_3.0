@@ -28,13 +28,13 @@ public class SuppliersAndStockController {
     @RequestMapping(value = "addSupplier")
     public String addSupplier(@RequestParam(name = "name") String name,
             @RequestParam(name = "afm") String afm,
-            ModelMap model) {
+            ModelMap modelMap) {
 
-        Supplier supplier=new Supplier();
+        Supplier supplier = new Supplier();
         supplier.setId(0);
         supplier.setName(name);
         supplier.setAfm(afm);
-        
+        modelMap.addAttribute("supplier", supplier);
         return "suppliersAndStock/addSupplier";
     }
 
