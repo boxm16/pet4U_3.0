@@ -14,7 +14,7 @@ public class OrdersController {
         return "orders/ordersDashboard";
     }
 
-    @RequestMapping(value = "ordersDashboard")
+    @RequestMapping(value = "orderDashboard")
     public String orderDashboard(@RequestParam(name = "supplierId") String altercode, ModelMap modelMap) {
 
         return "orders/ordersDashboard";
