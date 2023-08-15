@@ -5,6 +5,7 @@
  */
 package SuppliersAndStock;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class SuppliersAndStockController {
+
+    @Autowired
+    private SupplierDao supplierDao;
 
     @RequestMapping(value = "suppliersAndStockDashboard")
     public String suppliersAndStockDashboard() {
@@ -34,7 +38,20 @@ public class SuppliersAndStockController {
         supplier.setId(0);
         supplier.setName(name);
         supplier.setAfm(afm);
+        if (name.isEmpty()) {
+            modelMap.addAttribute("resultColor", "rose");
+            modelMap.addAttribute("result", "SOMETHING IS MISSING.");
+            modelMap.addAttribute("supplier", supplier);
+            return "suppliersAndStock/addSupplier";
+
+        }
+
+        String result = supplierDao.addSupplier(supplier);
+
+        modelMap.addAttribute("resultColor", "green");
+        modelMap.addAttribute("result", result);
         modelMap.addAttribute("supplier", supplier);
+
         return "suppliersAndStock/addSupplier";
     }
 
