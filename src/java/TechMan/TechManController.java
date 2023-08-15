@@ -120,7 +120,7 @@ public class TechManController {
         return "techMan/techManDashboard";
     }
 
-    @RequestMapping(value = "/deleteSuppliersAndOrdersDatabaseTable", method = RequestMethod.GET)
+    @RequestMapping(value = "/deleteSuppliersAndStockManagementDatabaseTable", method = RequestMethod.GET)
     public String deleteSuppliersAndOrdersDatabaseTable(ModelMap modelMap) {
         String suppliersDatabaseTableResult = techManDao.deleteSuppliersDatabaseTable();
         String stockManagementDatabaseTableResult = techManDao.deleteStockManagementDatabaseTable();
