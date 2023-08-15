@@ -13,7 +13,7 @@ public class SASController {
 
     @RequestMapping(value = "sas")
     public String inventoryDashboard() {
-
+        System.out.println("ama");
         return "sas/sasDashboard";
     }
 }
