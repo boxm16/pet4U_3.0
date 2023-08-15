@@ -47,7 +47,7 @@
     <context:component-scan base-package="BestBefore"/>
     <context:component-scan base-package="SalesX"/>
     <context:component-scan base-package="StockShortage"/>
-    <context:component-scan base-package="SAS"/>
+    <context:component-scan base-package="SuppliersAndStock"/>
     
     <!--
     Most controllers will use the ControllerClassNameHandlerMapping above, but
