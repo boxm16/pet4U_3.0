@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class SASController {
 
-    @RequestMapping(value = "sas")
+    @RequestMapping(value = "suppliersAndStockDashboard")
     public String inventoryDashboard() {
-        System.out.println("ama");
+       
         return "sas/sasDashboard";
     }
 }
