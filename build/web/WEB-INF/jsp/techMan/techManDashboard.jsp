@@ -38,9 +38,9 @@
         <a href='deleteNotesDatabaseTable.htm'><h1>Delete Notes Database Table</h1> </a>
         <hr>
 
-        <h1> ${suppliersAndOrdersDatabaseTableResult} </h1>
-        <a href='createSuppliersAndOrdersDatabaseTable.htm'><h1>Create Suppliers And Orders Database Table</h1> </a>
-        <a href='deleteSuppliersAndOrdersDatabaseTable.htm'><h1>Delete Suppliers And Orders Database Table</h1> </a>
+        <h1> ${suppliersAndStockManagementDatabaseTableResult} </h1>
+        <a href='createSuppliersAndStockManagementDatabaseTable.htm'><h1>Create Suppliers And Stock Management Orders Database Table</h1> </a>
+        <a href='deleteSuppliersAndStockManagementDatabaseTable.htm'><h1>Delete Suppliers And Stock Management Database Table</h1> </a>
         <hr>
         <hr>
         <hr>

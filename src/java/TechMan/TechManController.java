@@ -110,24 +110,24 @@ public class TechManController {
         return "techMan/techManDashboard";
     }
 
-    @RequestMapping(value = "/createSuppliersAndOrdersDatabaseTable", method = RequestMethod.GET)
-    public String createSuppliersAndOrdersDatabaseTable(ModelMap modelMap) {
+    @RequestMapping(value = "/createSuppliersAndStockManagementDatabaseTable", method = RequestMethod.GET)
+    public String createSuppliersAndStockManagementDatabaseTable(ModelMap modelMap) {
         String suppliersDatabaseTableResult = techManDao.createSuppliersDatabaseTable();
-        String ordersDatabaseTableResult = techManDao.createOrdersDatabaseTable();
+        String stockManagementDatabaseTableResult = techManDao.createStockManagementDatabaseTable();
 
-        String suppliersAndOrdersDatabaseTableResult = suppliersDatabaseTableResult + "<br>" + ordersDatabaseTableResult + "<br>";
-        modelMap.addAttribute("suppliersAndOrdersDatabaseTableResult", suppliersAndOrdersDatabaseTableResult);
+        String suppliersAndStockManagementDatabaseTableResult = suppliersDatabaseTableResult + "<br>" + stockManagementDatabaseTableResult + "<br>";
+        modelMap.addAttribute("suppliersAndStockManagementDatabaseTableResult", suppliersAndStockManagementDatabaseTableResult);
         return "techMan/techManDashboard";
     }
 
     @RequestMapping(value = "/deleteSuppliersAndOrdersDatabaseTable", method = RequestMethod.GET)
     public String deleteSuppliersAndOrdersDatabaseTable(ModelMap modelMap) {
         String suppliersDatabaseTableResult = techManDao.deleteSuppliersDatabaseTable();
-        String ordersDatabaseTableResult = techManDao.deleteOrdersDatabaseTable();
+        String stockManagementDatabaseTableResult = techManDao.deleteStockManagementDatabaseTable();
 
-        String suppliersAndOrdersDatabaseTableResult = suppliersDatabaseTableResult + "<br>" + ordersDatabaseTableResult + "<br>";
+        String suppliersAndStockManagementDatabaseTableResult = suppliersDatabaseTableResult + "<br>" + stockManagementDatabaseTableResult + "<br>";
 
-        modelMap.addAttribute("suppliersAndOrdersDatabaseTableResult", suppliersAndOrdersDatabaseTableResult);
+        modelMap.addAttribute("suppliersAndStockManagementDatabaseTableResult", suppliersAndStockManagementDatabaseTableResult);
         return "techMan/techManDashboard";
     }
 
