@@ -6,14 +6,22 @@
 package SuppliersAndStock;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class SuppliersAndStockController {
-
+    
     @RequestMapping(value = "suppliersAndStockDashboard")
     public String inventoryDashboard() {
-       
+        
         return "suppliersAndStock/suppliersAndStockDashboard";
     }
+    
+    @RequestMapping(value = "royalStockManagement")
+    public String royalStockManagement(ModelMap modelMap) {
+        modelMap.addAttribute("supplier", "Royal");
+        return "suppliersAndStock/stockManagement";
+    }
+    
 }

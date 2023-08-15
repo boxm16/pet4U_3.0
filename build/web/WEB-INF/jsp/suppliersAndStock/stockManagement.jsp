@@ -1,6 +1,6 @@
 <%-- 
-    Document   : sasDashboard
-    Created on : Aug 15, 2023, 6:06:13 PM
+    Document   : stockManagement
+    Created on : Aug 15, 2023, 6:35:42 PM
     Author     : Michail Sitmalidis
 --%>
 
@@ -9,10 +9,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Suppliers And Stock Dashboard</title>
+        <title>Stock Management</title>
     </head>
     <body>
-        <h1>Suppliers And Stock Dashboard</h1>
-        <a href="royalStockManagement.htm">Royal Stock Management</a>
+        <h1>${supplier} Stock Management</h1>
     </body>
 </html>
