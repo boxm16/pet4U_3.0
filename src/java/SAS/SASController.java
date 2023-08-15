@@ -3,18 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package SuppliersAndStock;
+package SAS;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-/**
- *
- * @author Michail Sitmalidis
- */
-public class SuppliersAndStockController {
-    @RequestMapping(value = "suppliersAndStockDashboard")
-    public String suppliersAndStockDashboard() {
+@Controller
+public class SASController {
 
-        return "index";
-    }  
+    @RequestMapping(value = "sas")
+    public String inventoryDashboard() {
+
+        return "inventory/inventoryDashboard";
+    }
 }
