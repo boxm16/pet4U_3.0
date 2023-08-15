@@ -32,7 +32,10 @@
                             <td>ΟΝΟΜΑΣΙΑ</td>
                             <td> <input type="text" name="name" value="${supplier.name}"> </td>
                         </tr>
-                        <br>
+                        <tr>
+
+                            <td colspan="2"> <center> ----------------------------</center> </td> 
+                        </tr>
                         <tr>
                             <td>ΑΦΜ</td>
                             <td>  <input type="number" name="afm" value="${supplier.afm}">  </td> 
