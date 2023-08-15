@@ -14,6 +14,6 @@ public class SASController {
     @RequestMapping(value = "sas")
     public String inventoryDashboard() {
 
-        return "inventory/inventoryDashboard";
+        return "sas/sasDashboard";
     }
 }
