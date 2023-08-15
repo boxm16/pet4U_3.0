@@ -11,6 +11,14 @@
             {
                 font-size:30px;
             }
+            table, th, td {
+                border: 1px solid ;
+                border-collapse: collapse;
+            }
+            td {
+                font-size: 20px;
+            }
+
         </style>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
