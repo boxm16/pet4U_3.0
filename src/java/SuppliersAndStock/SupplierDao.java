@@ -68,4 +68,36 @@ public class SupplierDao {
         return suppliers;
     }
 
+    Supplier getSupplier(String supplierId) {
+
+        String sql = "SELECT * FROM suppliers where id=" + supplierId;
+        ResultSet resultSet;
+
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            Connection connection = databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+
+            resultSet = statement.executeQuery(sql);
+            while (resultSet.next()) {
+                Supplier supplier = new Supplier();
+                int id = resultSet.getInt("id");
+                supplier.setId(id);
+
+                supplier.setName(resultSet.getString("name"));
+                supplier.setAfm(resultSet.getString("afm"));
+
+                return supplier;
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return null;
+    }
+
 }
