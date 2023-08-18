@@ -67,15 +67,7 @@ public class SuppliersAndStockController {
         return "suppliersAndStock/stockManagement";
     }
 
-    @RequestMapping(value = "royalStockManagement")
-    public String royalStockManagement(ModelMap modelMap) {
-        Supplier supplier = new Supplier();
-        supplier.setId(1);
-        supplier.setName("Royal");
-
-        modelMap.addAttribute("supplier", supplier);
-        return "suppliersAndStock/stockManagement";
-    }
+   
 
     @RequestMapping(value = "goForAddingItemToSupplier")
     public String goForAddingItemToSupplier(@RequestParam(name = "supplierId") String supplierId,
