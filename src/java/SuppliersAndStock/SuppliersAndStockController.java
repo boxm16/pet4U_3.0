@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -67,12 +68,11 @@ public class SuppliersAndStockController {
         return "suppliersAndStock/stockManagement";
     }
 
-   
-
-    @RequestMapping(value = "goForAddingItemToSupplier")
+    @RequestMapping(value = "goForAddingItemToSupplier", method = RequestMethod.POST)
     public String goForAddingItemToSupplier(@RequestParam(name = "supplierId") String supplierId,
             @RequestParam(name = "altercode") String altercode,
             ModelMap modelMap) {
+        System.out.println(altercode);
         Supplier supplier = supplierDao.getSupplier(supplierId);
         SalesControllerX salesControllerX = new SalesControllerX();
         salesControllerX.getItemSales(supplierId);

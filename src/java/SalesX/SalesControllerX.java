@@ -124,6 +124,7 @@ public class SalesControllerX {
 
         SearchDao searchDao = new SearchDao();
         Item item = searchDao.getItemByAltercode(altercode);
+        
         ArrayList<AltercodeContainer> altercodes = item.getAltercodes();
 
         for (AltercodeContainer altercodeContainer : altercodes) {

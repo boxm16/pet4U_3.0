@@ -34,7 +34,7 @@
         <h1><a href="index.htm">INDEX</a></h1>
         
         <h1>${supplier.name} Stock Management</h1>
-        <form action="goForAddingItemToSupplier.htm">
+        <form action="goForAddingItemToSupplier.htm" method="POST">
             <input hidden name="supplierId" value="${supplier.id}">
             <input type="text" name="altercode">
             <button type="submit">Add New Item</button>
