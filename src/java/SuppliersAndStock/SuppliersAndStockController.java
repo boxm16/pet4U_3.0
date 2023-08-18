@@ -5,6 +5,7 @@
  */
 package SuppliersAndStock;
 
+import SalesX.SalesControllerX;
 import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -75,10 +76,14 @@ public class SuppliersAndStockController {
         modelMap.addAttribute("supplier", supplier);
         return "suppliersAndStock/stockManagement";
     }
-    
+
     @RequestMapping(value = "goForAddingItemToSupplier")
-    public String goForAddingItemToSupplier(@RequestParam(name = "supplierId") String supplierId, ModelMap modelMap) {
+    public String goForAddingItemToSupplier(@RequestParam(name = "supplierId") String supplierId,
+            @RequestParam(name = "altercode") String altercode,
+            ModelMap modelMap) {
         Supplier supplier = supplierDao.getSupplier(supplierId);
+        SalesControllerX salesControllerX = new SalesControllerX();
+        salesControllerX.getItemSales(supplierId);
 
         modelMap.addAttribute("supplier", supplier);
         return "suppliersAndStock/addItemToSupplier";
