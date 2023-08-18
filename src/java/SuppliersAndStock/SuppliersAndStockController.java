@@ -6,6 +6,7 @@
 package SuppliersAndStock;
 
 import SalesX.SalesControllerX;
+import SalesX.SoldItem;
 import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -72,12 +73,14 @@ public class SuppliersAndStockController {
     public String goForAddingItemToSupplier(@RequestParam(name = "supplierId") String supplierId,
             @RequestParam(name = "altercode") String altercode,
             ModelMap modelMap) {
-        System.out.println(altercode);
+
         Supplier supplier = supplierDao.getSupplier(supplierId);
+
         SalesControllerX salesControllerX = new SalesControllerX();
-        salesControllerX.getItemSales(supplierId);
+        SoldItem itemSales = salesControllerX.getItemSales(altercode);
 
         modelMap.addAttribute("supplier", supplier);
+        modelMap.addAttribute("itemSales", itemSales);
         return "suppliersAndStock/addItemToSupplier";
     }
 }
