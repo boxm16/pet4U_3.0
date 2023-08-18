@@ -32,15 +32,15 @@
                         </tr>
                         <tr>
                             <td>Description</td>
-                            <td> <input type="text" value="here goes description"> </td>
+                            <td> <input type="text" value="${item.description}"> </td>
                         </tr>
                         <tr>
                             <td>Sales For 6 Months</td>
-                            <td> <input type="text" value="Here goes sales for 6 mothes"> </td>
+                            <td> <input type="text" value="${item.getTotalShippedPieces()}"> </td>
                         </tr>
                         <tr>
                             <td>Sales For 2 weeks</td>
-                            <td> <input type="text" value="Here goes sales for 2 weeks"> </td>
+                             <td> <input type="text" value="${item.getTotalShippedPieces()/13}"> </td>
                         </tr>
 
                         <tr>
