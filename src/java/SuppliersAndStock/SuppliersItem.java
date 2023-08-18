@@ -5,61 +5,78 @@
  */
 package SuppliersAndStock;
 
-import BasicModel.Item;
+import CamelotItemsOfInterest.CamelotItemOfInterest;
 
 /**
  *
  * @author Michail Sitmalidis
  */
-public class SuppliersItem extends Item{
-   
-    private int minimalStock;
-    private String orderUnit;
-    private int orderQuantity;
+public class SuppliersItem extends CamelotItemOfInterest {
 
-    private double pet4uStock;
-   
-    private double totalSalesInPieces;
+    private double eshopSales;
+    private double shopsSupply;
 
-    public int getMinimalStock() {
-        return minimalStock;
+    public double getEshopSales() {
+        return eshopSales;
     }
 
-    public void setMinimalStock(int minimalStock) {
-        this.minimalStock = minimalStock;
+    public void setEshopSales(double eshopSales) {
+        this.eshopSales = eshopSales;
     }
 
-    public String getOrderUnit() {
-        return orderUnit;
+    public double getShopsSupply() {
+        return shopsSupply;
     }
 
-    public void setOrderUnit(String orderUnit) {
-        this.orderUnit = orderUnit;
+    public void setShopsSupply(double shopsSupply) {
+        this.shopsSupply = shopsSupply;
     }
 
-    public int getOrderQuantity() {
-        return orderQuantity;
+    public double getEshopSoldPieces() {
+
+        if (this.eshopSales == 0) {
+            return 0;
+        }
+        if (this.getWeightCoefficient() != 1) {
+            try {
+                return this.eshopSales / this.getWeightCoefficient();
+
+            } catch (NumberFormatException ex) {
+                System.out.println(ex);
+            }
+        }
+        return this.eshopSales;
     }
 
-    public void setOrderQuantity(int orderQuantity) {
-        this.orderQuantity = orderQuantity;
+    public double getShopsSuppliedPieces() {
+        if (this.shopsSupply == 0) {
+            return 0;
+        }
+        if (this.getWeightCoefficient() != 1) {
+            try {
+                return this.shopsSupply / this.getWeightCoefficient();
+
+            } catch (NumberFormatException ex) {
+                System.out.println(ex);
+            }
+        }
+        return this.shopsSupply;
     }
 
-    public double getPet4uStock() {
-        return pet4uStock;
-    }
+    public double getTotalShippedPieces() {
 
-    public void setPet4uStock(double pet4uStock) {
-        this.pet4uStock = pet4uStock;
+        double totalShippedPieces = this.eshopSales + this.shopsSupply;
+        if (totalShippedPieces == 0) {
+            return 0;
+        }
+        if (this.getWeightCoefficient() != 1) {
+            try {
+                double d = totalShippedPieces / this.getWeightCoefficient();
+                return d;
+            } catch (NumberFormatException ex) {
+                System.out.println(ex);
+            }
+        }
+        return totalShippedPieces;
     }
-
-    public double getTotalSalesInPieces() {
-        return totalSalesInPieces;
-    }
-
-    public void setTotalSalesInPieces(double totalSalesInPieces) {
-        this.totalSalesInPieces = totalSalesInPieces;
-    }
- 
-    
 }
