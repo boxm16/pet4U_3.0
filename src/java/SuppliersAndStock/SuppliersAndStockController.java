@@ -75,4 +75,12 @@ public class SuppliersAndStockController {
         modelMap.addAttribute("supplier", supplier);
         return "suppliersAndStock/stockManagement";
     }
+    
+    @RequestMapping(value = "goForAddingItemToSupplier")
+    public String goForAddingItemToSupplier(@RequestParam(name = "supplierId") String supplierId, ModelMap modelMap) {
+        Supplier supplier = supplierDao.getSupplier(supplierId);
+
+        modelMap.addAttribute("supplier", supplier);
+        return "suppliersAndStock/addItemToSupplier";
+    }
 }
