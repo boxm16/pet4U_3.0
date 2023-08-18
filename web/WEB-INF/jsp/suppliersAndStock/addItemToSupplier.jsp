@@ -34,11 +34,11 @@
                             <td>Description</td>
                             <td> <input type="text" value="here goes description"> </td>
                         </tr>
-                         <tr>
+                        <tr>
                             <td>Sales For 6 Months</td>
                             <td> <input type="text" value="Here goes sales for 6 mothes"> </td>
                         </tr>
-                          <tr>
+                        <tr>
                             <td>Sales For 2 weeks</td>
                             <td> <input type="text" value="Here goes sales for 2 weeks"> </td>
                         </tr>
@@ -46,10 +46,6 @@
                         <tr>
                             <td>Minimal Stock</td>
                             <td>  <input type="number" name="minimalStock" value="${item.minimalStock}">  </td> 
-                        </tr>
-                        <tr>
-                            <td>Weight Coefficient</td>
-                            <td>  <input type="number" name="weightCoefficient" value="${item.weightCoefficient}">  </td> 
                         </tr>
                         <tr>
                             <td>
@@ -64,16 +60,16 @@
                                 </select>
                             </td>
                         </tr>
-                         <tr>
-                            <td>Αντιστοιχία Μοναδας Παραγγελίας και τεμαχίων</td>
+                        <tr>
+                            <td>Ποσότητα Τεμαχίων σε Μονάδα Παραγγελίας</td>
                             <td><input type="number" name="orderUnitCapacity" value="${itemOfInterest.orderQuantity}"></td>
                         </tr>
-                        
+
                         <tr>
                             <td>Ποσοτητά Παραγγελίας</td>
                             <td><input type="number" name="orderQuantity" value="${itemOfInterest.orderQuantity}"></td>
                         </tr>
-                      
+
                     </table>
                     <br>
                     <button type="submit" style="width:300px; height :60px; background-color: green"><h1>Add Item</h1></button>
