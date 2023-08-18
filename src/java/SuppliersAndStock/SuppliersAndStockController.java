@@ -77,10 +77,10 @@ public class SuppliersAndStockController {
         Supplier supplier = supplierDao.getSupplier(supplierId);
 
         SalesControllerX salesControllerX = new SalesControllerX();
-        SoldItem itemSales = salesControllerX.getItemSales(altercode);
+        SoldItem item = salesControllerX.getItemSales(altercode);
 
         modelMap.addAttribute("supplier", supplier);
-        modelMap.addAttribute("itemSales", itemSales);
+        modelMap.addAttribute("item", item);
         return "suppliersAndStock/addItemToSupplier";
     }
 }
