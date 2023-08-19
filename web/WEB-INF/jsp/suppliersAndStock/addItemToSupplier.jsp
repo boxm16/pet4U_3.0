@@ -36,7 +36,7 @@
                         </tr>
                         <tr>
                             <td>Sales For 6 Months</td>
-                            <td> <input type="text" value="${item.getTotalShippedPieces()}"> </td>
+                            <td> <input type="text" value="${item.eshopSales}"> </td>
                         </tr>
                         <tr>
                             <td>Sales For 2 weeks</td>
