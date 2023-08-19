@@ -81,7 +81,7 @@ public class SuppliersAndStockController {
         SuppliersItem item = new SuppliersItem();
         item.setCode(soldItem.getCode());
         item.setDescription(soldItem.getDescription());
-        item.setEshopSales(soldItem.getEshopSales());
+        item.setEshopSales(0);
         item.setShopsSupply(soldItem.getShopsSupply());
         modelMap.addAttribute("supplier", supplier);
         modelMap.addAttribute("item", item);
