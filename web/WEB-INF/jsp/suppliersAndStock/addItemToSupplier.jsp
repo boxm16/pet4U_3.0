@@ -29,11 +29,11 @@
             <h2><h2><table>
                         <tr>
                             <td>Item Code</td>
-                            <td> <input style="background-color:lightgray" readonly type="text" name="code" value="${item.code}"> </td>
+                            <td> <input style="background-color:lightgrey" readonly type="text" name="code" value="${item.code}"> </td>
                         </tr>
                         <tr>
                             <td>Description</td>
-                            <td> <input style="background-color:lightgray" readonly type="text" value="${item.description}"> </td>
+                            <td> <input style="background-color:lightgrey" readonly type="text" value="${item.description}"> </td>
                         </tr>
                         <tr>
                             <td>Sales For 6 Months</td>
