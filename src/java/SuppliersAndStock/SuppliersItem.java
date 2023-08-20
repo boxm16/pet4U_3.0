@@ -79,4 +79,8 @@ public class SuppliersItem extends CamelotItemOfInterest {
         }
         return totalShippedPieces;
     }
+
+    public double getTotalShippedPiecesFor__() {
+        return getTotalShippedPieces() / 13;
+    }
 }

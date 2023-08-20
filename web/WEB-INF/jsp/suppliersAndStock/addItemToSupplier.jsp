@@ -40,7 +40,7 @@
                         </tr>
                         <tr>
                             <td>Sales For 2 weeks</td>
-                             <td> <input type="text" value="${item.getTotalShippedPieces()/13}"> </td>
+                            <td> <input type="text" value="${item.getTotalShippedPiecesFor__()}"> </td>
                         </tr>
 
                         <tr>
