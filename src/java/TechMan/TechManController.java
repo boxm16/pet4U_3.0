@@ -110,27 +110,6 @@ public class TechManController {
         return "techMan/techManDashboard";
     }
 
-    @RequestMapping(value = "/createSuppliersAndStockManagementDatabaseTable", method = RequestMethod.GET)
-    public String createSuppliersAndStockManagementDatabaseTable(ModelMap modelMap) {
-        String suppliersDatabaseTableResult = techManDao.createSuppliersDatabaseTable();
-        String stockManagementDatabaseTableResult = techManDao.createStockManagementDatabaseTable();
-
-        String suppliersAndStockManagementDatabaseTableResult = suppliersDatabaseTableResult + "<br>" + stockManagementDatabaseTableResult + "<br>";
-        modelMap.addAttribute("suppliersAndStockManagementDatabaseTableResult", suppliersAndStockManagementDatabaseTableResult);
-        return "techMan/techManDashboard";
-    }
-
-    @RequestMapping(value = "/deleteSuppliersAndStockManagementDatabaseTable", method = RequestMethod.GET)
-    public String deleteSuppliersAndOrdersDatabaseTable(ModelMap modelMap) {
-        String suppliersDatabaseTableResult = techManDao.deleteSuppliersDatabaseTable();
-        String stockManagementDatabaseTableResult = techManDao.deleteStockManagementDatabaseTable();
-
-        String suppliersAndStockManagementDatabaseTableResult = suppliersDatabaseTableResult + "<br>" + stockManagementDatabaseTableResult + "<br>";
-
-        modelMap.addAttribute("suppliersAndStockManagementDatabaseTableResult", suppliersAndStockManagementDatabaseTableResult);
-        return "techMan/techManDashboard";
-    }
-
     //-----------------
     @RequestMapping(value = "/createNotesDatabaseTable", method = RequestMethod.GET)
     public String createNotesDatabaseTable(ModelMap modelMap) {
@@ -273,9 +252,28 @@ public class TechManController {
     }
 
     //---------------------------
+    @RequestMapping(value = "/createSuppliersDatabaseTable", method = RequestMethod.GET)
+    public String createSuppliersDatabaseTable(ModelMap modelMap) {
+        String suppliersDatabaseTableResult = techManDao.createSuppliersDatabaseTable();
+
+        suppliersDatabaseTableResult = suppliersDatabaseTableResult + "<br>";
+        modelMap.addAttribute("suppliersDatabaseTableResult", suppliersDatabaseTableResult);
+        return "techMan/techManDashboard";
+    }
+
+    @RequestMapping(value = "/deleteSuppliersDatabaseTable", method = RequestMethod.GET)
+    public String deleteSuppliersDatabaseTable(ModelMap modelMap) {
+        String suppliersDatabaseTableResult = techManDao.deleteSuppliersDatabaseTable();
+
+        suppliersDatabaseTableResult = suppliersDatabaseTableResult + "<br>";
+
+        modelMap.addAttribute("suppliersDatabaseTableResult", suppliersDatabaseTableResult);
+        return "techMan/techManDashboard";
+    }
+
     @RequestMapping(value = "/createStockManagementDatabaseTables", method = RequestMethod.GET)
     public String createStockManagementDatabaseTables(ModelMap modelMap) {
-        String result = techManDao.createStockManagementDatabaseTableX();
+        String result = techManDao.createStockManagementDatabaseTable();
         result = result + "<br>";
         modelMap.addAttribute("stockManagementTableCreationResult", result);
         return "techMan/techManDashboard";
@@ -283,7 +281,7 @@ public class TechManController {
 
     @RequestMapping(value = "/deleteStockManagementDatabaseTables", method = RequestMethod.GET)
     public String deleteStockManagementDatabaseTables(ModelMap modelMap) {
-        String result = techManDao.deleteStockManagementDatabaseTableX();
+        String result = techManDao.deleteStockManagementDatabaseTable();
         result = result + "<br>";
         modelMap.addAttribute("stockManagementTableDeletionResult", result);
         return "techMan/techManDashboard";

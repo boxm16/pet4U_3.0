@@ -38,10 +38,7 @@
         <a href='deleteNotesDatabaseTable.htm'><h1>Delete Notes Database Table</h1> </a>
         <hr>
 
-        <h1> ${suppliersAndStockManagementDatabaseTableResult} </h1>
-        <a href='createSuppliersAndStockManagementDatabaseTable.htm'><h1>Create Suppliers And Stock Management Orders Database Table</h1> </a>
-        <a href='deleteSuppliersAndStockManagementDatabaseTable.htm'><h1>Delete Suppliers And Stock Management Database Table</h1> </a>
-        <hr>
+
         <hr>
         <hr>
         <h1> ${camelotItemsOfOurInterestDatabaseTablesCreationResult} </h1>
@@ -81,8 +78,13 @@
         <h1> ${bestBeforeTableDeletionResult} </h1>
         <a href='deleteBestBeforeDatabaseTables.htm'><h1>Delete Best_Before Database Tables</h1> </a>
         <br>
-        
-        
+
+
+        <h1> ${suppliersDatabaseTableResult} </h1>
+        <a href='createSuppliersDatabaseTable.htm'><h1>Create Suppliers  Database Table</h1> </a>
+        <a href='deleteSuppliersDatabaseTable.htm'><h1>Delete Suppliers  Database Table</h1> </a>
+        <hr>
+
         <hr>
         <h1> ${stockManagementTableCreationResult} </h1>
         <a href='createStockManagementDatabaseTables.htm'><h1>Create Stock Management Database Tables</h1> </a>

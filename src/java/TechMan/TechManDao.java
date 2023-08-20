@@ -52,42 +52,7 @@ public class TechManDao {
         }
     }
 
-    public String createStockManagementDatabaseTable() {
-
-        String query = "CREATE TABLE stock_management("
-                + "item_id INT(6) NOT NULL ) "
-                + "ENGINE = InnoDB "
-                + "DEFAULT CHARACTER SET = utf8;";
-        try {
-            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
-            Statement statement = connection.createStatement();
-            statement.execute(query);
-            statement.close();
-            connection.close();
-            return "Table 'stock_management' created succesfully";
-        } catch (SQLException ex) {
-            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
-            return "Table 'stock_management' could not be created:" + ex;
-        }
-
-    }
-
-    public String deleteStockManagementDatabaseTable() {
-        String query = "DROP TABLE stock_management";
-        try {
-            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
-            Statement statement = connection.createStatement();
-            statement.execute(query);
-            statement.close();
-            connection.close();
-            return "Table 'stock_management' deleted succesfully";
-        } catch (SQLException ex) {
-            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
-            return "Table 'stock_management' could not be deleted:" + ex;
-        }
-    }
 //-------------------------------
-
     public String createNotesDatabaseTable() {
         String query = "CREATE TABLE notes("
                 + "item_id INT(6) NOT NULL, "
@@ -574,7 +539,7 @@ public class TechManDao {
         return "???????????";
     }
 
-    String createStockManagementDatabaseTableX() {
+    String createStockManagementDatabaseTable() {
         String query = "CREATE TABLE stock_management("
                 + "item_code VARCHAR (100) NOT NULL, "
                 + "minimal_stock INT (5) NOT NULL, "
@@ -597,7 +562,7 @@ public class TechManDao {
         }
     }
 
-    String deleteStockManagementDatabaseTableX() {
+    String deleteStockManagementDatabaseTable() {
         String query = "DROP TABLE stock_management";
 
         try {
