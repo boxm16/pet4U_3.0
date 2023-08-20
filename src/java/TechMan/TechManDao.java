@@ -16,42 +16,6 @@ public class TechManDao {
     @Autowired
     private DatabaseConnectionFactory databaseConnectionFactory;
 
-    public String createSuppliersDatabaseTable() {
-        String query = "CREATE TABLE suppliers("
-                + "id INT(6) NOT NULL AUTO_INCREMENT,"
-                + "name VARCHAR(100) NOT NULL, "
-                + "afm VARCHAR(20)  NULL, "
-                + "PRIMARY KEY (id)) "
-                + "ENGINE = InnoDB "
-                + "DEFAULT CHARACTER SET = utf8;";
-        try {
-            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
-            Statement statement = connection.createStatement();
-            statement.execute(query);
-            statement.close();
-            connection.close();
-            return "Table 'suppliers' created succesfully";
-        } catch (SQLException ex) {
-            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
-            return "Table 'suppliers' could not be created:" + ex;
-        }
-    }
-
-    String deleteSuppliersDatabaseTable() {
-        String query = "DROP TABLE suppliers";
-        try {
-            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
-            Statement statement = connection.createStatement();
-            statement.execute(query);
-            statement.close();
-            connection.close();
-            return "Table 'suppliers' deleted succesfully";
-        } catch (SQLException ex) {
-            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
-            return "Table 'suppliers' could not be deleted:" + ex;
-        }
-    }
-
 //-------------------------------
     public String createNotesDatabaseTable() {
         String query = "CREATE TABLE notes("
@@ -539,8 +503,46 @@ public class TechManDao {
         return "???????????";
     }
 
+    //--------------------------------------
+    public String createSuppliersDatabaseTable() {
+        String query = "CREATE TABLE suppliers("
+                + "id INT(6) NOT NULL AUTO_INCREMENT,"
+                + "name VARCHAR(100) NOT NULL, "
+                + "afm VARCHAR(20)  NULL, "
+                + "PRIMARY KEY (id)) "
+                + "ENGINE = InnoDB "
+                + "DEFAULT CHARACTER SET = utf8;";
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+            statement.close();
+            connection.close();
+            return "Table 'suppliers' created succesfully";
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return "Table 'suppliers' could not be created:" + ex;
+        }
+    }
+
+    String deleteSuppliersDatabaseTable() {
+        String query = "DROP TABLE suppliers";
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+            statement.close();
+            connection.close();
+            return "Table 'suppliers' deleted succesfully";
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return "Table 'suppliers' could not be deleted:" + ex;
+        }
+    }
+
     String createStockManagementDatabaseTable() {
         String query = "CREATE TABLE stock_management("
+                + "supplier_id INT (6) NOT NULL, "
                 + "item_code VARCHAR (100) NOT NULL, "
                 + "minimal_stock INT (5) NOT NULL, "
                 + "order_unit VARCHAR (10) NOT NULL, "

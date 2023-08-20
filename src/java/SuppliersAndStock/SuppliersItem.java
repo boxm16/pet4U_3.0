@@ -13,6 +13,7 @@ import BasicModel.Item;
  */
 public class SuppliersItem extends Item {
 
+    private int supplierId;
     private double eshopSales;
     private double shopsSupply;
     private int minimalStock;
@@ -132,7 +133,13 @@ public class SuppliersItem extends Item {
     public void setNote(String note) {
         this.note = note;
     }
-    
-    
+
+    public int getSupplierId() {
+        return supplierId;
+    }
+
+    public void setSupplierId(int supplierId) {
+        this.supplierId = supplierId;
+    }
 
 }

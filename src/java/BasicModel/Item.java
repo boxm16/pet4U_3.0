@@ -11,6 +11,7 @@ public class Item {
     private String quantity;
     private String state;
     private String supplier;
+    
 
     public Item() {
         altercodes = new ArrayList();

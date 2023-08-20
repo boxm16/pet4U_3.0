@@ -24,7 +24,7 @@
         <h1 style="background-color: ${resultColor}">${result}</h1>
 
         <h1>Add  Item To Supplier </h1>
-       
+
         <form action="addItemToSupplier.htm" method="POST" >
             <h2><h2><table>
                         <tr>
@@ -65,11 +65,6 @@
                         <tr>
                             <td>Ποσότητα Τεμαχίων σε Μονάδα Παραγγελίας</td>
                             <td><input type="number" name="orderUnitCapacity" value="${itemOfInterest.orderQuantity}"></td>
-                        </tr>
-
-                        <tr>
-                            <td>Ποσοτητά Παραγγελίας</td>
-                            <td><input type="number" name="orderQuantity" value="${itemOfInterest.orderQuantity}"></td>
                         </tr>
 
                     </table>
