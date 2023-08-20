@@ -80,7 +80,7 @@ public class SuppliersItem extends CamelotItemOfInterest {
         return totalShippedPieces;
     }
 
-    public double getTotalShippedPiecesFor() {
-       return this.getTotalShippedPieces()/13;
+    public Double getTotalShippedPiecesFor() {
+        return new Double(this.getTotalShippedPieces() / 13.0);
     }
 }
