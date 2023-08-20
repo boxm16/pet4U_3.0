@@ -15,6 +15,7 @@ public class SuppliersItem extends CamelotItemOfInterest {
 
     private double eshopSales;
     private double shopsSupply;
+    private double totalShippedPieces;
 
     public double getEshopSales() {
         return eshopSales;
@@ -77,6 +78,7 @@ public class SuppliersItem extends CamelotItemOfInterest {
                 System.out.println(ex);
             }
         }
+        this.totalShippedPieces=totalShippedPieces;
         return totalShippedPieces;
     }
 
