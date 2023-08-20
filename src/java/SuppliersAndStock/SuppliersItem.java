@@ -15,6 +15,9 @@ public class SuppliersItem extends Item  {
 
     private double eshopSales;
     private double shopsSupply;
+    private int minimalStock;
+    private String orderUnit;
+    private int orderQuantity;
 
     public double getEshopSales() {
         return eshopSales;
@@ -79,5 +82,32 @@ public class SuppliersItem extends Item  {
         }
         return totalShippedPieces;
     }
+    
+    // ----------------
+
+    public int getMinimalStock() {
+        return minimalStock;
+    }
+
+    public void setMinimalStock(int minimalStock) {
+        this.minimalStock = minimalStock;
+    }
+
+    public String getOrderUnit() {
+        return orderUnit;
+    }
+
+    public void setOrderUnit(String orderUnit) {
+        this.orderUnit = orderUnit;
+    }
+
+    public int getOrderQuantity() {
+        return orderQuantity;
+    }
+
+    public void setOrderQuantity(int orderQuantity) {
+        this.orderQuantity = orderQuantity;
+    }
+    
 
 }
