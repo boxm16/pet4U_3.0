@@ -5,13 +5,13 @@
  */
 package SuppliersAndStock;
 
-import CamelotItemsOfInterest.CamelotItemOfInterest;
+import BasicModel.Item;
 
 /**
  *
  * @author Michail Sitmalidis
  */
-public class SuppliersItem extends CamelotItemOfInterest {
+public class SuppliersItem extends Item  {
 
     private double eshopSales;
     private double shopsSupply;
