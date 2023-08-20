@@ -81,6 +81,16 @@
         <h1> ${bestBeforeTableDeletionResult} </h1>
         <a href='deleteBestBeforeDatabaseTables.htm'><h1>Delete Best_Before Database Tables</h1> </a>
         <br>
+        
+        
+        <hr>
+        <h1> ${stockManagementTableCreationResult} </h1>
+        <a href='createStockManagementDatabaseTables.htm'><h1>Create Stock Management Database Tables</h1> </a>
+        <br>
+        <h1> ${stockManagementTableDeletionResult} </h1>
+        <a href='deleteStockManagementDatabaseTables.htm'><h1>Delete Stock Management Database Tables</h1> </a>
+        <br>
+
 
 
 

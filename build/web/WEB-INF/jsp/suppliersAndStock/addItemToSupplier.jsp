@@ -33,7 +33,7 @@
                         </tr>
                         <tr>
                             <td>Description</td>
-                            <td> <input style="background-color:lightgrey" readonly type="text" value="${item.description}"> </td>
+                            <td> <input width="120" style="background-color:lightgrey" readonly type="text" value="${item.description}"> </td>
                         </tr>
                         <tr>
                             <td>Sales For 6 Months</td>

@@ -271,4 +271,22 @@ public class TechManController {
         modelMap.addAttribute("salesDatabaseTableResult", result);
         return "techMan/techManDashboard";
     }
+
+    //---------------------------
+    @RequestMapping(value = "/createStockManagementDatabaseTables", method = RequestMethod.GET)
+    public String createStockManagementDatabaseTables(ModelMap modelMap) {
+        String result = techManDao.createStockManagementDatabaseTableX();
+        result = result + "<br>";
+        modelMap.addAttribute("stockManagementTableCreationResult", result);
+        return "techMan/techManDashboard";
+    }
+
+    @RequestMapping(value = "/deleteStockManagementDatabaseTables", method = RequestMethod.GET)
+    public String deleteStockManagementDatabaseTables(ModelMap modelMap) {
+        String result = techManDao.deleteStockManagementDatabaseTableX();
+        result = result + "<br>";
+        modelMap.addAttribute("stockManagementTableDeletionResult", result);
+        return "techMan/techManDashboard";
+    }
+
 }

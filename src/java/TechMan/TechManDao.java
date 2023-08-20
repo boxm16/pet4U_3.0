@@ -574,4 +574,43 @@ public class TechManDao {
         return "???????????";
     }
 
+    String createStockManagementDatabaseTableX() {
+        String query = "CREATE TABLE stock_management("
+                + "item_code VARCHAR (100) NOT NULL, "
+                + "minimal_stock INT (5) NOT NULL, "
+                + "order_unit VARCHAR (10) NOT NULL, "
+                + "order_unit_capacity INT (5) NOT NULL, "
+                + "note VARCHAR (500)  NULL) "
+                + "ENGINE = InnoDB "
+                + "DEFAULT CHARACTER SET = utf8;";
+
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+            statement.close();
+            connection.close();
+            return "Table 'stock_management' created succesfully";
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return "Table 'stock_management' could not be created:" + ex;
+        }
+    }
+
+    String deleteStockManagementDatabaseTableX() {
+        String query = "DROP TABLE stock_management";
+
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+            statement.close();
+            connection.close();
+            return "Table 'stock_management' deleted succesfully";
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return "Table 'stock_management' could not be deleted:" + ex;
+        }
+    }
+
 }
