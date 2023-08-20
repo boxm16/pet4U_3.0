@@ -26,6 +26,7 @@
         <h1>Add  Item To Supplier </h1>
 
         <form action="addItemToSupplier.htm" method="POST" >
+            <input hidden type="text" value="${item.supplierId}">
             <h2><h2><table>
                         <tr>
                             <td>Item Code</td>
