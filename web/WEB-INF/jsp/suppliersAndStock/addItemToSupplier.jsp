@@ -25,8 +25,9 @@
 
         <h1>Add  Item To Supplier </h1>
         <% SuppliersItem item = (SuppliersItem) request.getAttribute("item");
-        
-        out.print(item.getTotalShippedPieces());
+            out.print(item.getEshopSales());
+            out.print(item.getShopsSupply());
+            out.print(item.getTotalShippedPieces());
         %>
         <form action="addItemToSupplier.htm" method="POST" >
             <h2><h2><table>
