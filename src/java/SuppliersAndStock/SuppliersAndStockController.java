@@ -8,6 +8,8 @@ package SuppliersAndStock;
 import SalesX.SalesControllerX;
 import SalesX.SoldItem;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -64,7 +66,23 @@ public class SuppliersAndStockController {
     @RequestMapping(value = "stockManagement")
     public String stockManagement(@RequestParam(name = "supplierId") String supplierId, ModelMap modelMap) {
         Supplier supplier = supplierDao.getSupplier(supplierId);
-        //supplierDao.getAllItemsOfSupplier(supplierId);
+
+        LinkedHashMap<String, SuppliersItem> supplierItems = supplierDao.getAllItemsOfSupplier(supplierId);
+
+        SalesControllerX salesControllerX = new SalesControllerX();
+        LinkedHashMap<String, SoldItem> sixMonthesSales = salesControllerX.getSixMonthesSales();
+        for (Map.Entry<String, SuppliersItem> supplierItemsEntrySet : supplierItems.entrySet()) {
+            String key = supplierItemsEntrySet.getKey();
+           
+            SoldItem soldItem = sixMonthesSales.get(key);
+
+            supplierItemsEntrySet.getValue().setEshopSales(soldItem.getEshopSales());
+            supplierItemsEntrySet.getValue().setEshopSales(soldItem.getShopsSupply());
+
+        }
+
+        modelMap.addAttribute("supplierItems", supplierItems);
+
         modelMap.addAttribute("supplier", supplier);
         return "suppliersAndStock/stockManagement";
     }
@@ -83,6 +101,8 @@ public class SuppliersAndStockController {
         item.setDescription(soldItem.getDescription());
         item.setEshopSales(soldItem.getEshopSales());
         item.setShopsSupply(soldItem.getShopsSupply());
+        item.setOrderUnit("item");
+        item.setOrderUnitCapacity(1);
         modelMap.addAttribute("supplier", supplier);
         modelMap.addAttribute("item", item);
         return "suppliersAndStock/addItemToSupplier";

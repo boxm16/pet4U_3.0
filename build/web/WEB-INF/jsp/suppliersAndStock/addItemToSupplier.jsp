@@ -65,7 +65,7 @@
                         </tr>
                         <tr>
                             <td>Ποσότητα Τεμαχίων σε Μονάδα Παραγγελίας</td>
-                            <td><input type="number" name="orderUnitCapacity" value="${itemOfInterest.orderQuantity}"></td>
+                            <td><input type="number" name="orderUnitCapacity" value="${itemOfInterest.orderUnitCapacity}"></td>
                         </tr>
 
                     </table>

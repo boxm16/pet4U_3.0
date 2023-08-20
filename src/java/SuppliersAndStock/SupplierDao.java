@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -118,6 +119,10 @@ public class SupplierDao {
             return ex.getMessage();
         }
         return "New Item Added To Supplier Successfully";
+    }
+
+    LinkedHashMap<String, SuppliersItem> getAllItemsOfSupplier(String supplierId) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

@@ -74,7 +74,41 @@ public class SalesControllerX {
 
     @RequestMapping(value = "/sixMonthsSalesX", method = RequestMethod.GET)
     public String sixMonthsSalesX(ModelMap modelMap) {
-        LinkedHashMap<String, Item> soldItems = new LinkedHashMap<>();
+        LinkedHashMap<String, SoldItem> soldItems = this.getSixMonthesSales();
+        modelMap.addAttribute("sixMonthsSales", soldItems);
+        return "sales/sixMonthsSalesX";
+    }
+
+    @RequestMapping(value = "showItemSales", method = RequestMethod.GET)
+    public String showItemSales(@RequestParam(name = "altercode") String altercode, ModelMap modelMap) {
+
+        SoldItem soldItem = getItemSales(altercode);
+        modelMap.addAttribute("soldItem", soldItem);
+        return "sales/itemSales";
+    }
+
+    public SoldItem getItemSales(String altercode) {
+        SalesDaoX salesDao = new SalesDaoX();
+        HashMap<String, SoldItem> sixMonthsSalesX = salesDao.getSixMonthsSalesX();
+
+        SearchDao searchDao = new SearchDao();
+        Item item = searchDao.getItemByAltercode(altercode);
+
+        ArrayList<AltercodeContainer> altercodes = item.getAltercodes();
+
+        for (AltercodeContainer altercodeContainer : altercodes) {
+            if (sixMonthsSalesX.keySet().contains(altercodeContainer.getAltercode())) {
+                SoldItem soldItem = sixMonthsSalesX.get(altercodeContainer.getAltercode());
+                soldItem.setPosition(item.getPosition());
+
+                return soldItem;
+            }
+        }
+        return null;
+    }
+
+    public LinkedHashMap<String, SoldItem> getSixMonthesSales() {
+        LinkedHashMap<String, SoldItem> soldItems = new LinkedHashMap<>();
 
         Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
         LinkedHashMap<String, Item> itemsWithPositions = pet4uItemsDao.getAllItems();
@@ -106,35 +140,6 @@ public class SalesControllerX {
             }
             soldItems.put(code, soldItem);
         }
-        modelMap.addAttribute("sixMonthsSales", soldItems);
-        return "sales/sixMonthsSalesX";
-    }
-
-    @RequestMapping(value = "showItemSales", method = RequestMethod.GET)
-    public String showItemSales(@RequestParam(name = "altercode") String altercode, ModelMap modelMap) {
-
-        SoldItem soldItem = getItemSales(altercode);
-        modelMap.addAttribute("soldItem", soldItem);
-        return "sales/itemSales";
-    }
-
-    public SoldItem getItemSales(String altercode) {
-        SalesDaoX salesDao = new SalesDaoX();
-        HashMap<String, SoldItem> sixMonthsSalesX = salesDao.getSixMonthsSalesX();
-
-        SearchDao searchDao = new SearchDao();
-        Item item = searchDao.getItemByAltercode(altercode);
-        
-        ArrayList<AltercodeContainer> altercodes = item.getAltercodes();
-
-        for (AltercodeContainer altercodeContainer : altercodes) {
-            if (sixMonthsSalesX.keySet().contains(altercodeContainer.getAltercode())) {
-                SoldItem soldItem = sixMonthsSalesX.get(altercodeContainer.getAltercode());
-                soldItem.setPosition(item.getPosition());
-
-                return soldItem;
-            }
-        }
-        return null;
+        return soldItems;
     }
 }
