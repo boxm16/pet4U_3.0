@@ -29,20 +29,20 @@
             <h2><h2><table>
                         <tr>
                             <td>Item Code</td>
-                            <td> <input type="text" name="code" value="${item.code}"> </td>
+                            <td> <input readonly type="text" name="code" value="${item.code}"> </td>
                         </tr>
                         <tr>
                             <td>Description</td>
-                            <td> <input type="text" value="${item.description}"> </td>
+                            <td> <input readonly type="text" value="${item.description}"> </td>
                         </tr>
                         <tr>
                             <td>Sales For 6 Months</td>
 
-                            <td> <input type="number" value="${item.getTotalShippedPieces()}"> </td>
+                            <td> <input readonly type="number" value="${item.getTotalShippedPieces()}"> </td>
                         </tr>
                         <tr>
                             <td>Sales For 2 weeks</td>
-                            <td> <input type="number" value="${item.getTotalShippedPiecesForPeriod()}"> </td>
+                            <td> <input readonly type="number" value="${item.getTotalShippedPiecesForPeriod()}"> </td>
                         </tr>
 
                         <tr>
