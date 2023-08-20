@@ -1,5 +1,6 @@
 
 
+<%@page import="SuppliersAndStock.SuppliersItem"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -23,7 +24,10 @@
         <h1 style="background-color: ${resultColor}">${result}</h1>
 
         <h1>Add  Item To Supplier </h1>
-
+        <% SuppliersItem item = (SuppliersItem) request.getAttribute("item");
+        
+        out.print(item.getTotalShippedPieces());
+        %>
         <form action="addItemToSupplier.htm" method="POST" >
             <h2><h2><table>
                         <tr>
