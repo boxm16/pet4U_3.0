@@ -24,11 +24,7 @@
         <h1 style="background-color: ${resultColor}">${result}</h1>
 
         <h1>Add  Item To Supplier </h1>
-        <% SuppliersItem item = (SuppliersItem) request.getAttribute("item");
-            out.print(item.getEshopSales());
-            out.print(item.getShopsSupply());
-            out.print(item.getTotalShippedPieces());
-        %>
+       
         <form action="addItemToSupplier.htm" method="POST" >
             <h2><h2><table>
                         <tr>
@@ -46,7 +42,7 @@
                         </tr>
                         <tr>
                             <td>Sales For 2 weeks</td>
-                            <td> <input type="number" value="${item.getTotalShippedPieces()/13}"> </td>
+                            <td> <input type="number" value="${item.getTotalShippedPiecesForPeriod()}"> </td>
                         </tr>
 
                         <tr>

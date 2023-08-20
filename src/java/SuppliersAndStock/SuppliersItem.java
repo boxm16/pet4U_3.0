@@ -11,7 +11,7 @@ import BasicModel.Item;
  *
  * @author Michail Sitmalidis
  */
-public class SuppliersItem extends Item  {
+public class SuppliersItem extends Item {
 
     private double eshopSales;
     private double shopsSupply;
@@ -82,9 +82,13 @@ public class SuppliersItem extends Item  {
         }
         return totalShippedPieces;
     }
-    
-    // ----------------
 
+    public int getTotalShippedPiecesForPeriod() {
+        Double tspForPeriod = this.getTotalShippedPieces() / 13;
+        return tspForPeriod.intValue();
+    }
+
+    // ----------------
     public int getMinimalStock() {
         return minimalStock;
     }
@@ -108,6 +112,5 @@ public class SuppliersItem extends Item  {
     public void setOrderQuantity(int orderQuantity) {
         this.orderQuantity = orderQuantity;
     }
-    
 
 }
