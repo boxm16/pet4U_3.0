@@ -84,7 +84,9 @@ public class SuppliersItem extends Item {
     }
 
     public int getTotalShippedPiecesForPeriod() {
-        Double tspForPeriod = this.getTotalShippedPieces() / 13;
+
+        // 6 monthes X 4 evdomade = 24~25 evdomades
+        Double tspForPeriod = (this.getTotalShippedPieces() / 26) * 2;
         return tspForPeriod.intValue();
     }
 
