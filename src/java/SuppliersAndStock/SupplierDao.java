@@ -122,7 +122,39 @@ public class SupplierDao {
     }
 
     LinkedHashMap<String, SuppliersItem> getAllItemsOfSupplier(String supplierId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        LinkedHashMap<String, SuppliersItem> items = new LinkedHashMap<>();
+        String sql = "SELECT * FROM stock_management;";
+        ResultSet resultSet;
+
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            Connection connection = databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+
+            resultSet = statement.executeQuery(sql);
+            while (resultSet.next()) {
+                SuppliersItem item = new SuppliersItem();
+                String itemCode = resultSet.getString("item_code");
+                item.setCode(itemCode.trim());
+                item.setMinimalStock(resultSet.getInt("minimal_stock"));
+                item.setOrderUnit(resultSet.getString("order_unit"));
+                item.setOrderUnitCapacity(resultSet.getInt("order_unit_capacity"));
+                String note = resultSet.getString("note");
+                if (note == null) {
+                    note = "";
+                }
+                item.setNote(note);
+                items.put(itemCode, item);
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return items;
     }
 
 }
