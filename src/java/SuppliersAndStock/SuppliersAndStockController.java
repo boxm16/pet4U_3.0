@@ -73,7 +73,9 @@ public class SuppliersAndStockController {
         LinkedHashMap<String, SoldItem> sixMonthesSales = salesControllerX.getSixMonthesSales();
         for (Map.Entry<String, SuppliersItem> supplierItemsEntrySet : supplierItems.entrySet()) {
             String key = supplierItemsEntrySet.getKey();
-           
+            supplierItemsEntrySet.getValue().setEshopSales(0);
+            supplierItemsEntrySet.getValue().setShopsSupply(0);
+
             SoldItem soldItem = sixMonthesSales.get(key);
 
             supplierItemsEntrySet.getValue().setEshopSales(soldItem.getEshopSales());
