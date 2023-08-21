@@ -72,7 +72,7 @@
                     SuppliersItem item = entrySet.getValue();
                     String alarmColor = "";
                     int minimalStock = item.getMinimalStock();
-                    int pet4uStock = Integer.parseInt(item.getQunatityAsPieces());
+                    int pet4uStock =0;
                     if (pet4uStock < minimalStock * 2) {
                         alarmColor = "yellow";
                     }
