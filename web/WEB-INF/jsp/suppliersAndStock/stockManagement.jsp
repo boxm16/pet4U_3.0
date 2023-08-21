@@ -67,7 +67,7 @@
             <th>  Show<br>DayRest<br> Snapshots  </th>
             </thead>
             <%
-                LinkedHashMap<String, SuppliersItem> items = (LinkedHashMap) request.getAttribute("items");
+                LinkedHashMap<String, SuppliersItem> items = (LinkedHashMap) request.getAttribute("supplierItems");
                 for (Map.Entry<String, SuppliersItem> entrySet : items.entrySet()) {
                     SuppliersItem item = entrySet.getValue();
                     String alarmColor = "";
