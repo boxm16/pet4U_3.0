@@ -155,7 +155,7 @@ public class SuppliersAndStockController {
             ModelMap model) {
         SuppliersItem suppliersItem = supplierDao.getSuppliersItem(supplierId, code);
         model.addAttribute("suppliersItem", suppliersItem);
-        return "/suppliersAndStock/editItem";
+        return "/suppliersAndStock/editSuppliersItem";
     }
 
     @RequestMapping(value = "editItemOfSupplier", method = RequestMethod.POST)
