@@ -153,8 +153,8 @@ public class SuppliersAndStockController {
             @RequestParam(name = "supplierId") String supplierId,
             @RequestParam(name = "code") String code,
             ModelMap model) {
-        SuppliersItem suppliersItem = supplierDao.getSuppliersItem(supplierId, code);
-        model.addAttribute("suppliersItem", suppliersItem);
+        SuppliersItem item = supplierDao.getSuppliersItem(supplierId, code);
+        model.addAttribute("item", item);
         return "/suppliersAndStock/editSuppliersItem";
     }
 
