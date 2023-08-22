@@ -148,4 +148,53 @@ public class SuppliersAndStockController {
         return "suppliersAndStock/addItemToSupplier";
     }
 
+    @RequestMapping(value = "  goForEditingSuppliersItem")
+    public String goForEditingCamelotItemOfInterest(
+            @RequestParam(name = "supplierId") String supplierId,
+            @RequestParam(name = "code") String code,
+            ModelMap model) {
+        SuppliersItem suppliersItem = supplierDao.getSuppliersItem(supplierId, code);
+        model.addAttribute("suppliersItem", suppliersItem);
+        return "/suppliersAndStock/editItem";
+    }
+
+    @RequestMapping(value = "editItemOfSupplier", method = RequestMethod.POST)
+    public String editItemOfSupplier(@RequestParam(name = "supplierId") String supplierId,
+            @RequestParam(name = "code") String code,
+            @RequestParam(name = "minimalStock") String minimalStock,
+            @RequestParam(name = "orderUnit") String orderUnit,
+            @RequestParam(name = "orderUnitCapacity") String orderUnitCapacity,
+            ModelMap modelMap) {
+
+        Supplier supplier = supplierDao.getSupplier(supplierId);
+
+        SalesControllerX salesControllerX = new SalesControllerX();
+        SoldItem soldItem = salesControllerX.getItemSales(code);
+        SuppliersItem item = new SuppliersItem();
+        item.setSupplierId(Integer.parseInt(supplierId));
+        item.setMinimalStock(Integer.parseInt(minimalStock));
+        item.setOrderUnit(orderUnit);
+        item.setOrderUnitCapacity(Integer.parseInt(orderUnitCapacity));
+
+        item.setCode(soldItem.getCode());
+        item.setDescription(soldItem.getDescription());
+        item.setEshopSales(soldItem.getEshopSales());
+        item.setShopsSupply(soldItem.getShopsSupply());
+
+        if (minimalStock.isEmpty() || orderUnit.isEmpty() || orderUnitCapacity.isEmpty() || minimalStock.isEmpty()) {
+            modelMap.addAttribute("resultColor", "rose");
+            modelMap.addAttribute("result", "SOMETHING IS MISSING.");
+            modelMap.addAttribute("supplier", supplier);
+            modelMap.addAttribute("item", item);
+            return "suppliersAndStock/addItemToSupplier";
+        }
+
+        String result = supplierDao.editItemOfSupplier(item);
+        modelMap.addAttribute("resultColor", "green");
+        modelMap.addAttribute("result", result);
+
+        modelMap.addAttribute("supplier", supplier);
+        modelMap.addAttribute("item", item);
+        return "suppliersAndStock/editSuppliersItem";
+    }
 }

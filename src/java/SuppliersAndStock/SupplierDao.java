@@ -157,4 +157,60 @@ public class SupplierDao {
         return items;
     }
 
+    SuppliersItem getSuppliersItem(String supplierId, String code) {
+        SuppliersItem item = new SuppliersItem();
+        String sql = "SELECT * FROM stock_management WHERE supplier_id=" + supplierId + " AND item_code='" + code + "';";
+        ResultSet resultSet;
+
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            Connection connection = databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+
+            resultSet = statement.executeQuery(sql);
+            while (resultSet.next()) {
+
+                String itemCode = resultSet.getString("item_code");
+                item.setCode(itemCode.trim());
+                item.setMinimalStock(resultSet.getInt("minimal_stock"));
+                item.setOrderUnit(resultSet.getString("order_unit"));
+                item.setOrderUnitCapacity(resultSet.getInt("order_unit_capacity"));
+                String note = resultSet.getString("note");
+                if (note == null) {
+                    note = "";
+                }
+                item.setNote(note);
+
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return item;
+    }
+
+    String editItemOfSupplier(SuppliersItem item) {
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            PreparedStatement itemInsertStatement = connection.prepareStatement("UPDATE stock_management SET  minimal_stock=?, order_unit=?, order_unit_capacity=?,  camelot_minimal_stock=?, note=? WHERE supplier_id=? AND item_code=?");
+
+            itemInsertStatement.setInt(1, item.getMinimalStock());
+            itemInsertStatement.setString(2, item.getOrderUnit());
+            itemInsertStatement.setInt(3, item.getOrderQuantity());
+            itemInsertStatement.setString(4, item.getNote());
+            itemInsertStatement.setInt(5, item.getSupplierId());
+            itemInsertStatement.setString(6, item.getCode());
+            itemInsertStatement.execute();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
+            return ex.getMessage();
+        }
+        return " Supplier`s Item  Edited Successfully";
+    }
+
 }
