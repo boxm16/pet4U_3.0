@@ -77,7 +77,7 @@ public class SuppliersAndStockController {
             SoldItem soldItem = sixMonthesSales.get(key);
             supplierItemsEntrySet.getValue().setDescription(soldItem.getDescription());
             supplierItemsEntrySet.getValue().setEshopSales(soldItem.getEshopSales());
-            supplierItemsEntrySet.getValue().setEshopSales(soldItem.getShopsSupply());
+            supplierItemsEntrySet.getValue().setShopsSupply(soldItem.getShopsSupply());
 
         }
 

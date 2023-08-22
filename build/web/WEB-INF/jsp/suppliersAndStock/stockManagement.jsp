@@ -86,7 +86,7 @@
                     out.println("</td>");
 
                     out.println("<td>");
-                    out.println(item.getEshopSales());
+                    out.println(item.getTotalShippedPieces());
                     out.println("</td>");
 
                     int shippedPiecesForPeriod = item.getTotalShippedPiecesForPeriod();
