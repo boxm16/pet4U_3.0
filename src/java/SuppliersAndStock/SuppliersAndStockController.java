@@ -148,7 +148,7 @@ public class SuppliersAndStockController {
         return "suppliersAndStock/addItemToSupplier";
     }
 
-    @RequestMapping(value = "  goForEditingSuppliersItem")
+    @RequestMapping(value = "goForEditingSuppliersItem")
     public String goForEditingSuppliersItem(
             @RequestParam(name = "supplierId") String supplierId,
             @RequestParam(name = "code") String code,
