@@ -196,11 +196,11 @@ public class SupplierDao {
     String editItemOfSupplier(SuppliersItem item) {
         try {
             Connection connection = this.databaseConnectionFactory.getMySQLConnection();
-            PreparedStatement itemInsertStatement = connection.prepareStatement("UPDATE stock_management SET  minimal_stock=?, order_unit=?, order_unit_capacity=?,  camelot_minimal_stock=?, note=? WHERE supplier_id=? AND item_code=?");
+            PreparedStatement itemInsertStatement = connection.prepareStatement("UPDATE stock_management SET  minimal_stock=?, order_unit=?, order_unit_capacity=?, note=? WHERE supplier_id=? AND item_code=?");
 
             itemInsertStatement.setInt(1, item.getMinimalStock());
             itemInsertStatement.setString(2, item.getOrderUnit());
-            itemInsertStatement.setInt(3, item.getOrderQuantity());
+            itemInsertStatement.setInt(3, item.getOrderUnitCapacity());
             itemInsertStatement.setString(4, item.getNote());
             itemInsertStatement.setInt(5, item.getSupplierId());
             itemInsertStatement.setString(6, item.getCode());
