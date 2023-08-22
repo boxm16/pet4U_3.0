@@ -154,6 +154,18 @@ public class SuppliersAndStockController {
             @RequestParam(name = "code") String code,
             ModelMap model) {
         SuppliersItem item = supplierDao.getSuppliersItem(supplierId, code);
+        
+         SalesControllerX salesControllerX = new SalesControllerX();
+        SoldItem soldItem = salesControllerX.getItemSales(code);
+      
+       
+
+        item.setCode(soldItem.getCode());
+        item.setDescription(soldItem.getDescription());
+        item.setEshopSales(soldItem.getEshopSales());
+        item.setShopsSupply(soldItem.getShopsSupply());
+
+       
         model.addAttribute("item", item);
         return "/suppliersAndStock/editSuppliersItem";
     }
