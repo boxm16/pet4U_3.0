@@ -65,12 +65,12 @@
                         </tr>
                         <tr>
                             <td>Ποσότητα Τεμαχίων σε Μονάδα Παραγγελίας</td>
-                            <td><input type="number" name="orderUnitCapacity" value="${itemOfInterest.orderUnitCapacity}"></td>
+                            <td><input type="number" name="orderUnitCapacity" value="${item.orderUnitCapacity}"></td>
                         </tr>
 
                     </table>
                     <br>
-                    <button type="submit" style="width:300px; height :60px; background-color: green"><h1>Add Item</h1></button>
+                    <button type="submit" style="width:300px; height :60px; background-color: yellowgreen"><h1>Edit Item</h1></button>
                 </h2>
         </form>
 
