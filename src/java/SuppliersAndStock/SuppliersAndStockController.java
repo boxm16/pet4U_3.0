@@ -149,7 +149,7 @@ public class SuppliersAndStockController {
     }
 
     @RequestMapping(value = "  goForEditingSuppliersItem")
-    public String goForEditingCamelotItemOfInterest(
+    public String goForEditingSuppliersItem(
             @RequestParam(name = "supplierId") String supplierId,
             @RequestParam(name = "code") String code,
             ModelMap model) {
