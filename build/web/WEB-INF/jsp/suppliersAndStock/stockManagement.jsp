@@ -35,36 +35,31 @@
     <body>
     <center>
         <h1><a href="index.htm">INDEX</a></h1>
-        
+
         <h1>${supplier.name} Stock Management</h1>
         <form action="goForAddingItemToSupplier.htm" method="POST">
             <input hidden name="supplierId" value="${supplier.id}">
             <input type="text" name="altercode">
             <button type="submit">Add New Item</button>
         </form>
-            
-            <hr>
-            <table>
+
+        <hr>
+        <table>
             <thead>
-            <th>Owner</th>
-            <th>Position</th>
-            <th>Camelot<br> Position</th>
-            <th>Altercode</th>
-            <th>Pet4u Description</th>
+            <th>ΚΩΔΙΚΟΣ</th>
+            <th>Description</th>
 
             <th>Six Months<br>Sales</th>
-            <th>Week Sales</th>
-            <th>Pet4u <br>Stock</th>
-            <th>Pet4u <br>Minimal <br>Stock</th>
+            <th>Period`s Sales</th>
+            <th>Stock</th>
+            <th>Minimal <br>Stock</th>
 
-            <th>Camelot<br> Stock</th>
-            <th>Camelot <br>Minimal<br> Stock</th>
 
             <th>Order <br>Unit</th>
-            <th>Order <br>Quantity</th>
+            <th>Order <br>Unit<br>Capacity</th>
             <th>Note</th>
             <th>  Edit  </th>
-            <th>  Show<br>DayRest<br> Snapshots  </th>
+
             </thead>
             <%
                 LinkedHashMap<String, SuppliersItem> items = (LinkedHashMap) request.getAttribute("supplierItems");
@@ -72,18 +67,15 @@
                     SuppliersItem item = entrySet.getValue();
                     String alarmColor = "";
                     int minimalStock = item.getMinimalStock();
-                    int pet4uStock =0;
+                    int pet4uStock = 0;
                     if (pet4uStock < minimalStock * 2) {
                         alarmColor = "yellow";
                     }
                     if (pet4uStock < minimalStock) {
                         alarmColor = "#F33A6A";
                     }
-                  
-                    out.println("<tr style='background-color: " + alarmColor + "'>");
-                    
 
-                   
+                    out.println("<tr style='background-color: " + alarmColor + "'>");
 
                     out.println("<td>");
                     out.println(item.getCode());
@@ -102,9 +94,13 @@
                     out.println(shippedPiecesForPeriod);
                     out.println("</td>");
 
-                  
+                    out.println("<td>");
+                    out.println(item.getQuantity());
+                    out.println("</td>");
 
-                    
+                    out.println("<td>");
+                    out.println(item.getMinimalStock());
+                    out.println("</td>");
 
                     out.println("<td>");
                     out.println(item.getOrderUnit());
@@ -122,14 +118,12 @@
                     out.println("<a href='goForEditingSuppliersItem.htm?code=" + item.getCode() + "'>Edit</a>");
                     out.println("</td>");
 
-                  
-
                     out.println("</tr>");
 
                 }
             %>
         </table>
-       
+
     </center>
 </body>
 </html>
