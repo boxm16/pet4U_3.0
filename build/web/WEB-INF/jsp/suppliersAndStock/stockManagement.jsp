@@ -115,7 +115,7 @@
                     out.println("</td>");
 
                     out.println("<td>");
-                    out.println("<a href='goForEditingSuppliersItem.htm?supplierId=" + item.getSupplierId() + "code=" + item.getCode() + "'>Edit</a>");
+                    out.println("<a href='goForEditingSuppliersItem.htm?supplierId=" + item.getSupplierId() + "&code=" + item.getCode() + "'>Edit</a>");
                     out.println("</td>");
 
                     out.println("</tr>");
