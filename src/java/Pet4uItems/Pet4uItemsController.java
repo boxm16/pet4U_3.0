@@ -110,4 +110,14 @@ public class Pet4uItemsController {
         modelMap.addAttribute("pet4uAllItems", pet4uAllItems);
         return "/pet4uItems/pet4uAllItemsOneLine";
     }
+
+    @RequestMapping(value = "pet4uItemsWithPosition")
+    public String pet4uItemsWithPosition(ModelMap modelMap) {
+
+        LinkedHashMap<String, Item> items = pet4uItemsDao.getAllItemsWithPosition();
+
+        modelMap.addAttribute("items", items);
+        return "/pet4uItems/pet4uAllItemsOneLine";
+    }
+
 }
