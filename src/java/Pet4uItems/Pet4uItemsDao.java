@@ -167,7 +167,7 @@ public class Pet4uItemsDao {
 
         try {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("select * from WH1 WHERE EXPR1='' ORDER BY EXPR1;");
+            ResultSet resultSet = statement.executeQuery("select * from WH1 ORDER BY EXPR1;");
 
             while (resultSet.next()) {
                 String code = resultSet.getString("ABBREVIATION").trim();
@@ -179,6 +179,9 @@ public class Pet4uItemsDao {
                     String position = "";
                     if (resultSet.getString("EXPR1") != null) {
                         position = resultSet.getString("EXPR1").trim();
+                    }
+                    if (position.isEmpty()) {
+                        continue;
                     }
                     item.setPosition(position);
                     item.setQuantity(resultSet.getString("QTYBALANCE").trim());
