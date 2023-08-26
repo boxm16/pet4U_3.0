@@ -14,7 +14,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Pet4U: All Items With Position</title>
+        <title>Pet4U: All Items One Line</title>
         <style>
             table, th, td {
                 border: 1px solid ;
@@ -33,8 +33,7 @@
     <body>
     <center>
         <h1><a href="index.htm">INDEX</a></h1>
-        <h1><a href="pet4uAllItemsOneLine.htm">Show Items With Only One Altercode</a></h1>
-        <h1><a href="pet4uItemsWithPosition.htm">Show Items With Position Only </a></h1>
+        <h1><a href="pet4uAllItems.htm">Show All Items (full version)</a></h1>
 
         <table>
 
@@ -58,18 +57,21 @@
 
                         out.println("<td>");
                         ArrayList<AltercodeContainer> altercodes = item.getAltercodes();
+
                         for (AltercodeContainer altercodeContainer : altercodes) {
                             if (altercodeContainer.getStatus().equals("eshop")
                                     || altercodeContainer.getStatus().equals("eshop-on")
                                     || altercodeContainer.getStatus().equals("eshop-barf")
                                     || altercodeContainer.getStatus().equals("eshop-pro")) {
-
-                                out.println("<a href='https://www.pet4u.gr/search-products-el.html?subcats=Y&status=A&match=all&pshort=N&pfull=N&pname=Y&pkeywords=N&pcode_from_q=Y&wg_go_direct=Y&search_performed=Y&q=" + altercodeContainer.getAltercode() + "' target='_blank'>" + altercodeContainer.getAltercode() + " : " + altercodeContainer.getStatus() + "</a>");
-                                out.println("<br>");
+                                continue;
+                                /*    out.println("<a href='https://www.pet4u.gr/search-products-el.html?subcats=Y&status=A&match=all&pshort=N&pfull=N&pname=Y&pkeywords=N&pcode_from_q=Y&wg_go_direct=Y&search_performed=Y&q=" + altercodeContainer.getAltercode() + "' target='_blank'>" + altercodeContainer.getAltercode() + "</a>");
+                                out.println("<br>");*/
                             } else {
                                 out.println(altercodeContainer.getAltercode() + "</strong>");
                                 out.println("<br>");
+                                break;
                             }
+
                         }
                         out.println("</td>");
 
