@@ -14,7 +14,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Camelot: All Items</title>
+        <title>Pet4U: All Items One Line</title>
         <style>
             table, th, td {
                 border: 1px solid ;

@@ -14,7 +14,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Camelot: All Items</title>
+        <title>Pet4U: All Items With Position</title>
         <style>
             table, th, td {
                 border: 1px solid ;
@@ -34,7 +34,7 @@
     <center>
         <h1><a href="index.htm">INDEX</a></h1>
         <h1><a href="pet4uAllItemsOneLine.htm">Show Items With Only One Altercode</a></h1>
-        <h1><a href="pet4uItemsWithPosition.htm">Show Items With Position </a></h1>
+        <h1><a href="pet4uItemsWithPosition.htm">Show Items With Position Only </a></h1>
 
         <table>
 
