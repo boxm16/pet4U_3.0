@@ -68,11 +68,14 @@
                     String alarmColor = "";
                     int minimalStock = item.getMinimalStock();
                     Double pet4uStock = Double.parseDouble(item.getQuantity());
+                    boolean needOrder = false;
                     if (pet4uStock < minimalStock * 2) {
                         alarmColor = "yellow";
+                        needOrder = true;
                     }
                     if (pet4uStock < minimalStock) {
                         alarmColor = "#F33A6A";
+                        needOrder = true;
                     }
 
                     out.println("<tr style='background-color: " + alarmColor + "'>");
@@ -103,8 +106,18 @@
                     out.println("</td>");
 
                     out.println("<td>");
-                    out.println(item.getOrderUnit());
+                    out.println(item.getMinimalStock());
                     out.println("</td>");
+
+                    if (needOrder) {
+                        out.println("<td>");
+                        out.println("<input type='checkbox' class='code' id='" + item.getCode() + "' style='width:28px;height:28px' checked>");
+                        out.println("</td>");
+                    } else {
+                        out.println("<td>");
+                        out.println("<input type='checkbox' class='code' id='" + item.getCode() + "' style='width:28px;height:28px'>");
+                        out.println("</td>");
+                    }
 
                     out.println("<td>");
                     out.println(item.getOrderUnitCapacity());
