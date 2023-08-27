@@ -105,7 +105,9 @@ public class SalesControllerX {
             }
         }
         SoldItem soldItem = new SoldItem();
+        soldItem.setCode(item.getCode());
         soldItem.setPosition(item.getPosition());
+        soldItem.setDescription(item.getDescription());
         return soldItem;
     }
 
