@@ -110,8 +110,6 @@
             <input hidden type="text" id="deliveredItems" name="deliveredItems">
             <input hidden type="text" id="sentItems" name="sentItems">
         </form>
-        <hr><hr>
-        <button onclick="rechechAll()" class="btn-lg btn-warning">ReCheck All Items </button>
         <hr>
         <hr>
         <h1> ${saveButton}</h1>

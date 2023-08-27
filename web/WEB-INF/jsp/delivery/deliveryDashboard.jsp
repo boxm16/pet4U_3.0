@@ -42,11 +42,12 @@
         <h4>All Deliveries</h4>
         <table>
             <thead>
-                <tr>
+
+
+                <tr> 
                     <th>A/A<th>
-                </tr>
-                <tr>
                     <th>Delivered Invoice Number</th>
+                    <th>Load<th>
                 </tr>
             </thead>
             <tbody id="tableBody">
@@ -64,10 +65,6 @@
 
                         out.println("<td style='padding-left: 5px; padding-left: 5px;'>");
                         out.println(deliveryInvoice.getNumber());
-                        out.println("</td>");
-
-                        out.println("<td>");
-                        out.println(deliveryInvoice.getInsertionDate());
                         out.println("</td>");
 
                         out.println("<td>");
