@@ -104,7 +104,9 @@ public class SalesControllerX {
                 return soldItem;
             }
         }
-        return null;
+        SoldItem soldItem = new SoldItem();
+        soldItem.setPosition(item.getPosition());
+        return soldItem;
     }
 
     public LinkedHashMap<String, SoldItem> getSixMonthesSales() {
