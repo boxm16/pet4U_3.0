@@ -42,7 +42,9 @@
         <h4>All Deliveries</h4>
         <table>
             <thead>
-
+                <tr>
+                    <th>A/A<th>
+                </tr>
                 <tr>
                     <th>Delivered Invoice Number</th>
                 </tr>
@@ -55,11 +57,11 @@
                     for (DeliveryInvoice deliveryInvoice : allCheckedDeliveryInvoices) {
 
                         out.println("<tr>");
-                        
+
                         out.println("<td>");
                         out.println(x);
                         out.println("</td>");
-                        
+
                         out.println("<td style='padding-left: 5px; padding-left: 5px;'>");
                         out.println(deliveryInvoice.getNumber());
                         out.println("</td>");
@@ -69,7 +71,7 @@
                         out.println("</td>");
 
                         out.println("<td>");
-                        out.println();
+                        out.println("<a href='loadCheckedRoyalDataFromDatabase.htm?number=" + deliveryInvoice.getNumber() + "'>Load Invoice</a>");
                         out.println("</td>");
 
                         out.println("</tr>");
