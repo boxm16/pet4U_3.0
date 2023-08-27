@@ -45,18 +45,18 @@
 
 
                 <tr> 
-                    <th>A/A<th>
+                  
                     <th>Delivered Invoice Number</th>
                     <th>Load<th>
                 </tr>
             </thead>
             <tbody id="tableBody">
                 <%
-                    int x = 1;
+
                     ArrayList<DeliveryInvoice> allCheckedDeliveryInvoices = (ArrayList) request.getAttribute("allCheckedDeliveryInvoices");
 
-                    for (DeliveryInvoice deliveryInvoice : allCheckedDeliveryInvoices) {
-
+                    for (int x = allCheckedDeliveryInvoices.size(); x > -1; x--) {
+                        DeliveryInvoice deliveryInvoice = allCheckedDeliveryInvoices.get(x);
                         out.println("<tr>");
 
                         out.println("<td>");
@@ -72,7 +72,7 @@
                         out.println("</td>");
 
                         out.println("</tr>");
-                        x++;
+
                     }
                 %>
             </tbody>
