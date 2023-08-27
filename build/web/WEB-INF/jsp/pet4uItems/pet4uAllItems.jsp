@@ -34,7 +34,7 @@
     <center>
         <h1><a href="index.htm">INDEX</a></h1>
         <h1><a href="pet4uAllItemsOneLine.htm">Show Items With Only One Altercode</a></h1>
-        <h1><a href="pet4uItemsWithPosition.htm">Show Items With Position </a></h1>
+        <h1><a href="pet4uItemsWithPosition.htm">Show Only Items With Position </a></h1>
 
         <table>
 
