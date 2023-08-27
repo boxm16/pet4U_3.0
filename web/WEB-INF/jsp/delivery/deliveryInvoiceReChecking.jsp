@@ -38,7 +38,7 @@
     </head>
     <body>
     <center>
-
+        <h1><a href="deliveryDashboard.htm">Go Back</a></h1>
         <h1>Delivery ReChecking</h1>
         <h3>Delivery Invoice Number:${deliveryInvoice.getNumber()} </h3>
         <hr>
