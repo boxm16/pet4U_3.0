@@ -68,6 +68,10 @@
                             <td>Ποσότητα Τεμαχίων σε Μονάδα Παραγγελίας</td>
                             <td><input type="number" name="orderUnitCapacity" value="${item.orderUnitCapacity}"></td>
                         </tr>
+                        <tr>
+                            <td>Note</td>
+                            <td> <input type="text" name="note" value="${item.note}"> </td>
+                        </tr>
 
                     </table>
                     <br>

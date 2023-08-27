@@ -104,14 +104,14 @@ public class SupplierDao {
     String addItemToSupplier(SuppliersItem item) {
         try {
             Connection connection = this.databaseConnectionFactory.getMySQLConnection();
-            PreparedStatement insertStatement = connection.prepareStatement("INSERT INTO stock_management (supplier_id, item_code, minimal_stock,  order_unit, order_unit_capacity) VALUES (?,?,?,?,?)");
+            PreparedStatement insertStatement = connection.prepareStatement("INSERT INTO stock_management (supplier_id, item_code, minimal_stock,  order_unit, order_unit_capacity, note) VALUES (?,?,?,?,?,?)");
 
             insertStatement.setInt(1, item.getSupplierId());
             insertStatement.setString(2, item.getCode());
             insertStatement.setInt(3, item.getMinimalStock());
             insertStatement.setString(4, item.getOrderUnit());
             insertStatement.setInt(5, item.getOrderUnitCapacity());
-
+            insertStatement.setString(5, item.getNote());
             insertStatement.execute();
 
         } catch (SQLException ex) {
