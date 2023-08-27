@@ -53,6 +53,7 @@
             <th>Period`s Sales</th>
             <th>Stock</th>
             <th>Minimal <br>Stock</th>
+            <th>Order</th>
 
 
             <th>Order <br>Unit</th>
