@@ -128,6 +128,7 @@ public class SuppliersAndStockController {
 
         item.setCode(soldItem.getCode());
         item.setDescription(soldItem.getDescription());
+        
         item.setEshopSales(soldItem.getEshopSales());
         item.setShopsSupply(soldItem.getShopsSupply());
 

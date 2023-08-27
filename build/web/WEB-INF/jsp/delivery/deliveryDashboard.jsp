@@ -1,3 +1,5 @@
+<%@page import="Delivery.DeliveryInvoice"%>
+<%@page import="java.util.ArrayList"%>
 <!doctype html>
 <html lang="en">
     <head>
@@ -7,7 +9,25 @@
         <title>Delivery Dashboard</title>
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        
+
+        <style>
+            table, th, td {
+                border: 1px solid ;
+                border-collapse: collapse;
+            }
+            td {
+                font-size: 20px;
+            }
+            th{
+                font-size: 30px;
+                font-weight: bold;
+                text-align: center;
+                background: #eee;
+                position: sticky;
+                top: 0px;
+            }
+
+        </style>
 
     </head>
     <body>
@@ -18,7 +38,46 @@
         <hr>
         <button class='btn-primary' onclick="location.href = 'loadRoyalData.htm'" type="button">
             Load Data</button>
-        <hr>
+        <hr>     <hr>     <hr>     <hr>     <hr>     <hr>
+        <h4>All Deliveries</h4>
+        <table>
+            <thead>
+
+                <tr>
+                    <th>Delivered Invoice Number</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                <%
+                    int x = 1;
+                    ArrayList<DeliveryInvoice> allCheckedDeliveryInvoices = (ArrayList) request.getAttribute("allCheckedDeliveryInvoices");
+
+                    for (DeliveryInvoice deliveryInvoice : allCheckedDeliveryInvoices) {
+
+                        out.println("<tr>");
+                        
+                        out.println("<td>");
+                        out.println(x);
+                        out.println("</td>");
+                        
+                        out.println("<td style='padding-left: 5px; padding-left: 5px;'>");
+                        out.println(deliveryInvoice.getNumber());
+                        out.println("</td>");
+
+                        out.println("<td>");
+                        out.println(deliveryInvoice.getInsertionDate());
+                        out.println("</td>");
+
+                        out.println("<td>");
+                        out.println();
+                        out.println("</td>");
+
+                        out.println("</tr>");
+                        x++;
+                    }
+                %>
+            </tbody>
+        </table>
     </center>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

@@ -128,6 +128,9 @@ public class DeliveryController {
             System.out.println(ex.getMessage());
         }
 
+        //-------------------------------
+        ArrayList<DeliveryInvoice> allCheckedDeliveryInvoices = deliveryDao.getAllCheckedDeliveryInvoices();
+        modelMap.addAttribute("allCheckedDeliveryInvoices", allCheckedDeliveryInvoices);
         return "delivery/deliveryDashboard";
     }
 
