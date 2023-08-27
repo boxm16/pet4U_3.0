@@ -111,7 +111,7 @@ public class SupplierDao {
             insertStatement.setInt(3, item.getMinimalStock());
             insertStatement.setString(4, item.getOrderUnit());
             insertStatement.setInt(5, item.getOrderUnitCapacity());
-            insertStatement.setString(5, item.getNote());
+            insertStatement.setString(6, item.getNote());
             insertStatement.execute();
 
         } catch (SQLException ex) {
