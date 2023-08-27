@@ -55,7 +55,7 @@
 
                     ArrayList<DeliveryInvoice> allCheckedDeliveryInvoices = (ArrayList) request.getAttribute("allCheckedDeliveryInvoices");
 
-                    for (int x = allCheckedDeliveryInvoices.size(); x > -1; x--) {
+                    for (int x = allCheckedDeliveryInvoices.size()-1; x > -1; x--) {
                         DeliveryInvoice deliveryInvoice = allCheckedDeliveryInvoices.get(x);
                         out.println("<tr>");
 
