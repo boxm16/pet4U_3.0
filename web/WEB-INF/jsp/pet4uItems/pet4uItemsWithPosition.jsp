@@ -33,7 +33,7 @@
     <body>
     <center>
         <h1><a href="index.htm">INDEX</a></h1>
-        <h1><a href="pet4uAllItems.htm">Show All Items (full version)</a></h1>
+        <h1><a href="pet4uAllItems.htm">Show Full Version</a></h1>
 
         <table>
 

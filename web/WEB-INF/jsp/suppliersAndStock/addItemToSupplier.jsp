@@ -21,6 +21,7 @@
     <body>
     <center>
         <h1><a href="index.htm">INDEX</a></h1>
+        <h1><a href="stockManagement.htm?supplierId=${item.supplierId}">GO BACK</a></h1>
         <h1 style="background-color: ${resultColor}">${result}</h1>
 
         <h1>Add  Item To Supplier </h1>
