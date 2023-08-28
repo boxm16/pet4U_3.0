@@ -64,7 +64,7 @@ public class InventoryController {
         LinkedHashMap<String, Item> pet4UItems = this.inventoryDao.getpet4UItemsRowByRow();
         System.out.println("row ba row  size" + pet4UItems.size());
         for (InventoryItem inventoryItem : inventories) {
-            System.out.println("ITETM:"+inventoryItem.getDescription());
+            System.out.println("ITETM:" + inventoryItem.getDescription());
             String altercode = inventoryItem.getCode();
 
             Item pet4uItem = pet4UItems.get(altercode);
@@ -75,7 +75,7 @@ public class InventoryController {
             inventoryItem.setCode(pet4uItem.getCode());
             inventoryItem.setDescription(pet4uItem.getDescription());
             inventoryItem.setPosition(pet4uItem.getPosition());
-             inventoryItem.setState(pet4uItem.getState());
+            inventoryItem.setState(pet4uItem.getState());
             model.addAttribute("inventories", inventories);
         }
         return "inventory/inventoriesDisplay";
