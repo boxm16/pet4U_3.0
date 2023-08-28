@@ -37,7 +37,7 @@ public class InventoryController {
     }
 
     @RequestMapping(value = "saveItemInventory", method = RequestMethod.POST)
-    public String addItemOfInterest(@RequestParam(name = "altercode") String altercode,
+    public String saveItemInventory(@RequestParam(name = "altercode") String altercode,
             @RequestParam(name = "systemStock") String systemStock,
             @RequestParam(name = "realStock") String realStock,
             @RequestParam(name = "note") String note,
@@ -75,6 +75,7 @@ public class InventoryController {
             inventoryItem.setCode(pet4uItem.getCode());
             inventoryItem.setDescription(pet4uItem.getDescription());
             inventoryItem.setPosition(pet4uItem.getPosition());
+             inventoryItem.setState(pet4uItem.getState());
             model.addAttribute("inventories", inventories);
         }
         return "inventory/inventoriesDisplay";
