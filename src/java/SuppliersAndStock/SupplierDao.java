@@ -213,4 +213,72 @@ public class SupplierDao {
         return " Supplier`s Item  Edited Successfully";
     }
 
+    ArrayList<SuppliersItem> getItems(ArrayList<String> itemsIdsArray) {
+        ArrayList<SuppliersItem> items = new ArrayList<>();
+
+        StringBuilder queryBuilderInitialPart = new StringBuilder("SELECT * FROM stock_management WHERE ");
+        StringBuilder queryBuilderIdsPart = buildStringFromArrayList(itemsIdsArray);
+        StringBuilder query = queryBuilderInitialPart.append(" item_code IN ").append(queryBuilderIdsPart);
+
+        ResultSet resultSet;
+
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            Connection connection = databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+
+            resultSet = statement.executeQuery(query.toString());
+            while (resultSet.next()) {
+
+                String state = resultSet.getString("state");
+                if (state == null) {
+
+                    SuppliersItem item = new SuppliersItem();
+                    String itemCode = resultSet.getString("item_code");
+                    item.setCode(itemCode.trim());
+                    item.setMinimalStock(resultSet.getInt("minimal_stock"));
+                    item.setOrderUnit(resultSet.getString("order_unit"));
+                    item.setOrderUnitCapacity(resultSet.getInt("order_unit_capacity"));
+
+                    
+                    item.setNote(resultSet.getString("note"));
+
+             
+                    items.add(item);
+                }
+
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return items;
+    }
+
+    private StringBuilder buildStringFromArrayList(ArrayList<String> arrayList) {
+
+        StringBuilder stringBuilder = new StringBuilder("(");
+        if (arrayList.isEmpty()) {
+            stringBuilder.append(")");
+            return stringBuilder;
+        }
+        int x = 0;
+        for (String entry : arrayList) {
+            if (x == 0) {
+                stringBuilder.append("'").append(entry).append("'");
+            } else {
+                stringBuilder.append(",'").append(entry).append("'");
+            }
+            if (x == arrayList.size() - 1) {
+                stringBuilder.append(")");
+            }
+            x++;
+        }
+        return stringBuilder;
+    }
+
 }

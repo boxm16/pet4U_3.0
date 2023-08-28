@@ -112,11 +112,11 @@
 
                     if (needOrder) {
                         out.println("<td>");
-                        out.println("<input type='checkbox' class='code' id='" + item.getCode() + "' style='width:28px;height:28px' checked>");
+                        out.println("<input class='orderItemid' type='checkbox' class='code' id='" + item.getCode() + "' style='width:28px;height:28px' checked>");
                         out.println("</td>");
                     } else {
                         out.println("<td>");
-                        out.println("<input type='checkbox' class='code' id='" + item.getCode() + "' style='width:28px;height:28px'>");
+                        out.println("<input class='orderItemId' type='checkbox' class='code' id='" + item.getCode() + "' style='width:28px;height:28px'>");
                         out.println("</td>");
                     }
 
@@ -139,5 +139,35 @@
         </table>
 
     </center>
+    <form id="form" action="#" method="POST">
+        <input hidden type="text" id="supplierId" name="supplierId" value="${supplier.id}">
+        <input hidden type="text" id="orderItemsInput" name="itemsIds">
+    </form>
+
+    <a href="#" onclick="requestRouter('orderMode.htm')"><h4>Order Mode</h4></a>
+    <script>
+        ////--------------------
+        function requestRouter(requestTarget) {
+            if (requestTarget == "orderMode.htm") {
+                form.target = "_blank";
+            } else {
+
+            }
+            form.action = requestTarget;
+            inventoryItemsInput.value = collectSellectedCheckBoxes();
+            console.log(form.action);
+            form.submit();
+        }
+        //this function collects all checked checkbox values, concatinates them in one string and returns that string to send it after by POST method to server
+        function collectSellectedCheckBoxes() {
+            var returnValue = "";
+            var targetCheckBoxes = document.querySelectorAll(".orderItemId");
+            for (x = 0; x < targetCheckBoxes.length; x++) {
+                if (targetCheckBoxes[x].checked)
+                    returnValue += targetCheckBoxes[x].id + ",";
+            }
+            return returnValue;
+        }
+    </script>
 </body>
 </html>
