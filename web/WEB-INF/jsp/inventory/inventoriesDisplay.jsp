@@ -42,17 +42,15 @@
             <th>Time</th>
             <th>Altercode</th>
             <th>Position</th>
-            <th>Select</th>
+
             <th>Description</th>
-
-
-            <th>Archivize Item Inventory</th>
-
+            <th>Select</th>
             <th>System Stock</th>
             <th>Real Stock</th>
             <th>Note</th>
             <th>Item State</th>
             <th>Delete</th>
+            <th>Archivize</th>
 
             </thead>
             <%
@@ -82,15 +80,11 @@
                     out.println("</td>");
 
                     out.println("<td>");
-                    out.println("<input type='checkbox' class='inventoryItemId' id='" + inventoryItem.getId() + "' style='width:28px;height:28px'>");
-                    out.println("</td>");
-
-                    out.println("<td>");
                     out.println(inventoryItem.getDescription());
                     out.println("</td>");
 
                     out.println("<td>");
-                    out.println("<a href='archivizeInventoryItem.htm?id=" + inventoryItem.getId() + "'>Archivize</a>");
+                    out.println("<input type='checkbox' class='inventoryItemId' id='" + inventoryItem.getId() + "' style='width:28px;height:28px'>");
                     out.println("</td>");
 
                     out.println("<td>");
@@ -113,6 +107,9 @@
                     out.println("<a href='deleteInventoryItem.htm?id=" + inventoryItem.getId() + "'>Delete</a>");
                     out.println("</td>");
 
+                    out.println("<td>");
+                    out.println("<a href='archivizeInventoryItem.htm?id=" + inventoryItem.getId() + "'>Archivize</a>");
+                    out.println("</td>");
                     /*
 
                     out.println("<td>");
