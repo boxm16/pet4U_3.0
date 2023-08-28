@@ -154,7 +154,7 @@
 
             }
             form.action = requestTarget;
-            inventoryItemsInput.value = collectSellectedCheckBoxes();
+            orderItemsInput.value = collectSellectedCheckBoxes();
             console.log(form.action);
             form.submit();
         }
