@@ -90,7 +90,7 @@
                     out.println("</td>");
 
                     out.println("<td>");
-                    out.println("<a href='archivizeInventoryItem.htm?id=" + inventoryItem.getId() + "'>Archivize Inventory Item</a>");
+                    out.println("<a href='archivizeInventoryItem.htm?id=" + inventoryItem.getId() + "'>Archivize</a>");
                     out.println("</td>");
 
                     out.println("<td>");
@@ -110,7 +110,7 @@
                     out.println("</td>");
 
                     out.println("<td>");
-                    out.println("<a href='deleteInventoryItem.htm?id=" + inventoryItem.getId() + "'>Delete Inventory Item</a>");
+                    out.println("<a href='deleteInventoryItem.htm?id=" + inventoryItem.getId() + "'>Delete</a>");
                     out.println("</td>");
 
                     /*
