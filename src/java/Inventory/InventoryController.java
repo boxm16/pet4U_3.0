@@ -74,6 +74,7 @@ public class InventoryController {
             }
             inventoryItem.setCode(pet4uItem.getCode());
             inventoryItem.setDescription(pet4uItem.getDescription());
+            inventoryItem.setPosition(pet4uItem.getPosition());
             model.addAttribute("inventories", inventories);
         }
         return "inventory/inventoriesDisplay";

@@ -41,6 +41,7 @@
             <th>Date</th>
             <th>Time</th>
             <th>Altercode</th>
+            <th>Position</th>
             <th>Select</th>
             <th>Description</th>
 
@@ -74,6 +75,10 @@
 
                     out.println("<td>");
                     out.println(inventoryItem.getCode());
+                    out.println("</td>");
+
+                    out.println("<td>");
+                    out.println(inventoryItem.getPosition());
                     out.println("</td>");
 
                     out.println("<td>");
