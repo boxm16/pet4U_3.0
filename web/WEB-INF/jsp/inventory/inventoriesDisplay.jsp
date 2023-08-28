@@ -106,7 +106,7 @@
                     out.println("</td>");
 
                     out.println("<td>");
-                    out.println(inventoryItem.getInventarizationState());
+                    out.println(inventoryItem.getState());
                     out.println("</td>");
 
                     out.println("<td>");
