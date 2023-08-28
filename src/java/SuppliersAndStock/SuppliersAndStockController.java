@@ -6,7 +6,6 @@
 package SuppliersAndStock;
 
 import BasicModel.Item;
-import Inventory.InventoryDao;
 import SalesX.SalesControllerX;
 import SalesX.SoldItem;
 import java.util.ArrayList;
@@ -219,9 +218,9 @@ public class SuppliersAndStockController {
 
         ArrayList<SuppliersItem> suppliersItems = this.supplierDao.getItems(temsIdsArray);
 
-        InventoryDao inventoryDao = new InventoryDao();
+      
 
-        LinkedHashMap<String, Item> pet4UItems = inventoryDao.getpet4UItemsRowByRow();
+        LinkedHashMap<String, Item> pet4UItems =  this.supplierDao.getpet4UItemsRowByRow();
 
         for (SuppliersItem suppliersItem : suppliersItems) {
             String altercode = suppliersItem.getCode();
