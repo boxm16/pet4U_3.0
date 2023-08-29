@@ -141,7 +141,7 @@
     </center>
     <form id="form" action="#" method="POST">
         <input hidden type="text" id="supplierId" name="supplierId" value="${supplier.id}">
-        <input hidden type="text" id="orderItemsInput" name="itemsIds">
+        <input hidden type="text" id="orderItemsInput" name="itemsIds" value="">
     </form>
 
     <a href="#" onclick="requestRouter('orderMode.htm')"><h4>Order Mode</h4></a>
