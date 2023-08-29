@@ -234,7 +234,7 @@ public class SuppliersAndStockController {
             suppliersItem.setDescription(pet4uItem.getDescription());
 
         }
-        model.addAttribute("orderItems", suppliersItems);
+        model.addAttribute("items", suppliersItems);
         return "suppliersAndStock/orderMode";
     }
 
