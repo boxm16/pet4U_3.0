@@ -112,11 +112,11 @@
 
                     if (needOrder) {
                         out.println("<td>");
-                        out.println("<input class='orderItemid' type='checkbox'  id='" + item.getCode() + "' style='width:28px;height:28px' checked>");
+                        out.println("<input class='itemId' type='checkbox'  id='" + item.getCode() + "' style='width:28px;height:28px' checked>");
                         out.println("</td>");
                     } else {
                         out.println("<td>");
-                        out.println("<input class='orderItemId' type='checkbox'  id='" + item.getCode() + "' style='width:28px;height:28px'>");
+                        out.println("<input class='itemId' type='checkbox'  id='" + item.getCode() + "' style='width:28px;height:28px'>");
                         out.println("</td>");
                     }
 
@@ -155,13 +155,13 @@
             }
             form.action = requestTarget;
             orderItemsInput.value = collectSellectedCheckBoxes();
-            console.log(form.action);
+          
          //   form.submit();
         }
         //this function collects all checked checkbox values, concatinates them in one string and returns that string to send it after by POST method to server
         function collectSellectedCheckBoxes() {
             var returnValue = "";
-            var targetCheckBoxes = document.querySelectorAll(".orderItemId");
+            var targetCheckBoxes = document.querySelectorAll(".itemId");
             for (x = 0; x < targetCheckBoxes.length; x++) {
                 if (targetCheckBoxes[x].checked)
                     returnValue += targetCheckBoxes[x].id + ",";
