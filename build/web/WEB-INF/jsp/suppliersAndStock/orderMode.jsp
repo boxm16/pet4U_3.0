@@ -45,6 +45,7 @@
         </form>
 
         <hr>
+        ${items.size()}
         <table>
             <thead>
             <th>ΚΩΔΙΚΟΣ</th>
