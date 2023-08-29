@@ -231,8 +231,6 @@ public class SupplierDao {
             resultSet = statement.executeQuery(query.toString());
             while (resultSet.next()) {
 
-                String state = resultSet.getString("state");
-                if (state == null) {
 
                     SuppliersItem item = new SuppliersItem();
                     String itemCode = resultSet.getString("item_code");
@@ -248,7 +246,7 @@ public class SupplierDao {
                     items.add(item);
                 }
 
-            }
+           
             resultSet.close();
             statement.close();
             connection.close();
