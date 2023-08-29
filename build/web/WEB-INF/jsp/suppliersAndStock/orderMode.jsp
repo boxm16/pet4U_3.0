@@ -4,6 +4,7 @@
     Author     : Michail Sitmalidis
 --%>
 
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Map"%>
 <%@page import="SuppliersAndStock.SuppliersItem"%>
 <%@page import="java.util.LinkedHashMap"%>
@@ -63,9 +64,9 @@
 
             </thead>
             <%
-                LinkedHashMap<String, SuppliersItem> items = (LinkedHashMap) request.getAttribute("items");
-                for (Map.Entry<String, SuppliersItem> entrySet : items.entrySet()) {
-                    SuppliersItem item = entrySet.getValue();
+                ArrayList<SuppliersItem> items = (ArrayList) request.getAttribute("items");
+                for (SuppliersItem item : items) {
+
                     String alarmColor = "";
                     int minimalStock = item.getMinimalStock();
                     Double pet4uStock = Double.parseDouble(item.getQuantity());
