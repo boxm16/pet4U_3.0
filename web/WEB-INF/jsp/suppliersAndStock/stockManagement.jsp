@@ -156,7 +156,7 @@
             form.action = requestTarget;
             orderItemsInput.value = collectSellectedCheckBoxes();
             console.log(form.action);
-            form.submit();
+         //   form.submit();
         }
         //this function collects all checked checkbox values, concatinates them in one string and returns that string to send it after by POST method to server
         function collectSellectedCheckBoxes() {
