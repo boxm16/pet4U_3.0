@@ -220,7 +220,7 @@ public class SupplierDao {
         StringBuilder queryBuilderInitialPart = new StringBuilder("SELECT * FROM stock_management WHERE ");
         StringBuilder queryBuilderIdsPart = buildStringFromArrayList(itemsIdsArray);
         StringBuilder query = queryBuilderInitialPart.append(" item_code IN ").append(queryBuilderIdsPart);
-
+        System.out.println(query);
         ResultSet resultSet;
 
         try {
