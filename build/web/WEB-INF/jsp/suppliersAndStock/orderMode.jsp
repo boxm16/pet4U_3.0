@@ -45,7 +45,7 @@
         </form>
 
         <hr>
-        ${items.size()}
+        ${ama}
         <table>
             <thead>
             <th>ΚΩΔΙΚΟΣ</th>

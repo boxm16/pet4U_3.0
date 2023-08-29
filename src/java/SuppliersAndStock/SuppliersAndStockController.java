@@ -218,9 +218,7 @@ public class SuppliersAndStockController {
 
         ArrayList<SuppliersItem> suppliersItems = this.supplierDao.getItems(temsIdsArray);
 
-      
-
-        LinkedHashMap<String, Item> pet4UItems =  this.supplierDao.getpet4UItemsRowByRow();
+        LinkedHashMap<String, Item> pet4UItems = this.supplierDao.getpet4UItemsRowByRow();
 
         for (SuppliersItem suppliersItem : suppliersItems) {
             String altercode = suppliersItem.getCode();
@@ -234,6 +232,7 @@ public class SuppliersAndStockController {
             suppliersItem.setDescription(pet4uItem.getDescription());
 
         }
+        model.addAttribute("ama", itemsIds);
         model.addAttribute("items", suppliersItems);
         return "suppliersAndStock/orderMode";
     }
