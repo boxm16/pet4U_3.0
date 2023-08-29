@@ -112,11 +112,11 @@
 
                     if (needOrder) {
                         out.println("<td>");
-                        out.println("<input class='orderItemid' type='checkbox' class='code' id='" + item.getCode() + "' style='width:28px;height:28px' checked>");
+                        out.println("<input class='orderItemid' type='checkbox'  id='" + item.getCode() + "' style='width:28px;height:28px' checked>");
                         out.println("</td>");
                     } else {
                         out.println("<td>");
-                        out.println("<input class='orderItemId' type='checkbox' class='code' id='" + item.getCode() + "' style='width:28px;height:28px'>");
+                        out.println("<input class='orderItemId' type='checkbox'  id='" + item.getCode() + "' style='width:28px;height:28px'>");
                         out.println("</td>");
                     }
 
