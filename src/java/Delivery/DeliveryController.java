@@ -402,7 +402,7 @@ public class DeliveryController {
         }
 
         String result = deliveryDao.saveDeliveryChecking(invoiceNumber, deliveryItems);
-        return "delivery/deliveryDashboard";
+          return "redirect:deliveryDashboard.htm";
     }
 
     private LinkedHashMap<String, String> decodeDeliveredItemsData(String data) {

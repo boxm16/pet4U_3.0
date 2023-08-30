@@ -232,7 +232,7 @@ public class SuppliersAndStockController {
             suppliersItem.setDescription(pet4uItem.getDescription());
 
         }
-        model.addAttribute("ama", itemsIds);
+        model.addAttribute("ama", "SASASSAS");
         model.addAttribute("items", suppliersItems);
         return "suppliersAndStock/orderMode";
     }
