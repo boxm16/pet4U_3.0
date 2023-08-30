@@ -139,24 +139,19 @@
         </table>
 
     </center>
-    <form id="form" action="#" method="POST">
+    <form id="form" action="orderMode.htm" target="_blank" method="POST">
         <input hidden type="text" id="supplierId" name="supplierId" value="${supplier.id}">
         <input hidden type="text" id="orderItemsInput" name="itemsIds" >
     </form>
 
-    <a href="#" onclick="requestRouter('orderMode.htm')"><h4>Order Mode</h4></a>
+    <button onclick="requestRouter()">ORDER MODE </button>
     <script>
         ////--------------------
-        function requestRouter(requestTarget) {
-            if (requestTarget == "orderMode.htm") {
-                form.target = "_blank";
-            } else {
+        function requestRouter() {
 
-            }
-            form.action = requestTarget;
             orderItemsInput.value = collectSellectedCheckBoxes();
-          
-         //   form.submit();
+
+            //   form.submit();
         }
         //this function collects all checked checkbox values, concatinates them in one string and returns that string to send it after by POST method to server
         function collectSellectedCheckBoxes() {
