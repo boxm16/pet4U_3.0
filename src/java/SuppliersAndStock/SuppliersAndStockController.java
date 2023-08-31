@@ -228,7 +228,7 @@ public class SuppliersAndStockController {
             supplierItemsEntrySet.getValue().setQuantity(soldItem.getQuantity());
         }
 
-        model.addAttribute("items", supplierItems);
+        model.addAttribute("supplierItems", supplierItems);
         return "suppliersAndStock/orderMode";
     }
 
