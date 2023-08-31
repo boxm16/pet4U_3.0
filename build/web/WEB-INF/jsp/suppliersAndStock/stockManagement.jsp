@@ -145,13 +145,13 @@
     </form>
 
     <button onclick="requestRouter()">ORDER MODE </button>
-    <script>
+   <script>
         ////--------------------
         function requestRouter() {
-
+            //console.log(collectSellectedCheckBoxes());
             orderItemsInput.value = collectSellectedCheckBoxes();
-
-            //   form.submit();
+           // console.log("VALUE"+orderItemsInput.value);
+              form.submit();
         }
         //this function collects all checked checkbox values, concatinates them in one string and returns that string to send it after by POST method to server
         function collectSellectedCheckBoxes() {

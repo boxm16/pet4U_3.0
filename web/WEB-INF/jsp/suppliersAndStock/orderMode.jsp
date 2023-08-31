@@ -70,7 +70,11 @@
 
                     String alarmColor = "";
                     int minimalStock = item.getMinimalStock();
-                    Double pet4uStock = Double.parseDouble(item.getQuantity());
+                    Double pet4uStock=0.0;
+                    if (item.getQuantity() == null) {
+                    } else {
+                       pet4uStock = Double.parseDouble(item.getQuantity());
+                    }
                     boolean needOrder = false;
                     if (pet4uStock < minimalStock * 2) {
                         alarmColor = "yellow";
