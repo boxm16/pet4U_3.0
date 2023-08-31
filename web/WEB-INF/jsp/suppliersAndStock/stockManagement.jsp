@@ -106,10 +106,6 @@
                     out.println(item.getMinimalStock());
                     out.println("</td>");
 
-                    out.println("<td>");
-                    out.println(item.getMinimalStock());
-                    out.println("</td>");
-
                     if (needOrder) {
                         out.println("<td>");
                         out.println("<input class='itemId' type='checkbox'  id='" + item.getCode() + "' style='width:28px;height:28px' checked>");
@@ -119,6 +115,9 @@
                         out.println("<input class='itemId' type='checkbox'  id='" + item.getCode() + "' style='width:28px;height:28px'>");
                         out.println("</td>");
                     }
+                    out.println("<td>");
+                    out.println(item.getOrderUnit());
+                    out.println("</td>");
 
                     out.println("<td>");
                     out.println(item.getOrderUnitCapacity());
@@ -145,13 +144,13 @@
     </form>
 
     <button onclick="requestRouter()">ORDER MODE </button>
-   <script>
+    <script>
         ////--------------------
         function requestRouter() {
             //console.log(collectSellectedCheckBoxes());
             orderItemsInput.value = collectSellectedCheckBoxes();
-           // console.log("VALUE"+orderItemsInput.value);
-              form.submit();
+            // console.log("VALUE"+orderItemsInput.value);
+            form.submit();
         }
         //this function collects all checked checkbox values, concatinates them in one string and returns that string to send it after by POST method to server
         function collectSellectedCheckBoxes() {
