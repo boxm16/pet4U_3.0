@@ -5,7 +5,6 @@
  */
 package SuppliersAndStock;
 
-import BasicModel.Item;
 import SalesX.SalesControllerX;
 import SalesX.SoldItem;
 import java.util.ArrayList;
@@ -216,24 +215,20 @@ public class SuppliersAndStockController {
     public String printMode(@RequestParam("supplierId") String supplierId, @RequestParam("itemsIds") String itemsIds, ModelMap model) {
         ArrayList<String> temsIdsArray = createItemsIdsArray(itemsIds);
 
-        ArrayList<SuppliersItem> suppliersItems = this.supplierDao.getItems(temsIdsArray);
+        LinkedHashMap<String, SuppliersItem> supplierItems = this.supplierDao.getItems(temsIdsArray);
+        SalesControllerX salesControllerX = new SalesControllerX();
+        LinkedHashMap<String, SoldItem> sixMonthesSales = salesControllerX.getSixMonthesSales();
+        for (Map.Entry<String, SuppliersItem> supplierItemsEntrySet : supplierItems.entrySet()) {
+            String key = supplierItemsEntrySet.getKey();
 
-        LinkedHashMap<String, Item> pet4UItems = this.supplierDao.getpet4UItemsRowByRow();
-
-        for (SuppliersItem suppliersItem : suppliersItems) {
-            String altercode = suppliersItem.getCode();
-
-            Item pet4uItem = pet4UItems.get(altercode);
-
-            if (pet4uItem == null) {
-                System.out.println("Pet4uItem  not present in the lists from microsoft db");
-            }
-            suppliersItem.setCode(pet4uItem.getCode());
-            suppliersItem.setDescription(pet4uItem.getDescription());
-
+            SoldItem soldItem = sixMonthesSales.get(key);
+            supplierItemsEntrySet.getValue().setDescription(soldItem.getDescription());
+            supplierItemsEntrySet.getValue().setEshopSales(soldItem.getEshopSales());
+            supplierItemsEntrySet.getValue().setShopsSupply(soldItem.getShopsSupply());
+            supplierItemsEntrySet.getValue().setQuantity(soldItem.getQuantity());
         }
-        model.addAttribute("ama", "SASASSAS");
-        model.addAttribute("items", suppliersItems);
+
+        model.addAttribute("items", supplierItems);
         return "suppliersAndStock/orderMode";
     }
 

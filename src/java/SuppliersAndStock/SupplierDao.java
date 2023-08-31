@@ -214,8 +214,8 @@ public class SupplierDao {
         return " Supplier`s Item  Edited Successfully";
     }
 
-    ArrayList<SuppliersItem> getItems(ArrayList<String> itemsIdsArray) {
-        ArrayList<SuppliersItem> items = new ArrayList<>();
+    LinkedHashMap<String, SuppliersItem> getItems(ArrayList<String> itemsIdsArray) {
+        LinkedHashMap<String, SuppliersItem> items = new LinkedHashMap<>();
 
         StringBuilder queryBuilderInitialPart = new StringBuilder("SELECT * FROM stock_management WHERE ");
         StringBuilder queryBuilderIdsPart = buildStringFromArrayList(itemsIdsArray);
@@ -231,22 +231,18 @@ public class SupplierDao {
             resultSet = statement.executeQuery(query.toString());
             while (resultSet.next()) {
 
+                SuppliersItem item = new SuppliersItem();
+                String itemCode = resultSet.getString("item_code").trim();
+                item.setCode(itemCode);
+                item.setMinimalStock(resultSet.getInt("minimal_stock"));
+                item.setOrderUnit(resultSet.getString("order_unit"));
+                item.setOrderUnitCapacity(resultSet.getInt("order_unit_capacity"));
 
-                    SuppliersItem item = new SuppliersItem();
-                    String itemCode = resultSet.getString("item_code");
-                    item.setCode(itemCode.trim());
-                    item.setMinimalStock(resultSet.getInt("minimal_stock"));
-                    item.setOrderUnit(resultSet.getString("order_unit"));
-                    item.setOrderUnitCapacity(resultSet.getInt("order_unit_capacity"));
+                item.setNote(resultSet.getString("note"));
 
-                    
-                    item.setNote(resultSet.getString("note"));
+                items.put(itemCode, item);
+            }
 
-             
-                    items.add(item);
-                }
-
-           
             resultSet.close();
             statement.close();
             connection.close();
@@ -280,7 +276,6 @@ public class SupplierDao {
         return stringBuilder;
     }
 
-    
     public LinkedHashMap<String, Item> getpet4UItemsRowByRow() {
         LinkedHashMap<String, Item> items = new LinkedHashMap<>();
         Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();

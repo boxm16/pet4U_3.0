@@ -45,7 +45,7 @@
         </form>
 
         <hr>
-        ${ama}
+
         <table>
             <thead>
             <th>ΚΩΔΙΚΟΣ</th>
@@ -65,15 +65,16 @@
 
             </thead>
             <%
-                ArrayList<SuppliersItem> items = (ArrayList) request.getAttribute("items");
-                for (SuppliersItem item : items) {
+                LinkedHashMap<String, SuppliersItem> items = (LinkedHashMap) request.getAttribute("supplierItems");
+                for (Map.Entry<String, SuppliersItem> entrySet : items.entrySet()) {
+                    SuppliersItem item = entrySet.getValue();
 
                     String alarmColor = "";
                     int minimalStock = item.getMinimalStock();
-                    Double pet4uStock=0.0;
+                    Double pet4uStock = 0.0;
                     if (item.getQuantity() == null) {
                     } else {
-                       pet4uStock = Double.parseDouble(item.getQuantity());
+                        pet4uStock = Double.parseDouble(item.getQuantity());
                     }
                     boolean needOrder = false;
                     if (pet4uStock < minimalStock * 2) {
