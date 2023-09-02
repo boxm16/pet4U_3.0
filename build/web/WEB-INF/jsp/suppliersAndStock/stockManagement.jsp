@@ -66,7 +66,7 @@
                                     <th>Order <br>Unit<br>Capacity</th>
                                     <th>Note</th>
                                     <th>  Edit  </th>
-                                    <th> <button onclick="requestRouter()">ORDER MODE </button></th>
+                                    <th> <button class="btn btn-primary" onclick="requestRouter()">ORDER MODE </button></th>
                                 </tr>
                             </thead>
                             <%
