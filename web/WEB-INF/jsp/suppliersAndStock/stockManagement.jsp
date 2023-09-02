@@ -30,6 +30,93 @@
                 position: sticky;
                 top: 0px;
             }
+            
+            //=================
+            .fab {
+  position: fixed;
+  width: 100px;
+  height: 100px;
+  bottom: 18px;
+  right: 18px;
+  
+  &__button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #0069ff;
+    cursor: pointer;
+    color: #ffffff;
+    border: 0;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    z-index: 2;
+    box-shadow: 0px 6px 14px 0px rgba(0,0,0,0.3);
+    transition: background-color 300ms ease;
+    
+    &:hover {
+      background-color: #0055cc;
+    }
+    
+    .lp-icon {
+      font-size: 36px;
+    }
+  }
+  
+  .pulse-rings {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .pulse {
+    position: absolute;
+    border-radius: 50%;
+    z-index: 1;
+    opacity: 0.0;
+    border-color: #0069ff;
+    border-style: solid;
+
+    &-1 {
+      height: 74px;
+      width: 74px;
+      border-width: 3px;
+      animation: 1.5s ease-out 0s infinite pulsate;
+    }
+
+    &-2 {
+      height: 84px;
+      width: 84px;
+      border-width: 2px;
+      animation: 1.5s ease-out 0s infinite pulsate;
+    }
+
+    &-3 {
+      height: 94px;
+      width: 94px;
+      border-width: 1px;
+      animation: 1.5s ease-out 0s infinite pulsate;
+    }
+  }
+}
+
+@-webkit-keyframes pulsate {
+  0% {
+    transform: scale(1, 1);
+    opacity: 0.0;
+  }
+  50% {
+    opacity: 1.0;
+  }
+  100% {
+    transform: scale(1.2, 1.2);
+    opacity: 0.0;
+  }
+}
 
         </style>
     </head>
@@ -38,7 +125,16 @@
             <div class="row">
                 <div class="col-lg">
                     <center>
-                        <div class="float-right">Float right on all viewport sizes</div><br>
+                        <div class="fab">
+                            <button class="fab__button">
+                                <i class="lp-icon">?</i>
+                            </button>
+                            <div class="pulse-rings">
+                                <div class="pulse pulse-1"></div>
+                                <div class="pulse pulse-2"></div>
+                                <div class="pulse pulse-3"></div>
+                            </div>
+                        </div>
                         <h1><a href="index.htm">INDEX</a></h1>
 
                         <h1>${supplier.name} Stock Management</h1>
