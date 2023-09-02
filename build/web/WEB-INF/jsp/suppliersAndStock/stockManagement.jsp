@@ -49,7 +49,8 @@
 
                         <hr>
                         <table class="table table-hover table-sm">
-                            <thead>  <tr>
+                            <thead>  
+                                <tr><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th>
                                     <th colspan="11"> <button onclick="requestRouter()">ORDER MODE </button></th>
                                 </tr>
                                 <tr>
@@ -150,7 +151,7 @@
                         <input hidden type="text" id="orderItemsInput" name="itemsIds" >
                     </form>
 
-                   
+
                 </div>   
             </div>  
         </div>
@@ -158,23 +159,23 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <script>
-                        ////--------------------
-                        function requestRouter() {
-                            //console.log(collectSellectedCheckBoxes());
-                            orderItemsInput.value = collectSellectedCheckBoxes();
-                            // console.log("VALUE"+orderItemsInput.value);
-                            form.submit();
-                        }
-                        //this function collects all checked checkbox values, concatinates them in one string and returns that string to send it after by POST method to server
-                        function collectSellectedCheckBoxes() {
-                            var returnValue = "";
-                            var targetCheckBoxes = document.querySelectorAll(".itemId");
-                            for (x = 0; x < targetCheckBoxes.length; x++) {
-                                if (targetCheckBoxes[x].checked)
-                                    returnValue += targetCheckBoxes[x].id + ",";
-                            }
-                            return returnValue;
-                        }
+                                        ////--------------------
+                                        function requestRouter() {
+                                            //console.log(collectSellectedCheckBoxes());
+                                            orderItemsInput.value = collectSellectedCheckBoxes();
+                                            // console.log("VALUE"+orderItemsInput.value);
+                                            form.submit();
+                                        }
+                                        //this function collects all checked checkbox values, concatinates them in one string and returns that string to send it after by POST method to server
+                                        function collectSellectedCheckBoxes() {
+                                            var returnValue = "";
+                                            var targetCheckBoxes = document.querySelectorAll(".itemId");
+                                            for (x = 0; x < targetCheckBoxes.length; x++) {
+                                                if (targetCheckBoxes[x].checked)
+                                                    returnValue += targetCheckBoxes[x].id + ",";
+                                            }
+                                            return returnValue;
+                                        }
         </script>
 
     </body>
