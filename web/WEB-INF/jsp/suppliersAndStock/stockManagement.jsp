@@ -50,9 +50,7 @@
                         <hr>
                         <table class="table table-hover table-sm">
                             <thead>  
-                                <tr><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th>
-                                    <th colspan="11"> <button onclick="requestRouter()">ORDER MODE </button></th>
-                                </tr>
+
                                 <tr>
                                     <th>ΚΩΔΙΚΟΣ</th>
                                     <th>Description</th>
@@ -68,6 +66,7 @@
                                     <th>Order <br>Unit<br>Capacity</th>
                                     <th>Note</th>
                                     <th>  Edit  </th>
+                                    <th> <button onclick="requestRouter()">ORDER MODE </button></th>
                                 </tr>
                             </thead>
                             <%
