@@ -38,6 +38,7 @@
             <div class="row">
                 <div class="col-lg">
                     <center>
+                        <div class="float-right">Float right on all viewport sizes</div><br>
                         <h1><a href="index.htm">INDEX</a></h1>
 
                         <h1>${supplier.name} Stock Management</h1>
