@@ -48,7 +48,7 @@
                         </form>
 
                         <hr>
-                        <table class="table table-striped">
+                        <table class="table table-hover table-sm">
                             <thead>
                             <th>ΚΩΔΙΚΟΣ</th>
                             <th>Description</th>
