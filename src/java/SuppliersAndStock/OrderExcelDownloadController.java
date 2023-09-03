@@ -50,8 +50,10 @@ public class OrderExcelDownloadController {
             }
 
         }
+        exportOrderedItems(orderedItems, supplierId);
+
         model.addAttribute("supplier", supplier);
-        model.addAttribute("orderedItem", orderedItems);
+       
         return "redirect:suppliersAndStockDashboard.htm";
     }
 
