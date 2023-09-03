@@ -1,7 +1,6 @@
 package SuppliersAndStock;
 
 import BasicModel.Item;
-import Inventory.InventoryDao;
 import Service.Basement;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -41,8 +40,8 @@ public class OrderExcelDownloadController {
 
         ArrayList<SuppliersItem> orderedItems = createOrderedItemsArray(orderedItemsData);
 
-        InventoryDao inventoryDao=new InventoryDao();
-        LinkedHashMap<String, Item> pet4UItemsRowByRow = inventoryDao.getpet4UItemsRowByRow();
+       
+        LinkedHashMap<String, Item> pet4UItemsRowByRow = supplierDao.getpet4UItemsRowByRow();
       
         for (SuppliersItem orderedItem : orderedItems) {
             Item itemWithDescription = pet4UItemsRowByRow.get(orderedItem.getCode());
