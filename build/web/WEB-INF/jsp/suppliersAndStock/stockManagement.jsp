@@ -31,6 +31,11 @@
                 top: 0px;
             }
 
+            
+            input[type='number']{
+                width: 80px;
+            } 
+
         </style>
     </head>
     <body>
@@ -56,7 +61,7 @@
                                     <th>Description</th>
 
                                     <th>Six Months<br>Sales</th>
-                                    <th>Period`s Sales</th>
+                                    <th>2 Week`s Sales</th>
                                     <th>Stock</th>
                                     <th>Minimal <br>Stock</th>
                                     <th>Order</th>
