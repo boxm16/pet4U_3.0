@@ -237,8 +237,8 @@ public class SupplierDao {
                 item.setMinimalStock(resultSet.getInt("minimal_stock"));
                 item.setOrderUnit(resultSet.getString("order_unit"));
                 item.setOrderUnitCapacity(resultSet.getInt("order_unit_capacity"));
-
-                item.setNote(resultSet.getString("note"));
+                String note = resultSet.getString("note");
+                item.setNote(note == null ? "" : note);
 
                 items.put(itemCode, item);
             }
