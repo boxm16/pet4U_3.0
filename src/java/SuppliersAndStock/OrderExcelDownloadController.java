@@ -56,7 +56,7 @@ public class OrderExcelDownloadController {
         Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd_MM_yyyy");
         String strDate = formatter.format(date);
-        exportOrderedItems(orderedItems, strDate);
+        exportOrderedItems(orderedItems, "Nestle_Order_"+strDate);
 
         model.addAttribute("supplier", supplier);
 
