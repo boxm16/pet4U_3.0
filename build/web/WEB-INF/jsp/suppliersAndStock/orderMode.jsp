@@ -139,11 +139,11 @@
                     out.println("</td>");
 
                     out.println("<td style='background-color:white'>");
-                    out.println("<input onkeyup='recalculateItems(event)' id='"+item.getCode()+":"+item.getOrderUnitCapacity()+"' class='unitsOrdered' style='font-size:20px' type='number' ");
+                    out.println("<input onkeyup='recalculateItems(event)' id='" + item.getCode() + ":" + item.getOrderUnitCapacity() + "' class='unitsOrdered' style='font-size:20px' type='number' ");
                     out.println("</td>");
 
                     out.println("<td style='background-color:white'>");
-                    out.println("<input id='"+item.getCode()+":receiver' class='itemsOrdered' style='font-size:20px' type='number'");
+                    out.println("<input id='" + item.getCode() + ":receiver' class='itemsOrdered' style='font-size:20px' type='number'");
                     out.println("</td>");
 
                     out.println("</tr>");
@@ -160,7 +160,14 @@
 
     <script>
         function recalculateItems(event) {
-            console.log(event);
+            let id = event.target.id;
+            let value = event.target.value;
+            const idArray = id.split(":");
+            id = idArray[0];
+            let capacity = idArray[1];
+            let receiver = document.getElementById(id);
+            receiver.value = value * capacity;
+            console.log(receiver);
         }
     </script>
 </body>
