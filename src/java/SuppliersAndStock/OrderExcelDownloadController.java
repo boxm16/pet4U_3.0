@@ -52,7 +52,7 @@ public class OrderExcelDownloadController {
         }
         model.addAttribute("supplier", supplier);
         model.addAttribute("orderedItem", orderedItems);
-        return "suppliersAndStock/orderMode";
+        return "suppliersAndStock/suppliersAndStockDashboard";
     }
 
     private ArrayList<SuppliersItem> createOrderedItemsArray(String orderedItemsData) {
