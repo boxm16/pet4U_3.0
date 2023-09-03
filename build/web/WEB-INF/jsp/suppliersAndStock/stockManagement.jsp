@@ -32,9 +32,7 @@
             }
 
             
-            input[type='number']{
-                width: 80px;
-            } 
+          
 
         </style>
     </head>

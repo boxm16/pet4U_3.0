@@ -31,6 +31,9 @@
                 top: 0px;
             }
 
+            input[type='number']{
+                width: 100px;
+            } 
         </style>
     </head>
     <body>
@@ -51,8 +54,8 @@
             <th>ΚΩΔΙΚΟΣ</th>
             <th>Description</th>
 
-            <th>Six Months<br>Sales</th>
-            <th>2 Week`s Sales</th>
+            <th>Six<br> Months<br>Sales</th>
+            <th>2 Week`s <br> Sales</th>
             <th>Stock</th>
             <th>Minimal <br>Stock</th>
             <th>Order</th>
@@ -136,11 +139,11 @@
                     out.println("</td>");
 
                     out.println("<td style='background-color:white'>");
-                    out.println("<input style='font-size:20px' type='number' onchange='recalculateItems()'");
+                    out.println("<input onchange='recalculateItems(event)' id='"+item.getCode()+":"+item.getOrderUnitCapacity()+"' class='unitsOrdered' style='font-size:20px' type='number' ");
                     out.println("</td>");
 
                     out.println("<td style='background-color:white'>");
-                    out.println("<input style='font-size:20px' type='number'");
+                    out.println("<input id='"+item.getCode()+":receiver' class='itemsOrdered' style='font-size:20px' type='number'");
                     out.println("</td>");
 
                     out.println("</tr>");
@@ -156,8 +159,8 @@
     </form>
 
     <script>
-        function recalculateItems() {
-            console.log("DSDSDSD");
+        function recalculateItems(event) {
+            console.log(event.id);
         }
     </script>
 </body>
