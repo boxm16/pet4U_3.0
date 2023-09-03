@@ -139,7 +139,7 @@
                     out.println("</td>");
 
                     out.println("<td style='background-color:white'>");
-                    out.println("<input onchange='recalculateItems(event)' id='"+item.getCode()+":"+item.getOrderUnitCapacity()+"' class='unitsOrdered' style='font-size:20px' type='number' ");
+                    out.println("<input onkeyup='recalculateItems(event)' id='"+item.getCode()+":"+item.getOrderUnitCapacity()+"' class='unitsOrdered' style='font-size:20px' type='number' ");
                     out.println("</td>");
 
                     out.println("<td style='background-color:white'>");
@@ -160,7 +160,7 @@
 
     <script>
         function recalculateItems(event) {
-            console.log(event.id);
+            console.log(event);
         }
     </script>
 </body>
