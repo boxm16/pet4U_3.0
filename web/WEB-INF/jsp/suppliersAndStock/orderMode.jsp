@@ -133,7 +133,7 @@
                     out.println("</td>");
 
                     Double suggestion = item.getTotalShippedPieces() / 6 / item.getOrderUnitCapacity();
-                    out.println("<td style='background-color:white'>");
+                    out.println("<td style='background-color:white;  text-align: center;' >");
                     out.println(suggestion.intValue());
                     out.println("</td>");
 
@@ -151,9 +151,9 @@
             %>
         </table>
 
-    </center>
-    <button class="btn btn-block btn-warning" onclick="downloaInExcelFormat()">DOWNLOD IN EXCEL FORMAT</button>
 
+        <button class="btn btn-block " onclick="downloaInExcelFormat()">DOWNLOD IN EXCEL FORMAT</button>
+    </center>
     <script>
         function recalculateItems(event) {
 
