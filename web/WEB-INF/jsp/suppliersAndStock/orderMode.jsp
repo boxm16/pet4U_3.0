@@ -162,42 +162,83 @@
 
     <script>
         function recalculateItems(event) {
-            if (event.keyCode == '13') {
-                focusNextElement();
-            } else {
-                let id = event.target.id;
-                let value = event.target.value;
-                const idArray = id.split(":");
-                id = idArray[0];
-                let capacity = idArray[1];
-                let receiver = document.getElementById(id + ":receiver");
-                receiver.value = value * capacity;
+
+            let id = event.target.id;
+            let value = event.target.value;
+            const idArray = id.split(":");
+            id = idArray[0];
+            let capacity = idArray[1];
+            let receiver = document.getElementById(id + ":receiver");
+            receiver.value = value * capacity;
+
+        }
+
+        function getTabStops(o, a, el) {
+            // Check if this element is a tab stop
+            if (el.tabIndex > 0) {
+                if (o[el.tabIndex]) {
+                    o[el.tabIndex].push(el);
+                } else {
+                    o[el.tabIndex] = [el];
+                }
+            } else if (el.tabIndex === 0) {
+                // Tab index "0" comes last so we accumulate it seperately
+                a.push(el);
+            }
+            // Check if children are tab stops
+            for (var i = 0, l = el.children.length; i < l; i++) {
+                getTabStops(o, a, el.children[i]);
             }
         }
 
-        function focusNextElement() {
-            //add all elements we want to include in our selection
-            var focussableElements =
-                    'a:not([disabled]), button:not([disabled]), input[type=text]:not([disabled]), [tabindex]:not([disabled]):not([tabindex="-1"])';
-            if (document.activeElement && document.activeElement.form) {
-                var focussable = Array.prototype.filter.call(
-                        document.activeElement.form.querySelectorAll(focussableElements),
-                        function (element) {
-                            //check for visibility while always include the current activeElement
-                            return (
-                                    element.offsetWidth > 0 ||
-                                    element.offsetHeight > 0 ||
-                                    element === document.activeElement
-                                    );
-                        }
-                );
-                var index = focussable.indexOf(document.activeElement);
-                if (index > -1) {
-                    var nextElement = focussable[index + 1] || focussable[0];
-                    nextElement.focus();
+        function focusNext() {
+            var o = [],
+                    a = [],
+                    stops = [],
+                    active = document.activeElement;
+            getTabStops(o, a, document.body);
+            // Use simple loops for maximum browser support
+            for (var i = 0, l = o.length; i < l; i++) {
+                if (o[i]) {
+                    for (var j = 0, m = o[i].length; j < m; j++) {
+                        stops.push(o[i][j]);
+                    }
                 }
             }
+            for (var i = 0, l = a.length; i < l; i++) {
+                stops.push(a[i]);
+            }
+            // If no items are focusable, then blur
+            if (stops.length === 0) {
+                active.blur();
+                return;
+            }
+            // Shortcut if current element is not focusable
+            if (active.tabIndex < 0) {
+                stops[0].focus();
+                return;
+            }
+            // Attempt to find the current element in the stops
+            for (var i = 0, l = stops.length; i < l; i++) {
+                if (stops[i] === active) {
+                    if (i + 1 === stops.length) {
+                        active.blur();
+                        return;
+                    }
+                    stops[i + 1].focus();
+                    return;
+                }
+            }
+            // We shouldn't make it this far
+            active.blur();
         }
+
+        document.addEventListener('keypress', function (e) {
+            if (e.which === 13) {
+                e.preventDefault();
+                focusNext();
+            }
+        });
     </script>
 </body>
 </html>
