@@ -121,11 +121,11 @@
 
                     if (needOrder) {
                         out.println("<td>");
-                        out.println("<input class='itemId' type='checkbox'  id='" + item.getCode() + "' style='width:28px;height:28px' checked>");
+                        out.println("<input class='itemId' type='checkbox'  id='" + item.getCode() + "' style='width:28px;height:28px' checked tabindex='-1' >");
                         out.println("</td>");
                     } else {
                         out.println("<td>");
-                        out.println("<input class='itemId' type='checkbox'  id='" + item.getCode() + "' style='width:28px;height:28px'>");
+                        out.println("<input class='itemId' type='checkbox'  id='" + item.getCode() + "' style='width:28px;height:28px'  tabindex='-1' >");
                         out.println("</td>");
                     }
                     out.println("<td>");
@@ -141,11 +141,11 @@
                     out.println("</td>");
 
                     out.println("<td style='background-color:white'>");
-                    out.println("<input onkeyup='recalculateItems(event)' id='" + item.getCode() + ":" + item.getOrderUnitCapacity() + "' class='unitsOrdered' style='font-size:20px' type='number' ");
+                    out.println("<input onkeyup='recalculateItems(event)' id='" + item.getCode() + ":" + item.getOrderUnitCapacity() + "' class='unitsOrdered' style='font-size:20px' type='number'>");
                     out.println("</td>");
 
                     out.println("<td style='background-color:white'>");
-                    out.println("<input id='" + item.getCode() + ":receiver' class='itemsOrdered' style='font-size:20px' type='number'");
+                    out.println("<input id='" + item.getCode() + ":receiver' class='itemsOrdered' style='font-size:20px' type='number' tabindex='-1'>");
                     out.println("</td>");
 
                     out.println("</tr>");
@@ -172,7 +172,7 @@
             receiver.value = value * capacity;
 
         }
-
+//--------down is function to change focus. Not mine, just copied from stackover :)
         function getTabStops(o, a, el) {
             // Check if this element is a tab stop
             if (el.tabIndex > 0) {
