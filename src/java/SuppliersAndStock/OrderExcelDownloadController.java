@@ -109,7 +109,7 @@ public class OrderExcelDownloadController {
                     columnWidth = 10000;
                     break;
                 case 3:
-                    columnWidth = 1000;
+                    columnWidth = 3000;
                     break;
                 case 4:
                     columnWidth = 2800;
@@ -182,7 +182,7 @@ public class OrderExcelDownloadController {
 
             Cell cell_3 = row.createCell(3);
             cell_3.setCellValue(orderedItem.getOrderQuantity());
-            cell_2.setCellStyle(rowStyleWhiteRegular);
+            cell_3.setCellStyle(rowStyleWhiteRegular);
 
             Cell cell_4 = row.createCell(4);
             cell_4.setCellValue("");
