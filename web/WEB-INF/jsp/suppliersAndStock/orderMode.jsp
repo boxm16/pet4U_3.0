@@ -135,12 +135,12 @@
                     out.println(item.getNote());
                     out.println("</td>");
 
-                    out.println("<td style='color:green'>");
-                    out.println("<input type='number'");
+                   out.println("<td style='background-color:white'>");
+                    out.println("<input style='font-size:20px' type='number' onchange='recalculateItems()'");
                     out.println("</td>");
 
-                    out.println("<td style='color:light-blue'>");
-                    out.println("<input type='number'");
+                    out.println("<td style='background-color:white'>");
+                    out.println("<input style='font-size:20px type='number'");
                     out.println("</td>");
 
                     out.println("</tr>");
@@ -155,6 +155,10 @@
         <input hidden type="text" id="orderItemsInput" name="itemsIds">
     </form>
 
-
+        <script>
+            function recalculateItems(){
+                console.log("DSDSDSD");
+            }
+        </script>
 </body>
 </html>
