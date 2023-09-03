@@ -60,9 +60,9 @@
             <th>2 Week`s <br> Sales</th>
             <th>Stock</th>
             <th>Minimal <br>Stock</th>
-            <th>Order</th>
 
 
+            <th>Order<br> Suggestion</th>
             <th>Order <br>Unit</th>
             <th>Order <br>Unit<br>Capacity</th>
             <th>Note</th>
@@ -118,16 +118,12 @@
                     out.println("<td>");
                     out.println(item.getMinimalStock());
                     out.println("</td>");
+                    
+                    out.println("<td>");
+                    out.println(shippedPiecesForPeriod/6);
+                    out.println("</td>");
+                    
 
-                    if (needOrder) {
-                        out.println("<td>");
-                        out.println("<input class='itemId' type='checkbox'  id='" + item.getCode() + "' style='width:28px;height:28px' checked tabindex='-1' >");
-                        out.println("</td>");
-                    } else {
-                        out.println("<td>");
-                        out.println("<input class='itemId' type='checkbox'  id='" + item.getCode() + "' style='width:28px;height:28px'  tabindex='-1' >");
-                        out.println("</td>");
-                    }
                     out.println("<td>");
                     out.println(item.getOrderUnit());
                     out.println("</td>");
