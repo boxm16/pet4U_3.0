@@ -61,7 +61,7 @@
             <th>Order <br>Unit</th>
             <th>Order <br>Unit<br>Capacity</th>
             <th>Note</th>
-            <th>  Edit  </th>
+            <th>  ORDER  </th>
 
             </thead>
             <%
@@ -129,12 +129,13 @@
                     out.println("<td>");
                     out.println(item.getOrderUnitCapacity());
                     out.println("</td>");
+
                     out.println("<td>");
                     out.println(item.getNote());
                     out.println("</td>");
 
-                    out.println("<td>");
-                    out.println("<a href='goForEditingSuppliersItem.htm?supplierId=" + item.getSupplierId() + "&code=" + item.getCode() + "'>Edit</a>");
+                    out.println("<td style='background-color:green'>");
+                    out.println("<input type='number'");
                     out.println("</td>");
 
                     out.println("</tr>");
