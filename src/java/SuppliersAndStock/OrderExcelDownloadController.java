@@ -4,10 +4,11 @@ import BasicModel.Item;
 import Service.Basement;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.Instant;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -52,9 +53,10 @@ public class OrderExcelDownloadController {
             }
 
         }
-         LocalDateTime lt
-            = LocalDateTime.now();
-        exportOrderedItems(orderedItems, lt.toString());
+        Date date = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd_MM_yyyy");
+        String strDate = formatter.format(date);
+        exportOrderedItems(orderedItems, strDate);
 
         model.addAttribute("supplier", supplier);
 
