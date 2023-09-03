@@ -131,9 +131,9 @@
                     out.println("<td>");
                     out.println(item.getNote());
                     out.println("</td>");
-
+                    Double suggestion = item.getTotalShippedPieces() / 6 / item.getOrderUnitCapacity();
                     out.println("<td>");
-                    out.println(item.getTotalShippedPieces()/ 6 / item.getOrderUnitCapacity());
+                    out.println(suggestion.intValue());
                     out.println("</td>");
 
                     out.println("<td style='background-color:white'>");
