@@ -160,13 +160,18 @@
 
     <script>
         function recalculateItems(event) {
+            if (event.keyCode == '13') {
+                $(':input').keypress(function () {
+                    $(this).next(':input').focus();
+                });
+            }
             let id = event.target.id;
             let value = event.target.value;
             const idArray = id.split(":");
             id = idArray[0];
             let capacity = idArray[1];
-            let receiver = document.getElementById(id+":receiver");
-          receiver.value=value*capacity;
+            let receiver = document.getElementById(id + ":receiver");
+            receiver.value = value * capacity;
             console.log(receiver);
         }
     </script>
