@@ -213,6 +213,8 @@ public class SuppliersAndStockController {
     //--------------------------------
     @RequestMapping(value = "orderMode")
     public String printMode(@RequestParam("supplierId") String supplierId, @RequestParam("itemsIds") String itemsIds, ModelMap model) {
+        Supplier supplier = this.supplierDao.getSupplier(supplierId);
+
         ArrayList<String> temsIdsArray = createItemsIdsArray(itemsIds);
 
         LinkedHashMap<String, SuppliersItem> supplierItems = this.supplierDao.getItems(temsIdsArray);
@@ -227,7 +229,7 @@ public class SuppliersAndStockController {
             supplierItemsEntrySet.getValue().setShopsSupply(soldItem.getShopsSupply());
             supplierItemsEntrySet.getValue().setQuantity(soldItem.getQuantity());
         }
-
+        model.addAttribute("supplier", supplier);
         model.addAttribute("supplierItems", supplierItems);
         return "suppliersAndStock/orderMode";
     }
