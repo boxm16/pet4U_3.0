@@ -133,7 +133,7 @@
                     out.println("</td>");
 
                     out.println("<td>");
-                    out.println(item.getTotalShippedPiecesForPeriod() / 6 / item.getOrderUnitCapacity());
+                    out.println(item.getTotalShippedPieces()/ 6 / item.getOrderUnitCapacity());
                     out.println("</td>");
 
                     out.println("<td style='background-color:white'>");
