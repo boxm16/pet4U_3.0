@@ -134,7 +134,7 @@
                     out.println(item.getNote());
                     out.println("</td>");
 
-                    out.println("<td style='background-color:green'>");
+                    out.println("<td style='color:green'>");
                     out.println("<input type='number'");
                     out.println("</td>");
 
