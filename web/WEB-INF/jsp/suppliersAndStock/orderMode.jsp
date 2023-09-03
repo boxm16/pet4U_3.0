@@ -131,9 +131,9 @@
                     out.println("<td>");
                     out.println(item.getNote());
                     out.println("</td>");
-                    
+
                     Double suggestion = item.getTotalShippedPieces() / 6 / item.getOrderUnitCapacity();
-                      out.println("<td style='background-color:white'>");
+                    out.println("<td style='background-color:white'>");
                     out.println(suggestion.intValue());
                     out.println("</td>");
 
@@ -152,10 +152,7 @@
         </table>
 
     </center>
-    <form id="form" action="#" method="POST">
-        <input hidden type="text" id="supplierId" name="supplierId" value="${supplier.id}">
-        <input hidden type="text" id="orderItemsInput" name="itemsIds">
-    </form>
+    <button onclick="downloaInExcelFormat()">DOWNLOD IN EXCEL FORMAT</button>
 
     <script>
         function recalculateItems(event) {
@@ -236,6 +233,11 @@
                 focusNext();
             }
         });
+
+        //-------------
+        function downloaInExcelFormat() {
+            alert("DSDSDS");
+        }
     </script>
 </body>
 </html>
