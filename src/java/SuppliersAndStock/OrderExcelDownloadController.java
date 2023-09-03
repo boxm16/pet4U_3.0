@@ -40,9 +40,8 @@ public class OrderExcelDownloadController {
 
         ArrayList<SuppliersItem> orderedItems = createOrderedItemsArray(orderedItemsData);
 
-       
         LinkedHashMap<String, Item> pet4UItemsRowByRow = supplierDao.getpet4UItemsRowByRow();
-      
+
         for (SuppliersItem orderedItem : orderedItems) {
             Item itemWithDescription = pet4UItemsRowByRow.get(orderedItem.getCode());
             if (itemWithDescription == null) {
@@ -55,7 +54,7 @@ public class OrderExcelDownloadController {
         exportOrderedItems(orderedItems, supplierId);
 
         model.addAttribute("supplier", supplier);
-       
+
         return "redirect:suppliersAndStockDashboard.htm";
     }
 
@@ -125,12 +124,12 @@ public class OrderExcelDownloadController {
             columnIndex++;
         }
         //now headers
-        //first header row
-        Row headerRow1 = sheet.createRow(rowIndex);
-        rowHeigth = 80;
-        headerRow1.setHeightInPoints(rowHeigth);
+        //  XSSFCellStyle rowStyleWhiteItalic = getRowStyle(workbook, 255, 255, 255, true, false, "");
+        XSSFCellStyle rowStyleWhiteRegular = getRowStyle(workbook, 255, 255, 255, false, false, "");
 
-        XSSFCellStyle headerStyle = getHeaderStyle(workbook, 209, 112, 247, 0, false);
+        Row headerRow1 = sheet.createRow(rowIndex);
+        rowHeigth = 20;
+        headerRow1.setHeightInPoints(rowHeigth);
 
         columnIndex = 0;
         while (columnIndex < 7) {
@@ -138,31 +137,34 @@ public class OrderExcelDownloadController {
             switch (columnIndex) {
                 case 0:
                     cell.setCellValue("Κωδικός Προϊόντος");
+                    cell.setCellStyle(rowStyleWhiteRegular);
                     break;
                 case 1:
                     cell.setCellValue("Κωδικός ERP");
+                    cell.setCellStyle(rowStyleWhiteRegular);
                     break;
                 case 2:
                     cell.setCellValue("Περιγραφή Προϊόντος");
+                    cell.setCellStyle(rowStyleWhiteRegular);
                     break;
                 case 3:
                     cell.setCellValue("Παραγγελία");
+                    cell.setCellStyle(rowStyleWhiteRegular);
                     break;
                 case 4:
                     cell.setCellValue("Κατάστημα");
+                    cell.setCellStyle(rowStyleWhiteRegular);
                     break;
                 case 5:
                     cell.setCellValue("Κωδικός Καταστήματος");
+                    cell.setCellStyle(rowStyleWhiteRegular);
                     break;
             }
 
             columnIndex++;
         }
 
-        //  XSSFCellStyle rowStyleWhiteItalic = getRowStyle(workbook, 255, 255, 255, true, false, "");
-        XSSFCellStyle rowStyleWhiteRegular = getRowStyle(workbook, 255, 255, 255, false, false, "");
-
-        rowHeigth = 30;
+        rowHeigth = 20;
         for (SuppliersItem orderedItem : orderedItems) {
 
             Row row = sheet.createRow(++rowIndex);
