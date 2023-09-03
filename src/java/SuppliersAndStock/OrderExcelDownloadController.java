@@ -1,5 +1,7 @@
 package SuppliersAndStock;
 
+import BasicModel.Item;
+import Inventory.InventoryDao;
 import Service.Basement;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -39,10 +41,11 @@ public class OrderExcelDownloadController {
 
         ArrayList<SuppliersItem> orderedItems = createOrderedItemsArray(orderedItemsData);
 
-        LinkedHashMap<String, SuppliersItem> allItemsOfSupplier = this.supplierDao.getAllItemsOfSupplier(supplierId);
-
+        InventoryDao inventoryDao=new InventoryDao();
+        LinkedHashMap<String, Item> pet4UItemsRowByRow = inventoryDao.getpet4UItemsRowByRow();
+      
         for (SuppliersItem orderedItem : orderedItems) {
-            SuppliersItem itemWithDescription = allItemsOfSupplier.get(orderedItem.getCode());
+            Item itemWithDescription = pet4UItemsRowByRow.get(orderedItem.getCode());
             if (itemWithDescription == null) {
                 //do nothing
             } else {
@@ -197,7 +200,7 @@ public class OrderExcelDownloadController {
         }
         Basement basement = new Basement();
         String basementDirectory = basement.getBasementDirectory();
-        try (FileOutputStream outputStream = new FileOutputStream(basementDirectory + "/downloads/" + fileName + ".xls")) {
+        try (FileOutputStream outputStream = new FileOutputStream(basementDirectory + "/downloads/" + fileName + ".xlsx")) {
             workbook.write(outputStream);
         } catch (IOException ex) {
             Logger.getLogger(OrderExcelDownloadController.class.getName()).log(Level.SEVERE, null, ex);
