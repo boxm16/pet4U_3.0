@@ -241,7 +241,7 @@
 
             function downloadInExcelFormat() {
 
-                orderItemsInput.value = collectOrderData();
+                orderedItems.value = collectOrderData();
 
                 form.submit();
             }
