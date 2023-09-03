@@ -74,7 +74,7 @@ public class OrderExcelDownloadController {
             String[] orderedItemCodeAndQuantity = orderedItemData.split(":");
             SuppliersItem suppliersItem = new SuppliersItem();
             suppliersItem.setCode(orderedItemCodeAndQuantity[0]);
-            suppliersItem.setOrderQuantity(Integer.parseInt(orderedItemCodeAndQuantity[2]));
+            suppliersItem.setOrderQuantity(Integer.parseInt(orderedItemCodeAndQuantity[1]));
             orderedItems.add(suppliersItem);
         }
 

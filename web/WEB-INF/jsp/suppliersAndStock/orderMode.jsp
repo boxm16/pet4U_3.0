@@ -136,7 +136,7 @@
                     out.println("</td>");
 
                     out.println("<td style='background-color:white'>");
-                    out.println("<input id='" + item.getCode() + ":receiver' class='orderedItem' style='font-size:20px' type='number' >");
+                    out.println("<input id='" + item.getCode()+"' class='orderedItem' style='font-size:20px' type='number' >");
                     out.println("</td>");
 
                     out.println("</tr>");
@@ -164,7 +164,7 @@
                 const idArray = id.split(":");
                 id = idArray[0];
                 let capacity = idArray[1];
-                let receiver = document.getElementById(id + ":receiver");
+                let receiver = document.getElementById(id);
                 receiver.value = value * capacity;
 
             }
