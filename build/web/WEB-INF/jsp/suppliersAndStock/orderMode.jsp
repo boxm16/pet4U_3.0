@@ -36,7 +36,7 @@
             } 
         </style>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-       
+
     </head>
     <body>
     <center>
@@ -163,18 +163,40 @@
     <script>
         function recalculateItems(event) {
             if (event.keyCode == '13') {
-                $(':input').keypress(function () {
-                    $(this).next(':input').focus();
-                });
+                focusNextElement();
+            } else {
+                let id = event.target.id;
+                let value = event.target.value;
+                const idArray = id.split(":");
+                id = idArray[0];
+                let capacity = idArray[1];
+                let receiver = document.getElementById(id + ":receiver");
+                receiver.value = value * capacity;
             }
-            let id = event.target.id;
-            let value = event.target.value;
-            const idArray = id.split(":");
-            id = idArray[0];
-            let capacity = idArray[1];
-            let receiver = document.getElementById(id + ":receiver");
-            receiver.value = value * capacity;
-            console.log(receiver);
+        }
+
+        function focusNextElement() {
+            //add all elements we want to include in our selection
+            var focussableElements =
+                    'a:not([disabled]), button:not([disabled]), input[type=text]:not([disabled]), [tabindex]:not([disabled]):not([tabindex="-1"])';
+            if (document.activeElement && document.activeElement.form) {
+                var focussable = Array.prototype.filter.call(
+                        document.activeElement.form.querySelectorAll(focussableElements),
+                        function (element) {
+                            //check for visibility while always include the current activeElement
+                            return (
+                                    element.offsetWidth > 0 ||
+                                    element.offsetHeight > 0 ||
+                                    element === document.activeElement
+                                    );
+                        }
+                );
+                var index = focussable.indexOf(document.activeElement);
+                if (index > -1) {
+                    var nextElement = focussable[index + 1] || focussable[0];
+                    nextElement.focus();
+                }
+            }
         }
     </script>
 </body>
