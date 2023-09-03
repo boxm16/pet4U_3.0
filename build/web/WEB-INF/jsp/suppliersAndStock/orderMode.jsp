@@ -165,8 +165,8 @@
             const idArray = id.split(":");
             id = idArray[0];
             let capacity = idArray[1];
-            let receiver = document.getElementById(id);
-            receiver.value = value * capacity;
+            let receiver = document.getElementById(id+":receiver");
+          receiver.value=value*capacity;
             console.log(receiver);
         }
     </script>
