@@ -251,7 +251,7 @@
                 var collectedItems = document.querySelectorAll(".orderedItems");
                 for (x = 0; x < collectedItems.length; x++) {
 
-                    returnValue += collectedItems[x].id + ":" + collectedItems[x].id ",";
+                    returnValue += collectedItems[x].id + ":" + collectedItems[x].id +",";
                 }
                 return returnValue;
             }
