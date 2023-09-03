@@ -147,7 +147,7 @@
         <hr>
         <form id="form" action="downlodOrderInExcelFormat.htm" target="_blank" method="POST">
             <input hidden type="text" id="supplierId" name="supplierId" value="${supplier.id}">
-            <input hidden type="text" id="orderedItems" name="orderedItems" >
+            <input hidden type="text" id="orderedItemsData" name="orderedItemsData" >
         </form>
         <button class="btn btn-success " onclick="downloadInExcelFormat()">DOWNLOD IN EXCEL FORMAT</button>
         <hr>  <hr>
@@ -241,7 +241,7 @@
 
             function downloadInExcelFormat() {
 
-                orderedItems.value = collectOrderData();
+                orderedItemsData.value = collectOrderData();
 
                 form.submit();
             }
