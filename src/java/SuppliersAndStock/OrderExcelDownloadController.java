@@ -34,7 +34,7 @@ public class OrderExcelDownloadController {
     private SupplierDao supplierDao;
 
     @RequestMapping(value = "downlodOrderInExcelFormat")
-    public String downlodOrderInExcelFormat(@RequestParam("supplierId") String supplierId, @RequestParam("itemsIds") String orderedItemsData, ModelMap model) {
+    public String downlodOrderInExcelFormat(@RequestParam("supplierId") String supplierId, @RequestParam("orderedItemsData") String orderedItemsData, ModelMap model) {
         Supplier supplier = this.supplierDao.getSupplier(supplierId);
 
         ArrayList<SuppliersItem> orderedItems = createOrderedItemsArray(orderedItemsData);
