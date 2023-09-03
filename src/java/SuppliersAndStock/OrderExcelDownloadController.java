@@ -62,7 +62,7 @@ public class OrderExcelDownloadController {
         //trimming and cleaning input
         orderedItemsData = orderedItemsData.trim();
         if (orderedItemsData.length() == 0) {
-            return new ArrayList<SuppliersItem>();
+            return new ArrayList<>();
         }
         if (orderedItemsData.substring(orderedItemsData.length() - 1, orderedItemsData.length()).equals(",")) {
             orderedItemsData = orderedItemsData.substring(0, orderedItemsData.length() - 1).trim();
@@ -98,19 +98,19 @@ public class OrderExcelDownloadController {
         while (columnIndex < 7) {
             switch (columnIndex) {
                 case 0:
-                    columnWidth = 1000;
+                    columnWidth = 3000;
                     break;
                 case 1:
                     columnWidth = 3000;
                     break;
                 case 2:
-                    columnWidth = 3300;
+                    columnWidth = 10000;
                     break;
                 case 3:
                     columnWidth = 1000;
                     break;
                 case 4:
-                    columnWidth = 6500;
+                    columnWidth = 2800;
                     break;
                 case 5:
                     columnWidth = 2800;
@@ -197,13 +197,13 @@ public class OrderExcelDownloadController {
         }
         Basement basement = new Basement();
         String basementDirectory = basement.getBasementDirectory();
-        try (FileOutputStream outputStream = new FileOutputStream(basementDirectory + "/downloads/" + fileName + ".xlsx")) {
+        try (FileOutputStream outputStream = new FileOutputStream(basementDirectory + "/downloads/" + fileName + ".xls")) {
             workbook.write(outputStream);
         } catch (IOException ex) {
             Logger.getLogger(OrderExcelDownloadController.class.getName()).log(Level.SEVERE, null, ex);
         }
         Instant end = Instant.now();
-        System.out.println("Trip Periods Excel Export completed. Time needed:" + Duration.between(start, end));
+        System.out.println("Excel Export completed. Time needed:" + Duration.between(start, end));
 
     }
 

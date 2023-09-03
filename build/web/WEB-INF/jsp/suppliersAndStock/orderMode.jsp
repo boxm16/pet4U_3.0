@@ -242,13 +242,13 @@
             function downloadInExcelFormat() {
 
                 orderedItemsData.value = collectOrderData();
-
-                form.submit();
+console.log(collectOrderData());
+               form.submit();
             }
             //this function collects data
             function collectOrderData() {
                 var returnValue = "";
-                var collectedItems = document.querySelectorAll(".orderedItems");
+                var collectedItems = document.querySelectorAll(".orderedItem");
                 for (x = 0; x < collectedItems.length; x++) {
 
                     returnValue += collectedItems[x].id + ":" + collectedItems[x].id +",";
