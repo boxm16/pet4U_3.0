@@ -13,7 +13,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Stock Management</title>
+        <title>Order Mode</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
         <style>
@@ -136,7 +136,7 @@
                     out.println("</td>");
 
                     out.println("<td style='background-color:white'>");
-                    out.println("<input id='" + item.getCode()+"' class='orderedItem' style='font-size:20px' type='number' >");
+                    out.println("<input id='" + item.getCode() + "' class='orderedItem' style='font-size:20px' type='number' >");
                     out.println("</td>");
 
                     out.println("</tr>");
@@ -242,16 +242,19 @@
             function downloadInExcelFormat() {
 
                 orderedItemsData.value = collectOrderData();
-console.log(collectOrderData());
-               form.submit();
+                console.log(collectOrderData());
+                form.submit();
             }
             //this function collects data
             function collectOrderData() {
                 var returnValue = "";
                 var collectedItems = document.querySelectorAll(".orderedItem");
                 for (x = 0; x < collectedItems.length; x++) {
-  let v=document.getElementById(collectedItems[x].id).value;
-                    returnValue += collectedItems[x].id + ":" + v +",";
+                    let v = document.getElementById(collectedItems[x].id).value;
+                    if (v == "") {
+                        v = 0;
+                    }
+                    returnValue += collectedItems[x].id + ":" + v + ",";
                 }
                 return returnValue;
             }
