@@ -111,10 +111,10 @@ public class OrderExcelDownloadController {
                     columnWidth = 3000;
                     break;
                 case 4:
-                    columnWidth = 2800;
+                    columnWidth = 3000;
                     break;
                 case 5:
-                    columnWidth = 2800;
+                    columnWidth = 3000;
                     break;
                 case 6:
                     columnWidth = 2800;
@@ -128,7 +128,7 @@ public class OrderExcelDownloadController {
         XSSFCellStyle rowStyleWhiteRegular = getRowStyle(workbook, 255, 255, 255, false, false, "");
 
         Row headerRow1 = sheet.createRow(rowIndex);
-        rowHeigth = 20;
+        rowHeigth = 30;
         headerRow1.setHeightInPoints(rowHeigth);
 
         columnIndex = 0;
