@@ -53,7 +53,7 @@ public class OrderExcelDownloadController {
 
         }
         LocalDateTime now = LocalDateTime.now();
-        exportOrderedItems(orderedItems, now);
+        exportOrderedItems(orderedItems, now.toString());
 
         model.addAttribute("supplier", supplier);
 
