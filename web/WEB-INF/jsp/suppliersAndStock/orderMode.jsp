@@ -61,7 +61,8 @@
             <th>Order <br>Unit</th>
             <th>Order <br>Unit<br>Capacity</th>
             <th>Note</th>
-            <th>  ORDER  </th>
+            <th> MAKE ORDER<br>BY ORDER UNIT </th>
+            <th> ORDERED ITEMS </th>
 
             </thead>
             <%
@@ -135,6 +136,10 @@
                     out.println("</td>");
 
                     out.println("<td style='color:green'>");
+                    out.println("<input type='number'");
+                    out.println("</td>");
+
+                    out.println("<td style='color:light-blue'>");
                     out.println("<input type='number'");
                     out.println("</td>");
 
