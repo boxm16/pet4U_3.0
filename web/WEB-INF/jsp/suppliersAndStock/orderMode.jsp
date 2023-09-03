@@ -43,15 +43,8 @@
     <center>
         <h1><a href="index.htm">INDEX</a></h1>
 
-        <h1>${supplier.name} Stock Management</h1>
-        <form action="goForAddingItemToSupplier.htm" method="POST">
-            <input hidden name="supplierId" value="${supplier.id}">
-            <input type="text" name="altercode">
-            <button type="submit">Add New Item</button>
-        </form>
-
+        <h1>${supplier.name} Order</h1>
         <hr>
-
         <table class="table">
             <thead>
             <th>ΚΩΔΙΚΟΣ</th>
@@ -143,7 +136,7 @@
                     out.println("</td>");
 
                     out.println("<td style='background-color:white'>");
-                    out.println("<input id='" + item.getCode() + ":receiver' class='itemsOrdered' style='font-size:20px' type='number' >");
+                    out.println("<input id='" + item.getCode() + ":receiver' class='orderedItem' style='font-size:20px' type='number' >");
                     out.println("</td>");
 
                     out.println("</tr>");
@@ -152,7 +145,10 @@
             %>
         </table>
         <hr>
-
+        <form id="form" action="downlodOrderInExcelFormat.htm" target="_blank" method="POST">
+            <input hidden type="text" id="supplierId" name="supplierId" value="${supplier.id}">
+            <input hidden type="text" id="orderedItems" name="orderedItems" >
+        </form>
         <button class="btn btn-success " onclick="downloaInExcelFormat()">DOWNLOD IN EXCEL FORMAT</button>
     </center>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -240,8 +236,23 @@
             });
 
             //-------------
+
+
             function downloaInExcelFormat() {
-                alert("DSDSDS");
+
+                orderItemsInput.value = collectOrderData();
+
+                form.submit();
+            }
+            //this function collects data
+            function collectOrderData() {
+                var returnValue = "";
+                var collectedItems = document.querySelectorAll(".orderedItems");
+                for (x = 0; x < collectedItems.length; x++) {
+
+                    returnValue += collectedItems[x].id + ":" + collectedItems[x].id ",";
+                }
+                return returnValue;
             }
     </script>
 </body>
