@@ -152,7 +152,7 @@
         </table>
 
     </center>
-    <button onclick="downloaInExcelFormat()">DOWNLOD IN EXCEL FORMAT</button>
+    <button class="btn btn-block btn-warning" onclick="downloaInExcelFormat()">DOWNLOD IN EXCEL FORMAT</button>
 
     <script>
         function recalculateItems(event) {
