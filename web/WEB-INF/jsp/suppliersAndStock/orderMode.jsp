@@ -62,10 +62,11 @@
             <th>Minimal <br>Stock</th>
 
 
-            <th>Order<br> Suggestion</th>
+
             <th>Order <br>Unit</th>
             <th>Order <br>Unit<br>Capacity</th>
             <th>Note</th>
+            <th>Order<br> Suggestion<br>BY <br>ORDER <br>UNIT </th>
             <th> MAKE <br>ORDER<br>BY <br>ORDER <br>UNIT </th>
             <th> ORDERED<br> ITEMS </th>
 
@@ -118,11 +119,6 @@
                     out.println("<td>");
                     out.println(item.getMinimalStock());
                     out.println("</td>");
-                    
-                    out.println("<td>");
-                    out.println(shippedPiecesForPeriod/6);
-                    out.println("</td>");
-                    
 
                     out.println("<td>");
                     out.println(item.getOrderUnit());
@@ -134,6 +130,10 @@
 
                     out.println("<td>");
                     out.println(item.getNote());
+                    out.println("</td>");
+
+                    out.println("<td>");
+                    out.println(item.getTotalShippedPiecesForPeriod() / 6 / item.getOrderUnitCapacity());
                     out.println("</td>");
 
                     out.println("<td style='background-color:white'>");
