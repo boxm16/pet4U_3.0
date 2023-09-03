@@ -251,7 +251,7 @@ console.log(collectOrderData());
                 var collectedItems = document.querySelectorAll(".orderedItem");
                 for (x = 0; x < collectedItems.length; x++) {
 
-                    returnValue += collectedItems[x].id + ":" + collectedItems[x].id +",";
+                    returnValue += collectedItems[x].id + ":" + collectedItems[x].value +",";
                 }
                 return returnValue;
             }
