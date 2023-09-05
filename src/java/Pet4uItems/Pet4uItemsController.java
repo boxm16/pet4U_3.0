@@ -101,15 +101,18 @@ public class Pet4uItemsController {
                 if (camelotItemsRowByRow.containsKey(camelotVersionAltercode)) {
                     Item camelotItem = camelotItemsRowByRow.get(camelotVersionAltercode);
                     Item pet4uItem = pet4uItemsEntry.getValue();
-                    String c_position = "C-"+camelotItem.getPosition();
-                    if (!pet4uItem.getPosition().equals(c_position)) {
-                        ArrayList<String> diff = new ArrayList<>();
-                        diff.add(pet4uItem.getCode());
-                        diff.add(pet4uItem.getDescription());
-                        diff.add(pet4uItem.getPosition());
-                        diff.add(c_position);
-                        differences.add(diff);
-                        break;
+                    String c_position = "C-" + camelotItem.getPosition();
+                    if (pet4uItem.getPosition().contains("C-")) {
+                        if (!pet4uItem.getPosition().equals(c_position)) {
+
+                            ArrayList<String> diff = new ArrayList<>();
+                            diff.add(pet4uItem.getCode());
+                            diff.add(pet4uItem.getDescription());
+                            diff.add(pet4uItem.getPosition());
+                            diff.add(c_position);
+                            differences.add(diff);
+                            break;
+                        }
                     }
                 }
             }
