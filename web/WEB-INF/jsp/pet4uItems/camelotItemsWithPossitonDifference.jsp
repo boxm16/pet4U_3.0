@@ -74,6 +74,10 @@
                         out.println("<td>");
                         out.println(item.get(3));
                         out.println("</td>");
+                        
+                         out.println("<td>");
+                        out.println(item.get(4));
+                        out.println("</td>");
 
                         out.println("</tr>");
                     }
