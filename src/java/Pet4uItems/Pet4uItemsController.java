@@ -114,7 +114,7 @@ public class Pet4uItemsController {
             }
         }
         modelMap.addAttribute("differences", differences);
-        return "/pet4uItems/camelotItemsWithPossitionDifference";
+        return "/pet4uItems/camelotItemsWithPossitonDifference";
     }
 
     @RequestMapping(value = "weightItems")
