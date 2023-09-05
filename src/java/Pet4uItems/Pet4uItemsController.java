@@ -101,7 +101,8 @@ public class Pet4uItemsController {
                 if (camelotItemsRowByRow.containsKey(camelotVersionAltercode)) {
                     Item camelotItem = camelotItemsRowByRow.get(camelotVersionAltercode);
                     Item pet4uItem = pet4uItemsEntry.getValue();
-                    if (!pet4uItem.getPosition().equals(camelotItem.getPosition())) {
+                    String c_position = "C-"+camelotItem.getPosition();
+                    if (!pet4uItem.getPosition().equals(c_position)) {
                         ArrayList<String> diff = new ArrayList<>();
                         diff.add(pet4uItem.getCode());
                         diff.add(pet4uItem.getDescription());
