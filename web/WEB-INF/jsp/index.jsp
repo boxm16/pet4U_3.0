@@ -54,6 +54,9 @@
                 <hr>
                 <h1><a href='itemsFromCamelot.htm'>Pet4U: All Items From Camelot</a></h1>
                 <hr>
+
+                <h1><a href='camelotItemsWithPossitionDifference.htm'>Show Camelot Items With Position`s Difference</a></h1>
+                <hr>
                 <a href="weightItems.htm"><h1>Show Items With Weight</h1></a>
                 <hr>
                 <a href="downloadPet4UExcelData.htm"><h1>Download Pet4u Data In Excel Format</h1></a>

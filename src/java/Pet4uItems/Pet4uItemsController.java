@@ -84,6 +84,39 @@ public class Pet4uItemsController {
         return "/pet4uItems/itemsFromCamelot";
     }
 
+    @RequestMapping(value = "camelotItemsWithPossitionDifference")
+    public String camelotItemsWithPossitionDifference(ModelMap modelMap) {
+        ArrayList<ArrayList<String>> differences = new ArrayList();
+
+        LinkedHashMap<String, Item> pet4uItems = pet4uItemsDao.getAllItems();
+        LinkedHashMap<String, Item> camelotItemsRowByRow = camelotItemsOfInterestDao.getCamelotItemsRowByRow();
+
+        for (Map.Entry<String, Item> pet4uItemsEntry : pet4uItems.entrySet()) {
+            ArrayList<AltercodeContainer> altercodes = pet4uItemsEntry.getValue().getAltercodes();
+            for (AltercodeContainer altercode : altercodes) {
+                String camelotVersionAltercode = altercode.getAltercode();
+                if (altercode.getAltercode().contains("-WE")) {
+                    camelotVersionAltercode = altercode.getAltercode().replace("-WE", "");
+                }
+                if (camelotItemsRowByRow.containsKey(camelotVersionAltercode)) {
+                    Item camelotItem = camelotItemsRowByRow.get(camelotVersionAltercode);
+                    Item pet4uItem = pet4uItemsEntry.getValue();
+                    if (pet4uItem.getPosition().equals(camelotItem.getPosition())) {
+                        ArrayList<String> diff = new ArrayList<>();
+                        diff.add(pet4uItem.getCode());
+                        diff.add(pet4uItem.getDescription());
+                        diff.add(pet4uItem.getPosition());
+                        diff.add(camelotItem.getPosition());
+                        differences.add(diff);
+                        break;
+                    }
+                }
+            }
+        }
+        modelMap.addAttribute("differences", differences);
+        return "/pet4uItems/camelotItemsWithPossitionDifference";
+    }
+
     @RequestMapping(value = "weightItems")
     public String weightItems(ModelMap modelMap) {
 
