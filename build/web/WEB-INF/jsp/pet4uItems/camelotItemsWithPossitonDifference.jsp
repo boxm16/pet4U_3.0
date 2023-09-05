@@ -47,6 +47,9 @@
                     <th>
                         Camelot Position
                     </th>
+                    <th>
+                        Camelot Stock
+                    </th>
                 </tr>
             </thead>
             <tbody>
