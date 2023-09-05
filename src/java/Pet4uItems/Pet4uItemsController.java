@@ -103,7 +103,7 @@ public class Pet4uItemsController {
                     Item pet4uItem = pet4uItemsEntry.getValue();
                     String c_position = "C-" + camelotItem.getPosition();
                     if (pet4uItem.getPosition().contains("C-")) {
-                        int q = Integer.parseInt(camelotItem.getQuantity());
+                        Double q = Double.parseDouble(camelotItem.getQuantity());
                         if (q > 0) {
                             if (!pet4uItem.getPosition().equals(c_position)) {
 
