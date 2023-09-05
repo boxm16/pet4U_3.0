@@ -107,7 +107,7 @@ public class Pet4uItemsController {
                         diff.add(pet4uItem.getCode());
                         diff.add(pet4uItem.getDescription());
                         diff.add(pet4uItem.getPosition());
-                        diff.add(camelotItem.getPosition());
+                        diff.add(c_position);
                         differences.add(diff);
                         break;
                     }
