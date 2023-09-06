@@ -580,7 +580,7 @@ public class TechManDao {
         }
     }
 
-    String createPet4uItemStateDatabaseTables() {
+   public String createPet4uItemStateDatabaseTables() {
         String query = "CREATE TABLE item_state("
                 + "item_code VARCHAR (100) NOT NULL, "
                 + "state VARCHAR (30)  NULL) "
@@ -600,7 +600,7 @@ public class TechManDao {
         }
     }
 
-    String deletePet4uItemStateDatabaseTables() {
+    public String deletePet4uItemStateDatabaseTables() {
         String query = "DROP TABLE item_state";
 
         try {

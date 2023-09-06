@@ -2,6 +2,7 @@ package Service;
 
 import CamelotItemsOfInterest.CamelotItemsOfInterestController;
 import CamelotItemsOfInterest.CamelotItemsOfInterestDao;
+import Pet4uItems.Pet4uItemsController;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Timer;
@@ -58,6 +59,8 @@ public class Scheduler {
 
                             CamelotItemsOfInterestController camelotItemsOfInteresController = new CamelotItemsOfInterestController();
                             camelotItemsOfInteresController.addSnapshot();
+                            Pet4uItemsController pet4uItemsController=new Pet4uItemsController();
+                            pet4uItemsController.updateItemsState();
                             StaticsDispatcher.setLastCamelotSnapshotDate(nowDate.toString());
                         }
 

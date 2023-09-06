@@ -4,11 +4,14 @@ import BasicModel.AltercodeContainer;
 import BasicModel.Item;
 import CamelotItemsOfInterest.CamelotItemOfInterest;
 import Service.DatabaseConnectionFactory;
+import TechMan.TechManDao;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.stereotype.Repository;
@@ -209,6 +212,50 @@ public class Pet4uItemsDao {
             Logger.getLogger(Pet4uItemsDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return items;
+    }
+
+    String updateItemsState(LinkedHashMap<String, Item> pet4uAllItems) {
+
+        TechManDao techManDao = new TechManDao();
+        techManDao.deletePet4uItemStateDatabaseTables();
+        techManDao.createPet4uItemStateDatabaseTables();
+
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            Connection connection = databaseConnectionFactory.getMySQLConnection();
+
+            connection.setAutoCommit(false);
+            PreparedStatement incertionPreparedStatement = connection.prepareStatement("INSERT INTO delivery_title (id, number,supplier, note) VALUES(?,?,?,?);");
+
+            System.out.println("Starting INSERTION: ....");
+
+            for (Map.Entry< String, Item> itemEntry : pet4uAllItems.entrySet()) {
+
+                incertionPreparedStatement.setString(1, itemEntry.getValue().getCode());
+                incertionPreparedStatement.setString(2, itemEntry.getValue().getState());
+
+                incertionPreparedStatement.addBatch();
+
+            }
+
+            //Executing the batch
+            incertionPreparedStatement.executeBatch();
+
+            System.out.println(" Batch Insertion: DONE");
+
+            //Saving the changes
+            connection.commit();
+            //  deleteTripPeriodPreparedStatement.close();
+            // deleteTripVoucherPreparedStatement.close();
+            incertionPreparedStatement.close();
+
+            connection.close();
+            return "";
+        } catch (SQLException ex) {
+            Logger.getLogger(Pet4uItemsDao.class.getName()).log(Level.SEVERE, null, ex);
+
+            return ex.getMessage();
+        }
     }
 
 }

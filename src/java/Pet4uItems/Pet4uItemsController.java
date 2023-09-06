@@ -161,4 +161,11 @@ public class Pet4uItemsController {
         return "/pet4uItems/pet4uItemsWithPosition";
     }
 
+    public void updateItemsState() {
+        Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
+
+        LinkedHashMap<String, Item> pet4uAllItems = pet4uItemsDao.getAllItems();
+        pet4uItemsDao.updateItemsState(pet4uAllItems);
+    }
+
 }
