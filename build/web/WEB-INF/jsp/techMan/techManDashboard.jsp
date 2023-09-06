@@ -93,6 +93,15 @@
         <a href='deleteStockManagementDatabaseTables.htm'><h1>Delete Stock Management Database Tables</h1> </a>
         <br>
 
+        <hr>
+        <h1> ${pet4uItemStateTableCreationResult} </h1>
+        <a href='createPet4uItemStateDatabaseTables.htm'><h1>Create Pet4u Item State Database Tables</h1> </a>
+        <br>
+        <h1> ${pet4uItemStateTableDeletionResult} </h1>
+        <a href='deletePet4uItemStateDatabaseTables.htm'><h1>Delete  Pet4u Item State Database Tables</h1> </a>
+        <br>
+
+
 
 
 
