@@ -224,7 +224,7 @@ public class Pet4uItemsDao {
             Connection connection = databaseConnectionFactory.getMySQLConnection();
 
             connection.setAutoCommit(false);
-            PreparedStatement incertionPreparedStatement = connection.prepareStatement("INSERT INTO delivery_title (id, number,supplier, note) VALUES(?,?,?,?);");
+            PreparedStatement incertionPreparedStatement = connection.prepareStatement("INSERT INTO item_state (item_code, state ) VALUES(?,?);");
 
             System.out.println("Starting INSERTION: ....");
 
