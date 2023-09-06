@@ -41,6 +41,8 @@
                 <a href="dayStockShortageAlert.htm"><h1 style="color: green">Day Stock Shortage Alert</h1></a>
                 <hr>
                 <a href="suppliersAndStockDashboard.htm"><h1 style="color: #3059D8">Suppliers And Stock Dashboard</h1></a>
+                <hr>
+                <a href="itemsStateUpdates.htm"><h1 style="color: #3059D8">Show Items State Updates</h1></a>
 
                 <hr><hr><hr>
                 <hr>

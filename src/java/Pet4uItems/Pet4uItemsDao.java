@@ -297,4 +297,28 @@ public class Pet4uItemsDao {
         }
     }
 
+    LinkedHashMap<String, String> getItemsStateSnapshot() {
+        LinkedHashMap<String, String> itemsStateSnapshot = new LinkedHashMap<>();
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+        Connection connection = databaseConnectionFactory.getMySQLConnection();
+
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("select * from item_state;");
+
+            while (resultSet.next()) {
+                String code = resultSet.getString("item_code");
+                String state = resultSet.getString("state");
+
+                itemsStateSnapshot.put(code, state);
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Pet4uItemsDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return itemsStateSnapshot;
+    }
+
 }

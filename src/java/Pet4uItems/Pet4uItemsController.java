@@ -162,10 +162,30 @@ public class Pet4uItemsController {
     }
 
     public void updateItemsState() {
-        Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
+
+        LinkedHashMap<String, Item> pet4uAllItems = this.pet4uItemsDao.getAllItems();
+        pet4uItemsDao.updateItemsState(pet4uAllItems);
+    }
+
+    @RequestMapping(value = "itemsStateUpdates")
+    public String itemsStateUpdates(ModelMap modelMap) {
+
+        ArrayList<Item> diff = new ArrayList<>();
 
         LinkedHashMap<String, Item> pet4uAllItems = pet4uItemsDao.getAllItems();
-        pet4uItemsDao.updateItemsState(pet4uAllItems);
+        LinkedHashMap<String, String> itemsStateSnapshotFromDB = pet4uItemsDao.getItemsStateSnapshot();
+
+        for (Map.Entry<String, Item> pet4uAllItemsEntry : pet4uAllItems.entrySet()) {
+            Item item = pet4uAllItemsEntry.getValue();
+            String nowState = item.getState();
+            String beforeState = itemsStateSnapshotFromDB.get(pet4uAllItemsEntry.getKey());
+            if (!nowState.equals(beforeState)) {
+                item.setSupplier(beforeState);//i use here Supplier, becouse i dont want to add new field
+                diff.add(item);
+            }
+        }
+        modelMap.addAttribute("diff", diff);
+        return "/pet4uItems/itemsStateUpdates";
     }
 
 }
