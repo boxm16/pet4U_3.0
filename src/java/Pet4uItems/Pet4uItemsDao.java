@@ -216,9 +216,8 @@ public class Pet4uItemsDao {
 
     String updateItemsState(LinkedHashMap<String, Item> pet4uAllItems) {
 
-        TechManDao techManDao = new TechManDao();
-        techManDao.deletePet4uItemStateDatabaseTables();
-        techManDao.createPet4uItemStateDatabaseTables();
+        deletePet4uItemStateDatabaseTables();
+        createPet4uItemStateDatabaseTables();
 
         try {
             DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
@@ -255,6 +254,46 @@ public class Pet4uItemsDao {
             Logger.getLogger(Pet4uItemsDao.class.getName()).log(Level.SEVERE, null, ex);
 
             return ex.getMessage();
+        }
+    }
+
+    String createPet4uItemStateDatabaseTables() {
+        String query = "CREATE TABLE item_state("
+                + "item_code VARCHAR (100) NOT NULL, "
+                + "state VARCHAR (30)  NULL) "
+                + "ENGINE = InnoDB "
+                + "DEFAULT CHARACTER SET = utf8;";
+
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+
+            Connection connection = databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+            statement.close();
+            connection.close();
+            return "Table 'item_state' created succesfully";
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return "Table 'item_state' could not be created:" + ex;
+        }
+    }
+
+    public String deletePet4uItemStateDatabaseTables() {
+        String query = "DROP TABLE item_state";
+
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+
+            Connection connection = databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+            statement.close();
+            connection.close();
+            return "Table 'item_state' deleted succesfully";
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return "Table 'item_state' could not be deleted:" + ex;
         }
     }
 
