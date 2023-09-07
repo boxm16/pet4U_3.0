@@ -170,7 +170,7 @@ public class Pet4uItemsController {
     @RequestMapping(value = "itemsStateUpdates")
     public String itemsStateUpdates(ModelMap modelMap) {
 
-        ArrayList<Item> diff = new ArrayList<>();
+        ArrayList<Item> difference = new ArrayList<>();
 
         LinkedHashMap<String, Item> pet4uAllItems = pet4uItemsDao.getAllItems();
         LinkedHashMap<String, String> itemsStateSnapshotFromDB = pet4uItemsDao.getItemsStateSnapshot();
@@ -181,10 +181,10 @@ public class Pet4uItemsController {
             String beforeState = itemsStateSnapshotFromDB.get(pet4uAllItemsEntry.getKey());
             if (!nowState.equals(beforeState)) {
                 item.setSupplier(beforeState);//i use here Supplier, becouse i dont want to add new field
-                diff.add(item);
+                difference.add(item);
             }
         }
-        modelMap.addAttribute("diff", diff);
+        modelMap.addAttribute("difference", difference);
         return "/pet4uItems/itemsStateUpdates";
     }
 
