@@ -179,6 +179,10 @@ public class Pet4uItemsController {
             Item item = pet4uAllItemsEntry.getValue();
             String nowState = item.getState();
             String beforeState = itemsStateSnapshotFromDB.get(pet4uAllItemsEntry.getKey());
+            if (beforeState == null) {
+                System.out.println("Mew Code Here???" + pet4uAllItemsEntry.getKey());
+                beforeState = "";
+            }
             if (!nowState.equals(beforeState)) {
                 item.setSupplier(beforeState);//i use here Supplier, becouse i dont want to add new field
                 difference.add(item);
