@@ -39,17 +39,18 @@
                         Code
                     </th>
                     <th>
+                        Position
+                    </th>
+                    <th>
                         Description
                     </th>
                     <th>
-                        Pet4U Position
+                        Previous State
                     </th>
                     <th>
-                        Camelot Position
+                        Now State
                     </th>
-                    <th>
-                        Camelot Stock
-                    </th>
+
                 </tr>
             </thead>
             <tbody>
@@ -64,6 +65,10 @@
                         out.println("</td>");
 
                         out.println("<td>");
+                        out.println(item.getPosition());
+                        out.println("</td>");
+
+                        out.println("<td>");
                         out.println(item.getDescription());
                         out.println("</td>");
 
@@ -74,7 +79,6 @@
                         out.println("<td>");
                         out.println(item.getSupplier());
                         out.println("</td>");
-
 
                         out.println("</tr>");
                     }
