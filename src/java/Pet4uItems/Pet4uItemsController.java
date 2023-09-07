@@ -162,8 +162,8 @@ public class Pet4uItemsController {
     }
 
     public void updateItemsState() {
-
-        LinkedHashMap<String, Item> pet4uAllItems = this.pet4uItemsDao.getAllItems();
+        Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
+        LinkedHashMap<String, Item> pet4uAllItems = pet4uItemsDao.getAllItems();
         pet4uItemsDao.updateItemsState(pet4uAllItems);
     }
 
