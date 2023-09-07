@@ -50,6 +50,10 @@
                     <th>
                         Now State
                     </th>
+                    <th>
+                        Stock
+                    </th>
+
 
                 </tr>
             </thead>
@@ -78,6 +82,10 @@
 
                         out.println("<td>");
                         out.println(item.getSupplier());
+                        out.println("</td>");
+
+                        out.println("<td>");
+                        out.println(item.getQunatityAsPieces());
                         out.println("</td>");
 
                         out.println("</tr>");
