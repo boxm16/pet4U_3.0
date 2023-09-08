@@ -192,4 +192,13 @@ public class Pet4uItemsController {
         return "/pet4uItems/itemsStateUpdates";
     }
 
+    @RequestMapping(value = "prosfores")
+    public String prosfores(ModelMap modelMap) {
+
+        LinkedHashMap<String, Item> prosfores = pet4uItemsDao.getOnlyProsfores();
+
+        modelMap.addAttribute("prosfores", prosfores);
+        return "/pet4uItems/prosfores";
+    }
+
 }

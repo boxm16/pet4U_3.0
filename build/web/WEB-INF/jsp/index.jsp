@@ -43,6 +43,8 @@
                 <a href="suppliersAndStockDashboard.htm"><h1 style="color: #3059D8">Suppliers And Stock Dashboard</h1></a>
                 <hr>
                 <a href="itemsStateUpdates.htm"><h1 style="color: #3059D8">Show Items State Updates</h1></a>
+                <hr>
+                <a href="prosfores.htm"><h1 style="color: #3059D8">ΠΡΟΣΦΟΡΕΣ</h1></a>
 
                 <hr><hr><hr>
                 <hr>
