@@ -57,7 +57,7 @@ public class InventoryController {
 
     @RequestMapping(value = "showInventories")
     public String showInventories(ModelMap model) {
-
+        model.addAttribute("title", "Active Inventories Display");
         ArrayList<InventoryItem> inventories = this.inventoryDao.getAllActiveInventories();
 
         System.out.println("invenotry size" + inventories.size());
@@ -140,5 +140,32 @@ public class InventoryController {
         ArrayList<String> itemsIdsArray = createItemsIdsArray(itemsIds);
         String result = this.inventoryDao.archivizeItems(itemsIdsArray);
         return "redirect:showInventories.htm";
+    }
+
+    @RequestMapping(value = "showArchivizedInventories")
+    public String showArchivizedInventories(ModelMap model) {
+        model.addAttribute("title", "Archivized Inventories Display");
+
+        ArrayList<InventoryItem> inventories = this.inventoryDao.getAllArchivizedInventories();
+
+        System.out.println("invenotry size" + inventories.size());
+        LinkedHashMap<String, Item> pet4UItems = this.inventoryDao.getpet4UItemsRowByRow();
+        System.out.println("row ba row  size" + pet4UItems.size());
+        for (InventoryItem inventoryItem : inventories) {
+            System.out.println("ITETM:" + inventoryItem.getDescription());
+            String altercode = inventoryItem.getCode();
+
+            Item pet4uItem = pet4UItems.get(altercode);
+
+            if (pet4uItem == null) {
+                System.out.println("Pet4uItem  not present in the lists from microsoft db");
+            }
+            inventoryItem.setCode(pet4uItem.getCode());
+            inventoryItem.setDescription(pet4uItem.getDescription());
+            inventoryItem.setPosition(pet4uItem.getPosition());
+            inventoryItem.setState(pet4uItem.getState());
+            model.addAttribute("inventories", inventories);
+        }
+        return "inventory/inventoriesDisplay";
     }
 }

@@ -32,7 +32,7 @@
     <body>
     <center>
         <h1><a href="index.htm">INDEX</a></h1>
-        <h1>Inventories Display</h1>
+        <h1>${title}</h1>
         <hr>
 
         <table>
@@ -133,6 +133,8 @@
         <a href="#" onclick="requestRouter('printMode.htm')"><h4>Print Mode</h4></a>
         <hr><hr><hr><hr><hr><hr><hr><hr><hr><hr>
         <a href="#" onclick="requestRouter('archivizeItems.htm')"><h4>Archivize Selected Items</h4></a>
+        <hr><hr><hr><hr><hr><hr><hr><hr><hr><hr>
+        <a href="#" onclick="requestRouter('showArchivizedInventories.htm')"><h4>Show Archivized Inventories</h4></a>
 
     </center>
 

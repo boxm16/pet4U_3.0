@@ -418,4 +418,69 @@ public class InventoryDao {
         return "Update Completed";
     }
 
+    ArrayList<InventoryItem> getAllArchivizedInventories() {
+
+        ArrayList<InventoryItem> inventories = new ArrayList<>();
+
+        String sql = "SELECT * FROM inventory WHERE state='archive'";
+        ResultSet resultSet;
+
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            Connection connection = databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+
+            resultSet = statement.executeQuery(sql);
+            while (resultSet.next()) {
+                String state = resultSet.getString("state");
+
+                InventoryItem inventoryItem = new InventoryItem();
+                int id = resultSet.getInt("id");
+                inventoryItem.setId(id);
+
+                String itemCode = resultSet.getString("item_code");
+                inventoryItem.setCode(itemCode.trim());
+
+                inventoryItem.setDateStampString(resultSet.getString("date_stamp"));
+                Date date = null;
+                try {
+                    date = new SimpleDateFormat("yyyy-MM-dd").parse(resultSet.getString("date_stamp"));
+                } catch (ParseException ex) {
+                    Logger.getLogger(InventoryDao.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                inventoryItem.setDateStamp(date);
+
+                inventoryItem.setTimeStampString(resultSet.getString("time_stamp"));
+
+                SimpleDateFormat dateTimeFormatter = new SimpleDateFormat("HH:mm:ss");
+
+                Date dateTime = null;
+                try {
+                    dateTime = dateTimeFormatter.parse(resultSet.getString("time_stamp"));
+
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+                inventoryItem.setTimeStamp(dateTime);
+                inventoryItem.setSystemStock(resultSet.getString("system_stock"));
+                inventoryItem.setRealStock(resultSet.getString("real_stock"));
+                inventoryItem.setNote(resultSet.getString("note"));
+
+                inventoryItem.setInventarizationState(state);
+                inventories.add(inventoryItem);
+            }
+
+            resultSet.close();
+            statement.close();
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(InventoryDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return inventories;
+
+    }
+
 }
