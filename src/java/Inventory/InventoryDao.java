@@ -322,7 +322,7 @@ public class InventoryDao {
             while (resultSet.next()) {
 
                 String state = resultSet.getString("state");
-                if (state == null) {
+               
 
                     InventoryItem inventoryItem = new InventoryItem();
                     int id = resultSet.getInt("id");
@@ -359,7 +359,7 @@ public class InventoryDao {
 
                     inventoryItem.setInventarizationState(state);
                     inventories.add(inventoryItem);
-                }
+                
 
             }
             resultSet.close();
