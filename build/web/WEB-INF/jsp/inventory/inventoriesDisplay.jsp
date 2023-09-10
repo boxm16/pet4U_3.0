@@ -142,7 +142,7 @@
 
         ////--------------------
         function requestRouter(requestTarget) {
-            if (requestTarget == "printMode.htm") {
+            if (requestTarget == "printMode.htm"||requestTarget == "showArchivizedInventories.htm") {
                 form.target = "_blank";
             } else {
 
