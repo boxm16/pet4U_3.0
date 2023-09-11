@@ -24,6 +24,7 @@ public class BestBeforeStatement {
     public String alert;
     public String note;
     public String alertColor;
+    public String position;
 
     public String getAltercode() {
         return altercode;
@@ -90,6 +91,14 @@ public class BestBeforeStatement {
             return "";
         }
 
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
     }
 
 }

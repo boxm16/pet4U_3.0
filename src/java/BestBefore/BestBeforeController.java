@@ -67,6 +67,7 @@ public class BestBeforeController {
                 System.out.println("Pet4uItem  not present in the lists from microsoft db");
             }
             statment.setDescription(pet4uItem.getDescription());
+            statment.setPosition(pet4uItem.getPosition());
             modelMap.addAttribute("bestBeforeStatements", bestBeforeStatements);
         }
         return "bestBefore/bestBeforeDashboard";
