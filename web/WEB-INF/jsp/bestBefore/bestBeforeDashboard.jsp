@@ -40,6 +40,7 @@
             <thead>
             <th>ID</th>
             <th>Altercode</th>
+            <th>Position</th>
             <th>Description</th>
             <th>Alert Date</th>
             <th>Best Before Date</th>
@@ -57,6 +58,10 @@
 
                     out.println("<td>");
                     out.println(statement.getId());
+                    out.println("</td>");
+
+                    out.println("<td>");
+                    out.println(statement.getAltercode());
                     out.println("</td>");
 
                     out.println("<td>");
