@@ -65,7 +65,7 @@
                     out.println("</td>");
 
                     out.println("<td>");
-                    out.println(statement.getAltercode());
+                    out.println(statement.getPosition());
                     out.println("</td>");
 
                     out.println("<td>");
