@@ -580,10 +580,11 @@ public class TechManDao {
         }
     }
 
-   public String createPet4uItemStateDatabaseTables() {
+    public String createPet4uItemStateDatabaseTables() {
         String query = "CREATE TABLE item_state("
                 + "item_code VARCHAR (100) NOT NULL, "
-                + "state VARCHAR (30)  NULL) "
+                + "date_stamp DATE NOT NULL, "
+                + "item_stock VARCHAR (30) NOT NULL) "
                 + "ENGINE = InnoDB "
                 + "DEFAULT CHARACTER SET = utf8;";
 
