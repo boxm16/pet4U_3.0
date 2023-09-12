@@ -54,16 +54,14 @@ public class Scheduler {
                             //do nothing
 
                             System.out.println("Last Snapshot was taken  today. No need for insertion");
-
+                            System.out.println("Going For Pet4U Snapshοt Insertion");
+                            Pet4uItemsController pet4uItemsController = new Pet4uItemsController();
+                            pet4uItemsController.updateItemsState();
                         } else {
                             System.out.println("Going For Camelot Snapshοt Insertion");
 
                             CamelotItemsOfInterestController camelotItemsOfInteresController = new CamelotItemsOfInterestController();
                             camelotItemsOfInteresController.addSnapshot();
-                            
-                            System.out.println("Going For Pet4U Snapshοt Insertion");
-                            Pet4uItemsController pet4uItemsController = new Pet4uItemsController();
-                            pet4uItemsController.updateItemsState();
 
                             StaticsDispatcher.setLastCamelotSnapshotDate(nowDate.toString());
                         }

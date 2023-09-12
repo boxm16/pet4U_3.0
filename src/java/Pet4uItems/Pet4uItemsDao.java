@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -214,25 +215,23 @@ public class Pet4uItemsDao {
         return items;
     }
 
-    String updateItemsState(LinkedHashMap<String, Item> pet4uAllItems) {
-
-        deletePet4uItemStateDatabaseTables();
-        createPet4uItemStateDatabaseTables();
+    public String insertPet4uItemsSnapshot(LinkedHashMap<String, Item> pet4uAllItems) {
 
         try {
             DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
             Connection connection = databaseConnectionFactory.getMySQLConnection();
 
             connection.setAutoCommit(false);
-            PreparedStatement incertionPreparedStatement = connection.prepareStatement("INSERT INTO item_state (item_code, state ) VALUES(?,?);");
+            PreparedStatement incertionPreparedStatement = connection.prepareStatement("INSERT INTO item_state (item_code, date_stam, state, item_stock ) VALUES(?,?,?,?);");
 
             System.out.println("Starting INSERTION: ....");
 
             for (Map.Entry< String, Item> itemEntry : pet4uAllItems.entrySet()) {
-
+                LocalDate nowDate = LocalDate.now();
                 incertionPreparedStatement.setString(1, itemEntry.getValue().getCode());
-                incertionPreparedStatement.setString(2, itemEntry.getValue().getState());
-
+                incertionPreparedStatement.setString(2, nowDate.toString());
+                incertionPreparedStatement.setString(3, itemEntry.getValue().getState());
+                incertionPreparedStatement.setString(4, itemEntry.getValue().getQuantity());
                 incertionPreparedStatement.addBatch();
 
             }
@@ -320,8 +319,7 @@ public class Pet4uItemsDao {
         }
         return itemsStateSnapshot;
     }
-    
-    
+
     public LinkedHashMap<String, Item> getOnlyProsfores() {
         LinkedHashMap<String, Item> items = new LinkedHashMap<>();
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
