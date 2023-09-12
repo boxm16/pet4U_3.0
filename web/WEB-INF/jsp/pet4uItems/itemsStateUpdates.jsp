@@ -77,11 +77,11 @@
                         out.println("</td>");
 
                         out.println("<td>");
-                        out.println(item.getState());
+                        out.println(item.getSupplier());
                         out.println("</td>");
 
                         out.println("<td>");
-                        out.println(item.getSupplier());
+                        out.println(item.getState());
                         out.println("</td>");
 
                         out.println("<td>");

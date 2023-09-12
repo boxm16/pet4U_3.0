@@ -180,7 +180,7 @@ public class Pet4uItemsController {
             String nowState = item.getState();
             String beforeState = itemsStateSnapshotFromDB.get(pet4uAllItemsEntry.getKey());
             if (beforeState == null) {
-                System.out.println("Mew Code Here???" + pet4uAllItemsEntry.getKey());
+                System.out.println("New Code Here???" + pet4uAllItemsEntry.getKey());
                 beforeState = "";
             }
             if (!nowState.equals(beforeState)) {
