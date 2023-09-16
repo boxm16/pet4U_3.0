@@ -200,5 +200,14 @@ public class Pet4uItemsController {
         modelMap.addAttribute("prosfores", prosfores);
         return "/pet4uItems/prosfores";
     }
+    
+     @RequestMapping(value = "pet4uItemsOffSite")
+    public String pet4uItemsOffSite(ModelMap modelMap) {
+
+        LinkedHashMap<String, Item> items = pet4uItemsDao.getOffSiteItems();
+
+        modelMap.addAttribute("items", items);
+        return "/pet4uItems/pet4uItemsOffSite";
+    }
 
 }
