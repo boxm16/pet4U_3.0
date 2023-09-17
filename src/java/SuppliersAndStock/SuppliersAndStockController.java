@@ -94,7 +94,7 @@ public class SuppliersAndStockController {
             ModelMap modelMap) {
 
         Supplier supplier = supplierDao.getSupplier(supplierId);
-       
+
         SalesControllerX salesControllerX = new SalesControllerX();
         SoldItem soldItem = salesControllerX.getItemSales(altercode);
         SuppliersItem item = new SuppliersItem();
@@ -117,7 +117,7 @@ public class SuppliersAndStockController {
             @RequestParam(name = "orderUnitCapacity") String orderUnitCapacity,
             @RequestParam(name = "note") String note,
             ModelMap modelMap) {
-        System.out.println("SUPPLIER ID"+supplierId);
+        System.out.println("SUPPLIER ID" + supplierId);
 
         Supplier supplier = supplierDao.getSupplier(supplierId);
 
@@ -249,5 +249,15 @@ public class SuppliersAndStockController {
         idsArray.addAll(Arrays.asList(ids));
         return idsArray;
 
+    }
+
+    @RequestMapping(value = "deleteSupplierItem", method = RequestMethod.GET)
+    public String deleteSupplierItem(@RequestParam(name = "supplierId") String supplierId,
+            @RequestParam(name = "itemCode") String code,
+            ModelMap modelMap) {
+
+        String result = supplierDao.deleteItemOfSupplier(supplierId, code);
+
+        return "redirect: stockManagment.htm?supplierId=" + supplierId + "";
     }
 }

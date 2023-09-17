@@ -26,7 +26,7 @@
         <h1>Edit Supplier`s Item </h1>
 
         <form action="editItemOfSupplier.htm" method="POST" >
-            <input hidden name="supplierId" type="text" value="${item.supplierId}">
+            <input hidden name="supplierId" type="text" value="${supplier.id}">
             <h2><h2><table>
                         <tr>
                             <td>Item Code</td>
@@ -76,7 +76,8 @@
                     <button type="submit" style="width:300px; height :60px; background-color: yellowgreen"><h1>Edit Item</h1></button>
                 </h2>
         </form>
-
+        <hr><hr>
+        <a href="deleteSupplierItem.htm?supplierId=${supplier.id}&itemCode=${item.code}" class="btn btn-danger" role="button"><h1>DELETE ITEM</h1></a>
     </center>
 </body>
 </html>

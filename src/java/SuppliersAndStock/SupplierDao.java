@@ -124,7 +124,7 @@ public class SupplierDao {
 
     LinkedHashMap<String, SuppliersItem> getAllItemsOfSupplier(String supplierId) {
         LinkedHashMap<String, SuppliersItem> items = new LinkedHashMap<>();
-        String sql = "SELECT * FROM stock_management WHERE supplier_id="+supplierId+";";
+        String sql = "SELECT * FROM stock_management WHERE supplier_id=" + supplierId + ";";
         ResultSet resultSet;
 
         try {
@@ -312,5 +312,19 @@ public class SupplierDao {
             Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return items;
+    }
+
+    String deleteItemOfSupplier(String supplierId, String code) {
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            PreparedStatement deletionStatement = connection.prepareStatement("DELETE FROM suppliers WHERE supplier_id=" + supplierId + " AND item_code=" + code + "");
+
+            deletionStatement.execute();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
+            return ex.getMessage();
+        }
+        return "Item Deleted Successfully";
     }
 }
