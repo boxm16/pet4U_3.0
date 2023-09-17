@@ -124,7 +124,7 @@ public class SupplierDao {
 
     LinkedHashMap<String, SuppliersItem> getAllItemsOfSupplier(String supplierId) {
         LinkedHashMap<String, SuppliersItem> items = new LinkedHashMap<>();
-        String sql = "SELECT * FROM stock_management;";
+        String sql = "SELECT * FROM stock_management WHERE supplier_id="+supplierId+";";
         ResultSet resultSet;
 
         try {
