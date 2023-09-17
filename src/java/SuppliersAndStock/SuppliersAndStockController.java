@@ -258,6 +258,6 @@ public class SuppliersAndStockController {
 
         String result = supplierDao.deleteItemOfSupplier(supplierId, code);
 
-        return "redirect: stockManagment.htm?supplierId=" + supplierId + "";
+        return "redirect:stockManagment.htm?supplierId=" + supplierId + "";
     }
 }
