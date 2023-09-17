@@ -23,7 +23,7 @@
         <h1><a href="index.htm">INDEX</a></h1>
         <h1 style="background-color: ${resultColor}">${result}</h1>
 
-        <h1>Edit Supplier`s Item </h1>
+        <h1>Edit Item Of Supplier: ${supplier.name}</h1>
 
         <form action="editItemOfSupplier.htm" method="POST" >
             <input hidden name="supplierId" type="text" value="${supplier.id}">
