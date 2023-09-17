@@ -104,6 +104,7 @@ public class SuppliersAndStockController {
         item.setShopsSupply(soldItem.getShopsSupply());
         item.setOrderUnit("item");
         item.setOrderUnitCapacity(1);
+         modelMap.addAttribute("sup", "ssssss");
         modelMap.addAttribute("supplier", supplier);
         modelMap.addAttribute("item", item);
         return "suppliersAndStock/addItemToSupplier";
