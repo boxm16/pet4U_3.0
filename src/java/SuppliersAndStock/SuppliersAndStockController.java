@@ -94,7 +94,7 @@ public class SuppliersAndStockController {
             ModelMap modelMap) {
 
         Supplier supplier = supplierDao.getSupplier(supplierId);
-        System.out.println("SUP:" + supplier.getId() + supplier.getName());
+
         SalesControllerX salesControllerX = new SalesControllerX();
         SoldItem soldItem = salesControllerX.getItemSales(altercode);
         SuppliersItem item = new SuppliersItem();
@@ -104,7 +104,7 @@ public class SuppliersAndStockController {
         item.setShopsSupply(soldItem.getShopsSupply());
         item.setOrderUnit("item");
         item.setOrderUnitCapacity(1);
-        modelMap.addAttribute("sup", "ssssss");
+
         modelMap.addAttribute("supplier", supplier);
         modelMap.addAttribute("item", item);
         return "suppliersAndStock/addItemToSupplier";
@@ -159,7 +159,7 @@ public class SuppliersAndStockController {
             @RequestParam(name = "code") String code,
             ModelMap model) {
         SuppliersItem item = supplierDao.getSuppliersItem(supplierId, code);
-
+        Supplier supplier = supplierDao.getSupplier(supplierId);
         SalesControllerX salesControllerX = new SalesControllerX();
         SoldItem soldItem = salesControllerX.getItemSales(code);
 
@@ -168,6 +168,7 @@ public class SuppliersAndStockController {
         item.setEshopSales(soldItem.getEshopSales());
         item.setShopsSupply(soldItem.getShopsSupply());
 
+        model.addAttribute("supplier", supplier);
         model.addAttribute("item", item);
         return "/suppliersAndStock/editSuppliersItem";
     }
