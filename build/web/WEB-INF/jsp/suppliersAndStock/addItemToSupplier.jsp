@@ -20,15 +20,15 @@
     </head>
     <body>
     <center>
-        ${item.supplierId}
+
         <h1><a href="index.htm">INDEX</a></h1>
-        <h1><a href="stockManagement.htm?supplierId=${item.supplierId}">GO BACK</a></h1>
+        <h1><a href="stockManagement.htm?supplierId=${supplier.id}">GO BACK</a></h1>
         <h1 style="background-color: ${resultColor}">${result}</h1>
 
         <h1>Add  Item To Supplier </h1>
 
         <form action="addItemToSupplier.htm" method="POST" >
-            <input hidden name="supplierId" type="text" value="${item.supplierId}">
+            <input hidden name="supplierId" type="text" value="${supplier.id}">
             <h2><h2><table>
                         <tr>
                             <td>Item Code</td>

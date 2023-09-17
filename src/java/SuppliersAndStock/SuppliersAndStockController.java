@@ -94,7 +94,7 @@ public class SuppliersAndStockController {
             ModelMap modelMap) {
 
         Supplier supplier = supplierDao.getSupplier(supplierId);
-        System.out.println("suppID=: "+supplier.getId());
+       
         SalesControllerX salesControllerX = new SalesControllerX();
         SoldItem soldItem = salesControllerX.getItemSales(altercode);
         SuppliersItem item = new SuppliersItem();
