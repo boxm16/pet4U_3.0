@@ -21,10 +21,11 @@
     <body>
     <center>
         <h1><a href="index.htm">INDEX</a></h1>
+        <h1><a href="href='stockManagement.htm?supplierId=${supplier.id}">Go BACK</a></h1>
         <h1 style="background-color: ${resultColor}">${result}</h1>
 
         <h1>Edit Item Of Supplier: ${supplier.name}</h1>
-        <h1>Edit Item Of Supplier: ${sup}</h1>
+
 
         <form action="editItemOfSupplier.htm" method="POST" >
             <input hidden name="supplierId" type="text" value="${supplier.id}">
@@ -78,7 +79,9 @@
                 </h2>
         </form>
         <hr>
-        ${supplier.id}
+        <hr>
+        <hr>
+        <hr>
         <hr>
         <a href="deleteSupplierItem.htm?supplierId=${supplier.id}&itemCode=${item.code}" class="btn btn-danger" role="button"><h1>DELETE ITEM</h1></a>
     </center>
