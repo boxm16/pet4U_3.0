@@ -94,7 +94,7 @@ public class SuppliersAndStockController {
             ModelMap modelMap) {
 
         Supplier supplier = supplierDao.getSupplier(supplierId);
-
+        System.out.println("SUP:" + supplier.getId() + supplier.getName());
         SalesControllerX salesControllerX = new SalesControllerX();
         SoldItem soldItem = salesControllerX.getItemSales(altercode);
         SuppliersItem item = new SuppliersItem();
@@ -104,7 +104,7 @@ public class SuppliersAndStockController {
         item.setShopsSupply(soldItem.getShopsSupply());
         item.setOrderUnit("item");
         item.setOrderUnitCapacity(1);
-         modelMap.addAttribute("sup", "ssssss");
+        modelMap.addAttribute("sup", "ssssss");
         modelMap.addAttribute("supplier", supplier);
         modelMap.addAttribute("item", item);
         return "suppliersAndStock/addItemToSupplier";
