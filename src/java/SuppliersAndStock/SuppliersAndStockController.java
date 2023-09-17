@@ -117,6 +117,7 @@ public class SuppliersAndStockController {
             @RequestParam(name = "orderUnitCapacity") String orderUnitCapacity,
             @RequestParam(name = "note") String note,
             ModelMap modelMap) {
+        System.out.println("SUPPLIER ID"+supplierId);
 
         Supplier supplier = supplierDao.getSupplier(supplierId);
 
