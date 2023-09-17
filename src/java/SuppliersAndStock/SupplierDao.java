@@ -317,7 +317,7 @@ public class SupplierDao {
     String deleteItemOfSupplier(String supplierId, String code) {
         try {
             Connection connection = this.databaseConnectionFactory.getMySQLConnection();
-            PreparedStatement deletionStatement = connection.prepareStatement("DELETE FROM stock_management WHERE supplier_id=" + supplierId + " AND item_code=" + code + "");
+            PreparedStatement deletionStatement = connection.prepareStatement("DELETE FROM stock_management WHERE supplier_id=" + supplierId + " AND item_code='" + code + "'");
 
             deletionStatement.execute();
 
