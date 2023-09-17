@@ -167,7 +167,7 @@ public class SuppliersAndStockController {
         item.setDescription(soldItem.getDescription());
         item.setEshopSales(soldItem.getEshopSales());
         item.setShopsSupply(soldItem.getShopsSupply());
-
+        System.out.println("SUOOO"+supplier.getName());
         model.addAttribute("supplier", supplier);
         model.addAttribute("item", item);
         return "/suppliersAndStock/editSuppliersItem";
