@@ -21,7 +21,7 @@
     <body>
     <center>
         <h1><a href="index.htm">INDEX</a></h1>
-        <h1><a href="href='stockManagement.htm?supplierId=${supplier.id}">Go BACK</a></h1>
+        <h1><a href="stockManagement.htm?supplierId=${supplier.id}">Go BACK</a></h1>
         <h1 style="background-color: ${resultColor}">${result}</h1>
 
         <h1>Edit Item Of Supplier: ${supplier.name}</h1>
