@@ -76,7 +76,9 @@
                     <button type="submit" style="width:300px; height :60px; background-color: yellowgreen"><h1>Edit Item</h1></button>
                 </h2>
         </form>
-        <hr><hr>
+        <hr>
+        ${supplier.id}
+        <hr>
         <a href="deleteSupplierItem.htm?supplierId=${supplier.id}&itemCode=${item.code}" class="btn btn-danger" role="button"><h1>DELETE ITEM</h1></a>
     </center>
 </body>
