@@ -57,6 +57,7 @@
                                 <tr>
                                     <th>ΚΩΔΙΚΟΣ</th>
                                     <th>Description</th>
+                                    <th>Position</th>
 
                                     <th>Six Months<br>Sales</th>
                                     <th>2 Week`s Sales</th>
@@ -97,6 +98,10 @@
 
                                     out.println("<td>");
                                     out.println(item.getDescription());
+                                    out.println("</td>");
+
+                                    out.println("<td>");
+                                    out.println(item.getPosition());
                                     out.println("</td>");
 
                                     out.println("<td>");

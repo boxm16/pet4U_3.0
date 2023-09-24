@@ -67,12 +67,31 @@ public class SuppliersAndStockController {
     @RequestMapping(value = "stockManagement")
     public String stockManagement(@RequestParam(name = "supplierId") String supplierId, ModelMap modelMap) {
         Supplier supplier = supplierDao.getSupplier(supplierId);
+        LinkedHashMap<String, SuppliersItem> supplierItemsForView = new LinkedHashMap<>();
 
-        LinkedHashMap<String, SuppliersItem> supplierItems = supplierDao.getAllItemsOfSupplier(supplierId);
+        LinkedHashMap<String, SuppliersItem> supplierItemsFromDatabase = supplierDao.getAllItemsOfSupplier(supplierId);
 
         SalesControllerX salesControllerX = new SalesControllerX();
         LinkedHashMap<String, SoldItem> sixMonthesSales = salesControllerX.getSixMonthesSales();
-        for (Map.Entry<String, SuppliersItem> supplierItemsEntrySet : supplierItems.entrySet()) {
+
+        for (Map.Entry<String, SoldItem> sixMonthesSalesEntrySet : sixMonthesSales.entrySet()) {
+            String key = sixMonthesSalesEntrySet.getKey();
+            SoldItem soldItem = sixMonthesSalesEntrySet.getValue();
+
+            SuppliersItem suppliersItem = supplierItemsFromDatabase.get(key);
+
+            suppliersItem.setDescription(soldItem.getDescription());
+            suppliersItem.setPosition(soldItem.getPosition());
+            suppliersItem.setEshopSales(soldItem.getEshopSales());
+            suppliersItem.setShopsSupply(soldItem.getShopsSupply());
+            suppliersItem.setQuantity(soldItem.getQuantity());
+
+            suppliersItem.setSupplierId(Integer.parseInt(supplierId));
+
+            supplierItemsForView.put(key, suppliersItem);
+        }
+
+        /* for (Map.Entry<String, SuppliersItem> supplierItemsEntrySet : supplierItems.entrySet()) {
             String key = supplierItemsEntrySet.getKey();
 
             SoldItem soldItem = sixMonthesSales.get(key);
@@ -82,9 +101,8 @@ public class SuppliersAndStockController {
             supplierItemsEntrySet.getValue().setQuantity(soldItem.getQuantity());
 
             supplierItemsEntrySet.getValue().setSupplierId(Integer.parseInt(supplierId));
-        }
-
-        modelMap.addAttribute("supplierItems", supplierItems);
+        }*/
+        modelMap.addAttribute("supplierItems", supplierItemsForView);
         modelMap.addAttribute("supplier", supplier);
         return "suppliersAndStock/stockManagement";
     }
