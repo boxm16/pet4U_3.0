@@ -57,7 +57,7 @@
                                 <tr>
                                     <th>ΚΩΔΙΚΟΣ</th>
                                     <th>Description</th>
-                                    <th>Position</th>
+                                    <th>Θεση</th>
 
                                     <th>Six Months<br>Sales</th>
                                     <th>2 Week`s Sales</th>
