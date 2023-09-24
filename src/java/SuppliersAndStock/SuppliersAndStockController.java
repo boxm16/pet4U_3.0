@@ -80,7 +80,7 @@ public class SuppliersAndStockController {
 
             SuppliersItem suppliersItem = supplierItemsFromDatabase.get(key);
             if (suppliersItem == null) {
-                System.out.println("NULL-"+key);
+                System.out.println("Not this supplier`s item - " + key);
             } else {
                 suppliersItem.setDescription(soldItem.getDescription());
                 suppliersItem.setPosition(soldItem.getPosition());
