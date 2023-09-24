@@ -79,16 +79,19 @@ public class SuppliersAndStockController {
             SoldItem soldItem = sixMonthesSalesEntrySet.getValue();
 
             SuppliersItem suppliersItem = supplierItemsFromDatabase.get(key);
+            if (suppliersItem == null) {
+                System.out.println("NULL-"+key);
+            } else {
+                suppliersItem.setDescription(soldItem.getDescription());
+                suppliersItem.setPosition(soldItem.getPosition());
+                suppliersItem.setEshopSales(soldItem.getEshopSales());
+                suppliersItem.setShopsSupply(soldItem.getShopsSupply());
+                suppliersItem.setQuantity(soldItem.getQuantity());
 
-            suppliersItem.setDescription(soldItem.getDescription());
-            suppliersItem.setPosition(soldItem.getPosition());
-            suppliersItem.setEshopSales(soldItem.getEshopSales());
-            suppliersItem.setShopsSupply(soldItem.getShopsSupply());
-            suppliersItem.setQuantity(soldItem.getQuantity());
+                suppliersItem.setSupplierId(Integer.parseInt(supplierId));
 
-            suppliersItem.setSupplierId(Integer.parseInt(supplierId));
-
-            supplierItemsForView.put(key, suppliersItem);
+                supplierItemsForView.put(key, suppliersItem);
+            }
         }
 
         /* for (Map.Entry<String, SuppliersItem> supplierItemsEntrySet : supplierItems.entrySet()) {
