@@ -13,7 +13,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Camelot Items Snapshots</title>
+        <title>Pet4U Item Snapshots</title>
         <style>
             table, th, td {
                 border: 1px solid ;
@@ -32,8 +32,7 @@
     <body>
     <center>
         <h1><a href="index.htm">INDEX</a></h1>
-        <h1>Camelot  Item Snapshot: ${code}</h1>
-        <h1><a href='camelotItemsOfOurInterestDashboard.htm'>Go Back To Dashboard</a></h1>
+        <h1>Pet4U Item Snapshot: ${code}</h1>
         <hr>
         <table>
             <th>Date Stamp</th>
