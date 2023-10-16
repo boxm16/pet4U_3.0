@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class Pet4uItemsController {
@@ -200,14 +201,23 @@ public class Pet4uItemsController {
         modelMap.addAttribute("prosfores", prosfores);
         return "/pet4uItems/prosfores";
     }
-    
-     @RequestMapping(value = "pet4uItemsOffSite")
+
+    @RequestMapping(value = "pet4uItemsOffSite")
     public String pet4uItemsOffSite(ModelMap modelMap) {
 
         LinkedHashMap<String, Item> items = pet4uItemsDao.getOffSiteItems();
 
         modelMap.addAttribute("items", items);
         return "/pet4uItems/pet4uItemsOffSite";
+    }
+
+    @RequestMapping(value = "pet4uItemSnapshots")
+    public String pet4uItemSnapshots(@RequestParam(name = "code") String code, ModelMap model) {
+
+        LinkedHashMap<String, Item> itemSnapshots = pet4uItemsDao.getItemSnapshots(code);
+        model.addAttribute("itemSnapshots", itemSnapshots);
+        model.addAttribute("code", code);
+        return "/pet4u/itemSnapshots";
     }
 
 }

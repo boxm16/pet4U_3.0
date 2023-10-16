@@ -416,4 +416,36 @@ public class Pet4uItemsDao {
         return items;
     }
 
+    LinkedHashMap<String, Item> getItemSnapshots(String code) {
+        LinkedHashMap<String, Item> itemSnapshots = new LinkedHashMap<>();
+
+        String sql = "SELECT * FROM item_state WHERE item_code='" + code + "' ORDER BY date_stamp;";
+        ResultSet resultSet;
+
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            Connection connection = databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            resultSet = statement.executeQuery(sql);
+            while (resultSet.next()) {
+                Item item = new Item();
+
+                String dateStamp = resultSet.getString("date_stamp");
+                String quantity = resultSet.getString("item_stock");
+                String state = resultSet.getString("state");
+                
+                item.setState(state);
+                item.setQuantity(quantity);
+                
+                itemSnapshots.put(dateStamp, item);
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Pet4uItemsDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return itemSnapshots;
+    }
+
 }
