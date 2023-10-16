@@ -217,7 +217,7 @@ public class Pet4uItemsController {
         LinkedHashMap<String, Item> itemSnapshots = pet4uItemsDao.getItemSnapshots(code);
         model.addAttribute("itemSnapshots", itemSnapshots);
         model.addAttribute("code", code);
-        return "/pet4u/itemSnapshots";
+        return "/pet4uItems/itemSnapshots";
     }
 
 }
