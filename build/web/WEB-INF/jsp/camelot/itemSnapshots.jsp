@@ -4,9 +4,7 @@
     Author     : Michail Sitmalidis
 --%>
 
-<%@page import="java.util.Map"%>
-<%@page import="BasicModel.Item"%>
-<%@page import="java.util.LinkedHashMap"%>
+<%@page import="CamelotItemsOfInterest.CamelotItemSnapshot"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -37,20 +35,14 @@
         <hr>
         <table>
             <th>Date Stamp</th>
-            <th>State</th>
             <th>Quantity</th>
                 <%
-                    LinkedHashMap<String, Item> itemSnapshots = (LinkedHashMap) request.getAttribute("itemSnapshots");
-                    for (Map.Entry<String, Item> itemSnapshotEntry : itemSnapshots.entrySet()) {
-                        Item itemSnapshot = itemSnapshotEntry.getValue();
+                    ArrayList<CamelotItemSnapshot> itemSnapshots = (ArrayList) request.getAttribute("itemSnapshots");
+                    for (CamelotItemSnapshot itemSnapshot : itemSnapshots) {
                         out.println("<tr>");
-
+                        
                         out.println("<td>");
-                        out.println(itemSnapshotEntry.getKey());
-                        out.println("</td>");
-
-                        out.println("<td>");
-                        out.println(itemSnapshot.getState());
+                        out.println(itemSnapshot.getDateStamp());
                         out.println("</td>");
 
                         out.println("<td>");
