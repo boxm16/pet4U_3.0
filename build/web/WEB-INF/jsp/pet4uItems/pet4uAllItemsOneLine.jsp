@@ -42,6 +42,8 @@
             <th>Description</th>
             <th>State</th>
             <th>Stock</th>
+            <th>Show  Snapshots</th>
+
 
             <tbody>
                 <%
@@ -85,6 +87,10 @@
 
                         out.println("<td>");
                         out.println(item.getQuantity());
+                        out.println("</td>");
+
+                        out.println("<td>");
+                        out.println("<a href='pet4uItemSnapshots.htm?code=" + item.getCode() + "' target='_blank'>Show  Snapshots</a>");
                         out.println("</td>");
 
                         out.println("</tr>");
