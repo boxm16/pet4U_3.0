@@ -107,6 +107,9 @@
                     <hr>
                     <a href="showItemSales.htm?altercode=${item.getCode()}" class="btn btn-warning btn-lg" role="button" aria-disabled="true"><h3>Show Item Sales</h3></a>
                     <hr>
+                    <a href="pet4uItemSnapshots.htm?code=${item.getCode()}" class="btn btn-warning btn-lg" role="button" aria-disabled="true"><h3>Show Item Snapshots</h3></a>
+                    <hr>
+
                 </center>
             </div>
             <div class=" col-sm-4">

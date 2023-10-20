@@ -303,4 +303,19 @@ public class TechManController {
         return "techMan/techManDashboard";
     }
 
+    @RequestMapping(value = "/createSixMonthsSalesByMonthDatabaseTables", method = RequestMethod.GET)
+    public String createSixMonthsSalesByMonthDatabaseTables(ModelMap modelMap) {
+        String result = techManDao.createSixMonthsSalesByMonthDatabaseTables();
+        result = result + "<br>";
+        modelMap.addAttribute("sixMonthsSalesByMonthTableCreationResult", result);
+        return "techMan/techManDashboard";
+    }
+
+    @RequestMapping(value = "/deleteSixMonthsSalesByMonthDatabaseTables", method = RequestMethod.GET)
+    public String deleteSixMonthsSalesByMonthDatabaseTables(ModelMap modelMap) {
+        String result = techManDao.deleteSixMonthsSalesByMonthDatabaseTables();
+        result = result + "<br>";
+        modelMap.addAttribute("sixMonthsSalesByMonthTableDeletionResult", result);
+        return "techMan/techManDashboard";
+    }
 }

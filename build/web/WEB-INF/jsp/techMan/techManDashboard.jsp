@@ -101,6 +101,14 @@
         <a href='deletePet4uItemStateDatabaseTables.htm'><h1>Delete  Pet4u Item State Database Tables</h1> </a>
         <br>
 
+        <hr>
+        <h1> ${sixMonthsSalesByMonthTableCreationResult} </h1>
+        <a href='createSixMonthsSalesByMonthDatabaseTables.htm'><h1>Create Six Months Sales By Month Database Tables</h1> </a>
+        <br>
+        <h1> ${sixMonthsSalesByMonthTableDeletionResult} </h1>
+        <a href='deleteSixMonthsSalesByMonthDatabaseTables.htm'><h1>Delete  Six Months Sales By Month Database Tables</h1> </a>
+        <br>
+
 
 
 

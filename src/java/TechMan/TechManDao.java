@@ -618,4 +618,30 @@ public class TechManDao {
         }
     }
 
+    String createSixMonthsSalesByMonthDatabaseTables() {
+        String query = "CREATE TABLE six_months_sales_by_month("
+                + "item_code VARCHAR (100) NOT NULL, "
+                + "month_year DATE NOT NULL, "
+                + "eshop_sales DOUBLE (10,4) NULL, "
+                + "shops_supply DOUBLE (10,4) NULL)"
+                + "ENGINE = InnoDB "
+                + "DEFAULT CHARACTER SET = utf8;";
+
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+            statement.close();
+            connection.close();
+            return "Table 'item_state' created succesfully";
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return "Table 'item_state' could not be created:" + ex;
+        }
+    }
+
+    String deleteSixMonthsSalesByMonthDatabaseTables() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }
