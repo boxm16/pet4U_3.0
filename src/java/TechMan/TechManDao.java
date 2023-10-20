@@ -633,15 +633,27 @@ public class TechManDao {
             statement.execute(query);
             statement.close();
             connection.close();
-            return "Table 'item_state' created succesfully";
+            return "Table 'six_months_sales_by_month' created succesfully";
         } catch (SQLException ex) {
             Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
-            return "Table 'item_state' could not be created:" + ex;
+            return "Table 'six_months_sales_by_month' could not be created:" + ex;
         }
     }
 
     String deleteSixMonthsSalesByMonthDatabaseTables() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String query = "DROP TABLE six_months_sales_by_month";
+
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+            statement.close();
+            connection.close();
+            return "Table 'six_months_sales_by_month' deleted succesfully";
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return "Table 'six_months_sales_by_month' could not be deleted:" + ex;
+        }
     }
 
 }
