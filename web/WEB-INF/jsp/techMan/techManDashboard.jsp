@@ -102,11 +102,11 @@
         <br>
 
         <hr>
-        <h1> ${sixMonthsSalesByMonthTableCreationResult} </h1>
-        <a href='createSixMonthsSalesByMonthDatabaseTables.htm'><h1>Create Six Months Sales By Month Database Tables</h1> </a>
+        <h1> ${monthSalesTableCreationResult} </h1>
+        <a href='createMonthSalesDatabaseTables.htm'><h1>Create Months Sales Database Tables</h1> </a>
         <br>
-        <h1> ${sixMonthsSalesByMonthTableDeletionResult} </h1>
-        <a href='deleteSixMonthsSalesByMonthDatabaseTables.htm'><h1>Delete  Six Months Sales By Month Database Tables</h1> </a>
+        <h1> ${monthSalesTableDeletionResult} </h1>
+        <a href='deleteMonthSalesDatabaseTables.htm'><h1>Delete Months Sales Database Tables</h1> </a>
         <br>
 
 

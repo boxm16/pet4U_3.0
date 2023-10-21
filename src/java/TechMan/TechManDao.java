@@ -618,7 +618,7 @@ public class TechManDao {
         }
     }
 
-    String createSixMonthsSalesByMonthDatabaseTables() {
+    String createMonthSalesDatabaseTables() {
         String query = "CREATE TABLE month_sales("
                 + "item_code VARCHAR (100) NOT NULL, "
                 + "month_year DATE NOT NULL, "
@@ -640,8 +640,8 @@ public class TechManDao {
         }
     }
 
-    String deleteSixMonthsSalesByMonthDatabaseTables() {
-        String query = "DROP TABLE six_months_sales_by_month";
+    String deleteMonthSalesDatabaseTables() {
+        String query = "DROP TABLE month_sales";
 
         try {
             Connection connection = this.databaseConnectionFactory.getMySQLConnection();
@@ -649,10 +649,10 @@ public class TechManDao {
             statement.execute(query);
             statement.close();
             connection.close();
-            return "Table 'six_months_sales_by_month' deleted succesfully";
+            return "Table 'month_sales' deleted succesfully";
         } catch (SQLException ex) {
             Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
-            return "Table 'six_months_sales_by_month' could not be deleted:" + ex;
+            return "Table 'month_sales' could not be deleted:" + ex;
         }
     }
 
