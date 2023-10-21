@@ -76,6 +76,11 @@
 
                 <hr>
                 <a href="goForSalesUploadX.htm"><h1>Go For ----NEW---- Sales Upload</h1></a>
+
+
+                <hr>
+                <a href="goForSalesByMonthUpload.htm"><h1>Go For Sales By Month Upload</h1></a>
+
             </center>
         </div>
     </body>
