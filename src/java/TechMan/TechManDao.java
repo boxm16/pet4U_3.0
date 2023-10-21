@@ -620,8 +620,8 @@ public class TechManDao {
 
     String createMonthSalesDatabaseTables() {
         String query = "CREATE TABLE month_sales("
-                + "item_code VARCHAR (100) NOT NULL, "
-                + "month_year DATE NOT NULL, "
+                + "code VARCHAR (100) NOT NULL, "
+                + "date DATE NOT NULL, "
                 + "eshop_sales DOUBLE (10,4) NULL, "
                 + "shops_supply DOUBLE (10,4) NULL)"
                 + "ENGINE = InnoDB "

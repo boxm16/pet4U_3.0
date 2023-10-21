@@ -11,7 +11,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.stereotype.Repository;
@@ -20,7 +19,7 @@ import org.springframework.stereotype.Repository;
 
 public class MonthSalesDao {
 
-    public String insertNewUpload(Date date, ArrayList<SoldItem> soldItems) {
+    public String insertNewUpload(String date, ArrayList<SoldItem> soldItems) {
 
         System.out.println("STARTING INSERTING UPLOADED DATA");
         System.out.println(" STARTING ADDING ITEMS TO 'sales' INSERTION BATCH");
@@ -29,12 +28,12 @@ public class MonthSalesDao {
             Connection connection = databaseConnectionFactory.getMySQLConnection();
 
             connection.setAutoCommit(false);
-            PreparedStatement itemInsertStatement = connection.prepareStatement("INSERT INTO sales_X (code, description, eshop_sales, shops_supply) VALUES (?,?,?,?)");
+            PreparedStatement itemInsertStatement = connection.prepareStatement("INSERT INTO month_sales (code, date,  eshop_sales, shops_supply) VALUES (?,?,?,?)");
             int index = 0;
             for (SoldItem soldItem : soldItems) {
 
                 itemInsertStatement.setString(1, soldItem.getCode());
-                itemInsertStatement.setString(2, soldItem.getDescription());
+                itemInsertStatement.setString(2, date);
                 itemInsertStatement.setDouble(3, soldItem.getEshopSales());
                 itemInsertStatement.setDouble(4, soldItem.getShopsSupply());
 

@@ -103,10 +103,10 @@
 
         <hr>
         <h1> ${monthSalesTableCreationResult} </h1>
-        <a href='createMonthSalesDatabaseTables.htm'><h1>Create Months Sales Database Tables</h1> </a>
+        <a href='createMonthSalesDatabaseTables.htm'><h1>Create Month Sales Database Tables</h1> </a>
         <br>
         <h1> ${monthSalesTableDeletionResult} </h1>
-        <a href='deleteMonthSalesDatabaseTables.htm'><h1>Delete Months Sales Database Tables</h1> </a>
+        <a href='deleteMonthSalesDatabaseTables.htm'><h1>Delete Month Sales Database Tables</h1> </a>
         <br>
 
 

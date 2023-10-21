@@ -21,22 +21,22 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 @Controller
 public class MonthSalesController {
+
     @Autowired
     private Basement basement;
-    
-     @Autowired
+
+    @Autowired
     private MonthSalesDao monthSalesDao;
-     
+
     @RequestMapping(value = "goForMonthSalesUpload")
     public String goForMonthSalesUpload(ModelMap model) {
         model.addAttribute("uploadTitle", "Upload Sales Of The Month");
         model.addAttribute("uploadTarget", "monthSales.htm");
         return "monthSales/monthSalesUpload";
     }
-    
-    
+
     @RequestMapping(value = "/monthSales", method = RequestMethod.POST)
-    public String uploadMonthSales(@RequestParam CommonsMultipartFile file, @RequestParam String date,  ModelMap model  ) {
+    public String uploadMonthSales(@RequestParam CommonsMultipartFile file, @RequestParam String date, ModelMap model) {
 
         System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
         System.out.println("Last Six Months Sales Upload: Starting .............. ");
@@ -47,9 +47,9 @@ public class MonthSalesController {
         if (file.isEmpty()) {
             model.addAttribute("uploadStatus", "Upload could not been completed");
             model.addAttribute("errorMessage", "No file has been selected");
-           return "monthSales/monthSalesUpload";
+            return "monthSales/monthSalesUpload";
         }
-        
+
         if (date.isEmpty()) {
             model.addAttribute("uploadStatus", "Upload could not been completed");
             model.addAttribute("errorMessage", "No date has been selected");
@@ -73,10 +73,11 @@ public class MonthSalesController {
         SalesFactory salesFactory = new SalesFactory();
         ArrayList<SoldItem> sodlItems = salesFactory.createSoldItemsFromUploadedFile(filePath);
 
-        
-        System.out.println("DATE:"+date);
+        String result = monthSalesDao.insertNewUpload(date, sodlItems);
+
+        System.out.println("DATE:" + date);
         model.addAttribute("uploadTitle", "Sales Upload");
-        model.addAttribute("uploadStatus", "");
+        model.addAttribute("uploadStatus", result);
 
         return "monthSales/monthSalesUpload";
     }
