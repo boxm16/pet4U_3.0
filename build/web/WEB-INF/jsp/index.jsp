@@ -79,7 +79,7 @@
 
 
                 <hr>
-                <a href="goForSalesByMonthUpload.htm"><h1>Go For Sales By Month Upload</h1></a>
+                <a href="goForMonthSalesUpload.htm"><h1>Go For Month Sales  Upload</h1></a>
 
             </center>
         </div>

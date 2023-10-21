@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package SalesByMonth;
+package MonthSales;
 
 import SalesX.SalesFactory;
 import SalesX.SoldItem;
@@ -20,20 +20,23 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 @Controller
-public class SalesByMonthController {
+public class MonthSalesController {
     @Autowired
     private Basement basement;
     
-    @RequestMapping(value = "goForSalesByMonthUpload")
-    public String goForSalesByMonthUpload(ModelMap model) {
+     @Autowired
+    private MonthSalesDao monthSalesDao;
+     
+    @RequestMapping(value = "goForMonthSalesUpload")
+    public String goForMonthSalesUpload(ModelMap model) {
         model.addAttribute("uploadTitle", "Upload Sales Of The Month");
-        model.addAttribute("uploadTarget", "uploadSalesOfMonth.htm");
-        return "salesByMonth/salesByMonthUpload";
+        model.addAttribute("uploadTarget", "monthSales.htm");
+        return "monthSales/monthSalesUpload";
     }
     
     
-    @RequestMapping(value = "/uploadSalesOfMonth", method = RequestMethod.POST)
-    public String uploadSales(@RequestParam CommonsMultipartFile file, @RequestParam String date,  ModelMap model  ) {
+    @RequestMapping(value = "/monthSales", method = RequestMethod.POST)
+    public String uploadMonthSales(@RequestParam CommonsMultipartFile file, @RequestParam String date,  ModelMap model  ) {
 
         System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
         System.out.println("Last Six Months Sales Upload: Starting .............. ");
@@ -44,13 +47,13 @@ public class SalesByMonthController {
         if (file.isEmpty()) {
             model.addAttribute("uploadStatus", "Upload could not been completed");
             model.addAttribute("errorMessage", "No file has been selected");
-           return "salesByMonth/salesByMonthUpload";
+           return "monthSales/monthSalesUpload";
         }
         
         if (date.isEmpty()) {
             model.addAttribute("uploadStatus", "Upload could not been completed");
             model.addAttribute("errorMessage", "No date has been selected");
-            return "salesByMonth/salesByMonthUpload";
+            return "monthSales/monthSalesUpload";
         }
         try {
             byte barr[] = file.getBytes();
@@ -64,7 +67,7 @@ public class SalesByMonthController {
         } catch (Exception e) {
             System.out.println(e);
             model.addAttribute("uploadStatus", "Upload could not been completed:" + e);
-            return "salesByMonth/salesByMonthUpload";
+            return "monthSales/monthSalesUpload";
         }
 
         SalesFactory salesFactory = new SalesFactory();
@@ -75,6 +78,6 @@ public class SalesByMonthController {
         model.addAttribute("uploadTitle", "Sales Upload");
         model.addAttribute("uploadStatus", "");
 
-        return "localUploads/localUploadsDashboard";
+        return "monthSales/monthSalesUpload";
     }
 }

@@ -619,7 +619,7 @@ public class TechManDao {
     }
 
     String createSixMonthsSalesByMonthDatabaseTables() {
-        String query = "CREATE TABLE six_months_sales_by_month("
+        String query = "CREATE TABLE month_sales("
                 + "item_code VARCHAR (100) NOT NULL, "
                 + "month_year DATE NOT NULL, "
                 + "eshop_sales DOUBLE (10,4) NULL, "
@@ -633,10 +633,10 @@ public class TechManDao {
             statement.execute(query);
             statement.close();
             connection.close();
-            return "Table 'six_months_sales_by_month' created succesfully";
+            return "Table 'month_sales' created succesfully";
         } catch (SQLException ex) {
             Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
-            return "Table 'six_months_sales_by_month' could not be created:" + ex;
+            return "Table 'month_sales' could not be created:" + ex;
         }
     }
 
