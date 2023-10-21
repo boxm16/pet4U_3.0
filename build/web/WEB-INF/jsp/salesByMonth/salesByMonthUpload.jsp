@@ -17,8 +17,8 @@
         <form action="${uploadTarget}" method="POST" enctype="multipart/form-data">  
             <h1>SELECT (ANY DAY OF THE) MONTH</h1>
             <input type="date"  name="date">
-
-            <h2>SELECT FILE FOR UPLOAD</h2>
+            <hr>
+            <h1>SELECT FILE FOR UPLOAD</h1>
             <input type="file" name="file"/>  
             <input type="submit" value="Upload"/>  
         </form>  
