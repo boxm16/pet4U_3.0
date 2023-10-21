@@ -16,6 +16,6 @@ public class SalesByMonthController {
     public String goForSalesByMonthUpload(ModelMap model) {
         model.addAttribute("uploadTitle", "Upload Sales Of The Month");
         model.addAttribute("uploadTarget", "uploadSalesOfMonth.htm");
-        return "localUploads/localUploadsDashboard";
+        return "salesByMonth/salesByMonthUpload";
     }
 }
