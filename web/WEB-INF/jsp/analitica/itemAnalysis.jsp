@@ -12,7 +12,28 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Item Analysis</title>
+        <style>
+            table, th, td {
+                border: 1px solid ;
+                border-collapse: collapse;
+            }
+            td {
+                font-size: 12px;
+            }
+            th{
+                font-size: 20px;
+                font-weight: bold;
+                text-align: center;
+                background: #eee;
+                position: sticky;
+                top: 0px;
+            }
+
+
+
+
+        </style>
     </head>
     <body>
         <h1>Hello World!</h1>
