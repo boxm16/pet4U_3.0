@@ -96,18 +96,24 @@ public class MonthSalesController {
 
         for (Map.Entry<String, Item> itemsWithPositionEntry : itemsWithPositions.entrySet()) {
             String key = itemsWithPositionEntry.getKey();
-            ItemSales itemSales = sales.get(key);
-            if (itemSales == null) {
-                System.out.println("THIS CODE NOT IN itemsWithPosition:"+key);
+            ItemSales itemWithSales = sales.get(key);
+
+            ItemSales itemSales = new ItemSales();
+
+            if (itemWithSales == null) {
+                Item itemWithPosition = itemsWithPositionEntry.getValue();
+                itemSales.setDescription(itemWithPosition.getDescription());
+                itemSales.setPosition(itemWithPosition.getPosition());
+                itemSales.setAltercodes(itemWithPosition.getAltercodes());
+                itemSales.setState(itemWithPosition.getState());
             } else {
                 Item itemWithPosition = itemsWithPositionEntry.getValue();
                 itemSales.setDescription(itemWithPosition.getDescription());
                 itemSales.setPosition(itemWithPosition.getPosition());
                 itemSales.setAltercodes(itemWithPosition.getAltercodes());
                 itemSales.setState(itemWithPosition.getState());
-                refactoredSales.put(key, itemSales);
             }
-
+            refactoredSales.put(key, itemSales);
         }
 
         modelMap.addAttribute("sales", refactoredSales);
