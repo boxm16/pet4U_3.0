@@ -5,12 +5,15 @@
  */
 package MonthSales;
 
+import BasicModel.Item;
+import Pet4uItems.Pet4uItemsDao;
 import SalesX.SalesFactory;
 import SalesX.SoldItem;
 import Service.Basement;
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -80,5 +83,17 @@ public class MonthSalesController {
         model.addAttribute("uploadStatus", result);
 
         return "monthSales/monthSalesUpload";
+    }
+
+    @RequestMapping(value = "/monthSales", method = RequestMethod.GET)
+    public String monthSales(ModelMap modelMap) {
+
+        Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
+        LinkedHashMap<String, Item> itemsWithPositions = pet4uItemsDao.getAllItems();
+
+        LinkedHashMap<String, ItemSales> sales = monthSalesDao.getLastSixMonthsSales();
+       
+        modelMap.addAttribute("sixMonthsSales", sales);
+        return "monthSales/monthSales";
     }
 }

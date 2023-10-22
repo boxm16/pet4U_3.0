@@ -46,7 +46,9 @@
                 <hr>
                 <a href="prosfores.htm"><h1 style="color: #3059D8">ΠΡΟΣΦΟΡΕΣ</h1></a>
 
-                <hr><hr><hr>
+                <hr><hr> 
+                <h1><a href='monthSales.htm'>Pet4u:Last Six Months Sales By Month</a></h1>
+                <hr><hr>
                 <hr>
                 <h1><a href='pet4uAllItems.htm'>Pet4u: All Items</a></h1>
                 <hr>
