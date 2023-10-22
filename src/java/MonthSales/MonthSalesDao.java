@@ -119,6 +119,7 @@ public class MonthSalesDao {
         } catch (SQLException ex) {
             Logger.getLogger(MonthSalesDao.class.getName()).log(Level.SEVERE, null, ex);
         }
+       
         return allItems;
     }
 }
