@@ -58,6 +58,7 @@
                         <th>Quantity</th>
                             <%
                                 LinkedHashMap<String, Item> itemSnapshots = (LinkedHashMap) request.getAttribute("itemSnapshots");
+                                double stockBefore = 0.0;
                                 for (Map.Entry<String, Item> itemSnapshotEntry : itemSnapshots.entrySet()) {
                                     Item itemSnapshot = itemSnapshotEntry.getValue();
                                     out.println("<tr>");
@@ -73,10 +74,13 @@
                                     out.println("<td>");
                                     out.println(itemSnapshot.getQuantity());
                                     out.println("</td>");
-                                     out.println("<td>");
-                                    out.println("|");
-                                    out.println("</td>");
 
+                                    Double stock = Double.parseDouble(itemSnapshot.getQuantity());
+                                    stockBefore = stockBefore - stock;
+
+                                    out.println("<td>");
+                                    out.println(stockBefore);
+                                    out.println("</td>");
                                     out.println("</tr>");
 
                                 }
