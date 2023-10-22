@@ -147,7 +147,7 @@
                                     out.println("</td>");
 
                                     out.println("<td>");
-                                    out.println("<a href='itemAnalysis.htm?code=" + item.getCode() + "' target='_blank'>" + item.getTotalShippedPieces() + "</a>");
+                                    out.println("<a href='itemAnalysis.htm?code=" + item.getCode() + "' target='_blank'>Analysis</a>");
                                     out.println("</td>");
 
                                     out.println("</tr>");
