@@ -328,11 +328,11 @@ public class TechManController {
         return "techMan/techManDashboard";
     }
 
-    @RequestMapping(value = "/offersTableDeletionResult", method = RequestMethod.GET)
-    public String offersTableDeletionResult(ModelMap modelMap) {
+    @RequestMapping(value = "/deleteOffersDatabaseTables", method = RequestMethod.GET)
+    public String deleteOffersDatabaseTables(ModelMap modelMap) {
         String result = techManDao.deleteOffersDatabaseTables();
         result = result + "<br>";
-        modelMap.addAttribute("deleteOffersDatabaseTables", result);
+        modelMap.addAttribute("offersTableDeletionResult", result);
         return "techMan/techManDashboard";
     }
 }
