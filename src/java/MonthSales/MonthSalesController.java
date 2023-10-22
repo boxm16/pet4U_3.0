@@ -106,12 +106,14 @@ public class MonthSalesController {
                 itemSales.setPosition(itemWithPosition.getPosition());
                 itemSales.setAltercodes(itemWithPosition.getAltercodes());
                 itemSales.setState(itemWithPosition.getState());
+                itemSales.setSales(itemWithSales.getSales());
             } else {
                 Item itemWithPosition = itemsWithPositionEntry.getValue();
                 itemSales.setDescription(itemWithPosition.getDescription());
                 itemSales.setPosition(itemWithPosition.getPosition());
                 itemSales.setAltercodes(itemWithPosition.getAltercodes());
                 itemSales.setState(itemWithPosition.getState());
+                itemSales.setSales(itemWithSales.getSales());
             }
             refactoredSales.put(key, itemSales);
         }
