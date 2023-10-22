@@ -101,7 +101,7 @@
                         for (Map.Entry<LocalDate, Sales> salesEntry : sales.entrySet()) {
                             Sales s = salesEntry.getValue();
                             out.println("<td>");
-                            out.println(s);
+                            out.println(s.getEshopSales());
                             out.println("</td>");
                         }
                         /*
