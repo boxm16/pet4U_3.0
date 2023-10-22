@@ -119,7 +119,53 @@ public class MonthSalesDao {
         } catch (SQLException ex) {
             Logger.getLogger(MonthSalesDao.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
+
         return allItems;
+    }
+
+    public ItemSales getItemSales(String itemCode) {
+        LocalDate startingDate = LocalDate.now();
+        startingDate = startingDate.minusMonths(7);
+
+        String sql = "SELECT * FROM month_sales WHERE date>" + startingDate + "AND code='" + itemCode + "';";
+        Connection connection;
+        Statement statement;
+        ResultSet resultSet;
+        ItemSales item = new ItemSales();
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            connection = databaseConnectionFactory.getMySQLConnection();
+
+            statement = connection.createStatement();
+
+            resultSet = statement.executeQuery(sql);
+            while (resultSet.next()) {
+                String code = resultSet.getString("code");
+
+                String date = resultSet.getString("date");
+                DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                LocalDate saleDate = LocalDate.parse(date, formatter2);
+
+                int eshopSales = resultSet.getInt("eshop_sales");
+                int shopsSupply = resultSet.getInt("shops_supply");
+
+                item.setCode(code);
+
+                Sales sales = new Sales();
+                sales.setEshopSales(eshopSales);
+                sales.setShopsSupply(shopsSupply);
+                item.addSales(saleDate, sales);
+
+            }
+
+            resultSet.close();
+            statement.close();
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(MonthSalesDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return item;
     }
 }

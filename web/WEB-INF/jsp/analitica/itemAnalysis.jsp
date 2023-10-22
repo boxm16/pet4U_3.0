@@ -4,6 +4,10 @@
     Author     : Michail Sitmalidis
 --%>
 
+<%@page import="java.util.TreeMap"%>
+<%@page import="java.time.LocalDate"%>
+<%@page import="MonthSales.Sales"%>
+<%@page import="MonthSales.ItemSales"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.LinkedHashMap"%>
 <%@page import="BasicModel.Item"%>
@@ -41,9 +45,9 @@
 
         <table> 
             <tr><td>Code</td><td>${item.code}</td></tr>
-            <tr><td>Code</td><td>${item.description}</td></tr>
+            <tr><td>Description</td><td>${item.description}</td></tr>
         </table>
-
+        <hr>
         <table>
             <tr><td>
                     <table>
@@ -66,6 +70,38 @@
 
                                     out.println("<td>");
                                     out.println(itemSnapshot.getQuantity());
+                                    out.println("</td>");
+
+                                    out.println("</tr>");
+
+                                }
+                            %>
+                    </table>
+                </td>
+                <td>
+                    <table>
+                        <th>Date Stamp</th>
+                        <th>E-Shop Sales</th>
+                        <th>Ενδοδιακ.</th>
+                            <%
+                                ItemSales item = (ItemSales) request.getAttribute("itemSales");
+                                TreeMap<LocalDate, Sales> sales = item.getSales();
+
+                                for (Map.Entry<LocalDate, Sales> salesEntry : sales.entrySet()) {
+                                    LocalDate date = salesEntry.getKey();
+                                    Sales sale = salesEntry.getValue();
+                                    out.println("<tr>");
+
+                                    out.println("<td>");
+                                    out.println(date);
+                                    out.println("</td>");
+
+                                    out.println("<td>");
+                                    out.println(sale.getEshopSales());
+                                    out.println("</td>");
+
+                                    out.println("<td>");
+                                    out.println(sale.getShopsSupply());
                                     out.println("</td>");
 
                                     out.println("</tr>");
