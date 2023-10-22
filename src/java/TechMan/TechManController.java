@@ -302,7 +302,7 @@ public class TechManController {
         modelMap.addAttribute("pet4uItemStateTableDeletionResult", result);
         return "techMan/techManDashboard";
     }
-
+//-----------------------------------------------------------
     @RequestMapping(value = "/createMonthSalesDatabaseTables", method = RequestMethod.GET)
     public String createMonthSalesDatabaseTables(ModelMap modelMap) {
         String result = techManDao.createMonthSalesDatabaseTables();
@@ -316,6 +316,23 @@ public class TechManController {
         String result = techManDao.deleteMonthSalesDatabaseTables();
         result = result + "<br>";
         modelMap.addAttribute("monthSalesTableDeletionResult", result);
+        return "techMan/techManDashboard";
+    }
+    
+    //----------------------------------------------------------
+     @RequestMapping(value = "/createOffersDatabaseTables", method = RequestMethod.GET)
+    public String createOffersDatabaseTables(ModelMap modelMap) {
+        String result = techManDao.createOffersDatabaseTables();
+        result = result + "<br>";
+        modelMap.addAttribute("offersTableCreationResult", result);
+        return "techMan/techManDashboard";
+    }
+
+    @RequestMapping(value = "/offersTableDeletionResult", method = RequestMethod.GET)
+    public String offersTableDeletionResult(ModelMap modelMap) {
+        String result = techManDao.deleteOffersDatabaseTables();
+        result = result + "<br>";
+        modelMap.addAttribute("deleteOffersDatabaseTables", result);
         return "techMan/techManDashboard";
     }
 }

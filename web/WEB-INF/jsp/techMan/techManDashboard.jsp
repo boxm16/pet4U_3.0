@@ -108,6 +108,13 @@
         <h1> ${monthSalesTableDeletionResult} </h1>
         <a href='deleteMonthSalesDatabaseTables.htm'><h1>Delete Month Sales Database Tables</h1> </a>
         <br>
+        <hr>
+        <h1> ${offersTableCreationResult} </h1>
+        <a href='createOffersDatabaseTables.htm'><h1>Create Offers Database Tables</h1> </a>
+        <br>
+        <h1> ${offersTableDeletionResult} </h1>
+        <a href='deleteOffersDatabaseTables.htm'><h1>Delete Offers Database Tables</h1> </a>
+        <br>
 
 
 

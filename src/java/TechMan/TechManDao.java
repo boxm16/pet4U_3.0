@@ -656,4 +656,42 @@ public class TechManDao {
         }
     }
 
+    String createOffersDatabaseTables() {
+        String query = "CREATE TABLE offers("
+                + "code VARCHAR (100) NOT NULL, "
+                + "offers_name VARCHAR (150) NOT NULL, "
+                + "start_date DATE NOT NULL, "
+                + "end_date DATE NOT NULL)"
+                + "ENGINE = InnoDB "
+                + "DEFAULT CHARACTER SET = utf8;";
+
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+            statement.close();
+            connection.close();
+            return "Table 'offers' created succesfully";
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return "Table 'offers' could not be created:" + ex;
+        }
+    }
+
+    String deleteOffersDatabaseTables() {
+        String query = "DROP TABLE offers";
+
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+            statement.close();
+            connection.close();
+            return "Table 'offers' deleted succesfully";
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return "Table 'offers' could not be deleted:" + ex;
+        }
+    }
+
 }
