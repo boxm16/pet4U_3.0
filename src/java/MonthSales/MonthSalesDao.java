@@ -12,7 +12,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -67,10 +66,9 @@ public class MonthSalesDao {
     }
 
     LinkedHashMap<String, ItemSales> getLastSixMonthsSales() {
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         LocalDate startingDate = LocalDate.now();
         startingDate = startingDate.minusMonths(7);
-        System.out.println(formatter.format(startingDate));
+        System.out.println(startingDate);
 
         LinkedHashMap<String, ItemSales> allItems = new LinkedHashMap<>();
         String sql = "SELECT * FROM month_sales WHERE date>" + startingDate;
