@@ -14,6 +14,7 @@ import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -87,13 +88,29 @@ public class MonthSalesController {
 
     @RequestMapping(value = "/monthSales", method = RequestMethod.GET)
     public String monthSales(ModelMap modelMap) {
-
+        LinkedHashMap<String, ItemSales> refactoredSales = new LinkedHashMap<>();
         Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
         LinkedHashMap<String, Item> itemsWithPositions = pet4uItemsDao.getAllItems();
 
         LinkedHashMap<String, ItemSales> sales = monthSalesDao.getLastSixMonthsSales();
-       
-        modelMap.addAttribute("sixMonthsSales", sales);
+
+        for (Map.Entry<String, Item> itemsWithPositionEntry : itemsWithPositions.entrySet()) {
+            String key = itemsWithPositionEntry.getKey();
+            ItemSales itemSales = sales.get(key);
+            if (itemSales == null) {
+                //do nothing
+            } else {
+                Item itemWithPosition = itemsWithPositionEntry.getValue();
+                itemSales.setDescription(itemWithPosition.getDescription());
+                itemSales.setPosition(itemWithPosition.getPosition());
+                itemSales.setAltercodes(itemWithPosition.getAltercodes());
+                itemSales.setState(itemWithPosition.getState());
+                refactoredSales.put(key, itemSales);
+            }
+
+        }
+
+        modelMap.addAttribute("sales", refactoredSales);
         return "monthSales/monthSales";
     }
 }
