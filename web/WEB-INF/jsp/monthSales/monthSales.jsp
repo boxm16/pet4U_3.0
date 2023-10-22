@@ -97,14 +97,11 @@
                         out.println("</td>");
 
                         TreeMap<LocalDate, Sales> sales = entrySet.getValue().getSales();
-                        out.println("<td>");
-                        out.println(sales.size());
-                        out.println("</td>");
 
                         for (Map.Entry<LocalDate, Sales> salesEntry : sales.entrySet()) {
                             Sales s = salesEntry.getValue();
                             out.println("<td>");
-                            out.println();
+                            out.println(s);
                             out.println("</td>");
                         }
                         /*
