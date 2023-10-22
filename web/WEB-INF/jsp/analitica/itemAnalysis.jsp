@@ -4,6 +4,9 @@
     Author     : Michail Sitmalidis
 --%>
 
+<%@page import="java.util.Map"%>
+<%@page import="java.util.LinkedHashMap"%>
+<%@page import="BasicModel.Item"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
