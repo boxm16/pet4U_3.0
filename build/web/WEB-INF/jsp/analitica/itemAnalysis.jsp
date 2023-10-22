@@ -86,6 +86,8 @@
                             <%
                                 ItemSales item = (ItemSales) request.getAttribute("itemSales");
                                 TreeMap<LocalDate, Sales> sales = item.getSales();
+                                double totalSales = 0;
+                                double totalShopSupplies = 0;
 
                                 for (Map.Entry<LocalDate, Sales> salesEntry : sales.entrySet()) {
                                     LocalDate date = salesEntry.getKey();
@@ -105,8 +107,30 @@
                                     out.println("</td>");
 
                                     out.println("</tr>");
+                                    totalSales += sale.getEshopSales();
+                                    totalShopSupplies += sale.getEshopSales();
 
                                 }
+                                out.println("<tr>");
+                                out.println("<td>");
+                                out.println("TOTALS");
+                                out.println("</td>");
+                                out.println("<td>");
+                                out.println(totalSales);
+                                out.println("</td>");
+                                out.println("<td>");
+                                out.println(totalShopSupplies);
+                                out.println("</td>");
+
+                                out.println("</tr>");
+                                out.println("<td>");
+                                out.println("GRAND TOTAL");
+                                out.println("</td>");
+                                out.println("<td colspan='2'>");
+                                out.println(totalSales + totalShopSupplies);
+                                out.println("</td>");
+
+                                out.println("</tr>");
                             %>
                     </table>
                 </td>
