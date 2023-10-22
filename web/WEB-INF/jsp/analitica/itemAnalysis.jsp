@@ -46,6 +46,8 @@
         <table> 
             <tr><td>Code</td><td>${item.code}</td></tr>
             <tr><td>Description</td><td>${item.description}</td></tr>
+            <tr><td>State</td><td>${item.state}</td></tr>
+            <tr><td>Stocl</td><td>${item.quantity}</td></tr>
         </table>
         <hr>
         <table>
@@ -108,7 +110,7 @@
 
                                     out.println("</tr>");
                                     totalSales += sale.getEshopSales();
-                                    totalShopSupplies += sale.getEshopSales();
+                                    totalShopSupplies += sale.getShopsSupply();
 
                                 }
                                 out.println("<tr>");
