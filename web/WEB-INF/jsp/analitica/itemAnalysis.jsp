@@ -61,6 +61,8 @@
                                 double stockBefore = 0.0;
                                 for (Map.Entry<String, Item> itemSnapshotEntry : itemSnapshots.entrySet()) {
                                     Item itemSnapshot = itemSnapshotEntry.getValue();
+                                    Double stock = Double.parseDouble(itemSnapshot.getQuantity());
+
                                     out.println("<tr>");
 
                                     out.println("<td>");
@@ -75,13 +77,11 @@
                                     out.println(itemSnapshot.getQuantity());
                                     out.println("</td>");
 
-                                    Double stock = Double.parseDouble(itemSnapshot.getQuantity());
-                                    stockBefore = stockBefore - stock;
-
                                     out.println("<td>");
-                                    out.println(stockBefore);
+                                    out.println(stock-stockBefore);
                                     out.println("</td>");
                                     out.println("</tr>");
+                                    stockBefore = stock;
 
                                 }
                             %>
