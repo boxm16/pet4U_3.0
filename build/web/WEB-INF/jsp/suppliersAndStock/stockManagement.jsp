@@ -105,9 +105,10 @@
                                     out.println("</td>");
 
                                     out.println("<td>");
-                                    out.println(item.getTotalShippedPieces());
+                                    out.println("<a href='itemAnalysis.htm?code=" + item.getCode() + "' target='_blank'>"+item.getTotalShippedPieces()+"</a>");
                                     out.println("</td>");
 
+            
                                     int shippedPiecesForPeriod = item.getTotalShippedPiecesForPeriod();
                                     out.println("<td>");
                                     out.println(shippedPiecesForPeriod);
