@@ -46,15 +46,25 @@
     <body>
         <div class="container" >
             <div class="row">
-                <h1>Pet4U Item Analysis</h1>
+                <div class=" col-sm-4">
 
-                <table> 
-                    <tr><td>Code</td><td>${item.code}</td></tr>
-                    <tr><td>Description</td><td>${item.description}</td></tr>
-                    <tr><td>State</td><td>${item.state}</td></tr>
-                    <tr><td>Stocl</td><td>${item.quantity}</td></tr>
-                </table>
+                </div>
+                <div class=" col-sm-4">
+                    <h1>Pet4U Item Analysis</h1>
+
+                    <table> 
+                        <tr><td>Code</td><td>${item.code}</td></tr>
+                        <tr><td>Description</td><td>${item.description}</td></tr>
+                        <tr><td>State</td><td>${item.state}</td></tr>
+                        <tr><td>Stock</td><td>${item.quantity}</td></tr>
+                    </table>
+                </div>
+                <div class=" col-sm-4">
+
+                </div>
                 <hr>
+            </div>
+            <div class="row">
                 <div class=" col-sm-4">
                     <table>
                         <th>Date Stamp</th>
