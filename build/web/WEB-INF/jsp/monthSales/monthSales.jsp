@@ -5,6 +5,9 @@
 --%>
 
 
+<%@page import="java.util.TreeMap"%>
+<%@page import="MonthSales.Sales"%>
+<%@page import="java.time.LocalDate"%>
 <%@page import="MonthSales.ItemSales"%>
 <%@page import="BasicModel.AltercodeContainer"%>
 <%@page import="SalesX.SoldItem"%>
@@ -52,9 +55,9 @@
 
 
                 <%
-                    HashMap<String, ItemSales> sales = (HashMap) request.getAttribute("sales");
+                    HashMap<String, ItemSales> itemSales = (HashMap) request.getAttribute("sales");
 
-                    for (Map.Entry<String, ItemSales> entrySet : sales.entrySet()) {
+                    for (Map.Entry<String, ItemSales> entrySet : itemSales.entrySet()) {
                         out.println("<tr>");
 
                         out.println("<td>");
@@ -92,6 +95,14 @@
                         out.println("<td>");
                         out.println(entrySet.getValue().getState());
                         out.println("</td>");
+
+                        TreeMap<LocalDate, Sales> sales = entrySet.getValue().getSales();
+                        for (Map.Entry<LocalDate, Sales> salesEntry : sales.entrySet()) {
+                            Sales s = salesEntry.getValue();
+                            out.println("<td>");
+                            out.println(s.getEshopSales());
+                            out.println("</td>");
+                        }
                         /*
                         out.println("<td>");
                         out.println(entrySet.getValue().getEshopSoldPieces());
