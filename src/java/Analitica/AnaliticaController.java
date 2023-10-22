@@ -18,7 +18,7 @@ public class AnaliticaController {
 
         SearchDao searchDao = new SearchDao();
         Item item = searchDao.getItemByAltercode(code);
-        model.addAttribute("item", code);
+        model.addAttribute("item", item);
         
         Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
         LinkedHashMap<String, Item> itemSnapshots = pet4uItemsDao.getItemSnapshots(code);
