@@ -97,7 +97,7 @@
                                     out.println("<tr>");
 
                                     out.println("<td>");
-                                    out.println(date);
+                                    out.println(date.getMonth());
                                     out.println("</td>");
 
                                     out.println("<td>");
