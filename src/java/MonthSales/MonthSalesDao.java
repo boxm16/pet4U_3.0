@@ -98,7 +98,7 @@ public class MonthSalesDao {
                     sales.setEshopSales(eshopSales);
                     sales.setShopsSupply(shopsSupply);
                     item.addSales(saleDate, sales);
-                    allItems.put(date, item);
+                    allItems.put(code, item);
                 } else {
                     ItemSales item = new ItemSales();
                     item.setCode(code);
@@ -107,7 +107,7 @@ public class MonthSalesDao {
                     sales.setEshopSales(eshopSales);
                     sales.setShopsSupply(shopsSupply);
                     item.addSales(saleDate, sales);
-                    allItems.put(date, item);
+                    allItems.put(code, item);
                 }
 
             }
