@@ -17,6 +17,10 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Item Analysis</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
         <style>
             table, th, td {
                 border: 1px solid ;
@@ -40,18 +44,18 @@
         </style>
     </head>
     <body>
-    <center>
-        <h1>Pet4U Item Analysis</h1>
+        <div class="container" >
+            <div class="row">
+                <h1>Pet4U Item Analysis</h1>
 
-        <table> 
-            <tr><td>Code</td><td>${item.code}</td></tr>
-            <tr><td>Description</td><td>${item.description}</td></tr>
-            <tr><td>State</td><td>${item.state}</td></tr>
-            <tr><td>Stocl</td><td>${item.quantity}</td></tr>
-        </table>
-        <hr>
-        <table>
-            <tr><td>
+                <table> 
+                    <tr><td>Code</td><td>${item.code}</td></tr>
+                    <tr><td>Description</td><td>${item.description}</td></tr>
+                    <tr><td>State</td><td>${item.state}</td></tr>
+                    <tr><td>Stocl</td><td>${item.quantity}</td></tr>
+                </table>
+                <hr>
+                <div class=" col-sm-4">
                     <table>
                         <th>Date Stamp</th>
                         <th>State</th>
@@ -78,7 +82,7 @@
                                     out.println("</td>");
 
                                     out.println("<td>");
-                                    out.println(stock-stockBefore);
+                                    out.println(stock - stockBefore);
                                     out.println("</td>");
                                     out.println("</tr>");
                                     stockBefore = stock;
@@ -86,8 +90,8 @@
                                 }
                             %>
                     </table>
-                </td>
-                <td>
+                </div>
+                <div class=" col-sm-4">
                     <table>
                         <th>Date Stamp</th>
                         <th>E-Shop Sales</th>
@@ -142,9 +146,8 @@
                                 out.println("</tr>");
                             %>
                     </table>
-                </td>
-            </tr>
-        </table>
-    </center>
-</body>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>
