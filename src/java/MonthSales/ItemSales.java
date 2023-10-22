@@ -8,6 +8,12 @@ public class ItemSales extends Item {
 
     private TreeMap<LocalDate, Sales> sales;
 
+    public ItemSales() {
+        this.sales = new TreeMap<>();
+    }
+    
+    
+
     public TreeMap<LocalDate, Sales> getSales() {
         return sales;
     }
