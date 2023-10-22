@@ -98,7 +98,7 @@ public class MonthSalesController {
             String key = itemsWithPositionEntry.getKey();
             ItemSales itemSales = sales.get(key);
             if (itemSales == null) {
-                //do nothing
+                System.out.println("THIS CODE NOT IN itemsWithPosition:"+key);
             } else {
                 Item itemWithPosition = itemsWithPositionEntry.getValue();
                 itemSales.setDescription(itemWithPosition.getDescription());
