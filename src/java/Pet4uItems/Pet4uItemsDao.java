@@ -416,7 +416,7 @@ public class Pet4uItemsDao {
         return items;
     }
 
-    LinkedHashMap<String, Item> getItemSnapshots(String code) {
+    public LinkedHashMap<String, Item> getItemSnapshots(String code) {
         LinkedHashMap<String, Item> itemSnapshots = new LinkedHashMap<>();
 
         String sql = "SELECT * FROM item_state WHERE item_code='" + code + "' ORDER BY date_stamp;";

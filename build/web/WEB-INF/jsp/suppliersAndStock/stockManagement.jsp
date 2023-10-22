@@ -105,10 +105,9 @@
                                     out.println("</td>");
 
                                     out.println("<td>");
-                                    out.println("<a href='itemAnalysis.htm?code=" + item.getCode() + "' target='_blank'>"+item.getTotalShippedPieces()+"</a>");
+                                    out.println(item.getTotalShippedPieces());
                                     out.println("</td>");
 
-            
                                     int shippedPiecesForPeriod = item.getTotalShippedPiecesForPeriod();
                                     out.println("<td>");
                                     out.println(shippedPiecesForPeriod);
@@ -148,7 +147,7 @@
                                     out.println("</td>");
 
                                     out.println("<td>");
-                                    out.println("<a href='pet4uItemSnapshots.htm?code=" + item.getCode() + "' target='_blank'>Show  Snapshots</a>");
+                                    out.println("<a href='itemAnalysis.htm?code=" + item.getCode() + "' target='_blank'>" + item.getTotalShippedPieces() + "</a>");
                                     out.println("</td>");
 
                                     out.println("</tr>");
