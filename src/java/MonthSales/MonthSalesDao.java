@@ -127,7 +127,7 @@ public class MonthSalesDao {
         LocalDate startingDate = LocalDate.now();
         startingDate = startingDate.minusMonths(7);
 
-        String sql = "SELECT * FROM month_sales WHERE date>" + startingDate + "AND code='" + itemCode + "';";
+        String sql = "SELECT * FROM month_sales WHERE code='"+itemCode+"' AND date>" + startingDate + "AND ';";
         Connection connection;
         Statement statement;
         ResultSet resultSet;
