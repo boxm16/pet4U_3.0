@@ -12,7 +12,7 @@
             {
                 font-size:30px;
             }
-             input[type="date"]
+            input[type="date"]
             {
                 font-size:30px;
             }
@@ -41,7 +41,11 @@
                     <td>Offer Title</td>
                     <td> <input type="text" name="title" width="80"> </td>
                 </tr>
-                <hr>
+                <tr>
+                    <td>----------</td>
+                    <td>----------</td>
+
+                </tr>
                 <tr>
                     <td>Start Date</td>
                     <td> <input type="date" name="startingDate"> </td>
