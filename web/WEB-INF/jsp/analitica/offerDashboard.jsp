@@ -41,7 +41,7 @@
                     <td>Offer Title</td>
                     <td> <input type="text" name="title" width="80"> </td>
                 </tr>
-
+                <hr>
                 <tr>
                     <td>Start Date</td>
                     <td> <input type="date" name="startingDate"> </td>
