@@ -12,6 +12,10 @@
             {
                 font-size:30px;
             }
+             input[type="date"]
+            {
+                font-size:30px;
+            }
         </style>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
@@ -23,18 +27,19 @@
 
         <h1><a href="index.htm">INDEX</a></h1>
 
-        <h1>Create New Offer</h1>
+        <h1>Create New Offer For:</h1>
 
+
+
+        <h1 >${item.code} : ${item.description}</h1>
         <h1 style="background-color: ${resultColor}">${result}</h1>
-
-        <h1 >${item.description}</h1>
 
         <form action="addOffer.htm" method="POST" >
             <input hidden name="code" type="text" value="${item.code}">
             <table>  
                 <tr>
                     <td>Offer Title</td>
-                    <td> <input type="text" name="title"> </td>
+                    <td> <input type="text" name="title" width="80"> </td>
                 </tr>
 
                 <tr>
