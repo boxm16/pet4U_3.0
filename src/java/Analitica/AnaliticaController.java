@@ -32,4 +32,14 @@ public class AnaliticaController {
 
         return "analitica/itemAnalysis";
     }
+
+    @RequestMapping(value = "/offerDashboard", method = RequestMethod.GET)
+    public String offerDashboard(@RequestParam String code, ModelMap model) {
+
+        SearchDao searchDao = new SearchDao();
+        Item item = searchDao.getItemByAltercode(code);
+        model.addAttribute("item", item);
+
+        return "analitica/offerDashboard";
+    }
 }

@@ -64,7 +64,7 @@
                 </div>
                 <hr>
             </div>
-                    <hr>
+            <hr>
             <div class="row">
                 <div class=" col-sm-4">
                     <table>
@@ -158,6 +158,9 @@
                             %>
                     </table>
                 </div>
+                <hr>
+                <a href="offerDashboard.htm?code=${item.getCode()}" class="btn btn-info btn-lg" role="button" aria-disabled="true"><h3>Offer Dashboard</h3></a>
+
             </div>
         </div>
     </body>

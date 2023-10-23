@@ -658,8 +658,8 @@ public class TechManDao {
 
     String createOffersDatabaseTables() {
         String query = "CREATE TABLE offers("
-                + "code VARCHAR (100) NOT NULL, "
-                + "offers_name VARCHAR (150) NOT NULL, "
+                + "item_code VARCHAR (100) NOT NULL, "
+                + "title VARCHAR (150) NOT NULL, "
                 + "start_date DATE NOT NULL, "
                 + "end_date DATE NOT NULL)"
                 + "ENGINE = InnoDB "
