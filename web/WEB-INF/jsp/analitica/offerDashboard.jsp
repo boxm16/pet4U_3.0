@@ -32,13 +32,10 @@
             <h2><h2><table>
                         <tr>
                             <td>Offer Titel</td>
-                            <td><input type="text" name="orderUnitCapacity" value="${item.orderUnitCapacity}"></td>
+                           
                         </tr>
                        
-                        <tr>
-                            <td>Ποσότητα Τεμαχίων σε Μονάδα Παραγγελίας</td>
-                            <td><input type="number" name="orderUnitCapacity" value="${item.orderUnitCapacity}"></td>
-                        </tr>
+                       
                         <tr>
                             <td>Note</td>
                             <td> <input type="text" name="note" value="${item.note}"> </td>
