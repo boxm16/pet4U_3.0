@@ -52,7 +52,7 @@
                 </tr>
             </table>
             <br>
-            <button class="btn btn-primary" type="submit" style="width:300px; height :60px; background-color: green"><h1>Create Offer</h1></button>
+            <button class="btn btn-primary" type="submit" ><h1>Create Offer</h1></button>
             </h2>
         </form>
 
