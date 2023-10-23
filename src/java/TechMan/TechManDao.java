@@ -658,6 +658,7 @@ public class TechManDao {
 
     String createOffersDatabaseTables() {
         String query = "CREATE TABLE offers("
+                + "id INT NOT NULL AUTO_INCREMENT, "
                 + "item_code VARCHAR (100) NOT NULL, "
                 + "title VARCHAR (150) NOT NULL, "
                 + "start_date DATE NOT NULL, "

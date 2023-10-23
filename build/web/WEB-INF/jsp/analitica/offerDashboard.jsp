@@ -23,28 +23,28 @@
 
         <h1><a href="index.htm">INDEX</a></h1>
 
+        <h1>Create New Offer</h1>
+
         <h1 style="background-color: ${resultColor}">${result}</h1>
 
         <h1 >${item.description}</h1>
 
         <form action="addOffer.htm" method="POST" >
             <input hidden name="code" type="text" value="${item.code}">
-            <h2><h2><table>
-                        <tr>
-                            <td>Offer Titel</td>
-                           
-                        </tr>
-                       
-                       
-                        <tr>
-                            <td>Offer Title</td>
-                            <td> <input type="text" name="title"> </td>
-                        </tr>
+            <table>  
+                <tr>
+                    <td>Offer Title</td>
+                    <td> <input type="text" name="title"> </td>
+                </tr>
 
-                    </table>
-                    <br>
-                    <button type="submit" style="width:300px; height :60px; background-color: green"><h1>Add Item</h1></button>
-                </h2>
+                <tr>
+                    <td>Start Date</td>
+                    <td> <input type="date" name="startingDate"> </td>
+                </tr>
+            </table>
+            <br>
+            <button type="submit" style="width:300px; height :60px; background-color: green"><h1>Create Offer</h1></button>
+            </h2>
         </form>
 
     </center>
