@@ -37,8 +37,8 @@
                        
                        
                         <tr>
-                            <td>Note</td>
-                            <td> <input type="text" name="note" value="${item.note}"> </td>
+                            <td>Offer Title</td>
+                            <td> <input type="text" name="title"> </td>
                         </tr>
 
                     </table>
