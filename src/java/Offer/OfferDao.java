@@ -94,7 +94,7 @@ public class OfferDao {
 
     public Offer getOffer(String id) {
 
-        String sql = "SELECT * FROM offers WHERE id='" + id;
+        String sql = "SELECT * FROM offers WHERE id='" + id+"'";
         ResultSet resultSet;
         Offer offer = new Offer();
         try {
