@@ -8,7 +8,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>End Offer</title>
         <style>
-            
+
             input[type="date"]
             {
                 font-size:30px;
@@ -36,6 +36,15 @@
                 <tr>
                     <td><h2>Offer Title</h2></td>
                     <td><h2>${offer.title}</h2></td>
+                </tr>
+                <tr>
+                    <td>----------</td>
+                    <td>---------------------------------------------------</td>
+
+                </tr>
+                <tr>
+                    <td><h2>Start Date</h2></td>
+                    <td> ${offer.startDate}</td>
                 </tr>
                 <tr>
                     <td>----------</td>
