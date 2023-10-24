@@ -4,6 +4,8 @@
     Author     : Michail Sitmalidis
 --%>
 
+<%@page import="Offer.Offer"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.util.TreeMap"%>
 <%@page import="java.time.LocalDate"%>
 <%@page import="MonthSales.Sales"%>
@@ -159,8 +161,39 @@
                     </table>
                 </div>
                 <hr>
-                <a href="offerDashboard.htm?code=${item.getCode()}" class="btn btn-info btn-lg" role="button" aria-disabled="true"><h3>Offer Dashboard</h3></a>
+                <div class=" col-sm-4">
+                    <a href="offerDashboard.htm?code=${item.getCode()}" class="btn btn-info btn-lg" role="button" aria-disabled="true"><h3>Offer Dashboard</h3></a>
 
+                    <table>
+                        <th>Titel</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                            <%
+                                ArrayList<Offer> offers = (ArrayList<Offer>) request.getAttribute("offers");
+
+                                for (Offer offer : offers) {
+
+                                    out.println("<tr>");
+
+                                    out.println("<td>");
+                                    out.println(offer.getTitle());
+                                    out.println("</td>");
+
+                                    out.println("<td>");
+                                    out.println(offer.getStartDate());
+                                    out.println("</td>");
+
+                                    out.println("<td>");
+                                    out.println(offer.getEndDate());
+                                    out.println("</td>");
+
+                                    out.println("</tr>");
+
+                                }
+
+                            %>
+                    </table>
+                </div>
             </div>
         </div>
     </body>
