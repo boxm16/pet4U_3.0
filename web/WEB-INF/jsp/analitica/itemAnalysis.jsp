@@ -4,6 +4,8 @@
     Author     : Michail Sitmalidis
 --%>
 
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
 <%@page import="Offer.Offer"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.TreeMap"%>
@@ -171,6 +173,7 @@
                         <th>End Date</th>
                             <%
                                 ArrayList<Offer> offers = (ArrayList<Offer>) request.getAttribute("offers");
+                                SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 
                                 for (Offer offer : offers) {
 
@@ -179,14 +182,22 @@
                                     out.println("<td>");
                                     out.println(offer.getTitle());
                                     out.println("</td>");
-
+                                    String startDateString = formatter.format(offer.getStartDate());
                                     out.println("<td>");
-                                    out.println(offer.getStartDate());
+                                    out.println(startDateString);
                                     out.println("</td>");
 
-                                    out.println("<td>");
-                                    out.println(offer.getEndDate());
-                                    out.println("</td>");
+                                    Date endDate = offer.getEndDate();
+                                    if (endDate == null) {
+                                        out.println("<td>");
+                                        out.println();
+                                        out.println("</td>");
+                                    } else {
+                                        String endDateString = formatter.format(endDate);
+                                        out.println("<td>");
+                                        out.println(endDateString);
+                                        out.println("</td>");
+                                    }
 
                                     out.println("</tr>");
 
@@ -194,7 +205,8 @@
 
                             %>
                     </table>
-                    <a href="offerDashboard.htm?code=${item.getCode()}" class="btn btn-info btn-lg" role="button" aria-disabled="true">Add Dashboard</a>
+                    <hr>
+                    <a href="offerDashboard.htm?code=${item.getCode()}" class="btn btn-info btn-lg" role="button" aria-disabled="true">Add Offer</a>
 
                 </div>
             </div>
