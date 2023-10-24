@@ -69,6 +69,7 @@
             <hr>
             <div class="row">
                 <div class=" col-sm-4">
+                    Stock
                     <table>
                         <th>Date Stamp</th>
                         <th>State</th>
@@ -105,6 +106,7 @@
                     </table>
                 </div>
                 <div class=" col-sm-4">
+                    Sales
                     <table>
                         <th>Date Stamp</th>
                         <th>E-Shop Sales</th>
@@ -162,8 +164,7 @@
                 </div>
                 <hr>
                 <div class=" col-sm-4">
-                    <a href="offerDashboard.htm?code=${item.getCode()}" class="btn btn-info btn-lg" role="button" aria-disabled="true"><h3>Offer Dashboard</h3></a>
-
+Offers
                     <table>
                         <th>Titel</th>
                         <th>Start Date</th>
@@ -193,6 +194,8 @@
 
                             %>
                     </table>
+                    <a href="offerDashboard.htm?code=${item.getCode()}" class="btn btn-info btn-lg" role="button" aria-disabled="true">Add Dashboard</a>
+
                 </div>
             </div>
         </div>
