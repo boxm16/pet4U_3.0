@@ -16,11 +16,12 @@ public class OfferDao {
 
             DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
             Connection connection = databaseConnectionFactory.getMySQLConnection();
-            PreparedStatement itemInsertStatement = connection.prepareStatement("INSERT INTO offers (item_code, title, start_date) VALUES (?,?,?)");
+            PreparedStatement itemInsertStatement = connection.prepareStatement("INSERT INTO offers (item_code, title, start_date, end_date) VALUES (?,?,?,?)");
 
             itemInsertStatement.setString(1, code);
             itemInsertStatement.setString(2, title);
             itemInsertStatement.setString(3, startDate);
+            itemInsertStatement.setString(4, "");
 
             itemInsertStatement.execute();
 
