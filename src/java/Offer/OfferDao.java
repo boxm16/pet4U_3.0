@@ -52,9 +52,9 @@ public class OfferDao {
             while (resultSet.next()) {
 
                 Offer offer = new Offer();
-                
+
                 offer.setId(resultSet.getInt("id"));
-                
+
                 offer.setTitle(resultSet.getString("title"));
 
                 String startDateString = resultSet.getString("start_date");
@@ -92,10 +92,54 @@ public class OfferDao {
         return offers;
     }
 
-   public Offer getOffer(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public Offer getOffer(String id) {
 
-    
+        String sql = "SELECT * FROM offers WHERE id='" + id;
+        ResultSet resultSet;
+        Offer offer = new Offer();
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            Connection connection = databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+
+            resultSet = statement.executeQuery(sql);
+            while (resultSet.next()) {
+
+                offer.setId(resultSet.getInt("id"));
+
+                offer.setTitle(resultSet.getString("title"));
+
+                String startDateString = resultSet.getString("start_date");
+                Date startDate = null;
+                try {
+                    startDate = new SimpleDateFormat("yyyy-MM-dd").parse(startDateString);
+                } catch (ParseException ex) {
+                    Logger.getLogger(OfferDao.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                offer.setStartDate(startDate);
+
+                String endDateString = resultSet.getString("end_date");
+                Date endDate = null;
+                if (endDateString == null) {
+                    //do nothing
+                } else {
+                    try {
+                        endDate = new SimpleDateFormat("yyyy-MM-dd").parse(endDateString);
+                    } catch (ParseException ex) {
+                        Logger.getLogger(OfferDao.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    offer.setStartDate(endDate);
+                }
+
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(OfferDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return offer;
+    }
 
 }
