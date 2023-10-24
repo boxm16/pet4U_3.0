@@ -67,7 +67,7 @@ public class OfferController {
             model.addAttribute("result", "END DATE IS MISSING.");
             model.addAttribute("code", code);
             model.addAttribute("item", item);
-            return "offer/endOfferDashboard";
+            return "analitica/endOfferDashboard";
         }
         OfferDao offerDao = new OfferDao();
         String result = offerDao.endOffer(id, endDate);
