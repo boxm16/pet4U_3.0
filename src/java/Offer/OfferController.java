@@ -73,7 +73,7 @@ public class OfferController {
         OfferDao offerDao = new OfferDao();
         String result = offerDao.endOffer(id, endDate);
 
-        return "redirect:analitica/itemAnalysis.htm?item_code=" + code;
+        return "redirect:itemAnalysis.htm?item_code=" + code;
     }
 
 }
