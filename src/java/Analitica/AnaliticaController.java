@@ -3,8 +3,11 @@ package Analitica;
 import BasicModel.Item;
 import MonthSales.ItemSales;
 import MonthSales.MonthSalesDao;
+import Offer.Offer;
+import Offer.OfferDao;
 import Pet4uItems.Pet4uItemsDao;
 import Search.SearchDao;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -30,6 +33,10 @@ public class AnaliticaController {
         ItemSales itemSales = monthSalesDao.getItemSales(code);
         model.addAttribute("itemSales", itemSales);
 
+        OfferDao offerDao = new OfferDao();
+        ArrayList<Offer> offers = offerDao.getOffers(code);
+        model.addAttribute("offers", offers);
+
         return "analitica/itemAnalysis";
     }
 
@@ -42,6 +49,5 @@ public class AnaliticaController {
 
         return "analitica/offerDashboard";
     }
-    
-    
+
 }
