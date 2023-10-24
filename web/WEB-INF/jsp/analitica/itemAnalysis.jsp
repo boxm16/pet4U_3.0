@@ -190,7 +190,7 @@
                                     Date endDate = offer.getEndDate();
                                     if (endDate == null) {
                                         out.println("<td>");
-                                        out.println();
+                                        out.println("<a href='endOfferDashboard.htm?id=" + offer.getId() + "'>End Offer</a>");
                                         out.println("</td>");
                                     } else {
                                         String endDateString = formatter.format(endDate);

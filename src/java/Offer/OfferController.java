@@ -38,4 +38,18 @@ public class OfferController {
         return "analitica/offerDashboard";
     }
 
+    @RequestMapping(value = "/endOfferDashboard", method = RequestMethod.GET)
+    public String endOfferDashboard(@RequestParam String id,
+            ModelMap model) {
+        OfferDao offerDao = new OfferDao();
+        Offer offer = offerDao.getOffer(id);
+
+        SearchDao searchDao = new SearchDao();
+        Item item = searchDao.getItemByAltercode(offer.getItemCode());
+
+        model.addAttribute("offer", offer);
+        model.addAttribute("item", item);
+        return "analitica/endOfferDashboard";
+    }
+
 }

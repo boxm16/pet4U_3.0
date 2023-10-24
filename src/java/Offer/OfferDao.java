@@ -52,6 +52,9 @@ public class OfferDao {
             while (resultSet.next()) {
 
                 Offer offer = new Offer();
+                
+                offer.setId(resultSet.getInt("id"));
+                
                 offer.setTitle(resultSet.getString("title"));
 
                 String startDateString = resultSet.getString("start_date");
@@ -88,5 +91,11 @@ public class OfferDao {
         }
         return offers;
     }
+
+   public Offer getOffer(String id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
 
 }
