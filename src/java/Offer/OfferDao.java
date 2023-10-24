@@ -143,7 +143,21 @@ public class OfferDao {
     }
 
     String endOffer(String id, String endDate) {
-        return "";
+        String sql = "UPDATE offers SET end_time=" + endDate + " WHERE id='" + id + "'";
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            Connection connection = databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(sql);
+            statement.close();
+
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(OfferDao.class.getName()).log(Level.SEVERE, null, ex);
+            return ex.getMessage();
+        }
+        return "success";
     }
 
 }
