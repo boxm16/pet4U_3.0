@@ -662,7 +662,7 @@ public class TechManDao {
                 + "item_code VARCHAR (100) NOT NULL, "
                 + "title VARCHAR (150) NOT NULL, "
                 + "start_date DATE NOT NULL, "
-                + "end_date DATE NOT NULL, "
+                + "end_date DATE  NULL, "
                 + "PRIMARY KEY (id)) "
                 + "ENGINE = InnoDB "
                 + "DEFAULT CHARACTER SET = utf8;";
