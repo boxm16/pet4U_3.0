@@ -69,7 +69,7 @@
             <hr>
             <div class="row">
                 <div class=" col-sm-4">
-                    Stock
+                    <center><h3>Stock Analysis</h3></center>
                     <table>
                         <th>Date Stamp</th>
                         <th>State</th>
@@ -106,7 +106,7 @@
                     </table>
                 </div>
                 <div class=" col-sm-4">
-                    Sales
+                    <center><h3>Sales</h3></center>
                     <table>
                         <th>Date Stamp</th>
                         <th>E-Shop Sales</th>
@@ -164,7 +164,7 @@
                 </div>
                 <hr>
                 <div class=" col-sm-4">
-Offers
+                    <center><h3>Offers</h3></center>
                     <table>
                         <th>Titel</th>
                         <th>Start Date</th>
