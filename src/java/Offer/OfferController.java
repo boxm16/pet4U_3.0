@@ -55,13 +55,24 @@ public class OfferController {
     @RequestMapping(value = "/endOffer", method = RequestMethod.GET)
     public String endOffer(@RequestParam String code, @RequestParam String id, @RequestParam String endDate,
             ModelMap model) {
+
+        if (endDate.isEmpty()) {
+
+            OfferDao offerDao = new OfferDao();
+            Offer offer = offerDao.getOffer(id);
+
+            SearchDao searchDao = new SearchDao();
+            Item item = searchDao.getItemByAltercode(offer.getItemCode());
+            model.addAttribute("resultColor", "rose");
+            model.addAttribute("result", "END DATE IS MISSING.");
+            model.addAttribute("code", code);
+            model.addAttribute("item", item);
+            return "offer/endOfferDashboard";
+        }
         OfferDao offerDao = new OfferDao();
-        String  result = offerDao.endOffer(id, endDate);
+        String result = offerDao.endOffer(id, endDate);
 
-        
-
-       
-        return "redirect:analitica/itemAnalysis.htm?item_code"+code;
+        return "redirect:analitica/itemAnalysis.htm?item_code" + code;
     }
 
 }

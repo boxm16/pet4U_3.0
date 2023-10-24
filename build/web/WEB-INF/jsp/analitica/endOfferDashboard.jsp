@@ -33,7 +33,7 @@
         <h1 >${item.code} : ${item.description}</h1>
         <h1 style="background-color: ${resultColor}">${result}</h1>
 
-        <form action="endOffer.htm" method="POST" >
+        <form action="endOffer.htm" method="GET" >
             <input hidden name="code" type="text" value="${item.code}">
             <table>  
                 <tr>
