@@ -1,5 +1,6 @@
 package Offer;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Offer {
@@ -17,8 +18,6 @@ public class Offer {
     public void setId(int id) {
         this.id = id;
     }
-    
-    
 
     public String getTitle() {
         return title;
@@ -52,6 +51,8 @@ public class Offer {
         this.itemCode = itemCode;
     }
 
-    
-    
+    public String getStartDateString() {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        return formatter.format(this.getStartDate());
+    }
 }

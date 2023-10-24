@@ -44,7 +44,7 @@
                 </tr>
                 <tr>
                     <td><h2>Start Date</h2></td>
-                    <td> ${offer.startDate}</td>
+                    <td> ${offer.getStartDateString()}</td>
                 </tr>
                 <tr>
                     <td>----------</td>
