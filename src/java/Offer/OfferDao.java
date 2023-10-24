@@ -143,7 +143,7 @@ public class OfferDao {
     }
 
     String endOffer(String id, String endDate) {
-        String sql = "UPDATE offers SET end_date=" + endDate + " WHERE id=" + id ;
+        String sql = "UPDATE offers SET end_date='" + endDate + "' WHERE id=" + id ;
         try {
             DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
             Connection connection = databaseConnectionFactory.getMySQLConnection();
