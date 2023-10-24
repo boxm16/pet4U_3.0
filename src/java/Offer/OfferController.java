@@ -1,5 +1,7 @@
 package Offer;
 
+import BasicModel.Item;
+import Search.SearchDao;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,11 +16,15 @@ public class OfferController {
             @RequestParam String title,
             @RequestParam String startDate,
             ModelMap model) {
+
+        SearchDao searchDao = new SearchDao();
+        Item item = searchDao.getItemByAltercode(code);
         OfferDao offerDao = new OfferDao();
         if (startDate.isEmpty()) {
             model.addAttribute("resultColor", "rose");
             model.addAttribute("result", "START DATE IS MISSING.");
             model.addAttribute("code", code);
+            model.addAttribute("item", item);
             return "analitica/offerDashboard";
         }
 
@@ -26,7 +32,8 @@ public class OfferController {
 
         model.addAttribute("resultColor", "green");
         model.addAttribute("result", result);
-        model.addAttribute("item", "");
+        model.addAttribute("code", code);
+        model.addAttribute("item", item);
 
         return "analitica/offerDashboard";
     }
