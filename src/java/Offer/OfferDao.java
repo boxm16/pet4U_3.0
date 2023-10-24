@@ -142,4 +142,8 @@ public class OfferDao {
         return offer;
     }
 
+    String endOffer(String id, String endDate) {
+        return "";
+    }
+
 }

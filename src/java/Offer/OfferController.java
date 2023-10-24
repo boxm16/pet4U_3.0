@@ -52,4 +52,16 @@ public class OfferController {
         return "analitica/endOfferDashboard";
     }
 
+    @RequestMapping(value = "/endOffer", method = RequestMethod.GET)
+    public String endOffer(@RequestParam String code, @RequestParam String id, @RequestParam String endDate,
+            ModelMap model) {
+        OfferDao offerDao = new OfferDao();
+        String  result = offerDao.endOffer(id, endDate);
+
+        
+
+       
+        return "redirect:analitica/itemAnalysis.htm?item_code"+code;
+    }
+
 }
