@@ -8,7 +8,10 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>End Offer</title>
         <style>
-
+            table, th, td {
+                border: 1px solid ;
+                border-collapse: collapse;
+            }
             input[type="date"]
             {
                 font-size:30px;
