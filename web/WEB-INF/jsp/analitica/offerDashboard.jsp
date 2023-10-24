@@ -38,7 +38,7 @@
             <input hidden name="code" type="text" value="${item.code}">
             <table>  
                 <tr>
-                    <td>Offer Title</td>
+                    <td><h2>Offer Title</h2></td>
                     <td> <input type="text" name="title" width="80"> </td>
                 </tr>
                 <tr>
@@ -47,7 +47,7 @@
 
                 </tr>
                 <tr>
-                    <td>Start Date</td>
+                    <td><h2>Start Date</h2></td>
                     <td> <input type="date" name="startingDate"> </td>
                 </tr>
             </table>
