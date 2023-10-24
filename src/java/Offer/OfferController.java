@@ -65,6 +65,7 @@ public class OfferController {
             Item item = searchDao.getItemByAltercode(offer.getItemCode());
             model.addAttribute("resultColor", "rose");
             model.addAttribute("result", "END DATE IS MISSING.");
+            model.addAttribute("offer", offer);
             model.addAttribute("code", code);
             model.addAttribute("item", item);
             return "analitica/endOfferDashboard";
