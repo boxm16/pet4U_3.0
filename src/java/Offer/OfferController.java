@@ -52,7 +52,7 @@ public class OfferController {
         return "analitica/endOfferDashboard";
     }
 
-    @RequestMapping(value = "/endOffer", method = RequestMethod.GET)
+    @RequestMapping(value = "/endOffer", method = RequestMethod.POST)
     public String endOffer(@RequestParam String code, @RequestParam String id, @RequestParam String endDate,
             ModelMap model) {
 
