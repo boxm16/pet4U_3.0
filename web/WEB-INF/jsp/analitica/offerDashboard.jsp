@@ -48,7 +48,7 @@
                 </tr>
                 <tr>
                     <td><h2>Start Date</h2></td>
-                    <td> <input type="date" name="startingDate"> </td>
+                    <td> <input type="date" name="startDate"> </td>
                 </tr>
             </table>
             <br>
