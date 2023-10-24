@@ -1,9 +1,6 @@
 
 
 
-<%@page import="java.time.LocalDateTime"%>
-<%@page import="java.time.format.DateTimeFormatter"%>
-<%@page import="java.util.Date"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -60,18 +57,7 @@
                 </tr>
                 <tr>
                     <td><h2>End Date</h2></td>
-                    <%
-                        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-                        LocalDateTime now = LocalDateTime.now();
-                        String n = dtf.format(now);
-                        out.println("<td>");
-                        out.println(n);
-                        out.println("</td>");
-                        out.println("<td>");
-                        out.println("<input type=\"date\" name=\"endDate\" value=" + n + ">");
-                        out.println("</td>");
-                    %>
-
+                    <td> <input type="date" name="endDate"> </td>
                 </tr>
             </table>
             <br>
