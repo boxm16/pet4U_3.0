@@ -61,7 +61,7 @@
                 <tr>
                     <td><h2>End Date</h2></td>
                     <%
-                        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");
                         LocalDateTime now = LocalDateTime.now();
                         String n = dtf.format(now);
                         out.println("<td>");
