@@ -65,10 +65,13 @@
                         LocalDateTime now = LocalDateTime.now();
                         String n = dtf.format(now);
                         out.println("<td>");
+                        out.println(n);
+                        out.println("</td>");
+                        out.println("<td>");
                         out.println("<input type=\"date\" name=\"endDate\" value=" + n + ">");
                         out.println("</td>");
                     %>
-                  
+
                 </tr>
             </table>
             <br>
