@@ -2,6 +2,7 @@ package Offer;
 
 import BasicModel.Item;
 import Search.SearchDao;
+import java.util.ArrayList;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -74,6 +75,16 @@ public class OfferController {
         String result = offerDao.endOffer(id, endDate);
 
         return "redirect:itemAnalysis.htm?code=" + code;
+    }
+
+    @RequestMapping(value = "/activeOffers")
+    public String activeOffers(ModelMap model) {
+
+        OfferDao offerDao = new OfferDao();
+        ArrayList<Offer> activeOffers = offerDao.getAllActiveOffers();
+
+        model.addAttribute("activeOffers", activeOffers);
+        return "analitica/offerDashboard";
     }
 
 }
