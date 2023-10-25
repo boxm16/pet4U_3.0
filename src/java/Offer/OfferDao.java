@@ -194,8 +194,9 @@ public class OfferDao {
                 offer.setStartDate(startDate);
                 String endDateString = resultSet.getString("end_date");
                 if (endDateString == null) {
-                } else {
                     offers.add(offer);
+                } else {
+
                 }
 
             }
