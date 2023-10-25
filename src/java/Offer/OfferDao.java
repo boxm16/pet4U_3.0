@@ -193,7 +193,7 @@ public class OfferDao {
                 }
                 offer.setStartDate(startDate);
                 String endDateString = resultSet.getString("end_date");
-
+                System.out.println("EEEEE"+endDateString);
                 offers.add(offer);
 
             }
