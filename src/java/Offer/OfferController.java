@@ -82,9 +82,15 @@ public class OfferController {
 
         OfferDao offerDao = new OfferDao();
         ArrayList<Offer> activeOffers = offerDao.getAllActiveOffers();
-        System.out.println("AC"+activeOffers.size());
+
         model.addAttribute("activeOffers", activeOffers);
         return "offers/activeOffers";
+    }
+
+    @RequestMapping(value = "/offerStamping")
+    public String offerStamping(ModelMap model) {
+
+        return "offers/offerStamping";
     }
 
 }
