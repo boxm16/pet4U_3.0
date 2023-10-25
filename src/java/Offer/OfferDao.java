@@ -167,7 +167,7 @@ public class OfferDao {
     ArrayList<Offer> getAllActiveOffers() {
         ArrayList<Offer> offers = new ArrayList<>();
 
-        String sql = "SELECT * FROM offers WHERE end_date=null ORDER BY start_date";
+        String sql = "SELECT * FROM offers ORDER BY start_date";
         ResultSet resultSet;
 
         try {
@@ -192,8 +192,10 @@ public class OfferDao {
                     Logger.getLogger(OfferDao.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 offer.setStartDate(startDate);
-
-                offers.add(offer);
+                String endDateString = resultSet.getString("end_date");
+                if (endDateString != null) {
+                    offers.add(offer);
+                }
 
             }
             resultSet.close();
