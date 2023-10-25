@@ -84,7 +84,7 @@ public class OfferController {
         ArrayList<Offer> activeOffers = offerDao.getAllActiveOffers();
 
         model.addAttribute("activeOffers", activeOffers);
-        return "analitica/offerDashboard";
+        return "offers/activeOffers";
     }
 
 }
