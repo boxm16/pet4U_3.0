@@ -67,6 +67,10 @@
                     out.println(offer.getStartDateString());
                     out.println("</td>");
 
+                    out.println("<td>");
+                    out.println("<a href='endOfferDashboard.htm?id=" + offer.getId() + "'>End Offer</a>");
+                    out.println("</td>");
+
                     out.println("</tr>");
 
                 }
