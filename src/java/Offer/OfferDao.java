@@ -181,7 +181,7 @@ public class OfferDao {
                 Offer offer = new Offer();
 
                 offer.setId(resultSet.getInt("id"));
-
+                offer.setItemCode(resultSet.getString("item_code"));
                 offer.setTitle(resultSet.getString("title"));
 
                 String startDateString = resultSet.getString("start_date");
@@ -193,8 +193,10 @@ public class OfferDao {
                 }
                 offer.setStartDate(startDate);
                 String endDateString = resultSet.getString("end_date");
-                System.out.println("EEEEE"+endDateString);
-                offers.add(offer);
+                if (endDateString == null) {
+                } else {
+                    offers.add(offer);
+                }
 
             }
             resultSet.close();
