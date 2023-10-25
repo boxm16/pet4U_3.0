@@ -54,6 +54,7 @@
 
                 </div>
                 <div class=" col-sm-4">
+                    <h1><a href="index.htm">INDEX</a></h1>
                     <h1>Pet4U Item Analysis</h1>
 
                     <table> 
