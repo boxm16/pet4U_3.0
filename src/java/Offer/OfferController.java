@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class OfferController {
 
     @RequestMapping(value = "/addOffer", method = RequestMethod.POST)
-    public String offerDashboard(@RequestParam String code,
+    public String addOffer(@RequestParam String code,
             @RequestParam String title,
             @RequestParam String startDate,
             ModelMap model) {
@@ -91,6 +91,39 @@ public class OfferController {
     public String offerStamping(ModelMap model) {
 
         return "offers/offerStamping";
+    }
+
+    @RequestMapping(value = "/stampOffer", method = RequestMethod.POST)
+    public String stampOffer(@RequestParam String code,
+            @RequestParam String title,
+            @RequestParam String startDate,
+            ModelMap model) {
+        if (startDate.isEmpty()) {
+            model.addAttribute("resultColor", "rose");
+            model.addAttribute("result", "START DATE IS MISSING.");
+            model.addAttribute("code", code);
+
+            return "offers/stampingResult";
+        }
+
+        SearchDao searchDao = new SearchDao();
+        Item item = searchDao.getItemByAltercode(code);
+        if (item == null) {
+            model.addAttribute("resultColor", "rose");
+            model.addAttribute("result", "Item Code Not Found");
+            model.addAttribute("code", code);
+
+            return "offers/stampingResult";
+        } else {
+            OfferDao offerDao = new OfferDao();
+
+            offerDao.addOffer(code, title, startDate);
+            model.addAttribute("resultColor", "green");
+            model.addAttribute("result", "Good Job");
+            model.addAttribute("code", code);
+            return "offers/stampingResult";
+        }
+
     }
 
 }

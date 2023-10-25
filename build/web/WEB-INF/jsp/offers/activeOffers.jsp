@@ -32,9 +32,9 @@
     <body>
     <center>
         <h1><a href="index.htm">INDEX</a></h1>
-        <h1>Active Offers</h1>
         <hr> 
-        <h1><a href="offerStamping.htm">Go For Offer Stamping</a></h1>
+        <h2><a href="offerStamping.htm">Go For Offer Stamping</a></h2>
+        <h1>Active Offers</h1>
         <hr>
         <table>
             <thead>
