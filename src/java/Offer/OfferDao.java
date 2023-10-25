@@ -123,14 +123,18 @@ public class OfferDao {
                 if (endDateString == null) {
                     //do nothing
                 } else {
-                    try {
-                        endDate = new SimpleDateFormat("yyyy-MM-dd").parse(endDateString);
-                    } catch (ParseException ex) {
-                        Logger.getLogger(OfferDao.class.getName()).log(Level.SEVERE, null, ex);
+                    if (endDateString.isEmpty()) {
+                         //do nothing
+                    } else {
+                        try {
+                            endDate = new SimpleDateFormat("yyyy-MM-dd").parse(endDateString);
+                        } catch (ParseException ex) {
+                            Logger.getLogger(OfferDao.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        offer.setStartDate(endDate);
                     }
-                    offer.setStartDate(endDate);
-                }
 
+                }
             }
             resultSet.close();
             statement.close();
@@ -142,8 +146,9 @@ public class OfferDao {
         return offer;
     }
 
-    String endOffer(String id, String endDate) {
-        String sql = "UPDATE offers SET end_date='" + endDate + "' WHERE id=" + id ;
+    String endOffer(String id, String endDate
+    ) {
+        String sql = "UPDATE offers SET end_date='" + endDate + "' WHERE id=" + id;
         try {
             DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
             Connection connection = databaseConnectionFactory.getMySQLConnection();
