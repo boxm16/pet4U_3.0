@@ -45,7 +45,7 @@
 
             </thead>
             <%
-                ArrayList<Offer> offers = (ArrayList) request.getAttribute("offers");
+                ArrayList<Offer> offers = (ArrayList) request.getAttribute("activeOffers");
                 for (Offer offer : offers) {
 
                     out.println("<tr>");
