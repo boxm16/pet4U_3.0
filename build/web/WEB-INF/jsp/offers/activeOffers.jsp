@@ -71,16 +71,6 @@
                 }
             %>
         </table>
-        <hr>
-        <form id="form" action="#" method="POST">
-            <input hidden type="text" id="inventoryItemsInput" name="itemsIds">
-        </form>
-
-        <a href="#" onclick="requestRouter('printMode.htm')"><h4>Print Mode</h4></a>
-        <hr><hr><hr><hr><hr><hr><hr><hr><hr><hr>
-        <a href="#" onclick="requestRouter('archivizeItems.htm')"><h4>Archivize Selected Items</h4></a>
-        <hr><hr><hr><hr><hr><hr><hr><hr><hr><hr>
-        <a href="#" onclick="requestRouter('showArchivizedInventories.htm')"><h4>Show Archivized Inventories</h4></a>
 
     </center>
 
