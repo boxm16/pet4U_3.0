@@ -69,12 +69,12 @@ public class OfferController {
             model.addAttribute("offer", offer);
             model.addAttribute("code", code);
             model.addAttribute("item", item);
-            return "redirect:activeOffers.htm";
+            return "analitica/endOfferDashboard";
         }
         OfferDao offerDao = new OfferDao();
         String result = offerDao.endOffer(id, endDate);
-
-        return "redirect:itemAnalysis.htm?code=" + code;
+        return "redirect:activeOffers.htm";
+        //return "redirect:itemAnalysis.htm?code=" + code;
     }
 
     @RequestMapping(value = "/activeOffers")
