@@ -69,7 +69,7 @@ public class OfferController {
             model.addAttribute("offer", offer);
             model.addAttribute("code", code);
             model.addAttribute("item", item);
-            return "analitica/endOfferDashboard";
+            return "redirect:activeOffers.htm";
         }
         OfferDao offerDao = new OfferDao();
         String result = offerDao.endOffer(id, endDate);
