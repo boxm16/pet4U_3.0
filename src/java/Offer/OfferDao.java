@@ -76,7 +76,7 @@ public class OfferDao {
                     } catch (ParseException ex) {
                         Logger.getLogger(OfferDao.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    offer.setStartDate(endDate);
+                    offer.setEndDate(endDate);
                 }
 
                 offers.add(offer);
