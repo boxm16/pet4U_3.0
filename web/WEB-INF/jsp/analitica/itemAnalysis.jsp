@@ -65,8 +65,8 @@
                         <tr><td>Stock</td><td>${item.quantity}</td></tr>
                         <%
                             Item item = (Item) request.getAttribute("item");
-                            out.println("<tr style='background-color:#F1F1F1'>");
-                            out.println("<td colspan='2' style='font-size: 30px;'>");
+                            out.println("<tr>");
+                            out.println("<td colspan='2' >");
 
                             ArrayList<AltercodeContainer> altercodes = item.getAltercodes();
                             for (AltercodeContainer altercodeContainer : altercodes) {
