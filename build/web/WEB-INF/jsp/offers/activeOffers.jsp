@@ -60,6 +60,10 @@
                     out.println("</td>");
 
                     out.println("<td>");
+                    out.println(offer.getItemDescription());
+                    out.println("</td>");
+
+                    out.println("<td>");
                     out.println(offer.getTitle());
                     out.println("</td>");
 

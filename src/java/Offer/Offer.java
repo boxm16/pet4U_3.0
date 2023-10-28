@@ -10,6 +10,7 @@ public class Offer {
     private Date startDate;
     private Date endDate;
     private String itemCode;
+    private String itemDescription;
 
     public int getId() {
         return id;
@@ -55,4 +56,14 @@ public class Offer {
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
         return formatter.format(this.getStartDate());
     }
+
+    public String getItemDescription() {
+        return itemDescription;
+    }
+
+    public void setItemDescription(String itemDescription) {
+        this.itemDescription = itemDescription;
+    }
+    
+    
 }
