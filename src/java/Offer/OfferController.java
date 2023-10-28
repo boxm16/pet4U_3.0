@@ -91,7 +91,11 @@ public class OfferController {
         for (Offer offer : activeOffers) {
             String itemCode = offer.getItemCode();
             Item item = pet4UItemsRowByRow.get(itemCode);
-            offer.setItemDescription(item.getDescription());
+            if (item == null) {
+                System.out.println("Item with itemCode "+itemCode+"is null. You need to find the reason");
+            } else {
+                offer.setItemDescription(item.getDescription());
+            }
         }
         model.addAttribute("activeOffers", activeOffers);
         return "offers/activeOffers";
