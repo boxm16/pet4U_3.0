@@ -55,8 +55,8 @@
 
                 </div>
                 <div class=" col-sm-4">
-                    <h1><a href="index.htm">INDEX</a></h1>
-                    <h1>Pet4U Item Analysis</h1>
+                    <h5><a href="index.htm">INDEX</a></h5>
+                    <h5>Pet4U Item Analysis</h5>
 
                     <table> 
                         <tr><td>Code</td><td>${item.code}</td></tr>
