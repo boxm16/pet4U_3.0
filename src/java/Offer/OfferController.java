@@ -1,7 +1,7 @@
 package Offer;
 
 import BasicModel.Item;
-import CamelotItemsOfInterest.CamelotItemsOfInterestDao;
+import Pet4uItems.Pet4uItemsDao;
 import Search.SearchDao;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -85,8 +85,8 @@ public class OfferController {
         OfferDao offerDao = new OfferDao();
         ArrayList<Offer> activeOffers = offerDao.getAllActiveOffers();
 
-        CamelotItemsOfInterestDao camelotItemsOfInterestDao = new CamelotItemsOfInterestDao();
-        LinkedHashMap<String, Item> pet4UItemsRowByRow = camelotItemsOfInterestDao.getPet4UItemsRowByRow();
+        Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
+        LinkedHashMap<String, Item> pet4UItemsRowByRow = pet4uItemsDao.getPet4UItemsRowByRow();
 
         for (Offer offer : activeOffers) {
             String itemCode = offer.getItemCode();
