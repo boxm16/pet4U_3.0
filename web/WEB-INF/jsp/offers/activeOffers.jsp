@@ -57,9 +57,10 @@
                     out.println("</td>");
 
                     out.println("<td>");
-                    out.println(offer.getItemCode());
+                    out.println("<a href='itemAnalysis.htm?code=" + offer.getItemCode()+ "' target='_blank'>"+offer.getItemCode()+"</a>");
                     out.println("</td>");
-
+                    
+               
                     out.println("<td>");
                     out.println(offer.getItemDescription());
                     out.println("</td>");
@@ -84,30 +85,6 @@
 
     </center>
 
-    <script>
 
-        ////--------------------
-        function requestRouter(requestTarget) {
-            if (requestTarget == "printMode.htm" || requestTarget == "showArchivizedInventories.htm") {
-                form.target = "_blank";
-            } else {
-
-            }
-            form.action = requestTarget;
-            inventoryItemsInput.value = collectSellectedCheckBoxes();
-            console.log(form.action);
-            form.submit();
-        }
-        //this function collects all checked checkbox values, concatinates them in one string and returns that string to send it after by POST method to server
-        function collectSellectedCheckBoxes() {
-            var returnValue = "";
-            var targetCheckBoxes = document.querySelectorAll(".inventoryItemId");
-            for (x = 0; x < targetCheckBoxes.length; x++) {
-                if (targetCheckBoxes[x].checked)
-                    returnValue += targetCheckBoxes[x].id + ",";
-            }
-            return returnValue;
-        }
-    </script>
 </body>
 </html>
