@@ -90,6 +90,7 @@ public class OfferController {
 
         for (Offer offer : activeOffers) {
             String itemCode = offer.getItemCode();
+            itemCode=itemCode.trim();
             Item item = pet4UItemsRowByRow.get(itemCode);
             if (item == null) {
                 System.out.println("Item with itemCode "+itemCode+"is null. You need to find the reason");
