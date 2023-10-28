@@ -4,6 +4,7 @@
     Author     : Michail Sitmalidis
 --%>
 
+<%@page import="BasicModel.AltercodeContainer"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@page import="Offer.Offer"%>
@@ -62,6 +63,28 @@
                         <tr><td>Description</td><td>${item.description}</td></tr>
                         <tr><td>State</td><td>${item.state}</td></tr>
                         <tr><td>Stock</td><td>${item.quantity}</td></tr>
+                        <%
+                            Item item = (Item) request.getAttribute("item");
+                            out.println("<tr style='background-color:#F1F1F1'>");
+                            out.println("<td colspan='2' style='font-size: 30px;'>");
+
+                            ArrayList<AltercodeContainer> altercodes = item.getAltercodes();
+                            for (AltercodeContainer altercodeContainer : altercodes) {
+                                if (altercodeContainer.getStatus().equals("eshop")
+                                        || altercodeContainer.getStatus().equals("eshop-on")
+                                        || altercodeContainer.getStatus().equals("eshop-barf")
+                                        || altercodeContainer.getStatus().equals("eshop-pro")) {
+
+                                    out.println("<a href='https://www.pet4u.gr/search-products-el.html?subcats=Y&status=A&match=all&pshort=N&pfull=N&pname=Y&pkeywords=N&pcode_from_q=Y&wg_go_direct=Y&search_performed=Y&q=" + altercodeContainer.getAltercode() + "' target='_blank'>" + "<strong>" + altercodeContainer.getAltercode() + "</strong>" + "</a>");
+                                    out.println("<br>");
+                                } else {
+                                    out.println("<strong>" + altercodeContainer.getAltercode() + "</strong>");
+                                    out.println("<br>");
+                                }
+                            }
+                            out.println("</td>");
+                            out.println("</tr>");
+                        %>
                     </table>
                 </div>
                 <div class=" col-sm-4">
@@ -115,8 +138,8 @@
                         <th>E-Shop Sales</th>
                         <th>Ενδοδιακ.</th>
                             <%
-                                ItemSales item = (ItemSales) request.getAttribute("itemSales");
-                                TreeMap<LocalDate, Sales> sales = item.getSales();
+                                ItemSales itemSales = (ItemSales) request.getAttribute("itemSales");
+                                TreeMap<LocalDate, Sales> sales = itemSales.getSales();
                                 double totalSales = 0;
                                 double totalShopSupplies = 0;
 
