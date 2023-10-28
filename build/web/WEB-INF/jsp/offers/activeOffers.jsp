@@ -40,9 +40,10 @@
             <thead>
             <th>ID</th>
             <th>Item Code</th>
+            <th>Item Description</th>
             <th>Title</th>
             <th>Start Date</th>
-
+            <th>End Offer</th>
 
             </thead>
             <%
