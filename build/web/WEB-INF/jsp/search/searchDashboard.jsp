@@ -77,7 +77,7 @@
                             <form action="deepSearchForAltercodeMask.htm" method="GET" >
                                 <input type="text" class="form-control input-lg" name='altercodeMask' value="%">
                                 <br>
-                                <input class="btn btn-success btn-lg btn-block"  type="submit" value="Submit">
+                                <input class="btn btn-danger btn-lg btn-block"  type="submit" value="Submit">
                             </form>
                         </h1>
                     </center>
