@@ -124,7 +124,7 @@
                     double x = camelotItemOfInterest.getPet4uStock() / camelotItemOfInterest.getWeightCoefficient();
 
                     if (x > camelotItemOfInterest.getTotalSalesInPieces()) {
-                        out.println("<td style='background-green'>");
+                        out.println("<td style='background-color:green'>");
                     } else {
                         out.println("<td>");
                     }
