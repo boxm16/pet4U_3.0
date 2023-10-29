@@ -160,7 +160,7 @@
                     Double a = camelotItemOfInterest.getPet4uStock();
                     Double stockForMonths = (a * 6) / camelotItemOfInterest.getTotalSalesInPieces();
                     out.println("<td>");
-                    out.println(stockForMonths.intValue());
+                    out.println(stockForMonths);
                     out.println("</td>");
 
                     out.println("</tr>");
