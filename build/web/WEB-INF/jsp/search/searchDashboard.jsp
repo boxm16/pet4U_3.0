@@ -75,7 +75,7 @@
                         <h5><strong>Find Single Line <br>From Microsoft Database<br> Using Altercode Mask</strong></h5>
                         <h1>
                             <form action="deepSearchForAltercodeMask.htm" method="GET" >
-                                <input type="text" class="form-control input-lg" name='altercode'>
+                                <input type="text" class="form-control input-lg" name='altercodeMask' value="%">
                                 <br>
                                 <input class="btn btn-success btn-lg btn-block"  type="submit" value="Submit">
                             </form>
