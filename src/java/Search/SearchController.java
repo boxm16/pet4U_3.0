@@ -44,5 +44,14 @@ public class SearchController {
         modelMap.addAttribute("items", items);
         return "search/multipleItemsSearchResult";
     }
+    
+    
+     @RequestMapping(value = "deepSearchForAltercodeMask")
+    public String deepSearchForAltercodeMask(@RequestParam(name = "altercodeMask") String altercodeMask, ModelMap modelMap) {
+        LinkedHashMap<String, Item> items = searchDao.deepSearchForAltercodeMask(altercodeMask);
+        modelMap.addAttribute("target", altercodeMask);
+        modelMap.addAttribute("items", items);
+        return "search/multipleItemsSearchResult";
+    }
 
 }
