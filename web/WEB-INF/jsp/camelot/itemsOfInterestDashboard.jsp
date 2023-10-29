@@ -157,7 +157,7 @@
                     out.println("<a href='itemSnapshots.htm?code=" + camelotItemOfInterest.getCode() + "' target='_blank'>Show Day Rest Snapshots</a>");
                     out.println("</td>");
 
-                    Double a = Double.parseDouble(camelotItemOfInterest.getQuantity());
+                    Double a = Double.parseDouble(camelotItemOfInterest.getPet4uStock());
                     Double stockForMonths = (a * 6) / camelotItemOfInterest.getTotalSalesInPieces();
                     out.println("<td>");
                     out.println(stockForMonths.intValue());
