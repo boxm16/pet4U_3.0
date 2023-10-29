@@ -290,34 +290,12 @@ public class SearchDao {
                     +" AND ALTERNATECODE LIKE '" + altercodeMask + "'"
                     + "ORDER BY EXPR1;";
 
-            resultSet = statement.executeQuery(sql);
-            ArrayList<String> itemCodes = new ArrayList<>();
-            String code;
-            while (resultSet.next()) {
-                code = resultSet.getString("ABBREVIATION").trim();
-                if (itemCodes.contains(code)) {
-                } else {
-                    itemCodes.add(code);
-                }
-            }
-
-            if (itemCodes.isEmpty()) {
-                statement.close();
-                connection.close();
-                return items;
-            }
-            StringBuilder query = new StringBuilder();
-            StringBuilder queryBuilderInitialPart = new StringBuilder("SELECT * FROM WH1  WHERE ABBREVIATION IN");
-            StringBuilder queryBuilderDateStampPart = buildStringFromArrayList(itemCodes);
-
-            query = queryBuilderInitialPart.append(queryBuilderDateStampPart);
-
-            System.out.println(query);
+          
             statement = connection.createStatement();
-            resultSet = statement.executeQuery(query.toString());
+            resultSet = statement.executeQuery(sql);
 
             while (resultSet.next()) {
-                code = resultSet.getString("ABBREVIATION").trim();
+              String  code = resultSet.getString("ABBREVIATION").trim();
                 String altercode = resultSet.getString("ALTERNATECODE").trim();
                 String altercodeStatus;
                 if (resultSet.getString("CODEDESCRIPTION") == null) {
