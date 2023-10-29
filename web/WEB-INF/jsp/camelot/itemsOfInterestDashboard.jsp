@@ -105,7 +105,7 @@
                     out.println("</td>");
 
                     out.println("<td>");
-                    out.println("<a href='itemAnalysis.htm?code=" + camelotItemOfInterest.getCode() + "' target='_blank'>" + camelotItemOfInterest.getCode() + "</a>");
+                    out.println(camelotItemOfInterest.getCode());
                     out.println("</td>");
 
                     out.println("<td>");
@@ -121,8 +121,15 @@
                     out.println(weekSales.intValue());
                     out.println("</td>");
 
-                    out.println("<td>");
-                    out.println(camelotItemOfInterest.getPet4uStock() / camelotItemOfInterest.getWeightCoefficient());
+                    double x = camelotItemOfInterest.getPet4uStock() / camelotItemOfInterest.getWeightCoefficient();
+
+                    if (x > camelotItemOfInterest.getTotalSalesInPieces()) {
+                        out.println("<td style='background-color:blue'>");
+                    } else {
+                        out.println("<td>");
+                    }
+
+                    out.println(x);
                     out.println("</td>");
 
                     out.println("<td>");
@@ -155,12 +162,6 @@
 
                     out.println("<td>");
                     out.println("<a href='itemSnapshots.htm?code=" + camelotItemOfInterest.getCode() + "' target='_blank'>Show Day Rest Snapshots</a>");
-                    out.println("</td>");
-
-                    Double a = camelotItemOfInterest.getPet4uStock();
-                    Double stockForMonths = (a * 6) / camelotItemOfInterest.getTotalSalesInPieces();
-                    out.println("<td>");
-                    out.println(stockForMonths);
                     out.println("</td>");
 
                     out.println("</tr>");
