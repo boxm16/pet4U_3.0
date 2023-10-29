@@ -230,8 +230,7 @@
                             %>
                     </table>
                     <hr>
-                    <a href="offerDashboard.htm?code=${item.getCode()}" class="btn btn-info btn-lg" role="button" aria-disabled="true">Add Offer</a>
-
+                   
                 </div>
             </div>
         </div>
