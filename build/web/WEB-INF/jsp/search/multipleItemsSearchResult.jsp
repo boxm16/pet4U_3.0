@@ -103,7 +103,7 @@
 
                                 out.println("<tr >");
                                 out.println("<td colspan='2'>");
-                                out.println("<a  href = 'itemAnalysis.htm?code=" + item.getCode() + "'>Analysis </a>");
+                                out.println("<a  href = 'itemAnalysis.htm?code=" + item.getCode() + " target='_blank'>Analysis </a>");
                                 out.println("</td>");
                                 out.println("</tr>");
 
