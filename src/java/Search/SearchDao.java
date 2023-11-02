@@ -146,8 +146,9 @@ public class SearchDao {
                 } else {
                     Item item = new Item();
 
-                    AltercodeContainer altercodeContainer = new AltercodeContainer();
                     item.setCode(code);
+
+                    AltercodeContainer altercodeContainer = new AltercodeContainer();
                     altercodeContainer.setAltercode(altercode);
                     altercodeContainer.setStatus(altercodeStatus);
                     item.addAltercodeContainer(altercodeContainer);
@@ -203,6 +204,8 @@ public class SearchDao {
 
                 if (items.containsKey(code)) {
                     Item item = items.get(code);
+
+                    item.setCode(code);
 
                     AltercodeContainer altercodeContainer = new AltercodeContainer();
                     altercodeContainer.setAltercode(altercode);
@@ -288,15 +291,14 @@ public class SearchDao {
                     + "AND [petworld].[EliteUser].[ICV].SCOID=13 "
                     + "AND [petworld].[EliteUser].[ICV].BRAID=10 "
                     + "AND [petworld].[EliteUser].[ICV].WARID=11 "
-                    +" AND ALTERNATECODE LIKE '" + altercodeMask + "'"
+                    + " AND ALTERNATECODE LIKE '" + altercodeMask + "'"
                     + "ORDER BY EXPR1;";
 
-          
             statement = connection.createStatement();
             resultSet = statement.executeQuery(sql);
 
             while (resultSet.next()) {
-              String  code = resultSet.getString("ABBREVIATION").trim();
+                String code = resultSet.getString("ABBREVIATION").trim();
                 String altercode = resultSet.getString("ALTERNATECODE").trim();
                 String altercodeStatus;
                 if (resultSet.getString("CODEDESCRIPTION") == null) {
@@ -315,6 +317,8 @@ public class SearchDao {
 
                 if (items.containsKey(code)) {
                     Item item = items.get(code);
+
+                    item.setCode(code);
 
                     AltercodeContainer altercodeContainer = new AltercodeContainer();
                     altercodeContainer.setAltercode(altercode);
