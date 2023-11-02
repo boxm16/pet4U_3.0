@@ -147,6 +147,7 @@ public class SearchDao {
                     Item item = new Item();
 
                     AltercodeContainer altercodeContainer = new AltercodeContainer();
+                    item.setCode(code);
                     altercodeContainer.setAltercode(altercode);
                     altercodeContainer.setStatus(altercodeStatus);
                     item.addAltercodeContainer(altercodeContainer);
