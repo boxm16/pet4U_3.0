@@ -172,12 +172,12 @@
                                 out.println("<td>");
                                 out.println(totalSales);
                                 out.println("</td>");
-                                out.println("<td>");
+                                out.println("<td style='bavkground-color:green'>");
                                 out.println(totalShopSupplies);
                                 out.println("</td>");
 
                                 out.println("</tr>");
-                                out.println("<td>");
+                                out.println("<td style='background-color:blue'>");
                                 out.println("GRAND TOTAL");
                                 out.println("</td>");
                                 out.println("<td colspan='2'>");
