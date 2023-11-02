@@ -172,12 +172,12 @@
                                 out.println("<td>");
                                 out.println(totalSales);
                                 out.println("</td>");
-                                out.println("<td style='bavkground-color:green'>");
+                                out.println("<td>");
                                 out.println(totalShopSupplies);
                                 out.println("</td>");
                                 out.println("</tr>");
 
-                                out.println("<tr style='background-color:light-blue'>");
+                                out.println("<tr style='background-color:ADD8E6'>");
                                 out.println("<td>");
                                 out.println("GRAND TOTAL");
                                 out.println("</td>");
