@@ -165,7 +165,7 @@
                                     totalShopSupplies += sale.getShopsSupply();
 
                                 }
-                                out.println("<tr>");
+                                out.println("<tr style='background-color:light-green'>");
                                 out.println("<td>");
                                 out.println("TOTALS");
                                 out.println("</td>");
@@ -175,14 +175,16 @@
                                 out.println("<td style='bavkground-color:green'>");
                                 out.println(totalShopSupplies);
                                 out.println("</td>");
-
                                 out.println("</tr>");
-                                out.println("<td style='background-color:blue'>");
+
+                                out.println("<tr style='background-color:light-blue'>");
+                                out.println("<td>");
                                 out.println("GRAND TOTAL");
                                 out.println("</td>");
                                 out.println("<td colspan='2'>");
                                 out.println(totalSales + totalShopSupplies);
                                 out.println("</td>");
+                                out.println("</tr>");
 
                                 out.println("</tr>");
                             %>
@@ -230,7 +232,7 @@
                             %>
                     </table>
                     <hr>
-                   
+
                 </div>
             </div>
         </div>
