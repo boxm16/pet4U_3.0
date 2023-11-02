@@ -165,7 +165,7 @@
                                     totalShopSupplies += sale.getShopsSupply();
 
                                 }
-                                out.println("<tr style='font-size: 15px'>");
+                                out.println("<tr style='font-size: 25px'>");
                                 out.println("<td>");
                                 out.println("TOTALS");
                                 out.println("</td>");
