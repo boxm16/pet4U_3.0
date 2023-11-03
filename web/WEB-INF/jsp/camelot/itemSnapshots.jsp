@@ -38,9 +38,11 @@
             <th>Quantity</th>
                 <%
                     ArrayList<CamelotItemSnapshot> itemSnapshots = (ArrayList) request.getAttribute("itemSnapshots");
+                    double stockBefore = 0.0;
                     for (CamelotItemSnapshot itemSnapshot : itemSnapshots) {
+                        Double stock = Double.parseDouble(itemSnapshot.getQuantity());
                         out.println("<tr>");
-                        
+
                         out.println("<td>");
                         out.println(itemSnapshot.getDateStamp());
                         out.println("</td>");
@@ -49,7 +51,12 @@
                         out.println(itemSnapshot.getQuantity());
                         out.println("</td>");
 
+                        out.println("<td>");
+                        out.println(stock - stockBefore);
+                        out.println("</td>");
+
                         out.println("</tr>");
+                        stockBefore = stock;
 
                     }
                 %>
