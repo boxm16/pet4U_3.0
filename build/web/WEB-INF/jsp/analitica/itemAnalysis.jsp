@@ -32,7 +32,7 @@
                 border-collapse: collapse;
             }
             td {
-                font-size: 20px;
+                font-size: 15px;
             }
             th{
                 font-size: 20px;
@@ -114,10 +114,10 @@
                                     int day = date1.getDay();
 
                                     if (day == 0) {
-                                        out.println("<tr style='font-size:15px; background-color:red;'>");
+                                        out.println("<tr style='background-color:pink;'>");
 
                                     } else {
-                                        out.println("<tr style='font-size:15px;'>");
+                                        out.println("<tr >");
 
                                     }
                                     out.println("<td>");
