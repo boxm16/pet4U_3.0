@@ -185,6 +185,7 @@
                                     } else {
                                         //do nothing
                                     }
+                                    currentMonth++;
 
                                 }
                                 out.println("<tr style='color: green'>");
@@ -210,7 +211,7 @@
 
                                 out.println("</tr>");
 
-                                currentMonth++;
+
                             %>
                     </table>
                 </div>
@@ -221,8 +222,7 @@
                         <th>Titel</th>
                         <th>Start Date</th>
                         <th>End Date</th>
-                            <%
-                                ArrayList<Offer> offers = (ArrayList<Offer>) request.getAttribute("offers");
+                            <%                                ArrayList<Offer> offers = (ArrayList<Offer>) request.getAttribute("offers");
                                 SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 
                                 for (Offer offer : offers) {
