@@ -153,7 +153,7 @@
                                     } else {
                                         out.println("<tr style='background-color:blue'>");
                                     }
-                                    out.println("<tr>");
+                                    out.println("<tr style='background-color:blue'>");
 
                                     out.println("<td>");
                                     out.println(date.getMonth());
