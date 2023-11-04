@@ -67,6 +67,7 @@ public class MonthSalesDao {
 
     LinkedHashMap<String, ItemSales> getLastSixMonthsSales() {
         LocalDate startingDate = LocalDate.now();
+        System.out.println("SSDSDS"+startingDate);
         startingDate = startingDate.minusMonths(3);
 
         LinkedHashMap<String, ItemSales> allItems = new LinkedHashMap<>();
