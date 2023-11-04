@@ -150,10 +150,10 @@
                                     Sales sale = salesEntry.getValue();
 
                                     if (currentMonth > (totalMonths - 6)) {
+                                        out.println("<tr style='background-color:grey'>");
                                     } else {
-                                        out.println("<tr style='background-color:blue'>");
+                                        out.println("<tr>");
                                     }
-                                    out.println("<tr style='background-color:blue'>");
 
                                     out.println("<td>");
                                     out.println(date.getMonth());
