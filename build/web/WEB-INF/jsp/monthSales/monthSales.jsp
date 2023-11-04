@@ -57,7 +57,7 @@
                         if (entrySet.getValue().getCode() == null) {
                             out.println("");
                         } else {
-                            out.println(entrySet.getValue().getCode());
+                            out.println("<a href='itemAnalysis.htm?code=" + entrySet.getValue().getCode() + "' target='_blank'>Analysis</a>");
                         }
 
                         out.println("</td>");
@@ -71,18 +71,7 @@
                         out.println("</td>");
 
                         out.println("<td>");
-                        ArrayList<AltercodeContainer> altercodes = entrySet.getValue().getAltercodes();
-                        for (AltercodeContainer altercode : altercodes) {
-                            if (altercode.getStatus().equals("eshop")
-                                    || altercode.getStatus().equals("eshop-on")
-                                    || altercode.getStatus().equals("eshop-barf")
-                                    || altercode.getStatus().equals("eshop-pro")) {
 
-                                out.println("<a href='https://www.pet4u.gr/search-products-el.html?subcats=Y&status=A&match=all&pshort=N&pfull=N&pname=Y&pkeywords=N&pcode_from_q=Y&wg_go_direct=Y&search_performed=Y&q=" + altercode.getAltercode() + "' target='_blank'>" + altercode.getAltercode() + "</a>");
-                                out.println("<br>");
-                            }
-
-                        }
                         out.println("</td>");
 
                         out.println("<td>");
