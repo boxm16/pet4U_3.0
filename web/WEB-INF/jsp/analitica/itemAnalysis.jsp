@@ -180,9 +180,11 @@
 
                                     out.println("</tr>");
 
-                                    totalSales += sale.getEshopSales();
-                                    totalShopSupplies += sale.getShopsSupply();
-                                    currentMonth++;
+                                    if (currentMonth >= (totalMonths - 6)) {
+                                        totalSales += sale.getEshopSales();
+                                    } else {
+                                        //do nothing
+                                    }
 
                                 }
                                 out.println("<tr style='color: green'>");
@@ -207,6 +209,8 @@
                                 out.println("</tr>");
 
                                 out.println("</tr>");
+
+                                currentMonth++;
                             %>
                     </table>
                 </div>
