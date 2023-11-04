@@ -182,6 +182,7 @@
 
                                     if (currentMonth >= (totalMonths - 6)) {
                                         totalSales += sale.getEshopSales();
+                                        totalShopSupplies += sale.getShopsSupply();
                                     } else {
                                         //do nothing
                                     }
