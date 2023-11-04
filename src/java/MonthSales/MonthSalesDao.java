@@ -66,12 +66,10 @@ public class MonthSalesDao {
     }
 
     LinkedHashMap<String, ItemSales> getLastSixMonthsSales() {
-        LocalDate startingDate = LocalDate.now();
-
-        startingDate = startingDate.minusMonths(7);
+        
 
         LinkedHashMap<String, ItemSales> allItems = new LinkedHashMap<>();
-        String sql = "SELECT * FROM month_sales WHERE date>" + startingDate;
+        String sql = "SELECT * FROM month_sales ;";
         Connection connection;
         Statement statement;
         ResultSet resultSet;
@@ -125,10 +123,9 @@ public class MonthSalesDao {
     }
 
     public ItemSales getItemSales(String itemCode) {
-        LocalDate startingDate = LocalDate.now();
-        startingDate = startingDate.minusMonths(7);
+       
 
-        String sql = "SELECT * FROM month_sales WHERE code='" + itemCode + ";";
+        String sql = "SELECT * FROM month_sales WHERE code='" + itemCode + "';";
         Connection connection;
         Statement statement;
         ResultSet resultSet;
