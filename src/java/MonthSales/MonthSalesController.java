@@ -94,8 +94,6 @@ public class MonthSalesController {
 
         LinkedHashMap<String, ItemSales> itemsWithSales = monthSalesDao.getLastSixMonthsSales();
 
-       
-
         for (Map.Entry<String, Item> itemsWithPositionEntry : itemsWithPositions.entrySet()) {
             String key = itemsWithPositionEntry.getKey();
             ItemSales itemWithSales = itemsWithSales.get(key);
@@ -104,6 +102,7 @@ public class MonthSalesController {
 
             if (itemWithSales == null) {
                 Item itemWithPosition = itemsWithPositionEntry.getValue();
+                itemSales.setCode(itemWithPosition.getCode());
                 itemSales.setDescription(itemWithPosition.getDescription());
                 itemSales.setPosition(itemWithPosition.getPosition());
                 itemSales.setAltercodes(itemWithPosition.getAltercodes());
@@ -111,6 +110,7 @@ public class MonthSalesController {
                 // itemSales.setSales(itemWithSales.getSales());
             } else {
                 Item itemWithPosition = itemsWithPositionEntry.getValue();
+                itemSales.setCode(itemWithPosition.getCode());
                 itemSales.setDescription(itemWithPosition.getDescription());
                 itemSales.setPosition(itemWithPosition.getPosition());
                 itemSales.setAltercodes(itemWithPosition.getAltercodes());
@@ -124,5 +124,4 @@ public class MonthSalesController {
         return "monthSales/monthSales";
     }
 
-   
 }

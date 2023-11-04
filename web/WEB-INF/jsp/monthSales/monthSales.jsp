@@ -40,15 +40,8 @@
                     <th>POSITION</th>
                     <th>DESCRIPTION</th>
                     <th>E-Shop Links</th>
-                    <!--  <th>M.U.<br> UNIT</th> -->
-                    <!--     <th>COEF.</th>-->
                     <th>State </th>
-                    <th>Eshop <br> Sales </th>
-                    <th>Shop <br>Supply </th>
-                    <th>Total<br> Sales </th>
-                    <!--     <th>Total<br> Sales In <br>Pieces </th>-->
 
-                    <th>SALES GRAPHICAL</th>
                 </tr>
             </thead>
             <tbody>
@@ -104,27 +97,7 @@
                             out.println(s.getEshopSales());
                             out.println("</td>");
                         }
-                        /*
-                        out.println("<td>");
-                        out.println(entrySet.getValue().getEshopSoldPieces());
-                        out.println("</td>");
 
-                        out.println("<td>");
-                        out.println(entrySet.getValue().getShopsSuppliedPieces());
-                        out.println("</td>");
-
-                        out.println("<td>");
-                        out.println(entrySet.getValue().getTotalShippedPieces());
-                        out.println("</td>");
-
-                        out.println("<td>");
-
-                        out.println("<svg width='" + entrySet.getValue().getTotalShippedPieces() + "' height='30'>");
-                        out.println("<rect width='" + entrySet.getValue().getTotalShippedPieces() + "' height='30' style='fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)' />");
-                        out.println("</svg>");
-
-                        out.println("</td>");
-                         */
                         out.println("</tr>");
                     }
                 %>
