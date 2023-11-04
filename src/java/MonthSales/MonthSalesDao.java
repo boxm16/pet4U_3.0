@@ -68,8 +68,7 @@ public class MonthSalesDao {
     LinkedHashMap<String, ItemSales> getLastSixMonthsSales() {
         LocalDate startingDate = LocalDate.now();
 
-        startingDate = startingDate.minusMonths(3);
-        System.out.println("SSDSDS" + startingDate);
+        startingDate = startingDate.minusMonths(7);
 
         LinkedHashMap<String, ItemSales> allItems = new LinkedHashMap<>();
         String sql = "SELECT * FROM month_sales WHERE date>" + startingDate;
