@@ -149,8 +149,8 @@
                                     LocalDate date = salesEntry.getKey();
                                     Sales sale = salesEntry.getValue();
 
-                                    if (currentMonth > (totalMonths - 6)) {
-                                        out.println("<tr style='background-color:grey'>");
+                                    if (currentMonth >= (totalMonths - 6)) {
+                                        out.println("<tr style='background-color:light-grey'>");
                                     } else {
                                         out.println("<tr>");
                                     }
