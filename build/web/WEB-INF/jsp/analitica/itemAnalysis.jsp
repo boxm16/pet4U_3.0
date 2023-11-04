@@ -107,10 +107,16 @@
                                     Item itemSnapshot = itemSnapshotEntry.getValue();
                                     Double stock = Double.parseDouble(itemSnapshot.getQuantity());
 
+                                    String date = itemSnapshotEntry.getKey();
+                                    Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(date);
+
+                                    String[] weekdays = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+                                    int day = date1.getDay();
+
                                     out.println("<tr>");
 
                                     out.println("<td>");
-                                    out.println(itemSnapshotEntry.getKey());
+                                    out.println(itemSnapshotEntry.getKey() + ":" + weekdays[day]);
                                     out.println("</td>");
 
                                     out.println("<td>");
