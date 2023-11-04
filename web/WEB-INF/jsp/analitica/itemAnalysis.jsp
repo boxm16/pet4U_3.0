@@ -113,13 +113,14 @@
                                     String[] weekdays = {"Κυρ.", "Δευτ.", "Τρίτη", "Τετάρτη", "Πέμπτ.", "Παρασκ.", "Σάββ."};
                                     int day = date1.getDay();
 
-                                    out.println("<tr>");
-
                                     if (day == 0) {
-                                        out.println("<td style='font-size:15px; background-color:red;'>");
+                                        out.println("<tr style='font-size:15px; background-color:red;'>");
+
                                     } else {
-                                        out.println("<td style='font-size:15px;'>");
+                                        out.println("<tr style='font-size:15px;'>");
+
                                     }
+                                    out.println("<td>");
                                     out.println(itemSnapshotEntry.getKey() + "<br>" + weekdays[day]);
                                     out.println("</td>");
 
