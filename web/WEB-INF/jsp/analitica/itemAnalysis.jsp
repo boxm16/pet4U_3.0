@@ -140,12 +140,19 @@
                             <%
                                 ItemSales itemSales = (ItemSales) request.getAttribute("itemSales");
                                 TreeMap<LocalDate, Sales> sales = itemSales.getSales();
+                                int totalMonths = sales.size();
+                                int currentMonth = 0;
                                 double totalSales = 0;
                                 double totalShopSupplies = 0;
 
                                 for (Map.Entry<LocalDate, Sales> salesEntry : sales.entrySet()) {
                                     LocalDate date = salesEntry.getKey();
                                     Sales sale = salesEntry.getValue();
+
+                                    if (currentMonth > (totalMonths - 6)) {
+                                    } else {
+                                        out.println("<tr style='background-color:blue'>");
+                                    }
                                     out.println("<tr>");
 
                                     out.println("<td>");
@@ -161,8 +168,10 @@
                                     out.println("</td>");
 
                                     out.println("</tr>");
+
                                     totalSales += sale.getEshopSales();
                                     totalShopSupplies += sale.getShopsSupply();
+                                    currentMonth++;
 
                                 }
                                 out.println("<tr style='color: green'>");
@@ -177,7 +186,7 @@
                                 out.println("</td>");
                                 out.println("</tr>");
 
-                               out.println("<tr style='color: blue'>");
+                                out.println("<tr style='color: blue'>");
                                 out.println("<td>");
                                 out.println("GRAND TOTAL");
                                 out.println("</td>");
