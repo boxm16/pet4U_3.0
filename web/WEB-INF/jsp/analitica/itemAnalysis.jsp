@@ -155,7 +155,7 @@
                                 int currentMonth = 0;
                                 double totalSales = 0;
                                 double totalShopSupplies = 0;
-                                out.println(totalMonths);
+                               
 
                                 for (Map.Entry<LocalDate, Sales> salesEntry : sales.entrySet()) {
                                     LocalDate date = salesEntry.getKey();

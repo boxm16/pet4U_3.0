@@ -92,7 +92,7 @@ public class MonthSalesController {
         Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
         LinkedHashMap<String, Item> itemsWithPositions = pet4uItemsDao.getAllItems();
 
-        LinkedHashMap<String, ItemSales> itemsWithSales = monthSalesDao.getLastSixMonthsSales();
+        LinkedHashMap<String, ItemSales> itemsWithSales = monthSalesDao.getSales();
 
         for (Map.Entry<String, Item> itemsWithPositionEntry : itemsWithPositions.entrySet()) {
             String key = itemsWithPositionEntry.getKey();

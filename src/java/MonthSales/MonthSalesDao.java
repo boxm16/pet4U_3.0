@@ -65,7 +65,7 @@ public class MonthSalesDao {
         return "SALES UPLOAD  EXECUTED SUCCESSFULLY.";
     }
 
-    LinkedHashMap<String, ItemSales> getLastSixMonthsSales() {
+    LinkedHashMap<String, ItemSales> getSales() {
         
 
         LinkedHashMap<String, ItemSales> allItems = new LinkedHashMap<>();
