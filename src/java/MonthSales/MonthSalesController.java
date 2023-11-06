@@ -123,5 +123,43 @@ public class MonthSalesController {
         modelMap.addAttribute("sales", refactoredSales);
         return "monthSales/monthSales";
     }
+    
+     @RequestMapping(value = "/sixMonthsSalesY", method = RequestMethod.GET)
+    public String getLastSixMonthsSales(ModelMap modelMap) {
+        LinkedHashMap<String, MonthSales> refactoredSales = new LinkedHashMap<>();
+        Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
+        LinkedHashMap<String, Item> itemsWithPositions = pet4uItemsDao.getAllItems();
+
+        LinkedHashMap<String, MonthSales> itemsWithSales = monthSalesDao.getLastMonthsSales(6);
+
+        for (Map.Entry<String, Item> itemsWithPositionEntry : itemsWithPositions.entrySet()) {
+            String key = itemsWithPositionEntry.getKey();
+            MonthSales itemWithSales = itemsWithSales.get(key);
+
+            MonthSales itemSales = new MonthSales();
+
+            if (itemWithSales == null) {
+                Item itemWithPosition = itemsWithPositionEntry.getValue();
+                itemSales.setCode(itemWithPosition.getCode());
+                itemSales.setDescription(itemWithPosition.getDescription());
+                itemSales.setPosition(itemWithPosition.getPosition());
+                itemSales.setAltercodes(itemWithPosition.getAltercodes());
+                itemSales.setState(itemWithPosition.getState());
+                // itemSales.setSales(itemWithSales.getSales());
+            } else {
+                Item itemWithPosition = itemsWithPositionEntry.getValue();
+                itemSales.setCode(itemWithPosition.getCode());
+                itemSales.setDescription(itemWithPosition.getDescription());
+                itemSales.setPosition(itemWithPosition.getPosition());
+                itemSales.setAltercodes(itemWithPosition.getAltercodes());
+                itemSales.setState(itemWithPosition.getState());
+                itemSales.setSales(itemWithSales.getSales());
+            }
+            refactoredSales.put(key, itemSales);
+        }
+
+        modelMap.addAttribute("sales", refactoredSales);
+        return "monthSales/sixMonthsSales";
+    }
 
 }
