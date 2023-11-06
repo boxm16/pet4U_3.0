@@ -1,7 +1,7 @@
 package Analitica;
 
 import BasicModel.Item;
-import MonthSales.ItemSales;
+import MonthSales.MonthSales;
 import MonthSales.MonthSalesDao;
 import Offer.Offer;
 import Offer.OfferDao;
@@ -30,7 +30,7 @@ public class AnaliticaController {
         model.addAttribute("itemSnapshots", itemSnapshots);
 
         MonthSalesDao monthSalesDao = new MonthSalesDao();
-        ItemSales itemSales = monthSalesDao.getItemSales(code);
+        MonthSales itemSales = monthSalesDao.getItemSales(code);
         model.addAttribute("itemSales", itemSales);
 
         OfferDao offerDao = new OfferDao();

@@ -5,10 +5,10 @@
 --%>
 
 
+<%@page import="MonthSales.MonthSales"%>
 <%@page import="java.util.TreeMap"%>
 <%@page import="MonthSales.Sales"%>
 <%@page import="java.time.LocalDate"%>
-<%@page import="MonthSales.ItemSales"%>
 <%@page import="BasicModel.AltercodeContainer"%>
 <%@page import="SalesX.SoldItem"%>
 <%@page import="java.util.ArrayList"%>
@@ -48,9 +48,9 @@
 
 
                 <%
-                    HashMap<String, ItemSales> itemSales = (HashMap) request.getAttribute("sales");
+                    HashMap<String, MonthSales> itemSales = (HashMap) request.getAttribute("sales");
 
-                    for (Map.Entry<String, ItemSales> entrySet : itemSales.entrySet()) {
+                    for (Map.Entry<String, MonthSales> entrySet : itemSales.entrySet()) {
                         out.println("<tr>");
 
                         out.println("<td>");

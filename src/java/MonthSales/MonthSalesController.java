@@ -88,17 +88,17 @@ public class MonthSalesController {
 
     @RequestMapping(value = "/monthSales", method = RequestMethod.GET)
     public String monthSales(ModelMap modelMap) {
-        LinkedHashMap<String, ItemSales> refactoredSales = new LinkedHashMap<>();
+        LinkedHashMap<String, MonthSales> refactoredSales = new LinkedHashMap<>();
         Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
         LinkedHashMap<String, Item> itemsWithPositions = pet4uItemsDao.getAllItems();
 
-        LinkedHashMap<String, ItemSales> itemsWithSales = monthSalesDao.getSales();
+        LinkedHashMap<String, MonthSales> itemsWithSales = monthSalesDao.getSales();
 
         for (Map.Entry<String, Item> itemsWithPositionEntry : itemsWithPositions.entrySet()) {
             String key = itemsWithPositionEntry.getKey();
-            ItemSales itemWithSales = itemsWithSales.get(key);
+            MonthSales itemWithSales = itemsWithSales.get(key);
 
-            ItemSales itemSales = new ItemSales();
+            MonthSales itemSales = new MonthSales();
 
             if (itemWithSales == null) {
                 Item itemWithPosition = itemsWithPositionEntry.getValue();

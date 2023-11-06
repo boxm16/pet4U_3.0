@@ -65,10 +65,10 @@ public class MonthSalesDao {
         return "SALES UPLOAD  EXECUTED SUCCESSFULLY.";
     }
 
-    LinkedHashMap<String, ItemSales> getSales() {
+    LinkedHashMap<String, MonthSales> getSales() {
         
 
-        LinkedHashMap<String, ItemSales> allItems = new LinkedHashMap<>();
+        LinkedHashMap<String, MonthSales> allItems = new LinkedHashMap<>();
         String sql = "SELECT * FROM month_sales ;";
         Connection connection;
         Statement statement;
@@ -92,14 +92,14 @@ public class MonthSalesDao {
                 int shopsSupply = resultSet.getInt("shops_supply");
 
                 if (allItems.containsKey(code)) {
-                    ItemSales item = allItems.get(code);
+                    MonthSales item = allItems.get(code);
                     Sales sales = new Sales();
                     sales.setEshopSales(eshopSales);
                     sales.setShopsSupply(shopsSupply);
                     item.addSales(saleDate, sales);
                     allItems.put(code, item);
                 } else {
-                    ItemSales item = new ItemSales();
+                    MonthSales item = new MonthSales();
                     item.setCode(code);
 
                     Sales sales = new Sales();
@@ -122,14 +122,14 @@ public class MonthSalesDao {
         return allItems;
     }
 
-    public ItemSales getItemSales(String itemCode) {
+    public MonthSales getItemSales(String itemCode) {
        
 
         String sql = "SELECT * FROM month_sales WHERE code='" + itemCode + "';";
         Connection connection;
         Statement statement;
         ResultSet resultSet;
-        ItemSales item = new ItemSales();
+        MonthSales item = new MonthSales();
         try {
             DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
             connection = databaseConnectionFactory.getMySQLConnection();

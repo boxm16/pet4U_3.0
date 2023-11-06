@@ -4,11 +4,11 @@ import BasicModel.Item;
 import java.time.LocalDate;
 import java.util.TreeMap;
 
-public class ItemSales extends Item {
+public class MonthSales extends Item {
 
     private TreeMap<LocalDate, Sales> sales;
 
-    public ItemSales() {
+    public MonthSales() {
         this.sales = new TreeMap<>();
     }
     
