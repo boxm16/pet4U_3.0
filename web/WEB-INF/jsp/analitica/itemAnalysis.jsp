@@ -4,6 +4,7 @@
     Author     : Michail Sitmalidis
 --%>
 
+<%@page import="MonthSales.MonthSales"%>
 <%@page import="BasicModel.AltercodeContainer"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
@@ -12,7 +13,6 @@
 <%@page import="java.util.TreeMap"%>
 <%@page import="java.time.LocalDate"%>
 <%@page import="MonthSales.Sales"%>
-<%@page import="MonthSales.ItemSales"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.LinkedHashMap"%>
 <%@page import="BasicModel.Item"%>
@@ -149,7 +149,7 @@
                         <th>E-Shop Sales</th>
                         <th>Ενδοδιακ.</th>
                             <%
-                                ItemSales itemSales = (ItemSales) request.getAttribute("itemSales");
+                                MonthSales itemSales = (ItemSales) request.getAttribute("itemSales");
                                 TreeMap<LocalDate, Sales> sales = itemSales.getSales();
                                 int totalMonths = sales.size();
                                 int currentMonth = 0;
