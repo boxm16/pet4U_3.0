@@ -149,7 +149,7 @@
                         <th>E-Shop Sales</th>
                         <th>Ενδοδιακ.</th>
                             <%
-                                MonthSales itemSales = (ItemSales) request.getAttribute("itemSales");
+                                MonthSales itemSales = (MonthSales) request.getAttribute("itemSales");
                                 TreeMap<LocalDate, Sales> sales = itemSales.getSales();
                                 int totalMonths = sales.size();
                                 int currentMonth = 0;
