@@ -7,6 +7,7 @@ package MonthSales;
 
 import BasicModel.Item;
 import java.time.LocalDate;
+import java.util.Map;
 import java.util.TreeMap;
 
 /**
@@ -31,6 +32,24 @@ public class ItemEksagoges extends Item {
 
     void addSales(LocalDate date, Eksagoges eksagoges) {
         this.eksagoges.put(date, eksagoges);
+    }
+
+    public Eksagoges getEksagogesForLastMonths(int months) {
+        Eksagoges eksagoges = new Eksagoges();
+        int currentMonth = 0;
+        for (Map.Entry<LocalDate, Eksagoges> entrySet : this.eksagoges.descendingMap().entrySet()) {
+            double eshopSales = eksagoges.getEshopSales();
+            eshopSales += entrySet.getValue().getEshopSales();
+            eksagoges.setEshopSales(eshopSales);
+
+            double shopsSupply = eksagoges.getShopsSupply();
+            shopsSupply += entrySet.getValue().getShopsSupply();
+            eksagoges.setShopsSupply(shopsSupply);
+            if (currentMonth++ > months) {
+                return eksagoges;
+            }
+        }
+        return eksagoges;
     }
 
 }

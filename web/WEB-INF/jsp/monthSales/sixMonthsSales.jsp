@@ -4,6 +4,7 @@
     Author     : Michail Sitmalidis
 --%>
 
+<%@page import="MonthSales.Eksagoges"%>
 <%@page import="BasicModel.AltercodeContainer"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Map"%>
@@ -86,6 +87,16 @@
 
                         out.println("<td>");
                         out.println(entrySet.getValue().getState());
+                        out.println("</td>");
+
+                        Eksagoges eksagoges = entrySet.getValue().getEksagogesForLastMonths(6);
+
+                        out.println("<td>");
+                        out.println(eksagoges.getEshopSales());
+                        out.println("</td>");
+
+                        out.println("<td>");
+                        out.println(eksagoges.getShopsSupply());
                         out.println("</td>");
 
                         out.println("</tr>");
