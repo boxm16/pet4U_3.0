@@ -45,6 +45,7 @@ public class ItemEksagoges extends Item {
             double shopsSupply = eksagoges.getShopsSupply();
             shopsSupply += entrySet.getValue().getShopsSupply();
             eksagoges.setShopsSupply(shopsSupply);
+            eksagoges.setShopsSupply(10.23);
             if (currentMonth++ > months) {
                 return eksagoges;
             }
