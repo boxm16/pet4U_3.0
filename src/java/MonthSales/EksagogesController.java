@@ -19,7 +19,7 @@ public class EksagogesController {
 
     @RequestMapping(value = "/sixMonthsSalesY", method = RequestMethod.GET)
     public String getLastSixMonthsSales(ModelMap modelMap) {
-        LinkedHashMap<String, ItemEksagoges> refactoredSales = new LinkedHashMap<>();
+        LinkedHashMap<String, ItemEksagoges> refactoredEksagoges = new LinkedHashMap<>();
         Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
         LinkedHashMap<String, Item> itemsWithPositions = pet4uItemsDao.getAllItems();
 
@@ -51,11 +51,11 @@ public class EksagogesController {
 
                 itemEksagoges.setEksagoges(itemEksagoges.getEksagoges());
             }
-            refactoredSales.put(key, itemEksagoges);
+            refactoredEksagoges.put(key, itemEksagoges);
         }
 
-        modelMap.addAttribute("sales", refactoredSales);
-        modelMap.addAttribute("HALLO", "BABABARO");
+        modelMap.addAttribute("eksagoges", refactoredEksagoges);
+       
         return "monthSales/sixMonthsSales";
     }
 
