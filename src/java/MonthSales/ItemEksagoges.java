@@ -17,6 +17,10 @@ public class ItemEksagoges extends Item {
 
     private TreeMap<LocalDate, Eksagoges> eksagoges;
 
+    public ItemEksagoges() {
+        this.eksagoges = new TreeMap();
+    }
+
     public TreeMap<LocalDate, Eksagoges> getEksagoges() {
         return eksagoges;
     }
