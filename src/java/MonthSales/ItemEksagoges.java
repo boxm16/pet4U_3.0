@@ -25,10 +25,8 @@ public class ItemEksagoges extends Item {
         this.eksagoges = eksagoges;
     }
 
-    void addSales(LocalDate saleDate, Eksagoges eksagoges) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    void addSales(LocalDate date, Eksagoges eksagoges) {
+        this.eksagoges.put(date, eksagoges);
     }
-    
-    
 
 }
