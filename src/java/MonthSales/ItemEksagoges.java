@@ -41,6 +41,7 @@ public class ItemEksagoges extends Item {
             double eshopSales = eksagoges.getEshopSales();
             eshopSales += entrySet.getValue().getEshopSales();
             eksagoges.setEshopSales(eshopSales);
+            System.out.println("SJSJS"+eshopSales);
 
             double shopsSupply = eksagoges.getShopsSupply();
             shopsSupply += entrySet.getValue().getShopsSupply();
