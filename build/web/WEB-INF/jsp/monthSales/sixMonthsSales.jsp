@@ -57,7 +57,8 @@
                         if (entrySet.getValue().getCode() == null) {
                             out.println("");
                         } else {
-                            out.println(entrySet.getValue().getCode());
+                            out.println("<a href='itemAnalysis.htm?code=" + entrySet.getValue().getCode() + "' target='_blank'>" + entrySet.getValue().getCode() + "</a>");
+
                         }
 
                         out.println("</td>");
