@@ -21,6 +21,13 @@ public class EksagogesController {
 
     @RequestMapping(value = "/sixMonthsSalesY", method = RequestMethod.GET)
     public String getLastSixMonthsSales(ModelMap modelMap) {
+
+        modelMap.addAttribute("eksagoges", getLastSixMonthsSales());
+
+        return "monthSales/sixMonthsSales";
+    }
+
+    public LinkedHashMap<String, ItemEksagoges> getLastSixMonthsSales() {
         LinkedHashMap<String, ItemEksagoges> refactoredEksagoges = new LinkedHashMap<>();
         Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
         LinkedHashMap<String, Item> itemsWithPositions = pet4uItemsDao.getAllItems();
@@ -33,7 +40,7 @@ public class EksagogesController {
             ItemEksagoges itemWithEksagoges = itemsWithEksagoges.get(key);
 
             if (itemWithEksagoges == null) {
-                 System.out.println("NULLLLLLL");
+                System.out.println("NULLLLLLL");
                 Item itemWithPosition = itemsWithPositionEntry.getValue();
 
                 ItemEksagoges refactoredItemEksagoges = new ItemEksagoges();
@@ -45,7 +52,7 @@ public class EksagogesController {
                 refactoredEksagoges.put(key, refactoredItemEksagoges);
 
             } else {
-               
+
                 Item itemWithPosition = itemsWithPositionEntry.getValue();
                 ItemEksagoges refactoredItemEksagoges = new ItemEksagoges();
                 refactoredItemEksagoges.setCode(itemWithPosition.getCode());
@@ -54,16 +61,13 @@ public class EksagogesController {
                 refactoredItemEksagoges.setAltercodes(itemWithPosition.getAltercodes());
                 refactoredItemEksagoges.setState(itemWithPosition.getState());
                 TreeMap<LocalDate, Eksagoges> eksagoges = itemWithEksagoges.getEksagoges();
-               
+
                 refactoredItemEksagoges.setEksagoges(eksagoges);
                 refactoredEksagoges.put(key, refactoredItemEksagoges);
             }
 
         }
-
-        modelMap.addAttribute("eksagoges", refactoredEksagoges);
-
-        return "monthSales/sixMonthsSales";
+        return refactoredEksagoges;
     }
 
 }
