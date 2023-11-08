@@ -33,29 +33,31 @@ public class EksagogesController {
             if (itemEksagoges == null) {
                 Item itemWithPosition = itemsWithPositionEntry.getValue();
 
-                itemEksagoges = new ItemEksagoges();
-                itemEksagoges.setCode(itemWithPosition.getCode());
-                itemEksagoges.setDescription(itemWithPosition.getDescription());
-                itemEksagoges.setPosition(itemWithPosition.getPosition());
-                itemEksagoges.setAltercodes(itemWithPosition.getAltercodes());
-                itemEksagoges.setState(itemWithPosition.getState());
-                // itemSales.setSales(itemWithSales.getSales());
+                ItemEksagoges refactoredItemEksagoges = new ItemEksagoges();
+                refactoredItemEksagoges.setCode(itemWithPosition.getCode());
+                refactoredItemEksagoges.setDescription(itemWithPosition.getDescription());
+                refactoredItemEksagoges.setPosition(itemWithPosition.getPosition());
+                refactoredItemEksagoges.setAltercodes(itemWithPosition.getAltercodes());
+                refactoredItemEksagoges.setState(itemWithPosition.getState());
+                refactoredEksagoges.put(key, refactoredItemEksagoges);
+
             } else {
                 Item itemWithPosition = itemsWithPositionEntry.getValue();
-                itemEksagoges = new ItemEksagoges();
-                itemEksagoges.setCode(itemWithPosition.getCode());
-                itemEksagoges.setDescription(itemWithPosition.getDescription());
-                itemEksagoges.setPosition(itemWithPosition.getPosition());
-                itemEksagoges.setAltercodes(itemWithPosition.getAltercodes());
-                itemEksagoges.setState(itemWithPosition.getState());
+                ItemEksagoges refactoredItemEksagoges = new ItemEksagoges();
+                refactoredItemEksagoges.setCode(itemWithPosition.getCode());
+                refactoredItemEksagoges.setDescription(itemWithPosition.getDescription());
+                refactoredItemEksagoges.setPosition(itemWithPosition.getPosition());
+                refactoredItemEksagoges.setAltercodes(itemWithPosition.getAltercodes());
+                refactoredItemEksagoges.setState(itemWithPosition.getState());
 
-                itemEksagoges.setEksagoges(itemEksagoges.getEksagoges());
+                refactoredItemEksagoges.setEksagoges(itemEksagoges.getEksagoges());
+                refactoredEksagoges.put(key, refactoredItemEksagoges);
             }
-            refactoredEksagoges.put(key, itemEksagoges);
+
         }
 
         modelMap.addAttribute("eksagoges", refactoredEksagoges);
-       
+
         return "monthSales/sixMonthsSales";
     }
 
