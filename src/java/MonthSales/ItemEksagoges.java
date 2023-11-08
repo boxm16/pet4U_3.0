@@ -37,8 +37,12 @@ public class ItemEksagoges extends Item {
     public Eksagoges getEksagogesForLastMonths(int months) {
 
         Eksagoges eksagoges = new Eksagoges();
-        int currentMonth = 0;
+        int currentMonth = 1;
         for (Map.Entry<LocalDate, Eksagoges> entrySet : this.eksagoges.descendingMap().entrySet()) {
+            System.out.println("MONTH:"+currentMonth);
+            if (currentMonth > months) {
+                break;
+            }
             double eshopSales = eksagoges.getEshopSales();
             eshopSales += entrySet.getValue().getEshopSales();
             eksagoges.setEshopSales(eshopSales);
@@ -47,9 +51,8 @@ public class ItemEksagoges extends Item {
             shopsSupply += entrySet.getValue().getShopsSupply();
             eksagoges.setShopsSupply(shopsSupply);
             eksagoges.setShopsSupply(shopsSupply);
-            if (currentMonth++ >= months) {
-                return eksagoges;
-            }
+
+            currentMonth++;
         }
         return eksagoges;
     }
