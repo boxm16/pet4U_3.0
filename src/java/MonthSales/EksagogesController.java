@@ -7,8 +7,10 @@ package MonthSales;
 
 import BasicModel.Item;
 import Pet4uItems.Pet4uItemsDao;
+import java.time.LocalDate;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.TreeMap;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,9 +30,9 @@ public class EksagogesController {
 
         for (Map.Entry<String, Item> itemsWithPositionEntry : itemsWithPositions.entrySet()) {
             String key = itemsWithPositionEntry.getKey();
-            ItemEksagoges itemEksagoges = itemsWithEksagoges.get(key);
+            ItemEksagoges itemWithEksagoges = itemsWithEksagoges.get(key);
 
-            if (itemEksagoges == null) {
+            if (itemWithEksagoges == null) {
                 Item itemWithPosition = itemsWithPositionEntry.getValue();
 
                 ItemEksagoges refactoredItemEksagoges = new ItemEksagoges();
@@ -49,8 +51,9 @@ public class EksagogesController {
                 refactoredItemEksagoges.setPosition(itemWithPosition.getPosition());
                 refactoredItemEksagoges.setAltercodes(itemWithPosition.getAltercodes());
                 refactoredItemEksagoges.setState(itemWithPosition.getState());
-
-                refactoredItemEksagoges.setEksagoges(itemEksagoges.getEksagoges());
+                TreeMap<LocalDate, Eksagoges> eksagoges = itemWithEksagoges.getEksagoges();
+                System.out.println("EKSA:"+eksagoges.size());
+                refactoredItemEksagoges.setEksagoges(eksagoges);
                 refactoredEksagoges.put(key, refactoredItemEksagoges);
             }
 
