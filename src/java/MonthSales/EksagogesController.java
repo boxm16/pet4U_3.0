@@ -45,7 +45,7 @@ public class EksagogesController {
                 refactoredEksagoges.put(key, refactoredItemEksagoges);
 
             } else {
-                System.out.println("NIT NULL");
+               
                 Item itemWithPosition = itemsWithPositionEntry.getValue();
                 ItemEksagoges refactoredItemEksagoges = new ItemEksagoges();
                 refactoredItemEksagoges.setCode(itemWithPosition.getCode());

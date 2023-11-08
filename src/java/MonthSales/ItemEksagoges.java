@@ -36,8 +36,6 @@ public class ItemEksagoges extends Item {
 
     public Eksagoges getEksagogesForLastMonths(int months) {
 
-        System.out.println("SJSJS" + this.eksagoges.size());
-
         Eksagoges eksagoges = new Eksagoges();
         int currentMonth = 0;
         for (Map.Entry<LocalDate, Eksagoges> entrySet : this.eksagoges.descendingMap().entrySet()) {
@@ -48,7 +46,7 @@ public class ItemEksagoges extends Item {
             double shopsSupply = eksagoges.getShopsSupply();
             shopsSupply += entrySet.getValue().getShopsSupply();
             eksagoges.setShopsSupply(shopsSupply);
-            eksagoges.setShopsSupply(10.23);
+            eksagoges.setShopsSupply(shopsSupply);
             if (currentMonth++ > months) {
                 return eksagoges;
             }
