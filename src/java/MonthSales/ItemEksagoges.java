@@ -63,7 +63,7 @@ public class ItemEksagoges extends Item {
 
                 double shopsSupply = eksagoges.getShopsSupply();
                 double ssd = shopsSupply / this.getWeightCoefficient();
-                eksagoges.setEshopSales(ssd);
+                eksagoges.setShopsSupply(ssd);
             } catch (NumberFormatException ex) {
                 System.out.println(ex);
 
