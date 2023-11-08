@@ -39,7 +39,7 @@ public class ItemEksagoges extends Item {
         Eksagoges eksagoges = new Eksagoges();
         int currentMonth = 1;
         for (Map.Entry<LocalDate, Eksagoges> entrySet : this.eksagoges.descendingMap().entrySet()) {
-            System.out.println("MONTH:"+currentMonth);
+            //      System.out.println("MONTH:" + currentMonth);
             if (currentMonth > months) {
                 break;
             }
@@ -53,6 +53,21 @@ public class ItemEksagoges extends Item {
             eksagoges.setShopsSupply(shopsSupply);
 
             currentMonth++;
+        }
+
+        if (this.getWeightCoefficient() != 1) {
+            try {
+                double eshopSales = eksagoges.getEshopSales();
+                double d = eshopSales / this.getWeightCoefficient();
+                eksagoges.setEshopSales(d);
+
+                double shopsSupply = eksagoges.getShopsSupply();
+                double ssd = shopsSupply / this.getWeightCoefficient();
+                eksagoges.setEshopSales(ssd);
+            } catch (NumberFormatException ex) {
+                System.out.println(ex);
+
+            }
         }
         return eksagoges;
     }
