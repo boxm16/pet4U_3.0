@@ -33,6 +33,7 @@ public class EksagogesController {
             ItemEksagoges itemWithEksagoges = itemsWithEksagoges.get(key);
 
             if (itemWithEksagoges == null) {
+                 System.out.println("NULLLLLLL");
                 Item itemWithPosition = itemsWithPositionEntry.getValue();
 
                 ItemEksagoges refactoredItemEksagoges = new ItemEksagoges();
@@ -44,6 +45,7 @@ public class EksagogesController {
                 refactoredEksagoges.put(key, refactoredItemEksagoges);
 
             } else {
+                System.out.println("NIT NULL");
                 Item itemWithPosition = itemsWithPositionEntry.getValue();
                 ItemEksagoges refactoredItemEksagoges = new ItemEksagoges();
                 refactoredItemEksagoges.setCode(itemWithPosition.getCode());
@@ -52,7 +54,7 @@ public class EksagogesController {
                 refactoredItemEksagoges.setAltercodes(itemWithPosition.getAltercodes());
                 refactoredItemEksagoges.setState(itemWithPosition.getState());
                 TreeMap<LocalDate, Eksagoges> eksagoges = itemWithEksagoges.getEksagoges();
-                System.out.println("EKSAsdsdsdsdsdsds:"+eksagoges.size());
+               
                 refactoredItemEksagoges.setEksagoges(eksagoges);
                 refactoredEksagoges.put(key, refactoredItemEksagoges);
             }
