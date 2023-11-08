@@ -5,11 +5,8 @@ import BasicModel.Item;
 import MonthSales.Eksagoges;
 import MonthSales.EksagogesController;
 import MonthSales.ItemEksagoges;
-import SalesX.SalesDaoX;
-import SalesX.SoldItem;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.TreeMap;
@@ -171,8 +168,10 @@ public class CamelotItemsOfInterestController {
         LinkedHashMap<String, Item> pet4UItems = camelotItemsOfInterestDao.getPet4UItemsRowByRow();
         LinkedHashMap<String, Item> camelotItems = camelotItemsOfInterestDao.getCamelotItemsRowByRow();
 
-        SalesDaoX salesDao = new SalesDaoX();
-        HashMap<String, SoldItem> sixMonthsSales = salesDao.getSixMonthsSalesX();
+        //    SalesDaoX salesDao = new SalesDaoX();
+        //  HashMap<String, SoldItem> sixMonthsSales = salesDao.getSixMonthsSalesX();
+        EksagogesController eksagogesController = new EksagogesController();
+        LinkedHashMap<String, ItemEksagoges> lastSixMonthsSales = eksagogesController.getLastSixMonthsSales();
 
         for (Map.Entry<String, CamelotItemOfInterest> entrySet : camelotItemsOfInterest.entrySet()) {
             String altercode = entrySet.getKey();
@@ -208,11 +207,12 @@ public class CamelotItemsOfInterestController {
                     position = position + ":A";
                 }
 
-                SoldItem soldCamelotItem = sixMonthsSales.get(pet4uItem.getCode());
-                if (soldCamelotItem == null) {
+                ItemEksagoges itemEksagoges = lastSixMonthsSales.get(pet4uItem.getCode());
+                if (itemEksagoges == null) {
                     //do nothing
                 } else {
-                    camelotItemOfInterest.setTotalSalesInPieces(soldCamelotItem.getTotalShippedPieces());
+                    Eksagoges eksagogesForLastMonths = itemEksagoges.getEksagogesForLastMonths(6);
+                    camelotItemOfInterest.setTotalSalesInPieces(eksagogesForLastMonths.getEshopSales() + eksagogesForLastMonths.getShopsSupply());
                 }
 
                 camelotItemsOfInterestFilled.put(position, camelotItemOfInterest);
