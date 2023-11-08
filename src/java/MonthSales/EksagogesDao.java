@@ -18,7 +18,7 @@ public class EksagogesDao {
     public LinkedHashMap<String, ItemEksagoges> getLastMonthsSales(int months) {
 
         LinkedHashMap<String, ItemEksagoges> allItemsEksagoges = new LinkedHashMap<>();
-        String sql = "SELECT * FROM month_sales ORDER BY date ;";
+        String sql = "SELECT * FROM month_sales ORDER BY date DESC;";
         Connection connection;
         Statement statement;
         ResultSet resultSet;
