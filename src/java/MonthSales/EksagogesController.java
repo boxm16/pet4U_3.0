@@ -52,7 +52,7 @@ public class EksagogesController {
                 refactoredItemEksagoges.setAltercodes(itemWithPosition.getAltercodes());
                 refactoredItemEksagoges.setState(itemWithPosition.getState());
                 TreeMap<LocalDate, Eksagoges> eksagoges = itemWithEksagoges.getEksagoges();
-                System.out.println("EKSA:"+eksagoges.size());
+                System.out.println("EKSAsdsdsdsdsdsds:"+eksagoges.size());
                 refactoredItemEksagoges.setEksagoges(eksagoges);
                 refactoredEksagoges.put(key, refactoredItemEksagoges);
             }
