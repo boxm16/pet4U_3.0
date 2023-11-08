@@ -94,54 +94,7 @@
             </div>
             <hr>
             <div class="row">
-                <div class=" col-sm-4">
-                    <center><h3>Stock Analysis</h3></center>
-                    <table>
-                        <th>Date Stamp</th>
-                        <th>State</th>
-                        <th>Quantity</th>
-                            <%
-                                LinkedHashMap<String, Item> itemSnapshots = (LinkedHashMap) request.getAttribute("itemSnapshots");
-                                double stockBefore = 0.0;
-                                for (Map.Entry<String, Item> itemSnapshotEntry : itemSnapshots.entrySet()) {
-                                    Item itemSnapshot = itemSnapshotEntry.getValue();
-                                    Double stock = Double.parseDouble(itemSnapshot.getQuantity());
 
-                                    String date = itemSnapshotEntry.getKey();
-                                    Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(date);
-
-                                    String[] weekdays = {"Κυρ.", "Δευτ.", "Τρίτη", "Τετάρτη", "Πέμπτ.", "Παρασκ.", "Σάββ."};
-                                    int day = date1.getDay();
-
-                                    if (day == 0) {
-                                        out.println("<tr style='background-color:pink;'>");
-
-                                    } else {
-                                        out.println("<tr >");
-
-                                    }
-                                    out.println("<td>");
-                                    out.println(itemSnapshotEntry.getKey() + "<br>" + weekdays[day]);
-                                    out.println("</td>");
-
-                                    out.println("<td>");
-                                    out.println(itemSnapshot.getState());
-                                    out.println("</td>");
-
-                                    out.println("<td>");
-                                    out.println(itemSnapshot.getQuantity());
-                                    out.println("</td>");
-
-                                    out.println("<td>");
-                                    out.println(stock - stockBefore);
-                                    out.println("</td>");
-                                    out.println("</tr>");
-                                    stockBefore = stock;
-
-                                }
-                            %>
-                    </table>
-                </div>
                 <div class=" col-sm-4">
                     <center><h3>Sales</h3></center>
                     <table>
@@ -155,7 +108,6 @@
                                 int currentMonth = 0;
                                 double totalSales = 0;
                                 double totalShopSupplies = 0;
-                               
 
                                 for (Map.Entry<LocalDate, Sales> salesEntry : sales.entrySet()) {
                                     LocalDate date = salesEntry.getKey();
@@ -259,6 +211,53 @@
                     </table>
                     <hr>
 
+                </div>
+                <div class=" col-sm-4">
+                    <center><h3>Stock Analysis</h3></center>
+                    <table>
+                        <th>Date Stamp</th>
+                        <th>State</th>
+                        <th>Quantity</th>
+                            <%                                LinkedHashMap<String, Item> itemSnapshots = (LinkedHashMap) request.getAttribute("itemSnapshots");
+                                double stockBefore = 0.0;
+                                for (Map.Entry<String, Item> itemSnapshotEntry : itemSnapshots.entrySet()) {
+                                    Item itemSnapshot = itemSnapshotEntry.getValue();
+                                    Double stock = Double.parseDouble(itemSnapshot.getQuantity());
+
+                                    String date = itemSnapshotEntry.getKey();
+                                    Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(date);
+
+                                    String[] weekdays = {"Κυρ.", "Δευτ.", "Τρίτη", "Τετάρτη", "Πέμπτ.", "Παρασκ.", "Σάββ."};
+                                    int day = date1.getDay();
+
+                                    if (day == 0) {
+                                        out.println("<tr style='background-color:pink;'>");
+
+                                    } else {
+                                        out.println("<tr >");
+
+                                    }
+                                    out.println("<td>");
+                                    out.println(itemSnapshotEntry.getKey() + "<br>" + weekdays[day]);
+                                    out.println("</td>");
+
+                                    out.println("<td>");
+                                    out.println(itemSnapshot.getState());
+                                    out.println("</td>");
+
+                                    out.println("<td>");
+                                    out.println(itemSnapshot.getQuantity());
+                                    out.println("</td>");
+
+                                    out.println("<td>");
+                                    out.println(stock - stockBefore);
+                                    out.println("</td>");
+                                    out.println("</tr>");
+                                    stockBefore = stock;
+
+                                }
+                            %>
+                    </table>
                 </div>
             </div>
         </div>
