@@ -49,6 +49,7 @@ public class EksagogesController {
                 refactoredItemEksagoges.setPosition(itemWithPosition.getPosition());
                 refactoredItemEksagoges.setAltercodes(itemWithPosition.getAltercodes());
                 refactoredItemEksagoges.setState(itemWithPosition.getState());
+                refactoredItemEksagoges.setQuantity(itemWithPosition.getQuantity());
                 refactoredEksagoges.put(key, refactoredItemEksagoges);
 
             } else {
@@ -60,9 +61,11 @@ public class EksagogesController {
                 refactoredItemEksagoges.setPosition(itemWithPosition.getPosition());
                 refactoredItemEksagoges.setAltercodes(itemWithPosition.getAltercodes());
                 refactoredItemEksagoges.setState(itemWithPosition.getState());
-                TreeMap<LocalDate, Eksagoges> eksagoges = itemWithEksagoges.getEksagoges();
+                refactoredItemEksagoges.setQuantity(itemWithPosition.getQuantity());
 
+                TreeMap<LocalDate, Eksagoges> eksagoges = itemWithEksagoges.getEksagoges();
                 refactoredItemEksagoges.setEksagoges(eksagoges);
+
                 refactoredEksagoges.put(key, refactoredItemEksagoges);
             }
 
