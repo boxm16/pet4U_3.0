@@ -74,7 +74,7 @@ public class SuppliersAndStockController {
 
         LinkedHashMap<String, SuppliersItem> supplierItemsFromDatabase = supplierDao.getAllItemsOfSupplier(supplierId);
 
-        // SalesControllerX salesControllerX = new SalesControllerX();
+       //  SalesControllerX salesControllerX = new SalesControllerX();
         //LinkedHashMap<String, SoldItem> sixMonthesSales = salesControllerX.getSixMonthesSales();
         EksagogesController eksagogesController = new EksagogesController();
         LinkedHashMap<String, ItemEksagoges> lastSixMonthsSales = eksagogesController.getLastSixMonthsSales();
