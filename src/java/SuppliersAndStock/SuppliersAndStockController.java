@@ -5,6 +5,9 @@
  */
 package SuppliersAndStock;
 
+import MonthSales.Eksagoges;
+import MonthSales.EksagogesController;
+import MonthSales.ItemEksagoges;
 import SalesX.SalesControllerX;
 import SalesX.SoldItem;
 import java.util.ArrayList;
@@ -71,22 +74,27 @@ public class SuppliersAndStockController {
 
         LinkedHashMap<String, SuppliersItem> supplierItemsFromDatabase = supplierDao.getAllItemsOfSupplier(supplierId);
 
-        SalesControllerX salesControllerX = new SalesControllerX();
-        LinkedHashMap<String, SoldItem> sixMonthesSales = salesControllerX.getSixMonthesSales();
+        // SalesControllerX salesControllerX = new SalesControllerX();
+        //LinkedHashMap<String, SoldItem> sixMonthesSales = salesControllerX.getSixMonthesSales();
+        EksagogesController eksagogesController = new EksagogesController();
+        LinkedHashMap<String, ItemEksagoges> lastSixMonthsSales = eksagogesController.getLastSixMonthsSales();
 
-        for (Map.Entry<String, SoldItem> sixMonthesSalesEntrySet : sixMonthesSales.entrySet()) {
+        for (Map.Entry<String, ItemEksagoges> sixMonthesSalesEntrySet : lastSixMonthsSales.entrySet()) {
             String key = sixMonthesSalesEntrySet.getKey();
-            SoldItem soldItem = sixMonthesSalesEntrySet.getValue();
+            ItemEksagoges itemEksagoges = sixMonthesSalesEntrySet.getValue();
 
             SuppliersItem suppliersItem = supplierItemsFromDatabase.get(key);
             if (suppliersItem == null) {
                 System.out.println("Not this supplier`s item - " + key);
             } else {
-                suppliersItem.setDescription(soldItem.getDescription());
-                suppliersItem.setPosition(soldItem.getPosition());
-                suppliersItem.setEshopSales(soldItem.getEshopSales());
-                suppliersItem.setShopsSupply(soldItem.getShopsSupply());
-                suppliersItem.setQuantity(soldItem.getQuantity());
+                suppliersItem.setDescription(itemEksagoges.getDescription());
+                suppliersItem.setPosition(itemEksagoges.getPosition());
+
+                Eksagoges eksagogesForLastMonths = itemEksagoges.getEksagogesForLastMonths(6);
+                suppliersItem.setEshopSales(eksagogesForLastMonths.getEshopSales());
+                suppliersItem.setShopsSupply(eksagogesForLastMonths.getShopsSupply());
+
+                suppliersItem.setQuantity(itemEksagoges.getQuantity());
 
                 suppliersItem.setSupplierId(Integer.parseInt(supplierId));
 
