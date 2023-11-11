@@ -46,8 +46,7 @@
                 <hr>
                 <a href="activeOffers.htm"><h1 style="color: #3059D8">Active Offers</h1></a>
 
-                <hr>
-                <a href="prosfores.htm"><h1 style="color: #3059D8">ΠΡΟΣΦΟΡΕΣ</h1></a>
+               
 
                 <hr><hr> 
                 <h1><a href='monthSales.htm'>Pet4u:Last Six Months Sales By Month</a></h1>
@@ -58,10 +57,7 @@
                 <hr>
                 <h1><a href='pet4uAllItems.htm'>Pet4u: All Items</a></h1>
                 <hr>
-                <h1><a href='sixMonthsSales.htm'>Pet4u:Last Six Months Sales</a></h1>
-                <hr>
-                <h1><a href='sixMonthsSalesX.htm'>Pet4u:Last Six Months Sales X</a></h1>
-                <hr>
+
                 <h1><a href='camelotAllItems.htm'>Camelot: All Items</a></h1>
                 <hr>
                 <h1><a href='itemsFromCamelot.htm'>Pet4U: All Items From Camelot</a></h1>
@@ -70,6 +66,11 @@
                 <h1><a href='camelotItemsWithPossitionDifference.htm'>Show Camelot Items With Position`s Difference</a></h1>
                 <hr>
                 <a href="weightItems.htm"><h1>Show Items With Weight</h1></a>
+
+
+                <!--
+                 <hr>
+                <a href="prosfores.htm"><h1 style="color: #3059D8">ΠΡΟΣΦΟΡΕΣ</h1></a>
                 <hr>
                 <a href="downloadPet4UExcelData.htm"><h1>Download Pet4u Data In Excel Format</h1></a>
                 <hr>
@@ -81,10 +82,14 @@
 
                 <hr>
                 <a href="bestBeforeDashboard.htm"><h1>Go For Best Before Dashboard</h1></a>
-
+                
+                <h1><a href='sixMonthsSales.htm'>Pet4u:Last Six Months Sales</a></h1>
+                <hr>
+                <h1><a href='sixMonthsSalesX.htm'>Pet4u:Last Six Months Sales X</a></h1>
+                <hr>
                 <hr>
                 <a href="goForSalesUploadX.htm"><h1>Go For ----NEW---- Sales Upload</h1></a>
-
+                -->
 
                 <hr>
                 <a href="goForMonthSalesUpload.htm"><h1>Go For Month Sales  Upload</h1></a>

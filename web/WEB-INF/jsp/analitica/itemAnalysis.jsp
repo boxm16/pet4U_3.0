@@ -154,8 +154,8 @@
                                 out.println("</td>");
                                 out.println("</tr>");
 
-                                out.println("<tr colspan='2' style='color: blue'>");
-                                out.println("<td>");
+                                out.println("<tr  style='color: blue'>");
+                                out.println("<td colspan='2'>");
                                 out.println("LAST 6 MONTHS GRAND TOTAL");
                                 out.println("</td>");
                                 out.println("<td>");
