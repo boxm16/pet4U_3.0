@@ -85,7 +85,11 @@
 
                                     <th>
                                         <a href="#main">L6MS</a>
-
+                                        <a href="#" id="main">
+                                            <div id="box">
+                                                Popup window!
+                                            </div>
+                                        </a>
                                     </th>
                                     <th>2 Week`s Sales</th>
                                     <th>Stock</th>
@@ -189,11 +193,7 @@
                         <input hidden type="text" id="orderItemsInput" name="itemsIds" >
                     </form>
 
-                    <a href="#" id="main">
-                        <div id="box">
-                            Popup window!
-                        </div>
-                    </a>
+
                 </div>   
             </div>  
         </div>
