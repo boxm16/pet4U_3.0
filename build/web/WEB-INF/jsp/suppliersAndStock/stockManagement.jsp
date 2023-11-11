@@ -64,7 +64,7 @@
                                     <th>Posi/on</th>
 
                                     <th>
-                                        <button type="button" class="btn btn-light" data-toggle="modal" data-target="#exampleModalCenter">
+                                        <button type="button" onclick="setText('Last Six Months Total Sales (Εξαγωγες)')" class="btn btn-light" data-toggle="modal" data-target="#exampleModalCenter">
                                             L6MS
                                         </button>
                                     </th>
@@ -176,14 +176,9 @@
                     <div class="modal fade bd-example-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                             <div class="modal-content">
-                                <div class="modal-header">
 
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">kkkkkkkkk</span>
-                                    </button>
-                                </div>
                                 <div class="modal-body">
-                                    ...
+                                    <h3>  <div id="modal-text"></div></h3>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -219,10 +214,10 @@
                                         }
 
                                         //------------
-                                        // When the user clicks on <div>, open the popup
-                                        function myFunction() {
-                                            var popup = document.getElementById("myPopup");
-                                            popup.classList.toggle("show");
+                                      
+                                        function setText(text) {
+                                            document.getElementById("modal-text").innerHTML = text;
+
                                         }
         </script>
 
