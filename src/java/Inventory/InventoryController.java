@@ -3,7 +3,6 @@ package Inventory;
 import BasicModel.Item;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,7 +68,7 @@ public class InventoryController {
             Item pet4uItem = pet4UItems.get(altercode);
 
             if (pet4uItem == null) {
-                System.out.println("Pet4uItem  not present in the lists from microsoft db");
+                System.out.println("Pet4uItem with altercode " + altercode + "  not present in the lists from microsoft db");
             } else {
                 inventoryItem.setCode(pet4uItem.getCode());
                 inventoryItem.setDescription(pet4uItem.getDescription());
