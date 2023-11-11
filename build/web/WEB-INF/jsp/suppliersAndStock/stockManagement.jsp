@@ -32,30 +32,31 @@
             }
 
             /*----------------------------------------*/
-            .tooltip {
+            /* Popup container */
+            .popup {
                 position: relative;
                 display: inline-block;
-                border-bottom: 1px dotted black;
+                cursor: pointer;
             }
 
-            .tooltip .tooltiptext {
+            /* The actual popup (appears on top) */
+            .popup .popuptext {
                 visibility: hidden;
-                width: 120px;
+                width: 160px;
                 background-color: #555;
                 color: #fff;
                 text-align: center;
                 border-radius: 6px;
-                padding: 5px 0;
+                padding: 8px 0;
                 position: absolute;
                 z-index: 1;
                 bottom: 125%;
                 left: 50%;
-                margin-left: -60px;
-                opacity: 0;
-                transition: opacity 0.3s;
+                margin-left: -80px;
             }
 
-            .tooltip .tooltiptext::after {
+            /* Popup arrow */
+            .popup .popuptext::after {
                 content: "";
                 position: absolute;
                 top: 100%;
@@ -66,9 +67,22 @@
                 border-color: #555 transparent transparent transparent;
             }
 
-            .tooltip:hover .tooltiptext {
+            /* Toggle this class when clicking on the popup container (hide and show the popup) */
+            .popup .show {
                 visibility: visible;
-                opacity: 1;
+                -webkit-animation: fadeIn 1s;
+                animation: fadeIn 1s
+            }
+
+            /* Add animation (fade in the popup) */
+            @-webkit-keyframes fadeIn {
+                from {opacity: 0;}
+                to {opacity: 1;}
+            }
+
+            @keyframes fadeIn {
+                from {opacity: 0;}
+                to {opacity:1 ;}
             }
 
 
@@ -102,8 +116,8 @@
                                     <th>Posi/on</th>
 
                                     <th>
-                                        <div class="tooltip">L6MS
-                                            <span class="tooltiptext">Last Six Months Grand Total (Ολες οι Εξαγωγες)</span>
+                                        <div class="popup" onclick="myFunction()">L6MS
+                                            <span class="popuptext" id="myPopup">Last Six Months Grand Total (Ολες οι Εξαγωγες)</span>
                                         </div>
                                     </th>
                                     <th>2 Week`s Sales</th>
@@ -232,6 +246,13 @@
                                                     returnValue += targetCheckBoxes[x].id + ",";
                                             }
                                             return returnValue;
+                                        }
+
+                                        //------------
+                                        // When the user clicks on <div>, open the popup
+                                        function myFunction() {
+                                            var popup = document.getElementById("myPopup");
+                                            popup.classList.toggle("show");
                                         }
         </script>
 
