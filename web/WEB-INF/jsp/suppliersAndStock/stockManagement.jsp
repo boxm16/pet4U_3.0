@@ -68,6 +68,10 @@
                     <center>
                         <h1><a href="index.htm">INDEX</a></h1>
 
+                        <div class="tooltip">L6MS
+                            <span class="tooltiptext">Last Six Months Grand Total (Ολες οι Εξαγωγες)</span>
+                        </div>
+
                         <h1>${supplier.name} Stock Management</h1>
                         <form action="goForAddingItemToSupplier.htm" method="POST">
                             <input hidden name="supplierId" value="${supplier.id}">
