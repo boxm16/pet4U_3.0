@@ -101,11 +101,11 @@
                                     Double pet4uStock = Double.parseDouble(item.getQuantity());
                                     boolean needOrder = false;
                                     if (pet4uStock < minimalStock * 2) {
-                                        alarmColor = "yellow";
+                                        //  alarmColor = "yellow";
                                         needOrder = true;
                                     }
                                     if (pet4uStock < minimalStock) {
-                                        alarmColor = "#F33A6A";
+                                        //  alarmColor = "#F33A6A";
                                         needOrder = true;
                                     }
 
@@ -137,7 +137,17 @@
 
                                     Eksagoges oneMontheksagoges = item.getEksagogesForLastMonths(1);
                                     double grandTotalEksagogesOneMonth = oneMontheksagoges.getEshopSales() + oneMontheksagoges.getShopsSupply();
-                                    out.println("<td>");
+                                    double diff = oneMonthSalesFromCalculation - oneMonthSalesFromCalculation;
+                                    if (diff < 0) {
+                                        diff = diff * -1;
+                                    }
+                                    double onePercent = oneMonthSalesFromCalculation / 100;
+                                    if (diff > onePercent * 5) {
+                                        out.println("<td style='background-colod:red>");
+                                    } else {
+                                        out.println("<td>");
+                                    }
+
                                     out.println(grandTotalEksagogesOneMonth);
                                     out.println("</td>");
 
