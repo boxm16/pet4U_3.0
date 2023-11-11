@@ -34,7 +34,7 @@
             /*----------------------------------------*/
             /* Popup container */
             .popup {
-                position: absolute;
+                position: relative;
                 display: inline-block;
                 cursor: pointer;
             }
@@ -59,7 +59,7 @@
             .popup .popuptext::after {
                 content: "";
                 position: absolute;
-                top: 100%;
+                top: 400%;
                 left: 50%;
                 margin-left: -5px;
                 border-width: 5px;
