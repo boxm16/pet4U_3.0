@@ -64,7 +64,7 @@
                                     <th>Posi/on</th>
 
                                     <th>
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                                        <button type="button" class="btn btn-light" data-toggle="modal" data-target="#exampleModalCenter">
                                             L6MS
                                         </button>
                                     </th>
@@ -177,9 +177,9 @@
                         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
+                                        <span aria-hidden="true">kkkkkkkkk</span>
                                     </button>
                                 </div>
                                 <div class="modal-body">
