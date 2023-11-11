@@ -32,59 +32,30 @@
             }
 
             /*----------------------------------------*/
-            /* Popup container */
-            .popup {
-                position: relative;
-                display: inline-block;
-                cursor: pointer;
+            #main {
+                display: none;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
             }
-
-            /* The actual popup (appears on top) */
-            .popup .popuptext {
-                visibility: hidden;
-                width: 400px;
-                background-color: #555;
-                color: #fff;
+            #box {
+                width: 300px;
+                height: 50px;
                 text-align: center;
-                border-radius: 6px;
-                padding: 200px 500px;
+                padding: 15px;
+                border: 3px solid #0000cc;
+                border-radius: 10px;
+                color: #0000cc;
                 position: absolute;
-                z-index: 1;
-                bottom: 125%;
-                left: 50%;
-                margin-left: -80px;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                margin: auto;
             }
-
-            /* Popup arrow */
-            .popup .popuptext::after {
-                content: "";
-                position: absolute;
-                top: 100%;
-                left: 50%;
-                margin-left: -5px;
-                border-width: 5px;
-                border-style: solid;
-                border-color: #555 transparent transparent transparent;
-            }
-
-            /* Toggle this class when clicking on the popup container (hide and show the popup) */
-            .popup .show {
-                visibility: visible;
-                -webkit-animation: fadeIn 1s;
-                animation: fadeIn 1s
-            }
-
-            /* Add animation (fade in the popup) */
-            @-webkit-keyframes fadeIn {
-                from {opacity: 0;}
-                to {opacity: 1;}
-            }
-
-            @keyframes fadeIn {
-                from {opacity: 0;}
-                to {opacity:1 ;}
-            }
-
+            #main:target {display: block;}
 
         </style>
     </head>
@@ -113,9 +84,8 @@
                                     <th>Posi/on</th>
 
                                     <th>
-                                        <div class="popup" onclick="myFunction()">L6MS
-                                            <span class="popuptext" id="myPopup">Last Six Months Grand Total (Ολες οι Εξαγωγες)</span>
-                                        </div>
+                                        <a href="#main">L6MS</a>
+
                                     </th>
                                     <th>2 Week`s Sales</th>
                                     <th>Stock</th>
@@ -219,7 +189,11 @@
                         <input hidden type="text" id="orderItemsInput" name="itemsIds" >
                     </form>
 
-
+                    <a href="#" id="main">
+                        <div id="box">
+                            Popup window!
+                        </div>
+                    </a>
                 </div>   
             </div>  
         </div>
