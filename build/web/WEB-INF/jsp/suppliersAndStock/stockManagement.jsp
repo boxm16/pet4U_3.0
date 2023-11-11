@@ -75,6 +75,11 @@
                         </form>
 
                         <hr>
+                        <a href="#" id="main">
+                            <div id="box">
+                                Popup window!
+                            </div>
+                        </a>
                         <table class="table table-hover table-sm">
                             <thead>  
 
@@ -85,11 +90,7 @@
 
                                     <th>
                                         <a href="#main">L6MS</a>
-                                        <a href="#" id="main">
-                                            <div id="box">
-                                                Popup window!
-                                            </div>
-                                        </a>
+
                                     </th>
                                     <th>2 Week`s Sales</th>
                                     <th>Stock</th>
