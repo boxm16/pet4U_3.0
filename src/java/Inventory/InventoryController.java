@@ -60,9 +60,8 @@ public class InventoryController {
         model.addAttribute("title", "Active Inventories Display");
         ArrayList<InventoryItem> inventories = this.inventoryDao.getAllActiveInventories();
 
-        System.out.println("invenotry size" + inventories.size());
         LinkedHashMap<String, Item> pet4UItems = this.inventoryDao.getpet4UItemsRowByRow();
-        System.out.println("row ba row  size" + pet4UItems.size());
+
         for (InventoryItem inventoryItem : inventories) {
             System.out.println("ITETM:" + inventoryItem.getDescription());
             String altercode = inventoryItem.getCode();
@@ -71,12 +70,13 @@ public class InventoryController {
 
             if (pet4uItem == null) {
                 System.out.println("Pet4uItem  not present in the lists from microsoft db");
+            } else {
+                inventoryItem.setCode(pet4uItem.getCode());
+                inventoryItem.setDescription(pet4uItem.getDescription());
+                inventoryItem.setPosition(pet4uItem.getPosition());
+                inventoryItem.setState(pet4uItem.getState());
+                model.addAttribute("inventories", inventories);
             }
-            inventoryItem.setCode(altercode);
-            inventoryItem.setDescription(pet4uItem.getDescription());
-            inventoryItem.setPosition(pet4uItem.getPosition());
-            inventoryItem.setState(pet4uItem.getState());
-            model.addAttribute("inventories", inventories);
         }
         return "inventory/inventoriesDisplay";
     }
@@ -110,10 +110,11 @@ public class InventoryController {
 
             if (pet4uItem == null) {
                 System.out.println("Pet4uItem  not present in the lists from microsoft db");
+            } else {
+                inventoryItem.setCode(pet4uItem.getCode());
+                inventoryItem.setDescription(pet4uItem.getDescription());
+                model.addAttribute("inventories", inventories);
             }
-            inventoryItem.setCode(pet4uItem.getCode());
-            inventoryItem.setDescription(pet4uItem.getDescription());
-            model.addAttribute("inventories", inventories);
         }
 
         return "inventory/printMode";
