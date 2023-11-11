@@ -28,12 +28,28 @@ public class EksagogesController {
     }
 
     public LinkedHashMap<String, ItemEksagoges> getLastSixMonthsSales() {
+        return getLastMonthsSales(6);
+    }
+
+    public LinkedHashMap<String, ItemEksagoges> getLastForMonthsSales() {
+        return getLastMonthsSales(4);
+    }
+
+    public LinkedHashMap<String, ItemEksagoges> getLastTwoMonthsSales() {
+        return getLastMonthsSales(2);
+    }
+    
+      public LinkedHashMap<String, ItemEksagoges> getLastMonthSales() {
+        return getLastMonthsSales(1);
+    }
+
+    private LinkedHashMap<String, ItemEksagoges> getLastMonthsSales(int months) {
         LinkedHashMap<String, ItemEksagoges> refactoredEksagoges = new LinkedHashMap<>();
         Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
         LinkedHashMap<String, Item> itemsWithPositions = pet4uItemsDao.getAllItems();
 
         EksagogesDao eksagogesDao = new EksagogesDao();
-        LinkedHashMap<String, ItemEksagoges> itemsWithEksagoges = eksagogesDao.getLastMonthsSales(6);
+        LinkedHashMap<String, ItemEksagoges> itemsWithEksagoges = eksagogesDao.getLastMonthsSales(months);
 
         for (Map.Entry<String, Item> itemsWithPositionEntry : itemsWithPositions.entrySet()) {
             String key = itemsWithPositionEntry.getKey();

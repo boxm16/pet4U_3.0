@@ -144,7 +144,7 @@
                                 }
                                 out.println("<tr style='color: green'>");
                                 out.println("<td>");
-                                out.println("TOTALS");
+                                out.println("LAST 6 MONTHS <br>TOTALS");
                                 out.println("</td>");
                                 out.println("<td>");
                                 out.println(totalSales);
@@ -154,11 +154,11 @@
                                 out.println("</td>");
                                 out.println("</tr>");
 
-                                out.println("<tr style='color: blue'>");
+                                out.println("<tr colspan='2' style='color: blue'>");
                                 out.println("<td>");
-                                out.println("GRAND TOTAL");
+                                out.println("LAST 6 MONTHS GRAND TOTAL");
                                 out.println("</td>");
-                                out.println("<td colspan='2'>");
+                                out.println("<td>");
                                 out.println(totalSales + totalShopSupplies);
                                 out.println("</td>");
                                 out.println("</tr>");
