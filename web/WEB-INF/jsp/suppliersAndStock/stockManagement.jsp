@@ -127,7 +127,7 @@
                                     double oneMonthSalesFromCalculation = grandTotalEksagoges / 6;
                                     DecimalFormat df = new DecimalFormat("0.00");
                                     out.println("<td>");
-                                    out.println(oneMonthSalesFromCalculation);
+                                    out.println(df.format(oneMonthSalesFromCalculation));
                                     out.println("</td>");
 
                                     out.println("<td>");
