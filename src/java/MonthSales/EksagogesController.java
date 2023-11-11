@@ -38,8 +38,8 @@ public class EksagogesController {
     public LinkedHashMap<String, ItemEksagoges> getLastTwoMonthsSales() {
         return getLastMonthsSales(2);
     }
-    
-      public LinkedHashMap<String, ItemEksagoges> getLastMonthSales() {
+
+    public LinkedHashMap<String, ItemEksagoges> getLastMonthSales() {
         return getLastMonthsSales(1);
     }
 
@@ -56,7 +56,7 @@ public class EksagogesController {
             ItemEksagoges itemWithEksagoges = itemsWithEksagoges.get(key);
 
             if (itemWithEksagoges == null) {
-                System.out.println("NULLLLLLL");
+                System.out.println("No Sales For This Code: " + key);
                 Item itemWithPosition = itemsWithPositionEntry.getValue();
 
                 ItemEksagoges refactoredItemEksagoges = new ItemEksagoges();

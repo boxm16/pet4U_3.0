@@ -4,6 +4,7 @@
     Author     : Michail Sitmalidis
 --%>
 
+<%@page import="MonthSales.Eksagoges"%>
 <%@page import="java.util.Map"%>
 <%@page import="SuppliersAndStock.SuppliersItem"%>
 <%@page import="java.util.LinkedHashMap"%>
@@ -64,7 +65,7 @@
                                     <th>Posi/on</th>
 
                                     <th>
-                                        <button type="button" onclick="setText('Last Six Months Total Sales (Εξαγωγες)')" class="btn btn-light" data-toggle="modal" data-target="#exampleModalCenter">
+                                        <button type="button" onclick="setText('Last Six Months Total Sales (Εξαγωγες=Πωλήσεις+Ενδοδιακίνηση)')" class="btn btn-light" data-toggle="modal" data-target="#exampleModalCenter">
                                             L6MS
                                         </button>
                                     </th>
@@ -112,13 +113,14 @@
                                     out.println(item.getPosition());
                                     out.println("</td>");
 
+                                    Eksagoges eksagoges = item.getEksagogesForLastMonths(6);
+                                    double grandTotalEksagoges = eksagoges.getEshopSales() + eksagoges.getShopsSupply();
                                     out.println("<td>");
-                                    out.println(item.getTotalShippedPieces());
+                                    out.println(grandTotalEksagoges);
                                     out.println("</td>");
 
-                                    int shippedPiecesForPeriod = item.getTotalShippedPiecesForPeriod();
                                     out.println("<td>");
-                                    out.println(shippedPiecesForPeriod);
+                                    out.println(grandTotalEksagoges / 6);
                                     out.println("</td>");
 
                                     out.println("<td>");
@@ -214,7 +216,7 @@
                                         }
 
                                         //------------
-                                      
+
                                         function setText(text) {
                                             document.getElementById("modal-text").innerHTML = text;
 
