@@ -32,44 +32,7 @@
             }
 
             /*----------------------------------------*/
-            #blackout {
-                background: rgba(102, 102, 102, 0.5);
-                width: 100%;
-                height: 100%;
-                position: absolute;
-                top: 0;
-                left: 0;
-                display: none;
-            }
-            #box {
-                width: 300px;
-                height: 50px;
-                text-align: center;
-                padding: 15px;
-                border: 3px solid #0000cc;
-                border-radius: 10px;
-                color: #0000cc;
-                position: absolute;
-                top: 0;
-                right: 0;
-                bottom: 0;
-                left: 0;
-                margin: auto;
-                background: #fff;
-            }
-            #blackout:target {display: block;}
-            .close {
-                display: inline-block;
-                border: 1px solid #0000cc;
-                color: #0000cc;
-                padding: 0 12px;
-                margin: 10px;
-                text-decoration: none;
-                background: #f2f2f2;
-                font-size: 14pt;
-                cursor:pointer;
-            }
-            .close:hover {background: #e6e6ff;}
+
 
         </style>
     </head>
@@ -77,12 +40,7 @@
         <div class=""container-fluid">
             <div class="row">
                 <div class="col-lg">
-                    <div id="blackout">
-                        <div id="box">
-                            Popup window!<br>
-                            <a href="#" class="close">Close window</a>
-                        </div>
-                    </div>
+
 
                     <center>
                         <h1><a href="index.htm">INDEX</a></h1>
@@ -106,8 +64,9 @@
                                     <th>Posi/on</th>
 
                                     <th>
-                               
-                                        <a href="#blackout">L6MS</a>
+                                        L6MS
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Large modal</button>
+
                                     </th>
                                     <th>2 Week`s Sales</th>
                                     <th>Stock</th>
@@ -210,7 +169,13 @@
                         <input hidden type="text" id="supplierId" name="supplierId" value="${supplier.id}">
                         <input hidden type="text" id="orderItemsInput" name="itemsIds" >
                     </form>
-
+                    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                ...
+                            </div>
+                        </div>
+                    </div>
 
                 </div>   
             </div>  
