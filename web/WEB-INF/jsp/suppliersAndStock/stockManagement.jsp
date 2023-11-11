@@ -34,7 +34,7 @@
             /*----------------------------------------*/
             /* Popup container */
             .popup {
-                position: relative;
+                position: absolute;
                 display: inline-block;
                 cursor: pointer;
             }
