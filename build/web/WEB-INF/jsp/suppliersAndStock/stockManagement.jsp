@@ -75,6 +75,11 @@
                                             1MSFC
                                         </button>
                                     </th>
+                                    <th>
+                                        <button type="button" onclick="setText('Last Month Grand Total Sales (Εξαγωγες=Πωλήσεις+Ενδοδιακίνηση)')" class="btn btn-light" data-toggle="modal" data-target="#exampleModalCenter">
+                                            LMS
+                                        </button>
+                                    </th>
                                     <th>Stock</th>
                                     <th>Minimal <br>Stock</th>
                                     <th>Order</th>
@@ -128,6 +133,12 @@
                                     DecimalFormat df = new DecimalFormat("0.00");
                                     out.println("<td>");
                                     out.println(df.format(oneMonthSalesFromCalculation));
+                                    out.println("</td>");
+
+                                    Eksagoges oneMontheksagoges = item.getEksagogesForLastMonths(1);
+                                    double grandTotalEksagogesOneMonth = oneMontheksagoges.getEshopSales() + oneMontheksagoges.getShopsSupply();
+                                    out.println("<td>");
+                                    out.println(grandTotalEksagogesOneMonth);
                                     out.println("</td>");
 
                                     out.println("<td>");
