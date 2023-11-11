@@ -147,8 +147,7 @@
                                     } else {
                                         out.println("<td>");
                                     }
-
-                                    out.println("000000");
+                                    out.println(grandTotalEksagogesOneMonth);
                                     out.println("</td>");
 
                                     out.println("<td>");
