@@ -114,9 +114,9 @@
                                     out.println("</td>");
 
                                     Eksagoges eksagoges = item.getEksagogesForLastMonths(6);
-                                    double grandTotalEksagoges = eksagoges.getEshopSales() + eksagoges.getShopsSupply();
+                                    Double grandTotalEksagoges = eksagoges.getEshopSales() + eksagoges.getShopsSupply();
                                     out.println("<td>");
-                                    out.println(grandTotalEksagoges);
+                                    out.println(grandTotalEksagoges.intValue());
                                     out.println("</td>");
 
                                     out.println("<td>");
