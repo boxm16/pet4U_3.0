@@ -154,11 +154,11 @@
                                 out.println("</td>");
                                 out.println("</tr>");
 
-                                out.println("<tr  style='color: blue'>");
-                                out.println("<td colspan='2'>");
+                                out.println("<tr style='color: blue'>");
+                                out.println("<td>");
                                 out.println("LAST 6 MONTHS GRAND TOTAL");
                                 out.println("</td>");
-                                out.println("<td>");
+                                out.println("<td colspan='2'>");
                                 out.println(totalSales + totalShopSupplies);
                                 out.println("</td>");
                                 out.println("</tr>");
