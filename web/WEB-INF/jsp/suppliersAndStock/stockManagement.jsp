@@ -32,13 +32,14 @@
             }
 
             /*----------------------------------------*/
-            #main {
-                display: none;
+            #blackout {
+                background: rgba(102, 102, 102, 0.5);
+                width: 100%;
+                height: 100%;
                 position: absolute;
                 top: 0;
                 left: 0;
-                width: 100%;
-                height: 100%;
+                display: none;
             }
             #box {
                 width: 300px;
@@ -54,8 +55,21 @@
                 bottom: 0;
                 left: 0;
                 margin: auto;
+                background: #fff;
             }
-            #main:target {display: block;}
+            #blackout:target {display: block;}
+            .close {
+                display: inline-block;
+                border: 1px solid #0000cc;
+                color: #0000cc;
+                padding: 0 12px;
+                margin: 10px;
+                text-decoration: none;
+                background: #f2f2f2;
+                font-size: 14pt;
+                cursor:pointer;
+            }
+            .close:hover {background: #e6e6ff;}
 
         </style>
     </head>
@@ -63,6 +77,13 @@
         <div class=""container-fluid">
             <div class="row">
                 <div class="col-lg">
+                    <div id="blackout">
+                        <div id="box">
+                            Popup window!<br>
+                            <a href="#" class="close">Close window</a>
+                        </div>
+                    </div>
+
                     <center>
                         <h1><a href="index.htm">INDEX</a></h1>
 
@@ -75,11 +96,7 @@
                         </form>
 
                         <hr>
-                        <a href="#" id="main">
-                            <div id="box">
-                                Popup window!
-                            </div>
-                        </a>
+
                         <table class="table table-hover table-sm">
                             <thead>  
 
@@ -89,8 +106,8 @@
                                     <th>Posi/on</th>
 
                                     <th>
-                                        <a href="#main">L6MS</a>
-
+                               
+                                        <a href="#blackout">L6MS</a>
                                     </th>
                                     <th>2 Week`s Sales</th>
                                     <th>Stock</th>
