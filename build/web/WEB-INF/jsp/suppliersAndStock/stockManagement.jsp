@@ -69,7 +69,11 @@
                                             L6MS
                                         </button>
                                     </th>
-                                    <th>2 Week`s Sales</th>
+                                    <th>
+                                        <button type="button" onclick="setText('One Month Total Sales (Εξαγωγες=Πωλήσεις+Ενδοδιακίνηση) From Six Months Sales Calculation <br>L6MS/6')" class="btn btn-light" data-toggle="modal" data-target="#exampleModalCenter">
+                                            1MSFC
+                                        </button>
+                                    </th>
                                     <th>Stock</th>
                                     <th>Minimal <br>Stock</th>
                                     <th>Order</th>
