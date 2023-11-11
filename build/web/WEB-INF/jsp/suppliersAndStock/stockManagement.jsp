@@ -47,7 +47,7 @@
                 color: #fff;
                 text-align: center;
                 border-radius: 6px;
-                padding: 20px 50px;
+                padding: 200px 500px;
                 position: absolute;
                 z-index: 1;
                 bottom: 125%;
@@ -59,7 +59,7 @@
             .popup .popuptext::after {
                 content: "";
                 position: absolute;
-                top: 400%;
+                top: 100%;
                 left: 50%;
                 margin-left: -5px;
                 border-width: 5px;
