@@ -145,7 +145,7 @@
                                     if (diff > onePercent * 5) {
                                         out.println("<td style='background-color:red'>");
                                     } else {
-                                        out.println("<td>");
+                                        out.println("<td style='background-color:red'>");
                                     }
                                     out.println(grandTotalEksagogesOneMonth);
                                     out.println("</td>");
