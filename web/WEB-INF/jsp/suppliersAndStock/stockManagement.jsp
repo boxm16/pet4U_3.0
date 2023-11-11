@@ -143,7 +143,7 @@
                                     }
                                     double onePercent = oneMonthSalesFromCalculation / 100;
                                     if (diff > onePercent * 5) {
-                                        out.println("<td>");
+                                        out.println("<td style='background-color:red'>");
                                     } else {
                                         out.println("<td>");
                                     }
