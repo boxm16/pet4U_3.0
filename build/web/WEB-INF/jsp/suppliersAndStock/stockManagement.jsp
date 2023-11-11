@@ -135,21 +135,7 @@
                                     out.println(df.format(oneMonthSalesFromCalculation));
                                     out.println("</td>");
 
-                                    Eksagoges oneMontheksagoges = item.getEksagogesForLastMonths(1);
-                                    double grandTotalEksagogesOneMonth = oneMontheksagoges.getEshopSales() + oneMontheksagoges.getShopsSupply();
-                                    double diff = oneMonthSalesFromCalculation - oneMonthSalesFromCalculation;
-                                    if (diff < 0) {
-                                        diff = diff * -1;
-                                    }
-                                    double onePercent = oneMonthSalesFromCalculation / 100;
-                                    if (diff > onePercent * 5) {
-                                        out.println("<td style='background-color:red'>");
-                                    } else {
-                                        out.println("<td>");
-                                    }
-                                    out.println("<td>");
-                                    out.println("000000");
-                                    out.println("</td>");
+                                    
 
                                     out.println("<td>");
                                     out.println(item.getQuantity());
