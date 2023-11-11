@@ -4,6 +4,7 @@
     Author     : Michail Sitmalidis
 --%>
 
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="MonthSales.Eksagoges"%>
 <%@page import="java.util.Map"%>
 <%@page import="SuppliersAndStock.SuppliersItem"%>
@@ -123,9 +124,10 @@
                                     out.println(grandTotalEksagoges);
                                     out.println("</td>");
 
-                                    Double oneMonthSalesFromCalculation=grandTotalEksagoges/6;
+                                    double oneMonthSalesFromCalculation = grandTotalEksagoges / 6;
+                                    DecimalFormat df = new DecimalFormat("0.00");
                                     out.println("<td>");
-                                    out.println(oneMonthSalesFromCalculation.intValue());
+                                    out.println(oneMonthSalesFromCalculation);
                                     out.println("</td>");
 
                                     out.println("<td>");
