@@ -42,7 +42,7 @@
             /* The actual popup (appears on top) */
             .popup .popuptext {
                 visibility: hidden;
-                width: 160px;
+                width: 300px;
                 background-color: #555;
                 color: #fff;
                 text-align: center;
@@ -95,9 +95,6 @@
                     <center>
                         <h1><a href="index.htm">INDEX</a></h1>
 
-                        <div class="tooltip">L6MS
-                            <span class="tooltiptext">Last Six Months Grand Total (Ολες οι Εξαγωγες)</span>
-                        </div>
 
                         <h1>${supplier.name} Stock Management</h1>
                         <form action="goForAddingItemToSupplier.htm" method="POST">
