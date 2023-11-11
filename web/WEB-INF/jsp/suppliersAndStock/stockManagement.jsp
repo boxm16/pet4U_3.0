@@ -147,7 +147,7 @@
                                     } else {
                                         out.println("<td style='background-color:red'>");
                                     }
-                                    out.println(grandTotalEksagogesOneMonth);
+                                    out.println(diff+"??"+onePercent);
                                     out.println("</td>");
 
                                     out.println("<td>");
