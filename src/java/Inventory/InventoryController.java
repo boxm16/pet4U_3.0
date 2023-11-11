@@ -72,7 +72,7 @@ public class InventoryController {
             if (pet4uItem == null) {
                 System.out.println("Pet4uItem  not present in the lists from microsoft db");
             }
-            inventoryItem.setCode(pet4uItem.getCode());
+            inventoryItem.setCode(altercode);
             inventoryItem.setDescription(pet4uItem.getDescription());
             inventoryItem.setPosition(pet4uItem.getPosition());
             inventoryItem.setState(pet4uItem.getState());
