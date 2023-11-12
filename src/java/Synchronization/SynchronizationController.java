@@ -18,6 +18,9 @@ public class SynchronizationController {
     public String synchronizePositions(@RequestParam(name = "code") String code, ModelMap model) {
         System.out.println("CODEEEE" + code);
 
+        SynchronizationDao synchronizationDao = new SynchronizationDao();
+        String camelotPosition = synchronizationDao.getCamelotItemPosition(code);
+        System.out.println("CAMLEOT POSITON:"+camelotPosition);
         return "redirect:camelotItemsWithPossitionDifference.htm";
     }
 
