@@ -137,7 +137,7 @@
 
                                     Eksagoges oneMontheksagoges = item.getEksagogesForLastMonths(1);
                                     double grandTotalEksagogesOneMonth = oneMontheksagoges.getEshopSales() + oneMontheksagoges.getShopsSupply();
-                                    double diff = oneMonthSalesFromCalculation - oneMonthSalesFromCalculation;
+                                    double diff = oneMonthSalesFromCalculation - grandTotalEksagogesOneMonth;
                                     if (diff < 0) {
                                         diff = diff * -1;
                                     }
@@ -145,9 +145,9 @@
                                     if (diff > onePercent * 5) {
                                         out.println("<td style='background-color:red'>");
                                     } else {
-                                        out.println("<td style='background-color:red'>");
+                                        out.println("<td>");
                                     }
-                                    out.println(diff+"??"+onePercent);
+                                    out.println(grandTotalEksagogesOneMonth);
                                     out.println("</td>");
 
                                     out.println("<td>");
