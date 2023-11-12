@@ -37,4 +37,24 @@ public class SynchronizationDao {
         return position;
     }
 
+    int getPet4UPositionId(String camelotPosition) {
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+        Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
+        int positionId = 0;
+        String sql = "SELECT * FROM [petworld].[EliteUser].[IR1] WHERE [NAME]='" + camelotPosition + "'";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+
+            while (resultSet.next()) {
+                positionId = resultSet.getInt("ID");
+            }
+            statement.close();
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(SynchronizationDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return positionId;
+    }
+
 }
