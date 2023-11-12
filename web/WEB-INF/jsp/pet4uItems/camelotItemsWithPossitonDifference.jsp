@@ -33,6 +33,8 @@
     <body>
     <center>
         <h1>Camelot Items With Position Difference</h1>
+        <hr>
+        <h1><a href="synchronizeAllPositions.htm">Synchronize All Items Positions</a></h1>
         <table>
             <thead>
                 <tr>
