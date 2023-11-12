@@ -26,7 +26,7 @@ public class SynchronizationDao {
             ResultSet resultSet = statement.executeQuery("select EXPR1 from WH1 WHERE ABBREVIATION='" + code + "';");
 
             while (resultSet.next()) {
-                position = resultSet.getString("EXPR1");
+                position = resultSet.getString("EXPR1").trim() + resultSet.getString("EXPR2").trim();
             }
             resultSet.close();
             statement.close();
