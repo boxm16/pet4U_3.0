@@ -51,6 +51,7 @@
     <context:component-scan base-package="MonthSales"/>
     <context:component-scan base-package="Analitica"/>
     <context:component-scan base-package="Offer"/>
+    <context:component-scan base-package="Synchronization"/>
     <!--
     Most controllers will use the ControllerClassNameHandlerMapping above, but
     for the index controller we are using ParameterizableViewController, so we must

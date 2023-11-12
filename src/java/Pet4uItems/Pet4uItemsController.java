@@ -222,10 +222,6 @@ public class Pet4uItemsController {
         return "/pet4uItems/itemSnapshots";
     }
 
-    @RequestMapping(value = "synchronizePositions")
-    public String synchronizePositions(@RequestParam(name = "code") String code, ModelMap model) {
-        System.out.println("CODEEEE"+code);
-        return "redirect:camelotItemsWithPossitionDifference.htm";
-    }
+    
 
 }
