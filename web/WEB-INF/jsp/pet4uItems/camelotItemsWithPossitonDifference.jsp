@@ -93,7 +93,7 @@
                         out.println("</td>");
 
                         out.println("<td>");
-                        out.println("<a href='synchronizePositions.htm?code=" + item.get(0) + "");
+                        out.println("<a href='synchronizePositions.htm?code=" + item.get(0) + "' a>SYNCHRONIZE</a>");
                         out.println("</td>");
 
                         out.println("</tr>");
