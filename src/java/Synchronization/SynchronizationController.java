@@ -20,7 +20,10 @@ public class SynchronizationController {
 
         SynchronizationDao synchronizationDao = new SynchronizationDao();
         String camelotPosition = synchronizationDao.getCamelotItemPosition(code);
-        System.out.println("CAMLEOT POSITON:"+camelotPosition);
+        System.out.println("CAMLEOT POSITON:" + camelotPosition);
+        camelotPosition = "C-" + camelotPosition;
+
+        System.out.println("CAMLEOT POSITON:" + camelotPosition);
         return "redirect:camelotItemsWithPossitionDifference.htm";
     }
 
