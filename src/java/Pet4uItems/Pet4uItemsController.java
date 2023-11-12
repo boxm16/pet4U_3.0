@@ -103,20 +103,21 @@ public class Pet4uItemsController {
                     Item camelotItem = camelotItemsRowByRow.get(camelotVersionAltercode);
                     Item pet4uItem = pet4uItemsEntry.getValue();
                     String c_position = "C-" + camelotItem.getPosition();
-                    if (pet4uItem.getPosition().contains("C-")||pet4uItem.getPosition().isEmpty()) {
-                        Double q = Double.parseDouble(camelotItem.getQuantity());
-                        if (q > 0) {
-                            if (!pet4uItem.getPosition().equals(c_position)) {
+                    if (!camelotItem.getPosition().isEmpty()) {
+                        if (pet4uItem.getPosition().contains("C-") || pet4uItem.getPosition().isEmpty()) {
+                            Double q = Double.parseDouble(camelotItem.getQuantity());
+                            if (q > 0) {
+                                if (!pet4uItem.getPosition().equals(c_position)) {
 
-                                ArrayList<String> diff = new ArrayList<>();
-                                diff.add(pet4uItem.getCode());
-                                diff.add(pet4uItem.getDescription());
-                                diff.add(pet4uItem.getPosition());
-                                diff.add(pet4uItem.getState());
-                                diff.add(c_position);
-                                diff.add(camelotItem.getQuantity());
-                                differences.add(diff);
-                                break;
+                                    ArrayList<String> diff = new ArrayList<>();
+                                    diff.add(pet4uItem.getCode());
+                                    diff.add(pet4uItem.getDescription());
+                                    diff.add(pet4uItem.getPosition());
+                                    diff.add(c_position);
+                                    diff.add(camelotItem.getQuantity());
+                                    differences.add(diff);
+                                    break;
+                                }
                             }
                         }
                     }

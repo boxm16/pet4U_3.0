@@ -36,7 +36,7 @@
             <thead>
                 <tr>
                     <th>
-                       A/A
+                        A/A
                     </th>
                     <th>
                         Code
@@ -47,9 +47,7 @@
                     <th>
                         Pet4U Position
                     </th>
-                    <th>
-                        Pet4U State
-                    </th>
+
                     <th>
                         Camelot Position
                     </th>
@@ -88,9 +86,6 @@
 
                         out.println("<td>");
                         out.println(item.get(4));
-                        out.println("</td>");
-                        out.println("<td>");
-                        out.println(item.get(5));
                         out.println("</td>");
 
                         out.println("</tr>");
