@@ -31,7 +31,8 @@
         </style>
     </head>
     <body>
-    <center>Camelot Items With Position Difference
+    <center>
+        <h1>Camelot Items With Position Difference</h1>
         <table>
             <thead>
                 <tr>
@@ -54,6 +55,9 @@
 
                     <th>
                         Camelot Stock
+                    </th>
+                    <th>
+                        Synchronize Positions
                     </th>
                 </tr>
             </thead>
@@ -86,6 +90,10 @@
 
                         out.println("<td>");
                         out.println(item.get(4));
+                        out.println("</td>");
+
+                        out.println("<td>");
+                        out.println("<a href='synchronizePositions.htm?code=" + item.get(0) + "");
                         out.println("</td>");
 
                         out.println("</tr>");
