@@ -225,7 +225,7 @@ public class Pet4uItemsController {
     @RequestMapping(value = "synchronizePositions")
     public String synchronizePositions(@RequestParam(name = "code") String code, ModelMap model) {
         System.out.println("CODEEEE"+code);
-        return "redirect:camelotItemsWithPossitonDifference.htm";
+        return "redirect:camelotItemsWithPossitionDifference.htm";
     }
 
 }
