@@ -36,6 +36,9 @@
             <thead>
                 <tr>
                     <th>
+                       A/A
+                    </th>
+                    <th>
                         Code
                     </th>
                     <th>
@@ -58,10 +61,14 @@
             </thead>
             <tbody>
                 <%
+                    int x = 0;
                     ArrayList<ArrayList<String>> items = (ArrayList) request.getAttribute("differences");
                     for (ArrayList<String> item : items) {
-
+                        x++;
                         out.println("<tr>");
+                        out.println("<td>");
+                        out.println(x);
+                        out.println("</td>");
 
                         out.println("<td>");
                         out.println(item.get(0));
