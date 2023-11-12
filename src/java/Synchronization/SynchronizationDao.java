@@ -19,7 +19,7 @@ public class SynchronizationDao {
 
     String getCamelotItemPosition(String code) {
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
-        Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
+        Connection connection = databaseConnectionFactory.getCamelotMicrosoftSQLConnection();
         String position = "";
         try {
             Statement statement = connection.createStatement();
