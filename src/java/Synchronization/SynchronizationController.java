@@ -16,7 +16,7 @@ public class SynchronizationController {
     //------------------here is part for position update
     @RequestMapping(value = "synchronizePositions")
     public String synchronizePositions(@RequestParam(name = "code") String code, ModelMap model) {
-        System.out.println("CODEEEE" + code);
+        System.out.println("CODE" + code);
 
         SynchronizationDao synchronizationDao = new SynchronizationDao();
         String camelotPosition = synchronizationDao.getCamelotItemPosition(code);
@@ -26,6 +26,8 @@ public class SynchronizationController {
 
         int positionId = synchronizationDao.getPet4UPositionId(camelotPosition);
         System.out.println("ID:" + positionId);
+
+        String result = synchronizationDao.updatePet4UItemPosition(code, positionId);
         return "redirect:camelotItemsWithPossitionDifference.htm";
     }
 

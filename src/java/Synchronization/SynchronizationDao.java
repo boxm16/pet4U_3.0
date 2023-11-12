@@ -7,6 +7,7 @@ package Synchronization;
 
 import Service.DatabaseConnectionFactory;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -55,6 +56,25 @@ public class SynchronizationDao {
             Logger.getLogger(SynchronizationDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return positionId;
+    }
+
+    String updatePet4UItemPosition(String code, int positionId) {
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+        Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
+        try {
+
+            PreparedStatement itemInsertStatement = connection.prepareStatement("UPDATE [petworld].[EliteUser].[INI] SET [IF1ID]=? WHERE [ABBREVIATION]='?';");
+
+            itemInsertStatement.setInt(1, positionId);
+            itemInsertStatement.setString(2, code);
+
+            itemInsertStatement.execute();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(SynchronizationController.class.getName()).log(Level.SEVERE, null, ex);
+            return ex.getMessage();
+        }
+        return "Position Edited Successfully";
     }
 
 }
