@@ -23,7 +23,7 @@ public class SynchronizationDao {
         String position = "";
         try {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("select EXPR1 from WH1 WHERE ABBREVIATION='" + code + "';");
+            ResultSet resultSet = statement.executeQuery("select EXPR1, EXPR2  from WH1 WHERE ABBREVIATION='" + code + "';");
 
             while (resultSet.next()) {
                 position = resultSet.getString("EXPR1").trim() + resultSet.getString("EXPR2").trim();
