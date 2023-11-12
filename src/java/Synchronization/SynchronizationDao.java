@@ -63,7 +63,7 @@ public class SynchronizationDao {
         Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
         try {
 
-            PreparedStatement itemInsertStatement = connection.prepareStatement("UPDATE [petworld].[EliteUser].[INI] SET [IF1ID]=? WHERE [ABBREVIATION]='?';");
+            PreparedStatement itemInsertStatement = connection.prepareStatement("UPDATE [petworld].[EliteUser].[INI] SET [IF1ID]=? WHERE [ABBREVIATION]=?;");
 
             itemInsertStatement.setInt(1, positionId);
             itemInsertStatement.setString(2, code);

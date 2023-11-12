@@ -28,6 +28,7 @@ public class SynchronizationController {
         System.out.println("ID:" + positionId);
 
         String result = synchronizationDao.updatePet4UItemPosition(code, positionId);
+        System.out.println("Result:"+result);
         return "redirect:camelotItemsWithPossitionDifference.htm";
     }
 
