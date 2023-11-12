@@ -45,8 +45,12 @@
                         Pet4U Position
                     </th>
                     <th>
+                        Pet4U State
+                    </th>
+                    <th>
                         Camelot Position
                     </th>
+
                     <th>
                         Camelot Stock
                     </th>
@@ -74,9 +78,12 @@
                         out.println("<td>");
                         out.println(item.get(3));
                         out.println("</td>");
-                        
-                         out.println("<td>");
+
+                        out.println("<td>");
                         out.println(item.get(4));
+                        out.println("</td>");
+                        out.println("<td>");
+                        out.println(item.get(5));
                         out.println("</td>");
 
                         out.println("</tr>");
