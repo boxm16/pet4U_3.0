@@ -71,7 +71,7 @@ public class SynchronizationDao {
             itemInsertStatement.execute();
 
         } catch (SQLException ex) {
-            Logger.getLogger(SynchronizationController.class.getName()).log(Level.SEVERE, null, ex);
+          //  Logger.getLogger(SynchronizationController.class.getName()).log(Level.SEVERE, null, ex);
             return ex.getMessage();
         }
         return "Position Edited Successfully";
