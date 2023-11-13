@@ -21,7 +21,8 @@ public class TechManDao {
         String query = "CREATE TABLE notes("
                 + "id INT(6) NOT NULL AUTO_INCREMENT, "
                 + "item_code VARCHAR(15) NOT NULL , "
-                + "note VARCHAR(360) NOT NULL ) "
+                + "note VARCHAR(360) NOT NULL."
+                + "PRIMARY KEY (id)) "
                 + "ENGINE = InnoDB "
                 + "DEFAULT CHARACTER SET = utf8;";
         try {
