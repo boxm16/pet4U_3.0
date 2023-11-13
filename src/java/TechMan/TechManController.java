@@ -335,4 +335,7 @@ public class TechManController {
         modelMap.addAttribute("offersTableDeletionResult", result);
         return "techMan/techManDashboard";
     }
+    
+    //------------------
+    
 }
