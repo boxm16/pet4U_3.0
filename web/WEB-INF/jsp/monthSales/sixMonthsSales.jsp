@@ -84,6 +84,19 @@
                         out.println("<td>");
                         out.println(eksagoges.getShopsSupply());
                         out.println("</td>");
+                        
+                        double totalEksagoges = eksagoges.getEshopSales() + eksagoges.getShopsSupply();
+                        out.println("<td>");
+                        out.println(totalEksagoges);
+                        out.println("</td>");
+                        
+                        out.println("<td>");
+
+                        out.println("<svg width='" + totalEksagoges + "' height='30'>");
+                        out.println("<rect width='" + totalEksagoges + "' height='30' style='fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)' />");
+                        out.println("</svg>");
+
+                        out.println("</td>");
 
                         out.println("</tr>");
                     }
