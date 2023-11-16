@@ -156,7 +156,7 @@
                                     out.println("</td>");
 
                                     out.println("<td>");
-                                    out.println("<a href='objectiveSalesDashboard.htm?supplierId=" + supplier.getId() + "&item_code=" + item.getCode() + "' >Calculate<br>Objective<br>Sales</a>");
+                                    out.println("<a href='objectiveSalesDashboard.htm?supplierId=" + supplier.getId() + "&itemCode=" + item.getCode() + "' >Calculate<br>Objective<br>Sales</a>");
                                     out.println("</td>");
 
                                     out.println("<td>");
