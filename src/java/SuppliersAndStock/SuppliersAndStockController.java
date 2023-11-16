@@ -275,7 +275,7 @@ public class SuppliersAndStockController {
             ModelMap modelMap) {
         
  
-        return "objectiveSalesDashboard";
+        return "suppliersAndStock/objectiveSalesDashboard";
        // return "redirect:stockManagement.htm?supplierId=" + supplierId + "";
     }
 }
