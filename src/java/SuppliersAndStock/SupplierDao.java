@@ -7,6 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.logging.Level;
@@ -137,6 +139,12 @@ public class SupplierDao {
                 SuppliersItem item = new SuppliersItem();
                 String itemCode = resultSet.getString("item_code");
                 item.setCode(itemCode.trim());
+                item.setObjectiveSales(resultSet.getInt("objective_sales"));
+                String objectiveSalesDateString = resultSet.getString("objective_sales_date");
+                DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                LocalDate objectiveSalesDate = LocalDate.parse(objectiveSalesDateString, dateTimeFormatter);
+
+                item.setObjectiveSalesDate(objectiveSalesDate);
                 item.setMinimalStock(resultSet.getInt("minimal_stock"));
                 item.setOrderUnit(resultSet.getString("order_unit"));
                 item.setOrderUnitCapacity(resultSet.getInt("order_unit_capacity"));

@@ -6,7 +6,7 @@
 package SuppliersAndStock;
 
 import MonthSales.ItemEksagoges;
-import java.util.Date;
+import java.time.LocalDate;
 
 /**
  *
@@ -17,7 +17,7 @@ public class SuppliersItem extends ItemEksagoges {
     private int supplierId;
 
     private double objectiveSales;
-    private Date objectiveSalesDate;
+    private LocalDate objectiveSalesDate;
     private int minimalStock;
     private String orderUnit;
     private int orderUnitCapacity;
@@ -81,13 +81,15 @@ public class SuppliersItem extends ItemEksagoges {
         this.objectiveSales = objectiveSales;
     }
 
-    public Date getObjectiveSalesDate() {
+    public LocalDate getObjectiveSalesDate() {
         return objectiveSalesDate;
     }
 
-    public void setObjectiveSalesDate(Date objectiveSalesDate) {
+    public void setObjectiveSalesDate(LocalDate objectiveSalesDate) {
         this.objectiveSalesDate = objectiveSalesDate;
     }
+
+    
     
 
 }
