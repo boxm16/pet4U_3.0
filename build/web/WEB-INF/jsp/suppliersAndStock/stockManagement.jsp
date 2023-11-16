@@ -156,9 +156,10 @@
                                     out.println("<td>");
                                     out.println(item.getObjectiveSales());
                                     out.println("</td>");
-                                    LocalDate objectiveSalesDate = item.getObjectiveSalesDate();
 
                                     out.println("<td>");
+                                    LocalDate objectiveSalesDate = item.getObjectiveSalesDate();
+
                                     if (objectiveSalesDate == null) {
                                         out.println();
                                     } else {

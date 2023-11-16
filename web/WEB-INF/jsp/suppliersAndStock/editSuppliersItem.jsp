@@ -38,20 +38,7 @@
                             <td>Description</td>
                             <td> <input width="120" style="background-color:lightgrey" readonly type="text" value="${item.description}"> </td>
                         </tr>
-                        <tr>
-                            <td>Sales For 6 Months</td>
 
-                            <td> <input style="background-color:lightgray" readonly type="number" value="${item.getTotalShippedPieces()}"> </td>
-                        </tr>
-                        <tr>
-                            <td>Sales For 2 weeks</td>
-                            <td> <input style="background-color:lightgray" readonly type="number" value="${item.getTotalShippedPiecesForPeriod()}"> </td>
-                        </tr>
-
-                        <tr>
-                            <td>Minimal Stock</td>
-                            <td>  <input  type="number" name="minimalStock" value="${item.minimalStock}">  </td> 
-                        </tr>
                         <tr>
                             <td>
                                 <label for="orderUnit">Μοναδα Παραγγελίας</label>
