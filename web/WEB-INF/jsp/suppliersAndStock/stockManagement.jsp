@@ -156,7 +156,11 @@
                                     out.println("</td>");
 
                                     out.println("<td>");
-                                    out.println("<a href='objectiveSalesDashboard.htm?supplierId=" + supplier.getId() + "&itemCode=" + item.getCode() + "' >Calculate<br>Objective<br>Sales</a>");
+                                    if (diff > fiftyPercerntDifference) {
+                                        out.println("<a href='objectiveSalesDashboard.htm?supplierId=" + supplier.getId() + "&itemCode=" + item.getCode() + "' >" + item.getObjectiveSales() + "</a>");
+                                    } else {
+                                        out.println("");
+                                    }
                                     out.println("</td>");
 
                                     out.println("<td>");
