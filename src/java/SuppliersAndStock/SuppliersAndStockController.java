@@ -267,4 +267,15 @@ public class SuppliersAndStockController {
         
         return "redirect:stockManagement.htm?supplierId=" + supplierId + "";
     }
+    
+    
+     @RequestMapping(value = "objectiveSalesDashboard", method = RequestMethod.GET)
+    public String objectiveSalesDashboard(@RequestParam(name = "supplierId") String supplierId,
+            @RequestParam(name = "itemCode") String code,
+            ModelMap modelMap) {
+        
+ 
+        
+        return "redirect:stockManagement.htm?supplierId=" + supplierId + "";
+    }
 }

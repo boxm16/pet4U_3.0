@@ -4,6 +4,7 @@
     Author     : Michail Sitmalidis
 --%>
 
+<%@page import="SuppliersAndStock.Supplier"%>
 <%@page import="java.time.LocalDate"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="MonthSales.Eksagoges"%>
@@ -95,7 +96,7 @@
                                     <th> <button class="btn btn-primary btn-lg" onclick="requestRouter()">ORDER MODE </button></th>
                                 </tr>
                             </thead>
-                            <%
+                            <% Supplier supplier = (Supplier) request.getAttribute("supplier");
                                 LinkedHashMap<String, SuppliersItem> items = (LinkedHashMap) request.getAttribute("supplierItems");
                                 for (Map.Entry<String, SuppliersItem> entrySet : items.entrySet()) {
                                     SuppliersItem item = entrySet.getValue();
@@ -145,7 +146,8 @@
                                         diff = diff * -1;
                                     }
                                     double onePercent = oneMonthSalesFromCalculation / 100;
-                                    if (diff > onePercent * 50) {
+                                    double fiftyPercerntDifference = onePercent * 50;
+                                    if (diff > fiftyPercerntDifference) {
                                         out.println("<td style='background-color:red'>");
                                     } else {
                                         out.println("<td>");
@@ -154,7 +156,7 @@
                                     out.println("</td>");
 
                                     out.println("<td>");
-                                    out.println(item.getObjectiveSales());
+                                    out.println("<a href='objectiveSalesDashboard.htm?supplierId=" + supplier.getId() + "&item_code=" + item.getCode() + "' >Calculate<br>Objective<br>Sales</a>");
                                     out.println("</td>");
 
                                     out.println("<td>");
