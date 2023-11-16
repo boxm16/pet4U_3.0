@@ -80,6 +80,8 @@
                                             LMS
                                         </button>
                                     </th>
+                                    <th>Objective Sales</th>
+                                    <th>Objective Sales Date</th>
                                     <th>Stock</th>
                                     <th>Minimal <br>Stock</th>
                                     <th>Order</th>
@@ -148,6 +150,14 @@
                                         out.println("<td>");
                                     }
                                     out.println(grandTotalEksagogesOneMonth);
+                                    out.println("</td>");
+
+                                    out.println("<td>");
+                                    out.println(item.getObjectiveSales());
+                                    out.println("</td>");
+
+                                    out.println("<td>");
+                                    out.println(item.getObjectiveSalesDate());
                                     out.println("</td>");
 
                                     out.println("<td>");

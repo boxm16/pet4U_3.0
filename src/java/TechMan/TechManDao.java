@@ -546,6 +546,8 @@ public class TechManDao {
         String query = "CREATE TABLE stock_management("
                 + "supplier_id INT (6) NOT NULL, "
                 + "item_code VARCHAR (100) NOT NULL, "
+                + "objective_sales DOUBLE (10,4) NULL, "
+                + "objective_sales_date  DATE NULL, "
                 + "minimal_stock INT (5) NOT NULL, "
                 + "order_unit VARCHAR (10) NOT NULL, "
                 + "order_unit_capacity INT (5) NOT NULL, "
