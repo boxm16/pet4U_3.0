@@ -4,6 +4,7 @@
     Author     : Michail Sitmalidis
 --%>
 
+<%@page import="java.time.LocalDate"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="MonthSales.Eksagoges"%>
 <%@page import="java.util.Map"%>
@@ -155,9 +156,15 @@
                                     out.println("<td>");
                                     out.println(item.getObjectiveSales());
                                     out.println("</td>");
+                                    LocalDate objectiveSalesDate = item.getObjectiveSalesDate();
 
                                     out.println("<td>");
-                                    out.println(item.getObjectiveSalesDate());
+                                    if (objectiveSalesDate == null) {
+                                        out.println();
+                                    } else {
+                                        out.println(objectiveSalesDate);
+                                    }
+
                                     out.println("</td>");
 
                                     out.println("<td>");
