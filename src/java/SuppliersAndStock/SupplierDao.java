@@ -140,13 +140,13 @@ public class SupplierDao {
                 String itemCode = resultSet.getString("item_code");
                 item.setCode(itemCode.trim());
                 item.setObjectiveSales(resultSet.getInt("objective_sales"));
-                String objectiveSalesDateString = resultSet.getString("objective_sales_date");
-                LocalDate objectiveSalesDate = null;
-                if (objectiveSalesDateString != null) {
+                String objectiveSalesExpirationDateString = resultSet.getString("objective_sales_expiration_date");
+                LocalDate objectiveSalesExpirationDate = null;
+                if (objectiveSalesExpirationDateString != null) {
                     DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-                    objectiveSalesDate = LocalDate.parse(objectiveSalesDateString, dateTimeFormatter);
+                    objectiveSalesExpirationDate = LocalDate.parse(objectiveSalesExpirationDateString, dateTimeFormatter);
                 }
-                item.setObjectiveSalesDate(objectiveSalesDate);
+                item.setObjectiveSalesExpirationDate(objectiveSalesExpirationDate);
                 item.setMinimalStock(resultSet.getInt("minimal_stock"));
                 item.setOrderUnit(resultSet.getString("order_unit"));
                 item.setOrderUnitCapacity(resultSet.getInt("order_unit_capacity"));

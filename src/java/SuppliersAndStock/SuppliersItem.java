@@ -17,7 +17,7 @@ public class SuppliersItem extends ItemEksagoges {
     private int supplierId;
 
     private double objectiveSales;
-    private LocalDate objectiveSalesDate;
+    private LocalDate objectiveSalesExpirationDate;
     private int minimalStock;
     private String orderUnit;
     private int orderUnitCapacity;
@@ -81,13 +81,14 @@ public class SuppliersItem extends ItemEksagoges {
         this.objectiveSales = objectiveSales;
     }
 
-    public LocalDate getObjectiveSalesDate() {
-        return objectiveSalesDate;
+    public LocalDate getObjectiveSalesExpirationDate() {
+        return objectiveSalesExpirationDate;
     }
 
-    public void setObjectiveSalesDate(LocalDate objectiveSalesDate) {
-        this.objectiveSalesDate = objectiveSalesDate;
+    public void setObjectiveSalesExpirationDate(LocalDate objectiveSalesExpirationDate) {
+        this.objectiveSalesExpirationDate = objectiveSalesExpirationDate;
     }
+
 
     
     
