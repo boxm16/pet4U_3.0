@@ -86,6 +86,7 @@
                                     <th>Objective Sales Date</th>
                                     <th>Stock</th>
                                     <th>Minimal <br>Stock</th>
+                                     <th>Order <br>Horizon</th>
                                     <th>Order</th>
 
 
@@ -164,7 +165,7 @@
                                     out.println("</td>");
 
                                     out.println("<td>");
-                                    LocalDate objectiveSalesDate = item.getObjectiveSalesDate();
+                                    LocalDate objectiveSalesDate = item.getObjectiveSalesExpirationDate();
 
                                     if (objectiveSalesDate == null) {
                                         out.println();
@@ -180,6 +181,10 @@
 
                                     out.println("<td>");
                                     out.println(item.getMinimalStock());
+                                    out.println("</td>");
+
+                                    out.println("<td>");
+                                    out.println(item.getOrderHorizon());
                                     out.println("</td>");
 
                                     if (needOrder) {

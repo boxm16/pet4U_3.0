@@ -148,6 +148,7 @@ public class SupplierDao {
                 }
                 item.setObjectiveSalesExpirationDate(objectiveSalesExpirationDate);
                 item.setMinimalStock(resultSet.getInt("minimal_stock"));
+                item.setOrderHorizon(resultSet.getInt("order_horizon"));
                 item.setOrderUnit(resultSet.getString("order_unit"));
                 item.setOrderUnitCapacity(resultSet.getInt("order_unit_capacity"));
                 String note = resultSet.getString("note");

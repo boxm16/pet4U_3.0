@@ -15,7 +15,7 @@ import java.time.LocalDate;
 public class SuppliersItem extends ItemEksagoges {
 
     private int supplierId;
-
+private int orderHorizon;
     private double objectiveSales;
     private LocalDate objectiveSalesExpirationDate;
     private int minimalStock;
@@ -87,6 +87,14 @@ public class SuppliersItem extends ItemEksagoges {
 
     public void setObjectiveSalesExpirationDate(LocalDate objectiveSalesExpirationDate) {
         this.objectiveSalesExpirationDate = objectiveSalesExpirationDate;
+    }
+
+    public int getOrderHorizon() {
+        return orderHorizon;
+    }
+
+    public void setOrderHorizon(int orderHorizon) {
+        this.orderHorizon = orderHorizon;
     }
 
 
