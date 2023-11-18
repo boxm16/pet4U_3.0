@@ -213,7 +213,11 @@
 
                                     out.println("</td>");
 
-                                    out.println("<td>");
+                                    if (Double.parseDouble(item.getQuantity()) < (grandTotalEksagogesOneMonth * 2)) {
+                                        out.println("<td style='background-color:red'>");
+                                    } else {
+                                        out.println("<td>");
+                                    }
                                     out.println(item.getQuantity());
                                     out.println("</td>");
 
