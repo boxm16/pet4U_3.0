@@ -188,7 +188,7 @@ public class SupplierDao {
                 item.setObjectiveSales(resultSet.getDouble("objective_sales"));
                 String string = resultSet.getString("objective_sales_expiration_date");
                 
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                 LocalDate localDate = LocalDate.parse(string, formatter);
                 item.setObjectiveSalesExpirationDate(localDate);
                 
