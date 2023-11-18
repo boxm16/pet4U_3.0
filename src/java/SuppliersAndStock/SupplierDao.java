@@ -169,7 +169,7 @@ public class SupplierDao {
         return items;
     }
 
-    SuppliersItem getSuppliersItem(String supplierId, String code) {
+   public SuppliersItem getSuppliersItem(String supplierId, String code) {
         SuppliersItem item = new SuppliersItem();
         String sql = "SELECT * FROM stock_management WHERE supplier_id=" + supplierId + " AND item_code='" + code + "';";
         ResultSet resultSet;

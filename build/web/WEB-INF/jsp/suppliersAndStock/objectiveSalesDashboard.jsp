@@ -60,7 +60,7 @@
                     <h5>Update Objective Sales </h5>
                     <form>
                         <table> 
-                            <tr><td>Objective Sales</td><td><input type="number" name="objectiveSales"></td></tr>
+                            <tr><td>Objective Sales</td><td><input type="number" name="objectiveSales">${supplierItem.objectiveSales}</td></tr>
                             <tr><td>Objective Sales Expiration Date</td><td> <input type="date" name="expirationDate"></td></tr>
                             <tr><td>Order Horizon(Months)</td><td><input type="number" name="orderHorizon"></td></tr>
                             <tr><td colspan="2"><center>---------------------------</center></td></tr>
