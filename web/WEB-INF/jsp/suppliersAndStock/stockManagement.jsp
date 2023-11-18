@@ -102,7 +102,12 @@
                                     <th>Stock</th>
                                     <th>
                                         <button type="button" onclick="setText('Minimal (2 Months) Stock')" class="btn btn-light" data-toggle="modal" data-target="#exampleModalCenter">
-                                            M(2M)S
+                                            Mn(2M)S
+                                        </button>
+                                    </th>
+                                    <th>
+                                        <button type="button" onclick="setText('Maximal (4 Months) Stock')" class="btn btn-light" data-toggle="modal" data-target="#exampleModalCenter">
+                                            Mx(4M)S
                                         </button>
                                     </th>
 
@@ -208,7 +213,17 @@
                                     if (diff <= fiftyPercerntDifference) {
                                         out.println(grandTotalEksagogesOneMonth * 2);
                                     } else {
-                                        out.println("Sto; workng");
+                                        out.println("Still workng");
+                                    }
+
+                                    out.println("</td>");
+
+                                    out.println("<td>");
+
+                                    if (diff <= fiftyPercerntDifference) {
+                                        out.println(grandTotalEksagogesOneMonth * 4);
+                                    } else {
+                                        out.println("Still workng");
                                     }
 
                                     out.println("</td>");
