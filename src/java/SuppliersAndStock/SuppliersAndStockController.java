@@ -293,8 +293,19 @@ public class SuppliersAndStockController {
 
         SuppliersItem supplierItem = supplierDao.getSuppliersItem(supplierId, code);
         model.addAttribute("supplierItem", supplierItem);
-        
+
         return "suppliersAndStock/objectiveSalesDashboard";
         // return "redirect:stockManagement.htm?supplierId=" + supplierId + "";
+    }
+
+    @RequestMapping(value = "updateObjectiveSales", method = RequestMethod.POST)
+    public String updateObjectiveSales(@RequestParam(name = "supplierId") String supplierId,
+            @RequestParam(name = "itemCode") String code,
+            @RequestParam(name = "objectiveSales") String objectiveSales,
+            @RequestParam(name = "expirationDate") String expirationDate,
+            @RequestParam(name = "orderHorizon") String orderHorizon,
+            ModelMap modelMap) {
+
+        return "redirect:stockManagement.htm?supplierId=" + supplierId + "";
     }
 }
