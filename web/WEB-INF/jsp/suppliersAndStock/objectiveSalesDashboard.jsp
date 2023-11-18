@@ -59,10 +59,10 @@
                 <div class=" col-sm-4">
                     <h5>Update Objective Sales </h5>
                     <form action="updateObjectiveSales" method="POST">
+                    <input hidden type="text" name="supplierId" value="${supplierItem.supplierId}">
+                    <input hidden type="text" name="itemCode" value="${supplierItem.code}">
 
                         <table> 
-                            <tr><td> <input readonly type="text" name="supplierId" value="${supplierItem.supplierId}"></td></tr>
-                            <tr><td> <input readonly type="text" name="itemCode" value="${supplierItem.code}"></td></tr>
                             <tr><td>Objective Sales</td><td><input type="number" name="objectiveSales" value="${supplierItem.objectiveSales}"></td></tr>
                             <tr><td>Objective Sales Expiration Date</td><td> <input type="date" name="expirationDate" value="${supplierItem.objectiveSalesExpirationDate}" ></td></tr>
                             <tr><td>Order Horizon(Months)</td><td><input type="number" name="orderHorizon" value="${supplierItem.orderHorizon}"></td></tr>
