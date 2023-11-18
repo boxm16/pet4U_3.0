@@ -312,10 +312,8 @@ public class SuppliersAndStockController {
 
             return "redirect:objectiveSalesDashboard.htm?supplierId=" + supplierId + "&itemCode=" + itemCode;
         }
-SuppliersItem suppliersItem=new SuppliersItem();
-suppliersItem.setSupplierId(Integer.parseInt(supplierId));
-suppliersItem.setCode(itemCode);
-        String result = supplierDao.updateObjectiveSales();
+
+        String result = supplierDao.updateObjectiveSales(supplierId, itemCode, objectiveSales, expirationDate, orderHorizon);
 
         return "redirect:stockManagement.htm?supplierId=" + supplierId + "";
     }
