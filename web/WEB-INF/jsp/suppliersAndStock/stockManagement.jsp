@@ -82,11 +82,20 @@
                                             LMS
                                         </button>
                                     </th>
-                                    <th>Objective Sales</th>
-                                    <th>Objective Sales Date</th>
+                                    <th>
+                                        <button type="button" onclick="setText('Objective Sales')" class="btn btn-light" data-toggle="modal" data-target="#exampleModalCenter">
+                                            OS
+                                        </button>
+                                    </th>
+                                    <th>
+                                        <button type="button" onclick="setText('Objective Sales Expiration Date')" class="btn btn-light" data-toggle="modal" data-target="#exampleModalCenter">
+                                            OSED
+                                        </button>
+                                    </th>
+
                                     <th>Stock</th>
                                     <th>Minimal <br>Stock</th>
-                                     <th>Order <br>Horizon</th>
+                                    <th>Order <br>Horizon</th>
                                     <th>Order</th>
 
 
