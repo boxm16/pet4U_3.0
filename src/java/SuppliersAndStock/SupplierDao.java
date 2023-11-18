@@ -169,7 +169,7 @@ public class SupplierDao {
         return items;
     }
 
-   public SuppliersItem getSuppliersItem(String supplierId, String code) {
+    public SuppliersItem getSuppliersItem(String supplierId, String code) {
         SuppliersItem item = new SuppliersItem();
         String sql = "SELECT * FROM stock_management WHERE supplier_id=" + supplierId + " AND item_code='" + code + "';";
         ResultSet resultSet;
@@ -183,6 +183,7 @@ public class SupplierDao {
             while (resultSet.next()) {
 
                 String itemCode = resultSet.getString("item_code");
+                item.setSupplierId(resultSet.getInt("supplier_id"));
                 item.setCode(itemCode.trim());
                 item.setMinimalStock(resultSet.getInt("minimal_stock"));
                 item.setOrderUnit(resultSet.getString("order_unit"));
