@@ -58,7 +58,7 @@
             <div class="row">
                 <div class=" col-sm-4">
                     <h5>Update Objective Sales </h5>
-                    <form action="updateObjectiveSales" method="POST">
+                    <form action="updateObjectiveSales.htm" method="POST">
                     <input hidden type="text" name="supplierId" value="${supplierItem.supplierId}">
                     <input hidden type="text" name="itemCode" value="${supplierItem.code}">
 
