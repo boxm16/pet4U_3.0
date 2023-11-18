@@ -50,13 +50,25 @@
     </head>
     <body>
         <div class="container" >
+            <center> 
+                <h5><a href="index.htm">INDEX</a></h5>
+                <br>
+                <h5>Objective Sales Dashboard</h5>
+            </center>
             <div class="row">
                 <div class=" col-sm-4">
+                    <h5>Update Objective Sales </h5>
 
+                    <table> 
+                        <tr><td>Objective Sales</td><td>--</td></tr>
+                        <tr><td>Objective Sales Expiration Date</td><td>==</td></tr>
+
+
+                    </table>
                 </div>
                 <div class=" col-sm-4">
-                    <h5><a href="index.htm">INDEX</a></h5>
-                    <h5>Pet4U Item Analysis</h5>
+
+                    <h5>Objective Sales Dashboard</h5>
 
                     <table> 
                         <tr><td>Code</td><td>${item.code}</td></tr>
