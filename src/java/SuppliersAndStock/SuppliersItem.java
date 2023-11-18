@@ -15,7 +15,7 @@ import java.time.LocalDate;
 public class SuppliersItem extends ItemEksagoges {
 
     private int supplierId;
-private int orderHorizon;
+    private int orderHorizon;
     private double objectiveSales;
     private LocalDate objectiveSalesExpirationDate;
     private int minimalStock;
@@ -96,9 +96,5 @@ private int orderHorizon;
     public void setOrderHorizon(int orderHorizon) {
         this.orderHorizon = orderHorizon;
     }
-
-
-    
-    
 
 }
