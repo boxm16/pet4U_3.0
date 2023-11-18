@@ -61,8 +61,8 @@
                     <form action="updateObjectiveSales" method="POST">
 
                         <table> 
-                            <tr><td> <input type="text" name="supplierId" value="${supplierItem.supplierId}"></td></tr>
-                            <tr><td> <input type="text" name="itemCode" value="${supplierItem.code}"></td></tr>
+                            <tr><td> <input readonly type="text" name="supplierId" value="${supplierItem.supplierId}"></td></tr>
+                            <tr><td> <input readonly type="text" name="itemCode" value="${supplierItem.code}"></td></tr>
                             <tr><td>Objective Sales</td><td><input type="number" name="objectiveSales" value="${supplierItem.objectiveSales}"></td></tr>
                             <tr><td>Objective Sales Expiration Date</td><td> <input type="date" name="expirationDate" value="${supplierItem.objectiveSalesExpirationDate}" ></td></tr>
                             <tr><td>Order Horizon(Months)</td><td><input type="number" name="orderHorizon" value="${supplierItem.orderHorizon}"></td></tr>
