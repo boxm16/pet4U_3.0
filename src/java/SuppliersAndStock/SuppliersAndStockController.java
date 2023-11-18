@@ -5,10 +5,17 @@
  */
 package SuppliersAndStock;
 
+import BasicModel.Item;
 import MonthSales.EksagogesController;
 import MonthSales.ItemEksagoges;
+import MonthSales.MonthSales;
+import MonthSales.MonthSalesDao;
+import Offer.Offer;
+import Offer.OfferDao;
+import Pet4uItems.Pet4uItemsDao;
 import SalesX.SalesControllerX;
 import SalesX.SoldItem;
+import Search.SearchDao;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
@@ -272,8 +279,22 @@ public class SuppliersAndStockController {
      @RequestMapping(value = "objectiveSalesDashboard", method = RequestMethod.GET)
     public String objectiveSalesDashboard(@RequestParam(name = "supplierId") String supplierId,
             @RequestParam(name = "itemCode") String code,
-            ModelMap modelMap) {
-        
+            ModelMap model) {
+        SearchDao searchDao = new SearchDao();
+        Item item = searchDao.getItemByAltercode(code);
+        model.addAttribute("item", item);
+
+        Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
+        LinkedHashMap<String, Item> itemSnapshots = pet4uItemsDao.getItemSnapshots(code);
+        model.addAttribute("itemSnapshots", itemSnapshots);
+
+        MonthSalesDao monthSalesDao = new MonthSalesDao();
+        MonthSales itemSales = monthSalesDao.getItemSales(code);
+        model.addAttribute("itemSales", itemSales);
+
+        OfferDao offerDao = new OfferDao();
+        ArrayList<Offer> offers = offerDao.getOffers(code);
+        model.addAttribute("offers", offers);
  
         return "suppliersAndStock/objectiveSalesDashboard";
        // return "redirect:stockManagement.htm?supplierId=" + supplierId + "";
