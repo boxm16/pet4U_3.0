@@ -300,11 +300,22 @@ public class SuppliersAndStockController {
 
     @RequestMapping(value = "updateObjectiveSales", method = RequestMethod.POST)
     public String updateObjectiveSales(@RequestParam(name = "supplierId") String supplierId,
-            @RequestParam(name = "itemCode") String code,
+            @RequestParam(name = "itemCode") String itemCode,
             @RequestParam(name = "objectiveSales") String objectiveSales,
             @RequestParam(name = "expirationDate") String expirationDate,
             @RequestParam(name = "orderHorizon") String orderHorizon,
             ModelMap modelMap) {
+
+        if (objectiveSales.isEmpty() || expirationDate.isEmpty() || orderHorizon.isEmpty()) {
+            modelMap.addAttribute("resultColor", "rose");
+            modelMap.addAttribute("result", "SOMETHING IS MISSING.");
+
+            return "redirect:objectiveSalesDashboard.htm?supplierId=" + supplierId + "&itemCode=" + itemCode;
+        }
+SuppliersItem suppliersItem=new SuppliersItem();
+suppliersItem.setSupplierId(Integer.parseInt(supplierId));
+suppliersItem.setCode(itemCode);
+        String result = supplierDao.updateObjectiveSales();
 
         return "redirect:stockManagement.htm?supplierId=" + supplierId + "";
     }

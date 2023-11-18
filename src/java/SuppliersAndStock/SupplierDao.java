@@ -339,4 +339,23 @@ public class SupplierDao {
         }
         return "Item Deleted Successfully";
     }
+
+    String updateObjectiveSales(String supplierId, String itemCode, String objectiveSales, String expirationDate, String orderHorizon) {
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            PreparedStatement itemInsertStatement = connection.prepareStatement("UPDATE stock_management SET  objective_sales=?, objective_sales_expiration_date=?, order_horizon=? WHERE supplier_id=? AND item_code=?");
+
+            itemInsertStatement.setString(1, objectiveSales);
+            itemInsertStatement.setString(2, expirationDate);
+            itemInsertStatement.setString(3, orderHorizon);
+            itemInsertStatement.setString(4, supplierId);
+            itemInsertStatement.setString(5, itemCode);
+            itemInsertStatement.execute();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
+            return ex.getMessage();
+        }
+        return " Objective Sales Updated Successfully";
+    }
 }
