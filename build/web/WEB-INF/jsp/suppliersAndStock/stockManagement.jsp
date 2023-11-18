@@ -92,10 +92,16 @@
                                             OSED
                                         </button>
                                     </th>
+                                    <th>
+                                        <button type="button" onclick="setText('Order Horizon')" class="btn btn-light" data-toggle="modal" data-target="#exampleModalCenter">
+                                            OH
+                                        </button>
+                                    </th>
+
 
                                     <th>Stock</th>
                                     <th>Minimal <br>Stock</th>
-                                    <th>Order <br>Horizon</th>
+
                                     <th>Order</th>
 
 
@@ -174,14 +180,18 @@
                                     out.println("</td>");
 
                                     out.println("<td>");
-                                    LocalDate objectiveSalesDate = item.getObjectiveSalesExpirationDate();
+                                    LocalDate objectiveSalesExpirationDate = item.getObjectiveSalesExpirationDate();
 
-                                    if (objectiveSalesDate == null) {
+                                    if (objectiveSalesExpirationDate == null) {
                                         out.println();
                                     } else {
-                                        out.println(objectiveSalesDate);
+                                        out.println(objectiveSalesExpirationDate);
                                     }
 
+                                    out.println("</td>");
+
+                                    out.println("<td>");
+                                    out.println(item.getOrderHorizon());
                                     out.println("</td>");
 
                                     out.println("<td>");
@@ -190,10 +200,6 @@
 
                                     out.println("<td>");
                                     out.println(item.getMinimalStock());
-                                    out.println("</td>");
-
-                                    out.println("<td>");
-                                    out.println(item.getOrderHorizon());
                                     out.println("</td>");
 
                                     if (needOrder) {
