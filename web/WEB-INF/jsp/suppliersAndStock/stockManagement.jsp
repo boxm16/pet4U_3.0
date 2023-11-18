@@ -100,7 +100,12 @@
 
 
                                     <th>Stock</th>
-                                    <th>Minimal <br>Stock</th>
+                                    <th>
+                                        <button type="button" onclick="setText('Minimal (2 Months) Stock')" class="btn btn-light" data-toggle="modal" data-target="#exampleModalCenter">
+                                            M(2M)S
+                                        </button>
+                                    </th>
+
 
                                     <th>Order</th>
 
@@ -199,7 +204,13 @@
                                     out.println("</td>");
 
                                     out.println("<td>");
-                                    out.println(item.getMinimalStock());
+
+                                    if (diff <= fiftyPercerntDifference) {
+                                        out.println(grandTotalEksagogesOneMonth * 2);
+                                    } else {
+                                        out.println("Sto; workng");
+                                    }
+
                                     out.println("</td>");
 
                                     if (needOrder) {
