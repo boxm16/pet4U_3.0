@@ -67,7 +67,7 @@
                             <tr><td>Objective Sales Expiration Date</td><td> <input type="date" name="expirationDate" value="${supplierItem.objectiveSalesExpirationDate}" ></td></tr>
                             <tr><td>Order Horizon(Months)</td><td><input type="number" name="orderHorizon" value="${supplierItem.orderHorizon}"></td></tr>
                             <tr><td colspan="2"><center>---------------------------</center></td></tr>
-                            <tr><td colspan="2"><center><button type="submit>">Update Objective Sales</button></center></td></tr>
+                            <tr><td colspan="2"><center><button class="btn btn-primary"type="submit>">Update Objective Sales</button></center></td></tr>
 
                         </table>
                     </form>
