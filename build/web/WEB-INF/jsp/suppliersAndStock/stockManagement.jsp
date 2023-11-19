@@ -154,19 +154,13 @@
                                         }
 
                                     }
-
-//----------------------------------
                                     boolean needOrder = false;
-                                    if (pet4uStock < minimalStock * 2) {
-                                        //  alarmColor = "yellow";
-                                        needOrder = true;
-                                    }
-                                    if (pet4uStock < minimalStock) {
-                                        //  alarmColor = "#F33A6A";
+                                    if (Double.parseDouble(item.getQuantity()) < (objectiveSales * 2)) {
                                         needOrder = true;
                                     }
 
-                                    out.println("<tr style='background-color: " + alarmColor + "'>");
+                                          //----------------------------------
+                                    out.println("<tr>");
 
                                     out.println("<td>");
                                     out.println(item.getCode());
@@ -233,7 +227,7 @@
                                     out.println(df.format(objectiveSales * 2));
                                     out.println("</td>");
 
-                                    if (Double.parseDouble(item.getQuantity()) < (objectiveSales * 2)) {
+                                    if (needOrder) {
                                         out.println("<td style='background-color:red'>");
                                     } else {
                                         out.println("<td>");
