@@ -180,7 +180,7 @@
                                     out.println("<tr>");
 
                                     out.println("<td>");
-                                    out.println(item.getCode());
+                                    out.println("<a href='itemAnalysis.htm?code=" + item.getCode() + "' target='_blank'>" + item.getCode() + "</a>");
                                     out.println("</td>");
 
                                     out.println("<td>");
@@ -292,10 +292,6 @@
 
                                     out.println("<td>");
                                     out.println("<a href='goForEditingSuppliersItem.htm?supplierId=" + item.getSupplierId() + "&code=" + item.getCode() + "'>Edit</a>");
-                                    out.println("</td>");
-
-                                    out.println("<td>");
-                                    out.println("<a href='itemAnalysis.htm?code=" + item.getCode() + "' target='_blank'>Analysis</a>");
                                     out.println("</td>");
 
                                     out.println("</tr>");
