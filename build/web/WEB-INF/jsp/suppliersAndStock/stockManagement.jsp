@@ -201,7 +201,7 @@
                                             out.println("<td style='background-color:#90EE90'>");
                                             out.println("<a href='objectiveSalesDashboard.htm?supplierId=" + supplier.getId() + "&itemCode=" + item.getCode() + "' >" + item.getObjectiveSales() + "</a>");
                                         } else {
-                                            out.println("<td style='background-color:red'>");
+                                            out.println("<td style='background-color:#BA4A00'>");
                                             out.println("<a href='objectiveSalesDashboard.htm?supplierId=" + supplier.getId() + "&itemCode=" + item.getCode() + "' >" + item.getObjectiveSales() + "</a>");
                                         }
                                     } else {
@@ -228,7 +228,7 @@
                                     if (objectiveSales > 0) {
                                         out.println("<td>");
                                     } else {
-                                        out.println("<td style='background-color:red'>");
+                                        out.println("<td style='background-color:#BA4A00'>");
                                     }
                                     out.println(df.format(objectiveSales * 2));
                                     out.println("</td>");
