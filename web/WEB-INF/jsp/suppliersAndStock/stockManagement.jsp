@@ -128,6 +128,31 @@
                                     String alarmColor = "";
                                     int minimalStock = item.getMinimalStock();
                                     Double pet4uStock = Double.parseDouble(item.getQuantity());
+
+                                    //----------------------------------
+                                    double objectiveSales = 0;
+                                    Eksagoges eksagoges = item.getEksagogesForLastMonths(6);
+                                    double grandTotalEksagoges = eksagoges.getEshopSales() + eksagoges.getShopsSupply();
+
+                                    double oneMonthSalesFromCalculation = grandTotalEksagoges / 6;
+                                    DecimalFormat df = new DecimalFormat("0.00");
+
+                                    Eksagoges oneMontheksagoges = item.getEksagogesForLastMonths(1);
+                                    double grandTotalEksagogesOneMonth = oneMontheksagoges.getEshopSales() + oneMontheksagoges.getShopsSupply();
+                                    double diff = oneMonthSalesFromCalculation - grandTotalEksagogesOneMonth;
+
+                                    if (diff < 0) {
+                                        diff = diff * -1;
+                                    }
+                                    double onePercent = oneMonthSalesFromCalculation / 100;
+                                    double fiftyPercerntDifference = onePercent * 50;
+                                    if (diff <= fiftyPercerntDifference) {
+                                        objectiveSales = oneMonthSalesFromCalculation;
+                                    } else {
+                                        
+                                    }
+
+//----------------------------------
                                     boolean needOrder = false;
                                     if (pet4uStock < minimalStock * 2) {
                                         //  alarmColor = "yellow";
@@ -152,26 +177,14 @@
                                     out.println(item.getPosition());
                                     out.println("</td>");
 
-                                    Eksagoges eksagoges = item.getEksagogesForLastMonths(6);
-                                    double grandTotalEksagoges = eksagoges.getEshopSales() + eksagoges.getShopsSupply();
                                     out.println("<td>");
                                     out.println(grandTotalEksagoges);
                                     out.println("</td>");
 
-                                    double oneMonthSalesFromCalculation = grandTotalEksagoges / 6;
-                                    DecimalFormat df = new DecimalFormat("0.00");
                                     out.println("<td>");
                                     out.println(df.format(oneMonthSalesFromCalculation));
                                     out.println("</td>");
 
-                                    Eksagoges oneMontheksagoges = item.getEksagogesForLastMonths(1);
-                                    double grandTotalEksagogesOneMonth = oneMontheksagoges.getEshopSales() + oneMontheksagoges.getShopsSupply();
-                                    double diff = oneMonthSalesFromCalculation - grandTotalEksagogesOneMonth;
-                                    if (diff < 0) {
-                                        diff = diff * -1;
-                                    }
-                                    double onePercent = oneMonthSalesFromCalculation / 100;
-                                    double fiftyPercerntDifference = onePercent * 50;
                                     if (diff > fiftyPercerntDifference) {
                                         out.println("<td style='background-color:red'>");
                                     } else {
