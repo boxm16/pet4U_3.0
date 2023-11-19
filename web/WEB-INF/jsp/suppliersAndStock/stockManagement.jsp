@@ -110,14 +110,26 @@
                                         </button>
                                     </th>
 
+                                    <th>
+                                        <button type="button" onclick="setText('Order')" class="btn btn-light" data-toggle="modal" data-target="#exampleModalCenter">
+                                            Ord
+                                        </button>
+                                    </th>
 
-                                    <th>Order</th>
+                                    <th>
+                                        <button type="button" onclick="setText('Order Unit')" class="btn btn-light" data-toggle="modal" data-target="#exampleModalCenter">
+                                            OU
+                                        </button>
+                                    </th>
 
+                                    <th>
+                                        <button type="button" onclick="setText('Order Unit Capacity')" class="btn btn-light" data-toggle="modal" data-target="#exampleModalCenter">
+                                            OUC
+                                        </button>
+                                    </th>
 
-                                    <th>Order <br>Unit</th>
-                                    <th>Order <br>Unit<br>Capacity</th>
                                     <th>Note</th>
-                                    <th>  Edit  </th>
+                                    <th>Edit</th>
                                     <th> <button class="btn btn-primary btn-lg" onclick="requestRouter()">ORDER MODE </button></th>
                                 </tr>
                             </thead>
@@ -234,8 +246,6 @@
                                     }
                                     out.println(item.getQuantity());
                                     out.println("</td>");
-
-                                    out.println("<td>");
 
                                     if (objectiveSales > 0) {
                                         out.println("<td>");
