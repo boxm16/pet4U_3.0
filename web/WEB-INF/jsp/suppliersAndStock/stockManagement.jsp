@@ -184,7 +184,12 @@
                                     out.println("</td>");
 
                                     out.println("<td>");
-                                    String shortDescriptiom = item.getDescription().substring(0, 30);
+                                    int length = item.getDescription().length();
+                                    if (length < 30) {
+                                    } else {
+                                        length = 30;
+                                    }
+                                    String shortDescriptiom = item.getDescription().substring(0, length);
                                     out.println("<button type='button' onclick='setText(\"" + item.getDescription() + "\")' class='btn btn-light' style='background-color:#D6D0EC' data-toggle='modal' data-target='#exampleModalCenter'>" + shortDescriptiom + "</button>");
                                     out.println("</td>");
 
