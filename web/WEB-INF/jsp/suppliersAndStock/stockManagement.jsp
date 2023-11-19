@@ -226,7 +226,7 @@
                                     out.println("</td>");
 
                                     out.println("<td>");
-                                    out.println(df.format(formobjectiveSales * 2));
+                                    out.println(df.format(objectiveSales * 2));
                                     out.println("</td>");
 
                                     if (Double.parseDouble(item.getQuantity()) < (grandTotalEksagogesOneMonth * 2)) {
