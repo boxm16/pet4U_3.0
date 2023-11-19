@@ -32,10 +32,10 @@
                 border-collapse: collapse;
             }
             td {
-                font-size: 14px;
+                font-size: 12px;
             }
             th{
-                font-size: 20px;
+                font-size: 15px;
                 font-weight: bold;
                 text-align: center;
                 background: #eee;
