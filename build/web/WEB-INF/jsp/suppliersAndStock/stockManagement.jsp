@@ -159,7 +159,7 @@
                                         needOrder = true;
                                     }
 
-                                          //----------------------------------
+                                    //----------------------------------
                                     out.println("<tr>");
 
                                     out.println("<td>");
@@ -237,11 +237,13 @@
 
                                     out.println("<td>");
 
-                                    if (diff <= fiftyPercerntDifference) {
-                                        out.println(grandTotalEksagogesOneMonth * 4);
+                                    if (objectiveSales > 0) {
+                                        out.println("<td>");
                                     } else {
-                                        out.println("Still workng");
+                                        out.println("<td style='background-color:#BA4A00'>");
                                     }
+                                    out.println(df.format(objectiveSales * 4));
+                                    out.println("</td>");
 
                                     out.println("</td>");
 
