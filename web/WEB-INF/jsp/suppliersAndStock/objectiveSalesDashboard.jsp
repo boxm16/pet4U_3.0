@@ -181,7 +181,7 @@
                                 out.println("</td>");
                                 out.println("</tr>");
 
-                                out.println("<tr style='color: yellow'>");
+                                out.println("<tr style='color: #BA4A00'>");
                                 out.println("<td>");
                                 out.println("One Month Average Sales");
                                 out.println("</td>");
