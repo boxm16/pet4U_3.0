@@ -163,6 +163,15 @@
                                 out.println("</td>");
                                 out.println("</tr>");
 
+                                out.println("<tr style='color: #BA4A00'>");
+                                out.println("<td>");
+                                out.println("One Month Average ΕΞΑΓΩΓΕΣ");
+                                out.println("</td>");
+                                out.println("<td colspan='2'>");
+                                out.println((totalSales + totalShopSupplies) / 6);
+                                out.println("</td>");
+                                out.println("</tr>");
+
                                 out.println("</tr>");
 
 
