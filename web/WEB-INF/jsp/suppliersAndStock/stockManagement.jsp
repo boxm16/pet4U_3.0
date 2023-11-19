@@ -183,8 +183,8 @@
                                     out.println(item.getCode());
                                     out.println("</td>");
 
-                                    out.println("<td width='60px'>");
-                                    out.println("<button type='button' onclick='setText("+item.getDescription()+")' class='btn btn-light' style='background-color:#D6D0EC' data-toggle='modal' data-target='#exampleModalCenter'>"+item.getDescription()+"</button>");
+                                    out.println("<td width='40px'>");
+                                    out.println("<button type='button' onclick='setText(\'"+item.getDescription()+"\')' class='btn btn-light' style='background-color:#D6D0EC' data-toggle='modal' data-target='#exampleModalCenter'>"+item.getDescription()+"</button>");
                                     out.println("</td>");
 
                                     out.println("<td>");
