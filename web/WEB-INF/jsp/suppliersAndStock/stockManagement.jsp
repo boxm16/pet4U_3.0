@@ -103,13 +103,13 @@
                                             Mn(2M)S
                                         </button>
                                     </th>
-                                    
+
                                     <th>
                                         <button type="button" onclick="setText('Stock')" class="btn btn-light" style='background-color:#D6D0EC' data-toggle="modal" data-target="#exampleModalCenter">
                                             Stk
                                         </button>
                                     </th>
-                                   
+
                                     <th>
                                         <button type="button" onclick="setText('Maximal (4 Months) Stock')" class="btn btn-light" data-toggle="modal" data-target="#exampleModalCenter">
                                             Mx(4M)S
@@ -143,7 +143,6 @@
                                 LinkedHashMap<String, SuppliersItem> items = (LinkedHashMap) request.getAttribute("supplierItems");
                                 for (Map.Entry<String, SuppliersItem> entrySet : items.entrySet()) {
                                     SuppliersItem item = entrySet.getValue();
-                                    
 
                                     //----------------------------------
                                     double objectiveSales = 0;
@@ -184,8 +183,8 @@
                                     out.println(item.getCode());
                                     out.println("</td>");
 
-                                    out.println("<td>");
-                                    out.println(item.getDescription());
+                                    out.println("<td width='60px'>");
+                                    out.println("<button type='button' onclick='setText("+item.getDescription()+")' class='btn btn-light' style='background-color:#D6D0EC' data-toggle='modal' data-target='#exampleModalCenter'>"+item.getDescription()+"</button>");
                                     out.println("</td>");
 
                                     out.println("<td>");
@@ -249,7 +248,7 @@
                                         out.println("<td style='background-color:red'>");
                                     } else {
                                         out.println("<td style='background-color:#D6D0EC '>");
-                                      
+
                                     }
                                     out.println(stock);
                                     out.println("</td>");
