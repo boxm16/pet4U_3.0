@@ -105,7 +105,7 @@
                                     </th>
                                     
                                     <th>
-                                        <button type="button" onclick="setText('Stock')" class="btn btn-light" data-toggle="modal" data-target="#exampleModalCenter">
+                                        <button type="button" onclick="setText('Stock')" class="btn btn-light" style='background-color:#D6D0EC' data-toggle="modal" data-target="#exampleModalCenter">
                                             Stk
                                         </button>
                                     </th>
