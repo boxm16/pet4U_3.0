@@ -193,10 +193,16 @@
                                     out.println(grandTotalEksagogesOneMonth);
                                     out.println("</td>");
 
-                                    out.println("<td style='background-color:#90EE90'>");
                                     if (diff > fiftyPercerntDifference) {
-                                        out.println("<a href='objectiveSalesDashboard.htm?supplierId=" + supplier.getId() + "&itemCode=" + item.getCode() + "' >" + item.getObjectiveSales() + "</a>");
+                                        if (item.getObjectiveSales() > 0) {
+                                            out.println("<td style='background-color:#90EE90'>");
+                                            out.println("<a href='objectiveSalesDashboard.htm?supplierId=" + supplier.getId() + "&itemCode=" + item.getCode() + "' >" + item.getObjectiveSales() + "</a>");
+                                        } else {
+                                            out.println("<td style='background-color:red'>");
+                                            out.println("<a href='objectiveSalesDashboard.htm?supplierId=" + supplier.getId() + "&itemCode=" + item.getCode() + "' >" + item.getObjectiveSales() + "</a>");
+                                        }
                                     } else {
+                                        out.println("<td style='background-color:#90EE90'>");
                                         out.println(df.format(objectiveSales));
                                     }
                                     out.println("</td>");
