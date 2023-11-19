@@ -186,7 +186,7 @@
                                     out.println("</td>");
 
                                     if (diff > fiftyPercerntDifference) {
-                                        out.println("<td style='background-color:red'>");
+                                        out.println("<td style='background-color:light-blue'>");
                                     } else {
                                         out.println("<td>");
                                     }
