@@ -233,7 +233,7 @@
                                     out.println(df.format(objectiveSales * 2));
                                     out.println("</td>");
 
-                                    if (Double.parseDouble(item.getQuantity()) < (grandTotalEksagogesOneMonth * 2)) {
+                                    if (Double.parseDouble(item.getQuantity()) < (objectiveSales * 2)) {
                                         out.println("<td style='background-color:red'>");
                                     } else {
                                         out.println("<td>");
