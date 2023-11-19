@@ -149,6 +149,9 @@
                                     if (diff <= fiftyPercerntDifference) {
                                         objectiveSales = oneMonthSalesFromCalculation;
                                     } else {
+                                        if (item.getObjectiveSales() > 0) {
+                                            objectiveSales = item.getObjectiveSales();
+                                        }
 
                                     }
 
@@ -223,13 +226,7 @@
                                     out.println("</td>");
 
                                     out.println("<td>");
-
-                                    if (diff <= fiftyPercerntDifference) {
-                                        out.println(grandTotalEksagogesOneMonth * 2);
-                                    } else {
-                                        out.println("Still workng");
-                                    }
-
+                                    out.println(objectiveSales * 2);
                                     out.println("</td>");
 
                                     if (Double.parseDouble(item.getQuantity()) < (grandTotalEksagogesOneMonth * 2)) {
