@@ -83,7 +83,7 @@
                                         </button>
                                     </th>
                                     <th>
-                                        <button type="button" onclick="setText('Objective Sales')" class="btn btn-light" style="background-color: green" data-toggle="modal" data-target="#exampleModalCenter">
+                                        <button type="button" onclick="setText('Objective Sales')" class="btn btn-light" style="background-color: #90EE90" data-toggle="modal" data-target="#exampleModalCenter">
                                             OS
                                         </button>
                                     </th>
