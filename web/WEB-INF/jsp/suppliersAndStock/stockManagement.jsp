@@ -166,8 +166,10 @@
                                         }
 
                                     }
+
+                                    double stock = Double.parseDouble(item.getQuantity());
                                     boolean needOrder = false;
-                                    if (Double.parseDouble(item.getQuantity()) < (objectiveSales * 2)) {
+                                    if (stock < (objectiveSales * 2)) {
                                         needOrder = true;
                                     }
 
@@ -244,7 +246,7 @@
                                     } else {
                                         out.println("<td>");
                                     }
-                                    out.println(item.getQuantity());
+                                    out.println(stock);
                                     out.println("</td>");
 
                                     if (objectiveSales > 0) {
