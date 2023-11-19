@@ -248,7 +248,7 @@
                                     if (needOrder) {
                                         out.println("<td style='background-color:red'>");
                                     } else {
-                                        out.println("<td style='background-color:#876DE8'>");
+                                        out.println("<td style='background-color:#D6D0EC '>");
                                       
                                     }
                                     out.println(stock);
