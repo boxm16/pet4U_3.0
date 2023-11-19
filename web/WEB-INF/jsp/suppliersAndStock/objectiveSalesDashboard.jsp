@@ -59,8 +59,8 @@
                 <div class=" col-sm-4">
                     <h5>Update Objective Sales </h5>
                     <form action="updateObjectiveSales.htm" method="POST">
-                    <input hidden type="text" name="supplierId" value="${supplierItem.supplierId}">
-                    <input hidden type="text" name="itemCode" value="${supplierItem.code}">
+                        <input hidden type="text" name="supplierId" value="${supplierItem.supplierId}">
+                        <input hidden type="text" name="itemCode" value="${supplierItem.code}">
 
                         <table> 
                             <tr><td>Objective Sales</td><td><input type="number" name="objectiveSales" value="${supplierItem.objectiveSales}"></td></tr>
@@ -178,6 +178,15 @@
                                 out.println("</td>");
                                 out.println("<td colspan='2'>");
                                 out.println(totalSales + totalShopSupplies);
+                                out.println("</td>");
+                                out.println("</tr>");
+
+                                out.println("<tr style='color: yellow'>");
+                                out.println("<td>");
+                                out.println("One Month Average Sales");
+                                out.println("</td>");
+                                out.println("<td colspan='2'>");
+                                out.println((totalSales + totalShopSupplies) / 6);
                                 out.println("</td>");
                                 out.println("</tr>");
 
