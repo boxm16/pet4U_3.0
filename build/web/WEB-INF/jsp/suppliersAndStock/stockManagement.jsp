@@ -197,7 +197,7 @@
                                     if (diff > fiftyPercerntDifference) {
                                         out.println("<a href='objectiveSalesDashboard.htm?supplierId=" + supplier.getId() + "&itemCode=" + item.getCode() + "' >" + item.getObjectiveSales() + "</a>");
                                     } else {
-                                        out.println(objectiveSales);
+                                        out.println(df.format(objectiveSales));
                                     }
                                     out.println("</td>");
 
