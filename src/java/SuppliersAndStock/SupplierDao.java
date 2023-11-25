@@ -193,9 +193,14 @@ public class SupplierDao {
                     item.setObjectiveSalesExpirationDate(null);
 
                 } else {
-                    LocalDate localDate = LocalDate.parse(string, formatter);
-                    item.setObjectiveSalesExpirationDate(localDate);
+                    LocalDate expirationDate = LocalDate.parse(string, formatter);
 
+                    LocalDate nowDate = LocalDate.now();
+                    if (expirationDate.isAfter(nowDate)) {
+                        item.setObjectiveSalesExpirationDate(expirationDate);
+                    } else {
+                        item.setObjectiveSalesExpirationDate(null);
+                    }
                 }
 
                 item.setOrderHorizon(resultSet.getInt("order_horizon"));
