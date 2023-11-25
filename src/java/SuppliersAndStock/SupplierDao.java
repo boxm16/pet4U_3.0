@@ -139,9 +139,11 @@ public class SupplierDao {
                 SuppliersItem item = new SuppliersItem();
                 String itemCode = resultSet.getString("item_code");
                 item.setCode(itemCode.trim());
-                item.setObjectiveSales(resultSet.getInt("objective_sales"));
+
+                int objectiveSales = resultSet.getInt("objective_sales");
                 String objectiveSalesExpirationDateString = resultSet.getString("objective_sales_expiration_date");
                 LocalDate objectiveSalesExpirationDate = null;
+
                 if (objectiveSalesExpirationDateString != null) {
                     DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                     objectiveSalesExpirationDate = LocalDate.parse(objectiveSalesExpirationDateString, dateTimeFormatter);
@@ -149,9 +151,10 @@ public class SupplierDao {
                     LocalDate nowDate = LocalDate.now();
                     if (objectiveSalesExpirationDate.isBefore(nowDate)) {
                         objectiveSalesExpirationDate = null;
+                        item.setObjectiveSales(0);
                     }
-
                 }
+                item.setObjectiveSales(objectiveSales);
                 item.setObjectiveSalesExpirationDate(objectiveSalesExpirationDate);
                 item.setMinimalStock(resultSet.getInt("minimal_stock"));
                 item.setOrderHorizon(resultSet.getInt("order_horizon"));
@@ -204,6 +207,7 @@ public class SupplierDao {
                     LocalDate nowDate = LocalDate.now();
                     if (expirationDate.isAfter(nowDate)) {
                         item.setObjectiveSalesExpirationDate(expirationDate);
+                        item.setObjectiveSales(0);
                     } else {
                         item.setObjectiveSalesExpirationDate(null);
                     }
