@@ -151,7 +151,7 @@ public class SupplierDao {
                     LocalDate nowDate = LocalDate.now();
                     if (objectiveSalesExpirationDate.isBefore(nowDate)) {
                         objectiveSalesExpirationDate = null;
-                        item.setObjectiveSales(0);
+                        item.setObjectiveSales(0.0);
                     }
                 }
                 item.setObjectiveSales(objectiveSales);
