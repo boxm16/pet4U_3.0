@@ -145,6 +145,12 @@ public class SupplierDao {
                 if (objectiveSalesExpirationDateString != null) {
                     DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                     objectiveSalesExpirationDate = LocalDate.parse(objectiveSalesExpirationDateString, dateTimeFormatter);
+
+                    LocalDate nowDate = LocalDate.now();
+                    if (objectiveSalesExpirationDate.isBefore(nowDate)) {
+                        objectiveSalesExpirationDate = null;
+                    }
+
                 }
                 item.setObjectiveSalesExpirationDate(objectiveSalesExpirationDate);
                 item.setMinimalStock(resultSet.getInt("minimal_stock"));
