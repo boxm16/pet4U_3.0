@@ -187,7 +187,7 @@ public class SuppliersAndStockController {
     @RequestMapping(value = "editItemOfSupplier", method = RequestMethod.POST)
     public String editItemOfSupplier(@RequestParam(name = "supplierId") String supplierId,
             @RequestParam(name = "code") String code,
-            @RequestParam(name = "minimalStock") String minimalStock,
+           
             @RequestParam(name = "orderUnit") String orderUnit,
             @RequestParam(name = "orderUnitCapacity") String orderUnitCapacity,
             ModelMap modelMap) {
@@ -198,14 +198,14 @@ public class SuppliersAndStockController {
         SoldItem soldItem = salesControllerX.getItemSales(code);
         SuppliersItem item = new SuppliersItem();
         item.setSupplierId(Integer.parseInt(supplierId));
-        item.setMinimalStock(Integer.parseInt(minimalStock));
+        
         item.setOrderUnit(orderUnit);
         item.setOrderUnitCapacity(Integer.parseInt(orderUnitCapacity));
 
         item.setCode(soldItem.getCode());
         item.setDescription(soldItem.getDescription());
 
-        if (minimalStock.isEmpty() || orderUnit.isEmpty() || orderUnitCapacity.isEmpty() || minimalStock.isEmpty()) {
+        if ( orderUnit.isEmpty() || orderUnitCapacity.isEmpty() ) {
             modelMap.addAttribute("resultColor", "rose");
             modelMap.addAttribute("result", "SOMETHING IS MISSING.");
             modelMap.addAttribute("supplier", supplier);
