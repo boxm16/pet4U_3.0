@@ -205,7 +205,7 @@
 
                                     //----------------------------------
                                     Double orderByOrderUnitDouble = (objectiveSales * item.getOrderHorizon()) - stock;
-                                    int orderByOrderUnitInt = orderByOrderUnitDouble.intValue();
+                                    int orderByOrderUnitInt = orderByOrderUnitDouble.intValue()/item.getOrderUnitCapacity();
                                     out.println("<td style='background-color:white'>");
                                     out.println("<input onkeyup='recalculateItems(event)' id='" + item.getCode() + ":" + item.getOrderUnitCapacity() + "' class='unitsOrdered' style='font-size:20px' type='number' value='" + orderByOrderUnitInt + "'>");
                                     out.println("</td>");
