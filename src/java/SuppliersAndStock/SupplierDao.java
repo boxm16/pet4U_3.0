@@ -325,7 +325,7 @@ public class SupplierDao {
                     note = "";
                 }
                 item.setNote(note);
-
+                items.put(itemCode, item);
             }
 
             resultSet.close();
