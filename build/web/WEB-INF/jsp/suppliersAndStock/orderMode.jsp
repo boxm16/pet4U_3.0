@@ -160,8 +160,7 @@
                                     out.println("</td>");
 
                                     out.println("<td>");
-                                     out.println(oneMonthSalesFromCalculation);
-                                  //  out.println(df.format(objectiveSales));
+                                    out.println(df.format(objectiveSales));
                                     out.println("</td>");
 
                                     out.println("<td>");
