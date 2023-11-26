@@ -85,7 +85,7 @@
                                     </th>
 
                                     <th>
-                                        <button type="button" onclick="setText('Ποσοτητα Για Συμπληρωση Max Stock<br>  ΠΓΣMxStk=Maximal Stock-Stock')" class="btn btn-light" style='background-color:#D6D0EC' data-toggle="modal" data-target="#exampleModalCenter">
+                                        <button type="button" onclick="setText('Ποσοτητα Για Συμπληρωση Max Stock<br>  ΠΓΣMxStk=Maximal Stock-Stock')" class="btn btn-light" style='background-color:#F36FD9' data-toggle="modal" data-target="#exampleModalCenter">
                                             ΠΓΣMxStk
                                         </button>
                                     </th>
