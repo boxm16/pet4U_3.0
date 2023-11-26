@@ -158,7 +158,7 @@
                                     out.println("<tr>");
 
                                     out.println("<td>");
-                                    out.println("<a href='itemAnalysis.htm?code=" + item.getCode() + "' target='_blank'>" + item.getCode() + "</a>");
+                                    out.println(item.getCode());
                                     out.println("</td>");
 
                                     out.println("<td>");
@@ -203,8 +203,11 @@
                                     out.println(item.getNote());
                                     out.println("</td>");
 
+                                    //----------------------------------
+                                    Double orderByOrderUnitDouble = (objectiveSales * item.getOrderHorizon()) - stock;
+                                    int orderByOrderUnitInt = orderByOrderUnitDouble.intValue();
                                     out.println("<td style='background-color:white'>");
-                                    out.println("<input onkeyup='recalculateItems(event)' id='" + item.getCode() + ":" + item.getOrderUnitCapacity() + "' class='unitsOrdered' style='font-size:20px' type='number'>");
+                                    out.println("<input onkeyup='recalculateItems(event)' id='" + item.getCode() + ":" + item.getOrderUnitCapacity() + "' class='unitsOrdered' style='font-size:20px' type='number' value='" + orderByOrderUnitInt + "'>");
                                     out.println("</td>");
 
                                     out.println("<td style='background-color:white'>");
