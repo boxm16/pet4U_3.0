@@ -90,7 +90,7 @@ public class OrderExcelDownloadController {
 
         Instant start = Instant.now();
         XSSFWorkbook workbook = new XSSFWorkbook();
-        XSSFSheet sheet = workbook.createSheet("Nestle Order");
+        XSSFSheet sheet = workbook.createSheet("Order");
 //setting date 1904 system (to show negative duration in excel workbook)
         workbook.getCTWorkbook().getWorkbookPr().setDate1904(true);
 
@@ -104,13 +104,13 @@ public class OrderExcelDownloadController {
         while (columnIndex < 7) {
             switch (columnIndex) {
                 case 0:
-                    columnWidth = 3000;
+                    columnWidth = 5000;
                     break;
                 case 1:
                     columnWidth = 3000;
                     break;
                 case 2:
-                    columnWidth = 10000;
+                    columnWidth = 15000;
                     break;
                 case 3:
                     columnWidth = 3000;
