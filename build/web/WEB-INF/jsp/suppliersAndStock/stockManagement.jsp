@@ -113,8 +113,8 @@
                                     </th>
 
                                     <th>
-                                        <button type="button" onclick="setText('Maximal (4 Months) Stock')" class="btn btn-light" data-toggle="modal" data-target="#exampleModalCenter">
-                                            Mx(4M)S
+                                        <button type="button" onclick="setText('Maximal Stock')" class="btn btn-light" data-toggle="modal" data-target="#exampleModalCenter">
+                                            MxS
                                         </button>
                                     </th>
 
