@@ -172,20 +172,9 @@
                                         out.println(df.format(objectiveSales));
                                     }
                                     out.println("</td>");
-
+                                   
                                     out.println("<td>");
-                                    LocalDate objectiveSalesExpirationDate = item.getObjectiveSalesExpirationDate();
-                                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-                                    if (objectiveSalesExpirationDate == null) {
-                                        out.println();
-                                    } else {
-                                        out.println(formatter.format(objectiveSalesExpirationDate));
-                                    }
-
-                                    out.println("</td>");
-
-                                    out.println("<td>");
-                                    out.println("<a href='objectiveSalesDashboard.htm?supplierId=" + supplier.getId() + "&itemCode=" + item.getCode() + "' >" + item.getOrderHorizon() + "</a>");
+                                    out.println(item.getOrderHorizon() );
                                     out.println("</td>");
 
                                     out.println("<td>");
