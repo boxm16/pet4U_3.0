@@ -159,7 +159,7 @@
                                     out.println("<button type='button' onclick='setText(\"" + item.getDescription() + "\")' class='btn btn-light' style='background-color:#D6D0EC' data-toggle='modal' data-target='#exampleModalCenter'>" + shortDescriptiom + "</button>");
                                     out.println("</td>");
 
-                                    out.println("<td >");
+                                    out.println("<td>");
                                     out.println(df.format(objectiveSales));
                                     out.println("</td>");
 
