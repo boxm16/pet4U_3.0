@@ -103,9 +103,18 @@
                                         </button>
                                     </th>
 
-                                    <th>Note</th>
 
-                                    <th> <button class="btn btn-primary btn-lg" onclick="requestRouter()">ORDER MODE </button></th>
+                                    <th>Note</th>
+                                    <th>
+                                        <button type="button" onclick="setText('Order By Order Unit')" class="btn btn-light" data-toggle="modal" data-target="#exampleModalCenter">
+                                            OBOU
+                                        </button>
+                                    </th>
+                                    <th>
+                                        <button type="button" onclick="setText('Order By Item')" class="btn btn-light" data-toggle="modal" data-target="#exampleModalCenter">
+                                            OBI
+                                        </button>
+                                    </th>
                                 </tr>
                             </thead>
                             <% Supplier supplier = (Supplier) request.getAttribute("supplier");
