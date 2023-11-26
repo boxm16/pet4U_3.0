@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.TreeMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -76,9 +77,8 @@ public class SuppliersAndStockController {
     @RequestMapping(value = "stockManagement")
     public String stockManagement(@RequestParam(name = "supplierId") String supplierId, ModelMap modelMap) {
         Supplier supplier = supplierDao.getSupplier(supplierId);
-        LinkedHashMap<String, SuppliersItem> usher = new LinkedHashMap<>();
-
         LinkedHashMap<String, SuppliersItem> supplierItemsForView = new LinkedHashMap<>();
+        TreeMap<String, SuppliersItem> usher = new TreeMap<>();
 
         LinkedHashMap<String, SuppliersItem> supplierItemsFromDatabase = supplierDao.getAllItemsOfSupplier(supplierId);
 
@@ -102,9 +102,9 @@ public class SuppliersAndStockController {
             usher.put(suppliersItem.getPosition(), suppliersItem);
         }
 
-        for (Map.Entry<String, SuppliersItem> suppliersItemFromUsherEntry : usher.entrySet()) {
-            ;
-            supplierItemsForView.put(suppliersItemFromUsherEntry.getValue().getCode(), suppliersItemFromUsherEntry.getValue());
+        for (Map.Entry<String, SuppliersItem> usherEntry : usher.entrySet()) {
+
+            supplierItemsForView.put(usherEntry.getValue().getCode(), usherEntry.getValue());
         }
 
         modelMap.addAttribute("supplierItems", supplierItemsForView);
