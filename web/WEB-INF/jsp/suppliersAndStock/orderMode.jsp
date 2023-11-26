@@ -84,8 +84,11 @@
                                         </button>
                                     </th>
 
-
-
+                                    <th>
+                                        <button type="button" onclick="setText('Ποσοτητα Για Συμπληρωση Max Stock<br>  ΠΓΣMxStk=Maximal Stock-Stock')" class="btn btn-light" style='background-color:#D6D0EC' data-toggle="modal" data-target="#exampleModalCenter">
+                                            ΠΓΣMxStk
+                                        </button>
+                                    </th>
 
 
                                     <th>
@@ -168,11 +171,15 @@
                                     out.println("</td>");
 
                                     out.println("<td>");
-                                    out.println(df.format(objectiveSales *item.getOrderHorizon() ));
+                                    out.println(df.format(objectiveSales * item.getOrderHorizon()));
                                     out.println("</td>");
 
                                     out.println("<td>");
                                     out.println(stock);
+                                    out.println("</td>");
+
+                                    out.println("<td>");
+                                    out.println(df.format((objectiveSales * item.getOrderHorizon()) - stock));
                                     out.println("</td>");
 
                                     out.println("<td>");
