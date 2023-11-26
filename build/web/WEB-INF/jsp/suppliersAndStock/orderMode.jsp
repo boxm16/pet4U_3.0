@@ -160,7 +160,8 @@
                                     out.println("</td>");
 
                                     out.println("<td>");
-                                    out.println(df.format(objectiveSales));
+                                     out.println("Y");
+                                  //  out.println(df.format(objectiveSales));
                                     out.println("</td>");
 
                                     out.println("<td>");
