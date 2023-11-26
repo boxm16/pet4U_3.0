@@ -241,7 +241,7 @@
                                     out.println("</td>");
 
                                     out.println("<td>");
-                                    out.println(item.getOrderHorizon());
+                                    out.println("<a href='objectiveSalesDashboard.htm?supplierId=" + supplier.getId() + "&itemCode=" + item.getCode() + "' >" + item.getOrderHorizon() + "</a>");
                                     out.println("</td>");
 
                                     if (objectiveSales > 0) {

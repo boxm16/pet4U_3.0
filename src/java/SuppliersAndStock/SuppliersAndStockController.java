@@ -303,18 +303,38 @@ public class SuppliersAndStockController {
             @RequestParam(name = "itemCode") String itemCode,
             @RequestParam(name = "objectiveSales") String objectiveSales,
             @RequestParam(name = "expirationDate") String expirationDate,
-            @RequestParam(name = "orderHorizon") String orderHorizon,
+          
             ModelMap modelMap) {
 
-        if (objectiveSales.isEmpty() || expirationDate.isEmpty() || orderHorizon.isEmpty()) {
+        if (objectiveSales.isEmpty() || expirationDate.isEmpty()) {
             modelMap.addAttribute("resultColor", "rose");
             modelMap.addAttribute("result", "SOMETHING IS MISSING.");
 
             return "redirect:objectiveSalesDashboard.htm?supplierId=" + supplierId + "&itemCode=" + itemCode;
         }
 
-        String result = supplierDao.updateObjectiveSales(supplierId, itemCode, objectiveSales, expirationDate, orderHorizon);
+        String result = supplierDao.updateObjectiveSales(supplierId, itemCode, objectiveSales, expirationDate);
 
         return "redirect:stockManagement.htm?supplierId=" + supplierId + "";
     }
+
+    @RequestMapping(value = "updateOrderHorizon", method = RequestMethod.POST)
+    public String updateOrderHorizon(@RequestParam(name = "supplierId") String supplierId,
+            @RequestParam(name = "itemCode") String itemCode,
+             @RequestParam(name = "orderHorizon") String orderHorizon,
+            ModelMap modelMap) {
+
+        if (orderHorizon.isEmpty() ) {
+            modelMap.addAttribute("resultColor", "rose");
+            modelMap.addAttribute("result", "SOMETHING IS MISSING.");
+
+            return "redirect:objectiveSalesDashboard.htm?supplierId=" + supplierId + "&itemCode=" + itemCode;
+        }
+
+        String result = supplierDao.updateOrderHorizon(supplierId, itemCode, orderHorizon);
+
+        return "redirect:stockManagement.htm?supplierId=" + supplierId + "";
+    }
+
+    
 }

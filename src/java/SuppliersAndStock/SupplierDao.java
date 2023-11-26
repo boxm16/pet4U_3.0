@@ -372,16 +372,16 @@ public class SupplierDao {
         return "Item Deleted Successfully";
     }
 
-    String updateObjectiveSales(String supplierId, String itemCode, String objectiveSales, String expirationDate, String orderHorizon) {
+    String updateObjectiveSales(String supplierId, String itemCode, String objectiveSales, String expirationDate) {
         try {
             Connection connection = this.databaseConnectionFactory.getMySQLConnection();
-            PreparedStatement itemInsertStatement = connection.prepareStatement("UPDATE stock_management SET  objective_sales=?, objective_sales_expiration_date=?, order_horizon=? WHERE supplier_id=? AND item_code=?");
+            PreparedStatement itemInsertStatement = connection.prepareStatement("UPDATE stock_management SET  objective_sales=?, objective_sales_expiration_date=? WHERE supplier_id=? AND item_code=?");
 
             itemInsertStatement.setString(1, objectiveSales);
             itemInsertStatement.setString(2, expirationDate);
-            itemInsertStatement.setString(3, orderHorizon);
-            itemInsertStatement.setString(4, supplierId);
-            itemInsertStatement.setString(5, itemCode);
+
+            itemInsertStatement.setString(3, supplierId);
+            itemInsertStatement.setString(4, itemCode);
             itemInsertStatement.execute();
 
         } catch (SQLException ex) {
@@ -389,5 +389,23 @@ public class SupplierDao {
             return ex.getMessage();
         }
         return " Objective Sales Updated Successfully";
+    }
+
+    String updateOrderHorizon(String supplierId, String itemCode, String orderHorizon) {
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            PreparedStatement itemInsertStatement = connection.prepareStatement("UPDATE stock_management SET  orderHorizon=? WHERE supplier_id=? AND item_code=?");
+
+            itemInsertStatement.setString(1, orderHorizon);
+           
+            itemInsertStatement.setString(2, supplierId);
+            itemInsertStatement.setString(3, itemCode);
+            itemInsertStatement.execute();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
+            return ex.getMessage();
+        }
+        return " Order Horizon Updated Successfully";
     }
 }
