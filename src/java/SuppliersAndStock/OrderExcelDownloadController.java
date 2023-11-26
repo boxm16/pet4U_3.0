@@ -110,7 +110,7 @@ public class OrderExcelDownloadController {
                     columnWidth = 3000;
                     break;
                 case 2:
-                    columnWidth = 15000;
+                    columnWidth = 20000;
                     break;
                 case 3:
                     columnWidth = 3000;
