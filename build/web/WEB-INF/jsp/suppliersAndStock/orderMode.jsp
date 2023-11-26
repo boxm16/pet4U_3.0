@@ -182,7 +182,7 @@
                                     out.println("</td>");
 
                                     out.println("<td>");
-                                    out.println(df.format(objectiveSales * item.getOrderHorizon()));
+                                    out.println(df.format(item.getOrderHorizon()));
                                     out.println("</td>");
 
                                     out.println("</td>");
