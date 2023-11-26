@@ -114,7 +114,7 @@
 
                                     <th>
                                         <button type="button" onclick="setText('Maximal Stock')" class="btn btn-light" data-toggle="modal" data-target="#exampleModalCenter">
-                                            MxS
+                                            MxStk
                                         </button>
                                     </th>
 
@@ -266,7 +266,7 @@
                                     } else {
                                         out.println("<td style='background-color:#BA4A00'>");
                                     }
-                                    out.println(df.format(objectiveSales * 4));
+                                    out.println(df.format(objectiveSales * item.getOrderHorizon()));
                                     out.println("</td>");
 
                                     out.println("</td>");
