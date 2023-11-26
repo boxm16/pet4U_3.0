@@ -72,7 +72,11 @@
                                             OH
                                         </button>
                                     </th>
-
+                                    <th>
+                                        <button type="button" onclick="setText('Maximal Stock <br> Maximal Stock=Objective Sales * Order Horizon <br>MxStk=OS*OH')" class="btn btn-light" data-toggle="modal" data-target="#exampleModalCenter">
+                                            MxStk
+                                        </button>
+                                    </th>
 
                                     <th>
                                         <button type="button" onclick="setText('Stock')" class="btn btn-light" style='background-color:#D6D0EC' data-toggle="modal" data-target="#exampleModalCenter">
@@ -80,11 +84,7 @@
                                         </button>
                                     </th>
 
-                                    <th>
-                                        <button type="button" onclick="setText('Maximal Stock <br> Maximal Stock=Objective Sales * Order Horizon <br>MxStk=OS*OH')" class="btn btn-light" data-toggle="modal" data-target="#exampleModalCenter">
-                                            MxStk
-                                        </button>
-                                    </th>
+
 
 
 
@@ -168,11 +168,11 @@
                                     out.println("</td>");
 
                                     out.println("<td>");
-                                    out.println(stock);
+                                    out.println(df.format(objectiveSales *item.getOrderHorizon() ));
                                     out.println("</td>");
 
                                     out.println("<td>");
-                                    out.println("X");
+                                    out.println(stock);
                                     out.println("</td>");
 
                                     out.println("<td>");
