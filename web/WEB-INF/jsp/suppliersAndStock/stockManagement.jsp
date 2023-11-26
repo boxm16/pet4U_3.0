@@ -4,6 +4,8 @@
     Author     : Michail Sitmalidis
 --%>
 
+<%@page import="java.time.format.DateTimeFormatter"%>
+<%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="SuppliersAndStock.Supplier"%>
 <%@page import="java.time.LocalDate"%>
 <%@page import="java.text.DecimalFormat"%>
@@ -229,11 +231,11 @@
 
                                     out.println("<td>");
                                     LocalDate objectiveSalesExpirationDate = item.getObjectiveSalesExpirationDate();
-
+                                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
                                     if (objectiveSalesExpirationDate == null) {
                                         out.println();
                                     } else {
-                                        out.println(objectiveSalesExpirationDate);
+                                        out.println(formatter.format(objectiveSalesExpirationDate));
                                     }
 
                                     out.println("</td>");
