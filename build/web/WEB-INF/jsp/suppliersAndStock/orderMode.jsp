@@ -159,29 +159,17 @@
                                     out.println("<button type='button' onclick='setText(\"" + item.getDescription() + "\")' class='btn btn-light' style='background-color:#D6D0EC' data-toggle='modal' data-target='#exampleModalCenter'>" + shortDescriptiom + "</button>");
                                     out.println("</td>");
 
-                                    if (diff > fiftyPercerntDifference) {
-                                        if (item.getObjectiveSales() > 0) {
-                                            out.println("<td style='background-color:#90EE90'>");
-                                            out.println("<a href='objectiveSalesDashboard.htm?supplierId=" + supplier.getId() + "&itemCode=" + item.getCode() + "' >" + item.getObjectiveSales() + "</a>");
-                                        } else {
-                                            out.println("<td style='background-color:#BA4A00'>");
-                                            out.println("<a href='objectiveSalesDashboard.htm?supplierId=" + supplier.getId() + "&itemCode=" + item.getCode() + "' >" + item.getObjectiveSales() + "</a>");
-                                        }
-                                    } else {
-                                        out.println("<td style='background-color:#90EE90'>");
-                                        out.println(df.format(objectiveSales));
-                                    }
+                                    out.println("<td >");
+                                    out.println(df.format(objectiveSales));
                                     out.println("</td>");
-                                   
+
                                     out.println("<td>");
-                                    out.println(item.getOrderHorizon() );
+                                    out.println(item.getOrderHorizon());
                                     out.println("</td>");
 
                                     out.println("<td>");
                                     out.println(stock);
                                     out.println("</td>");
-
-                                 
 
                                     out.println("</td>");
 
