@@ -274,7 +274,7 @@ public class SupplierDao {
 
             resultSet = statement.executeQuery(query.toString());
             while (resultSet.next()) {
-
+                /*
                 SuppliersItem item = new SuppliersItem();
                 String itemCode = resultSet.getString("item_code").trim();
                 item.setCode(itemCode);
@@ -283,8 +283,49 @@ public class SupplierDao {
                 item.setOrderUnitCapacity(resultSet.getInt("order_unit_capacity"));
                 String note = resultSet.getString("note");
                 item.setNote(note == null ? "" : note);
+                
+                
 
                 items.put(itemCode, item);
+                
+                 */
+
+                SuppliersItem item = new SuppliersItem();
+
+                String itemCode = resultSet.getString("item_code");
+                item.setSupplierId(resultSet.getInt("supplier_id"));
+                item.setCode(itemCode.trim());
+                item.setObjectiveSales(resultSet.getDouble("objective_sales"));
+                String string = resultSet.getString("objective_sales_expiration_date");
+
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                if (string == null) {
+                    item.setObjectiveSalesExpirationDate(null);
+
+                } else {
+                    LocalDate expirationDate = LocalDate.parse(string, formatter);
+
+                    LocalDate nowDate = LocalDate.now();
+                    if (expirationDate.isAfter(nowDate)) {
+                        item.setObjectiveSalesExpirationDate(expirationDate);
+
+                    } else {
+                        item.setObjectiveSalesExpirationDate(null);
+                        item.setObjectiveSales(0.0);
+                    }
+                }
+
+                item.setOrderHorizon(resultSet.getInt("order_horizon"));
+
+                item.setMinimalStock(resultSet.getInt("minimal_stock"));
+                item.setOrderUnit(resultSet.getString("order_unit"));
+                item.setOrderUnitCapacity(resultSet.getInt("order_unit_capacity"));
+                String note = resultSet.getString("note");
+                if (note == null) {
+                    note = "";
+                }
+                item.setNote(note);
+
             }
 
             resultSet.close();
@@ -397,7 +438,7 @@ public class SupplierDao {
             PreparedStatement itemInsertStatement = connection.prepareStatement("UPDATE stock_management SET  order_horizon=? WHERE supplier_id=? AND item_code=?");
 
             itemInsertStatement.setString(1, orderHorizon);
-           
+
             itemInsertStatement.setString(2, supplierId);
             itemInsertStatement.setString(3, itemCode);
             itemInsertStatement.execute();
