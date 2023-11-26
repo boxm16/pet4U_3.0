@@ -171,6 +171,8 @@
                                     out.println(stock);
                                     out.println("</td>");
 
+                                    out.println("<td>");
+                                    out.println("X");
                                     out.println("</td>");
 
                                     out.println("<td>");
