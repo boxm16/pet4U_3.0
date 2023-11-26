@@ -65,9 +65,21 @@
                         <table> 
                             <tr><td>Objective Sales</td><td><input type="number" name="objectiveSales" value="${supplierItem.objectiveSales}"></td></tr>
                             <tr><td>Objective Sales Expiration Date</td><td> <input type="date" name="expirationDate" value="${supplierItem.objectiveSalesExpirationDate}" ></td></tr>
-                            <tr><td>Order Horizon(Months)</td><td><input type="number" name="orderHorizon" value="${supplierItem.orderHorizon}"></td></tr>
                             <tr><td colspan="2"><center>---------------------------</center></td></tr>
                             <tr><td colspan="2"><center><button class="btn btn-primary"type="submit>">Update Objective Sales</button></center></td></tr>
+
+                        </table>
+                    </form>
+
+                    <hr>
+                    <form action="updateOrderHorizon.htm" method="POST">
+                        <input hidden type="text" name="supplierId" value="${supplierItem.supplierId}">
+                        <input hidden type="text" name="itemCode" value="${supplierItem.code}">
+
+                        <table> 
+                            <tr><td>Order Horizon(Months)</td><td><input type="number" name="orderHorizon" value="${supplierItem.orderHorizon}"></td></tr>
+                            <tr><td colspan="2"><center>---------------------------</center></td></tr>
+                            <tr><td colspan="2"><center><button class="btn btn-primary"type="submit>">Update Order Horizon</button></center></td></tr>
 
                         </table>
                     </form>
