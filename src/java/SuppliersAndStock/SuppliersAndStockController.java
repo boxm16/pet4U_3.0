@@ -233,7 +233,7 @@ public class SuppliersAndStockController {
     public String printMode(@RequestParam("supplierId") String supplierId, @RequestParam("itemsIds") String itemsIds, ModelMap model) {
         Supplier supplier = this.supplierDao.getSupplier(supplierId);
         LinkedHashMap<String, SuppliersItem> supplierItemsForView = new LinkedHashMap<>();
-
+        TreeMap<String, SuppliersItem> usher = new TreeMap<>();
         ArrayList<String> temsIdsArray = createItemsIdsArray(itemsIds);
 
         LinkedHashMap<String, SuppliersItem> supplierItemsFromDatabase = this.supplierDao.getItems(temsIdsArray);
@@ -254,7 +254,12 @@ public class SuppliersAndStockController {
 
             suppliersItem.setSupplierId(Integer.parseInt(supplierId));
 
-            supplierItemsForView.put(key, suppliersItem);
+            usher.put(suppliersItem.getPosition(), suppliersItem);
+        }
+
+        for (Map.Entry<String, SuppliersItem> usherEntry : usher.entrySet()) {
+
+            supplierItemsForView.put(usherEntry.getValue().getCode(), usherEntry.getValue());
         }
         model.addAttribute("supplier", supplier);
         model.addAttribute("supplierItems", supplierItemsForView);
