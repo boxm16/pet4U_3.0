@@ -98,12 +98,12 @@
                     out.println("</td>");
 
                     out.println("<td>");
-                    out.println(item.getTotalShippedPieces());
+                    out.println();
                     out.println("</td>");
 
-                    int shippedPiecesForPeriod = item.getTotalShippedPiecesForPeriod();
+                    
                     out.println("<td>");
-                    out.println(shippedPiecesForPeriod);
+                    out.println();
                     out.println("</td>");
 
                     out.println("<td>");
@@ -126,9 +126,8 @@
                     out.println(item.getNote());
                     out.println("</td>");
 
-                    Double suggestion = item.getTotalShippedPieces() / 6 / item.getOrderUnitCapacity();
                     out.println("<td style='background-color:white;  text-align: center;' >");
-                    out.println(suggestion.intValue());
+                    out.println("");
                     out.println("</td>");
 
                     out.println("<td style='background-color:white'>");
