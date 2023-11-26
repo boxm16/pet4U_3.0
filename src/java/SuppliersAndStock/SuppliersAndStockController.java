@@ -187,7 +187,6 @@ public class SuppliersAndStockController {
     @RequestMapping(value = "editItemOfSupplier", method = RequestMethod.POST)
     public String editItemOfSupplier(@RequestParam(name = "supplierId") String supplierId,
             @RequestParam(name = "code") String code,
-           
             @RequestParam(name = "orderUnit") String orderUnit,
             @RequestParam(name = "orderUnitCapacity") String orderUnitCapacity,
             ModelMap modelMap) {
@@ -198,14 +197,14 @@ public class SuppliersAndStockController {
         SoldItem soldItem = salesControllerX.getItemSales(code);
         SuppliersItem item = new SuppliersItem();
         item.setSupplierId(Integer.parseInt(supplierId));
-        
+
         item.setOrderUnit(orderUnit);
         item.setOrderUnitCapacity(Integer.parseInt(orderUnitCapacity));
 
         item.setCode(soldItem.getCode());
         item.setDescription(soldItem.getDescription());
 
-        if ( orderUnit.isEmpty() || orderUnitCapacity.isEmpty() ) {
+        if (orderUnit.isEmpty() || orderUnitCapacity.isEmpty()) {
             modelMap.addAttribute("resultColor", "rose");
             modelMap.addAttribute("result", "SOMETHING IS MISSING.");
             modelMap.addAttribute("supplier", supplier);
@@ -226,22 +225,32 @@ public class SuppliersAndStockController {
     @RequestMapping(value = "orderMode")
     public String printMode(@RequestParam("supplierId") String supplierId, @RequestParam("itemsIds") String itemsIds, ModelMap model) {
         Supplier supplier = this.supplierDao.getSupplier(supplierId);
+        LinkedHashMap<String, SuppliersItem> supplierItemsForView = new LinkedHashMap<>();
 
         ArrayList<String> temsIdsArray = createItemsIdsArray(itemsIds);
 
-        LinkedHashMap<String, SuppliersItem> supplierItems = this.supplierDao.getItems(temsIdsArray);
-        SalesControllerX salesControllerX = new SalesControllerX();
-        LinkedHashMap<String, SoldItem> sixMonthesSales = salesControllerX.getSixMonthesSales();
-        for (Map.Entry<String, SuppliersItem> supplierItemsEntrySet : supplierItems.entrySet()) {
-            String key = supplierItemsEntrySet.getKey();
+        LinkedHashMap<String, SuppliersItem> supplierItemsFromDatabase = this.supplierDao.getItems(temsIdsArray);
+        EksagogesController eksagogesController = new EksagogesController();
+        LinkedHashMap<String, ItemEksagoges> lastSixMonthsSales = eksagogesController.getLastSixMonthsSales();
 
-            SoldItem soldItem = sixMonthesSales.get(key);
-            supplierItemsEntrySet.getValue().setDescription(soldItem.getDescription());
+        for (Map.Entry<String, SuppliersItem> supplierItemsFromDatabaseEntrySet : supplierItemsFromDatabase.entrySet()) {
+            String key = supplierItemsFromDatabaseEntrySet.getKey();
+            SuppliersItem suppliersItem = supplierItemsFromDatabaseEntrySet.getValue();
 
-            supplierItemsEntrySet.getValue().setQuantity(soldItem.getQuantity());
+            ItemEksagoges itemEksagoges = lastSixMonthsSales.get(key);
+
+            suppliersItem.setDescription(itemEksagoges.getDescription());
+            suppliersItem.setPosition(itemEksagoges.getPosition());
+            suppliersItem.setQuantity(itemEksagoges.getQuantity());
+
+            suppliersItem.setEksagoges(itemEksagoges.getEksagoges());
+
+            suppliersItem.setSupplierId(Integer.parseInt(supplierId));
+
+            supplierItemsForView.put(key, suppliersItem);
         }
         model.addAttribute("supplier", supplier);
-        model.addAttribute("supplierItems", supplierItems);
+        model.addAttribute("supplierItems", supplierItemsForView);
         return "suppliersAndStock/orderMode";
     }
 
@@ -303,7 +312,6 @@ public class SuppliersAndStockController {
             @RequestParam(name = "itemCode") String itemCode,
             @RequestParam(name = "objectiveSales") String objectiveSales,
             @RequestParam(name = "expirationDate") String expirationDate,
-          
             ModelMap modelMap) {
 
         if (objectiveSales.isEmpty() || expirationDate.isEmpty()) {
@@ -321,10 +329,10 @@ public class SuppliersAndStockController {
     @RequestMapping(value = "updateOrderHorizon", method = RequestMethod.POST)
     public String updateOrderHorizon(@RequestParam(name = "supplierId") String supplierId,
             @RequestParam(name = "itemCode") String itemCode,
-             @RequestParam(name = "orderHorizon") String orderHorizon,
+            @RequestParam(name = "orderHorizon") String orderHorizon,
             ModelMap modelMap) {
 
-        if (orderHorizon.isEmpty() ) {
+        if (orderHorizon.isEmpty()) {
             modelMap.addAttribute("resultColor", "rose");
             modelMap.addAttribute("result", "SOMETHING IS MISSING.");
 
@@ -336,5 +344,4 @@ public class SuppliersAndStockController {
         return "redirect:stockManagement.htm?supplierId=" + supplierId + "";
     }
 
-    
 }
