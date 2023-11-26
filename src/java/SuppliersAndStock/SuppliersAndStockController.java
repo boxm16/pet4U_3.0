@@ -76,6 +76,8 @@ public class SuppliersAndStockController {
     @RequestMapping(value = "stockManagement")
     public String stockManagement(@RequestParam(name = "supplierId") String supplierId, ModelMap modelMap) {
         Supplier supplier = supplierDao.getSupplier(supplierId);
+        LinkedHashMap<String, SuppliersItem> usher = new LinkedHashMap<>();
+
         LinkedHashMap<String, SuppliersItem> supplierItemsForView = new LinkedHashMap<>();
 
         LinkedHashMap<String, SuppliersItem> supplierItemsFromDatabase = supplierDao.getAllItemsOfSupplier(supplierId);
@@ -97,7 +99,12 @@ public class SuppliersAndStockController {
 
             suppliersItem.setSupplierId(Integer.parseInt(supplierId));
 
-            supplierItemsForView.put(key, suppliersItem);
+            usher.put(suppliersItem.getPosition(), suppliersItem);
+        }
+
+        for (Map.Entry<String, SuppliersItem> suppliersItemFromUsherEntry : usher.entrySet()) {
+            ;
+            supplierItemsForView.put(suppliersItemFromUsherEntry.getValue().getCode(), suppliersItemFromUsherEntry.getValue());
         }
 
         modelMap.addAttribute("supplierItems", supplierItemsForView);
