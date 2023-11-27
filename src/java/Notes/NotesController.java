@@ -17,8 +17,8 @@ public class NotesController {
 
         modelMap.addAttribute("item", item);
         modelMap.addAttribute("altercode", altercode);
-
-        return "nota/noteDisplay";
+return "vaka/vakaka";
+       //return "nota/noteDisplay";
     }
     
      @RequestMapping(value = "saveNote", method = RequestMethod.POST)
