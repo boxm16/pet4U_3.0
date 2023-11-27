@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.stereotype.Repository;
@@ -121,6 +122,45 @@ public class NotesDao {
         }
 
         return inventories;
+    }
+    
+    public LinkedHashMap<String, Item> getpet4UItemsRowByRow() {
+        LinkedHashMap<String, Item> items = new LinkedHashMap<>();
+        DatabaseConnectionFactory databaseConnectionFactory=new DatabaseConnectionFactory();
+        Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
+
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("select * from WH1;");
+
+            while (resultSet.next()) {
+                String altercode = resultSet.getString("ALTERNATECODE").trim();
+                Item item = new Item();
+                item.setCode(resultSet.getString("ABBREVIATION").trim());
+                item.setDescription(resultSet.getString("NAME").trim());
+
+                if (resultSet.getString("EXPR1") != null) {
+                    item.setPosition(resultSet.getString("EXPR1").trim());
+                } else {
+                    item.setPosition("");
+                }
+                item.setQuantity(resultSet.getString("QTYBALANCE").trim());
+
+                String state = "";
+                if (resultSet.getString("EXPR2") != null) {
+                    state = resultSet.getString("EXPR2").trim();
+                }
+                item.setState(state);
+                items.put(altercode, item);
+
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(NotesDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return items;
     }
 
 }

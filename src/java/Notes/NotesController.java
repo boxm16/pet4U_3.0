@@ -1,7 +1,6 @@
 package Notes;
 
 import BasicModel.Item;
-import Inventory.InventoryDao;
 import Inventory.InventoryItem;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -44,8 +43,8 @@ public class NotesController {
         NotesDao notesDao = new NotesDao();
         ArrayList<InventoryItem> notes = notesDao.getAllNotes();
 
-        InventoryDao inventoryDao = new InventoryDao();
-        LinkedHashMap<String, Item> pet4UItems = inventoryDao.getpet4UItemsRowByRow();
+   
+        LinkedHashMap<String, Item> pet4UItems = notesDao.getpet4UItemsRowByRow();
 
         for (InventoryItem inventoryItem : notes) {
             //     System.out.println("ITETM:" + inventoryItem.getCode());
