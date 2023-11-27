@@ -17,20 +17,18 @@ public class NotesController {
 
         modelMap.addAttribute("item", item);
         modelMap.addAttribute("altercode", altercode);
-return "vakulina/noteServant";
-       //return "nota/noteDisplay";
+        return "vakulina/noteServant";
+
     }
-    
-     @RequestMapping(value = "saveNote", method = RequestMethod.POST)
+
+    @RequestMapping(value = "saveNote", method = RequestMethod.POST)
     public String saveItemInventory(@RequestParam(name = "altercode") String altercode,
-      
-         
             @RequestParam(name = "note") String note,
             ModelMap model) {
-       
-     NotesDao notesDao = new NotesDao();
+
+        NotesDao notesDao = new NotesDao();
         String result = notesDao.saveNote(altercode, note);
         model.addAttribute("result", result);
-       return "notes/notesDisplay";
+        return "notes/notesDisplay";
     }
 }
