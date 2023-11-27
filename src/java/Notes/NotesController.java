@@ -17,7 +17,7 @@ public class NotesController {
 
         modelMap.addAttribute("item", item);
         modelMap.addAttribute("altercode", altercode);
-return "notes/noteServant";
+return "vaka/noteServant";
        //return "nota/noteDisplay";
     }
     
