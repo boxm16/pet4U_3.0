@@ -2,12 +2,14 @@ package Notes;
 
 import BasicModel.AltercodeContainer;
 import BasicModel.Item;
+import Inventory.InventoryItem;
 import Service.DatabaseConnectionFactory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.stereotype.Repository;
@@ -85,6 +87,40 @@ public class NotesDao {
             return ex.getMessage();
         }
         return "New Item Inventory Added Successfully";
+    }
+
+    ArrayList<InventoryItem> getAllNotes() {
+        ArrayList<InventoryItem> inventories = new ArrayList<>();
+
+        String sql = "SELECT * FROM notes ;";
+        ResultSet resultSet;
+
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            Connection connection = databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+
+            resultSet = statement.executeQuery(sql);
+            while (resultSet.next()) {
+                InventoryItem inventoryItem = new InventoryItem();
+                int id = resultSet.getInt("id");
+                inventoryItem.setId(id);
+
+                String itemCode = resultSet.getString("item_code");
+                inventoryItem.setCode(itemCode.trim());
+                inventoryItem.setNote(resultSet.getString("note"));
+
+                inventories.add(inventoryItem);
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(NotesDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return inventories;
     }
 
 }
