@@ -29,6 +29,7 @@ public class NotesController {
         NotesDao notesDao = new NotesDao();
         String result = notesDao.saveNote(altercode, note);
         model.addAttribute("result", result);
-        return "notes/notesDisplay";
+       
+         return "vakulina/notesDisplay";
     }
 }
