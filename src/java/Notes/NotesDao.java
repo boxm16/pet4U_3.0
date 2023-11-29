@@ -123,10 +123,10 @@ public class NotesDao {
 
         return inventories;
     }
-    
+
     public LinkedHashMap<String, Item> getpet4UItemsRowByRow() {
         LinkedHashMap<String, Item> items = new LinkedHashMap<>();
-        DatabaseConnectionFactory databaseConnectionFactory=new DatabaseConnectionFactory();
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
         Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
 
         try {
@@ -161,6 +161,22 @@ public class NotesDao {
             Logger.getLogger(NotesDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return items;
+    }
+
+    void deleteNote(String id) {
+        String noteDeletionSql = "DELETE FROM notes WHERE id='" + id + "'";
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            Connection connection = databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(noteDeletionSql);
+            statement.close();
+
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(NotesDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }
