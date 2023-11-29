@@ -72,9 +72,6 @@
                     out.println(inventoryItem.getDescription());
                     out.println("</td>");
 
-                    out.println("<td>");
-                    out.println("<input type='checkbox' class='inventoryItemId' id='" + inventoryItem.getId() + "' style='width:28px;height:28px'>");
-                    out.println("</td>");
 
                     out.println("<td>");
                     out.println(inventoryItem.getNote());
