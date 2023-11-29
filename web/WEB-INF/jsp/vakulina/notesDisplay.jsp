@@ -52,36 +52,36 @@
             </thead>
             <%
                 ArrayList<InventoryItem> items = (ArrayList) request.getAttribute("notes");
-                for (InventoryItem inventoryItem : items) {
+                if (items.size() > 0) {
+                    for (InventoryItem inventoryItem : items) {
 
-                    out.println("<tr>");
+                        out.println("<tr>");
 
-                    out.println("<td>");
-                    out.println(inventoryItem.getId());
-                    out.println("</td>");
+                        out.println("<td>");
+                        out.println(inventoryItem.getId());
+                        out.println("</td>");
 
-                    out.println("<td>");
-                    out.println(inventoryItem.getCode());
-                    out.println("</td>");
+                        out.println("<td>");
+                        out.println("<a href='findItemByAltercode.htm?altercode=" + inventoryItem.getCode() + "'>" + inventoryItem.getCode() + "</a>");
+                        out.println("</td>");
 
-                    out.println("<td>");
-                    out.println(inventoryItem.getPosition());
-                    out.println("</td>");
+                        out.println("<td>");
+                        out.println(inventoryItem.getPosition());
+                        out.println("</td>");
 
-                    out.println("<td>");
-                    out.println(inventoryItem.getDescription());
-                    out.println("</td>");
+                        out.println("<td>");
+                        out.println(inventoryItem.getDescription());
+                        out.println("</td>");
 
+                        out.println("<td>");
+                        out.println(inventoryItem.getNote());
+                        out.println("</td>");
 
-                    out.println("<td>");
-                    out.println(inventoryItem.getNote());
-                    out.println("</td>");
+                        out.println("<td>");
+                        out.println("<a href='deleteNote.htm?id=" + inventoryItem.getId() + "'>Delete</a>");
+                        out.println("</td>");
 
-                    out.println("<td>");
-                    out.println("<a href='deleteNote.htm?id=" + inventoryItem.getId() + "'>Delete</a>");
-                    out.println("</td>");
-
-                    /*
+                        /*
 
                     out.println("<td>");
                     out.println("<a href='goForEditingCamelotItemOfInterest.htm?code=" + camelotItemOfInterest.getCode() + "'>Edit</a>");
@@ -90,9 +90,10 @@
                     out.println("<td>");
                     out.println("<a href='itemSnapshots.htm?code=" + camelotItemOfInterest.getCode() + "' target='_blank'>Show Day Rest Snapshots</a>");
                     out.println("</td>");
-                     */
-                    out.println("</tr>");
+                         */
+                        out.println("</tr>");
 
+                    }
                 }
             %>
         </table>
