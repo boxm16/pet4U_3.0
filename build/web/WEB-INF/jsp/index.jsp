@@ -94,6 +94,9 @@
                 <hr>
                 <a href="goForMonthSalesUpload.htm"><h1>Go For Month Sales  Upload</h1></a>
 
+                 <hr>
+                <a href="notesDisplay.htm"><h1>Notes</h1></a>
+
             </center>
         </div>
     </body>
