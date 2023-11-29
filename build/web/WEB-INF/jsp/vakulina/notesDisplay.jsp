@@ -52,7 +52,7 @@
             </thead>
             <%
                 ArrayList<InventoryItem> items = (ArrayList) request.getAttribute("notes");
-                if (items.size() > 0) {
+                if (items!=null) {
                     for (InventoryItem inventoryItem : items) {
 
                         out.println("<tr>");
