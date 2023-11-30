@@ -204,15 +204,15 @@ public class OrderExcelDownloadController {
             cell_2.setCellStyle(rowStyleWhiteRegular);
 
             Cell cell_3 = row.createCell(3);
-            cell_3.setCellValue(orderedItem.getOrderQuantity());
+            cell_3.setCellValue(orderedItem.getOrderUnit());
             cell_3.setCellStyle(rowStyleWhiteRegular);
 
             Cell cell_4 = row.createCell(4);
-            cell_4.setCellValue("");
+            cell_4.setCellValue(orderedItem.getOrderUnitCapacity());
             cell_4.setCellStyle(rowStyleWhiteRegular);
 
             Cell cell_5 = row.createCell(5);
-            cell_5.setCellValue("");
+            cell_5.setCellValue(orderedItem.getOrderQuantity()/orderedItem.getOrderUnitCapacity());
             cell_5.setCellStyle(rowStyleWhiteRegular);
 
          
