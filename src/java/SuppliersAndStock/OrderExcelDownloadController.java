@@ -215,13 +215,11 @@ public class OrderExcelDownloadController {
             cell_5.setCellValue("");
             cell_5.setCellStyle(rowStyleWhiteRegular);
 
-            Cell cell_6 = row.createCell(6);
-            cell_6.setCellValue("");
-            cell_5.setCellStyle(rowStyleWhiteRegular);
+         
 
-            Cell cell_7 = row.createCell(7);
-            cell_7.setCellValue(orderedItem.getOrderQuantity());
-            cell_7.setCellStyle(rowStyleWhiteRegular);
+            Cell cell_6 = row.createCell(6);
+            cell_6.setCellValue(orderedItem.getOrderQuantity());
+            cell_6.setCellStyle(rowStyleWhiteRegular);
 
         }
         Basement basement = new Basement();
