@@ -432,28 +432,12 @@ public class SupplierDao {
         return " Objective Sales Updated Successfully";
     }
 
-    String updateOrderHorizon(String supplierId, String itemCode, String orderHorizon) {
-        try {
-            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
-            PreparedStatement itemInsertStatement = connection.prepareStatement("UPDATE stock_management SET  order_horizon=? WHERE supplier_id=? AND item_code=?");
-
-            itemInsertStatement.setString(1, orderHorizon);
-
-            itemInsertStatement.setString(2, supplierId);
-            itemInsertStatement.setString(3, itemCode);
-            itemInsertStatement.execute();
-
-        } catch (SQLException ex) {
-            Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
-            return ex.getMessage();
-        }
-        return " Order Horizon Updated Successfully";
-    }
+    
 
     String updateHorizons(String supplierId, String itemCode, String orderHorizon, String minimalStockHorizon) {
         try {
             Connection connection = this.databaseConnectionFactory.getMySQLConnection();
-            PreparedStatement itemInsertStatement = connection.prepareStatement("UPDATE stock_management SET  order_horizon=?, minimal_stock_horizon WHERE supplier_id=? AND item_code=?");
+            PreparedStatement itemInsertStatement = connection.prepareStatement("UPDATE stock_management SET  order_horizon=?, minimal_stock_horizon=? WHERE supplier_id=? AND item_code=?");
 
             itemInsertStatement.setString(1, orderHorizon);
             itemInsertStatement.setString(2, minimalStockHorizon);
