@@ -111,7 +111,7 @@ public class SupplierDao {
 
             insertStatement.setInt(1, item.getSupplierId());
             insertStatement.setString(2, item.getCode());
-            insertStatement.setInt(3, item.getMinimalStock());
+            insertStatement.setInt(3, item.getMinimalStockHorizon());
             insertStatement.setString(4, item.getOrderUnit());
             insertStatement.setInt(5, item.getOrderUnitCapacity());
             insertStatement.setString(6, item.getNote());
@@ -157,7 +157,7 @@ public class SupplierDao {
                 }
 
                 item.setObjectiveSalesExpirationDate(objectiveSalesExpirationDate);
-                item.setMinimalStock(resultSet.getInt("minimal_stock_horizon"));
+                item.setMinimalStockHorizon(resultSet.getInt("minimal_stock_horizon"));
                 item.setOrderHorizon(resultSet.getInt("order_horizon"));
                 item.setOrderUnit(resultSet.getString("order_unit"));
                 item.setOrderUnitCapacity(resultSet.getInt("order_unit_capacity"));
@@ -217,7 +217,7 @@ public class SupplierDao {
 
                 item.setOrderHorizon(resultSet.getInt("order_horizon"));
 
-                item.setMinimalStock(resultSet.getInt("minimal_stock_horizon"));
+                item.setMinimalStockHorizon(resultSet.getInt("minimal_stock_horizon"));
                 item.setOrderUnit(resultSet.getString("order_unit"));
                 item.setOrderUnitCapacity(resultSet.getInt("order_unit_capacity"));
                 String note = resultSet.getString("note");
@@ -243,7 +243,7 @@ public class SupplierDao {
             Connection connection = this.databaseConnectionFactory.getMySQLConnection();
             PreparedStatement itemInsertStatement = connection.prepareStatement("UPDATE stock_management SET  minimal_stock_horizon=?, order_unit=?, order_unit_capacity=?, note=? WHERE supplier_id=? AND item_code=?");
 
-            itemInsertStatement.setInt(1, item.getMinimalStock());
+            itemInsertStatement.setInt(1, item.getMinimalStockHorizon());
             itemInsertStatement.setString(2, item.getOrderUnit());
             itemInsertStatement.setInt(3, item.getOrderUnitCapacity());
             itemInsertStatement.setString(4, item.getNote());
@@ -317,7 +317,7 @@ public class SupplierDao {
 
                 item.setOrderHorizon(resultSet.getInt("order_horizon"));
 
-                item.setMinimalStock(resultSet.getInt("minimal_stock_horizon"));
+                item.setMinimalStockHorizon(resultSet.getInt("minimal_stock_horizon"));
                 item.setOrderUnit(resultSet.getString("order_unit"));
                 item.setOrderUnitCapacity(resultSet.getInt("order_unit_capacity"));
                 String note = resultSet.getString("note");

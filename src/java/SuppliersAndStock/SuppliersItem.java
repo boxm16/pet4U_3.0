@@ -18,21 +18,23 @@ public class SuppliersItem extends ItemEksagoges {
     private int orderHorizon;
     private double objectiveSales;
     private LocalDate objectiveSalesExpirationDate;
-    private int minimalStock;
+    private int minimalStockHorizon;
     private String orderUnit;
     private int orderUnitCapacity;
     private int orderQuantity;
     private String note;
 
     // ----------------
-    public int getMinimalStock() {
-        return minimalStock;
+
+    public int getMinimalStockHorizon() {
+        return minimalStockHorizon;
     }
 
-    public void setMinimalStock(int minimalStock) {
-        this.minimalStock = minimalStock;
+    public void setMinimalStockHorizon(int minimalStockHorizon) {
+        this.minimalStockHorizon = minimalStockHorizon;
     }
-
+   
+    
     public String getOrderUnit() {
         return orderUnit;
     }

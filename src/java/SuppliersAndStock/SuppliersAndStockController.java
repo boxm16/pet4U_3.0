@@ -148,7 +148,7 @@ public class SuppliersAndStockController {
         SoldItem soldItem = salesControllerX.getItemSales(code);
         SuppliersItem item = new SuppliersItem();
         item.setSupplierId(Integer.parseInt(supplierId));
-        item.setMinimalStock(0);
+        item.setMinimalStockHorizon(0);
         item.setOrderUnit(orderUnit);
         item.setOrderUnitCapacity(Integer.parseInt(orderUnitCapacity));
 
