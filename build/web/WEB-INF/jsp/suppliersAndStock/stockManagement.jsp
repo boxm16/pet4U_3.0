@@ -99,10 +99,15 @@
                                             OH
                                         </button>
                                     </th>
+                                    <th>
+                                        <button type="button" onclick="setText('Minimal Stock Horizon')" class="btn btn-light" data-toggle="modal" data-target="#exampleModalCenter">
+                                            MnSH
+                                        </button>
+                                    </th>
 
                                     <th>
-                                        <button type="button" onclick="setText('Minimal (2 Months) Stock')" class="btn btn-light" data-toggle="modal" data-target="#exampleModalCenter">
-                                            Mn(2M)S
+                                        <button type="button" onclick="setText('Minimal  Stock')" class="btn btn-light" data-toggle="modal" data-target="#exampleModalCenter">
+                                            MnS
                                         </button>
                                     </th>
 
@@ -171,10 +176,11 @@
                                         }
 
                                     }
+                                    int minimalStockHorizon = item.getMinimalStockHorizon();
 
                                     double stock = Double.parseDouble(item.getQuantity());
                                     boolean needOrder = false;
-                                    if (stock < (objectiveSales * 2)) {
+                                    if (stock < (objectiveSales * minimalStockHorizon)) {
                                         needOrder = true;
                                     }
 
@@ -244,12 +250,16 @@
                                     out.println("<a href='objectiveSalesDashboard.htm?supplierId=" + supplier.getId() + "&itemCode=" + item.getCode() + "' >" + item.getOrderHorizon() + "</a>");
                                     out.println("</td>");
 
+                                    out.println("<td>");
+                                    out.println(item.getMinimalStockHorizon());
+                                    out.println("</td>");
+
                                     if (objectiveSales > 0) {
                                         out.println("<td>");
                                     } else {
                                         out.println("<td style='background-color:#BA4A00'>");
                                     }
-                                    out.println(df.format(objectiveSales * 2));
+                                    out.println(df.format(objectiveSales * minimalStockHorizon));
                                     out.println("</td>");
 
                                     if (needOrder) {
