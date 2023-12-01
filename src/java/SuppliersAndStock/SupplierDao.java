@@ -107,7 +107,7 @@ public class SupplierDao {
     String addItemToSupplier(SuppliersItem item) {
         try {
             Connection connection = this.databaseConnectionFactory.getMySQLConnection();
-            PreparedStatement insertStatement = connection.prepareStatement("INSERT INTO stock_management (supplier_id, item_code, minimal_stock,  order_unit, order_unit_capacity, note) VALUES (?,?,?,?,?,?)");
+            PreparedStatement insertStatement = connection.prepareStatement("INSERT INTO stock_management (supplier_id, item_code, minimal_stock_horizon,  order_unit, order_unit_capacity, note) VALUES (?,?,?,?,?,?)");
 
             insertStatement.setInt(1, item.getSupplierId());
             insertStatement.setString(2, item.getCode());
@@ -157,7 +157,7 @@ public class SupplierDao {
                 }
 
                 item.setObjectiveSalesExpirationDate(objectiveSalesExpirationDate);
-                item.setMinimalStock(resultSet.getInt("minimal_stock"));
+                item.setMinimalStock(resultSet.getInt("minimal_stock_horizon"));
                 item.setOrderHorizon(resultSet.getInt("order_horizon"));
                 item.setOrderUnit(resultSet.getString("order_unit"));
                 item.setOrderUnitCapacity(resultSet.getInt("order_unit_capacity"));
@@ -217,7 +217,7 @@ public class SupplierDao {
 
                 item.setOrderHorizon(resultSet.getInt("order_horizon"));
 
-                item.setMinimalStock(resultSet.getInt("minimal_stock"));
+                item.setMinimalStock(resultSet.getInt("minimal_stock_horizon"));
                 item.setOrderUnit(resultSet.getString("order_unit"));
                 item.setOrderUnitCapacity(resultSet.getInt("order_unit_capacity"));
                 String note = resultSet.getString("note");
@@ -241,7 +241,7 @@ public class SupplierDao {
     String editItemOfSupplier(SuppliersItem item) {
         try {
             Connection connection = this.databaseConnectionFactory.getMySQLConnection();
-            PreparedStatement itemInsertStatement = connection.prepareStatement("UPDATE stock_management SET  minimal_stock=?, order_unit=?, order_unit_capacity=?, note=? WHERE supplier_id=? AND item_code=?");
+            PreparedStatement itemInsertStatement = connection.prepareStatement("UPDATE stock_management SET  minimal_stock_horizon=?, order_unit=?, order_unit_capacity=?, note=? WHERE supplier_id=? AND item_code=?");
 
             itemInsertStatement.setInt(1, item.getMinimalStock());
             itemInsertStatement.setString(2, item.getOrderUnit());
@@ -317,7 +317,7 @@ public class SupplierDao {
 
                 item.setOrderHorizon(resultSet.getInt("order_horizon"));
 
-                item.setMinimalStock(resultSet.getInt("minimal_stock"));
+                item.setMinimalStock(resultSet.getInt("minimal_stock_horizon"));
                 item.setOrderUnit(resultSet.getString("order_unit"));
                 item.setOrderUnitCapacity(resultSet.getInt("order_unit_capacity"));
                 String note = resultSet.getString("note");
