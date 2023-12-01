@@ -338,20 +338,21 @@ public class SuppliersAndStockController {
         return "redirect:stockManagement.htm?supplierId=" + supplierId + "";
     }
 
-    @RequestMapping(value = "updateOrderHorizon", method = RequestMethod.POST)
+    @RequestMapping(value = "updateHorizons", method = RequestMethod.POST)
     public String updateOrderHorizon(@RequestParam(name = "supplierId") String supplierId,
             @RequestParam(name = "itemCode") String itemCode,
             @RequestParam(name = "orderHorizon") String orderHorizon,
+            @RequestParam(name = "minimalStockHorizon") String minimalStockHorizon,
             ModelMap modelMap) {
 
-        if (orderHorizon.isEmpty()) {
+        if (orderHorizon.isEmpty()||minimalStockHorizon.isEmpty()) {
             modelMap.addAttribute("resultColor", "rose");
             modelMap.addAttribute("result", "SOMETHING IS MISSING.");
 
             return "redirect:objectiveSalesDashboard.htm?supplierId=" + supplierId + "&itemCode=" + itemCode;
         }
 
-        String result = supplierDao.updateOrderHorizon(supplierId, itemCode, orderHorizon);
+        String result = supplierDao.updateHorizons(supplierId, itemCode, orderHorizon, minimalStockHorizon);
 
         return "redirect:stockManagement.htm?supplierId=" + supplierId + "";
     }
