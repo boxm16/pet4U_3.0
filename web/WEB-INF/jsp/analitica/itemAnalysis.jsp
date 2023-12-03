@@ -98,7 +98,8 @@
                 <div class=" col-sm-4">
                     <center><h3>Sales</h3></center>
                     <table>
-                        <th>Date Stamp</th>
+                        <th>-</th>
+                        <th>Month Name</th>
                         <th>E-Shop Sales</th>
                         <th>Ενδοδιακ.</th>
                             <%
@@ -118,6 +119,9 @@
                                     } else {
                                         out.println("<tr>");
                                     }
+                                    out.println("<td>");
+                                    out.println(date.getMonthValue());
+                                    out.println("</td>");
 
                                     out.println("<td>");
                                     out.println(date.getMonth());
@@ -143,8 +147,8 @@
 
                                 }
                                 out.println("<tr style='color: green'>");
-                                out.println("<td>");
-                                out.println("LAST 6 MONTHS <br>TOTALS");
+                                out.println("<td colspan='2'>");
+                                out.println("LAST 6 MONTHS TOTALS");
                                 out.println("</td>");
                                 out.println("<td>");
                                 out.println(totalSales);
@@ -155,19 +159,19 @@
                                 out.println("</tr>");
 
                                 out.println("<tr style='color: blue'>");
-                                out.println("<td>");
+                                out.println("<td colspan='3'>");
                                 out.println("LAST 6 MONTHS GRAND TOTAL");
                                 out.println("</td>");
-                                out.println("<td colspan='2'>");
+                                out.println("<td>");
                                 out.println(totalSales + totalShopSupplies);
                                 out.println("</td>");
                                 out.println("</tr>");
 
                                 out.println("<tr style='color: #BA4A00'>");
-                                out.println("<td>");
+                                out.println("<td colspan='3'>");
                                 out.println("One Month Average ΕΞΑΓΩΓΕΣ");
                                 out.println("</td>");
-                                out.println("<td colspan='2'>");
+                                out.println("<td>");
                                 out.println((totalSales + totalShopSupplies) / 6);
                                 out.println("</td>");
                                 out.println("</tr>");
@@ -186,7 +190,6 @@
                         <th>Start Date</th>
                         <th>End Date</th>
                             <%                                ArrayList<Offer> offers = (ArrayList<Offer>) request.getAttribute("offers");
-                               
 
                                 for (Offer offer : offers) {
 
@@ -206,7 +209,7 @@
                                         out.println("<a href='endOfferDashboard.htm?id=" + offer.getId() + "'>End Offer</a>");
                                         out.println("</td>");
                                     } else {
-                                       
+
                                         out.println("<td>");
                                         out.println(offer.getEndDateString());
                                         out.println("</td>");
