@@ -6,10 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.stereotype.Repository;
@@ -59,24 +58,18 @@ public class OfferDao {
                 offer.setTitle(resultSet.getString("title"));
 
                 String startDateString = resultSet.getString("start_date");
-                Date startDate = null;
-                try {
-                    startDate = new SimpleDateFormat("yyyy-MM-dd").parse(startDateString);
-                } catch (ParseException ex) {
-                    Logger.getLogger(OfferDao.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                LocalDate startDate = null;
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MMM-dd");
+                startDate = LocalDate.parse(startDateString, formatter);
+                offer.setEndDate(startDate);
                 offer.setStartDate(startDate);
 
                 String endDateString = resultSet.getString("end_date");
-                Date endDate = null;
+                LocalDate endDate = null;
                 if (endDateString == null) {
                     //do nothing
                 } else {
-                    try {
-                        endDate = new SimpleDateFormat("yyyy-MM-dd").parse(endDateString);
-                    } catch (ParseException ex) {
-                        Logger.getLogger(OfferDao.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                    endDate = LocalDate.parse(endDateString, formatter);
                     offer.setEndDate(endDate);
                 }
 
@@ -117,27 +110,20 @@ public class OfferDao {
                 offer.setTitle(resultSet.getString("title"));
 
                 String startDateString = resultSet.getString("start_date");
-                Date startDate = null;
-                try {
-                    startDate = new SimpleDateFormat("yyyy-MM-dd").parse(startDateString);
-                } catch (ParseException ex) {
-                    Logger.getLogger(OfferDao.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                LocalDate startDate = null;
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MMM-dd");
+                startDate = LocalDate.parse(startDateString, formatter);
                 offer.setStartDate(startDate);
 
                 String endDateString = resultSet.getString("end_date");
-                Date endDate = null;
+                LocalDate endDate = null;
                 if (endDateString == null) {
                     //do nothing
                 } else {
                     if (endDateString.isEmpty()) {
                         //do nothing
                     } else {
-                        try {
-                            endDate = new SimpleDateFormat("yyyy-MM-dd").parse(endDateString);
-                        } catch (ParseException ex) {
-                            Logger.getLogger(OfferDao.class.getName()).log(Level.SEVERE, null, ex);
-                        }
+                        endDate = LocalDate.parse(endDateString, formatter);
                         offer.setEndDate(endDate);
                     }
 
@@ -198,12 +184,9 @@ public class OfferDao {
                 offer.setTitle(resultSet.getString("title"));
 
                 String startDateString = resultSet.getString("start_date");
-                Date startDate = null;
-                try {
-                    startDate = new SimpleDateFormat("yyyy-MM-dd").parse(startDateString);
-                } catch (ParseException ex) {
-                    Logger.getLogger(OfferDao.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                LocalDate startDate = null;
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MMM-dd");
+                startDate = LocalDate.parse(startDateString, formatter);
                 offer.setStartDate(startDate);
 
                 String offerPart = resultSet.getString("offer_part");
@@ -250,24 +233,15 @@ public class OfferDao {
                 offer.setTitle(resultSet.getString("title"));
 
                 String startDateString = resultSet.getString("start_date");
-                Date startDate = null;
-                try {
-                    startDate = new SimpleDateFormat("yyyy-MM-dd").parse(startDateString);
-                } catch (ParseException ex) {
-                    Logger.getLogger(OfferDao.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                LocalDate startDate = null;
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MMM-dd");
+                startDate = LocalDate.parse(startDateString, formatter);
                 offer.setStartDate(startDate);
                 String endDateString = resultSet.getString("end_date");
                 if (endDateString == null) {
-
                 } else {
-                    try {
-                        Date endDate = new SimpleDateFormat("yyyy-MM-dd").parse(endDateString);
-                        offer.setEndDate(endDate);
-                    } catch (ParseException ex) {
-                        Logger.getLogger(OfferDao.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-
+                    LocalDate endDate = LocalDate.parse(startDateString, formatter);
+                    offer.setEndDate(endDate);
                 }
 
                 String offerPart = resultSet.getString("offer_part");
