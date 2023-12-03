@@ -240,7 +240,7 @@ public class OfferDao {
                 String endDateString = resultSet.getString("end_date");
                 if (endDateString == null) {
                 } else {
-                    LocalDate endDate = LocalDate.parse(startDateString, formatter);
+                    LocalDate endDate = LocalDate.parse(endDateString, formatter);
                     offer.setEndDate(endDate);
                 }
 
