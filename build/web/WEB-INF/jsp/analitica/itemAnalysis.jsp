@@ -186,7 +186,7 @@
                         <th>Start Date</th>
                         <th>End Date</th>
                             <%                                ArrayList<Offer> offers = (ArrayList<Offer>) request.getAttribute("offers");
-                                SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+                               
 
                                 for (Offer offer : offers) {
 
@@ -195,9 +195,9 @@
                                     out.println("<td>");
                                     out.println(offer.getTitle());
                                     out.println("</td>");
-                                    String startDateString = formatter.format(offer.getStartDate());
+
                                     out.println("<td>");
-                                    out.println(startDateString);
+                                    out.println(offer.getStartDateString());
                                     out.println("</td>");
 
                                     LocalDate endDate = offer.getEndDate();
@@ -206,9 +206,9 @@
                                         out.println("<a href='endOfferDashboard.htm?id=" + offer.getId() + "'>End Offer</a>");
                                         out.println("</td>");
                                     } else {
-                                        String endDateString = formatter.format(endDate);
+                                       
                                         out.println("<td>");
-                                        out.println(endDateString);
+                                        out.println(offer.getEndDateString());
                                         out.println("</td>");
                                     }
 
