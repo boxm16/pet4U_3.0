@@ -166,4 +166,18 @@ public class OfferController {
 
     }
 
+    @RequestMapping(value = "/editOfferDashboard", method = RequestMethod.GET)
+    public String editOfferDashboard(@RequestParam String id,
+            ModelMap model) {
+        OfferDao offerDao = new OfferDao();
+        Offer offer = offerDao.getOffer(id);
+
+        SearchDao searchDao = new SearchDao();
+        Item item = searchDao.getItemByAltercode(offer.getItemCode());
+
+        model.addAttribute("offer", offer);
+        model.addAttribute("item", item);
+        return "offers/editOfferDashboard";
+    }
+
 }
