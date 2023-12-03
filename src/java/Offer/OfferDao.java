@@ -258,11 +258,10 @@ public class OfferDao {
     }
 
     String editOffer(String id, String code, String title, String startDate, String endDate, String offerPart) {
-        String sql = "UPDATE offers SET end_date='" + endDate + "' WHERE id=" + id;
         try {
             DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
             Connection connection = databaseConnectionFactory.getMySQLConnection();
-            PreparedStatement itemInsertStatement = connection.prepareStatement("UPDATE offers SET  title=?, startDate=?, endDate=?, offerPart=? WHERE id=?;");
+            PreparedStatement itemInsertStatement = connection.prepareStatement("UPDATE offers SET  title=?, start_date=?, end_date=?, offr_part=? WHERE id=?;");
 
             itemInsertStatement.setString(1, title);
             itemInsertStatement.setString(2, startDate);
