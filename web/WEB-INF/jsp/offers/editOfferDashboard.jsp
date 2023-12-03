@@ -57,7 +57,7 @@
                 </tr>
                 <tr>
                     <td><h2>Start Date</h2></td>
-                    <td> <input type="date" name="endDate" value="${offer.startDate}"> </td>
+                    <td> <input type="date" name="startDate" value="${offer.startDate}"> </td>
 
                 </tr>
                 <tr>
