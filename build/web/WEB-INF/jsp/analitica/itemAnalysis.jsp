@@ -200,7 +200,7 @@
                                     out.println(startDateString);
                                     out.println("</td>");
 
-                                    Date endDate = offer.getEndDate();
+                                    LocalDate endDate = offer.getEndDate();
                                     if (endDate == null) {
                                         out.println("<td>");
                                         out.println("<a href='endOfferDashboard.htm?id=" + offer.getId() + "'>End Offer</a>");
