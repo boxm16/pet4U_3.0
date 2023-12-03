@@ -178,10 +178,10 @@
 
                                 }
                                 out.println("<tr style='color: green'>");
-                                out.println("<td colspan='2'>");
+                                out.println("<td colspan='3'>");
                                 out.println("LAST 6 MONTHS <br>TOTALS");
                                 out.println("</td>");
-                                out.println("<td>");
+                                out.println("<td colspan='1'>");
                                 out.println(totalSales);
                                 out.println("</td>");
                                 out.println("<td>");
