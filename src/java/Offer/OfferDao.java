@@ -261,7 +261,7 @@ public class OfferDao {
         try {
             DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
             Connection connection = databaseConnectionFactory.getMySQLConnection();
-            PreparedStatement itemInsertStatement = connection.prepareStatement("UPDATE offers SET  title=?, start_date=?, end_date=?, offr_part=? WHERE id=?;");
+            PreparedStatement itemInsertStatement = connection.prepareStatement("UPDATE offers SET  title=?, start_date=?, end_date=?, offer_part=? WHERE id=?;");
 
             itemInsertStatement.setString(1, title);
             itemInsertStatement.setString(2, startDate);
