@@ -205,10 +205,68 @@ public class OfferDao {
                     Logger.getLogger(OfferDao.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 offer.setStartDate(startDate);
+
+                String offerPart = resultSet.getString("offer_part");
+                if (offerPart == null) {
+                } else {
+                    offer.setOfferPart(offerPart);
+                }
+
                 String endDateString = resultSet.getString("end_date");
                 if (endDateString == null) {
                     offers.add(offer);
                 } else {
+
+                }
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(OfferDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return offers;
+    }
+
+    ArrayList<Offer> getAllOffers() {
+        ArrayList<Offer> offers = new ArrayList<>();
+
+        String sql = "SELECT * FROM offers ORDER BY start_date";
+        ResultSet resultSet;
+
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            Connection connection = databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+
+            resultSet = statement.executeQuery(sql);
+            while (resultSet.next()) {
+
+                Offer offer = new Offer();
+
+                offer.setId(resultSet.getInt("id"));
+                offer.setItemCode(resultSet.getString("item_code"));
+                offer.setTitle(resultSet.getString("title"));
+
+                String startDateString = resultSet.getString("start_date");
+                Date startDate = null;
+                try {
+                    startDate = new SimpleDateFormat("yyyy-MM-dd").parse(startDateString);
+                } catch (ParseException ex) {
+                    Logger.getLogger(OfferDao.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                offer.setStartDate(startDate);
+                String endDateString = resultSet.getString("end_date");
+                if (endDateString == null) {
+
+                } else {
+                    try {
+                        Date endDate = new SimpleDateFormat("yyyy-MM-dd").parse(endDateString);
+                        offer.setEndDate(endDate);
+                    } catch (ParseException ex) {
+                        Logger.getLogger(OfferDao.class.getName()).log(Level.SEVERE, null, ex);
+                    }
 
                 }
 
@@ -217,6 +275,7 @@ public class OfferDao {
                 } else {
                     offer.setOfferPart(offerPart);
                 }
+                offers.add(offer);
             }
             resultSet.close();
             statement.close();
