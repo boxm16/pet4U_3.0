@@ -36,7 +36,7 @@
         <form action="endOffer.htm" method="POST" >
             <input hidden name="id" type="text" value="${offer.id}">
             <input hidden name="code" type="text" value="${item.code}">
-            <input hidden name="offerPartCode" type="text" value="${offer.offerPartCode}">
+            <input hidden name="offerPartCode" type="text" value="${offer.offerPart}">
             <table>  
                 <tr>
                     <td><h2>Offer Title</h2></td>
