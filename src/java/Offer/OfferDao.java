@@ -111,7 +111,7 @@ public class OfferDao {
 
                 String startDateString = resultSet.getString("start_date");
                 LocalDate startDate = null;
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MMM-yyyy");
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                 startDate = LocalDate.parse(startDateString, formatter);
                 offer.setStartDate(startDate);
 
