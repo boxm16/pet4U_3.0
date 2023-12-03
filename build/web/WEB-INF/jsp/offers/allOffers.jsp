@@ -44,7 +44,7 @@
             <th>Title</th>
             <th>Start Date</th>
             <th>End Offer</th>
-
+            <th>Edit Offer</th>
             </thead>
             <%
                 ArrayList<Offer> offers = (ArrayList) request.getAttribute("activeOffers");
@@ -82,7 +82,7 @@
                     out.println("</td>");
 
                     out.println("<td>");
-                    out.println("<a href='editOfferDashboard.htm?id=" + offer.getId() + "'>Edit Offer Dashboard</a>");
+                    out.println("<a href='editOfferDashboard.htm?id=" + offer.getId() + "'>Edit Offer</a>");
 
                     out.println("</td>");
 
