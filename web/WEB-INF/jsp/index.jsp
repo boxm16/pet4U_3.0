@@ -45,8 +45,11 @@
                 <a href="itemsStateUpdates.htm"><h1 style="color: #3059D8">Show Items State Updates</h1></a>
                 <hr>
                 <a href="activeOffers.htm"><h1 style="color: #3059D8">Active Offers</h1></a>
+                <hr>
+                <a href="allOffers.htm"><h1 style="color: #3059D8">All Offers</h1></a>
 
-               
+
+
 
                 <hr><hr> 
                 <h1><a href='monthSales.htm'>Pet4u:Last Six Months Sales By Month</a></h1>
@@ -94,7 +97,7 @@
                 <hr>
                 <a href="goForMonthSalesUpload.htm"><h1>Go For Month Sales  Upload</h1></a>
 
-                 <hr>
+                <hr>
                 <a href="notesDisplay.htm"><h1>Notes</h1></a>
 
             </center>

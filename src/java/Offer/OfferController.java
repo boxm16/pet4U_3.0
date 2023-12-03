@@ -80,6 +80,29 @@ public class OfferController {
         //return "redirect:itemAnalysis.htm?code=" + code;
     }
 
+    @RequestMapping(value = "/allOffers")
+    public String allOffers(ModelMap model) {
+
+        OfferDao offerDao = new OfferDao();
+        ArrayList<Offer> activeOffers = offerDao.getAllOffers();
+
+        Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
+        LinkedHashMap<String, Item> pet4UItemsRowByRow = pet4uItemsDao.getPet4UItemsRowByRow();
+
+        for (Offer offer : activeOffers) {
+            String itemCode = offer.getItemCode();
+            itemCode = itemCode.trim();
+            Item item = pet4UItemsRowByRow.get(itemCode);
+            if (item == null) {
+                System.out.println("Item with itemCode " + itemCode + "is null. You need to find the reason");
+            } else {
+                offer.setItemDescription(item.getDescription());
+            }
+        }
+        model.addAttribute("activeOffers", activeOffers);
+        return "offers/allOffers";
+    }
+
     @RequestMapping(value = "/activeOffers")
     public String activeOffers(ModelMap model) {
 
