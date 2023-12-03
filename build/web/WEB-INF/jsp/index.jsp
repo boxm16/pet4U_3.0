@@ -40,24 +40,27 @@
                 <hr>
                 <a href="dayStockShortageAlert.htm"><h1 style="color: green">Day Stock Shortage Alert</h1></a>
                 <hr>
-                <a href="suppliersAndStockDashboard.htm"><h1 style="color: #3059D8">Suppliers And Stock Dashboard</h1></a>
+                <a href="suppliersAndStockDashboard.htm"><h1 style="color: #5F74BC">Suppliers And Stock Dashboard</h1></a>
                 <hr>
-                <a href="itemsStateUpdates.htm"><h1 style="color: #3059D8">Show Items State Updates</h1></a>
+                <a href="itemsStateUpdates.htm"><h1 style="color: #2CE3D2">Show Items State Updates</h1></a>
                 <hr>
-                <a href="activeOffers.htm"><h1 style="color: #3059D8">Active Offers</h1></a>
+                <a href="allOffers.htm"><h1 style="color: #E38D2C">All Offers</h1></a>
                 <hr>
-                <a href="allOffers.htm"><h1 style="color: #3059D8">All Offers</h1></a>
-
-
-
-
-                <hr><hr> 
-                <h1><a href='monthSales.htm'>Pet4u:Last Six Months Sales By Month</a></h1>
-                <hr><hr>
-                <hr><hr> 
+                <a href="activeOffers.htm"><h1 style="color: #C4E32C">Active Offers</h1></a>
+                <hr>
                 <h1><a href='sixMonthsSalesY.htm'>Pet4u:Last Six Months Sales Y</a></h1>
                 <hr><hr>
                 <hr>
+                <a href="notesDisplay.htm"><h1>Notes</h1></a>
+
+
+
+
+                <!--  <hr><hr> 
+                   <h1><a href='monthSales.htm'>Pet4u:Last Six Months Sales By Month</a></h1>
+                   <hr><hr> -->
+
+                <hr><hr><hr>
                 <h1><a href='pet4uAllItems.htm'>Pet4u: All Items</a></h1>
                 <hr>
 
@@ -97,8 +100,7 @@
                 <hr>
                 <a href="goForMonthSalesUpload.htm"><h1>Go For Month Sales  Upload</h1></a>
 
-                <hr>
-                <a href="notesDisplay.htm"><h1>Notes</h1></a>
+
 
             </center>
         </div>
