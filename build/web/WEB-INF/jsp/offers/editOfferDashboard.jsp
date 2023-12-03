@@ -27,20 +27,27 @@
 
         <h1><a href="index.htm">INDEX</a></h1>
 
-        <h1>End Offer For:</h1>
+        <h1>Edit Offer For:</h1>
 
 
         <h1 >${item.code} : ${item.description}</h1>
         <h1 style="background-color: ${resultColor}">${result}</h1>
 
-        <form action="endOffer.htm" method="POST" >
+        <form action="editOffer.htm" method="POST" >
             <input hidden name="id" type="text" value="${offer.id}">
-            <input hidden name="code" type="text" value="${item.code}">
-            <input hidden name="offerPartCode" type="text" value="${offer.offerPart}">
+
             <table>  
+                <tr>
+                    <td><h2>Item Code</h2></td>
+                    <td><h2> <input  name="code" type="text" value="${item.code}"></h2></td>
+                </tr>
                 <tr>
                     <td><h2>Offer Title</h2></td>
                     <td><h2>${offer.title}</h2></td>
+                </tr>
+                <tr>
+                    <td><h2>Offer Part Item Code</h2></td>
+                    <td><h2> <input  name="offerPart" type="text" value="${offer.offerPart}"></h2></td>
                 </tr>
                 <tr>
                     <td>----------</td>
