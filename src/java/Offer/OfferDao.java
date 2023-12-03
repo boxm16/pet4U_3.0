@@ -59,7 +59,7 @@ public class OfferDao {
 
                 String startDateString = resultSet.getString("start_date");
                 LocalDate startDate = null;
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MMM-dd");
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                 startDate = LocalDate.parse(startDateString, formatter);
                 offer.setEndDate(startDate);
                 offer.setStartDate(startDate);
@@ -185,7 +185,7 @@ public class OfferDao {
 
                 String startDateString = resultSet.getString("start_date");
                 LocalDate startDate = null;
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MMM-dd");
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                 startDate = LocalDate.parse(startDateString, formatter);
                 offer.setStartDate(startDate);
 
@@ -234,7 +234,7 @@ public class OfferDao {
 
                 String startDateString = resultSet.getString("start_date");
                 LocalDate startDate = null;
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MMM-dd");
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                 startDate = LocalDate.parse(startDateString, formatter);
                 offer.setStartDate(startDate);
                 String endDateString = resultSet.getString("end_date");
