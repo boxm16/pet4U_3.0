@@ -42,6 +42,7 @@
             <th>Item Code</th>
             <th>Item Description</th>
             <th>Title</th>
+            <th>Offer Part</th>
             <th>Start Date</th>
             <th>End Offer</th>
             <th>Edit Offer</th>
@@ -66,6 +67,10 @@
 
                     out.println("<td>");
                     out.println(offer.getTitle());
+                    out.println("</td>");
+
+                    out.println("<td>");
+                    out.println(offer.getOfferPart());
                     out.println("</td>");
 
                     out.println("<td>");
