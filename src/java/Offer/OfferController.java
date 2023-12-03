@@ -18,6 +18,7 @@ public class OfferController {
     public String addOffer(@RequestParam String code,
             @RequestParam String title,
             @RequestParam String startDate,
+            @RequestParam String offerPartCode,
             ModelMap model) {
 
         SearchDao searchDao = new SearchDao();
@@ -31,7 +32,7 @@ public class OfferController {
             return "analitica/offerDashboard";
         }
 
-        String result = offerDao.addOffer(code, title, startDate);
+        String result = offerDao.addOffer(code, title, startDate, offerPartCode);
 
         model.addAttribute("resultColor", "green");
         model.addAttribute("result", result);
@@ -90,10 +91,10 @@ public class OfferController {
 
         for (Offer offer : activeOffers) {
             String itemCode = offer.getItemCode();
-            itemCode=itemCode.trim();
+            itemCode = itemCode.trim();
             Item item = pet4UItemsRowByRow.get(itemCode);
             if (item == null) {
-                System.out.println("Item with itemCode "+itemCode+"is null. You need to find the reason");
+                System.out.println("Item with itemCode " + itemCode + "is null. You need to find the reason");
             } else {
                 offer.setItemDescription(item.getDescription());
             }
@@ -112,6 +113,7 @@ public class OfferController {
     public String stampOffer(@RequestParam String code,
             @RequestParam String title,
             @RequestParam String startDate,
+            @RequestParam String offerPartCode,
             ModelMap model) {
         if (startDate.isEmpty()) {
             model.addAttribute("resultColor", "rose");
@@ -132,7 +134,7 @@ public class OfferController {
         } else {
             OfferDao offerDao = new OfferDao();
 
-            offerDao.addOffer(code, title, startDate);
+            offerDao.addOffer(code, title, startDate, offerPartCode);
             model.addAttribute("resultColor", "green");
             model.addAttribute("result", "Good Job");
             model.addAttribute("code", code);

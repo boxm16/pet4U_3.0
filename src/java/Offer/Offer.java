@@ -11,6 +11,7 @@ public class Offer {
     private Date endDate;
     private String itemCode;
     private String itemDescription;
+    private String offerPart;
 
     public int getId() {
         return id;
@@ -63,6 +64,14 @@ public class Offer {
 
     public void setItemDescription(String itemDescription) {
         this.itemDescription = itemDescription;
+    }
+
+    public String getOfferPart() {
+        return offerPart;
+    }
+
+    public void setOfferPart(String offerPart) {
+        this.offerPart = offerPart;
     }
     
     

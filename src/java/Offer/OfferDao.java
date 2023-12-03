@@ -17,16 +17,17 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class OfferDao {
 
-    String addOffer(String code, String title, String startDate) {
+    String addOffer(String code, String title, String startDate, String offerPartCode) {
         try {
 
             DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
             Connection connection = databaseConnectionFactory.getMySQLConnection();
-            PreparedStatement itemInsertStatement = connection.prepareStatement("INSERT INTO offers (item_code, title, start_date) VALUES (?,?,?)");
+            PreparedStatement itemInsertStatement = connection.prepareStatement("INSERT INTO offers (item_code, title, start_date, offer_part) VALUES (?,?,?,?)");
 
             itemInsertStatement.setString(1, code);
             itemInsertStatement.setString(2, title);
             itemInsertStatement.setString(3, startDate);
+            itemInsertStatement.setString(3, offerPartCode);
 
             itemInsertStatement.execute();
 
@@ -77,6 +78,12 @@ public class OfferDao {
                         Logger.getLogger(OfferDao.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     offer.setEndDate(endDate);
+                }
+
+                String offerPart = resultSet.getString("offer_part");
+                if (offerPart == null) {
+                } else {
+                    offer.setOfferPart(offerPart);
                 }
 
                 offers.add(offer);
@@ -134,6 +141,12 @@ public class OfferDao {
                         offer.setEndDate(endDate);
                     }
 
+                }
+
+                String offerPart = resultSet.getString("offer_part");
+                if (offerPart == null) {
+                } else {
+                    offer.setOfferPart(offerPart);
                 }
             }
             resultSet.close();
@@ -199,6 +212,11 @@ public class OfferDao {
 
                 }
 
+                String offerPart = resultSet.getString("offer_part");
+                if (offerPart == null) {
+                } else {
+                    offer.setOfferPart(offerPart);
+                }
             }
             resultSet.close();
             statement.close();
