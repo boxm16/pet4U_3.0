@@ -73,7 +73,7 @@
                     out.println("</td>");
 
                     out.println("<td>");
-                    if (offer.getEndDate() == null) {
+                    if (offer.endDate == null) {
                         out.println("<a href='endOfferDashboard.htm?id=" + offer.getId() + "'>End Offer</a>");
                     } else {
                         out.println(offer.getEndDateString());

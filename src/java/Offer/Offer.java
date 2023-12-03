@@ -37,13 +37,7 @@ public class Offer {
         this.startDate = startDate;
     }
 
-    public LocalDate getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(LocalDate endDate) {
-        this.endDate = endDate;
-    }
+    
 
     public String getItemCode() {
         return itemCode;
@@ -57,6 +51,16 @@ public class Offer {
 
         return this.getStartDate().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
     }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
+    }
+    
+    
 
     public String getEndDateString() {
         return this.getEndDate().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
