@@ -29,13 +29,7 @@ public class Offer {
         this.title = title;
     }
 
-    public LocalDate getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
-    }
+ 
 
     
 
@@ -47,6 +41,16 @@ public class Offer {
         this.itemCode = itemCode;
     }
 
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    
+    
     public String getStartDateString() {
 
         return this.getStartDate().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
