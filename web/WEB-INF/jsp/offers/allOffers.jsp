@@ -70,7 +70,12 @@
                     out.println("</td>");
 
                     out.println("<td>");
-                    out.println(offer.getOfferPart());
+                    if (offer.getOfferPart() == null) {
+                        out.println("");
+                    } else {
+                        out.println(offer.getOfferPart());
+                    }
+
                     out.println("</td>");
 
                     out.println("<td>");
