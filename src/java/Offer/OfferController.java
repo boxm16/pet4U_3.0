@@ -202,7 +202,7 @@ public class OfferController {
             model.addAttribute("offerPart", offerPart);
 
             model.addAttribute("item", item);
-            return "offers/editOffer";
+            return "offers/editOfferDashboard";
         }
 
         String result = offerDao.editOffer(id, code, title, startDate, endDate, offerPart);
@@ -217,6 +217,6 @@ public class OfferController {
 
         model.addAttribute("item", item);
 
-        return "offers/editOffer";
+        return "offers/editOfferDashboard";
     }
 }
