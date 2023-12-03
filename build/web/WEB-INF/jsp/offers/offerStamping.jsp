@@ -54,6 +54,11 @@
                     <td><h1> Add (Exact) Item Code</h1></td>
                     <td>   <input  name="code" type="text" value="${item.code}"> </td>
                 </tr>
+                
+                  <tr>
+                    <td><h1> Add (Exact)Code Of Offer Part Item   </h1></td>
+                    <td>   <input  name="offerPartCode" type="text" value="${item.code}"> </td>
+                </tr>
             </table>
             <br>
             <button class="btn btn-primary" type="submit" ><h1>Stamp Offer For The Code</h1></button>
