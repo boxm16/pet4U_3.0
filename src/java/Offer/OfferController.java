@@ -180,4 +180,43 @@ public class OfferController {
         return "offers/editOfferDashboard";
     }
 
+    @RequestMapping(value = "/editOffer", method = RequestMethod.POST)
+    public String editOffer(@RequestParam String code,
+            @RequestParam String id,
+            @RequestParam String title,
+            @RequestParam String startDate,
+            @RequestParam String offerPart,
+            @RequestParam String endDate,
+            ModelMap model) {
+
+        SearchDao searchDao = new SearchDao();
+        Item item = searchDao.getItemByAltercode(code);
+        OfferDao offerDao = new OfferDao();
+        if (startDate.isEmpty()) {
+            model.addAttribute("resultColor", "rose");
+
+            model.addAttribute("code", code);
+            model.addAttribute("title", title);
+            model.addAttribute("startDate", startDate);
+            model.addAttribute("endDate", endDate);
+            model.addAttribute("offerPart", offerPart);
+
+            model.addAttribute("item", item);
+            return "offers/editOffer";
+        }
+
+        String result = offerDao.editOffer(id, code, title, startDate, endDate, offerPart);
+
+        model.addAttribute("resultColor", "green");
+        model.addAttribute("result", result);
+        model.addAttribute("code", code);
+        model.addAttribute("title", title);
+        model.addAttribute("startDate", startDate);
+        model.addAttribute("endDate", endDate);
+        model.addAttribute("offerPart", offerPart);
+
+        model.addAttribute("item", item);
+
+        return "offers/editOffer";
+    }
 }

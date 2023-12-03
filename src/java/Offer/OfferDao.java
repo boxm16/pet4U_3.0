@@ -257,4 +257,26 @@ public class OfferDao {
         return offers;
     }
 
+    String editOffer(String id, String code, String title, String startDate, String endDate, String offerPart) {
+        String sql = "UPDATE offers SET end_date='" + endDate + "' WHERE id=" + id;
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            Connection connection = databaseConnectionFactory.getMySQLConnection();
+            PreparedStatement itemInsertStatement = connection.prepareStatement("UPDATE offers SET  title=?, startDate=?, endDate=?, offerPart=? WHERE id=?;");
+
+            itemInsertStatement.setString(1, title);
+            itemInsertStatement.setString(2, startDate);
+            itemInsertStatement.setString(3, offerPart);
+            itemInsertStatement.setString(4, id);
+            itemInsertStatement.execute();
+
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(OfferDao.class.getName()).log(Level.SEVERE, null, ex);
+            return ex.getMessage();
+        }
+        return "success";
+    }
+
 }
