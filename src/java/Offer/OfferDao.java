@@ -266,7 +266,7 @@ public class OfferDao {
 
             itemInsertStatement.setString(1, title);
             itemInsertStatement.setString(2, startDate);
-            itemInsertStatement.setString(2, endDate);
+            itemInsertStatement.setString(3, endDate);
             itemInsertStatement.setString(4, offerPart);
             itemInsertStatement.setString(5, id);
             itemInsertStatement.execute();
