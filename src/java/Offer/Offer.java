@@ -57,6 +57,10 @@ public class Offer {
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
         return formatter.format(this.getStartDate());
     }
+    public String getEndDateString() {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        return formatter.format(this.getEndDate());
+    }
 
     public String getItemDescription() {
         return itemDescription;

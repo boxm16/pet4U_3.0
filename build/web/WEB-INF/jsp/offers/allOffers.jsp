@@ -57,10 +57,9 @@
                     out.println("</td>");
 
                     out.println("<td>");
-                    out.println("<a href='itemAnalysis.htm?code=" + offer.getItemCode()+ "' target='_blank'>"+offer.getItemCode()+"</a>");
+                    out.println("<a href='itemAnalysis.htm?code=" + offer.getItemCode() + "' target='_blank'>" + offer.getItemCode() + "</a>");
                     out.println("</td>");
-                    
-               
+
                     out.println("<td>");
                     out.println(offer.getItemDescription());
                     out.println("</td>");
@@ -74,7 +73,12 @@
                     out.println("</td>");
 
                     out.println("<td>");
-                    out.println("<a href='endOfferDashboard.htm?id=" + offer.getId() + "'>End Offer</a>");
+                    if (offer.getEndDate() == null) {
+                        out.println("<a href='endOfferDashboard.htm?id=" + offer.getId() + "'>End Offer</a>");
+                    } else {
+                     out.println(offer.getEndDateString());
+                   
+                    }
                     out.println("</td>");
 
                     out.println("</tr>");
