@@ -1,7 +1,7 @@
 package Offer;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Offer {
 
@@ -37,8 +37,6 @@ public class Offer {
         this.startDate = startDate;
     }
 
-   
-
     public LocalDate getEndDate() {
         return endDate;
     }
@@ -46,8 +44,6 @@ public class Offer {
     public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
-
-   
 
     public String getItemCode() {
         return itemCode;
@@ -58,12 +54,12 @@ public class Offer {
     }
 
     public String getStartDateString() {
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-        return formatter.format(this.getStartDate());
+
+        return this.getStartDate().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
     }
+
     public String getEndDateString() {
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-        return formatter.format(this.getEndDate());
+        return this.getEndDate().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
     }
 
     public String getItemDescription() {
@@ -81,6 +77,5 @@ public class Offer {
     public void setOfferPart(String offerPart) {
         this.offerPart = offerPart;
     }
-    
-    
+
 }
