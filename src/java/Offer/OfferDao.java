@@ -58,18 +58,18 @@ public class OfferDao {
                 offer.setTitle(resultSet.getString("title"));
 
                 String startDateString = resultSet.getString("start_date");
-                LocalDate startDate = null;
+                LocalDate startDate;
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                 startDate = LocalDate.parse(startDateString, formatter);
                 offer.setEndDate(startDate);
                 offer.setStartDate(startDate);
 
                 String endDateString = resultSet.getString("end_date");
-                LocalDate endDate = null;
+
                 if (endDateString == null) {
                     //do nothing
                 } else {
-                    endDate = LocalDate.parse(endDateString, formatter);
+                    LocalDate endDate = LocalDate.parse(endDateString, formatter);
                     offer.setEndDate(endDate);
                 }
 
