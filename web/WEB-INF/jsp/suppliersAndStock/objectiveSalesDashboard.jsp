@@ -189,11 +189,11 @@
                                 out.println("</td>");
                                 out.println("</tr>");
 
-                                out.println("<tr style='color: blue' colspan='2'>");
-                                out.println("<td>");
+                                out.println("<tr style='color: blue'>");
+                                out.println("<td colspan='3'>");
                                 out.println("LAST 6 MONTHS GRAND TOTAL");
                                 out.println("</td>");
-                                out.println("<td colspan='1'>");
+                                out.println("<td>");
                                 out.println(totalSales + totalShopSupplies);
                                 out.println("</td>");
                                 out.println("</tr>");
@@ -202,7 +202,7 @@
                                 out.println("<td colspan='3'>");
                                 out.println("One Month Average ΕΞΑΓΩΓΕΣ");
                                 out.println("</td>");
-                                out.println("<td colspan='1'>");
+                                out.println("<td>");
                                 out.println((totalSales + totalShopSupplies) / 6);
                                 out.println("</td>");
                                 out.println("</tr>");
