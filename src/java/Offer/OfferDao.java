@@ -120,12 +120,9 @@ public class OfferDao {
                 if (endDateString == null) {
                     //do nothing
                 } else {
-                    if (endDateString.isEmpty()) {
-                        //do nothing
-                    } else {
-                        endDate = LocalDate.parse(endDateString, formatter);
-                        offer.setEndDate(endDate);
-                    }
+
+                    endDate = LocalDate.parse(endDateString, formatter);
+                    offer.setEndDate(endDate);
 
                 }
 
