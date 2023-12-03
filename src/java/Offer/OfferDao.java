@@ -261,14 +261,24 @@ public class OfferDao {
         try {
             DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
             Connection connection = databaseConnectionFactory.getMySQLConnection();
-            PreparedStatement itemInsertStatement = connection.prepareStatement("UPDATE offers SET  title=?, start_date=?, end_date=?, offer_part=? WHERE id=?;");
+            if (endDate.isEmpty()) {
+                PreparedStatement itemInsertStatement = connection.prepareStatement("UPDATE offers SET  title=?, start_date=?, offer_part=? WHERE id=?;");
 
-            itemInsertStatement.setString(1, title);
-            itemInsertStatement.setString(2, startDate);
-            itemInsertStatement.setString(3, endDate);
-            itemInsertStatement.setString(4, offerPart);
-            itemInsertStatement.setString(5, id);
-            itemInsertStatement.execute();
+                itemInsertStatement.setString(1, title);
+                itemInsertStatement.setString(2, startDate);
+                itemInsertStatement.setString(3, offerPart);
+                itemInsertStatement.setString(4, id);
+                itemInsertStatement.execute();
+            } else {
+                PreparedStatement itemInsertStatement = connection.prepareStatement("UPDATE offers SET  title=?, start_date=?, end_date=?, offer_part=? WHERE id=?;");
+
+                itemInsertStatement.setString(1, title);
+                itemInsertStatement.setString(2, startDate);
+                itemInsertStatement.setString(3, endDate);
+                itemInsertStatement.setString(4, offerPart);
+                itemInsertStatement.setString(5, id);
+                itemInsertStatement.execute();
+            }
 
             connection.close();
 
