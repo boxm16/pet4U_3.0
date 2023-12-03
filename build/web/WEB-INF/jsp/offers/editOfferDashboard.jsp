@@ -43,7 +43,8 @@
                 </tr>
                 <tr>
                     <td><h2>Offer Title</h2></td>
-                    <td><h2>${offer.title}</h2></td>
+                    <td><h2> <input  name="code" type="text" value="${offer.title}"></h2></td>
+
                 </tr>
                 <tr>
                     <td><h2>Offer Part Item Code</h2></td>
@@ -56,7 +57,8 @@
                 </tr>
                 <tr>
                     <td><h2>Start Date</h2></td>
-                    <td> <h2>${offer.getStartDateString()}</h2></td>
+                    <td> <input type="date" name="endDate" value="${offer.getStartDateString()}"> </td>
+
                 </tr>
                 <tr>
                     <td>----------</td>
@@ -65,7 +67,8 @@
                 </tr>
                 <tr>
                     <td><h2>End Date</h2></td>
-                    <td> <input type="date" name="endDate"> </td>
+                    <td> <input type="date" name="endDate" value="${offer.getEndDateString()}"> </td>
+
                 </tr>
             </table>
             <br>
