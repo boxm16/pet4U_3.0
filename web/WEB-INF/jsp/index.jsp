@@ -42,7 +42,7 @@
                 <hr>
                 <a href="suppliersAndStockDashboard.htm"><h1 style="color: #5F74BC">Suppliers And Stock Dashboard</h1></a>
                 <hr>
-                <a href="itemsStateUpdates.htm"><h1 style="color: #2CE3D2">Show Items State Updates</h1></a>
+                <a href="itemsStateUpdates.htm"><h1 style="color: #63E32C">Show Items State Updates</h1></a>
                 <hr>
                 <a href="allOffers.htm"><h1 style="color: #E38D2C">All Offers</h1></a>
                 <hr>
