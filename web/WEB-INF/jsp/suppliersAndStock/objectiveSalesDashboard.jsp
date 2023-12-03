@@ -129,7 +129,8 @@
                 <div class=" col-sm-4">
                     <center><h3>Sales</h3></center>
                     <table>
-                        <th>Date Stamp</th>
+                        <th>-</th>
+                        <th>Month Name</th>
                         <th>E-Shop Sales</th>
                         <th>Ενδοδιακ.</th>
                             <%
@@ -149,6 +150,9 @@
                                     } else {
                                         out.println("<tr>");
                                     }
+                                    out.println("<td>");
+                                    out.println(date.getMonthValue());
+                                    out.println("</td>");
 
                                     out.println("<td>");
                                     out.println(date.getMonth());
