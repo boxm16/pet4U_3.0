@@ -57,7 +57,7 @@
                 </tr>
                 <tr>
                     <td><h2>Start Date</h2></td>
-                    <td> <input type="date" name="endDate" value="${offer.getStartDateString()}"> </td>
+                    <td> <input type="date" name="endDate" value="${offer.getStartDate()}"> </td>
 
                 </tr>
                 <tr>
@@ -67,7 +67,7 @@
                 </tr>
                 <tr>
                     <td><h2>End Date</h2></td>
-                    <td> <input type="date" name="endDate" value="${offer.getEndDateString()}"> </td>
+                    <td> <input type="date" name="endDate" value="${offer.getEndDate()}"> </td>
 
                 </tr>
             </table>
