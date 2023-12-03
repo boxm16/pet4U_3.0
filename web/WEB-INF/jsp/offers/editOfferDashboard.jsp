@@ -43,7 +43,7 @@
                 </tr>
                 <tr>
                     <td><h2>Offer Title</h2></td>
-                    <td><h2> <input  name="code" type="text" value="${offer.title}"></h2></td>
+                    <td><h2> <input  name="title" type="text" value="${offer.title}"></h2></td>
 
                 </tr>
                 <tr>
