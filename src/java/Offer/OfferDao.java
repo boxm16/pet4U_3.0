@@ -262,21 +262,21 @@ public class OfferDao {
             DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
             Connection connection = databaseConnectionFactory.getMySQLConnection();
             if (endDate.isEmpty()) {
-                PreparedStatement itemInsertStatement = connection.prepareStatement("UPDATE offers SET  title=?, start_date=?, offer_part=? WHERE id=?;");
-
-                itemInsertStatement.setString(1, title);
-                itemInsertStatement.setString(2, startDate);
-                itemInsertStatement.setString(3, offerPart);
-                itemInsertStatement.setString(4, id);
-                itemInsertStatement.execute();
-            } else {
-                PreparedStatement itemInsertStatement = connection.prepareStatement("UPDATE offers SET  title=?, start_date=?, end_date=?, offer_part=? WHERE id=?;");
-
-                itemInsertStatement.setString(1, title);
-                itemInsertStatement.setString(2, startDate);
-                itemInsertStatement.setString(3, endDate);
+                PreparedStatement itemInsertStatement = connection.prepareStatement("UPDATE offers SET  code=?, title=?, start_date=?, offer_part=? WHERE id=?;");
+                itemInsertStatement.setString(1, code);
+                itemInsertStatement.setString(2, title);
+                itemInsertStatement.setString(3, startDate);
                 itemInsertStatement.setString(4, offerPart);
                 itemInsertStatement.setString(5, id);
+                itemInsertStatement.execute();
+            } else {
+                PreparedStatement itemInsertStatement = connection.prepareStatement("UPDATE offers SET  code=?, title=?, start_date=?, end_date=?, offer_part=? WHERE id=?;");
+                itemInsertStatement.setString(1, code);
+                itemInsertStatement.setString(2, title);
+                itemInsertStatement.setString(3, startDate);
+                itemInsertStatement.setString(4, endDate);
+                itemInsertStatement.setString(5, offerPart);
+                itemInsertStatement.setString(6, id);
                 itemInsertStatement.execute();
             }
 
