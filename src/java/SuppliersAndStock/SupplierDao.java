@@ -486,4 +486,8 @@ public class SupplierDao {
 
         return items;
     }
+
+    String addItemToRoyalSupplier() {
+        return "success";
+    }
 }

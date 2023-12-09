@@ -402,12 +402,44 @@ public class SuppliersAndStockController {
 
         SalesControllerX salesControllerX = new SalesControllerX();
         SoldItem soldItem = salesControllerX.getItemSales(altercode);
-        SuppliersItem item = new SuppliersItem();
+        RoyalItem item = new RoyalItem();
         item.setCode(soldItem.getCode());
         item.setDescription(soldItem.getDescription());
 
-        item.setOrderUnit("item");
-        item.setOrderUnitCapacity(1);
+        item.setOnLineStock(0);
+        item.setOffLineStock(0);
+        item.setMaximalStock(0);
+        item.setNote("");
+
+        modelMap.addAttribute("item", item);
+        return "suppliersAndStock/addItemToRoyalSupplier";
+    }
+
+    @RequestMapping(value = "addItemToRoyalSupplier", method = RequestMethod.POST)
+    public String addItemToRoyalSupplier(
+            @RequestParam(name = "code") String code,
+            @RequestParam(name = "onLineStock") String onLineStock,
+            @RequestParam(name = "offLineStock") String offLineStock,
+            @RequestParam(name = "maximalStock") String maximalStock,
+            @RequestParam(name = "note") String note,
+            ModelMap modelMap) {
+
+        SalesControllerX salesControllerX = new SalesControllerX();
+        SoldItem soldItem = salesControllerX.getItemSales(code);
+        RoyalItem item = new RoyalItem();
+
+        item.setOnLineStock(Integer.parseInt(onLineStock));
+        item.setOffLineStock(Integer.parseInt(offLineStock));
+        item.setMaximalStock(Integer.parseInt(maximalStock));
+
+        item.setCode(soldItem.getCode());
+        item.setDescription(soldItem.getDescription());
+
+        item.setNote(note);
+
+        String result = supplierDao.addItemToRoyalSupplier();
+        modelMap.addAttribute("resultColor", "green");
+        modelMap.addAttribute("result", result);
 
         modelMap.addAttribute("item", item);
         return "suppliersAndStock/addItemToRoyalSupplier";

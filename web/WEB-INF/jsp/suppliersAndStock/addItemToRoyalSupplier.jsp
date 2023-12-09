@@ -42,8 +42,16 @@
 
 
                         <tr>
-                            <td>Ποσότητα Τεμαχίων σε Μονάδα Παραγγελίας</td>
-                            <td><input type="number" name="orderUnitCapacity" value="${item.orderUnitCapacity}"></td>
+                            <td>On Line Stock</td>
+                            <td><input type="number" name="onLineStock" value="${item.onLineStock}"></td>
+                        </tr>
+                        <tr>
+                            <td>Off Line Stock</td>
+                            <td><input type="number" name="offLineStock" value="${item.offLineStock}"></td>
+                        </tr>
+                         <tr>
+                            <td>Maximal Stock</td>
+                            <td><input type="number" name="maximalStock" value="${item.maximalStock}"></td>
                         </tr>
                         <tr>
                             <td>Note</td>
