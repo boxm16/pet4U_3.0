@@ -702,7 +702,7 @@ public class TechManDao {
     }
 
     String createRoyalDatabaseTables() {
-        String query = "CREATE TABLE royal("
+        String query = "CREATE TABLE royal_stock_management("
                 + "item_code VARCHAR (100) NOT NULL, "
                 + "off_line_stock INT (5) NOT NULL, "
                 + "on_line_stock INT (5) NOT NULL, "
@@ -717,15 +717,15 @@ public class TechManDao {
             statement.execute(query);
             statement.close();
             connection.close();
-            return "Table 'royal' created succesfully";
+            return "Table 'royal_stock_management' created succesfully";
         } catch (SQLException ex) {
             Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
-            return "Table 'royal' could not be created:" + ex;
+            return "Table 'royal_stock_management' could not be created:" + ex;
         }
     }
 
     String deleteRoyalDatabaseTables() {
-        String query = "DROP TABLE royal";
+        String query = "DROP TABLE royal_stock_management";
 
         try {
             Connection connection = this.databaseConnectionFactory.getMySQLConnection();
@@ -736,7 +736,7 @@ public class TechManDao {
             return "Table 'royal' deleted succesfully";
         } catch (SQLException ex) {
             Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
-            return "Table 'royal' could not be deleted:" + ex;
+            return "Table 'royal_stock_management' could not be deleted:" + ex;
         }
     }
 

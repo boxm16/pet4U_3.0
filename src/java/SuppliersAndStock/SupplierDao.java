@@ -450,8 +450,8 @@ public class SupplierDao {
         return " Horizons Updated Successfully";
     }
 
-    LinkedHashMap<String, SuppliersItem> getRoyalItems() {
-        LinkedHashMap<String, SuppliersItem> items = new LinkedHashMap<>();
+    LinkedHashMap<String, RoyalItem> getRoyalItems() {
+        LinkedHashMap<String, RoyalItem> items = new LinkedHashMap<>();
         String sql = "SELECT * FROM royal_stock_management ;";
         ResultSet resultSet;
 
@@ -462,31 +462,13 @@ public class SupplierDao {
 
             resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
-                SuppliersItem item = new SuppliersItem();
+                RoyalItem item = new RoyalItem();
                 String itemCode = resultSet.getString("item_code");
                 item.setCode(itemCode.trim());
 
-                int objectiveSales = resultSet.getInt("objective_sales");
-                item.setObjectiveSales(objectiveSales);
-                String objectiveSalesExpirationDateString = resultSet.getString("objective_sales_expiration_date");
-                LocalDate objectiveSalesExpirationDate = null;
-
-                if (objectiveSalesExpirationDateString != null) {
-                    DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-                    objectiveSalesExpirationDate = LocalDate.parse(objectiveSalesExpirationDateString, dateTimeFormatter);
-
-                    LocalDate nowDate = LocalDate.now();
-                    if (objectiveSalesExpirationDate.isBefore(nowDate)) {
-                        objectiveSalesExpirationDate = null;
-                        item.setObjectiveSales(0.0);
-                    }
-                }
-
-                item.setObjectiveSalesExpirationDate(objectiveSalesExpirationDate);
-                item.setMinimalStockHorizon(resultSet.getInt("minimal_stock_horizon"));
-                item.setOrderHorizon(resultSet.getInt("order_horizon"));
-                item.setOrderUnit(resultSet.getString("order_unit"));
-                item.setOrderUnitCapacity(resultSet.getInt("order_unit_capacity"));
+                item.setOffLineStock(resultSet.getInt("off_line_stock"));
+                item.setOffLineStock(resultSet.getInt("on_line_stock"));
+                item.setMaximalStock(resultSet.getInt("maximal_stock"));
                 String note = resultSet.getString("note");
                 if (note == null) {
                     note = "";

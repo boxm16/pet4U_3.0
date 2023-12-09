@@ -345,7 +345,7 @@ public class SuppliersAndStockController {
             @RequestParam(name = "minimalStockHorizon") String minimalStockHorizon,
             ModelMap modelMap) {
 
-        if (orderHorizon.isEmpty()||minimalStockHorizon.isEmpty()) {
+        if (orderHorizon.isEmpty() || minimalStockHorizon.isEmpty()) {
             modelMap.addAttribute("resultColor", "rose");
             modelMap.addAttribute("result", "SOMETHING IS MISSING.");
 
@@ -356,23 +356,22 @@ public class SuppliersAndStockController {
 
         return "redirect:stockManagement.htm?supplierId=" + supplierId + "";
     }
-    
-    
-     //----------------
+
+    //----------------
     @RequestMapping(value = "royalStockManegement")
     public String royalStockManegement(ModelMap modelMap) {
-     
-        LinkedHashMap<String, SuppliersItem> supplierItemsForView = new LinkedHashMap<>();
-        TreeMap<String, SuppliersItem> usher = new TreeMap<>();
 
-        LinkedHashMap<String, SuppliersItem> supplierItemsFromDatabase = supplierDao.getRoyalItems();
+        LinkedHashMap<String, RoyalItem> supplierItemsForView = new LinkedHashMap<>();
+        TreeMap<String, RoyalItem> usher = new TreeMap<>();
+
+        LinkedHashMap<String, RoyalItem> supplierItemsFromDatabase = supplierDao.getRoyalItems();
 
         EksagogesController eksagogesController = new EksagogesController();
         LinkedHashMap<String, ItemEksagoges> lastSixMonthsSales = eksagogesController.getLastSixMonthsSales();
 
-        for (Map.Entry<String, SuppliersItem> supplierItemsFromDatabaseEntrySet : supplierItemsFromDatabase.entrySet()) {
+        for (Map.Entry<String, RoyalItem> supplierItemsFromDatabaseEntrySet : supplierItemsFromDatabase.entrySet()) {
             String key = supplierItemsFromDatabaseEntrySet.getKey();
-            SuppliersItem suppliersItem = supplierItemsFromDatabaseEntrySet.getValue();
+            RoyalItem suppliersItem = supplierItemsFromDatabaseEntrySet.getValue();
 
             ItemEksagoges itemEksagoges = lastSixMonthsSales.get(key);
 
@@ -382,12 +381,10 @@ public class SuppliersAndStockController {
 
             suppliersItem.setEksagoges(itemEksagoges.getEksagoges());
 
-            suppliersItem.setSupplierId(33333);
-
             usher.put(suppliersItem.getPosition(), suppliersItem);
         }
 
-        for (Map.Entry<String, SuppliersItem> usherEntry : usher.entrySet()) {
+        for (Map.Entry<String, RoyalItem> usherEntry : usher.entrySet()) {
 
             supplierItemsForView.put(usherEntry.getValue().getCode(), usherEntry.getValue());
         }
