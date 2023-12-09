@@ -4,6 +4,7 @@
     Author     : Michail Sitmalidis
 --%>
 
+<%@page import="SuppliersAndStock.RoyalItem"%>
 <%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="SuppliersAndStock.Supplier"%>
@@ -77,9 +78,9 @@
                                 </tr>
                             </thead>
                             <% 
-                                LinkedHashMap<String, SuppliersItem> items = (LinkedHashMap) request.getAttribute("supplierItems");
-                                for (Map.Entry<String, SuppliersItem> entrySet : items.entrySet()) {
-                                    SuppliersItem item = entrySet.getValue();
+                                LinkedHashMap<String, RoyalItem> items = (LinkedHashMap) request.getAttribute("supplierItems");
+                                for (Map.Entry<String, RoyalItem> entrySet : items.entrySet()) {
+                                    RoyalItem item = entrySet.getValue();
 
                                     out.println("<tr>");
 
