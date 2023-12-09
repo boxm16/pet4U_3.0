@@ -27,7 +27,7 @@
 
         <h1>Add  Item To Supplier </h1>
 
-        <form action="addItemToRoyalSupplier.htm" method="POST" >
+        <form action="editRoyalItem.htm" method="POST" >
 
             <h2><h2><table>
                         <tr>
@@ -49,7 +49,7 @@
                             <td>Off Line Stock</td>
                             <td><input type="number" name="offLineStock" value="${item.offLineStock}"></td>
                         </tr>
-                         <tr>
+                        <tr>
                             <td>Maximal Stock</td>
                             <td><input type="number" name="maximalStock" value="${item.maximalStock}"></td>
                         </tr>

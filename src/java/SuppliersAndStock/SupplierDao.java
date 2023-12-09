@@ -506,4 +506,8 @@ public class SupplierDao {
         return "New Item Added To Royal Supplier Successfully";
     }
 
+    String editRoyalItem(RoyalItem item) {
+        return "ss";
+    }
+
 }
