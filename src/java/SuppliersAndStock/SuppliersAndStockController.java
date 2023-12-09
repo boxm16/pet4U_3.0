@@ -395,4 +395,21 @@ public class SuppliersAndStockController {
         return "suppliersAndStock/royalStockManagement";
     }
 
+    @RequestMapping(value = "goForAddingItemToRoyalSupplier", method = RequestMethod.POST)
+    public String goForAddingItemToRoyalSupplier(
+            @RequestParam(name = "altercode") String altercode,
+            ModelMap modelMap) {
+
+        SalesControllerX salesControllerX = new SalesControllerX();
+        SoldItem soldItem = salesControllerX.getItemSales(altercode);
+        SuppliersItem item = new SuppliersItem();
+        item.setCode(soldItem.getCode());
+        item.setDescription(soldItem.getDescription());
+
+        item.setOrderUnit("item");
+        item.setOrderUnitCapacity(1);
+
+        modelMap.addAttribute("item", item);
+        return "suppliersAndStock/addItemToRoyalSupplier";
+    }
 }
