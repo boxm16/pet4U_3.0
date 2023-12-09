@@ -452,7 +452,7 @@ public class SupplierDao {
 
     LinkedHashMap<String, SuppliersItem> getRoyalItems() {
         LinkedHashMap<String, SuppliersItem> items = new LinkedHashMap<>();
-        String sql = "SELECT * FROM stock_management ;";
+        String sql = "SELECT * FROM royal_stock_management ;";
         ResultSet resultSet;
 
         try {
