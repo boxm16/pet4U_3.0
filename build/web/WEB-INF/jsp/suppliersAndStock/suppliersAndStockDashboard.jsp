@@ -63,7 +63,7 @@
             %>
         </table>
         <hr><hr>
-        <a hred="royalStockManegement.htm">ROYAL STOCK MANAGEMENT</a>
+        <a href="royalStockManegement.htm">ROYAL STOCK MANAGEMENT</a>
     </center>
 </body>
 </html>
