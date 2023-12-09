@@ -509,7 +509,7 @@ public class SupplierDao {
     String editRoyalItem(RoyalItem item) {
         try {
             Connection connection = this.databaseConnectionFactory.getMySQLConnection();
-            PreparedStatement itemInsertStatement = connection.prepareStatement("UPDATE royal_stock_management SET  on_line_stock=?, off_line_stock=?, maximal_stock=?, note=? WHERE  AND item_code=?");
+            PreparedStatement itemInsertStatement = connection.prepareStatement("UPDATE royal_stock_management SET  on_line_stock=?, off_line_stock=?, maximal_stock=?, note=? WHERE   item_code=?");
 
             itemInsertStatement.setInt(1, item.getOnLineStock());
             itemInsertStatement.setInt(2, item.getOffLineStock());
