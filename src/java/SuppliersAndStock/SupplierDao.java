@@ -507,7 +507,22 @@ public class SupplierDao {
     }
 
     String editRoyalItem(RoyalItem item) {
-        return "ss";
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            PreparedStatement itemInsertStatement = connection.prepareStatement("UPDATE royal_stock_management SET  on_line_stock=?, off_line_stock=?, maximal_stock=?, note=? WHERE  AND item_code=?");
+
+            itemInsertStatement.setInt(1, item.getOnLineStock());
+            itemInsertStatement.setInt(2, item.getOffLineStock());
+            itemInsertStatement.setInt(3, item.getMaximalStock());
+            itemInsertStatement.setString(4, item.getNote());
+            itemInsertStatement.setString(5, item.getCode());
+            itemInsertStatement.execute();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
+            return ex.getMessage();
+        }
+        return " Royal Item  Edited Successfully";
     }
 
 }
