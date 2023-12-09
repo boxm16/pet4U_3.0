@@ -356,5 +356,46 @@ public class SuppliersAndStockController {
 
         return "redirect:stockManagement.htm?supplierId=" + supplierId + "";
     }
+    
+    
+     //----------------
+    @RequestMapping(value = "royalStockManegement")
+    public String royalStockManegement(ModelMap modelMap) {
+     
+        LinkedHashMap<String, SuppliersItem> supplierItemsForView = new LinkedHashMap<>();
+        TreeMap<String, SuppliersItem> usher = new TreeMap<>();
+
+        LinkedHashMap<String, SuppliersItem> supplierItemsFromDatabase = supplierDao.getRoyalItems();
+
+        EksagogesController eksagogesController = new EksagogesController();
+        LinkedHashMap<String, ItemEksagoges> lastSixMonthsSales = eksagogesController.getLastSixMonthsSales();
+
+        for (Map.Entry<String, SuppliersItem> supplierItemsFromDatabaseEntrySet : supplierItemsFromDatabase.entrySet()) {
+            String key = supplierItemsFromDatabaseEntrySet.getKey();
+            SuppliersItem suppliersItem = supplierItemsFromDatabaseEntrySet.getValue();
+
+            ItemEksagoges itemEksagoges = lastSixMonthsSales.get(key);
+
+            suppliersItem.setDescription(itemEksagoges.getDescription());
+            suppliersItem.setPosition(itemEksagoges.getPosition());
+            suppliersItem.setQuantity(itemEksagoges.getQuantity());
+
+            suppliersItem.setEksagoges(itemEksagoges.getEksagoges());
+
+            suppliersItem.setSupplierId(33333);
+
+            usher.put(suppliersItem.getPosition(), suppliersItem);
+        }
+
+        for (Map.Entry<String, SuppliersItem> usherEntry : usher.entrySet()) {
+
+            supplierItemsForView.put(usherEntry.getValue().getCode(), usherEntry.getValue());
+        }
+
+        modelMap.addAttribute("supplierItems", supplierItemsForView);
+        modelMap.addAttribute("supplier", "ROYAL");
+
+        return "suppliersAndStock/royalStockManagement";
+    }
 
 }

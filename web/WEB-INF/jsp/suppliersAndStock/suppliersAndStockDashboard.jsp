@@ -38,7 +38,7 @@
         <h1>Suppliers And Stock Dashboard</h1>
         <h3><a href="goForAddingSupplier.htm">Add Supplier</a></h3>
         <hr>
-        
+
 
         <table>
             <thead>
@@ -62,6 +62,8 @@
                 }
             %>
         </table>
+        <hr><hr>
+        <a hred="royalStockManegement.htm">ROYAL STOCK MANAGEMENT</a>
     </center>
 </body>
 </html>

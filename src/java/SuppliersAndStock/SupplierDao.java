@@ -432,8 +432,6 @@ public class SupplierDao {
         return " Objective Sales Updated Successfully";
     }
 
-    
-
     String updateHorizons(String supplierId, String itemCode, String orderHorizon, String minimalStockHorizon) {
         try {
             Connection connection = this.databaseConnectionFactory.getMySQLConnection();
@@ -450,5 +448,60 @@ public class SupplierDao {
             return ex.getMessage();
         }
         return " Horizons Updated Successfully";
+    }
+
+    LinkedHashMap<String, SuppliersItem> getRoyalItems() {
+        LinkedHashMap<String, SuppliersItem> items = new LinkedHashMap<>();
+        String sql = "SELECT * FROM stock_management WHERE supplier_id=" + supplierId + ";";
+        ResultSet resultSet;
+
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            Connection connection = databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+
+            resultSet = statement.executeQuery(sql);
+            while (resultSet.next()) {
+                SuppliersItem item = new SuppliersItem();
+                String itemCode = resultSet.getString("item_code");
+                item.setCode(itemCode.trim());
+
+                int objectiveSales = resultSet.getInt("objective_sales");
+                item.setObjectiveSales(objectiveSales);
+                String objectiveSalesExpirationDateString = resultSet.getString("objective_sales_expiration_date");
+                LocalDate objectiveSalesExpirationDate = null;
+
+                if (objectiveSalesExpirationDateString != null) {
+                    DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                    objectiveSalesExpirationDate = LocalDate.parse(objectiveSalesExpirationDateString, dateTimeFormatter);
+
+                    LocalDate nowDate = LocalDate.now();
+                    if (objectiveSalesExpirationDate.isBefore(nowDate)) {
+                        objectiveSalesExpirationDate = null;
+                        item.setObjectiveSales(0.0);
+                    }
+                }
+
+                item.setObjectiveSalesExpirationDate(objectiveSalesExpirationDate);
+                item.setMinimalStockHorizon(resultSet.getInt("minimal_stock_horizon"));
+                item.setOrderHorizon(resultSet.getInt("order_horizon"));
+                item.setOrderUnit(resultSet.getString("order_unit"));
+                item.setOrderUnitCapacity(resultSet.getInt("order_unit_capacity"));
+                String note = resultSet.getString("note");
+                if (note == null) {
+                    note = "";
+                }
+                item.setNote(note);
+                items.put(itemCode, item);
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return items;
     }
 }
