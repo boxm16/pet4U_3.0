@@ -115,6 +115,13 @@
         <h1> ${offersTableDeletionResult} </h1>
         <a href='deleteOffersDatabaseTables.htm'><h1>Delete Offers Database Tables</h1> </a>
         <br>
+        <hr>
+        <h1> ${royalTableCreationResult} </h1>
+        <a href='createRoyalDatabaseTables.htm'><h1>Create Royal Database Tables</h1> </a>
+        <br>
+        <h1> ${royalTableDeletionResult} </h1>
+        <a href='deleteRoyalDatabaseTables.htm'><h1>Delete Royal Database Tables</h1> </a>
+        <br>
 
 
 

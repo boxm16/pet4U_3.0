@@ -701,4 +701,43 @@ public class TechManDao {
         }
     }
 
+    String createRoyalDatabaseTables() {
+        String query = "CREATE TABLE royal("
+                + "item_code VARCHAR (100) NOT NULL, "
+                + "off_line_stock INT (5) NOT NULL, "
+                + "on_line_stock INT (5) NOT NULL, "
+                + "maximal_stock INT (5) NOT NULL, "
+                + "note VARCHAR (500)  NULL) "
+                + "ENGINE = InnoDB "
+                + "DEFAULT CHARACTER SET = utf8;";
+
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+            statement.close();
+            connection.close();
+            return "Table 'royal' created succesfully";
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return "Table 'royal' could not be created:" + ex;
+        }
+    }
+
+    String deleteRoyalDatabaseTables() {
+        String query = "DROP TABLE royal";
+
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+            statement.close();
+            connection.close();
+            return "Table 'royal' deleted succesfully";
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return "Table 'royal' could not be deleted:" + ex;
+        }
+    }
+
 }

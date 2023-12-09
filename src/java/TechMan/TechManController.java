@@ -303,6 +303,7 @@ public class TechManController {
         return "techMan/techManDashboard";
     }
 //-----------------------------------------------------------
+
     @RequestMapping(value = "/createMonthSalesDatabaseTables", method = RequestMethod.GET)
     public String createMonthSalesDatabaseTables(ModelMap modelMap) {
         String result = techManDao.createMonthSalesDatabaseTables();
@@ -318,9 +319,9 @@ public class TechManController {
         modelMap.addAttribute("monthSalesTableDeletionResult", result);
         return "techMan/techManDashboard";
     }
-    
+
     //----------------------------------------------------------
-     @RequestMapping(value = "/createOffersDatabaseTables", method = RequestMethod.GET)
+    @RequestMapping(value = "/createOffersDatabaseTables", method = RequestMethod.GET)
     public String createOffersDatabaseTables(ModelMap modelMap) {
         String result = techManDao.createOffersDatabaseTables();
         result = result + "<br>";
@@ -335,7 +336,24 @@ public class TechManController {
         modelMap.addAttribute("offersTableDeletionResult", result);
         return "techMan/techManDashboard";
     }
-    
+    //----------------------------------------------------------
+
+    @RequestMapping(value = "/createRoyalDatabaseTables", method = RequestMethod.GET)
+    public String createRoyalDatabaseTables(ModelMap modelMap) {
+        String result = techManDao.createRoyalDatabaseTables();
+        result = result + "<br>";
+        modelMap.addAttribute("royalTableCreationResult", result);
+        return "techMan/techManDashboard";
+    }
+
+    @RequestMapping(value = "/deleteRoyalDatabaseTables", method = RequestMethod.GET)
+    public String deleteRoyalDatabaseTables(ModelMap modelMap) {
+        String result = techManDao.deleteRoyalDatabaseTables();
+        result = result + "<br>";
+        modelMap.addAttribute("royalTableDeletionResult", result);
+        return "techMan/techManDashboard";
+    }
+
     //------------------
     
 }
