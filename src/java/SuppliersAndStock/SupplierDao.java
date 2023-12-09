@@ -487,7 +487,23 @@ public class SupplierDao {
         return items;
     }
 
-    String addItemToRoyalSupplier() {
-        return "success";
+    String addItemToRoyalSupplier(RoyalItem item) {
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            PreparedStatement insertStatement = connection.prepareStatement("INSERT INTO royal_stock_management (item_code, on_line_stock, off_line_stock, maximal_stock,  note) VALUES (?,?,?,?,?)");
+
+            insertStatement.setString(1, item.getCode());
+            insertStatement.setInt(2, item.getOnLineStock());
+            insertStatement.setInt(3, item.getOffLineStock());
+            insertStatement.setInt(4, item.getMaximalStock());
+            insertStatement.setString(5, item.getNote());
+            insertStatement.execute();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
+            return ex.getMessage();
+        }
+        return "New Item Added To Royal Supplier Successfully";
     }
+
 }

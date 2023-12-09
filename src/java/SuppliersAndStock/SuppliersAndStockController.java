@@ -437,7 +437,7 @@ public class SuppliersAndStockController {
 
         item.setNote(note);
 
-        String result = supplierDao.addItemToRoyalSupplier();
+        String result = supplierDao.addItemToRoyalSupplier(item);
         modelMap.addAttribute("resultColor", "green");
         modelMap.addAttribute("result", result);
 
