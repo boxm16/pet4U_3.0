@@ -467,7 +467,7 @@ public class SupplierDao {
                 item.setCode(itemCode.trim());
 
                 item.setOffLineStock(resultSet.getInt("off_line_stock"));
-                item.setOffLineStock(resultSet.getInt("on_line_stock"));
+                item.setOnLineStock(resultSet.getInt("on_line_stock"));
                 item.setMaximalStock(resultSet.getInt("maximal_stock"));
                 String note = resultSet.getString("note");
                 if (note == null) {
