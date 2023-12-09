@@ -65,19 +65,20 @@
                         <table class="table table-hover table-sm">
                             <thead>  
 
-                                <tr>
+                                <tr>   
+                                    <th>Posi/on</th>
                                     <th>ΚΩΔΙΚΟΣ</th>
                                     <th>Description</th>
-                                    <th>Posi/on</th>
-
-
+                                    <th>On Line Stock</th>
+                                    <th>Off Site Stock</th>
+                                    <th>Maximal Stock</th>
 
                                     <th>Note</th>
                                     <th>Edit</th>
                                     <th> <button class="btn btn-primary btn-lg" onclick="requestRouter()">ORDER MODE </button></th>
                                 </tr>
                             </thead>
-                            <% 
+                            <%
                                 LinkedHashMap<String, RoyalItem> items = (LinkedHashMap) request.getAttribute("supplierItems");
                                 for (Map.Entry<String, RoyalItem> entrySet : items.entrySet()) {
                                     RoyalItem item = entrySet.getValue();
@@ -85,7 +86,15 @@
                                     out.println("<tr>");
 
                                     out.println("<td>");
+                                    out.println(item.getPosition());
+                                    out.println("</td>");
+
+                                    out.println("<td>");
                                     out.println("<a href='itemAnalysis.htm?code=" + item.getCode() + "' target='_blank'>" + item.getCode() + "</a>");
+                                    out.println("</td>");
+
+                                    out.println("<td>");
+                                    out.println(item.getDescription());
                                     out.println("</td>");
 
                                     out.println("<td>");
@@ -104,7 +113,7 @@
 
                     </center>
                     <form id="form" action="orderMode.htm" target="_blank" method="POST">
-                       
+
                         <input hidden type="text" id="orderItemsInput" name="itemsIds" >
                     </form>
 
