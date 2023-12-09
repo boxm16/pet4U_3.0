@@ -103,7 +103,7 @@
 
                     </center>
                     <form id="form" action="orderMode.htm" target="_blank" method="POST">
-                        <input hidden type="text" id="supplierId" name="supplierId" value="${supplier.id}">
+                       
                         <input hidden type="text" id="orderItemsInput" name="itemsIds" >
                     </form>
 
