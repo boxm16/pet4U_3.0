@@ -76,7 +76,7 @@
                                     <th> <button class="btn btn-primary btn-lg" onclick="requestRouter()">ORDER MODE </button></th>
                                 </tr>
                             </thead>
-                            <% Supplier supplier = (Supplier) request.getAttribute("supplier");
+                            <% 
                                 LinkedHashMap<String, SuppliersItem> items = (LinkedHashMap) request.getAttribute("supplierItems");
                                 for (Map.Entry<String, SuppliersItem> entrySet : items.entrySet()) {
                                     SuppliersItem item = entrySet.getValue();
