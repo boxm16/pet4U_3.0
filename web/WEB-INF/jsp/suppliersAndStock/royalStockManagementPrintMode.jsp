@@ -79,59 +79,62 @@
                             <%
                                 LinkedHashMap<String, RoyalItem> items = (LinkedHashMap) request.getAttribute("supplierItems");
                                 for (Map.Entry<String, RoyalItem> entrySet : items.entrySet()) {
+
                                     RoyalItem item = entrySet.getValue();
+                                    double stock = Double.parseDouble(item.getQuantity());
 
-                                    out.println("<tr>");
+                                    if ((item.getState().equals("OFF SITE") && stock >= item.getOnLineStock())
+                                            || item.getState().isEmpty() && stock <= item.getOffLineStock()) {
 
-                                    out.println("<td>");
-                                    out.println("<a href='itemAnalysis.htm?code=" + item.getCode() + "' target='_blank'>" + item.getCode() + "</a>");
-                                    out.println("</td>");
+                                        out.println("<tr>");
 
-                                    out.println("<td>");
-                                    out.println(item.getDescription());
-                                    out.println("</td>");
+                                        out.println("<td>");
+                                        out.println("<a href='itemAnalysis.htm?code=" + item.getCode() + "' target='_blank'>" + item.getCode() + "</a>");
+                                        out.println("</td>");
 
-                                    out.println("<td>");
-                                    out.println(item.getState());
-                                    out.println("</td>");
+                                        out.println("<td>");
+                                        out.println(item.getDescription());
+                                        out.println("</td>");
 
-                                    out.println("<td>");
-                                    if (item.getState().equals("OFF SITE")) {
-                                        double stock = Double.parseDouble(item.getQuantity());
-                                        if (stock >= item.getOnLineStock()) {
-                                            out.println("ON LINE");
+                                        out.println("<td>");
+                                        out.println(item.getState());
+                                        out.println("</td>");
+
+                                        out.println("<td>");
+                                        if (item.getState().equals("OFF SITE")) {
+                                            if (stock >= item.getOnLineStock()) {
+                                                out.println("ON LINE");
+                                            }
                                         }
-                                    }
-                                    if (item.getState().isEmpty()) {
-                                        double stock = Double.parseDouble(item.getQuantity());
-                                        if (stock <= item.getOffLineStock()) {
-                                            out.println("OFF SITE");
+                                        if (item.getState().isEmpty()) {
+                                            if (stock <= item.getOffLineStock()) {
+                                                out.println("OFF SITE");
+                                            }
                                         }
+                                        out.println("</td>");
+
+                                        out.println("<td>");
+                                        out.println(item.getQuantity());
+                                        out.println("</td>");
+
+                                        out.println("<td>");
+                                        out.println(item.getOnLineStock());
+                                        out.println("</td>");
+
+                                        out.println("<td>");
+                                        out.println(item.getOffLineStock());
+                                        out.println("</td>");
+
+                                        out.println("<td>");
+                                        out.println(item.getMaximalStock());
+                                        out.println("</td>");
+
+                                        out.println("<td>");
+                                        out.println(item.getNote());
+                                        out.println("</td>");
+
+                                        out.println("</tr>");
                                     }
-                                    out.println("</td>");
-
-                                    out.println("<td>");
-                                    out.println(item.getQuantity());
-                                    out.println("</td>");
-
-                                    out.println("<td>");
-                                    out.println(item.getOnLineStock());
-                                    out.println("</td>");
-
-                                    out.println("<td>");
-                                    out.println(item.getOffLineStock());
-                                    out.println("</td>");
-
-                                    out.println("<td>");
-                                    out.println(item.getMaximalStock());
-                                    out.println("</td>");
-
-                                    out.println("<td>");
-                                    out.println(item.getNote());
-                                    out.println("</td>");
-
-                                    out.println("</tr>");
-
                                 }
                             %>
                         </table>
