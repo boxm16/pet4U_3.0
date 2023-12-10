@@ -378,7 +378,7 @@ public class SuppliersAndStockController {
             suppliersItem.setDescription(itemEksagoges.getDescription());
             suppliersItem.setPosition(itemEksagoges.getPosition());
             suppliersItem.setQuantity(itemEksagoges.getQuantity());
-
+            suppliersItem.setState(itemEksagoges.getState());
             suppliersItem.setEksagoges(itemEksagoges.getEksagoges());
 
             usher.put(suppliersItem.getPosition(), suppliersItem);
