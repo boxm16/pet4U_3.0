@@ -77,7 +77,9 @@
 
                                     <th>Note</th>
                                     <th>Edit</th>
-                                    <th> <button class="btn btn-primary btn-lg" onclick="requestRouter('royalStockManagementPrintMode.htm')">PRINT MODE </button></th>
+                                    <th> <button class="btn btn-primary btn-lg" onclick="requestRouter('royalStockManagementPrintMode.htm')">PRINT MODE </button>
+                                        <br>
+                                        <button class="btn btn-success btn-lg" onclick="requestRouter('royalStockManagementExcelDownload.htm')">Excel Download </button></th>
                                 </tr>
                             </thead>
                             <%
