@@ -97,9 +97,13 @@
 
                                     out.println("<td>");
                                     if (item.getState().isEmpty()) {
-                                        out.println(item.getState());
+                                        int stock = Integer.parseInt(item.getQuantity());
+                                        if (stock >= item.getOnLineStock()) {
+                                            out.println("ON LINE");
+                                        }
+                                       
                                     } else {
-                                        out.println("OFF SITE");
+                                        out.println("");
                                     }
                                     out.println("</td>");
 
@@ -121,10 +125,6 @@
 
                                     out.println("<td>");
                                     out.println(item.getNote());
-                                    out.println("</td>");
-
-                                    out.println("<td>");
-                                    out.println("<a href='goForEditingRoyalItem.htm?code=" + item.getCode() + "'>Edit</a>");
                                     out.println("</td>");
 
                                     out.println("</tr>");
