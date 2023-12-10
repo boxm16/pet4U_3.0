@@ -60,7 +60,7 @@
 
                     </table>
                     <br>
-                    <button type="submit" style="width:300px; height :60px; background-color: green"><h1>Add Item</h1></button>
+                    <button type="submit" style="width:300px; height :60px; background-color: green"><h1>EDIT Item</h1></button>
                 </h2>
         </form>
 
