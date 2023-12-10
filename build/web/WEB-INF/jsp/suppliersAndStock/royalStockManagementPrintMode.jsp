@@ -97,11 +97,11 @@
 
                                     out.println("<td>");
                                     if (item.getState().isEmpty()) {
-                                        int stock = Integer.parseInt(item.getQuantity());
+                                        double stock = Double.parseDouble(item.getQuantity());
                                         if (stock >= item.getOnLineStock()) {
                                             out.println("ON LINE");
                                         }
-                                       
+
                                     } else {
                                         out.println("");
                                     }
