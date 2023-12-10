@@ -63,8 +63,9 @@
 
                                 <tr>   
 
-                                    <th>ΚΩΔΙΚΟΣ</th>
+
                                     <th>Description</th>
+                                    <th>ΚΩΔΙΚΟΣ</th>
                                     <th>State Now</th>
                                     <th>Update State For</th>
                                     <th>Stock Now</th>
@@ -87,11 +88,11 @@
                                         out.println("<tr>");
 
                                         out.println("<td>");
-                                        out.println("<a href='itemAnalysis.htm?code=" + item.getCode() + "' target='_blank'>" + item.getCode() + "</a>");
+                                        out.println(item.getDescription());
                                         out.println("</td>");
 
                                         out.println("<td>");
-                                        out.println(item.getDescription());
+                                        out.println("<a href='itemAnalysis.htm?code=" + item.getCode() + "' target='_blank'>" + item.getCode() + "</a>");
                                         out.println("</td>");
 
                                         out.println("<td>");
@@ -123,7 +124,7 @@
                                         out.println(item.getOffLineStock());
                                         out.println("</td>");
 
-                                       out.println("</tr>");
+                                        out.println("</tr>");
                                     }
                                 }
                             %>
