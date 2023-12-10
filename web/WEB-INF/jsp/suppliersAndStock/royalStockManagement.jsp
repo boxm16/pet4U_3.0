@@ -77,7 +77,7 @@
 
                                     <th>Note</th>
                                     <th>Edit</th>
-                                    <th> <button class="btn btn-primary btn-lg" onclick="requestRouter()">PRINT MODE </button></th>
+                                    <th> <button class="btn btn-primary btn-lg" onclick="requestRouter('royalStockManagementPrintMode.htm')">PRINT MODE </button></th>
                                 </tr>
                             </thead>
                             <%
@@ -134,7 +134,7 @@
                         </table>
 
                     </center>
-                    <form id="form" action="royalStockManagementPrintMode.htm" target="_blank" method="POST">
+                    <form id="form" action="" target="_blank" method="POST">
 
                         <input hidden type="text" id="orderItemsInput" name="itemsIds" >
                     </form>
@@ -173,7 +173,8 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <script>
                                         ////--------------------
-                                        function requestRouter() {
+                                        function requestRouter(target) {
+                                            form.action = target;
                                             form.submit();
                                         }
 
