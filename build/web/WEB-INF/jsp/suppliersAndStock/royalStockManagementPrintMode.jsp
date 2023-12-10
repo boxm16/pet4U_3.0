@@ -92,7 +92,7 @@
                                         out.println("</td>");
 
                                         out.println("<td>");
-                                        out.println("<a href='itemAnalysis.htm?code=" + item.getCode() + "' target='_blank'>" + item.getCode() + "</a>");
+                                        out.println(item.getCode());
                                         out.println("</td>");
 
                                         out.println("<td>");
