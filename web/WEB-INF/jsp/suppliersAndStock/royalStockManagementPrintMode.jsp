@@ -84,10 +84,6 @@
                                     out.println("<tr>");
 
                                     out.println("<td>");
-                                    out.println(item.getPosition());
-                                    out.println("</td>");
-
-                                    out.println("<td>");
                                     out.println("<a href='itemAnalysis.htm?code=" + item.getCode() + "' target='_blank'>" + item.getCode() + "</a>");
                                     out.println("</td>");
 
@@ -97,6 +93,14 @@
 
                                     out.println("<td>");
                                     out.println(item.getState());
+                                    out.println("</td>");
+
+                                    out.println("<td>");
+                                    if (item.getState().isEmpty()) {
+                                        out.println(item.getState());
+                                    } else {
+                                        out.println("OFF SITE");
+                                    }
                                     out.println("</td>");
 
                                     out.println("<td>");
