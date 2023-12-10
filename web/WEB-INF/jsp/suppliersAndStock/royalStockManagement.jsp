@@ -69,14 +69,14 @@
                                     <th>Posi/on</th>
                                     <th>ΚΩΔΙΚΟΣ</th>
                                     <th>Description</th>
-                                     <th>Stock Now</th>
+                                    <th>Stock Now</th>
                                     <th>"On Line" Stock</th>
                                     <th>"Off Site" Stock</th>
                                     <th>Maximal Stock</th>
 
                                     <th>Note</th>
                                     <th>Edit</th>
-                                    <th> <button class="btn btn-primary btn-lg" onclick="requestRouter()">ORDER MODE </button></th>
+                                    <th> <button class="btn btn-primary btn-lg" onclick="requestRouter()">PRINT MODE </button></th>
                                 </tr>
                             </thead>
                             <%
@@ -97,8 +97,8 @@
                                     out.println("<td>");
                                     out.println(item.getDescription());
                                     out.println("</td>");
-                                    
-                                     out.println("<td>");
+
+                                    out.println("<td>");
                                     out.println(item.getQuantity());
                                     out.println("</td>");
 
@@ -129,7 +129,7 @@
                         </table>
 
                     </center>
-                    <form id="form" action="orderMode.htm" target="_blank" method="POST">
+                    <form id="form" action="royalStockManagementPrintMode.htm" target="_blank" method="POST">
 
                         <input hidden type="text" id="orderItemsInput" name="itemsIds" >
                     </form>
@@ -159,30 +159,13 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <script>
-                                        ////--------------------
-                                        function requestRouter() {
-                                            //console.log(collectSellectedCheckBoxes());
-                                            orderItemsInput.value = collectSellectedCheckBoxes();
-                                            // console.log("VALUE"+orderItemsInput.value);
-                                            form.submit();
-                                        }
-                                        //this function collects all checked checkbox values, concatinates them in one string and returns that string to send it after by POST method to server
-                                        function collectSellectedCheckBoxes() {
-                                            var returnValue = "";
-                                            var targetCheckBoxes = document.querySelectorAll(".itemId");
-                                            for (x = 0; x < targetCheckBoxes.length; x++) {
-                                                if (targetCheckBoxes[x].checked)
-                                                    returnValue += targetCheckBoxes[x].id + ",";
-                                            }
-                                            return returnValue;
-                                        }
+                                     ////--------------------
+                                     function requestRouter() {
+                                         form.submit();
+                                     }
 
-                                        //------------
 
-                                        function setText(text) {
-                                            document.getElementById("modal-text").innerHTML = text;
 
-                                        }
         </script>
 
     </body>
