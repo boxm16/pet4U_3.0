@@ -153,11 +153,12 @@
                     </div>
                     <hr>
                     <h1>Royal Stock Management</h1>
-                    <form action="goForAddingItemToRoyalSupplier.htm" method="POST">
+                    <center>   <form action="goForAddingItemToRoyalSupplier.htm" method="POST">
 
-                        <input type="text" name="altercode">
-                        <button type="submit">Add New Item</button>
-                    </form>
+                            <input type="text" name="altercode">
+                            <button type="submit">Add New Item</button>
+                        </form>
+                    </center>
                 </div>   
             </div>  
         </div>
