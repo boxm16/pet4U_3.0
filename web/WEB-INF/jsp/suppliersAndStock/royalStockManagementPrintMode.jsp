@@ -96,14 +96,11 @@
                                     out.println("</td>");
 
                                     out.println("<td>");
-                                    if (item.getState().isEmpty()) {
+                                    if (item.getState().equals("OFF SITE")) {
                                         double stock = Double.parseDouble(item.getQuantity());
                                         if (stock >= item.getOnLineStock()) {
                                             out.println("ON LINE");
                                         }
-
-                                    } else {
-                                        out.println("");
                                     }
                                     out.println("</td>");
 
