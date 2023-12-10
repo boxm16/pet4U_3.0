@@ -70,9 +70,7 @@
                                     <th>Stock Now</th>
                                     <th>"On Line" Stock</th>
                                     <th>"Off Site" Stock</th>
-                                    <th>Maximal Stock</th>
 
-                                    <th>Note</th>
 
                                 </tr>
                             </thead>
@@ -125,15 +123,7 @@
                                         out.println(item.getOffLineStock());
                                         out.println("</td>");
 
-                                        out.println("<td>");
-                                        out.println(item.getMaximalStock());
-                                        out.println("</td>");
-
-                                        out.println("<td>");
-                                        out.println(item.getNote());
-                                        out.println("</td>");
-
-                                        out.println("</tr>");
+                                       out.println("</tr>");
                                     }
                                 }
                             %>
