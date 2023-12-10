@@ -358,8 +358,8 @@ public class SuppliersAndStockController {
     }
 
     //----------------
-    @RequestMapping(value = "royalStockManegement")
-    public String royalStockManegement(ModelMap modelMap) {
+    @RequestMapping(value = "royalStockManagement")
+    public String royalStockManagement(ModelMap modelMap) {
 
         LinkedHashMap<String, RoyalItem> supplierItemsForView = new LinkedHashMap<>();
         TreeMap<String, RoyalItem> usher = new TreeMap<>();
