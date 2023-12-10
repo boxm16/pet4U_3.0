@@ -91,7 +91,7 @@
                                         out.println(item.getDescription());
                                         out.println("</td>");
 
-                                        out.println("<td>");
+                                         out.println("<td style='background-color:#E7F3E2'>");
                                         out.println(item.getCode());
                                         out.println("</td>");
 
@@ -99,7 +99,7 @@
                                         out.println(item.getState());
                                         out.println("</td>");
 
-                                        out.println("<td style='background-color:#D4E8CB'>");
+                                        out.println("<td style='background-color:#E7F3E2'>");
                                         if (item.getState().equals("OFF SITE")) {
                                             if (stock >= item.getOnLineStock()) {
                                                 out.println("ON LINE");
