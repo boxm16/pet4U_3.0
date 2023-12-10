@@ -69,6 +69,7 @@
                                     <th>Posi/on</th>
                                     <th>ΚΩΔΙΚΟΣ</th>
                                     <th>Description</th>
+                                    <th>State</th>
                                     <th>Stock Now</th>
                                     <th>"On Line" Stock</th>
                                     <th>"Off Site" Stock</th>
@@ -96,6 +97,10 @@
 
                                     out.println("<td>");
                                     out.println(item.getDescription());
+                                    out.println("</td>");
+
+                                    out.println("<td>");
+                                    out.println(item.getState());
                                     out.println("</td>");
 
                                     out.println("<td>");
