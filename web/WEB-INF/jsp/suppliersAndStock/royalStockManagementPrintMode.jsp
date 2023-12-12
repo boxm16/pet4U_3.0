@@ -19,7 +19,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Royal Stock Management: Print Mode</title>
+        <title>RSManagement: Print Mode</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <style>
             table, th, td {
@@ -51,19 +51,11 @@
 
                     <center>
 
-
-
                         <h1>Royal Stock Management:  Print Mode</h1>
-
-
                         <hr>
-
                         <table class="table table-hover table-sm">
                             <thead>  
-
                                 <tr>   
-
-
                                     <th>Description</th>
                                     <th>ΚΩΔΙΚΟΣ</th>
                                     <th>State Now</th>
@@ -71,8 +63,6 @@
                                     <th>Stock Now</th>
                                     <th>"On Line" Stock</th>
                                     <th>"Off Site" Stock</th>
-
-
                                 </tr>
                             </thead>
                             <%
@@ -91,7 +81,7 @@
                                         out.println(item.getDescription());
                                         out.println("</td>");
 
-                                         out.println("<td style='background-color:#E7F3E2'>");
+                                        out.println("<td style='background-color:#E7F3E2'>");
                                         out.println(item.getCode());
                                         out.println("</td>");
 
@@ -153,15 +143,6 @@
                             </div>
                         </div>
                     </div>
-                    <hr>
-                    <center>  
-                        <h1>Royal Stock Management</h1>
-                        <form action="goForAddingItemToRoyalSupplier.htm" method="POST">
-
-                            <input type="text" name="altercode">
-                            <button type="submit">Add New Item</button>
-                        </form>
-                    </center>
                 </div>   
             </div>  
         </div>
