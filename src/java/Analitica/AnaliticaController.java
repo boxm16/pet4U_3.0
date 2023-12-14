@@ -7,6 +7,8 @@ import Offer.Offer;
 import Offer.OfferDao;
 import Pet4uItems.Pet4uItemsDao;
 import Search.SearchDao;
+import StockAnalysis.StockAnalysis;
+import StockAnalysis.StockAnalysisDao;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import org.springframework.stereotype.Controller;
@@ -36,6 +38,10 @@ public class AnaliticaController {
         OfferDao offerDao = new OfferDao();
         ArrayList<Offer> offers = offerDao.getOffers(code);
         model.addAttribute("offers", offers);
+
+        StockAnalysisDao stockDao = new StockAnalysisDao();
+        StockAnalysis stockAnalysis = stockDao.getStock(code);
+        model.addAttribute("stockAnalysis", stockAnalysis);
 
         return "analitica/itemAnalysis";
     }
