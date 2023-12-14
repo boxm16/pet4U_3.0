@@ -52,10 +52,10 @@
     <body>
         <div class="container" >
             <div class="row">
-                <div class=" col-sm-3">
+                <div class=" col-sm-4">
 
                 </div>
-                <div class=" col-sm-3">
+                <div class=" col-sm-4">
                     <h5><a href="index.htm">INDEX</a></h5>
                     <h5>Pet4U Item Analysis</h5>
 
@@ -88,149 +88,10 @@
                         %>
                     </table>
                 </div>
-                <div class=" col-sm-3">
+                <div class=" col-sm-4">
 
                 </div>
-                <div class=" col-sm-3">
-
-                </div>
-                <hr>
-            </div>
-            <hr>
-            <div class="row">
-
-                <div class=" col-sm-3">
-                    <center><h3>Sales</h3></center>
-                    <table>
-                        <th>-</th>
-                        <th>Month Name</th>
-                        <th>E-Shop Sales</th>
-                        <th>Ενδοδιακ.</th>
-                            <%
-                                MonthSales itemSales = (MonthSales) request.getAttribute("itemSales");
-                                TreeMap<LocalDate, Sales> sales = itemSales.getSales();
-                                int totalMonths = sales.size();
-                                int currentMonth = 0;
-                                double totalSales = 0;
-                                double totalShopSupplies = 0;
-
-                                for (Map.Entry<LocalDate, Sales> salesEntry : sales.entrySet()) {
-                                    LocalDate date = salesEntry.getKey();
-                                    Sales sale = salesEntry.getValue();
-
-                                    if (currentMonth >= (totalMonths - 6)) {
-                                        out.println("<tr style='background-color:#D0D0D0'>");
-                                    } else {
-                                        out.println("<tr>");
-                                    }
-                                    out.println("<td>");
-                                    out.println(date.getMonthValue());
-                                    out.println("</td>");
-
-                                    out.println("<td>");
-                                    out.println(date.getMonth());
-                                    out.println("</td>");
-
-                                    out.println("<td>");
-                                    out.println(sale.getEshopSales());
-                                    out.println("</td>");
-
-                                    out.println("<td>");
-                                    out.println(sale.getShopsSupply());
-                                    out.println("</td>");
-
-                                    out.println("</tr>");
-
-                                    if (currentMonth >= (totalMonths - 6)) {
-                                        totalSales += sale.getEshopSales();
-                                        totalShopSupplies += sale.getShopsSupply();
-                                    } else {
-                                        //do nothing
-                                    }
-                                    currentMonth++;
-
-                                }
-                                out.println("<tr style='color: green'>");
-                                out.println("<td colspan='2'>");
-                                out.println("LAST 6 MONTHS TOTALS");
-                                out.println("</td>");
-                                out.println("<td>");
-                                out.println(totalSales);
-                                out.println("</td>");
-                                out.println("<td>");
-                                out.println(totalShopSupplies);
-                                out.println("</td>");
-                                out.println("</tr>");
-
-                                out.println("<tr style='color: blue'>");
-                                out.println("<td colspan='3'>");
-                                out.println("LAST 6 MONTHS GRAND TOTAL");
-                                out.println("</td>");
-                                out.println("<td>");
-                                out.println(totalSales + totalShopSupplies);
-                                out.println("</td>");
-                                out.println("</tr>");
-
-                                out.println("<tr style='color: #BA4A00'>");
-                                out.println("<td colspan='3'>");
-                                out.println("One Month Average ΕΞΑΓΩΓΕΣ");
-                                out.println("</td>");
-                                out.println("<td>");
-                                out.println((totalSales + totalShopSupplies) / 6);
-                                out.println("</td>");
-                                out.println("</tr>");
-
-                                out.println("</tr>");
-
-
-                            %>
-                    </table>
-                </div>
-
-                <div class=" col-sm-3">
-
-                    <center><h3>Offers</h3></center>
-                    <table>
-                        <th>Titel</th>
-                        <th>Start Date</th>
-                        <th>End Date</th>
-                            <%                                ArrayList<Offer> offers = (ArrayList<Offer>) request.getAttribute("offers");
-
-                                for (Offer offer : offers) {
-
-                                    out.println("<tr>");
-
-                                    out.println("<td>");
-                                    out.println(offer.getTitle());
-                                    out.println("</td>");
-
-                                    out.println("<td>");
-                                    out.println(offer.getStartDateString());
-                                    out.println("</td>");
-
-                                    LocalDate endDate = offer.getEndDate();
-                                    if (endDate == null) {
-                                        out.println("<td>");
-                                        out.println("<a href='endOfferDashboard.htm?id=" + offer.getId() + "'>End Offer</a>");
-                                        out.println("</td>");
-                                    } else {
-
-                                        out.println("<td>");
-                                        out.println(offer.getEndDateString());
-                                        out.println("</td>");
-                                    }
-
-                                    out.println("</tr>");
-
-                                }
-
-                            %>
-                    </table>
-
-
-                </div>
-
-                <div class=" col-sm-3">
+                <div class=" col-sm-4">
                     <center><h3>Total Stock Analysis</h3></center>
                     <table>
                         <th>Name</th>
@@ -368,8 +229,144 @@
                         %>
                     </table>
                 </div>
+                <hr>
+            </div>
+            <hr>
+            <div class="row">
 
-                <div class=" col-sm-3">
+                <div class=" col-sm-4">
+                    <center><h3>Sales</h3></center>
+                    <table>
+                        <th>-</th>
+                        <th>Month Name</th>
+                        <th>E-Shop Sales</th>
+                        <th>Ενδοδιακ.</th>
+                            <%                                MonthSales itemSales = (MonthSales) request.getAttribute("itemSales");
+                                TreeMap<LocalDate, Sales> sales = itemSales.getSales();
+                                int totalMonths = sales.size();
+                                int currentMonth = 0;
+                                double totalSales = 0;
+                                double totalShopSupplies = 0;
+
+                                for (Map.Entry<LocalDate, Sales> salesEntry : sales.entrySet()) {
+                                    LocalDate date = salesEntry.getKey();
+                                    Sales sale = salesEntry.getValue();
+
+                                    if (currentMonth >= (totalMonths - 6)) {
+                                        out.println("<tr style='background-color:#D0D0D0'>");
+                                    } else {
+                                        out.println("<tr>");
+                                    }
+                                    out.println("<td>");
+                                    out.println(date.getMonthValue());
+                                    out.println("</td>");
+
+                                    out.println("<td>");
+                                    out.println(date.getMonth());
+                                    out.println("</td>");
+
+                                    out.println("<td>");
+                                    out.println(sale.getEshopSales());
+                                    out.println("</td>");
+
+                                    out.println("<td>");
+                                    out.println(sale.getShopsSupply());
+                                    out.println("</td>");
+
+                                    out.println("</tr>");
+
+                                    if (currentMonth >= (totalMonths - 6)) {
+                                        totalSales += sale.getEshopSales();
+                                        totalShopSupplies += sale.getShopsSupply();
+                                    } else {
+                                        //do nothing
+                                    }
+                                    currentMonth++;
+
+                                }
+                                out.println("<tr style='color: green'>");
+                                out.println("<td colspan='2'>");
+                                out.println("LAST 6 MONTHS TOTALS");
+                                out.println("</td>");
+                                out.println("<td>");
+                                out.println(totalSales);
+                                out.println("</td>");
+                                out.println("<td>");
+                                out.println(totalShopSupplies);
+                                out.println("</td>");
+                                out.println("</tr>");
+
+                                out.println("<tr style='color: blue'>");
+                                out.println("<td colspan='3'>");
+                                out.println("LAST 6 MONTHS GRAND TOTAL");
+                                out.println("</td>");
+                                out.println("<td>");
+                                out.println(totalSales + totalShopSupplies);
+                                out.println("</td>");
+                                out.println("</tr>");
+
+                                out.println("<tr style='color: #BA4A00'>");
+                                out.println("<td colspan='3'>");
+                                out.println("One Month Average ΕΞΑΓΩΓΕΣ");
+                                out.println("</td>");
+                                out.println("<td>");
+                                out.println((totalSales + totalShopSupplies) / 6);
+                                out.println("</td>");
+                                out.println("</tr>");
+
+                                out.println("</tr>");
+
+
+                            %>
+                    </table>
+                </div>
+
+                <div class=" col-sm-4">
+
+                    <center><h3>Offers</h3></center>
+                    <table>
+                        <th>Titel</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                            <%                                ArrayList<Offer> offers = (ArrayList<Offer>) request.getAttribute("offers");
+
+                                for (Offer offer : offers) {
+
+                                    out.println("<tr>");
+
+                                    out.println("<td>");
+                                    out.println(offer.getTitle());
+                                    out.println("</td>");
+
+                                    out.println("<td>");
+                                    out.println(offer.getStartDateString());
+                                    out.println("</td>");
+
+                                    LocalDate endDate = offer.getEndDate();
+                                    if (endDate == null) {
+                                        out.println("<td>");
+                                        out.println("<a href='endOfferDashboard.htm?id=" + offer.getId() + "'>End Offer</a>");
+                                        out.println("</td>");
+                                    } else {
+
+                                        out.println("<td>");
+                                        out.println(offer.getEndDateString());
+                                        out.println("</td>");
+                                    }
+
+                                    out.println("</tr>");
+
+                                }
+
+                            %>
+                    </table>
+
+
+                </div>
+
+
+
+                <div class=" col-sm-4">
                     <center><h3>Varibobi Stock Analysis</h3></center>
                     <table>
                         <th>Date Stamp</th>
