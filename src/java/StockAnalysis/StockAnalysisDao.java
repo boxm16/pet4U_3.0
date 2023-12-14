@@ -39,7 +39,7 @@ public class StockAnalysisDao {
                         stock.setMenidiStock(quantity);
                         break;
                     case "ΑΧ-ΚΑΛ":
-                        System.out.println("Wednesday");
+                          stock.setKallitheaStock(quantity);
                         break;
                     case "ΑΧ-ΑΛΙ":
                         stock.setAlimosStock(quantity);
@@ -48,10 +48,10 @@ public class StockAnalysisDao {
                         stock.setAghiaParaskeviStock(quantity);
                         break;
                     case "ΑΧ-ΔΑΦ":
-                        System.out.println("Saturday");
+                        stock.setDafniStock(quantity);
                         break;
                     case "ΑΧ-ΚΟΥ":
-                        stock.setDafniStock(quantity);
+                        stock.setKoukakiStock(quantity);
                         break;
                     case "ΑΧ-ΜΙΧ":
                         stock.setMixalakopoulouStock(quantity);
