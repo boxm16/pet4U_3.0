@@ -96,7 +96,7 @@
             <hr>
             <div class="row">
 
-                <div class=" col-sm-4">
+                <div class=" col-sm-3">
                     <center><h3>Sales</h3></center>
                     <table>
                         <th>-</th>
@@ -183,9 +183,9 @@
                             %>
                     </table>
                 </div>
-                <hr>
-                <div class=" col-sm-4">
-                    <center><h3>Stock Analysis</h3></center>
+
+                <div class=" col-sm-3">
+                    <center><h3>Total Stock Analysis</h3></center>
                     <table>
                         <th>Name</th>
                         <th>Quantity</th>
@@ -321,8 +321,8 @@
 
                         %>
                     </table>
-                    <hr>
-
+                </div>
+                <div class=" col-sm-3">
 
                     <center><h3>Offers</h3></center>
                     <table>
@@ -361,11 +361,11 @@
 
                             %>
                     </table>
-                    <hr>
+
 
                 </div>
-                <div class=" col-sm-4">
-                    <center><h3>Stock Analysis</h3></center>
+                <div class=" col-sm-3">
+                    <center><h3>Varibobi Stock Analysis</h3></center>
                     <table>
                         <th>Date Stamp</th>
                         <th>State</th>
