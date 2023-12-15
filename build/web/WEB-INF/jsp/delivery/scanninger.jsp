@@ -62,37 +62,7 @@
                 </tr>
             </thead>
             <tbody id="tableBody">
-                <%
-                    int x = 1;
-                    DeliveryInvoice deliveryInvoice = (DeliveryInvoice) request.getAttribute("deliveryInvoice");
-                    LinkedHashMap<String, DeliveryItem> items = deliveryInvoice.getItems();
-                    for (Map.Entry<String, DeliveryItem> deliveryItemEntry : items.entrySet()) {
-                        DeliveryItem item = deliveryItemEntry.getValue();
 
-                        out.println("<tr>");
-                        out.println("<td>");
-                        out.println(x);
-                        out.println("</td>");
-                        out.println("<td style='padding-left: 5px; padding-left: 5px;'>");
-                        out.println(item.getCode());
-                        out.println("</td>");
-
-                        out.println("<td>");
-                        out.println(item.getDescription());
-                        out.println("</td>");
-
-                        out.println("<td>");
-                        out.println("<input  class='sent' type='number' id='" + item.getCode() + "_sent' value='" + item.getQuantity() + "' readonly width='10px'>");
-                        out.println("</td>");
-
-                        out.println("<td>");
-                        out.println("<input class='delivered' type='number' id='" + item.getCode() + "_delivered' value='" + item.getDeliveredQuantity() + "'>");
-                        out.println("</td>");
-
-                        out.println("</tr>");
-                        x++;
-                    }
-                %>
             </tbody>
         </table>
         <hr>
