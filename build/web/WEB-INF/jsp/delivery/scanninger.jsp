@@ -120,10 +120,10 @@
                                                 sent = sent.value * 1;
                                             }
 
-                                            let delivered = document.getElementById(code + "_delivered").value * 1;
+                                            let delivered = document.getElementById(code + "_delivered").innerHTML * 1;
                                             delivered++;
 
-                                            document.getElementById(code + "_delivered").value = delivered;
+                                            document.getElementById(code + "_delivered").innerHTML = delivered;
 
 
                                         }
@@ -150,8 +150,8 @@
 
                                     c1.innerText = code;
                                     c2.innerText = description;
-                                    c3.innerHTML = "<input class='sent' type='number' id='" + code + "_sent' value='0' readonly width='10px'>";
-                                    c4.innerHTML = "<input class='delivered' type='number' id='" + code + "_delivered' value='0'>";
+                                    c3.innerHTML = "<div class='sent' type='number' id='" + code + "_sent' >0</div>";
+                                    c4.innerHTML = "<div class='delivered'  id='" + code + "_delivered'>0</div>";
 
 
 
