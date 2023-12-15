@@ -430,10 +430,8 @@ public class DeliveryController {
 
     @RequestMapping(value = "scanninger")
     public String scanninger(ModelMap modelMap) {
-
         DeliveryDao deliveryDao = new DeliveryDao();
         ArrayList<DeliveryItem> pet4UItemsRowByRow = deliveryDao.getPet4UItemsRowByRow();
-
         modelMap.addAttribute("pet4UItemsRowByRow", pet4UItemsRowByRow);
 
         return "delivery/scanninger";
