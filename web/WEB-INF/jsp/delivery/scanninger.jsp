@@ -53,12 +53,10 @@
                 </tr>
 
                 <tr>
-
                     <th>Code</th>
                     <th>Description</th>
                     <th>Sent</th>
-                    <th>Delivered</th>
-
+                    <th>Qty</th>
                 </tr>
             </thead>
             <tbody id="tableBody">
