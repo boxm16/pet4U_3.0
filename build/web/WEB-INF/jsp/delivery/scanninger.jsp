@@ -89,10 +89,6 @@
                         out.println("<input class='delivered' type='number' id='" + item.getCode() + "_delivered' value='" + item.getDeliveredQuantity() + "'>");
                         out.println("</td>");
 
-                        out.println("<td>");
-                        out.println("<dev id='" + item.getCode() + "_colorDisplay'>____</dev>");
-                        out.println("</td>");
-
                         out.println("</tr>");
                         x++;
                     }
@@ -159,18 +155,7 @@
 
                                             document.getElementById(code + "_delivered").value = delivered;
 
-                                            let colorDisplay = document.getElementById(code + "_colorDisplay");
 
-                                            let diff = sent - delivered;
-                                            if (diff > 0) {
-                                                colorDisplay.style.backgroundColor = 'red';
-                                            }
-                                            if (diff < 0) {
-                                                colorDisplay.style.backgroundColor = 'yellow';
-                                            }
-                                            if (diff === 0) {
-                                                colorDisplay.style.backgroundColor = 'green';
-                                            }
                                         }
 
                                         input.value = "";
@@ -198,7 +183,7 @@
                                     c3.innerText = description;
                                     c4.innerHTML = "<input class='sent' type='number' id='" + code + "_sent' value='0' readonly width='10px'>";
                                     c5.innerHTML = "<input class='delivered' type='number' id='" + code + "_delivered' value='0'>";
-                                    c6.innerHTML = "<dev id='" + code + "_colorDisplay'>____</dev>";
+                                   
 
 
                                     // Append cells to row
