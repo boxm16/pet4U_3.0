@@ -53,12 +53,12 @@
                 </tr>
 
                 <tr>
-                    <th>A/A</th>
+
                     <th>Code</th>
                     <th>Description</th>
                     <th>Sent</th>
                     <th>Delivered</th>
-                    <th>Alert</th>
+
                 </tr>
             </thead>
             <tbody id="tableBody">
@@ -175,15 +175,14 @@
                                     let c2 = document.createElement("td")
                                     let c3 = document.createElement("td")
                                     let c4 = document.createElement("td")
-                                    let c5 = document.createElement("td")
-                                    let c6 = document.createElement("td")
+                               
                                     // Insert data to cells
-                                    c1.innerText = "----";
-                                    c2.innerText = code;
-                                    c3.innerText = description;
-                                    c4.innerHTML = "<input class='sent' type='number' id='" + code + "_sent' value='0' readonly width='10px'>";
-                                    c5.innerHTML = "<input class='delivered' type='number' id='" + code + "_delivered' value='0'>";
                                    
+                                    c1.innerText = code;
+                                    c2.innerText = description;
+                                    c3.innerHTML = "<input class='sent' type='number' id='" + code + "_sent' value='0' readonly width='10px'>";
+                                    c4.innerHTML = "<input class='delivered' type='number' id='" + code + "_delivered' value='0'>";
+
 
 
                                     // Append cells to row
@@ -191,8 +190,7 @@
                                     row.appendChild(c2);
                                     row.appendChild(c3);
                                     row.appendChild(c4);
-                                    row.appendChild(c5);
-                                    row.appendChild(c6);
+                                   
 
 
                                     // Append row to table body
