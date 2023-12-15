@@ -100,6 +100,9 @@
                 <hr>
                 <a href="goForMonthSalesUpload.htm"><h1>Go For Month Sales  Upload</h1></a>
 
+                <hr>
+                <a href="scanninger.htm"><h1>Go for Scanning</h1></a>
+
 
 
             </center>

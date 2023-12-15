@@ -402,7 +402,7 @@ public class DeliveryController {
         }
 
         String result = deliveryDao.saveDeliveryChecking(invoiceNumber, deliveryItems);
-          return "redirect:deliveryDashboard.htm";
+        return "redirect:deliveryDashboard.htm";
     }
 
     private LinkedHashMap<String, String> decodeDeliveredItemsData(String data) {
@@ -426,6 +426,17 @@ public class DeliveryController {
         }
 
         return decodedData;
+    }
+
+    @RequestMapping(value = "scanninger")
+    public String scanninger(ModelMap modelMap) {
+
+        DeliveryDao deliveryDao = new DeliveryDao();
+        ArrayList<DeliveryItem> pet4UItemsRowByRow = deliveryDao.getPet4UItemsRowByRow();
+
+        modelMap.addAttribute("pet4UItemsRowByRow", pet4UItemsRowByRow);
+
+        return "delivery/scanninger";
     }
 
 }
