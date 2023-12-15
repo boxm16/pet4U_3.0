@@ -56,6 +56,7 @@
 
                     <th>Code</th>
                     <th>Description</th>
+                    <th>Sent</th>
                     <th>Delivered</th>
 
                 </tr>
@@ -78,6 +79,10 @@
 
                         out.println("<td>");
                         out.println(item.getDescription());
+                        out.println("</td>");
+
+                        out.println("<td>");
+                        out.println("<input  class='sent' type='number' id='" + item.getCode() + "_sent' value='" + item.getQuantity() + "' readonly width='10px'>");
                         out.println("</td>");
 
                         out.println("<td>");
@@ -169,13 +174,14 @@
                                     let c1 = document.createElement("td")
                                     let c2 = document.createElement("td")
                                     let c3 = document.createElement("td")
-                          
+                                    let c4 = document.createElement("td")
 
                                     // Insert data to cells
 
                                     c1.innerText = code;
                                     c2.innerText = description;
-                                    c3.innerHTML = "<input class='delivered' type='number' id='" + code + "_delivered' value='0'>";
+                                    c3.innerHTML = "<input class='sent' type='number' id='" + code + "_sent' value='0' readonly width='10px'>";
+                                    c4.innerHTML = "<input class='delivered' type='number' id='" + code + "_delivered' value='0'>";
 
 
 
@@ -183,7 +189,7 @@
                                     row.appendChild(c1);
                                     row.appendChild(c2);
                                     row.appendChild(c3);
-                                   
+                                    row.appendChild(c4);
 
 
 
