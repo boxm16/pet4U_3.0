@@ -12,6 +12,7 @@ public class DeliveryInvoice {
 
     public DeliveryInvoice() {
         this.errorMessages = "";
+        this.items = new LinkedHashMap<>();
     }
 
     public String getNumber() {
@@ -53,7 +54,5 @@ public class DeliveryInvoice {
     public void setId(String id) {
         this.id = id;
     }
-    
-    
 
 }
