@@ -82,10 +82,6 @@
                         out.println("</td>");
 
                         out.println("<td>");
-                        out.println("<input  class='sent' type='number' id='" + item.getCode() + "_sent' value='" + item.getQuantity() + "' readonly width='10px'>");
-                        out.println("</td>");
-
-                        out.println("<td>");
                         out.println("<input class='delivered' type='number' id='" + item.getCode() + "_delivered' value='" + item.getDeliveredQuantity() + "'>");
                         out.println("</td>");
 
