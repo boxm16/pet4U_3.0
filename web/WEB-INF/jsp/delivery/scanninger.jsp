@@ -56,7 +56,7 @@
 
                     <th>Code</th>
                     <th>Description</th>
-                    <th>Sent</th>
+
                     <th>Delivered</th>
 
                 </tr>
@@ -79,10 +79,6 @@
 
                         out.println("<td>");
                         out.println(item.getDescription());
-                        out.println("</td>");
-
-                        out.println("<td>");
-                        out.println("<input  class='sent' type='number' id='" + item.getCode() + "_sent' value='" + item.getQuantity() + "' readonly width='10px'>");
                         out.println("</td>");
 
                         out.println("<td>");
@@ -142,19 +138,10 @@
                                             var description = item.description;
                                             document.getElementById("descriptionDisplay").innerHTML = altercode + " : " + description;
 
-
-                                            let sent = document.getElementById(code + "_sent");
-                                            if (sent == null) {
-                                                addRow(item.code, item.description);
-                                            } else {
-                                                sent = sent.value * 1;
-                                            }
-
                                             let delivered = document.getElementById(code + "_delivered").value * 1;
                                             delivered++;
 
                                             document.getElementById(code + "_delivered").value = delivered;
-
 
                                         }
 
@@ -174,14 +161,13 @@
                                     let c1 = document.createElement("td")
                                     let c2 = document.createElement("td")
                                     let c3 = document.createElement("td")
-                                    let c4 = document.createElement("td")
-                               
+
+
                                     // Insert data to cells
-                                   
+
                                     c1.innerText = code;
                                     c2.innerText = description;
-                                    c3.innerHTML = "<input class='sent' type='number' id='" + code + "_sent' value='0' readonly width='10px'>";
-                                    c4.innerHTML = "<input class='delivered' type='number' id='" + code + "_delivered' value='0'>";
+                                    c3.innerHTML = "<input class='delivered' type='number' id='" + code + "_delivered' value='0'>";
 
 
 
@@ -190,7 +176,7 @@
                                     row.appendChild(c2);
                                     row.appendChild(c3);
                                     row.appendChild(c4);
-                                   
+
 
 
                                     // Append row to table body
@@ -203,8 +189,7 @@
                                 function requestRouter(requestTarget) {
                                     form.action = requestTarget;
 
-                                    let sent = collectSentData();
-                                    sentItems.value = sent;
+
 
                                     let delivered = collectDeliveredData();
                                     deliveredItems.value = delivered;
@@ -214,16 +199,7 @@
                                     form.submit();
                                 }
 
-                                function collectSentData() {
-                                    var returnValue = "";
-                                    var sentItems = document.querySelectorAll(".sent");
 
-                                    for (x = 0; x < sentItems.length; x++) {
-
-                                        returnValue += sentItems[x].id + ":" + sentItems[x].value + ",";
-                                    }
-                                    return returnValue;
-                                }
 
                                 function collectDeliveredData() {
                                     var returnValue = "";
