@@ -27,20 +27,21 @@ public class AnaliticaController {
         Item item = searchDao.getItemByAltercode(code);
         model.addAttribute("item", item);
 
+        String itemCode=item.getCode();
         Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
-        LinkedHashMap<String, Item> itemSnapshots = pet4uItemsDao.getItemSnapshots(code);
+        LinkedHashMap<String, Item> itemSnapshots = pet4uItemsDao.getItemSnapshots(itemCode);
         model.addAttribute("itemSnapshots", itemSnapshots);
 
         MonthSalesDao monthSalesDao = new MonthSalesDao();
-        MonthSales itemSales = monthSalesDao.getItemSales(code);
+        MonthSales itemSales = monthSalesDao.getItemSales(itemCode);
         model.addAttribute("itemSales", itemSales);
 
         OfferDao offerDao = new OfferDao();
-        ArrayList<Offer> offers = offerDao.getOffers(code);
+        ArrayList<Offer> offers = offerDao.getOffers(itemCode);
         model.addAttribute("offers", offers);
 
         StockAnalysisDao stockDao = new StockAnalysisDao();
-        StockAnalysis stockAnalysis = stockDao.getStock(code);
+        StockAnalysis stockAnalysis = stockDao.getStock(itemCode);
         model.addAttribute("stockAnalysis", stockAnalysis);
 
         return "analitica/itemAnalysis";
