@@ -52,7 +52,7 @@
             </thead>
             <%
                 ArrayList<InventoryItem> items = (ArrayList) request.getAttribute("notes");
-                if (items!=null) {
+                if (items != null) {
                     for (InventoryItem inventoryItem : items) {
 
                         out.println("<tr>");
@@ -62,7 +62,7 @@
                         out.println("</td>");
 
                         out.println("<td>");
-                        out.println("<a href='findItemByAltercode.htm?altercode=" + inventoryItem.getCode() + "'>" + inventoryItem.getCode() + "</a>");
+                        out.println("<a href='itemAnalysis.htm?code=" + inventoryItem.getCode() + "' target='_blank'>" + inventoryItem.getCode() + "</a>");
                         out.println("</td>");
 
                         out.println("<td>");
