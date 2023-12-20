@@ -4,6 +4,7 @@
     Author     : Michail Sitmalidis
 --%>
 
+<%@page import="StockAnalysis.StockAnalysis"%>
 <%@page import="MonthSales.MonthSales"%>
 <%@page import="BasicModel.AltercodeContainer"%>
 <%@page import="java.text.SimpleDateFormat"%>
