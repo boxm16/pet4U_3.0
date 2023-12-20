@@ -99,6 +99,19 @@
 
                         </table>
                     </form>
+                    <hr>
+                    <form action="updateHorizons.htm" method="POST">
+                        <input hidden type="text" name="supplierId" value="${supplierItem.supplierId}">
+                        <input hidden type="text" name="itemCode" value="${supplierItem.code}">
+
+                        <table> 
+                            <tr><td>Order Horizon(Months)</td><td><input type="number" name="orderHorizon" value="${supplierItem.orderHorizon}"></td></tr>
+                            <tr><td>Minimal Stock Horizon(Months)</td><td><input type="number" name="minimalStockHorizon" value="${supplierItem.minimalStockHorizon}"></td></tr>
+                            <tr><td colspan="2"><center>---------------------------</center></td></tr>
+                            <tr><td colspan="2"><center><button class="btn btn-success"type="submit>">Update  Horizons</button></center></td></tr>
+
+                        </table>
+                    </form>
 
 
 
@@ -194,18 +207,7 @@
 
                 </div>
                 <div class=" col-sm-4">
-                    <form action="updateHorizons.htm" method="POST">
-                        <input hidden type="text" name="supplierId" value="${supplierItem.supplierId}">
-                        <input hidden type="text" name="itemCode" value="${supplierItem.code}">
 
-                        <table> 
-                            <tr><td>Order Horizon(Months)</td><td><input type="number" name="orderHorizon" value="${supplierItem.orderHorizon}"></td></tr>
-                            <tr><td>Minimal Stock Horizon(Months)</td><td><input type="number" name="minimalStockHorizon" value="${supplierItem.minimalStockHorizon}"></td></tr>
-                            <tr><td colspan="2"><center>---------------------------</center></td></tr>
-                            <tr><td colspan="2"><center><button class="btn btn-success"type="submit>">Update  Horizons</button></center></td></tr>
-
-                        </table>
-                    </form>
                 </div>
                 <hr>
             </div>
