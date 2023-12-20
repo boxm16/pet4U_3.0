@@ -16,6 +16,8 @@ import Pet4uItems.Pet4uItemsDao;
 import SalesX.SalesControllerX;
 import SalesX.SoldItem;
 import Search.SearchDao;
+import StockAnalysis.StockAnalysis;
+import StockAnalysis.StockAnalysisDao;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
@@ -301,18 +303,22 @@ public class SuppliersAndStockController {
         model.addAttribute("item", item);
 
         Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
-        LinkedHashMap<String, Item> itemSnapshots = pet4uItemsDao.getItemSnapshots(code);
+        LinkedHashMap<String, Item> itemSnapshots = pet4uItemsDao.getItemSnapshots(item.getCode());
         model.addAttribute("itemSnapshots", itemSnapshots);
 
         MonthSalesDao monthSalesDao = new MonthSalesDao();
-        MonthSales itemSales = monthSalesDao.getItemSales(code);
+        MonthSales itemSales = monthSalesDao.getItemSales(item.getCode());
         model.addAttribute("itemSales", itemSales);
 
         OfferDao offerDao = new OfferDao();
-        ArrayList<Offer> offers = offerDao.getOffers(code);
+        ArrayList<Offer> offers = offerDao.getOffers(item.getCode());
         model.addAttribute("offers", offers);
 
-        SuppliersItem supplierItem = supplierDao.getSuppliersItem(supplierId, code);
+        StockAnalysisDao stockDao = new StockAnalysisDao();
+        StockAnalysis stockAnalysis = stockDao.getStock(item.getCode());
+        model.addAttribute("stockAnalysis", stockAnalysis);
+
+        SuppliersItem supplierItem = supplierDao.getSuppliersItem(supplierId, item.getCode());
         model.addAttribute("supplierItem", supplierItem);
 
         return "suppliersAndStock/objectiveSalesDashboard";
@@ -490,8 +496,8 @@ public class SuppliersAndStockController {
         modelMap.addAttribute("item", item);
         return "suppliersAndStock/editRoyalSuppliersItem";
     }
-    
-     @RequestMapping(value = "royalStockManagementPrintMode")
+
+    @RequestMapping(value = "royalStockManagementPrintMode")
     public String royalStockManagementPrintMode(ModelMap modelMap) {
 
         LinkedHashMap<String, RoyalItem> supplierItemsForView = new LinkedHashMap<>();
