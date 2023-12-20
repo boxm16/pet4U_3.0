@@ -176,52 +176,6 @@
                 </div>
 
                 <div class=" col-sm-4">
-
-                    <center><h3>Offers</h3></center>
-                    <table>
-                        <th>Titel</th>
-                        <th>Start Date</th>
-                        <th>End Date</th>
-                            <%                                ArrayList<Offer> offers = (ArrayList<Offer>) request.getAttribute("offers");
-
-                                for (Offer offer : offers) {
-
-                                    out.println("<tr>");
-
-                                    out.println("<td>");
-                                    out.println(offer.getTitle());
-                                    out.println("</td>");
-
-                                    out.println("<td>");
-                                    out.println(offer.getStartDateString());
-                                    out.println("</td>");
-
-                                    LocalDate endDate = offer.getEndDate();
-                                    if (endDate == null) {
-                                        out.println("<td>");
-                                        out.println("<a href='endOfferDashboard.htm?id=" + offer.getId() + "'>End Offer</a>");
-                                        out.println("</td>");
-                                    } else {
-
-                                        out.println("<td>");
-                                        out.println(offer.getEndDateString());
-                                        out.println("</td>");
-                                    }
-
-                                    out.println("</tr>");
-
-                                }
-
-                            %>
-                    </table>
-
-
-                </div>
-                <hr>
-            </div>
-            <hr>
-            <div class="row">
-                <div class=" col-sm-4">
                     <center><h3>Total Stock Analysis</h3></center>
                     <table>
                         <th>Name</th>
@@ -357,7 +311,51 @@
 
 
                         %>
+                    </table>                  
+                </div>
+                <hr>
+            </div>
+            <hr>
+            <div class="row">
+                <div class=" col-sm-4">
+                    <center><h3>Offers</h3></center>
+                    <table>
+                        <th>Titel</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                            <%                                ArrayList<Offer> offers = (ArrayList<Offer>) request.getAttribute("offers");
+
+                                for (Offer offer : offers) {
+
+                                    out.println("<tr>");
+
+                                    out.println("<td>");
+                                    out.println(offer.getTitle());
+                                    out.println("</td>");
+
+                                    out.println("<td>");
+                                    out.println(offer.getStartDateString());
+                                    out.println("</td>");
+
+                                    LocalDate endDate = offer.getEndDate();
+                                    if (endDate == null) {
+                                        out.println("<td>");
+                                        out.println("<a href='endOfferDashboard.htm?id=" + offer.getId() + "'>End Offer</a>");
+                                        out.println("</td>");
+                                    } else {
+
+                                        out.println("<td>");
+                                        out.println(offer.getEndDateString());
+                                        out.println("</td>");
+                                    }
+
+                                    out.println("</tr>");
+
+                                }
+
+                            %>
                     </table>
+
                 </div>
 
 
