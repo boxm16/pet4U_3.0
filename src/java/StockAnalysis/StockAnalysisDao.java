@@ -17,7 +17,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class StockAnalysisDao {
 
-  public  StockAnalysis getStock(String itemCode) {
+    public StockAnalysis getStock(String itemCode) {
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
         Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
         StockAnalysis stock = new StockAnalysis();
@@ -39,7 +39,7 @@ public class StockAnalysisDao {
                         stock.setMenidiStock(quantity);
                         break;
                     case "ΑΧ-ΚΑΛ":
-                          stock.setKallitheaStock(quantity);
+                        stock.setKallitheaStock(quantity);
                         break;
                     case "ΑΧ-ΑΛΙ":
                         stock.setAlimosStock(quantity);
@@ -58,6 +58,7 @@ public class StockAnalysisDao {
                         break;
                     case "ΑΧ-ΒΑΡ":
                         stock.setVaribobiStock(quantity);
+                        break;
                     case "ΑΧ-ΧΛΡ":
                         stock.setXalandriStock(quantity);
                         break;
