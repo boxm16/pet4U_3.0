@@ -14,9 +14,10 @@ public class StockAnalysisController {
     }
 
     @RequestMapping(value = "stockinger")
-    public void addStockSnapshot() {
+    public String addStockSnapshot() {
         HashMap<String, StockAnalysis> totalStock = getTotalStock();
         System.out.println("TOTAL STOCK" + totalStock.size());
+        return "index";
     }
 
     public HashMap<String, StockAnalysis> getTotalStock() {
