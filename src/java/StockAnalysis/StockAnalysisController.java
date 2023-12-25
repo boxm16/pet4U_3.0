@@ -16,7 +16,9 @@ public class StockAnalysisController {
     @RequestMapping(value = "stockinger")
     public String addStockSnapshot() {
         HashMap<String, StockAnalysis> totalStock = getTotalStock();
-        System.out.println("TOTAL STOCK" + totalStock.size());
+        StockAnalysisDao stockDao = new StockAnalysisDao();
+        String result = stockDao.insertPet4uTotalStockSnapshot(totalStock);
+        System.out.println("TOTAL STOCK Insertion Result:" + result);
         return "index";
     }
 
