@@ -5,6 +5,8 @@
  */
 package StockAnalysis;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author Michail Sitmalidis
@@ -12,6 +14,7 @@ package StockAnalysis;
 public class StockAnalysis {
 
     private String code;
+    LocalDate date;
     double varibobiStock;
     double xalkidonaStock;
     double menidiStock;
@@ -27,6 +30,8 @@ public class StockAnalysis {
     double peristeriStock;
     double petroupoliStock;
     double palioFaliroStock;
+    double katastrofi;
+    double endo;
 
     public String getCode() {
         return code;
@@ -155,6 +160,31 @@ public class StockAnalysis {
     public void setPalioFaliroStock(double palioFaliroStock) {
         this.palioFaliroStock = palioFaliroStock;
     }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public double getKatastrofi() {
+        return katastrofi;
+    }
+
+    public void setKatastrofi(double katastrofi) {
+        this.katastrofi = katastrofi;
+    }
+
+    public double getEndo() {
+        return endo;
+    }
+
+    public void setEndo(double endo) {
+        this.endo = endo;
+    }
     
     
+
 }

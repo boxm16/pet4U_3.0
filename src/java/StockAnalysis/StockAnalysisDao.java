@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.stereotype.Repository;
@@ -77,6 +78,12 @@ public class StockAnalysisDao {
                     case "ΑΧ-ΠΦΑ":
                         stock.setPalioFaliroStock(quantity);
                         break;
+                    case "ΠΡΟΣ ΚΑΤ":
+                        stock.setKatastrofi(quantity);
+                        break;
+                    case "ΕΝΔΟΔΙΑΚΙΝΗΣΗ":
+                        stock.setEndo(quantity);
+                        break;
                 }
             }
 
@@ -87,5 +94,85 @@ public class StockAnalysisDao {
             Logger.getLogger(StockAnalysisDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return stock;
+    }
+
+    HashMap<String, StockAnalysis> getTotalStock() {
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+        Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
+        HashMap<String, StockAnalysis> totalStock = new HashMap();
+
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("select * from WH_ALL;");
+
+            while (resultSet.next()) {
+                StockAnalysis stock = new StockAnalysis();
+                String code = resultSet.getString("ABBREVIATION").trim();
+                String wh = resultSet.getString("WH");
+                double quantity = resultSet.getDouble("QTYBALANCE");
+
+                switch (wh) {
+                    case "ΑΧ-ΧΑΛ":
+                        stock.setXalkidonaStock(quantity);
+                        break;
+                    case "ΑΧ-ΜΕΝ":
+                        stock.setMenidiStock(quantity);
+                        break;
+                    case "ΑΧ-ΚΑΛ":
+                        stock.setKallitheaStock(quantity);
+                        break;
+                    case "ΑΧ-ΑΛΙ":
+                        stock.setAlimosStock(quantity);
+                        break;
+                    case "ΑΧ-ΑΓΠ":
+                        stock.setAghiaParaskeviStock(quantity);
+                        break;
+                    case "ΑΧ-ΔΑΦ":
+                        stock.setDafniStock(quantity);
+                        break;
+                    case "ΑΧ-ΚΟΥ":
+                        stock.setKoukakiStock(quantity);
+                        break;
+                    case "ΑΧ-ΜΙΧ":
+                        stock.setMixalakopoulouStock(quantity);
+                        break;
+                    case "ΑΧ-ΒΑΡ":
+                        stock.setVaribobiStock(quantity);
+                        break;
+                    case "ΑΧ-ΧΛΡ":
+                        stock.setXalandriStock(quantity);
+                        break;
+                    case "ΑΧ-ΙΩΝ":
+                        stock.setNeaIoniaStock(quantity);
+                        break;
+                    case "ΑΧ-ΑΡΓ":
+                        stock.setArghiroupoliStock(quantity);
+                        break;
+                    case "ΑΧ-ΠΕΡ":
+                        stock.setPeristeriStock(quantity);
+                        break;
+                    case "ΑΧ-ΠΤΡ":
+                        stock.setPetroupoliStock(quantity);
+                        break;
+                    case "ΑΧ-ΠΦΑ":
+                        stock.setPalioFaliroStock(quantity);
+                        break;
+                    case "ΠΡΟΣ ΚΑΤ":
+                        stock.setKatastrofi(quantity);
+                        break;
+                    case "ΕΝΔΟΔΙΑΚΙΝΗΣΗ":
+                        stock.setEndo(quantity);
+                        break;
+                }
+                totalStock.put(code, stock);
+            }
+
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(StockAnalysisDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return totalStock;
     }
 }
