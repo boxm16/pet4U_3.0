@@ -19,7 +19,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class StockAnalysisDao {
-
+    
     public StockAnalysis getStock(String itemCode) {
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
         Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
@@ -28,12 +28,12 @@ public class StockAnalysisDao {
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("select * from WH_ALL WHERE ABBREVIATION='" + itemCode + "';");
-
+            
             while (resultSet.next()) {
                 // String code = resultSet.getString("ABBREVIATION").trim();
                 String wh = resultSet.getString("WH");
                 double quantity = resultSet.getDouble("QTYBALANCE");
-
+                
                 switch (wh) {
                     case "ΑΧ-ΧΑΛ":
                         stock.setXalkidonaStock(quantity);
@@ -88,7 +88,7 @@ public class StockAnalysisDao {
                         break;
                 }
             }
-
+            
             resultSet.close();
             statement.close();
             connection.close();
@@ -97,22 +97,22 @@ public class StockAnalysisDao {
         }
         return stock;
     }
-
+    
     HashMap<String, StockAnalysis> getTotalStock() {
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
         Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
         HashMap<String, StockAnalysis> totalStock = new HashMap();
-
+        
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("select * from WH_ALL;");
-
+            
             while (resultSet.next()) {
                 StockAnalysis stock = new StockAnalysis();
                 String code = resultSet.getString("ABBREVIATION").trim();
                 String wh = resultSet.getString("WH");
                 double quantity = resultSet.getDouble("QTYBALANCE");
-
+                stock.setCode(code);
                 switch (wh) {
                     case "ΑΧ-ΧΑΛ":
                         stock.setXalkidonaStock(quantity);
@@ -168,7 +168,7 @@ public class StockAnalysisDao {
                 }
                 totalStock.put(code, stock);
             }
-
+            
             resultSet.close();
             statement.close();
             connection.close();
@@ -177,12 +177,12 @@ public class StockAnalysisDao {
         }
         return totalStock;
     }
-
+    
     String insertPet4uTotalStockSnapshot(HashMap<String, StockAnalysis> totalStock) {
         try {
             DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
             Connection connection = databaseConnectionFactory.getMySQLConnection();
-
+            
             connection.setAutoCommit(false);
             PreparedStatement incertionPreparedStatement = connection.prepareStatement(
                     "INSERT INTO pet4u_stock_snapshot "
@@ -193,9 +193,9 @@ public class StockAnalysisDao {
                     + "peristeri, petroupoli, paleo_faliro, "
                     + "katastrofi, endo ) "
                     + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);");
-
+            
             System.out.println("Starting INSERTION: ....");
-
+            
             for (Map.Entry< String, StockAnalysis> stockAnalysisEntry : totalStock.entrySet()) {
                 StockAnalysis stockAnalysis = stockAnalysisEntry.getValue();
                 incertionPreparedStatement.setString(1, stockAnalysis.getCode());
@@ -218,11 +218,11 @@ public class StockAnalysisDao {
                 incertionPreparedStatement.setString(18, String.valueOf(stockAnalysis.getKatastrofi()));
                 incertionPreparedStatement.setString(19, String.valueOf(stockAnalysis.getEndo()));
                 incertionPreparedStatement.addBatch();
-
+                
             }
             //Executing the batch
             incertionPreparedStatement.executeBatch();
-
+            
             System.out.println(" Batch Insertion: DONE");
 
             //Saving the changes
@@ -230,12 +230,12 @@ public class StockAnalysisDao {
             //  deleteTripPeriodPreparedStatement.close();
             // deleteTripVoucherPreparedStatement.close();
             incertionPreparedStatement.close();
-
+            
             connection.close();
             return "";
         } catch (SQLException ex) {
             Logger.getLogger(StockAnalysisDao.class.getName()).log(Level.SEVERE, null, ex);
-
+            
             return ex.getMessage();
         }
     }
