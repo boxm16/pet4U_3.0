@@ -744,7 +744,7 @@ public class TechManDao {
         String query = "CREATE TABLE pet4u_stock_snapshot("
                 + "item_code VARCHAR (100) NOT NULL, "
                 + "date_stamp DATE NOT NULL, "
-                + "xalkidon VARCHAR (30)  NULL, "
+                + "xalkidona VARCHAR (30)  NULL, "
                 + "menidi VARCHAR (30)  NULL, "
                 + "kallithea VARCHAR (30)  NULL, "
                 + "alimos VARCHAR (30)  NULL, "
