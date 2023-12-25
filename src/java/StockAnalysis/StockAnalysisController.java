@@ -45,7 +45,6 @@ public class StockAnalysisController {
         StockAnalysisDao stockDao = new StockAnalysisDao();
         LinkedHashMap<String, StockAnalysis> itemTotalStockAnalysis = stockDao.getTotalStockAnalysis(itemCode);
         model.addAttribute("stockAnalysis", itemTotalStockAnalysis);
-        System.out.println("itemTotalStockAnalysis SIZE" +itemTotalStockAnalysis.size());
         return "analitica/itemTotalStockAnalysis";
     }
 }
