@@ -263,38 +263,25 @@ public class StockAnalysisDao {
                 StockAnalysis stockAnalysis = totalStock.get(date);
                 if (stockAnalysis == null) {
                     stockAnalysis = new StockAnalysis();
-
-                    stockAnalysis.setXalkidonaStock(resultSet.getDouble("xalkidona"));
-                    stockAnalysis.setMenidiStock(resultSet.getDouble("menidi"));
-                    stockAnalysis.setKallitheaStock(resultSet.getDouble("kallithea"));
-                    stockAnalysis.setAlimosStock(resultSet.getDouble("alimos"));
-                    stockAnalysis.setAghiaParaskeviStock(resultSet.getDouble("aghia_paraskevi"));
-                    stockAnalysis.setDafniStock(resultSet.getDouble("dafni"));
-                    stockAnalysis.setMixalakopoulouStock(resultSet.getDouble("mixalakopoulou"));
-                    stockAnalysis.setArghiroupoliStock(resultSet.getDouble("arghiroupoli"));
-                    stockAnalysis.setPeristeriStock(resultSet.getDouble("peristeri"));
-                    stockAnalysis.setPetroupoliStock(resultSet.getDouble("petroupoli"));
-                    stockAnalysis.setPalioFaliroStock(resultSet.getDouble("paleo_faliro"));
-                    stockAnalysis.setKatastrofi(resultSet.getDouble("katastrofi"));
-                    stockAnalysis.setEndo(resultSet.getDouble("endo"));
-                    totalStock.put(date, stockAnalysis);
-                } else {
-                    stockAnalysis.setXalkidonaStock(resultSet.getDouble("xalkidona"));
-                    stockAnalysis.setMenidiStock(resultSet.getDouble("menidi"));
-                    stockAnalysis.setKallitheaStock(resultSet.getDouble("kallithea"));
-                    stockAnalysis.setAlimosStock(resultSet.getDouble("alimos"));
-                    stockAnalysis.setAghiaParaskeviStock(resultSet.getDouble("aghia_paraskevi"));
-                    stockAnalysis.setDafniStock(resultSet.getDouble("dafni"));
-                    stockAnalysis.setMixalakopoulouStock(resultSet.getDouble("mixalakopoulou"));
-                    stockAnalysis.setArghiroupoliStock(resultSet.getDouble("arghiroupoli"));
-                    stockAnalysis.setPeristeriStock(resultSet.getDouble("peristeri"));
-                    stockAnalysis.setPetroupoliStock(resultSet.getDouble("petroupoli"));
-                    stockAnalysis.setPalioFaliroStock(resultSet.getDouble("paleo_faliro"));
-                    stockAnalysis.setKatastrofi(resultSet.getDouble("katastrofi"));
-                    stockAnalysis.setEndo(resultSet.getDouble("endo"));
-                    totalStock.put(date, stockAnalysis);
                 }
-
+                stockAnalysis.setXalkidonaStock(resultSet.getDouble("xalkidona"));
+                stockAnalysis.setMenidiStock(resultSet.getDouble("menidi"));
+                stockAnalysis.setKallitheaStock(resultSet.getDouble("kallithea"));
+                stockAnalysis.setAlimosStock(resultSet.getDouble("alimos"));
+                stockAnalysis.setAghiaParaskeviStock(resultSet.getDouble("aghia_paraskevi"));
+                stockAnalysis.setDafniStock(resultSet.getDouble("dafni"));
+                stockAnalysis.setKoukakiStock(resultSet.getDouble("koukaki"));
+                stockAnalysis.setMixalakopoulouStock(resultSet.getDouble("mixalakopoulou"));
+                stockAnalysis.setVaribobiStock(resultSet.getDouble("varibobi"));
+                stockAnalysis.setXalandriStock(resultSet.getDouble("xalandri"));
+                stockAnalysis.setNeaIoniaStock(resultSet.getDouble("nea_ionia"));
+                stockAnalysis.setArghiroupoliStock(resultSet.getDouble("arghiroupoli"));
+                stockAnalysis.setPeristeriStock(resultSet.getDouble("peristeri"));
+                stockAnalysis.setPetroupoliStock(resultSet.getDouble("petroupoli"));
+                stockAnalysis.setPalioFaliroStock(resultSet.getDouble("paleo_faliro"));
+                stockAnalysis.setKatastrofi(resultSet.getDouble("katastrofi"));
+                stockAnalysis.setEndo(resultSet.getDouble("endo"));
+                totalStock.put(date, stockAnalysis);
             }
 
             resultSet.close();
