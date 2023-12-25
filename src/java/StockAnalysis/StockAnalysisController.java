@@ -40,8 +40,8 @@ public class StockAnalysisController {
         SearchDao searchDao = new SearchDao();
         Item item = searchDao.getItemByAltercode(item_code);
         model.addAttribute("item", item);
+        
         String itemCode = item.getCode();
-
         StockAnalysisDao stockDao = new StockAnalysisDao();
         LinkedHashMap<String, StockAnalysis> itemTotalStockAnalysis = stockDao.getTotalStockAnalysis(itemCode);
         model.addAttribute("stockAnalysis", itemTotalStockAnalysis);
