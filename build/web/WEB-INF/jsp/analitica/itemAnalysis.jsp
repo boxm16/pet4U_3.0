@@ -319,7 +319,7 @@
                     </table>                  
                 </div>
                 <hr>
-                <%         out.println("<a href='showItemTotalStockSnapshots.htm?item_code=" + stockAnalysis.getCode() + ">Show Item Total Stock Snapshots</a>"); %>
+                <%         out.println("<a href='showItemTotalStockSnapshots.htm?item_code=" + stockAnalysis.getCode() + "'>Show Item Total Stock Snapshots</a>"); %>
             </div>
             <hr>
             <div class="row">
