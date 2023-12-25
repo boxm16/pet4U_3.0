@@ -258,7 +258,7 @@ public class StockAnalysisDao {
                 StockAnalysis stockAnalysis = totalStock.get(date);
                 if (stockAnalysis == null) {
                     stockAnalysis = new StockAnalysis();
-                    stockAnalysis.setXalkidonaStock(resultSet.getDouble("xalkidona"));
+                    stockAnalysis.setXalkidonaStock(resultSet.getDouble("xalkidon"));
                     stockAnalysis.setMenidiStock(resultSet.getDouble("menidi"));
                     stockAnalysis.setKallitheaStock(resultSet.getDouble("kallithea"));
                     stockAnalysis.setAlimosStock(resultSet.getDouble("alimos"));
