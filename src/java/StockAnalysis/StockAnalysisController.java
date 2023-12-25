@@ -19,13 +19,13 @@ public class StockAnalysisController {
         return stock;
     }
 
-    @RequestMapping(value = "stockinger")
-    public String addStockSnapshot() {
+   
+    public void addStockSnapshot() {
         HashMap<String, StockAnalysis> totalStock = getTotalStock();
         StockAnalysisDao stockDao = new StockAnalysisDao();
         String result = stockDao.insertPet4uTotalStockSnapshot(totalStock);
         System.out.println("TOTAL STOCK Insertion Result:" + result);
-        return "index";
+      
     }
 
     public HashMap<String, StockAnalysis> getTotalStock() {
