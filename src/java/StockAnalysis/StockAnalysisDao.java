@@ -192,11 +192,11 @@ public class StockAnalysisDao {
                     "INSERT INTO pet4u_stock_snapshot "
                     + "(item_code, date_stamp, "
                     + "xalkidona, menidi, kallithea, alimos, "
-                    + "aghia_paraskevi, dafni, koukaki, mixalakopoulou,"
-                    + " varibobi, xalandri, nea_ionia, arghiroupoli,"
+                    + "aghia_paraskevi, dafni, koukaki, mixalakopoulou, "
+                    + "varibobi, xalandri, nea_ionia, arghiroupoli, "
                     + "peristeri, petroupoli, paleo_faliro, "
                     + "katastrofi, endo) "
-                    + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);");
+                    + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);");
 
             System.out.println("Starting INSERTION: ....");
 
