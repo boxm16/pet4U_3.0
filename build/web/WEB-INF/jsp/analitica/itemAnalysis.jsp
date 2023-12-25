@@ -308,7 +308,7 @@
                             out.println("<td>");
                             out.println("Π. ΦΑΛΗΡΟ");
                             out.println("</td>");
-                            
+
                             out.println("<td>");
                             out.println(stockAnalysis.getPalioFaliroStock());
                             out.println("</td>");
@@ -319,8 +319,7 @@
                     </table>                  
                 </div>
                 <hr>
-                <a href="stock"
-                 <hr>
+                <%         out.println("<a href='showItemTotalStockSnapshots.htm?item_code=" + stockAnalysis.getCode() + ">Show Item Total Stock Snapshots</a>"); %>
             </div>
             <hr>
             <div class="row">
