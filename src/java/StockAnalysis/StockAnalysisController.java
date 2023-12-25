@@ -3,6 +3,7 @@ package StockAnalysis;
 import BasicModel.Item;
 import Search.SearchDao;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,7 +43,7 @@ public class StockAnalysisController {
         
         String itemCode = item.getCode();
         StockAnalysisDao stockDao = new StockAnalysisDao();
-      //  LinkedHashMap<String, StockAnalysis> itemTotalStockAnalysis = stockDao.getTotalStockAnalysis(itemCode);
+        LinkedHashMap<String, StockAnalysis> itemTotalStockAnalysis = stockDao.getTotalStockAnalysis(itemCode);
         model.addAttribute("stockAnalysis", itemTotalStockAnalysis);
         return "analitica/itemTotalStockAnalysis";
     }
