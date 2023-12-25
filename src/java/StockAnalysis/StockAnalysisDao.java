@@ -195,8 +195,8 @@ public class StockAnalysisDao {
                     + "aghia_paraskevi, dafni, koukaki, mixalakopoulou,"
                     + " varibobi, xalandri, nea_ionia, arghiroupoli,"
                     + "peristeri, petroupoli, paleo_faliro, "
-                    + "katastrofi, endo ) "
-                    + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);");
+                    + "katastrofi, endo) "
+                    + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);");
 
             System.out.println("Starting INSERTION: ....");
 
