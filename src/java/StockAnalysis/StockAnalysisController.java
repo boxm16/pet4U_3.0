@@ -35,7 +35,7 @@ public class StockAnalysisController {
     }
 
     @RequestMapping(value = "/showItemTotalStockSnapshots", method = RequestMethod.GET)
-    public String itemAnalysis(@RequestParam(name = "item_code") String item_code, ModelMap model) {
+    public String showItemTotalStockSnapshots(@RequestParam(name = "item_code") String item_code, ModelMap model) {
 
         SearchDao searchDao = new SearchDao();
         Item item = searchDao.getItemByAltercode(item_code);

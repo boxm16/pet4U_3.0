@@ -121,11 +121,12 @@
 
 
 
-                        <%                             LinkedHashMap<String, StockAnalysis> stockAnalysis = (LinkedHashMap<String, StockAnalysis>) request.getAttribute("stockAnalysis");
+                        <%
+                            LinkedHashMap<String, StockAnalysis> stockAnalysis = (LinkedHashMap<String, StockAnalysis>) request.getAttribute("stockAnalysis");
                             for (Map.Entry<String, StockAnalysis> stockAnalysisEntry : stockAnalysis.entrySet()) {
                                 out.println("<tr>");
 
-                                out.println("<td>");
+                                /*out.println("<td>");
                                 out.println(stockAnalysisEntry.getValue().getDate());
                                 out.println("</td>");
 
@@ -196,7 +197,7 @@
                                 out.println("<td>");
                                 out.println(stockAnalysisEntry.getValue().getEndo());
                                 out.println("</td>");
-
+                                 */
                                 out.println("</tr>");
 
 
