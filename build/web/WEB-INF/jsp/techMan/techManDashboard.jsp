@@ -123,6 +123,14 @@
         <a href='deleteRoyalDatabaseTables.htm'><h1>Delete Royal Database Tables</h1> </a>
         <br>
 
+        <hr>
+        <h1> ${pet4uStockSnapshotTableCreationResult} </h1>
+        <a href='createPet4uStockSnapshotDatabaseTables.htm'><h1>Create Pet4u Stock Snapshot Database Tables</h1> </a>
+        <br>
+        <h1> ${pet4uStockSnapshotTableDeletionResult} </h1>
+        <a href='deletePet4uStockSnapshotDatabaseTables.htm'><h1>Delete Pet4u Stock Snapshot Database Tables</h1> </a>
+        <br>
+
 
 
 

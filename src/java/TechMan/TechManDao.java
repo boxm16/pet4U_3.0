@@ -740,4 +740,42 @@ public class TechManDao {
         }
     }
 
+    String createPet4uStockSnapshotDatabaseTables() {
+        String query = "CREATE TABLE pet4u_stock_snapshot("
+                + "item_code VARCHAR (100) NOT NULL, "
+                + "date_stamp DATE NOT NULL, "
+                + "warehouse VARCHAR (15)  NULL, "
+                + "item_stock VARCHAR (30) NOT NULL) "
+                + "ENGINE = InnoDB "
+                + "DEFAULT CHARACTER SET = utf8;";
+
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+            statement.close();
+            connection.close();
+            return "Table 'pet4u_stock_snapshot' created succesfully";
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return "Table 'pet4u_stock_snapshot' could not be created:" + ex;
+        }
+    }
+
+    String deletePet4uStockSnapshotDatabaseTables() {
+        String query = "DROP TABLE pet4u_stock_snapshot";
+
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+            statement.close();
+            connection.close();
+            return "Table 'pet4u_stock_snapshot' deleted succesfully";
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return "Table 'pet4u_stock_snapshot' could not be deleted:" + ex;
+        }
+    }
+
 }

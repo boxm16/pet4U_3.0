@@ -354,6 +354,22 @@ public class TechManController {
         return "techMan/techManDashboard";
     }
 
+    //----------------------------------------------------------
+    @RequestMapping(value = "/createPet4uStockSnapshotDatabaseTables", method = RequestMethod.GET)
+    public String createPet4uStockSnapshotDatabaseTables(ModelMap modelMap) {
+        String result = techManDao.createPet4uStockSnapshotDatabaseTables();
+        result = result + "<br>";
+        modelMap.addAttribute("pet4uStockSnapshotTableCreationResult", result);
+        return "techMan/techManDashboard";
+    }
+
+    @RequestMapping(value = "/deletePet4uStockSnapshotDatabaseTables", method = RequestMethod.GET)
+    public String deletePet4uStockSnapshotDatabaseTables(ModelMap modelMap) {
+        String result = techManDao.deletePet4uStockSnapshotDatabaseTables();
+        result = result + "<br>";
+        modelMap.addAttribute("pet4uStockSnapshotTableDeletionResult", result);
+        return "techMan/techManDashboard";
+    }
+
     //------------------
-    
 }
