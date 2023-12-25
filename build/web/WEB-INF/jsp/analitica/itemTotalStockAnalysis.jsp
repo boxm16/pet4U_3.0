@@ -122,7 +122,7 @@
 
 
                         <%
-                          //  LinkedHashMap<String, StockAnalysis> stockAnalysis = (LinkedHashMap<String, StockAnalysis>) request.getAttribute("stockAnalysis");
+                        LinkedHashMap<String, StockAnalysis> stockAnalysis = (LinkedHashMap) request.getAttribute("stockAnalysis");
                            // for (Map.Entry<String, StockAnalysis> stockAnalysisEntry : stockAnalysis.entrySet()) {
                              //   out.println("<tr>");
 
