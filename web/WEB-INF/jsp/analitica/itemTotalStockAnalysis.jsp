@@ -100,7 +100,7 @@
                     <center>
                         <h3>Total Stock Analysis</h3>
                         <table>
-                            <th>Date</th>
+                            <th>Ημερομηνια</th>
                             <th>Χαλκη</th>
                             <th>Μενιδι</th>
                             <th>Καλλιθεα</th> 

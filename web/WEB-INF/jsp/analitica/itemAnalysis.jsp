@@ -314,6 +314,26 @@
                             out.println("</td>");
                             out.println("</tr>");
 
+                            out.println("<tr>");
+                            out.println("<td>");
+                            out.println("ΕΝΔΟ");
+                            out.println("</td>");
+
+                            out.println("<td>");
+                            out.println(stockAnalysis.getEndo());
+                            out.println("</td>");
+                            out.println("</tr>");
+
+                            out.println("<tr>");
+                            out.println("<td>");
+                            out.println("Προς Κατασ");
+                            out.println("</td>");
+
+                            out.println("<td>");
+                            out.println(stockAnalysis.getKatastrofi());
+                            out.println("</td>");
+                            out.println("</tr>");
+
 
                         %>
                     </table>  
@@ -331,37 +351,12 @@
                         <th>Titel</th>
                         <th>Start Date</th>
                         <th>End Date</th>
-                            <%                                ArrayList<Offer> offers = (ArrayList<Offer>) request.getAttribute("offers");
+                            <%                                           > offers = (ArrayList s
+                                
+                                ");
 
-                                for (Offer offer : offers) {
-
-                                    out.println("<tr>");
-
-                                    out.println("<td>");
-                                    out.println(offer.getTitle());
-                                    out.println("</td>");
-
-                                    out.println("<td>");
-                                    out.println(offer.getStartDateString());
-                                    out.println("</td>");
-
-                                    LocalDate endDate = offer.getEndDate();
-                                    if (endDate == null) {
-                                        out.println("<td>");
-                                        out.println("<a href='endOfferDashboard.htm?id=" + offer.getId() + "'>End Offer</a>");
-                                        out.println("</td>");
-                                    } else {
-
-                                        out.println("<td>");
-                                        out.println(offer.getEndDateString());
-                                        out.println("</td>");
-                                    }
-
-                                    out.println("</tr>");
-
-                                }
-
-                            %>
+                                for out.println("<                                       out.println(offe                                               out.printl                                             out.println(" < td >");
+                                    out.println(offer.get                                                       %>
                     </table>
 
                 </div>
