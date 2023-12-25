@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -102,7 +103,7 @@ public class StockAnalysisDao {
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
         Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
         HashMap<String, StockAnalysis> totalStock = new HashMap();
-        
+        LocalDate today=LocalDate.now();
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("select * from WH_ALL;");
@@ -112,7 +113,9 @@ public class StockAnalysisDao {
                 String code = resultSet.getString("ABBREVIATION").trim();
                 String wh = resultSet.getString("WH");
                 double quantity = resultSet.getDouble("QTYBALANCE");
+                
                 stock.setCode(code);
+                stock.setDate(today);
                 switch (wh) {
                     case "ΑΧ-ΧΑΛ":
                         stock.setXalkidonaStock(quantity);
