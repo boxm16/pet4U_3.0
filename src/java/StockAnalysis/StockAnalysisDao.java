@@ -252,14 +252,14 @@ public class StockAnalysisDao {
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("select * from pet4u_stock_snapshot WHERE item_code='" + itemCode + "';");
-         
-           
+
             while (resultSet.next()) {
 
                 String date = resultSet.getString("date_stamp");
                 StockAnalysis stockAnalysis = totalStock.get(date);
                 if (stockAnalysis == null) {
                     stockAnalysis = new StockAnalysis();
+
                     stockAnalysis.setXalkidonaStock(resultSet.getDouble("xalkidona"));
                     stockAnalysis.setMenidiStock(resultSet.getDouble("menidi"));
                     stockAnalysis.setKallitheaStock(resultSet.getDouble("kallithea"));

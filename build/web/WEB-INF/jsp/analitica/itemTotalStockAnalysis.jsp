@@ -97,110 +97,112 @@
 
             <div class="row">
                 <div class=" col-sm-12">
-                    <center><h3>Total Stock Analysis</h3></center>
-                    <table>
-                        <th>Date</th>
-                        <th>Χαλκηδονα</th>
-                        <th>Μενιδι</th>
-                        <th>Καλλιθεα</th> 
-                        <th>Αλιμος</th>
-                        <th>Αγ.Παρασκ.</th> 
-                        <th>Δαφνη.</th>
-                        <th>Κουκακι</th>
-                        <th>Μιχαλακ.</th>
-                        <th>Βαρυμπ.</th>
-                        <th>Χαλανδ.</th> 
-                        <th>Ν.Ιωνια.</th>
-                        <th>Αργυρουπ.</th> 
-                        <th>Περιστερ.</th>
-                        <th>Πετρουπ.</th>
-                        <th>Π.Φαλ.</th> 
-                        <th>Κατ.</th>
-                        <th>Ενδο.</th> 
+                    <center>
+                        <h3>Total Stock Analysis</h3>
+                        <table>
+                            <th>Date</th>
+                            <th>Χαλκη</th>
+                            <th>Μενιδι</th>
+                            <th>Καλλιθεα</th> 
+                            <th>Αλιμος</th>
+                            <th>Αγ.Παρ.</th> 
+                            <th>Δαφνη.</th>
+                            <th>Κουκα.</th>
+                            <th>Μιχαλ.</th>
+                            <th>Βαρυμπ.</th>
+                            <th>Χαλανδ.</th> 
+                            <th>Ν.Ιωνια.</th>
+                            <th>Αργυρ.</th> 
+                            <th>Περιστ.</th>
+                            <th>Πετρουπ.</th>
+                            <th>Π.Φαλ.</th> 
+                            <th>Κατ.</th>
+                            <th>Ενδο.</th> 
 
 
 
-                        <%
-                            LinkedHashMap<String, StockAnalysis> stockAnalysis = (LinkedHashMap) request.getAttribute("stockAnalysis");
-                            for (Map.Entry<String, StockAnalysis> stockAnalysisEntry : stockAnalysis.entrySet()) {
-                                  out.println("<tr>");
+                            <%
+                                LinkedHashMap<String, StockAnalysis> stockAnalysis = (LinkedHashMap) request.getAttribute("stockAnalysis");
+                                for (Map.Entry<String, StockAnalysis> stockAnalysisEntry : stockAnalysis.entrySet()) {
+                                    out.println("<tr>");
 
-                                out.println("<td>");
-                                out.println(stockAnalysisEntry.getValue().getDate());
-                                out.println("</td>");
+                                    out.println("<td>");
+                                    out.println(stockAnalysisEntry.getKey());
+                                    out.println("</td>");
 
-                                out.println("<td>");
-                                out.println(stockAnalysisEntry.getValue().getXalkidonaStock());
-                                out.println("</td>");
+                                    out.println("<td>");
+                                    out.println(stockAnalysisEntry.getValue().getXalkidonaStock());
+                                    out.println("</td>");
 
-                                out.println("<td>");
-                                out.println(stockAnalysisEntry.getValue().getMenidiStock());
-                                out.println("</td>");
+                                    out.println("<td>");
+                                    out.println(stockAnalysisEntry.getValue().getMenidiStock());
+                                    out.println("</td>");
 
-                                out.println("<td>");
-                                out.println(stockAnalysisEntry.getValue().getKallitheaStock());
-                                out.println("</td>");
+                                    out.println("<td>");
+                                    out.println(stockAnalysisEntry.getValue().getKallitheaStock());
+                                    out.println("</td>");
 
-                                out.println("<td>");
-                                out.println(stockAnalysisEntry.getValue().getAlimosStock());
-                                out.println("</td>");
+                                    out.println("<td>");
+                                    out.println(stockAnalysisEntry.getValue().getAlimosStock());
+                                    out.println("</td>");
 
-                                out.println("<td>");
-                                out.println(stockAnalysisEntry.getValue().getAghiaParaskeviStock());
-                                out.println("</td>");
+                                    out.println("<td>");
+                                    out.println(stockAnalysisEntry.getValue().getAghiaParaskeviStock());
+                                    out.println("</td>");
 
-                                out.println("<td>");
-                                out.println(stockAnalysisEntry.getValue().getDafniStock());
-                                out.println("</td>");
+                                    out.println("<td>");
+                                    out.println(stockAnalysisEntry.getValue().getDafniStock());
+                                    out.println("</td>");
 
-                                out.println("<td>");
-                                out.println(stockAnalysisEntry.getValue().getKoukakiStock());
-                                out.println("</td>");
+                                    out.println("<td>");
+                                    out.println(stockAnalysisEntry.getValue().getKoukakiStock());
+                                    out.println("</td>");
 
-                                out.println("<td>");
-                                out.println(stockAnalysisEntry.getValue().getMixalakopoulouStock());
-                                out.println("</td>");
+                                    out.println("<td>");
+                                    out.println(stockAnalysisEntry.getValue().getMixalakopoulouStock());
+                                    out.println("</td>");
 
-                                out.println("<td>");
-                                out.println(stockAnalysisEntry.getValue().getVaribobiStock());
-                                out.println("</td>");
+                                    out.println("<td>");
+                                    out.println(stockAnalysisEntry.getValue().getVaribobiStock());
+                                    out.println("</td>");
 
-                                out.println("<td>");
-                                out.println(stockAnalysisEntry.getValue().getXalandriStock());
-                                out.println("</td>");
+                                    out.println("<td>");
+                                    out.println(stockAnalysisEntry.getValue().getXalandriStock());
+                                    out.println("</td>");
 
-                                out.println("<td>");
-                                out.println(stockAnalysisEntry.getValue().getNeaIoniaStock());
-                                out.println("</td>");
+                                    out.println("<td>");
+                                    out.println(stockAnalysisEntry.getValue().getNeaIoniaStock());
+                                    out.println("</td>");
 
-                                out.println("<td>");
-                                out.println(stockAnalysisEntry.getValue().getArghiroupoliStock());
-                                out.println("</td>");
+                                    out.println("<td>");
+                                    out.println(stockAnalysisEntry.getValue().getArghiroupoliStock());
+                                    out.println("</td>");
 
-                                out.println("<td>");
-                                out.println(stockAnalysisEntry.getValue().getPeristeriStock());
-                                out.println("</td>");
+                                    out.println("<td>");
+                                    out.println(stockAnalysisEntry.getValue().getPeristeriStock());
+                                    out.println("</td>");
 
-                                out.println("<td>");
-                                out.println(stockAnalysisEntry.getValue().getPetroupoliStock());
-                                out.println("</td>");
+                                    out.println("<td>");
+                                    out.println(stockAnalysisEntry.getValue().getPetroupoliStock());
+                                    out.println("</td>");
 
-                                out.println("<td>");
-                                out.println(stockAnalysisEntry.getValue().getPalioFaliroStock());
-                                out.println("</td>");
+                                    out.println("<td>");
+                                    out.println(stockAnalysisEntry.getValue().getPalioFaliroStock());
+                                    out.println("</td>");
 
-                                out.println("<td>");
-                                out.println(stockAnalysisEntry.getValue().getKatastrofi());
-                                out.println("</td>");
+                                    out.println("<td>");
+                                    out.println(stockAnalysisEntry.getValue().getKatastrofi());
+                                    out.println("</td>");
 
-                                out.println("<td>");
-                                out.println(stockAnalysisEntry.getValue().getEndo());
-                                out.println("</td>");
-                                   out.println("</tr>");
-                            }
+                                    out.println("<td>");
+                                    out.println(stockAnalysisEntry.getValue().getEndo());
+                                    out.println("</td>");
+                                    out.println("</tr>");
+                                }
 
-                        %>
-                    </table>  
+                            %>
+                        </table>  
+                    </center>
                     <hr>
 
                 </div>
