@@ -185,7 +185,7 @@
                         <th>Name</th>
                         <th>Quantity</th>
 
-                        <%                               StockAnalysis stockAnalysis = (StockAnalysis) request.getAttribute("stockAnalysis");
+                        <%                            StockAnalysis stockAnalysis = (StockAnalysis) request.getAttribute("stockAnalysis");
 
                             out.println("<tr>");
                             out.println("<td>");
@@ -318,7 +318,7 @@
                         %>
                     </table>  
                     <hr>
-                    <%         out.println("<a href='showItemTotalStockSnapshots.htm?item_code=" + stockAnalysis.getCode() + "'><h4>Show Item Total Stock Snapshots</h4></a>"); %>
+                    <%         out.println("<a href='showItemTotalStockSnapshots.htm?item_code=" + stockAnalysis.getCode() + "' target='_blank'><h4>Show Item Total Stock Snapshots</h4></a>"); %>
                     <hr>
                 </div>
 
