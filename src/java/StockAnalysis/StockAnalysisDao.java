@@ -252,9 +252,8 @@ public class StockAnalysisDao {
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("select * from pet4u_stock_snapshot WHERE item_code='" + itemCode + "';");
-
+            System.out.println("itemTotalStockAnalysis SIZE" + resultSet.toString());
             while (resultSet.next()) {
-                System.out.println("itemTotalStockAnalysis SIZE");
 
                 String date = resultSet.getString("date_stamp");
                 StockAnalysis stockAnalysis = totalStock.get(date);
