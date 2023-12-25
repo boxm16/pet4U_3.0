@@ -269,7 +269,7 @@ public class StockAnalysisDao {
                     stockAnalysis.setMixalakopoulouStock(resultSet.getDouble("mixalakopoulou"));
                     stockAnalysis.setArghiroupoliStock(resultSet.getDouble("arghiroupoli"));
                     stockAnalysis.setPeristeriStock(resultSet.getDouble("peristeri"));
-                    stockAnalysis.setPetroupoliStock(resultSet.getDouble("petrouoli"));
+                    stockAnalysis.setPetroupoliStock(resultSet.getDouble("petroupoli"));
                     stockAnalysis.setPalioFaliroStock(resultSet.getDouble("paleo_faliro"));
                     stockAnalysis.setKatastrofi(resultSet.getDouble("katastrofi"));
                     stockAnalysis.setEndo(resultSet.getDouble("endo"));
