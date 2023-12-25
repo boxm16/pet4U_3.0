@@ -2,6 +2,7 @@ package StockAnalysis;
 
 import java.util.HashMap;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class StockAnalysisController {
@@ -12,6 +13,7 @@ public class StockAnalysisController {
         return stock;
     }
 
+    @RequestMapping(value = "stockinger")
     public void addStockSnapshot() {
         HashMap<String, StockAnalysis> totalStock = getTotalStock();
         System.out.println("TOTAL STOCK" + totalStock.size());
