@@ -331,7 +331,6 @@
                 <hr>
 
 
-                <hr>
             </div>
             <hr>
             <div class="row">
