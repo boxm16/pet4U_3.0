@@ -1,8 +1,13 @@
 package StockAnalysis;
 
+import BasicModel.Item;
+import Search.SearchDao;
 import java.util.HashMap;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class StockAnalysisController {
@@ -26,5 +31,20 @@ public class StockAnalysisController {
         StockAnalysisDao stockDao = new StockAnalysisDao();
         HashMap<String, StockAnalysis> stock = stockDao.getTotalStock();
         return stock;
+    }
+
+    @RequestMapping(value = "/showItemTotalStockSnapshots", method = RequestMethod.GET)
+    public String itemAnalysis(@RequestParam String code, ModelMap model) {
+
+        SearchDao searchDao = new SearchDao();
+        Item item = searchDao.getItemByAltercode(code);
+        model.addAttribute("item", item);
+        String itemCode = item.getCode();
+
+        StockAnalysisDao stockDao = new StockAnalysisDao();
+        StockAnalysis stockAnalysis = stockDao.getStock(itemCode);
+        model.addAttribute("stockAnalysis", stockAnalysis);
+
+        return "analitica/itemTotalStockAnalysis";
     }
 }
