@@ -110,8 +110,12 @@ public class StockAnalysisDao {
             ResultSet resultSet = statement.executeQuery("select * from WH_ALL;");
 
             while (resultSet.next()) {
-                StockAnalysis stock = new StockAnalysis();
+
                 String code = resultSet.getString("ABBREVIATION").trim();
+                StockAnalysis stock = totalStock.get(code);
+                if (stock == null) {
+                    stock = new StockAnalysis();
+                }
                 String wh = resultSet.getString("WH");
                 double quantity = resultSet.getDouble("QTYBALANCE");
 
