@@ -199,7 +199,7 @@ public class StockAnalysisDao {
             for (Map.Entry< String, StockAnalysis> stockAnalysisEntry : totalStock.entrySet()) {
                 StockAnalysis stockAnalysis = stockAnalysisEntry.getValue();
                 incertionPreparedStatement.setString(1, stockAnalysis.getCode());
-                incertionPreparedStatement.setString(2, stockAnalysis.toString());
+                incertionPreparedStatement.setString(2, stockAnalysis.getDate().toString());
                 incertionPreparedStatement.setString(3, String.valueOf(stockAnalysis.getXalkidonaStock()));
                 incertionPreparedStatement.setString(4, String.valueOf(stockAnalysis.getMenidiStock()));
                 incertionPreparedStatement.setString(5, String.valueOf(stockAnalysis.getKallitheaStock()));
