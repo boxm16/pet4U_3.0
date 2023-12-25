@@ -284,6 +284,15 @@
 
                             out.println("<tr>");
                             out.println("<td>");
+                            out.println("ΚΟΥΚΑΚΙ");
+                            out.println("</td>");
+                            out.println("<td>");
+                            out.println(stockAnalysis.getKoukakiStock());
+                            out.println("</td>");
+                            out.println("</tr>");
+
+                            out.println("<tr>");
+                            out.println("<td>");
                             out.println("ΜΙΧΑΛΑΚΟΠΟΥΛΟΥ");
                             out.println("</td>");
                             out.println("<td>");
@@ -340,8 +349,29 @@
                             out.println("<td>");
                             out.println("Π. ΦΑΛΗΡΟ");
                             out.println("</td>");
+
                             out.println("<td>");
                             out.println(stockAnalysis.getPalioFaliroStock());
+                            out.println("</td>");
+                            out.println("</tr>");
+
+                            out.println("<tr>");
+                            out.println("<td>");
+                            out.println("Προς Καταργ.");
+                            out.println("</td>");
+
+                            out.println("<td>");
+                            out.println(stockAnalysis.getKatastrofi());
+                            out.println("</td>");
+                            out.println("</tr>");
+
+                            out.println("<tr>");
+                            out.println("<td>");
+                            out.println("Ενδο");
+                            out.println("</td>");
+
+                            out.println("<td>");
+                            out.println(stockAnalysis.getEndo());
                             out.println("</td>");
                             out.println("</tr>");
 
