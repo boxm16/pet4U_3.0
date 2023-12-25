@@ -101,6 +101,7 @@
                         <h3>Total Stock Analysis</h3>
                         <table>
                             <th>Ημερομηνια</th>
+                            <th>Βαρυμπ.</th>
                             <th>Χαλκη</th>
                             <th>Μενιδι</th>
                             <th>Καλλιθεα</th> 
@@ -109,7 +110,7 @@
                             <th>Δαφνη.</th>
                             <th>Κουκα.</th>
                             <th>Μιχαλ.</th>
-                            <th>Βαρυμπ.</th>
+
                             <th>Χαλανδ.</th> 
                             <th>Ν.Ιωνια.</th>
                             <th>Αργυρ.</th> 
@@ -125,6 +126,10 @@
                                 LinkedHashMap<String, StockAnalysis> stockAnalysis = (LinkedHashMap) request.getAttribute("stockAnalysis");
                                 for (Map.Entry<String, StockAnalysis> stockAnalysisEntry : stockAnalysis.entrySet()) {
                                     out.println("<tr>");
+
+                                    out.println("<td>");
+                                    out.println(stockAnalysisEntry.getValue().getVaribobiStock());
+                                    out.println("</td>");
 
                                     out.println("<td>");
                                     out.println(stockAnalysisEntry.getKey());
@@ -160,10 +165,6 @@
 
                                     out.println("<td>");
                                     out.println(stockAnalysisEntry.getValue().getMixalakopoulouStock());
-                                    out.println("</td>");
-
-                                    out.println("<td>");
-                                    out.println(stockAnalysisEntry.getValue().getVaribobiStock());
                                     out.println("</td>");
 
                                     out.println("<td>");
