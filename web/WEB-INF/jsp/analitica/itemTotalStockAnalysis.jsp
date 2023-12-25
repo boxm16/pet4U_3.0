@@ -128,11 +128,11 @@
                                     out.println("<tr>");
 
                                     out.println("<td>");
-                                    out.println(stockAnalysisEntry.getValue().getVaribobiStock());
+                                    out.println(stockAnalysisEntry.getKey());
                                     out.println("</td>");
 
                                     out.println("<td>");
-                                    out.println(stockAnalysisEntry.getKey());
+                                    out.println(stockAnalysisEntry.getValue().getVaribobiStock());
                                     out.println("</td>");
 
                                     out.println("<td>");
