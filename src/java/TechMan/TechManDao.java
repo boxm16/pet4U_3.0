@@ -751,7 +751,7 @@ public class TechManDao {
                 + "aghia_paraskevi VARCHAR (30)  NULL, "
                 + "dafni VARCHAR (30)  NULL, "
                 + "koukaki VARCHAR (30)  NULL, "
-                + "mixalopoulou VARCHAR (30)  NULL, "
+                + "mixalakopoulou VARCHAR (30)  NULL, "
                 + "varibobi VARCHAR (30)  NULL, "
                 + "xalandri VARCHAR (30)  NULL, "
                 + "nea_ionia VARCHAR (30)  NULL, "

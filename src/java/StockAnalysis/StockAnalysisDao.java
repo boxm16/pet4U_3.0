@@ -191,8 +191,8 @@ public class StockAnalysisDao {
             PreparedStatement incertionPreparedStatement = connection.prepareStatement(
                     "INSERT INTO pet4u_stock_snapshot "
                     + "(item_code, date_stamp, "
-                    + "xalkidon, menidi, kallithea, alimos, "
-                    + "aghia_paraskevi, dafni, koukaki, mixalopoulou,"
+                    + "xalkidona, menidi, kallithea, alimos, "
+                    + "aghia_paraskevi, dafni, koukaki, mixalakopoulou,"
                     + " varibobi, xalandri, nea_ionia, arghiroupoli,"
                     + "peristeri, petroupoli, paleo_faliro, "
                     + "katastrofi, endo ) "
@@ -260,7 +260,7 @@ public class StockAnalysisDao {
                 StockAnalysis stockAnalysis = totalStock.get(date);
                 if (stockAnalysis == null) {
                     stockAnalysis = new StockAnalysis();
-                    stockAnalysis.setXalkidonaStock(resultSet.getDouble("xalkidon"));
+                    stockAnalysis.setXalkidonaStock(resultSet.getDouble("xalkidona"));
                     stockAnalysis.setMenidiStock(resultSet.getDouble("menidi"));
                     stockAnalysis.setKallitheaStock(resultSet.getDouble("kallithea"));
                     stockAnalysis.setAlimosStock(resultSet.getDouble("alimos"));
