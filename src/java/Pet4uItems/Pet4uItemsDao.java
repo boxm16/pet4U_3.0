@@ -228,6 +228,7 @@ public class Pet4uItemsDao {
 
             for (Map.Entry< String, Item> itemEntry : pet4uAllItems.entrySet()) {
                 LocalDate nowDate = LocalDate.now();
+                System.out.println("Date :" + nowDate.toString());;
                 incertionPreparedStatement.setString(1, itemEntry.getValue().getCode());
                 incertionPreparedStatement.setString(2, nowDate.toString());
                 incertionPreparedStatement.setString(3, itemEntry.getValue().getState());
