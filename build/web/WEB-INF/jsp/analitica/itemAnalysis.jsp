@@ -249,6 +249,15 @@
                             out.println(stockAnalysis.getDafniStock());
                             out.println("</td>");
                             out.println("</tr>");
+                            
+                                out.println("<tr>");
+                            out.println("<td>");
+                            out.println("ΚΟΥΚΑΚΙ");
+                            out.println("</td>");
+                            out.println("<td>");
+                            out.println(stockAnalysis.getKoukakiStock());
+                            out.println("</td>");
+                            out.println("</tr>");
 
                             out.println("<tr>");
                             out.println("<td>");
