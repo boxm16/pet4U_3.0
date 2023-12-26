@@ -150,8 +150,18 @@
 
                                     double stock = Double.parseDouble(item.getQuantity());
                                     boolean needOrder = false;
-                                    if (stock < (objectiveSales * 2)) {
+                                    if (stock < (objectiveSales * item.getMinimalStockHorizon())) {
                                         needOrder = true;
+                                    }
+
+                                    if (diff > fiftyPercerntDifference) {
+                                        objectiveSales = item.getObjectiveSales();
+                                    } else {
+                                        if (objectiveSales == 0) {
+                                            objectiveSales = item.getObjectiveSales();
+                                        } else {
+                                            //do nothing
+                                        }
                                     }
 
                                     //----------------------------------
@@ -172,6 +182,7 @@
                                     out.println("</td>");
 
                                     out.println("<td>");
+
                                     out.println(df.format(objectiveSales));
                                     out.println("</td>");
 
@@ -205,14 +216,14 @@
 
                                     //----------------------------------
                                     Double orderByOrderUnitDouble = (objectiveSales * item.getOrderHorizon()) - stock;
-                                    int orderByOrderUnitInt = orderByOrderUnitDouble.intValue()/item.getOrderUnitCapacity();
+                                    int orderByOrderUnitInt = orderByOrderUnitDouble.intValue() / item.getOrderUnitCapacity();
                                     out.println("<td style='background-color:white'>");
                                     out.println("<input onkeyup='recalculateItems(event)' id='" + item.getCode() + ":" + item.getOrderUnitCapacity() + "' class='unitsOrdered' style='font-size:20px' type='number' value='" + orderByOrderUnitInt + "'>");
                                     out.println("</td>");
 
                                     int orderedItems = orderByOrderUnitInt * item.getOrderUnitCapacity();
                                     out.println("<td style='background-color:white'>");
-                                    out.println("<input id='" + item.getCode() + "' class='orderedItem' style='font-size:20px' type='number' value='"+orderedItems+"' >");
+                                    out.println("<input id='" + item.getCode() + "' class='orderedItem' style='font-size:20px' type='number' value='" + orderedItems + "' >");
                                     out.println("</td>");
 
                                     out.println("</tr>");
