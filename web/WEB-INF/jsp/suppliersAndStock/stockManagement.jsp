@@ -180,7 +180,7 @@
 
                                     double stock = Double.parseDouble(item.getQuantity());
                                     boolean needOrder = false;
-                                    if (stock < (objectiveSales * minimalStockHorizon)) {
+                                    if (stock < (objectiveSales * minimalStockHorizon) || objectiveSales == 0) {
                                         needOrder = true;
                                     }
 
