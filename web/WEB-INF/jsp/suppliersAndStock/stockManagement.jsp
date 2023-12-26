@@ -209,7 +209,11 @@
                                     out.println(grandTotalEksagoges);
                                     out.println("</td>");
 
-                                    out.println("<td>");
+                                    if (objectiveSales == 0) {
+                                        out.println("<td style='background-color:red'>");
+                                    } else {
+                                        out.println("<td>");
+                                    }
                                     out.println(df.format(oneMonthSalesFromCalculation));
                                     out.println("</td>");
 
