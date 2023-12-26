@@ -209,7 +209,7 @@
                                     out.println(grandTotalEksagoges);
                                     out.println("</td>");
 
-                                    if (objectiveSales == 0) {
+                                    if (oneMonthSalesFromCalculation == 0) {
                                         out.println("<td style='background-color:red'>");
                                     } else {
                                         out.println("<td>");
