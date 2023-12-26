@@ -291,7 +291,11 @@
                                         out.println("<td>");
                                         out.println(df.format(objectiveSales * item.getOrderHorizon()));
                                     } else {
-                                        out.println("<td>");
+                                        if (item.getObjectiveSales() == 0) {
+                                            out.println("<td style='background-color:#BA4A00'>");
+                                        } else {
+                                            out.println("<td>");
+                                        }
                                         out.println(df.format(item.getObjectiveSales() * item.getOrderHorizon()));
                                     }
 
