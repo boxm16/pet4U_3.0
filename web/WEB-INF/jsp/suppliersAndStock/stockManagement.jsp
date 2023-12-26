@@ -230,8 +230,14 @@
                                             out.println("<a href='objectiveSalesDashboard.htm?supplierId=" + supplier.getId() + "&itemCode=" + item.getCode() + "' >" + item.getObjectiveSales() + "</a>");
                                         }
                                     } else {
-                                        out.println("<td style='background-color:#90EE90'>");
-                                        out.println(df.format(objectiveSales));
+                                        if (objectiveSales == 0) {
+                                            out.println("<td style='background-color:green'>");
+                                            out.println("<a href='objectiveSalesDashboard.htm?supplierId=" + supplier.getId() + "&itemCode=" + item.getCode() + "' >" + item.getObjectiveSales() + "</a>");
+
+                                        } else {
+                                            out.println("<td style='background-color:#90EE90'>");
+                                            out.println(df.format(objectiveSales));
+                                        }
                                     }
                                     out.println("</td>");
 

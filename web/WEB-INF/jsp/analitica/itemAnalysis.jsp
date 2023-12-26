@@ -325,7 +325,7 @@
 
                             out.println("<tr>");
                             out.println("<td>");
-                            out.println("Προς Καταργ.");
+                            out.println("Προς Καταστρ.");
                             out.println("</td>");
 
                             out.println("<td>");
