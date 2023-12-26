@@ -264,7 +264,7 @@
                                         out.println("<td>");
                                         out.println(df.format(objectiveSales * minimalStockHorizon));
                                     } else {
-                                        out.println("<td style='background-color:#BA4A00'>");
+                                        out.println("<td>");
                                         out.println(df.format(item.getObjectiveSales() * minimalStockHorizon));
                                     }
 
@@ -283,7 +283,7 @@
                                         out.println("<td>");
                                         out.println(df.format(objectiveSales * item.getOrderHorizon()));
                                     } else {
-                                        out.println("<td style='background-color:#BA4A00'>");
+                                        out.println("<td>");
                                         out.println(df.format(item.getObjectiveSales() * item.getOrderHorizon()));
                                     }
 
