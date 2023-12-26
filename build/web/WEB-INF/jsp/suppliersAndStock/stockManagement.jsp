@@ -252,7 +252,7 @@
                                     out.println("<td>");
                                     LocalDate objectiveSalesExpirationDate = item.getObjectiveSalesExpirationDate();
                                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-                                    if (objectiveSalesExpirationDate == null || objectiveSales > 0) {
+                                    if (objectiveSalesExpirationDate == null) {
                                         out.println();
                                     } else {
                                         out.println(formatter.format(objectiveSalesExpirationDate));
