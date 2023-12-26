@@ -216,7 +216,11 @@
                                     if (diff > fiftyPercerntDifference) {
                                         out.println("<td style='background-color:#F36FD9'>");
                                     } else {
-                                        out.println("<td>");
+                                        if (objectiveSales == 0) {
+                                            out.println("<td style='background-color:red'>");
+                                        } else {
+                                            out.println("<td>");
+                                        }
                                     }
                                     out.println(grandTotalEksagogesOneMonth);
                                     out.println("</td>");
