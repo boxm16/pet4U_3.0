@@ -272,8 +272,13 @@
                                         out.println("<td>");
                                         out.println(df.format(objectiveSales * minimalStockHorizon));
                                     } else {
-                                        out.println("<td>");
-                                        out.println(df.format(item.getObjectiveSales() * minimalStockHorizon));
+
+                                        if (item.getObjectiveSales() == 0) {
+                                            out.println("<td style='background-color:#BA4A00'>");
+                                        } else {
+                                            out.println("<td>");
+                                        }
+                                        out.println(df.format(item.getObjectiveSales() * item.getMinimalStockHorizon()));
                                     }
 
                                     out.println("</td>");
