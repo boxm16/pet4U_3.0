@@ -372,4 +372,23 @@ public class TechManController {
     }
 
     //------------------
+    
+    //----------------------------------------------------------
+    @RequestMapping(value = "/createEndoDatabaseTables", method = RequestMethod.GET)
+    public String createEndoDatabaseTables(ModelMap modelMap) {
+        String result = techManDao.createEndoDatabaseTables();
+        result = result + "<br>";
+        modelMap.addAttribute("endotTableCreationResult", result);
+        return "techMan/techManDashboard";
+    }
+
+    @RequestMapping(value = "/deleteEndoDatabaseTables", method = RequestMethod.GET)
+    public String deleteEndoDatabaseTables(ModelMap modelMap) {
+        String result = techManDao.deleteEndoDatabaseTables();
+        result = result + "<br>";
+        modelMap.addAttribute("endoTableDeletionResult", result);
+        return "techMan/techManDashboard";
+    }
+
+    //------------------
 }

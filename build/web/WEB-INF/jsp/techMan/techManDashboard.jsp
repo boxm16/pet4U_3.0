@@ -130,6 +130,16 @@
         <h1> ${pet4uStockSnapshotTableDeletionResult} </h1>
         <a href='deletePet4uStockSnapshotDatabaseTables.htm'><h1>Delete Pet4u Stock Snapshot Database Tables</h1> </a>
         <br>
+        
+        
+        <hr>
+        <h1> ${endotTableCreationResult} </h1>
+        <a href='createEndoDatabaseTables.htm'><h1>Create ENDO Database Tables</h1> </a>
+        <br>
+        <h1> ${endoTableDeletionResult} </h1>
+        <a href='deleteEndoDatabaseTables.htm'><h1>Delete ENDO Database Tables</h1> </a>
+        <br>
+
 
 
 
