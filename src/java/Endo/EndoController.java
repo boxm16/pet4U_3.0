@@ -33,13 +33,13 @@ public class EndoController {
         // ArrayList<DeliveryItem> pet4UItemsRowByRow = endoDao.getAllPet4UItemsRowByRowWithDeepSearch();
         LinkedHashMap<String, Item> allPet4UItemsWithDeepSearch = endoDao.getAllPet4UItemsWithDeepSearch();
         //  System.out.println("Pet4U Items Were Brought By Deep Search Method. Items count: " + pet4UItemsRowByRow.size());
-
+/*
         for (Map.Entry<String, Item> pet4uAllItemsEntry : pet4uAllItems.entrySet()) {
             Item it = pet4uAllItemsEntry.getValue();
             String code1 = it.getCode();
             Item ite = allPet4UItemsWithDeepSearch.get(code1);
             if (ite == null) {
-                System.out.println("NULL"+it.getCode() +"---"+it.getState()+"+++"+it.getPosition());
+                System.out.println("NULL: "+it.getCode() +"---"+it.getState()+"+++"+it.getPosition());
             } else {
                 if (it.getQuantity().equals(ite.getQuantity())) {
 
@@ -47,6 +47,11 @@ public class EndoController {
                     System.out.println("SHOUUT:" + code1);
                 }
             }
+        }
+         */
+        for (Map.Entry<String, Item> allPet4UItemsWithDeepSearchEntry : pet4uAllItems.entrySet()) {
+            Item value = allPet4UItemsWithDeepSearchEntry.getValue();
+            System.out.println(value.getCode()+"-"+value.getPosition());
         }
 
         //  modelMap.addAttribute("pet4UItemsRowByRow", pet4UItemsRowByRow);
