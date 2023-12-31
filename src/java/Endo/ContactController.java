@@ -43,6 +43,6 @@ public class ContactController {
 			}
 		}
 		
-		return new ModelAndView("show_contact", "contactForm", contactForm);
+		return new ModelAndView("index", "contactForm", contactForm);
 	}
 }

@@ -1,4 +1,5 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
     <head>
@@ -7,7 +8,7 @@
     <body>
 
         <h2>Spring MVC Multiple Row Form Submit example</h2>
-    <form:form method="post" action="save.html" modelAttribute="contactForm">
+    <form:form method="post" action="save.htm" modelAttribute="contactForm">
         <table>
             <tr>
                 <th>No.</th>
