@@ -6,6 +6,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -55,9 +56,7 @@ public class EndoController {
     }
 
     @RequestMapping(value = "/saveEndo", method = RequestMethod.POST)
-    public String save(ModelMap modelMap,
-            @ModelAttribute("endo") Endo endo
-    ) {
+    public String save(ModelMap modelMap, @ModelAttribute("endo") Endo endo) {
 
         System.out.println("ID:" + endo.getId());
         LinkedHashMap<String, Item> items = endo.getItems();
