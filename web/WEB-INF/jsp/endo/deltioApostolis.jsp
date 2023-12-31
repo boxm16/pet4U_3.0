@@ -1,6 +1,6 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
     <head>
         <title>DELTIO APOSOTLHS</title>
@@ -77,7 +77,7 @@
 
             var items = new Array();
         <c:forEach items="${pet4UItemsRowByRow}" var="item">
-            console.log(item.altercode);
+            console.log(${item.altercode});
             var altercode = "${item.altercode}";
             var code = "${item.code}";
             var description = "${item.description}";
