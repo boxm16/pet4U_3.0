@@ -67,133 +67,134 @@
 
     <script type="text/javascript">
 
-                    class Item {
-                        constructor(altercode, code, description) {
-                            this.altercode = altercode;
-                            this.code = code;
-                            this.description = description;
-                        }
-                    }
+            class Item {
+                constructor(altercode, code, description) {
+                    this.altercode = altercode;
+                    this.code = code;
+                    this.description = description;
+                }
+            }
 
-                    var items = new Array();
+            var items = new Array();
         <c:forEach items="${pet4UItemsRowByRow}" var="item">
-                    var altercode = "${item.altercode}";
-                    var code = "${item.code}";
-                    var description = "${item.description}";
-                    var item = new Item(altercode, code, description);
-                    items[altercode] = item;
+            console.log(item.altercode);
+            var altercode = "${item.altercode}";
+            var code = "${item.code}";
+            var description = "${item.description}";
+            var item = new Item(altercode, code, description);
+            items[altercode] = item;
         </c:forEach>
 
 
 
 
-                    function check(event, input) {
-                        if (event.keyCode === 13) {
-                            var altercode = input.value;
-                            console.log("altercode:" + altercode);
-                            var item = items[altercode];
-                            if (item == null) {
-                                document.getElementById("descriptionDisplay").innerHTML = altercode + " : Unkown Item";
-                                addRow(altercode, "Unkown Item");
-                            } else {
-                                var code = item.code;
-                                console.log(code);
-                                var description = item.description;
-                                document.getElementById("descriptionDisplay").innerHTML = altercode + " : " + description;
+            function check(event, input) {
+                if (event.keyCode === 13) {
+                    var altercode = input.value;
+                    console.log("altercode:" + altercode);
+                    var item = items[altercode];
+                    if (item == null) {
+                        document.getElementById("descriptionDisplay").innerHTML = altercode + " : Unkown Item";
+                        addRow(altercode, "Unkown Item");
+                    } else {
+                        var code = item.code;
+                        console.log(code);
+                        var description = item.description;
+                        document.getElementById("descriptionDisplay").innerHTML = altercode + " : " + description;
 
 
-                                let sent = document.getElementById(code + "_sent");
-                                if (sent == null) {
-                                    addRow(item.code, item.description);
-                                } else {
-                                    sent = sent.value * 1;
-                                }
-
-                                let delivered = document.getElementById(code + "_delivered").innerHTML * 1;
-                                delivered++;
-
-                                document.getElementById(code + "_delivered").innerHTML = delivered;
-
-
-                            }
-
-                            input.value = "";
-
+                        let sent = document.getElementById(code + "_sent");
+                        if (sent == null) {
+                            addRow(item.code, item.description);
+                        } else {
+                            sent = sent.value * 1;
                         }
+
+                        let delivered = document.getElementById(code + "_delivered").innerHTML * 1;
+                        delivered++;
+
+                        document.getElementById(code + "_delivered").innerHTML = delivered;
+
+
                     }
 
-                    function addRow(code, description) {
-                        // Get the table body element in which you want to add row
-                        let table = document.getElementById("tableBody");
+                    input.value = "";
 
-                        // Create row element
-                        let row = document.createElement("tr")
+                }
+            }
 
-                        // Create cells
-                        let c1 = document.createElement("td")
-                        let c2 = document.createElement("td")
-                        let c3 = document.createElement("td")
-                        let c4 = document.createElement("td")
+            function addRow(code, description) {
+                // Get the table body element in which you want to add row
+                let table = document.getElementById("tableBody");
 
-                        // Insert data to cells
+                // Create row element
+                let row = document.createElement("tr")
 
-                        c1.innerText = code;
-                        c2.innerText = description;
-                        c3.innerHTML = "<div class='sent' type='number' id='" + code + "_sent' >0</div>";
-                        c4.innerHTML = "<div class='delivered'  id='" + code + "_delivered'>0</div>";
+                // Create cells
+                let c1 = document.createElement("td")
+                let c2 = document.createElement("td")
+                let c3 = document.createElement("td")
+                let c4 = document.createElement("td")
 
+                // Insert data to cells
 
-
-                        // Append cells to row
-                        row.appendChild(c1);
-                        row.appendChild(c2);
-                        row.appendChild(c3);
-                        row.appendChild(c4);
+                c1.innerText = code;
+                c2.innerText = description;
+                c3.innerHTML = "<div class='sent' type='number' id='" + code + "_sent' >0</div>";
+                c4.innerHTML = "<div class='delivered'  id='" + code + "_delivered'>0</div>";
 
 
 
-                        // Append row to table body
-                        table.appendChild(row)
-                    }
-
-                    //---------------------------------
-                    //--------------------------------
-                    //---------------------------------
-                    function requestRouter(requestTarget) {
-                        form.action = requestTarget;
-
-                        let sent = collectSentData();
-                        sentItems.value = sent;
-
-                        let delivered = collectDeliveredData();
-                        deliveredItems.value = delivered;
+                // Append cells to row
+                row.appendChild(c1);
+                row.appendChild(c2);
+                row.appendChild(c3);
+                row.appendChild(c4);
 
 
-                        // console.log(data);
-                        form.submit();
-                    }
 
-                    function collectSentData() {
-                        var returnValue = "";
-                        var sentItems = document.querySelectorAll(".sent");
+                // Append row to table body
+                table.appendChild(row)
+            }
 
-                        for (x = 0; x < sentItems.length; x++) {
+            //---------------------------------
+            //--------------------------------
+            //---------------------------------
+            function requestRouter(requestTarget) {
+                form.action = requestTarget;
 
-                            returnValue += sentItems[x].id + ":" + sentItems[x].value + ",";
-                        }
-                        return returnValue;
-                    }
+                let sent = collectSentData();
+                sentItems.value = sent;
 
-                    function collectDeliveredData() {
-                        var returnValue = "";
-                        var deliveredItems = document.querySelectorAll(".delivered");
+                let delivered = collectDeliveredData();
+                deliveredItems.value = delivered;
 
-                        for (x = 0; x < deliveredItems.length; x++) {
 
-                            returnValue += deliveredItems[x].id + ":" + deliveredItems[x].value + ",";
-                        }
-                        return returnValue;
-                    }
+                // console.log(data);
+                form.submit();
+            }
+
+            function collectSentData() {
+                var returnValue = "";
+                var sentItems = document.querySelectorAll(".sent");
+
+                for (x = 0; x < sentItems.length; x++) {
+
+                    returnValue += sentItems[x].id + ":" + sentItems[x].value + ",";
+                }
+                return returnValue;
+            }
+
+            function collectDeliveredData() {
+                var returnValue = "";
+                var deliveredItems = document.querySelectorAll(".delivered");
+
+                for (x = 0; x < deliveredItems.length; x++) {
+
+                    returnValue += deliveredItems[x].id + ":" + deliveredItems[x].value + ",";
+                }
+                return returnValue;
+            }
     </script>
 </body>
 </html>
