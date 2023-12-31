@@ -1,9 +1,6 @@
 package Endo;
 
 import BasicModel.Item;
-import Delivery.DeliveryDao;
-import Delivery.DeliveryItem;
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import org.springframework.stereotype.Controller;
@@ -28,8 +25,10 @@ public class EndoController {
         endo.setItems(items);
         endo.setId(35);
 
-        DeliveryDao deliveryDao = new DeliveryDao();
-        ArrayList<DeliveryItem> pet4UItemsRowByRow = deliveryDao.getPet4UItemsRowByRow();
+        EndoDao endoDao = new EndoDao();
+        LinkedHashMap<String, Item> pet4UItemsRowByRow = endoDao.getAllPet4UItemsRowByRowWithDeepSearch();
+
+        System.out.println("Pet4U Items Were Brought By Deep Search Method. Items count: " + pet4UItemsRowByRow.size());
         modelMap.addAttribute("pet4UItemsRowByRow", pet4UItemsRowByRow);
         modelMap.addAttribute("endo", endo);
         return "endo/deltioApostolis";
