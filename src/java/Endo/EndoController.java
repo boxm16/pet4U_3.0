@@ -38,10 +38,14 @@ public class EndoController {
             Item it = pet4uAllItemsEntry.getValue();
             String code1 = it.getCode();
             Item ite = allPet4UItemsWithDeepSearch.get(code1);
-            if (it.getQuantity().equals(ite.getQuantity())) {
-
+            if (ite == null) {
+                System.out.println("NULL"+it.getCode());
             } else {
-                System.out.println("SHOUUT:" + code1);
+                if (it.getQuantity().equals(ite.getQuantity())) {
+
+                } else {
+                    System.out.println("SHOUUT:" + code1);
+                }
             }
         }
 
