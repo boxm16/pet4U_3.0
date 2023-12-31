@@ -106,7 +106,7 @@
                 <hr>
              <a href="deltioApostolis.htm"><h1>Δελτιο Αποστολης</h1></a> 
 
-
+             <a href="get.htm"><h1>Δελτιο D</h1></a> 
 
             </center>
         </div>
