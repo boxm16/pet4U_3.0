@@ -104,7 +104,7 @@
                 <a href="scanninger.htm"><h1>Go for Scanning</h1></a>
 
                 <hr>
-             <a href="stockinger.htm"><h1>Go for Stocking</h1></a> 
+             <a href="deltioApostolis.htm"><h1>Δελτιο Αποστολης</h1></a> 
 
 
 

@@ -799,7 +799,7 @@ public class TechManDao {
                 + "date DATE NOT NULL, "
                 + "type VARCHAR (10) NOT NULL, "
                 + "sender VARCHAR (15) NOT NULL, "
-                + "reciever VARCHAR (15) NOT NULL, "
+                + "receiver VARCHAR (15) NOT NULL, "
                 + "item_code VARCHAR (100) NOT NULL, "
                 + "quantity VARCHAR (30) NOT NULL) "
                 + "ENGINE = InnoDB "
