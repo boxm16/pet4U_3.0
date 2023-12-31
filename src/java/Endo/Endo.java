@@ -14,12 +14,27 @@ import java.util.LinkedHashMap;
  * @author Michail Sitmalidis
  */
 public class Endo {
+
     private int id;
     private LocalDate date;
     private String type;
     private String sender;
     private String receiver;
     private LinkedHashMap<String, Item> items;
+
+    public Endo() {
+
+        this.items = new LinkedHashMap<>();
+    }
+
+    public Endo(int id, LocalDate date, String type, String sender, String receiver, LinkedHashMap<String, Item> items) {
+        this.id = id;
+        this.date = date;
+        this.type = type;
+        this.sender = sender;
+        this.receiver = receiver;
+        this.items = items;
+    }
 
     public int getId() {
         return id;
@@ -68,7 +83,5 @@ public class Endo {
     public void setItems(LinkedHashMap<String, Item> items) {
         this.items = items;
     }
-    
-    
-    
+
 }
