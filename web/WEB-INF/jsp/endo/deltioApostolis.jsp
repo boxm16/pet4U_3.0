@@ -27,49 +27,45 @@
         </style>
     </head>
     <body>
-
+    <center>
         <h2>DELTIO APOSOTLHS</h2>
+        <hr>
+
+        <center> <input type="text" onkeypress="check(event, this)"></center>
+        <center> <p id="descriptionDisplay"></center>
+
+        <hr>
         <form:form method="post" action="saveEndo.htm" modelAttribute="endo">
             <input name="id" value="${endo.id}"/>
             <table>
                 <thead> 
                     <tr>
-                        <th colspan="3">
-                <center> <input type="text" onkeypress="check(event, this)"></center>
-                <center> <p id="descriptionDisplay"></center>
-            </th>
-        </tr>
-        <tr>
+                        <th>Abbrev</th>
+                        <th>Description</th>
+                        <th>QTY</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <c:forEach items="${endo.items}" var="itemEntry" varStatus="status">
+                        <tr>
+                            <td><input name="items['${itemEntry.key}'].code" value="${itemEntry.value.code}"/></td>
+                            <td><input name="items['${itemEntry.key}'].description" value="${itemEntry.value.description}"/></td>
+                            <td><input name="items['${itemEntry.key}'].quantity" value="${itemEntry.value.quantity}"/></td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>	
+            <br/>
+            <input type="submit" value="Save" />
+        </form:form>
+    </center>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-            <th>Abbrev</th>
-            <th>Description</th>
-            <th>QTY</th>
-        </tr>
-    </thead>
-    <tbody>
-
-        <c:forEach items="${endo.items}" var="itemEntry" varStatus="status">
-            <tr>
-                <td><input name="items['${itemEntry.key}'].code" value="${itemEntry.value.code}"/></td>
-                <td><input name="items['${itemEntry.key}'].description" value="${itemEntry.value.description}"/></td>
-                <td><input name="items['${itemEntry.key}'].quantity" value="${itemEntry.value.quantity}"/></td>
-
-            </tr>
-        </c:forEach>
-    </tbody>
-
-</table>	
-<br/>
-<input type="submit" value="Save" />
-
-</form:form>
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
-<script type="text/javascript">
+    <script type="text/javascript">
 
                     class Item {
                         constructor(altercode, code, description) {
@@ -80,13 +76,13 @@
                     }
 
                     var items = new Array();
-    <c:forEach items="${pet4UItemsRowByRow}" var="item">
+        <c:forEach items="${pet4UItemsRowByRow}" var="item">
                     var altercode = "${item.altercode}";
                     var code = "${item.code}";
                     var description = "${item.description}";
                     var item = new Item(altercode, code, description);
                     items[altercode] = item;
-    </c:forEach>
+        </c:forEach>
 
 
 
@@ -198,6 +194,6 @@
                         }
                         return returnValue;
                     }
-</script>
+    </script>
 </body>
 </html>
