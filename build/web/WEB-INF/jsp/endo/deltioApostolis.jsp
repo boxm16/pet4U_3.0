@@ -32,163 +32,172 @@
         <form:form method="post" action="saveEndo.htm" modelAttribute="endo">
             <input name="id" value="${endo.id}"/>
             <table>
-                <tr>
-
-                    <th>Abbrev</th>
-                    <th>Description</th>
-                    <th>QTY</th>
-                </tr>
-
-
-                <c:forEach items="${endo.items}" var="itemEntry" varStatus="status">
+                <thead> 
                     <tr>
-                        <td><input name="items['${itemEntry.key}'].code" value="${itemEntry.value.code}"/></td>
-                        <td><input name="items['${itemEntry.key}'].description" value="${itemEntry.value.description}"/></td>
-                        <td><input name="items['${itemEntry.key}'].quantity" value="${itemEntry.value.quantity}"/></td>
+                        <th colspan="3">
+                <center> <input type="text" onkeypress="check(event, this)"></center>
+                <center> <p id="descriptionDisplay"></center>
+            </th>
+        </tr>
+        <tr>
 
-                    </tr>
-                </c:forEach>
+            <th>Abbrev</th>
+            <th>Description</th>
+            <th>QTY</th>
+        </tr>
+    </thead>
+    <tbody>
 
-            </table>	
-            <br/>
-            <input type="submit" value="Save" />
+        <c:forEach items="${endo.items}" var="itemEntry" varStatus="status">
+            <tr>
+                <td><input name="items['${itemEntry.key}'].code" value="${itemEntry.value.code}"/></td>
+                <td><input name="items['${itemEntry.key}'].description" value="${itemEntry.value.description}"/></td>
+                <td><input name="items['${itemEntry.key}'].quantity" value="${itemEntry.value.quantity}"/></td>
 
-        </form:form>
-        <!-- Optional JavaScript -->
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+            </tr>
+        </c:forEach>
+    </tbody>
 
-        <script type="text/javascript">
+</table>	
+<br/>
+<input type="submit" value="Save" />
 
-            class Item {
-                constructor(altercode, code, description) {
-                    this.altercode = altercode;
-                    this.code = code;
-                    this.description = description;
-                }
-            }
+</form:form>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-            var items = new Array();
-            <c:forEach items="${pet4UItemsRowByRow}" var="item">
-            var altercode = "${item.altercode}";
-            var code = "${item.code}";
-            var description = "${item.description}";
-            var item = new Item(altercode, code, description);
-            items[altercode] = item;
-            </c:forEach>
+<script type="text/javascript">
 
-
-
-
-            function check(event, input) {
-                if (event.keyCode === 13) {
-                    var altercode = input.value;
-                    console.log("altercode:" + altercode);
-                    var item = items[altercode];
-                    if (item == null) {
-                        document.getElementById("descriptionDisplay").innerHTML = altercode + " : Unkown Item";
-                        addRow(altercode, "Unkown Item");
-                    } else {
-                        var code = item.code;
-                        console.log(code);
-                        var description = item.description;
-                        document.getElementById("descriptionDisplay").innerHTML = altercode + " : " + description;
-
-
-                        let sent = document.getElementById(code + "_sent");
-                        if (sent == null) {
-                            addRow(item.code, item.description);
-                        } else {
-                            sent = sent.value * 1;
+                    class Item {
+                        constructor(altercode, code, description) {
+                            this.altercode = altercode;
+                            this.code = code;
+                            this.description = description;
                         }
-
-                        let delivered = document.getElementById(code + "_delivered").innerHTML * 1;
-                        delivered++;
-
-                        document.getElementById(code + "_delivered").innerHTML = delivered;
-
-
                     }
 
-                    input.value = "";
-
-                }
-            }
-
-            function addRow(code, description) {
-                // Get the table body element in which you want to add row
-                let table = document.getElementById("tableBody");
-
-                // Create row element
-                let row = document.createElement("tr")
-
-                // Create cells
-                let c1 = document.createElement("td")
-                let c2 = document.createElement("td")
-                let c3 = document.createElement("td")
-                let c4 = document.createElement("td")
-
-                // Insert data to cells
-
-                c1.innerText = code;
-                c2.innerText = description;
-                c3.innerHTML = "<div class='sent' type='number' id='" + code + "_sent' >0</div>";
-                c4.innerHTML = "<div class='delivered'  id='" + code + "_delivered'>0</div>";
+                    var items = new Array();
+    <c:forEach items="${pet4UItemsRowByRow}" var="item">
+                    var altercode = "${item.altercode}";
+                    var code = "${item.code}";
+                    var description = "${item.description}";
+                    var item = new Item(altercode, code, description);
+                    items[altercode] = item;
+    </c:forEach>
 
 
 
-                // Append cells to row
-                row.appendChild(c1);
-                row.appendChild(c2);
-                row.appendChild(c3);
-                row.appendChild(c4);
+
+                    function check(event, input) {
+                        if (event.keyCode === 13) {
+                            var altercode = input.value;
+                            console.log("altercode:" + altercode);
+                            var item = items[altercode];
+                            if (item == null) {
+                                document.getElementById("descriptionDisplay").innerHTML = altercode + " : Unkown Item";
+                                addRow(altercode, "Unkown Item");
+                            } else {
+                                var code = item.code;
+                                console.log(code);
+                                var description = item.description;
+                                document.getElementById("descriptionDisplay").innerHTML = altercode + " : " + description;
+
+
+                                let sent = document.getElementById(code + "_sent");
+                                if (sent == null) {
+                                    addRow(item.code, item.description);
+                                } else {
+                                    sent = sent.value * 1;
+                                }
+
+                                let delivered = document.getElementById(code + "_delivered").innerHTML * 1;
+                                delivered++;
+
+                                document.getElementById(code + "_delivered").innerHTML = delivered;
+
+
+                            }
+
+                            input.value = "";
+
+                        }
+                    }
+
+                    function addRow(code, description) {
+                        // Get the table body element in which you want to add row
+                        let table = document.getElementById("tableBody");
+
+                        // Create row element
+                        let row = document.createElement("tr")
+
+                        // Create cells
+                        let c1 = document.createElement("td")
+                        let c2 = document.createElement("td")
+                        let c3 = document.createElement("td")
+                        let c4 = document.createElement("td")
+
+                        // Insert data to cells
+
+                        c1.innerText = code;
+                        c2.innerText = description;
+                        c3.innerHTML = "<div class='sent' type='number' id='" + code + "_sent' >0</div>";
+                        c4.innerHTML = "<div class='delivered'  id='" + code + "_delivered'>0</div>";
 
 
 
-                // Append row to table body
-                table.appendChild(row)
-            }
-
-            //---------------------------------
-            //--------------------------------
-            //---------------------------------
-            function requestRouter(requestTarget) {
-                form.action = requestTarget;
-
-                let sent = collectSentData();
-                sentItems.value = sent;
-
-                let delivered = collectDeliveredData();
-                deliveredItems.value = delivered;
+                        // Append cells to row
+                        row.appendChild(c1);
+                        row.appendChild(c2);
+                        row.appendChild(c3);
+                        row.appendChild(c4);
 
 
-                // console.log(data);
-                form.submit();
-            }
 
-            function collectSentData() {
-                var returnValue = "";
-                var sentItems = document.querySelectorAll(".sent");
+                        // Append row to table body
+                        table.appendChild(row)
+                    }
 
-                for (x = 0; x < sentItems.length; x++) {
+                    //---------------------------------
+                    //--------------------------------
+                    //---------------------------------
+                    function requestRouter(requestTarget) {
+                        form.action = requestTarget;
 
-                    returnValue += sentItems[x].id + ":" + sentItems[x].value + ",";
-                }
-                return returnValue;
-            }
+                        let sent = collectSentData();
+                        sentItems.value = sent;
 
-            function collectDeliveredData() {
-                var returnValue = "";
-                var deliveredItems = document.querySelectorAll(".delivered");
+                        let delivered = collectDeliveredData();
+                        deliveredItems.value = delivered;
 
-                for (x = 0; x < deliveredItems.length; x++) {
 
-                    returnValue += deliveredItems[x].id + ":" + deliveredItems[x].value + ",";
-                }
-                return returnValue;
-            }
-        </script>
-    </body>
+                        // console.log(data);
+                        form.submit();
+                    }
+
+                    function collectSentData() {
+                        var returnValue = "";
+                        var sentItems = document.querySelectorAll(".sent");
+
+                        for (x = 0; x < sentItems.length; x++) {
+
+                            returnValue += sentItems[x].id + ":" + sentItems[x].value + ",";
+                        }
+                        return returnValue;
+                    }
+
+                    function collectDeliveredData() {
+                        var returnValue = "";
+                        var deliveredItems = document.querySelectorAll(".delivered");
+
+                        for (x = 0; x < deliveredItems.length; x++) {
+
+                            returnValue += deliveredItems[x].id + ":" + deliveredItems[x].value + ",";
+                        }
+                        return returnValue;
+                    }
+</script>
+</body>
 </html>
