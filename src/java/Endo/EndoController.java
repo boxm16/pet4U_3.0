@@ -1,9 +1,7 @@
 package Endo;
 
 import BasicModel.Item;
-import Delivery.DeliveryItem;
 import Pet4uItems.Pet4uItemsDao;
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import org.springframework.stereotype.Controller;
@@ -32,10 +30,22 @@ public class EndoController {
         LinkedHashMap<String, Item> pet4uAllItems = pet4uItemsDao.getAllItems();
 
         EndoDao endoDao = new EndoDao();
-        ArrayList<DeliveryItem> pet4UItemsRowByRow = endoDao.getAllPet4UItemsRowByRowWithDeepSearch();
+        // ArrayList<DeliveryItem> pet4UItemsRowByRow = endoDao.getAllPet4UItemsRowByRowWithDeepSearch();
+        LinkedHashMap<String, Item> allPet4UItemsWithDeepSearch = endoDao.getAllPet4UItemsWithDeepSearch();
+        //  System.out.println("Pet4U Items Were Brought By Deep Search Method. Items count: " + pet4UItemsRowByRow.size());
 
-        System.out.println("Pet4U Items Were Brought By Deep Search Method. Items count: " + pet4UItemsRowByRow.size());
-        modelMap.addAttribute("pet4UItemsRowByRow", pet4UItemsRowByRow);
+        for (Map.Entry<String, Item> pet4uAllItemsEntry : pet4uAllItems.entrySet()) {
+            Item it = pet4uAllItemsEntry.getValue();
+            String code1 = it.getCode();
+            Item ite = allPet4UItemsWithDeepSearch.get(code1);
+            if (it.getQuantity().equals(ite.getQuantity())) {
+
+            } else {
+                System.out.println("SHOUUT:" + code1);
+            }
+        }
+
+        //  modelMap.addAttribute("pet4UItemsRowByRow", pet4UItemsRowByRow);
         modelMap.addAttribute("endo", endo);
         return "endo/deltioApostolis";
 
