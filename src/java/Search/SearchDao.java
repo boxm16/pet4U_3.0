@@ -286,7 +286,7 @@ public class SearchDao {
                     + "INNER JOIN [petworld].[EliteUser].[AIC] ON [petworld].[EliteUser].[AIC].INIID=[petworld].[EliteUser].[INI].ID "
                     + "INNER JOIN [petworld].[EliteUser].[IR1] ON [petworld].[EliteUser].[IR1].ID= [petworld].[EliteUser].[INI].IF1ID "
                     + "INNER JOIN [petworld].[EliteUser].[ICV] ON [petworld].[EliteUser].[ICV].INIID=[petworld].[EliteUser].[INI].ID "
-                    + "INNER JOIN [petworld].[EliteUser].[IR2] ON [petworld].[EliteUser].[IR2].ID=[petworld].[EliteUser].[INI].IF2ID "
+                    + "INNER LEFT [petworld].[EliteUser].[IR2] ON [petworld].[EliteUser].[IR2].ID=[petworld].[EliteUser].[INI].IF2ID "
                     + "WHERE [petworld].[EliteUser].[ICV].FYEID=18 "
                     + "AND [petworld].[EliteUser].[ICV].SCOID=13 "
                     + "AND [petworld].[EliteUser].[ICV].BRAID=10 "
