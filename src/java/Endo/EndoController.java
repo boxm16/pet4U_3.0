@@ -2,6 +2,7 @@ package Endo;
 
 import BasicModel.Item;
 import Delivery.DeliveryItem;
+import Pet4uItems.Pet4uItemsDao;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -26,6 +27,9 @@ public class EndoController {
         items.put(code, item);
         endo.setItems(items);
         endo.setId(35);
+
+        Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
+        LinkedHashMap<String, Item> pet4uAllItems = pet4uItemsDao.getAllItems();
 
         EndoDao endoDao = new EndoDao();
         ArrayList<DeliveryItem> pet4UItemsRowByRow = endoDao.getAllPet4UItemsRowByRowWithDeepSearch();
