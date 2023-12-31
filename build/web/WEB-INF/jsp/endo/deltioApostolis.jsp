@@ -71,10 +71,10 @@
             }
 
             var items = new Array();
-            <c:forEach items="${pet4UItemsRowByRow}" var="itemEntry">
-            var altercode = "${itemEntry.value.altercodes.altercode}";
-            var code = "${itemEntry.value.code}";
-            var description = "${itemEntry.value.description}";
+            <c:forEach items="${pet4UItemsRowByRow}" var="item">
+            var altercode = "${item.altercode}";
+            var code = "${item.code}";
+            var description = "${item.description}";
             var item = new Item(altercode, code, description);
             items[altercode] = item;
             </c:forEach>
