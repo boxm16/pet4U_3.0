@@ -1,19 +1,22 @@
 package Endo;
 
 import BasicModel.Item;
+import Delivery.DeliveryDao;
+import Delivery.DeliveryItem;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class EndoController {
 
     @RequestMapping(value = "deltioApostolis", method = RequestMethod.GET)
-    public ModelAndView deltioApostolis() {
+    public String deltioApostolis(ModelMap modelMap) {
         Endo endo = new Endo();
         Item item = new Item();
         String code = "DDD";
@@ -25,12 +28,16 @@ public class EndoController {
         endo.setItems(items);
         endo.setId(35);
 
-        return new ModelAndView("endo/deltioApostolis", "endo", endo);
+        DeliveryDao deliveryDao = new DeliveryDao();
+        ArrayList<DeliveryItem> pet4UItemsRowByRow = deliveryDao.getPet4UItemsRowByRow();
+        modelMap.addAttribute("pet4UItemsRowByRow", pet4UItemsRowByRow);
+        modelMap.addAttribute("endo", endo);
+        return "endo/deltioApostolis";
 
     }
 
     @RequestMapping(value = "/saveEndo", method = RequestMethod.POST)
-    public ModelAndView save(@ModelAttribute("endo") Endo endo) {
+    public String save(ModelMap modelMap, @ModelAttribute("endo") Endo endo) {
 
         System.out.println("ID:" + endo.getId());
         LinkedHashMap<String, Item> items = endo.getItems();
@@ -41,8 +48,8 @@ public class EndoController {
             System.out.println(itemsEntry.getValue().getQuantity());
 
         }
-
-        return new ModelAndView("endo/deltioApostolis", "endo", endo);
+        modelMap.addAttribute("endo", endo);
+        return "endo/deltioApostolis";
     }
 
 }
