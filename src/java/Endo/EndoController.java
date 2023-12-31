@@ -6,7 +6,6 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -30,25 +29,35 @@ public class EndoController {
         LinkedHashMap<String, Item> pet4uAllItems = pet4uItemsDao.getAllItems();
 
         EndoDao endoDao = new EndoDao();
-        // ArrayList<DeliveryItem> pet4UItemsRowByRow = endoDao.getAllPet4UItemsRowByRowWithDeepSearch();
+        //   ArrayList<DeliveryItem> pet4UItemsRowByRow = endoDao.getAllPet4UItemsRowByRowWithDeepSearch();
         LinkedHashMap<String, Item> allPet4UItemsWithDeepSearch = endoDao.getAllPet4UItemsWithDeepSearch();
-        //  System.out.println("Pet4U Items Were Brought By Deep Search Method. Items count: " + pet4UItemsRowByRow.size());
+        //   System.out.println("Pet4U Items Were Brought By Deep Search Method. Items count: " + pet4UItemsRowByRow.size());
 
-        //   for (Map.Entry<String, Item> pet4uAllItemsEntry : pet4uAllItems.entrySet()) {
-        //     System.out.println(pet4uAllItemsEntry.getValue().getCode());
-        // }
-        for (Map.Entry<String, Item> pet4uAllItemsEntry : allPet4UItemsWithDeepSearch.entrySet()) {
-            System.out.println(pet4uAllItemsEntry.getValue().getCode());
+        for (Map.Entry<String, Item> pet4uAllItemsEntry : pet4uAllItems.entrySet()) {
+            String codeEx = pet4uAllItemsEntry.getKey();
+            Item value = pet4uAllItemsEntry.getValue();
+            Item v = allPet4UItemsWithDeepSearch.get(codeEx);
+            if (v == null) {
+                System.out.println("SHOUT, NULL AGAIN " + codeEx + "--" + value.getDescription() + "++" + value.getPosition());
+
+            }
         }
+        // for (Map.Entry<String, Item> pet4uAllItemsEntry : allPet4UItemsWithDeepSearch.entrySet()) {
+        //    System.out.println(pet4uAllItemsEntry.getValue().getCode());
+        // }
 
         //  modelMap.addAttribute("pet4UItemsRowByRow", pet4UItemsRowByRow);
-        modelMap.addAttribute("endo", endo);
+        modelMap.addAttribute(
+                "endo", endo);
+
         return "endo/deltioApostolis";
 
     }
 
     @RequestMapping(value = "/saveEndo", method = RequestMethod.POST)
-    public String save(ModelMap modelMap, @ModelAttribute("endo") Endo endo) {
+    public String save(ModelMap modelMap,
+            @ModelAttribute("endo") Endo endo
+    ) {
 
         System.out.println("ID:" + endo.getId());
         LinkedHashMap<String, Item> items = endo.getItems();
