@@ -1,7 +1,8 @@
 package Endo;
 
 import BasicModel.Item;
-import Pet4uItems.Pet4uItemsDao;
+import Delivery.DeliveryItem;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import org.springframework.stereotype.Controller;
@@ -26,11 +27,14 @@ public class EndoController {
         endo.setItems(items);
         endo.setId(35);
 
+        EndoDao endoDao = new EndoDao();
+        ArrayList<DeliveryItem> pet4UItemsRowByRow = endoDao.getAllPet4UItemsRowByRowWithDeepSearch();
+
+        /*
+        
         Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
         LinkedHashMap<String, Item> pet4uAllItems = pet4uItemsDao.getAllItems();
 
-        EndoDao endoDao = new EndoDao();
-        //   ArrayList<DeliveryItem> pet4UItemsRowByRow = endoDao.getAllPet4UItemsRowByRowWithDeepSearch();
         LinkedHashMap<String, Item> allPet4UItemsWithDeepSearch = endoDao.getAllPet4UItemsWithDeepSearch();
         //   System.out.println("Pet4U Items Were Brought By Deep Search Method. Items count: " + pet4UItemsRowByRow.size());
 
@@ -59,8 +63,8 @@ public class EndoController {
                     + pet4uAllItemsEntry.getValue().getPosition());
 
         }
-
-        //  modelMap.addAttribute("pet4UItemsRowByRow", pet4UItemsRowByRow);
+         */
+        modelMap.addAttribute("pet4UItemsRowByRow", pet4UItemsRowByRow);
         modelMap.addAttribute(
                 "endo", endo);
 

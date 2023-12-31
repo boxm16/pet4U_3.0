@@ -39,8 +39,7 @@ public class EndoDao {
         try {
             connection = this.databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
 
-//maybe thre is some join, or other clause for things like this, but i dnt know yet, no time for search
-            String sql = "SELECT [petworld].[EliteUser].[INI].[ID]  AS ID, "
+  String sql = "SELECT [petworld].[EliteUser].[INI].[ID]  AS ID, "
                     + "ABBREVIATION, "
                     + "[petworld].[EliteUser].[INI].[NAME]  AS  NAME, "
                     + "ALTERNATECODE,  "
@@ -102,8 +101,7 @@ public class EndoDao {
         try {
             connection = this.databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
 
-//maybe thre is some join, or other clause for things like this, but i dnt know yet, no time for search
-            String sql = "SELECT [petworld].[EliteUser].[INI].[ID]  AS ID, "
+    String sql = "SELECT [petworld].[EliteUser].[INI].[ID]  AS ID, "
                     + "ABBREVIATION, "
                     + "[petworld].[EliteUser].[INI].[NAME]  AS  NAME, "
                     + "ALTERNATECODE,  "
