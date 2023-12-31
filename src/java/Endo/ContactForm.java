@@ -5,17 +5,18 @@
  */
 package Endo;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ContactForm {
 
-    private List<Contact> contacts;
+    private Map<String, String> contactMap = new HashMap<String, String>();
 
-    public List<Contact> getContacts() {
-        return contacts;
+    public Map<String, String> getContactMap() {
+        return contactMap;
     }
 
-    public void setContacts(List<Contact> contacts) {
-        this.contacts = contacts;
+    public void setContactMap(Map<String, String> contactMap) {
+        this.contactMap = contactMap;
     }
 }
