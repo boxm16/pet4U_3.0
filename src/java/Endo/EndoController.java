@@ -37,15 +37,16 @@ public class EndoController {
         for (Map.Entry<String, Item> pet4uAllItemsEntry : pet4uAllItems.entrySet()) {
             String codeEx = pet4uAllItemsEntry.getKey();
             Item value1 = pet4uAllItemsEntry.getValue();
-            Item v2 = allPet4UItemsWithDeepSearch.get(codeEx);
+            Item v2 = allPet4UItemsWithDeepSearch.remove(codeEx);
             if (v2 == null) {
                       System.out.println("SHOUT, NULL AGAIN " + codeEx + "--" + value1.getDescription() + "++" + value1.getPosition());
            
             }
-            if (value1.getQuantity().equals(v2.getQuantity())) {
+            if (!value1.getQuantity().equals(v2.getQuantity())) {
                 System.out.println("QYT " + codeEx + "--" + value1.getDescription() + "++" + value1.getQuantity()+"X"+v2.getQuantity());
 
             }
+            System.out.println("LEFT OVERS: "+allPet4UItemsWithDeepSearch.size());
         }
         // for (Map.Entry<String, Item> pet4uAllItemsEntry : allPet4UItemsWithDeepSearch.entrySet()) {
         //    System.out.println(pet4uAllItemsEntry.getValue().getCode());
