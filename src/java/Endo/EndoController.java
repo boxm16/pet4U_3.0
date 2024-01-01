@@ -40,7 +40,7 @@ public class EndoController {
     public String save(ModelMap modelMap, @ModelAttribute("endo") Endo endo) {
 
         System.out.println("ID:" + endo.getId());
-        System.out.println("Date:" + endo.getDate());
+        System.out.println("Date:" + endo.getDateString());
         System.out.println("TYPE:" + endo.getType());
         System.out.println("Sender:" + endo.getSender());
         System.out.println("Receiver:" + endo.getReceiver());
