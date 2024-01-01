@@ -13,7 +13,21 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Endo Dashboard</title>
+        <style>
+            table, th, td {
+                border: 1px solid ;
+                border-collapse: collapse;
+            }
+            td {
+                font-size: 20px;
+            }
+            th{
+                font-size: 30px;
+                font-weight: bold;
+            }
+
+        </style>
     </head>
     <body>
         <h1>Hello World!</h1>
@@ -36,7 +50,7 @@
                         out.println("<tr>");
 
                         out.println("<td>");
-                        out.println("input type='checkbox'");
+                        out.println("<input type='checkbox'>");
                         out.println("</td>");
                         out.println("<td>");
                         out.println(entrySet.getValue().getId());
