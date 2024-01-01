@@ -37,6 +37,10 @@
         <hr>
         <form:form method="post" action="saveEndo.htm" modelAttribute="endo">
             <input name="id" value="${endo.id}"/>
+            <input name="date" type="date">
+            <input name="type" value="APOSTOLI" />
+            <input name="sender" value="XALKIDONA" />
+            <input name="sender" value="VARIBOBI"/>
             <table>
                 <thead> 
                     <tr>
@@ -138,7 +142,7 @@
 
 
                 // Insert data to cells
-               
+
 
                 c1.innerHTML = "<input name=\"items[" + code + "].code\" value=\"" + code + "\"/>";
                 c2.innerHTML = "<input name=\"items[" + code + "].description\" value=\"" + description + "\"/>";
