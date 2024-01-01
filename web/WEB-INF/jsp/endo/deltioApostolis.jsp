@@ -138,7 +138,7 @@
 
 
                 // Insert data to cells
-                items['${itemEntry.key}'].code
+               
 
                 c1.innerHTML = "<input name=\"items[" + code + "].code\" value=\"" + code + "\"/>";
                 c2.innerHTML = "<input name=\"items[" + code + "].description\" value=\"" + description + "\"/>";
