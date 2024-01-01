@@ -35,9 +35,7 @@ public class EndoController {
         Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
         LinkedHashMap<String, Item> pet4uAllItems = pet4uItemsDao.getAllItems();
 
-        LinkedHashMap<String, Item> allPet4UItemsWithDeepSearch = endoDao.getAllPet4UItemsWithDeepSearch();
-        //   System.out.println("Pet4U Items Were Brought By Deep Search Method. Items count: " + pet4UItemsRowByRow.size());
-
+       
         for (Map.Entry<String, Item> pet4uAllItemsEntry : pet4uAllItems.entrySet()) {
             String codeEx = pet4uAllItemsEntry.getKey();
             Item value1 = pet4uAllItemsEntry.getValue();
@@ -52,6 +50,11 @@ public class EndoController {
             }
 
         }
+        
+         */
+        LinkedHashMap<String, Item> allPet4UItemsWithDeepSearch = endoDao.getAllPet4UItemsWithDeepSearch();
+        //   System.out.println("Pet4U Items Were Brought By Deep Search Method. Items count: " + pet4UItemsRowByRow.size());
+
         System.out.println("LEFT OVERS: " + allPet4UItemsWithDeepSearch.size());
         for (Map.Entry<String, Item> pet4uAllItemsEntry : allPet4UItemsWithDeepSearch.entrySet()) {
             System.out.println(pet4uAllItemsEntry.getValue().getCode()
@@ -63,7 +66,6 @@ public class EndoController {
                     + pet4uAllItemsEntry.getValue().getPosition());
 
         }
-         */
         modelMap.addAttribute("pet4UItemsRowByRow", pet4UItemsRowByRow);
         modelMap.addAttribute(
                 "endo", endo);
