@@ -183,7 +183,7 @@ public class EndoDao {
         return endoInvoices;
     }
 
-    Endo getEndo(String id) {
+    Endo getEndo(String id, LinkedHashMap<String, Item> allPet4UItemsWithDeepSearch) {
         LinkedHashMap<String, Endo> endoInvoices = new LinkedHashMap();
         String sql = "SELECT  id, date, sender, receiver, item_code, quantity FROM endo WHERE id='" + id + "' ;";
         Connection connection;
@@ -213,8 +213,8 @@ public class EndoDao {
 
                 endo.setDateString(date);
                 endo.setSender(sender);
-                Item item = new Item();
-                item.setCode(itemCode);
+
+                Item item = allPet4UItemsWithDeepSearch.get(itemCode);
                 item.setQuantity(quantity);
                 endo.getItems().put(itemCode, item);
 
