@@ -27,23 +27,13 @@ public class EndoController {
         endo.setId(35);
 
         EndoDao endoDao = new EndoDao();
-      //  ArrayList<DeliveryItem> pet4UItemsRowByRow = endoDao.getAllPet4UItemsRowByRowWithDeepSearch();
+        //  ArrayList<DeliveryItem> pet4UItemsRowByRow = endoDao.getAllPet4UItemsRowByRowWithDeepSearch();
 
         /*
         
        
        
-        System.out.println("LEFT OVERS: " + allPet4UItemsWithDeepSearch.size());
-        for (Map.Entry<String, Item> pet4uAllItemsEntry : allPet4UItemsWithDeepSearch.entrySet()) {
-            System.out.println(pet4uAllItemsEntry.getValue().getCode()
-                    + "="
-                    + pet4uAllItemsEntry.getValue().getDescription()
-                    + "-"
-                    + pet4uAllItemsEntry.getValue().getPosition()
-                    + "+"
-                    + pet4uAllItemsEntry.getValue().getPosition());
-
-        }
+      
         
        
         
@@ -70,7 +60,18 @@ public class EndoController {
 
         }
 
-       // modelMap.addAttribute("pet4UItemsRowByRow", pet4UItemsRowByRow);
+        System.out.println("LEFT OVERS: " + allPet4UItemsWithDeepSearch.size());
+        for (Map.Entry<String, Item> pet4uAllItemsEntry : allPet4UItemsWithDeepSearch.entrySet()) {
+            System.out.println(pet4uAllItemsEntry.getValue().getCode()
+                    + "="
+                    + pet4uAllItemsEntry.getValue().getDescription()
+                    + "-"
+                    + pet4uAllItemsEntry.getValue().getPosition()
+                    + "+"
+                    + pet4uAllItemsEntry.getValue().getPosition());
+
+        }
+        // modelMap.addAttribute("pet4UItemsRowByRow", pet4UItemsRowByRow);
         modelMap.addAttribute("endo", endo);
 
         return "endo/deltioApostolis";
