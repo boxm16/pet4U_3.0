@@ -35,12 +35,11 @@
         <a href="deltioApostolis.htm"><h1>Δελτιο Αποστολης</h1></a> 
         <table>
 
-            <th>Position</th>
-            <th>Altercode</th>
-            <th>Description</th>
-            <th>State</th>
-            <th>Stock</th>
-            <th>Show  Snapshots</th>
+            <th>Select</th>
+            <th>A/A</th>
+            <th>Date</th>
+            <th>Sender</th>
+           
 
             <tbody>
                 <%
