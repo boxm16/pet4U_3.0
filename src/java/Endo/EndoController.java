@@ -31,11 +31,12 @@ public class EndoController {
             System.out.println("DA "+endo.getDateString());
             EndoDao endoDao = new EndoDao();
             String result = endoDao.saveDeltioApostolis(endo);
+            
         } else {
             System.out.println("Date String is NULL");
         }
         modelMap.addAttribute("endo", endo);
-        return "endo/deltioApostolis";
+        return "index";
     }
 
 }

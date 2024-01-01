@@ -28,9 +28,9 @@
     </head>
     <body>
     <center>
-        <h2>DELTIO APOSOTLHS</h2>
+        <h4><a href="index.htm">Index</a></h4>
+        <h4>DELTIO APOSOTLHS</h4>
         <hr>
-
         <center> <input type="text" onkeypress="addItem(event, this)"></center>
         <center> <p id="descriptionDisplay"></center>
 
