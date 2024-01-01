@@ -109,7 +109,7 @@
                         } else {
                             sent = sent.value * 1;
                             sent++;
-                            document.getElementById(code + "_sent").innerHTML = sent;
+                            document.getElementById(code + "_sent").value = sent;
                         }
                     }
                     input.value = "";
