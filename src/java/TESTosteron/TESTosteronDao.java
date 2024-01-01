@@ -5,17 +5,11 @@
  */
 package TESTosteron;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-
 /**
  *
  * @author Michail Sitmalidis
  */
 public class TESTosteronDao {
 
-    @RequestMapping(value = "testosteronDashboard")
-    public String testosteronDashboard() {
-
-        return "testosteron/testosteronDashboard";
-    }
+  
 }

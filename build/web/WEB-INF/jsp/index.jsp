@@ -108,7 +108,7 @@
 
                 <a href="show.htm"><h1>Δελτιο D</h1></a> 
                 <hr>
-                <a href="testosteronDashboard.htm"><h1>TESTing Fashboard</h1></a> 
+                <a href="testosteronDashboard.htm"><h1>TESTing Dashboard</h1></a> 
             </center>
         </div>
     </body>
