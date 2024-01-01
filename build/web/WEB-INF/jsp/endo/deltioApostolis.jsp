@@ -37,7 +37,7 @@
         <hr>
         <form:form method="post" action="saveEndo.htm" modelAttribute="endo">
             <input name="id" value="${endo.id}"/>
-            <input name="date" type="date">
+            <input name="dateString" type="date">
             <input name="type" value="APOSTOLI" />
             <input name="sender" value="XALKIDONA" />
             <input name="sender" value="VARIBOBI"/>

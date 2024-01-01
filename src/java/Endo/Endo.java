@@ -16,6 +16,7 @@ import java.util.LinkedHashMap;
 public class Endo {
 
     private int id;
+    private String dateString;
     private LocalDate date;
     private String type;
     private String sender;
@@ -82,6 +83,14 @@ public class Endo {
 
     public void setItems(LinkedHashMap<String, Item> items) {
         this.items = items;
+    }
+
+    public String getDateString() {
+        return dateString;
+    }
+
+    public void setDateString(String dateString) {
+        this.dateString = dateString;
     }
 
 }
