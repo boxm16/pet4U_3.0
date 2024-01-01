@@ -210,14 +210,17 @@ public class EndoDao {
                 String receiver = resultSet.getString("receiver");
                 String itemCode = resultSet.getString("item_code");
                 String quantity = resultSet.getString("quantity");
+                String type = resultSet.getString("type");
 
                 endo.setDateString(date);
                 endo.setSender(sender);
                 endo.setReceiver(receiver);
+                endo.setDate(invoiceDate);
+                endo.setType(type);
 
                 Item item = allPet4UItemsWithDeepSearch.get(itemCode);
                 item.setQuantity(quantity);
-                
+
                 endo.getItems().put(itemCode, item);
 
             }
