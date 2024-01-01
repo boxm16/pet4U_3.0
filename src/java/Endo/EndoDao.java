@@ -185,7 +185,7 @@ public class EndoDao {
 
     Endo getEndo(String id, LinkedHashMap<String, Item> allPet4UItemsWithDeepSearch) {
         LinkedHashMap<String, Endo> endoInvoices = new LinkedHashMap();
-        String sql = "SELECT  id, date, sender, receiver, item_code, quantity FROM endo WHERE id='" + id + "' ;";
+        String sql = "SELECT  id, date, type, sender, receiver, item_code, quantity FROM endo WHERE id='" + id + "' ;";
         Connection connection;
         Statement statement;
         ResultSet resultSet;
