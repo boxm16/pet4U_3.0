@@ -110,12 +110,6 @@
                             sent = sent.value * 1;
                         }
 
-                        let delivered = document.getElementById(code + "_delivered").innerHTML * 1;
-                        delivered++;
-
-                        document.getElementById(code + "_delivered").innerHTML = delivered;
-
-
                     }
 
                     input.value = "";
@@ -134,13 +128,13 @@
                 let c1 = document.createElement("td")
                 let c2 = document.createElement("td")
                 let c3 = document.createElement("td")
-                let c4 = document.createElement("td")
+
 
                 // Insert data to cells
 
                 c1.innerText = code;
                 c2.innerText = description;
-                c3.innerHTML = "<div class='sent' type='number' id='" + code + "_sent' >0</div>";
+                c3.innerHTML = "<div>1</div>";
 
 
 
@@ -156,43 +150,7 @@
                 table.appendChild(row)
             }
 
-            //---------------------------------
-            //--------------------------------
-            //---------------------------------
-            function requestRouter(requestTarget) {
-                form.action = requestTarget;
 
-                let sent = collectSentData();
-                sentItems.value = sent;
-
-               
-
-
-                // console.log(data);
-                form.submit();
-            }
-
-            function collectSentData() {
-                var returnValue = "";
-                var sentItems = document.querySelectorAll(".sent");
-
-                for (x = 0; x < sentItems.length; x++) {
-
-                    returnValue += sentItems[x].id + ":" + sentItems[x].value + ",";
-                }
-                return returnValue;
-            }
-
-            function collectDeliveredData() {
-                var returnValue = "";
-                var deliveredItems = document.querySelectorAll(".delivered");
-
-                for (x = 0; x < deliveredItems.length; x++) {
-
-                    returnValue += deliveredItems[x].id + ":" + deliveredItems[x].value + ",";
-                }
-                return returnValue;
-            }
     </script>
 </body>
 </html>
