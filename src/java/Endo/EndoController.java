@@ -64,7 +64,7 @@ public class EndoController {
         LinkedHashMap<String, Endo> incomingEndos = endoDao.getLastIncomingEndos(7);
         Endo endo = incomingEndos.get(id);
         modelMap.addAttribute("endo", endo);
-        return "endo/deltioApostolisDispaly";
+        return "endo/deltioApostolisDisplay";
     }
 
 }
