@@ -31,16 +31,16 @@
         <h4><a href="index.htm">Index</a></h4>
         <h4>DELTIO APOSOTLHS DISPLAY</h4>
         <hr>
-        <center> <input type="text" onkeypress="addItem(event, this)"></center>
-        <center> <p id="descriptionDisplay"></center>
 
+
+
+
+        <input type="text" name="id" value="${endo.id}"/>
+        <input name="dateString" type="text" value="${endo.dateString}">
+        <input type="text" name="type" value="APOSTOLI" />
+        <input type="text" name="sender" value="${endo.sender}" />
+        <input type="text" name="receiver" value="${endo.receiver}"/>
         <hr>
-
-        <input name="id" value="${endo.id}"/>
-        <input name="dateString" type="${endo.date}">
-        <input name="type" value="APOSTOLI" />
-        <input name="sender" value="${endo.sender}" />
-        <input name="receiver" value="${endo.receiver}"/>
         <table>
             <thead> 
                 <tr>
