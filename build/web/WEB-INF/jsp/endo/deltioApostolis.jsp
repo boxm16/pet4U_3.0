@@ -31,7 +31,7 @@
         <h2>DELTIO APOSOTLHS</h2>
         <hr>
 
-        <center> <input type="text" onkeypress="check(event, this)"></center>
+        <center> <input type="text" onkeypress="addItem(event, this)"></center>
         <center> <p id="descriptionDisplay"></center>
 
         <hr>
@@ -88,7 +88,7 @@
 
 
 
-            function check(event, input) {
+            function addItem(event, input) {
                 if (event.keyCode === 13) {
                     var altercode = input.value;
                     console.log("altercode:" + altercode);
@@ -98,7 +98,7 @@
                         addRow(altercode, "Unkown Item");
                     } else {
                         var code = item.code;
-                        console.log(code);
+
                         var description = item.description;
                         document.getElementById("descriptionDisplay").innerHTML = altercode + " : " + description;
 
@@ -108,12 +108,11 @@
                             addRow(item.code, item.description);
                         } else {
                             sent = sent.value * 1;
+                            sent++;
+                            document.getElementById(code + "_sent").innerHTML = sent;
                         }
-
                     }
-
                     input.value = "";
-
                 }
             }
 
