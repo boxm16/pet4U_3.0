@@ -104,7 +104,7 @@
                 <a href="scanninger.htm"><h1>Go for Scanning</h1></a>
 
                 <hr>
-                <a href="deltioApostolis.htm"><h1>Δελτιο Αποστολης</h1></a> 
+                <a href="endoDashboard.htm"><h1>Endo Dashboard</h1></a> 
 
                 <hr>
                 <a href="testosteronDashboard.htm"><h1>TESTing Dashboard</h1></a> 

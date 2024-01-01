@@ -12,6 +12,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class EndoController {
 
+    @RequestMapping(value = "endoDashboard", method = RequestMethod.GET)
+    public String endoDashboard(ModelMap modelMap) {
+
+        return "endo/endoDashboard";
+
+    }
+
     @RequestMapping(value = "deltioApostolis", method = RequestMethod.GET)
     public String deltioApostolis(ModelMap modelMap) {
 
@@ -27,11 +34,11 @@ public class EndoController {
     @RequestMapping(value = "/saveEndo", method = RequestMethod.POST)
     public String save(ModelMap modelMap, @ModelAttribute("endo") Endo endo) {
 
-        if (endo.getDateString()!= null) {
-            System.out.println("DA "+endo.getDateString());
+        if (endo.getDateString() != null) {
+            System.out.println("DA " + endo.getDateString());
             EndoDao endoDao = new EndoDao();
             String result = endoDao.saveDeltioApostolis(endo);
-            
+
         } else {
             System.out.println("Date String is NULL");
         }
