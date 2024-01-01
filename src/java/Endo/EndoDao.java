@@ -14,6 +14,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -126,6 +128,54 @@ public class EndoDao {
             return ex.getMessage();
         }
         return "DELTIO APOSTOLIS SAVED SUCCESSFULLY.";
+    }
+
+    ArrayList<String> getLastIncomingEndos(int days) {
+        ArrayList<String> endoInvoices = new ArrayList();
+        String sql = "SELECT DISTINCT  id, date, sender FROM endo WHERE type='APOSTOLI' ORDER BY date DESC;";
+        Connection connection;
+        Statement statement;
+        ResultSet resultSet;
+
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            connection = databaseConnectionFactory.getMySQLConnection();
+
+            statement = connection.createStatement();
+
+            resultSet = statement.executeQuery(sql);
+
+            String currentDate = "FakeDate";
+            int currentDay = 0;
+            while (resultSet.next()) {
+                String id = resultSet.getString("id");
+
+                String date = resultSet.getString("date");
+                if (!currentDate.equals(date)) {
+                    if (currentDay > days) {
+                        return endoInvoices;
+                    }
+                    currentDay++;
+                    currentDate = date;
+                }
+                DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                LocalDate invoiceDate = LocalDate.parse(date, formatter2);
+
+                String sender = resultSet.getString("sender");
+
+                String unicode = id + " " + date + " " + sender;
+                endoInvoices.add(unicode);
+            }
+
+            resultSet.close();
+            statement.close();
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EndoDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return endoInvoices;
     }
 
 }

@@ -2,6 +2,7 @@ package Endo;
 
 import BasicModel.Item;
 import Pet4uItems.Pet4uItemsDao;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -14,6 +15,12 @@ public class EndoController {
 
     @RequestMapping(value = "endoDashboard", method = RequestMethod.GET)
     public String endoDashboard(ModelMap modelMap) {
+
+        EndoDao endoDao = new EndoDao();
+
+        ArrayList<String> incomingEndos = endoDao.getLastIncomingEndos(7);
+
+        modelMap.addAttribute("incomingEndos", incomingEndos);
 
         return "endo/endoDashboard";
 
@@ -41,9 +48,12 @@ public class EndoController {
 
         } else {
             System.out.println("Date String is NULL");
+            modelMap.addAttribute("endo", endo);
+            modelMap.addAttribute("result", "Date String is NULL");
+            return "endo/deltioApostolis";
         }
         modelMap.addAttribute("endo", endo);
-        return "index";
+        return "endo/endoDashboard";
     }
 
 }
