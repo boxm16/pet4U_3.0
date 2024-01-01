@@ -40,7 +40,7 @@
             <input name="dateString" type="date">
             <input name="type" value="APOSTOLI" />
             <input name="sender" value="XALKIDONA" />
-            <input name="sender" value="VARIBOBI"/>
+            <input name="receiver" value="VARIBOBI"/>
             <table>
                 <thead> 
                     <tr>
