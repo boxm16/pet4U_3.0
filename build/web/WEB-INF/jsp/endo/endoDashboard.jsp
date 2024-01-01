@@ -52,7 +52,7 @@
                         out.println("<input type='checkbox' class='a/a' id='" + entrySet.getValue().getId() + "' style='width:28px;height:28px'>");
                         out.println("</td>");
                         out.println("<td>");
-                        out.println("<a href='showDeltioApostolis?id="+entrySet.getValue().getId()+"'>" + entrySet.getValue().getId() + "</a>");
+                        out.println("<a href='showDeltioApostolis.htm?id="+entrySet.getValue().getId()+"'>" + entrySet.getValue().getId() + "</a>");
                         out.println("</td>");
                         out.println("<td>");
                         out.println(entrySet.getValue().getDateString());
