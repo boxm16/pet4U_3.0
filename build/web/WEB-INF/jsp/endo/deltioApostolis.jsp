@@ -165,8 +165,7 @@
                 let sent = collectSentData();
                 sentItems.value = sent;
 
-                let delivered = collectDeliveredData();
-                deliveredItems.value = delivered;
+               
 
 
                 // console.log(data);
