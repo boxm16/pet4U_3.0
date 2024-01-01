@@ -213,9 +213,11 @@ public class EndoDao {
 
                 endo.setDateString(date);
                 endo.setSender(sender);
+                endo.setReceiver(receiver);
 
                 Item item = allPet4UItemsWithDeepSearch.get(itemCode);
                 item.setQuantity(quantity);
+                
                 endo.getItems().put(itemCode, item);
 
             }

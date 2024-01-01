@@ -37,7 +37,7 @@
 
         <input type="text" name="id" value="${endo.id}"/>
         <input name="dateString" type="text" value="${endo.dateString}">
-        <input type="text" name="type" value="APOSTOLI" />
+        <input type="text" name="type" value="${endo.type}" />
         <input type="text" name="sender" value="${endo.sender}" />
         <input type="text" name="receiver" value="${endo.receiver}"/>
         <hr>
@@ -52,9 +52,9 @@
             <tbody id='tableBody'>
                 <c:forEach items="${endo.items}" var="itemEntry" varStatus="status">
                     <tr>
-                        <td><input name="items['${itemEntry.key}'].code" value="${itemEntry.value.code}"/></td>
-                        <td><input name="items['${itemEntry.key}'].description" value="${itemEntry.value.description}"/></td>
-                        <td><input name="items['${itemEntry.key}'].quantity" value="${itemEntry.value.quantity}"/></td>
+                        <td><input type="text" value="${itemEntry.value.code}"/></td>
+                        <td><input type="text" value="${itemEntry.value.description}"/></td>
+                        <td><input type="text" value="${itemEntry.value.quantity}"/></td>
                     </tr>
                 </c:forEach>
             </tbody>
