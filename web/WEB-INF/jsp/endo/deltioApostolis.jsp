@@ -45,7 +45,7 @@
                         <th>QTY</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id='tableBody'>
                     <c:forEach items="${endo.items}" var="itemEntry" varStatus="status">
                         <tr>
                             <td><input name="items['${itemEntry.key}'].code" value="${itemEntry.value.code}"/></td>
@@ -141,7 +141,6 @@
                 c1.innerText = code;
                 c2.innerText = description;
                 c3.innerHTML = "<div class='sent' type='number' id='" + code + "_sent' >0</div>";
-                c4.innerHTML = "<div class='delivered'  id='" + code + "_delivered'>0</div>";
 
 
 
@@ -149,7 +148,7 @@
                 row.appendChild(c1);
                 row.appendChild(c2);
                 row.appendChild(c3);
-                row.appendChild(c4);
+
 
 
 
