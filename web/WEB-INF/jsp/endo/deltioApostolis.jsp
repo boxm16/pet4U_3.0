@@ -95,8 +95,8 @@
                     var item = itemsArray[altercode];
                     if (item == null) {
                         let unknownBarcodeX = document.getElementById(altercode + "_sent");
-                console.log(unknownBarcodeX);      
-                if (unknownBarcodeX == null) {
+
+                        if (unknownBarcodeX == null) {
                             document.getElementById("descriptionDisplay").innerHTML = altercode + " : Unkown Barcode: " + altercode;
                             addRow(altercode, "Unkown Barcode: " + altercode);
                         } else {
@@ -138,10 +138,11 @@
 
 
                 // Insert data to cells
+                items['${itemEntry.key}'].code
 
-                c1.innerHTML = "<input name=\"" + code + ".code\" value=\"" + code + "\"/>";
-                c2.innerHTML = "<input name=\"" + code + ".description\" value=\"" + description + "\"/>";
-                c3.innerHTML = "<input id='" + code + "_sent' name=\"" + code + ".quantity\" value='1'/>";
+                c1.innerHTML = "<input name=\"items[" + code + "].code\" value=\"" + code + "\"/>";
+                c2.innerHTML = "<input name=\"items[" + code + "].description\" value=\"" + description + "\"/>";
+                c3.innerHTML = "<input name=\"items[" + code + "].quantity\" id='" + code + "_sent' value='1'/>";
                 // Append cells to row
                 row.appendChild(c1);
                 row.appendChild(c2);
