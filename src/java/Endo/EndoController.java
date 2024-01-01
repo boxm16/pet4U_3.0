@@ -8,6 +8,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class EndoController {
@@ -53,6 +54,17 @@ public class EndoController {
         }
         modelMap.addAttribute("endo", endo);
         return "endo/endoDashboard";
+    }
+
+    @RequestMapping(value = "showDeltioApostolis", method = RequestMethod.GET)
+    public String showDeltioApostolis(@RequestParam(name = "id") String id, ModelMap modelMap) {
+        System.out.println(id);
+        EndoDao endoDao = new EndoDao();
+
+        LinkedHashMap<String, Endo> incomingEndos = endoDao.getLastIncomingEndos(7);
+        Endo endo = incomingEndos.get(id);
+        modelMap.addAttribute("endo", endo);
+        return "endo/deltioApostolisDispaly";
     }
 
 }
