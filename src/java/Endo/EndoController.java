@@ -27,9 +27,9 @@ public class EndoController {
         endo.setId(35);
 
         Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
-        LinkedHashMap<String, Item> pet4uAllItems = pet4uItemsDao.getAllItems();
+        LinkedHashMap<String, Item> pet4UItemsRowByRow = pet4uItemsDao.getPet4UItemsRowByRow();
 
-        // modelMap.addAttribute("pet4UItemsRowByRow", pet4UItemsRowByRow);
+        modelMap.addAttribute("pet4UItemsRowByRow", pet4UItemsRowByRow);
         modelMap.addAttribute("endo", endo);
 
         return "endo/deltioApostolis";

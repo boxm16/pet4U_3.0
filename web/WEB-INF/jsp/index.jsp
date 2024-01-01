@@ -106,7 +106,6 @@
                 <hr>
                 <a href="deltioApostolis.htm"><h1>Δελτιο Αποστολης</h1></a> 
 
-                <a href="show.htm"><h1>Δελτιο D</h1></a> 
                 <hr>
                 <a href="testosteronDashboard.htm"><h1>TESTing Dashboard</h1></a> 
             </center>
