@@ -95,7 +95,8 @@
                     var item = itemsArray[altercode];
                     if (item == null) {
                         let unknownBarcodeX = document.getElementById(altercode + "_sent");
-                        if (unknownBarcodeX == null) {
+                console.log(unknownBarcodeX);      
+                if (unknownBarcodeX == null) {
                             document.getElementById("descriptionDisplay").innerHTML = altercode + " : Unkown Barcode: " + altercode;
                             addRow(altercode, "Unkown Barcode: " + altercode);
                         } else {
