@@ -133,7 +133,7 @@
 
                 c1.innerText = code;
                 c2.innerText = description;
-                c3.innerHTML = "<div>1</div>";
+                c3.innerHTML = "<div name=\"items['"+code+"'].code\">1</div>";
 
 
 
