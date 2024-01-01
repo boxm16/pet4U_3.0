@@ -1,6 +1,6 @@
 <%-- 
-    Document   : testosteronDashboard
-    Created on : Jan 1, 2024, 9:21:45 AM
+    Document   : testResult
+    Created on : Jan 1, 2024, 9:34:11 AM
     Author     : Michail Sitmalidis
 --%>
 
@@ -9,9 +9,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>TESTING Page</title>
+        <title>JSP Page</title>
     </head>
     <body>
-        <a href='testViewAndDeepSearch.htm'>   <h1>TEST View And DeepSearch Mechanism</h1></a>
+        <h1>Hello World!</h1>
     </body>
 </html>
