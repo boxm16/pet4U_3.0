@@ -462,8 +462,8 @@ public class Pet4uItemsDao {
                 String altercode = resultSet.getString("ALTERNATECODE").trim();
                 Item item = new Item();
                 item.setCode(resultSet.getString("ABBREVIATION").trim());
-           String description=     resultSet.getString("NAME").trim();
-        description=description.replace("\"","`");
+                String description = resultSet.getString("NAME").trim();
+                description = description.replace("\"", "'");//replaces all occurrences of ' `  
                 item.setDescription(description);
 
                 if (resultSet.getString("EXPR1") != null) {

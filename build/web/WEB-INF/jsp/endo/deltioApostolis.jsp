@@ -92,7 +92,7 @@
                 if (event.keyCode === 13) {
                     var altercode = input.value;
                     console.log("altercode:" + altercode);
-                    var item = items[altercode];
+                    var item = itemsArray[altercode];
                     if (item == null) {
                         document.getElementById("descriptionDisplay").innerHTML = altercode + " : Unkown Item";
                         addRow(altercode, "Unkown Item");
