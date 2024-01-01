@@ -146,7 +146,7 @@
                                         var item = items[altercode];
                                         if (item == null) {
                                             document.getElementById("descriptionDisplay").innerHTML = altercode + " : Unkown Item";
-                                            addRow(altercode, "Unkown Item");
+                                            addRow(altercode, "Unkown Barcode");
                                         } else {
                                             var code = item.code;
                                             console.log(code);

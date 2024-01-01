@@ -94,8 +94,15 @@
                     console.log("altercode:" + altercode);
                     var item = itemsArray[altercode];
                     if (item == null) {
-                        document.getElementById("descriptionDisplay").innerHTML = altercode + " : Unkown Item";
-                        addRow(altercode, "Unkown Item");
+                        let unknownBarcodeX = document.getElementById(altercode + "_sent");
+                        if (unknownBarcodeX == null) {
+                            document.getElementById("descriptionDisplay").innerHTML = altercode + " : Unkown Barcode: " + altercode;
+                            addRow(altercode, "Unkown Barcode: " + altercode);
+                        } else {
+                            let v = unknownBarcodeX.value;
+                            v++;
+                            unknownBarcodeX.value = v;
+                        }
                     } else {
                         var code = item.code;
 
