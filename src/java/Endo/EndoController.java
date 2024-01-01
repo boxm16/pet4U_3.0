@@ -2,7 +2,6 @@ package Endo;
 
 import BasicModel.Item;
 import Pet4uItems.Pet4uItemsDao;
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -18,7 +17,7 @@ public class EndoController {
 
         EndoDao endoDao = new EndoDao();
 
-        ArrayList<String> incomingEndos = endoDao.getLastIncomingEndos(7);
+        LinkedHashMap<String, Endo> incomingEndos = endoDao.getLastIncomingEndos(7);
 
         modelMap.addAttribute("incomingEndos", incomingEndos);
 

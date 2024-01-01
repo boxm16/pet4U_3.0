@@ -4,6 +4,8 @@
     Author     : Michail Sitmalidis
 --%>
 
+<%@page import="java.util.Map"%>
+<%@page import="java.util.LinkedHashMap"%>
 <%@page import="Endo.Endo"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -28,13 +30,22 @@
 
             <tbody>
                 <%
-                    ArrayList<String> incomingEndos = (ArrayList) request.getAttribute("incomingEndos");
-                    for (String endoTitel : incomingEndos) {
+                    LinkedHashMap<String, Endo> incomingEndos = (LinkedHashMap) request.getAttribute("incomingEndos");
+                    for (Map.Entry<String, Endo> entrySet : incomingEndos.entrySet()) {
 
                         out.println("<tr>");
 
                         out.println("<td>");
-                        out.println(endoTitel);
+                        out.println("input type='checkbox'");
+                        out.println("</td>");
+                        out.println("<td>");
+                        out.println(entrySet.getValue().getId());
+                        out.println("</td>");
+                        out.println("<td>");
+                        out.println(entrySet.getValue().getDateString());
+                        out.println("</td>");
+                        out.println("<td>");
+                        out.println(entrySet.getValue().getSender());
                         out.println("</td>");
 
                         out.println("</tr>");

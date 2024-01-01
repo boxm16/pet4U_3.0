@@ -105,7 +105,7 @@ public class EndoDao {
             LinkedHashMap<String, Item> items = endo.getItems();
             for (Map.Entry<String, Item> itemsEntry : items.entrySet()) {
 
-                itemInsertStatement.setInt(1, endo.getId());
+                itemInsertStatement.setString(1, endo.getId());
                 itemInsertStatement.setString(2, endo.getDateString());
                 itemInsertStatement.setString(3, endo.getType());
                 itemInsertStatement.setString(4, endo.getSender());
@@ -130,8 +130,8 @@ public class EndoDao {
         return "DELTIO APOSTOLIS SAVED SUCCESSFULLY.";
     }
 
-    ArrayList<String> getLastIncomingEndos(int days) {
-        ArrayList<String> endoInvoices = new ArrayList();
+    LinkedHashMap<String, Endo> getLastIncomingEndos(int days) {
+        LinkedHashMap<String, Endo> endoInvoices = new LinkedHashMap();
         String sql = "SELECT DISTINCT  id, date, sender FROM endo WHERE type='APOSTOLI' ORDER BY date DESC;";
         Connection connection;
         Statement statement;
@@ -148,6 +148,7 @@ public class EndoDao {
             String currentDate = "FakeDate";
             int currentDay = 0;
             while (resultSet.next()) {
+
                 String id = resultSet.getString("id");
 
                 String date = resultSet.getString("date");
@@ -163,8 +164,12 @@ public class EndoDao {
 
                 String sender = resultSet.getString("sender");
 
-                String unicode = id + " " + date + " " + sender;
-                endoInvoices.add(unicode);
+                Endo endo = new Endo();
+                endo.setId(id);
+                endo.setDateString(date);
+                endo.setSender(sender);
+
+                endoInvoices.put(id, endo);
             }
 
             resultSet.close();
