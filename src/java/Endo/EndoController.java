@@ -27,12 +27,12 @@ public class EndoController {
     @RequestMapping(value = "/saveEndo", method = RequestMethod.POST)
     public String save(ModelMap modelMap, @ModelAttribute("endo") Endo endo) {
 
-        if (endo.getDate() != null) {
+        if (endo.getDateString()!= null) {
             System.out.println("DA "+endo.getDateString());
             EndoDao endoDao = new EndoDao();
             String result = endoDao.saveDeltioApostolis(endo);
         } else {
-
+            System.out.println("Date String is NULL");
         }
         modelMap.addAttribute("endo", endo);
         return "endo/deltioApostolis";
