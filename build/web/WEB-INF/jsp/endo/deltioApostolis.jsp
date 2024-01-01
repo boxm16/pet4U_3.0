@@ -77,10 +77,10 @@
 
             var itemsArray = new Array();
         <c:forEach items="${pet4UItemsRowByRow}" var="itemEntry">
-          
-            var altercode = '${itemEntry.key}';
-            var code = '${itemEntry.value.code}';
-            var description = '${itemEntry.value.description}';
+
+            var altercode = "${itemEntry.key}";
+            var code = "${itemEntry.value.code}";
+            var description = "${itemEntry.value.description}";
             var item = new Item(altercode, code, description);
             itemsArray[altercode] = item;
         </c:forEach>

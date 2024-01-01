@@ -462,7 +462,9 @@ public class Pet4uItemsDao {
                 String altercode = resultSet.getString("ALTERNATECODE").trim();
                 Item item = new Item();
                 item.setCode(resultSet.getString("ABBREVIATION").trim());
-                item.setDescription(resultSet.getString("NAME").trim());
+           String description=     resultSet.getString("NAME").trim();
+        description=description.replace("\"","`");
+                item.setDescription(description);
 
                 if (resultSet.getString("EXPR1") != null) {
                     item.setPosition(resultSet.getString("EXPR1").trim());
