@@ -131,12 +131,9 @@
 
                 // Insert data to cells
 
-                c1.innerText = code;
-                c2.innerText = description;
-                c3.innerHTML = "<div name=\"items['"+code+"'].code\">1</div>";
-
-
-
+                c1.innerText = "<input name=\"" + code + ".code\" value=\"" + code + "\"/>";
+                c2.innerText = "<input name=\"" + code + ".description\" value=\"" + description + "\"/>";
+                c3.innerText = "<input name=\"" + code + ".quantity\" value='1'/>";
                 // Append cells to row
                 row.appendChild(c1);
                 row.appendChild(c2);
