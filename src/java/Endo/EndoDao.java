@@ -5,14 +5,18 @@
  */
 package Endo;
 
+import BasicModel.Item;
 import Delivery.DeliveryItem;
 import Search.SearchDao;
 import Service.DatabaseConnectionFactory;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -88,7 +92,40 @@ public class EndoDao {
     }
 
     String saveDeltioApostolis(Endo endo) {
-        return "";
+
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            Connection connection = databaseConnectionFactory.getMySQLConnection();
+
+            connection.setAutoCommit(false);
+            PreparedStatement itemInsertStatement = connection.prepareStatement("INSERT INTO endo (id, date,  type, sender, receiver, item_code, quantity) VALUES (?,?,?,?,?,?,?)");
+
+            LinkedHashMap<String, Item> items = endo.getItems();
+            for (Map.Entry<String, Item> itemsEntry : items.entrySet()) {
+
+                itemInsertStatement.setInt(1, endo.getId());
+                itemInsertStatement.setString(2, endo.getDateString());
+                itemInsertStatement.setString(3, endo.getType());
+                itemInsertStatement.setString(4, endo.getSender());
+                itemInsertStatement.setString(5, endo.getReceiver());
+                itemInsertStatement.setString(5, itemsEntry.getValue().getCode());
+                itemInsertStatement.setString(6, itemsEntry.getValue().getQuantity());
+
+                itemInsertStatement.addBatch();
+
+            }
+
+            itemInsertStatement.executeBatch();
+            connection.commit();
+            itemInsertStatement.close();
+
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EndoDao.class.getName()).log(Level.SEVERE, null, ex);
+            return ex.getMessage();
+        }
+        return "DELTIO APOSTOLIS SAVED SUCCESSFULLY.";
     }
 
 }
