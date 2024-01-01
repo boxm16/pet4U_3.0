@@ -108,8 +108,8 @@ public class EndoDao {
                 itemInsertStatement.setString(3, endo.getType());
                 itemInsertStatement.setString(4, endo.getSender());
                 itemInsertStatement.setString(5, endo.getReceiver());
-                itemInsertStatement.setString(5, itemsEntry.getValue().getCode());
-                itemInsertStatement.setString(6, itemsEntry.getValue().getQuantity());
+                itemInsertStatement.setString(6, itemsEntry.getValue().getCode());
+                itemInsertStatement.setString(7, itemsEntry.getValue().getQuantity());
 
                 itemInsertStatement.addBatch();
 
