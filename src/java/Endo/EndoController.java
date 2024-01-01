@@ -2,6 +2,7 @@ package Endo;
 
 import BasicModel.Item;
 import Pet4uItems.Pet4uItemsDao;
+import TESTosteron.TESTosteronDao;
 import java.util.LinkedHashMap;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -59,9 +60,13 @@ public class EndoController {
     @RequestMapping(value = "showDeltioApostolis", method = RequestMethod.GET)
     public String showDeltioApostolis(@RequestParam(name = "id") String id, ModelMap modelMap) {
         System.out.println(id);
+        
+        TESTosteronDao testosteronDao=new TESTosteronDao();
+        LinkedHashMap<String, Item> allPet4UItemsWithDeepSearch = testosteronDao.getAllPet4UItemsWithDeepSearch();
+        
         EndoDao endoDao = new EndoDao();
 
-        Endo endo= endoDao.getEndo(id);
+        Endo endo= endoDao.getEndo(id, allPet4UItemsWithDeepSearch);
        
         modelMap.addAttribute("endo", endo);
         return "endo/deltioApostolisDisplay";
