@@ -37,10 +37,10 @@
         <hr>
 
         <input name="id" value="${endo.id}"/>
-        <input name="dateString" type="date">
+        <input name="dateString" type="${endo.date}">
         <input name="type" value="APOSTOLI" />
-        <input name="sender" value="XALKIDONA" />
-        <input name="receiver" value="VARIBOBI"/>
+        <input name="sender" value="${endo.sender}" />
+        <input name="receiver" value="${endo.receiver}"/>
         <table>
             <thead> 
                 <tr>
