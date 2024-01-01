@@ -183,4 +183,52 @@ public class EndoDao {
         return endoInvoices;
     }
 
+    Endo getEndo(String id) {
+        LinkedHashMap<String, Endo> endoInvoices = new LinkedHashMap();
+        String sql = "SELECT  id, date, sender, receiver, item_code, quantity FROM endo WHERE id='" + id + "' ;";
+        Connection connection;
+        Statement statement;
+        ResultSet resultSet;
+        Endo endo = new Endo();
+        endo.setId(id);
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            connection = databaseConnectionFactory.getMySQLConnection();
+
+            statement = connection.createStatement();
+
+            resultSet = statement.executeQuery(sql);
+
+            while (resultSet.next()) {
+
+                String date = resultSet.getString("date");
+
+                DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                LocalDate invoiceDate = LocalDate.parse(date, formatter2);
+
+                String sender = resultSet.getString("sender");
+                String receiver = resultSet.getString("receiver");
+                String itemCode = resultSet.getString("item_code");
+                String quantity = resultSet.getString("quantity");
+
+                endo.setDateString(date);
+                endo.setSender(sender);
+                Item item = new Item();
+                item.setCode(itemCode);
+                item.setQuantity(quantity);
+                endo.getItems().put(itemCode, item);
+
+            }
+
+            resultSet.close();
+            statement.close();
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EndoDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return endo;
+    }
+
 }
