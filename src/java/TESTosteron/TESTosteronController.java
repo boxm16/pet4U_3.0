@@ -30,10 +30,11 @@ public class TESTosteronController {
             if (v2 == null) {
                 System.out.println("SHOUT, NULL AGAIN " + codeEx + "--" + value1.getDescription() + "++" + value1.getPosition());
 
-            }
-            if (!value1.getQuantity().equals(v2.getQuantity())) {
-                System.out.println("QYT " + codeEx + "--" + value1.getDescription() + "++" + value1.getQuantity() + "X" + v2.getQuantity());
+            } else {
+                if (!value1.getQuantity().equals(v2.getQuantity())) {
+                    System.out.println("QYT " + codeEx + "--" + value1.getDescription() + "++" + value1.getQuantity() + "X" + v2.getQuantity());
 
+                }
             }
 
         }
