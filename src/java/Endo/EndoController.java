@@ -51,7 +51,7 @@ public class EndoController {
             System.out.println("Date String is NULL");
             modelMap.addAttribute("endo", endo);
             modelMap.addAttribute("result", "Date String is NULL");
-            return "endo/deltioApostolis";
+            return "redirect:endoDashboard.htm";
         }
         modelMap.addAttribute("endo", endo);
         return "endo/endoDashboard";
