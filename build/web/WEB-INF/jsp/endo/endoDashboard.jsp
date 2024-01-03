@@ -78,7 +78,7 @@
 
                     <table>
                         <tbody>
-                            <tr><td colspan="4">ΔΕΛΤΙΑ ΑΠΟΣΤΟΛΗΣ ΑΠΟ ΜΑΓΑΖΙΑ</td></tr>
+                            <tr><td colspan="4">ΔΕΛΤΙΑ ΠΑΡΑΛΑΒΗΣ ΒΑΡΙΜΠΟΜΠΗΣ</td></tr>
                             <tr>
                                 <th>Select</th>
                                 <th>A/A</th>
@@ -109,7 +109,8 @@
 
                                         out.println("</tr>");
                                     }
-                                %>    
+                                %>  
+                            <tr><td colspan="4">ΑΦΟΡΑ ΔΕΛΤΙΑ ΑΠΟΣΤΟΛΗΣ ΤΩΝ ΜΑΓΑΖΙΩΝ</td></tr>
                         </tbody>
                     </table>
                 </td>
