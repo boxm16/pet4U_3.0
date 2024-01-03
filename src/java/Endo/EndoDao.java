@@ -182,6 +182,59 @@ public class EndoDao {
 
         return endoInvoices;
     }
+    
+    LinkedHashMap<String, Endo> getLastReceivingEndos(int days) {
+        LinkedHashMap<String, Endo> endoInvoices = new LinkedHashMap();
+        String sql = "SELECT DISTINCT  id, date, sender FROM endo WHERE type='PARALAVI' ORDER BY date DESC;";
+        Connection connection;
+        Statement statement;
+        ResultSet resultSet;
+
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            connection = databaseConnectionFactory.getMySQLConnection();
+
+            statement = connection.createStatement();
+
+            resultSet = statement.executeQuery(sql);
+
+            String currentDate = "FakeDate";
+            int currentDay = 0;
+            while (resultSet.next()) {
+
+                String id = resultSet.getString("id");
+
+                String date = resultSet.getString("date");
+                if (!currentDate.equals(date)) {
+                    if (currentDay > days) {
+                        return endoInvoices;
+                    }
+                    currentDay++;
+                    currentDate = date;
+                }
+                DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                LocalDate invoiceDate = LocalDate.parse(date, formatter2);
+
+                String sender = resultSet.getString("sender");
+
+                Endo endo = new Endo();
+                endo.setId(id);
+                endo.setDateString(date);
+                endo.setSender(sender);
+
+                endoInvoices.put(id, endo);
+            }
+
+            resultSet.close();
+            statement.close();
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EndoDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return endoInvoices;
+    }
 
     Endo getEndo(String id, LinkedHashMap<String, Item> allPet4UItemsWithDeepSearch) {
         LinkedHashMap<String, Endo> endoInvoices = new LinkedHashMap();

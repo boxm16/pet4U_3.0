@@ -28,7 +28,7 @@ public class TESTosteronController {
             Item value1 = pet4uAllItemsEntry.getValue();
             Item v2 = allPet4UItemsWithDeepSearch.remove(codeEx);
             if (v2 == null) {
-                System.out.println("SHOUT, NULL AGAIN " + codeEx + "--" + value1.getDescription() + "++" + value1.getPosition());
+                System.out.println("SHOUT, NULL IN DEEP SEARCH " + codeEx + "-DESCRIPTION-" + value1.getDescription() + "+POSITION+" + value1.getPosition());
 
             } else {
                 if (!value1.getQuantity().equals(v2.getQuantity())) {

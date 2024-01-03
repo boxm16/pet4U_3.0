@@ -20,8 +20,10 @@ public class EndoController {
         EndoDao endoDao = new EndoDao();
 
         LinkedHashMap<String, Endo> incomingEndos = endoDao.getLastIncomingEndos(7);
+        LinkedHashMap<String, Endo> receivingEndos = endoDao.getLastReceivingEndos(7);
 
         modelMap.addAttribute("incomingEndos", incomingEndos);
+        modelMap.addAttribute("receivingEndos", receivingEndos);
 
         return "endo/endoDashboard";
 
@@ -60,14 +62,14 @@ public class EndoController {
     @RequestMapping(value = "showDeltioApostolis", method = RequestMethod.GET)
     public String showDeltioApostolis(@RequestParam(name = "id") String id, ModelMap modelMap) {
         System.out.println(id);
-        
-        TESTosteronDao testosteronDao=new TESTosteronDao();
+
+        TESTosteronDao testosteronDao = new TESTosteronDao();
         LinkedHashMap<String, Item> allPet4UItemsWithDeepSearch = testosteronDao.getAllPet4UItemsWithDeepSearch();
-        
+
         EndoDao endoDao = new EndoDao();
 
-        Endo endo= endoDao.getEndo(id, allPet4UItemsWithDeepSearch);
-       
+        Endo endo = endoDao.getEndo(id, allPet4UItemsWithDeepSearch);
+
         modelMap.addAttribute("endo", endo);
         return "endo/deltioApostolisDisplay";
     }
