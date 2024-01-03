@@ -39,7 +39,7 @@
                 <td>
                     <table>
                         <tbody>
-                            <tr><td>ΔΕΛΤΙΑ ΑΠΟΣΤΟΛΗΣ ΑΠΟ ΜΑΓΑΖΙΑ</td></tr>
+                            <tr><td colspan="4">ΔΕΛΤΙΑ ΑΠΟΣΤΟΛΗΣ ΑΠΟ ΜΑΓΑΖΙΑ</td></tr>
                             <tr>
                                 <th>Select</th>
                                 <th>A/A</th>
@@ -78,7 +78,7 @@
 
                     <table>
                         <tbody>
-                            <tr><td>ΔΕΛΤΙΑ ΑΠΟΣΤΟΛΗΣ ΑΠΟ ΜΑΓΑΖΙΑ</td></tr>
+                            <tr><td colspan="4">ΔΕΛΤΙΑ ΑΠΟΣΤΟΛΗΣ ΑΠΟ ΜΑΓΑΖΙΑ</td></tr>
                             <tr>
                                 <th>Select</th>
                                 <th>A/A</th>
