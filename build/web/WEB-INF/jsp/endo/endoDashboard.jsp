@@ -121,6 +121,7 @@
                     </table>
                 </td>
             </tr>
+            <tr><td><input type="button" value="ΣΥΓΚΡΙΣΗ" onclick="msg()"></tr>
         </table>
     </body>
 </html>
