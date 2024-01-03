@@ -35,6 +35,7 @@
         <a href="deltioApostolis.htm"><h1>Δελτιο Αποστολης</h1></a> 
         <table>
             <tr>
+            <tr><td>ΔΕΛΤΙΑ ΑΠΟΣΤΟΛΗΣ ΑΠΟ ΜΑΓΑΖΙΑ</td></tr>
                 <td>
                     <table>
 
