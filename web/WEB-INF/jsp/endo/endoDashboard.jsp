@@ -109,7 +109,11 @@
 
                                         out.println("</tr>");
                                     }
-                                %>  
+                                %> 
+                            <tr><td colspan="4">.</td></tr>
+                            <tr><td colspan="4">.</td></tr>
+                            <tr><td colspan="4">.</td></tr>
+                            <tr><td colspan="4">.</td></tr>
                             <tr><td colspan="4">ΑΦΟΡΑ ΔΕΛΤΙΑ ΑΠΟΣΤΟΛΗΣ ΤΩΝ ΜΑΓΑΖΙΩΝ</td></tr>
                             <tr><td colspan="4">4323423, 4323424, 4323428, 4323429</td></tr>
                             <tr><td colspan="4">1271254, 1271255</td></tr>
