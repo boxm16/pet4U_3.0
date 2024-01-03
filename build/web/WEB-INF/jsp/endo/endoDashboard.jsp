@@ -70,6 +70,7 @@
                         </tbody>
                     </table>
                 </td>
+                <td>--------------</td>
                 <td>
                     <table>
 
@@ -82,7 +83,7 @@
                         <tbody>
                             <%
                                 LinkedHashMap<String, Endo> receivingEndos = (LinkedHashMap) request.getAttribute("receivingEndos");
-                                for (Map.Entry<String, Endo> entrySet : incomingEndos.entrySet()) {
+                                for (Map.Entry<String, Endo> entrySet : receivingEndos.entrySet()) {
 
                                     out.println("<tr>");
 
