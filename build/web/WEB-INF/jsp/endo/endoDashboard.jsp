@@ -35,17 +35,19 @@
         <a href="deltioApostolis.htm"><h1>Δελτιο Αποστολης</h1></a> 
         <table>
             <tr>
-            <tr><td>ΔΕΛΤΙΑ ΑΠΟΣΤΟΛΗΣ ΑΠΟ ΜΑΓΑΖΙΑ</td></tr>
+
                 <td>
                     <table>
-
-                        <th>Select</th>
-                        <th>A/A</th>
-                        <th>Date</th>
-                        <th>Sender</th>
-
-
                         <tbody>
+                            <tr><td>ΔΕΛΤΙΑ ΑΠΟΣΤΟΛΗΣ ΑΠΟ ΜΑΓΑΖΙΑ</td></tr>
+                            <tr>
+                                <th>Select</th>
+                                <th>A/A</th>
+                                <th>Date</th>
+                                <th>Sender</th>
+                            </tr>
+
+
                             <%
                                 LinkedHashMap<String, Endo> incomingEndos = (LinkedHashMap) request.getAttribute("incomingEndos");
                                 for (Map.Entry<String, Endo> entrySet : incomingEndos.entrySet()) {
@@ -73,37 +75,41 @@
                 </td>
                 <td>--------------</td>
                 <td>
+
                     <table>
-
-                        <th>Select</th>
-                        <th>A/A</th>
-                        <th>Date</th>
-                        <th>Sender</th>
-
-
                         <tbody>
-                            <%
-                                LinkedHashMap<String, Endo> receivingEndos = (LinkedHashMap) request.getAttribute("receivingEndos");
-                                for (Map.Entry<String, Endo> entrySet : receivingEndos.entrySet()) {
+                            <tr><td>ΔΕΛΤΙΑ ΑΠΟΣΤΟΛΗΣ ΑΠΟ ΜΑΓΑΖΙΑ</td></tr>
+                            <tr>
+                                <th>Select</th>
+                                <th>A/A</th>
+                                <th>Date</th>
+                                <th>Sender</th>
+                            </tr>
+                            <tr>
 
-                                    out.println("<tr>");
 
-                                    out.println("<td>");
-                                    out.println("<input type='checkbox' class='a/a' id='" + entrySet.getValue().getId() + "' style='width:28px;height:28px'>");
-                                    out.println("</td>");
-                                    out.println("<td>");
-                                    out.println("<a href='showDeltioApostolis.htm?id=" + entrySet.getValue().getId() + "'>" + entrySet.getValue().getId() + "</a>");
-                                    out.println("</td>");
-                                    out.println("<td>");
-                                    out.println(entrySet.getValue().getDateString());
-                                    out.println("</td>");
-                                    out.println("<td>");
-                                    out.println(entrySet.getValue().getSender());
-                                    out.println("</td>");
+                                <%
+                                    LinkedHashMap<String, Endo> receivingEndos = (LinkedHashMap) request.getAttribute("receivingEndos");
+                                    for (Map.Entry<String, Endo> entrySet : receivingEndos.entrySet()) {
 
-                                    out.println("</tr>");
-                                }
-                            %>    
+                                        out.println("<tr>");
+
+                                        out.println("<td>");
+                                        out.println("<input type='checkbox' class='a/a' id='" + entrySet.getValue().getId() + "' style='width:28px;height:28px'>");
+                                        out.println("</td>");
+                                        out.println("<td>");
+                                        out.println("<a href='showDeltioApostolis.htm?id=" + entrySet.getValue().getId() + "'>" + entrySet.getValue().getId() + "</a>");
+                                        out.println("</td>");
+                                        out.println("<td>");
+                                        out.println(entrySet.getValue().getDateString());
+                                        out.println("</td>");
+                                        out.println("<td>");
+                                        out.println(entrySet.getValue().getSender());
+                                        out.println("</td>");
+
+                                        out.println("</tr>");
+                                    }
+                                %>    
                         </tbody>
                     </table>
                 </td>
