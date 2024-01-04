@@ -42,6 +42,7 @@ public class EndoController {
             for (String id : endoIdsArray) {
                 bidenEndos.put(id, incomingEndos.remove(id));
             }
+            modelMap.addAttribute("biden", "yes");
             modelMap.addAttribute("bidenEndos", bidenEndos);
         } else {
         }

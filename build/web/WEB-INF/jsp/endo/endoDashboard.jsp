@@ -90,24 +90,28 @@
 
                                 <%
                                     LinkedHashMap<String, Endo> receivingEndos = (LinkedHashMap) request.getAttribute("receivingEndos");
-                                    for (Map.Entry<String, Endo> entrySet : receivingEndos.entrySet()) {
+                                    String biden = (String) request.getAttribute("biden");
+                                    if (!biden.equals("yes")) {
 
-                                        out.println("<tr>");
+                                        for (Map.Entry<String, Endo> entrySet : receivingEndos.entrySet()) {
 
-                                        out.println("<td>");
-                                        out.println("<input type='checkbox'class='endoId777' id='" + entrySet.getValue().getId() + "' style='width:28px;height:28px'>");
-                                        out.println("</td>");
-                                        out.println("<td>");
-                                        out.println("<a href='showDeltioApostolis.htm?id=" + entrySet.getValue().getId() + "'>" + entrySet.getValue().getId() + "</a>");
-                                        out.println("</td>");
-                                        out.println("<td>");
-                                        out.println(entrySet.getValue().getDateString());
-                                        out.println("</td>");
-                                        out.println("<td>");
-                                        out.println(entrySet.getValue().getSender());
-                                        out.println("</td>");
+                                            out.println("<tr>");
 
-                                        out.println("</tr>");
+                                            out.println("<td>");
+                                            out.println("<input type='checkbox'class='endoId777' id='" + entrySet.getValue().getId() + "' style='width:28px;height:28px'>");
+                                            out.println("</td>");
+                                            out.println("<td>");
+                                            out.println("<a href='showDeltioApostolis.htm?id=" + entrySet.getValue().getId() + "'>" + entrySet.getValue().getId() + "</a>");
+                                            out.println("</td>");
+                                            out.println("<td>");
+                                            out.println(entrySet.getValue().getDateString());
+                                            out.println("</td>");
+                                            out.println("<td>");
+                                            out.println(entrySet.getValue().getSender());
+                                            out.println("</td>");
+
+                                            out.println("</tr>");
+                                        }
                                     }
                                 %> 
                             <tr><td colspan="4">.</td></tr>
