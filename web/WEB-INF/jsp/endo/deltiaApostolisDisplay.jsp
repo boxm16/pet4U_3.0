@@ -19,6 +19,7 @@
             }
             td {
                 font-size: 40px;
+                text-align: center;
             }
             th{
                 font-size: 30px;
@@ -54,7 +55,8 @@
 
                         out.println("<tr>");
                         out.println("<td>");
-                        out.println(endo.getId());
+
+                        out.println("<a href='showDeltioApostolis.htm?id=" + endo.getId() + "'>" + endo.getId() + "</a>");
                         out.println("</td>");
                         out.println("<td>");
                         out.println(endo.getDateString());
