@@ -105,6 +105,7 @@ public class EndoController {
 
             }
             deliveryInvoice.setItems(deliveredIetms);
+            System.out.println("delivered Items countL "+deliveredIetms.size());
             modelMap.addAttribute("deliveryInvoice", deliveryInvoice);
             return "endo/endoChecking";
         }
