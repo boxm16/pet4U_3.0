@@ -18,10 +18,10 @@
                 border-collapse: collapse;
             }
             td {
-                font-size: 20px;
+                font-size: 40px;
             }
             th{
-                font-size: 40px;
+                font-size: 30px;
                 font-weight: bold;
                 text-align: center;
                 background: #eee;
