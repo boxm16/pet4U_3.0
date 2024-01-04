@@ -406,7 +406,7 @@ public class EndoDao {
     ArrayList<Endo> getDeltiaApostolisOfItem(String itemCode, ArrayList<String> endoIdsArray) {
         ArrayList<Endo> endos = new ArrayList<>();
 
-        StringBuilder queryBuilderInitialPart = new StringBuilder("SELECT * FROM endo WHERE item_code=" + itemCode + " AND ");
+        StringBuilder queryBuilderInitialPart = new StringBuilder("SELECT * FROM endo WHERE item_code='" + itemCode + "' AND ");
         StringBuilder queryBuilderIdsPart = buildStringFromArrayList(endoIdsArray);
         StringBuilder query = queryBuilderInitialPart.append(" id IN ").append(queryBuilderIdsPart);
 
