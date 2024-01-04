@@ -359,7 +359,48 @@ public class EndoDao {
     }
 
     LinkedHashMap<String, DeliveryItem> getDeliveredItems() {
-        return new LinkedHashMap<>();
+        LinkedHashMap<String, DeliveryItem> deliveredItems = new LinkedHashMap<>();
+
+        String query = "SELECT * FROM endo WHERE id=4323";
+
+        ResultSet resultSet;
+
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            Connection connection = databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+
+            resultSet = statement.executeQuery(query.toString());
+            while (resultSet.next()) {
+
+                String itemCode = resultSet.getString("item_code");
+                int quantity = resultSet.getInt("quantity");
+                if (deliveredItems.containsKey(itemCode)) {
+                    DeliveryItem deliveredItem = deliveredItems.get(itemCode);
+                    String deliveredQuantity = deliveredItem.getDeliveredQuantity();
+                    int deliveredQuantityInt = Integer.parseInt(deliveredQuantity);
+                    deliveredQuantityInt = deliveredQuantityInt + quantity;
+                    deliveredQuantity = String.valueOf(deliveredQuantityInt);
+                    deliveredItem.setDeliveredQuantity(deliveredQuantity);
+                    deliveredItems.put(itemCode, deliveredItem);
+
+                } else {
+                    DeliveryItem deliveredItem = new DeliveryItem();
+                    deliveredItem.setCode(itemCode);
+                    deliveredItem.setDeliveredQuantity(String.valueOf(quantity));
+                    deliveredItems.put(itemCode, deliveredItem);
+                }
+
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EndoDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return deliveredItems;
     }
 
 }
