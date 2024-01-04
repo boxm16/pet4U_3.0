@@ -420,6 +420,15 @@ public class EndoDao {
             resultSet = statement.executeQuery(query.toString());
             while (resultSet.next()) {
                 Endo endo = new Endo();
+                endo.setId(resultSet.getString("id"));
+                endo.setDateString(resultSet.getString("date"));
+                endo.setSender(resultSet.getString("sender"));
+                Item item = new Item();
+                item.setCode(resultSet.getString("item_code"));
+                item.setQuantity(resultSet.getString("quantity"));
+                LinkedHashMap<String, Item> items = new LinkedHashMap<>();
+                items.put(itemCode, item);
+                endo.setItems(items);
                 endos.add(endo);
 
             }
