@@ -132,19 +132,19 @@
                                         out.println("</tr>");
 
                                         out.println("<tr>");
-                                        out.println("<td>");
+                                        out.println("<td colspan='4'>");
                                         out.println("ΑΦΟΡΑ ΔΕΛΤΙΑ ΑΠΟΣΤΟΛΗΣ ΤΩΝ ΜΑΓΑΖΙΩΝ");
                                         out.println("</td>");
                                         out.println("</tr>");
 
                                         out.println("<tr>");
-                                        out.println("<td>");
+                                        out.println("<td colspan='4'>");
                                         out.println("4323423, 4323424, 4323429");
                                         out.println("</td>");
                                         out.println("</tr>");
 
                                         out.println("<tr>");
-                                        out.println("<td>");
+                                        out.println("<td colspan='4'>");
                                         out.println("1271254, 1271255");
                                         out.println("</td>");
                                         out.println("</tr>");
