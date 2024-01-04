@@ -409,7 +409,7 @@ public class EndoDao {
         StringBuilder queryBuilderInitialPart = new StringBuilder("SELECT * FROM endo WHERE item_code='" + itemCode + "' AND ");
         StringBuilder queryBuilderIdsPart = buildStringFromArrayList(endoIdsArray);
         StringBuilder query = queryBuilderInitialPart.append(" id IN ").append(queryBuilderIdsPart);
-
+        System.out.println("QUUUU"+query);
         ResultSet resultSet;
 
         try {
