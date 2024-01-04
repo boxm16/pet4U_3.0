@@ -3,11 +3,13 @@ package Endo;
 import BasicModel.Item;
 import Delivery.DeliveryInvoice;
 import Delivery.DeliveryItem;
+import Inventory.InventoryDao;
 import Pet4uItems.Pet4uItemsDao;
 import TESTosteron.TESTosteronDao;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
+import java.util.Map;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -87,18 +89,22 @@ public class EndoController {
         EndoDao endoDao = new EndoDao();
         LinkedHashMap<String, DeliveryItem> sentItems = endoDao.getSentItems(endoIdsArray);
         LinkedHashMap<String, DeliveryItem> deliveredIetms = endoDao.getDeliveredItems();
-        ArrayList<DeliveryItem> allPet4UItemsRowByRowWithDeepSearch = endoDao.getAllPet4UItemsRowByRowWithDeepSearch();
+        
+        InventoryDao inventoryDao=new InventoryDao();
+        LinkedHashMap<String, Item> pet4UItemsRowByRow = inventoryDao.getpet4UItemsRowByRow();
        
         System.out.println("SENT ITEMS SIZE: "+sentItems.size());
         System.out.println("DELIVERED ITEMS SIZE: "+deliveredIetms.size());
         DeliveryInvoice deliveryInvoice = new DeliveryInvoice();
-        for (DeliveryItem itemWithDescription : allPet4UItemsRowByRowWithDeepSearch) {
-            String altercode = itemWithDescription.getCode();
+        for (Map.Entry<String, DeliveryItem> deliveredIetmsEntry:deliveredIetms.entrySet()) {
+            DeliveryItem deliveredItem = deliveredIetmsEntry.getValue();
+            
+            String altercode = deliveredIetmsEntry.getKey();
 
             DeliveryItem sentItem = sentItems.get(altercode);
-            DeliveryItem deliveredItem = deliveredIetms.get(altercode);
+            Item itemWithDescription = pet4UItemsRowByRow.get(altercode);
 
-            if (deliveredItem == null) {
+            if (itemWithDescription == null) {
                 
                 System.out.println("Pet4uItem  not present in the lists from microsoft db: altercode"+altercode);
             } else {
