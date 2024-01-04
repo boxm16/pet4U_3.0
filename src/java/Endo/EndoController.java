@@ -73,5 +73,15 @@ public class EndoController {
         modelMap.addAttribute("endo", endo);
         return "endo/deltioApostolisDisplay";
     }
+    
+    
+            
+             @RequestMapping(value = "compareEndo", method = RequestMethod.GET)
+    public String compareEndo(@RequestParam(name = "endoIds") String id, ModelMap modelMap) {
+        System.out.println(id);
+
+        
+        return "redirect:endo/endoDashboard.htm";
+    }
 
 }

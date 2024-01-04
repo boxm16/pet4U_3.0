@@ -95,7 +95,7 @@
                                         out.println("<tr>");
 
                                         out.println("<td>");
-                                        out.println("<input type='checkbox' class='a/a' id='" + entrySet.getValue().getId() + "' style='width:28px;height:28px'>");
+                                        out.println("<input type='checkbox'class='endoId' id='" + entrySet.getValue().getId() + "' style='width:28px;height:28px'>");
                                         out.println("</td>");
                                         out.println("<td>");
                                         out.println("<a href='showDeltioApostolis.htm?id=" + entrySet.getValue().getId() + "'>" + entrySet.getValue().getId() + "</a>");
@@ -123,5 +123,34 @@
             </tr>
             <tr><td colspan="3"><center><input style="background-color:lightblue; font-size:40px" type="button" value="ΣΥΓΚΡΙΣΗ" onclick="msg()"></center></tr>
     </table>
+
+    <form id="form" action="#" method="POST">
+        <input hidden type="text" id="endoIdsInput" name="endoIds">
+    </form>
+    <script>
+
+        ////--------------------
+        function requestRouter(requestTarget) {
+            if (requestTarget == "compareEndo.htm") {
+                form.target = "_blank";
+            } else {
+
+            }
+            form.action = requestTarget;
+            inventoryItemsInput.value = collectSellectedCheckBoxes();
+            console.log(form.action);
+            form.submit();
+        }
+        //this function collects all checked checkbox values, concatinates them in one string and returns that string to send it after by POST method to server
+        function collectSellectedCheckBoxes() {
+            var returnValue = "";
+            var targetCheckBoxes = document.querySelectorAll(".endoId");
+            for (x = 0; x < targetCheckBoxes.length; x++) {
+                if (targetCheckBoxes[x].checked)
+                    returnValue += targetCheckBoxes[x].id + ",";
+            }
+            return returnValue;
+        }
+    </script>
 </body>
 </html>
