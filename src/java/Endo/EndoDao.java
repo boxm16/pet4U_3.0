@@ -361,7 +361,7 @@ public class EndoDao {
     LinkedHashMap<String, DeliveryItem> getDeliveredItems() {
         LinkedHashMap<String, DeliveryItem> deliveredItems = new LinkedHashMap<>();
 
-        String query = "SELECT * FROM endo WHERE id=4323";
+        String query = "SELECT * FROM endo WHERE id=4323435";
 
         ResultSet resultSet;
 
