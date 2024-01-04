@@ -44,24 +44,24 @@
         <hr>
 
         <table>
-            <thead>
-                <tr>
-                    <th colspan="6">
-                        <h3>  
-                            <center> <input type="text" onkeypress="check(event, this)"></center>
-                            <center> <p id="descriptionDisplay"></center>
-                        </h3>
-                    </th>
-                </tr>
+            <thead>  <button onclick="rechechAll()" class="btn-lg btn-warning">ReCheck All Items </button>
+            <tr>
+                <th colspan="6">
+                    <h3>  
+                        <center> <input type="text" onkeypress="check(event, this)"></center>
+                        <center> <p id="descriptionDisplay"></center>
+                    </h3>
+                </th>
+            </tr>
 
-                <tr>
-                    <th>A/A</th>
-                    <th>Code</th>
-                    <th>Description</th>
-                    <th>Sent</th>
-                    <th>Delivered</th>
-                    <th>Alert</th>
-                </tr>
+            <tr>
+                <th>A/A</th>
+                <th>Code</th>
+                <th>Description</th>
+                <th>Sent</th>
+                <th>Delivered</th>
+                <th>Alert</th>
+            </tr>
             </thead>
             <tbody id="tableBody">
                 <%
@@ -84,7 +84,7 @@
                         out.println("</td>");
 
                         out.println("<td>");
-                        out.println("<input  class='sent' type='number' id='" + item.getCode() + "_sent' value='" + item.getSentQuantity()+ "' readonly width='10px'>");
+                        out.println("<input  class='sent' type='number' id='" + item.getCode() + "_sent' value='" + item.getSentQuantity() + "' readonly width='10px'>");
                         out.println("</td>");
 
                         out.println("<td>");
@@ -266,6 +266,41 @@
                                         returnValue += deliveredItems[x].id + ":" + deliveredItems[x].value + ",";
                                     }
                                     return returnValue;
+                                }
+
+                                function rechechAll() {
+                                    var deliveredItems = document.querySelectorAll(".delivered");
+
+                                    for (x = 0; x < deliveredItems.length; x++) {
+                                        let deliveredItem = deliveredItems[x];
+                                        console.log(deliveredItem);
+                                        const deliveredItemArrayed = deliveredItem.id.split("_");
+                                        let itemtemCode = deliveredItemArrayed[0];
+
+                                        let sent = document.getElementById(itemtemCode + "_sent");
+                                        if (sent == null) {
+                                            addRow(item.code, item.description);
+                                        } else {
+                                            sent = sent.value * 1;
+                                        }
+
+                                        let delivered = document.getElementById(itemtemCode + "_delivered").value * 1;
+
+
+
+                                        let colorDisplay = document.getElementById(itemtemCode + "_colorDisplay");
+
+                                        let diff = sent - delivered;
+                                        if (diff > 0) {
+                                            colorDisplay.style.backgroundColor = 'red';
+                                        }
+                                        if (diff < 0) {
+                                            colorDisplay.style.backgroundColor = 'yellow';
+                                        }
+                                        if (diff === 0) {
+                                            colorDisplay.style.backgroundColor = 'green';
+                                        }
+                                    }
                                 }
     </script>
 </body>
