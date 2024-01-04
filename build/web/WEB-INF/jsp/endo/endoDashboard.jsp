@@ -30,7 +30,7 @@
         </style>
     </head>
     <body>
-       
+
         <hr>
         <a href="deltioApostolis.htm"><h1>Δελτιο Αποστολης</h1></a> 
         <table>
@@ -109,35 +109,47 @@
                                         out.println(entrySet.getValue().getDateString());
                                         out.println("</td>");
 
-                                        out.println("<td>");
+                                        out.println("<td >");
                                         out.println(entrySet.getValue().getSender());
                                         out.println("</td>");
 
-                                        out.println("<td>");
+                                        out.println("<tr>");
+                                        out.println("<td colspan='4'>");
                                         out.println(".");
                                         out.println("</td>");
+                                        out.println("</tr>");
 
-                                        out.println("<td>");
+                                        out.println("<tr>");
+                                        out.println("<td colspan='4'>");
                                         out.println(".");
                                         out.println("</td>");
+                                        out.println("</tr>");
 
-                                        out.println("<td>");
+                                        out.println("<tr>");
+                                        out.println("<td colspan='4'>");
                                         out.println(".");
                                         out.println("</td>");
+                                        out.println("</tr>");
 
+                                        out.println("<tr>");
                                         out.println("<td>");
                                         out.println("ΑΦΟΡΑ ΔΕΛΤΙΑ ΑΠΟΣΤΟΛΗΣ ΤΩΝ ΜΑΓΑΖΙΩΝ");
                                         out.println("</td>");
+                                        out.println("</tr>");
 
+                                        out.println("<tr>");
                                         out.println("<td>");
                                         out.println("4323423, 4323424, 4323429");
                                         out.println("</td>");
+                                        out.println("</tr>");
 
+                                        out.println("<tr>");
                                         out.println("<td>");
                                         out.println("1271254, 1271255");
                                         out.println("</td>");
-
                                         out.println("</tr>");
+
+                                        
                                     }
                                 }
                             %> 
