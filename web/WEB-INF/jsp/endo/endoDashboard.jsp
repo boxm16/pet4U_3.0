@@ -142,7 +142,9 @@
             <tr><td colspan="3"><center><input style="background-color:lightblue; font-size:40px" type="button" value="ΣΥΓΚΡΙΣΗ" onclick="requestRouter('compareEndo.htm')"></center></tr>
     </table>
 
-    <hr><hr>
+    <hr>
+    <h2>ΔΕΣΜΕΥΜΕΝΑ ΔΕΛΤΙΑ</h2>
+    <hr>
     <table>
         <tbody>
             <tr><td colspan="4">ΔΕΛΤΙΑ ΠΑΡΑΛΑΒΗΣ ΒΑΡΙΜΠΟΜΠΗΣ</td></tr>
@@ -157,7 +159,7 @@
 
                 <%
                     LinkedHashMap<String, Endo> bidenEndos = (LinkedHashMap) request.getAttribute("bidenEndos");
-                  
+
                     if (biden.equals("yes")) {
 
                         for (Map.Entry<String, Endo> entrySet : bidenEndos.entrySet()) {
@@ -185,16 +187,6 @@
                             out.println("</td>");
                             out.println("<td>");
                             out.println(".");
-                            out.println("</td>");
-
-                            out.println("<td>");
-                            out.println("ΑΦΟΡΑ ΔΕΛΤΙΑ ΑΠΟΣΤΟΛΗΣ ΤΩΝ ΜΑΓΑΖΙΩΝ");
-                            out.println("</td>");
-                            out.println("<td>");
-                            out.println("4323423, 4323424, 4323429");
-                            out.println("</td>");
-                            out.println("<td>");
-                            out.println("1271254, 1271255");
                             out.println("</td>");
 
                             out.println("</tr>");
