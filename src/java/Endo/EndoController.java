@@ -76,7 +76,7 @@ public class EndoController {
     
     
             
-             @RequestMapping(value = "compareEndo", method = RequestMethod.GET)
+             @RequestMapping(value = "compareEndo", method = RequestMethod.POST)
     public String compareEndo(@RequestParam(name = "endoIds") String id, ModelMap modelMap) {
         System.out.println(id);
 
