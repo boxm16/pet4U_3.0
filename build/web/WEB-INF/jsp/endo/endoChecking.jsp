@@ -36,7 +36,7 @@
 
         </style>
     </head>
-    <body>
+    <body onload="rechechAll()">
     <center>
 
         <h1>Delivery Checking</h1>
@@ -44,24 +44,18 @@
         <hr>
 
         <table>
-            <thead>  <button onclick="rechechAll()" class="btn-lg btn-warning">ReCheck All Items </button>
-            <tr>
-                <th colspan="6">
-                    <h3>  
-                        <center> <input type="text" onkeypress="check(event, this)"></center>
-                        <center> <p id="descriptionDisplay"></center>
-                    </h3>
-                </th>
-            </tr>
+            <thead> 
 
-            <tr>
-                <th>A/A</th>
-                <th>Code</th>
-                <th>Description</th>
-                <th>Sent</th>
-                <th>Delivered</th>
-                <th>Alert</th>
-            </tr>
+
+
+                <tr>
+                    <th>A/A</th>
+                    <th>Code</th>
+                    <th>Description</th>
+                    <th>Sent</th>
+                    <th>Delivered</th>
+                    <th>Alert</th>
+                </tr>
             </thead>
             <tbody id="tableBody">
                 <%
@@ -108,7 +102,8 @@
             <input hidden type="text" id="deliveredItems" name="deliveredItems">
             <input hidden type="text" id="sentItems" name="sentItems">
         </form>
-
+        <hr>
+        <button onclick="rechechAll()" class="btn-lg btn-warning">ReCheck All Items </button>
 
     </center>
     <!-- Optional JavaScript -->
@@ -119,189 +114,189 @@
 
     <script type="text/javascript">
 
-                                class Item {
-                                    constructor(altercode, code, description) {
-                                        this.altercode = altercode;
-                                        this.code = code;
-                                        this.description = description;
-                                    }
-                                }
+                class Item {
+                    constructor(altercode, code, description) {
+                        this.altercode = altercode;
+                        this.code = code;
+                        this.description = description;
+                    }
+                }
 
-                                var items = new Array();
+                var items = new Array();
         <c:forEach items="${pet4UItemsRowByRow}" var="item">
-                                var altercode = "${item.altercode}";
-                                var code = "${item.code}";
-                                var description = "${item.description}";
-                                var item = new Item(altercode, code, description);
-                                items[altercode] = item;
+                var altercode = "${item.altercode}";
+                var code = "${item.code}";
+                var description = "${item.description}";
+                var item = new Item(altercode, code, description);
+                items[altercode] = item;
         </c:forEach>
 
 
 
 
-                                function check(event, input) {
-                                    if (event.keyCode === 13) {
-                                        var altercode = input.value;
-                                        console.log("altercode:" + altercode);
-                                        var item = items[altercode];
-                                        if (item == null) {
-                                            let unknownBarcodeX = document.getElementById(altercode + "_sent");
+                function check(event, input) {
+                    if (event.keyCode === 13) {
+                        var altercode = input.value;
+                        console.log("altercode:" + altercode);
+                        var item = items[altercode];
+                        if (item == null) {
+                            let unknownBarcodeX = document.getElementById(altercode + "_sent");
 
-                                            if (unknownBarcodeX == null) {
-                                                document.getElementById("descriptionDisplay").innerHTML = altercode + " : Unkown Barcode: " + altercode;
-                                                addRow(altercode, "Unkown Barcode: " + altercode);
-                                            } else {
-                                                let v = unknownBarcodeX.value;
-                                                v++;
-                                                unknownBarcodeX.value = v;
-                                            }
-                                        } else {
-                                            var code = item.code;
-                                            console.log(code);
-                                            var description = item.description;
-                                            document.getElementById("descriptionDisplay").innerHTML = altercode + " : " + description;
-
-
-                                            let sent = document.getElementById(code + "_sent");
-                                            if (sent == null) {
-                                                addRow(item.code, item.description);
-                                            } else {
-                                                sent = sent.value * 1;
-                                            }
-
-                                            let delivered = document.getElementById(code + "_delivered").value * 1;
-                                            delivered++;
-
-                                            document.getElementById(code + "_delivered").value = delivered;
-
-                                            let colorDisplay = document.getElementById(code + "_colorDisplay");
-
-                                            let diff = sent - delivered;
-                                            if (diff > 0) {
-                                                colorDisplay.style.backgroundColor = 'red';
-                                            }
-                                            if (diff < 0) {
-                                                colorDisplay.style.backgroundColor = 'yellow';
-                                            }
-                                            if (diff === 0) {
-                                                colorDisplay.style.backgroundColor = 'green';
-                                            }
-                                        }
-
-                                        input.value = "";
-
-                                    }
-                                }
-
-                                function addRow(code, description) {
-                                    // Get the table body element in which you want to add row
-                                    let table = document.getElementById("tableBody");
-
-                                    // Create row element
-                                    let row = document.createElement("tr")
-
-                                    // Create cells
-                                    let c1 = document.createElement("td")
-                                    let c2 = document.createElement("td")
-                                    let c3 = document.createElement("td")
-                                    let c4 = document.createElement("td")
-                                    let c5 = document.createElement("td")
-                                    let c6 = document.createElement("td")
-                                    // Insert data to cells
-                                    c1.innerText = "----";
-                                    c2.innerText = code;
-                                    c3.innerText = description;
-                                    c4.innerHTML = "<input class='sent' type='number' id='" + code + "_sent' value='0' readonly width='10px'>";
-                                    c5.innerHTML = "<input class='delivered' type='number' id='" + code + "_delivered' value='1'>";
-                                    c6.innerHTML = "<dev id='" + code + "_colorDisplay'>____</dev>";
+                            if (unknownBarcodeX == null) {
+                                document.getElementById("descriptionDisplay").innerHTML = altercode + " : Unkown Barcode: " + altercode;
+                                addRow(altercode, "Unkown Barcode: " + altercode);
+                            } else {
+                                let v = unknownBarcodeX.value;
+                                v++;
+                                unknownBarcodeX.value = v;
+                            }
+                        } else {
+                            var code = item.code;
+                            console.log(code);
+                            var description = item.description;
+                            document.getElementById("descriptionDisplay").innerHTML = altercode + " : " + description;
 
 
-                                    // Append cells to row
-                                    row.appendChild(c1);
-                                    row.appendChild(c2);
-                                    row.appendChild(c3);
-                                    row.appendChild(c4);
-                                    row.appendChild(c5);
-                                    row.appendChild(c6);
+                            let sent = document.getElementById(code + "_sent");
+                            if (sent == null) {
+                                addRow(item.code, item.description);
+                            } else {
+                                sent = sent.value * 1;
+                            }
+
+                            let delivered = document.getElementById(code + "_delivered").value * 1;
+                            delivered++;
+
+                            document.getElementById(code + "_delivered").value = delivered;
+
+                            let colorDisplay = document.getElementById(code + "_colorDisplay");
+
+                            let diff = sent - delivered;
+                            if (diff > 0) {
+                                colorDisplay.style.backgroundColor = 'red';
+                            }
+                            if (diff < 0) {
+                                colorDisplay.style.backgroundColor = 'yellow';
+                            }
+                            if (diff === 0) {
+                                colorDisplay.style.backgroundColor = 'green';
+                            }
+                        }
+
+                        input.value = "";
+
+                    }
+                }
+
+                function addRow(code, description) {
+                    // Get the table body element in which you want to add row
+                    let table = document.getElementById("tableBody");
+
+                    // Create row element
+                    let row = document.createElement("tr")
+
+                    // Create cells
+                    let c1 = document.createElement("td")
+                    let c2 = document.createElement("td")
+                    let c3 = document.createElement("td")
+                    let c4 = document.createElement("td")
+                    let c5 = document.createElement("td")
+                    let c6 = document.createElement("td")
+                    // Insert data to cells
+                    c1.innerText = "----";
+                    c2.innerText = code;
+                    c3.innerText = description;
+                    c4.innerHTML = "<input class='sent' type='number' id='" + code + "_sent' value='0' readonly width='10px'>";
+                    c5.innerHTML = "<input class='delivered' type='number' id='" + code + "_delivered' value='1'>";
+                    c6.innerHTML = "<dev id='" + code + "_colorDisplay'>____</dev>";
 
 
-                                    // Append row to table body
-                                    table.appendChild(row)
-                                }
-
-                                //---------------------------------
-                                //--------------------------------
-                                //---------------------------------
-                                function requestRouter(requestTarget) {
-                                    form.action = requestTarget;
-
-                                    let sent = collectSentData();
-                                    sentItems.value = sent;
-
-                                    let delivered = collectDeliveredData();
-                                    deliveredItems.value = delivered;
+                    // Append cells to row
+                    row.appendChild(c1);
+                    row.appendChild(c2);
+                    row.appendChild(c3);
+                    row.appendChild(c4);
+                    row.appendChild(c5);
+                    row.appendChild(c6);
 
 
-                                    // console.log(data);
-                                    form.submit();
-                                }
+                    // Append row to table body
+                    table.appendChild(row)
+                }
 
-                                function collectSentData() {
-                                    var returnValue = "";
-                                    var sentItems = document.querySelectorAll(".sent");
+                //---------------------------------
+                //--------------------------------
+                //---------------------------------
+                function requestRouter(requestTarget) {
+                    form.action = requestTarget;
 
-                                    for (x = 0; x < sentItems.length; x++) {
+                    let sent = collectSentData();
+                    sentItems.value = sent;
 
-                                        returnValue += sentItems[x].id + ":" + sentItems[x].value + ",";
-                                    }
-                                    return returnValue;
-                                }
-
-                                function collectDeliveredData() {
-                                    var returnValue = "";
-                                    var deliveredItems = document.querySelectorAll(".delivered");
-
-                                    for (x = 0; x < deliveredItems.length; x++) {
-
-                                        returnValue += deliveredItems[x].id + ":" + deliveredItems[x].value + ",";
-                                    }
-                                    return returnValue;
-                                }
-
-                                function rechechAll() {
-                                    var deliveredItems = document.querySelectorAll(".delivered");
-
-                                    for (x = 0; x < deliveredItems.length; x++) {
-                                        let deliveredItem = deliveredItems[x];
-                                        console.log(deliveredItem);
-                                        const deliveredItemArrayed = deliveredItem.id.split("_");
-                                        let itemtemCode = deliveredItemArrayed[0];
-
-                                        let sent = document.getElementById(itemtemCode + "_sent");
-                                        if (sent == null) {
-                                            addRow(item.code, item.description);
-                                        } else {
-                                            sent = sent.value * 1;
-                                        }
-
-                                        let delivered = document.getElementById(itemtemCode + "_delivered").value * 1;
+                    let delivered = collectDeliveredData();
+                    deliveredItems.value = delivered;
 
 
+                    // console.log(data);
+                    form.submit();
+                }
 
-                                        let colorDisplay = document.getElementById(itemtemCode + "_colorDisplay");
+                function collectSentData() {
+                    var returnValue = "";
+                    var sentItems = document.querySelectorAll(".sent");
 
-                                        let diff = sent - delivered;
-                                        if (diff > 0) {
-                                            colorDisplay.style.backgroundColor = 'red';
-                                        }
-                                        if (diff < 0) {
-                                            colorDisplay.style.backgroundColor = 'yellow';
-                                        }
-                                        if (diff === 0) {
-                                            colorDisplay.style.backgroundColor = 'green';
-                                        }
-                                    }
-                                }
+                    for (x = 0; x < sentItems.length; x++) {
+
+                        returnValue += sentItems[x].id + ":" + sentItems[x].value + ",";
+                    }
+                    return returnValue;
+                }
+
+                function collectDeliveredData() {
+                    var returnValue = "";
+                    var deliveredItems = document.querySelectorAll(".delivered");
+
+                    for (x = 0; x < deliveredItems.length; x++) {
+
+                        returnValue += deliveredItems[x].id + ":" + deliveredItems[x].value + ",";
+                    }
+                    return returnValue;
+                }
+
+                function rechechAll() {
+                    var deliveredItems = document.querySelectorAll(".delivered");
+
+                    for (x = 0; x < deliveredItems.length; x++) {
+                        let deliveredItem = deliveredItems[x];
+                        console.log(deliveredItem);
+                        const deliveredItemArrayed = deliveredItem.id.split("_");
+                        let itemtemCode = deliveredItemArrayed[0];
+
+                        let sent = document.getElementById(itemtemCode + "_sent");
+                        if (sent == null) {
+                            addRow(item.code, item.description);
+                        } else {
+                            sent = sent.value * 1;
+                        }
+
+                        let delivered = document.getElementById(itemtemCode + "_delivered").value * 1;
+
+
+
+                        let colorDisplay = document.getElementById(itemtemCode + "_colorDisplay");
+
+                        let diff = sent - delivered;
+                        if (diff > 0) {
+                            colorDisplay.style.backgroundColor = 'red';
+                        }
+                        if (diff < 0) {
+                            colorDisplay.style.backgroundColor = 'yellow';
+                        }
+                        if (diff === 0) {
+                            colorDisplay.style.backgroundColor = 'green';
+                        }
+                    }
+                }
     </script>
 </body>
 </html>
