@@ -114,19 +114,19 @@
                                         out.println("</td>");
 
                                         out.println("<tr>");
-                                        out.println("<td colspan='3'>");
+                                        out.println("<td colspan='4'>");
                                         out.println(".");
                                         out.println("</td>");
                                         out.println("</tr>");
 
                                         out.println("<tr>");
-                                        out.println("<td colspan='3'>");
+                                        out.println("<td colspan='4'>");
                                         out.println(".");
                                         out.println("</td>");
                                         out.println("</tr>");
 
                                         out.println("<tr>");
-                                        out.println("<td colspan='3'>");
+                                        out.println("<td colspan='4'>");
                                         out.println(".");
                                         out.println("</td>");
                                         out.println("</tr>");
@@ -149,7 +149,7 @@
                                         out.println("</td>");
                                         out.println("</tr>");
 
-                                        
+                                        out.println("</tr>");
                                     }
                                 }
                             %> 
