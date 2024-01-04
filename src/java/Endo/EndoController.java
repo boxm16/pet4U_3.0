@@ -171,10 +171,9 @@ public class EndoController {
 
         EndoDao endoDao = new EndoDao();
         ArrayList<Endo> endos = endoDao.getDeltiaApostolisOfItem(itemCode, this.endoIdsArray);
-
+        modelMap.addAttribute("itemCode", itemCode);
         modelMap.addAttribute("endos", endos);
         return "endo/deltiaApostolisDisplay";
     }
 
-    
 }
