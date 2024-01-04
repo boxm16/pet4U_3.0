@@ -121,7 +121,7 @@
                     </table>
                 </td>
             </tr>
-            <tr><td colspan="3"><center><input style="background-color:lightblue; font-size:40px" type="button" value="ΣΥΓΚΡΙΣΗ" onclick="msg()"></center></tr>
+            <tr><td colspan="3"><center><input style="background-color:lightblue; font-size:40px" type="button" value="ΣΥΓΚΡΙΣΗ" onclick="requestRouter('compareEndo.htm')"></center></tr>
     </table>
 
     <form id="form" action="#" method="POST">
