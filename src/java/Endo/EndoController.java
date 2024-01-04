@@ -45,6 +45,7 @@ public class EndoController {
             modelMap.addAttribute("biden", "yes");
             modelMap.addAttribute("bidenEndos", bidenEndos);
         } else {
+            modelMap.addAttribute("biden", "no");
         }
 
         return "endo/endoDashboard";
