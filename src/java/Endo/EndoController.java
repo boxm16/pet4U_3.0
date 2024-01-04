@@ -100,7 +100,7 @@ public class EndoController {
 
             String altercode = deliveredIetmsEntry.getKey();
 
-            DeliveryItem sentItem = sentItems.get(altercode);
+            DeliveryItem sentItem = sentItems.remove(altercode);
             Item itemWithDescription = pet4UItemsRowByRow.get(altercode);
 
             if (itemWithDescription == null) {
@@ -110,8 +110,8 @@ public class EndoController {
             } else {
                 if (sentItem == null) {
                     System.out.println("SENT ITEM IS NULL :" + altercode);
-                     deliveredItem.setDescription(itemWithDescription.getDescription());
-                        deliveredItem.setSentQuantity("0");
+                    deliveredItem.setDescription(itemWithDescription.getDescription());
+                    deliveredItem.setSentQuantity("0");
                     deliveredIetms.put(altercode, deliveredItem);
                 } else {
 
@@ -121,6 +121,9 @@ public class EndoController {
                 }
             }
 
+        }
+        if (sentItems.size() > 0) {
+            System.out.println("LEFT OVERS: " + sentItems.size());
         }
         deliveryInvoice.setItems(deliveredIetms);
         System.out.println("delivered Items countL " + deliveredIetms.size());
