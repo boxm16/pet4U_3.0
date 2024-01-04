@@ -103,6 +103,7 @@ public class EndoController {
                 sentItems.put(altercode, itemWithDescription);
                 modelMap.addAttribute("items", deliveredItem);
             }
+            return "endo/endoChecking";
         }
 
         return "redirect:endo/endoDashboard.htm";
