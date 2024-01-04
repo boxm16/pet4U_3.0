@@ -33,7 +33,7 @@
     <center>
 
         <hr>
-      <!--  <a href="deltioApostolis.htm"><h1>Δελτιο Αποστολης</h1></a>  -->
+        <!--  <a href="deltioApostolis.htm"><h1>Δελτιο Αποστολης</h1></a>  -->
         <table>
             <tr>
 
@@ -198,6 +198,11 @@
 
                                 out.println("</tr>");
                             }
+                            out.println("<tr>");
+                            out.println("<td colspan='3'>");
+                            out.println("----------------");
+                            out.println("</td>");
+                            out.println("</tr>");
                         }
 
                         LinkedHashMap<String, Endo> bidenEndos = (LinkedHashMap) request.getAttribute("bidenEndos");
