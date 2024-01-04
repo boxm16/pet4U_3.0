@@ -21,7 +21,7 @@
                 font-size: 20px;
             }
             th{
-                font-size: 30px;
+                font-size: 40px;
                 font-weight: bold;
                 text-align: center;
                 background: #eee;
@@ -32,6 +32,7 @@
         </style>
     </head>
     <body>
+    <center>
         <table>
             <thead> 
 
@@ -64,7 +65,7 @@
                         out.println("</td>");
 
                         out.println("<td>");
-                        String itemCode = (String)request.getAttribute("itemCode");
+                        String itemCode = (String) request.getAttribute("itemCode");
                         out.println(endo.getItems().get(itemCode).getQuantity());
                         out.println("</td>");
 
@@ -74,5 +75,6 @@
                 %>
             </tbody>
         </table>
-    </body>
+    </center>
+</body>
 </html>
