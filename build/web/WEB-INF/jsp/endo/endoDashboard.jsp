@@ -30,7 +30,7 @@
         </style>
     </head>
     <body>
-        <h1>Hello World!</h1>
+       
         <hr>
         <a href="deltioApostolis.htm"><h1>Δελτιο Αποστολης</h1></a> 
         <table>
