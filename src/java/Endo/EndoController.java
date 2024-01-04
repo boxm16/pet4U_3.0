@@ -20,9 +20,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class EndoController {
 
     ArrayList<String> endoIdsArray;
+    private boolean biden;
 
     public EndoController() {
         endoIdsArray = new ArrayList<>();
+        biden = false;
     }
 
     @RequestMapping(value = "endoDashboard", method = RequestMethod.GET)
@@ -35,6 +37,14 @@ public class EndoController {
 
         modelMap.addAttribute("incomingEndos", incomingEndos);
         modelMap.addAttribute("receivingEndos", receivingEndos);
+        if (biden == true) {
+            LinkedHashMap<String, Endo> bidenEndos = new LinkedHashMap();
+            for (String id : endoIdsArray) {
+                bidenEndos.put(id, incomingEndos.remove(id));
+            }
+            modelMap.addAttribute("bidenEndos", bidenEndos);
+        } else {
+        }
 
         return "endo/endoDashboard";
 
@@ -135,7 +145,7 @@ public class EndoController {
                 System.out.println("LEFTO OVER ITEM:" + sentItemsEntry.getKey());
                 String key = sentItemsEntry.getKey();
                 DeliveryItem di = sentItems.get(key);
-               
+
                 Item itemWithDescription = pet4UItemsRowByRow.get(key);
                 di.setDescription(itemWithDescription.getDescription());
                 di.setDeliveredQuantity("0");
@@ -179,6 +189,12 @@ public class EndoController {
         modelMap.addAttribute("sentItem", itemCode + ":" + sentItemDescription);
         modelMap.addAttribute("endos", endos);
         return "endo/deltiaApostolisDisplay";
+    }
+
+    @RequestMapping(value = "saveDeltiaApostolisKaiParalavis", method = RequestMethod.GET)
+    public String saveDeltiaApostolisKaiParalavis() {
+        biden = true;
+        return "redirect:endDashboard.htm";
     }
 
 }
