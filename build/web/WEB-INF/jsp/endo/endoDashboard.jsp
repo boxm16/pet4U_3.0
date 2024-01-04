@@ -200,6 +200,13 @@
 
                             out.println("</tr>");
                         }
+                        out.println("<tr>");
+
+                        out.println("<td>");
+                        out.println("<a href='unbide.htm?>ΑΠΟΔΕΣΜΕΥΣΗ</a>");
+                        out.println("</td>");
+
+                        out.println("</tr>");
                     }
                 %> 
 
