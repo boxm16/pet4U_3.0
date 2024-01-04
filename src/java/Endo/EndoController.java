@@ -106,7 +106,11 @@ public class EndoController {
             if (itemWithDescription == null) {
 
                 System.out.println("Pet4uItem  not present in the lists from microsoft db: altercode" + altercode);
+
             } else {
+                if (sentItem == null) {
+                    System.out.println("SENT ITEM IS NULL :" + altercode);
+                }
 
                 deliveredItem.setDescription(itemWithDescription.getDescription());
                 deliveredItem.setSentQuantity(sentItem.getSentQuantity());
