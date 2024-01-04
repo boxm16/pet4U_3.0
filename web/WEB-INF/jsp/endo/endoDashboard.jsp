@@ -208,7 +208,7 @@
                         }
                         out.println("<tr>");
                         out.println("<td colspan='3'>");
-                        out.println("<a href='unbide.htm'>ΑΠΟΔΕΣΜΕΥΣΗ</a>");
+                        out.println("<center><a href='unbide.htm'>ΑΠΟΔΕΣΜΕΥΣΗ</a></center>");
                         out.println("</td>");
                         out.println("</tr>");
                     }

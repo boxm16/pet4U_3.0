@@ -199,4 +199,10 @@ public class EndoController {
         return "redirect:endoDashboard.htm";
     }
 
+    @RequestMapping(value = "unbide", method = RequestMethod.GET)
+    public String unbide() {
+        biden = false;
+        return "redirect:endoDashboard.htm";
+    }
+
 }
