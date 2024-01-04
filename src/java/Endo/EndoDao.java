@@ -330,10 +330,10 @@ public class EndoDao {
             connection.close();
 
         } catch (SQLException ex) {
-            Logger.getLogger(InventoryDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EndoDao.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        return inventories;
+        return sentItems;
     }
 
     private StringBuilder buildStringFromArrayList(ArrayList<String> arrayList) {
@@ -359,7 +359,7 @@ public class EndoDao {
     }
 
     LinkedHashMap<String, DeliveryItem> getDeliveredItems() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return new LinkedHashMap<>();
     }
 
 }
