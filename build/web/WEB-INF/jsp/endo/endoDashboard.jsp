@@ -85,55 +85,62 @@
                                 <th>Date</th>
                                 <th>Sender</th>
                             </tr>
-                            <tr>
 
 
-                                <%
-                                    LinkedHashMap<String, Endo> receivingEndos = (LinkedHashMap) request.getAttribute("receivingEndos");
-                                    String biden = (String) request.getAttribute("biden");
-                                    if (!biden.equals("yes")) {
 
-                                        for (Map.Entry<String, Endo> entrySet : receivingEndos.entrySet()) {
+                            <%
+                                LinkedHashMap<String, Endo> receivingEndos = (LinkedHashMap) request.getAttribute("receivingEndos");
+                                String biden = (String) request.getAttribute("biden");
+                                if (!biden.equals("yes")) {
 
-                                            out.println("<tr>");
+                                    for (Map.Entry<String, Endo> entrySet : receivingEndos.entrySet()) {
 
-                                            out.println("<td>");
-                                            out.println("<input type='checkbox'class='endoId777' id='" + entrySet.getValue().getId() + "' style='width:28px;height:28px'>");
-                                            out.println("</td>");
-                                            out.println("<td>");
-                                            out.println("<a href='showDeltioApostolis.htm?id=" + entrySet.getValue().getId() + "'>" + entrySet.getValue().getId() + "</a>");
-                                            out.println("</td>");
-                                            out.println("<td>");
-                                            out.println(entrySet.getValue().getDateString());
-                                            out.println("</td>");
-                                            out.println("<td>");
-                                            out.println(entrySet.getValue().getSender());
-                                            out.println("</td>");
+                                        out.println("<tr>");
 
-                                            out.println("<td>");
-                                            out.println(".");
-                                            out.println("</td>");
-                                            out.println("<td>");
-                                            out.println(".");
-                                            out.println("</td>");
-                                            out.println("<td>");
-                                            out.println(".");
-                                            out.println("</td>");
+                                        out.println("<td>");
+                                        out.println("<input type='checkbox'class='endoId777' id='" + entrySet.getValue().getId() + "' style='width:28px;height:28px'>");
+                                        out.println("</td>");
 
-                                            out.println("<td>");
-                                            out.println("ΑΦΟΡΑ ΔΕΛΤΙΑ ΑΠΟΣΤΟΛΗΣ ΤΩΝ ΜΑΓΑΖΙΩΝ");
-                                            out.println("</td>");
-                                            out.println("<td>");
-                                            out.println("4323423, 4323424, 4323429");
-                                            out.println("</td>");
-                                            out.println("<td>");
-                                            out.println("1271254, 1271255");
-                                            out.println("</td>");
+                                        out.println("<td>");
+                                        out.println("<a href='showDeltioApostolis.htm?id=" + entrySet.getValue().getId() + "'>" + entrySet.getValue().getId() + "</a>");
+                                        out.println("</td>");
 
-                                            out.println("</tr>");
-                                        }
+                                        out.println("<td>");
+                                        out.println(entrySet.getValue().getDateString());
+                                        out.println("</td>");
+
+                                        out.println("<td>");
+                                        out.println(entrySet.getValue().getSender());
+                                        out.println("</td>");
+
+                                        out.println("<td>");
+                                        out.println(".");
+                                        out.println("</td>");
+
+                                        out.println("<td>");
+                                        out.println(".");
+                                        out.println("</td>");
+
+                                        out.println("<td>");
+                                        out.println(".");
+                                        out.println("</td>");
+
+                                        out.println("<td>");
+                                        out.println("ΑΦΟΡΑ ΔΕΛΤΙΑ ΑΠΟΣΤΟΛΗΣ ΤΩΝ ΜΑΓΑΖΙΩΝ");
+                                        out.println("</td>");
+
+                                        out.println("<td>");
+                                        out.println("4323423, 4323424, 4323429");
+                                        out.println("</td>");
+
+                                        out.println("<td>");
+                                        out.println("1271254, 1271255");
+                                        out.println("</td>");
+
+                                        out.println("</tr>");
                                     }
-                                %> 
+                                }
+                            %> 
 
                         </tbody>
                     </table>
@@ -209,33 +216,33 @@
     <hr>
     <a href='unbide.htm'>ΑΠΟΔΕΣΜΕΥΣΗ</a>
 
-       <form id="form" action="#" method="POST">
-       <input hidden type="text" id="endoIdsInput" name="endoIds">
-       </form>
-       <script>
+    <form id="form" action="#" method="POST">
+        <input hidden type="text" id="endoIdsInput" name="endoIds">
+    </form>
+    <script>
 
-       ////--------------------
-       function requestRouter(requestTarget) {
-       if (requestTarget == "compareEndo.htm") {
-       form.target = "_blank";
-       } else {
+        ////--------------------
+        function requestRouter(requestTarget) {
+            if (requestTarget == "compareEndo.htm") {
+                form.target = "_blank";
+            } else {
 
-       }
-       form.action = requestTarget;
-       endoIdsInput.value = collectSellectedCheckBoxes();
-       console.log(form.action);
-       form.submit();
-       }
-       //this function collects all checked checkbox values, concatinates them in one string and returns that string to send it after by POST method to server
-       function collectSellectedCheckBoxes() {
-       var returnValue = "";
-       var targetCheckBoxes = document.querySelectorAll(".endoId");
-       for (x = 0; x < targetCheckBoxes.length; x++) {
-       if (targetCheckBoxes[x].checked)
-       returnValue += targetCheckBoxes[x].id + ",";
-       }
-       return returnValue;
-       }
-       </script>
-       </body>
-       </html>
+            }
+            form.action = requestTarget;
+            endoIdsInput.value = collectSellectedCheckBoxes();
+            console.log(form.action);
+            form.submit();
+        }
+        //this function collects all checked checkbox values, concatinates them in one string and returns that string to send it after by POST method to server
+        function collectSellectedCheckBoxes() {
+            var returnValue = "";
+            var targetCheckBoxes = document.querySelectorAll(".endoId");
+            for (x = 0; x < targetCheckBoxes.length; x++) {
+                if (targetCheckBoxes[x].checked)
+                    returnValue += targetCheckBoxes[x].id + ",";
+            }
+            return returnValue;
+        }
+    </script>
+</body>
+</html>
