@@ -30,9 +30,10 @@
         </style>
     </head>
     <body>
+    <center>
 
         <hr>
-        <a href="deltioApostolis.htm"><h1>Δελτιο Αποστολης</h1></a> 
+      <!--  <a href="deltioApostolis.htm"><h1>Δελτιο Αποστολης</h1></a>  -->
         <table>
             <tr>
 
@@ -159,78 +160,79 @@
                 </td>
             </tr>
             <tr><td colspan="3"><center><input style="background-color:lightblue; font-size:40px" type="button" value="ΣΥΓΚΡΙΣΗ" onclick="requestRouter('compareEndo.htm')"></center></tr>
-    </table>
+        </table>
 
-    <hr>
-    <h2>ΔΕΣΜΕΥΜΕΝΑ ΔΕΛΤΙΑ</h2>
-    <hr>
-    <table>
-        <tbody>
+        <hr>
+        <h2>ΔΕΣΜΕΥΜΕΝΑ ΔΕΛΤΙΑ</h2>
+        <hr>
+        <table>
+            <tbody>
 
-            <tr>
+                <tr>
 
-                <th>A/A</th>
-                <th>Date</th>
-                <th>Creator</th>
-            </tr>
-            <tr>
+                    <th>A/A</th>
+                    <th>Date</th>
+                    <th>Creator</th>
+                </tr>
+                <tr>
 
 
-                <%
-                    LinkedHashMap<String, Endo> receivingEndos2 = (LinkedHashMap) request.getAttribute("receivingEndos");
+                    <%
+                        LinkedHashMap<String, Endo> receivingEndos2 = (LinkedHashMap) request.getAttribute("receivingEndos");
 
-                    if (biden.equals("yes")) {
+                        if (biden.equals("yes")) {
 
-                        for (Map.Entry<String, Endo> entrySet : receivingEndos2.entrySet()) {
+                            for (Map.Entry<String, Endo> entrySet : receivingEndos2.entrySet()) {
 
-                            out.println("<tr>");
+                                out.println("<tr>");
 
-                            out.println("<td>");
-                            out.println("<a href='showDeltioApostolis.htm?id=" + entrySet.getValue().getId() + "'>" + entrySet.getValue().getId() + "</a>");
-                            out.println("</td>");
-                            out.println("<td>");
-                            out.println(entrySet.getValue().getDateString());
-                            out.println("</td>");
-                            out.println("<td>");
-                            out.println(entrySet.getValue().getSender());
-                            out.println("</td>");
+                                out.println("<td>");
+                                out.println("<a href='showDeltioApostolis.htm?id=" + entrySet.getValue().getId() + "'>" + entrySet.getValue().getId() + "</a>");
+                                out.println("</td>");
+                                out.println("<td>");
+                                out.println(entrySet.getValue().getDateString());
+                                out.println("</td>");
+                                out.println("<td>");
+                                out.println(entrySet.getValue().getSender());
+                                out.println("</td>");
 
-                            out.println("</tr>");
-                        }
-                    }
-
-                    LinkedHashMap<String, Endo> bidenEndos = (LinkedHashMap) request.getAttribute("bidenEndos");
-
-                    if (biden.equals("yes")) {
-
-                        for (Map.Entry<String, Endo> entrySet : bidenEndos.entrySet()) {
-
-                            out.println("<tr>");
-
-                            out.println("<td>");
-                            out.println("<a href='showDeltioApostolis.htm?id=" + entrySet.getValue().getId() + "'>" + entrySet.getValue().getId() + "</a>");
-                            out.println("</td>");
-                            out.println("<td>");
-                            out.println(entrySet.getValue().getDateString());
-                            out.println("</td>");
-                            out.println("<td>");
-                            out.println(entrySet.getValue().getSender());
-                            out.println("</td>");
-
-                            out.println("</tr>");
+                                out.println("</tr>");
+                            }
                         }
 
-                    }
-                %> 
+                        LinkedHashMap<String, Endo> bidenEndos = (LinkedHashMap) request.getAttribute("bidenEndos");
 
-        </tbody>
-    </table>
-    <hr>
-    <a href='unbide.htm'>ΑΠΟΔΕΣΜΕΥΣΗ</a>
+                        if (biden.equals("yes")) {
 
-    <form id="form" action="#" method="POST">
-        <input hidden type="text" id="endoIdsInput" name="endoIds">
-    </form>
+                            for (Map.Entry<String, Endo> entrySet : bidenEndos.entrySet()) {
+
+                                out.println("<tr>");
+
+                                out.println("<td>");
+                                out.println("<a href='showDeltioApostolis.htm?id=" + entrySet.getValue().getId() + "'>" + entrySet.getValue().getId() + "</a>");
+                                out.println("</td>");
+                                out.println("<td>");
+                                out.println(entrySet.getValue().getDateString());
+                                out.println("</td>");
+                                out.println("<td>");
+                                out.println(entrySet.getValue().getSender());
+                                out.println("</td>");
+
+                                out.println("</tr>");
+                            }
+
+                        }
+                    %> 
+
+            </tbody>
+        </table>
+        <hr>
+        <a href='unbide.htm'>ΑΠΟΔΕΣΜΕΥΣΗ</a>
+
+        <form id="form" action="#" method="POST">
+            <input hidden type="text" id="endoIdsInput" name="endoIds">
+        </form>
+    </center>
     <script>
 
         ////--------------------
