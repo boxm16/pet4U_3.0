@@ -142,6 +142,69 @@
             <tr><td colspan="3"><center><input style="background-color:lightblue; font-size:40px" type="button" value="ΣΥΓΚΡΙΣΗ" onclick="requestRouter('compareEndo.htm')"></center></tr>
     </table>
 
+    <hr><hr>
+    <table>
+        <tbody>
+            <tr><td colspan="4">ΔΕΛΤΙΑ ΠΑΡΑΛΑΒΗΣ ΒΑΡΙΜΠΟΜΠΗΣ</td></tr>
+            <tr>
+                <th>Select</th>
+                <th>A/A</th>
+                <th>Date</th>
+                <th>Sender</th>
+            </tr>
+            <tr>
+
+
+                <%
+                    LinkedHashMap<String, Endo> bidenEndos = (LinkedHashMap) request.getAttribute("bidenEndos");
+                  
+                    if (biden.equals("yes")) {
+
+                        for (Map.Entry<String, Endo> entrySet : bidenEndos.entrySet()) {
+
+                            out.println("<tr>");
+
+                            out.println("<td>");
+                            out.println("<input type='checkbox'class='endoId777' id='" + entrySet.getValue().getId() + "' style='width:28px;height:28px'>");
+                            out.println("</td>");
+                            out.println("<td>");
+                            out.println("<a href='showDeltioApostolis.htm?id=" + entrySet.getValue().getId() + "'>" + entrySet.getValue().getId() + "</a>");
+                            out.println("</td>");
+                            out.println("<td>");
+                            out.println(entrySet.getValue().getDateString());
+                            out.println("</td>");
+                            out.println("<td>");
+                            out.println(entrySet.getValue().getSender());
+                            out.println("</td>");
+
+                            out.println("<td>");
+                            out.println(".");
+                            out.println("</td>");
+                            out.println("<td>");
+                            out.println(".");
+                            out.println("</td>");
+                            out.println("<td>");
+                            out.println(".");
+                            out.println("</td>");
+
+                            out.println("<td>");
+                            out.println("ΑΦΟΡΑ ΔΕΛΤΙΑ ΑΠΟΣΤΟΛΗΣ ΤΩΝ ΜΑΓΑΖΙΩΝ");
+                            out.println("</td>");
+                            out.println("<td>");
+                            out.println("4323423, 4323424, 4323429");
+                            out.println("</td>");
+                            out.println("<td>");
+                            out.println("1271254, 1271255");
+                            out.println("</td>");
+
+                            out.println("</tr>");
+                        }
+                    }
+                %> 
+
+        </tbody>
+    </table>
+
     <form id="form" action="#" method="POST">
         <input hidden type="text" id="endoIdsInput" name="endoIds">
     </form>
