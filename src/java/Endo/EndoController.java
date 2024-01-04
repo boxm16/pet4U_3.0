@@ -194,7 +194,7 @@ public class EndoController {
     @RequestMapping(value = "saveDeltiaApostolisKaiParalavis", method = RequestMethod.GET)
     public String saveDeltiaApostolisKaiParalavis() {
         biden = true;
-        return "redirect:endDashboard.htm";
+        return "redirect:endoDashboard.htm";
     }
 
 }
