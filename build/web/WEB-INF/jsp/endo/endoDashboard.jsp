@@ -110,17 +110,31 @@
                                             out.println(entrySet.getValue().getSender());
                                             out.println("</td>");
 
+                                            out.println("<td>");
+                                            out.println(".");
+                                            out.println("</td>");
+                                            out.println("<td>");
+                                            out.println(".");
+                                            out.println("</td>");
+                                            out.println("<td>");
+                                            out.println(".");
+                                            out.println("</td>");
+
+                                            out.println("<td>");
+                                            out.println("ΑΦΟΡΑ ΔΕΛΤΙΑ ΑΠΟΣΤΟΛΗΣ ΤΩΝ ΜΑΓΑΖΙΩΝ");
+                                            out.println("</td>");
+                                            out.println("<td>");
+                                            out.println("4323423, 4323424, 4323429");
+                                            out.println("</td>");
+                                            out.println("<td>");
+                                            out.println("1271254, 1271255");
+                                            out.println("</td>");
+
                                             out.println("</tr>");
                                         }
                                     }
                                 %> 
-                            <tr><td colspan="4">.</td></tr>
-                            <tr><td colspan="4">.</td></tr>
-                            <tr><td colspan="4">.</td></tr>
-                            <tr><td colspan="4">.</td></tr>
-                            <tr><td colspan="4">ΑΦΟΡΑ ΔΕΛΤΙΑ ΑΠΟΣΤΟΛΗΣ ΤΩΝ ΜΑΓΑΖΙΩΝ</td></tr>
-                            <tr><td colspan="4">4323423, 4323424, 4323429</td></tr>
-                            <tr><td colspan="4">1271254, 1271255</td></tr>
+
                         </tbody>
                     </table>
                 </td>
