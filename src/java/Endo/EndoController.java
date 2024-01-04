@@ -110,6 +110,9 @@ public class EndoController {
             } else {
                 if (sentItem == null) {
                     System.out.println("SENT ITEM IS NULL :" + altercode);
+                     deliveredItem.setDescription(itemWithDescription.getDescription());
+                        deliveredItem.setSentQuantity("0");
+                    deliveredIetms.put(altercode, deliveredItem);
                 } else {
 
                     deliveredItem.setDescription(itemWithDescription.getDescription());
