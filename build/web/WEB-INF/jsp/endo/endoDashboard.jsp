@@ -207,7 +207,7 @@
         </tbody>
     </table>
     <hr>
-    <a href='unbide.htm?>ΑΠΟΔΕΣΜΕΥΣΗ</a>
+    <a href='unbide.htm'>ΑΠΟΔΕΣΜΕΥΣΗ</a>
 
        <form id="form" action="#" method="POST">
        <input hidden type="text" id="endoIdsInput" name="endoIds">
