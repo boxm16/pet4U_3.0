@@ -101,9 +101,9 @@ public class EndoController {
 
                 deliveredItem.setDescription(itemWithDescription.getDescription());
                 deliveredItem.setSentQuantity(sentItem.getSentQuantity());
-                sentItems.put(altercode, itemWithDescription);
+                deliveredIetms.put(altercode, itemWithDescription);
                 DeliveryInvoice deliveryInvoice=new DeliveryInvoice();
-                deliveryInvoice.setItems(sentItems);
+                deliveryInvoice.setItems(deliveredIetms);
                 modelMap.addAttribute("deliveryInvoice", deliveryInvoice);
             }
             return "endo/endoChecking";
