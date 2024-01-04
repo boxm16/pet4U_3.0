@@ -3,7 +3,6 @@ package Endo;
 import BasicModel.Item;
 import Delivery.DeliveryInvoice;
 import Delivery.DeliveryItem;
-import Inventory.InventoryDao;
 import Pet4uItems.Pet4uItemsDao;
 import TESTosteron.TESTosteronDao;
 import java.util.ArrayList;
@@ -90,8 +89,8 @@ public class EndoController {
         LinkedHashMap<String, DeliveryItem> sentItems = endoDao.getSentItems(endoIdsArray);
         LinkedHashMap<String, DeliveryItem> deliveredIetms = endoDao.getDeliveredItems();
         
-        InventoryDao inventoryDao=new InventoryDao();
-        LinkedHashMap<String, Item> pet4UItemsRowByRow = inventoryDao.getpet4UItemsRowByRow();
+        Pet4uItemsDao inventoryDao=new Pet4uItemsDao();
+        LinkedHashMap<String, Item> pet4UItemsRowByRow = inventoryDao.getPet4UItemsRowByRow();
        
         System.out.println("SENT ITEMS SIZE: "+sentItems.size());
         System.out.println("DELIVERED ITEMS SIZE: "+deliveredIetms.size());
