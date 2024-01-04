@@ -88,24 +88,24 @@ public class EndoController {
         EndoDao endoDao = new EndoDao();
         LinkedHashMap<String, DeliveryItem> sentItems = endoDao.getSentItems(endoIdsArray);
         LinkedHashMap<String, DeliveryItem> deliveredIetms = endoDao.getDeliveredItems();
-        
-        Pet4uItemsDao inventoryDao=new Pet4uItemsDao();
+
+        Pet4uItemsDao inventoryDao = new Pet4uItemsDao();
         LinkedHashMap<String, Item> pet4UItemsRowByRow = inventoryDao.getPet4UItemsRowByRow();
-       
-        System.out.println("SENT ITEMS SIZE: "+sentItems.size());
-        System.out.println("DELIVERED ITEMS SIZE: "+deliveredIetms.size());
+
+        System.out.println("SENT ITEMS SIZE: " + sentItems.size());
+        System.out.println("DELIVERED ITEMS SIZE: " + deliveredIetms.size());
         DeliveryInvoice deliveryInvoice = new DeliveryInvoice();
-        for (Map.Entry<String, DeliveryItem> deliveredIetmsEntry:deliveredIetms.entrySet()) {
+        for (Map.Entry<String, DeliveryItem> deliveredIetmsEntry : deliveredIetms.entrySet()) {
             DeliveryItem deliveredItem = deliveredIetmsEntry.getValue();
-            
+
             String altercode = deliveredIetmsEntry.getKey();
 
             DeliveryItem sentItem = sentItems.get(altercode);
             Item itemWithDescription = pet4UItemsRowByRow.get(altercode);
 
             if (itemWithDescription == null) {
-                
-                System.out.println("Pet4uItem  not present in the lists from microsoft db: altercode"+altercode);
+
+                System.out.println("Pet4uItem  not present in the lists from microsoft db: altercode" + altercode);
             } else {
 
                 deliveredItem.setDescription(itemWithDescription.getDescription());
@@ -113,13 +113,13 @@ public class EndoController {
                 deliveredIetms.put(altercode, deliveredItem);
 
             }
-            deliveryInvoice.setItems(deliveredIetms);
-            System.out.println("delivered Items countL " + deliveredIetms.size());
-            modelMap.addAttribute("deliveryInvoice", deliveryInvoice);
-            return "endo/endoChecking";
-        }
 
-        return "redirect:endo/endoDashboard.htm";
+        }
+        deliveryInvoice.setItems(deliveredIetms);
+        System.out.println("delivered Items countL " + deliveredIetms.size());
+        modelMap.addAttribute("deliveryInvoice", deliveryInvoice);
+        return "endo/endoChecking";
+
     }
 
     private ArrayList<String> createItemsIdsArray(String inventoryItemsIds) {
