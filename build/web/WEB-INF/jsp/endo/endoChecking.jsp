@@ -70,7 +70,6 @@
                         out.println(x);
                         out.println("</td>");
                         out.println("<td style='padding-left: 5px; padding-left: 5px;'>");
-                        out.println(item.getCode());
                         out.println("<a href='showDeltiaApostolisOfItem.htm?itemCode=" + item.getCode() + "' target='_blank'>" + item.getCode() + "</a>");
                         out.println("</td>");
 

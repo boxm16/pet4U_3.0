@@ -4,6 +4,8 @@
     Author     : Michail Sitmalidis
 --%>
 
+<%@page import="Endo.Endo"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,6 +14,37 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <table>
+            <thead> 
+
+
+
+                <tr>
+                    <th>A/A</th>
+                    <th>Code</th>
+                    <th>Description</th>
+                    <th>Sent</th>
+                    <th>Delivered</th>
+                    <th>Alert</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                <%
+                    int x = 1;
+                    ArrayList<Endo> endos = (ArrayList<Endo>) request.getAttribute("endos");
+
+                    for (Endo endo : endos) {
+
+                        out.println("<tr>");
+                        out.println("<td>");
+                        out.println(endo.getId());
+                        out.println("</td>");
+
+                        out.println("</tr>");
+                        x++;
+                    }
+                %>
+            </tbody>
+        </table>
     </body>
 </html>
