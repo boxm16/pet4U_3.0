@@ -179,11 +179,6 @@
                             out.println("</tr>");
                         }
                     }
-                    out.println("<tr>");
-                    out.println("<td colspan='3'>");
-                    out.println("-----------------------------------");
-                    out.println("</td>");
-                    out.println("</tr>");
 
                     LinkedHashMap<String, Endo> bidenEndos = (LinkedHashMap) request.getAttribute("bidenEndos");
 
@@ -204,7 +199,6 @@
                             out.println("</td>");
 
                             out.println("</tr>");
-
                         }
                     }
                 %> 
