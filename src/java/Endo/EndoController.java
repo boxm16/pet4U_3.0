@@ -1,6 +1,7 @@
 package Endo;
 
 import BasicModel.Item;
+import Delivery.DeliveryInvoice;
 import Delivery.DeliveryItem;
 import Pet4uItems.Pet4uItemsDao;
 import TESTosteron.TESTosteronDao;
@@ -101,7 +102,9 @@ public class EndoController {
                 deliveredItem.setDescription(itemWithDescription.getDescription());
                 deliveredItem.setSentQuantity(sentItem.getSentQuantity());
                 sentItems.put(altercode, itemWithDescription);
-                modelMap.addAttribute("items", deliveredItem);
+                DeliveryInvoice deliveryInvoice=new DeliveryInvoice();
+                deliveryInvoice.setItems(sentItems);
+                modelMap.addAttribute("deliveryInvoice", deliveryInvoice);
             }
             return "endo/endoChecking";
         }
