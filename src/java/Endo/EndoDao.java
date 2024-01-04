@@ -182,7 +182,7 @@ public class EndoDao {
 
         return endoInvoices;
     }
-    
+
     LinkedHashMap<String, Endo> getLastReceivingEndos(int days) {
         LinkedHashMap<String, Endo> endoInvoices = new LinkedHashMap();
         String sql = "SELECT DISTINCT  id, date, sender FROM endo WHERE type='PARALAVI' ORDER BY date DESC;";
@@ -287,6 +287,79 @@ public class EndoDao {
         }
 
         return endo;
+    }
+
+    LinkedHashMap<String, DeliveryItem> getSentItems(ArrayList<String> endoIdsArray) {
+        LinkedHashMap<String, DeliveryItem> sentItems = new LinkedHashMap<>();
+
+        StringBuilder queryBuilderInitialPart = new StringBuilder("SELECT * FROM endo WHERE ");
+        StringBuilder queryBuilderIdsPart = buildStringFromArrayList(endoIdsArray);
+        StringBuilder query = queryBuilderInitialPart.append(" id IN ").append(queryBuilderIdsPart);
+
+        ResultSet resultSet;
+
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            Connection connection = databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+
+            resultSet = statement.executeQuery(query.toString());
+            while (resultSet.next()) {
+
+                String itemCode = resultSet.getString("item_code");
+                int quantity = resultSet.getInt("quantity");
+                if (sentItems.containsKey(itemCode)) {
+                    DeliveryItem sentItem = sentItems.get(itemCode);
+                    String sentQuantity = sentItem.getSentQuantity();
+                    int sentQuantityInt = Integer.parseInt(sentQuantity);
+                    sentQuantityInt = sentQuantityInt + quantity;
+                    sentQuantity = String.valueOf(sentQuantityInt);
+                    sentItem.setSentQuantity(sentQuantity);
+                    sentItems.put(itemCode, sentItem);
+
+                } else {
+                    DeliveryItem sentItem = new DeliveryItem();
+                    sentItem.setCode(itemCode);
+                    sentItem.setSentQuantity(String.valueOf(quantity));
+                    sentItems.put(itemCode, sentItem);
+                }
+
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(InventoryDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return inventories;
+    }
+
+    private StringBuilder buildStringFromArrayList(ArrayList<String> arrayList) {
+
+        StringBuilder stringBuilder = new StringBuilder("(");
+        if (arrayList.isEmpty()) {
+            stringBuilder.append(")");
+            return stringBuilder;
+        }
+        int x = 0;
+        for (String entry : arrayList) {
+            if (x == 0) {
+                stringBuilder.append("'").append(entry).append("'");
+            } else {
+                stringBuilder.append(",'").append(entry).append("'");
+            }
+            if (x == arrayList.size() - 1) {
+                stringBuilder.append(")");
+            }
+            x++;
+        }
+        return stringBuilder;
+    }
+
+    LinkedHashMap<String, DeliveryItem> getDeliveredItems() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

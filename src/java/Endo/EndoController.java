@@ -1,8 +1,11 @@
 package Endo;
 
 import BasicModel.Item;
+import Delivery.DeliveryItem;
 import Pet4uItems.Pet4uItemsDao;
 import TESTosteron.TESTosteronDao;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -73,15 +76,52 @@ public class EndoController {
         modelMap.addAttribute("endo", endo);
         return "endo/deltioApostolisDisplay";
     }
-    
-    
-            
-             @RequestMapping(value = "compareEndo", method = RequestMethod.POST)
-    public String compareEndo(@RequestParam(name = "endoIds") String id, ModelMap modelMap) {
-        System.out.println(id);
 
-        
+    @RequestMapping(value = "compareEndo", method = RequestMethod.POST)
+    public String compareEndo(@RequestParam(name = "endoIds") String endoIds, ModelMap modelMap) {
+        System.out.println(endoIds);
+
+        ArrayList<String> endoIdsArray = createItemsIdsArray(endoIds);
+
+        EndoDao endoDao = new EndoDao();
+        LinkedHashMap<String, DeliveryItem> sentItems = endoDao.getSentItems(endoIdsArray);
+        LinkedHashMap<String, DeliveryItem> deliveredIetms = endoDao.getDeliveredItems();
+        ArrayList<DeliveryItem> allPet4UItemsRowByRowWithDeepSearch = endoDao.getAllPet4UItemsRowByRowWithDeepSearch();
+
+        for (DeliveryItem itemWithDescription : allPet4UItemsRowByRowWithDeepSearch) {
+            String altercode = itemWithDescription.getCode();
+
+            DeliveryItem sentItem = sentItems.get(altercode);
+            DeliveryItem deliveredItem = deliveredIetms.get(altercode);
+
+            if (deliveredItem == null) {
+                System.out.println("Pet4uItem  not present in the lists from microsoft db");
+            } else {
+
+                deliveredItem.setDescription(itemWithDescription.getDescription());
+                deliveredItem.setSentQuantity(sentItem.getSentQuantity());
+                sentItems.put(altercode, itemWithDescription);
+                modelMap.addAttribute("items", deliveredItem);
+            }
+        }
+
         return "redirect:endo/endoDashboard.htm";
+    }
+
+    private ArrayList<String> createItemsIdsArray(String inventoryItemsIds) {
+        ArrayList idsArray = new ArrayList();
+        //trimming and cleaning input
+        inventoryItemsIds = inventoryItemsIds.trim();
+        if (inventoryItemsIds.length() == 0) {
+            return new ArrayList<String>();
+        }
+        if (inventoryItemsIds.substring(inventoryItemsIds.length() - 1, inventoryItemsIds.length()).equals(",")) {
+            inventoryItemsIds = inventoryItemsIds.substring(0, inventoryItemsIds.length() - 1).trim();
+        }
+        String[] ids = inventoryItemsIds.split(",");
+        idsArray.addAll(Arrays.asList(ids));
+        return idsArray;
+
     }
 
 }
