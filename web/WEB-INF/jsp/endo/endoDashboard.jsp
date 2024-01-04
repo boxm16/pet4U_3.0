@@ -204,13 +204,13 @@
                             out.println("</td>");
 
                             out.println("</tr>");
-                            
-                                       out.println("<tr>");
-                    out.println("<td colspan='3'>");
-                    out.println("<a href='unbide.htm'>ΑΠΟΔΕΣΜΕΥΣΗ</a>");
-                    out.println("</td>");
-                    out.println("</tr>");
+
                         }
+                        out.println("<tr>");
+                        out.println("<td colspan='3'>");
+                        out.println("<a href='unbide.htm'>ΑΠΟΔΕΣΜΕΥΣΗ</a>");
+                        out.println("</td>");
+                        out.println("</tr>");
                     }
                 %> 
 
