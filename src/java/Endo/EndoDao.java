@@ -403,4 +403,35 @@ public class EndoDao {
         return deliveredItems;
     }
 
+    ArrayList<Endo> getDeltiaApostolisOfItem(String itemCode, ArrayList<String> endoIdsArray) {
+        ArrayList<Endo> endos = new ArrayList<>();
+
+        StringBuilder queryBuilderInitialPart = new StringBuilder("SELECT * FROM endo WHERE item_code=" + itemCode + " AND ");
+        StringBuilder queryBuilderIdsPart = buildStringFromArrayList(endoIdsArray);
+        StringBuilder query = queryBuilderInitialPart.append(" id IN ").append(queryBuilderIdsPart);
+
+        ResultSet resultSet;
+
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            Connection connection = databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+
+            resultSet = statement.executeQuery(query.toString());
+            while (resultSet.next()) {
+                Endo endo = new Endo();
+                endos.add(endo);
+
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EndoDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return endos;
+    }
+
 }
