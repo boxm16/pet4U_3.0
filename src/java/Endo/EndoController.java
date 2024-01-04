@@ -99,12 +99,13 @@ public class EndoController {
             DeliveryItem deliveredItem = deliveredIetms.get(altercode);
 
             if (deliveredItem == null) {
-                System.out.println("Pet4uItem  not present in the lists from microsoft db");
+                
+                System.out.println("Pet4uItem  not present in the lists from microsoft db: altercode"+altercode);
             } else {
 
                 deliveredItem.setDescription(itemWithDescription.getDescription());
                 deliveredItem.setSentQuantity(sentItem.getSentQuantity());
-                deliveredIetms.put(altercode, itemWithDescription);
+                deliveredIetms.put(altercode, deliveredItem);
 
             }
             deliveryInvoice.setItems(deliveredIetms);
