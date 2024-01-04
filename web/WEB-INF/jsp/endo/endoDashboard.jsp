@@ -89,7 +89,7 @@
 
 
                                 <%
-                                    LinkedHashMap<String, Endo> receivingEndos = (LinkedHashMap) request.getAttribute("biden");
+                                    LinkedHashMap<String, Endo> receivingEndos = (LinkedHashMap) request.getAttribute("receivingEndos");
                                     String biden = (String) request.getAttribute("biden");
                                     if (!biden.equals("yes")) {
 
