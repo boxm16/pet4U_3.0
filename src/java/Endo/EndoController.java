@@ -168,10 +168,12 @@ public class EndoController {
 
         TESTosteronDao testosteronDao = new TESTosteronDao();
         LinkedHashMap<String, Item> allPet4UItemsWithDeepSearch = testosteronDao.getAllPet4UItemsWithDeepSearch();
+        String sentItemDescription = allPet4UItemsWithDeepSearch.get(itemCode).getDescription();
 
         EndoDao endoDao = new EndoDao();
         ArrayList<Endo> endos = endoDao.getDeltiaApostolisOfItem(itemCode, this.endoIdsArray);
         modelMap.addAttribute("itemCode", itemCode);
+        modelMap.addAttribute("setnItem", itemCode + ":" + sentItemDescription);
         modelMap.addAttribute("endos", endos);
         return "endo/deltiaApostolisDisplay";
     }

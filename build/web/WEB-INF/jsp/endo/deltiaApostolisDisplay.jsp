@@ -33,7 +33,11 @@
         </style>
     </head>
     <body>
+      
     <center>
+          <hr>
+          <h1>Sent Item</h1>
+            <h1>${sentItem}</h1>
         <table>
             <thead> 
 
