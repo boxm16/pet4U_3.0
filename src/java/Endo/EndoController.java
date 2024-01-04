@@ -124,9 +124,14 @@ public class EndoController {
         }
         if (sentItems.size() > 0) {
             System.out.println("LEFT OVERS: " + sentItems.size());
-              for (Map.Entry<String, DeliveryItem> sentItemsEntry : sentItems.entrySet()) {
-                  System.out.println("LEFTO OVER ITEM:" +sentItemsEntry.getKey());
-              }
+            for (Map.Entry<String, DeliveryItem> sentItemsEntry : sentItems.entrySet()) {
+                System.out.println("LEFTO OVER ITEM:" + sentItemsEntry.getKey());
+                String key = sentItemsEntry.getKey();
+                DeliveryItem di = sentItems.remove(key);
+                Item itemWithDescription = pet4UItemsRowByRow.get(key);
+                di.setDescription(itemWithDescription.getDescription());
+                deliveredIetms.put(key, di);
+            }
         }
         deliveryInvoice.setItems(deliveredIetms);
         System.out.println("delivered Items countL " + deliveredIetms.size());
