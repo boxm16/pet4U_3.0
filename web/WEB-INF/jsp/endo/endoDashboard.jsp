@@ -158,17 +158,14 @@
 
 
                 <%
-                    LinkedHashMap<String, Endo> bidenEndos = (LinkedHashMap) request.getAttribute("bidenEndos");
+                    LinkedHashMap<String, Endo> receivingEndos2 = (LinkedHashMap) request.getAttribute("receivingEndos");
 
                     if (biden.equals("yes")) {
 
-                        for (Map.Entry<String, Endo> entrySet : bidenEndos.entrySet()) {
+                        for (Map.Entry<String, Endo> entrySet : receivingEndos2.entrySet()) {
 
                             out.println("<tr>");
 
-                            out.println("<td>");
-                            out.println("<input type='checkbox'class='endoId777' id='" + entrySet.getValue().getId() + "' style='width:28px;height:28px'>");
-                            out.println("</td>");
                             out.println("<td>");
                             out.println("<a href='showDeltioApostolis.htm?id=" + entrySet.getValue().getId() + "'>" + entrySet.getValue().getId() + "</a>");
                             out.println("</td>");
@@ -179,14 +176,26 @@
                             out.println(entrySet.getValue().getSender());
                             out.println("</td>");
 
+                            out.println("</tr>");
+                        }
+                    }
+
+                    LinkedHashMap<String, Endo> bidenEndos = (LinkedHashMap) request.getAttribute("bidenEndos");
+
+                    if (biden.equals("yes")) {
+
+                        for (Map.Entry<String, Endo> entrySet : bidenEndos.entrySet()) {
+
+                            out.println("<tr>");
+
                             out.println("<td>");
-                            out.println(".");
+                            out.println("<a href='showDeltioApostolis.htm?id=" + entrySet.getValue().getId() + "'>" + entrySet.getValue().getId() + "</a>");
                             out.println("</td>");
                             out.println("<td>");
-                            out.println(".");
+                            out.println(entrySet.getValue().getDateString());
                             out.println("</td>");
                             out.println("<td>");
-                            out.println(".");
+                            out.println(entrySet.getValue().getSender());
                             out.println("</td>");
 
                             out.println("</tr>");
