@@ -88,6 +88,9 @@ public class EndoController {
         LinkedHashMap<String, DeliveryItem> sentItems = endoDao.getSentItems(endoIdsArray);
         LinkedHashMap<String, DeliveryItem> deliveredIetms = endoDao.getDeliveredItems();
         ArrayList<DeliveryItem> allPet4UItemsRowByRowWithDeepSearch = endoDao.getAllPet4UItemsRowByRowWithDeepSearch();
+       
+        System.out.println("SENT ITEMS SIZE: "+sentItems.size());
+        System.out.println("DELIVERED ITEMS SIZE: "+deliveredIetms.size());
         DeliveryInvoice deliveryInvoice = new DeliveryInvoice();
         for (DeliveryItem itemWithDescription : allPet4UItemsRowByRowWithDeepSearch) {
             String altercode = itemWithDescription.getCode();
@@ -105,7 +108,7 @@ public class EndoController {
 
             }
             deliveryInvoice.setItems(deliveredIetms);
-            System.out.println("delivered Items countL "+deliveredIetms.size());
+            System.out.println("delivered Items countL " + deliveredIetms.size());
             modelMap.addAttribute("deliveryInvoice", deliveryInvoice);
             return "endo/endoChecking";
         }
