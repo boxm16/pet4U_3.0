@@ -132,7 +132,7 @@ public class EndoDao {
 
     LinkedHashMap<String, Endo> getLastIncomingEndos(int days) {
         LocalDate nowDate = LocalDate.now();
-        nowDate = nowDate.minusDays(7);
+        nowDate = nowDate.minusDays(days);
         System.out.println("NOW DATE: "+nowDate);
         LinkedHashMap<String, Endo> endoInvoices = new LinkedHashMap();
         String sql = "SELECT DISTINCT  [DOCID], [DOCNUMBER],[DOCDATE], [FROM_WH] FROM  [petworld].[dbo].[WH_ENDA]  WHERE where [DOCDATE] >= '" + nowDate + "';";
@@ -148,22 +148,16 @@ public class EndoDao {
 
             resultSet = statement.executeQuery(sql);
 
-            String currentDate = "FakeDate";
-            int currentDay = 0;
+           
+          
             while (resultSet.next()) {
 
-                String id = resultSet.getString("id");
+                String id = resultSet.getString("DOCID");
 
                 String date = resultSet.getString("date");
-                if (!currentDate.equals(date)) {
-                    if (currentDay > days) {
-                        return endoInvoices;
-                    }
-                    currentDay++;
-                    currentDate = date;
-                }
+                
 
-                String sender = resultSet.getString("sender");
+                String sender = resultSet.getString("FROM_WH");
 
                 Endo endo = new Endo();
                 endo.setId(id);
