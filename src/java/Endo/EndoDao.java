@@ -154,7 +154,7 @@ public class EndoDao {
 
                 String id = resultSet.getString("DOCID");
 
-                String date = resultSet.getString("date");
+                String date = resultSet.getString("DOCDATE");
                 
 
                 String sender = resultSet.getString("FROM_WH");
