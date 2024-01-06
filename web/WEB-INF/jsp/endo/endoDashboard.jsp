@@ -185,8 +185,17 @@
         </table>
         <hr>
 
-        <%     LinkedHashMap<String, BindedEndos> s = (LinkedHashMap) request.getAttribute("bindedEndos");
-            out.println(s);
+        <%     LinkedHashMap<String, BindedEndos> bindedEndos = (LinkedHashMap) request.getAttribute("bindedEndos");
+            for (Map.Entry<String, BindedEndos> entrySet : bindedEndos.entrySet()) {
+
+                out.println("<tr>");
+
+                out.println("<td>");
+                out.println("<a href='showDeltioApostolis.htm?id=" + entrySet.getValue().getBindingReceivingEndoId() + "'>" + entrySet.getValue().getBindingReceivingEndoId() + "</a>");
+                out.println("</td>");
+
+                out.println("</tr>");
+            }
         %>
         <a href='unbide.htm'>ΑΠΟΔΕΣΜΕΥΣΗ</a>
 
