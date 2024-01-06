@@ -201,8 +201,9 @@
 
                         ArrayList<Endo> sendingEndos = entrySet.getValue().getBindedSendingEndos();
                         for (Endo sendingEndo : sendingEndos) {
-                            out.println("<tr style='background-color:#90EE90'>");
-
+                            out.println("<tr style='background-color: #90EE90'>");
+                            
+                            out.println("<td>");
                             out.println("<a href='showDeltioApostolis.htm?id=" + sendingEndo.getId() + "'>" + sendingEndo.getId() + "</a>");
                             out.println("</td>");
 
