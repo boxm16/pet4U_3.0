@@ -30,17 +30,13 @@
     <body>
     <center>
         <h4><a href="index.htm">Index</a></h4>
-        <h4>DELTIO APOSOTLHS DISPLAY</h4>
+        <h4>ΔΕΛΤΙΟ ΑΠΟΣΤΟΛΗΣ ΕΝΔΟΔΙΑΚΙΝΗΣΗΣ</h4>
         <hr>
-
-
-
 
         <input type="text" name="id" value="${endo.id}"/>
         <input name="dateString" type="text" value="${endo.dateString}">
-        <input type="text" name="type" value="${endo.type}" />
         <input type="text" name="sender" value="${endo.sender}" />
-        <input type="text" name="receiver" value="${endo.receiver}"/>
+
         <hr>
         <table>
             <thead> 
@@ -53,9 +49,9 @@
             <tbody id='tableBody'>
                 <c:forEach items="${endo.items}" var="itemEntry" varStatus="status">
                     <tr>
-                        <td><input type="text" value="${itemEntry.value.code}"/></td>
-                        <td><input type="text" value="${itemEntry.value.description}"/></td>
-                        <td><input type="text" value="${itemEntry.value.quantity}"/></td>
+                        <td>${itemEntry.value.code}</td>
+                        <td>${itemEntry.value.description}</td>
+                        <td>${itemEntry.value.quantity}</td>
                     </tr>
                 </c:forEach>
             </tbody>
