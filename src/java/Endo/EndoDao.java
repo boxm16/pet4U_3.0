@@ -214,6 +214,7 @@ public class EndoDao {
                 String sender = resultSet.getString("sender");
 
                 Endo endo = new Endo();
+                id="355648";
                 endo.setId(id);
                 endo.setDateString(date);
                 endo.setSender(sender);
