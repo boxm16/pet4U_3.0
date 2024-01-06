@@ -179,8 +179,9 @@ public class EndoController {
         for (Map.Entry<String, String> bindedEndosEntry : bindedEndos.entrySet()) {
             String bindedEndoId = bindedEndosEntry.getKey();
             String bindingEndoId = bindedEndosEntry.getValue();
-       
-            System.out.println("BINDED ENDO ID:"+bindedEndoId);
+
+            System.out.println("BINDED ENDO ID:" + bindedEndoId);
+            receivingEndos.put(bindingEndoId, new Endo());
             if (receivingEndos.containsKey(bindingEndoId)) {
                 Endo bindedEndo = incomingEndos.remove(bindedEndoId);
                 if (bindedEndosFiltered.containsKey(bindingEndoId)) {
@@ -188,6 +189,7 @@ public class EndoController {
                 } else {
                     BindedEndos bindedEndos1 = new BindedEndos();
 
+                    bindedEndos1.setBindingReceivingEndoId(bindingEndoId);
                     bindedEndos1.setBindingReceivingEndo(receivingEndos.remove(bindingEndoId));
                     bindedEndos1.addBindedSendingEndo(bindedEndo);
                     bindedEndosFiltered.put(bindingEndoId, bindedEndos1);
