@@ -135,7 +135,7 @@ public class EndoDao {
         nowDate = nowDate.minusDays(7);
         System.out.println("NOW DATE: "+nowDate);
         LinkedHashMap<String, Endo> endoInvoices = new LinkedHashMap();
-        String sql = "SELECT DISTINCT  [DOCID], [DOCNUMBER],[DOCDATE], [FROM_WH] FROM FROM [petworld].[dbo].[WH_ENDA]  WHERE where [DOCDATE] >= '" + nowDate + "';";
+        String sql = "SELECT DISTINCT  [DOCID], [DOCNUMBER],[DOCDATE], [FROM_WH] FROM  [petworld].[dbo].[WH_ENDA]  WHERE where [DOCDATE] >= '" + nowDate + "';";
         Connection connection;
         Statement statement;
         ResultSet resultSet;
