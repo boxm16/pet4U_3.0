@@ -250,7 +250,8 @@ public class EndoDao {
             while (resultSet.next()) {
 
                 String date = resultSet.getString("DOCDATE");
-
+                String[] splittedDate = date.split(" ");
+                date = splittedDate[0];
                 DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                 LocalDate invoiceDate = LocalDate.parse(date, formatter2);
 
@@ -264,7 +265,6 @@ public class EndoDao {
                 endo.setSender(sender);
                 endo.setReceiver(receiver);
                 endo.setDate(invoiceDate);
-          
 
                 Item item = allPet4UItemsWithDeepSearch.get(itemCode);
                 item.setQuantity(quantity);
