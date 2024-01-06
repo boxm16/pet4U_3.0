@@ -256,14 +256,14 @@ public class EndoDao {
                 LocalDate invoiceDate = LocalDate.parse(date, formatter2);
 
                 String sender = resultSet.getString("FROM_WH");
-                String receiver = resultSet.getString("varibobi");
+ 
                 String itemCode = resultSet.getString("ABBREVIATION");
                 String quantity = resultSet.getString("QUANTITY");
                 String price = resultSet.getString("PRICEBC");
 
                 endo.setDateString(date);
                 endo.setSender(sender);
-                endo.setReceiver(receiver);
+
                 endo.setDate(invoiceDate);
 
                 Item item = allPet4UItemsWithDeepSearch.get(itemCode);
