@@ -199,8 +199,6 @@
 
                         out.println("</tr>");
 
-                        out.println("</tr>");
-
                         ArrayList<Endo> sendingEndos = entrySet.getValue().getBindedSendingEndos();
                         for (Endo sendingEndo : sendingEndos) {
                             out.println("<tr style='background-color:#90EE90'>");
