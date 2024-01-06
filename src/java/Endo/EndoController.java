@@ -59,20 +59,7 @@ public class EndoController {
         return "endo/endoDashboard";
     }
 
-    @RequestMapping(value = "showDeltioApostolis", method = RequestMethod.GET)
-    public String showDeltioApostolis(@RequestParam(name = "id") String id, ModelMap modelMap) {
-        System.out.println(id);
-
-        TESTosteronDao testosteronDao = new TESTosteronDao();
-        LinkedHashMap<String, Item> allPet4UItemsWithDeepSearch = testosteronDao.getAllPet4UItemsWithDeepSearch();
-
-        EndoDao endoDao = new EndoDao();
-
-        Endo endo = endoDao.getEndo(id, allPet4UItemsWithDeepSearch);
-
-        modelMap.addAttribute("endo", endo);
-        return "endo/deltioApostolisDisplay";
-    }
+    
 
     @RequestMapping(value = "compareEndo", method = RequestMethod.POST)
     public String compareEndo(@RequestParam(name = "endoIds") String endoIds, ModelMap modelMap) {
@@ -205,8 +192,21 @@ public class EndoController {
         } else {
             modelMap.addAttribute("biden", "no");
         }
-
         return "endo/endoDashboard";
+    }
+    
+    @RequestMapping(value = "showDeltioApostolis", method = RequestMethod.GET)
+    public String showDeltioApostolis(@RequestParam(name = "id") String id, ModelMap modelMap) {
+        System.out.println(id);
 
+        TESTosteronDao testosteronDao = new TESTosteronDao();
+        LinkedHashMap<String, Item> allPet4UItemsWithDeepSearch = testosteronDao.getAllPet4UItemsWithDeepSearch();
+
+        EndoDao endoDao = new EndoDao();
+
+        Endo endo = endoDao.getEndo(id, allPet4UItemsWithDeepSearch);
+
+        modelMap.addAttribute("endo", endo);
+        return "endo/deltioApostolisDisplay";
     }
 }
