@@ -179,7 +179,8 @@
                 <tr>
 
 
-                    <%                        LinkedHashMap<String, Endo> receivingEndos2 = (LinkedHashMap) request.getAttribute("receivingEndos");
+                    <%   
+                        /*LinkedHashMap<String, Endo> receivingEndos2 = (LinkedHashMap) request.getAttribute("receivingEndos");
 
                         for (Map.Entry<String, Endo> entrySet : receivingEndos2.entrySet()) {
 
@@ -221,7 +222,7 @@
 
                             out.println("</tr>");
                         }
-
+*/
                     %> 
 
             </tbody>
