@@ -215,12 +215,11 @@ public class EndoController {
     public String showDeltioApostolis(@RequestParam(name = "id") String id, ModelMap modelMap) {
         System.out.println(id);
 
-        TESTosteronDao testosteronDao = new TESTosteronDao();
-        LinkedHashMap<String, Item> allPet4UItemsWithDeepSearch = testosteronDao.getAllPet4UItemsWithDeepSearch();
-
+        Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
+        LinkedHashMap<String, Item> pet4UItemsRowByRow = pet4uItemsDao.getPet4UItemsRowByRow();
         EndoDao endoDao = new EndoDao();
 
-        Endo endo = endoDao.getEndo(id, allPet4UItemsWithDeepSearch);
+        Endo endo = endoDao.getEndo(id, pet4UItemsRowByRow);
 
         modelMap.addAttribute("endo", endo);
         return "endo/deltioApostolisDisplay";

@@ -233,7 +233,7 @@ public class EndoDao {
         return endoInvoices;
     }
 
-    Endo getEndo(String endoId, LinkedHashMap<String, Item> allPet4UItemsWithDeepSearch) {
+    Endo getEndo(String endoId, LinkedHashMap<String, Item> pet4UItemsRowByRow) {
         String sql = "SELECT  [DOCID], [DOCNUMBER],  [DOCDATE], [FROM_WH], [ABBREVIATION], [QUANTITY], [PRICEBC] FROM [petworld].[dbo].[WH_ENDA] WHERE [DOCID]='" + endoId + "' ;";
         Connection connection;
         Statement statement;
@@ -269,7 +269,7 @@ public class EndoDao {
 
                 endo.setDate(invoiceDate);
 
-                Item item = allPet4UItemsWithDeepSearch.get(itemCode);
+                Item item = pet4UItemsRowByRow.get(itemCode);
                 item.setQuantity(quantity);
 
                 endo.getItems().put(itemCode, item);
