@@ -151,6 +151,7 @@
                                     out.println("<td colspan='4'>");
                                     out.println("1271254, 1271255");
                                     out.println("</td>");
+                                    
                                     out.println("</tr>");
 
                                     out.println("</tr>");
@@ -169,19 +170,24 @@
         <h2>ΔΕΣΜΕΥΜΕΝΑ ΔΕΛΤΙΑ</h2>
         <hr>
         <table>
-            <tbody>
-
+            <thead>
                 <tr>
 
                     <th>A/A</th>
                     <th>Date</th>
                     <th>Creator</th>
                 </tr>
+            </thead>
+            <tbody>
 
 
-
-                <%                    LinkedHashMap<String, BindedEndos> bidenEndos = (LinkedHashMap<String, BindedEndos>) request.getAttribute("bidenEndos");
-
+                <%       LinkedHashMap<String, BindedEndos> bidenEndos = (LinkedHashMap<String, BindedEndos>) request.getAttribute("bidenEndos");
+                    for (Map.Entry<String, BindedEndos> entrySet : bidenEndos.entrySet()) {
+                    
+                                    out.println("<td>");
+                                    out.println("<input type='checkbox'class='endoId777' id='" + entrySet.getValue().getBindingReceivingEndoId()+ "' style='width:28px;height:28px'>");
+                                    out.println("</td>");
+                    }
 
                 %> 
 
