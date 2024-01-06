@@ -443,7 +443,7 @@ public class EndoDao {
     LinkedHashMap<String, String> getAllBindedEndos() {
         LinkedHashMap<String, String> allBindedEndos = new LinkedHashMap<>();
 
-        String query = "SELECT * FROM endo_binding WHERE";
+        String query = "SELECT * FROM endo_binding;";
 
         ResultSet resultSet;
 

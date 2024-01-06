@@ -184,53 +184,47 @@
                     <%
                         LinkedHashMap<String, Endo> receivingEndos2 = (LinkedHashMap) request.getAttribute("receivingEndos");
 
-                        if (biden.equals("yes")) {
+                        for (Map.Entry<String, Endo> entrySet : receivingEndos2.entrySet()) {
 
-                            for (Map.Entry<String, Endo> entrySet : receivingEndos2.entrySet()) {
-
-                                out.println("<tr>");
-
-                                out.println("<td>");
-                                out.println("<a href='showDeltioApostolis.htm?id=" + entrySet.getValue().getId() + "'>" + entrySet.getValue().getId() + "</a>");
-                                out.println("</td>");
-                                out.println("<td>");
-                                out.println(entrySet.getValue().getDateString());
-                                out.println("</td>");
-                                out.println("<td>");
-                                out.println(entrySet.getValue().getSender());
-                                out.println("</td>");
-
-                                out.println("</tr>");
-                            }
                             out.println("<tr>");
-                            out.println("<td colspan='3'>");
-                            out.println("--------------------------------");
+
+                            out.println("<td>");
+                            out.println("<a href='showDeltioApostolis.htm?id=" + entrySet.getValue().getId() + "'>" + entrySet.getValue().getId() + "</a>");
                             out.println("</td>");
+                            out.println("<td>");
+                            out.println(entrySet.getValue().getDateString());
+                            out.println("</td>");
+                            out.println("<td>");
+                            out.println(entrySet.getValue().getSender());
+                            out.println("</td>");
+
                             out.println("</tr>");
                         }
+                        out.println("<tr>");
+                        out.println("<td colspan='3'>");
+                        out.println("--------------------------------");
+                        out.println("</td>");
+                        out.println("</tr>");
 
                         LinkedHashMap<String, Endo> bidenEndos = (LinkedHashMap) request.getAttribute("bidenEndos");
 
-                        if (biden.equals("yes")) {
+                        for (Map.Entry<String, Endo> entrySet : bidenEndos.entrySet()) {
 
-                            for (Map.Entry<String, Endo> entrySet : bidenEndos.entrySet()) {
+                            out.println("<tr>");
 
-                                out.println("<tr>");
+                            out.println("<td>");
+                            out.println("<a href='showDeltioApostolis.htm?id=" + entrySet.getValue().getId() + "'>" + entrySet.getValue().getId() + "</a>");
+                            out.println("</td>");
+                            out.println("<td>");
+                            out.println(entrySet.getValue().getDateString());
+                            out.println("</td>");
+                            out.println("<td>");
+                            out.println(entrySet.getValue().getSender());
+                            out.println("</td>");
 
-                                out.println("<td>");
-                                out.println("<a href='showDeltioApostolis.htm?id=" + entrySet.getValue().getId() + "'>" + entrySet.getValue().getId() + "</a>");
-                                out.println("</td>");
-                                out.println("<td>");
-                                out.println(entrySet.getValue().getDateString());
-                                out.println("</td>");
-                                out.println("<td>");
-                                out.println(entrySet.getValue().getSender());
-                                out.println("</td>");
-
-                                out.println("</tr>");
-                            }
-
+                            out.println("</tr>");
                         }
+
                     %> 
 
             </tbody>
