@@ -183,7 +183,7 @@
                 <%     LinkedHashMap<String, BindedEndos> bindedEndos = (LinkedHashMap) request.getAttribute("bindedEndos");
                     for (Map.Entry<String, BindedEndos> entrySet : bindedEndos.entrySet()) {
 
-                        out.println("<tr style='background-color:light-blue'>");
+                        out.println("<tr style='background-color: #ADD8E6'>");
 
                         out.println("<td>");
                         out.println("<a href='showDeltioApostolis.htm?id=" + entrySet.getKey() + "'>" + entrySet.getKey() + "</a>");
@@ -203,9 +203,8 @@
 
                         ArrayList<Endo> sendingEndos = entrySet.getValue().getBindedSendingEndos();
                         for (Endo sendingEndo : sendingEndos) {
-                            out.println("<tr>");
+                            out.println("<tr style='background-color:#90EE90'>");
 
-                            out.println("<tr style='background-color:light-green'>");
                             out.println("<a href='showDeltioApostolis.htm?id=" + sendingEndo.getId() + "'>" + sendingEndo.getId() + "</a>");
                             out.println("</td>");
 
