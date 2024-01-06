@@ -95,68 +95,66 @@
 
                             <%
                                 LinkedHashMap<String, Endo> receivingEndos = (LinkedHashMap) request.getAttribute("receivingEndos");
-                                String biden = (String) request.getAttribute("biden");
-                                if (!biden.equals("yes")) {
 
-                                    for (Map.Entry<String, Endo> entrySet : receivingEndos.entrySet()) {
+                                for (Map.Entry<String, Endo> entrySet : receivingEndos.entrySet()) {
 
-                                        out.println("<tr>");
+                                    out.println("<tr>");
 
-                                        out.println("<td>");
-                                        out.println("<input type='checkbox'class='endoId777' id='" + entrySet.getValue().getId() + "' style='width:28px;height:28px'>");
-                                        out.println("</td>");
+                                    out.println("<td>");
+                                    out.println("<input type='checkbox'class='endoId777' id='" + entrySet.getValue().getId() + "' style='width:28px;height:28px'>");
+                                    out.println("</td>");
 
-                                        out.println("<td>");
-                                        out.println("<a href='showDeltioApostolis.htm?id=" + entrySet.getValue().getId() + "'>" + entrySet.getValue().getId() + "</a>");
-                                        out.println("</td>");
+                                    out.println("<td>");
+                                    out.println("<a href='showDeltioApostolis.htm?id=" + entrySet.getValue().getId() + "'>" + entrySet.getValue().getId() + "</a>");
+                                    out.println("</td>");
 
-                                        out.println("<td>");
-                                        out.println(entrySet.getValue().getDateString());
-                                        out.println("</td>");
+                                    out.println("<td>");
+                                    out.println(entrySet.getValue().getDateString());
+                                    out.println("</td>");
 
-                                        out.println("<td >");
-                                        out.println(entrySet.getValue().getSender());
-                                        out.println("</td>");
+                                    out.println("<td >");
+                                    out.println(entrySet.getValue().getSender());
+                                    out.println("</td>");
 
-                                        out.println("<tr>");
-                                        out.println("<td colspan='4'>");
-                                        out.println(".");
-                                        out.println("</td>");
-                                        out.println("</tr>");
+                                    out.println("<tr>");
+                                    out.println("<td colspan='4'>");
+                                    out.println(".");
+                                    out.println("</td>");
+                                    out.println("</tr>");
 
-                                        out.println("<tr>");
-                                        out.println("<td colspan='4'>");
-                                        out.println(".");
-                                        out.println("</td>");
-                                        out.println("</tr>");
+                                    out.println("<tr>");
+                                    out.println("<td colspan='4'>");
+                                    out.println(".");
+                                    out.println("</td>");
+                                    out.println("</tr>");
 
-                                        out.println("<tr>");
-                                        out.println("<td colspan='4'>");
-                                        out.println(".");
-                                        out.println("</td>");
-                                        out.println("</tr>");
+                                    out.println("<tr>");
+                                    out.println("<td colspan='4'>");
+                                    out.println(".");
+                                    out.println("</td>");
+                                    out.println("</tr>");
 
-                                        out.println("<tr>");
-                                        out.println("<td colspan='4'>");
-                                        out.println("ΑΦΟΡΑ ΔΕΛΤΙΑ ΑΠΟΣΤΟΛΗΣ ΤΩΝ ΜΑΓΑΖΙΩΝ");
-                                        out.println("</td>");
-                                        out.println("</tr>");
+                                    out.println("<tr>");
+                                    out.println("<td colspan='4'>");
+                                    out.println("ΑΦΟΡΑ ΔΕΛΤΙΑ ΑΠΟΣΤΟΛΗΣ ΤΩΝ ΜΑΓΑΖΙΩΝ");
+                                    out.println("</td>");
+                                    out.println("</tr>");
 
-                                        out.println("<tr>");
-                                        out.println("<td colspan='4'>");
-                                        out.println("4323423, 4323424, 4323429");
-                                        out.println("</td>");
-                                        out.println("</tr>");
+                                    out.println("<tr>");
+                                    out.println("<td colspan='4'>");
+                                    out.println("4323423, 4323424, 4323429");
+                                    out.println("</td>");
+                                    out.println("</tr>");
 
-                                        out.println("<tr>");
-                                        out.println("<td colspan='4'>");
-                                        out.println("1271254, 1271255");
-                                        out.println("</td>");
-                                        out.println("</tr>");
+                                    out.println("<tr>");
+                                    out.println("<td colspan='4'>");
+                                    out.println("1271254, 1271255");
+                                    out.println("</td>");
+                                    out.println("</tr>");
 
-                                        out.println("</tr>");
-                                    }
+                                    out.println("</tr>");
                                 }
+
                             %> 
 
                         </tbody>
@@ -181,8 +179,7 @@
                 <tr>
 
 
-                    <%
-                        LinkedHashMap<String, Endo> receivingEndos2 = (LinkedHashMap) request.getAttribute("receivingEndos");
+                    <%                        LinkedHashMap<String, Endo> receivingEndos2 = (LinkedHashMap) request.getAttribute("receivingEndos");
 
                         for (Map.Entry<String, Endo> entrySet : receivingEndos2.entrySet()) {
 
