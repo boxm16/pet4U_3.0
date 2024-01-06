@@ -177,22 +177,13 @@
                     <th>Date</th>
                     <th>Creator</th>
                 </tr>
-                <tr>
 
 
-                    <%                        LinkedHashMap<String, BindedEndos> bidenEndos = (LinkedHashMap) request.getAttribute("bidenEndos");
-                        for (Map.Entry<String, BindedEndos> entrySet : bidenEndos.entrySet()) {
 
-                            out.println("<tr>");
+                <%                    LinkedHashMap<String, BindedEndos> bidenEndos = (LinkedHashMap<String, BindedEndos>) request.getAttribute("bidenEndos");
 
-                            out.println("<td>");
-                            out.println("<a href='showDeltioApostolis.htm?id=" + entrySet.getValue().getBindingReceivingEndoId() + "'>" + entrySet.getValue().getBindingReceivingEndoId()+ "</a>");
-                            out.println("</td>");
 
-                            out.println("</tr>");
-                        }
-
-                    %> 
+                %> 
 
             </tbody>
         </table>
