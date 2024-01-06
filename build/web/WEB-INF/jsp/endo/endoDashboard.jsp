@@ -166,7 +166,7 @@
             <tr><td colspan="3"><center><input style="background-color:lightblue; font-size:40px" type="button" value="ΣΥΓΚΡΙΣΗ" onclick="requestRouter('compareEndo.htm')"></center></tr>
         </table>
 
-        <hr>
+        <hr><hr>
         <h2>ΔΕΣΜΕΥΜΕΝΑ ΔΕΛΤΙΑ</h2>
         <hr>
         <table>
@@ -181,10 +181,13 @@
             <tbody>
 
 
-
             </tbody>
         </table>
         <hr>
+
+        <%     LinkedHashMap<String, BindedEndos> s = (LinkedHashMap) request.getAttribute("receivingEndos");
+            out.println(s);
+        %>
         <a href='unbide.htm'>ΑΠΟΔΕΣΜΕΥΣΗ</a>
 
         <form id="form" action="#" method="POST">
