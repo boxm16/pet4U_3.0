@@ -186,7 +186,7 @@
                         out.println("<tr style='background-color:blue'>");
 
                         out.println("<td>");
-                        out.println("SDSDSDSDS");
+                          out.println("<a href='showDeltioApostolis.htm?id=" + entrySet.getKey() + "'>" + entrySet.getKey() + "</a>");
                         out.println("</td>");
 
                         out.println("<td>");
