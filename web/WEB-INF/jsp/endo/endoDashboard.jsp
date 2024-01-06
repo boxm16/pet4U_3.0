@@ -170,6 +170,7 @@
         <h2>ΔΕΣΜΕΥΜΕΝΑ ΔΕΛΤΙΑ</h2>
         <hr>
         <table>
+
             <thead>
                 <tr>
 
@@ -179,24 +180,52 @@
                 </tr>
             </thead>
             <tbody>
+                <%     LinkedHashMap<String, BindedEndos> bindedEndos = (LinkedHashMap) request.getAttribute("bindedEndos");
+                    for (Map.Entry<String, BindedEndos> entrySet : bindedEndos.entrySet()) {
 
+                        out.println("<tr style='background-color:blue>");
+
+                        out.println("<td>");
+                        out.println("<a href='showDeltioApostolis.htm?id=" + entrySet.getKey() + "'>" + entrySet.getKey() + "</a>");
+                        out.println("</td>");
+
+                        out.println("<td>");
+                        out.println(entrySet.getValue().getBindingReceivingEndo().getDateString());
+                        out.println("</td>");
+
+                        out.println("<td>");
+                        out.println("----------------------");
+                        out.println("</td>");
+
+                        out.println("</tr>");
+
+                        ArrayList<Endo> sendingEndos = entrySet.getValue().getBindedSendingEndos();
+                        for (Endo sendingEndo : sendingEndos) {
+                            out.println("<tr>");
+
+                            out.println("<td>");
+                            out.println("<a href='showDeltioApostolis.htm?id=" + sendingEndo.getId() + "'>" + sendingEndo.getId() + "</a>");
+                            out.println("</td>");
+
+                            out.println("<td>");
+                            out.println(sendingEndo.getDateString());
+                            out.println("</td>");
+
+                            out.println("<td>");
+                            out.println(sendingEndo.getSender());
+                            out.println("</td>");
+
+                            out.println("</tr>");
+
+                        }
+                    }
+                %>
 
             </tbody>
         </table>
         <hr>
 
-        <%     LinkedHashMap<String, BindedEndos> bindedEndos = (LinkedHashMap) request.getAttribute("bindedEndos");
-            for (Map.Entry<String, BindedEndos> entrySet : bindedEndos.entrySet()) {
 
-                out.println("<tr>");
-
-                out.println("<td>");
-                out.println("<a href='showDeltioApostolis.htm?id=" + entrySet.getKey() + "'>" + entrySet.getKey() + "</a>");
-                out.println("</td>");
-
-                out.println("</tr>");
-            }
-        %>
         <a href='unbide.htm'>ΑΠΟΔΕΣΜΕΥΣΗ</a>
 
         <form id="form" action="#" method="POST">
