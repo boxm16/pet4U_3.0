@@ -185,7 +185,7 @@
         </table>
         <hr>
 
-        <%     LinkedHashMap<String, BindedEndos> s = (LinkedHashMap) request.getAttribute("receivingEndos");
+        <%     LinkedHashMap<String, BindedEndos> s = (LinkedHashMap) request.getAttribute("bindedEndos");
             out.println(s);
         %>
         <a href='unbide.htm'>ΑΠΟΔΕΣΜΕΥΣΗ</a>
