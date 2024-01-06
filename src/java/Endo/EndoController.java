@@ -20,14 +20,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class EndoController {
 
     ArrayList<String> endoIdsArray;
-    private boolean biden;
 
     public EndoController() {
         endoIdsArray = new ArrayList<>();
-        biden = false;
-    }
 
-   
+    }
 
     @RequestMapping(value = "deltioApostolis", method = RequestMethod.GET)
     public String deltioApostolis(ModelMap modelMap) {
@@ -58,8 +55,6 @@ public class EndoController {
         modelMap.addAttribute("endo", endo);
         return "endo/endoDashboard";
     }
-
-    
 
     @RequestMapping(value = "compareEndo", method = RequestMethod.POST)
     public String compareEndo(@RequestParam(name = "endoIds") String endoIds, ModelMap modelMap) {
@@ -159,42 +154,56 @@ public class EndoController {
 
     @RequestMapping(value = "saveDeltiaApostolisKaiParalavis", method = RequestMethod.GET)
     public String saveDeltiaApostolisKaiParalavis() {
-        biden = true;
+
         return "redirect:endoDashboard.htm";
     }
 
     @RequestMapping(value = "unbide", method = RequestMethod.GET)
     public String unbide() {
-        biden = false;
+
         return "redirect:endoDashboard.htm";
     }
-    
-    //------------------------------------------------------------------------------------
 
-    
-     @RequestMapping(value = "endoDashboard", method = RequestMethod.GET)
+    //------------------------------------------------------------------------------------
+    @RequestMapping(value = "endoDashboard", method = RequestMethod.GET)
     public String endoDashboard(ModelMap modelMap) {
 
         EndoDao endoDao = new EndoDao();
 
         LinkedHashMap<String, Endo> incomingEndos = endoDao.getLastIncomingEndos(7);
         LinkedHashMap<String, Endo> receivingEndos = endoDao.getLastReceivingEndos(7);
+        LinkedHashMap<String, String> bindedEndos = endoDao.getAllBindedEndos();
+
+        LinkedHashMap<String, BindedEndos> bindedEndosFiltered = new LinkedHashMap();
+
+        for (Map.Entry<String, String> bindedEndosEntry : bindedEndos.entrySet()) {
+            String bindedEndoId = bindedEndosEntry.getKey();
+            String bindingEndoId = bindedEndosEntry.getValue();
+
+            if (receivingEndos.containsKey(bindingEndoId)) {
+                Endo bindedEndo = incomingEndos.remove(bindedEndoId);
+                if (bindedEndosFiltered.containsKey(bindingEndoId)) {
+                    bindedEndosFiltered.get(bindingEndoId).addBindedSendingEndo(bindedEndo);
+                } else {
+                    BindedEndos bindedEndos1 = new BindedEndos();
+
+                    bindedEndos1.setBindingReceivingEndo(receivingEndos.remove(bindingEndoId));
+                    bindedEndos1.addBindedSendingEndo(bindedEndo);
+                    bindedEndosFiltered.put(bindedEndoId, bindedEndos1);
+
+                }
+
+            }
+
+        }
 
         modelMap.addAttribute("incomingEndos", incomingEndos);
         modelMap.addAttribute("receivingEndos", receivingEndos);
-        if (biden == true) {
-            LinkedHashMap<String, Endo> bidenEndos = new LinkedHashMap();
-            for (String id : endoIdsArray) {
-                bidenEndos.put(id, incomingEndos.remove(id));
-            }
-            modelMap.addAttribute("biden", "yes");
-            modelMap.addAttribute("bidenEndos", bidenEndos);
-        } else {
-            modelMap.addAttribute("biden", "no");
-        }
+        modelMap.addAttribute("bindedEndos", bindedEndosFiltered);
+
         return "endo/endoDashboard";
     }
-    
+
     @RequestMapping(value = "showDeltioApostolis", method = RequestMethod.GET)
     public String showDeltioApostolis(@RequestParam(name = "id") String id, ModelMap modelMap) {
         System.out.println(id);

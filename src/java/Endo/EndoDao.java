@@ -256,8 +256,8 @@ public class EndoDao {
                 LocalDate invoiceDate = LocalDate.parse(date, formatter2);
 
                 String sender = resultSet.getString("FROM_WH");
- 
-                String number=resultSet.getString("DOCNUMBER");
+
+                String number = resultSet.getString("DOCNUMBER");
                 String itemCode = resultSet.getString("ABBREVIATION");
                 String quantity = resultSet.getString("QUANTITY");
                 String price = resultSet.getString("PRICEBC");
@@ -406,7 +406,7 @@ public class EndoDao {
         StringBuilder queryBuilderInitialPart = new StringBuilder("SELECT * FROM endo WHERE item_code='" + itemCode + "' AND ");
         StringBuilder queryBuilderIdsPart = buildStringFromArrayList(endoIdsArray);
         StringBuilder query = queryBuilderInitialPart.append(" id IN ").append(queryBuilderIdsPart);
-        System.out.println("QUUUU" + query);
+
         ResultSet resultSet;
 
         try {
@@ -438,6 +438,37 @@ public class EndoDao {
         }
 
         return endos;
+    }
+
+    LinkedHashMap<String, String> getAllBindedEndos() {
+        LinkedHashMap<String, String> allBindedEndos = new LinkedHashMap<>();
+
+        String query = "SELECT * FROM endo_binding WHERE";
+
+        ResultSet resultSet;
+
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            Connection connection = databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+
+            resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+
+                String bindedEndoId = resultSet.getString("endo_id");
+                String bindingEndoId = resultSet.getString("binding_endo_id");
+                allBindedEndos.put(bindedEndoId, bindingEndoId);
+
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EndoDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return allBindedEndos;
     }
 
 }
