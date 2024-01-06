@@ -257,12 +257,14 @@ public class EndoDao {
 
                 String sender = resultSet.getString("FROM_WH");
  
+                String number=resultSet.getString("DOCNUMBER");
                 String itemCode = resultSet.getString("ABBREVIATION");
                 String quantity = resultSet.getString("QUANTITY");
                 String price = resultSet.getString("PRICEBC");
 
                 endo.setDateString(date);
                 endo.setSender(sender);
+                endo.setNumber(number);
 
                 endo.setDate(invoiceDate);
 
