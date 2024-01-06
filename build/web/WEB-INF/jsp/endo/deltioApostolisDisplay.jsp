@@ -33,17 +33,18 @@
         <h4>ΔΕΛΤΙΟ ΑΠΟΣΤΟΛΗΣ ΕΝΔΟΔΙΑΚΙΝΗΣΗΣ</h4>
         <hr>
 
-        <input type="text" name="id" value="${endo.id}"/>
-        <input name="dateString" type="text" value="${endo.dateString}">
-        <input type="text" name="sender" value="${endo.sender}" />
+        <input type="text" readonly name="id" value="${endo.id}"/>
+        <input name="dateString" readonly type="text" value="${endo.dateString}">
+        <input type="text" readonly name="id" value="${endo.number}"/>
+        <input type="text" readonly name="sender" value="${endo.sender}" />
 
         <hr>
         <table>
             <thead> 
                 <tr>
-                    <th>Abbrev</th>
-                    <th>Description</th>
-                    <th>QTY</th>
+                    <th>ΚΩΔΙΚΟΣ</th>
+                    <th>ΠΕΡΙΓΡΑΦΗ</th>
+                    <th>ΠΟΣΟΤΗΤΑ</th>
                 </tr>
             </thead>
             <tbody id='tableBody'>
