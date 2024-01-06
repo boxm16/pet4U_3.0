@@ -4,6 +4,7 @@
     Author     : Michail Sitmalidis
 --%>
 
+<%@page import="Endo.BindedEndos"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.LinkedHashMap"%>
 <%@page import="Endo.Endo"%>
@@ -179,19 +180,13 @@
                 <tr>
 
 
-                    <%                        LinkedHashMap<String, Endo> bidenEndos = (LinkedHashMap) request.getAttribute("bidenEndos");
-                        for (Map.Entry<String, Endo> entrySet : bidenEndos.entrySet()) {
+                    <%                        LinkedHashMap<String, BindedEndos> bidenEndos = (LinkedHashMap) request.getAttribute("bidenEndos");
+                        for (Map.Entry<String, BindedEndos> entrySet : bidenEndos.entrySet()) {
 
                             out.println("<tr>");
 
                             out.println("<td>");
-                            out.println("<a href='showDeltioApostolis.htm?id=" + entrySet.getValue().getId() + "'>" + entrySet.getValue().getId() + "</a>");
-                            out.println("</td>");
-                            out.println("<td>");
-                            out.println(entrySet.getValue().getDateString());
-                            out.println("</td>");
-                            out.println("<td>");
-                            out.println(entrySet.getValue().getSender());
+                            out.println("<a href='showDeltioApostolis.htm?id=" + entrySet.getValue().getBindingReceivingEndoId() + "'>" + entrySet.getValue().getBindingReceivingEndoId()+ "</a>");
                             out.println("</td>");
 
                             out.println("</tr>");
