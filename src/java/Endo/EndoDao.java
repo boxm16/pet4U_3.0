@@ -153,6 +153,8 @@ public class EndoDao {
                 String id = resultSet.getString("DOCID");
                 
                 String date = resultSet.getString("DOCDATE");
+                String[] splittedDate = date.split(" ");
+                date=splittedDate[0];
                 String number = resultSet.getString("DOCNUMBER");
                 
                 String sender = resultSet.getString("FROM_WH");
