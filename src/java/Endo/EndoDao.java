@@ -233,7 +233,7 @@ public class EndoDao {
     }
 
     Endo getEndo(String endoId, LinkedHashMap<String, Item> allPet4UItemsWithDeepSearch) {
-        String sql = "SELECT  [DOCID], [DOCNUMBER],  [DOCDATE], [FROM_WH], [ABBREVIATION], [QUANTITY], [PRICE] FROM [petworld].[dbo].[WH_ENDA] WHERE [DOCID]='" + endoId + "' ;";
+        String sql = "SELECT  [DOCID], [DOCNUMBER],  [DOCDATE], [FROM_WH], [ABBREVIATION], [QUANTITY], [PRICEBC] FROM [petworld].[dbo].[WH_ENDA] WHERE [DOCID]='" + endoId + "' ;";
         Connection connection;
         Statement statement;
         ResultSet resultSet;
@@ -258,7 +258,7 @@ public class EndoDao {
                 String receiver = resultSet.getString("varibobi");
                 String itemCode = resultSet.getString("ABBREVIATION");
                 String quantity = resultSet.getString("QUANTITY");
-                String price = resultSet.getString("PRICE");
+                String price = resultSet.getString("PRICEBC");
 
                 endo.setDateString(date);
                 endo.setSender(sender);
