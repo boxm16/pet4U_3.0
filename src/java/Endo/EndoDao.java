@@ -131,15 +131,18 @@ public class EndoDao {
     }
 
     LinkedHashMap<String, Endo> getLastIncomingEndos(int days) {
+        LocalDate nowDate = LocalDate.now();
+        nowDate = nowDate.minusDays(7);
+        System.out.println("NOW DATE: "+nowDate);
         LinkedHashMap<String, Endo> endoInvoices = new LinkedHashMap();
-        String sql = "SELECT DISTINCT  id, date, sender FROM endo WHERE type='APOSTOLI' ORDER BY date DESC;";
+        String sql = "SELECT DISTINCT  [DOCID], [DOCNUMBER],[DOCDATE], [FROM_WH] FROM FROM [petworld].[dbo].[WH_ENDA]  WHERE where [DOCDATE] >= '" + nowDate + "';";
         Connection connection;
         Statement statement;
         ResultSet resultSet;
 
         try {
             DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
-            connection = databaseConnectionFactory.getMySQLConnection();
+            connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
 
             statement = connection.createStatement();
 
@@ -159,8 +162,6 @@ public class EndoDao {
                     currentDay++;
                     currentDate = date;
                 }
-                DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-                LocalDate invoiceDate = LocalDate.parse(date, formatter2);
 
                 String sender = resultSet.getString("sender");
 
@@ -409,7 +410,7 @@ public class EndoDao {
         StringBuilder queryBuilderInitialPart = new StringBuilder("SELECT * FROM endo WHERE item_code='" + itemCode + "' AND ");
         StringBuilder queryBuilderIdsPart = buildStringFromArrayList(endoIdsArray);
         StringBuilder query = queryBuilderInitialPart.append(" id IN ").append(queryBuilderIdsPart);
-        System.out.println("QUUUU"+query);
+        System.out.println("QUUUU" + query);
         ResultSet resultSet;
 
         try {
