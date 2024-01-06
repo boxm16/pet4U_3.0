@@ -191,7 +191,7 @@
                 out.println("<tr>");
 
                 out.println("<td>");
-                out.println("<a href='showDeltioApostolis.htm?id=" + entrySet.getValue().getBindingReceivingEndoId() + "'>" + entrySet.getValue().getBindingReceivingEndoId() + "</a>");
+                out.println("<a href='showDeltioApostolis.htm?id=" + entrySet.getKey() + "'>" + entrySet.getKey() + "</a>");
                 out.println("</td>");
 
                 out.println("</tr>");
