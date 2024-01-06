@@ -241,7 +241,7 @@ public class EndoDao {
         endo.setId(endoId);
         try {
             DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
-            connection = databaseConnectionFactory.getMySQLConnection();
+            connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
 
             statement = connection.createStatement();
 
