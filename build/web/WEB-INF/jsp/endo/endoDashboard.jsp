@@ -183,7 +183,7 @@
                 <%     LinkedHashMap<String, BindedEndos> bindedEndos = (LinkedHashMap) request.getAttribute("bindedEndos");
                     for (Map.Entry<String, BindedEndos> entrySet : bindedEndos.entrySet()) {
 
-                        out.println("<tr style='background-color:blue>");
+                        out.println("<tr style='background-color:blue'>");
 
                         out.println("<td>");
                         out.println("SDSDSDSDS");
