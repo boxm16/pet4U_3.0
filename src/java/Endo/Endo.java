@@ -17,6 +17,7 @@ public class Endo {
 
     private String id;
     private String dateString;
+    private String number;
     private LocalDate date;
     private String type;
     private String sender;
@@ -44,8 +45,6 @@ public class Endo {
     public void setId(String id) {
         this.id = id;
     }
-
-   
 
     public LocalDate getDate() {
         return date;
@@ -93,6 +92,14 @@ public class Endo {
 
     public void setDateString(String dateString) {
         this.dateString = dateString;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
     }
 
 }

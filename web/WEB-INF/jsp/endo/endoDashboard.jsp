@@ -45,6 +45,7 @@
                                 <th>Select</th>
                                 <th>A/A</th>
                                 <th>Date</th>
+                                <th>Number</th>
                                 <th>Sender</th>
                             </tr>
 
@@ -63,6 +64,9 @@
                                     out.println("</td>");
                                     out.println("<td>");
                                     out.println(entrySet.getValue().getDateString());
+                                    out.println("</td>");
+                                    out.println("<td>");
+                                    out.println(entrySet.getValue().getNumber());
                                     out.println("</td>");
                                     out.println("<td>");
                                     out.println(entrySet.getValue().getSender());
