@@ -28,10 +28,10 @@
                 <hr><hr>
                 <a href="camelotSearchDashboard.htm"><h1 style="color: #D052DB ">Find Camelot Items</h1></a>
                 <a href='camelotItemsOfOurInterestDashboard.htm'><h3 style="color: #F196F1">Camelot: Items Of Our Interest</h3></a>
-                <h1><a href="orderAlert.htm">Show order alert</a></h1>
+               <h1 style="color: #762276"><a href="orderAlert.htm">Camelot order alert</a></h1>
                 <hr> 
                 <hr>
-                <a href="endoDashboard.htm"><h1 style="color: #5D2DD3">Endo Dashboard</h1></a> 
+                <a href="endoDashboard.htm"><h1 style="color: blue">Endo Dashboard</h1></a> 
                 <hr>
                 <a href='pet4uNegativeStock.htm'><h1 style="color: gray">Pet4u Negative Stock</h1></a>
                 <hr>
