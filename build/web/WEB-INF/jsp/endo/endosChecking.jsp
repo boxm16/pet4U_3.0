@@ -79,12 +79,12 @@
                         out.println(x);
                         out.println("</td>");
 
-                        out.println("<td style='padding-left: 5px; padding-left: 5px;'>");
-                        out.println("<a href='showDeltiaApostolisOfItem.htm?itemCode=" + item.getCode() + "' target='_blank'>" + item.getCode() + "</a>");
+                        out.println("<td>");
+                        out.println("<a href='itemAnalysis.htm?code=" + item.getCode() + "' target='_blank'>" + item.getCode() + "</a>");
                         out.println("</td>");
 
-                        out.println("<td>");
-                        out.println(item.getDescription());
+                        out.println("<td style='padding-left: 5px; padding-left: 5px;'>");
+                        out.println("<a href='showDeltiaApostolisOfItem.htm?itemCode=" + item.getCode() + "' target='_blank'>" + item.getDescription() + "</a>");
                         out.println("</td>");
 
                         out.println("<td>");
