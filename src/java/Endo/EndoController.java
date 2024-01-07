@@ -227,8 +227,8 @@ public class EndoController {
         EndoDao endoDao = new EndoDao();
         LinkedHashMap<String, DeliveryItem> sentItems = endoDao.getSentItems(endoIdsArray);
 
+        System.out.println("SENT ITEMS SIZE: "+sentItems.size());
         DeliveryInvoice deliveryInvoice = new DeliveryInvoice();
-        deliveryInvoice.setNumber("fdfdfdfdf");
         deliveryInvoice.setItems(sentItems);
 
         modelMap.addAttribute("deliveryInvoice", deliveryInvoice);
