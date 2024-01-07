@@ -227,7 +227,7 @@ public class EndoController {
         EndoDao endoDao = new EndoDao();
         LinkedHashMap<String, DeliveryItem> sentItems = endoDao.getSentItems(endoIdsArray);
 
-        System.out.println("SENT ITEMS SIZE: "+endoIds);
+        System.out.println("SENT ITEMS SIZE: " + endoIds);
         DeliveryInvoice deliveryInvoice = new DeliveryInvoice();
         deliveryInvoice.setItems(sentItems);
 
@@ -237,7 +237,7 @@ public class EndoController {
 
         modelMap.addAttribute("pet4UItemsRowByRow", pet4UItemsRowByRow);
 
-        return "endo/endoChecking";
+        return "endo/endosChecking";
 
     }
 }
