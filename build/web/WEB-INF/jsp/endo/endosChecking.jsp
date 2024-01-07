@@ -153,8 +153,8 @@
                                             let unknownBarcodeDelivered = document.getElementById(altercode + "_delivered");
 
                                             if (unknownBarcodeSent == null) {
-                                                document.getElementById("descriptionDisplay").innerHTML = altercode + " : Unkown Barcode: " + altercode;
-                                                addRow(altercode, "Unkown Barcode: " + altercode);
+                                                document.getElementById("descriptionDisplay").innerHTML = altercode + " : NKNOWN ALTERCODE : " + altercode;
+                                                addRow(altercode, "UNKNOWN ALTERCODE " + altercode);
                                             } else {
                                                 let v = unknownBarcodeDelivered.value;
                                                 v++;
@@ -167,34 +167,38 @@
                                             document.getElementById("descriptionDisplay").innerHTML = altercode + " : " + description;
 
 
-                                            let sent = document.getElementById(code + "_sent");
-                                            if (sent == null) {
-                                                addRow(item.code, item.description);
-                                            } else {
-                                                sent = sent.value * 1;
-                                            }
-
-                                            let delivered = document.getElementById(code + "_delivered").value * 1;
-                                            delivered++;
-
-                                            document.getElementById(code + "_delivered").value = delivered;
-
-                                            let colorDisplay = document.getElementById(code + "_colorDisplay");
-
-                                            let diff = sent - delivered;
-                                            if (diff > 0) {
-                                                colorDisplay.style.backgroundColor = 'red';
-                                            }
-                                            if (diff < 0) {
-                                                colorDisplay.style.backgroundColor = 'yellow';
-                                            }
-                                            if (diff === 0) {
-                                                colorDisplay.style.backgroundColor = 'green';
-                                            }
+                                            coloring();
                                         }
 
                                         input.value = "";
 
+                                    }
+                                }
+
+                                function coloring() {
+                                    let sent = document.getElementById(code + "_sent");
+                                    if (sent == null) {
+                                        addRow(item.code, item.description);
+                                    } else {
+                                        sent = sent.value * 1;
+                                    }
+
+                                    let delivered = document.getElementById(code + "_delivered").value * 1;
+                                    delivered++;
+
+                                    document.getElementById(code + "_delivered").value = delivered;
+
+                                    let colorDisplay = document.getElementById(code + "_colorDisplay");
+
+                                    let diff = sent - delivered;
+                                    if (diff > 0) {
+                                        colorDisplay.style.backgroundColor = 'red';
+                                    }
+                                    if (diff < 0) {
+                                        colorDisplay.style.backgroundColor = 'yellow';
+                                    }
+                                    if (diff === 0) {
+                                        colorDisplay.style.backgroundColor = 'green';
                                     }
                                 }
 
