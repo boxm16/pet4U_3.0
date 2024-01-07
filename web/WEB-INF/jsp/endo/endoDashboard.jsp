@@ -34,7 +34,7 @@
     </head>
     <body>
     <center>
-
+        <a href="index.htm"><h3>INDEX</h3></a>
         <hr>
         <!--  <a href="deltioApostolis.htm"><h1>Δελτιο Αποστολης</h1></a>  -->
         <table>
@@ -167,7 +167,7 @@
             </tr>
             <tr>
                 <td>
-                    <input style="background-color:lightblue; font-size:40px" type="button" value="ΕΛΕΓΧΟΣ" onclick="requestRouter('endosChecking.htm')">
+                    <input style="background-color:lightgreen; font-size:40px" type="button" value="ΕΛΕΓΧΟΣ" onclick="requestRouter('endosChecking.htm')">
                 </td>
                 <td colspan="2">
             <center>

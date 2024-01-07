@@ -35,6 +35,7 @@
     <body>
 
     <center>
+        <a href="index.htm"><h3>INDEX</h3></a>
         <hr>
         <h1>Sent Item</h1>
         <h1>${sentItem}</h1>
