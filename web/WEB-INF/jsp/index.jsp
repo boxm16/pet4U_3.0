@@ -31,7 +31,10 @@
                 <a href='camelotItemsOfOurInterestDashboard.htm'><h1 style="color: blue">Camelot: Items Of Our Interest</h1></a>
 
                 <h2><a href="orderAlert.htm">Show order alert</a></h2>
-                <hr> <hr>
+                <hr> 
+                <hr>
+                <a href="endoDashboard.htm"><h1 style="color: #D32DAF">Endo Dashboard</h1></a> 
+                <hr>
                 <a href='pet4uNegativeStock.htm'><h1 style="color: gray">Pet4u Negative Stock</h1></a>
                 <hr>
                 <a href="deliveryDashboard.htm"><h1 style="color: red">Delivery Dashboard</h1></a>
@@ -101,13 +104,8 @@
 
                 <hr>
                 <a href="goForMonthSalesUpload.htm"><h1>Go For Month Sales  Upload</h1></a>
-
                 <hr>
                 <a href="scanninger.htm"><h1>Go for Scanning</h1></a>
-
-                <hr>
-                <a href="endoDashboard.htm"><h1>Endo Dashboard</h1></a> 
-
                 <hr>
                 <a href="testosteronDashboard.htm"><h1>TESTing Dashboard</h1></a> 
             </center>
