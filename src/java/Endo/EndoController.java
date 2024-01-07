@@ -4,7 +4,6 @@ import BasicModel.Item;
 import Delivery.DeliveryInvoice;
 import Delivery.DeliveryItem;
 import Pet4uItems.Pet4uItemsDao;
-import TESTosteron.TESTosteronDao;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
@@ -138,9 +137,10 @@ public class EndoController {
     @RequestMapping(value = "showDeltiaApostolisOfItem", method = RequestMethod.GET)
     public String showDeltiaApostolisOfItem(@RequestParam(name = "itemCode") String itemCode, ModelMap modelMap) {
 
-        TESTosteronDao testosteronDao = new TESTosteronDao();
-        LinkedHashMap<String, Item> allPet4UItemsWithDeepSearch = testosteronDao.getAllPet4UItemsWithDeepSearch();
-        String sentItemDescription = allPet4UItemsWithDeepSearch.get(itemCode).getDescription();
+        Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
+        LinkedHashMap<String, Item> pet4UItemsRowByRow = pet4uItemsDao.getPet4UItemsRowByRow();
+
+        String sentItemDescription = pet4UItemsRowByRow.get(itemCode).getDescription();
 
         EndoDao endoDao = new EndoDao();
         ArrayList<Endo> endos = endoDao.getDeltiaApostolisOfItem(itemCode, this.endoIdsArray);
@@ -225,7 +225,6 @@ public class EndoController {
         LinkedHashMap<String, DeliveryItem> pet4UItemsRowByRow = endoDao.getPet4UItemsRowByRow();
         LinkedHashMap<String, DeliveryItem> sentItems = endoDao.getSentItems(endoIdsArray, pet4UItemsRowByRow);
 
-        System.out.println("SENT ITEMS SIZE: " + endoIds);
         DeliveryInvoice deliveryInvoice = new DeliveryInvoice();
         deliveryInvoice.setItems(sentItems);
 
