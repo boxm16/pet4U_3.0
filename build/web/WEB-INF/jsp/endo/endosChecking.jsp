@@ -167,38 +167,34 @@
                                             document.getElementById("descriptionDisplay").innerHTML = altercode + " : " + description;
 
 
-                                            coloring();
+                                            let sent = document.getElementById(code + "_sent");
+                                            if (sent == null) {
+                                                addRow(item.code, item.description);
+                                            } else {
+                                                sent = sent.value * 1;
+                                            }
+
+                                            let delivered = document.getElementById(code + "_delivered").value * 1;
+                                            delivered++;
+
+                                            document.getElementById(code + "_delivered").value = delivered;
+
+                                            let colorDisplay = document.getElementById(code + "_colorDisplay");
+
+                                            let diff = sent - delivered;
+                                            if (diff > 0) {
+                                                colorDisplay.style.backgroundColor = 'red';
+                                            }
+                                            if (diff < 0) {
+                                                colorDisplay.style.backgroundColor = 'yellow';
+                                            }
+                                            if (diff === 0) {
+                                                colorDisplay.style.backgroundColor = 'green';
+                                            }
                                         }
 
                                         input.value = "";
 
-                                    }
-                                }
-
-                                function coloring() {
-                                    let sent = document.getElementById(code + "_sent");
-                                    if (sent == null) {
-                                        addRow(item.code, item.description);
-                                    } else {
-                                        sent = sent.value * 1;
-                                    }
-
-                                    let delivered = document.getElementById(code + "_delivered").value * 1;
-                                    delivered++;
-
-                                    document.getElementById(code + "_delivered").value = delivered;
-
-                                    let colorDisplay = document.getElementById(code + "_colorDisplay");
-
-                                    let diff = sent - delivered;
-                                    if (diff > 0) {
-                                        colorDisplay.style.backgroundColor = 'red';
-                                    }
-                                    if (diff < 0) {
-                                        colorDisplay.style.backgroundColor = 'yellow';
-                                    }
-                                    if (diff === 0) {
-                                        colorDisplay.style.backgroundColor = 'green';
                                     }
                                 }
 
