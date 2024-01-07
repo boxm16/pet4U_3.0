@@ -65,11 +65,11 @@
                         out.println("<a href='itemAnalysis.htm?code=" + inventoryItem.getCode() + "' target='_blank'>" + inventoryItem.getCode() + "</a>");
                         out.println("</td>");
 
-                        out.println("<td style='font-size: 30px;'>");
+                        out.println("<td style='font-size: 20px;'>");
                         out.println(inventoryItem.getPosition());
                         out.println("</td>");
 
-                        out.println("<td>");
+                        out.println("<td style='font-size: 25px;'>");
                         out.println(inventoryItem.getDescription());
                         out.println("</td>");
 
