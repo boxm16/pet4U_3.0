@@ -71,8 +71,12 @@
                                     out.println(entrySet.getValue().getSender());
                                     out.println("</td>");
 
-                                    out.println("<td style='fotn-weight:bald;'>");
+                                    out.println("<td style='font-weight:bald;'>");
                                     out.println(entrySet.getValue().getNumber());
+                                    out.println("</td>");
+
+                                    out.println("<td>");
+                                    out.println("<input type='checkbox' class='endoId' id='" + entrySet.getValue().getId() + "' style='width:28px;height:28px' >");
                                     out.println("</td>");
 
                                     out.println("</tr>");
