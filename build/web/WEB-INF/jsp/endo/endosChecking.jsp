@@ -69,7 +69,6 @@
 
                     DeliveryInvoice deliveryInvoice = (DeliveryInvoice) request.getAttribute("deliveryInvoice");
                     LinkedHashMap<String, DeliveryItem> items = deliveryInvoice.getItems();
-                   
 
                     int x = 1;
                     for (Map.Entry<String, DeliveryItem> deliveryItemEntry : items.entrySet()) {

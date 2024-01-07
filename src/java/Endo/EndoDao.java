@@ -287,7 +287,7 @@ public class EndoDao {
         return endo;
     }
 
-    LinkedHashMap<String, DeliveryItem> getSentItems(ArrayList<String> endoIdsArray, LinkedHashMap<String, Item> pet4UItemsRowByRow) {
+    LinkedHashMap<String, DeliveryItem> getSentItems(ArrayList<String> endoIdsArray, LinkedHashMap<String, DeliveryItem> pet4UItemsRowByRow) {
         LinkedHashMap<String, DeliveryItem> sentItems = new LinkedHashMap<>();
         StringBuilder queryBuilderInitialPart = new StringBuilder("SELECT  [DOCID], [DOCNUMBER],  [DOCDATE], [FROM_WH], [ABBREVIATION], [QUANTITY], [PRICEBC] FROM [petworld].[dbo].[WH_ENDA] WHERE ");
         StringBuilder queryBuilderIdsPart = buildStringFromArrayList(endoIdsArray);
@@ -477,4 +477,39 @@ public class EndoDao {
         return allBindedEndos;
     }
 
+    LinkedHashMap<String, DeliveryItem> getPet4UItemsRowByRow() {
+        LinkedHashMap<String, DeliveryItem> items = new LinkedHashMap();
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+        Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
+
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("select * from WH1;");
+
+            while (resultSet.next()) {
+                String altercode = resultSet.getString("ALTERNATECODE").trim();
+                DeliveryItem item = new DeliveryItem();
+                item.setCode(resultSet.getString("ABBREVIATION").trim());
+                String description = resultSet.getString("NAME").trim();
+
+                description = description.replace("\"", "'");//replaces all occurrences of ' `  
+                item.setDescription(description);
+
+                if (resultSet.getString("EXPR1") != null) {
+                    item.setPosition(resultSet.getString("EXPR1").trim());
+                } else {
+                    item.setPosition("");
+                }
+                item.setAltercode(altercode);
+                items.put(altercode,item);
+
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(EndoDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return items;
+    }
 }

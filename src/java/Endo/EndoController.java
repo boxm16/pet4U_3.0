@@ -1,7 +1,6 @@
 package Endo;
 
 import BasicModel.Item;
-import Delivery.DeliveryDao;
 import Delivery.DeliveryInvoice;
 import Delivery.DeliveryItem;
 import Pet4uItems.Pet4uItemsDao;
@@ -63,10 +62,8 @@ public class EndoController {
 
         this.endoIdsArray = createItemsIdsArray(endoIds);
 
-        Pet4uItemsDao inventoryDao = new Pet4uItemsDao();
-        LinkedHashMap<String, Item> pet4UItemsRowByRow = inventoryDao.getPet4UItemsRowByRow();
-
         EndoDao endoDao = new EndoDao();
+        LinkedHashMap<String, DeliveryItem> pet4UItemsRowByRow = endoDao.getPet4UItemsRowByRow();
         LinkedHashMap<String, DeliveryItem> sentItems = endoDao.getSentItems(endoIdsArray, pet4UItemsRowByRow);
         LinkedHashMap<String, DeliveryItem> deliveredIetms = endoDao.getDeliveredItems();
 
@@ -224,13 +221,8 @@ public class EndoController {
     public String endosChecking(@RequestParam(name = "endoIds") String endoIds, ModelMap modelMap) {
         this.endoIdsArray = createItemsIdsArray(endoIds);
 
-        DeliveryDao deliveryDao = new DeliveryDao();
-        ArrayList<DeliveryItem> pet4UItemsRowByRow1 = deliveryDao.getPet4UItemsRowByRow();
-
-        Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
-        LinkedHashMap<String, Item> pet4UItemsRowByRow = pet4uItemsDao.getPet4UItemsRowByRow();
-
         EndoDao endoDao = new EndoDao();
+        LinkedHashMap<String, DeliveryItem> pet4UItemsRowByRow = endoDao.getPet4UItemsRowByRow();
         LinkedHashMap<String, DeliveryItem> sentItems = endoDao.getSentItems(endoIdsArray, pet4UItemsRowByRow);
 
         System.out.println("SENT ITEMS SIZE: " + endoIds);
