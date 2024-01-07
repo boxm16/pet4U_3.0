@@ -24,7 +24,7 @@
         %>
         <div class="container">
             <center>
-                <a href="searchDashboard.htm"><h1 style="color: green">Find Pet4u Items</h1></a>
+                <a href="searchDashboard.htm"><h1 style="font-weight: bold; color: green">Find Pet4u Items</h1></a>
                 <hr><hr>
                 <a href="camelotSearchDashboard.htm"><h1 style="color: #D052DB ">Find Camelot Items</h1></a>
                 <a href='camelotItemsOfOurInterestDashboard.htm'><h3 style="color: #F196F1">Camelot: Items Of Our Interest</h3></a>
