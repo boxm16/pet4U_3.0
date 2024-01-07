@@ -4,6 +4,8 @@
     Author     : Michail Sitmalidis
 --%>
 
+<%@page import="java.util.Collections"%>
+<%@page import="java.util.List"%>
 <%@page import="Endo.BindedEndos"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.LinkedHashMap"%>
@@ -181,16 +183,23 @@
             </thead>
             <tbody>
                 <%     LinkedHashMap<String, BindedEndos> bindedEndos = (LinkedHashMap) request.getAttribute("bindedEndos");
-                    for (Map.Entry<String, BindedEndos> entrySet : bindedEndos.entrySet()) {
+
+                    List<String> alKeys = new ArrayList<String>(bindedEndos.keySet());
+
+                    // reverse order of keys
+                    Collections.reverse(alKeys);
+
+                    // iterate LHM using reverse order of keys
+                    for (String strKey : alKeys) {
 
                         out.println("<tr style='background-color: #ADD8E6'>");
 
                         out.println("<td>");
-                        out.println("<a href='showDeltioApostolis.htm?id=" + entrySet.getKey() + "'>" + entrySet.getKey() + "</a>");
+                        out.println("<a href='showDeltioApostolis.htm?id=" + strKey + "'>" + strKey + "</a>");
                         out.println("</td>");
 
                         out.println("<td>");
-                        out.println(entrySet.getValue().getBindingReceivingEndo().getDateString());
+                        out.println(bindedEndos.get(strKey).getBindingReceivingEndo().getDateString());
                         out.println("</td>");
 
                         out.println("<td>");
@@ -199,10 +208,10 @@
 
                         out.println("</tr>");
 
-                        ArrayList<Endo> sendingEndos = entrySet.getValue().getBindedSendingEndos();
+                        ArrayList<Endo> sendingEndos = bindedEndos.get(strKey).getBindedSendingEndos();
                         for (Endo sendingEndo : sendingEndos) {
                             out.println("<tr style='background-color: #90EE90'>");
-                            
+
                             out.println("<td>");
                             out.println("<a href='showDeltioApostolis.htm?id=" + sendingEndo.getId() + "'>" + sendingEndo.getId() + "</a>");
                             out.println("</td>");
