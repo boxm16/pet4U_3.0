@@ -9,7 +9,6 @@ import TESTosteron.TESTosteronDao;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -240,7 +239,7 @@ public class EndoController {
 
         modelMap.addAttribute("deliveryInvoice", deliveryInvoice);
 
-        List<Item> listValues = new ArrayList<Item>(pet4UItemsRowByRow.values());
+        ArrayList<Item> listValues = new ArrayList<Item>(pet4UItemsRowByRow.values());
         modelMap.addAttribute("pet4UItemsRowByRow", listValues);
 
         return "endo/endosChecking";
