@@ -33,7 +33,7 @@
                 <h2><a href="orderAlert.htm">Show order alert</a></h2>
                 <hr> 
                 <hr>
-                <a href="endoDashboard.htm"><h1 style="color: #D32DAF">Endo Dashboard</h1></a> 
+                <a href="endoDashboard.htm"><h1 style="color: #5D2DD3">Endo Dashboard</h1></a> 
                 <hr>
                 <a href='pet4uNegativeStock.htm'><h1 style="color: gray">Pet4u Negative Stock</h1></a>
                 <hr>
