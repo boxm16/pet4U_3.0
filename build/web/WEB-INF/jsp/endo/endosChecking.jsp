@@ -87,7 +87,7 @@
                         out.println("</td>");
 
                         out.println("<td>");
-                        out.println("<input  class='sent' type='number' id='" + item.getCode() + "_sent' value='" + item.getSentQuantity()+ "' readonly width='10px'>");
+                        out.println("<input  class='sent' type='number' id='" + item.getCode() + "_sent' value='" + item.getSentQuantity() + "' readonly width='10px'>");
                         out.println("</td>");
 
                         out.println("<td>");
@@ -148,15 +148,16 @@
                                         console.log("altercode:" + altercode);
                                         var item = items[altercode];
                                         if (item == null) {
-                                            let unknownBarcodeX = document.getElementById(altercode + "_sent");
+                                            let unknownBarcodeSent = document.getElementById(altercode + "_sent");
+                                            let unknownBarcodeDelivered = document.getElementById(altercode + "_delivered");
 
-                                            if (unknownBarcodeX == null) {
+                                            if (unknownBarcodeSent == null) {
                                                 document.getElementById("descriptionDisplay").innerHTML = altercode + " : Unkown Barcode: " + altercode;
                                                 addRow(altercode, "Unkown Barcode: " + altercode);
                                             } else {
-                                                let v = unknownBarcodeX.value;
+                                                let v = unknownBarcodeDelivered.value;
                                                 v++;
-                                                unknownBarcodeX.value = v;
+                                                unknownBarcodeDelivered.value = v;
                                             }
                                         } else {
                                             var code = item.code;
