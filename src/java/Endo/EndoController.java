@@ -1,6 +1,7 @@
 package Endo;
 
 import BasicModel.Item;
+import Delivery.DeliveryDao;
 import Delivery.DeliveryInvoice;
 import Delivery.DeliveryItem;
 import Pet4uItems.Pet4uItemsDao;
@@ -56,7 +57,7 @@ public class EndoController {
         return "endo/endoDashboard";
     }
 
-    @RequestMapping(value = "compareEndo", method = RequestMethod.POST)
+    @RequestMapping(value = "compareEndos", method = RequestMethod.POST)
     public String compareEndo(@RequestParam(name = "endoIds") String endoIds, ModelMap modelMap) {
         System.out.println(endoIds);
 
@@ -158,12 +159,6 @@ public class EndoController {
         return "redirect:endoDashboard.htm";
     }
 
-    @RequestMapping(value = "unbide", method = RequestMethod.GET)
-    public String unbide() {
-
-        return "redirect:endoDashboard.htm";
-    }
-
     //------------------------------------------------------------------------------------
     @RequestMapping(value = "endoDashboard", method = RequestMethod.GET)
     public String endoDashboard(ModelMap modelMap) {
@@ -223,5 +218,25 @@ public class EndoController {
 
         modelMap.addAttribute("endo", endo);
         return "endo/deltioApostolisDisplay";
+    }
+
+    @RequestMapping(value = "endosChecking", method = RequestMethod.POST)
+    public String endosChecking(@RequestParam(name = "endoIds") String endoIds, ModelMap modelMap) {
+        this.endoIdsArray = createItemsIdsArray(endoIds);
+
+        EndoDao endoDao = new EndoDao();
+        LinkedHashMap<String, DeliveryItem> sentItems = endoDao.getSentItems(endoIdsArray);
+
+        DeliveryInvoice deliveryInvoice = new DeliveryInvoice();
+        deliveryInvoice.setItems(sentItems);
+
+        modelMap.addAttribute("deliveryInvoice", deliveryInvoice);
+        DeliveryDao deliveryDao = new DeliveryDao();
+        ArrayList<DeliveryItem> pet4UItemsRowByRow = deliveryDao.getPet4UItemsRowByRow();
+
+        modelMap.addAttribute("pet4UItemsRowByRow", pet4UItemsRowByRow);
+
+        return "endo/endoChecking";
+
     }
 }

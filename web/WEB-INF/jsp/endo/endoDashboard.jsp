@@ -165,7 +165,16 @@
                     </table>
                 </td>
             </tr>
-            <tr><td colspan="3"><center><input style="background-color:lightblue; font-size:40px" type="button" value="ΣΥΓΚΡΙΣΗ" onclick="requestRouter('compareEndo.htm')"></center></tr>
+            <tr>
+                <td>
+                    <input style="background-color:lightblue; font-size:40px" type="button" value="ΕΛΕΓΧΟΣ" onclick="requestRouter('endosChecking.htm')">
+                </td>
+                <td colspan="2">
+            <center>
+                <input style="background-color:lightblue; font-size:40px" type="button" value="ΣΥΓΚΡΙΣΗ" onclick="requestRouter('compareEndos.htm')">
+            </center>
+            </td>
+            </tr>
         </table>
 
         <hr><hr>
@@ -241,10 +250,6 @@
             </tbody>
         </table>
         <hr>
-
-
-        <a href='unbide.htm'>ΑΠΟΔΕΣΜΕΥΣΗ</a>
-
         <form id="form" action="#" method="POST">
             <input hidden type="text" id="endoIdsInput" name="endoIds">
         </form>
@@ -253,7 +258,7 @@
 
         ////--------------------
         function requestRouter(requestTarget) {
-            if (requestTarget == "compareEndo.htm") {
+            if (requestTarget == "compareEndos.htm" || requestTarget == "endosChecking.htm") {
                 form.target = "_blank";
             } else {
 
