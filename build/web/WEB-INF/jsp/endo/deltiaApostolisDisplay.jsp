@@ -33,11 +33,11 @@
         </style>
     </head>
     <body>
-      
+
     <center>
-          <hr>
-          <h1>Sent Item</h1>
-            <h1>${sentItem}</h1>
+        <hr>
+        <h1>Sent Item</h1>
+        <h1>${sentItem}</h1>
         <table>
             <thead> 
 
@@ -46,6 +46,7 @@
                 <tr>
                     <th>A/A</th>
                     <th>Date</th>
+                    <th>Number</th>
                     <th>Sender</th>
                     <th>Quantity</th>
                 </tr>
@@ -58,12 +59,17 @@
                     for (Endo endo : endos) {
 
                         out.println("<tr>");
-                        out.println("<td>");
 
+                        out.println("<td>");
                         out.println("<a href='showDeltioApostolis.htm?id=" + endo.getId() + "'>" + endo.getId() + "</a>");
                         out.println("</td>");
+
                         out.println("<td>");
                         out.println(endo.getDateString());
+                        out.println("</td>");
+
+                        out.println("<td>");
+                        out.println(endo.getNumber());
                         out.println("</td>");
 
                         out.println("<td>");

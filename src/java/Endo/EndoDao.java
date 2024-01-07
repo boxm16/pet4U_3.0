@@ -307,8 +307,12 @@ public class EndoDao {
                 Endo endo = new Endo();
                 endo.setId(resultSet.getString("DOCID"));
 
+                String date = resultSet.getString("DOCDATE");
+                String[] splittedDate = date.split(" ");
+                endo.setDateString(splittedDate[0]);
+
                 endo.setNumber(resultSet.getString("DOCNUMBER"));
-                endo.setDateString(resultSet.getString("DOCDATE"));
+
                 endo.setSender(resultSet.getString("FROM_WH"));
                 Item item = new Item();
                 item.setCode(resultSet.getString("ABBREVIATION"));
