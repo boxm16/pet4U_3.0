@@ -46,7 +46,7 @@
 
             DeliveryInvoice deliveryInvoice = (DeliveryInvoice) request.getAttribute("deliveryInvoice");
             LinkedHashMap<String, DeliveryItem> items = deliveryInvoice.getItems();
-            out.println(items.size());
+            out.println(deliveryInvoice);
         %>
 
         <table>
