@@ -43,14 +43,14 @@
         </style>
     </head>
     <body>
-        <div class=""container-fluid">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-lg">
 
 
                     <center>
-                        <h1><a href="index.htm">INDEX</a></h1>
-
+                        <h2><a href="index.htm">INDEX</a></h2>
+                        <h4><a href="suppliersAndStockDashboard.htm">GO BACK</a></h4>
 
                         <h1>${supplier.name} Stock Management</h1>
                         <form action="goForAddingItemToSupplier.htm" method="POST">
