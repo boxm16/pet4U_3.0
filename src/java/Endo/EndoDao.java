@@ -158,7 +158,7 @@ public class EndoDao {
                 String number = resultSet.getString("DOCNUMBER");
 
                 String sender = resultSet.getString("FROM_WH");
-
+                sender = translateStoreName(sender);
                 Endo endo = new Endo();
                 endo.setId(id);
                 endo.setDateString(date);
@@ -256,7 +256,7 @@ public class EndoDao {
                 DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                 LocalDate invoiceDate = LocalDate.parse(date, formatter2);
 
-                String sender = resultSet.getString("FROM_WH");
+                String storeName = translateStoreName(resultSet.getString("FROM_WH"));
 
                 String number = resultSet.getString("DOCNUMBER");
                 String itemCode = resultSet.getString("ABBREVIATION");
@@ -264,7 +264,7 @@ public class EndoDao {
                 String price = resultSet.getString("PRICEBC");
 
                 endo.setDateString(date);
-                endo.setSender(sender);
+                endo.setSender(storeName);
                 endo.setNumber(number);
 
                 endo.setDate(invoiceDate);
@@ -313,7 +313,9 @@ public class EndoDao {
 
                 endo.setNumber(resultSet.getString("DOCNUMBER"));
 
-                endo.setSender(resultSet.getString("FROM_WH"));
+                String storeName = translateStoreName(resultSet.getString("FROM_WH"));
+                endo.setSender(storeName);
+
                 Item item = new Item();
                 item.setCode(resultSet.getString("ABBREVIATION"));
                 item.setQuantity(resultSet.getString("QUANTITY"));
@@ -518,5 +520,54 @@ public class EndoDao {
             Logger.getLogger(EndoDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return items;
+    }
+
+    private String translateStoreName(String name) {
+        String translatedName = name;
+        switch (name) {
+            case "ΑΧ-ΜΕΝ":
+                translatedName = "ΜΕΝΙΔΙ";
+                break;
+            case "ΑΧ-ΙΩΝ":
+                translatedName = "Ν. ΙΩΝΙΑ";
+                break;
+            case "ΑΧ-ΚΑΛ":
+                translatedName = "ΚΑΛΛΙΘΕΑ";
+                break;
+            case "ΑΧ-ΚΟΥ":
+                translatedName = "ΚΟΥΚΑΚΙ";
+                break;
+            case "ΑΧ-ΠΤΡ":
+                translatedName = "ΠΕΤΡΟΥΠΟΛΗ";
+                break;
+            case "ΑΧ-ΧΑΛ":
+                translatedName = "ΧΑΛΚΗΔΟΝΑ";
+                break;
+            case "ΑΧ-ΠΕΡ":
+                translatedName = "ΠΕΡΙΣΤΕΡΙ";
+                break;
+            case "ΑΧ-ΑΡΓ":
+                translatedName = "ΑΡΓΥΡΟΥΠΟΛΗ";
+                break;
+            case "ΑΧ-ΠΦΑ":
+                translatedName = "Π. ΦΑΛΗΡΟ";
+                break;
+            case "ΑΧ-ΑΛΙ":
+                translatedName = "ΑΛΙΜΟΣ";
+                break;
+            case "ΑΧ-ΑΓΠ":
+                translatedName = "ΑΓ. ΠΑΡΑΣΚΕΥΗ";
+                break;
+            case "ΑΧ-ΧΛΡ":
+                translatedName = "ΧΑΛΑΝΔΡΙ";
+                break;
+            case "ΑΧ-ΔΑΦ":
+                translatedName = "ΔΑΦΝΗ";
+                break;
+            case "ΑΧ-ΜΙΧ":
+                translatedName = "ΜΙΧΑΛΑΚΟΠ.";
+                break;
+        }
+        return translatedName;
     }
 }
