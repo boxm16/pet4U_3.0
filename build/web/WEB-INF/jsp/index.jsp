@@ -25,11 +25,9 @@
         <div class="container">
             <center>
                 <a href="searchDashboard.htm"><h1 style="color: #35B62F">Find Pet4u Items</h1></a>
-                <hr>
+                <hr><hr>
                 <a href="camelotSearchDashboard.htm"><h1 style="color: #D052DB ">Find Camelot Items</h1></a>
-                <hr>
-                <a href='camelotItemsOfOurInterestDashboard.htm'><h1 style="color: blue">Camelot: Items Of Our Interest</h1></a>
-
+                <a href='camelotItemsOfOurInterestDashboard.htm'><h1 style="color: #F196F1">Camelot: Items Of Our Interest</h1></a>
                 <h2><a href="orderAlert.htm">Show order alert</a></h2>
                 <hr> 
                 <hr>
