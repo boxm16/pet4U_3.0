@@ -287,7 +287,7 @@ public class EndoDao {
         return endo;
     }
 
-    LinkedHashMap<String, DeliveryItem> getSentItems(ArrayList<String> endoIdsArray) {
+    LinkedHashMap<String, DeliveryItem> getSentItems(ArrayList<String> endoIdsArray, LinkedHashMap<String, Item> pet4UItemsRowByRow) {
         LinkedHashMap<String, DeliveryItem> sentItems = new LinkedHashMap<>();
         StringBuilder queryBuilderInitialPart = new StringBuilder("SELECT  [DOCID], [DOCNUMBER],  [DOCDATE], [FROM_WH], [ABBREVIATION], [QUANTITY], [PRICEBC] FROM [petworld].[dbo].[WH_ENDA] WHERE ");
         StringBuilder queryBuilderIdsPart = buildStringFromArrayList(endoIdsArray);
@@ -321,6 +321,7 @@ public class EndoDao {
 
                 } else {
                     DeliveryItem deliveredItem = new DeliveryItem();
+                    deliveredItem.setDescription(pet4UItemsRowByRow.get(itemCode).getDescription());
                     deliveredItem.setCode(itemCode);
                     deliveredItem.setDeliveredQuantity(String.valueOf(quantity));
                     sentItems.put(itemCode, deliveredItem);

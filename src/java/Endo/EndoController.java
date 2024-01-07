@@ -9,6 +9,7 @@ import TESTosteron.TESTosteronDao;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -63,12 +64,12 @@ public class EndoController {
 
         this.endoIdsArray = createItemsIdsArray(endoIds);
 
-        EndoDao endoDao = new EndoDao();
-        LinkedHashMap<String, DeliveryItem> sentItems = endoDao.getSentItems(endoIdsArray);
-        LinkedHashMap<String, DeliveryItem> deliveredIetms = endoDao.getDeliveredItems();
-
         Pet4uItemsDao inventoryDao = new Pet4uItemsDao();
         LinkedHashMap<String, Item> pet4UItemsRowByRow = inventoryDao.getPet4UItemsRowByRow();
+
+        EndoDao endoDao = new EndoDao();
+        LinkedHashMap<String, DeliveryItem> sentItems = endoDao.getSentItems(endoIdsArray, pet4UItemsRowByRow);
+        LinkedHashMap<String, DeliveryItem> deliveredIetms = endoDao.getDeliveredItems();
 
         System.out.println("SENT ITEMS SIZE: " + sentItems.size());
         System.out.println("DELIVERED ITEMS SIZE: " + deliveredIetms.size());
@@ -224,18 +225,23 @@ public class EndoController {
     public String endosChecking(@RequestParam(name = "endoIds") String endoIds, ModelMap modelMap) {
         this.endoIdsArray = createItemsIdsArray(endoIds);
 
+        DeliveryDao deliveryDao = new DeliveryDao();
+        ArrayList<DeliveryItem> pet4UItemsRowByRow1 = deliveryDao.getPet4UItemsRowByRow();
+
+        Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
+        LinkedHashMap<String, Item> pet4UItemsRowByRow = pet4uItemsDao.getPet4UItemsRowByRow();
+
         EndoDao endoDao = new EndoDao();
-        LinkedHashMap<String, DeliveryItem> sentItems = endoDao.getSentItems(endoIdsArray);
+        LinkedHashMap<String, DeliveryItem> sentItems = endoDao.getSentItems(endoIdsArray, pet4UItemsRowByRow);
 
         System.out.println("SENT ITEMS SIZE: " + endoIds);
         DeliveryInvoice deliveryInvoice = new DeliveryInvoice();
         deliveryInvoice.setItems(sentItems);
 
         modelMap.addAttribute("deliveryInvoice", deliveryInvoice);
-        DeliveryDao deliveryDao = new DeliveryDao();
-        ArrayList<DeliveryItem> pet4UItemsRowByRow = deliveryDao.getPet4UItemsRowByRow();
 
-        modelMap.addAttribute("pet4UItemsRowByRow", pet4UItemsRowByRow);
+        List<Item> listValues = new ArrayList<Item>(pet4UItemsRowByRow.values());
+        modelMap.addAttribute("pet4UItemsRowByRow", listValues);
 
         return "endo/endosChecking";
 
