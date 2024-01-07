@@ -312,18 +312,18 @@ public class EndoDao {
                 Double price = resultSet.getDouble("PRICEBC");
                 if (sentItems.containsKey(itemCode)) {
                     DeliveryItem deliveredItem = sentItems.get(itemCode);
-                    String deliveredQuantity = deliveredItem.getDeliveredQuantity();
-                    double deliveredQuantityDouble = Double.parseDouble(deliveredQuantity);
-                    deliveredQuantityDouble = deliveredQuantityDouble + quantity;
-                    deliveredQuantity = String.valueOf(deliveredQuantityDouble);
-                    deliveredItem.setDeliveredQuantity(deliveredQuantity);
+                    String sentQuantiy = deliveredItem.getSentQuantity();
+                    double sentQuantiyDouble = Double.parseDouble(sentQuantiy);
+                    sentQuantiyDouble = sentQuantiyDouble + quantity;
+                    sentQuantiy = String.valueOf(sentQuantiyDouble);
+                    deliveredItem.setDeliveredQuantity(sentQuantiy);
                     sentItems.put(itemCode, deliveredItem);
 
                 } else {
                     DeliveryItem deliveredItem = new DeliveryItem();
                     deliveredItem.setDescription(pet4UItemsRowByRow.get(itemCode).getDescription());
                     deliveredItem.setCode(itemCode);
-                    deliveredItem.setDeliveredQuantity(String.valueOf(quantity));
+                    deliveredItem.setSentQuantity(String.valueOf(quantity));
                     sentItems.put(itemCode, deliveredItem);
                 }
 
@@ -501,7 +501,7 @@ public class EndoDao {
                     item.setPosition("");
                 }
                 item.setAltercode(altercode);
-                items.put(altercode,item);
+                items.put(altercode, item);
 
             }
             resultSet.close();
