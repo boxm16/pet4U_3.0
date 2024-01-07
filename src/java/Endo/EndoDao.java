@@ -290,7 +290,8 @@ public class EndoDao {
     ArrayList<Endo> getEndosOfItem(String itemCode, ArrayList<String> endoIdsArray) {
         ArrayList<Endo> endos = new ArrayList<>();
 
-        StringBuilder queryBuilderInitialPart = new StringBuilder("SELECT  [DOCID], [DOCNUMBER],  [DOCDATE], [FROM_WH], [ABBREVIATION], [QUANTITY], [PRICEBC] FROM [petworld].[dbo].[WH_ENDA] WHERE [ABBREVIATION]=" + itemCode + " AND");
+        StringBuilder queryBuilderInitialPart = new StringBuilder("SELECT  [DOCID], [DOCNUMBER],  [DOCDATE], [FROM_WH], [ABBREVIATION], [QUANTITY], [PRICEBC] FROM [petworld].[dbo].[WH_ENDA]"
+                + " WHERE [ABBREVIATION]='" + itemCode + "' AND");
         StringBuilder queryBuilderIdsPart = buildStringFromArrayList(endoIdsArray);
         StringBuilder query = queryBuilderInitialPart.append(" [DOCID] IN  ").append(queryBuilderIdsPart);
 
