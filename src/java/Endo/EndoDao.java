@@ -354,13 +354,13 @@ public class EndoDao {
                 Double quantity = resultSet.getDouble("QUANTITY");
                 Double price = resultSet.getDouble("PRICEBC");
                 if (sentItems.containsKey(itemCode)) {
-                    DeliveryItem deliveredItem = sentItems.get(itemCode);
-                    String sentQuantiy = deliveredItem.getSentQuantity();
+                    DeliveryItem item = sentItems.get(itemCode);
+                    String sentQuantiy = item.getSentQuantity();
                     double sentQuantiyDouble = Double.parseDouble(sentQuantiy);
                     sentQuantiyDouble = sentQuantiyDouble + quantity;
                     sentQuantiy = String.valueOf(sentQuantiyDouble);
-                    deliveredItem.setDeliveredQuantity(sentQuantiy);
-                    sentItems.put(itemCode, deliveredItem);
+                    item.setSentQuantity(sentQuantiy);
+                    sentItems.put(itemCode, item);
 
                 } else {
                     DeliveryItem deliveredItem = new DeliveryItem();
