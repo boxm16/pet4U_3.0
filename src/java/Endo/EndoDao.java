@@ -214,7 +214,7 @@ public class EndoDao {
                 String sender = resultSet.getString("sender");
 
                 Endo endo = new Endo();
-                id="355648";
+                id = "355648";
                 endo.setId(id);
                 endo.setDateString(date);
                 endo.setSender(sender);
@@ -289,40 +289,45 @@ public class EndoDao {
 
     LinkedHashMap<String, DeliveryItem> getSentItems(ArrayList<String> endoIdsArray) {
         LinkedHashMap<String, DeliveryItem> sentItems = new LinkedHashMap<>();
-
-        StringBuilder queryBuilderInitialPart = new StringBuilder("SELECT * FROM endo WHERE ");
+        StringBuilder queryBuilderInitialPart = new StringBuilder("SELECT  [DOCID], [DOCNUMBER],  [DOCDATE], [FROM_WH], [ABBREVIATION], [QUANTITY], [PRICEBC] FROM [petworld].[dbo].[WH_ENDA] WHERE ");
         StringBuilder queryBuilderIdsPart = buildStringFromArrayList(endoIdsArray);
-        StringBuilder query = queryBuilderInitialPart.append(" id IN ").append(queryBuilderIdsPart);
+        StringBuilder query = queryBuilderInitialPart.append(" [DOCID] IN  ").append(queryBuilderIdsPart);
 
+        Connection connection;
+        Statement statement;
         ResultSet resultSet;
 
         try {
             DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
-            Connection connection = databaseConnectionFactory.getMySQLConnection();
-            Statement statement = connection.createStatement();
+            connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
+
+            statement = connection.createStatement();
 
             resultSet = statement.executeQuery(query.toString());
+
             while (resultSet.next()) {
 
-                String itemCode = resultSet.getString("item_code");
-                int quantity = resultSet.getInt("quantity");
+                String itemCode = resultSet.getString("ABBREVIATION");
+                Double quantity = resultSet.getDouble("QUANTITY");
+                Double price = resultSet.getDouble("PRICEBC");
                 if (sentItems.containsKey(itemCode)) {
-                    DeliveryItem sentItem = sentItems.get(itemCode);
-                    String sentQuantity = sentItem.getSentQuantity();
-                    int sentQuantityInt = Integer.parseInt(sentQuantity);
-                    sentQuantityInt = sentQuantityInt + quantity;
-                    sentQuantity = String.valueOf(sentQuantityInt);
-                    sentItem.setSentQuantity(sentQuantity);
-                    sentItems.put(itemCode, sentItem);
+                    DeliveryItem deliveredItem = sentItems.get(itemCode);
+                    String deliveredQuantity = deliveredItem.getDeliveredQuantity();
+                    double deliveredQuantityDouble = Double.parseDouble(deliveredQuantity);
+                    deliveredQuantityDouble = deliveredQuantityDouble + quantity;
+                    deliveredQuantity = String.valueOf(deliveredQuantityDouble);
+                    deliveredItem.setDeliveredQuantity(deliveredQuantity);
+                    sentItems.put(itemCode, deliveredItem);
 
                 } else {
-                    DeliveryItem sentItem = new DeliveryItem();
-                    sentItem.setCode(itemCode);
-                    sentItem.setSentQuantity(String.valueOf(quantity));
-                    sentItems.put(itemCode, sentItem);
+                    DeliveryItem deliveredItem = new DeliveryItem();
+                    deliveredItem.setCode(itemCode);
+                    deliveredItem.setDeliveredQuantity(String.valueOf(quantity));
+                    sentItems.put(itemCode, deliveredItem);
                 }
 
             }
+
             resultSet.close();
             statement.close();
             connection.close();
@@ -330,7 +335,6 @@ public class EndoDao {
         } catch (SQLException ex) {
             Logger.getLogger(EndoDao.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         return sentItems;
     }
 
