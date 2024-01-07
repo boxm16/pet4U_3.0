@@ -71,7 +71,7 @@
                                     out.println(entrySet.getValue().getSender());
                                     out.println("</td>");
 
-                                    out.println("<td style='font-weight:bald;'>");
+                                    out.println("<td style='font-weight: bold;'>");
                                     out.println(entrySet.getValue().getNumber());
                                     out.println("</td>");
 
