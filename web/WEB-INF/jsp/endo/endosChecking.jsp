@@ -42,6 +42,12 @@
         <h1>ΕΛΕΓΧΟΣ ΠΑΡΑΛΑΒΗΣ ΕΝΔΟΔΙΑΚΙΝΙΣΗΣ</h1>
         <h3>Delivery Invoice Number:${deliveryInvoice.getNumber()} </h3>
         <hr>
+        <%
+
+            DeliveryInvoice deliveryInvoice = (DeliveryInvoice) request.getAttribute("deliveryInvoice");
+            LinkedHashMap<String, DeliveryItem> items = deliveryInvoice.getItems();
+            out.println(items.size());
+        %>
 
         <table>
             <thead>
@@ -66,8 +72,6 @@
             <tbody id="tableBody">
                 <%
                     int x = 1;
-                    DeliveryInvoice deliveryInvoice = (DeliveryInvoice) request.getAttribute("deliveryInvoice");
-                    LinkedHashMap<String, DeliveryItem> items = deliveryInvoice.getItems();
                     for (Map.Entry<String, DeliveryItem> deliveryItemEntry : items.entrySet()) {
                         DeliveryItem item = deliveryItemEntry.getValue();
 
