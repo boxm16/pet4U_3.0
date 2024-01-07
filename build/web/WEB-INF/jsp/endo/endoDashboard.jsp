@@ -45,11 +45,12 @@
                         <tbody>
                             <tr><td colspan="5">ΔΕΛΤΙΑ ΑΠΟΣΤΟΛΗΣ ΑΠΟ ΜΑΓΑΖΙΑ</td></tr>
                             <tr>
-                                <th>Select</th>
+
                                 <th>A/A</th>
                                 <th>Date</th>
-                                <th>Number</th>
                                 <th>Sender</th>
+                                <th>Number</th>
+                                <th>Select</th>
                             </tr>
 
 
@@ -60,19 +61,18 @@
                                     out.println("<tr>");
 
                                     out.println("<td>");
-                                    out.println("<input type='checkbox' class='endoId' id='" + entrySet.getValue().getId() + "' style='width:28px;height:28px' >");
-                                    out.println("</td>");
-                                    out.println("<td>");
                                     out.println("<a href='showDeltioApostolis.htm?id=" + entrySet.getValue().getId() + "' target='_blank'>" + entrySet.getValue().getId() + "</a>");
                                     out.println("</td>");
                                     out.println("<td>");
                                     out.println(entrySet.getValue().getDateString());
                                     out.println("</td>");
-                                    out.println("<td>");
-                                    out.println(entrySet.getValue().getNumber());
-                                    out.println("</td>");
+
                                     out.println("<td>");
                                     out.println(entrySet.getValue().getSender());
+                                    out.println("</td>");
+
+                                    out.println("<td style='fotn-weight:bald;'>");
+                                    out.println(entrySet.getValue().getNumber());
                                     out.println("</td>");
 
                                     out.println("</tr>");
