@@ -96,8 +96,7 @@ public class SuppliersAndStockController {
 
                 System.out.println("SUPPL: " + suppliersItem.getCode());
                 suppliersItem.setDescription("NO DATA FOR THESE CODE");
-                suppliersItem.setPosition(suppliersItem.getCode());
-                usher.put(suppliersItem.getPosition(), suppliersItem);
+                usher.put(suppliersItem.getCode(), suppliersItem);
             } else {
                 suppliersItem.setDescription(itemEksagoges.getDescription());
                 suppliersItem.setPosition(itemEksagoges.getPosition());
