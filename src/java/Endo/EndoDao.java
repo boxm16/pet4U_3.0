@@ -287,6 +287,48 @@ public class EndoDao {
         return endo;
     }
 
+    ArrayList<Endo> getEndosOfItem(String itemCode, ArrayList<String> endoIdsArray) {
+        ArrayList<Endo> endos = new ArrayList<>();
+
+        StringBuilder queryBuilderInitialPart = new StringBuilder("SELECT  [DOCID], [DOCNUMBER],  [DOCDATE], [FROM_WH], [ABBREVIATION], [QUANTITY], [PRICEBC] FROM [petworld].[dbo].[WH_ENDA] WHERE ");
+        StringBuilder queryBuilderIdsPart = buildStringFromArrayList(endoIdsArray);
+        StringBuilder query = queryBuilderInitialPart.append(" [DOCID] IN  ").append(queryBuilderIdsPart);
+
+        ResultSet resultSet;
+
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
+            Statement statement = connection.createStatement();
+
+            resultSet = statement.executeQuery(query.toString());
+            while (resultSet.next()) {
+                Endo endo = new Endo();
+                endo.setId(resultSet.getString("DOCID"));
+
+                endo.setNumber(resultSet.getString("DOCNUMBER"));
+                endo.setDateString(resultSet.getString("DOCDATE"));
+                endo.setSender(resultSet.getString("FROM_WH"));
+                Item item = new Item();
+                item.setCode(resultSet.getString("ABBREVIATION"));
+                item.setQuantity(resultSet.getString("QUANTITY"));
+                LinkedHashMap<String, Item> items = new LinkedHashMap<>();
+                items.put(itemCode, item);
+                endo.setItems(items);
+                endos.add(endo);
+
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EndoDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return endos;
+    }
+
     LinkedHashMap<String, DeliveryItem> getSentItems(ArrayList<String> endoIdsArray, LinkedHashMap<String, DeliveryItem> pet4UItemsRowByRow) {
         LinkedHashMap<String, DeliveryItem> sentItems = new LinkedHashMap<>();
         StringBuilder queryBuilderInitialPart = new StringBuilder("SELECT  [DOCID], [DOCNUMBER],  [DOCDATE], [FROM_WH], [ABBREVIATION], [QUANTITY], [PRICEBC] FROM [petworld].[dbo].[WH_ENDA] WHERE ");
@@ -404,46 +446,6 @@ public class EndoDao {
         }
 
         return deliveredItems;
-    }
-
-    ArrayList<Endo> getDeltiaApostolisOfItem(String itemCode, ArrayList<String> endoIdsArray) {
-        ArrayList<Endo> endos = new ArrayList<>();
-
-        StringBuilder queryBuilderInitialPart = new StringBuilder("SELECT * FROM endo WHERE item_code='" + itemCode + "' AND ");
-        StringBuilder queryBuilderIdsPart = buildStringFromArrayList(endoIdsArray);
-        StringBuilder query = queryBuilderInitialPart.append(" id IN ").append(queryBuilderIdsPart);
-
-        ResultSet resultSet;
-
-        try {
-            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
-            Connection connection = databaseConnectionFactory.getMySQLConnection();
-            Statement statement = connection.createStatement();
-
-            resultSet = statement.executeQuery(query.toString());
-            while (resultSet.next()) {
-                Endo endo = new Endo();
-                endo.setId(resultSet.getString("id"));
-                endo.setDateString(resultSet.getString("date"));
-                endo.setSender(resultSet.getString("sender"));
-                Item item = new Item();
-                item.setCode(resultSet.getString("item_code"));
-                item.setQuantity(resultSet.getString("quantity"));
-                LinkedHashMap<String, Item> items = new LinkedHashMap<>();
-                items.put(itemCode, item);
-                endo.setItems(items);
-                endos.add(endo);
-
-            }
-            resultSet.close();
-            statement.close();
-            connection.close();
-
-        } catch (SQLException ex) {
-            Logger.getLogger(EndoDao.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        return endos;
     }
 
     LinkedHashMap<String, String> getAllBindedEndos() {

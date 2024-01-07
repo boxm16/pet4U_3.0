@@ -143,8 +143,8 @@ public class EndoController {
         String sentItemDescription = pet4UItemsRowByRow.get(itemCode).getDescription();
 
         EndoDao endoDao = new EndoDao();
-        ArrayList<Endo> endos = endoDao.getDeltiaApostolisOfItem(itemCode, this.endoIdsArray);
-        System.out.println("ENDOS SIZE: "+endos.size());
+        ArrayList<Endo> endos = endoDao.getEndosOfItem(itemCode, this.endoIdsArray);
+        System.out.println("ENDOS SIZE: " + endos.size());
         modelMap.addAttribute("itemCode", itemCode);
         modelMap.addAttribute("sentItem", itemCode + ":" + sentItemDescription);
         modelMap.addAttribute("endos", endos);
