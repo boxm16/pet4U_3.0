@@ -201,7 +201,7 @@
                                     out.println("<button type='button' onclick='setText(\"" + item.getDescription() + "\")' class='btn btn-light' style='background-color:#D6D0EC' data-toggle='modal' data-target='#exampleModalCenter'>" + shortDescriptiom + "</button>");
                                     out.println("</td>");
 
-                                    out.println("<td style='font-size: 12px;'>");
+                                    out.println("<td style='font-size: 20px;'>");
                                     out.println(item.getPosition());
                                     out.println("</td>");
 
