@@ -114,7 +114,7 @@
                                     out.println("</td>");
 
                                     out.println("<td>");
-                                    out.println("<a href='showDeltioApostolis.htm?id=" + entrySet.getValue().getId() + "'>" + entrySet.getValue().getId() + "</a>");
+                                    out.println("<a href='showDeltioParalavis.htm?id=" + entrySet.getValue().getId() + "' target='_blank'>" + entrySet.getValue().getId() + "</a>");
                                     out.println("</td>");
 
                                     out.println("<td>");

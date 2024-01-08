@@ -563,4 +563,57 @@ public class EndoDao {
         }
         return translatedName;
     }
+
+    Endo getEndoParalavis(String endoId, LinkedHashMap<String, Item> pet4UItemsRowByRow) {
+        String sql = "SELECT  [DOCID], [DOCNUMBER],  [DOCDATE], [ABBREVIATION], [QUANTITY], [PRICEBC] FROM [petworld].[dbo].[WH_ENDP] WHERE [DOCID]='" + endoId + "' ;";
+        Connection connection;
+        Statement statement;
+        ResultSet resultSet;
+        Endo endo = new Endo();
+        endo.setId(endoId);
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
+
+            statement = connection.createStatement();
+
+            resultSet = statement.executeQuery(sql);
+
+            while (resultSet.next()) {
+
+                String date = resultSet.getString("DOCDATE");
+                String[] splittedDate = date.split(" ");
+                date = splittedDate[0];
+                DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                LocalDate invoiceDate = LocalDate.parse(date, formatter2);
+
+                String number = resultSet.getString("DOCNUMBER");
+                String itemCode = resultSet.getString("ABBREVIATION");
+                String quantity = resultSet.getString("QUANTITY");
+                String price = resultSet.getString("PRICEBC");
+
+                endo.setDateString(date);
+                endo.setSender("ΒΑΡΙΜΠΟΜΠΗ");
+                endo.setNumber(number);
+
+                endo.setDate(invoiceDate);
+
+                Item item = pet4UItemsRowByRow.get(itemCode);
+                item.setQuantity(quantity);
+
+                endo.getItems().put(itemCode, item);
+
+            }
+
+            resultSet.close();
+            statement.close();
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EndoDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return endo;
+    }
+
 }

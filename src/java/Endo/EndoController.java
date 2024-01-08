@@ -217,6 +217,20 @@ public class EndoController {
         modelMap.addAttribute("endo", endo);
         return "endo/deltioApostolisDisplay";
     }
+    
+    @RequestMapping(value = "showDeltioParalavis", method = RequestMethod.GET)
+    public String showDeltioParalavis(@RequestParam(name = "id") String id, ModelMap modelMap) {
+        System.out.println(id);
+
+        Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
+        LinkedHashMap<String, Item> pet4UItemsRowByRow = pet4uItemsDao.getPet4UItemsRowByRow();
+        EndoDao endoDao = new EndoDao();
+
+        Endo endo = endoDao.getEndoParalavis(id, pet4UItemsRowByRow);
+
+        modelMap.addAttribute("endo", endo);
+        return "endo/deltioApostolisDisplay";
+    }
 
     @RequestMapping(value = "endosChecking", method = RequestMethod.POST)
     public String endosChecking(@RequestParam(name = "endoIds") String endoIds, ModelMap modelMap) {
