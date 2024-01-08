@@ -180,7 +180,7 @@ public class EndoDao {
     }
 
     LinkedHashMap<String, Endo> getLastReceivingEndos(int days) {
-         LocalDate nowDate = LocalDate.now();
+        LocalDate nowDate = LocalDate.now();
         nowDate = nowDate.minusDays(days);
         System.out.println("NOW DATE: " + nowDate);
         LinkedHashMap<String, Endo> endoInvoices = new LinkedHashMap();
@@ -206,12 +206,10 @@ public class EndoDao {
                 date = splittedDate[0];
                 String number = resultSet.getString("DOCNUMBER");
 
-                String sender = resultSet.getString("ΒΑΡΙΜΠΟΜΠΗ");
-               
                 Endo endo = new Endo();
                 endo.setId(id);
                 endo.setDateString(date);
-                endo.setSender(sender);
+                endo.setSender("ΒΑΡΙΜΠΟΜΠΗ");
                 endo.setNumber(number);
 
                 endoInvoices.put(id, endo);
