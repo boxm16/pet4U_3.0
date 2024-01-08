@@ -63,7 +63,7 @@
                                     out.println("<td>");
                                     out.println("<a href='showDeltioApostolis.htm?id=" + entrySet.getValue().getId() + "' target='_blank'>" + entrySet.getValue().getId() + "</a>");
                                     out.println("</td>");
-                                    
+
                                     out.println("<td>");
                                     out.println(entrySet.getValue().getDateString());
                                     out.println("</td>");
@@ -96,6 +96,7 @@
                                 <th>Select</th>
                                 <th>A/A</th>
                                 <th>Date</th>
+                                <th>Number</th>
                                 <th>Sender</th>
                             </tr>
 
@@ -123,43 +124,10 @@
                                     out.println("<td >");
                                     out.println(entrySet.getValue().getSender());
                                     out.println("</td>");
-
-                                    out.println("<tr>");
-                                    out.println("<td colspan='4'>");
-                                    out.println(".");
+                                    
+                                    out.println("<td >");
+                                    out.println(entrySet.getValue().getNumber());
                                     out.println("</td>");
-                                    out.println("</tr>");
-
-                                    out.println("<tr>");
-                                    out.println("<td colspan='4'>");
-                                    out.println(".");
-                                    out.println("</td>");
-                                    out.println("</tr>");
-
-                                    out.println("<tr>");
-                                    out.println("<td colspan='4'>");
-                                    out.println(".");
-                                    out.println("</td>");
-                                    out.println("</tr>");
-
-                                    out.println("<tr>");
-                                    out.println("<td colspan='4'>");
-                                    out.println("ΑΦΟΡΑ ΔΕΛΤΙΑ ΑΠΟΣΤΟΛΗΣ ΤΩΝ ΜΑΓΑΖΙΩΝ");
-                                    out.println("</td>");
-                                    out.println("</tr>");
-
-                                    out.println("<tr>");
-                                    out.println("<td colspan='4'>");
-                                    out.println("4323423, 4323424, 4323429");
-                                    out.println("</td>");
-                                    out.println("</tr>");
-
-                                    out.println("<tr>");
-                                    out.println("<td colspan='4'>");
-                                    out.println("1271254, 1271255");
-                                    out.println("</td>");
-
-                                    out.println("</tr>");
 
                                     out.println("</tr>");
                                 }
