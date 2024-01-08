@@ -19,9 +19,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class EndoController {
 
     ArrayList<String> endoIdsArray;
+    ArrayList<String> receivingEndoIdsArray;
 
     public EndoController() {
         endoIdsArray = new ArrayList<>();
+        receivingEndoIdsArray = new ArrayList<>();
 
     }
 
@@ -56,15 +58,18 @@ public class EndoController {
     }
 
     @RequestMapping(value = "compareEndos", method = RequestMethod.POST)
-    public String compareEndo(@RequestParam(name = "endoIds") String endoIds, ModelMap modelMap) {
+    public String compareEndo(@RequestParam(name = "endoIds") String endoIds,
+            @RequestParam(name = "receivingEndoIds") String receivingEndoIds,
+            ModelMap modelMap) {
         System.out.println(endoIds);
 
         this.endoIdsArray = createItemsIdsArray(endoIds);
+        this.receivingEndoIdsArray = createItemsIdsArray(receivingEndoIds);
 
         EndoDao endoDao = new EndoDao();
         LinkedHashMap<String, DeliveryItem> pet4UItemsRowByRow = endoDao.getPet4UItemsRowByRow();
         LinkedHashMap<String, DeliveryItem> sentItems = endoDao.getSentItems(endoIdsArray, pet4UItemsRowByRow);
-        LinkedHashMap<String, DeliveryItem> deliveredIetms = endoDao.getDeliveredItems();
+        LinkedHashMap<String, DeliveryItem> deliveredIetms = endoDao.getReceivedItems(receivingEndoIdsArray, pet4UItemsRowByRow);
 
         System.out.println("SENT ITEMS SIZE: " + sentItems.size());
         System.out.println("DELIVERED ITEMS SIZE: " + deliveredIetms.size());
@@ -166,7 +171,7 @@ public class EndoController {
         LinkedHashMap<String, Endo> incomingEndos = endoDao.getLastIncomingEndos(7);
         LinkedHashMap<String, Endo> receivingEndos = endoDao.getLastReceivingEndos(7);
         LinkedHashMap<String, String> bindedEndos = endoDao.getAllBindedEndos();
-        System.out.println("receiving endos : "+receivingEndos.size());
+        System.out.println("receiving endos : " + receivingEndos.size());
         LinkedHashMap<String, BindedEndos> bindedEndosFiltered = new LinkedHashMap();
 
         for (Map.Entry<String, String> bindedEndosEntry : bindedEndos.entrySet()) {
@@ -217,7 +222,7 @@ public class EndoController {
         modelMap.addAttribute("endo", endo);
         return "endo/deltioApostolisDisplay";
     }
-    
+
     @RequestMapping(value = "showDeltioParalavis", method = RequestMethod.GET)
     public String showDeltioParalavis(@RequestParam(name = "id") String id, ModelMap modelMap) {
         System.out.println(id);

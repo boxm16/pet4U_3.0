@@ -616,4 +616,56 @@ public class EndoDao {
         return endo;
     }
 
+    LinkedHashMap<String, DeliveryItem> getReceivedItems(ArrayList<String> receivingEndoIdsArray, LinkedHashMap<String, DeliveryItem> pet4UItemsRowByRow) {
+        LinkedHashMap<String, DeliveryItem> sentItems = new LinkedHashMap<>();
+        StringBuilder queryBuilderInitialPart = new StringBuilder("SELECT  [DOCID], [DOCNUMBER],  [DOCDATE],  [ABBREVIATION], [QUANTITY], [PRICEBC] FROM [petworld].[dbo].[WH_ENDP] WHERE ");
+        StringBuilder queryBuilderIdsPart = buildStringFromArrayList(receivingEndoIdsArray);
+        StringBuilder query = queryBuilderInitialPart.append(" [DOCID] IN  ").append(queryBuilderIdsPart);
+
+        Connection connection;
+        Statement statement;
+        ResultSet resultSet;
+
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
+
+            statement = connection.createStatement();
+
+            resultSet = statement.executeQuery(query.toString());
+
+            while (resultSet.next()) {
+
+                String itemCode = resultSet.getString("ABBREVIATION");
+                Double quantity = resultSet.getDouble("QUANTITY");
+                Double price = resultSet.getDouble("PRICEBC");
+                if (sentItems.containsKey(itemCode)) {
+                    DeliveryItem item = sentItems.get(itemCode);
+                    String sentQuantiy = item.getSentQuantity();
+                    double sentQuantiyDouble = Double.parseDouble(sentQuantiy);
+                    sentQuantiyDouble = sentQuantiyDouble + quantity;
+                    sentQuantiy = String.valueOf(sentQuantiyDouble);
+                    item.setSentQuantity(sentQuantiy);
+                    sentItems.put(itemCode, item);
+
+                } else {
+                    DeliveryItem deliveredItem = new DeliveryItem();
+                    deliveredItem.setDescription(pet4UItemsRowByRow.get(itemCode).getDescription());
+                    deliveredItem.setCode(itemCode);
+                    deliveredItem.setSentQuantity(String.valueOf(quantity));
+                    sentItems.put(itemCode, deliveredItem);
+                }
+
+            }
+
+            resultSet.close();
+            statement.close();
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EndoDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return sentItems;
+    }
+
 }

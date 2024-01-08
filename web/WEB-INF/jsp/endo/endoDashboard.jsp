@@ -110,7 +110,7 @@
                                     out.println("<tr>");
 
                                     out.println("<td>");
-                                    out.println("<input type='checkbox'class='endoId777' id='" + entrySet.getValue().getId() + "' style='width:28px;height:28px'>");
+                                    out.println("<input type='checkbox'class='receivingEndoId' id='" + entrySet.getValue().getId() + "' style='width:28px;height:28px'>");
                                     out.println("</td>");
 
                                     out.println("<td>");
@@ -221,6 +221,7 @@
         <hr>
         <form id="form" action="#" method="POST">
             <input hidden type="text" id="endoIdsInput" name="endoIds">
+            <input hidden type="text" id="receivingEndoIdsInput" name="receivingEndoIds">
         </form>
     </center>
     <script>
@@ -234,6 +235,7 @@
             }
             form.action = requestTarget;
             endoIdsInput.value = collectSellectedCheckBoxes();
+            receivingEndoIdsInput.value = collectSellectedReceivingCheckBoxes();
             console.log(form.action);
             form.submit();
         }
@@ -241,6 +243,16 @@
         function collectSellectedCheckBoxes() {
             var returnValue = "";
             var targetCheckBoxes = document.querySelectorAll(".endoId");
+            for (x = 0; x < targetCheckBoxes.length; x++) {
+                if (targetCheckBoxes[x].checked)
+                    returnValue += targetCheckBoxes[x].id + ",";
+            }
+            return returnValue;
+        }
+
+        function collectSellectedReceivingCheckBoxes() {
+            var returnValue = "";
+            var targetCheckBoxes = document.querySelectorAll(".receivingEndoId");
             for (x = 0; x < targetCheckBoxes.length; x++) {
                 if (targetCheckBoxes[x].checked)
                     returnValue += targetCheckBoxes[x].id + ",";
