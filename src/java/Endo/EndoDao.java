@@ -180,44 +180,39 @@ public class EndoDao {
     }
 
     LinkedHashMap<String, Endo> getLastReceivingEndos(int days) {
+         LocalDate nowDate = LocalDate.now();
+        nowDate = nowDate.minusDays(days);
+        System.out.println("NOW DATE: " + nowDate);
         LinkedHashMap<String, Endo> endoInvoices = new LinkedHashMap();
-        String sql = "SELECT DISTINCT  id, date, sender FROM endo WHERE type='PARALAVI' ORDER BY date DESC;";
+        String sql = "SELECT DISTINCT  [DOCID], [DOCNUMBER],[DOCDATE], [FROM_WH] FROM  [petworld].[dbo].[WH_ENDP]  WHERE  [DOCDATE] >= '" + nowDate + "';";
         Connection connection;
         Statement statement;
         ResultSet resultSet;
 
         try {
             DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
-            connection = databaseConnectionFactory.getMySQLConnection();
+            connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
 
             statement = connection.createStatement();
 
             resultSet = statement.executeQuery(sql);
 
-            String currentDate = "FakeDate";
-            int currentDay = 0;
             while (resultSet.next()) {
 
-                String id = resultSet.getString("id");
+                String id = resultSet.getString("DOCID");
 
-                String date = resultSet.getString("date");
-                if (!currentDate.equals(date)) {
-                    if (currentDay > days) {
-                        return endoInvoices;
-                    }
-                    currentDay++;
-                    currentDate = date;
-                }
-                DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-                LocalDate invoiceDate = LocalDate.parse(date, formatter2);
+                String date = resultSet.getString("DOCDATE");
+                String[] splittedDate = date.split(" ");
+                date = splittedDate[0];
+                String number = resultSet.getString("DOCNUMBER");
 
-                String sender = resultSet.getString("sender");
-
+                String sender = resultSet.getString("FROM_WH");
+                sender = translateStoreName(sender);
                 Endo endo = new Endo();
-                id = "355648";
                 endo.setId(id);
                 endo.setDateString(date);
                 endo.setSender(sender);
+                endo.setNumber(number);
 
                 endoInvoices.put(id, endo);
             }
