@@ -166,7 +166,7 @@ public class EndoController {
         LinkedHashMap<String, Endo> incomingEndos = endoDao.getLastIncomingEndos(7);
         LinkedHashMap<String, Endo> receivingEndos = endoDao.getLastReceivingEndos(7);
         LinkedHashMap<String, String> bindedEndos = endoDao.getAllBindedEndos();
-
+        System.out.println("receiving endos : "+receivingEndos.size());
         LinkedHashMap<String, BindedEndos> bindedEndosFiltered = new LinkedHashMap();
 
         for (Map.Entry<String, String> bindedEndosEntry : bindedEndos.entrySet()) {
