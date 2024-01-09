@@ -163,6 +163,8 @@ public class EndoController {
         if (this.receivingEndoIdsArray.size() == 1) {
             endoDao.bindDeltiaApostolisKaiParalavis(this.endoIdsArray, this.receivingEndoIdsArray.get(0));
 
+        } else {
+            System.out.println("this.receivingEndoIdsArray.size():" + this.receivingEndoIdsArray.size());
         }
 
         return "redirect:endoDashboard.htm";
