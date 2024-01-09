@@ -668,4 +668,33 @@ public class EndoDao {
         return sentItems;
     }
 
+    String bindDeltiaApostolisKaiParalavis(ArrayList<String> endoIdsArray, String receivingEndoId) {
+   try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            Connection connection = databaseConnectionFactory.getMySQLConnection();
+
+            connection.setAutoCommit(false);
+            PreparedStatement itemInsertStatement = connection.prepareStatement("INSERT INTO endo_binding (endo_id, binding_endo_id) VALUES (?,?)");
+          
+            for (String endoId : endoIdsArray) {
+
+                itemInsertStatement.setString(1, endoId);
+                itemInsertStatement.setString(2, receivingEndoId);
+      
+                itemInsertStatement.addBatch();
+          
+            }
+
+            itemInsertStatement.executeBatch();
+            connection.commit();
+            itemInsertStatement.close();
+
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EndoDao.class.getName()).log(Level.SEVERE, null, ex);
+            return ex.getMessage();
+        }
+        return "Endos binding  EXECUTED SUCCESSFULLY.";}
+
 }

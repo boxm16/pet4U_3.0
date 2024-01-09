@@ -103,7 +103,7 @@
             <input hidden type="text" id="sentItems" name="sentItems">
         </form>
         <hr>
-        <h1>  <a href="saveDeltiaApostolisKaiParalavis.htm">SAVE</a></h1>
+        <h1>  <a href="bindDeltiaApostolisKaiParalavis.htm">SAVE (BIND)</a></h1>
 
     </center>
     <!-- Optional JavaScript -->

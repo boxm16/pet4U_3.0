@@ -156,8 +156,14 @@ public class EndoController {
         return "endo/deltiaApostolisDisplay";
     }
 
-    @RequestMapping(value = "saveDeltiaApostolisKaiParalavis", method = RequestMethod.GET)
-    public String saveDeltiaApostolisKaiParalavis() {
+    @RequestMapping(value = "bindDeltiaApostolisKaiParalavis", method = RequestMethod.GET)
+    public String bindDeltiaApostolisKaiParalavis() {
+        EndoDao endoDao = new EndoDao();
+
+        if (this.receivingEndoIdsArray.size() == 1) {
+            endoDao.bindDeltiaApostolisKaiParalavis(this.endoIdsArray, this.receivingEndoIdsArray.get(0));
+
+        }
 
         return "redirect:endoDashboard.htm";
     }
