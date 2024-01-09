@@ -268,7 +268,7 @@
 
             for (x = 0; x < deliveredItems.length; x++) {
                 let deliveredItem = deliveredItems[x];
-                console.log("DELIVERED ITEM: "+deliveredItem);
+                console.log(deliveredItem);
                 const deliveredItemArrayed = deliveredItem.id.split("_");
                 let itemtemCode = deliveredItemArrayed[0];
 
