@@ -187,7 +187,10 @@ public class EndoController {
             String bindingEndoId = bindedEndosEntry.getValue();
 
             System.out.println("BINDED ENDO ID:" + bindedEndoId);
-       
+            //---------
+            //  Endo n = new Endo();
+            // n.setDateString(incomingEndos.get(bindedEndoId).getDateString());
+            //receivingEndos.put(bindingEndoId, n);
             //----------
             if (receivingEndos.containsKey(bindingEndoId)) {
                 Endo bindedEndo = incomingEndos.remove(bindedEndoId);
@@ -197,7 +200,7 @@ public class EndoController {
                     BindedEndos bindedEndos1 = new BindedEndos();
 
                     bindedEndos1.setBindingReceivingEndoId(bindingEndoId);
-                    bindedEndos1.setBindingReceivingEndo(receivingEndos.remove(bindingEndoId));
+                  //  bindedEndos1.setBindingReceivingEndo(receivingEndos.remove(bindingEndoId));
                     bindedEndos1.addBindedSendingEndo(bindedEndo);
                     bindedEndosFiltered.put(bindingEndoId, bindedEndos1);
 
