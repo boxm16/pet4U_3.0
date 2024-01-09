@@ -271,9 +271,10 @@
                 console.log(deliveredItem);
                 const deliveredItemArrayed = deliveredItem.id.split("_");
                 let itemtemCode = deliveredItemArrayed[0];
-
+                console.log("Item Code : " + itemtemCode);
                 let sent = document.getElementById(itemtemCode + "_sent");
                 if (sent == null) {
+                    let item = items[itemtemCode];
                     addRow(item.code, item.description);
                 } else {
                     sent = sent.value * 1;
