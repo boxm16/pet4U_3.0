@@ -78,15 +78,15 @@
                         out.println("</td>");
 
                         out.println("<td>");
-                        out.println("<input  class='sent' type='number' id='" + item.getCode() + "_sent' value='" + item.getSentQuantity() + "' readonly width='10px'>");
+                        out.println("<input  class='sent' type='number' id='" + item.getCode() + "@sent' value='" + item.getSentQuantity() + "' readonly width='10px'>");
                         out.println("</td>");
 
                         out.println("<td>");
-                        out.println("<input class='delivered' type='number' id='" + item.getCode() + "_delivered' value='" + item.getDeliveredQuantity() + "'>");
+                        out.println("<input class='delivered' type='number' id='" + item.getCode() + "@delivered' value='" + item.getDeliveredQuantity() + "'>");
                         out.println("</td>");
 
                         out.println("<td>");
-                        out.println("<dev id='" + item.getCode() + "_colorDisplay'>____</dev>");
+                        out.println("<dev id='" + item.getCode() + "@colorDisplay'>____</dev>");
                         out.println("</td>");
 
                         out.println("</tr>");
@@ -140,7 +140,7 @@
                 console.log("altercode:" + altercode);
                 var item = items[altercode];
                 if (item == null) {
-                    let unknownBarcodeX = document.getElementById(altercode + "_sent");
+                    let unknownBarcodeX = document.getElementById(altercode + "@sent");
 
                     if (unknownBarcodeX == null) {
                         document.getElementById("descriptionDisplay").innerHTML = altercode + " : Unkown Barcode: " + altercode;
@@ -157,19 +157,19 @@
                     document.getElementById("descriptionDisplay").innerHTML = altercode + " : " + description;
 
 
-                    let sent = document.getElementById(code + "_sent");
+                    let sent = document.getElementById(code + "@sent");
                     if (sent == null) {
                         addRow(item.code, item.description);
                     } else {
                         sent = sent.value * 1;
                     }
 
-                    let delivered = document.getElementById(code + "_delivered").value * 1;
+                    let delivered = document.getElementById(code + "@delivered").value * 1;
                     delivered++;
 
-                    document.getElementById(code + "_delivered").value = delivered;
+                    document.getElementById(code + "@delivered").value = delivered;
 
-                    let colorDisplay = document.getElementById(code + "_colorDisplay");
+                    let colorDisplay = document.getElementById(code + "@colorDisplay");
 
                     let diff = sent - delivered;
                     if (diff > 0) {
@@ -206,9 +206,9 @@
             c1.innerText = "----";
             c2.innerText = code;
             c3.innerText = description;
-            c4.innerHTML = "<input class='sent' type='number' id='" + code + "_sent' value='0' readonly width='10px'>";
-            c5.innerHTML = "<input class='delivered' type='number' id='" + code + "_delivered' value='1'>";
-            c6.innerHTML = "<dev id='" + code + "_colorDisplay'>____</dev>";
+            c4.innerHTML = "<input class='sent' type='number' id='" + code + "@sent' value='0' readonly width='10px'>";
+            c5.innerHTML = "<input class='delivered' type='number' id='" + code + "@delivered' value='1'>";
+            c6.innerHTML = "<dev id='" + code + "@colorDisplay'>____</dev>";
 
 
             // Append cells to row
@@ -272,7 +272,7 @@
                 const deliveredItemArrayed = deliveredItem.id.split("_");
                 let itemtemCode = deliveredItemArrayed[0];
                 console.log("Item Code : " + itemtemCode);
-                let sent = document.getElementById(itemtemCode + "_sent");
+                let sent = document.getElementById(itemtemCode + "@sent");
                 if (sent == null) {
                     let item = items[itemtemCode];
                     addRow(item.code, item.description);
@@ -280,11 +280,11 @@
                     sent = sent.value * 1;
                 }
 
-                let delivered = document.getElementById(itemtemCode + "_delivered").value * 1;
+                let delivered = document.getElementById(itemtemCode + "@delivered").value * 1;
 
 
 
-                let colorDisplay = document.getElementById(itemtemCode + "_colorDisplay");
+                let colorDisplay = document.getElementById(itemtemCode + "@colorDisplay");
 
                 let diff = sent - delivered;
                 if (diff > 0) {
