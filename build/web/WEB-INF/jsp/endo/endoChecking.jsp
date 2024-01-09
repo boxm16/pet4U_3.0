@@ -269,7 +269,7 @@
             for (x = 0; x < deliveredItems.length; x++) {
                 let deliveredItem = deliveredItems[x];
                 console.log(deliveredItem);
-                const deliveredItemArrayed = deliveredItem.id.split("_");
+                const deliveredItemArrayed = deliveredItem.id.split("@");
                 let itemtemCode = deliveredItemArrayed[0];
                 console.log("Item Code : " + itemtemCode);
                 let sent = document.getElementById(itemtemCode + "@sent");
