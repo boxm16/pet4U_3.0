@@ -200,7 +200,7 @@ public class EndoController {
                     BindedEndos bindedEndos1 = new BindedEndos();
 
                     bindedEndos1.setBindingReceivingEndoId(bindingEndoId);
-                  //  bindedEndos1.setBindingReceivingEndo(receivingEndos.remove(bindingEndoId));
+                    bindedEndos1.setBindingReceivingEndo(receivingEndos.remove(bindingEndoId));
                     bindedEndos1.addBindedSendingEndo(bindedEndo);
                     bindedEndosFiltered.put(bindingEndoId, bindedEndos1);
 
