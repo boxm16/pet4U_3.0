@@ -31,18 +31,7 @@
             }
 
 
-            a:link, a:visited {
-                background-color: #f44336;
-                color: white;
-                padding: 14px 25px;
-                text-align: center;
-                text-decoration: none;
-                display: inline-block;
-            }
-
-            a:hover, a:active {
-                background-color: green;
-            }
+            
 
 
         </style>
@@ -232,7 +221,7 @@
                         out.println("<tr>");
 
                         out.println("<td colspan='3'>");
-                        out.println("<a href=\"showBindedEndos.htm?binderId=alKeys\" target=\"_blank\">This is a link</a>");
+                        out.println("<button onclick=\"location.href=\'http://www.showbindedEndos.htm?binderId="+strKey+"\'\" type=\"button\">See Bibded Endos</button>");
                         out.println("</td>");
                         out.println("</tr>");
 
