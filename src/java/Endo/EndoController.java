@@ -180,12 +180,15 @@ public class EndoController {
         LinkedHashMap<String, Endo> receivingEndos = endoDao.getLastReceivingEndos(7);
         LinkedHashMap<String, BindedEndos> bindedEndos = endoDao.getAllBindedEndos();
 
+        LinkedHashMap<String, BindedEndos> filteredBinder = new LinkedHashMap();
+
         for (Map.Entry<String, BindedEndos> bindedEndosEntry : bindedEndos.entrySet()) {
             String bindedEndoId = bindedEndosEntry.getKey();
             BindedEndos be = bindedEndosEntry.getValue();
 
             if (receivingEndos.containsKey(bindedEndoId)) {
                 be.setBindingReceivingEndo(receivingEndos.remove(bindedEndoId));
+                filteredBinder.put(bindedEndoId, be);
             }
 
             LinkedHashMap<String, Endo> bindedSendingEndos = be.getBindedSendingEndos();
@@ -194,6 +197,7 @@ public class EndoController {
                 String bindedSendingEndosId = bindedSendingEndosEntry.getKey();
                 if (bindedSendingEndos.containsKey(bindedSendingEndosId)) {
                     bindedSendingEndos.put(bindedSendingEndosId, incomingEndos.remove(bindedSendingEndosId));
+                    filteredBinder.put(bindedEndoId, be);
                 }
             }
 
@@ -201,7 +205,7 @@ public class EndoController {
 
         modelMap.addAttribute("incomingEndos", incomingEndos);
         modelMap.addAttribute("receivingEndos", receivingEndos);
-        modelMap.addAttribute("bindedEndos", bindedEndos);
+        modelMap.addAttribute("bindedEndos", filteredBinder);
 
         return "endo/endoDashboard";
     }
