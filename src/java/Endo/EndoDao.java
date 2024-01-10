@@ -470,12 +470,12 @@ public class EndoDao {
                     BindedEndos bindedEndos = allBindedEndos.get(bindingEndoId);
                     bindedEndos.addBindedEndo(bindedEndoId, new Endo());
                     bindedEndos.setBindingReceivingEndoId(bindingEndoId);
-                    allBindedEndos.put(bindedEndoId, bindedEndos);
+                    allBindedEndos.put(bindingEndoId, bindedEndos);
                 } else {
                     BindedEndos bindedEndos = new BindedEndos();
                     bindedEndos.addBindedEndo(bindedEndoId, new Endo());
                     bindedEndos.setBindingReceivingEndoId(bindingEndoId);
-                    allBindedEndos.put(bindedEndoId, bindedEndos);
+                    allBindedEndos.put(bindingEndoId, bindedEndos);
                 }
 
             }
