@@ -182,23 +182,22 @@ public class EndoController {
 
         LinkedHashMap<String, BindedEndos> filteredBinder = new LinkedHashMap();
 
-        for (Map.Entry<String, BindedEndos> bindedEndosEntry : bindedEndos.entrySet()) {
-            String bindedEndoId = bindedEndosEntry.getKey();
-            BindedEndos be = bindedEndosEntry.getValue();
+        for (Map.Entry<String, BindedEndos> bindedEndosEndtry : bindedEndos.entrySet()) {
+            String bindedEndosId = bindedEndosEndtry.getKey();
+            BindedEndos bindedEndoWrapper = bindedEndosEndtry.getValue();
+            if (receivingEndos.containsKey(bindedEndosId)) {
+                bindedEndoWrapper.setBindingReceivingEndoId(bindedEndosId);
+                bindedEndoWrapper.setBindingReceivingEndo(receivingEndos.remove(bindedEndosId));
 
-            if (receivingEndos.containsKey(bindedEndoId)) {
-                be.setBindingReceivingEndo(receivingEndos.remove(bindedEndoId));
-                filteredBinder.put(bindedEndoId, be);
-            }
+                LinkedHashMap<String, Endo> bindedSendingEndos = bindedEndoWrapper.getBindedSendingEndos();
 
-            LinkedHashMap<String, Endo> bindedSendingEndos = filteredBinder.get(bindedEndoId).getBindedSendingEndos();
-
-            for (Map.Entry<String, Endo> bindedSendingEndosEntry : bindedSendingEndos.entrySet()) {
-                String bindedSendingEndosId = bindedSendingEndosEntry.getKey();
-                if (incomingEndos.containsKey(bindedSendingEndosId)) {
-                    bindedSendingEndos.put(bindedSendingEndosId, incomingEndos.remove(bindedSendingEndosId));
-                    filteredBinder.put(bindedEndoId, be);
+                for (Map.Entry<String, Endo> bindedSendingEndosEntry : bindedSendingEndos.entrySet()) {
+                    String sendingEndoId = bindedSendingEndosEntry.getKey();
+                    if (incomingEndos.containsKey(sendingEndoId)) {
+                        bindedSendingEndos.put(sendingEndoId, incomingEndos.remove(sendingEndoId));
+                    }
                 }
+                filteredBinder.put(bindedEndosId, bindedEndoWrapper);
             }
 
         }
