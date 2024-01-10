@@ -234,7 +234,9 @@
                         out.println("<td colspan='3'>");
                         out.println("<a href=\"showBindedEndos.htm?binderId=alKeys\" target=\"_blank\">This is a link</a>");
                         out.println("</td>");
+                        out.println("</tr>");
 
+                        out.println("<tr>");
                         out.println("<td colspan='3'>");
                         out.println("------------------------------------");
                         out.println("</td>");
