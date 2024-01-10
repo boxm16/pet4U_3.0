@@ -191,11 +191,11 @@ public class EndoController {
                 filteredBinder.put(bindedEndoId, be);
             }
 
-            LinkedHashMap<String, Endo> bindedSendingEndos = be.getBindedSendingEndos();
+            LinkedHashMap<String, Endo> bindedSendingEndos = filteredBinder.get(bindedEndoId).getBindedSendingEndos();
 
             for (Map.Entry<String, Endo> bindedSendingEndosEntry : bindedSendingEndos.entrySet()) {
                 String bindedSendingEndosId = bindedSendingEndosEntry.getKey();
-                if (bindedSendingEndos.containsKey(bindedSendingEndosId)) {
+                if (incomingEndos.containsKey(bindedSendingEndosId)) {
                     bindedSendingEndos.put(bindedSendingEndosId, incomingEndos.remove(bindedSendingEndosId));
                     filteredBinder.put(bindedEndoId, be);
                 }

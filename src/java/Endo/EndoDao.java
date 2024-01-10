@@ -468,13 +468,21 @@ public class EndoDao {
 
                 if (allBindedEndos.containsKey(bindingEndoId)) {
                     BindedEndos bindedEndos = allBindedEndos.get(bindingEndoId);
-                    bindedEndos.addBindedEndo(bindedEndoId, new Endo());
-                    bindedEndos.setBindingReceivingEndoId(bindingEndoId);
+
+                    Endo endo = new Endo();
+                    endo.setId(bindedEndoId);
+                    bindedEndos.addBindedEndo(bindedEndoId, endo);
+
                     allBindedEndos.put(bindingEndoId, bindedEndos);
                 } else {
                     BindedEndos bindedEndos = new BindedEndos();
-                    bindedEndos.addBindedEndo(bindedEndoId, new Endo());
+
                     bindedEndos.setBindingReceivingEndoId(bindingEndoId);
+
+                    Endo endo = new Endo();
+                    endo.setId(bindedEndoId);
+                    bindedEndos.addBindedEndo(bindedEndoId, endo);
+
                     allBindedEndos.put(bindingEndoId, bindedEndos);
                 }
 
