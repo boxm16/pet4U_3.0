@@ -157,6 +157,7 @@
                     <th>A/A</th>
                     <th>Date</th>
                     <th>Creator</th>
+                    <th>Number</th>
                 </tr>
             </thead>
             <tbody>
@@ -173,7 +174,7 @@
                         out.println("<tr style='background-color: #ADD8E6'>");
 
                         out.println("<td>");
-                        out.println("<a href='showDeltioApostolis.htm?id=" + strKey + "'>" + strKey + "</a>");
+                        out.println("<a href='showDeltioParalavis.htm?id=" + strKey + "'>" + strKey + "</a>");
                         out.println("</td>");
 
                         out.println("<td>");
@@ -186,20 +187,24 @@
 
                         out.println("</tr>");
 
-                        ArrayList<Endo> sendingEndos = bindedEndos.get(strKey).getBindedSendingEndos();
-                        for (Endo sendingEndo : sendingEndos) {
+                        LinkedHashMap<String, Endo> sendingEndos = bindedEndos.get(strKey).getBindedSendingEndos();
+                        for (Map.Entry<String, Endo> sendigEntosEndry : sendingEndos.entrySet()) {
                             out.println("<tr style='background-color: #90EE90'>");
 
                             out.println("<td>");
-                            out.println("<a href='showDeltioApostolis.htm?id=" + sendingEndo.getId() + "'>" + sendingEndo.getId() + "</a>");
+                            out.println("<a href='showDeltioApostolis.htm?id=" + sendigEntosEndry.getValue().getId() + "'>" + sendigEntosEndry.getValue().getId() + "</a>");
                             out.println("</td>");
 
                             out.println("<td>");
-                            out.println(sendingEndo.getDateString());
+                            out.println(sendigEntosEndry.getValue().getDateString());
                             out.println("</td>");
 
                             out.println("<td>");
-                            out.println(sendingEndo.getSender());
+                            out.println(sendigEntosEndry.getValue().getSender());
+                            out.println("</td>");
+
+                            out.println("<td>");
+                            out.println(sendigEntosEndry.getValue().getNumber());
                             out.println("</td>");
 
                             out.println("</tr>");

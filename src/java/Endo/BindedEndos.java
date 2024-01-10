@@ -5,7 +5,7 @@
  */
 package Endo;
 
-import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
 /**
  *
@@ -15,10 +15,11 @@ public class BindedEndos {
 
     private String bindingReceivingEndoId;
     private Endo bindingReceivingEndo;
-    private ArrayList<Endo> bindedSendingEndos;
+
+    private LinkedHashMap<String, Endo> bindedSendingEndos;
 
     public BindedEndos() {
-        bindedSendingEndos = new ArrayList<Endo>();
+        this.bindedSendingEndos = new LinkedHashMap();
     }
 
     public String getBindingReceivingEndoId() {
@@ -37,16 +38,18 @@ public class BindedEndos {
         this.bindingReceivingEndo = bindingReceivingEndo;
     }
 
-    public ArrayList<Endo> getBindedSendingEndos() {
+    public LinkedHashMap<String, Endo> getBindedSendingEndos() {
         return bindedSendingEndos;
     }
 
-    public void setBindedSendingEndos(ArrayList<Endo> bindedSendingEndos) {
+    public void setBindedSendingEndos(LinkedHashMap<String, Endo> bindedSendingEndos) {
         this.bindedSendingEndos = bindedSendingEndos;
     }
 
-    public void addBindedSendingEndo(Endo sendingEndo) {
-        this.bindedSendingEndos.add(sendingEndo);
+    
+
+    public void addBindedEndo(String id, Endo bindedEndo) {
+        this.bindedSendingEndos.put(id, bindedEndo);
     }
 
 }

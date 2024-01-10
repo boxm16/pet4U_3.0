@@ -448,8 +448,8 @@ public class EndoDao {
         return deliveredItems;
     }
 
-    LinkedHashMap<String, String> getAllBindedEndos() {
-        LinkedHashMap<String, String> allBindedEndos = new LinkedHashMap<>();
+    LinkedHashMap<String, BindedEndos> getAllBindedEndos() {
+        LinkedHashMap<String, BindedEndos> allBindedEndos = new LinkedHashMap<>();
 
         String query = "SELECT * FROM endo_binding;";
 
@@ -465,7 +465,18 @@ public class EndoDao {
 
                 String bindedEndoId = resultSet.getString("endo_id");
                 String bindingEndoId = resultSet.getString("binding_endo_id");
-                allBindedEndos.put(bindedEndoId, bindingEndoId);
+
+                if (allBindedEndos.containsKey(bindingEndoId)) {
+                    BindedEndos bindedEndos = allBindedEndos.get(bindingEndoId);
+                    bindedEndos.addBindedEndo(bindedEndoId, new Endo());
+                    bindedEndos.setBindingReceivingEndoId(bindingEndoId);
+                    allBindedEndos.put(bindedEndoId, bindedEndos);
+                } else {
+                    BindedEndos bindedEndos = new BindedEndos();
+                    bindedEndos.addBindedEndo(bindedEndoId, new Endo());
+                    bindedEndos.setBindingReceivingEndoId(bindingEndoId);
+                    allBindedEndos.put(bindedEndoId, bindedEndos);
+                }
 
             }
             resultSet.close();
@@ -669,20 +680,20 @@ public class EndoDao {
     }
 
     String bindDeltiaApostolisKaiParalavis(ArrayList<String> endoIdsArray, String receivingEndoId) {
-   try {
+        try {
             DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
             Connection connection = databaseConnectionFactory.getMySQLConnection();
 
             connection.setAutoCommit(false);
             PreparedStatement itemInsertStatement = connection.prepareStatement("INSERT INTO endo_binding (endo_id, binding_endo_id) VALUES (?,?)");
-          
+
             for (String endoId : endoIdsArray) {
 
                 itemInsertStatement.setString(1, endoId);
                 itemInsertStatement.setString(2, receivingEndoId);
-      
+
                 itemInsertStatement.addBatch();
-          
+
             }
 
             itemInsertStatement.executeBatch();
@@ -695,6 +706,7 @@ public class EndoDao {
             Logger.getLogger(EndoDao.class.getName()).log(Level.SEVERE, null, ex);
             return ex.getMessage();
         }
-        return "Endos binding  EXECUTED SUCCESSFULLY.";}
+        return "Endos binding  EXECUTED SUCCESSFULLY.";
+    }
 
 }

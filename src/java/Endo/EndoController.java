@@ -178,41 +178,30 @@ public class EndoController {
 
         LinkedHashMap<String, Endo> incomingEndos = endoDao.getLastIncomingEndos(7);
         LinkedHashMap<String, Endo> receivingEndos = endoDao.getLastReceivingEndos(7);
-        LinkedHashMap<String, String> bindedEndos = endoDao.getAllBindedEndos();
-        System.out.println("receiving endos : " + receivingEndos.size());
-        LinkedHashMap<String, BindedEndos> bindedEndosFiltered = new LinkedHashMap();
+        LinkedHashMap<String, BindedEndos> bindedEndos = endoDao.getAllBindedEndos();
 
-        for (Map.Entry<String, String> bindedEndosEntry : bindedEndos.entrySet()) {
+        for (Map.Entry<String, BindedEndos> bindedEndosEntry : bindedEndos.entrySet()) {
             String bindedEndoId = bindedEndosEntry.getKey();
-            String bindingEndoId = bindedEndosEntry.getValue();
+            BindedEndos be = bindedEndosEntry.getValue();
 
-            System.out.println("BINDED ENDO ID:" + bindedEndoId);
-            //---------
-            //  Endo n = new Endo();
-            // n.setDateString(incomingEndos.get(bindedEndoId).getDateString());
-            //receivingEndos.put(bindingEndoId, n);
-            //----------
-            if (receivingEndos.containsKey(bindingEndoId)) {
-                Endo bindedEndo = incomingEndos.remove(bindedEndoId);
-                if (bindedEndosFiltered.containsKey(bindingEndoId)) {
-                    bindedEndosFiltered.get(bindingEndoId).addBindedSendingEndo(bindedEndo);
-                } else {
-                    BindedEndos bindedEndos1 = new BindedEndos();
+            if (receivingEndos.containsKey(bindedEndoId)) {
+                be.setBindingReceivingEndo(receivingEndos.remove(bindedEndoId));
+            }
 
-                    bindedEndos1.setBindingReceivingEndoId(bindingEndoId);
-                    bindedEndos1.setBindingReceivingEndo(receivingEndos.remove(bindingEndoId));
-                    bindedEndos1.addBindedSendingEndo(bindedEndo);
-                    bindedEndosFiltered.put(bindingEndoId, bindedEndos1);
+            LinkedHashMap<String, Endo> bindedSendingEndos = be.getBindedSendingEndos();
 
+            for (Map.Entry<String, Endo> bindedSendingEndosEntry : bindedSendingEndos.entrySet()) {
+                String bindedSendingEndosId = bindedSendingEndosEntry.getKey();
+                if (bindedSendingEndos.containsKey(bindedSendingEndosId)) {
+                    bindedSendingEndos.put(bindedSendingEndosId, incomingEndos.remove(bindedSendingEndosId));
                 }
-
             }
 
         }
 
         modelMap.addAttribute("incomingEndos", incomingEndos);
         modelMap.addAttribute("receivingEndos", receivingEndos);
-        modelMap.addAttribute("bindedEndos", bindedEndosFiltered);
+        modelMap.addAttribute("bindedEndos", bindedEndos);
 
         return "endo/endoDashboard";
     }
