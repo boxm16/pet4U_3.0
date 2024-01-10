@@ -220,13 +220,13 @@
                         }
                         out.println("<tr>");
 
-                        out.println("<td colspan='3'>");
-                        out.println("<button onclick=\"location.href=\'http://www.showbindedEndos.htm?binderId="+strKey+"\'\" type=\"button\">See Bibded Endos</button>");
+                        out.println("<td colspan='4'>");
+                        out.println("<button onclick=\"location.href=\'http://www.showbindedEndos.htm?binderId="+strKey+"\'\" type=\"button\"><h3>See Bibded Endos</h3></button>");
                         out.println("</td>");
                         out.println("</tr>");
 
                         out.println("<tr>");
-                        out.println("<td colspan='3'>");
+                        out.println("<td colspan='4'>");
                         out.println("------------------------------------");
                         out.println("</td>");
 
