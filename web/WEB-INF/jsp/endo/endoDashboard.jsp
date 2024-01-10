@@ -30,6 +30,21 @@
                 font-weight: bold;
             }
 
+
+            a:link, a:visited {
+                background-color: #f44336;
+                color: white;
+                padding: 14px 25px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+            }
+
+            a:hover, a:active {
+                background-color: green;
+            }
+
+
         </style>
     </head>
     <body>
@@ -217,7 +232,11 @@
                         out.println("<tr>");
 
                         out.println("<td colspan='3'>");
-                        out.println("----------------------");
+                        out.println("<a href=\"showBindedEndos.jsp\" target=\"_blank\">This is a link</a>");
+                        out.println("</td>");
+
+                        out.println("<td colspan='3'>");
+                        out.println("------------------------------------");
                         out.println("</td>");
 
                         out.println("</tr>");
