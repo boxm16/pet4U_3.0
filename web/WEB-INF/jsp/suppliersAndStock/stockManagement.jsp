@@ -178,7 +178,7 @@
                                     }
                                     int minimalStockHorizon = item.getMinimalStockHorizon();
                                     double stock = 0;
-                                    if (item.getQuantity() != null) {
+                                    if (item.getQuantity() != null) {//getQuantity here is sold quantity, not stock quantity
                                         stock = Double.parseDouble(item.getQuantity());
                                     }
                                     boolean needOrder = false;
