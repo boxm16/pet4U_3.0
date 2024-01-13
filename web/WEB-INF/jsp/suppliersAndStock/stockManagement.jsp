@@ -177,8 +177,10 @@
 
                                     }
                                     int minimalStockHorizon = item.getMinimalStockHorizon();
-
-                                    double stock = Double.parseDouble(item.getQuantity());
+                                    double stock = 0;
+                                    if (item.getQuantity() != null) {
+                                        stock = Double.parseDouble(item.getQuantity());
+                                    }
                                     boolean needOrder = false;
                                     if (stock < (objectiveSales * minimalStockHorizon) || objectiveSales == 0) {
                                         needOrder = true;
