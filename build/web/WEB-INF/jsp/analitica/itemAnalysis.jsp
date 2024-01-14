@@ -422,7 +422,7 @@
                                     int day = date1.getDay();
 
                                     if (day == 0) {
-                                        out.println("<tr style='background-color:pink;'>");
+                                        out.println("<tr style='background-color: #90EE90;'>");
 
                                     } else {
                                         out.println("<tr >");
