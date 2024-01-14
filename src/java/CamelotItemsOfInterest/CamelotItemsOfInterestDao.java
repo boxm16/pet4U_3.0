@@ -465,8 +465,8 @@ public class CamelotItemsOfInterestDao {
         return items;
     }
 
-    ArrayList<CamelotItemSnapshot> getItemSnapshots(String code) {
-        ArrayList<CamelotItemSnapshot> itemSnapshots = new ArrayList<>();
+    ArrayList<ItemSnapshot> getItemSnapshots(String code) {
+        ArrayList<ItemSnapshot> itemSnapshots = new ArrayList<>();
 
         String sql = "SELECT * FROM camelot_day_rest WHERE item_code='" + code + "' ORDER BY date_stamp DESC;";
         ResultSet resultSet;
@@ -477,7 +477,7 @@ public class CamelotItemsOfInterestDao {
             Statement statement = connection.createStatement();
             resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
-                CamelotItemSnapshot itemSnapshot = new CamelotItemSnapshot();
+                ItemSnapshot itemSnapshot = new ItemSnapshot();
 
                 String dateStamp = resultSet.getString("date_stamp");
                 String quantity = resultSet.getString("item_rest");

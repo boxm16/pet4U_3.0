@@ -389,7 +389,7 @@ public class CamelotItemsOfInterestController {
     @RequestMapping(value = "itemSnapshots")
     public String itemSnapshots(@RequestParam(name = "code") String code, ModelMap model) {
         CamelotItemsOfInterestDao camelotItemsOfInterestDao = new CamelotItemsOfInterestDao();
-        ArrayList<CamelotItemSnapshot> itemSnapshots = camelotItemsOfInterestDao.getItemSnapshots(code);
+        ArrayList<ItemSnapshot> itemSnapshots = camelotItemsOfInterestDao.getItemSnapshots(code);
         model.addAttribute("itemSnapshots", itemSnapshots);
         model.addAttribute("code", code);
         return "/camelot/itemSnapshots";

@@ -4,7 +4,7 @@ package CamelotItemsOfInterest;
  *
  * @author Michail Sitmalidis
  */
-public class CamelotItemSnapshot extends CamelotItemOfInterest {
+public class ItemSnapshot extends CamelotItemOfInterest {
 
     String dateStamp;
 
