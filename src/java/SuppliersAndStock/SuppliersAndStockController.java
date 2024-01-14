@@ -6,6 +6,7 @@
 package SuppliersAndStock;
 
 import BasicModel.Item;
+import CamelotItemsOfInterest.ItemSnapshot;
 import MonthSales.EksagogesController;
 import MonthSales.ItemEksagoges;
 import MonthSales.MonthSales;
@@ -308,7 +309,7 @@ public class SuppliersAndStockController {
         model.addAttribute("item", item);
 
         Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
-        LinkedHashMap<String, Item> itemSnapshots = pet4uItemsDao.getItemSnapshots(item.getCode());
+        ArrayList<ItemSnapshot> itemSnapshots = pet4uItemsDao.getItemSnapshots(item.getCode());
         model.addAttribute("itemSnapshots", itemSnapshots);
 
         MonthSalesDao monthSalesDao = new MonthSalesDao();
