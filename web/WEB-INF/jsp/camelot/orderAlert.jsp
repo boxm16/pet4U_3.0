@@ -75,7 +75,7 @@
                     int CamelotMinimalStock = camelotItemOfInterest.getCamelotMinimalStock();
                     double pet4uStock = camelotItemOfInterest.getPet4uStock() / camelotItemOfInterest.getWeightCoefficient();
                     double camelotFreeStock = camelotItemOfInterest.getCamelotStock() - camelotItemOfInterest.getCamelotBinded();
-
+                    Double twoWeekSales = camelotItemOfInterest.getTotalSalesInPieces() / 13.0357;
                     if (camelotFreeStock < CamelotMinimalStock || pet4uStock < minimalStock * 2) {
                         if (pet4uStock < minimalStock * 2) {
                             alarmColor = "yellow";
@@ -86,6 +86,10 @@
 
                         if (camelotFreeStock < CamelotMinimalStock) {
                             alarmColor = "red";
+                        }
+
+                        if (camelotFreeStock < CamelotMinimalStock && pet4uStock < twoWeekSales) {
+                            alarmColor = "brown";
                         }
 
                         if (camelotItemOfInterest.getCamelotStock() == 0 || camelotItemOfInterest.getCamelotStock() < 0) {
@@ -118,7 +122,6 @@
                         out.println(camelotItemOfInterest.getTotalSalesInPieces());
                         out.println("</td>");
 
-                        Double twoWeekSales = camelotItemOfInterest.getTotalSalesInPieces() / 13.0357;
                         out.println("<td>");
                         out.println(twoWeekSales.intValue());
                         out.println("</td>");
