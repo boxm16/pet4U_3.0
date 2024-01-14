@@ -17,6 +17,10 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Endo Dashboard</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
         <style>
             table, th, td {
                 border: 1px solid ;
@@ -219,14 +223,6 @@
 
                         }
                         out.println("<tr>");
-
-                        out.println("<td colspan='4'>");
-                        out.println("<button style='width:100%; background-color: #888888; font-size:20px;' onclick=\"location.href='showbindedEndos.htm?binderId=" + strKey + "'\" type=\"button\" ><h3>See Binded Endos</h3></button>");
-                        out.println("</td>");
-                        out.println("</tr>");
-
-                        out.println("<tr>");
-
                         out.println("<td colspan='4'>");
                         out.println("<a href='showbindedEndos.htm?binderId=" + strKey + "' class='btn btn-primary' target='_blank'>See Binded Endos</a>");
                         out.println("</td>");
