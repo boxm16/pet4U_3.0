@@ -188,9 +188,14 @@ public class SuppliersAndStockController {
             ModelMap model) {
         SuppliersItem item = supplierDao.getSuppliersItem(supplierId, code);
         Supplier supplier = supplierDao.getSupplier(supplierId);
-        SalesControllerX salesControllerX = new SalesControllerX();
-        SoldItem soldItem = salesControllerX.getItemSales(code);
 
+        /*SalesControllerX salesControllerX = new SalesControllerX();
+        SoldItem soldItem = salesControllerX.getItemSales(code); 
+        Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
+        LinkedHashMap<String, Item> pet4UItemsRowByRow = pet4uItemsDao.getPet4UItemsRowByRow();
+        Item soldItem = pet4UItemsRowByRow.get(code);*/
+        SearchDao searchDao = new SearchDao();
+        Item soldItem = searchDao.getItemByAltercode(code);
         item.setCode(soldItem.getCode());
         item.setDescription(soldItem.getDescription());
 
