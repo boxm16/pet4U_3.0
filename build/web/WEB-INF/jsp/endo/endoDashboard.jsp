@@ -230,7 +230,7 @@
 
                         out.println("<tr>");
                         out.println("<td colspan='4'>");
-                        out.println("------------------------------------");
+                        out.println("<center>--------------------------------------------</center>");
                         out.println("</td>");
 
                         out.println("</tr>");
