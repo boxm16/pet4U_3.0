@@ -4,6 +4,7 @@
     Author     : Michail Sitmalidis
 --%>
 
+<%@page import="CamelotItemsOfInterest.ItemSnapshot"%>
 <%@page import="StockAnalysis.StockAnalysis"%>
 <%@page import="MonthSales.MonthSales"%>
 <%@page import="BasicModel.AltercodeContainer"%>
@@ -436,34 +437,40 @@
                         <th>Date Stamp</th>
                         <th>State</th>
                         <th>Quantity</th>
-                            <%                                LinkedHashMap<String, Item> itemSnapshots = (LinkedHashMap) request.getAttribute("itemSnapshots");
+                            <%                                ArrayList<ItemSnapshot> itemSnapshots = (ArrayList) request.getAttribute("itemSnapshots");
                                 double stockBefore = 0.0;
-                                for (Map.Entry<String, Item> itemSnapshotEntry : itemSnapshots.entrySet()) {
-                                    Item itemSnapshot = itemSnapshotEntry.getValue();
+
+                                for (int x = 0; x < itemSnapshots.size() - 1; x++) {
+                                    ItemSnapshot itemSnapshot = itemSnapshots.get(x);
+                                    stockBefore = Double.parseDouble(itemSnapshots.get(x + 1).getQuantity());
                                     Double stock = Double.parseDouble(itemSnapshot.getQuantity());
 
-                                    String date = itemSnapshotEntry.getKey();
+                                    String date = itemSnapshot.getDateStamp();
                                     Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(date);
 
-                                    String[] weekdays = {"Κυρ.", "Δευτ.", "Τρίτη", "Τετάρτη", "Πέμπτ.", "Παρασκ.", "Σάββ."};
+                                    String[] weekdays = {"Κυριακη.", "Δευτερα.", "Τρίτη", "Τετάρτη", "Πέμπτη.", "Παρασκεύη.", "Σάββατο."};
                                     int day = date1.getDay();
 
                                     if (day == 0) {
-                                        out.println("<tr style='background-color:pink;'>");
+                                        out.println("<tr style='background-color: #90EE90;'>");
 
                                     } else {
                                         out.println("<tr >");
 
                                     }
                                     out.println("<td>");
-                                    out.println(itemSnapshotEntry.getKey() + "<br>" + weekdays[day]);
+                                    out.println(itemSnapshot.getReformatedDateStamp() + "<br>" + weekdays[day]);
                                     out.println("</td>");
 
                                     out.println("<td>");
                                     out.println(itemSnapshot.getState());
                                     out.println("</td>");
 
-                                    out.println("<td>");
+                                    if (itemSnapshot.getQuantity().equals("0") || itemSnapshot.getQuantity().equals("0.000000")) {
+                                        out.println("<td style='background-color: #F7B2F7'>");
+                                    } else {
+                                        out.println("<td>");
+                                    }
                                     out.println(itemSnapshot.getQuantity());
                                     out.println("</td>");
 
