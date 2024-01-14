@@ -224,7 +224,7 @@
                         }
                         out.println("<tr>");
                         out.println("<td colspan='4'>");
-                        out.println("<div class='d-block'><a href='showbindedEndos.htm?binderId=" + strKey + "' class='btn btn-primary' font-size='20px' target='_blank'>See Binded Endos</a></div>");
+                        out.println("<center><a href='showbindedEndos.htm?binderId=" + strKey + "' class='btn btn-primary' font-size='40px' target='_blank'>See Binded Endos</a></center>");
                         out.println("</td>");
                         out.println("</tr>");
 
