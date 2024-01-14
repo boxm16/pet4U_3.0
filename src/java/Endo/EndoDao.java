@@ -717,4 +717,35 @@ public class EndoDao {
         return "Endos binding  EXECUTED SUCCESSFULLY.";
     }
 
+    ArrayList<String> getBindedIds(String binderId) {
+        ArrayList<String> bindedEndos = new ArrayList<>();
+
+        String query = "SELECT * FROM endo_binding WHERE binding_endo_id='" + binderId + "';";
+
+        ResultSet resultSet;
+
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            Connection connection = databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+
+            resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+
+                String bindedEndoId = resultSet.getString("endo_id");
+                bindedEndos.add(bindedEndoId);
+
+            }
+
+            resultSet.close();
+            statement.close();
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EndoDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return allBindedEndos;
+    }
+
 }

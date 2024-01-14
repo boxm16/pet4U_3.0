@@ -178,7 +178,7 @@
                         out.println("<tr style='background-color: #ADD8E6'>");
 
                         out.println("<td>");
-                        out.println("<a href='showDeltioParalavis.htm?id=" + strKey + "'>" + strKey + "</a>");
+                        out.println("<a href='showDeltioParalavis.htm?id=" + strKey + "' target='_blank'>" + strKey + "</a>");
                         out.println("</td>");
 
                         out.println("<td>");
