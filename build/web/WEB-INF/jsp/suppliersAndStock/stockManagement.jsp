@@ -263,7 +263,7 @@
                                     out.println("</td>");
 
                                     if (item.getOrderHorizon() == 0) {
-                                        out.println("<td style='background-color:red; text-align: center; font-size:14px'>");
+                                        out.println("<td style='background-color:#F2010F; text-align: center; font-size:20px'>");
                                     }
                                     if (item.getOrderHorizon() == 1) {
                                         out.println("<td style='background-color:#F9C8B6; text-align: center; font-size:20px'>");
@@ -284,7 +284,7 @@
                                     out.println("</td>");
 
                                     if (item.getMinimalStockHorizon() == 0) {
-                                        out.println("<td style='background-color:#F9C8B6; text-align: center; font-size:20px'>");
+                                        out.println("<td style='background-color:#F2010F; text-align: center; font-size:20px'>");
                                     }
                                     if (item.getMinimalStockHorizon() == 1) {
                                         out.println("<td style='background-color:#F9C8B6; text-align: center; font-size:20px'>");
