@@ -266,19 +266,19 @@
                                        out.println("<td style='font-size:14px'>");
                                     }
                                     if (item.getOrderHorizon() == 1) {
-                                        out.println("<td style='background-color:#E4F89B; font-size:14px'>");
+                                        out.println("<td style='background-color:#F9C8B6; font-size:20px'>");
                                     }
                                     if (item.getOrderHorizon() == 2) {
-                                        out.println("<td style='background-color:#9CEC4C; font-size:14px'>");
+                                        out.println("<td style='background-color:#F1F9B6; font-size:20px'>");
                                     }
                                     if (item.getOrderHorizon() == 3) {
-                                        out.println("<td style='background-color:#9CEC4C; font-size:14px'>");
+                                        out.println("<td style='background-color:#DCFCC9; font-size:20px'>");
                                     }
                                     if (item.getOrderHorizon() == 4) {
-                                        out.println("<td style='background-color:#52F1BE; font-size:14px'>");
+                                        out.println("<td style='background-color:#D8F8F8; font-size:20px'>");
                                     }
                                     if (item.getOrderHorizon() == 5) {
-                                        out.println("<td style='background-color:#8F81F6;  font-size:14px'>");
+                                        out.println("<td style='background-color:#DCD8F8;  font-size:20px'>");
                                     }
                                     out.println("<a href='objectiveSalesDashboard.htm?supplierId=" + supplier.getId() + "&itemCode=" + item.getCode() + "' >" + item.getOrderHorizon() + "</a>");
                                     out.println("</td>");
