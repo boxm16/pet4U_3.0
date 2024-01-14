@@ -214,7 +214,6 @@
                             } else {
                                 out.println("<td style='background-color:red'>");
                             }
-                            out.println("<td>");
                             out.println(sendigEntosEndry.getValue().getDateString());
                             out.println("</td>");
 
