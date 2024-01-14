@@ -318,7 +318,7 @@ public class EndoController {
         deliveryInvoice.setItems(deliveredIetms);
 
         modelMap.addAttribute("deliveryInvoice", deliveryInvoice);
-        return "endo/endoChecking";
+        return "endo/bindedEndosDisplay";
 
     }
 
