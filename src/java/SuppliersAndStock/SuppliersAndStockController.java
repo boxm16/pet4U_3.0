@@ -96,7 +96,7 @@ public class SuppliersAndStockController {
             if (itemEksagoges == null) {
 
                 System.out.println("SUPPL: " + suppliersItem.getCode());
-                suppliersItem.setDescription("NO DATA FOR THESE CODE");
+                suppliersItem.setDescription("NO DATA FOR THIS CODE");
                 usher.put(suppliersItem.getCode(), suppliersItem);
             } else {
                 suppliersItem.setDescription(itemEksagoges.getDescription());
@@ -196,8 +196,13 @@ public class SuppliersAndStockController {
         Item soldItem = pet4UItemsRowByRow.get(code);*/
         SearchDao searchDao = new SearchDao();
         Item soldItem = searchDao.getItemByAltercode(code);
-        item.setCode(soldItem.getCode());
-        item.setDescription(soldItem.getDescription());
+        if (soldItem == null) {
+            item.setCode(code);
+            item.setDescription("NO DATA FOR THIS CODE");
+        } else {
+            item.setCode(soldItem.getCode());
+            item.setDescription(soldItem.getDescription());
+        }
 
         model.addAttribute("supplier", supplier);
         model.addAttribute("item", item);
