@@ -280,7 +280,8 @@
                                     if (item.getOrderHorizon() == 5) {
                                         out.println("<td style='background-color:#8F81F6>");
                                     }
-
+                                    
+                                    out.println("<td>");
                                     out.println("<a href='objectiveSalesDashboard.htm?supplierId=" + supplier.getId() + "&itemCode=" + item.getCode() + "' >" + item.getOrderHorizon() + "</a>");
                                     out.println("</td>");
 
