@@ -262,7 +262,25 @@
 
                                     out.println("</td>");
 
-                                    out.println("<td>");
+                                    if (item.getOrderHorizon() == 0) {
+                                        out.println("<td>");
+                                    }
+                                    if (item.getOrderHorizon() == 1) {
+                                        out.println("<td style='background-color:#E4F89B>");
+                                    }
+                                    if (item.getOrderHorizon() == 2) {
+                                        out.println("<td style='background-color:#9CEC4C>");
+                                    }
+                                    if (item.getOrderHorizon() == 3) {
+                                        out.println("<td style='background-color:#9CEC4C>");
+                                    }
+                                    if (item.getOrderHorizon() == 4) {
+                                        out.println("<td style='background-color:#52F1BE>");
+                                    }
+                                    if (item.getOrderHorizon() == 5) {
+                                        out.println("<td style='background-color:#8F81F6>");
+                                    }
+
                                     out.println("<a href='objectiveSalesDashboard.htm?supplierId=" + supplier.getId() + "&itemCode=" + item.getCode() + "' >" + item.getOrderHorizon() + "</a>");
                                     out.println("</td>");
 
