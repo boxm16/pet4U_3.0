@@ -280,11 +280,14 @@
                                     if (item.getOrderHorizon() == 5) {
                                         out.println("<td style='background-color:#DCD8F8; text-align: center;  font-size:20px'>");
                                     }
+                                    if (item.getOrderHorizon() > 5) {
+                                        out.println("<td style='background-color:#FB0412; text-align: center;  font-size:20px'>");
+                                    }
                                     out.println("<a href='objectiveSalesDashboard.htm?supplierId=" + supplier.getId() + "&itemCode=" + item.getCode() + "' >" + item.getOrderHorizon() + "</a>");
                                     out.println("</td>");
 
                                     if (item.getMinimalStockHorizon() == 0) {
-                                        out.println("<td style='background-color:#F2010F; text-align: center; font-size:20px'>");
+                                        out.println("<td style='background-color:red; text-align: center; font-size:20px'>");
                                     }
                                     if (item.getMinimalStockHorizon() == 1) {
                                         out.println("<td style='background-color:#F9C8B6; text-align: center; font-size:20px'>");
@@ -292,13 +295,7 @@
                                     if (item.getMinimalStockHorizon() == 2) {
                                         out.println("<td style='background-color:#F1F9B6; text-align: center; font-size:20px'>");
                                     }
-                                    if (item.getMinimalStockHorizon() == 3) {
-                                        out.println("<td style='background-color: F06093; text-align: center; font-size:20px'>");
-                                    }
-                                    if (item.getMinimalStockHorizon() == 4) {
-                                        out.println("<td style='background-color:pink; text-align: center; font-size:20px'>");
-                                    }
-                                    if (item.getMinimalStockHorizon() == 5) {
+                                    if (item.getMinimalStockHorizon() > 2) {
                                         out.println("<td style='background-color:red; text-align: center;  font-size:20px'>");
                                     }
                                     out.println("<a href='objectiveSalesDashboard.htm?supplierId=" + supplier.getId() + "&itemCode=" + item.getCode() + "' >" + item.getMinimalStockHorizon() + "</a>");
