@@ -52,7 +52,7 @@
             <th>Pet4u Description</th>
 
             <th>Six Months<br>Sales</th>
-            <th>Week Sales</th>
+            <th>2 Week<br>Sales</th>
             <th>Pet4u <br>Stock</th>
             <th>Pet4u <br>Minimal <br>Stock</th>
 
@@ -116,9 +116,9 @@
                         out.println(camelotItemOfInterest.getTotalSalesInPieces());
                         out.println("</td>");
 
-                        Double weekSales = camelotItemOfInterest.getTotalSalesInPieces() / 26;
+                        Double twoWeekSales = camelotItemOfInterest.getTotalSalesInPieces() / 13.0357;
                         out.println("<td>");
-                        out.println(weekSales.intValue());
+                        out.println(twoWeekSales.intValue());
                         out.println("</td>");
 
                         out.println("<td>");
