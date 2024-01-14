@@ -4,6 +4,8 @@
     Author     : Michail Sitmalidis
 --%>
 
+<%@page import="java.util.Iterator"%>
+<%@page import="java.util.Map.Entry"%>
 <%@page import="StockAnalysis.StockAnalysis"%>
 <%@page import="MonthSales.MonthSales"%>
 <%@page import="BasicModel.AltercodeContainer"%>
@@ -249,8 +251,8 @@
                             out.println(stockAnalysis.getDafniStock());
                             out.println("</td>");
                             out.println("</tr>");
-                            
-                                out.println("<tr>");
+
+                            out.println("<tr>");
                             out.println("<td>");
                             out.println("ΚΟΥΚΑΚΙ");
                             out.println("</td>");
@@ -406,11 +408,14 @@
                         <th>Quantity</th>
                             <%                                LinkedHashMap<String, Item> itemSnapshots = (LinkedHashMap) request.getAttribute("itemSnapshots");
                                 double stockBefore = 0.0;
-                                for (Map.Entry<String, Item> itemSnapshotEntry : itemSnapshots.entrySet()) {
-                                    Item itemSnapshot = itemSnapshotEntry.getValue();
+
+                                Iterator<Entry<String, Item>> it = itemSnapshots.entrySet().iterator();
+                                while (it.hasNext()) {
+                                    Map.Entry itemSnapshotEntry = (Map.Entry) it.next();
+                                    Item itemSnapshot = (Item) itemSnapshotEntry.getValue();
                                     Double stock = Double.parseDouble(itemSnapshot.getQuantity());
 
-                                    String date = itemSnapshotEntry.getKey();
+                                    String date = (String) itemSnapshotEntry.getKey();
                                     Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(date);
 
                                     String[] weekdays = {"Κυριακη.", "Δευτερα.", "Τρίτη", "Τετάρτη", "Πέμπτη.", "Παρασκεύη.", "Σάββατο."};
