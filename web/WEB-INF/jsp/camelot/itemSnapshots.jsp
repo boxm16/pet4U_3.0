@@ -50,7 +50,7 @@
                         out.println("</td>");
 
                         if (itemSnapshot.getQuantity().equals("0") || itemSnapshot.getQuantity().equals("0.000000")) {
-                            out.println("<td style='background-color: #FA87FA'>");
+                            out.println("<td style='background-color: #F7B2F7'>");
                         } else {
                             out.println("<td>");
                         }

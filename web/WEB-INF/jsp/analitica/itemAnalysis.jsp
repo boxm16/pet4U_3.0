@@ -441,7 +441,8 @@
                                     out.println("</td>");
 
                                     out.println("<td>");
-                                    out.println(stock - stockBefore);
+                                    Double previousStock = Double.parseDouble(it.next().getValue().getQuantity());
+                                    out.println(stock - previousStock);
                                     out.println("</td>");
                                     out.println("</tr>");
                                     stockBefore = stock;
