@@ -49,7 +49,7 @@
                         out.println(itemSnapshot.getDateStamp());
                         out.println("</td>");
 
-                        if (itemSnapshot.getQuantity().endsWith("0")) {
+                        if (itemSnapshot.getQuantity().equals("0")) {
                             out.println("<td style='background-color: #FA87FA'>");
                         } else {
                             out.println("<td>");

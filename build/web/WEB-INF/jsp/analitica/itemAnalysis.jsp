@@ -413,7 +413,7 @@
                                     String date = itemSnapshotEntry.getKey();
                                     Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(date);
 
-                                    String[] weekdays = {"Κυρ.", "Δευτ.", "Τρίτη", "Τετάρτη", "Πέμπτ.", "Παρασκ.", "Σάββ."};
+                                    String[] weekdays = {"Κυριακη.", "Δευτερα.", "Τρίτη", "Τετάρτη", "Πέμπτη.", "Παρασκεύη.", "Σάββατο."};
                                     int day = date1.getDay();
 
                                     if (day == 0) {
