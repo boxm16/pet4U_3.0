@@ -31,7 +31,7 @@
             }
 
 
-            
+
 
 
         </style>
@@ -221,7 +221,14 @@
                         out.println("<tr>");
 
                         out.println("<td colspan='4'>");
-                        out.println("<button style='width:100%; background-color: #888888; font-size:20px;' onclick=\"location.href='showbindedEndos.htm?binderId="+strKey+"'\" type=\"button\" target='_blank'><h3>See Binded Endos</h3></button>");
+                        out.println("<button style='width:100%; background-color: #888888; font-size:20px;' onclick=\"location.href='showbindedEndos.htm?binderId=" + strKey + "'\" type=\"button\" ><h3>See Binded Endos</h3></button>");
+                        out.println("</td>");
+                        out.println("</tr>");
+
+                        out.println("<tr>");
+
+                        out.println("<td colspan='4'>");
+                        out.println("<a href='showbindedEndos.htm?binderId=" + strKey + "' class='btn btn-primary' target='_blank'>See Binded Endos</a>");
                         out.println("</td>");
                         out.println("</tr>");
 
