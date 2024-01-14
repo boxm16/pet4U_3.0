@@ -74,7 +74,7 @@ public class SupplierDao {
 
     Supplier getSupplier(String supplierId) {
 
-        String sql = "SELECT * FROM suppliers where id='" + supplierId+"'";
+        String sql = "SELECT * FROM suppliers where id=" + supplierId;
         ResultSet resultSet;
 
         try {
