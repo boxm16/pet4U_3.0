@@ -468,7 +468,7 @@ public class CamelotItemsOfInterestDao {
     ArrayList<CamelotItemSnapshot> getItemSnapshots(String code) {
         ArrayList<CamelotItemSnapshot> itemSnapshots = new ArrayList<>();
 
-        String sql = "SELECT * FROM camelot_day_rest WHERE item_code='" + code + "' ORDER BY date_stamp;";
+        String sql = "SELECT * FROM camelot_day_rest WHERE item_code='" + code + "' ORDER BY date_stamp DESC;";
         ResultSet resultSet;
 
         try {
