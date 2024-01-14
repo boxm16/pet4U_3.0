@@ -148,9 +148,9 @@ public class EndoController {
 
         EndoDao endoDao = new EndoDao();
         ArrayList<Endo> endos = endoDao.getEndosOfItem(itemCode, this.endoIdsArray);
-        System.out.println("ENDOS SIZE: " + endos.size());
+       
         modelMap.addAttribute("itemCode", itemCode);
-        modelMap.addAttribute("sentItem", itemCode + ":" + sentItemDescription);
+        modelMap.addAttribute("sentItem", itemCode + " : " + sentItemDescription);
         modelMap.addAttribute("endos", endos);
         return "endo/deltiaApostolisDisplay";
     }
