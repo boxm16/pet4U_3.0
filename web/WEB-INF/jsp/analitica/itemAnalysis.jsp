@@ -4,6 +4,7 @@
     Author     : Michail Sitmalidis
 --%>
 
+<%@page import="CamelotItemsOfInterest.ItemSnapshot"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.Map.Entry"%>
 <%@page import="StockAnalysis.StockAnalysis"%>
@@ -406,16 +407,15 @@
                         <th>Date Stamp</th>
                         <th>State</th>
                         <th>Quantity</th>
-                            <%                                LinkedHashMap<String, Item> itemSnapshots = (LinkedHashMap) request.getAttribute("itemSnapshots");
+                            <%                                ArrayList<ItemSnapshot> itemSnapshots = (ArrayList) request.getAttribute("itemSnapshots");
                                 double stockBefore = 0.0;
 
-                                Iterator<Entry<String, Item>> it = itemSnapshots.entrySet().iterator();
-                                while (it.hasNext()) {
-                                    Map.Entry itemSnapshotEntry = (Map.Entry) it.next();
-                                    Item itemSnapshot = (Item) itemSnapshotEntry.getValue();
+                                for (int x = 0; x < itemSnapshots.size() - 1; x++) {
+                                    ItemSnapshot itemSnapshot = itemSnapshots.get(x);
+                                    stockBefore = Double.parseDouble(itemSnapshots.get(x + 1).getQuantity());
                                     Double stock = Double.parseDouble(itemSnapshot.getQuantity());
 
-                                    String date = (String) itemSnapshotEntry.getKey();
+                                    String date = itemSnapshot.getDateStamp();
                                     Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(date);
 
                                     String[] weekdays = {"Κυριακη.", "Δευτερα.", "Τρίτη", "Τετάρτη", "Πέμπτη.", "Παρασκεύη.", "Σάββατο."};
@@ -429,7 +429,7 @@
 
                                     }
                                     out.println("<td>");
-                                    out.println(itemSnapshotEntry.getKey() + "<br>" + weekdays[day]);
+                                    out.println(date + "<br>" + weekdays[day]);
                                     out.println("</td>");
 
                                     out.println("<td>");
@@ -441,8 +441,7 @@
                                     out.println("</td>");
 
                                     out.println("<td>");
-                                    Double previousStock = Double.parseDouble(it.next().getValue().getQuantity());
-                                    out.println(stock - previousStock);
+                                    out.println(stock - stockBefore);
                                     out.println("</td>");
                                     out.println("</tr>");
                                     stockBefore = stock;

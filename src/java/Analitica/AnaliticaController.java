@@ -1,6 +1,7 @@
 package Analitica;
 
 import BasicModel.Item;
+import CamelotItemsOfInterest.ItemSnapshot;
 import MonthSales.MonthSales;
 import MonthSales.MonthSalesDao;
 import Offer.Offer;
@@ -10,7 +11,6 @@ import Search.SearchDao;
 import StockAnalysis.StockAnalysis;
 import StockAnalysis.StockAnalysisDao;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,7 +29,7 @@ public class AnaliticaController {
 
         String itemCode=item.getCode();
         Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
-        LinkedHashMap<String, Item> itemSnapshots = pet4uItemsDao.getItemSnapshots(itemCode);
+        ArrayList< ItemSnapshot> itemSnapshots = pet4uItemsDao.getItemSnapshots(itemCode);
         model.addAttribute("itemSnapshots", itemSnapshots);
 
         MonthSalesDao monthSalesDao = new MonthSalesDao();

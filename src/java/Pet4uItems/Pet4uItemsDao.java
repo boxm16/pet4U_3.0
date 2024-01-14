@@ -3,6 +3,7 @@ package Pet4uItems;
 import BasicModel.AltercodeContainer;
 import BasicModel.Item;
 import CamelotItemsOfInterest.CamelotItemOfInterest;
+import CamelotItemsOfInterest.ItemSnapshot;
 import Service.DatabaseConnectionFactory;
 import TechMan.TechManDao;
 import java.sql.Connection;
@@ -11,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -417,8 +419,8 @@ public class Pet4uItemsDao {
         return items;
     }
 
-    public LinkedHashMap<String, Item> getItemSnapshots(String code) {
-        LinkedHashMap<String, Item> itemSnapshots = new LinkedHashMap<>();
+    public ArrayList<ItemSnapshot> getItemSnapshots(String code) {
+        ArrayList<ItemSnapshot> itemSnapshots = new ArrayList<>();
 
         String sql = "SELECT * FROM item_state WHERE item_code='" + code + "' ORDER BY date_stamp DESC;";
         ResultSet resultSet;
@@ -429,7 +431,7 @@ public class Pet4uItemsDao {
             Statement statement = connection.createStatement();
             resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
-                Item item = new Item();
+                ItemSnapshot item = new ItemSnapshot();
 
                 String dateStamp = resultSet.getString("date_stamp");
                 String quantity = resultSet.getString("item_stock");
@@ -438,7 +440,7 @@ public class Pet4uItemsDao {
                 item.setState(state);
                 item.setQuantity(quantity);
 
-                itemSnapshots.put(dateStamp, item);
+                itemSnapshots.add(item);
             }
             resultSet.close();
             statement.close();
