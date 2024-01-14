@@ -258,17 +258,16 @@ public class EndoController {
 
     @RequestMapping(value = "showbindedEndos", method = RequestMethod.GET)
     public String showbindedEndos(@RequestParam(name = "binderId") String binderId, ModelMap modelMap) {
-  EndoDao endoDao = new EndoDao();
-        ArrayList<String> binderIds = new ArrayList();
+        EndoDao endoDao = new EndoDao();
+        this.receivingEndoIdsArray = new ArrayList();
 
-        binderIds.add(binderId);
+        this.receivingEndoIdsArray.add(binderId);
 
-       ArrayList<String> sendedEndos=endoDao.getBindedIds(binderId);
-               
-             
+        this.endoIdsArray = endoDao.getBindedIds(binderId);
+
         LinkedHashMap<String, DeliveryItem> pet4UItemsRowByRow = endoDao.getPet4UItemsRowByRow();
-        LinkedHashMap<String, DeliveryItem> sentItems = endoDao.getSentItems(sendedEndos, pet4UItemsRowByRow);
-        LinkedHashMap<String, DeliveryItem> deliveredIetms = endoDao.getReceivedItems(binderIds, pet4UItemsRowByRow);
+        LinkedHashMap<String, DeliveryItem> sentItems = endoDao.getSentItems(this.endoIdsArray, pet4UItemsRowByRow);
+        LinkedHashMap<String, DeliveryItem> deliveredIetms = endoDao.getReceivedItems(this.receivingEndoIdsArray, pet4UItemsRowByRow);
 
         System.out.println("SENT ITEMS SIZE: " + sentItems.size());
         System.out.println("DELIVERED ITEMS SIZE: " + deliveredIetms.size());
