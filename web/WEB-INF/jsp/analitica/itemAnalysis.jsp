@@ -416,7 +416,7 @@
                                     Double stock = Double.parseDouble(itemSnapshot.getQuantity());
 
                                     String date = itemSnapshot.getDateStamp();
-                                    Date date1 = new SimpleDateFormat("dd-MM-yyyy").parse(date);
+                                    Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(date);
 
                                     String[] weekdays = {"Κυριακη.", "Δευτερα.", "Τρίτη", "Τετάρτη", "Πέμπτη.", "Παρασκεύη.", "Σάββατο."};
                                     int day = date1.getDay();
@@ -429,7 +429,7 @@
 
                                     }
                                     out.println("<td>");
-                                    out.println(date + "<br>" + weekdays[day]);
+                                    out.println(itemSnapshot.getReformatedDateStamp() + "<br>" + weekdays[day]);
                                     out.println("</td>");
 
                                     out.println("<td>");

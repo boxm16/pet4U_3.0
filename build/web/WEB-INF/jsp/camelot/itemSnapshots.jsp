@@ -4,8 +4,6 @@
     Author     : Michail Sitmalidis
 --%>
 
-<%@page import="java.text.SimpleDateFormat"%>
-<%@page import="java.util.Date"%>
 <%@page import="CamelotItemsOfInterest.ItemSnapshot"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -47,10 +45,8 @@
                         Double stock = Double.parseDouble(itemSnapshot.getQuantity());
                         out.println("<tr>");
 
-                        String date = itemSnapshot.getDateStamp();
-                        Date date1 = new SimpleDateFormat("dd-MM-yyyy").parse(date);
                         out.println("<td>");
-                        out.println(date1);
+                        out.println(itemSnapshot.getReformatedDateStamp());
                         out.println("</td>");
 
                         if (itemSnapshot.getQuantity().equals("0") || itemSnapshot.getQuantity().equals("0.000000")) {
