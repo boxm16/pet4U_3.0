@@ -263,27 +263,44 @@
                                     out.println("</td>");
 
                                     if (item.getOrderHorizon() == 0) {
-                                       out.println("<td style='font-size:14px'>");
+                                        out.println("<td style=''background-color:red; text-align: center; font-size:14px'>");
                                     }
                                     if (item.getOrderHorizon() == 1) {
-                                        out.println("<td style='background-color:#F9C8B6; font-size:20px'>");
+                                        out.println("<td style='background-color:#F9C8B6; text-align: center; font-size:20px'>");
                                     }
                                     if (item.getOrderHorizon() == 2) {
-                                        out.println("<td style='background-color:#F1F9B6; font-size:20px'>");
+                                        out.println("<td style='background-color:#F1F9B6; text-align: center; font-size:20px'>");
                                     }
                                     if (item.getOrderHorizon() == 3) {
-                                        out.println("<td style='background-color:#DCFCC9; font-size:20px'>");
+                                        out.println("<td style='background-color:#DCFCC9; text-align: center; font-size:20px'>");
                                     }
                                     if (item.getOrderHorizon() == 4) {
-                                        out.println("<td style='background-color:#D8F8F8; font-size:20px'>");
+                                        out.println("<td style='background-color:#D8F8F8; text-align: center; font-size:20px'>");
                                     }
                                     if (item.getOrderHorizon() == 5) {
-                                        out.println("<td style='background-color:#DCD8F8;  font-size:20px'>");
+                                        out.println("<td style='background-color:#DCD8F8; text-align: center;  font-size:20px'>");
                                     }
                                     out.println("<a href='objectiveSalesDashboard.htm?supplierId=" + supplier.getId() + "&itemCode=" + item.getCode() + "' >" + item.getOrderHorizon() + "</a>");
                                     out.println("</td>");
 
-                                    out.println("<td>");
+                                    if (item.getMinimalStockHorizon() == 0) {
+                                        out.println("<td style=''background-color:red; text-align: center; font-size:14px'>");
+                                    }
+                                    if (item.getMinimalStockHorizon() == 1) {
+                                        out.println("<td style='background-color:#F9C8B6; text-align: center; font-size:20px'>");
+                                    }
+                                    if (item.getMinimalStockHorizon() == 2) {
+                                        out.println("<td style='background-color:#F1F9B6; text-align: center; font-size:20px'>");
+                                    }
+                                    if (item.getMinimalStockHorizon() == 3) {
+                                        out.println("<td style='background-color: F06093; text-align: center; font-size:20px'>");
+                                    }
+                                    if (item.getMinimalStockHorizon() == 4) {
+                                        out.println("<td style='background-color:pink; text-align: center; font-size:20px'>");
+                                    }
+                                    if (item.getMinimalStockHorizon() == 5) {
+                                        out.println("<td style='background-color:red; text-align: center;  font-size:20px'>");
+                                    }
                                     out.println("<a href='objectiveSalesDashboard.htm?supplierId=" + supplier.getId() + "&itemCode=" + item.getCode() + "' >" + item.getMinimalStockHorizon() + "</a>");
                                     out.println("</td>");
 
