@@ -178,6 +178,7 @@
 
                     // iterate LHM using reverse order of keys
                     for (String strKey : alKeys) {
+                        String anchorDate = bindedEndos.get(strKey).getBindingReceivingEndo().getDateString();
 
                         out.println("<tr style='background-color: #ADD8E6'>");
 
@@ -207,6 +208,12 @@
                             out.println("<a href='showDeltioApostolis.htm?id=" + sendigEntosEndry.getValue().getId() + "' target='_blank'>" + sendigEntosEndry.getValue().getId() + "</a>");
                             out.println("</td>");
 
+                            String comparingDate = sendigEntosEndry.getValue().getDateString();
+                            if (anchorDate.equals(comparingDate)) {
+                                out.println("<td>");
+                            } else {
+                                out.println("<td style='background-color:red'>");
+                            }
                             out.println("<td>");
                             out.println(sendigEntosEndry.getValue().getDateString());
                             out.println("</td>");

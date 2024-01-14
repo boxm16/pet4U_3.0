@@ -70,8 +70,6 @@ public class EndoController {
         LinkedHashMap<String, DeliveryItem> sentItems = endoDao.getSentItems(endoIdsArray, pet4UItemsRowByRow);
         LinkedHashMap<String, DeliveryItem> deliveredIetms = endoDao.getReceivedItems(receivingEndoIdsArray, pet4UItemsRowByRow);
 
-        System.out.println("SENT ITEMS SIZE: " + sentItems.size());
-        System.out.println("DELIVERED ITEMS SIZE: " + deliveredIetms.size());
         DeliveryInvoice deliveryInvoice = new DeliveryInvoice();
         for (Map.Entry<String, DeliveryItem> deliveredIetmsEntry : deliveredIetms.entrySet()) {
             DeliveryItem deliveredItem = deliveredIetmsEntry.getValue();
@@ -148,7 +146,7 @@ public class EndoController {
 
         EndoDao endoDao = new EndoDao();
         ArrayList<Endo> endos = endoDao.getEndosOfItem(itemCode, this.endoIdsArray);
-       
+
         modelMap.addAttribute("itemCode", itemCode);
         modelMap.addAttribute("sentItem", itemCode + " : " + sentItemDescription);
         modelMap.addAttribute("endos", endos);
@@ -184,7 +182,9 @@ public class EndoController {
         for (Map.Entry<String, BindedEndos> bindedEndosEndtry : bindedEndos.entrySet()) {
             String bindedEndosId = bindedEndosEndtry.getKey();
             BindedEndos bindedEndoWrapper = bindedEndosEndtry.getValue();
+
             if (receivingEndos.containsKey(bindedEndosId)) {
+
                 bindedEndoWrapper.setBindingReceivingEndoId(bindedEndosId);
                 bindedEndoWrapper.setBindingReceivingEndo(receivingEndos.remove(bindedEndosId));
 

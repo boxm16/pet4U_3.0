@@ -46,8 +46,6 @@ public class BindedEndos {
         this.bindedSendingEndos = bindedSendingEndos;
     }
 
-    
-
     public void addBindedEndo(String id, Endo bindedEndo) {
         this.bindedSendingEndos.put(id, bindedEndo);
     }
