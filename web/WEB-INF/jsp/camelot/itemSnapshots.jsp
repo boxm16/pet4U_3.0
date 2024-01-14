@@ -39,7 +39,9 @@
                 <%
                     ArrayList<CamelotItemSnapshot> itemSnapshots = (ArrayList) request.getAttribute("itemSnapshots");
                     double stockBefore = 0.0;
-                    for (CamelotItemSnapshot itemSnapshot : itemSnapshots) {
+                    for (int x = 0; x < itemSnapshots.size()-1; x++) {
+                        CamelotItemSnapshot itemSnapshot = itemSnapshots.get(x);
+                        stockBefore = Double.parseDouble(itemSnapshots.get(x + 1).getQuantity());
                         Double stock = Double.parseDouble(itemSnapshot.getQuantity());
                         out.println("<tr>");
 
@@ -47,7 +49,11 @@
                         out.println(itemSnapshot.getDateStamp());
                         out.println("</td>");
 
-                        out.println("<td>");
+                        if (itemSnapshot.getQuantity().endsWith("0")) {
+                            out.println("<td style='background-color: #FA87FA'>");
+                        } else {
+                            out.println("<td>");
+                        }
                         out.println(itemSnapshot.getQuantity());
                         out.println("</td>");
 
@@ -56,7 +62,6 @@
                         out.println("</td>");
 
                         out.println("</tr>");
-                        stockBefore = stock;
 
                     }
                 %>
