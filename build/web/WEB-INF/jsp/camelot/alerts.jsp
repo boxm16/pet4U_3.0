@@ -52,7 +52,7 @@
             <th>Pet4u Description</th>
 
             <th>Six Months<br>Sales</th>
-            <th>2 Week<br>Sales</th>
+            <th>2 Weeks<br>Sales</th>
             <th>Pet4u <br>Stock</th>
             <th>Pet4u <br>Minimal <br>Stock</th>
 
