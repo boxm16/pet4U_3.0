@@ -437,6 +437,7 @@ public class Pet4uItemsDao {
                 String quantity = resultSet.getString("item_stock");
                 String state = resultSet.getString("state");
 
+                item.setDateStamp(dateStamp);
                 item.setState(state);
                 item.setQuantity(quantity);
 

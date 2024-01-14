@@ -4,6 +4,7 @@ import BasicModel.AltercodeContainer;
 import BasicModel.Item;
 import CamelotItemsOfInterest.CamelotItemOfInterest;
 import CamelotItemsOfInterest.CamelotItemsOfInterestDao;
+import CamelotItemsOfInterest.ItemSnapshot;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
@@ -216,7 +217,7 @@ public class Pet4uItemsController {
     @RequestMapping(value = "pet4uItemSnapshots")
     public String pet4uItemSnapshots(@RequestParam(name = "code") String code, ModelMap model) {
 
-        LinkedHashMap<String, Item> itemSnapshots = pet4uItemsDao.getItemSnapshots(code);
+        ArrayList<ItemSnapshot> itemSnapshots = pet4uItemsDao.getItemSnapshots(code);
         model.addAttribute("itemSnapshots", itemSnapshots);
         model.addAttribute("code", code);
         return "/pet4uItems/itemSnapshots";
