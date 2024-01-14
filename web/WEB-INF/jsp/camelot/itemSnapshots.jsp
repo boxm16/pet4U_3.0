@@ -4,7 +4,7 @@
     Author     : Michail Sitmalidis
 --%>
 
-<%@page import="CamelotItemsOfInterest.CamelotItemSnapshot"%>
+<%@page import="CamelotItemsOfInterest.ItemSnapshot"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -37,10 +37,10 @@
             <th>Date Stamp</th>
             <th>Quantity</th>
                 <%
-                    ArrayList<CamelotItemSnapshot> itemSnapshots = (ArrayList) request.getAttribute("itemSnapshots");
+                    ArrayList<ItemSnapshot> itemSnapshots = (ArrayList) request.getAttribute("itemSnapshots");
                     double stockBefore = 0.0;
                     for (int x = 0; x < itemSnapshots.size() - 1; x++) {
-                        CamelotItemSnapshot itemSnapshot = itemSnapshots.get(x);
+                        ItemSnapshot itemSnapshot = itemSnapshots.get(x);
                         stockBefore = Double.parseDouble(itemSnapshots.get(x + 1).getQuantity());
                         Double stock = Double.parseDouble(itemSnapshot.getQuantity());
                         out.println("<tr>");
