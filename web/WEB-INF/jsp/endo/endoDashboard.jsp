@@ -200,7 +200,7 @@
                             out.println("<tr style='background-color: #90EE90'>");
 
                             out.println("<td>");
-                            out.println("<a href='showDeltioApostolis.htm?id=" + sendigEntosEndry.getValue().getId() + "'>" + sendigEntosEndry.getValue().getId() + "</a>");
+                            out.println("<a href='showDeltioApostolis.htm?id=" + sendigEntosEndry.getValue().getId() + "' target='_blank'>" + sendigEntosEndry.getValue().getId() + "</a>");
                             out.println("</td>");
 
                             out.println("<td>");
