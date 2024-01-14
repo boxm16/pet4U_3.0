@@ -61,7 +61,6 @@ public class EndoController {
     public String compareEndo(@RequestParam(name = "endoIds") String endoIds,
             @RequestParam(name = "receivingEndoIds") String receivingEndoIds,
             ModelMap modelMap) {
-        
 
         this.endoIdsArray = createItemsIdsArray(endoIds);
         this.receivingEndoIdsArray = createItemsIdsArray(receivingEndoIds);
@@ -117,7 +116,7 @@ public class EndoController {
 
         }
         deliveryInvoice.setItems(deliveredIetms);
-        
+
         modelMap.addAttribute("deliveryInvoice", deliveryInvoice);
         return "endo/endoChecking";
 
@@ -259,20 +258,67 @@ public class EndoController {
 
     @RequestMapping(value = "showbindedEndos", method = RequestMethod.GET)
     public String showbindedEndos(@RequestParam(name = "binderId") String binderId, ModelMap modelMap) {
+  EndoDao endoDao = new EndoDao();
+        ArrayList<String> binderIds = new ArrayList();
 
-        EndoDao endoDao = new EndoDao();
+        binderIds.add(binderId);
+
+       ArrayList<String> sendedEndos=endoDao.getBindedIds(binderId);
+               
+             
         LinkedHashMap<String, DeliveryItem> pet4UItemsRowByRow = endoDao.getPet4UItemsRowByRow();
-        LinkedHashMap<String, DeliveryItem> sentItems = endoDao.getSentItems(endoIdsArray, pet4UItemsRowByRow);
+        LinkedHashMap<String, DeliveryItem> sentItems = endoDao.getSentItems(sendedEndos, pet4UItemsRowByRow);
+        LinkedHashMap<String, DeliveryItem> deliveredIetms = endoDao.getReceivedItems(binderIds, pet4UItemsRowByRow);
 
+        System.out.println("SENT ITEMS SIZE: " + sentItems.size());
+        System.out.println("DELIVERED ITEMS SIZE: " + deliveredIetms.size());
         DeliveryInvoice deliveryInvoice = new DeliveryInvoice();
-        deliveryInvoice.setItems(sentItems);
+        for (Map.Entry<String, DeliveryItem> deliveredIetmsEntry : deliveredIetms.entrySet()) {
+            DeliveryItem deliveredItem = deliveredIetmsEntry.getValue();
+
+            String altercode = deliveredIetmsEntry.getKey();
+
+            DeliveryItem sentItem = sentItems.remove(altercode);
+            Item itemWithDescription = pet4UItemsRowByRow.get(altercode);
+
+            if (itemWithDescription == null) {
+
+                System.out.println("Pet4uItem  not present in the lists from microsoft db: altercode" + altercode);
+
+            } else {
+                if (sentItem == null) {
+                    System.out.println("SENT ITEM IS NULL :" + altercode);
+                    deliveredItem.setDescription(itemWithDescription.getDescription());
+                    deliveredItem.setSentQuantity("0");
+                    deliveredIetms.put(altercode, deliveredItem);
+                } else {
+
+                    deliveredItem.setDescription(itemWithDescription.getDescription());
+                    deliveredItem.setSentQuantity(sentItem.getSentQuantity());
+                    deliveredIetms.put(altercode, deliveredItem);
+                }
+            }
+
+        }
+        if (sentItems.size() > 0) {
+
+            System.out.println("LEFT OVERS: " + sentItems.size());
+            for (Map.Entry<String, DeliveryItem> sentItemsEntry : sentItems.entrySet()) {
+                System.out.println("LEFTO OVER ITEM:" + sentItemsEntry.getKey());
+                String key = sentItemsEntry.getKey();
+                DeliveryItem di = sentItems.get(key);
+
+                Item itemWithDescription = pet4UItemsRowByRow.get(key);
+                di.setDescription(itemWithDescription.getDescription());
+                di.setDeliveredQuantity("0");
+                deliveredIetms.put(key, di);
+            }
+
+        }
+        deliveryInvoice.setItems(deliveredIetms);
 
         modelMap.addAttribute("deliveryInvoice", deliveryInvoice);
-
-        ArrayList<Item> listValues = new ArrayList<Item>(pet4UItemsRowByRow.values());
-        modelMap.addAttribute("pet4UItemsRowByRow", listValues);
-
-        return "endo/endosChecking";
+        return "endo/endoChecking";
 
     }
 

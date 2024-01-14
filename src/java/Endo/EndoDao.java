@@ -745,7 +745,7 @@ public class EndoDao {
             Logger.getLogger(EndoDao.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        return allBindedEndos;
+        return bindedEndos;
     }
 
 }
