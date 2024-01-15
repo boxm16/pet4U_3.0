@@ -109,8 +109,6 @@
                     <hr>
                     <a href="makeBestBeforeStatement.htm?altercode=${item.getCode()}" class="btn btn-danger btn-lg" role="button" aria-disabled="true"><h3>Best Before</h3></a>
                     <hr>
-                    <a href="showItemSales.htm?altercode=${item.getCode()}" class="btn btn-warning btn-lg" role="button" aria-disabled="true"><h3>Show Item Sales</h3></a>
-                    <hr>
                     <a href="itemAnalysis.htm?code=${item.getCode()}" class="btn btn-info btn-lg" role="button" aria-disabled="true" target="_blank"><h3>Show Item Analysis</h3></a>
                     <hr>
                     <a href="getItemForNote.htm?altercode=${item.getCode()}" class="btn btn-outline-primary btn-lg" role="button" aria-disabled="true"><h3>Note</h3></a>
