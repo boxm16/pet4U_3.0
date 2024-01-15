@@ -80,7 +80,7 @@
                         if (pet4uStock < minimalStock * 2) {
                             alarmColor = "yellow";
                         }
-                        if (pet4uStock < twoWeekSales) {
+                        if (pet4uStock < minimalStock) {
                             alarmColor = "#F33A6A";
                         }
 
