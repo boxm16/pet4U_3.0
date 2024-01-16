@@ -107,7 +107,12 @@ public class EndoController {
                 DeliveryItem di = sentItems.get(key);
 
                 Item itemWithDescription = pet4UItemsRowByRow.get(key);
-                di.setDescription(itemWithDescription.getDescription());
+                if (itemWithDescription == null) {
+                     di.setDescription("NO DATA FOR THIS CODE");
+                } else {
+                    di.setDescription(itemWithDescription.getDescription());
+                }
+
                 di.setDeliveredQuantity("0");
                 deliveredIetms.put(key, di);
             }
