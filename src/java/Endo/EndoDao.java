@@ -363,7 +363,14 @@ public class EndoDao {
 
                 } else {
                     DeliveryItem deliveredItem = new DeliveryItem();
-                    deliveredItem.setDescription(pet4UItemsRowByRow.get(itemCode).getDescription());
+                    DeliveryItem di = pet4UItemsRowByRow.get(itemCode);
+                    String description;
+                    if (di == null) {
+                        description = "NO DATA FOR THIS CODE";
+                    } else {
+                        description = di.getDescription();
+                    }
+                    deliveredItem.setDescription(description);
                     deliveredItem.setCode(itemCode);
                     deliveredItem.setSentQuantity(String.valueOf(quantity));
                     sentItems.put(itemCode, deliveredItem);
