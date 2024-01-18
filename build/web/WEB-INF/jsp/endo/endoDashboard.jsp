@@ -74,7 +74,7 @@
                                             || entrySet.getValue().getSender().equals("ΠΕΤΡΟΥΠΟΛΗ")
                                             || entrySet.getValue().getSender().equals("ΜΕΝΙΔΙ")
                                             || entrySet.getValue().getSender().equals("ΚΟΥΚΑΚΙ")) {
-                                        out.println("<tr style=balckground-color:#F3E864 >");
+                                        out.println("<tr style=background-color:#F3E864 >");
                                     }
 
                                     if (entrySet.getValue().getSender().equals("ΑΓ. ΠΑΡΑΣΚΕΥΗ")
@@ -84,7 +84,7 @@
                                             || entrySet.getValue().getSender().equals("ΧΑΛΑΝΔΡΙ")
                                             || entrySet.getValue().getSender().equals("ΑΡΓΥΡΟΥΠΟΛΗ")
                                             || entrySet.getValue().getSender().equals("ΜΙΧΑΛΑΚΟΠΟΥΛΟΥ")) {
-                                         out.println("<tr style=balckground-color:#8FF9A9  >");
+                                         out.println("<tr style=background-color:#8FF9A9  >");
                                     }
 
                                     out.println("<td>");
