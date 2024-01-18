@@ -584,7 +584,7 @@ public class EndoDao {
                 translatedName = "ΔΑΦΝΗ";
                 break;
             case "ΑΧ-ΜΙΧ":
-                translatedName = "ΜΙΧΑΛΑΚΟΠ.";
+                translatedName = "ΜΙΧΑΛΑΚΟΠΟΥΛΟΥ";
                 break;
         }
         return translatedName;

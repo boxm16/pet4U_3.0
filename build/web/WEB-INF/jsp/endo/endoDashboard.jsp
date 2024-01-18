@@ -67,6 +67,25 @@
                                 for (Map.Entry<String, Endo> entrySet : incomingEndos.entrySet()) {
 
                                     out.println("<tr>");
+                                    if (entrySet.getValue().getSender().equals("ΠΕΡΙΣΤΕΡΙ")
+                                            || entrySet.getValue().getSender().equals("Ν. ΙΩΝΙΑ")
+                                            || entrySet.getValue().getSender().equals("ΧΑΛΚΗΔΟΝΑ")
+                                            || entrySet.getValue().getSender().equals("ΚΑΛΛΙΘΕΑ")
+                                            || entrySet.getValue().getSender().equals("ΠΕΤΡΟΥΠΟΛΗ")
+                                            || entrySet.getValue().getSender().equals("ΜΕΝΙΔΙ")
+                                            || entrySet.getValue().getSender().equals("ΚΟΥΚΑΚΙ")) {
+                                        out.println("<tr style=balckground-color:#F3E864 >");
+                                    }
+
+                                    if (entrySet.getValue().getSender().equals("ΑΓ. ΠΑΡΑΣΚΕΥΗ")
+                                            || entrySet.getValue().getSender().equals("ΔΑΦΝΗ")
+                                            || entrySet.getValue().getSender().equals("Π. ΦΑΛΗΡΟ")
+                                            || entrySet.getValue().getSender().equals("ΑΛΙΜΟΣ")
+                                            || entrySet.getValue().getSender().equals("ΧΑΛΑΝΔΡΙ")
+                                            || entrySet.getValue().getSender().equals("ΑΡΓΥΡΟΥΠΟΛΗ")
+                                            || entrySet.getValue().getSender().equals("ΜΙΧΑΛΑΚΟΠΟΥΛΟΥ")) {
+                                         out.println("<tr style=balckground-color:#8FF9A9  >");
+                                    }
 
                                     out.println("<td>");
                                     out.println("<a href='showDeltioApostolis.htm?id=" + entrySet.getValue().getId() + "' target='_blank'>" + entrySet.getValue().getId() + "</a>");
