@@ -115,7 +115,7 @@
 
                                         String receivingEndoNumber = receivingEndoEntry.getValue().getNumber();
                                         if (receivingEndoNumber.contains(shortNumber)) {
-                                            out.println("<input type='checkbox' checked class='endoId' id='" + entrySet.getValue().getId() + "' style='width:58px;height:58px' >");
+                                            out.println("<input type='checkbox' checked class='endoId' id='" + entrySet.getValue().getId() + "' style='width:28px;height:28px' >");
                                         } else {
                                             out.println("<input type='checkbox' class='endoId' id='" + entrySet.getValue().getId() + "' style='width:28px;height:28px' >");
                                         }
