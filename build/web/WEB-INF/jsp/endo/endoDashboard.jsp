@@ -154,7 +154,11 @@
                                     out.println("<tr>");
 
                                     out.println("<td>");
-                                    out.println("<input type='checkbox'class='receivingEndoId' id='" + entrySet.getValue().getId() + "' style='width:28px;height:28px'>");
+                                    if (receivingEndos.size() == 1) {
+                                        out.println("<input type='checkbox' checked class='receivingEndoId' id='" + entrySet.getValue().getId() + "' style='width:28px;height:28px'>");
+                                    } else {
+                                        out.println("<input type='checkbox' class='receivingEndoId' id='" + entrySet.getValue().getId() + "' style='width:28px;height:28px'>");
+                                    }
                                     out.println("</td>");
 
                                     out.println("<td>");
