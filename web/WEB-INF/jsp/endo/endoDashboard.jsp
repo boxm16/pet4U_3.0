@@ -84,7 +84,7 @@
                                             || entrySet.getValue().getSender().equals("ΧΑΛΑΝΔΡΙ")
                                             || entrySet.getValue().getSender().equals("ΑΡΓΥΡΟΥΠΟΛΗ")
                                             || entrySet.getValue().getSender().equals("ΜΙΧΑΛΑΚΟΠΟΥΛΟΥ")) {
-                                         out.println("<tr style='background-color:#FAFAA5 ;'>");
+                                        out.println("<tr style='background-color:#FAFAA5 ;'>");
                                     }
 
                                     out.println("<td>");
@@ -104,7 +104,24 @@
                                     out.println("</td>");
 
                                     out.println("<td>");
-                                    out.println("<input type='checkbox' class='endoId' id='" + entrySet.getValue().getId() + "' style='width:28px;height:28px' >");
+                                    String number = entrySet.getValue().getNumber();
+                                    String shortNumber = number.replaceAll("0", "");
+                                    LinkedHashMap<String, Endo> receivingEndos = (LinkedHashMap) request.getAttribute("receivingEndos");
+                                    if (receivingEndos.size() == 1) {
+                                        Map.Entry<String, Endo> receivingEndoEntry = receivingEndos.entrySet()
+                                                .stream()
+                                                .findFirst()
+                                                .get();
+
+                                        String receivingEndoNumber = receivingEndoEntry.getValue().getNumber();
+                                        if (receivingEndoNumber.contains(shortNumber)) {
+                                            out.println("<input type='checkbox' checked class='endoId' id='" + entrySet.getValue().getId() + "' style='width:58px;height:58px' >");
+                                        } else {
+                                            out.println("<input type='checkbox' class='endoId' id='" + entrySet.getValue().getId() + "' style='width:28px;height:28px' >");
+                                        }
+                                    } else {
+                                        out.println("<input type='checkbox' class='endoId' id='" + entrySet.getValue().getId() + "' style='width:28px;height:28px' >");
+                                    }
                                     out.println("</td>");
 
                                     out.println("</tr>");
