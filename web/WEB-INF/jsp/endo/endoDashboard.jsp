@@ -84,7 +84,7 @@
                                             || entrySet.getValue().getSender().equals("ΧΑΛΑΝΔΡΙ")
                                             || entrySet.getValue().getSender().equals("ΑΡΓΥΡΟΥΠΟΛΗ")
                                             || entrySet.getValue().getSender().equals("ΜΙΧΑΛΑΚΟΠΟΥΛΟΥ")) {
-                                         out.println("<tr style='background-color:#B4CDF9;'>");
+                                         out.println("<tr style='background-color:#FAFAA5 ;'>");
                                     }
 
                                     out.println("<td>");
