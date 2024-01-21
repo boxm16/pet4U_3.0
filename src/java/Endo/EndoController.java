@@ -290,25 +290,28 @@ public class EndoController {
             DeliveryItem sentItem = sentItems.remove(altercode);
             Item itemWithDescription = pet4UItemsRowByRow.get(altercode);
 
-            if (itemWithDescription == null) {
+            if (sentItem == null) {
+                if (itemWithDescription == null) {
 
-                System.out.println("Pet4uItem  not present in the lists from microsoft db: altercode" + altercode);
-
-            } else {
-                if (sentItem == null) {
-                    System.out.println("SENT ITEM IS NULL :" + altercode);
-                    deliveredItem.setDescription(itemWithDescription.getDescription());
-                    deliveredItem.setSentQuantity("0");
-                    deliveredIetms.put(altercode, deliveredItem);
+                    deliveredItem.setDescription("NO DATA FOR THIS CODE");
                 } else {
-
                     deliveredItem.setDescription(itemWithDescription.getDescription());
-                    deliveredItem.setSentQuantity(sentItem.getSentQuantity());
-                    deliveredIetms.put(altercode, deliveredItem);
                 }
-            }
+                deliveredItem.setSentQuantity("0");
+                deliveredIetms.put(altercode, deliveredItem);
+            } else {
 
+                if (itemWithDescription == null) {
+
+                    deliveredItem.setDescription("NO DATA FOR THIS CODE");
+                } else {
+                    deliveredItem.setDescription(itemWithDescription.getDescription());
+                }
+                deliveredItem.setSentQuantity(sentItem.getSentQuantity());
+                deliveredIetms.put(altercode, deliveredItem);
+            }
         }
+
         if (sentItems.size() > 0) {
 
             System.out.println("LEFT OVERS: " + sentItems.size());
@@ -324,10 +327,14 @@ public class EndoController {
             }
 
         }
+
         deliveryInvoice.setItems(deliveredIetms);
 
-        modelMap.addAttribute("binderId", binderId);
-        modelMap.addAttribute("deliveryInvoice", deliveryInvoice);
+        modelMap.addAttribute(
+                "binderId", binderId);
+        modelMap.addAttribute(
+                "deliveryInvoice", deliveryInvoice);
+
         return "endo/bindedEndosDisplay";
 
     }
