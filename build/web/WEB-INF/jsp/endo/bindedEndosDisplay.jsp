@@ -98,7 +98,7 @@
         <hr>
    
     
-      
+        <a href="unbindEndos.htm?binderId=${binderId}">UNBIND ENDOS</a>
 
     </center>
     <!-- Optional JavaScript -->

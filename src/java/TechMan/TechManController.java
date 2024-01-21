@@ -84,7 +84,7 @@ public class TechManController {
         return "techMan/techManDashboard";
     }
 
-    @RequestMapping(value = "/deleteSales_1_2022_DatabaseTable", method = RequestMethod.GET)
+    @RequestMapping(value = "/deleteSales_1_2022_DatabaseTable1", method = RequestMethod.GET)
     public String deleteSales_1_2022_DatabaseTable(ModelMap modelMap) {
         String deleteSales_1_2022_DatabaseTableResult = techManDao.deleteSales_1_2022_DatabaseTable();
 
@@ -101,7 +101,7 @@ public class TechManController {
         return "techMan/techManDashboard";
     }
 
-    @RequestMapping(value = "/deleteSales_2_2022_DatabaseTable", method = RequestMethod.GET)
+    @RequestMapping(value = "/deleteSales_2_2022_DatabaseTable1", method = RequestMethod.GET)
     public String deleteSales_2_2022_DatabaseTable(ModelMap modelMap) {
         String deleteSales_2_2022_DatabaseTableResult = techManDao.deleteSales_2_2022_DatabaseTable();
 
@@ -120,7 +120,7 @@ public class TechManController {
         return "techMan/techManDashboard";
     }
 
-    @RequestMapping(value = "/deleteNotesDatabaseTable", method = RequestMethod.GET)
+    @RequestMapping(value = "/deleteNotesDatabaseTable1", method = RequestMethod.GET)
     public String deleteNotesDatabaseTable(ModelMap modelMap) {
         String notesDatabaseTableResult = techManDao.deleteNotesDatabaseTable();
 
@@ -140,7 +140,7 @@ public class TechManController {
         return "techMan/techManDashboard";
     }
 
-    @RequestMapping(value = "/deleteCamelotItemsOfOurInterestDatabaseTables", method = RequestMethod.GET)
+    @RequestMapping(value = "/deleteCamelotItemsOfOurInterestDatabaseTables1", method = RequestMethod.GET)
     public String deleteCamelotItemsOfOurInterestDatabaseTables(ModelMap modelMap) {
         //  String camelotItemsOfOurInterestTableDeletionResult = techManDao.deleteCamelotItemsOfOurInterestTable();
         String camelotItemsOfOurInterestTableDeletionResult = "";
@@ -161,7 +161,7 @@ public class TechManController {
         return "techMan/techManDashboard";
     }
 
-    @RequestMapping(value = "/deleteWeightCoefficinetDatabaseTable", method = RequestMethod.GET)
+    @RequestMapping(value = "/deleteWeightCoefficinetDatabaseTable1", method = RequestMethod.GET)
     public String deleteWeightCoefficinetDatabaseTable(ModelMap modelMap) {
         String weightCoefficinetTableDeletionResult = techManDao.deleteWeightCoefficinetDatabaseTable();
 
@@ -182,7 +182,7 @@ public class TechManController {
         return "techMan/techManDashboard";
     }
 
-    @RequestMapping(value = "/deleteInventoryDatabaseTable", method = RequestMethod.GET)
+    @RequestMapping(value = "/deleteInventoryDatabaseTable1", method = RequestMethod.GET)
     public String deleteInventoryDatabaseTable(ModelMap modelMap) {
         String inventoryTableDeletionResult = techManDao.deleteInventoryDatabaseTable();
 
@@ -204,7 +204,7 @@ public class TechManController {
         return "techMan/techManDashboard";
     }
 
-    @RequestMapping(value = "/deleteDeliveryDatabaseTables", method = RequestMethod.GET)
+    @RequestMapping(value = "/deleteDeliveryDatabaseTables1", method = RequestMethod.GET)
     public String deleteDeliveryDatabaseTable(ModelMap modelMap) {
         String deliveryTitleTableDeletionResult = techManDao.deleteDeliveryTitleDatabaseTable();
         String deliveryDataTableDeletionResult = techManDao.deleteDeliveryDataDatabaseTable();
@@ -225,7 +225,7 @@ public class TechManController {
         return "techMan/techManDashboard";
     }
 
-    @RequestMapping(value = "/deleteBestBeforeDatabaseTables", method = RequestMethod.GET)
+    @RequestMapping(value = "/deleteBestBeforeDatabaseTables1", method = RequestMethod.GET)
     public String deleteBestBeforeDatabaseTables(ModelMap modelMap) {
         String bestBeforeTableDeletionResult = techManDao.deleteBestBeforeDatabaseTable();
 
@@ -243,7 +243,7 @@ public class TechManController {
         return "techMan/techManDashboard";
     }
 
-    @RequestMapping(value = "/deleteSalesDatabaseTableX", method = RequestMethod.GET)
+    @RequestMapping(value = "/deleteSalesDatabaseTableX1", method = RequestMethod.GET)
     public String deleteSalesDatabaseTableX(ModelMap modelMap) {
         String result = techManDao.deleteInventoryDatabaseTableX();
         result = result + "<br>";
@@ -261,7 +261,7 @@ public class TechManController {
         return "techMan/techManDashboard";
     }
 
-    @RequestMapping(value = "/deleteSuppliersDatabaseTable", method = RequestMethod.GET)
+    @RequestMapping(value = "/deleteSuppliersDatabaseTable1", method = RequestMethod.GET)
     public String deleteSuppliersDatabaseTable(ModelMap modelMap) {
         String suppliersDatabaseTableResult = techManDao.deleteSuppliersDatabaseTable();
 
@@ -279,7 +279,7 @@ public class TechManController {
         return "techMan/techManDashboard";
     }
 
-    @RequestMapping(value = "/deleteStockManagementDatabaseTables", method = RequestMethod.GET)
+    @RequestMapping(value = "/deleteStockManagementDatabaseTables1", method = RequestMethod.GET)
     public String deleteStockManagementDatabaseTables(ModelMap modelMap) {
         String result = techManDao.deleteStockManagementDatabaseTable();
         result = result + "<br>";
@@ -295,7 +295,7 @@ public class TechManController {
         return "techMan/techManDashboard";
     }
 
-    @RequestMapping(value = "/deletePet4uItemStateDatabaseTables", method = RequestMethod.GET)
+    @RequestMapping(value = "/deletePet4uItemStateDatabaseTables1", method = RequestMethod.GET)
     public String deletePet4uItemStateDatabaseTables(ModelMap modelMap) {
         String result = techManDao.deletePet4uItemStateDatabaseTables();
         result = result + "<br>";
@@ -312,7 +312,7 @@ public class TechManController {
         return "techMan/techManDashboard";
     }
 
-    @RequestMapping(value = "/deleteMonthSalesDatabaseTables", method = RequestMethod.GET)
+    @RequestMapping(value = "/deleteMonthSalesDatabaseTables1", method = RequestMethod.GET)
     public String deleteMonthSalesDatabaseTables(ModelMap modelMap) {
         String result = techManDao.deleteMonthSalesDatabaseTables();
         result = result + "<br>";
@@ -329,7 +329,7 @@ public class TechManController {
         return "techMan/techManDashboard";
     }
 
-    @RequestMapping(value = "/deleteOffersDatabaseTables", method = RequestMethod.GET)
+    @RequestMapping(value = "/deleteOffersDatabaseTables1", method = RequestMethod.GET)
     public String deleteOffersDatabaseTables(ModelMap modelMap) {
         String result = techManDao.deleteOffersDatabaseTables();
         result = result + "<br>";
@@ -346,7 +346,7 @@ public class TechManController {
         return "techMan/techManDashboard";
     }
 
-    @RequestMapping(value = "/deleteRoyalDatabaseTables", method = RequestMethod.GET)
+    @RequestMapping(value = "/deleteRoyalDatabaseTables1", method = RequestMethod.GET)
     public String deleteRoyalDatabaseTables(ModelMap modelMap) {
         String result = techManDao.deleteRoyalDatabaseTables();
         result = result + "<br>";
@@ -363,7 +363,7 @@ public class TechManController {
         return "techMan/techManDashboard";
     }
 
-    @RequestMapping(value = "/deletePet4uStockSnapshotDatabaseTables", method = RequestMethod.GET)
+    @RequestMapping(value = "/deletePet4uStockSnapshotDatabaseTables1", method = RequestMethod.GET)
     public String deletePet4uStockSnapshotDatabaseTables(ModelMap modelMap) {
         String result = techManDao.deletePet4uStockSnapshotDatabaseTables();
         result = result + "<br>";
@@ -382,7 +382,7 @@ public class TechManController {
         return "techMan/techManDashboard";
     }
 
-    @RequestMapping(value = "/deleteEndoDatabaseTables", method = RequestMethod.GET)
+    @RequestMapping(value = "/deleteEndoDatabaseTables1", method = RequestMethod.GET)
     public String deleteEndoDatabaseTables(ModelMap modelMap) {
         String result = techManDao.deleteEndoDatabaseTables();
         result = result + "<br>";

@@ -108,7 +108,7 @@ public class EndoController {
 
                 Item itemWithDescription = pet4UItemsRowByRow.get(key);
                 if (itemWithDescription == null) {
-                     di.setDescription("NO DATA FOR THIS CODE");
+                    di.setDescription("NO DATA FOR THIS CODE");
                 } else {
                     di.setDescription(itemWithDescription.getDescription());
                 }
@@ -320,7 +320,8 @@ public class EndoController {
 
         }
         deliveryInvoice.setItems(deliveredIetms);
-
+        
+        modelMap.addAttribute("binderId", binderId);
         modelMap.addAttribute("deliveryInvoice", deliveryInvoice);
         return "endo/bindedEndosDisplay";
 
