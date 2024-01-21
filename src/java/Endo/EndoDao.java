@@ -759,7 +759,7 @@ public class EndoDao {
 
         String query = "DELETE FROM endo_binding WHERE binding_endo_id='" + binderId + "';";
 
-        ResultSet resultSet;
+      
 
         try {
             DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
