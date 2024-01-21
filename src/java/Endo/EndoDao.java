@@ -766,7 +766,7 @@ public class EndoDao {
             Connection connection = databaseConnectionFactory.getMySQLConnection();
             Statement statement = connection.createStatement();
 
-            statement.executeQuery(query);
+            statement.executeUpdate(query);
 
             statement.close();
             connection.close();
