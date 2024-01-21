@@ -327,8 +327,8 @@ public class EndoController {
 
     }
 
-    @RequestMapping(value = "/unbindEndos", method = RequestMethod.POST)
-    public String save(ModelMap modelMap, @ModelAttribute("binderId") String binderId) {
+    @RequestMapping(value = "/unbindEndos", method = RequestMethod.GET)
+    public String unbindEndos(ModelMap modelMap, @ModelAttribute("binderId") String binderId) {
 
         EndoDao endoDao = new EndoDao();
         String result = endoDao.unbindeEndos(binderId);
