@@ -676,7 +676,14 @@ public class EndoDao {
 
                 } else {
                     DeliveryItem deliveredItem = new DeliveryItem();
-                    deliveredItem.setDescription(pet4UItemsRowByRow.get(itemCode).getDescription());
+                    DeliveryItem di = pet4UItemsRowByRow.get(itemCode);
+                    if (di == null) {
+                        deliveredItem.setDescription("NO DATA FOR THIS CODE");
+
+                    } else {
+                        deliveredItem.setDescription(pet4UItemsRowByRow.get(itemCode).getDescription());
+
+                    }
                     deliveredItem.setCode(itemCode);
                     deliveredItem.setDeliveredQuantity(String.valueOf(quantity));
                     sentItems.put(itemCode, deliveredItem);
@@ -758,8 +765,6 @@ public class EndoDao {
     String unbindeEndos(String binderId) {
 
         String query = "DELETE FROM endo_binding WHERE binding_endo_id='" + binderId + "';";
-
-      
 
         try {
             DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
