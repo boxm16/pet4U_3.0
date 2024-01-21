@@ -755,4 +755,28 @@ public class EndoDao {
         return bindedEndos;
     }
 
+    String unbindeEndos(String binderId) {
+
+        String query = "DELETE FROM endo_binding WHERE binding_endo_id='" + binderId + "';";
+
+        ResultSet resultSet;
+
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            Connection connection = databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+
+            statement.executeQuery(query);
+
+            statement.close();
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EndoDao.class.getName()).log(Level.SEVERE, null, ex);
+            return ex.getMessage();
+        }
+
+        return "UNBINDED";
+    }
+
 }

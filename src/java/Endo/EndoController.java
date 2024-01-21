@@ -320,11 +320,20 @@ public class EndoController {
 
         }
         deliveryInvoice.setItems(deliveredIetms);
-        
+
         modelMap.addAttribute("binderId", binderId);
         modelMap.addAttribute("deliveryInvoice", deliveryInvoice);
         return "endo/bindedEndosDisplay";
 
+    }
+
+    @RequestMapping(value = "/unbindeEndos", method = RequestMethod.POST)
+    public String save(ModelMap modelMap, @ModelAttribute("binderId") String binderId) {
+
+        EndoDao endoDao = new EndoDao();
+        String result = endoDao.unbindeEndos(binderId);
+
+        return "redirect:endoDashboard.htm";
     }
 
 }
