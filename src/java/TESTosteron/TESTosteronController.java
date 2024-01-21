@@ -50,6 +50,7 @@ public class TESTosteronController {
                     + pet4uAllItemsEntry.getValue().getPosition());
 
         }
+        System.out.println("TEST COMPLETED: RESULT SEE ABOVE");
         return "testosteron/testResult";
     }
 }
