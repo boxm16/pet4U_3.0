@@ -100,7 +100,7 @@
                                     out.println("</td>");
 
                                     out.println("<td style='font-weight: bold;'>");
-                                    out.println(entrySet.getValue().getNumberWithoutLeadingZeros());
+                                    out.println(entrySet.getValue().getNumber());
                                     out.println("</td>");
 
                                     out.println("<td>");
