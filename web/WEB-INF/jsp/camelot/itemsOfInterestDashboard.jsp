@@ -96,7 +96,7 @@
                     }
 
                     if ((camelotItemOfInterest.getCamelotStock() == 0 || camelotFreeStock < CamelotMinimalStock) && pet4uStock < twoWeekSales) {
-                        alarmColor = "brown";
+                        alarmColor = "#E1C16E";
                     }
                     out.println("<tr style='background-color: " + alarmColor + "'>");
                     out.println("<td>");
