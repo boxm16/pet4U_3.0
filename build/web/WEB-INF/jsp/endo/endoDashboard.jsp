@@ -104,7 +104,7 @@
                                     out.println("</td>");
 
                                     out.println("<td>");
-                                    String number = entrySet.getValue().getNumber();
+                                    String number = entrySet.getValue().getNumberWithoutLeadingZeros();
                                     String shortNumber = number.replaceAll("0", "");
                                     LinkedHashMap<String, Endo> receivingEndos = (LinkedHashMap) request.getAttribute("receivingEndos");
                                     if (receivingEndos.size() == 1) {

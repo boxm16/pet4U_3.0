@@ -102,4 +102,25 @@ public class Endo {
         this.number = number;
     }
 
+    public String getNumberWithoutLeadingZeros() {
+
+        // Count leading zeros
+        // Initially setting loop counter to 0
+        int i = 0;
+        while (i < this.number.length() && this.number.charAt(i) == '0') {
+            i++;
+        }
+
+        // Converting string into StringBuffer object
+        // as strings are immutable
+        StringBuffer sb = new StringBuffer(this.number);
+
+        // The StringBuffer replace function removes
+        // i characters from given index (0 here)
+        sb.replace(0, i, "");
+
+        // Returning string after removing zeros
+        return sb.toString();
+    }
+
 }
