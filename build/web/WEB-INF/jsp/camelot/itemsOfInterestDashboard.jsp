@@ -91,12 +91,12 @@
                         alarmColor = "red";
                     }
 
-                    if (camelotFreeStock < CamelotMinimalStock &&pet4uStock<twoWeekSales) {
-                        alarmColor = "brown";
-                    }
-
                     if (camelotItemOfInterest.getCamelotStock() == 0 || camelotItemOfInterest.getCamelotStock() < 0) {
                         alarmColor = "#2554C7";
+                    }
+
+                    if ((camelotItemOfInterest.getCamelotStock() == 0 || camelotFreeStock < CamelotMinimalStock) && pet4uStock < twoWeekSales) {
+                        alarmColor = "brown";
                     }
                     out.println("<tr style='background-color: " + alarmColor + "'>");
                     out.println("<td>");
