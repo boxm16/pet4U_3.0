@@ -66,25 +66,12 @@ public class Scheduler {
                             pet4uItemsController.updateItemsState();
 
                             System.out.println("Going For Pet4U Total Stock Snapshοt Insertion");
-                            StockAnalysisController stockAnalysisController=new StockAnalysisController();
+                            StockAnalysisController stockAnalysisController = new StockAnalysisController();
                             stockAnalysisController.addStockSnapshot();
 
                             StaticsDispatcher.setLastCamelotSnapshotDate(nowDate.toString());
                         }
 
-                    }
-                    if (hour > 7 && hour < 20) {
-                        //time for upload
-                        System.out.println("Amazon upload has been stopped, because amazon server has been changed");
-                        //first create excelDataFile from DB
-                        /*
-                        ExcelController excelController = new ExcelController();
-                        excelController.createExcelFileFromDatabaseData();
-                        // Now upload it on amazon
-
-                        AmazonServerUploader amazonServerUploader = new AmazonServerUploader();
-                        amazonServerUploader.uploadExcelFile();
-                         */
                     }
                 }
             }
