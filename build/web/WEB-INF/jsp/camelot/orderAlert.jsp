@@ -92,7 +92,7 @@
                             if ((camelotItemOfInterest.getCamelotStock() == 0 || camelotFreeStock < CamelotMinimalStock) && pet4uStock < 1) {
                                 alarmColor = "brown";
                             } else if ((camelotItemOfInterest.getCamelotStock() == 0 || camelotFreeStock < CamelotMinimalStock) && pet4uStock < twoWeekSales) {
-                                alarmColor = "#E1C16E";
+                                alarmColor = "#CD7F32";
                             } else {
                                 // alarmColor = "#2554C7";
                                 continue;
