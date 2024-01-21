@@ -77,6 +77,9 @@
                     double camelotFreeStock = camelotItemOfInterest.getCamelotStock() - camelotItemOfInterest.getCamelotBinded();
                     Double twoWeekSales = camelotItemOfInterest.getTotalSalesInPieces() / 13.0357;
                     if (camelotFreeStock < CamelotMinimalStock || pet4uStock < minimalStock * 2) {
+                        if (camelotItemOfInterest.getMinimalStock() == -989898) {
+                            continue;
+                        }
                         if (pet4uStock < minimalStock * 2) {
                             alarmColor = "yellow";
                         }
