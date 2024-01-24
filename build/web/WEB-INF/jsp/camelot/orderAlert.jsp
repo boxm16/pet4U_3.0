@@ -87,14 +87,14 @@
                             alarmColor = "#F33A6A";
                         }
 
-                        if (camelotFreeStock < CamelotMinimalStock) {
+                        if (camelotFreeStock < CamelotMinimalStock&&pet4uStock<twoWeekSales) {
                             alarmColor = "red";
                         }
 
-                        if (camelotItemOfInterest.getCamelotStock() == 0 || camelotItemOfInterest.getCamelotStock() < 0) {
-                            if ((camelotItemOfInterest.getCamelotStock() == 0 || camelotFreeStock < CamelotMinimalStock) && pet4uStock < 1) {
+                        if (camelotItemOfInterest.getCamelotStock()  < 1) {
+                            if ((camelotItemOfInterest.getCamelotStock() <1 || camelotFreeStock < CamelotMinimalStock) && pet4uStock < 1) {
                                 alarmColor = "brown";
-                            } else if ((camelotItemOfInterest.getCamelotStock() == 0 || camelotFreeStock < CamelotMinimalStock) && pet4uStock < twoWeekSales) {
+                            } else if ((camelotItemOfInterest.getCamelotStock() < 1 || camelotFreeStock < CamelotMinimalStock) && pet4uStock < twoWeekSales) {
                                 alarmColor = "#CD7F32";
                             } else {
                                 // alarmColor = "#2554C7";
