@@ -26,7 +26,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Endo Dashboard</title>
+        <title>ΕΝΔΟ ΠΑΡΑΛΑΒΕΣ</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -53,9 +53,11 @@
     <body>
     <center>
         <a href="index.htm"><h3>INDEX</h3></a>
-        <a href="endoParalaves.htm"><h3>Go For Endo ΠΑΡΑΛΑΒΕΣ</h3></a>
+        <a href="endoDashboard.htm"><h3>Go Endo Dashboard</h3></a>
         <hr>
-        <!--  <a href="deltioApostolis.htm"><h1>Δελτιο Αποστολης</h1></a>  -->
+        ${proEndoBinder.endoParalavis.number}
+
+        <hr>    <hr>    <hr>
         <table>
             <tr>
 
@@ -73,8 +75,7 @@
                             </tr>
 
 
-                            <%
-                                LinkedHashMap<String, EndoApostolis> incomingEndos = (LinkedHashMap) request.getAttribute("incomingEndos");
+                            <%                                LinkedHashMap<String, EndoApostolis> incomingEndos = (LinkedHashMap) request.getAttribute("incomingEndos");
                                 for (Map.Entry<String, EndoApostolis> entrySet : incomingEndos.entrySet()) {
 
                                     out.println("<tr>");

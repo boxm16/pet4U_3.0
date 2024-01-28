@@ -44,6 +44,23 @@ public class EndoControllerX {
         modelMap.addAttribute("incomingEndos", endoApostoliss);
         modelMap.addAttribute("receivingEndos", endoParalaviss);
 
+        //-----------------------------------------
+        if (endoParalaviss.size() == 1) {
+            EndoBinder proEndoBinder = new EndoBinder();
+
+            Map.Entry<String, EndoParalavis> entry = endoParalaviss.entrySet().stream().findFirst().get();
+            String key = entry.getKey();
+            EndoParalavis endoParalavis = entry.getValue();
+            proEndoBinder.setEndoParalavis(endoParalavis);
+            String endoParalavisNumber = endoParalavis.getNumber();
+            for (Map.Entry<String, EndoApostolis> endoApostolissEntry : endoApostoliss.entrySet()) {
+                if (endoParalavisNumber.contains(endoApostolissEntry.getValue().getShortNumber())) {
+                    proEndoBinder.addEndoApostolis(endoApostolissEntry.getValue().getId(), endoApostolissEntry.getValue());
+                }
+            }
+            modelMap.addAttribute("proEndoBinder", proEndoBinder);
+        }
+
         return "endo/endoParalaves";
     }
 
