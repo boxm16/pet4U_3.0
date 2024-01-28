@@ -1,7 +1,9 @@
 package Endo;
 
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,9 +20,11 @@ public class EndoControllerX {
         LinkedHashMap<String, EndoApostolis> endoApostoliss = endoDaoX.getLastIncomingEndoApostoliss(7);
         LinkedHashMap<String, EndoParalavis> endoParalaviss = endoDaoX.getLastEndoParalaviss(7);
 
-        for (Map.Entry<String, EndoParalavis> endoParalavissEntry : endoParalaviss.entrySet()) {
+        Iterator<Entry<String, EndoParalavis>> endoParalavissIterator = endoParalaviss.entrySet().iterator();
 
-            String endoParalavisId = endoParalavissEntry.getKey();
+        while (endoParalavissIterator.hasNext()) {
+            Entry<String, EndoParalavis> endoParalavisEntry = endoParalavissIterator.next();
+            String endoParalavisId = endoParalavisEntry.getKey();
             if (allEndoBinders.containsKey(endoParalavisId)) {
                 endoParalaviss.remove(endoParalavisId);
                 EndoBinder endoBinder = allEndoBinders.get(endoParalavisId);
