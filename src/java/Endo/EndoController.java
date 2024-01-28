@@ -212,6 +212,9 @@ public class EndoController {
         }
 
         modelMap.addAttribute("incomingEndos", incomingEndos);
+        if (receivingEndos.containsKey("359761")) {
+            receivingEndos.remove("359761");
+        }
         modelMap.addAttribute("receivingEndos", receivingEndos);
         modelMap.addAttribute("bindedEndos", filteredBinder);
 
