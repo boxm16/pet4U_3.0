@@ -43,6 +43,7 @@
     <body>
     <center>
         <a href="index.htm"><h3>INDEX</h3></a>
+           <a href="endoParalaves.htm"><h3>Go For Endo ΠΑΡΑΛΑΒΕΣ</h3></a>
         <hr>
         <!--  <a href="deltioApostolis.htm"><h1>Δελτιο Αποστολης</h1></a>  -->
         <table>
