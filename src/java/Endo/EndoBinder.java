@@ -24,6 +24,7 @@ public class EndoBinder {
 
     public EndoBinder() {
         this.endoApostoliss = new LinkedHashMap<>();
+        totalSentItems=new LinkedHashMap<>();
     }
 
     public EndoParalavis getEndoParalavis() {

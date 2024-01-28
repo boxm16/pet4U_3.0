@@ -169,7 +169,7 @@ public class EndoDaoX {
         return endoInvoices;
     }
 
-    public EndoBinder fillAndEndoBinder(EndoBinder proEndoBinder) {
+    public EndoBinder fillEndoBinder(EndoBinder proEndoBinder) {
         String sqlParalavis = "SELECT  [DOCID], [ABBREVIATION], [QUANTITY], [PRICEBC] FROM [petworld].[dbo].[WH_ENDP] WHERE [DOCID]='" + proEndoBinder.getEndoParalavis().getId() + "' ;";
         Connection connection;
         Statement statement;
