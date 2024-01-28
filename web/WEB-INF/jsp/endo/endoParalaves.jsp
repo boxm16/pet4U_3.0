@@ -95,7 +95,7 @@
 
                     out.println("</tr>");
 
-                    LinkedHashMap<String, EndoApostolis> endoApostoliss = proEndoBinder.getEndosApostolis();
+                    LinkedHashMap<String, EndoApostolis> endoApostoliss = proEndoBinder.getEndoApostoliss();
                     for (Map.Entry<String, EndoApostolis> endoApostolisEntry : endoApostoliss.entrySet()) {
                         out.println("<tr style='background-color: #90EE90'>");
 
@@ -124,7 +124,7 @@
                     out.println("</tr>");
 
                     out.println("<tr>");
-                    if (proEndoBinder.binderIsOk()) {
+                    if (proEndoBinder.isBinderOk()) {
                         out.println("<td colspan='5' >");
                         out.println("<center><a href='saveEndoBinder.htm?binderId=" + endoParalavis.getId() + "' class='btn btn-primary' style='font-size:30px' target='_blank'>BIND ENDOS</a></center>");
                         out.println("</td>");

@@ -169,7 +169,7 @@ public class EndoDaoX {
         return endoInvoices;
     }
 
-    public EndoBinder fillAndCheckEndoBinder(EndoBinder proEndoBinder) {
+    public EndoBinder fillAndEndoBinder(EndoBinder proEndoBinder) {
         String sqlParalavis = "SELECT  [DOCID], [ABBREVIATION], [QUANTITY], [PRICEBC] FROM [petworld].[dbo].[WH_ENDP] WHERE [DOCID]='" + proEndoBinder.getEndoParalavis().getId() + "' ;";
         Connection connection;
         Statement statement;
@@ -198,7 +198,7 @@ public class EndoDaoX {
             Logger.getLogger(EndoDao.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        LinkedHashMap<String, EndoApostolis> endosApostolis = proEndoBinder.getEndosApostolis();
+        LinkedHashMap<String, EndoApostolis> endosApostolis = proEndoBinder.getEndoApostoliss();
         ArrayList endoApostolissIds = new ArrayList(endosApostolis.keySet());
 
         StringBuilder queryBuilderInitialPart = new StringBuilder("SELECT  [DOCID], [ABBREVIATION], [QUANTITY],  FROM [petworld].[dbo].[WH_ENDA] WHERE ");
@@ -224,6 +224,8 @@ public class EndoDaoX {
                 }
             }
 
+            proEndoBinder.setTotalSentItems(totalSentItems);
+            
             resultSet.close();
             statement.close();
             connection.close();

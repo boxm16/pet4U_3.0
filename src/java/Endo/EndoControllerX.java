@@ -34,7 +34,7 @@ public class EndoControllerX {
             if (allEndoBinders.containsKey(endoParalavisId)) {
                 endoParalavissIterator.remove();
                 EndoBinder endoBinder = allEndoBinders.get(endoParalavisId);
-                LinkedHashMap<String, EndoApostolis> enAps = endoBinder.getEndosApostolis();
+                LinkedHashMap<String, EndoApostolis> enAps = endoBinder.getEndoApostoliss();
                 for (Map.Entry<String, EndoApostolis> enApEntry : enAps.entrySet()) {
                     if (endoApostoliss.containsKey(enApEntry.getKey())) {
                         endoApostoliss.remove(enApEntry.getKey());
@@ -60,7 +60,8 @@ public class EndoControllerX {
                     this.proEndoBinder.addEndoApostolis(endoApostolissEntry.getValue().getId(), endoApostolissEntry.getValue());
                 }
             }
-            this.proEndoBinder = endoDaoX.fillAndCheckEndoBinder(this.proEndoBinder);
+            this.proEndoBinder = endoDaoX.fillAndEndoBinder(this.proEndoBinder);
+            this.proEndoBinder.checkTotals();
             modelMap.addAttribute("proEndoBinder", this.proEndoBinder);
         }
 

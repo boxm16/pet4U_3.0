@@ -5,7 +5,9 @@
  */
 package Endo;
 
+import BasicModel.Item;
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  *
@@ -15,10 +17,13 @@ public class EndoBinder {
 
     private EndoParalavis endoParalavis;
 
-    private LinkedHashMap<String, EndoApostolis> endosApostolis;
+    private LinkedHashMap<String, EndoApostolis> endoApostoliss;
+    private LinkedHashMap<String, Double> totalSentItems;
+
+    private boolean binderOk;
 
     public EndoBinder() {
-        this.endosApostolis = new LinkedHashMap<>();
+        this.endoApostoliss = new LinkedHashMap<>();
     }
 
     public EndoParalavis getEndoParalavis() {
@@ -29,24 +34,57 @@ public class EndoBinder {
         this.endoParalavis = endoParalavis;
     }
 
-    public LinkedHashMap<String, EndoApostolis> getEndosApostolis() {
-        return endosApostolis;
+    public LinkedHashMap<String, EndoApostolis> getEndoApostoliss() {
+        return endoApostoliss;
     }
 
-    public void setEndosApostolis(LinkedHashMap<String, EndoApostolis> endosApostolis) {
-        this.endosApostolis = endosApostolis;
+    public void setEndosApostolis(LinkedHashMap<String, EndoApostolis> endoApostoliss) {
+        this.endoApostoliss = endoApostoliss;
     }
 
     void addEndoApostolis(String endoApostolisId, EndoApostolis endoApostolis) {
-        this.endosApostolis.put(endoApostolisId, endoApostolis);
+        this.endoApostoliss.put(endoApostolisId, endoApostolis);
     }
 
-    public void check() {
+    public LinkedHashMap<String, Double> getTotalSentItems() {
+        return totalSentItems;
     }
 
-    public boolean binderIsOk() {
+    public void setTotalSentItems(LinkedHashMap<String, Double> totalSentItems) {
+        this.totalSentItems = totalSentItems;
+    }
 
-        return false;
+    public boolean isBinderOk() {
+        return binderOk;
+    }
+
+    public void setBinderOk(boolean binderOk) {
+        this.binderOk = binderOk;
+    }
+
+    public void checkTotals() {
+
+        LinkedHashMap<String, Item> deliveredItems = this.endoParalavis.getItems();
+
+        if (deliveredItems.size() != this.totalSentItems.size()) {
+            this.binderOk = false;
+            return;
+        }
+        for (Map.Entry<String, Item> deliveredItemsEntry : deliveredItems.entrySet()) {
+
+            if (totalSentItems.containsKey(deliveredItemsEntry.getKey())) {
+                Double deliveredQuantity = Double.valueOf(deliveredItemsEntry.getValue().getQuantity());
+                if (deliveredQuantity != totalSentItems.get(deliveredItemsEntry.getKey())) {
+                    this.binderOk = false;
+                    return;
+                }
+            } else {
+
+                this.binderOk = false;
+                return;
+            }
+        }
+        this.binderOk = true;
     }
 
 }
