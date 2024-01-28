@@ -135,6 +135,12 @@
                             out.println("</td>");
                         }
                         out.println("</tr>");
+                    } else {
+                        out.println("<tr>");
+                        out.println("<td colspan='5' >");
+                        out.println("<center>NO SUGGESTION FOR CHECKING AND BINDING</center>");
+                        out.println("</td>");
+                        out.println("</tr>");
                     }
                 %>
             </tbody>
