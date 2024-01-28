@@ -55,7 +55,79 @@
         <a href="index.htm"><h3>INDEX</h3></a>
         <a href="endoDashboard.htm"><h3>Go Endo Dashboard</h3></a>
         <hr>
-        ${proEndoBinder.endoParalavis.number}
+        <table>
+            <thead>
+                <tr>
+                    <th>A/A</th>
+                    <th>Date</th>
+                    <th>Creator</th>
+                    <th>Number</th>
+                </tr>
+            </thead>
+            <tbody>
+
+
+
+
+
+                <%
+                    EndoBinder proEndoBinder = (EndoBinder) request.getAttribute("proEndoBinder");
+                    EndoParalavis endoParalavis = proEndoBinder.getEndoParalavis();
+                    String anchorDate = endoParalavis.getDateString();
+
+                    out.println("<tr style='background-color: #ADD8E6'>");
+
+                    out.println("<td>");
+                    out.println("<a href='showDeltioParalavis.htm?id=" + endoParalavis.getId() + "' target='_blank'>" + endoParalavis.getId() + "</a>");
+                    out.println("</td>");
+
+                    out.println("<td>");
+                    out.println(endoParalavis.getDateString());
+                    out.println("</td>");
+
+                    out.println("<td>");
+                    out.println("ΒΑΡΙΜΠΟΜΠΗ");
+                    out.println("</td>");
+
+                    out.println("<td>");
+                    out.println(endoParalavis.getNumber());
+                    out.println("</td>");
+
+                    out.println("</tr>");
+
+                    LinkedHashMap<String, EndoApostolis> endoApostoliss = proEndoBinder.getEndosApostolis();
+                    for (Map.Entry<String, EndoApostolis> sendigEntosEndry : endoApostoliss.entrySet()) {
+                        out.println("<tr style='background-color: #90EE90'>");
+
+                        out.println("<td>");
+                        out.println("<a href='showDeltioApostolis.htm?id=" + sendigEntosEndry.getValue().getId() + "' target='_blank'>" + sendigEntosEndry.getValue().getId() + "</a>");
+                        out.println("</td>");
+
+                        String comparingDate = sendigEntosEndry.getValue().getDateString();
+                        if (anchorDate.equals(comparingDate)) {
+                            out.println("<td>");
+                        } else {
+                            out.println("<td style='background-color:red'>");
+                        }
+                        out.println(sendigEntosEndry.getValue().getDateString());
+                        out.println("</td>");
+
+                        out.println("<td>");
+                        out.println(sendigEntosEndry.getValue().getSender());
+                        out.println("</td>");
+
+                        out.println("<td>");
+                        out.println(sendigEntosEndry.getValue().getNumber());
+                        out.println("</td>");
+
+                        out.println("</tr>");
+
+                    }
+
+                    out.println("</tr>");
+                %>
+            </tbody>
+        </table>
 
         <hr>    <hr>    <hr>
         <table>
