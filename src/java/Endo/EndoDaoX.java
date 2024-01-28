@@ -201,7 +201,7 @@ public class EndoDaoX {
         LinkedHashMap<String, EndoApostolis> endosApostolis = proEndoBinder.getEndoApostoliss();
         ArrayList endoApostolissIds = new ArrayList(endosApostolis.keySet());
 
-        StringBuilder queryBuilderInitialPart = new StringBuilder("SELECT  [DOCID], [ABBREVIATION], [QUANTITY],  FROM [petworld].[dbo].[WH_ENDA] WHERE ");
+        StringBuilder queryBuilderInitialPart = new StringBuilder("SELECT  [DOCID], [ABBREVIATION], [QUANTITY]  FROM [petworld].[dbo].[WH_ENDA] WHERE ");
         StringBuilder queryBuilderIdsPart = buildStringFromArrayList(endoApostolissIds);
         StringBuilder sqlApostolis = queryBuilderInitialPart.append(" [DOCID] IN  ").append(queryBuilderIdsPart);
         LinkedHashMap<String, Double> totalSentItems = new LinkedHashMap<>();
