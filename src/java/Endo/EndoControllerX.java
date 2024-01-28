@@ -60,7 +60,7 @@ public class EndoControllerX {
                     this.proEndoBinder.addEndoApostolis(endoApostolissEntry.getValue().getId(), endoApostolissEntry.getValue());
                 }
             }
-            this.proEndoBinder = endoDaoX.fillAndEndoBinder(this.proEndoBinder);
+            this.proEndoBinder = endoDaoX.fillEndoBinder(this.proEndoBinder);
             this.proEndoBinder.checkTotals();
             modelMap.addAttribute("proEndoBinder", this.proEndoBinder);
         }
