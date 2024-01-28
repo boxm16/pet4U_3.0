@@ -25,6 +25,10 @@ public class EndoControllerX {
         while (endoParalavissIterator.hasNext()) {
             Entry<String, EndoParalavis> endoParalavisEntry = endoParalavissIterator.next();
             String endoParalavisId = endoParalavisEntry.getKey();
+            if (endoParalavisId.equals("359761")) {
+                continue;
+            }
+
             if (allEndoBinders.containsKey(endoParalavisId)) {
                 endoParalavissIterator.remove();
                 EndoBinder endoBinder = allEndoBinders.get(endoParalavisId);
