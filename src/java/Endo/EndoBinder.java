@@ -42,7 +42,7 @@ public class EndoBinder {
     }
 
     public boolean binderIsOk() {
-        return true;
+        return false;
     }
 
 }
