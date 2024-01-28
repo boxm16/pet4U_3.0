@@ -13,6 +13,7 @@ public class EndoControllerX {
     public String endoParalaves(ModelMap modelMap) {
      EndoDaoX endoDaoX=new EndoDaoX();
         LinkedHashMap<String, EndoBinder> allEndoBinders = endoDaoX.getAllEndoBinders();
+        System.out.println("ALL ENDO BINDERS SIZE: "+allEndoBinders.size());
         return "endo/endoParalaves";
     }
 
