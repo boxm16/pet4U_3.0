@@ -711,6 +711,9 @@ public class EndoDao {
 
             for (String endoId : endoIdsArray) {
 
+                if (receivingEndoId.isEmpty()) {
+                    endoId = "-" + receivingEndoId;
+                }
                 itemInsertStatement.setString(1, endoId);
                 itemInsertStatement.setString(2, receivingEndoId);
 
