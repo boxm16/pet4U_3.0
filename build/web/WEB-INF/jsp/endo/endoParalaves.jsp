@@ -125,11 +125,11 @@
 
                     out.println("<tr>");
                     if (proEndoBinder.binderIsOk()) {
-                        out.println("<td>");
-                        out.println("<center><a href='showbindedEndos.htm?binderId=" + endoParalavis.getId() + "' class='btn btn-primary' style='font-size:30px' target='_blank'>ΣΥΓΚΡΙΣΗ</a></center>");
+                        out.println("<td colspan='5' >");
+                        out.println("<center><a href='saveEndoBinder.htm?binderId=" + endoParalavis.getId() + "' class='btn btn-primary' style='font-size:30px' target='_blank'>BIND ENDOS</a></center>");
                         out.println("</td>");
                     } else {
-                        out.println("<td colspan='5' style='background-color: red'>");
+                        out.println("<td style='background-color: red'>");
                         out.println("<center>SOMETHING WRONG</center>");
                         out.println("</td>");
                     }
