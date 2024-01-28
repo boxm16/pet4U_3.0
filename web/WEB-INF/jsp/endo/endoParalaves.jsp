@@ -5,6 +5,7 @@
 --%>
 
 
+<%@page import="Endo.EndoBinder"%>
 <%@page import="Endo.EndoParalavis"%>
 <%@page import="Endo.EndoApostolis"%>
 <%-- 
@@ -219,7 +220,7 @@
                 </tr>
             </thead>
             <tbody>
-                <%     LinkedHashMap<String, BindedEndos> bindedEndos = (LinkedHashMap) request.getAttribute("bindedEndos");
+                <%     LinkedHashMap<String, EndoBinder> bindedEndos = (LinkedHashMap) request.getAttribute("bindedEndos");
 
                     List<String> alKeys = new ArrayList<String>(bindedEndos.keySet());
 
@@ -228,7 +229,7 @@
 
                     // iterate LHM using reverse order of keys
                     for (String strKey : alKeys) {
-                        String anchorDate = bindedEndos.get(strKey).getBindingReceivingEndo().getDateString();
+                        String anchorDate = bindedEndos.get(strKey).getEndoParalavis().getDateString();
 
                         out.println("<tr style='background-color: #ADD8E6'>");
 
@@ -237,7 +238,7 @@
                         out.println("</td>");
 
                         out.println("<td>");
-                        out.println(bindedEndos.get(strKey).getBindingReceivingEndo().getDateString());
+                        out.println(bindedEndos.get(strKey).getEndoParalavis().getDateString());
                         out.println("</td>");
 
                         out.println("<td>");
@@ -245,13 +246,13 @@
                         out.println("</td>");
 
                         out.println("<td>");
-                        out.println(bindedEndos.get(strKey).getBindingReceivingEndo().getNumber());
+                        out.println(bindedEndos.get(strKey).getEndoParalavis().getNumber());
                         out.println("</td>");
 
                         out.println("</tr>");
 
-                        LinkedHashMap<String, Endo> sendingEndos = bindedEndos.get(strKey).getBindedSendingEndos();
-                        for (Map.Entry<String, Endo> sendigEntosEndry : sendingEndos.entrySet()) {
+                        LinkedHashMap<String, EndoApostolis> sendingEndos = bindedEndos.get(strKey).getEndosApostolis();
+                        for (Map.Entry<String, EndoApostolis> sendigEntosEndry : sendingEndos.entrySet()) {
                             out.println("<tr style='background-color: #90EE90'>");
 
                             out.println("<td>");

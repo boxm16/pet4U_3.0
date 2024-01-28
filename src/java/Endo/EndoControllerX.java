@@ -42,8 +42,8 @@ public class EndoControllerX {
         modelMap.addAttribute("incomingEndos", endoApostoliss);
         modelMap.addAttribute("receivingEndos", endoParalaviss);
 
-        LinkedHashMap<String, BindedEndos> filteredBinder = new LinkedHashMap();
-        modelMap.addAttribute("bindedEndos", filteredBinder);
+      
+        modelMap.addAttribute("bindedEndos", allEndoBinders);
         return "endo/endoParalaves";
     }
 
