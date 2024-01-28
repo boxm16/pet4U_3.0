@@ -22,6 +22,10 @@ public class EndoParalavis {
 
     private LinkedHashMap<String, Item> items;
 
+    public EndoParalavis() {
+        this.items = new LinkedHashMap<>();
+    }
+
     public String getId() {
         return id;
     }
@@ -61,7 +65,5 @@ public class EndoParalavis {
     public void setItems(LinkedHashMap<String, Item> items) {
         this.items = items;
     }
-    
-    
-    
+
 }
