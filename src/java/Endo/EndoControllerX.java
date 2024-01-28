@@ -68,4 +68,11 @@ public class EndoControllerX {
         return "endo/endoParalaves";
     }
 
+    @RequestMapping(value = "saveEndoBinder", method = RequestMethod.GET)
+    public String saveEndoBinder(ModelMap modelMap) {
+        EndoDaoX endoDaoX = new EndoDaoX();
+        String result = endoDaoX.saveBinder(this.proEndoBinder);
+        return "redirect:endoParalaves.htm";
+    }
+
 }

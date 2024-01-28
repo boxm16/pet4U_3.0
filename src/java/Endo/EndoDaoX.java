@@ -8,12 +8,14 @@ package Endo;
 import BasicModel.Item;
 import Service.DatabaseConnectionFactory;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.stereotype.Repository;
@@ -225,7 +227,7 @@ public class EndoDaoX {
             }
 
             proEndoBinder.setTotalSentItems(totalSentItems);
-            
+
             resultSet.close();
             statement.close();
             connection.close();
@@ -307,5 +309,31 @@ public class EndoDaoX {
             x++;
         }
         return stringBuilder;
+    }
+
+    String saveBinder(EndoBinder proEndoBinder) {
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+
+            connection.setAutoCommit(false);
+            PreparedStatement itemInsertStatement = connection.prepareStatement("INSERT INTO endo_binding (endo_id, binding_endo_id) VALUES (?,?)");
+            LinkedHashMap<String, EndoApostolis> endoApostoliss = proEndoBinder.getEndoApostoliss();
+            for (Map.Entry<String, EndoApostolis> endoApostolissEntry : endoApostoliss.entrySet()) {
+                itemInsertStatement.setString(1, endoApostolissEntry.getKey());
+                itemInsertStatement.setString(2, proEndoBinder.getEndoParalavis().getId());
+                itemInsertStatement.addBatch();
+            }
+
+            itemInsertStatement.executeBatch();
+            connection.commit();
+            itemInsertStatement.close();
+
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EndoDao.class.getName()).log(Level.SEVERE, null, ex);
+            return ex.getMessage();
+        }
+        return "Endos binding  EXECUTED SUCCESSFULLY.";
     }
 }

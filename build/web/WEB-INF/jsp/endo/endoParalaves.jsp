@@ -126,7 +126,7 @@
                     out.println("<tr>");
                     if (proEndoBinder.isBinderOk()) {
                         out.println("<td colspan='5' >");
-                        out.println("<center><a href='saveEndoBinder.htm?binderId=" + endoParalavis.getId() + "' class='btn btn-primary' style='font-size:30px' target='_blank'>BIND ENDOS</a></center>");
+                        out.println("<center><a href='saveEndoBinder.htm' class='btn btn-primary' style='font-size:30px' target='_blank'>BIND ENDOS</a></center>");
                         out.println("</td>");
                     } else {
                         out.println("<td  colspan='5'  style='background-color: red'>");
