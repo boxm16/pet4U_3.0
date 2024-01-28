@@ -37,13 +37,9 @@ public class EndoControllerX {
             }
         }
 
-        System.out.println("ALL ENDO BINDERS SIZE: " + allEndoBinders.size());
-
         modelMap.addAttribute("incomingEndos", endoApostoliss);
         modelMap.addAttribute("receivingEndos", endoParalaviss);
 
-      
-        modelMap.addAttribute("bindedEndos", allEndoBinders);
         return "endo/endoParalaves";
     }
 
