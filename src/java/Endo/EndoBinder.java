@@ -24,7 +24,7 @@ public class EndoBinder {
 
     public EndoBinder() {
         this.endoApostoliss = new LinkedHashMap<>();
-        totalSentItems=new LinkedHashMap<>();
+        totalSentItems = new LinkedHashMap<>();
     }
 
     public EndoParalavis getEndoParalavis() {
@@ -68,14 +68,16 @@ public class EndoBinder {
         LinkedHashMap<String, Item> deliveredItems = this.endoParalavis.getItems();
 
         if (deliveredItems.size() != this.totalSentItems.size()) {
+            System.out.println("Different Sizes");
             this.binderOk = false;
             return;
         }
         for (Map.Entry<String, Item> deliveredItemsEntry : deliveredItems.entrySet()) {
 
             if (totalSentItems.containsKey(deliveredItemsEntry.getKey())) {
-                Double deliveredQuantity = Double.valueOf(deliveredItemsEntry.getValue().getQuantity());
+                double deliveredQuantity = Double.valueOf(deliveredItemsEntry.getValue().getQuantity());
                 if (deliveredQuantity != totalSentItems.get(deliveredItemsEntry.getKey())) {
+                    System.out.println("Different quantity for code: " + deliveredItemsEntry.getKey());
                     this.binderOk = false;
                     return;
                 }
