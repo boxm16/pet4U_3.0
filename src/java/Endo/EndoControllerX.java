@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class EndoControllerX {
 
+    private EndoBinder proEndoBinder;
+
     @RequestMapping(value = "endoParalaves", method = RequestMethod.GET)
     public String endoParalaves(ModelMap modelMap) {
         EndoDaoX endoDaoX = new EndoDaoX();
@@ -46,19 +48,19 @@ public class EndoControllerX {
 
         //-----------------------------------------
         if (endoParalaviss.size() == 1) {
-            EndoBinder proEndoBinder = new EndoBinder();
+            this.proEndoBinder = new EndoBinder();
 
             Map.Entry<String, EndoParalavis> entry = endoParalaviss.entrySet().stream().findFirst().get();
             String key = entry.getKey();
             EndoParalavis endoParalavis = entry.getValue();
-            proEndoBinder.setEndoParalavis(endoParalavis);
+            this.proEndoBinder.setEndoParalavis(endoParalavis);
             String endoParalavisNumber = endoParalavis.getNumber();
             for (Map.Entry<String, EndoApostolis> endoApostolissEntry : endoApostoliss.entrySet()) {
                 if (endoParalavisNumber.contains(endoApostolissEntry.getValue().getShortNumber())) {
-                    proEndoBinder.addEndoApostolis(endoApostolissEntry.getValue().getId(), endoApostolissEntry.getValue());
+                    this.proEndoBinder.addEndoApostolis(endoApostolissEntry.getValue().getId(), endoApostolissEntry.getValue());
                 }
             }
-            modelMap.addAttribute("proEndoBinder", proEndoBinder);
+            modelMap.addAttribute("proEndoBinder", this.proEndoBinder);
         }
 
         return "endo/endoParalaves";

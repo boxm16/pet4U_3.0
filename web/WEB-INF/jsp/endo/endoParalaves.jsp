@@ -96,34 +96,43 @@
                     out.println("</tr>");
 
                     LinkedHashMap<String, EndoApostolis> endoApostoliss = proEndoBinder.getEndosApostolis();
-                    for (Map.Entry<String, EndoApostolis> sendigEntosEndry : endoApostoliss.entrySet()) {
+                    for (Map.Entry<String, EndoApostolis> endoApostolisEntry : endoApostoliss.entrySet()) {
                         out.println("<tr style='background-color: #90EE90'>");
 
                         out.println("<td>");
-                        out.println("<a href='showDeltioApostolis.htm?id=" + sendigEntosEndry.getValue().getId() + "' target='_blank'>" + sendigEntosEndry.getValue().getId() + "</a>");
+                        out.println("<a href='showDeltioApostolis.htm?id=" + endoApostolisEntry.getValue().getId() + "' target='_blank'>" + sendigEntosEndry.getValue().getId() + "</a>");
                         out.println("</td>");
 
-                        String comparingDate = sendigEntosEndry.getValue().getDateString();
+                        String comparingDate = endoApostolisEntry.getValue().getDateString();
                         if (anchorDate.equals(comparingDate)) {
                             out.println("<td>");
                         } else {
                             out.println("<td style='background-color:red'>");
                         }
-                        out.println(sendigEntosEndry.getValue().getDateString());
+                        out.println(endoApostolisEntry.getValue().getDateString());
                         out.println("</td>");
 
                         out.println("<td>");
-                        out.println(sendigEntosEndry.getValue().getSender());
+                        out.println(endoApostolisEntry.getValue().getSender());
                         out.println("</td>");
 
                         out.println("<td>");
-                        out.println(sendigEntosEndry.getValue().getNumber());
+                        out.println(endoApostolisEntry.getValue().getNumber());
                         out.println("</td>");
-
-                        out.println("</tr>");
-
                     }
 
+                    out.println("</tr>");
+
+                    out.println("<tr>");
+                    if (proEndoBinder.binderIsOk()) {
+                        out.println("<td>");
+                        out.println("<center><a href='showbindedEndos.htm?binderId=" + endoParalavis.getId() + "' class='btn btn-primary' style='font-size:30px' target='_blank'>ΣΥΓΚΡΙΣΗ</a></center>");
+                        out.println("</td>");
+                    } else {
+                        out.println("<td colspan='5' style='background-color: red'>");
+                        out.println("<center>SOMETHING WRONG</center>");
+                        out.println("</td>");
+                    }
                     out.println("</tr>");
                 %>
             </tbody>
