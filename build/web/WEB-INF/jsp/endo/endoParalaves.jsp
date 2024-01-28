@@ -72,68 +72,70 @@
 
                 <%
                     EndoBinder proEndoBinder = (EndoBinder) request.getAttribute("proEndoBinder");
-                    EndoParalavis endoParalavis = proEndoBinder.getEndoParalavis();
-                    String anchorDate = endoParalavis.getDateString();
+                    if (proEndoBinder != null) {
+                        EndoParalavis endoParalavis = proEndoBinder.getEndoParalavis();
+                        String anchorDate = endoParalavis.getDateString();
 
-                    out.println("<tr style='background-color: #ADD8E6'>");
-
-                    out.println("<td>");
-                    out.println("<a href='showDeltioParalavis.htm?id=" + endoParalavis.getId() + "' target='_blank'>" + endoParalavis.getId() + "</a>");
-                    out.println("</td>");
-
-                    out.println("<td>");
-                    out.println(endoParalavis.getDateString());
-                    out.println("</td>");
-
-                    out.println("<td>");
-                    out.println("ΒΑΡΙΜΠΟΜΠΗ");
-                    out.println("</td>");
-
-                    out.println("<td>");
-                    out.println(endoParalavis.getNumber());
-                    out.println("</td>");
-
-                    out.println("</tr>");
-
-                    LinkedHashMap<String, EndoApostolis> endoApostoliss = proEndoBinder.getEndoApostoliss();
-                    for (Map.Entry<String, EndoApostolis> endoApostolisEntry : endoApostoliss.entrySet()) {
-                        out.println("<tr style='background-color: #90EE90'>");
+                        out.println("<tr style='background-color: #ADD8E6'>");
 
                         out.println("<td>");
-                        out.println("<a href='showDeltioApostolis.htm?id=" + endoApostolisEntry.getValue().getId() + "' target='_blank'>" + endoApostolisEntry.getValue().getId() + "</a>");
+                        out.println("<a href='showDeltioParalavis.htm?id=" + endoParalavis.getId() + "' target='_blank'>" + endoParalavis.getId() + "</a>");
                         out.println("</td>");
 
-                        String comparingDate = endoApostolisEntry.getValue().getDateString();
-                        if (anchorDate.equals(comparingDate)) {
+                        out.println("<td>");
+                        out.println(endoParalavis.getDateString());
+                        out.println("</td>");
+
+                        out.println("<td>");
+                        out.println("ΒΑΡΙΜΠΟΜΠΗ");
+                        out.println("</td>");
+
+                        out.println("<td>");
+                        out.println(endoParalavis.getNumber());
+                        out.println("</td>");
+
+                        out.println("</tr>");
+
+                        LinkedHashMap<String, EndoApostolis> endoApostoliss = proEndoBinder.getEndoApostoliss();
+                        for (Map.Entry<String, EndoApostolis> endoApostolisEntry : endoApostoliss.entrySet()) {
+                            out.println("<tr style='background-color: #90EE90'>");
+
                             out.println("<td>");
-                        } else {
-                            out.println("<td style='background-color:red'>");
+                            out.println("<a href='showDeltioApostolis.htm?id=" + endoApostolisEntry.getValue().getId() + "' target='_blank'>" + endoApostolisEntry.getValue().getId() + "</a>");
+                            out.println("</td>");
+
+                            String comparingDate = endoApostolisEntry.getValue().getDateString();
+                            if (anchorDate.equals(comparingDate)) {
+                                out.println("<td>");
+                            } else {
+                                out.println("<td style='background-color:red'>");
+                            }
+                            out.println(endoApostolisEntry.getValue().getDateString());
+                            out.println("</td>");
+
+                            out.println("<td>");
+                            out.println(endoApostolisEntry.getValue().getSender());
+                            out.println("</td>");
+
+                            out.println("<td>");
+                            out.println(endoApostolisEntry.getValue().getNumber());
+                            out.println("</td>");
                         }
-                        out.println(endoApostolisEntry.getValue().getDateString());
-                        out.println("</td>");
 
-                        out.println("<td>");
-                        out.println(endoApostolisEntry.getValue().getSender());
-                        out.println("</td>");
+                        out.println("</tr>");
 
-                        out.println("<td>");
-                        out.println(endoApostolisEntry.getValue().getNumber());
-                        out.println("</td>");
+                        out.println("<tr>");
+                        if (proEndoBinder.isBinderOk()) {
+                            out.println("<td colspan='5' >");
+                            out.println("<center><a href='saveEndoBinder.htm' class='btn btn-primary' style='font-size:30px' target='_blank'>BIND ENDOS</a></center>");
+                            out.println("</td>");
+                        } else {
+                            out.println("<td  colspan='5'  style='background-color: red'>");
+                            out.println("<center>SOMETHING WRONG</center>");
+                            out.println("</td>");
+                        }
+                        out.println("</tr>");
                     }
-
-                    out.println("</tr>");
-
-                    out.println("<tr>");
-                    if (proEndoBinder.isBinderOk()) {
-                        out.println("<td colspan='5' >");
-                        out.println("<center><a href='saveEndoBinder.htm' class='btn btn-primary' style='font-size:30px' target='_blank'>BIND ENDOS</a></center>");
-                        out.println("</td>");
-                    } else {
-                        out.println("<td  colspan='5'  style='background-color: red'>");
-                        out.println("<center>SOMETHING WRONG</center>");
-                        out.println("</td>");
-                    }
-                    out.println("</tr>");
                 %>
             </tbody>
         </table>
