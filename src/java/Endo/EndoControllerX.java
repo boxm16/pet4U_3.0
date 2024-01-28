@@ -11,9 +11,10 @@ public class EndoControllerX {
 
     @RequestMapping(value = "endoParalaves", method = RequestMethod.GET)
     public String endoParalaves(ModelMap modelMap) {
-     EndoDaoX endoDaoX=new EndoDaoX();
+        EndoDaoX endoDaoX = new EndoDaoX();
         LinkedHashMap<String, EndoBinder> allEndoBinders = endoDaoX.getAllEndoBinders();
-        System.out.println("ALL ENDO BINDERS SIZE: "+allEndoBinders.size());
+
+        System.out.println("ALL ENDO BINDERS SIZE: " + allEndoBinders.size());
         return "endo/endoParalaves";
     }
 

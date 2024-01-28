@@ -17,6 +17,10 @@ public class EndoBinder {
 
     private LinkedHashMap<String, EndoApostolis> endosApostolis;
 
+    public EndoBinder() {
+        this.endosApostolis = new LinkedHashMap<>()
+    }
+
     public EndoParalavis getEndoParalavis() {
         return endoParalavis;
     }
