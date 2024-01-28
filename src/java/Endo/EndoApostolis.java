@@ -30,4 +30,8 @@ public class EndoApostolis extends EndoParalavis {
         this.receiver = receiver;
     }
 
+    public String getShortNumber() {
+        return this.getNumber().substring(this.getNumber().length() - 3);
+    }
+
 }

@@ -115,7 +115,7 @@
                                     out.println("</td>");
 
                                     out.println("<td>");
-                                    String shortNumber = entrySet.getValue().getNumber();
+                                    String shortNumber = entrySet.getValue().getShortNumber();
 
                                     LinkedHashMap<String, EndoParalavis> receivingEndos = (LinkedHashMap) request.getAttribute("receivingEndos");
                                     if (receivingEndos.size() == 1) {
