@@ -51,7 +51,7 @@ public class EndoControllerX {
             this.proEndoBinder = new EndoBinder();
 
             Map.Entry<String, EndoParalavis> entry = endoParalaviss.entrySet().stream().findFirst().get();
-            String key = entry.getKey();
+
             EndoParalavis endoParalavis = entry.getValue();
             this.proEndoBinder.setEndoParalavis(endoParalavis);
             String endoParalavisNumber = endoParalavis.getNumber();
@@ -60,6 +60,7 @@ public class EndoControllerX {
                     this.proEndoBinder.addEndoApostolis(endoApostolissEntry.getValue().getId(), endoApostolissEntry.getValue());
                 }
             }
+            this.proEndoBinder = endoDaoX.fillAndCheckEndoBinder(this.proEndoBinder);
             modelMap.addAttribute("proEndoBinder", this.proEndoBinder);
         }
 

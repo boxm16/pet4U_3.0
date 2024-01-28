@@ -5,12 +5,14 @@
  */
 package Endo;
 
+import BasicModel.Item;
 import Service.DatabaseConnectionFactory;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,7 +27,7 @@ public class EndoDaoX {
         this.databaseConnectionFactory = new DatabaseConnectionFactory();
     }
 
-    LinkedHashMap<String, EndoBinder> getAllEndoBinders() {
+    public LinkedHashMap<String, EndoBinder> getAllEndoBinders() {
         LinkedHashMap<String, EndoBinder> allEndoBinders = new LinkedHashMap<>();
 
         String query = "SELECT * FROM endo_binding;";
@@ -74,7 +76,7 @@ public class EndoDaoX {
         return allEndoBinders;
     }
 
-    LinkedHashMap<String, EndoApostolis> getLastIncomingEndoApostoliss(int lastDays) {
+    public LinkedHashMap<String, EndoApostolis> getLastIncomingEndoApostoliss(int lastDays) {
         LocalDate nowDate = LocalDate.now();
         nowDate = nowDate.minusDays(lastDays);
         //System.out.println("NOW DATE: " + nowDate);
@@ -122,7 +124,7 @@ public class EndoDaoX {
         return endoInvoices;
     }
 
-    LinkedHashMap<String, EndoParalavis> getLastEndoParalaviss(int lastDays) {
+    public LinkedHashMap<String, EndoParalavis> getLastEndoParalaviss(int lastDays) {
         LocalDate nowDate = LocalDate.now();
         nowDate = nowDate.minusDays(lastDays);
         // System.out.println("NOW DATE: " + nowDate);
@@ -165,6 +167,72 @@ public class EndoDaoX {
         }
 
         return endoInvoices;
+    }
+
+    public EndoBinder fillAndCheckEndoBinder(EndoBinder proEndoBinder) {
+        String sqlParalavis = "SELECT  [DOCID], [ABBREVIATION], [QUANTITY], [PRICEBC] FROM [petworld].[dbo].[WH_ENDP] WHERE [DOCID]='" + proEndoBinder.getEndoParalavis().getId() + "' ;";
+        Connection connection;
+        Statement statement;
+        ResultSet resultSet;
+        connection = this.databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
+
+        try {
+
+            statement = connection.createStatement();
+
+            resultSet = statement.executeQuery(sqlParalavis);
+
+            while (resultSet.next()) {
+
+                String itemCode = resultSet.getString("ABBREVIATION");
+                String quantity = resultSet.getString("QUANTITY");
+
+                Item item = new Item();
+                item.setQuantity(quantity);
+
+                proEndoBinder.getEndoParalavis().getItems().put(itemCode, item);
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EndoDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        LinkedHashMap<String, EndoApostolis> endosApostolis = proEndoBinder.getEndosApostolis();
+        ArrayList endoApostolissIds = new ArrayList(endosApostolis.keySet());
+
+        StringBuilder queryBuilderInitialPart = new StringBuilder("SELECT  [DOCID], [ABBREVIATION], [QUANTITY],  FROM [petworld].[dbo].[WH_ENDA] WHERE ");
+        StringBuilder queryBuilderIdsPart = buildStringFromArrayList(endoApostolissIds);
+        StringBuilder sqlApostolis = queryBuilderInitialPart.append(" [DOCID] IN  ").append(queryBuilderIdsPart);
+        LinkedHashMap<String, Double> totalSentItems = new LinkedHashMap<>();
+        try {
+
+            statement = connection.createStatement();
+
+            resultSet = statement.executeQuery(sqlApostolis.toString());
+
+            while (resultSet.next()) {
+
+                String sentItemCode = resultSet.getString("ABBREVIATION");
+                Double sentQuantity = resultSet.getDouble("QUANTITY");
+
+                if (totalSentItems.containsKey(sentItemCode)) {
+                    sentQuantity = totalSentItems.get(sentItemCode) + sentQuantity;
+                    totalSentItems.put(sentItemCode, sentQuantity);
+                } else {
+                    totalSentItems.put(sentItemCode, sentQuantity);
+                }
+            }
+
+            resultSet.close();
+            statement.close();
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EndoDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return proEndoBinder;
     }
 
     //--------------------------------------------------
@@ -217,4 +285,25 @@ public class EndoDaoX {
         return translatedName;
     }
 
+    private StringBuilder buildStringFromArrayList(ArrayList<String> arrayList) {
+
+        StringBuilder stringBuilder = new StringBuilder("(");
+        if (arrayList.isEmpty()) {
+            stringBuilder.append(")");
+            return stringBuilder;
+        }
+        int x = 0;
+        for (String entry : arrayList) {
+            if (x == 0) {
+                stringBuilder.append("'").append(entry).append("'");
+            } else {
+                stringBuilder.append(",'").append(entry).append("'");
+            }
+            if (x == arrayList.size() - 1) {
+                stringBuilder.append(")");
+            }
+            x++;
+        }
+        return stringBuilder;
+    }
 }

@@ -41,7 +41,11 @@ public class EndoBinder {
         this.endosApostolis.put(endoApostolisId, endoApostolis);
     }
 
+    public void check() {
+    }
+
     public boolean binderIsOk() {
+
         return false;
     }
 
