@@ -5,6 +5,8 @@
 --%>
 
 
+<%@page import="Endo.EndoParalavis"%>
+<%@page import="Endo.EndoApostolis"%>
 <%-- 
     Document   : endoDashboard
     Created on : Jan 1, 2024, 8:32:46 PM
@@ -71,8 +73,8 @@
 
 
                             <%
-                                LinkedHashMap<String, Endo> incomingEndos = (LinkedHashMap) request.getAttribute("incomingEndos");
-                                for (Map.Entry<String, Endo> entrySet : incomingEndos.entrySet()) {
+                                LinkedHashMap<String, EndoApostolis> incomingEndos = (LinkedHashMap) request.getAttribute("incomingEndos");
+                                for (Map.Entry<String, EndoApostolis> entrySet : incomingEndos.entrySet()) {
 
                                     out.println("<tr>");
                                     if (entrySet.getValue().getSender().equals("ΠΕΡΙΣΤΕΡΙ")
@@ -112,11 +114,11 @@
                                     out.println("</td>");
 
                                     out.println("<td>");
-                                    String shortNumber = entrySet.getValue().getNumberWithoutLeadingZeros();
+                                    String shortNumber = entrySet.getValue().getNumber();
 
-                                    LinkedHashMap<String, Endo> receivingEndos = (LinkedHashMap) request.getAttribute("receivingEndos");
+                                    LinkedHashMap<String, EndoParalavis> receivingEndos = (LinkedHashMap) request.getAttribute("receivingEndos");
                                     if (receivingEndos.size() == 1) {
-                                        Map.Entry<String, Endo> receivingEndoEntry = receivingEndos.entrySet()
+                                        Map.Entry<String, EndoParalavis> receivingEndoEntry = receivingEndos.entrySet()
                                                 .stream()
                                                 .findFirst()
                                                 .get();
@@ -155,9 +157,9 @@
 
 
                             <%
-                                LinkedHashMap<String, Endo> receivingEndos = (LinkedHashMap) request.getAttribute("receivingEndos");
+                                LinkedHashMap<String, EndoParalavis> receivingEndos = (LinkedHashMap) request.getAttribute("receivingEndos");
 
-                                for (Map.Entry<String, Endo> entrySet : receivingEndos.entrySet()) {
+                                for (Map.Entry<String, EndoParalavis> entrySet : receivingEndos.entrySet()) {
 
                                     out.println("<tr>");
 
