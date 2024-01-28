@@ -100,7 +100,7 @@
                         out.println("<tr style='background-color: #90EE90'>");
 
                         out.println("<td>");
-                        out.println("<a href='showDeltioApostolis.htm?id=" + endoApostolisEntry.getValue().getId() + "' target='_blank'>" + sendigEntosEndry.getValue().getId() + "</a>");
+                        out.println("<a href='showDeltioApostolis.htm?id=" + endoApostolisEntry.getValue().getId() + "' target='_blank'>" + endoApostolisEntry.getValue().getId() + "</a>");
                         out.println("</td>");
 
                         String comparingDate = endoApostolisEntry.getValue().getDateString();
