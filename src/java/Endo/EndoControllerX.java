@@ -26,7 +26,7 @@ public class EndoControllerX {
             Entry<String, EndoParalavis> endoParalavisEntry = endoParalavissIterator.next();
             String endoParalavisId = endoParalavisEntry.getKey();
             if (allEndoBinders.containsKey(endoParalavisId)) {
-                endoParalaviss.remove(endoParalavisId);
+                endoParalavissIterator.remove();
                 EndoBinder endoBinder = allEndoBinders.get(endoParalavisId);
                 LinkedHashMap<String, EndoApostolis> enAps = endoBinder.getEndosApostolis();
                 for (Map.Entry<String, EndoApostolis> enApEntry : enAps.entrySet()) {
