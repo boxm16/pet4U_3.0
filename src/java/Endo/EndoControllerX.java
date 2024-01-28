@@ -19,8 +19,8 @@ public class EndoControllerX {
         EndoDaoX endoDaoX = new EndoDaoX();
         LinkedHashMap<String, EndoBinder> allEndoBinders = endoDaoX.getAllEndoBinders();
 
-        LinkedHashMap<String, EndoApostolis> endoApostoliss = endoDaoX.getLastIncomingEndoApostoliss(7);
-        LinkedHashMap<String, EndoParalavis> endoParalaviss = endoDaoX.getLastEndoParalaviss(7);
+        LinkedHashMap<String, EndoApostolis> endoApostoliss = endoDaoX.getLastIncomingEndoApostoliss(10);
+        LinkedHashMap<String, EndoParalavis> endoParalaviss = endoDaoX.getLastEndoParalaviss(10);
 
         Iterator<Entry<String, EndoParalavis>> endoParalavissIterator = endoParalaviss.entrySet().iterator();
 

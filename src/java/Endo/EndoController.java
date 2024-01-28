@@ -183,8 +183,8 @@ public class EndoController {
 
         EndoDao endoDao = new EndoDao();
 
-        LinkedHashMap<String, Endo> incomingEndos = endoDao.getLastIncomingEndos(7);
-        LinkedHashMap<String, Endo> receivingEndos = endoDao.getLastReceivingEndos(7);
+        LinkedHashMap<String, Endo> incomingEndos = endoDao.getLastIncomingEndos(10);
+        LinkedHashMap<String, Endo> receivingEndos = endoDao.getLastReceivingEndos(10);
         LinkedHashMap<String, BindedEndos> bindedEndos = endoDao.getAllBindedEndos();
 
         LinkedHashMap<String, BindedEndos> filteredBinder = new LinkedHashMap();
