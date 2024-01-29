@@ -71,7 +71,7 @@ public class EndoParalavis {
         this.items = items;
     }
 
-    public List getNumberAsList() {
+    public List getNumberAsArrayList() {
         return numberAsArrayList;
     }
 
