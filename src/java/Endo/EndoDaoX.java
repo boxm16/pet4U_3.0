@@ -156,6 +156,7 @@ public class EndoDaoX {
                 endo.setId(id);
                 endo.setDateString(date);
                 endo.setNumber(number);
+                endo.setNumberAsArrayList(number);
 
                 endoInvoices.put(id, endo);
             }

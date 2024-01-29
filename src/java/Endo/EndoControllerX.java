@@ -54,9 +54,9 @@ public class EndoControllerX {
 
             EndoParalavis endoParalavis = entry.getValue();
             this.proEndoBinder.setEndoParalavis(endoParalavis);
-            String endoParalavisNumber = endoParalavis.getNumber();
+
             for (Map.Entry<String, EndoApostolis> endoApostolissEntry : endoApostoliss.entrySet()) {
-                if (endoParalavisNumber.contains(endoApostolissEntry.getValue().getShortNumber())) {
+                if (endoParalavis.getNumberAsArrayList().contains(endoApostolissEntry.getValue().getShortNumber())) {
                     this.proEndoBinder.addEndoApostolis(endoApostolissEntry.getValue().getId(), endoApostolissEntry.getValue());
                 }
             }
