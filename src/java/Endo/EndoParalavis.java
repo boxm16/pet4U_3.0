@@ -78,9 +78,9 @@ public class EndoParalavis {
     }
 
     public void setNumberAsArrayList(String number) {
-        System.out.println("NUMBER: " + number);
+       
         String[] splittedNumber = number.split("/");
-        for (int x = 0; x < splittedNumber.length - 1; x++) {
+        for (int x = 0; x < splittedNumber.length; x++) {
             String numb = splittedNumber[x];
             if (numb.length() > 2) {
                 String substr = numb.substring(numb.length() - 3);
