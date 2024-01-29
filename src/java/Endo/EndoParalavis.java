@@ -8,9 +8,7 @@ package Endo;
 import BasicModel.Item;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedHashMap;
-import java.util.List;
 
 /**
  *
@@ -22,13 +20,13 @@ public class EndoParalavis {
     private String dateString;
     private String number;
     private LocalDate date;
-    private List numberAsArrayList;
+    private ArrayList threeLastDigitsArrayList;
 
     private LinkedHashMap<String, Item> items;
 
     public EndoParalavis() {
         this.items = new LinkedHashMap<>();
-        numberAsArrayList = new ArrayList();
+        threeLastDigitsArrayList = new ArrayList();
     }
 
     public String getId() {
@@ -71,16 +69,24 @@ public class EndoParalavis {
         this.items = items;
     }
 
-    public List getNumberAsArrayList() {
-        return numberAsArrayList;
+    public ArrayList getThreeLastDigitsArrayList() {
+        return threeLastDigitsArrayList;
+    }
+
+    public void setThreeLastDigitsArrayList(ArrayList threeLastDigitsArrayList) {
+        this.threeLastDigitsArrayList = threeLastDigitsArrayList;
     }
 
     public void setNumberAsArrayList(String number) {
         System.out.println("NUMBER: " + number);
         String[] splittedNumber = number.split("/");
-        List al = Arrays.asList(splittedNumber);
-        System.out.println("LIST: " + al);
-        this.numberAsArrayList = al;
+        for (int x = 0; x < splittedNumber.length - 1; x++) {
+            String numb = splittedNumber[x];
+            if (numb.length() > 2) {
+                String substr = numb.substring(numb.length() - 3);
+                this.threeLastDigitsArrayList.add(substr);
+            }
+        }
     }
 
 }
