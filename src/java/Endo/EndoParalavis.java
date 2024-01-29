@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
+import java.util.List;
 
 /**
  *
@@ -21,7 +22,7 @@ public class EndoParalavis {
     private String dateString;
     private String number;
     private LocalDate date;
-    private ArrayList numberAsArrayList;
+    private List numberAsArrayList;
 
     private LinkedHashMap<String, Item> items;
 
@@ -70,13 +71,13 @@ public class EndoParalavis {
         this.items = items;
     }
 
-    public ArrayList getNumberAsArrayList() {
+    public List getNumberAsList() {
         return numberAsArrayList;
     }
 
     public void setNumberAsArrayList(String number) {
         String[] splittedNumber = number.split("/");
-        ArrayList al = (ArrayList) Arrays.asList(splittedNumber);
+        List al = Arrays.asList(splittedNumber);
         this.numberAsArrayList = al;
     }
 
