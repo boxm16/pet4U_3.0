@@ -76,8 +76,10 @@ public class EndoParalavis {
     }
 
     public void setNumberAsArrayList(String number) {
+        System.out.println("NUMBER: " + number);
         String[] splittedNumber = number.split("/");
         List al = Arrays.asList(splittedNumber);
+        System.out.println("LIST: " + al);
         this.numberAsArrayList = al;
     }
 
