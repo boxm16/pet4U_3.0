@@ -152,4 +152,13 @@ public class EndoControllerX {
         return "endo/endoChecking";
     }
 
+    @RequestMapping(value = "seeLastEndoBinders", method = RequestMethod.GET)
+    public String seeLastEndoBinders(ModelMap modelMap) {
+        EndoDaoX endoDaoX = new EndoDaoX();
+        LinkedHashMap<String, EndoBinder> lastEndoBinders = endoDaoX.getLastEndoBinders(30);
+
+        modelMap.addAttribute("lastEndoBinders", lastEndoBinders);
+        return "seeEndoBinders";
+    }
+
 }

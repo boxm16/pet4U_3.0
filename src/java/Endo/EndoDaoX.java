@@ -337,4 +337,8 @@ public class EndoDaoX {
         }
         return "Endos binding  EXECUTED SUCCESSFULLY.";
     }
+
+    LinkedHashMap<String, EndoBinder> getLastEndoBinders(int i) {
+        return new LinkedHashMap<String, EndoBinder>();
+    }
 }
