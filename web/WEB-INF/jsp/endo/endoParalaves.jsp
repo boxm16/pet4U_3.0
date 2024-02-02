@@ -299,8 +299,8 @@
             <input hidden type="text" id="endoIdsInput" name="endoIds">
             <input hidden type="text" id="receivingEndoIdsInput" name="receivingEndoIds">
         </form>
-        <hr>
-        <a href='seeLastEndoBinders'>SEE LAST ENDO BINDERS</a>
+        <hr> <br> <hr> <br>   <hr>  <br>  <hr>
+        <a href='seeLastEndoBinders'><h1>SEE LAST ENDO BINDERS</h1></a>
     </center>
     <script>
 
