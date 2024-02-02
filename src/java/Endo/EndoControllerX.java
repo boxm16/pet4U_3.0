@@ -158,7 +158,7 @@ public class EndoControllerX {
         LinkedHashMap<String, EndoBinder> lastEndoBinders = endoDaoX.getLastEndoBinders(30);
 
         modelMap.addAttribute("lastEndoBinders", lastEndoBinders);
-        return "endoBinders";
+        return "endo/endoBinders";
     }
 
 }
