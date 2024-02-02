@@ -1,9 +1,14 @@
 package Endo;
 
+import BasicModel.Item;
+import Delivery.DeliveryInvoice;
+import Delivery.DeliveryItem;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,7 +32,7 @@ public class EndoControllerX {
         while (endoParalavissIterator.hasNext()) {
             Entry<String, EndoParalavis> endoParalavisEntry = endoParalavissIterator.next();
             String endoParalavisId = endoParalavisEntry.getKey();
-            if (endoParalavisId.equals("359761")||endoParalavisId.equals("360140")) {
+            if (endoParalavisId.equals("359761") || endoParalavisId.equals("360140")) {
                 endoParalavissIterator.remove();
             }
 
@@ -73,6 +78,78 @@ public class EndoControllerX {
         EndoDaoX endoDaoX = new EndoDaoX();
         String result = endoDaoX.saveBinder(this.proEndoBinder);
         return "redirect:endoParalaves.htm";
+    }
+
+    @RequestMapping(value = "checkSuggestedBinder", method = RequestMethod.GET)
+    public String checkSuggestedBinder(ModelMap modelMap) {
+
+        Set<String> keySet = this.proEndoBinder.getEndoApostoliss().keySet();
+        ArrayList<String> endoIdsArray = new ArrayList<String>(keySet);
+        ArrayList<String> receivingEndoIdsArray = new ArrayList();
+        receivingEndoIdsArray.add(this.proEndoBinder.getEndoParalavis().getId());
+
+        EndoDao endoDao = new EndoDao();
+        LinkedHashMap<String, DeliveryItem> pet4UItemsRowByRow = endoDao.getPet4UItemsRowByRow();
+        LinkedHashMap<String, DeliveryItem> sentItems = endoDao.getSentItems(endoIdsArray, pet4UItemsRowByRow);
+        LinkedHashMap<String, DeliveryItem> deliveredIetms = endoDao.getReceivedItems(receivingEndoIdsArray, pet4UItemsRowByRow);
+
+        DeliveryInvoice deliveryInvoice = new DeliveryInvoice();
+        for (Map.Entry<String, DeliveryItem> deliveredIetmsEntry : deliveredIetms.entrySet()) {
+            DeliveryItem deliveredItem = deliveredIetmsEntry.getValue();
+
+            String altercode = deliveredIetmsEntry.getKey();
+
+            DeliveryItem sentItem = sentItems.remove(altercode);
+            Item itemWithDescription = pet4UItemsRowByRow.get(altercode);
+
+            if (sentItem == null) {
+                System.out.println("SENT ITEM IS NULL :" + altercode);
+                if (itemWithDescription == null) {
+                    deliveredItem.setDescription("NO DATA FOR THIS CODE");
+                } else {
+                    deliveredItem.setDescription(itemWithDescription.getDescription());
+                }
+                deliveredItem.setSentQuantity("0");
+                deliveredIetms.put(altercode, deliveredItem);
+            } else {
+                if (itemWithDescription == null) {
+                    deliveredItem.setDescription("NO DATA FOR THIS CODE");
+                } else {
+                    deliveredItem.setDescription(itemWithDescription.getDescription());
+                }
+                deliveredItem.setSentQuantity(sentItem.getSentQuantity());
+                deliveredIetms.put(altercode, deliveredItem);
+            }
+        }
+
+        if (sentItems.size()
+                > 0) {
+
+            System.out.println("LEFT OVERS: " + sentItems.size());
+            for (Map.Entry<String, DeliveryItem> sentItemsEntry : sentItems.entrySet()) {
+                System.out.println("LEFTO OVER ITEM:" + sentItemsEntry.getKey());
+                String key = sentItemsEntry.getKey();
+                DeliveryItem di = sentItems.get(key);
+
+                Item itemWithDescription = pet4UItemsRowByRow.get(key);
+                if (itemWithDescription == null) {
+                    di.setDescription("NO DATA FOR THIS CODE");
+                } else {
+                    di.setDescription(itemWithDescription.getDescription());
+                }
+
+                di.setDeliveredQuantity("0");
+                deliveredIetms.put(key, di);
+            }
+
+        }
+
+        deliveryInvoice.setItems(deliveredIetms);
+
+        modelMap.addAttribute(
+                "deliveryInvoice", deliveryInvoice);
+
+        return "endo/endoChecking";
     }
 
 }
