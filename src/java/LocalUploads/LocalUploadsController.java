@@ -19,5 +19,4 @@ public class LocalUploadsController {
         return "localUploads/localUploadsDashboard";
     }
 
-   
 }

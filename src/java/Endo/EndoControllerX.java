@@ -188,4 +188,18 @@ public class EndoControllerX {
         return "endo/endoBinders";
     }
 
+    //---------------------------------------
+    @RequestMapping(value = "goForEndoOrdersUpload")
+    public String goForEndoOrdersUpload(ModelMap model) {
+        model.addAttribute("uploadTitle", "Upload Endo Orders For Today");
+        model.addAttribute("uploadTarget", "uploadEndoOrders.htm");
+        return "endo/endoOrdersUpload";
+    }
+
+    @RequestMapping(value = "uploadEndoOrders")
+    public String uploadEndoOrders(ModelMap model) {
+        System.out.println("GOODO UPLOAD");
+        return "endo/endoOrdersUpload";
+    }
+
 }
