@@ -184,7 +184,7 @@ public class EndoControllerX {
 
         }
 
-        modelMap.addAttribute("bindedEndos", bindedEndos);
+        modelMap.addAttribute("bindedEndos", filteredBinder);
         return "endo/endoBinders";
     }
 
