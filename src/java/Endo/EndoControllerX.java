@@ -154,10 +154,37 @@ public class EndoControllerX {
 
     @RequestMapping(value = "seeLastEndoBinders", method = RequestMethod.GET)
     public String seeLastEndoBinders(ModelMap modelMap) {
-        EndoDaoX endoDaoX = new EndoDaoX();
-        LinkedHashMap<String, EndoBinder> lastEndoBinders = endoDaoX.getLastEndoBinders(30);
+        EndoDao endoDao = new EndoDao();
 
-        modelMap.addAttribute("lastEndoBinders", lastEndoBinders);
+        LinkedHashMap<String, Endo> incomingEndos = endoDao.getLastIncomingEndos(10);
+        LinkedHashMap<String, Endo> receivingEndos = endoDao.getLastReceivingEndos(10);
+        LinkedHashMap<String, BindedEndos> bindedEndos = endoDao.getAllBindedEndos();
+
+        LinkedHashMap<String, BindedEndos> filteredBinder = new LinkedHashMap();
+
+        for (Map.Entry<String, BindedEndos> bindedEndosEndtry : bindedEndos.entrySet()) {
+            String bindedEndosId = bindedEndosEndtry.getKey();
+            BindedEndos bindedEndoWrapper = bindedEndosEndtry.getValue();
+
+            if (receivingEndos.containsKey(bindedEndosId)) {
+
+                bindedEndoWrapper.setBindingReceivingEndoId(bindedEndosId);
+                bindedEndoWrapper.setBindingReceivingEndo(receivingEndos.remove(bindedEndosId));
+
+                LinkedHashMap<String, Endo> bindedSendingEndos = bindedEndoWrapper.getBindedSendingEndos();
+
+                for (Map.Entry<String, Endo> bindedSendingEndosEntry : bindedSendingEndos.entrySet()) {
+                    String sendingEndoId = bindedSendingEndosEntry.getKey();
+                    if (incomingEndos.containsKey(sendingEndoId)) {
+                        bindedSendingEndos.put(sendingEndoId, incomingEndos.remove(sendingEndoId));
+                    }
+                }
+                filteredBinder.put(bindedEndosId, bindedEndoWrapper);
+            }
+
+        }
+
+        modelMap.addAttribute("bindedEndos", bindedEndos);
         return "endo/endoBinders";
     }
 
