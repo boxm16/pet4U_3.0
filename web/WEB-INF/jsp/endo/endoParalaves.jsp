@@ -300,7 +300,7 @@
             <input hidden type="text" id="receivingEndoIdsInput" name="receivingEndoIds">
         </form>
         <hr> <br> <hr> <br>   <hr>  <br>  <hr>
-        <a href='seeLastEndoBinders'><h1>SEE LAST ENDO BINDERS</h1></a>
+        <a href='seeLastEndoBinders.htm'><h1>SEE LAST ENDO BINDERS</h1></a>
     </center>
     <script>
 
