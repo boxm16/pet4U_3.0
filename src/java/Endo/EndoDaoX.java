@@ -537,7 +537,7 @@ public class EndoDaoX {
                 String itemCode = resultSet.getString("ABBREVIATION");
                 String quantity = resultSet.getString("QUANTITY");
                 String price = resultSet.getString("PRICEBC");
-                String description = resultSet.getString("NAME");
+                String description = translateStoreNameV(resultSet.getString("NAME"));
 
                 endoApostolis.setSender("ΒΑΡΙΜΠΟΜΠΗ");
 
@@ -562,4 +562,52 @@ public class EndoDaoX {
         return endoApostolis;
     }
 
+    private String translateStoreNameV(String name) {
+        String translatedName = name;
+        switch (name) {
+            case "ΑΧ-ΜΕΝ":
+                translatedName = "ΜΕΝΙΔΙ";
+                break;
+            case "ΑΧ-ΙΩΝ":
+                translatedName = "Ν. ΙΩΝΙΑ";
+                break;
+            case "ΑΧ-ΚΑΛ":
+                translatedName = "ΚΑΛΛΙΘΕΑ";
+                break;
+            case "ΑΧ-ΚΟΥ":
+                translatedName = "ΚΟΥΚΑΚΙ";
+                break;
+            case "ΑΧ-ΠΤΡ":
+                translatedName = "ΠΕΤΡΟΥΠΟΛΗ";
+                break;
+            case "ΑΧ-ΧΑΛ":
+                translatedName = "ΧΑΛΚΗΔΟΝΑ";
+                break;
+            case "ΑΧ-ΠΕΡ":
+                translatedName = "ΠΕΡΙΣΤΕΡΙ";
+                break;
+            case "ΥΠ. (ΑΡΓΥΡΟΥΠΟΛΗ) ΚΥΠΡΟΥ 8, ΑΡΓΥΡΟΥΠΟΛΗ":
+                translatedName = "ΑΡΓΥΡΟΥΠΟΛΗ";
+                break;
+            case "ΥΠ. (Π. ΦΑΛΗΡΟ) ΕΛ. ΒΕΝΙΖΕΛΟΥ 198, Π. ΦΑΛΗΡΟ":
+                translatedName = "Π. ΦΑΛΗΡΟ";
+                break;
+            case "ΥΠ: (ΑΛΙΜΟΣ) Λ. ΚΑΛΑΜΑΚΙΟΥ 89, ΑΛΙΜΟΣ":
+                translatedName = "ΑΛΙΜΟΣ";
+                break;
+            case "ΥΠ: (ΑΓΙΑ ΠΑΡ.) ΧΑΛΑΝΔΡΙΟΥ 6, ΑΓ. ΠΑΡΑΣΚΕΥΗ":
+                translatedName = "ΑΓ. ΠΑΡΑΣΚΕΥΗ";
+                break;
+            case "ΥΠ: (ΧΑΛΑΝΔΡΙ) ΠΕΝΤΕΛΗΣ 31, ΧΑΛΑΝΔΡΙ":
+                translatedName = "ΧΑΛΑΝΔΡΙ";
+                break;
+            case "ΥΠ: (ΔΑΦΝΗ) ΑΛ. ΠΑΠΑΝΑΣΤΑΣΙΟΥ 5, ΔΑΦΝΗ":
+                translatedName = "ΔΑΦΝΗ";
+                break;
+            case "ΥΠ: ΜΙΧΑΛΑΚΟΠΟΥΛΟΥ 175, ΑΜΠΕΛΟΚΗΠΟΙ":
+                translatedName = "ΜΙΧΑΛΑΚΟΠΟΥΛΟΥ";
+                break;
+        }
+        return translatedName;
+    }
 }
