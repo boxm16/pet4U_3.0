@@ -426,7 +426,7 @@ public class EndoDaoX {
     EndoOrder getEndoOrder(String id) {
         EndoOrder endoOrder = new EndoOrder();
 
-        String query = "SELECT * FROM endo_order_title INNER JOIN endo_order_title ON endo_order_title.id=endo_order_data.order_id WHERE id='" + id + "';";
+        String query = "SELECT * FROM endo_order_title INNER JOIN endo_order_data ON endo_order_title.id=endo_order_data.order_id WHERE id='" + id + "';";
 
         try {
             Connection connection = this.databaseConnectionFactory.getMySQLConnection();
