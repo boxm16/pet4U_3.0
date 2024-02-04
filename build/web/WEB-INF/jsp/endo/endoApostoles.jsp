@@ -113,16 +113,54 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="2">
-                    <input style="background-color:lightgreen; font-size:40px" type="button" value="ΕΛΕΓΧΟΣ" onclick="requestRouter('endosChecking.htm')">
-                </td>
-                
-                <td colspan="2">
+
+
+                <td colspan="4">
             <center>
-                <input style="background-color:lightblue; font-size:40px" type="button" value="ΣΥΓΚΡΙΣΗ" onclick="requestRouter('compareEndos.htm')">
+                <input style="background-color:lightblue; font-size:40px" type="button" value="ΣΥΓΚΡΙΣΗ" onclick="requestRouter('checkOrderWithEndo.htm')">
             </center>
             </td>
         </table>
     </center>
+    <form id="form" action="#" method="POST">
+        <input hidden type="text" id="orderIdInput" name="orderId">
+        <input hidden type="text" id="outgoingEndoIdInput" name="outgoingEndoId">
+    </form>
+    <script>
+
+        ////--------------------
+        function requestRouter(requestTarget) {
+            if (requestTarget == "checkOrderWithEndo.htm") {
+                form.target = "_blank";
+            } else {
+
+            }
+            form.action = requestTarget;
+            orderIdInput.value = collectSellectedCheckBoxes();
+            outgoingEndoIdInput.value = collectSellectedOutgoingCheckBoxes();
+            console.log(form.action);
+            form.submit();
+        }
+        //this function collects all checked checkbox values, concatinates them in one string and returns that string to send it after by POST method to server
+        function collectSellectedCheckBoxes() {
+            var returnValue = "";
+            var targetCheckBoxes = document.querySelectorAll(".orderId");
+            for (x = 0; x < targetCheckBoxes.length; x++) {
+                if (targetCheckBoxes[x].checked)
+                    returnValue += targetCheckBoxes[x].id + ",";
+            }
+            return returnValue;
+        }
+
+        function collectSellectedOutgoingCheckBoxes() {
+            var returnValue = "";
+            var targetCheckBoxes = document.querySelectorAll(".outgoingEndoId");
+            for (x = 0; x < targetCheckBoxes.length; x++) {
+                if (targetCheckBoxes[x].checked)
+                    returnValue += targetCheckBoxes[x].id + ",";
+            }
+            return returnValue;
+        }
+    </script>
 </body>
 </html>
