@@ -48,13 +48,8 @@
                         out.println("<tr style='background-color: #90EE90'>");
 
                         out.println("<td>");
-                        out.println("<a href='showDeltioApostolis.htm?id=" + endoOrdersTitlesEntry.getValue().getId() + "' target='_blank'>" + endoOrdersTitlesEntry.getValue().getId() + "</a>");
+                        out.println("<a href='showEndoOrder.htm?id=" + endoOrdersTitlesEntry.getValue().getId() + "' target='_blank'>" + endoOrdersTitlesEntry.getValue().getDestination() + "</a>");
                         out.println("</td>");
-
-                        out.println("<td>");
-                        out.println(endoOrdersTitlesEntry.getValue().getDestination());
-                        out.println("</td>");
-
                         out.println("</tr>");
                     }
                 %>

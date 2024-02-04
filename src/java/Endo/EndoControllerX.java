@@ -261,10 +261,20 @@ public class EndoControllerX {
         String date = "2024-02-01";
         LinkedHashMap<String, EndoOrder> endoOrdersTitles = endoDaoX.getEndoOrdersTitles(date);
 
-       
         model.addAttribute("endoOrdersTitles", endoOrdersTitles);
-       
+
         return "endo/endoApostoles";
+    }
+
+    @RequestMapping(value = "showEndoOrder")
+    public String showEndoOrder(@RequestParam(name = "id") String id, ModelMap model) {
+        EndoDaoX endoDaoX = new EndoDaoX();
+
+        EndoOrder endoOrder = endoDaoX.getEndoOrder(id);
+
+        model.addAttribute("endoOrder", endoOrder);
+
+        return "endo/endoOrderDisplay";
     }
 
 }

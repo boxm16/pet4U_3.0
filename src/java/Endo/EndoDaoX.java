@@ -422,4 +422,43 @@ public class EndoDaoX {
 
         return endoOrders;
     }
+
+    EndoOrder getEndoOrder(String id) {
+        EndoOrder endoOrder = new EndoOrder();
+
+        String query = "SELECT * FROM endo_order_title INNER JOIN endo_order_title ON endo_order_title.id=endo_order_data.order_id WHERE id='" + id + "';";
+
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+
+            ResultSet resultSet = statement.executeQuery(query);
+            int rowIndex = 0;
+            while (resultSet.next()) {
+                if (rowIndex == 0) {
+                    endoOrder.setId(resultSet.getString("id"));
+                    endoOrder.setDestination(resultSet.getString("destination"));
+                    endoOrder.setDateString(resultSet.getString("date"));
+                    endoOrder.setNote(resultSet.getString("note"));
+                }
+                EndoOrderItem endoOrderItem = new EndoOrderItem();
+                endoOrderItem.setCode(resultSet.getString("item_code"));
+                endoOrderItem.setOrderedQuantity(resultSet.getDouble("ordered_quantity"));
+                endoOrderItem.setSentQuantity(resultSet.getDouble("sent_quantity"));
+                endoOrderItem.setPrice(resultSet.getDouble("price"));
+                endoOrderItem.setAmount(resultSet.getDouble("amount"));
+                endoOrderItem.setComment(resultSet.getString("comment"));
+                endoOrder.addOrderItem(resultSet.getString("item_code"), endoOrderItem);
+
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EndoDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return endoOrder;
+    }
 }

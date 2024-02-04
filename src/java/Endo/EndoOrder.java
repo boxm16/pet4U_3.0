@@ -16,6 +16,7 @@ public class EndoOrder {
 
     private String id;
     private LocalDate date;
+    private String dateString;
     private String destination;
     private String note;
 
@@ -67,6 +68,14 @@ public class EndoOrder {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    public String getDateString() {
+        return dateString;
+    }
+
+    public void setDateString(String dateString) {
+        this.dateString = dateString;
     }
 
 }
