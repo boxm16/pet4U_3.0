@@ -338,5 +338,9 @@ public class EndoDaoX {
         return "Endos binding  EXECUTED SUCCESSFULLY.";
     }
 
+    String insertNewOrdersUpload(String date, LinkedHashMap<String, EndoOrder> endoOrders) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
   
 }

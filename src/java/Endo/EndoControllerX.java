@@ -209,7 +209,6 @@ public class EndoControllerX {
     public String uploadEndoOrders(@RequestParam CommonsMultipartFile file, @RequestParam String date, ModelMap model) {
 
         //this string -date- should come from view, later
-       
         //
         System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
         System.out.println("Endo Orders Upload: Starting .............. ");
@@ -246,8 +245,9 @@ public class EndoControllerX {
 
         EndoOrdersFactory endoOrdersFactory = new EndoOrdersFactory();
         LinkedHashMap<String, EndoOrder> endoOrders = endoOrdersFactory.createEndoOrdersFromUploadedFile(filePath);
+        EndoDaoX endoDaoX = new EndoDaoX();
+        String result = endoDaoX.insertNewOrdersUpload(date, endoOrders);
 
-        //  String result = monthSalesDao.insertNewUpload(date, sodlItems);
         System.out.println("Endo Orders Upload DATE:" + date);
         model.addAttribute("uploadTitle", "Endo Orders Upload");
         model.addAttribute("uploadStatus", "result here ");

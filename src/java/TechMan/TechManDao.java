@@ -849,7 +849,7 @@ public class TechManDao {
                 + "item_code VARCHAR (100) NOT NULL, "
                 + "quantity VARCHAR (30) NOT NULL, "
                 + "price VARCHAR (30) NOT NULL, "
-                + "price amount (30) NOT NULL, "
+                + "amount VARCHAR (30) NOT NULL, "
                 + "comment VARCHAR (130) NOT NULL )"
                 + "ENGINE = InnoDB "
                 + "DEFAULT CHARACTER SET = utf8;";
