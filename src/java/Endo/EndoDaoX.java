@@ -339,8 +339,58 @@ public class EndoDaoX {
     }
 
     String insertNewOrdersUpload(String date, LinkedHashMap<String, EndoOrder> endoOrders) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            Connection connection = databaseConnectionFactory.getMySQLConnection();
+
+            connection.setAutoCommit(false);
+            PreparedStatement orderTitelInsertionPreparedStatement = connection.prepareStatement("INSERT INTO endo_order_title (id, date, destination, note) VALUES(?,?,?,?);");
+            PreparedStatement orderedItemsInsetionPreparedStatement = connection.prepareStatement("INSERT INTO endo_order_data (order_id, item_code, quantity, price, amount, comment) VALUES (?,?,?,?,?,?);");
+
+            System.out.println("Starting INSERTION: ....");
+
+            for (Map.Entry<String, EndoOrder> endoOrdersEntry : endoOrders.entrySet()) {
+
+                orderTitelInsertionPreparedStatement.setString(1, endoOrdersEntry.getValue().getId());
+                orderTitelInsertionPreparedStatement.setString(2, endoOrdersEntry.getKey());
+                orderTitelInsertionPreparedStatement.setString(3, endoOrdersEntry.getValue().getDestination());
+                orderTitelInsertionPreparedStatement.setString(4, endoOrdersEntry.getValue().getNote());
+
+                orderTitelInsertionPreparedStatement.addBatch();
+
+                LinkedHashMap<String, EndoOrderItem> orderedItems = endoOrdersEntry.getValue().getOrderedItems();
+                for (Map.Entry<String, EndoOrderItem> orderedItemsEntry : orderedItems.entrySet()) {
+                    orderedItemsInsetionPreparedStatement.setString(1, endoOrdersEntry.getValue().getId());
+                    orderedItemsInsetionPreparedStatement.setString(2, orderedItemsEntry.getValue().getCode());
+                    orderedItemsInsetionPreparedStatement.setString(3, orderedItemsEntry.getValue().getQuantity());
+                    orderedItemsInsetionPreparedStatement.setDouble(4, orderedItemsEntry.getValue().getPrice());
+                    orderedItemsInsetionPreparedStatement.setDouble(4, orderedItemsEntry.getValue().getAmount());
+                    orderedItemsInsetionPreparedStatement.setString(4, orderedItemsEntry.getValue().getComment());
+                    orderedItemsInsetionPreparedStatement.addBatch();
+
+                }
+
+                //Executing the batch
+                orderTitelInsertionPreparedStatement.executeBatch();
+                orderedItemsInsetionPreparedStatement.executeBatch();
+
+                System.out.println(" Batch Insertion: DONE");
+
+        
+                connection.commit();
+              
+                orderTitelInsertionPreparedStatement.close();
+                orderedItemsInsetionPreparedStatement.close();
+                connection.close();
+                return "";
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(EndoDaoX.class.getName()).log(Level.SEVERE, null, ex);
+
+            return ex.getMessage();
+        }
+        return "DONE";
     }
 
-  
 }

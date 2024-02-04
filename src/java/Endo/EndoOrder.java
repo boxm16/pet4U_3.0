@@ -14,8 +14,11 @@ import java.util.LinkedHashMap;
  */
 public class EndoOrder {
 
+    private String id;
     private LocalDate date;
     private String destination;
+    private String note;
+
     LinkedHashMap<String, EndoOrderItem> orderedItems;
 
     public EndoOrder() {
@@ -48,6 +51,22 @@ public class EndoOrder {
 
     public void addOrderItem(String itemCode, EndoOrderItem orderedItem) {
         this.orderedItems.put(itemCode, orderedItem);
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
     }
 
 }
