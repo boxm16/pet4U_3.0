@@ -65,7 +65,9 @@ public class EndoOrdersFactory {
 
                 orderedItem.setQuantity(orderedQuantityString);
 
-                orderedItem.setQuantityD(Double.parseDouble(orderedQuantityString));
+                orderedItem.setOrderedQuantity(Double.parseDouble(orderedQuantityString));
+
+                orderedItem.setSentQuantity(Double.parseDouble(orderedQuantityString));
 
                 orderedItem.setPrice(Double.parseDouble(priceString));
 
@@ -78,10 +80,10 @@ public class EndoOrdersFactory {
                 endoOrders.put(destinationString, endoOrder);
             } else {
                 EndoOrder endoOrder = new EndoOrder();
-                
+
                 LocalDateTime timeNow = LocalDateTime.now();
                 endoOrder.setId(destinationString + ":" + timeNow.toString());
-                
+
                 endoOrder.setDestination(destinationString);
 
                 EndoOrderItem orderedItem = new EndoOrderItem();
@@ -92,7 +94,9 @@ public class EndoOrdersFactory {
 
                 orderedItem.setQuantity(orderedQuantityString);
 
-                orderedItem.setQuantityD(Double.parseDouble(orderedQuantityString));
+                orderedItem.setOrderedQuantity(Double.parseDouble(orderedQuantityString));
+
+                orderedItem.setSentQuantity(Double.parseDouble(orderedQuantityString));
 
                 orderedItem.setPrice(Double.parseDouble(priceString));
 

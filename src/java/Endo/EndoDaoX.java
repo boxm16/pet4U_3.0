@@ -389,7 +389,7 @@ public class EndoDaoX {
 
             return ex.getMessage();
         }
-        return "DONE";
+
     }
 
 }

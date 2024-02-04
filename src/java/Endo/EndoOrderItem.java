@@ -15,7 +15,8 @@ public class EndoOrderItem extends Item {
 
     double price;
     double amount;
-    double quantityD;
+    double orderedQuantity;
+    double sentQuantity;
     String comment;
 
     public double getPrice() {
@@ -34,14 +35,6 @@ public class EndoOrderItem extends Item {
         this.amount = amount;
     }
 
-    public double getQuantityD() {
-        return quantityD;
-    }
-
-    public void setQuantityD(double quantityD) {
-        this.quantityD = quantityD;
-    }
-
     public String getComment() {
         return comment;
     }
@@ -49,5 +42,23 @@ public class EndoOrderItem extends Item {
     public void setComment(String comment) {
         this.comment = comment;
     }
+
+    public double getOrderedQuantity() {
+        return orderedQuantity;
+    }
+
+    public void setOrderedQuantity(double orderedQuantity) {
+        this.orderedQuantity = orderedQuantity;
+    }
+
+    public double getSentQuantity() {
+        return sentQuantity;
+    }
+
+    public void setSentQuantity(double sentQuantity) {
+        this.sentQuantity = sentQuantity;
+    }
+    
+    
 
 }
