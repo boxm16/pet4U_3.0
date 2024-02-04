@@ -113,8 +113,10 @@
                 </td>
             </tr>
             <tr>
-                <td>
+                <td colspan="2">
                     <input style="background-color:lightgreen; font-size:40px" type="button" value="ΕΛΕΓΧΟΣ" onclick="requestRouter('endosChecking.htm')">
+                </td>
+                <td colspan="2">
                 </td>
                 <td colspan="2">
             <center>
