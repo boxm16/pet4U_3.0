@@ -64,7 +64,9 @@
                 <tr>
 
 
-                    <th>Order Destination</th>
+                    <th>id</th>
+                    <th>Number</th>
+                    <th>Destination</th>
 
                 </tr>
             </thead>
@@ -75,7 +77,7 @@
                         out.println("<tr style='background-color: #90EE90'>");
 
                         out.println("<td>");
-                        out.println("<a href='showDeltioApostolis.htm?id=" + outgoingDeltioApostolisTitlesEntry.getValue().getId() + "' target='_blank'>" + outgoingDeltioApostolisTitlesEntry.getValue().getId() + "</a>");
+                        out.println("<a href='showDeltioApostolisVaribobis.htm?id=" + outgoingDeltioApostolisTitlesEntry.getValue().getId() + "' target='_blank'>" + outgoingDeltioApostolisTitlesEntry.getValue().getId() + "</a>");
                         out.println("</td>");
 
                         out.println("<td style='font-weight: bold;'>");

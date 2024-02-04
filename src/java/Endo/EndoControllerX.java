@@ -278,5 +278,17 @@ public class EndoControllerX {
 
         return "endo/endoOrderDisplay";
     }
+    
+    @RequestMapping(value = "showDeltioApostolisVaribobis", method = RequestMethod.GET)
+    public String showDeltioApostolisVaribobis(@RequestParam(name = "id") String id, ModelMap modelMap) {
+        System.out.println(id);
+
+         EndoDaoX endoDaoX = new EndoDaoX();
+
+        EndoApostolis endo = endoDaoX.getEndoApostolisVaribobis(id);
+
+        modelMap.addAttribute("endo", endo);
+        return "endo/deltioApostolisVaribobisDisplay";
+    }
 
 }

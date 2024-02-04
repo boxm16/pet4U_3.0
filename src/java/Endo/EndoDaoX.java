@@ -505,4 +505,58 @@ public class EndoDaoX {
         return endoInvoices;
     }
 
+    EndoApostolis getEndoApostolisVaribobis(String id) {
+        //System.out.println("NOW DATE: " + nowDate);
+        EndoApostolis endoApostolis = new EndoApostolis();
+        LinkedHashMap<String, EndoApostolis> endoInvoices = new LinkedHashMap();
+        String sql = "SELECT * FROM  [petworld].[dbo].[WH_ENDA_VAR]  WHERE  [DOCID] = '" + id + "' ;";
+        Connection connection;
+        Statement statement;
+        ResultSet resultSet;
+
+        try {
+            connection = this.databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
+
+            statement = connection.createStatement();
+
+            resultSet = statement.executeQuery(sql);
+            int rowIndex = 0;
+
+            while (resultSet.next()) {
+                if (rowIndex == 0) {
+                    String number = resultSet.getString("DOCNUMBER");
+                    String destination = resultSet.getString("DESTINATION");
+                    endoApostolis.setId(id);
+                    endoApostolis.setDateString("DOCDATE");
+                    endoApostolis.setReceiver(destination);
+                    endoApostolis.setNumber(number);
+                    rowIndex++;
+                }
+
+                String itemCode = resultSet.getString("ABBREVIATION");
+                String quantity = resultSet.getString("QUANTITY");
+                String price = resultSet.getString("PRICEBC");
+
+                endoApostolis.setSender("ΒΑΡΙΜΠΟΜΠΗ");
+
+                Item item = new Item();
+                item.setQuantity(quantity);
+                item.setDescription("DESCRIPTION");
+
+                endoApostolis.getItems().put(itemCode, item);
+
+            }
+            endoInvoices.put(id, endoApostolis);
+
+            resultSet.close();
+            statement.close();
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EndoDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return endoApostolis;
+    }
+
 }
