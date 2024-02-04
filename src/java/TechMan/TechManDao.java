@@ -834,9 +834,9 @@ public class TechManDao {
         }
     }
 
-    String createEndoOrderDatabaseTables() {
+    String createEndoOrderTitleDatabaseTables() {
 
-        String query1 = "CREATE TABLE endo_order_title("
+        String query = "CREATE TABLE endo_order_title("
                 + "id INT NOT NULL AUTO_INCREMENT, "
                 + "date DATE NOT NULL, "
                 + "destination VARCHAR (15) NOT NULL, "
@@ -844,7 +844,24 @@ public class TechManDao {
                 + "PRIMARY KEY (id)) "
                 + "ENGINE = InnoDB "
                 + "DEFAULT CHARACTER SET = utf8;";
-        String query2 = "CREATE TABLE endo_order_data("
+
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+
+            statement.close();
+            connection.close();
+            return "Tables 'endo_order_title' created succesfully";
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return "Table 'endo_order_title' could not be created:" + ex;
+        }
+    }
+
+    String createEndoOrderDataDatabaseTables() {
+
+        String query = "CREATE TABLE endo_order_data("
                 + "order_id INT NOT NULL, "
                 + "item_code VARCHAR (100) NOT NULL, "
                 + "quantity VARCHAR (30) NOT NULL, "
@@ -857,32 +874,47 @@ public class TechManDao {
         try {
             Connection connection = this.databaseConnectionFactory.getMySQLConnection();
             Statement statement = connection.createStatement();
-            statement.execute(query1);
-            statement.execute(query2);
+            statement.execute(query);
             statement.close();
             connection.close();
-            return "Tables 'endo_order_title and endo_order_data' created succesfully";
+            return "Tables 'endo_order_data' created succesfully";
         } catch (SQLException ex) {
             Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
-            return "Table 'endo_order_title or endo_order_data' could not be created:" + ex;
+            return "Table 'endo_order_data' could not be created:" + ex;
         }
     }
 
-    String deleteEndoOrderDatabaseTables() {
+    String deleteEndoOrderTitleDatabaseTables() {
         String query1 = "DROP TABLE endo_order_title";
-        String query2 = "DROP TABLE endo_order_data";
 
         try {
             Connection connection = this.databaseConnectionFactory.getMySQLConnection();
             Statement statement = connection.createStatement();
             statement.execute(query1);
-            statement.execute(query2);
+
             statement.close();
             connection.close();
-            return "Table 'endo_order_title and endo_order_data' deleted succesfully";
+            return "Table 'endo_order_title' deleted succesfully";
         } catch (SQLException ex) {
             Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
-            return "Table 'endo_order_title or endo_order_data' could not be deleted:" + ex;
+            return "Table 'endo_order_title' could not be deleted:" + ex;
+        }
+    }
+
+    String deleteEndoOrderDataDatabaseTables() {
+        String query1 = "DROP TABLE endo_order_data";
+
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query1);
+
+            statement.close();
+            connection.close();
+            return "Table 'endo_order_data' deleted succesfully";
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return "Table 'endo_order_data' could not be deleted:" + ex;
         }
     }
 
