@@ -463,4 +463,46 @@ public class EndoDaoX {
 
         return endoOrder;
     }
+
+    LinkedHashMap<String, EndoApostolis> getOutgoingDeltioApostolisTitles(String date) {
+
+        //System.out.println("NOW DATE: " + nowDate);
+        LinkedHashMap<String, EndoApostolis> endoInvoices = new LinkedHashMap();
+        String sql = "SELECT DISTINCT  [DOCID], [DOCNUMBER],[DOCDATE], [SHLIDDESTINATION], [DESTINATION] FROM  [petworld].[dbo].[WH_ENDA_VAR]  WHERE  [DOCDATE] == '" + date + "' ORDER BY [DOCID];";
+        Connection connection;
+        Statement statement;
+        ResultSet resultSet;
+
+        try {
+            connection = this.databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
+
+            statement = connection.createStatement();
+
+            resultSet = statement.executeQuery(sql);
+
+            while (resultSet.next()) {
+
+                String id = resultSet.getString("DOCID");
+                String number = resultSet.getString("DOCNUMBER");
+                String destination = resultSet.getString("DESTINATION");
+                EndoApostolis endoApostolis = new EndoApostolis();
+                endoApostolis.setId(id);
+                endoApostolis.setDateString(date);
+                endoApostolis.setReceiver(destination);
+                endoApostolis.setNumber(number);
+
+                endoInvoices.put(id, endoApostolis);
+            }
+
+            resultSet.close();
+            statement.close();
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EndoDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return endoInvoices;
+    }
+
 }

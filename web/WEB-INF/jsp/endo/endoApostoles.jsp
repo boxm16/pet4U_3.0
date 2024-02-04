@@ -4,6 +4,7 @@
     Author     : Michail Sitmalidis
 --%>
 
+<%@page import="Endo.EndoApostolis"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.LinkedHashMap"%>
 <%@page import="Endo.EndoOrder"%>
@@ -28,6 +29,7 @@
         </style>
     </head>
     <body>
+    <center>
         <a href="index.htm"><h3>INDEX</h3></a>
 
         <hr>
@@ -55,6 +57,36 @@
                 %>
             </tbody>
         </table>
+        <hr>
+        <table>
 
-    </body>
+            <thead>
+                <tr>
+
+
+                    <th>Order Destination</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <%     LinkedHashMap<String, EndoApostolis> outgoingDeltioApostolisTitles = (LinkedHashMap) request.getAttribute("outgoingDeltioApostolisTitles");
+
+                    for (Map.Entry<String, EndoApostolis> outgoingDeltioApostolisTitlesEntry : outgoingDeltioApostolisTitles.entrySet()) {
+                        out.println("<tr style='background-color: #90EE90'>");
+                        
+                        out.println("<td style='font-weight: bold;'>");
+                        out.println(outgoingDeltioApostolisTitlesEntry.getValue().getNumber());
+                        out.println("</td>");
+                        
+                        out.println("<td>");
+                        out.println("<a href='showDeltioApostolis.htm?id=" + outgoingDeltioApostolisTitlesEntry.getValue().getId() + "' target='_blank'>" + outgoingDeltioApostolisTitlesEntry.getValue().getId() + "</a>");
+                        out.println("</td>");
+
+                        out.println("</tr>");
+                    }
+                %>
+            </tbody>
+        </table>
+    </center>
+</body>
 </html>

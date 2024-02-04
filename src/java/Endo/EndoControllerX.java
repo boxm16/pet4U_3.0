@@ -260,8 +260,10 @@ public class EndoControllerX {
         EndoDaoX endoDaoX = new EndoDaoX();
         String date = "2024-02-01";
         LinkedHashMap<String, EndoOrder> endoOrdersTitles = endoDaoX.getEndoOrdersTitles(date);
+        LinkedHashMap<String, EndoApostolis> outgoingDeltioApostolisTitles = endoDaoX.getOutgoingDeltioApostolisTitles(date);
 
         model.addAttribute("endoOrdersTitles", endoOrdersTitles);
+        model.addAttribute("outgoingDeltioApostolisTitles", outgoingDeltioApostolisTitles);
 
         return "endo/endoApostoles";
     }
