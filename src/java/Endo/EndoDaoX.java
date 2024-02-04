@@ -484,7 +484,7 @@ public class EndoDaoX {
 
                 String id = resultSet.getString("DOCID");
                 String number = resultSet.getString("DOCNUMBER");
-                String destination = resultSet.getString("DESTINATION");
+                String destination = translateStoreNameV(resultSet.getString("DESTINATION"));
                 EndoApostolis endoApostolis = new EndoApostolis();
                 endoApostolis.setId(id);
                 endoApostolis.setDateString(date);
