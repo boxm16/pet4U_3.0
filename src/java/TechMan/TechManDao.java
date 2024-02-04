@@ -837,7 +837,7 @@ public class TechManDao {
     String createEndoOrderTitleDatabaseTables() {
 
         String query = "CREATE TABLE endo_order_title("
-                + "id VARCHAR (30) NOT NULL , "
+                + "id VARCHAR (50) NOT NULL , "
                 + "date DATE NOT NULL, "
                 + "destination VARCHAR (15) NOT NULL, "
                 + "note VARCHAR(360) NOT NULL, "
@@ -862,7 +862,7 @@ public class TechManDao {
     String createEndoOrderDataDatabaseTables() {
 
         String query = "CREATE TABLE endo_order_data("
-                + "order_id VARCHAR (30) NOT NULL, "
+                + "order_id VARCHAR (50) NOT NULL, "
                 + "item_code VARCHAR (100) NOT NULL, "
                 + "quantity VARCHAR (30) NOT NULL, "
                 + "price VARCHAR (30) NOT NULL, "
