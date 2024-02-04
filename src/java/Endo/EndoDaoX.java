@@ -365,8 +365,8 @@ public class EndoDaoX {
                     orderedItemsInsetionPreparedStatement.setString(2, orderedItemsEntry.getValue().getCode());
                     orderedItemsInsetionPreparedStatement.setString(3, orderedItemsEntry.getValue().getQuantity());
                     orderedItemsInsetionPreparedStatement.setDouble(4, orderedItemsEntry.getValue().getPrice());
-                    orderedItemsInsetionPreparedStatement.setDouble(4, orderedItemsEntry.getValue().getAmount());
-                    orderedItemsInsetionPreparedStatement.setString(4, orderedItemsEntry.getValue().getComment());
+                    orderedItemsInsetionPreparedStatement.setDouble(5, orderedItemsEntry.getValue().getAmount());
+                    orderedItemsInsetionPreparedStatement.setString(6, orderedItemsEntry.getValue().getComment());
                     orderedItemsInsetionPreparedStatement.addBatch();
 
                 }
