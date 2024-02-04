@@ -468,7 +468,7 @@ public class EndoDaoX {
 
         //System.out.println("NOW DATE: " + nowDate);
         LinkedHashMap<String, EndoApostolis> endoInvoices = new LinkedHashMap();
-        String sql = "SELECT DISTINCT  [DOCID], [DOCNUMBER],[DOCDATE], [SHLIDDESTINATION], [DESTINATION] FROM  [petworld].[dbo].[WH_ENDA_VAR]  WHERE  [DOCDATE] = '" + date + "' ORDER BY [DOCID];";
+        String sql = "SELECT DISTINCT  [DOCID], [DOCNUMBER],[DOCDATE], [SHLIDDESTINATION], [DESTINATION] FROM  [petworld].[dbo].[WH_ENDA_VAR]  WHERE  [DOCDATE] >='" + date + "' ORDER BY [DOCID];";
         Connection connection;
         Statement statement;
         ResultSet resultSet;
