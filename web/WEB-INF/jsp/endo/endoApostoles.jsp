@@ -36,8 +36,8 @@
             <thead>
                 <tr>
 
-                    <th>Order Id</th>
-                    <th>Destination</th>
+
+                    <th>Order Destination</th>
 
                 </tr>
             </thead>
