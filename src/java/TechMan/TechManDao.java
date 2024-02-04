@@ -840,7 +840,7 @@ public class TechManDao {
                 + "id VARCHAR (50) NOT NULL , "
                 + "date DATE NOT NULL, "
                 + "destination VARCHAR (15) NOT NULL, "
-                + "note VARCHAR(360) NOT NULL, "
+                + "note VARCHAR(360) NULL, "
                 + "PRIMARY KEY (id)) "
                 + "ENGINE = InnoDB "
                 + "DEFAULT CHARACTER SET = utf8;";
