@@ -3,6 +3,10 @@ package Endo;
 import BasicModel.Item;
 import Delivery.DeliveryInvoice;
 import Delivery.DeliveryItem;
+import Service.Basement;
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -13,6 +17,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 @Controller
 public class EndoControllerX {
@@ -191,14 +197,61 @@ public class EndoControllerX {
     //---------------------------------------
     @RequestMapping(value = "goForEndoOrdersUpload")
     public String goForEndoOrdersUpload(ModelMap model) {
+
+        LocalDate date = LocalDate.now();
+        model.addAttribute("date", date);
         model.addAttribute("uploadTitle", "Upload Endo Orders For Today");
         model.addAttribute("uploadTarget", "uploadEndoOrders.htm");
         return "endo/endoOrdersUpload";
     }
 
-    @RequestMapping(value = "uploadEndoOrders")
-    public String uploadEndoOrders(ModelMap model) {
-        System.out.println("GOODO UPLOAD");
+    @RequestMapping(value = "uploadEndoOrders", method = RequestMethod.POST)
+    public String uploadEndoOrders(@RequestParam CommonsMultipartFile file, @RequestParam String date, ModelMap model) {
+
+        //this string -date- should come from view, later
+       
+        //
+        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+        System.out.println("Endo Orders Upload: Starting .............. ");
+        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+
+        String filename = "endoOrders.xlsx";
+        Basement basement = new Basement();
+        String filePath = basement.getBasementDirectory() + "/Pet4U_Uploads/" + filename;
+        if (file.isEmpty()) {
+            model.addAttribute("uploadStatus", "Upload could not been completed");
+            model.addAttribute("errorMessage", "No file has been selected");
+            return "endo/endoOrdersUpload";
+        }
+
+        if (date.isEmpty()) {
+            model.addAttribute("uploadStatus", "Upload could not been completed");
+            model.addAttribute("errorMessage", "No date has been selected");
+            return "endo/endoOrdersUpload";
+        }
+        try {
+            byte barr[] = file.getBytes();
+
+            BufferedOutputStream bout = new BufferedOutputStream(
+                    new FileOutputStream(filePath));
+            bout.write(barr);
+            bout.flush();
+            bout.close();
+
+        } catch (Exception e) {
+            System.out.println(e);
+            model.addAttribute("uploadStatus", "Upload could not been completed:" + e);
+            return "endo/endoOrdersUpload";
+        }
+
+        EndoOrdersFactory endoOrdersFactory = new EndoOrdersFactory();
+        LinkedHashMap<String, EndoOrder> endoOrders = endoOrdersFactory.createEndoOrdersFromUploadedFile(filePath);
+
+        //  String result = monthSalesDao.insertNewUpload(date, sodlItems);
+        System.out.println("Endo Orders Upload DATE:" + date);
+        model.addAttribute("uploadTitle", "Endo Orders Upload");
+        model.addAttribute("uploadStatus", "result here ");
+
         return "endo/endoOrdersUpload";
     }
 

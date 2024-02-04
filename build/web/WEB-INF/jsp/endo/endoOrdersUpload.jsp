@@ -15,9 +15,9 @@
 
         <h2 style="color:red">${uploadStatus}<br>${errorMessage}</h2>
         <form action="${uploadTarget}" method="POST" enctype="multipart/form-data">  
-            <!--    <h1>SELECT (ANY DAY OF THE) MONTH</h1>
-                <input type="date"  name="date">
-            -->
+            <h1>SELECT  DAY OF UPLOAD </h1>
+            <input type="date"  name="date" value='${date}'>
+
             <hr>
             <h1>SELECT FILE FOR UPLOAD</h1>
             <input type="file" name="file"/>  
