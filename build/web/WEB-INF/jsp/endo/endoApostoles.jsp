@@ -44,6 +44,7 @@
 
 
                                 <th>Order Destination</th>
+                                <th>Select</th>
 
                             </tr>
                         </thead>
@@ -75,7 +76,7 @@
                         <thead>
                             <tr>
 
-
+                                <th>Select</th>
                                 <th>id</th>
                                 <th>Number</th>
                                 <th>Destination</th>
