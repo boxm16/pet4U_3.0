@@ -393,4 +393,33 @@ public class EndoDaoX {
 
     }
 
+    LinkedHashMap<String, EndoOrder> getEndoOrdersTitles(String date) {
+
+        LinkedHashMap<String, EndoOrder> endoOrders = new LinkedHashMap<>();
+
+        String query = "SELECT * FROM endo_order_title;";
+
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+
+            ResultSet resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                EndoOrder endoOrder = new EndoOrder();
+
+                endoOrder.setId(resultSet.getString("id"));
+                endoOrder.setDestination(resultSet.getString("destination"));
+                endoOrder.setNote(resultSet.getString("note"));
+                endoOrders.put(resultSet.getString("id"), endoOrder);
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EndoDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return endoOrders;
+    }
 }

@@ -250,9 +250,21 @@ public class EndoControllerX {
 
         System.out.println("Endo Orders Upload DATE:" + date);
         model.addAttribute("uploadTitle", "Endo Orders Upload");
-        model.addAttribute("uploadStatus", "result here ");
+        model.addAttribute("uploadStatus", result);
 
         return "endo/endoOrdersUpload";
+    }
+
+    @RequestMapping(value = "endoApostoles")
+    public String endoApostoles(ModelMap model) {
+        EndoDaoX endoDaoX = new EndoDaoX();
+        String date = "2024-02-01";
+        LinkedHashMap<String, EndoOrder> endoOrdersTitles = endoDaoX.getEndoOrdersTitles(date);
+
+       
+        model.addAttribute("endoOrdersTitles", endoOrdersTitles);
+       
+        return "endo/endoApostoles";
     }
 
 }
