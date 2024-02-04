@@ -141,10 +141,10 @@
         <br>
 
         <hr>
-        <h1> ${endoOrderTableCreationResult} </h1>
+        <h1> ${endoOrderTablesCreationResult} </h1>
         <a href='createEndoOrderDatabaseTables.htm'><h1>Create ENDO ORDER Database Tables</h1> </a>
         <br>
-        <h1> ${endoOrderTableDeletionResult} </h1>
+        <h1> ${endoOrderTablesDeletionResult} </h1>
         <a href='deleteEndoOrderDatabaseTables.htm'><h1>Delete ENDO ORDER Database Tables</h1> </a>
         <br>
 
