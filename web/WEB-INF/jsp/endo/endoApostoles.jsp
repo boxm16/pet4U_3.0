@@ -56,6 +56,11 @@
                                     out.println("<td>");
                                     out.println("<a href='showEndoOrder.htm?id=" + endoOrdersTitlesEntry.getValue().getId() + "' target='_blank'>" + endoOrdersTitlesEntry.getValue().getDestination() + "</a>");
                                     out.println("</td>");
+
+                                    out.println("<td>");
+                                    out.println("<input type='checkbox' class='orderId' id='" + endoOrdersTitlesEntry.getValue().getId() + "' style='width:28px;height:28px' >");
+                                    out.println("</td>");
+
                                     out.println("</tr>");
                                 }
                             %>
@@ -82,6 +87,10 @@
 
                                 for (Map.Entry<String, EndoApostolis> outgoingDeltioApostolisTitlesEntry : outgoingDeltioApostolisTitles.entrySet()) {
                                     out.println("<tr style='background-color: #90EE90'>");
+
+                                    out.println("<td>");
+                                    out.println("<input type='checkbox' class='outgoingEndoId' id='" + outgoingDeltioApostolisTitlesEntry.getValue().getId() + "' style='width:28px;height:28px'>");
+                                    out.println("</td>");
 
                                     out.println("<td>");
                                     out.println("<a href='showDeltioApostolisVaribobis.htm?id=" + outgoingDeltioApostolisTitlesEntry.getValue().getId() + "' target='_blank'>" + outgoingDeltioApostolisTitlesEntry.getValue().getId() + "</a>");
