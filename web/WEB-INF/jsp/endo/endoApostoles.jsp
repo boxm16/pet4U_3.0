@@ -34,64 +34,74 @@
 
         <hr>
         <table>
+            <tr>
 
-            <thead>
-                <tr>
+                <td>
+                    <table>
 
-
-                    <th>Order Destination</th>
-
-                </tr>
-            </thead>
-            <tbody>
-                <%     LinkedHashMap<String, EndoOrder> endoOrdersTitles = (LinkedHashMap) request.getAttribute("endoOrdersTitles");
-
-                    for (Map.Entry<String, EndoOrder> endoOrdersTitlesEntry : endoOrdersTitles.entrySet()) {
-                        out.println("<tr style='background-color: #90EE90'>");
-
-                        out.println("<td>");
-                        out.println("<a href='showEndoOrder.htm?id=" + endoOrdersTitlesEntry.getValue().getId() + "' target='_blank'>" + endoOrdersTitlesEntry.getValue().getDestination() + "</a>");
-                        out.println("</td>");
-                        out.println("</tr>");
-                    }
-                %>
-            </tbody>
-        </table>
-        <hr>
-        <table>
-
-            <thead>
-                <tr>
+                        <thead>
+                            <tr>
 
 
-                    <th>id</th>
-                    <th>Number</th>
-                    <th>Destination</th>
+                                <th>Order Destination</th>
 
-                </tr>
-            </thead>
-            <tbody>
-                <%     LinkedHashMap<String, EndoApostolis> outgoingDeltioApostolisTitles = (LinkedHashMap) request.getAttribute("outgoingDeltioApostolisTitles");
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <%     LinkedHashMap<String, EndoOrder> endoOrdersTitles = (LinkedHashMap) request.getAttribute("endoOrdersTitles");
 
-                    for (Map.Entry<String, EndoApostolis> outgoingDeltioApostolisTitlesEntry : outgoingDeltioApostolisTitles.entrySet()) {
-                        out.println("<tr style='background-color: #90EE90'>");
+                                for (Map.Entry<String, EndoOrder> endoOrdersTitlesEntry : endoOrdersTitles.entrySet()) {
+                                    out.println("<tr style='background-color: #90EE90'>");
 
-                        out.println("<td>");
-                        out.println("<a href='showDeltioApostolisVaribobis.htm?id=" + outgoingDeltioApostolisTitlesEntry.getValue().getId() + "' target='_blank'>" + outgoingDeltioApostolisTitlesEntry.getValue().getId() + "</a>");
-                        out.println("</td>");
+                                    out.println("<td>");
+                                    out.println("<a href='showEndoOrder.htm?id=" + endoOrdersTitlesEntry.getValue().getId() + "' target='_blank'>" + endoOrdersTitlesEntry.getValue().getDestination() + "</a>");
+                                    out.println("</td>");
+                                    out.println("</tr>");
+                                }
+                            %>
+                        </tbody>
+                    </table>
+                <td>
+                <td>--------------</td>
+                <td>
 
-                        out.println("<td style='font-weight: bold;'>");
-                        out.println(outgoingDeltioApostolisTitlesEntry.getValue().getNumber());
-                        out.println("</td>");
+                    <table>
 
-                        out.println("<td style='font-weight: bold;'>");
-                        out.println(outgoingDeltioApostolisTitlesEntry.getValue().getReceiver());
-                        out.println("</td>");
+                        <thead>
+                            <tr>
 
-                        out.println("</tr>");
-                    }
-                %>
-            </tbody>
+
+                                <th>id</th>
+                                <th>Number</th>
+                                <th>Destination</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <%     LinkedHashMap<String, EndoApostolis> outgoingDeltioApostolisTitles = (LinkedHashMap) request.getAttribute("outgoingDeltioApostolisTitles");
+
+                                for (Map.Entry<String, EndoApostolis> outgoingDeltioApostolisTitlesEntry : outgoingDeltioApostolisTitles.entrySet()) {
+                                    out.println("<tr style='background-color: #90EE90'>");
+
+                                    out.println("<td>");
+                                    out.println("<a href='showDeltioApostolisVaribobis.htm?id=" + outgoingDeltioApostolisTitlesEntry.getValue().getId() + "' target='_blank'>" + outgoingDeltioApostolisTitlesEntry.getValue().getId() + "</a>");
+                                    out.println("</td>");
+
+                                    out.println("<td style='font-weight: bold;'>");
+                                    out.println(outgoingDeltioApostolisTitlesEntry.getValue().getNumber());
+                                    out.println("</td>");
+
+                                    out.println("<td style='font-weight: bold;'>");
+                                    out.println(outgoingDeltioApostolisTitlesEntry.getValue().getReceiver());
+                                    out.println("</td>");
+
+                                    out.println("</tr>");
+                                }
+                            %>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
         </table>
     </center>
 </body>
