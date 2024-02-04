@@ -536,7 +536,7 @@ public class EndoDaoX {
                 String itemCode = resultSet.getString("ABBREVIATION");
                 String quantity = resultSet.getString("QUANTITY");
                 String price = resultSet.getString("PRICEBC");
-                String description = resultSet.getString("DESCRIPTION");
+                String description = resultSet.getString("NAME");
                 
                 endoApostolis.setSender("ΒΑΡΙΜΠΟΜΠΗ");
                 
