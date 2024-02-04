@@ -78,8 +78,12 @@ public class EndoOrdersFactory {
                 endoOrders.put(destinationString, endoOrder);
             } else {
                 EndoOrder endoOrder = new EndoOrder();
+                
                 LocalDateTime timeNow = LocalDateTime.now();
                 endoOrder.setId(destinationString + ":" + timeNow.toString());
+                
+                endoOrder.setDestination(destinationString);
+
                 EndoOrderItem orderedItem = new EndoOrderItem();
 
                 orderedItem.setCode(itemCodeString);
