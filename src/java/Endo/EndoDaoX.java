@@ -353,7 +353,7 @@ public class EndoDaoX {
             for (Map.Entry<String, EndoOrder> endoOrdersEntry : endoOrders.entrySet()) {
 
                 orderTitelInsertionPreparedStatement.setString(1, endoOrdersEntry.getValue().getId());
-                orderTitelInsertionPreparedStatement.setString(2, endoOrdersEntry.getKey());
+                orderTitelInsertionPreparedStatement.setString(2, date);
                 orderTitelInsertionPreparedStatement.setString(3, endoOrdersEntry.getValue().getDestination());
                 orderTitelInsertionPreparedStatement.setString(4, endoOrdersEntry.getValue().getNote());
 
@@ -377,9 +377,8 @@ public class EndoDaoX {
 
                 System.out.println(" Batch Insertion: DONE");
 
-        
                 connection.commit();
-              
+
                 orderTitelInsertionPreparedStatement.close();
                 orderedItemsInsetionPreparedStatement.close();
                 connection.close();
