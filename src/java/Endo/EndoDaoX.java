@@ -372,18 +372,18 @@ public class EndoDaoX {
                 }
 
                 //Executing the batch
-                orderTitelInsertionPreparedStatement.executeBatch();
-                orderedItemsInsetionPreparedStatement.executeBatch();
-
-                System.out.println(" Batch Insertion: DONE");
-
-                connection.commit();
-
-                orderTitelInsertionPreparedStatement.close();
-                orderedItemsInsetionPreparedStatement.close();
-                connection.close();
-                return "";
             }
+            orderTitelInsertionPreparedStatement.executeBatch();
+            orderedItemsInsetionPreparedStatement.executeBatch();
+
+            System.out.println(" Batch Insertion: DONE");
+
+            connection.commit();
+
+            orderTitelInsertionPreparedStatement.close();
+            orderedItemsInsetionPreparedStatement.close();
+            connection.close();
+            return "";
         } catch (SQLException ex) {
             Logger.getLogger(EndoDaoX.class.getName()).log(Level.SEVERE, null, ex);
 
