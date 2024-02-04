@@ -864,6 +864,7 @@ public class TechManDao {
         String query = "CREATE TABLE endo_order_data("
                 + "order_id VARCHAR (50) NOT NULL, "
                 + "item_code VARCHAR (100) NOT NULL, "
+                + "item_description VARCHAR (100) NOT NULL, "
                 + "ordered_quantity VARCHAR (30) NOT NULL, "
                 + "sent_quantity VARCHAR (30) NOT NULL, "
                 + "price VARCHAR (30) NOT NULL, "
