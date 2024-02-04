@@ -73,13 +73,17 @@
 
                     for (Map.Entry<String, EndoApostolis> outgoingDeltioApostolisTitlesEntry : outgoingDeltioApostolisTitles.entrySet()) {
                         out.println("<tr style='background-color: #90EE90'>");
-                        
+
+                        out.println("<td>");
+                        out.println("<a href='showDeltioApostolis.htm?id=" + outgoingDeltioApostolisTitlesEntry.getValue().getId() + "' target='_blank'>" + outgoingDeltioApostolisTitlesEntry.getValue().getId() + "</a>");
+                        out.println("</td>");
+
                         out.println("<td style='font-weight: bold;'>");
                         out.println(outgoingDeltioApostolisTitlesEntry.getValue().getNumber());
                         out.println("</td>");
-                        
-                        out.println("<td>");
-                        out.println("<a href='showDeltioApostolis.htm?id=" + outgoingDeltioApostolisTitlesEntry.getValue().getId() + "' target='_blank'>" + outgoingDeltioApostolisTitlesEntry.getValue().getId() + "</a>");
+
+                        out.println("<td style='font-weight: bold;'>");
+                        out.println(outgoingDeltioApostolisTitlesEntry.getValue().getReceiver());
                         out.println("</td>");
 
                         out.println("</tr>");
