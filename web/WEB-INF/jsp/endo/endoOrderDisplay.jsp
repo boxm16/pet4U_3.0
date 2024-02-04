@@ -67,7 +67,7 @@
                         out.println(x);
                         out.println("</td>");
                         out.println("<td style='padding-left: 5px; padding-left: 5px;'>");
-                        out.println(item.getCode());
+                        out.println("<a href='itemAnalysis.htm?code=" + item.getCode() + "' target='_blank'>" + item.getCode() + "</a>");
                         out.println("</td>");
 
                         out.println("<td>");
