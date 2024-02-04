@@ -346,7 +346,7 @@ public class EndoDaoX {
 
             connection.setAutoCommit(false);
             PreparedStatement orderTitelInsertionPreparedStatement = connection.prepareStatement("INSERT INTO endo_order_title (id, date, destination, note) VALUES(?,?,?,?);");
-            PreparedStatement orderedItemsInsetionPreparedStatement = connection.prepareStatement("INSERT INTO endo_order_data (order_id, item_code, quantity, price, amount, comment) VALUES (?,?,?,?,?,?);");
+            PreparedStatement orderedItemsInsetionPreparedStatement = connection.prepareStatement("INSERT INTO endo_order_data (order_id, item_code, ordered_quantity, sent_quantity, price, amount, comment) VALUES (?,?,?,?,?,?,?);");
 
             System.out.println("Starting INSERTION: ....");
 
@@ -363,10 +363,11 @@ public class EndoDaoX {
                 for (Map.Entry<String, EndoOrderItem> orderedItemsEntry : orderedItems.entrySet()) {
                     orderedItemsInsetionPreparedStatement.setString(1, endoOrdersEntry.getValue().getId());
                     orderedItemsInsetionPreparedStatement.setString(2, orderedItemsEntry.getValue().getCode());
-                    orderedItemsInsetionPreparedStatement.setString(3, orderedItemsEntry.getValue().getQuantity());
-                    orderedItemsInsetionPreparedStatement.setDouble(4, orderedItemsEntry.getValue().getPrice());
-                    orderedItemsInsetionPreparedStatement.setDouble(5, orderedItemsEntry.getValue().getAmount());
-                    orderedItemsInsetionPreparedStatement.setString(6, orderedItemsEntry.getValue().getComment());
+                    orderedItemsInsetionPreparedStatement.setDouble(3, orderedItemsEntry.getValue().getOrderedQuantity());
+                    orderedItemsInsetionPreparedStatement.setDouble(4, orderedItemsEntry.getValue().getSentQuantity());
+                    orderedItemsInsetionPreparedStatement.setDouble(5, orderedItemsEntry.getValue().getPrice());
+                    orderedItemsInsetionPreparedStatement.setDouble(6, orderedItemsEntry.getValue().getAmount());
+                    orderedItemsInsetionPreparedStatement.setString(7, orderedItemsEntry.getValue().getComment());
                     orderedItemsInsetionPreparedStatement.addBatch();
 
                 }
