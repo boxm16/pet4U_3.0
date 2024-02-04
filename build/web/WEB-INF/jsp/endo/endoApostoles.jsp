@@ -112,6 +112,15 @@
                     </table>
                 </td>
             </tr>
+            <tr>
+                <td>
+                    <input style="background-color:lightgreen; font-size:40px" type="button" value="ΕΛΕΓΧΟΣ" onclick="requestRouter('endosChecking.htm')">
+                </td>
+                <td colspan="2">
+            <center>
+                <input style="background-color:lightblue; font-size:40px" type="button" value="ΣΥΓΚΡΙΣΗ" onclick="requestRouter('compareEndos.htm')">
+            </center>
+            </td>
         </table>
     </center>
 </body>
