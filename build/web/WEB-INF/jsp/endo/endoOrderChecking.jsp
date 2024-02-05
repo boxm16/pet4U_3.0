@@ -67,7 +67,7 @@
                     LinkedHashMap<String, EndoOrderItem> orderedItems = endoOrder.getOrderedItems();
                     for (Map.Entry<String, EndoOrderItem> orderedItemEntry : orderedItems.entrySet()) {
                         EndoOrderItem orderedItem = orderedItemEntry.getValue();
-                        Item invoicedItem = invoicedItems.get(orderedItemEntry.getKey());
+                        Item invoicedItem = invoicedItems.remove(orderedItemEntry.getKey());
 
                         out.println("<tr>");
                         out.println("<td>");
