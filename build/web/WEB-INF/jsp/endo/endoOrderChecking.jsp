@@ -87,7 +87,7 @@
 
                         out.println("<td>");
                         if (invoicedItem == null) {
-                          
+
                             out.println("<input class='invoiced' type='number' id='" + orderedItem.getCode() + "@invoiced' value='0.0'>");
                         } else {
                             out.println("<input class='invoiced' type='number' id='" + invoicedItem.getCode() + "@invoiced' value='" + invoicedItem.getQuantity() + "'>");
@@ -96,6 +96,37 @@
 
                         out.println("<td>");
                         out.println("<dev id='" + orderedItem.getCode() + "@colorDisplay'>____</dev>");
+                        out.println("</td>");
+
+                        out.println("</tr>");
+                        x++;
+                    }
+
+                    for (Map.Entry<String, Item> invoicedItemsEntry : invoicedItems.entrySet()) {
+                        Item invoicedItem = invoicedItemsEntry.getValue();
+
+                        out.println("<tr>");
+                        out.println("<td>");
+                        out.println(x);
+                        out.println("</td>");
+                        out.println("<td style='padding-left: 5px; padding-left: 5px;'>");
+                        out.println(invoicedItem.getCode());
+                        out.println("</td>");
+
+                        out.println("<td>");
+                        out.println(invoicedItem.getDescription());
+                        out.println("</td>");
+
+                        out.println("<td>");
+                        out.println("<input  class='ordered' type='number' id='" + invoicedItem.getCode() + "@ordered' value='0.0' readonly width='10px'>");
+                        out.println("</td>");
+
+                        out.println("<td>");
+                        out.println("<input class='invoiced' type='number' id='" + invoicedItem.getCode() + "@invoiced' value='" + invoicedItem.getQuantity() + "'>");
+                        out.println("</td>");
+
+                        out.println("<td>");
+                        out.println("<dev id='" + invoicedItem.getCode() + "@colorDisplay'>____</dev>");
                         out.println("</td>");
 
                         out.println("</tr>");
