@@ -35,17 +35,12 @@
         <hr>
         <table>
             <tr>
-
                 <td>
                     <table>
-
                         <thead>
                             <tr>
-
-
                                 <th>Order Destination</th>
                                 <th>Select</th>
-
                             </tr>
                         </thead>
                         <tbody>
@@ -114,7 +109,7 @@
             </tr>
             <tr>
                 <td colspan="4"><hr>
-                 </td>
+                </td>
             </tr>
 
             <tr>
@@ -141,31 +136,15 @@
 
             }
             form.action = requestTarget;
-            orderIdInput.value = collectSellectedCheckBoxes();
-            outgoingEndoIdInput.value = collectSellectedOutgoingCheckBoxes();
+            var orderIdCheckBox = document.querySelectorAll(".orderId");
+            orderIdInput.value = orderIdCheckBox[0];
+
+            var endoIdCheckBox = document.querySelectorAll(".outgoingEndoId");
+            outgoingEndoIdInput.value = endoIdCheckBox[0];
             console.log(form.action);
             form.submit();
         }
-        //this function collects all checked checkbox values, concatinates them in one string and returns that string to send it after by POST method to server
-        function collectSellectedCheckBoxes() {
-            var returnValue = "";
-            var targetCheckBoxes = document.querySelectorAll(".orderId");
-            for (x = 0; x < targetCheckBoxes.length; x++) {
-                if (targetCheckBoxes[x].checked)
-                    returnValue += targetCheckBoxes[x].id + ",";
-            }
-            return returnValue;
-        }
 
-        function collectSellectedOutgoingCheckBoxes() {
-            var returnValue = "";
-            var targetCheckBoxes = document.querySelectorAll(".outgoingEndoId");
-            for (x = 0; x < targetCheckBoxes.length; x++) {
-                if (targetCheckBoxes[x].checked)
-                    returnValue += targetCheckBoxes[x].id + ",";
-            }
-            return returnValue;
-        }
     </script>
 </body>
 </html>
