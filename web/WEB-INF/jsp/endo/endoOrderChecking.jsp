@@ -265,29 +265,29 @@
         }
 
         function rechechAll() {
-            var deliveredItems = document.querySelectorAll(".delivered");
+            var orderedItems = document.querySelectorAll(".ordered");
 
-            for (x = 0; x < deliveredItems.length; x++) {
-                let deliveredItem = deliveredItems[x];
-                console.log(deliveredItem);
-                const deliveredItemArrayed = deliveredItem.id.split("@");
-                let itemtemCode = deliveredItemArrayed[0];
+            for (x = 0; x < orderedItems.length; x++) {
+                let orderedItem = orderedItems[x];
+                console.log(orderedItem);
+                const orderedItemArrayed = orderedItem.id.split("@");
+                let itemtemCode = orderedItemArrayed[0];
                 console.log("Item Code : " + itemtemCode);
-                let sent = document.getElementById(itemtemCode + "@sent");
-                if (sent == null) {
+                let invoiced = document.getElementById(itemtemCode + "@invoiced");
+                if (invoiced == null) {
                     let item = items[itemtemCode];
                     addRow(item.code, item.description);
                 } else {
-                    sent = sent.value * 1;
+                    invoiced = invoiced.value * 1;
                 }
 
-                let delivered = document.getElementById(itemtemCode + "@delivered").value * 1;
+                let ordered = document.getElementById(itemtemCode + "@ordered").value * 1;
 
 
 
                 let colorDisplay = document.getElementById(itemtemCode + "@colorDisplay");
 
-                let diff = sent - delivered;
+                let diff = invoiced - ordered;
                 if (diff > 0) {
                     colorDisplay.style.backgroundColor = 'red';
                 }
