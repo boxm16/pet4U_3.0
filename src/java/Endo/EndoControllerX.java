@@ -291,7 +291,7 @@ public class EndoControllerX {
         return "endo/deltioApostolisVaribobisDisplay";
     }
 
-    @RequestMapping(value = "checkOrderWithEndo", method = RequestMethod.GET)
+    @RequestMapping(value = "checkOrderWithEndo", method = RequestMethod.POST)
     public String checkOrderWithEndo(@RequestParam(name = "orderId") String orderId,
             @RequestParam(name = "outgoingEndoId") String outgoingEndoId,
             ModelMap modelMap) {
