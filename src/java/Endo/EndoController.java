@@ -99,8 +99,7 @@ public class EndoController {
             }
         }
 
-        if (sentItems.size()
-                > 0) {
+        if (sentItems.size() > 0) {
 
             System.out.println("LEFT OVERS: " + sentItems.size());
             for (Map.Entry<String, DeliveryItem> sentItemsEntry : sentItems.entrySet()) {
