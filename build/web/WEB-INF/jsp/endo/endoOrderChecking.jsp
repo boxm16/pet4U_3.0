@@ -82,14 +82,14 @@
                         out.println("</td>");
 
                         out.println("<td>");
-                        out.println("<input  class='ordered' type='number' id='" + orderedItem.getCode() + "@sent' value='" + orderedItem.getOrderedQuantity() + "' readonly width='10px'>");
+                        out.println("<input  class='ordered' type='number' id='" + orderedItem.getCode() + "@ordered' value='" + orderedItem.getOrderedQuantity() + "' readonly width='10px'>");
                         out.println("</td>");
 
                         out.println("<td>");
                         if (invoicedItem == null) {
                             out.println("0.0");
                         } else {
-                            out.println("<input class='invoiced' type='number' id='" + invoicedItem.getCode() + "@delivered' value='" + invoicedItem.getQuantity() + "'>");
+                            out.println("<input class='invoiced' type='number' id='" + invoicedItem.getCode() + "@invoiced' value='" + invoicedItem.getQuantity() + "'>");
                         }
                         out.println("</td>");
 
