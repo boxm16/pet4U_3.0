@@ -88,7 +88,7 @@
                         out.println("<td>");
                         if (invoicedItem == null) {
                           
-                            out.println("<input class='invoiced' type='number' id='" + invoicedItem.getCode() + "@invoiced' value='0.0'>");
+                            out.println("<input class='invoiced' type='number' id='" + orderedItem.getCode() + "@invoiced' value='0.0'>");
                         } else {
                             out.println("<input class='invoiced' type='number' id='" + invoicedItem.getCode() + "@invoiced' value='" + invoicedItem.getQuantity() + "'>");
                         }
