@@ -136,15 +136,32 @@
 
             }
             form.action = requestTarget;
-            var orderIdCheckBox = document.querySelectorAll(".orderId");
-            orderIdInput.value = orderIdCheckBox[0].id;
 
-            var endoIdCheckBox = document.querySelectorAll(".outgoingEndoId");
-            outgoingEndoIdInput.value = endoIdCheckBox[0].id;
+            orderIdInput.value = getSelectedOrderId();
+            outgoingEndoIdInput.value = getOutgoingEndoId();
             console.log(form.action);
             form.submit();
         }
 
+        function getSelectedOrderId() {
+            var returnValue = "";
+            var targetCheckBoxes = document.querySelectorAll(".orderId");
+            for (x = 0; x < targetCheckBoxes.length; x++) {
+                if (targetCheckBoxes[x].checked)
+                    return targetCheckBoxes[x].id;
+            }
+            return returnValue;
+        }
+
+        function getOutgoingEndoId() {
+            var returnValue = "";
+            var targetCheckBoxes = document.querySelectorAll(".outgoingEndoId");
+            for (x = 0; x < targetCheckBoxes.length; x++) {
+                if (targetCheckBoxes[x].checked)
+                    return targetCheckBoxes[x].id;
+            }
+            return returnValue;
+        }
     </script>
 </body>
 </html>
