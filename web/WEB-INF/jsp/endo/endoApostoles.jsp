@@ -137,10 +137,10 @@
             }
             form.action = requestTarget;
             var orderIdCheckBox = document.querySelectorAll(".orderId");
-            orderIdInput.value = orderIdCheckBox[0];
+            orderIdInput.value = orderIdCheckBox[0].id;
 
             var endoIdCheckBox = document.querySelectorAll(".outgoingEndoId");
-            outgoingEndoIdInput.value = endoIdCheckBox[0];
+            outgoingEndoIdInput.value = endoIdCheckBox[0].id;
             console.log(form.action);
             form.submit();
         }
