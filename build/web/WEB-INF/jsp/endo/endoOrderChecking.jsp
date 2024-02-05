@@ -87,7 +87,8 @@
 
                         out.println("<td>");
                         if (invoicedItem == null) {
-                            out.println("0.0");
+                          
+                            out.println("<input class='invoiced' type='number' id='" + invoicedItem.getCode() + "@invoiced' value='0.0'>");
                         } else {
                             out.println("<input class='invoiced' type='number' id='" + invoicedItem.getCode() + "@invoiced' value='" + invoicedItem.getQuantity() + "'>");
                         }
@@ -129,10 +130,10 @@
 
             for (x = 0; x < orderedItems.length; x++) {
                 let orderedItem = orderedItems[x];
-                console.log(orderedItem);
+                //  console.log(orderedItem);
                 const orderedItemArrayed = orderedItem.id.split("@");
                 let itemtemCode = orderedItemArrayed[0];
-                console.log("Item Code : " + itemtemCode);
+                //   console.log("Item Code : " + itemtemCode);
                 let invoiced = document.getElementById(itemtemCode + "@invoiced");
                 if (invoiced == null) {
                     console.log("WHOPA");
