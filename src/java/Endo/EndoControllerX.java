@@ -296,7 +296,8 @@ public class EndoControllerX {
             @RequestParam(name = "outgoingEndoId") String outgoingEndoId,
             ModelMap modelMap) {
 
-    
+        System.out.println("ORDER ID: " + orderId);
+        System.out.println("OUTGOING ENDO ID: " + outgoingEndoId);
 
         EndoDaoX endoDaoX = new EndoDaoX();
 
