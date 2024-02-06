@@ -230,4 +230,36 @@ public class MonthSalesDao {
 
         return allItems;
     }
+
+    public ArrayList<String> getSalesPeriod() {
+        ArrayList<String> salesPeriod = new ArrayList();
+        String sql = "SELECT DISTINCT date FROM month_sales;";
+        Connection connection;
+        Statement statement;
+        ResultSet resultSet;
+
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            connection = databaseConnectionFactory.getMySQLConnection();
+
+            statement = connection.createStatement();
+
+            resultSet = statement.executeQuery(sql);
+
+            while (resultSet.next()) {
+
+                String date = resultSet.getString("date");
+                salesPeriod.add(date);
+            }
+
+            resultSet.close();
+            statement.close();
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(MonthSalesDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return salesPeriod;
+    }
 }
