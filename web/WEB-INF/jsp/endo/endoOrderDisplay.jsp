@@ -49,9 +49,8 @@
                     <th>Code</th>
                     <th>Description</th>
                     <th>Ordered Qty</th>
-
                     <th>Price</th>
-                    <th>Commment</th>
+                    <th>Comment</th>
                 </tr>
             </thead>
             <tbody id="tableBody">
@@ -76,6 +75,14 @@
 
                         out.println("<td>");
                         out.println(item.getOrderedQuantity());
+                        out.println("</td>");
+
+                        out.println("<td>");
+                        out.println(item.getPrice());
+                        out.println("</td>");
+
+                        out.println("<td>");
+                        out.println(item.getComment());
                         out.println("</td>");
 
                         out.println("</tr>");
