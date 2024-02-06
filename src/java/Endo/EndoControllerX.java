@@ -321,7 +321,7 @@ public class EndoControllerX {
 
         String result = endoDaoX.bindOrderWithEndo(orderId, outgoingEndoId);
 
-        return "endo/endoOrderChecking";
+        return "redirect:endoApostoles.htm";
     }
 
 }
