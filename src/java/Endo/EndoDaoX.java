@@ -579,25 +579,25 @@ public class EndoDaoX {
     private String translateStoreNameV(String name) {
         String translatedName = name;
         switch (name) {
-            case "ΑΧ-ΜΕΝ":
+            case "ΥΠ: (ΜΕΝΙΔΙ) Λ. ΚΑΡΑΜΑΝΛΗ 80, ΑΧΑΡΝΑΙ":
                 translatedName = "ΜΕΝΙΔΙ";
                 break;
-            case "ΑΧ-ΙΩΝ":
+            case "ΥΠ. (Ν. ΙΩΝΙΑ) ΙΦΙΓΕΝΕΙΑΣ 36, ΗΡΑΚΛΕΙΟ":
                 translatedName = "Ν. ΙΩΝΙΑ";
                 break;
-            case "ΑΧ-ΚΑΛ":
+            case "ΥΠ: (ΚΑΛΛΙΘΕΑ) ΕΛ. ΒΕΝΙΖΕΛΟΥ 288, ΚΑΛΛΙΘΕΑ":
                 translatedName = "ΚΑΛΛΙΘΕΑ";
                 break;
-            case "ΑΧ-ΚΟΥ":
+            case "ΥΠ: (KOYKAKI) ΕΛ. ΒΕΝΙΖΕΛΟΥ 46, ΚΑΛΛΙΘΕΑ":
                 translatedName = "ΚΟΥΚΑΚΙ";
                 break;
-            case "ΑΧ-ΠΤΡ":
+            case "ΥΠ. (ΠΕΤΡΟΥΠΟΛΗ) 25ης ΜΑΡΤΙΟΥ 172, ΠΕΤΡΟΥΠΟΛΗ":
                 translatedName = "ΠΕΤΡΟΥΠΟΛΗ";
                 break;
-            case "ΑΧ-ΧΑΛ":
+            case "ΕΔΡΑ: ΑΧΑΡΝΩΝ 471, Ν. ΧΑΛΚΗΔΟΝΑ":
                 translatedName = "ΧΑΛΚΗΔΟΝΑ";
                 break;
-            case "ΑΧ-ΠΕΡ":
+            case "ΥΠ. (ΠΕΡΙΣΤΕΡΙ) ΒΑΣ. ΑΛΕΞΑΝΔΡΟΥ 27, ΠΕΡΙΣΤΕΡΙ":
                 translatedName = "ΠΕΡΙΣΤΕΡΙ";
                 break;
             case "ΥΠ. (ΑΡΓΥΡΟΥΠΟΛΗ) ΚΥΠΡΟΥ 8, ΑΡΓΥΡΟΥΠΟΛΗ":
