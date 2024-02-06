@@ -223,6 +223,8 @@ public class EndoDaoX {
                     sentQuantity = totalSentItems.get(sentItemCode) + sentQuantity;
                     totalSentItems.put(sentItemCode, sentQuantity);
                 } else {
+                    if(sentItemCode.equals("69402")){
+                        System.out.println("LOUKA");}
                     totalSentItems.put(sentItemCode, sentQuantity);
                 }
             }
