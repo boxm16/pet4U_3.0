@@ -78,6 +78,8 @@ public class EndoBinder {
                 double deliveredQuantity = Double.valueOf(deliveredItemsEntry.getValue().getQuantity());
                 if (deliveredQuantity != totalSentItems.get(deliveredItemsEntry.getKey())) {
                     System.out.println("Different quantity for code: " + deliveredItemsEntry.getKey());
+                    System.out.println("DELIVERED QUANTITY: " + deliveredQuantity);
+                    System.out.println("SENT QUANTITY: " + totalSentItems.get(deliveredItemsEntry.getKey()));
                     this.binderOk = false;
                     return;
                 }
