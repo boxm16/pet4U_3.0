@@ -496,11 +496,12 @@ public class EndoDaoX {
 
                 String id = resultSet.getString("DOCID");
                 String dbDate = resultSet.getString("DOCDATE");
+                String[] splittedDate = dbDate.split(" ");
                 String number = resultSet.getString("DOCNUMBER");
                 String destination = translateStoreNameV(resultSet.getString("DESTINATION"));
                 EndoApostolis endoApostolis = new EndoApostolis();
                 endoApostolis.setId(id);
-                endoApostolis.setDateString(dbDate);
+                endoApostolis.setDateString(splittedDate[0]);
                 endoApostolis.setReceiver(destination);
                 endoApostolis.setNumber(number);
 
