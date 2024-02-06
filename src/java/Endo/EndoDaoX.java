@@ -624,4 +624,25 @@ public class EndoDaoX {
         }
         return translatedName;
     }
+
+    String bindOrderWithEndo(String orderId, String outgoingEndoId) {
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+
+            PreparedStatement itemInsertStatement = connection.prepareStatement("INSERT INTO endo_binding_varibobi (endo_id, binding_endo_id) VALUES (?,?)");
+            itemInsertStatement.setString(1, orderId);
+            itemInsertStatement.setString(2, outgoingEndoId);
+
+            itemInsertStatement.execute();
+
+            itemInsertStatement.close();
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EndoDao.class
+                    .getName()).log(Level.SEVERE, null, ex);
+            return ex.getMessage();
+        }
+        return "Endos binding  EXECUTED SUCCESSFULLY.";
+    }
 }

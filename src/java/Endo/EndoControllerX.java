@@ -309,4 +309,19 @@ public class EndoControllerX {
         return "endo/endoOrderChecking";
     }
 
+    @RequestMapping(value = "bindOrderWithEndo", method = RequestMethod.GET)
+    public String bindOrderWithEndo(@RequestParam(name = "orderId") String orderId,
+            @RequestParam(name = "outgoingEndoId") String outgoingEndoId,
+            ModelMap modelMap) {
+        System.out.println("BINDING ENDO ORDER WITH ENDO APOSTOLIS");
+        System.out.println("ORDER ID: " + orderId);
+        System.out.println("OUTGOING ENDO ID: " + outgoingEndoId);
+
+        EndoDaoX endoDaoX = new EndoDaoX();
+
+        String result = endoDaoX.bindOrderWithEndo(orderId, outgoingEndoId);
+
+        return "endo/endoOrderChecking";
+    }
+
 }
