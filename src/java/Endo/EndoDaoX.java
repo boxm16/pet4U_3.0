@@ -645,4 +645,32 @@ public class EndoDaoX {
         }
         return "Endos binding  EXECUTED SUCCESSFULLY.";
     }
+
+    LinkedHashMap<String, String> getAllBindedOrders() {
+        LinkedHashMap<String, String> allBindedOrders = new LinkedHashMap<>();
+
+        String query = "SELECT * FROM endo_binding_varibobi;";
+
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+
+            ResultSet resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+
+                String orderId = resultSet.getString("order_id");
+                String endoId = resultSet.getString("binding_endo_id");
+
+                allBindedOrders.put(orderId, endoId);
+
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EndoDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return allBindedOrders;
+    }
 }

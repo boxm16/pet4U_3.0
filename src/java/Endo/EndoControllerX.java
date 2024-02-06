@@ -262,6 +262,21 @@ public class EndoControllerX {
         LinkedHashMap<String, EndoOrder> endoOrdersTitles = endoDaoX.getEndoOrdersTitles(date);
         LinkedHashMap<String, EndoApostolis> outgoingDeltioApostolisTitles = endoDaoX.getOutgoingDeltioApostolisTitles(date);
 
+        LinkedHashMap<String, String> allBindedOrders = endoDaoX.getAllBindedOrders();
+
+        for (Map.Entry<String, String> allBindedOrdersEntry : allBindedOrders.entrySet()) {
+
+            if (endoOrdersTitles.containsKey(allBindedOrdersEntry.getKey())) {
+                endoOrdersTitles.remove(allBindedOrdersEntry.getKey());
+                if (outgoingDeltioApostolisTitles.containsKey(allBindedOrdersEntry.getValue())) {
+                    outgoingDeltioApostolisTitles.remove(allBindedOrdersEntry.getValue());
+                } else {
+                    System.out.println("SOMITH WRONG HERE: SEE endoApostoles method");
+                }
+            }
+
+        }
+
         model.addAttribute("endoOrdersTitles", endoOrdersTitles);
         model.addAttribute("outgoingDeltioApostolisTitles", outgoingDeltioApostolisTitles);
 
