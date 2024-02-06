@@ -74,6 +74,7 @@
                                 <th>Select</th>
                                 <th>id</th>
                                 <th>Number</th>
+                                <th>Date</th>
                                 <th>Destination</th>
 
                             </tr>
@@ -94,6 +95,10 @@
 
                                     out.println("<td style='font-weight: bold;'>");
                                     out.println(outgoingDeltioApostolisTitlesEntry.getValue().getNumber());
+                                    out.println("</td>");
+
+                                    out.println("<td style='font-weight: bold;'>");
+                                    out.println(outgoingDeltioApostolisTitlesEntry.getValue().getDateString());
                                     out.println("</td>");
 
                                     out.println("<td style='font-weight: bold;'>");

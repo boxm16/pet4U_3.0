@@ -495,11 +495,12 @@ public class EndoDaoX {
             while (resultSet.next()) {
 
                 String id = resultSet.getString("DOCID");
+                String dbDate = resultSet.getString("DOCDATE");
                 String number = resultSet.getString("DOCNUMBER");
                 String destination = translateStoreNameV(resultSet.getString("DESTINATION"));
                 EndoApostolis endoApostolis = new EndoApostolis();
                 endoApostolis.setId(id);
-                endoApostolis.setDateString(date);
+                endoApostolis.setDateString(dbDate);
                 endoApostolis.setReceiver(destination);
                 endoApostolis.setNumber(number);
 
@@ -629,7 +630,7 @@ public class EndoDaoX {
         try {
             Connection connection = this.databaseConnectionFactory.getMySQLConnection();
 
-            PreparedStatement itemInsertStatement = connection.prepareStatement("INSERT INTO endo_binding_varibobi (endo_id, binding_endo_id) VALUES (?,?)");
+            PreparedStatement itemInsertStatement = connection.prepareStatement("INSERT INTO endo_binding_varibobi (order_id, binding_endo_id) VALUES (?,?)");
             itemInsertStatement.setString(1, orderId);
             itemInsertStatement.setString(2, outgoingEndoId);
 
