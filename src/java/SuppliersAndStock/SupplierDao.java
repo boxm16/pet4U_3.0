@@ -31,6 +31,9 @@ public class SupplierDao {
             insertStatement.setString(2, supplier.getAfm());
 
             insertStatement.execute();
+            
+            insertStatement.close();
+            connection.close();
 
         } catch (SQLException ex) {
             Logger.getLogger(SupplierDao.class.getName()).log(Level.SEVERE, null, ex);
