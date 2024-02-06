@@ -47,7 +47,7 @@
                             <%     LinkedHashMap<String, EndoOrder> endoOrdersTitles = (LinkedHashMap) request.getAttribute("endoOrdersTitles");
 
                                 for (Map.Entry<String, EndoOrder> endoOrdersTitlesEntry : endoOrdersTitles.entrySet()) {
-                                    out.println("<tr style='background-color: #90EE90'>");
+                                    out.println("<tr style='background-color: #E5B48D'>");
 
                                     out.println("<td>");
                                     out.println("<a href='showEndoOrder.htm?id=" + endoOrdersTitlesEntry.getValue().getId() + "' target='_blank'>" + endoOrdersTitlesEntry.getValue().getDestination() + "</a>");
@@ -83,7 +83,7 @@
                             <%     LinkedHashMap<String, EndoApostolis> outgoingDeltioApostolisTitles = (LinkedHashMap) request.getAttribute("outgoingDeltioApostolisTitles");
 
                                 for (Map.Entry<String, EndoApostolis> outgoingDeltioApostolisTitlesEntry : outgoingDeltioApostolisTitles.entrySet()) {
-                                    out.println("<tr style='background-color: #90EE90'>");
+                                    out.println("<tr style='background-color: #E5B48D'>");
 
                                     out.println("<td>");
                                     out.println("<input type='checkbox' class='outgoingEndoId' id='" + outgoingDeltioApostolisTitlesEntry.getValue().getId() + "' style='width:28px;height:28px'>");
