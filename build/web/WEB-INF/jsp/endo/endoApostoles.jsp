@@ -130,7 +130,7 @@
             </td>
         </table>
         <hr><hr>
-        <a href='showBindedOrders'>Show Binded Endo Orders</a>
+        <a href='showBindedOrders.htm'>Show Binded Endo Orders</a>
     </center>
     <form id="form" action="#" method="POST">
         <input hidden type="text" id="orderIdInput" name="orderId">
