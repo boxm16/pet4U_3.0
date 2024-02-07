@@ -465,7 +465,7 @@ public class EndoDaoX {
                 endoOrderItem.setPrice(resultSet.getDouble("price"));
                 endoOrderItem.setAmount(resultSet.getDouble("amount"));
                 endoOrderItem.setComment(resultSet.getString("comment"));
-                endoOrder.addOrderItem(resultSet.getString("item_code"), endoOrderItem);
+                endoOrder.addOrderItem(endoOrderItem.getCode(), endoOrderItem);
 
             }
             resultSet.close();
