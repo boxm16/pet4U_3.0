@@ -362,6 +362,6 @@ public class EndoControllerX {
             }
         }
         modelMap.addAttribute("bindedOutgoindDeltioApostolis",bindedOutgoindDeltioApostolis);
-        return "bindedEndoOrders";
+        return "endo/bindedEndoOrders";
     }
 }
