@@ -32,7 +32,7 @@
     <center>
         <a href="index.htm"><h3>INDEX</h3></a>
         <h1>ΑΠΟΣΤΟΛΕΣ ΕΝΔΟΔΙΑΚΙΝΗΣΗΣ</h1>
-        <a href="goForEndoOrdersUpload.htm"><h3>GO FOR ENDO ORDERS UPLOAD</h3></a>
+        <a href="goForEndoOrdersUpload.htm"><h2>GO FOR ENDO ORDERS UPLOAD</h2></a>
         <hr>
         <table>
             <tr>
