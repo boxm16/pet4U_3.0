@@ -253,7 +253,7 @@ public class EndoControllerX {
         model.addAttribute("uploadTitle", "Endo Orders Upload");
         model.addAttribute("uploadStatus", result);
 
-        return "endo/endoOrdersUpload";
+        return "redirect:endoApostoles.htm";
     }
 
     @RequestMapping(value = "endoApostoles")
