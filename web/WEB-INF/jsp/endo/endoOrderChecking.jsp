@@ -49,7 +49,7 @@
             <thead> 
                 <tr>
                     <th>A/A</th>
-                    <th>Ordered Altercode</th>
+                    <th>Ordered<br>Altercode</th>
                     <th>Code</th>
                     <th>Description</th>
                     <th>Ordered</th>
