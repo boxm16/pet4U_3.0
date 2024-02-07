@@ -84,7 +84,29 @@
                         out.println("<td>");
                         out.println(endoApostolis.getNumber());
                         out.println("</td>");
-                        
+
+                        out.println("<td>");
+                        if (endoApostolis.getReceiver().equals("ΠΕΡΙΣΤΕΡΙ")
+                                || endoApostolis.getReceiver().equals("Ν. ΙΩΝΙΑ")
+                                || endoApostolis.getReceiver().equals("ΧΑΛΚΗΔΟΝΑ")
+                                || endoApostolis.getReceiver().equals("ΚΑΛΛΙΘΕΑ")
+                                || endoApostolis.getReceiver().equals("ΠΕΤΡΟΥΠΟΛΗ")
+                                || endoApostolis.getReceiver().equals("ΜΕΝΙΔΙ")
+                                || endoApostolis.getReceiver().equals("ΚΟΥΚΑΚΙ")) {
+                            out.println("<tr style='background-color:#DFB4F9;'>");
+                        }
+
+                        if (endoApostolis.getReceiver().equals("ΑΓ. ΠΑΡΑΣΚΕΥΗ")
+                                || endoApostolis.getReceiver().equals("ΔΑΦΝΗ")
+                                || endoApostolis.getReceiver().equals("Π. ΦΑΛΗΡΟ")
+                                || endoApostolis.getReceiver().equals("ΑΛΙΜΟΣ")
+                                || endoApostolis.getReceiver().equals("ΧΑΛΑΝΔΡΙ")
+                                || endoApostolis.getReceiver().equals("ΑΡΓΥΡΟΥΠΟΛΗ")
+                                || endoApostolis.getReceiver().equals("ΜΙΧΑΛΑΚΟΠΟΥΛΟΥ")) {
+                            out.println("<tr style='background-color:#FAFAA5 ;'>");
+                        }
+                        out.println("</td>");
+
                         out.println("<td>");
                         out.println("<center><a href='showBindedEndoOrder.htm?id=" + endoApostolis.getId() + "' class='btn btn-primary' style='font-size:30px' target='_blank'>" + endoApostolis.getReceiver() + "</a></center>");
                         out.println("</td>");
