@@ -71,6 +71,9 @@
                 <td>
                     <table>
                         <thead>
+                             <tr>
+                                <th colspan='5'>ΔΕΛΤΙΑ ΑΠΟΣΤΟΛΗΣ</th>
+                            </tr>
                             <tr>
                                 <th>Select</th>
                                 <th>id</th>
@@ -126,6 +129,8 @@
             </center>
             </td>
         </table>
+                        <hr><hr>
+                        <a href='showBindedOrders'> </a>
     </center>
     <form id="form" action="#" method="POST">
         <input hidden type="text" id="orderIdInput" name="orderId">
