@@ -260,10 +260,10 @@ public class EndoControllerX {
     public String endoApostoles(ModelMap model) {
         EndoDaoX endoDaoX = new EndoDaoX();
         String date = "2024-02-07";
-        LinkedHashMap<String, EndoOrder> endoOrdersTitles = endoDaoX.getEndoOrdersTitles(date);
+        LinkedHashMap<String, EndoOrder> endoOrdersTitles = endoDaoX.getEndoOrdersTitles();
         LinkedHashMap<String, EndoApostolis> outgoingDeltioApostolisTitles = endoDaoX.getOutgoingDeltioApostolisTitles(date);
 
-        LinkedHashMap<String, String> allBindedOrders = endoDaoX.getAllBindedOrders();
+        LinkedHashMap<String, String> allBindedOrders = endoDaoX.getAllBindedOrdersTitles();
 
         for (Map.Entry<String, String> allBindedOrdersEntry : allBindedOrders.entrySet()) {
 
@@ -346,4 +346,22 @@ public class EndoControllerX {
         return "redirect:endoApostoles.htm";
     }
 
+    @RequestMapping(value = "showBindedOrders", method = RequestMethod.GET)
+    public String bindOrderWithEndo(ModelMap modelMap) {
+
+        EndoDaoX endoDaoX = new EndoDaoX();
+
+        LinkedHashMap<String, String> allBindedOrders = endoDaoX.getAllBindedOrdersTitles();
+
+        LinkedHashMap<String, EndoApostolis> outgoingDeltioApostolisTitles = endoDaoX.getOutgoingDeltioApostolisTitles("2024-02-07");
+
+        ArrayList<EndoApostolis> bindedOutgoindDeltioApostolis = new ArrayList();
+        for (Map.Entry<String, EndoApostolis> outgoingDeltioApostolisTitlesEntry : outgoingDeltioApostolisTitles.entrySet()) {
+            if (allBindedOrders.containsValue(outgoingDeltioApostolisTitlesEntry.getKey())) {
+                bindedOutgoindDeltioApostolis.add(outgoingDeltioApostolisTitlesEntry.getValue());
+            }
+        }
+        modelMap.addAttribute("bindedOutgoindDeltioApostolis",bindedOutgoindDeltioApostolis);
+        return "bindedEndoOrders";
+    }
 }

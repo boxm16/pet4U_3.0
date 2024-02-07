@@ -404,7 +404,7 @@ public class EndoDaoX {
 
     }
 
-    LinkedHashMap<String, EndoOrder> getEndoOrdersTitles(String date) {
+    LinkedHashMap<String, EndoOrder> getEndoOrdersTitles() {
 
         LinkedHashMap<String, EndoOrder> endoOrders = new LinkedHashMap<>();
 
@@ -484,7 +484,7 @@ public class EndoDaoX {
 
         //System.out.println("NOW DATE: " + nowDate);
         LinkedHashMap<String, EndoApostolis> endoInvoices = new LinkedHashMap();
-        String sql = "SELECT DISTINCT  [DOCID], [DOCNUMBER],[DOCDATE], [SHLIDDESTINATION], [DESTINATION] FROM  [petworld].[dbo].[WH_ENDA_VAR]  WHERE  [DOCDATE] >='" + date + "' ORDER BY [DOCID];";
+        String sql = "SELECT DISTINCT  [DOCID], [DOCNUMBER], [DOCDATE], [SHLIDDESTINATION], [DESTINATION] FROM  [petworld].[dbo].[WH_ENDA_VAR]  WHERE  [DOCDATE] >='" + date + "' ORDER BY [DOCDATE];";
         Connection connection;
         Statement statement;
         ResultSet resultSet;
@@ -652,7 +652,7 @@ public class EndoDaoX {
         return "Endos binding  EXECUTED SUCCESSFULLY.";
     }
 
-    LinkedHashMap<String, String> getAllBindedOrders() {
+    LinkedHashMap<String, String> getAllBindedOrdersTitles() {
         LinkedHashMap<String, String> allBindedOrders = new LinkedHashMap<>();
 
         String query = "SELECT * FROM endo_binding_varibobi;";
@@ -679,4 +679,6 @@ public class EndoDaoX {
         }
         return allBindedOrders;
     }
+
+   
 }
