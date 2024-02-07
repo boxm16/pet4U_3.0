@@ -72,7 +72,20 @@
                         out.println("<tr style='background-color: #ADD8E6'>");
 
                         out.println("<tr>");
-                        out.println("<td colspan='4'>");
+
+                        out.println("<td>");
+                        out.println(endoApostolis.getId());
+                        out.println("</td>");
+
+                        out.println("<td>");
+                        out.println(endoApostolis.getDateString());
+                        out.println("</td>");
+
+                        out.println("<td>");
+                        out.println(endoApostolis.getNumber());
+                        out.println("</td>");
+                        
+                        out.println("<td>");
                         out.println("<center><a href='showBindedEndoOrder.htm?id=" + endoApostolis.getId() + "' class='btn btn-primary' style='font-size:30px' target='_blank'>" + endoApostolis.getReceiver() + "</a></center>");
                         out.println("</td>");
                         out.println("</tr>");
