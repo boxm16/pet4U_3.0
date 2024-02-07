@@ -58,13 +58,19 @@
                     int x = 1;
                     EndoOrder endOrder = (EndoOrder) request.getAttribute("endoOrder");
                     LinkedHashMap<String, EndoOrderItem> items = endOrder.getOrderedItems();
-                    for (Map.Entry<String, EndoOrderItem> deliveryItemEntry : items.entrySet()) {
-                        EndoOrderItem item = deliveryItemEntry.getValue();
+                    for (Map.Entry<String, EndoOrderItem> itemEntry : items.entrySet()) {
+                        EndoOrderItem item = itemEntry.getValue();
 
                         out.println("<tr>");
+
                         out.println("<td>");
                         out.println(x);
                         out.println("</td>");
+
+                        out.println("<td>");
+                        out.println(item.getOrderedAltercode());
+                        out.println("</td>");
+
                         out.println("<td style='padding-left: 5px; padding-left: 5px;'>");
                         out.println("<a href='itemAnalysis.htm?code=" + item.getCode() + "' target='_blank'>" + item.getCode() + "</a>");
                         out.println("</td>");

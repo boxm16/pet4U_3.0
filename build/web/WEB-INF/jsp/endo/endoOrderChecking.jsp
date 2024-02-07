@@ -49,6 +49,7 @@
             <thead> 
                 <tr>
                     <th>A/A</th>
+                    <th>Ordered Altercode</th>
                     <th>Code</th>
                     <th>Description</th>
                     <th>Ordered</th>
@@ -72,6 +73,10 @@
                         out.println("<tr>");
                         out.println("<td>");
                         out.println(x);
+                        out.println("</td>");
+                        
+                        out.println("<td>");
+                        out.println(orderedItem.getOrderedAltercode());
                         out.println("</td>");
 
                         out.println("<td style='padding-left: 5px; padding-left: 5px;'>");
