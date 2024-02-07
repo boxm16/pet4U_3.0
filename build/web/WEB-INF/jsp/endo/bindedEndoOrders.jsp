@@ -58,6 +58,7 @@
                     <th>Date</th>
                     <th>Number</th>
                     <th>DESTINATION</th>
+                    <th>Show Binded Endo Order</th>
                 </tr>
             </thead>
             <tbody>
@@ -69,23 +70,6 @@
                     // iterate LHM using reverse order of keys
                     for (EndoApostolis endoApostolis : bindedOutgoindDeltioApostolis) {
 
-                        out.println("<tr style='background-color: #ADD8E6'>");
-
-                        out.println("<tr>");
-
-                        out.println("<td>");
-                        out.println(endoApostolis.getId());
-                        out.println("</td>");
-
-                        out.println("<td>");
-                        out.println(endoApostolis.getDateString());
-                        out.println("</td>");
-
-                        out.println("<td>");
-                        out.println(endoApostolis.getNumber());
-                        out.println("</td>");
-
-                        out.println("<td>");
                         if (endoApostolis.getReceiver().equals("ΠΕΡΙΣΤΕΡΙ")
                                 || endoApostolis.getReceiver().equals("Ν. ΙΩΝΙΑ")
                                 || endoApostolis.getReceiver().equals("ΧΑΛΚΗΔΟΝΑ")
@@ -105,6 +89,21 @@
                                 || endoApostolis.getReceiver().equals("ΜΙΧΑΛΑΚΟΠΟΥΛΟΥ")) {
                             out.println("<tr style='background-color:#FAFAA5 ;'>");
                         }
+
+                        out.println("<td>");
+                        out.println(endoApostolis.getId());
+                        out.println("</td>");
+
+                        out.println("<td>");
+                        out.println(endoApostolis.getDateString());
+                        out.println("</td>");
+
+                        out.println("<td>");
+                        out.println(endoApostolis.getNumber());
+                        out.println("</td>");
+
+                        out.println("<td>");
+                        out.println(endoApostolis.getReceiver());
                         out.println("</td>");
 
                         out.println("<td>");
