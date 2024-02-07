@@ -235,6 +235,7 @@ public class InventoryDao {
 
     public LinkedHashMap<String, Item> getpet4UItemsRowByRow() {
         LinkedHashMap<String, Item> items = new LinkedHashMap<>();
+        DatabaseConnectionFactory databaseConnectionFactory=new DatabaseConnectionFactory();
         Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
 
         try {
