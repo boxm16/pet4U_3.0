@@ -18,6 +18,7 @@ public class EndoOrderItem extends Item {
     double orderedQuantity;
     double sentQuantity;
     String comment;
+    String orderedAltercode;
 
     public double getPrice() {
         return price;
@@ -57,6 +58,14 @@ public class EndoOrderItem extends Item {
 
     public void setSentQuantity(double sentQuantity) {
         this.sentQuantity = sentQuantity;
+    }
+
+    public String getOrderedAltercode() {
+        return orderedAltercode;
+    }
+
+    public void setOrderedAltercode(String orderedAltercode) {
+        this.orderedAltercode = orderedAltercode;
     }
     
     

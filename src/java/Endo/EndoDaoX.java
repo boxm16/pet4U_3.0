@@ -435,7 +435,7 @@ public class EndoDaoX {
         return endoOrders;
     }
 
-    EndoOrder getEndoOrder(String id) {
+    EndoOrder getEndoOrder(String id, LinkedHashMap<String, Item> pet4UItemsRowByRow) {
         EndoOrder endoOrder = new EndoOrder();
 
         String query = "SELECT * FROM endo_order_title INNER JOIN endo_order_data ON endo_order_title.id=endo_order_data.order_id WHERE id='" + id + "';";
@@ -454,7 +454,11 @@ public class EndoDaoX {
                     endoOrder.setNote(resultSet.getString("note"));
                 }
                 EndoOrderItem endoOrderItem = new EndoOrderItem();
-                endoOrderItem.setCode(resultSet.getString("item_code"));
+                String orderedAltercode = resultSet.getString("item_code");
+                endoOrderItem.setOrderedAltercode(orderedAltercode);
+                Item itemFromRowByRow = pet4UItemsRowByRow.get(orderedAltercode);
+                endoOrderItem.setCode(itemFromRowByRow.getCode());
+
                 endoOrderItem.setDescription(resultSet.getString("item_description"));
                 endoOrderItem.setOrderedQuantity(resultSet.getDouble("ordered_quantity"));
                 endoOrderItem.setSentQuantity(resultSet.getDouble("sent_quantity"));

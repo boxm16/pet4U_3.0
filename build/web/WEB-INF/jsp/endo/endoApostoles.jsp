@@ -32,7 +32,6 @@
     <center>
         <a href="index.htm"><h3>INDEX</h3></a>
       <h1>ΑΠΟΣΤΟΛΕΣ ΕΝΔΟΔΙΑΚΙΝΗΣΗΣ</h1>
-
         <hr>
         <table>
             <tr>
@@ -66,18 +65,14 @@
                 <td>
                 <td>--------------</td>
                 <td>
-
                     <table>
-
                         <thead>
                             <tr>
-
                                 <th>Select</th>
                                 <th>id</th>
                                 <th>Number</th>
                                 <th>Date</th>
                                 <th>Destination</th>
-
                             </tr>
                         </thead>
                         <tbody>

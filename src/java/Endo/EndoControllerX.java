@@ -3,6 +3,7 @@ package Endo;
 import BasicModel.Item;
 import Delivery.DeliveryInvoice;
 import Delivery.DeliveryItem;
+import Inventory.InventoryDao;
 import Service.Basement;
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
@@ -287,7 +288,10 @@ public class EndoControllerX {
     public String showEndoOrder(@RequestParam(name = "id") String id, ModelMap model) {
         EndoDaoX endoDaoX = new EndoDaoX();
 
-        EndoOrder endoOrder = endoDaoX.getEndoOrder(id);
+        InventoryDao inventoryDao = new InventoryDao();
+        LinkedHashMap<String, Item> pet4UItemsRowByRow = inventoryDao.getpet4UItemsRowByRow();
+
+        EndoOrder endoOrder = endoDaoX.getEndoOrder(id, pet4UItemsRowByRow);
 
         model.addAttribute("endoOrder", endoOrder);
 
@@ -314,9 +318,12 @@ public class EndoControllerX {
         System.out.println("ORDER ID: " + orderId);
         System.out.println("OUTGOING ENDO ID: " + outgoingEndoId);
 
+        InventoryDao inventoryDao = new InventoryDao();
+        LinkedHashMap<String, Item> pet4UItemsRowByRow = inventoryDao.getpet4UItemsRowByRow();
+
         EndoDaoX endoDaoX = new EndoDaoX();
 
-        EndoOrder endoOrder = endoDaoX.getEndoOrder(orderId);
+        EndoOrder endoOrder = endoDaoX.getEndoOrder(orderId, pet4UItemsRowByRow);
         EndoApostolis endoApostolis = endoDaoX.getEndoApostolisVaribobis(outgoingEndoId);
 
         modelMap.addAttribute("endoOrder", endoOrder);
