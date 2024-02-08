@@ -121,7 +121,7 @@
                         out.println("</td>");
 
                         out.println("<td style='padding-left: 5px; padding-left: 5px;'>");
-                        out.println(invoicedItem.getCode());
+                        out.println("<a href='itemAnalysis.htm?code=" + invoicedItem.getCode() + "' target='_blank'>" + invoicedItem.getCode() + "</a>");
                         out.println("</td>");
 
                         out.println("<td>");

@@ -117,7 +117,7 @@
                         out.println("</td>");
 
                         out.println("<td style='padding-left: 5px; padding-left: 5px;'>");
-                        out.println(invoicedItem.getCode());
+                        out.println("-------");
                         out.println("</td>");
 
                         out.println("<td style='padding-left: 5px; padding-left: 5px;'>");
