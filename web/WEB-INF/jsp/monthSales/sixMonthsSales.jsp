@@ -32,7 +32,7 @@
                     <th>CODE</th>
                     <th>POSITION</th>
                     <th>DESCRIPTION</th>
-                    <th>E-Shop Links</th>
+                   
                     <!--  <th>M.U.<br> UNIT</th> -->
                     <!--     <th>COEF.</th>-->
                     <th>State </th>

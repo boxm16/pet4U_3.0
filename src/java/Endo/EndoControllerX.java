@@ -250,7 +250,7 @@ public class EndoControllerX {
         String result = endoDaoX.insertNewOrdersUpload(date, endoOrders);
 
         System.out.println("Endo Orders Upload DATE:" + date);
-        model.addAttribute("uploadTitle", "Endo Orders Upload");
+        model.addAttribute("uploadTitle", "ENDO ORDERS UPLOAD COMPELTED SUCCESSFULLY");
         model.addAttribute("uploadStatus", result);
 
         return "redirect:endoApostoles.htm";
