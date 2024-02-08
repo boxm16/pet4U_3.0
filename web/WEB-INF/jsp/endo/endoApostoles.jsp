@@ -40,7 +40,7 @@
                     <table>
                         <thead>
                             <tr>
-                                <th colspan='2'>ΠΑΡΑΓΓΕΛΕΙΕΣ</th>
+                                <th colspan='2'>ΠΑΡΑΓΓΕΛΙΕΣ</th>
                             </tr>
                             <tr>
                                 <th>Order Destination</th>
