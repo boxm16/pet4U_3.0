@@ -680,5 +680,30 @@ public class EndoDaoX {
         return allBindedOrders;
     }
 
-   
+    String getBindedOrderIdByEndoApostolis(String outgoingEndoId) {
+
+        String query = "SELECT order_id FROM endo_binding_varibobi WHERE binding_endo_id=" + outgoingEndoId + ";";
+        String orderId = "";
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+
+            ResultSet resultSet = statement.executeQuery(query);
+
+            while (resultSet.next()) {
+
+                orderId = resultSet.getString("order_id");
+
+                return orderId;
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EndoDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return orderId;
+    }
+
 }

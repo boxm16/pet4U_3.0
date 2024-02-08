@@ -361,7 +361,28 @@ public class EndoControllerX {
                 bindedOutgoindDeltioApostolis.add(outgoingDeltioApostolisTitlesEntry.getValue());
             }
         }
-        modelMap.addAttribute("bindedOutgoindDeltioApostolis",bindedOutgoindDeltioApostolis);
+        modelMap.addAttribute("bindedOutgoindDeltioApostolis", bindedOutgoindDeltioApostolis);
         return "endo/bindedEndoOrders";
+    }
+
+    @RequestMapping(value = "showBindedEndoOrder", method = RequestMethod.POST)
+    public String showBindedEndoOrder(@RequestParam(name = "id") String outgoingEndoId,
+            ModelMap modelMap) {
+
+        EndoDaoX endoDaoX = new EndoDaoX();
+        String bindedOrderId = endoDaoX.getBindedOrderIdByEndoApostolis(outgoingEndoId);
+
+        System.out.println("ORDER ID: " + bindedOrderId);
+        System.out.println("OUTGOING ENDO ID: " + outgoingEndoId);
+
+        InventoryDao inventoryDao = new InventoryDao();
+        LinkedHashMap<String, Item> pet4UItemsRowByRow = inventoryDao.getpet4UItemsRowByRow();
+
+        EndoOrder endoOrder = endoDaoX.getEndoOrder(bindedOrderId, pet4UItemsRowByRow);
+        EndoApostolis endoApostolis = endoDaoX.getEndoApostolisVaribobis(outgoingEndoId);
+
+        modelMap.addAttribute("endoOrder", endoOrder);
+        modelMap.addAttribute("endoApostolis", endoApostolis);
+        return "endo/bindedEndoOrderDisplay";
     }
 }
