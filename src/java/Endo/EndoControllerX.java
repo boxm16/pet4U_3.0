@@ -365,7 +365,7 @@ public class EndoControllerX {
         return "endo/bindedEndoOrders";
     }
 
-    @RequestMapping(value = "showBindedEndoOrder", method = RequestMethod.POST)
+    @RequestMapping(value = "showBindedEndoOrder", method = RequestMethod.GET)
     public String showBindedEndoOrder(@RequestParam(name = "id") String outgoingEndoId,
             ModelMap modelMap) {
 
