@@ -28,7 +28,8 @@
                 <hr><hr>
                 <a href="camelotSearchDashboard.htm"><h1 style="color: #D052DB ">Find Camelot Items</h1></a>
                 <a href='camelotItemsOfOurInterestDashboard.htm'><h3 style="color: #F196F1">Camelot: Items Of Our Interest</h3></a>
-                <a href="orderAlert.htm"> <h1 style="color: #762276">Camelot order alert</h1></a>
+                <a href="orderAlert.htm" class="btn btn-primary" style='background-color: #762276' role="button"><h1>ΕΝΔΟ ΠΑΡΑΛΑΒΕΣ</h1></a>
+
                 <hr> 
                 <hr>
                 <a href="endoDashboard.htm"><h1 style="color: blue">Endo Dashboard</h1></a> 
