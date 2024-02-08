@@ -32,8 +32,8 @@
                 <hr> 
                 <hr>
                 <a href="endoDashboard.htm"><h1 style="color: blue">Endo Dashboard</h1></a> 
-                <a href="endoParalaves.htm" class="btn btn-primary" role="button">ΕΝΔΟ ΠΑΡΑΛΑΒΕΣ</a>
-                <a href="endoApostoles.htm" class="btn btn-secondary" role="button">ΕΝΔΟ ΑΠΟΣΤΟΛΕΣ</a>
+                <a href="endoParalaves.htm" class="btn btn-primary" role="button"><h1>ΕΝΔΟ ΠΑΡΑΛΑΒΕΣ</h1></a>
+                <a href="endoApostoles.htm" class="btn btn-secondary" role="button"><h1>ΕΝΔΟ ΑΠΟΣΤΟΛΕΣ</h1></a>
                 <hr>
                 <a href='pet4uNegativeStock.htm'><h1 style="color: gray">Pet4u Negative Stock</h1></a>
                 <hr>
