@@ -74,7 +74,7 @@
                         out.println("<td>");
                         out.println(x);
                         out.println("</td>");
-                        
+
                         out.println("<td>");
                         out.println(orderedItem.getOrderedAltercode());
                         out.println("</td>");
@@ -115,6 +115,11 @@
                         out.println("<td>");
                         out.println(x);
                         out.println("</td>");
+
+                        out.println("<td style='padding-left: 5px; padding-left: 5px;'>");
+                        out.println("-------");
+                        out.println("</td>");
+
                         out.println("<td style='padding-left: 5px; padding-left: 5px;'>");
                         out.println(invoicedItem.getCode());
                         out.println("</td>");
