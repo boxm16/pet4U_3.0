@@ -390,13 +390,13 @@ public class EndoControllerX {
     public String unbindOrderWithEndo(@RequestParam(name = "orderId") String orderId,
             @RequestParam(name = "outgoingEndoId") String outgoingEndoId,
             ModelMap modelMap) {
-        System.out.println("BINDING ENDO ORDER WITH ENDO APOSTOLIS");
+        System.out.println("UNBINDING ENDO ORDER WITH ENDO APOSTOLIS");
         System.out.println("ORDER ID: " + orderId);
         System.out.println("OUTGOING ENDO ID: " + outgoingEndoId);
 
         EndoDaoX endoDaoX = new EndoDaoX();
 
-        String result = endoDaoX.bindOrderWithEndo(orderId, outgoingEndoId);
+        String result = endoDaoX.unbindOrderWithEndo(orderId, outgoingEndoId);
 
         return "redirect:endoApostoles.htm";
     }
