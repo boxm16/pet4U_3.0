@@ -706,4 +706,25 @@ public class EndoDaoX {
         return orderId;
     }
 
+    String unbindOrderWithEndo(String orderId, String outgoingEndoId) {
+
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+
+            PreparedStatement deletionStatement = connection.prepareStatement("DELETE FROM endo_binding_varibobi WHERE order_id=? AND  binding_endo_id=?");
+            deletionStatement.setString(1, orderId);
+            deletionStatement.setString(2, outgoingEndoId);
+
+            deletionStatement.executeQuery();
+
+            deletionStatement.close();
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EndoDao.class
+                    .getName()).log(Level.SEVERE, null, ex);
+            return ex.getMessage();
+        }
+        return "Endos binding  EXECUTED SUCCESSFULLY.";
+    }
 }

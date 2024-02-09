@@ -347,7 +347,7 @@ public class EndoControllerX {
     }
 
     @RequestMapping(value = "showBindedOrders", method = RequestMethod.GET)
-    public String bindOrderWithEndo(ModelMap modelMap) {
+    public String showBindedOrders(ModelMap modelMap) {
 
         EndoDaoX endoDaoX = new EndoDaoX();
 
@@ -384,5 +384,20 @@ public class EndoControllerX {
         modelMap.addAttribute("endoOrder", endoOrder);
         modelMap.addAttribute("endoApostolis", endoApostolis);
         return "endo/bindedEndoOrderDisplay";
+    }
+
+    @RequestMapping(value = "unbindOrderWithEndo", method = RequestMethod.GET)
+    public String unbindOrderWithEndo(@RequestParam(name = "orderId") String orderId,
+            @RequestParam(name = "outgoingEndoId") String outgoingEndoId,
+            ModelMap modelMap) {
+        System.out.println("BINDING ENDO ORDER WITH ENDO APOSTOLIS");
+        System.out.println("ORDER ID: " + orderId);
+        System.out.println("OUTGOING ENDO ID: " + outgoingEndoId);
+
+        EndoDaoX endoDaoX = new EndoDaoX();
+
+        String result = endoDaoX.bindOrderWithEndo(orderId, outgoingEndoId);
+
+        return "redirect:endoApostoles.htm";
     }
 }
