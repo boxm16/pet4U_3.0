@@ -715,7 +715,7 @@ public class EndoDaoX {
             deletionStatement.setString(1, orderId);
             deletionStatement.setString(2, outgoingEndoId);
 
-            deletionStatement.executeQuery();
+            deletionStatement.executeUpdate();
 
             deletionStatement.close();
             connection.close();
