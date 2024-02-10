@@ -397,12 +397,14 @@ public class SuppliersAndStockController {
             RoyalItem suppliersItem = supplierItemsFromDatabaseEntrySet.getValue();
 
             ItemEksagoges itemEksagoges = lastSixMonthsSales.get(key);
-
-            suppliersItem.setDescription(itemEksagoges.getDescription());
-            suppliersItem.setPosition(itemEksagoges.getPosition());
-            suppliersItem.setQuantity(itemEksagoges.getQuantity());
-            suppliersItem.setState(itemEksagoges.getState());
-            suppliersItem.setEksagoges(itemEksagoges.getEksagoges());
+            if (itemEksagoges == null) {
+            } else {
+                suppliersItem.setDescription(itemEksagoges.getDescription());
+                suppliersItem.setPosition(itemEksagoges.getPosition());
+                suppliersItem.setQuantity(itemEksagoges.getQuantity());
+                suppliersItem.setState(itemEksagoges.getState());
+                suppliersItem.setEksagoges(itemEksagoges.getEksagoges());
+            }
 
             usher.put(suppliersItem.getPosition(), suppliersItem);
         }
