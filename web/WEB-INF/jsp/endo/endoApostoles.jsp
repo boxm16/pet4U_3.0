@@ -48,7 +48,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <%     LinkedHashMap<String, EndoOrder> endoOrdersTitles = (LinkedHashMap) request.getAttribute("endoOrdersTitles");
+                            <%
+                                LinkedHashMap<String, EndoApostolis> outgoingDeltioApostolisTitles = (LinkedHashMap) request.getAttribute("outgoingDeltioApostolisTitles");
+                                LinkedHashMap<String, EndoOrder> endoOrdersTitles = (LinkedHashMap) request.getAttribute("endoOrdersTitles");
 
                                 for (Map.Entry<String, EndoOrder> endoOrdersTitlesEntry : endoOrdersTitles.entrySet()) {
                                     out.println("<tr style='background-color: #E5B48D'>");
@@ -58,7 +60,21 @@
                                     out.println("</td>");
 
                                     out.println("<td>");
-                                    out.println("<input type='checkbox' class='orderId' id='" + endoOrdersTitlesEntry.getValue().getId() + "' style='width:28px;height:28px' >");
+                                    if (outgoingDeltioApostolisTitles.size() == 1) {
+                                        Map.Entry<String, EndoApostolis> outgoingDeltioApostolisTitlesEntry = outgoingDeltioApostolisTitles.entrySet()
+                                                .stream()
+                                                .findFirst()
+                                                .get();
+
+                                        String destination = outgoingDeltioApostolisTitlesEntry.getValue().getReceiver();
+                                        if (endoOrdersTitlesEntry.getValue().getDestination().equals(destination)) {
+                                            out.println("<input type='checkbox' checked class='orderId' id='" + endoOrdersTitlesEntry.getValue().getId() + "' style='width:28px;height:28px' >");
+                                        } else {
+                                            out.println("<input type='checkbox' class='orderId' id='" + endoOrdersTitlesEntry.getValue().getId() + "' style='width:28px;height:28px' >");
+                                        }
+                                    } else {
+                                        out.println("<input type='checkbox' class='orderId' id='" + endoOrdersTitlesEntry.getValue().getId() + "' style='width:28px;height:28px' >");
+                                    }
                                     out.println("</td>");
 
                                     out.println("</tr>");
@@ -83,13 +99,17 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <%     LinkedHashMap<String, EndoApostolis> outgoingDeltioApostolisTitles = (LinkedHashMap) request.getAttribute("outgoingDeltioApostolisTitles");
-
+                            <%
                                 for (Map.Entry<String, EndoApostolis> outgoingDeltioApostolisTitlesEntry : outgoingDeltioApostolisTitles.entrySet()) {
                                     out.println("<tr style='background-color: #E5B48D'>");
 
                                     out.println("<td>");
-                                    out.println("<input type='checkbox' class='outgoingEndoId' id='" + outgoingDeltioApostolisTitlesEntry.getValue().getId() + "' style='width:28px;height:28px'>");
+
+                                    if (outgoingDeltioApostolisTitles.size() == 1) {
+                                        out.println("<input type='checkbox' checked class='outgoingEndoId' id='" + outgoingDeltioApostolisTitlesEntry.getValue().getId() + "' style='width:28px;height:28px'>");
+                                    } else {
+                                        out.println("<input type='checkbox' class='outgoingEndoId' id='" + outgoingDeltioApostolisTitlesEntry.getValue().getId() + "' style='width:28px;height:28px'>");
+                                    }
                                     out.println("</td>");
 
                                     out.println("<td>");
