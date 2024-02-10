@@ -533,14 +533,17 @@ public class SuppliersAndStockController {
             RoyalItem suppliersItem = supplierItemsFromDatabaseEntrySet.getValue();
 
             ItemEksagoges itemEksagoges = lastSixMonthsSales.get(key);
+            if (itemEksagoges == null) {
+                System.out.println("WE NEED TO FIX SOMTHING HERE");
+            } else {
+                suppliersItem.setDescription(itemEksagoges.getDescription());
+                suppliersItem.setPosition(itemEksagoges.getPosition());
+                suppliersItem.setQuantity(itemEksagoges.getQuantity());
+                suppliersItem.setState(itemEksagoges.getState());
+                suppliersItem.setEksagoges(itemEksagoges.getEksagoges());
 
-            suppliersItem.setDescription(itemEksagoges.getDescription());
-            suppliersItem.setPosition(itemEksagoges.getPosition());
-            suppliersItem.setQuantity(itemEksagoges.getQuantity());
-            suppliersItem.setState(itemEksagoges.getState());
-            suppliersItem.setEksagoges(itemEksagoges.getEksagoges());
-
-            usher.put(suppliersItem.getPosition(), suppliersItem);
+                usher.put(suppliersItem.getPosition(), suppliersItem);
+            }
         }
 
         for (Map.Entry<String, RoyalItem> usherEntry : usher.entrySet()) {
