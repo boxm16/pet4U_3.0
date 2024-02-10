@@ -398,6 +398,7 @@ public class SuppliersAndStockController {
 
             ItemEksagoges itemEksagoges = lastSixMonthsSales.get(key);
             if (itemEksagoges == null) {
+                System.out.println("EK "+key);
             } else {
                 suppliersItem.setDescription(itemEksagoges.getDescription());
                 suppliersItem.setPosition(itemEksagoges.getPosition());
