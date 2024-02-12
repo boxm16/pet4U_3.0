@@ -560,12 +560,20 @@ public class EndoDaoX {
 
                 endoApostolis.setSender("ΒΑΡΙΜΠΟΜΠΗ");
 
-                Item item = new Item();
-                item.setCode(itemCode);
-                item.setQuantity(quantity);
-                item.setDescription(description);
-
-                endoApostolis.getItems().put(itemCode, item);
+                LinkedHashMap<String, Item> items = endoApostolis.getItems();
+                if (items.containsKey(itemCode)) {
+                    Item item = items.get(itemCode);
+                    String quantity1 = item.getQuantity();
+                    double sum = Double.valueOf(quantity1) + Double.valueOf(quantity);
+                    item.setQuantity(String.valueOf(sum));
+                    endoApostolis.getItems().put(itemCode, item);
+                } else {
+                    Item item = new Item();
+                    item.setCode(itemCode);
+                    item.setQuantity(quantity);
+                    item.setDescription(description);
+                    endoApostolis.getItems().put(itemCode, item);
+                }
 
             }
             endoInvoices.put(id, endoApostolis);
