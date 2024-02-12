@@ -98,10 +98,11 @@
                             </tr>
                             <tr>
                                 <th>Select</th>
+                                <th>Destination</th>
                                 <th>id</th>
                                 <th>Number</th>
                                 <th>Date</th>
-                                <th>Destination</th>
+
                             </tr>
                         </thead>
                         <tbody>
@@ -118,6 +119,10 @@
                                     }
                                     out.println("</td>");
 
+                                    out.println("<td style='font-weight: bold;'>");
+                                    out.println(outgoingDeltioApostolisTitlesEntry.getValue().getReceiver());
+                                    out.println("</td>");
+
                                     out.println("<td>");
                                     out.println("<a href='showDeltioApostolisVaribobis.htm?id=" + outgoingDeltioApostolisTitlesEntry.getValue().getId() + "' target='_blank'>" + outgoingDeltioApostolisTitlesEntry.getValue().getId() + "</a>");
                                     out.println("</td>");
@@ -128,10 +133,6 @@
 
                                     out.println("<td style='font-weight: bold;'>");
                                     out.println(outgoingDeltioApostolisTitlesEntry.getValue().getDateString());
-                                    out.println("</td>");
-
-                                    out.println("<td style='font-weight: bold;'>");
-                                    out.println(outgoingDeltioApostolisTitlesEntry.getValue().getReceiver());
                                     out.println("</td>");
 
                                     out.println("</tr>");
