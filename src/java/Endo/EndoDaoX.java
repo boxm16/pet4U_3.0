@@ -453,19 +453,34 @@ public class EndoDaoX {
                     endoOrder.setDateString(resultSet.getString("date"));
                     endoOrder.setNote(resultSet.getString("note"));
                 }
-                EndoOrderItem endoOrderItem = new EndoOrderItem();
-                String orderedAltercode = resultSet.getString("item_code");
-                endoOrderItem.setOrderedAltercode(orderedAltercode);
-                Item itemFromRowByRow = pet4UItemsRowByRow.get(orderedAltercode);
-                endoOrderItem.setCode(itemFromRowByRow.getCode());
 
-                endoOrderItem.setDescription(resultSet.getString("item_description"));
-                endoOrderItem.setOrderedQuantity(resultSet.getDouble("ordered_quantity"));
-                endoOrderItem.setSentQuantity(resultSet.getDouble("sent_quantity"));
-                endoOrderItem.setPrice(resultSet.getDouble("price"));
-                endoOrderItem.setAmount(resultSet.getDouble("amount"));
-                endoOrderItem.setComment(resultSet.getString("comment"));
-                endoOrder.addOrderItem(endoOrderItem.getCode(), endoOrderItem);
+                String itemCode = resultSet.getString("item_code");
+
+                LinkedHashMap<String, EndoOrderItem> orderedItems = endoOrder.getOrderedItems();
+                if (orderedItems.containsKey(itemCode)) {
+                    EndoOrderItem endoOrderItem = orderedItems.get(itemCode);
+                   
+                    double orderedQuantity = endoOrderItem.getOrderedQuantity();
+                    endoOrderItem.setOrderedQuantity(orderedQuantity + resultSet.getDouble("ordered_quantity"));
+                   
+                    endoOrderItem.setSentQuantity(endoOrderItem.getSentQuantity() + resultSet.getDouble("sent_quantity"));
+
+                    endoOrder.addOrderItem(itemCode, endoOrderItem);
+                } else {
+                    EndoOrderItem endoOrderItem = new EndoOrderItem();
+
+                    endoOrderItem.setOrderedAltercode(itemCode);
+                    Item itemFromRowByRow = pet4UItemsRowByRow.get(itemCode);
+                    endoOrderItem.setCode(itemFromRowByRow.getCode());
+
+                    endoOrderItem.setDescription(resultSet.getString("item_description"));
+                    endoOrderItem.setOrderedQuantity(resultSet.getDouble("ordered_quantity"));
+                    endoOrderItem.setSentQuantity(resultSet.getDouble("sent_quantity"));
+                    endoOrderItem.setPrice(resultSet.getDouble("price"));
+                    endoOrderItem.setAmount(resultSet.getDouble("amount"));
+                    endoOrderItem.setComment(resultSet.getString("comment"));
+                    endoOrder.addOrderItem(endoOrderItem.getCode(), endoOrderItem);
+                }
 
             }
             resultSet.close();
