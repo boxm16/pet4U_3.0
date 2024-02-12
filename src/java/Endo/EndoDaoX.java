@@ -458,6 +458,7 @@ public class EndoDaoX {
 
                 LinkedHashMap<String, EndoOrderItem> orderedItems = endoOrder.getOrderedItems();
                 if (orderedItems.containsKey(itemCode)) {
+                    System.out.println("ITEM CODE "+itemCode);
                     EndoOrderItem endoOrderItem = orderedItems.get(itemCode);
                    
                     double orderedQuantity = endoOrderItem.getOrderedQuantity();
