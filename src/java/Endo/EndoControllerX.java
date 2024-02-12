@@ -272,7 +272,7 @@ public class EndoControllerX {
                 if (outgoingDeltioApostolisTitles.containsKey(allBindedOrdersEntry.getValue())) {
                     outgoingDeltioApostolisTitles.remove(allBindedOrdersEntry.getValue());
                 } else {
-                    System.out.println("SOMITH WRONG HERE: SEE endoApostoles method");
+                    System.out.println("SOMITH WRONG HERE: SEE endoApostoles method: "+allBindedOrdersEntry.getValue());
                 }
             }
 
