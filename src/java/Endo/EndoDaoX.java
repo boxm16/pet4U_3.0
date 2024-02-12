@@ -457,6 +457,7 @@ public class EndoDaoX {
                 String itemCode = resultSet.getString("item_code");
                 Item itemFromRowByRow = pet4UItemsRowByRow.get(itemCode);
                 String code = itemFromRowByRow.getCode();
+                
                 LinkedHashMap<String, EndoOrderItem> orderedItems = endoOrder.getOrderedItems();
                 if (orderedItems.containsKey(code)) {
                     System.out.println("ITEM CODE " + code);
