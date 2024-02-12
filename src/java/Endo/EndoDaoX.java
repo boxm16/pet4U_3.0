@@ -455,24 +455,25 @@ public class EndoDaoX {
                 }
 
                 String itemCode = resultSet.getString("item_code");
-
+                Item itemFromRowByRow = pet4UItemsRowByRow.get(itemCode);
+                String code = itemFromRowByRow.getCode();
                 LinkedHashMap<String, EndoOrderItem> orderedItems = endoOrder.getOrderedItems();
-                if (orderedItems.containsKey(itemCode)) {
-                    System.out.println("ITEM CODE "+itemCode);
-                    EndoOrderItem endoOrderItem = orderedItems.get(itemCode);
-                   
+                if (orderedItems.containsKey(code)) {
+                    System.out.println("ITEM CODE " + code);
+                    EndoOrderItem endoOrderItem = orderedItems.get(code);
+
                     double orderedQuantity = endoOrderItem.getOrderedQuantity();
                     endoOrderItem.setOrderedQuantity(orderedQuantity + resultSet.getDouble("ordered_quantity"));
-                   
+
                     endoOrderItem.setSentQuantity(endoOrderItem.getSentQuantity() + resultSet.getDouble("sent_quantity"));
 
-                    endoOrder.addOrderItem(itemCode, endoOrderItem);
+                    endoOrder.addOrderItem(code, endoOrderItem);
                 } else {
                     EndoOrderItem endoOrderItem = new EndoOrderItem();
 
                     endoOrderItem.setOrderedAltercode(itemCode);
-                    Item itemFromRowByRow = pet4UItemsRowByRow.get(itemCode);
-                    endoOrderItem.setCode(itemFromRowByRow.getCode());
+
+                    endoOrderItem.setCode(code);
 
                     endoOrderItem.setDescription(resultSet.getString("item_description"));
                     endoOrderItem.setOrderedQuantity(resultSet.getDouble("ordered_quantity"));
