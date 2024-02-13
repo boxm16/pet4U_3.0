@@ -451,12 +451,6 @@ public class EndoDaoX {
                     endoOrder.setId(resultSet.getString("id"));
 
                     String destination = resultSet.getString("destination");
-                    if (destination.equals("ΑΓ_ΠΑΡΑΣΚΕΥΗ")) {
-                        destination = "ΑΓ. ΠΑΡΑΣΚΕΥΗ";
-                    }
-                    if (destination.equals("MΕΝΙΔΙ")) {
-                        destination = "ΜΕΝΙΔΙ";
-                    }
                     endoOrder.setDestination(resultSet.getString(destination));
                     endoOrder.setDateString(resultSet.getString("date"));
                     endoOrder.setNote(resultSet.getString("note"));
