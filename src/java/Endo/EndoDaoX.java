@@ -253,7 +253,7 @@ public class EndoDaoX {
         String translatedName = name;
         switch (name) {
             case "ΑΧ-ΜΕΝ":
-                translatedName = "ΜΕΝΙΔΙ";
+                translatedName = "MΕΝΙΔΙ";
                 break;
             case "ΑΧ-ΙΩΝ":
                 translatedName = "Ν. ΙΩΝΙΑ";
@@ -283,7 +283,7 @@ public class EndoDaoX {
                 translatedName = "ΑΛΙΜΟΣ";
                 break;
             case "ΑΧ-ΑΓΠ":
-                translatedName = "ΑΓ. ΠΑΡΑΣΚΕΥΗ";
+                translatedName = "ΑΓ_ΠΑΡΑΣΚΕΥΗ";
                 break;
             case "ΑΧ-ΧΛΡ":
                 translatedName = "ΧΑΛΑΝΔΡΙ";
@@ -612,7 +612,7 @@ public class EndoDaoX {
         String translatedName = name;
         switch (name) {
             case "ΥΠ: (ΜΕΝΙΔΙ) Λ. ΚΑΡΑΜΑΝΛΗ 80, ΑΧΑΡΝΑΙ":
-                translatedName = "ΜΕΝΙΔΙ";
+                translatedName = "MΕΝΙΔΙ";
                 break;
             case "ΥΠ. (Ν. ΙΩΝΙΑ) ΙΦΙΓΕΝΕΙΑΣ 36, ΗΡΑΚΛΕΙΟ":
                 translatedName = "Ν. ΙΩΝΙΑ";
@@ -642,7 +642,7 @@ public class EndoDaoX {
                 translatedName = "ΑΛΙΜΟΣ";
                 break;
             case "ΥΠ: (ΑΓΙΑ ΠΑΡ.) ΧΑΛΑΝΔΡΙΟΥ 6, ΑΓ. ΠΑΡΑΣΚΕΥΗ":
-                translatedName = "ΑΓ. ΠΑΡΑΣΚΕΥΗ";
+                translatedName = "ΑΓ_ΠΑΡΑΣΚΕΥΗ";
                 break;
             case "ΥΠ: (ΧΑΛΑΝΔΡΙ) ΠΕΝΤΕΛΗΣ 31, ΧΑΛΑΝΔΡΙ":
                 translatedName = "ΧΑΛΑΝΔΡΙ";
