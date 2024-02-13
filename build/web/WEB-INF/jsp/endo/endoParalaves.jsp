@@ -144,7 +144,7 @@
                         
                              out.println("<tr>");
                         out.println("<td colspan='5' >");
-                        out.println("<center> <a href='endoApostoles.htm' class='btn btn-primary' style='background-color: green' role='button'><h1>ΑΝΑΝΕΩΣΗ ΣΕΛΙΔΑΣ</h1></a></center>");
+                        out.println("<center> <a href='endoParalaves.htm' class='btn btn-primary' style='background-color: green' role='button'><h1>ΑΝΑΝΕΩΣΗ ΣΕΛΙΔΑΣ</h1></a></center>");
                         out.println("</td>");
                         out.println("</tr>");
                         
