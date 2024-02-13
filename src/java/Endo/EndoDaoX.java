@@ -419,7 +419,15 @@ public class EndoDaoX {
                 EndoOrder endoOrder = new EndoOrder();
 
                 endoOrder.setId(resultSet.getString("id"));
-                endoOrder.setDestination(resultSet.getString("destination"));
+
+                String destination = resultSet.getString("destination");
+                if (destination.equals("ΑΓ_ΠΑΡΑΣΚΕΥΗ")) {
+                    destination = "ΑΓ. ΠΑΡΑΣΚΕΥΗ";
+                }
+                if (destination.equals("MΕΝΙΔΙ")) {
+                    destination = "ΜΕΝΙΔΙ";
+                }
+                endoOrder.setDestination(resultSet.getString(destination));
                 endoOrder.setNote(resultSet.getString("note"));
                 endoOrders.put(resultSet.getString("id"), endoOrder);
             }
@@ -454,7 +462,7 @@ public class EndoDaoX {
                     if (destination.equals("ΑΓ_ΠΑΡΑΣΚΕΥΗ")) {
                         destination = "ΑΓ. ΠΑΡΑΣΚΕΥΗ";
                     }
-                      if (destination.equals("MΕΝΙΔΙ")) {
+                    if (destination.equals("MΕΝΙΔΙ")) {
                         destination = "ΜΕΝΙΔΙ";
                     }
                     endoOrder.setDestination(resultSet.getString(destination));
