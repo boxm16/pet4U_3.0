@@ -69,7 +69,10 @@ public class EndoControllerX {
 
             for (Map.Entry<String, EndoApostolis> endoApostolissEntry : endoApostoliss.entrySet()) {
                 if (endoParalavis.getThreeLastDigitsArrayList().contains(endoApostolissEntry.getValue().getShortNumber())) {
-                    this.proEndoBinder.addEndoApostolis(endoApostolissEntry.getValue().getId(), endoApostolissEntry.getValue());
+
+                    if (endoParalavis.getDateString().equals(endoApostolissEntry.getValue().getDateString())) {
+                        this.proEndoBinder.addEndoApostolis(endoApostolissEntry.getValue().getId(), endoApostolissEntry.getValue());
+                    }
                 }
             }
             this.proEndoBinder = endoDaoX.fillEndoBinder(this.proEndoBinder);
@@ -272,7 +275,7 @@ public class EndoControllerX {
                 if (outgoingDeltioApostolisTitles.containsKey(allBindedOrdersEntry.getValue())) {
                     outgoingDeltioApostolisTitles.remove(allBindedOrdersEntry.getValue());
                 } else {
-                    System.out.println("SOMITH WRONG HERE: SEE endoApostoles method: "+allBindedOrdersEntry.getValue());
+                    System.out.println("SOMITH WRONG HERE: SEE endoApostoles method: ID of DELTIO APOSTOLIS: " + allBindedOrdersEntry.getValue());
                 }
             }
 
