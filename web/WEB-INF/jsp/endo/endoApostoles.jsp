@@ -74,10 +74,10 @@
 
                                         String destination = outgoingDeltioApostolisTitlesEntry.getValue().getReceiver();
 
-                                        if (destination.endsWith("ΜΕΝΙΔΙ")) {
-                                            System.out.println("ORDER DEST:" + destination + ".");
-                                            System.out.println("ENDO RECEIVER:" + outgoingDeltioApostolisTitlesEntry.getValue().getReceiver() + ".");
-                                        }
+                                       
+                                        if(destination.contains("ΜΕΝΙΔΙ")){
+                                        System.out.println("MENIDIIIII");}
+                                        
                                         if (endoOrdersTitlesEntry.getValue().getDestination().equals(destination)) {
 
                                             out.println("<input type='checkbox' checked class='orderId' id='" + endoOrdersTitlesEntry.getValue().getId() + "' style='width:28px;height:28px' >");
