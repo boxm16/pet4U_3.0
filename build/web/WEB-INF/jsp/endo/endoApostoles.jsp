@@ -75,7 +75,7 @@
                                         String destination = outgoingDeltioApostolisTitlesEntry.getValue().getReceiver();
 
                                        
-                                        if(destination.equals("ΜΕΝΙΔΙ")){
+                                        if(endoOrdersTitlesEntry.getValue().getDestination().equals("ΜΕΝΙΔΙ")){
                                         System.out.println("MENIDIIIII");}
                                         
                                         if (endoOrdersTitlesEntry.getValue().getDestination().equals(destination)) {
