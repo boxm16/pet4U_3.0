@@ -73,13 +73,16 @@
                                                 .get();
 
                                         String destination = outgoingDeltioApostolisTitlesEntry.getValue().getReceiver();
-                                        System.out.println("ORDER DEST:"+destination+".");
-                                         System.out.println("ENDO RECEIVER:"+outgoingDeltioApostolisTitlesEntry.getValue().getReceiver()+".");
+
+                                        if (destination.endsWith("ΜΕΝΙΔΙ")) {
+                                            System.out.println("ORDER DEST:" + destination + ".");
+                                            System.out.println("ENDO RECEIVER:" + outgoingDeltioApostolisTitlesEntry.getValue().getReceiver() + ".");
+                                        }
                                         if (endoOrdersTitlesEntry.getValue().getDestination().equals(destination)) {
-                                            System.out.println("eq");
+
                                             out.println("<input type='checkbox' checked class='orderId' id='" + endoOrdersTitlesEntry.getValue().getId() + "' style='width:28px;height:28px' >");
                                         } else {
-                                             System.out.println("not eq");
+
                                             out.println("<input type='checkbox' class='orderId' id='" + endoOrdersTitlesEntry.getValue().getId() + "' style='width:28px;height:28px' >");
                                         }
                                     } else {
