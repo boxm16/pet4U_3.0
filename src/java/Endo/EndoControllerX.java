@@ -259,7 +259,7 @@ public class EndoControllerX {
     @RequestMapping(value = "endoApostoles")
     public String endoApostoles(ModelMap model) {
         EndoDaoX endoDaoX = new EndoDaoX();
-        String date = "2024-02-06";
+        String date = "2024-02-07";
         LinkedHashMap<String, EndoOrder> endoOrdersTitles = endoDaoX.getEndoOrdersTitles();
         LinkedHashMap<String, EndoApostolis> outgoingDeltioApostolisTitles = endoDaoX.getOutgoingDeltioApostolisTitles(date);
 
