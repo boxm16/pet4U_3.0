@@ -74,10 +74,6 @@
 
                                         String destination = outgoingDeltioApostolisTitlesEntry.getValue().getReceiver();
 
-                                       
-                                        if(endoOrdersTitlesEntry.getValue().getDestination().equals("MΕΝΙΔΙ")){
-                                        System.out.println("MENIDIIIII");}
-                                        
                                         if (endoOrdersTitlesEntry.getValue().getDestination().equals(destination)) {
 
                                             out.println("<input type='checkbox' checked class='orderId' id='" + endoOrdersTitlesEntry.getValue().getId() + "' style='width:28px;height:28px' >");

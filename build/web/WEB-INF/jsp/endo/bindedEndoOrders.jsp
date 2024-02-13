@@ -75,12 +75,12 @@
                                 || endoApostolis.getReceiver().equals("ΧΑΛΚΗΔΟΝΑ")
                                 || endoApostolis.getReceiver().equals("ΚΑΛΛΙΘΕΑ")
                                 || endoApostolis.getReceiver().equals("ΠΕΤΡΟΥΠΟΛΗ")
-                                || endoApostolis.getReceiver().equals("ΜΕΝΙΔΙ")
+                                || endoApostolis.getReceiver().equals("MΕΝΙΔΙ")
                                 || endoApostolis.getReceiver().equals("ΚΟΥΚΑΚΙ")) {
                             out.println("<tr style='background-color:#DFB4F9;'>");
                         }
 
-                        if (endoApostolis.getReceiver().equals("ΑΓ. ΠΑΡΑΣΚΕΥΗ")
+                        if (endoApostolis.getReceiver().equals("ΑΓ_ΠΑΡΑΣΚΕΥΗ")
                                 || endoApostolis.getReceiver().equals("ΔΑΦΝΗ")
                                 || endoApostolis.getReceiver().equals("Π. ΦΑΛΗΡΟ")
                                 || endoApostolis.getReceiver().equals("ΑΛΙΜΟΣ")
