@@ -449,9 +449,7 @@ public class EndoDaoX {
             while (resultSet.next()) {
                 if (rowIndex == 0) {
                     endoOrder.setId(resultSet.getString("id"));
-
-                    String destination = resultSet.getString("destination");
-                    endoOrder.setDestination(resultSet.getString(destination));
+                    endoOrder.setDestination(resultSet.getString("destination"));
                     endoOrder.setDateString(resultSet.getString("date"));
                     endoOrder.setNote(resultSet.getString("note"));
                 }
@@ -459,7 +457,7 @@ public class EndoDaoX {
                 String itemCode = resultSet.getString("item_code");
                 Item itemFromRowByRow = pet4UItemsRowByRow.get(itemCode);
                 String code = itemFromRowByRow.getCode();
-
+                
                 LinkedHashMap<String, EndoOrderItem> orderedItems = endoOrder.getOrderedItems();
                 if (orderedItems.containsKey(code)) {
                     System.out.println("ITEM CODE " + code);
