@@ -275,8 +275,11 @@ public class EndoControllerX {
                 endoOrdersTitles.remove(allBindedOrdersEntry.getKey());
                 if (outgoingDeltioApostolisTitles.containsKey(allBindedOrdersEntry.getValue())) {
                     outgoingDeltioApostolisTitles.remove(allBindedOrdersEntry.getValue());
-                } else {
-                    System.out.println("SOMITH WRONG HERE: SEE endoApostoles method: ID of DELTIO APOSTOLIS: " + allBindedOrdersEntry.getValue());
+                }
+            } else {
+                System.out.println("NO ORDER FOR DELTIO APOSTOLIS with ID:" + allBindedOrdersEntry.getValue());
+                if (outgoingDeltioApostolisTitles.containsKey(allBindedOrdersEntry.getValue())) {
+                    outgoingDeltioApostolisTitles.remove(allBindedOrdersEntry.getValue());
                 }
             }
 
