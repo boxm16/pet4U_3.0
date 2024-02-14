@@ -350,7 +350,7 @@ public class EndoController {
         EndoDao endoDao = new EndoDao();
         String result = endoDao.unbindeEndos(binderId);
 
-        return "redirect:endoDashboard.htm";
+        return "redirect:endoParalaves.htm";
     }
 
 }
