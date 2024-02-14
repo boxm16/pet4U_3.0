@@ -8,6 +8,7 @@ import Service.Basement;
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -344,6 +345,10 @@ public class EndoControllerX {
 
         EndoDaoX endoDaoX = new EndoDaoX();
 
+        if (orderId.isEmpty()) {
+            LocalDateTime timeNow = LocalDateTime.now();
+            orderId = "NoOrder:" + timeNow.toString();
+        }
         String result = endoDaoX.bindOrderWithEndo(orderId, outgoingEndoId);
 
         return "redirect:endoApostoles.htm";
