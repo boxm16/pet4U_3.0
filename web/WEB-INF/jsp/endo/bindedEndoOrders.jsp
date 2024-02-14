@@ -44,7 +44,7 @@
     <body>
     <center>
         <a href="index.htm"><h3>INDEX</h3></a>
-        <a href="endoParalaves.htm"><h3>Endo ΠΑΡΑΛΑΒΕΣ</h3></a>
+        <a href="endoApostoles.htm"><h3>Endo ΑΠΟΣΤΟΛΕΣ</h3></a>
         <hr>
 
         <h2>ΔΕΣΜΕΥΜΕΝΑ ΔΕΛΤΙΑ ΑΠΟΣΤΟΛΗΣ ΠΡΟΣ ΜΑΓΑΖΙΑ </h2>
