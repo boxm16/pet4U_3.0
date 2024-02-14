@@ -277,6 +277,10 @@ public class EndoControllerX {
                 endoOrdersTitles.remove(allBindedOrdersEntry.getKey());
                 outgoingDeltioApostolisTitles.remove(allBindedOrdersEntry.getValue());
             } else {
+                if (allBindedOrdersEntry.getKey().contains("NoOrder")) {
+                    outgoingDeltioApostolisTitles.remove(allBindedOrdersEntry.getValue());
+
+                }
             }
         }
 
