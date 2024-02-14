@@ -404,11 +404,11 @@ public class EndoDaoX {
 
     }
 
-    LinkedHashMap<String, EndoOrder> getEndoOrdersTitles() {
+    LinkedHashMap<String, EndoOrder> getEndoOrdersTitles(String date) {
 
         LinkedHashMap<String, EndoOrder> endoOrders = new LinkedHashMap<>();
 
-        String query = "SELECT * FROM endo_order_title;";
+        String query = "SELECT * FROM endo_order_title  WHERE  date >=" + date + "' ORDER BY date;";
 
         try {
             Connection connection = this.databaseConnectionFactory.getMySQLConnection();
@@ -457,7 +457,7 @@ public class EndoDaoX {
                 String itemCode = resultSet.getString("item_code");
                 Item itemFromRowByRow = pet4UItemsRowByRow.get(itemCode);
                 String code = itemFromRowByRow.getCode();
-                
+
                 LinkedHashMap<String, EndoOrderItem> orderedItems = endoOrder.getOrderedItems();
                 if (orderedItems.containsKey(code)) {
                     System.out.println("ITEM CODE " + code);

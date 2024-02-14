@@ -264,7 +264,7 @@ public class EndoControllerX {
     public String endoApostoles(ModelMap model) {
         EndoDaoX endoDaoX = new EndoDaoX();
         String date = "2024-02-07";
-        LinkedHashMap<String, EndoOrder> endoOrdersTitles = endoDaoX.getEndoOrdersTitles();
+        LinkedHashMap<String, EndoOrder> endoOrdersTitles = endoDaoX.getEndoOrdersTitles(date);
         LinkedHashMap<String, EndoApostolis> outgoingDeltioApostolisTitles = endoDaoX.getOutgoingDeltioApostolisTitles(date);
 
         LinkedHashMap<String, String> allBindedOrders = endoDaoX.getAllBindedOrdersTitles();
