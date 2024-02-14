@@ -182,12 +182,12 @@
                                             || entrySet.getValue().getSender().equals("ΧΑΛΚΗΔΟΝΑ")
                                             || entrySet.getValue().getSender().equals("ΚΑΛΛΙΘΕΑ")
                                             || entrySet.getValue().getSender().equals("ΠΕΤΡΟΥΠΟΛΗ")
-                                            || entrySet.getValue().getSender().equals("ΜΕΝΙΔΙ")
+                                            || entrySet.getValue().getSender().equals("MΕΝΙΔΙ")
                                             || entrySet.getValue().getSender().equals("ΚΟΥΚΑΚΙ")) {
                                         out.println("<tr style='background-color:#DFB4F9;'>");
                                     }
 
-                                    if (entrySet.getValue().getSender().equals("ΑΓ. ΠΑΡΑΣΚΕΥΗ")
+                                    if (entrySet.getValue().getSender().equals("ΑΓ_ΠΑΡΑΣΚΕΥΗ")
                                             || entrySet.getValue().getSender().equals("ΔΑΦΝΗ")
                                             || entrySet.getValue().getSender().equals("Π. ΦΑΛΗΡΟ")
                                             || entrySet.getValue().getSender().equals("ΑΛΙΜΟΣ")
