@@ -271,18 +271,12 @@ public class EndoControllerX {
 
         for (Map.Entry<String, String> allBindedOrdersEntry : allBindedOrders.entrySet()) {
 
-            if (endoOrdersTitles.containsKey(allBindedOrdersEntry.getKey())) {
+            if (endoOrdersTitles.containsKey(allBindedOrdersEntry.getKey())
+                    && outgoingDeltioApostolisTitles.containsKey(allBindedOrdersEntry.getValue())) {
                 endoOrdersTitles.remove(allBindedOrdersEntry.getKey());
-                if (outgoingDeltioApostolisTitles.containsKey(allBindedOrdersEntry.getValue())) {
-                    outgoingDeltioApostolisTitles.remove(allBindedOrdersEntry.getValue());
-                }
+                outgoingDeltioApostolisTitles.remove(allBindedOrdersEntry.getValue());
             } else {
-                System.out.println("NO ORDER FOR DELTIO APOSTOLIS with ID:" + allBindedOrdersEntry.getValue());
-                if (outgoingDeltioApostolisTitles.containsKey(allBindedOrdersEntry.getValue())) {
-                    outgoingDeltioApostolisTitles.remove(allBindedOrdersEntry.getValue());
-                }
             }
-
         }
 
         model.addAttribute("endoOrdersTitles", endoOrdersTitles);
@@ -388,9 +382,14 @@ public class EndoControllerX {
 
         InventoryDao inventoryDao = new InventoryDao();
         LinkedHashMap<String, Item> pet4UItemsRowByRow = inventoryDao.getpet4UItemsRowByRow();
-
-        EndoOrder endoOrder = endoDaoX.getEndoOrder(bindedOrderId, pet4UItemsRowByRow);
         EndoApostolis endoApostolis = endoDaoX.getEndoApostolisVaribobis(outgoingEndoId);
+        EndoOrder endoOrder;
+        if (bindedOrderId.contains("NoOrder")) {
+            endoOrder = new EndoOrder();
+            endoOrder.setId(bindedOrderId);
+        } else {
+            endoOrder = endoDaoX.getEndoOrder(bindedOrderId, pet4UItemsRowByRow);
+        }
 
         modelMap.addAttribute("endoOrder", endoOrder);
         modelMap.addAttribute("endoApostolis", endoApostolis);
