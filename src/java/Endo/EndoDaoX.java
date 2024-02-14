@@ -408,7 +408,7 @@ public class EndoDaoX {
 
         LinkedHashMap<String, EndoOrder> endoOrders = new LinkedHashMap<>();
 
-        String query = "SELECT * FROM endo_order_title  WHERE  date >=" + date + " ORDER BY date;";
+        String query = "SELECT * FROM endo_order_title  WHERE  date >='" + date + "' ORDER BY date;";
 
         try {
             Connection connection = this.databaseConnectionFactory.getMySQLConnection();
