@@ -6,8 +6,15 @@
 package CamelotItemsOfOurInterest_V_3_1;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class CamelotItemsOfOurInterestController {
-    
+
+    @RequestMapping(value = "orderAlert")
+    public String orderAlert(ModelMap model) {
+
+        return "/camelot/camelotOrderAlert";
+    }
 }
