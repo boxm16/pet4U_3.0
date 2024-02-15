@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class CamelotItemsOfOurInterestController {
 
-    @RequestMapping(value = "orderAlert")
-    public String orderAlert(ModelMap model) {
+    @RequestMapping(value = "camelotOrderAlert")
+    public String camelotOrderAlert(ModelMap model) {
 
         return "/camelot/camelotOrderAlert";
     }
