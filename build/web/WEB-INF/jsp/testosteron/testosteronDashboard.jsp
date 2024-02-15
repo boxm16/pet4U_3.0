@@ -16,9 +16,22 @@
 
     </head>
     <body>
-        <!--  <a href='testViewAndDeepSearch.htm'>   <h1>TEST View And DeepSearch Mechanism</h1></a> -->
 
-        <a href="camelotOrderAlert.htm" class="btn btn-primary" style='background-color: #762276' role="button"><h1>CAMELOT ORDER ALERT</h1></a>
+        <div class="container" >
+            <div class="row">
+                <div class=" col-sm-4">
 
+                </div>
+                <!--  <a href='testViewAndDeepSearch.htm'>   <h1>TEST View And DeepSearch Mechanism</h1></a> -->
+
+                <div class=" col-sm-4">
+                    <a href="camelotOrderAlert.htm" class="btn btn-primary" style='background-color: #762276' role="button"><h1>CAMELOT ORDER ALERT</h1></a>
+
+                </div>
+                <div class=" col-sm-4">
+
+                </div>
+            </div>
+        </div>
     </body>
 </html>
