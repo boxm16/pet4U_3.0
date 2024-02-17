@@ -57,10 +57,11 @@ public class CamelotItemsOfOurInterestDao {
     }
 
     LinkedHashMap<String, CamelotItemOfInterest> addPet4uBasicData(LinkedHashMap<String, CamelotItemOfInterest> camelotItemsOfInterest, StringBuilder inPartForSqlQuery) {
-
+        LinkedHashMap<String, CamelotItemOfInterest> returnedHashMap = new LinkedHashMap<>();
+        //i need new linkedHashMap to set order for positions from pet4udatabase
         StringBuilder query
                 = new StringBuilder("SELECT * FROM WH1 WHERE  ALTERNATECODE IN ")
-                        .append(inPartForSqlQuery).append(" ORDER BY 'EXPR1'");
+                        .append(inPartForSqlQuery).append(" ORDER BY EXPR1;");
         System.out.println(query);
         ResultSet resultSet;
 
@@ -95,7 +96,7 @@ public class CamelotItemsOfOurInterestDao {
                         state = resultSet.getString("EXPR2").trim();
                     }
                     camelotItemOfInterest.setState(state);
-                    camelotItemsOfInterest.put(referalAltercode, camelotItemOfInterest);
+                    returnedHashMap.put(referalAltercode, camelotItemOfInterest);
                 } else {
                     System.out.println("Something Wrong Here. Can't find referalAltercode in pet4u main database (WH1): " + referalAltercode);
                 }
