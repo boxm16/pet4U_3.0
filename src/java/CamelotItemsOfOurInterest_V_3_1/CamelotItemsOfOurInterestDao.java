@@ -59,7 +59,7 @@ public class CamelotItemsOfOurInterestDao {
     LinkedHashMap<String, CamelotItemOfInterest> addPet4uBasicData(LinkedHashMap<String, CamelotItemOfInterest> camelotItemsOfInterest, StringBuilder inPartForSqlQuery) {
 
         StringBuilder query
-                = new StringBuilder("SELECT * FROM WH1 WHERE  item_code IN ")
+                = new StringBuilder("SELECT * FROM WH1 WHERE  ALTERNATECODE IN ")
                         .append(inPartForSqlQuery).append(" ORDER BY EXPR1");
         System.out.println(query);
         ResultSet resultSet;
