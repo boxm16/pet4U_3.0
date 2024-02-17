@@ -67,45 +67,16 @@
             </thead>
 
             <%
-                LinkedHashMap<String, CamelotItemOfInterest> items = (LinkedHashMap) request.getAttribute("camelotItemsOfOurInterest");
-                for (Map.Entry<String, CamelotItemOfInterest> entrySet : items.entrySet()) {
-                    CamelotItemOfInterest camelotItemOfInterest = entrySet.getValue();
-                    String alarmColor = "";
-                    int minimalStock = camelotItemOfInterest.getMinimalStock();
-                    int CamelotMinimalStock = camelotItemOfInterest.getCamelotMinimalStock();
-                    double pet4uStock = camelotItemOfInterest.getPet4uStock() / camelotItemOfInterest.getWeightCoefficient();
-                    double camelotFreeStock = camelotItemOfInterest.getCamelotStock();
-                    Double twoWeekSales = 13.0357 / 13.0357;
-                    if (camelotFreeStock < CamelotMinimalStock || pet4uStock < minimalStock * 2) {
-                        if (camelotItemOfInterest.getMinimalStock() == -989898) {
-                            continue;
-                        }
-                        if (pet4uStock < minimalStock * 2) {
-                            alarmColor = "yellow";
-                        }
-                        if (pet4uStock < minimalStock) {
-                            alarmColor = "#F33A6A";
-                        }
+                    LinkedHashMap<String, CamelotItemOfInterest> items = (LinkedHashMap) request.getAttribute("camelotItemsOfOurInterest");
+                    for (Map.Entry<String, CamelotItemOfInterest> entrySet : items.entrySet()) {
+                        CamelotItemOfInterest camelotItemOfInterest = entrySet.getValue();
+                        String alarmColor = "";
+                        int minimalStock = camelotItemOfInterest.getMinimalStock();
+                        int CamelotMinimalStock = camelotItemOfInterest.getCamelotMinimalStock();
+                        double pet4uStock = camelotItemOfInterest.getPet4uStock() / camelotItemOfInterest.getWeightCoefficient();
+                        double camelotFreeStock = camelotItemOfInterest.getCamelotStock();
+                        Double twoWeekSales = 13.0357 / 13.0357;
 
-                        if (camelotFreeStock < CamelotMinimalStock) {
-                            if (pet4uStock < twoWeekSales) {
-                                alarmColor = "red";
-                            } else {
-                                continue;
-                            }
-                        }
-
-                        if (camelotItemOfInterest.getCamelotStock() < 1) {
-                            if ((camelotItemOfInterest.getCamelotStock() < 1 || camelotFreeStock < CamelotMinimalStock) && pet4uStock < 1) {
-                                alarmColor = "brown";
-                            } else if ((camelotItemOfInterest.getCamelotStock() < 1 || camelotFreeStock < CamelotMinimalStock) && pet4uStock < twoWeekSales) {
-                                alarmColor = "#CD7F32";
-                            } else {
-                                // alarmColor = "#2554C7";
-                                continue;
-                            }
-
-                        }
                         out.println("<td>");
                         out.println("<a href='itemAnalysis.htm?code=" + camelotItemOfInterest.getCode() + "' target='_blank'>" + camelotItemOfInterest.getCode() + "</a>");
                         out.println("</td>");
