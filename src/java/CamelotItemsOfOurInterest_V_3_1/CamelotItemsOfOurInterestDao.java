@@ -66,7 +66,7 @@ public class CamelotItemsOfOurInterestDao {
 
         try {
             DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
-            Connection connection = databaseConnectionFactory.getMySQLConnection();
+            Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
             Statement statement = connection.createStatement();
 
             resultSet = statement.executeQuery(query.toString());
