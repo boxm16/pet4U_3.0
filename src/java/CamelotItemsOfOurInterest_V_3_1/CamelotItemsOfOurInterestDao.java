@@ -111,4 +111,49 @@ public class CamelotItemsOfOurInterestDao {
         return camelotItemsOfInterest;
     }
 
+    LinkedHashMap<String, CamelotItemOfInterest> addCamelotData(LinkedHashMap<String, CamelotItemOfInterest> camelotItemsOfOurInterest, StringBuilder inPartForSqlQuery) {
+        StringBuilder query
+                = new StringBuilder("SELECT * FROM WH1 WHERE  ALTERNATECODE IN ")
+                        .append(inPartForSqlQuery);
+        System.out.println(query);
+        ResultSet resultSet;
+
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            Connection connection = databaseConnectionFactory.getCamelotMicrosoftSQLConnection();
+            Statement statement = connection.createStatement();
+
+            resultSet = statement.executeQuery(query.toString());
+            while (resultSet.next()) {
+
+                String referalAltercode = resultSet.getString("ALTERNATECODE").trim();
+
+                if (camelotItemsOfOurInterest.containsKey(referalAltercode)) {
+                    CamelotItemOfInterest camelotItemOfInterest = camelotItemsOfOurInterest.get(referalAltercode);
+
+                    String position_1 = "";
+                    String position_2 = "";
+                    if (resultSet.getString("EXPR1") != null) {
+                        position_1 = resultSet.getString("EXPR1").trim();
+                    }
+                    if (resultSet.getString("EXPR2") != null) {
+                        position_2 = resultSet.getString("EXPR2").trim();
+                    }
+                    camelotItemOfInterest.setCamelotPosition(position_1 + position_2);
+                    camelotItemOfInterest.setCamelotStock(resultSet.getDouble("QTYBALANCE"));
+
+                    camelotItemsOfOurInterest.put(referalAltercode, camelotItemOfInterest);
+                } else {
+                    System.out.println("Something Wrong Here. Can't find referalAltercode in camelot  database (WH1): " + referalAltercode);
+                }
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(CamelotItemsOfOurInterestDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return camelotItemsOfOurInterest;
+    }
+
 }
