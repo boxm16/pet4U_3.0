@@ -45,6 +45,8 @@
             <th>Pet4u Description</th>
 
 
+
+            <th>State</th>
             <th>6 Months<br>Sales</th>
             <th>2 Weeks<br> Sales</th>
             <th>Pet4u <br>Stock</th>
@@ -114,6 +116,10 @@
 
                         out.println("<td>");
                         out.println(camelotItemOfInterest.getDescription());
+                        out.println("</td>");
+
+                        out.println("<td>");
+                        out.println(camelotItemOfInterest.getState());
                         out.println("</td>");
 
                         out.println("<td>");
