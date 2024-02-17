@@ -10,8 +10,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.logging.Level;
@@ -211,15 +209,14 @@ public class CamelotItemsOfOurInterestDao {
 
             resultSet = statement.executeQuery(query.toString());
             while (resultSet.next()) {
+
                 String code = resultSet.getString("code");
-
-                String date = resultSet.getString("date");
-                DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-                LocalDate saleDate = LocalDate.parse(date, formatter2);
-
-                int eshopSales = resultSet.getInt("eshop_sales");
-                int shopsSupply = resultSet.getInt("shops_supply");
-
+                CamelotItemOfInterest camelotItemOfOurInterest = camelotItemsOfOurInterest.get(code);
+                double lastSixMonthsSales = camelotItemOfOurInterest.getLastSixMonthsSales();
+                double eshopSales = resultSet.getDouble("eshop_sales");
+                lastSixMonthsSales = lastSixMonthsSales + eshopSales;
+                camelotItemOfOurInterest.setLastSixMonthsSales(lastSixMonthsSales);
+                camelotItemsOfOurInterest.put(code, camelotItemOfOurInterest);
             }
 
             resultSet.close();

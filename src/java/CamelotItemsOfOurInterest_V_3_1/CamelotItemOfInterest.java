@@ -16,8 +16,7 @@ public class CamelotItemOfInterest extends Item {
     private double camelotStock;
     private int camelotMinimalStock;
 
-    private double lastSixMonthsSoldPieces;
-    private int lastSixMonthsDays;
+    private double lastSixMonthsSales;
     private String note;
 
     public int getMinimalStock() {
@@ -84,20 +83,12 @@ public class CamelotItemOfInterest extends Item {
         this.camelotMinimalStock = camelotMinimalStock;
     }
 
-    public double getLastSixMonthsSoldPieces() {
-        return lastSixMonthsSoldPieces;
+    public double getLastSixMonthsSales() {
+        return lastSixMonthsSales;
     }
 
-    public void setLastSixMonthsSoldPieces(double lastSixMonthsSoldPieces) {
-        this.lastSixMonthsSoldPieces = lastSixMonthsSoldPieces;
-    }
-
-    public int getLastSixMonthsDays() {
-        return lastSixMonthsDays;
-    }
-
-    public void setLastSixMonthsDays(int lastSixMonthsDays) {
-        this.lastSixMonthsDays = lastSixMonthsDays;
+    public void setLastSixMonthsSales(double lastSixMonthsSales) {
+        this.lastSixMonthsSales = lastSixMonthsSales;
     }
 
     public String getNote() {
@@ -115,7 +106,5 @@ public class CamelotItemOfInterest extends Item {
     public void setReferralAltercode(String referralAltercode) {
         this.referralAltercode = referralAltercode;
     }
-
-   
 
 }
