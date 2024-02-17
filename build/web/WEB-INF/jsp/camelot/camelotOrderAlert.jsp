@@ -143,7 +143,7 @@
 
                         out.println("</tr>");
                     }
-                }
+                
             %>
         </table>
         <hr> <hr> <hr>
