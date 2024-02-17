@@ -107,7 +107,7 @@ public class CamelotItemsOfOurInterestDao {
         } catch (SQLException ex) {
             Logger.getLogger(CamelotItemsOfOurInterestDao.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return camelotItemsOfInterest;
+        return returnedHashMap;
     }
 
     LinkedHashMap<String, CamelotItemOfInterest> addCamelotData(LinkedHashMap<String, CamelotItemOfInterest> camelotItemsOfOurInterest, StringBuilder inPartForSqlQuery) {
