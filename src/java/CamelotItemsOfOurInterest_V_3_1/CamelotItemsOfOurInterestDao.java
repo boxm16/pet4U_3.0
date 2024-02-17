@@ -60,7 +60,7 @@ public class CamelotItemsOfOurInterestDao {
 
         StringBuilder query
                 = new StringBuilder("SELECT * FROM WH1 WHERE  ALTERNATECODE IN ")
-                        .append(inPartForSqlQuery).append(" ORDER BY EXPR1");
+                        .append(inPartForSqlQuery).append(" ORDER BY 'EXPR1'");
         System.out.println(query);
         ResultSet resultSet;
 
