@@ -31,8 +31,8 @@ public class CamelotItemsOfOurInterestDao {
             resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
                 CamelotItemOfInterest camelotItemOfInterest = new CamelotItemOfInterest();
-                String itemCode = resultSet.getString("item_code");
-                camelotItemOfInterest.setCode(itemCode.trim());
+                String referalAltercode = resultSet.getString("item_code");
+                camelotItemOfInterest.setReferalAltercode(referalAltercode.trim());
                 camelotItemOfInterest.setMinimalStock(resultSet.getInt("minimal_stock"));
                 camelotItemOfInterest.setWeightCoefficient(resultSet.getInt("weight_coefficient"));
                 camelotItemOfInterest.setOrderUnit(resultSet.getString("order_unit"));
@@ -43,7 +43,7 @@ public class CamelotItemsOfOurInterestDao {
                     note = "";
                 }
                 camelotItemOfInterest.setNote(note);
-                camelotItemsOfInterest.put(itemCode, camelotItemOfInterest);
+                camelotItemsOfInterest.put(referalAltercode, camelotItemOfInterest);
             }
             resultSet.close();
             statement.close();
@@ -53,6 +53,61 @@ public class CamelotItemsOfOurInterestDao {
             Logger.getLogger(CamelotItemsOfOurInterestDao.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        return camelotItemsOfInterest;
+    }
+
+    LinkedHashMap<String, CamelotItemOfInterest> addPet4uBasicData(LinkedHashMap<String, CamelotItemOfInterest> camelotItemsOfInterest, StringBuilder inPartForSqlQuery) {
+
+        StringBuilder query
+                = new StringBuilder("SELECT * FROM WH1 WHERE  item_code IN ")
+                        .append(inPartForSqlQuery).append(" ORDER BY EXPR1");
+        System.out.println(query);
+        ResultSet resultSet;
+
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            Connection connection = databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+
+            resultSet = statement.executeQuery(query.toString());
+            while (resultSet.next()) {
+
+                String referalAltercode = resultSet.getString("ALTERNATECODE").trim();
+
+                String code = resultSet.getString("ABBREVIATION").trim();
+
+                if (camelotItemsOfInterest.containsKey(referalAltercode)) {
+                    CamelotItemOfInterest camelotItemOfInterest = camelotItemsOfInterest.get(referalAltercode);
+                    camelotItemOfInterest.setCode(resultSet.getString("ABBREVIATION").trim());
+                    camelotItemOfInterest.setDescription(resultSet.getString("NAME").trim());
+                    String position = "";
+                    if (resultSet.getString("EXPR1") != null) {
+                        position = resultSet.getString("EXPR1").trim();
+                    } else {
+                        System.out.println("Something Wrong Here. Position null for referalCode in pet4u main database (WH1): " + referalAltercode);
+                    }
+                    if (position.isEmpty()) {
+                        System.out.println("Something Wrong Here.Empty position for referalCode in pet4u main database (WH1): " + referalAltercode);
+                        continue;
+                    }
+                    camelotItemOfInterest.setPosition(position);
+                    camelotItemOfInterest.setPet4uStock(resultSet.getDouble("QTYBALANCE"));
+                    String state = "";
+                    if (resultSet.getString("EXPR2") != null) {
+                        state = resultSet.getString("EXPR2").trim();
+                    }
+                    camelotItemOfInterest.setState(state);
+                    camelotItemsOfInterest.put(referalAltercode, camelotItemOfInterest);
+                } else {
+                    System.out.println("Something Wrong Here. Can't find referalAltercode in pet4u main database (WH1): " + referalAltercode);
+                }
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(CamelotItemsOfOurInterestDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return camelotItemsOfInterest;
     }
 
