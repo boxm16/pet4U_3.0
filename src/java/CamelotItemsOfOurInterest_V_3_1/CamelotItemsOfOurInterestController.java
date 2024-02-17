@@ -26,7 +26,7 @@ public class CamelotItemsOfOurInterestController {
         StringBuilder inPartForSqlQuery = buildStringFromArrayList(referalAltercodes);
         camelotItemsOfOurInterest = camelotItemsOfOurInterestDao.addPet4uBasicData(camelotItemsOfOurInterest, inPartForSqlQuery);
 
-        modelMap.addAttribute("items", camelotItemsOfOurInterest);
+        modelMap.addAttribute("camelotItemsOfOurInterest", camelotItemsOfOurInterest);
         return "/camelot/camelotOrderAlert";
     }
 
