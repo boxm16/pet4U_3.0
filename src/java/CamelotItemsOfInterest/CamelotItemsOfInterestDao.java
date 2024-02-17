@@ -373,7 +373,7 @@ public class CamelotItemsOfInterestDao {
             Logger.getLogger(CamelotItemsOfInterestDao.class.getName()).log(Level.SEVERE, null, ex);
             return ex.getMessage();
         }
-        return "New Snapshot Of Items Of Oure Interest Added Successfully";
+        return "New Snapshot Of Items Of Our Interest Added Successfully";
     }
 
     public String getLastCamelotSnapshotDate() {

@@ -74,8 +74,6 @@ public class CamelotItemsOfOurInterestDao {
 
                 String referalAltercode = resultSet.getString("ALTERNATECODE").trim();
 
-                String code = resultSet.getString("ABBREVIATION").trim();
-
                 if (camelotItemsOfInterest.containsKey(referalAltercode)) {
                     CamelotItemOfInterest camelotItemOfInterest = camelotItemsOfInterest.get(referalAltercode);
                     camelotItemOfInterest.setCode(resultSet.getString("ABBREVIATION").trim());

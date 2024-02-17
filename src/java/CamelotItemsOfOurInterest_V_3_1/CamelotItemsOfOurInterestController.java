@@ -25,7 +25,7 @@ public class CamelotItemsOfOurInterestController {
         ArrayList referalAltercodes = new ArrayList(camelotItemsOfOurInterest.keySet());
         StringBuilder inPartForSqlQuery = buildStringFromArrayList(referalAltercodes);
         camelotItemsOfOurInterest = camelotItemsOfOurInterestDao.addPet4uBasicData(camelotItemsOfOurInterest, inPartForSqlQuery);
-        camelotItemsOfOurInterest = camelotItemsOfOurInterestDao.addCamelotData(camelotItemsOfOurInterest, inPartForSqlQuery);
+      //  camelotItemsOfOurInterest = camelotItemsOfOurInterestDao.addCamelotData(camelotItemsOfOurInterest, inPartForSqlQuery);
 
         modelMap.addAttribute("camelotItemsOfOurInterest", camelotItemsOfOurInterest);
         return "/camelot/camelotOrderAlert";
