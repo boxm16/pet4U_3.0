@@ -53,11 +53,11 @@
             <th>Camelot<br> Stock</th>
             <th>Camelot<br>Minimal<br>Stock</th>
 
-
-            <th>Referral<br>Altercode</th>
             <th>Camelot<br> Position</th>
-            <th>Ord.<br>Qty.</th>
+            <th>Referral<br>Altercode</th>
             <th>Order<br>Unit</th>
+            <th>Ord.<br>Qty.</th>
+
 
             <th>Note</th>
 
@@ -149,11 +149,11 @@
                         out.println("</td>");
 
                         out.println("<td style='font-weight: bold;'>");
-                        out.println(camelotItemOfInterest.getOrderUnit());
+                        out.println(camelotItemOfInterest.getOrderQuantity());
                         out.println("</td>");
 
                         out.println("<td style='font-weight: bold;'>");
-                        out.println(camelotItemOfInterest.getOrderQuantity());
+                        out.println(camelotItemOfInterest.getOrderUnit());
                         out.println("</td>");
 
                         out.println("<td>");
