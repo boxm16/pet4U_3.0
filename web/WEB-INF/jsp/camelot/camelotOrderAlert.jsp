@@ -76,7 +76,7 @@
                     int CamelotMinimalStock = camelotItemOfInterest.getCamelotMinimalStock();
                     double pet4uStock = camelotItemOfInterest.getPet4uStock() / camelotItemOfInterest.getWeightCoefficient();
                     double camelotFreeStock = camelotItemOfInterest.getCamelotStock();
-                    Double twoWeekSales = 13.0357 / 13.0357;
+                    Double twoWeekSales = camelotItemOfInterest.getLastSixMonthsSales() / 13.0357;
 
                     out.println("<td>");
                     out.println("<a href='itemAnalysis.htm?code=" + camelotItemOfInterest.getCode() + "' target='_blank'>" + camelotItemOfInterest.getCode() + "</a>");
@@ -91,7 +91,7 @@
                     out.println("</td>");
 
                     out.println("<td>");
-                    out.println("0");
+                    out.println(camelotItemOfInterest.getLastSixMonthsSales());
                     out.println("</td>");
 
                     out.println("<td>");
@@ -133,7 +133,7 @@
                     out.println("<td>");
                     out.println(camelotItemOfInterest.getNote());
                     out.println("</td>");
-                    
+
                     out.println("<td>");
                     out.println(camelotItemOfInterest.getState());
                     out.println("</td>");
