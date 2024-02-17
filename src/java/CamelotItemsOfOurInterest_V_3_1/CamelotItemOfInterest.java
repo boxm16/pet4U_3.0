@@ -4,7 +4,7 @@ import BasicModel.Item;
 
 public class CamelotItemOfInterest extends Item {
 
-    private String referalAltercode;
+    private String referralAltercode;
 
     private int minimalStock;
     private String orderUnit;
@@ -108,12 +108,14 @@ public class CamelotItemOfInterest extends Item {
         this.note = note;
     }
 
-    public String getReferalAltercode() {
-        return referalAltercode;
+    public String getReferralAltercode() {
+        return referralAltercode;
     }
 
-    public void setReferalAltercode(String referalAltercode) {
-        this.referalAltercode = referalAltercode;
+    public void setReferralAltercode(String referralAltercode) {
+        this.referralAltercode = referralAltercode;
     }
+
+   
 
 }

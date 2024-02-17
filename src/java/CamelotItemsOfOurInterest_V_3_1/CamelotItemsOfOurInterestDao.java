@@ -31,8 +31,8 @@ public class CamelotItemsOfOurInterestDao {
             resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
                 CamelotItemOfInterest camelotItemOfInterest = new CamelotItemOfInterest();
-                String referalAltercode = resultSet.getString("item_code");
-                camelotItemOfInterest.setReferalAltercode(referalAltercode.trim());
+                String referralAltercode = resultSet.getString("item_code");
+                camelotItemOfInterest.setReferralAltercode(referralAltercode.trim());
                 camelotItemOfInterest.setMinimalStock(resultSet.getInt("minimal_stock"));
                 camelotItemOfInterest.setWeightCoefficient(resultSet.getInt("weight_coefficient"));
                 camelotItemOfInterest.setOrderUnit(resultSet.getString("order_unit"));
@@ -43,7 +43,7 @@ public class CamelotItemsOfOurInterestDao {
                     note = "";
                 }
                 camelotItemOfInterest.setNote(note);
-                camelotItemsOfInterest.put(referalAltercode, camelotItemOfInterest);
+                camelotItemsOfInterest.put(referralAltercode, camelotItemOfInterest);
             }
             resultSet.close();
             statement.close();

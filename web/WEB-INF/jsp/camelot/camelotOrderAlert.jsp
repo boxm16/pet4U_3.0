@@ -54,14 +54,14 @@
             <th>Camelot<br>Minimal<br>Stock</th>
 
 
-            <th>Referal<br>Altercode</th>
+            <th>Referral<br>Altercode</th>
             <th>Camelot<br> Position</th>
             <th>Ord.<br>Qty.</th>
             <th>Order<br>Unit</th>
 
             <th>Note</th>
-            <th>  Edit  </th>
-            <th>  Show<br>DayRest<br> Snapshots  </th>
+
+            <th>Show<br>Snapshot</th>
             </thead>
 
             <%
