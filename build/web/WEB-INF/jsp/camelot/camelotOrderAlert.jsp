@@ -105,23 +105,11 @@
 
                         }
                         out.println("<td>");
-                        out.println(camelotItemOfInterest.getCode());
+                        out.println("<a href='itemAnalysis.htm?code=" + camelotItemOfInterest.getCode() + "' target='_blank'>" + camelotItemOfInterest.getCode() + "</a>");
                         out.println("</td>");
 
                         out.println("<td>");
                         out.println(camelotItemOfInterest.getPosition());
-                        out.println("</td>");
-
-                        out.println("<td>");
-                        out.println(camelotItemOfInterest.getDescription());
-                        out.println("</td>");
-
-                        out.println("<td style='font-weight: bold;'>");
-                        out.println(camelotItemOfInterest.getCamelotPosition());
-                        out.println("</td>");
-
-                        out.println("<td>");
-                        out.println("<a href='itemAnalysis.htm?code=" + camelotItemOfInterest.getCode() + "' target='_blank'>" + camelotItemOfInterest.getCode() + "</a>");
                         out.println("</td>");
 
                         out.println("<td>");
@@ -150,6 +138,14 @@
 
                         out.println("<td>");
                         out.println(camelotItemOfInterest.getCamelotMinimalStock());
+                        out.println("</td>");
+
+                        out.println("<td style='font-weight: bold;'>");
+                        out.println(camelotItemOfInterest.getCamelotPosition());
+                        out.println("</td>");
+
+                        out.println("<td>");
+                        out.println("<a href='itemAnalysis.htm?code=" + camelotItemOfInterest.getReferralAltercode() + "' target='_blank'>" + camelotItemOfInterest.getCode() + "</a>");
                         out.println("</td>");
 
                         out.println("<td style='font-weight: bold;'>");
