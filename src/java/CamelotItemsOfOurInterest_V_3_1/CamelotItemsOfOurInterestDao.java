@@ -10,6 +10,9 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -74,10 +77,11 @@ public class CamelotItemsOfOurInterestDao {
             while (resultSet.next()) {
 
                 String referalAltercode = resultSet.getString("ALTERNATECODE").trim();
+                String itemCode = resultSet.getString("ABBREVIATION").trim();
 
                 if (camelotItemsOfInterest.containsKey(referalAltercode)) {
                     CamelotItemOfInterest camelotItemOfInterest = camelotItemsOfInterest.get(referalAltercode);
-                    camelotItemOfInterest.setCode(resultSet.getString("ABBREVIATION").trim());
+                    camelotItemOfInterest.setCode(itemCode);
                     camelotItemOfInterest.setDescription(resultSet.getString("NAME").trim());
                     String position = "";
                     if (resultSet.getString("EXPR1") != null) {
@@ -96,7 +100,7 @@ public class CamelotItemsOfOurInterestDao {
                         state = resultSet.getString("EXPR2").trim();
                     }
                     camelotItemOfInterest.setState(state);
-                    returnedHashMap.put(referalAltercode, camelotItemOfInterest);
+                    returnedHashMap.put(itemCode, camelotItemOfInterest);
                 } else {
                     System.out.println("Something Wrong Here. Can't find referalAltercode in pet4u main database (WH1): " + referalAltercode);
                 }
@@ -152,6 +156,80 @@ public class CamelotItemsOfOurInterestDao {
         } catch (SQLException ex) {
             Logger.getLogger(CamelotItemsOfOurInterestDao.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return camelotItemsOfOurInterest;
+    }
+
+    public ArrayList<String> getSalesPeriod() {
+        ArrayList<String> salesPeriod = new ArrayList();
+        String sql = "SELECT DISTINCT date FROM month_sales;";
+        Connection connection;
+        Statement statement;
+        ResultSet resultSet;
+
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            connection = databaseConnectionFactory.getMySQLConnection();
+
+            statement = connection.createStatement();
+
+            resultSet = statement.executeQuery(sql);
+
+            while (resultSet.next()) {
+
+                String date = resultSet.getString("date");
+                salesPeriod.add(date);
+            }
+
+            resultSet.close();
+            statement.close();
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(CamelotItemsOfOurInterestDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return salesPeriod;
+    }
+
+    LinkedHashMap<String, CamelotItemOfInterest> addSalesData(LinkedHashMap<String, CamelotItemOfInterest> camelotItemsOfOurInterest, StringBuilder inPartForSqlQueryByItemCodes, StringBuilder lastSixMonthsForSqlQuery) {
+
+        StringBuilder query
+                = new StringBuilder("SELECT * FROM month_sales WHERE  code IN ")
+                        .append(inPartForSqlQueryByItemCodes)
+                        .append(" AND date IN")
+                        .append(lastSixMonthsForSqlQuery);
+        System.out.println(query);
+
+        Connection connection;
+        Statement statement;
+        ResultSet resultSet;
+
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            connection = databaseConnectionFactory.getMySQLConnection();
+
+            statement = connection.createStatement();
+
+            resultSet = statement.executeQuery(query.toString());
+            while (resultSet.next()) {
+                String code = resultSet.getString("code");
+
+                String date = resultSet.getString("date");
+                DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                LocalDate saleDate = LocalDate.parse(date, formatter2);
+
+                int eshopSales = resultSet.getInt("eshop_sales");
+                int shopsSupply = resultSet.getInt("shops_supply");
+
+            }
+
+            resultSet.close();
+            statement.close();
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(CamelotItemsOfOurInterestDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         return camelotItemsOfOurInterest;
     }
 

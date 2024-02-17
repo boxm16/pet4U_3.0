@@ -20,12 +20,26 @@ public class CamelotItemsOfOurInterestController {
 
     @RequestMapping(value = "camelotOrderAlert")
     public String camelotOrderAlert(ModelMap modelMap) {
-
+        //Sequence is important
         LinkedHashMap<String, CamelotItemOfInterest> camelotItemsOfOurInterest = camelotItemsOfOurInterestDao.getCamelotItemsOfOurInterset();
         ArrayList referalAltercodes = new ArrayList(camelotItemsOfOurInterest.keySet());
-        StringBuilder inPartForSqlQuery = buildStringFromArrayList(referalAltercodes);
-        camelotItemsOfOurInterest = camelotItemsOfOurInterestDao.addPet4uBasicData(camelotItemsOfOurInterest, inPartForSqlQuery);
-        camelotItemsOfOurInterest = camelotItemsOfOurInterestDao.addCamelotData(camelotItemsOfOurInterest, inPartForSqlQuery);
+        StringBuilder inPartForSqlQueryByReferralAltercodes = buildStringFromArrayList(referalAltercodes);
+
+        camelotItemsOfOurInterest = camelotItemsOfOurInterestDao.addCamelotData(camelotItemsOfOurInterest, inPartForSqlQueryByReferralAltercodes);
+
+        camelotItemsOfOurInterest = camelotItemsOfOurInterestDao.addPet4uBasicData(camelotItemsOfOurInterest, inPartForSqlQueryByReferralAltercodes);
+
+        ArrayList itemCodes = new ArrayList(camelotItemsOfOurInterest.keySet());
+        StringBuilder inPartForSqlQueryByItemCodes = buildStringFromArrayList(itemCodes);
+
+        ArrayList<String> salesPeriod = camelotItemsOfOurInterestDao.getSalesPeriod();
+        ArrayList<String> lastSixMonths = new ArrayList<>();
+        for (int x = salesPeriod.size() - 6; x < salesPeriod.size(); x++) {
+            lastSixMonths.add(salesPeriod.get(x));
+        }
+
+        StringBuilder lastSixMonthsForSqlQuery = buildStringFromArrayList(lastSixMonths);
+        camelotItemsOfOurInterest = camelotItemsOfOurInterestDao.addSalesData(camelotItemsOfOurInterest, inPartForSqlQueryByItemCodes, lastSixMonthsForSqlQuery);
 
         modelMap.addAttribute("camelotItemsOfOurInterest", camelotItemsOfOurInterest);
         return "/camelot/camelotOrderAlert";
