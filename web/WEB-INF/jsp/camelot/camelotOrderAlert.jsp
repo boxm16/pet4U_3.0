@@ -46,7 +46,7 @@
 
 
 
-            <th>State</th>
+
             <th>6 Months<br>Sales</th>
             <th>2 Weeks<br> Sales</th>
             <th>Pet4u <br>Stock</th>
@@ -60,7 +60,7 @@
             <th>Order<br>Unit</th>
             <th>Ord.<br>Qty.</th>
 
-
+            <th>State</th>
             <th>Note</th>
 
             <th>Show<br>Snapshot</th>
@@ -119,10 +119,6 @@
                         out.println("</td>");
 
                         out.println("<td>");
-                        out.println(camelotItemOfInterest.getState());
-                        out.println("</td>");
-
-                        out.println("<td>");
                         out.println("0");
                         out.println("</td>");
 
@@ -160,6 +156,10 @@
 
                         out.println("<td style='font-weight: bold;'>");
                         out.println(camelotItemOfInterest.getOrderUnit());
+                        out.println("</td>");
+
+                        out.println("<td>");
+                        out.println(camelotItemOfInterest.getState());
                         out.println("</td>");
 
                         out.println("<td>");
