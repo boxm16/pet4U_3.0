@@ -107,4 +107,9 @@ public class CamelotItemOfInterest extends Item {
         this.referralAltercode = referralAltercode;
     }
 
+    public double getLastSixMonthsSoldPieces() {
+
+        return this.lastSixMonthsSales / this.weightCoefficient;
+    }
+
 }
