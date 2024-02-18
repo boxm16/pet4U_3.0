@@ -142,6 +142,10 @@
                     out.println("<a href='itemSnapshots.htm?code=" + camelotItemOfInterest.getCode() + "' target='_blank'>Show Day Rest Snapshots</a>");
                     out.println("</td>");
 
+                    out.println("<td>");
+                    out.println("<a href='goForEditingCamelotItemOfInterest.htm?code=" + camelotItemOfInterest.getCode() + "'>Edit</a>");
+                    out.println("</td>");
+
                     out.println("</tr>");
                 }
 
