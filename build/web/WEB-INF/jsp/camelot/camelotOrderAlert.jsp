@@ -54,6 +54,7 @@
 
             <th>Camelot<br> Stock</th>
             <th>Camelot<br>Minimal<br>Stock</th>
+            <th>Out<br>Stock</th>
 
             <th>Camelot<br> Position</th>
             <th>Referral<br>Altercode</th>
@@ -112,6 +113,10 @@
 
                     out.println("<td>");
                     out.println(camelotItemOfInterest.getCamelotMinimalStock());
+                    out.println("</td>");
+
+                    out.println("<td>");
+                    out.println("----");
                     out.println("</td>");
 
                     out.println("<td style='font-weight: bold;'>");
