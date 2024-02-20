@@ -40,7 +40,9 @@ public class EndoControllerX {
         while (endoParalavissIterator.hasNext()) {
             Entry<String, EndoParalavis> endoParalavisEntry = endoParalavissIterator.next();
             String endoParalavisId = endoParalavisEntry.getKey();
-            if (endoParalavisId.equals("359761") || endoParalavisId.equals("360140")) {
+            if (endoParalavisId.equals("359761")
+                    || endoParalavisId.equals("360140")
+                    || endoParalavisId.equals("362480")) {
                 endoParalavissIterator.remove();
             }
 
