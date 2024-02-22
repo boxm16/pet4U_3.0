@@ -428,7 +428,7 @@ public class EndoControllerX {
         EndoApostolis endoApostolisVaribobis = endoDaoX.getEndoApostolisVaribobis(outgoingEndoId);
       //  String result = endoDaoX.lockEndoApostolis(outgoingEndoId);
 
-        return "redirect:bindedEndoOrders.htm";
+        return "redirect:showBindedOrders.htm";
     }
 
 }
