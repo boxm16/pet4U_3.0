@@ -417,4 +417,18 @@ public class EndoControllerX {
 
         return "redirect:endoApostoles.htm";
     }
+
+    @RequestMapping(value = "lockEndoApostolis", method = RequestMethod.GET)
+    public String lockEndoApostolis(@RequestParam(name = "outgoingEndoId") String outgoingEndoId,
+            ModelMap modelMap) {
+        System.out.println("LOCKING ENDO APOSTOLIS");
+        System.out.println("OUTGOING ENDO ID: " + outgoingEndoId);
+
+        EndoDaoX endoDaoX = new EndoDaoX();
+        EndoApostolis endoApostolisVaribobis = endoDaoX.getEndoApostolisVaribobis(outgoingEndoId);
+      //  String result = endoDaoX.lockEndoApostolis(outgoingEndoId);
+
+        return "redirect:bindedEndoOrders.htm";
+    }
+
 }

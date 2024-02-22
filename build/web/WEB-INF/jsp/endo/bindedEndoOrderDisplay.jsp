@@ -157,7 +157,7 @@
         <h1>  <a href="unbindOrderWithEndo.htm?orderId=${endoOrder.id}&outgoingEndoId=${endoApostolis.id}">UNBIND ENDO ORDER AND ENDO APOSTOLIS</a></h1>
         <hr>
         <hr>
-        <center><a href='lockEndoApostolis.htm?outgoingEndoId=${endoApostolis.id}"' class='btn btn-danger' style='font-size:30px'>LOCK ENDO APOSTOLIS</a></center>
+        <center><a href='lockEndoApostolis.htm?outgoingEndoId=${endoApostolis.id}' class='btn btn-danger' style='font-size:30px'>LOCK ENDO APOSTOLIS</a></center>
 
     </center>
     <!-- Optional JavaScript -->
