@@ -149,6 +149,15 @@
         <br>
 
 
+        <hr>
+        <h1> ${endoLockerTablesCreationResult} </h1>
+        <a href='createEndoLockerDatabaseTables.htm'><h1>Create ENDO LOCKER Database Tables</h1> </a>
+        <br>
+        <h1> ${endoLockerTablesDeletionResult} </h1>
+        <a href='deleteEndoLockerDatabaseTables.htm'><h1>Delete ENDO LOCKER Database Tables</h1> </a>
+        <br>
+
+
 
 
 

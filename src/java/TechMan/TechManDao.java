@@ -920,4 +920,84 @@ public class TechManDao {
         }
     }
 
+    String createEndoLockerTitleDatabaseTables() {
+
+        String query = "CREATE TABLE endo_locker_title("
+                + "id INT NOT NULL, "
+                + "date DATE NOT NULL, "
+                + "number VARCHAR(15) NOT NULL, "
+                + "locked_time_stamp VARCHAR(30) NOT NULL, "
+                + "destination VARCHAR (25) NOT NULL) "
+                + "ENGINE = InnoDB "
+                + "DEFAULT CHARACTER SET = utf8;";
+
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+
+            statement.close();
+            connection.close();
+            return "Tables 'endo_locker_title' created succesfully";
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return "Table 'endo_locker_title' could not be created:" + ex;
+        }
+    }
+
+    String createEndoLockerDataDatabaseTables() {
+        String query = "CREATE TABLE endo_locker_data("
+                + "id INT NOT NULL, "
+                + "item_code VARCHAR (100) NOT NULL, "
+                + "quantity VARCHAR (30) NOT NULL) "
+                + "ENGINE = InnoDB "
+                + "DEFAULT CHARACTER SET = utf8;";
+
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+            statement.close();
+            connection.close();
+            return "Tables 'endo_locker_data' created succesfully";
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return "Table 'endo_locker_data' could not be created:" + ex;
+        }
+    }
+
+    String deleteEndoLockerTitleDatabaseTables() {
+        String query1 = "DROP TABLE endo_locker_title";
+
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query1);
+
+            statement.close();
+            connection.close();
+            return "Table 'endo_locker_title' deleted succesfully";
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return "Table 'endo_locker_title' could not be deleted:" + ex;
+        }
+    }
+
+    String deleteEndoLockerDataDatabaseTables() {
+        String query1 = "DROP TABLE endo_locker_data";
+
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query1);
+
+            statement.close();
+            connection.close();
+            return "Table 'endo_locker_data' deleted succesfully";
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return "Table 'endo_locker_data' could not be deleted:" + ex;
+        }
+    }
+
 }
