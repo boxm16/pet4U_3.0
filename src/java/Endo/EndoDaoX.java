@@ -763,7 +763,7 @@ public class EndoDaoX {
 
             connection.setAutoCommit(false);
             PreparedStatement titelInsertionPreparedStatement = connection.prepareStatement("INSERT INTO endo_locker_title (id, date, number, locked_time_stamp, destination) VALUES(?,?,?,?,?);");
-            PreparedStatement itemsInsetionPreparedStatement = connection.prepareStatement("INSERT INTO endo_order_data (id, item_code, quantity) VALUES (?,?,?);");
+            PreparedStatement itemsInsetionPreparedStatement = connection.prepareStatement("INSERT INTO endo_locker_data (id, item_code, quantity) VALUES (?,?,?);");
 
             System.out.println("Starting INSERTION: ....");
 
