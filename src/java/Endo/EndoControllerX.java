@@ -42,6 +42,7 @@ public class EndoControllerX {
             String endoParalavisId = endoParalavisEntry.getKey();
             if (endoParalavisId.equals("359761")
                     || endoParalavisId.equals("360140")
+                    || endoParalavisId.equals("362926")
                     || endoParalavisId.equals("362480")) {
                 endoParalavissIterator.remove();
             }
@@ -426,7 +427,7 @@ public class EndoControllerX {
 
         EndoDaoX endoDaoX = new EndoDaoX();
         EndoApostolis endoApostolisVaribobis = endoDaoX.getEndoApostolisVaribobis(outgoingEndoId);
-       String result = endoDaoX.copyEndoApostolis(endoApostolisVaribobis);
+        String result = endoDaoX.copyEndoApostolis(endoApostolisVaribobis);
 
         return "redirect:showBindedOrders.htm";
     }
