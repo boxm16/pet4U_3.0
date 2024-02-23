@@ -13,6 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -752,5 +753,52 @@ public class EndoDaoX {
             return ex.getMessage();
         }
         return "Endos binding  EXECUTED SUCCESSFULLY.";
+    }
+
+    String copyEndoApostolis(EndoApostolis endoApostolisVaribobis) {
+
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            Connection connection = databaseConnectionFactory.getMySQLConnection();
+
+            connection.setAutoCommit(false);
+            PreparedStatement titelInsertionPreparedStatement = connection.prepareStatement("INSERT INTO endo_locker_title (id, date, number, locked_time_stamp, destination) VALUES(?,?,?,?,?);");
+            PreparedStatement itemsInsetionPreparedStatement = connection.prepareStatement("INSERT INTO endo_order_data (id, item_code, quantity) VALUES (?,?,?);");
+
+            System.out.println("Starting INSERTION: ....");
+
+            titelInsertionPreparedStatement.setString(1, endoApostolisVaribobis.getId());
+            titelInsertionPreparedStatement.setString(2, endoApostolisVaribobis.getDateString());
+            titelInsertionPreparedStatement.setString(3, endoApostolisVaribobis.getNumber());
+            titelInsertionPreparedStatement.setString(4, LocalDateTime.now().toString());
+            titelInsertionPreparedStatement.setString(5, endoApostolisVaribobis.getReceiver());
+            titelInsertionPreparedStatement.addBatch();
+
+            LinkedHashMap<String, Item> items = endoApostolisVaribobis.getItems();
+            for (Map.Entry<String, Item> itemEntry : items.entrySet()) {
+                itemsInsetionPreparedStatement.setString(1, endoApostolisVaribobis.getId());
+                itemsInsetionPreparedStatement.setString(2, itemEntry.getValue().getCode());
+                itemsInsetionPreparedStatement.setString(5, itemEntry.getValue().getQuantity());
+                itemsInsetionPreparedStatement.addBatch();
+
+                //Executing the batch
+            }
+            titelInsertionPreparedStatement.executeBatch();
+            itemsInsetionPreparedStatement.executeBatch();
+
+            System.out.println(" Batch Insertion: DONE");
+
+            connection.commit();
+
+            titelInsertionPreparedStatement.close();
+            itemsInsetionPreparedStatement.close();
+            connection.close();
+            return "";
+        } catch (SQLException ex) {
+            Logger.getLogger(EndoDaoX.class
+                    .getName()).log(Level.SEVERE, null, ex);
+
+            return ex.getMessage();
+        }
     }
 }
