@@ -927,7 +927,7 @@ public class TechManDao {
                 + "date DATE NOT NULL, "
                 + "number VARCHAR(15) NOT NULL, "
                 + "locked_time_stamp VARCHAR(30) NOT NULL, "
-                + "destination VARCHAR (25) NOT NULL) "
+                + "destination VARCHAR (50) NOT NULL) "
                 + "ENGINE = InnoDB "
                 + "DEFAULT CHARACTER SET = utf8;";
 
