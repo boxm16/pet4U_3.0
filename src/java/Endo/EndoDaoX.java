@@ -778,7 +778,7 @@ public class EndoDaoX {
             for (Map.Entry<String, Item> itemEntry : items.entrySet()) {
                 itemsInsetionPreparedStatement.setString(1, endoApostolisVaribobis.getId());
                 itemsInsetionPreparedStatement.setString(2, itemEntry.getValue().getCode());
-                itemsInsetionPreparedStatement.setString(5, itemEntry.getValue().getQuantity());
+                itemsInsetionPreparedStatement.setString(3, itemEntry.getValue().getQuantity());
                 itemsInsetionPreparedStatement.addBatch();
 
                 //Executing the batch
