@@ -460,31 +460,20 @@ public class EndoDaoX {
                 String code = itemFromRowByRow.getCode();
 
                 LinkedHashMap<String, EndoOrderItem> orderedItems = endoOrder.getOrderedItems();
-                if (orderedItems.containsKey(code)) {
-                    System.out.println("ITEM CODE " + code);
-                    EndoOrderItem endoOrderItem = orderedItems.get(code);
 
-                    double orderedQuantity = endoOrderItem.getOrderedQuantity();
-                    endoOrderItem.setOrderedQuantity(orderedQuantity + resultSet.getDouble("ordered_quantity"));
+                EndoOrderItem endoOrderItem = new EndoOrderItem();
 
-                    endoOrderItem.setSentQuantity(endoOrderItem.getSentQuantity() + resultSet.getDouble("sent_quantity"));
+                endoOrderItem.setOrderedAltercode(itemCode);
 
-                    endoOrder.addOrderItem(code, endoOrderItem);
-                } else {
-                    EndoOrderItem endoOrderItem = new EndoOrderItem();
+                endoOrderItem.setCode(code);
 
-                    endoOrderItem.setOrderedAltercode(itemCode);
-
-                    endoOrderItem.setCode(code);
-
-                    endoOrderItem.setDescription(resultSet.getString("item_description"));
-                    endoOrderItem.setOrderedQuantity(resultSet.getDouble("ordered_quantity"));
-                    endoOrderItem.setSentQuantity(resultSet.getDouble("sent_quantity"));
-                    endoOrderItem.setPrice(resultSet.getDouble("price"));
-                    endoOrderItem.setAmount(resultSet.getDouble("amount"));
-                    endoOrderItem.setComment(resultSet.getString("comment"));
-                    endoOrder.addOrderItem(endoOrderItem.getCode(), endoOrderItem);
-                }
+                endoOrderItem.setDescription(resultSet.getString("item_description"));
+                endoOrderItem.setOrderedQuantity(resultSet.getDouble("ordered_quantity"));
+                endoOrderItem.setSentQuantity(resultSet.getDouble("sent_quantity"));
+                endoOrderItem.setPrice(resultSet.getDouble("price"));
+                endoOrderItem.setAmount(resultSet.getDouble("amount"));
+                endoOrderItem.setComment(resultSet.getString("comment"));
+                endoOrder.addOrderItem(endoOrderItem.getCode(), endoOrderItem);
 
             }
             resultSet.close();
