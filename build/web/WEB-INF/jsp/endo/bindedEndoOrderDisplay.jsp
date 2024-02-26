@@ -147,7 +147,7 @@
             </tbody>
         </table>
         <hr>
-        ${saveButton}
+
         <form id="form" action="#" method="POST">
             <input hidden type="text"  name="invoiceNumber" value="${deliveryInvoice.getNumber()}">
             <input hidden type="text" id="deliveredItems" name="deliveredItems">
@@ -157,8 +157,8 @@
         <h1>  <a href="unbindOrderWithEndo.htm?orderId=${endoOrder.id}&outgoingEndoId=${endoApostolis.id}">UNBIND ENDO ORDER AND ENDO APOSTOLIS</a></h1>
         <hr>
         <hr>
-        <center><a href='lockEndoApostolis.htm?outgoingEndoId=${endoApostolis.id}' class='btn btn-danger' style='font-size:30px'>LOCK ENDO APOSTOLIS</a></center>
 
+        ${lockerButton}
     </center>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

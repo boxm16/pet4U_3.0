@@ -391,6 +391,7 @@ public class EndoControllerX {
         InventoryDao inventoryDao = new InventoryDao();
         LinkedHashMap<String, Item> pet4UItemsRowByRow = inventoryDao.getpet4UItemsRowByRow();
         EndoApostolis endoApostolis = endoDaoX.getEndoApostolisVaribobis(outgoingEndoId);
+        boolean locked = endoDaoX.endoApostolisIsLocked(outgoingEndoId);
         EndoOrder endoOrder;
         if (bindedOrderId.contains("NoOrder")) {
             endoOrder = new EndoOrder();
@@ -399,8 +400,14 @@ public class EndoControllerX {
             endoOrder = endoDaoX.getEndoOrder(bindedOrderId, pet4UItemsRowByRow);
         }
 
+        String lockerButton = "<center><a href='lockEndoApostolis.htm?outgoingEndoId=" + outgoingEndoId + "' class='btn btn-danger' style='font-size:30px'>LOCK ENDO APOSTOLIS</a></center>\n";
+        if (locked) {
+            lockerButton = "";
+        }
+        modelMap.addAttribute("lockerButton", lockerButton);
         modelMap.addAttribute("endoOrder", endoOrder);
         modelMap.addAttribute("endoApostolis", endoApostolis);
+
         return "endo/bindedEndoOrderDisplay";
     }
 

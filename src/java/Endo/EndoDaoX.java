@@ -790,4 +790,28 @@ public class EndoDaoX {
             return ex.getMessage();
         }
     }
+
+    boolean endoApostolisIsLocked(String outgoingEndoId) {
+        String query = "SELECT id FROM endo_locker_title WHERE id=" + outgoingEndoId + ";";
+        String orderId = "";
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+
+            ResultSet resultSet = statement.executeQuery(query);
+            if (resultSet.next() == false) {
+                resultSet.close();
+                statement.close();
+                connection.close();
+                return false;
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EndoDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return true;
+    }
 }
