@@ -59,6 +59,7 @@
                     <th>Number</th>
                     <th>DESTINATION</th>
                     <th>Show Binded Endo Order</th>
+                    <th>Is Locked</th>
                 </tr>
             </thead>
             <tbody>
@@ -107,15 +108,20 @@
                         out.println("</td>");
 
                         out.println("<td>");
-                        out.println(endoApostolis.isIsLocked());
+                        out.println("<center><a href='showBindedEndoOrder.htm?id=" + endoApostolis.getId() + "' class='btn btn-primary' style='font-size:30px' target='_blank'>Show Binded Endo Order</a></center>");
                         out.println("</td>");
 
                         out.println("<td>");
-                        out.println("<center><a href='showBindedEndoOrder.htm?id=" + endoApostolis.getId() + "' class='btn btn-primary' style='font-size:30px' target='_blank'>Show Binded Endo Order</a></center>");
+                        if (endoApostolis.isIsLocked()) {
+                            out.println("<div style='background-color:red'>LOCKED</div>");
+                        } else {
+                            out.println();
+                        }
+                        out.println();
                         out.println("</td>");
-                        out.println("</tr>");
 
                         out.println("</tr>");
+
                     }
                 %>
 
