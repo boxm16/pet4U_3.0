@@ -13,6 +13,7 @@ public class EndoApostolis extends EndoParalavis {
 
     private String sender;
     private String receiver;
+    private boolean isLocked;
 
     public String getSender() {
         return sender;
@@ -32,6 +33,14 @@ public class EndoApostolis extends EndoParalavis {
 
     public String getShortNumber() {
         return this.getNumber().substring(this.getNumber().length() - 3);
+    }
+
+    public boolean isIsLocked() {
+        return isLocked;
+    }
+
+    public void setIsLocked(boolean isLocked) {
+        this.isLocked = isLocked;
     }
 
 }

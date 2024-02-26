@@ -368,8 +368,13 @@ public class EndoControllerX {
 
         LinkedHashMap<String, EndoApostolis> outgoingDeltioApostolisTitles = endoDaoX.getOutgoingDeltioApostolisTitles("2024-02-07");
 
+        ArrayList<String> lockedOutgoingDeltiaApostolis = endoDaoX.getAllLockedOutgoingDeltiaApostolisIds();
+
         ArrayList<EndoApostolis> bindedOutgoindDeltioApostolis = new ArrayList();
         for (Map.Entry<String, EndoApostolis> outgoingDeltioApostolisTitlesEntry : outgoingDeltioApostolisTitles.entrySet()) {
+            if (lockedOutgoingDeltiaApostolis.contains(outgoingDeltioApostolisTitlesEntry.getKey())) {
+                outgoingDeltioApostolisTitlesEntry.getValue().setIsLocked(true);
+            }
             if (allBindedOrders.containsValue(outgoingDeltioApostolisTitlesEntry.getKey())) {
                 bindedOutgoindDeltioApostolis.add(outgoingDeltioApostolisTitlesEntry.getValue());
             }

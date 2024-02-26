@@ -793,7 +793,7 @@ public class EndoDaoX {
 
     boolean endoApostolisIsLocked(String outgoingEndoId) {
         String query = "SELECT id FROM endo_locker_title WHERE id=" + outgoingEndoId + ";";
-        String orderId = "";
+
         try {
             Connection connection = this.databaseConnectionFactory.getMySQLConnection();
             Statement statement = connection.createStatement();
@@ -813,5 +813,29 @@ public class EndoDaoX {
             Logger.getLogger(EndoDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return true;
+    }
+
+    ArrayList<String> getAllLockedOutgoingDeltiaApostolisIds() {
+        ArrayList<String> allLockedOutgoingDeltiaApostolisIds = new ArrayList<>();
+        String query = "SELECT id FROM endo_locker_title ;";
+
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+
+            ResultSet resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+
+                allLockedOutgoingDeltiaApostolisIds.add(resultSet.getString("id"));
+
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EndoDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return allLockedOutgoingDeltiaApostolisIds;
     }
 }

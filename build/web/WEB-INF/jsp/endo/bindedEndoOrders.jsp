@@ -107,6 +107,10 @@
                         out.println("</td>");
 
                         out.println("<td>");
+                        out.println(endoApostolis.isIsLocked());
+                        out.println("</td>");
+
+                        out.println("<td>");
                         out.println("<center><a href='showBindedEndoOrder.htm?id=" + endoApostolis.getId() + "' class='btn btn-primary' style='font-size:30px' target='_blank'>Show Binded Endo Order</a></center>");
                         out.println("</td>");
                         out.println("</tr>");
