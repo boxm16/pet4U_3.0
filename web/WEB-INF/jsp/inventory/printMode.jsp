@@ -52,7 +52,7 @@
 
                     out.println("<tr>");
 
-                    out.println("<td font-size:10px>");
+                    out.println("<td style='font-size:10px'>");
                     out.println(inventoryItem.getDateStampString());
                     out.println("</td>");
 
