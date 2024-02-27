@@ -39,6 +39,7 @@
             <thead>
             <th>Date</th>
             <th>Time</th>
+            <th>Position</th>
             <th>Altercode</th>
             <th>Description</th>
             <th>Real<br>Stock</th>
@@ -57,6 +58,9 @@
 
                     out.println("<td>");
                     out.println(inventoryItem.getTimeStampString());
+                    out.println("</td>");
+                    out.println("<td>");
+                    out.println(inventoryItem.getPosition());
                     out.println("</td>");
 
                     out.println("<td>");
