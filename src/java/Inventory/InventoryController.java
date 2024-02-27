@@ -63,7 +63,7 @@ public class InventoryController {
         LinkedHashMap<String, Item> pet4UItems = this.inventoryDao.getpet4UItemsRowByRow();
 
         for (InventoryItem inventoryItem : inventories) {
-       //     System.out.println("ITETM:" + inventoryItem.getCode());
+            //     System.out.println("ITETM:" + inventoryItem.getCode());
             String altercode = inventoryItem.getCode();
 
             Item pet4uItem = pet4UItems.get(altercode);
@@ -113,6 +113,7 @@ public class InventoryController {
             } else {
                 inventoryItem.setCode(pet4uItem.getCode());
                 inventoryItem.setDescription(pet4uItem.getDescription());
+                inventoryItem.setPosition(pet4uItem.getPosition());
                 model.addAttribute("inventories", inventories);
             }
         }
