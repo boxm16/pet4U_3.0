@@ -9,17 +9,17 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Inventory Display</title>
+        <title>Inventory: RPINT MODE</title>
         <style>
             table, th, td {
                 border: 1px solid ;
                 border-collapse: collapse;
             }
             td {
-                font-size: 15px;
+                font-size: 10px;
             }
             th{
-                font-size: 20px;
+                font-size: 15px;
                 font-weight: bold;
                 text-align: left;
                 background: #eee;
@@ -31,8 +31,8 @@
     </head>
     <body>
     <center>
-        <h1><a href="index.htm">INDEX</a></h1>
-        <h1>ΑΠΟΓΡΑΦΕΣ</h1>
+        <h3><a href="index.htm">INDEX</a></h3>
+        <h3>ΑΠΟΓΡΑΦΕΣ</h3>
         <hr>
 
         <table>
