@@ -838,4 +838,8 @@ public class EndoDaoX {
         }
         return allLockedOutgoingDeltiaApostolisIds;
     }
+
+    ArrayList<String> getAllChangedOutgoingDeltiaApostolisIds() {
+        return new ArrayList<String>();
+    }
 }

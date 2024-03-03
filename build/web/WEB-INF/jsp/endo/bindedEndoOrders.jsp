@@ -60,6 +60,7 @@
                     <th>DESTINATION</th>
                     <th>Show Binded Endo Order</th>
                     <th>Is Locked</th>
+                    <th>Is Changed</th>
                 </tr>
             </thead>
             <tbody>
@@ -113,7 +114,7 @@
 
                         out.println("<td>");
                         if (endoApostolis.isIsLocked()) {
-                            out.println("<div style='background-color:red'>LOCKED</div>");
+                            out.println("<div style='background-color:green'>LOCKED</div>");
                         } else {
                             out.println();
                         }

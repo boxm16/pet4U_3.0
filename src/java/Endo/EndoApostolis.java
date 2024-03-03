@@ -14,6 +14,7 @@ public class EndoApostolis extends EndoParalavis {
     private String sender;
     private String receiver;
     private boolean isLocked;
+    private boolean isChanged;
 
     public String getSender() {
         return sender;
@@ -41,6 +42,14 @@ public class EndoApostolis extends EndoParalavis {
 
     public void setIsLocked(boolean isLocked) {
         this.isLocked = isLocked;
+    }
+
+    public boolean isIsChanged() {
+        return isChanged;
+    }
+
+    public void setIsChanged(boolean isChanged) {
+        this.isChanged = isChanged;
     }
 
 }
