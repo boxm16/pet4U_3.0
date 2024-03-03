@@ -118,7 +118,14 @@
                         } else {
                             out.println();
                         }
-                        out.println();
+                        out.println("</td>");
+
+                        out.println("<td>");
+                        if (endoApostolis.isIsChanged()) {
+                            out.println("<div style='background-color:red'>CHANGED</div>");
+                        } else {
+                            out.println();
+                        }
                         out.println("</td>");
 
                         out.println("</tr>");
