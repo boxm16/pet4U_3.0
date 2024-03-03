@@ -35,8 +35,11 @@
     <body>
     <center>
         <a href="index.htm"><h3>INDEX</h3></a>
+        <hr>
         <h1>ΑΠΟΣΤΟΛΕΣ ΕΝΔΟΔΙΑΚΙΝΗΣΗΣ</h1>
-        <a href="goForEndoOrdersUpload.htm"><h2>GO FOR ENDO ORDERS UPLOAD</h2></a>
+        <hr>
+        <a href="goForEndoOrdersUpload.htm" class="btn btn-primary" style='background-color: blue' role="button"><h1>GO FOR ENDO ORDERS UPLOAD</h1></a>
+
         <hr>
         <a href="endoApostoles.htm" class="btn btn-primary" style='background-color: green' role="button"><h1>ΑΝΑΝΕΩΣΗ ΣΕΛΙΔΑΣ</h1></a>
         <hr>
