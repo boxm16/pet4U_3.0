@@ -840,6 +840,9 @@ public class EndoDaoX {
     }
 
     ArrayList<String> getAllChangedOutgoingDeltiaApostolisIds() {
-        return new ArrayList<String>();
+        ArrayList<String> changed = new ArrayList<String>();
+        changed.add("363678");
+
+        return changed;
     }
 }
