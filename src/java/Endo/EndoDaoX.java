@@ -967,7 +967,7 @@ public class EndoDaoX {
     private boolean endoIsChanged(EndoApostolis endoApostolis, EndoApostolis lockedEndo) {
         LinkedHashMap<String, Item> items = endoApostolis.getItems();
         LinkedHashMap<String, Item> items1 = lockedEndo.getItems();
-        if (items.equals(items)) {
+        if (items.equals(items1)) {
             return false;
         }
         return true;
