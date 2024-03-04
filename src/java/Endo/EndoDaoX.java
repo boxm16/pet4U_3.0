@@ -856,12 +856,11 @@ public class EndoDaoX {
     private LinkedHashMap<String, EndoApostolis> getEndoApostolissVaribobis(ArrayList<String> lockedOutgoingDeltiaApostolis) {
         LinkedHashMap<String, EndoApostolis> endoApostoliss = new LinkedHashMap();
 
-       
         StringBuilder inPartForSqlQuery = buildStringFromArrayList(lockedOutgoingDeltiaApostolis);
         StringBuilder query
                 = new StringBuilder("SELECT * FROM  [petworld].[dbo].[WH_ENDA_VAR]  WHERE  [DOCID] IN ")
                         .append(inPartForSqlQuery).append(" ;");
-        System.out.println(query);
+        //   System.out.println(query);
 
         Connection connection;
         Statement statement;
@@ -912,7 +911,57 @@ public class EndoDaoX {
     }
 
     private LinkedHashMap<String, EndoApostolis> getLockedEndos() {
-        return new LinkedHashMap<String, EndoApostolis>();
+        LinkedHashMap<String, EndoApostolis> endoApostoliss = new LinkedHashMap();
+
+        String query = "SELECT * FROM endo_locker_data";
+        //   System.out.println(query);
+
+        Connection connection;
+        Statement statement;
+        ResultSet resultSet;
+
+        try {
+            connection = this.databaseConnectionFactory.getMySQLConnection();
+
+            statement = connection.createStatement();
+
+            resultSet = statement.executeQuery(query);
+
+            while (resultSet.next()) {
+                String id = resultSet.getString("id");
+                if (!endoApostoliss.containsKey(id)) {
+                    EndoApostolis endoApostolis = new EndoApostolis();
+                    endoApostolis.setId(id);
+                    endoApostoliss.put(id, endoApostolis);
+
+                }
+                EndoApostolis endoApostolis = endoApostoliss.get(id);
+                String itemCode = resultSet.getString("item_code");
+                String quantity = resultSet.getString("quantity");
+
+                LinkedHashMap<String, Item> items = endoApostolis.getItems();
+                if (items.containsKey(itemCode)) {
+                    Item item = items.get(itemCode);
+                    String quantity1 = item.getQuantity();
+                    double sum = Double.valueOf(quantity1) + Double.valueOf(quantity);
+                    item.setQuantity(String.valueOf(sum));
+                    endoApostolis.getItems().put(itemCode, item);
+                } else {
+                    Item item = new Item();
+                    item.setCode(itemCode);
+                    item.setQuantity(quantity);
+                    endoApostolis.getItems().put(itemCode, item);
+                }
+
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(EndoDao.class
+                    .getName()).log(Level.SEVERE, null, ex);
+        }
+        return endoApostoliss;
     }
 
     private boolean endoIsChanged(EndoApostolis value, EndoApostolis lockedEndo) {
