@@ -370,7 +370,7 @@ public class EndoControllerX {
 
         ArrayList<String> lockedOutgoingDeltiaApostolis = endoDaoX.getAllLockedOutgoingDeltiaApostolisIds();
 
-        ArrayList<String> changedOutgoingDeltiaApostolis = endoDaoX.getAllChangedOutgoingDeltiaApostolisIds();
+        ArrayList<String> changedOutgoingDeltiaApostolis = endoDaoX.getAllChangedOutgoingDeltiaApostolisIds(lockedOutgoingDeltiaApostolis);
 
         ArrayList<EndoApostolis> bindedOutgoindDeltioApostolis = new ArrayList();
         for (Map.Entry<String, EndoApostolis> outgoingDeltioApostolisTitlesEntry : outgoingDeltioApostolisTitles.entrySet()) {

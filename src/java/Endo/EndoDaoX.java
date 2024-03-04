@@ -839,10 +839,84 @@ public class EndoDaoX {
         return allLockedOutgoingDeltiaApostolisIds;
     }
 
-    ArrayList<String> getAllChangedOutgoingDeltiaApostolisIds() {
-        ArrayList<String> changed = new ArrayList<String>();
-        changed.add("363678");
-
+    ArrayList<String> getAllChangedOutgoingDeltiaApostolisIds(ArrayList<String> lockedOutgoingDeltiaApostolis) {
+        ArrayList<String> changed = new ArrayList<>();
+        LinkedHashMap<String, EndoApostolis> endoApostolissVaribobis = getEndoApostolissVaribobis(lockedOutgoingDeltiaApostolis);
+        LinkedHashMap<String, EndoApostolis> lockedEndos = getLockedEndos();
+        for (Map.Entry<String, EndoApostolis> endoApostolisVaribobis : endoApostolissVaribobis.entrySet()) {
+            EndoApostolis lockedEndo = lockedEndos.get(endoApostolisVaribobis.getKey());
+            boolean isChanged = endoIsChanged(endoApostolisVaribobis.getValue(), lockedEndo);
+            if (isChanged) {
+                changed.add(endoApostolisVaribobis.getKey());
+            }
+        }
         return changed;
     }
+
+    private LinkedHashMap<String, EndoApostolis> getEndoApostolissVaribobis(ArrayList<String> lockedOutgoingDeltiaApostolis) {
+        LinkedHashMap<String, EndoApostolis> endoApostoliss = new LinkedHashMap();
+
+        LinkedHashMap<String, EndoApostolis> endoInvoices = new LinkedHashMap();
+        StringBuilder inPartForSqlQuery = buildStringFromArrayList(lockedOutgoingDeltiaApostolis);
+        StringBuilder query
+                = new StringBuilder("SELECT * FROM  [petworld].[dbo].[WH_ENDA_VAR]  WHERE  [DOCID] IN ")
+                        .append(inPartForSqlQuery).append(" ;");
+        System.out.println(query);
+
+        Connection connection;
+        Statement statement;
+        ResultSet resultSet;
+
+        try {
+            connection = this.databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
+
+            statement = connection.createStatement();
+
+            resultSet = statement.executeQuery(query.toString());
+
+            while (resultSet.next()) {
+                String id = resultSet.getString("DOCID");
+                if (endoApostoliss.containsKey(id)) {
+                    EndoApostolis endoApostolis = new EndoApostolis();
+                    endoApostolis.setId(id);
+                    endoInvoices.put(id, endoApostolis);
+
+                }
+                EndoApostolis endoApostolis = endoApostoliss.get(id);
+                String itemCode = resultSet.getString("ABBREVIATION");
+                String quantity = resultSet.getString("QUANTITY");
+
+                LinkedHashMap<String, Item> items = endoApostolis.getItems();
+                if (items.containsKey(itemCode)) {
+                    Item item = items.get(itemCode);
+                    String quantity1 = item.getQuantity();
+                    double sum = Double.valueOf(quantity1) + Double.valueOf(quantity);
+                    item.setQuantity(String.valueOf(sum));
+                    endoApostolis.getItems().put(itemCode, item);
+                } else {
+                    Item item = new Item();
+                    item.setCode(itemCode);
+                    item.setQuantity(quantity);
+                    endoApostolis.getItems().put(itemCode, item);
+                }
+
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(EndoDao.class
+                    .getName()).log(Level.SEVERE, null, ex);
+        }
+        return endoApostoliss;
+    }
+
+    private LinkedHashMap<String, EndoApostolis> getLockedEndos() {
+        return new LinkedHashMap<String, EndoApostolis>();
+    }
+
+    private boolean endoIsChanged(EndoApostolis value, EndoApostolis lockedEndo) {
+        return false;
+    }
+
 }
