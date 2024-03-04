@@ -914,7 +914,7 @@ public class EndoDaoX {
         LinkedHashMap<String, EndoApostolis> endoApostoliss = new LinkedHashMap();
 
         String query = "SELECT * FROM endo_locker_data";
-        //   System.out.println(query);
+          System.out.println(query);
 
         Connection connection;
         Statement statement;
