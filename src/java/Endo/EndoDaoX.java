@@ -856,7 +856,7 @@ public class EndoDaoX {
     private LinkedHashMap<String, EndoApostolis> getEndoApostolissVaribobis(ArrayList<String> lockedOutgoingDeltiaApostolis) {
         LinkedHashMap<String, EndoApostolis> endoApostoliss = new LinkedHashMap();
 
-        LinkedHashMap<String, EndoApostolis> endoInvoices = new LinkedHashMap();
+       
         StringBuilder inPartForSqlQuery = buildStringFromArrayList(lockedOutgoingDeltiaApostolis);
         StringBuilder query
                 = new StringBuilder("SELECT * FROM  [petworld].[dbo].[WH_ENDA_VAR]  WHERE  [DOCID] IN ")
@@ -876,10 +876,10 @@ public class EndoDaoX {
 
             while (resultSet.next()) {
                 String id = resultSet.getString("DOCID");
-                if (endoApostoliss.containsKey(id)) {
+                if (!endoApostoliss.containsKey(id)) {
                     EndoApostolis endoApostolis = new EndoApostolis();
                     endoApostolis.setId(id);
-                    endoInvoices.put(id, endoApostolis);
+                    endoApostoliss.put(id, endoApostolis);
 
                 }
                 EndoApostolis endoApostolis = endoApostoliss.get(id);
