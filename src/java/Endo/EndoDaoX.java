@@ -914,7 +914,7 @@ public class EndoDaoX {
         LinkedHashMap<String, EndoApostolis> endoApostoliss = new LinkedHashMap();
 
         String query = "SELECT * FROM endo_locker_data";
-          System.out.println(query);
+        System.out.println(query);
 
         Connection connection;
         Statement statement;
@@ -964,7 +964,10 @@ public class EndoDaoX {
         return endoApostoliss;
     }
 
-    private boolean endoIsChanged(EndoApostolis value, EndoApostolis lockedEndo) {
+    private boolean endoIsChanged(EndoApostolis endoApostolis, EndoApostolis lockedEndo) {
+        if (endoApostolis.getId().equals("363840")) {
+            return true;
+        }
         return false;
     }
 
