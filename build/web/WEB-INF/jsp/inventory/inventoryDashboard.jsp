@@ -29,7 +29,8 @@
         </form>
         <hr>
 
-        <a href='showInventories.htm'>Show inventories</a>
+
+        <a href="showInventories.htm" class="btn btn-primary" role="button"><h1>ΔΕΣ ΑΠΟΓΡΑΦΕΣ</h1></a>
 
     </center>
 </body>
