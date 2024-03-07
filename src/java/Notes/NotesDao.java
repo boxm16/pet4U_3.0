@@ -232,4 +232,20 @@ public class NotesDao {
         return inventories;
     }
 
+    public void deleteCamelotNote(String id) {
+        String noteDeletionSql = "DELETE FROM camelot_notes WHERE id='" + id + "'";
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            Connection connection = databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(noteDeletionSql);
+            statement.close();
+
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(NotesDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 }
