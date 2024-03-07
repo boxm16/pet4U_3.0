@@ -198,4 +198,38 @@ public class NotesDao {
         return "New Item Inventory Added Successfully";
     }
 
+    public ArrayList<InventoryItem> getAllCamelotNotes() {
+        ArrayList<InventoryItem> inventories = new ArrayList<>();
+
+        String sql = "SELECT * FROM camelot_notes ;";
+        ResultSet resultSet;
+
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            Connection connection = databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+
+            resultSet = statement.executeQuery(sql);
+            while (resultSet.next()) {
+                InventoryItem inventoryItem = new InventoryItem();
+                int id = resultSet.getInt("id");
+                inventoryItem.setId(id);
+
+                String itemCode = resultSet.getString("item_code");
+                inventoryItem.setCode(itemCode.trim());
+                inventoryItem.setNote(resultSet.getString("note"));
+
+                inventories.add(inventoryItem);
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(NotesDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return inventories;
+    }
+
 }
