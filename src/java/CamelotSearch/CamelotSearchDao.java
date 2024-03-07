@@ -157,6 +157,7 @@ public class CamelotSearchDao {
                     altercodeContainer.setStatus(altercodeStatus);
                     item.addAltercodeContainer(altercodeContainer);
 
+                    item.setCode(code);
                     item.setDescription(description);
                     item.setPosition(position_1 + position_2);
                     item.setQuantity(quantity);
@@ -227,6 +228,7 @@ public class CamelotSearchDao {
                     altercodeContainer.setStatus(altercodeStatus);
                     item.addAltercodeContainer(altercodeContainer);
 
+                    item.setCode(code);
                     item.setDescription(description);
                     item.setPosition(position_1 + position_2);
                     item.setQuantity(quantity);
