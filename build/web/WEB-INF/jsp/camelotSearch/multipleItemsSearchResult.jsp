@@ -103,7 +103,7 @@
 
                                 out.println("<tr>");
                                 out.println("<td  colspan='2'>");
-                                out.println(" <a href='getCamelotItemForNote.htm?altercode=${item.getCode()}' class='btn btn-warning btn-lg' role='button' aria-disabled='true'><h3>Make Note</h3></a>");
+                                out.println("<a href='getCamelotItemForNote.htm?altercode=" + item.getCode() + "}' class='btn btn-warning btn-lg' role='button' aria-disabled='true'><h3>Make Note</h3></a>");
                                 out.println("</td>");
                                 out.println("</tr>");
 
@@ -112,7 +112,7 @@
                                 out.println("<div STYLE=\"background-color:lightblue; height:10px; width:100%;\"></div>");
                             }
                         %>
-                       
+
 
 
 
