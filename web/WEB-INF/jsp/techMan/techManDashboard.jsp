@@ -157,6 +157,11 @@
         <a href='deleteEndoLockerDatabaseTables.htm'><h1>Delete ENDO LOCKER Database Tables</h1> </a>
         <br>
 
+        <h1> ${camelotNotesDatabaseTableResult} </h1>
+        <a href='createCamelotNotesDatabaseTable.htm'><h1>Create Camelot Notes Database Table</h1> </a>
+        <a href='deleteCamelotNotesDatabaseTable.htm'><h1>Delete Camelot Notes Database Table</h1> </a>
+        <hr>
+
 
 
 

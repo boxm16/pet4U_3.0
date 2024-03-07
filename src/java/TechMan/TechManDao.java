@@ -53,6 +53,42 @@ public class TechManDao {
         }
     }
 
+    public String createCamelotNotesDatabaseTable() {
+        String query = "CREATE TABLE camelot_notes("
+                + "id INT(6) NOT NULL AUTO_INCREMENT, "
+                + "item_code VARCHAR(15) NOT NULL , "
+                + "note VARCHAR(360) NOT NULL, "
+                + "PRIMARY KEY (id)) "
+                + "ENGINE = InnoDB "
+                + "DEFAULT CHARACTER SET = utf8;";
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+            statement.close();
+            connection.close();
+            return "Table 'camelot_notes' created succesfully";
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return "Table 'camelot_notes' could not be created:" + ex;
+        }
+    }
+
+    public String deleteCamelotNotesDatabaseTable() {
+        String query = "DROP TABLE camelot_notes";
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+            statement.close();
+            connection.close();
+            return "Table 'camelot_notes' deleted succesfully";
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return "Table 'camelot_notes' could not be deleted:" + ex;
+        }
+    }
+
     public String createSales_1_2022_DatabaseTable() {
         String query = "CREATE TABLE sales_1_2022("
                 + "code VARCHAR (50) NOT NULL, "
