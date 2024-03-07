@@ -26,7 +26,7 @@
     </head>
     <body>
 
-         <div class="container">
+        <div class="container">
             <div class="row">
                 <div class=" col-sm-4">
 
@@ -101,11 +101,18 @@
                                 out.println("</td>");
                                 out.println("</tr>");
 
+                                out.println("<tr>");
+                                out.println("<td>");
+                                out.println(" <a href='getCamelotItemForNote.htm?altercode=${item.getCode()}' class='btn btn-warning btn-lg' role='button' aria-disabled='true'><h3>Make Note</h3></a>");
+                                out.println("</td>");
+                                out.println("</tr>");
+
                                 out.println("</tbody>");
                                 out.println("</table>");
                                 out.println("<div STYLE=\"background-color:lightblue; height:10px; width:100%;\"></div>");
                             }
                         %>
+                       
 
 
 
