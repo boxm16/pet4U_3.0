@@ -77,7 +77,7 @@
 
                                         <center>    <input type='text' readonly name='systemStock' style='font-size:30px; background-color: lightcoral' value='${item.quantity}'></center>
                                         <hr>
-                                       
+
                                         <hr>
                                         <input name='altercode' hidden value='${altercode}'>
                                         Make notes - 500 char. max.
@@ -90,7 +90,7 @@
                                 </td>
                             </tr>
                         </table>
-                        <a href='index.htm'>Index</a>
+
                     </center>
                 </div>
                 <div class=" col-sm-4">

@@ -55,6 +55,18 @@ public class CamelotSearchController {
         modelMap.addAttribute("item", item);
         modelMap.addAttribute("altercode", altercode);
         return "camelotSearch/camelotNoteServant";
+    }
 
+    @RequestMapping(value = "saveCamelotNote", method = RequestMethod.POST)
+    public String saveCamelotNote(@RequestParam(name = "altercode") String altercode,
+            @RequestParam(name = "note") String note,
+            ModelMap model) {
+
+        NotesDao notesDao = new NotesDao();
+        String result = notesDao.saveCamelotNote(altercode, note);
+        model.addAttribute("result", result);
+
+        return "redirect:camelotNotesDisplay.htm";
+        // return "vakulina/notesDisplay";
     }
 }

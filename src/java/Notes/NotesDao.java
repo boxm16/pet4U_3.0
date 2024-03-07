@@ -179,4 +179,23 @@ public class NotesDao {
         }
     }
 
+    public String saveCamelotNote(String altercode, String note) {
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            Connection connection = databaseConnectionFactory.getMySQLConnection();
+
+            PreparedStatement itemInsertStatement = connection.prepareStatement("INSERT INTO camelot_notes (item_code, note) VALUES (?,?)");
+
+            itemInsertStatement.setString(1, altercode);
+            itemInsertStatement.setString(2, note);
+
+            itemInsertStatement.execute();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(NotesDao.class.getName()).log(Level.SEVERE, null, ex);
+            return ex.getMessage();
+        }
+        return "New Item Inventory Added Successfully";
+    }
+
 }
