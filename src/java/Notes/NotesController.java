@@ -66,7 +66,7 @@ public class NotesController {
     }
     
     @RequestMapping(value = "deleteNote", method = RequestMethod.GET)
-    public String deleteInventory(@RequestParam(name = "id") String id) {
+    public String deleteNote(@RequestParam(name = "id") String id) {
         NotesDao notesDao = new NotesDao();
         notesDao.deleteNote(id);
         return "redirect:notesDisplay.htm";
