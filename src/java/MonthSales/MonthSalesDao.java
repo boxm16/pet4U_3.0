@@ -165,7 +165,7 @@ public class MonthSalesDao {
         return item;
     }
 
-    public LinkedHashMap<String, MonthSales> getLastMonthsSales(int months) {
+    public LinkedHashMap<String, MonthSales> getLastMonthsSales11(int months) {
 
         LinkedHashMap<String, MonthSales> allItems = new LinkedHashMap<>();
         String sql = "SELECT * FROM month_sales ORDER BY date DESC;";
