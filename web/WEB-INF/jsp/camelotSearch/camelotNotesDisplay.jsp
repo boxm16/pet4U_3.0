@@ -32,7 +32,7 @@
     <body>
     <center>
 
-        <h1>Camelot: Notes</h1>
+        <h6>Camelot: Notes</h6>
         <hr>
 
         <table>
