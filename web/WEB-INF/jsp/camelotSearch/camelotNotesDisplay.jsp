@@ -32,8 +32,8 @@
     <body>
     <center>
 
-        <h6>Camelot: Notes</h6>
-        <hr>
+        <h5>Camelot: Notes</h5>
+      
 
         <table>
             <thead>
