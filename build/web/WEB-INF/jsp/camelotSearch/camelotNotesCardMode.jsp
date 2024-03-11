@@ -36,11 +36,7 @@
 
 
                     <center>
-                        <a href="index.htm"><h4>INDEX</h4></a>
-                        <hr>
-                        <a href="camelotSearchDashboard.htm"><h4>New Search</h4></a>
-                        <h6>Search Target : ${target} </h6>
-                        <h6> Items found: ${items.size()} </h6>
+
                         <%
                             ArrayList<InventoryItem> items = (ArrayList) request.getAttribute("notes");
                             for (InventoryItem item : items) {
@@ -92,8 +88,9 @@
                             }
                         %>
 
+                        <hr><hr>
 
-
+                        <a href="index.htm"><h4>INDEX</h4></a>
 
 
 
