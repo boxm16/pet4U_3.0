@@ -60,11 +60,11 @@
                         out.println(inventoryItem.getCode());
                         out.println("</td>");
 
-                        out.println("<td style='font-size: 20px;'>");
+                        out.println("<td style='font-size: 15px;'>");
                         out.println(inventoryItem.getPosition());
                         out.println("</td>");
 
-                        out.println("<td style='font-size: 25px;'>");
+                        out.println("<td style='font-size: 15px;'>");
                         out.println(inventoryItem.getDescription());
                         out.println("</td>");
 
