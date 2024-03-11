@@ -69,12 +69,40 @@ public class CamelotSearchController {
         String result = notesDao.saveCamelotNote(altercode, note);
         model.addAttribute("result", result);
 
-        return "redirect:camelotNotesDisplay.htm";
+        return "redirect:camelotNotesCardMode.htm";
         // return "vakulina/notesDisplay";
     }
 
     @RequestMapping(value = "camelotNotesDisplay")
     public String notesDisplay(ModelMap model) {
+
+        NotesDao notesDao = new NotesDao();
+        ArrayList<InventoryItem> notes = notesDao.getAllCamelotNotes();
+
+        CamelotItemsOfInterestDao camelotItemsOfInterestDao = new CamelotItemsOfInterestDao();
+        LinkedHashMap<String, Item> camelotItems = camelotItemsOfInterestDao.getCamelotItemsRowByRow();
+
+        for (InventoryItem inventoryItem : notes) {
+            //     System.out.println("ITETM:" + inventoryItem.getCode());
+            String altercode = inventoryItem.getCode();
+
+            Item camelotItem = camelotItems.get(altercode);
+
+            if (camelotItem == null) {
+                System.out.println("CamelotItem with altercode " + altercode + "  not present in the lists from microsoft db");
+            } else {
+                inventoryItem.setCode(camelotItem.getCode());
+                inventoryItem.setDescription(camelotItem.getDescription());
+                inventoryItem.setPosition(camelotItem.getPosition());
+                inventoryItem.setState(camelotItem.getState());
+                model.addAttribute("notes", notes);
+            }
+        }
+        return "camelotSearch/camelotNotesDisplay";
+    }
+    
+    @RequestMapping(value = "camelotNotesCardMode")
+    public String camelotNotesCardMode(ModelMap model) {
 
         NotesDao notesDao = new NotesDao();
         ArrayList<InventoryItem> notes = notesDao.getAllCamelotNotes();
