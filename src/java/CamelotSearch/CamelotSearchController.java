@@ -126,7 +126,7 @@ public class CamelotSearchController {
                 model.addAttribute("notes", notes);
             }
         }
-        return "camelotSearch/camelotNotesDisplay";
+        return "camelotSearch/camelotNotesCardMode";
     }
     
      @RequestMapping(value = "deleteCamelotNote", method = RequestMethod.GET)
