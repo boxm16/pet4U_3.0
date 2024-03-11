@@ -75,7 +75,7 @@
                                 out.println("</tr>");
 
                                 out.println("<tr>");
-                                out.println("<td colspan='2'>");
+                                out.println("<td colspan='2' style='font-size:20px'>");
                                 out.println("<strong>" + item.getNote() + "</strong>");
                                 out.println("</td>");
                                 out.println("</tr>");
