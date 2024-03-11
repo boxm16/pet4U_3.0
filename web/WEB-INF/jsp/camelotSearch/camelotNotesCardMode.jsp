@@ -45,7 +45,7 @@
                             ArrayList<InventoryItem> items = (ArrayList) request.getAttribute("notes");
                             for (InventoryItem item : items) {
 
-                                out.println("<table class='table' style='background-color: #D052DB'>");
+                                out.println("<table class='table'>");
                                 out.println("</tbody>");
                                 out.println("<tr>");
                                 out.println("<td style='width:70px'>");
@@ -85,20 +85,7 @@
 
                                 out.println("<tr>");
                                 out.println("<td colspan='2'>");
-                                ArrayList<AltercodeContainer> altercodes = item.getAltercodes();
-                                for (AltercodeContainer altercodeContainer : altercodes) {
-                                    if (altercodeContainer.getStatus().equals("eshop")
-                                            || altercodeContainer.getStatus().equals("eshop-on")
-                                            || altercodeContainer.getStatus().equals("eshop-barf")
-                                            || altercodeContainer.getStatus().equals("eshop-pro")) {
-
-                                        out.println("<a href='https://www.pet4u.gr/search-products-el.html?subcats=Y&status=A&match=all&pshort=N&pfull=N&pname=Y&pkeywords=N&pcode_from_q=Y&wg_go_direct=Y&search_performed=Y&q=" + altercodeContainer.getAltercode() + "' target='_blank'>" + "<strong>" + altercodeContainer.getAltercode() + "</strong>" + "</a>");
-                                        out.println("<br>");
-                                    } else {
-                                        out.println("<strong>" + altercodeContainer.getAltercode() + "</strong>");
-                                        out.println("<br>");
-                                    }
-                                }
+                                out.println("<strong>" + item.getNote() + "</strong>");
                                 out.println("</td>");
                                 out.println("</tr>");
 
