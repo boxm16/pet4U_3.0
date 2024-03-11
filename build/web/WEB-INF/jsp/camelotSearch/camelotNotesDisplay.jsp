@@ -16,10 +16,10 @@
                 border-collapse: collapse;
             }
             td {
-                font-size: 30px;
+                font-size: 15px;
             }
             th{
-                font-size: 30px;
+                font-size: 15px;
                 font-weight: bold;
                 text-align: left;
                 background: #eee;
@@ -37,8 +37,6 @@
 
         <table>
             <thead>
-            <th>ID</th>
-
             <th>Altercode</th>
             <th>Position</th>
 
@@ -57,9 +55,6 @@
 
                         out.println("<tr>");
 
-                        out.println("<td>");
-                        out.println(inventoryItem.getId());
-                        out.println("</td>");
 
                         out.println("<td>");
                         out.println(inventoryItem.getCode());
