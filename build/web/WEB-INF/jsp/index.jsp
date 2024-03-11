@@ -60,9 +60,9 @@
                 <a href="notesDisplay.htm"><h1>Notes</h1></a>
                 <hr>
                 <hr>
-                <a href="camelotNotesDisplay.htm"><h1>Camelot Notes</h1></a>
-                <hr>
                 <a href="camelotNotesCardMode.htm"><h1>Camelot Notes:Card Mode</h1></a>
+                <hr>
+                <a href="camelotNotesDisplay.htm"><h1>Camelot Notes</h1></a>
 
 
 
