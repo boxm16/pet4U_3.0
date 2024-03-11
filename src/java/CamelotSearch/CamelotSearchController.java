@@ -94,13 +94,13 @@ public class CamelotSearchController {
                 inventoryItem.setCode(camelotItem.getCode());
                 inventoryItem.setDescription(camelotItem.getDescription());
                 inventoryItem.setPosition(camelotItem.getPosition());
-                inventoryItem.setState(camelotItem.getState());
+                inventoryItem.setQuantity(camelotItem.getQuantity());
                 model.addAttribute("notes", notes);
             }
         }
         return "camelotSearch/camelotNotesDisplay";
     }
-    
+
     @RequestMapping(value = "camelotNotesCardMode")
     public String camelotNotesCardMode(ModelMap model) {
 
@@ -122,14 +122,14 @@ public class CamelotSearchController {
                 inventoryItem.setCode(camelotItem.getCode());
                 inventoryItem.setDescription(camelotItem.getDescription());
                 inventoryItem.setPosition(camelotItem.getPosition());
-                inventoryItem.setState(camelotItem.getState());
+                inventoryItem.setQuantity(camelotItem.getQuantity());
                 model.addAttribute("notes", notes);
             }
         }
         return "camelotSearch/camelotNotesCardMode";
     }
-    
-     @RequestMapping(value = "deleteCamelotNote", method = RequestMethod.GET)
+
+    @RequestMapping(value = "deleteCamelotNote", method = RequestMethod.GET)
     public String deleteNote(@RequestParam(name = "id") String id) {
         NotesDao notesDao = new NotesDao();
         notesDao.deleteCamelotNote(id);

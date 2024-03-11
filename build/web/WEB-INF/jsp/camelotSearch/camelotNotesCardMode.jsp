@@ -75,17 +75,14 @@
                                 out.println("</tr>");
 
                                 out.println("<tr>");
-                                out.println("<td style='width:70px'>");
-                                out.println("Κατ.");
-                                out.println("</td>");
-                                out.println("<td>");
-                                out.println("<strong>" + item.getState() + "</strong>");
+                                out.println("<td colspan='2'>");
+                                out.println("<strong>" + item.getNote() + "</strong>");
                                 out.println("</td>");
                                 out.println("</tr>");
 
                                 out.println("<tr>");
-                                out.println("<td colspan='2'>");
-                                out.println("<strong>" + item.getNote() + "</strong>");
+                                out.println("<td>");
+                                out.println("<a href='deleteCamelotNote.htm?id=" + item.getId() + "'>Delete</a>");
                                 out.println("</td>");
                                 out.println("</tr>");
 
