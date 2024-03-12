@@ -123,9 +123,10 @@ public class CamelotSearchController {
                 inventoryItem.setDescription(camelotItem.getDescription());
                 inventoryItem.setPosition(camelotItem.getPosition());
                 inventoryItem.setQuantity(camelotItem.getQuantity());
-                model.addAttribute("notes", notes);
+
             }
         }
+        model.addAttribute("notes", notes);
         return "camelotSearch/camelotNotesCardMode";
     }
 
