@@ -72,7 +72,7 @@
                         <div STYLE="background-color:#000000; height:10px; width:100%;"></div>
 
 
-                        <h5><strong>Find Single Line <br>From Microsoft Database<br> Using Altercode Mask</strong></h5>
+                    <!--    <h5><strong>Find Single Line <br>From Microsoft Database<br> Using Altercode Mask</strong></h5>
                         <h1>
                             <form action="deepSearchForAltercodeMask.htm" method="GET" >
                                 <input type="text" class="form-control input-lg" name='altercodeMask' value="%">
@@ -80,6 +80,8 @@
                                 <input class="btn btn-danger btn-lg btn-block"  type="submit" value="Submit">
                             </form>
                         </h1>
+                    
+                    -->
                     </center>
                 </div>
                 <div class=" col-sm-4">
