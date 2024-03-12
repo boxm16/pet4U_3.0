@@ -93,8 +93,9 @@
                 }
             %>
         </table>
+        <hr>
 
-        <a href="deleteAllCamelotNotes.htm"><h4>DELETE ALL</h4></a>
+        <a href="deleteAllCamelotNotes.htm"><h5>DELETE ALL</h5></a>
 
     </center>
 
