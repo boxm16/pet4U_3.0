@@ -111,7 +111,7 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        ...
+                                     ΠΡΟΣΟΧΗ!!! ΠΑΣ ΝΑ ΣΒΗΣΕΙΣ ΟΛΑ ΤΑ ΣΗΜΕΙΩΜΑΤΑ. Η ΠΡΑΞΗ ΕΙΝΑΙ ΑΜΕΤΑΚΛΗΤΗ
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel Deletion</button>
