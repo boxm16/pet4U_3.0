@@ -142,4 +142,11 @@ public class CamelotSearchController {
         notesDao.deleteCamelotNote(id);
         return "redirect:camelotNotesCardMode.htm";
     }
+
+    @RequestMapping(value = "deleteAllCamelotNotes", method = RequestMethod.GET)
+    public String deleteAllCamelotNotes() {
+        NotesDao notesDao = new NotesDao();
+        notesDao.deleteAllCamelotNote();
+        return "redirect:camelotNotesDisplay.htm";
+    }
 }

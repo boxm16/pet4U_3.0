@@ -39,57 +39,87 @@
 
                         <%
                             ArrayList<InventoryItem> items = (ArrayList) request.getAttribute("notes");
-                            for (InventoryItem item : items) {
 
-                                out.println("<table class='table'>");
-                                out.println("</tbody>");
-                                out.println("<tr>");
-                                out.println("<td style='width:70px'>");
-                                out.println("Πε/φη");
-                                out.println("</td>");
-                                out.println("<td>");
-                                out.println("<strong>" + item.getDescription() + "</strong>");
-                                out.println("</td>");
-                                out.println("</tr>");
+                            if (items.size() > 0) {
+                                for (InventoryItem item : items) {
 
-                                out.println("<tr>");
-                                out.println("<td style='width:70px'>");
-                                out.println("Θεση");
-                                out.println("</td>");
-                                out.println("<td>");
-                                out.println("<strong>" + item.getPosition() + "</strong>");
-                                out.println("</td>");
-                                out.println("</tr>");
+                                    out.println("<table class='table'>");
+                                    out.println("</tbody>");
+                                    out.println("<tr>");
+                                    out.println("<td style='width:70px'>");
+                                    out.println("Πε/φη");
+                                    out.println("</td>");
+                                    out.println("<td>");
+                                    out.println("<strong>" + item.getDescription() + "</strong>");
+                                    out.println("</td>");
+                                    out.println("</tr>");
 
-                                out.println("<tr>");
-                                out.println("<td style='width:70px'>");
-                                out.println("Υπλ.");
-                                out.println("</td>");
-                                out.println("<td>");
-                                out.println("<strong>" + item.getQuantity() + "</strong>");
-                                out.println("</td>");
-                                out.println("</tr>");
+                                    out.println("<tr>");
+                                    out.println("<td style='width:70px'>");
+                                    out.println("Θεση");
+                                    out.println("</td>");
+                                    out.println("<td>");
+                                    out.println("<strong>" + item.getPosition() + "</strong>");
+                                    out.println("</td>");
+                                    out.println("</tr>");
 
-                                out.println("<tr>");
-                                out.println("<td colspan='2' style='font-size:20px'>");
-                                out.println("<strong>" + item.getNote() + "</strong>");
-                                out.println("</td>");
-                                out.println("</tr>");
+                                    out.println("<tr>");
+                                    out.println("<td style='width:70px'>");
+                                    out.println("Υπλ.");
+                                    out.println("</td>");
+                                    out.println("<td>");
+                                    out.println("<strong>" + item.getQuantity() + "</strong>");
+                                    out.println("</td>");
+                                    out.println("</tr>");
 
-                                out.println("<tr>");
-                                out.println("<td colspan='2'>");
-                                out.println("<a href='deleteCamelotNoteCardMode.htm?id=" + item.getId() + "'>Delete</a>");
-                                out.println("</td>");
-                                out.println("</tr>");
+                                    out.println("<tr>");
+                                    out.println("<td colspan='2' style='font-size:20px'>");
+                                    out.println("<strong>" + item.getNote() + "</strong>");
+                                    out.println("</td>");
+                                    out.println("</tr>");
 
-                                out.println("</tbody>");
-                                out.println("</table>");
-                                out.println("<div STYLE=\"background-color:lightblue; height:10px; width:100%;\"></div>");
+                                    out.println("<tr>");
+                                    out.println("<td colspan='2'>");
+                                    out.println("<a href='deleteCamelotNoteCardMode.htm?id=" + item.getId() + "'>Delete</a>");
+                                    out.println("</td>");
+                                    out.println("</tr>");
+
+                                    out.println("</tbody>");
+                                    out.println("</table>");
+                                    out.println("<div STYLE=\"background-color:lightblue; height:10px; width:100%;\"></div>");
+                                }
                             }
                         %>
 
                         <hr><hr>
 
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                            DELETE ALL NOTES
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        ...
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel Deletion</button>
+                                        <a href="#deleteAllCamelotNotes.htm" class="btn btn-info" role="button">CONFIRM Deletion</a>   </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <hr><hr>
                         <a href="index.htm"><h4>INDEX</h4></a>
 
 

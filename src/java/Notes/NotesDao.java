@@ -248,4 +248,20 @@ public class NotesDao {
         }
     }
 
+    public void deleteAllCamelotNote() {
+        String noteDeletionSql = "DELETE FROM camelot_notes ; ";
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            Connection connection = databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(noteDeletionSql);
+            statement.close();
+
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(NotesDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 }
