@@ -42,10 +42,7 @@
         <hr>
         <h3>  <a href="camelotItemsOfOurInterestDashboard.htm">Go Back To Dashboard</a></h3>
         <hr>
-        <h1 style="background-color: greenyellow">BILLY, κωδικός 06.17.0970, θεση 01Π-16-1, 
-            <br> 2 τεμάχια ACANA που έχουμε εκεί, πρέπει να βγούνε ετικέτες προσφοράς(-10 ευρώ), Τελείωσε η προσφορά.
-            <br>P.S. το ίδα από το σπίτι, αλλιώς θα το έκανα εγώ.
-        </h1>
+       
         <table>
             <thead>
             <th>Owner</th>
