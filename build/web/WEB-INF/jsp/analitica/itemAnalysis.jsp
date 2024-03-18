@@ -455,7 +455,57 @@
                     </table>
                 </div>
                 <div class=" col-sm-4">
+                    <center><h3>Camelot Stock Analysis</h3></center>
+                    <table>
+                        <th>Date Stamp</th>
+                        <th>State</th>
+                        <th>Quantity</th>
+                            <%                                ArrayList<ItemSnapshot> camelotItemSnapshots = (ArrayList) request.getAttribute("camelotIemSnapshots");
+                                double camelotStockBefore = 0.0;
 
+                                for (int x = 0; x < camelotItemSnapshots.size() - 1; x++) {
+                                    ItemSnapshot itemSnapshot = itemSnapshots.get(x);
+                                    camelotStockBefore = Double.parseDouble(itemSnapshots.get(x + 1).getQuantity());
+                                    Double stock = Double.parseDouble(itemSnapshot.getQuantity());
+
+                                    String date = itemSnapshot.getDateStamp();
+                                    Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(date);
+
+                                    String[] weekdays = {"Κυριακη.", "Δευτερα.", "Τρίτη", "Τετάρτη", "Πέμπτη.", "Παρασκεύη.", "Σάββατο."};
+                                    int day = date1.getDay();
+
+                                    if (day == 0) {
+                                        out.println("<tr style='background-color: #90EE90;'>");
+
+                                    } else {
+                                        out.println("<tr >");
+
+                                    }
+                                    out.println("<td>");
+                                    out.println(itemSnapshot.getReformatedDateStamp() + "<br>" + weekdays[day]);
+                                    out.println("</td>");
+
+                                    out.println("<td>");
+                                    out.println(itemSnapshot.getState());
+                                    out.println("</td>");
+
+                                    if (itemSnapshot.getQuantity().equals("0") || itemSnapshot.getQuantity().equals("0.000000")) {
+                                        out.println("<td style='background-color: #F7B2F7'>");
+                                    } else {
+                                        out.println("<td>");
+                                    }
+                                    out.println(itemSnapshot.getQuantity());
+                                    out.println("</td>");
+
+                                    out.println("<td>");
+                                    out.println(stock - camelotStockBefore);
+                                    out.println("</td>");
+                                    out.println("</tr>");
+                                    stockBefore = stock;
+
+                                }
+                            %>
+                    </table>
                 </div>
 
             </div>
