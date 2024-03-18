@@ -70,6 +70,8 @@ public class EndoController {
         LinkedHashMap<String, DeliveryItem> sentItems = endoDao.getSentItems(endoIdsArray, pet4UItemsRowByRow);
         LinkedHashMap<String, DeliveryItem> deliveredIetms = endoDao.getReceivedItems(receivingEndoIdsArray, pet4UItemsRowByRow);
 
+        
+        
         DeliveryInvoice deliveryInvoice = new DeliveryInvoice();
         for (Map.Entry<String, DeliveryItem> deliveredIetmsEntry : deliveredIetms.entrySet()) {
             DeliveryItem deliveredItem = deliveredIetmsEntry.getValue();
