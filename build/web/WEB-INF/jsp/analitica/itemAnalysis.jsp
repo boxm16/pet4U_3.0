@@ -461,7 +461,7 @@
                         <th>State</th>
                         <th>Quantity</th>
                             <%
-                                ArrayList<ItemSnapshot> camelotItemSnapshots = (ArrayList) request.getAttribute("camelotIemSnapshots");
+                                ArrayList<ItemSnapshot> camelotItemSnapshots = (ArrayList) request.getAttribute("camelotItemSnapshots");
                                 double camelotStockBefore = 0.0;
 
                                 for (int y = 0; y < camelotItemSnapshots.size() - 1; y++) {
