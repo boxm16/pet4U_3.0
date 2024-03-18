@@ -24,7 +24,6 @@ public class EksagogesController {
 
         modelMap.addAttribute("eksagoges", getLastSixMonthsSales());
 
-        
         return "monthSales/sixMonthsSales";
     }
 
