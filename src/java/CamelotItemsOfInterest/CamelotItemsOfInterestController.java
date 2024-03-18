@@ -363,7 +363,7 @@ public class CamelotItemsOfInterestController {
     }
 
     public void addSnapshot() {
-        CamelotItemsOfInterestDao camelotItemsOfInterestDao = new CamelotItemsOfInterestDao();
+        /*  CamelotItemsOfInterestDao camelotItemsOfInterestDao = new CamelotItemsOfInterestDao();
 
         LinkedHashMap<String, CamelotItemOfInterest> camelotItemsOfInterest = camelotItemsOfInterestDao.getCamelotItemsOfInterset();
         CamelotItemsOfInterestDao camelotDao = new CamelotItemsOfInterestDao();
@@ -380,8 +380,11 @@ public class CamelotItemsOfInterestController {
                 camelotItemOfInterest.setQuantity(camelotItem.getQuantity());
             }
         }
+         */
+        LinkedHashMap<String, CamelotItemOfInterest> allCamelotItems = camelotItemsOfInterestDao.getAllCamelotItemsAsItemsOfInterest();
+
         LocalDate nowDate = LocalDate.now();
-        String snapshotInsertionResult = camelotItemsOfInterestDao.insertDayRestSnapshot(nowDate, camelotItemsOfInterest);
+        String snapshotInsertionResult = camelotItemsOfInterestDao.insertDayRestSnapshot(nowDate, allCamelotItems);
 
         System.out.println("Insertion for " + nowDate + ".Result:" + snapshotInsertionResult);
     }
