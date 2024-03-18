@@ -57,7 +57,7 @@
     <context:component-scan base-package="Endo"/>
     <context:component-scan base-package="TESTosteron"/>
     <context:component-scan base-package="CamelotItemsOfOurInterest_V_3_1"/>
-    <context:component-scan base-package="BasicDao_V_3_1"/>
+    <context:component-scan base-package="SalesUltra"/>
     
     <!--
     Most controllers will use the ControllerClassNameHandlerMapping above, but
