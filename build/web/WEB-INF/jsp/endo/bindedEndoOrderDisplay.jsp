@@ -45,9 +45,14 @@
 
 
         <h1>Endo Order Checking</h1>
-        <input type="text" readonly  value="${endoOrder.id}"/>
-        <input name="dateString" readonly type="text" value="${endoOrder.dateString}">
-        <input type="text" readonly name="receiver" value="${endoOrder.destination}" />
+        Order Id <input type="text" readonly  value="${endoOrder.id}"/>
+        Order Date  <input name="dateString" readonly type="text" value="${endoOrder.dateString}">
+        Order Destination  <input type="text" readonly name="receiver" value="${endoOrder.destination}" />
+        <hr>
+        Invoice Id <input type="text" readonly  value="${endoApostolis.id}"/>
+        Invoice Date  <input name="dateString" readonly type="text" value="${endoApostolis.dateString}">
+        Invoice Number  <input name="dateString" readonly type="text" value="${endoApostolis.number}">
+        Invoice Destination  <input type="text" readonly name="receiver" value="${endoApostolis.receiver}" />
         <hr>
         <table>
             <thead> 
