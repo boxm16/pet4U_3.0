@@ -46,11 +46,11 @@
 
         <h1>Endo Order Checking</h1>
         Order Id <input type="text" readonly  value="${endoOrder.id}" style="width:350px"/>
-        Order Date  <input name="dateString" readonly type="text" value="${endoOrder.dateString}">
+        Order Date  <input name="dateString" readonly type="text" value="${endoOrder.dateString}" style="width:100px">
         Order Destination  <input type="text" readonly name="receiver" value="${endoOrder.destination}" />
         <hr>
         Invoice Id <input type="text" readonly  value="${endoApostolis.id}" style="width:80px"/>
-        Invoice Date  <input name="dateString" readonly type="text" value="${endoApostolis.dateString}">
+        Invoice Date  <input name="dateString" readonly type="text" value="${endoApostolis.dateString}" style="width:100px">
         Invoice Number  <input name="dateString" readonly type="text" value="${endoApostolis.number}"  style="width:80px">
         Invoice Destination  <input type="text" readonly name="receiver" value="${endoApostolis.receiver}" style="width:350px" />
         <hr>

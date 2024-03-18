@@ -554,8 +554,9 @@ public class EndoDaoX {
                     String number = resultSet.getString("DOCNUMBER");
                     String destination = resultSet.getString("DESTINATION");
                     String date = resultSet.getString("DOCDATE");
+                    String[] splittedDate = date.split(" ");
                     endoApostolis.setId(id);
-                    endoApostolis.setDateString(date);
+                    endoApostolis.setDateString(splittedDate[0]);
                     endoApostolis.setReceiver(destination);
                     endoApostolis.setNumber(number);
                     rowIndex++;
