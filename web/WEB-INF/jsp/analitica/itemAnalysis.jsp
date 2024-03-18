@@ -464,9 +464,9 @@
                                 ArrayList<ItemSnapshot> camelotItemSnapshots = (ArrayList) request.getAttribute("camelotIemSnapshots");
                                 double camelotStockBefore = 0.0;
 
-                                for (int x = 0; x < camelotItemSnapshots.size() - 1; x++) {
-                                    ItemSnapshot camelotItemSnapshot = camelotItemSnapshots.get(x);
-                                    camelotStockBefore = Double.parseDouble(camelotItemSnapshots.get(x + 1).getQuantity());
+                                for (int y = 0; y < camelotItemSnapshots.size() - 1; y++) {
+                                    ItemSnapshot camelotItemSnapshot = camelotItemSnapshots.get(y);
+                                    camelotStockBefore = Double.parseDouble(camelotItemSnapshots.get(y + 1).getQuantity());
                                     Double camelotStock = Double.parseDouble(camelotItemSnapshot.getQuantity());
 
                                     String date = camelotItemSnapshot.getDateStamp();
