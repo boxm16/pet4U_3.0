@@ -11,7 +11,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Ενδο Αποστολης Απο Μαγαζι</title>
         <style>
             table, th, td {
                 border: 1px solid ;
@@ -38,7 +38,7 @@
         <a href="index.htm"><h3>INDEX</h3></a>
         <hr>
         <h1>Sent Item</h1>
-        <h1>${sentItem}</h1>
+        <h1><a  href = 'itemAnalysis.htm?code=" + item.getCode() + "' target='_blank'>${sentCode}</a> : ${sentItem}</h1>
         <table>
             <thead> 
 
