@@ -38,7 +38,7 @@
         <a href="index.htm"><h3>INDEX</h3></a>
         <hr>
         <h1>Sent Item</h1>
-        <h1><a  href = 'itemAnalysis.htm?code=" + item.getCode() + "' target='_blank'>${sentCode}</a> : ${sentItem}</h1>
+        <h1><a  href = 'itemAnalysis.htm?code=" + item.getCode() + "' target='_blank'>${itemCode}</a> : ${sentItem}</h1>
         <table>
             <thead> 
 
