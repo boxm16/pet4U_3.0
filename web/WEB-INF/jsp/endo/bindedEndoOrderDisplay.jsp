@@ -45,10 +45,9 @@
 
 
         <h1>Endo Order Checking</h1>
-        <input type="text" readonly name="id" value="${endoOrder.id}"/>
+        <input type="text" readonly  value="${endoOrder.id}"/>
         <input name="dateString" readonly type="text" value="${endoOrder.dateString}">
-        <input type="text" readonly name="id" value="${endoOrder.number}"/>
-        <input type="text" readonly name="receiver" value="${endoOrder.receiver}" />
+        <input type="text" readonly name="receiver" value="${endoOrder.destination}" />
         <hr>
         <table>
             <thead> 
