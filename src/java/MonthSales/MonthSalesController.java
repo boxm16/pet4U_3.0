@@ -5,16 +5,12 @@
  */
 package MonthSales;
 
-import BasicModel.Item;
-import Pet4uItems.Pet4uItemsDao;
 import SalesX.SalesFactory;
 import SalesX.SoldItem;
 import Service.Basement;
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -86,6 +82,7 @@ public class MonthSalesController {
         return "monthSales/monthSalesUpload";
     }
 
+    /*
     @RequestMapping(value = "/monthSales", method = RequestMethod.GET)
     public String monthSales(ModelMap modelMap) {
         LinkedHashMap<String, MonthSales> refactoredSales = new LinkedHashMap<>();
@@ -123,5 +120,5 @@ public class MonthSalesController {
         modelMap.addAttribute("sales", refactoredSales);
         return "monthSales/monthSales";
     }
-
+     */
 }
