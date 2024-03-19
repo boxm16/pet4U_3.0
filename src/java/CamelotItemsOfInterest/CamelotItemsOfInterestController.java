@@ -381,6 +381,7 @@ public class CamelotItemsOfInterestController {
             }
         }
          */
+        CamelotItemsOfInterestDao camelotItemsOfInterestDao = new CamelotItemsOfInterestDao();
         LinkedHashMap<String, CamelotItemOfInterest> allCamelotItems = camelotItemsOfInterestDao.getAllCamelotItemsAsItemsOfInterest();
 
         LocalDate nowDate = LocalDate.now();
