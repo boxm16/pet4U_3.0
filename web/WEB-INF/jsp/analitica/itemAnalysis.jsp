@@ -466,7 +466,11 @@
 
                                 for (int y = 0; y < camelotItemSnapshots.size() - 1; y++) {
                                     ItemSnapshot camelotItemSnapshot = camelotItemSnapshots.get(y);
-                                    camelotStockBefore = Double.parseDouble(camelotItemSnapshots.get(y + 1).getQuantity());
+                                    if (camelotItemSnapshots.size() == 0) {
+                                        camelotStockBefore = 0;
+                                    } else {
+                                        camelotStockBefore = Double.parseDouble(camelotItemSnapshots.get(y + 1).getQuantity());
+                                    }
                                     Double camelotStock = Double.parseDouble(camelotItemSnapshot.getQuantity());
 
                                     String date = camelotItemSnapshot.getDateStamp();
