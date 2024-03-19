@@ -4,12 +4,12 @@
     Author     : Michail Sitmalidis
 --%>
 
+<%@page import="MonthSales.EksagogesB"%>
 <%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="SuppliersAndStock.Supplier"%>
 <%@page import="java.time.LocalDate"%>
 <%@page import="java.text.DecimalFormat"%>
-<%@page import="MonthSales.Eksagoges"%>
 <%@page import="java.util.Map"%>
 <%@page import="SuppliersAndStock.SuppliersItem"%>
 <%@page import="java.util.LinkedHashMap"%>
@@ -153,7 +153,7 @@
 
                                     //----------------------------------
                                     double objectiveSales = 0;
-                                    Eksagoges eksagoges = item.getEksagogesForLastMonths(6);
+                                    EksagogesB eksagoges = item.getEksagogesForLastMonths(6);
                                     double grandTotalEksagoges = eksagoges.getEshopSales() + eksagoges.getShopsSupply();
 
                                     double oneMonthSalesFromCalculation = grandTotalEksagoges / 6;
