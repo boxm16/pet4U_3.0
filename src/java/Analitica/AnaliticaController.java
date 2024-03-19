@@ -75,6 +75,7 @@ public class AnaliticaController {
 
         System.out.println("ITEMCODE FOR CAMELOT: " + itemCode);
         ArrayList<ItemSnapshot> camelotItemSnapshots = camelotItemsOfInterestDao.getItemSnapshots(itemCode);
+        System.out.println("size:"+camelotItemSnapshots.size());
         model.addAttribute("camelotItemSnapshots", camelotItemSnapshots);
 
         return "analitica/itemAnalysis";
