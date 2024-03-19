@@ -66,6 +66,12 @@ public class AnaliticaController {
         model.addAttribute("stockAnalysis", stockAnalysis);
 
         CamelotItemsOfInterestDao camelotItemsOfInterestDao = new CamelotItemsOfInterestDao();
+        if (code.contains("-WE")) {
+            code = code.replace("-WE", "");
+        }
+        if (code.contains(".-WE")) {
+            code = code.replace(".-WE", "");
+        }
         ArrayList<ItemSnapshot> camelotItemSnapshots = camelotItemsOfInterestDao.getItemSnapshots(code);
         model.addAttribute("camelotItemSnapshots", camelotItemSnapshots);
 
