@@ -72,6 +72,7 @@ public class AnaliticaController {
         if (itemCode.contains(".-WE")) {
             itemCode = itemCode.replace(".-WE", "");
         }
+        System.out.println("ITEMCODE FOR CAMELTO: "+itemCode);
         ArrayList<ItemSnapshot> camelotItemSnapshots = camelotItemsOfInterestDao.getItemSnapshots(itemCode);
         model.addAttribute("camelotItemSnapshots", camelotItemSnapshots);
 
