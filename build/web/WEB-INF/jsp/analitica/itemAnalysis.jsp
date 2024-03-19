@@ -462,15 +462,16 @@
                         <th>Quantity</th>
                             <%
                                 ArrayList<ItemSnapshot> camelotItemSnapshots = (ArrayList) request.getAttribute("camelotItemSnapshots");
+                                out.println("<tr>");
+                                out.println("<td>"+camelotItemSnapshots+"</td>");
+                                out.println("</tr>");
                                 double camelotStockBefore = 0.0;
 
                                 for (int y = 0; y < camelotItemSnapshots.size() - 1; y++) {
                                     ItemSnapshot camelotItemSnapshot = camelotItemSnapshots.get(y);
-                                    if (camelotItemSnapshots.size() == 0) {
-                                        camelotStockBefore = 0;
-                                    } else {
-                                        camelotStockBefore = Double.parseDouble(camelotItemSnapshots.get(y + 1).getQuantity());
-                                    }
+
+                                    camelotStockBefore = Double.parseDouble(camelotItemSnapshots.get(y + 1).getQuantity());
+
                                     Double camelotStock = Double.parseDouble(camelotItemSnapshot.getQuantity());
 
                                     String date = camelotItemSnapshot.getDateStamp();
