@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package SalesUltra;
+package Eksagoges;
 
 import org.springframework.stereotype.Controller;
 
 @Controller
-public class SalesUltraController {
+public class EksagogesController {
     
 }
