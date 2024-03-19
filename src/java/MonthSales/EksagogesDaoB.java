@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class EksagogesDao {
+public class EksagogesDaoB {
 
     public LinkedHashMap<String, ItemEksagoges> getLastMonthsSales(int months) {
 

@@ -7,7 +7,7 @@ package SuppliersAndStock;
 
 import BasicModel.Item;
 import CamelotItemsOfInterest.ItemSnapshot;
-import MonthSales.EksagogesController;
+import MonthSales.EksagogesControllerB;
 import MonthSales.ItemEksagoges;
 import MonthSales.MonthSales;
 import MonthSales.MonthSalesDao;
@@ -85,7 +85,7 @@ public class SuppliersAndStockController {
 
         LinkedHashMap<String, SuppliersItem> supplierItemsFromDatabase = supplierDao.getAllItemsOfSupplier(supplierId);
 
-        EksagogesController eksagogesController = new EksagogesController();
+        EksagogesControllerB eksagogesController = new EksagogesControllerB();
         LinkedHashMap<String, ItemEksagoges> lastSixMonthsSales = eksagogesController.getLastSixMonthsSales();
 
         for (Map.Entry<String, SuppliersItem> supplierItemsFromDatabaseEntrySet : supplierItemsFromDatabase.entrySet()) {
@@ -256,7 +256,7 @@ public class SuppliersAndStockController {
         ArrayList<String> temsIdsArray = createItemsIdsArray(itemsIds);
 
         LinkedHashMap<String, SuppliersItem> supplierItemsFromDatabase = this.supplierDao.getItems(temsIdsArray);
-        EksagogesController eksagogesController = new EksagogesController();
+        EksagogesControllerB eksagogesController = new EksagogesControllerB();
         LinkedHashMap<String, ItemEksagoges> lastSixMonthsSales = eksagogesController.getLastSixMonthsSales();
 
         for (Map.Entry<String, SuppliersItem> supplierItemsFromDatabaseEntrySet : supplierItemsFromDatabase.entrySet()) {
@@ -389,7 +389,7 @@ public class SuppliersAndStockController {
 
         LinkedHashMap<String, RoyalItem> supplierItemsFromDatabase = supplierDao.getRoyalItems();
 
-        EksagogesController eksagogesController = new EksagogesController();
+        EksagogesControllerB eksagogesController = new EksagogesControllerB();
         LinkedHashMap<String, ItemEksagoges> lastSixMonthsSales = eksagogesController.getLastSixMonthsSales();
 
         for (Map.Entry<String, RoyalItem> supplierItemsFromDatabaseEntrySet : supplierItemsFromDatabase.entrySet()) {
@@ -525,7 +525,7 @@ public class SuppliersAndStockController {
 
         LinkedHashMap<String, RoyalItem> supplierItemsFromDatabase = supplierDao.getRoyalItems();
 
-        EksagogesController eksagogesController = new EksagogesController();
+        EksagogesControllerB eksagogesController = new EksagogesControllerB();
         LinkedHashMap<String, ItemEksagoges> lastSixMonthsSales = eksagogesController.getLastSixMonthsSales();
 
         for (Map.Entry<String, RoyalItem> supplierItemsFromDatabaseEntrySet : supplierItemsFromDatabase.entrySet()) {

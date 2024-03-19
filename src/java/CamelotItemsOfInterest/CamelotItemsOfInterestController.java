@@ -3,7 +3,7 @@ package CamelotItemsOfInterest;
 //import Service.StaticsDispatcher;
 import BasicModel.Item;
 import MonthSales.Eksagoges;
-import MonthSales.EksagogesController;
+import MonthSales.EksagogesControllerB;
 import MonthSales.ItemEksagoges;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -38,7 +38,7 @@ public class CamelotItemsOfInterestController {
 
         //  SalesDaoX salesDao = new SalesDaoX();
         //  HashMap<String, SoldItem> sixMonthsSalesXX = salesDao.getSixMonthsSalesX();
-        EksagogesController eksagogesController = new EksagogesController();
+        EksagogesControllerB eksagogesController = new EksagogesControllerB();
         LinkedHashMap<String, ItemEksagoges> lastSixMonthsSales = eksagogesController.getLastSixMonthsSales();
 
         for (Map.Entry<String, CamelotItemOfInterest> entrySet : camelotItemsOfInterest.entrySet()) {
@@ -104,7 +104,7 @@ public class CamelotItemsOfInterestController {
 
         //    SalesDaoX salesDao = new SalesDaoX();
         //  HashMap<String, SoldItem> sixMonthsSales = salesDao.getSixMonthsSalesX();
-        EksagogesController eksagogesController = new EksagogesController();
+        EksagogesControllerB eksagogesController = new EksagogesControllerB();
         LinkedHashMap<String, ItemEksagoges> lastSixMonthsSales = eksagogesController.getLastSixMonthsSales();
 
         for (Map.Entry<String, CamelotItemOfInterest> entrySet : camelotItemsOfInterest.entrySet()) {
@@ -170,7 +170,7 @@ public class CamelotItemsOfInterestController {
 
         //    SalesDaoX salesDao = new SalesDaoX();
         //  HashMap<String, SoldItem> sixMonthsSales = salesDao.getSixMonthsSalesX();
-        EksagogesController eksagogesController = new EksagogesController();
+        EksagogesControllerB eksagogesController = new EksagogesControllerB();
         LinkedHashMap<String, ItemEksagoges> lastSixMonthsSales = eksagogesController.getLastSixMonthsSales();
 
         for (Map.Entry<String, CamelotItemOfInterest> entrySet : camelotItemsOfInterest.entrySet()) {

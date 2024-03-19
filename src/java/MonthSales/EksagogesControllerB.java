@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class EksagogesController {
+public class EksagogesControllerB {
 
     @RequestMapping(value = "/sixMonthsSalesY", method = RequestMethod.GET)
     public String getLastSixMonthsSales(ModelMap modelMap) {
@@ -48,7 +48,7 @@ public class EksagogesController {
         Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
         LinkedHashMap<String, Item> itemsWithPositions = pet4uItemsDao.getAllItems();
 
-        EksagogesDao eksagogesDao = new EksagogesDao();
+        EksagogesDaoB eksagogesDao = new EksagogesDaoB();
         LinkedHashMap<String, ItemEksagoges> itemsWithEksagoges = eksagogesDao.getLastMonthsSales(months);
 
         for (Map.Entry<String, Item> itemsWithPositionEntry : itemsWithPositions.entrySet()) {
