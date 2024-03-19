@@ -2,7 +2,7 @@ package CamelotItemsOfInterest;
 
 //import Service.StaticsDispatcher;
 import BasicModel.Item;
-import MonthSales.Eksagoges;
+import MonthSales.EksagogesB;
 import MonthSales.EksagogesControllerB;
 import MonthSales.ItemEksagoges;
 import java.time.LocalDate;
@@ -79,7 +79,7 @@ public class CamelotItemsOfInterestController {
                 if (itemEksagoges == null) {
                     //do nothing
                 } else {
-                    Eksagoges eksagogesForLastMonths = itemEksagoges.getEksagogesForLastMonths(6);
+                    EksagogesB eksagogesForLastMonths = itemEksagoges.getEksagogesForLastMonths(6);
                     camelotItemOfInterest.setTotalSalesInPieces(eksagogesForLastMonths.getEshopSales() + eksagogesForLastMonths.getShopsSupply());
                 }
 
@@ -145,7 +145,7 @@ public class CamelotItemsOfInterestController {
                 if (itemEksagoges == null) {
                     //do nothing
                 } else {
-                    Eksagoges eksagogesForLastMonths = itemEksagoges.getEksagogesForLastMonths(6);
+                    EksagogesB eksagogesForLastMonths = itemEksagoges.getEksagogesForLastMonths(6);
                     camelotItemOfInterest.setTotalSalesInPieces(eksagogesForLastMonths.getEshopSales() + eksagogesForLastMonths.getShopsSupply());
                 }
 
@@ -211,7 +211,7 @@ public class CamelotItemsOfInterestController {
                 if (itemEksagoges == null) {
                     //do nothing
                 } else {
-                    Eksagoges eksagogesForLastMonths = itemEksagoges.getEksagogesForLastMonths(6);
+                    EksagogesB eksagogesForLastMonths = itemEksagoges.getEksagogesForLastMonths(6);
                     camelotItemOfInterest.setTotalSalesInPieces(eksagogesForLastMonths.getEshopSales() + eksagogesForLastMonths.getShopsSupply());
                 }
 

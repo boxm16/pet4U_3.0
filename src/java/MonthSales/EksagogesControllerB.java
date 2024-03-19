@@ -79,7 +79,7 @@ public class EksagogesControllerB {
                 refactoredItemEksagoges.setState(itemWithPosition.getState());
                 refactoredItemEksagoges.setQuantity(itemWithPosition.getQuantity());
 
-                TreeMap<LocalDate, Eksagoges> eksagoges = itemWithEksagoges.getEksagoges();
+                TreeMap<LocalDate, EksagogesB> eksagoges = itemWithEksagoges.getEksagoges();
                 refactoredItemEksagoges.setEksagoges(eksagoges);
 
                 refactoredEksagoges.put(key, refactoredItemEksagoges);

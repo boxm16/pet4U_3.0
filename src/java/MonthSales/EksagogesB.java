@@ -9,7 +9,7 @@ package MonthSales;
  *
  * @author Michail Sitmalidis
  */
-public class Eksagoges {
+public class EksagogesB {
 
     private double eshopSales;
     private double shopsSupply;

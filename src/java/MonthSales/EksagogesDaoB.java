@@ -54,7 +54,7 @@ public class EksagogesDaoB {
 
                     ItemEksagoges itemEksagoges = allItemsEksagoges.get(code);
 
-                    Eksagoges eksagoges = new Eksagoges();
+                    EksagogesB eksagoges = new EksagogesB();
                     eksagoges.setEshopSales(eshopSales);
                     eksagoges.setShopsSupply(shopsSupply);
 
@@ -64,7 +64,7 @@ public class EksagogesDaoB {
                     ItemEksagoges itemEksagoges = new ItemEksagoges();
                     itemEksagoges.setCode(code);
 
-                    Eksagoges eksagoges = new Eksagoges();
+                    EksagogesB eksagoges = new EksagogesB();
                     eksagoges.setEshopSales(eshopSales);
                     eksagoges.setShopsSupply(shopsSupply);
                     itemEksagoges.addSales(saleDate, eksagoges);

@@ -16,29 +16,29 @@ import java.util.TreeMap;
  */
 public class ItemEksagoges extends Item {
 
-    private TreeMap<LocalDate, Eksagoges> eksagoges;
+    private TreeMap<LocalDate, EksagogesB> eksagoges;
 
     public ItemEksagoges() {
         this.eksagoges = new TreeMap();
     }
 
-    public TreeMap<LocalDate, Eksagoges> getEksagoges() {
+    public TreeMap<LocalDate, EksagogesB> getEksagoges() {
         return eksagoges;
     }
 
-    public void setEksagoges(TreeMap<LocalDate, Eksagoges> eksagoges) {
+    public void setEksagoges(TreeMap<LocalDate, EksagogesB> eksagoges) {
         this.eksagoges = eksagoges;
     }
 
-    void addSales(LocalDate date, Eksagoges eksagoges) {
+    void addSales(LocalDate date, EksagogesB eksagoges) {
         this.eksagoges.put(date, eksagoges);
     }
 
-    public Eksagoges getEksagogesForLastMonths(int months) {
+    public EksagogesB getEksagogesForLastMonths(int months) {
 
-        Eksagoges eksagoges = new Eksagoges();
+        EksagogesB eksagoges = new EksagogesB();
         int currentMonth = 1;
-        for (Map.Entry<LocalDate, Eksagoges> entrySet : this.eksagoges.descendingMap().entrySet()) {
+        for (Map.Entry<LocalDate, EksagogesB> entrySet : this.eksagoges.descendingMap().entrySet()) {
             //      System.out.println("MONTH:" + currentMonth);
             if (currentMonth > months) {
                 break;
