@@ -159,7 +159,7 @@
                                     double oneMonthSalesFromCalculation = grandTotalEksagoges / 6;
                                     DecimalFormat df = new DecimalFormat("0.00");
 
-                                    Eksagoges oneMontheksagoges = item.getEksagogesForLastMonths(1);
+                                    EksagogesB oneMontheksagoges = item.getEksagogesForLastMonths(1);
                                     double grandTotalEksagogesOneMonth = oneMontheksagoges.getEshopSales() + oneMontheksagoges.getShopsSupply();
                                     double diff = oneMonthSalesFromCalculation - grandTotalEksagogesOneMonth;
 
