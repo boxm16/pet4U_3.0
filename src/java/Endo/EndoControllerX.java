@@ -4,6 +4,7 @@ import BasicModel.Item;
 import Delivery.DeliveryInvoice;
 import Delivery.DeliveryItem;
 import Inventory.InventoryDao;
+import Pet4uItems.Pet4uItemsDao;
 import Service.Basement;
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
@@ -163,7 +164,26 @@ public class EndoControllerX {
         modelMap.addAttribute(
                 "deliveryInvoice", deliveryInvoice);
 
-        return "endo/endoChecking";
+        return "endo/endoCheckingB";
+    }
+
+    @RequestMapping(value = "showDeltiaApostolisOfItem_B", method = RequestMethod.GET)
+    public String showDeltiaApostolisOfItem(@RequestParam(name = "itemCode") String itemCode, ModelMap modelMap) {
+
+        Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
+        LinkedHashMap<String, Item> pet4UItemsRowByRow = pet4uItemsDao.getPet4UItemsRowByRow();
+
+        String sentItemDescription = pet4UItemsRowByRow.get(itemCode).getDescription();
+
+        EndoDao endoDao = new EndoDao();
+        Set<String> keySet = this.proEndoBinder.getEndoApostoliss().keySet();
+        ArrayList endoIdsArray = new ArrayList(keySet);
+        ArrayList<Endo> endos = endoDao.getEndosOfItem(itemCode, endoIdsArray);
+
+        modelMap.addAttribute("itemCode", itemCode);
+        modelMap.addAttribute("sentItem", sentItemDescription);
+        modelMap.addAttribute("endos", endos);
+        return "endo/deltiaApostolisDisplay";
     }
 
     @RequestMapping(value = "seeLastEndoBinders", method = RequestMethod.GET)
