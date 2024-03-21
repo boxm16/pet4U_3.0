@@ -20,7 +20,7 @@ public class NotesDao {
 
     public Item getItemForNote(String altercode) {
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
-        Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
+        Connection connection = databaseConnectionFactory.getCamelotMicrosoftSQLConnection();
         Item item = null;
         try {
             Statement statement = connection.createStatement();
