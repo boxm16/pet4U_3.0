@@ -65,8 +65,8 @@
                                 for (Map.Entry<String, EndoOrder> endoOrdersTitlesEntry : endoOrdersTitles.entrySet()) {
                                     out.println("<tr style='background-color: #E5B48D'>");
 
-                                    out.println("<td>");
-                                    out.println("<a href='deleteEndoOrder.htm?id=" + endoOrdersTitlesEntry.getValue().getId() + "' target='_blank'>"+endoOrdersTitlesEntry.getValue().getId()+"</a>");
+                                    out.println("<td style='background-color:red'>");
+                                    out.println("<a href='deleteEndoOrder.htm?id=" + endoOrdersTitlesEntry.getValue().getId() + "' target='_blank'>DELETE</a>");
                                     out.println("</td>");
 
                                     out.println("<td>");

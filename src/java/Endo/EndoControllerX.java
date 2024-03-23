@@ -471,7 +471,7 @@ public class EndoControllerX {
     }
 
     @RequestMapping(value = "deleteEndoOrder", method = RequestMethod.GET)
-    public String deleteEndoOrder(@RequestParam(name = "outgoingEndoId") String outgoingEndoId,
+    public String deleteEndoOrder(@RequestParam(name = "id") String outgoingEndoId,
             ModelMap modelMap) {
         System.out.println("DELETING ENDO APOSTOLIS");
         System.out.println("OUTGOING ENDO ID: " + outgoingEndoId);
