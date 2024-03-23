@@ -53,7 +53,7 @@ public class CamelotSearchController {
     @RequestMapping(value = "getCamelotItemForNote", method = RequestMethod.GET)
     public String getCamelotItemForNote(@RequestParam(name = "altercode") String altercode, ModelMap modelMap) {
         NotesDao notesDao = new NotesDao();
-        Item item = notesDao.getItemForNote(altercode);
+        Item item = notesDao.getCamelotItemForNote(altercode);
 
         modelMap.addAttribute("item", item);
         modelMap.addAttribute("altercode", altercode);
