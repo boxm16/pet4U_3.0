@@ -50,9 +50,10 @@
                     <table>
                         <thead>
                             <tr>
-                                <th colspan='2'>ΠΑΡΑΓΓΕΛΙΕΣ</th>
+                                <th colspan='3'>ΠΑΡΑΓΓΕΛΙΕΣ</th>
                             </tr>
                             <tr>
+                                 <th>Delete</th>
                                 <th>Order Destination</th>
                                 <th>Select</th>
                             </tr>
