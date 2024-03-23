@@ -477,8 +477,8 @@ public class EndoControllerX {
         System.out.println("OUTGOING ENDO ID: " + outgoingEndoId);
 
         EndoDaoX endoDaoX = new EndoDaoX();
-        EndoApostolis endoApostolisVaribobis = endoDaoX.deleteEndoApostolisVaribobis(outgoingEndoId);
-        String result = endoDaoX.copyEndoApostolis(endoApostolisVaribobis);
+          String result = endoDaoX.deleteEndoApostolisVaribobis(outgoingEndoId);
+    
         System.out.println(result);
         return "redirect:endoApostoles.htm";
     }

@@ -985,7 +985,7 @@ public class EndoDaoX {
         return false;
     }
 
-    EndoApostolis deleteEndoApostolisVaribobis(String outgoingEndoId) {
+    String deleteEndoApostolisVaribobis(String outgoingEndoId) {
         String query1 = "DELETE FROM endo_order_title WHERE id='" + outgoingEndoId + "'";
         String query2 = "DELETE FROM endo_order_data WHERE order_id='" + outgoingEndoId + "'";
 
@@ -1002,6 +1002,7 @@ public class EndoDaoX {
         } catch (SQLException ex) {
             Logger.getLogger(NotesDao.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return "Order with id: "+outgoingEndoId+"hase been deleted.";
     }
 
 }

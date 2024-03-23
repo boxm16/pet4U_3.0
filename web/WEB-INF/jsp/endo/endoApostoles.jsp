@@ -66,7 +66,7 @@
                                     out.println("<tr style='background-color: #E5B48D'>");
 
                                     out.println("<td>");
-                                    out.println("<a href='deleteEndoOrder.htm?id=" + endoOrdersTitlesEntry.getValue().getId() + "' target='_blank'>" + endoOrdersTitlesEntry.getValue().getDestination() + "</a>");
+                                    out.println("<a href='deleteEndoOrder.htm?id=" + endoOrdersTitlesEntry.getValue().getId() + "' target='_blank'>DELETE</a>");
                                     out.println("</td>");
 
                                     out.println("<td>");
