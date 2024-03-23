@@ -6,6 +6,7 @@
 package Endo;
 
 import BasicModel.Item;
+import Notes.NotesDao;
 import Service.DatabaseConnectionFactory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -982,6 +983,25 @@ public class EndoDaoX {
             }
         }
         return false;
+    }
+
+    EndoApostolis deleteEndoApostolisVaribobis(String outgoingEndoId) {
+        String query1 = "DELETE FROM endo_order_title WHERE id='" + outgoingEndoId + "'";
+        String query2 = "DELETE FROM endo_order_data WHERE order_id='" + outgoingEndoId + "'";
+
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            Connection connection = databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query1);
+            statement.execute(query2);
+            statement.close();
+
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(NotesDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

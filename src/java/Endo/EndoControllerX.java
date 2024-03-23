@@ -470,4 +470,17 @@ public class EndoControllerX {
         return "redirect:showBindedOrders.htm";
     }
 
+    @RequestMapping(value = "deleteEndoOrder", method = RequestMethod.GET)
+    public String deleteEndoOrder(@RequestParam(name = "outgoingEndoId") String outgoingEndoId,
+            ModelMap modelMap) {
+        System.out.println("DELETING ENDO APOSTOLIS");
+        System.out.println("OUTGOING ENDO ID: " + outgoingEndoId);
+
+        EndoDaoX endoDaoX = new EndoDaoX();
+        EndoApostolis endoApostolisVaribobis = endoDaoX.deleteEndoApostolisVaribobis(outgoingEndoId);
+        String result = endoDaoX.copyEndoApostolis(endoApostolisVaribobis);
+        System.out.println(result);
+        return "redirect:endoApostoles.htm";
+    }
+
 }
