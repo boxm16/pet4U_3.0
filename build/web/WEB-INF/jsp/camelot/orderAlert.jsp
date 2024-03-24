@@ -42,7 +42,12 @@
         <hr>
         <h3>  <a href="camelotItemsOfOurInterestDashboard.htm">Go Back To Dashboard</a></h3>
         <hr>
-       
+        <h3> ΣΤΑΜΑΤΑΕΙ ΓΙΑ ΟΛΗ ΤΗΝ ΕΤΑΙΡΕΙΑ, Η ΠΡΟΣΦΟΡΑ +2KG ΔΩΡΟ ΣΤΟΝ ΚΩΔΙΚΟ:
+            06.15.0114 - ACANA ADULT DOG 11.4 KG
+
+            ΚΑΙ ΞΕΚΙΝΑΕΙ ΝΕΑ ΠΡΟΣΦΟΡΑ 10€ ΕΚΠΤΩΣΗ
+        </h3>
+
         <table>
             <thead>
             <th>Owner</th>
