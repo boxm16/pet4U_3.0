@@ -64,6 +64,7 @@
                     <th>Ordered</th>
                     <th>Invoiced</th>
                     <th>Alert</th>
+                    <th>Comment</th>
                 </tr>
             </thead>
             <tbody id="tableBody">

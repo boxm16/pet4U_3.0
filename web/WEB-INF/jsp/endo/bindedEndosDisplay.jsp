@@ -55,7 +55,7 @@
                     <th>Sent</th>
                     <th>Delivered</th>
                     <th>Alert</th>
-                    <th>Comment</th>
+                 
                 </tr>
             </thead>
             <tbody id="tableBody">
