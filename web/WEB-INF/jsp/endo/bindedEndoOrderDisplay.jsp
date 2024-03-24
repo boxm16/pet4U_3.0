@@ -113,6 +113,10 @@
                         out.println("<dev id='" + orderedItem.getCode() + "@colorDisplay'>____</dev>");
                         out.println("</td>");
 
+                        out.println("<td>");
+                        out.println(orderedItem.getComment());
+                        out.println("</td>");
+
                         out.println("</tr>");
                         x++;
                     }
@@ -147,6 +151,10 @@
 
                         out.println("<td>");
                         out.println("<dev id='" + invoicedItem.getCode() + "@colorDisplay'>____</dev>");
+                        out.println("</td>");
+
+                        out.println("<td>");
+                        out.println("");
                         out.println("</td>");
 
                         out.println("</tr>");

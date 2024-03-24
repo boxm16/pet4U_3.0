@@ -40,7 +40,7 @@
     <center>
 
         <h1>Binded Endos Display</h1>
-      
+
         <hr>
 
         <table>
@@ -55,6 +55,7 @@
                     <th>Sent</th>
                     <th>Delivered</th>
                     <th>Alert</th>
+                    <th>Comment</th>
                 </tr>
             </thead>
             <tbody id="tableBody">
@@ -96,7 +97,7 @@
             </tbody>
         </table>
         <hr>
-   
+
         <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         <a href="unbindEndos.htm?binderId=${binderId}">UNBIND ENDOS</a>
 
