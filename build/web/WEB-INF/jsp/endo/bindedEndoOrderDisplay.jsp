@@ -114,7 +114,7 @@
                         out.println("<dev id='" + orderedItem.getCode() + "@colorDisplay'>____</dev>");
                         out.println("</td>");
 
-                        if (!orderedItem.getComment().isEmpty() || orderedItem.getComment().equals("ΤΕΜΑΧΙΑ")) {
+                        if (!orderedItem.getComment().isEmpty() || !orderedItem.getComment().equals("ΤΕΜΑΧΙΑ")) {
                             out.println("<td style='background-color:pink'>");
                         } else {
                             out.println("<td>");
