@@ -26,11 +26,11 @@
 
                 <div class=" col-sm-4">
                     <a href="camelotOrderAlert.htm" class="btn btn-primary" style='background-color: #762276' role="button"><h1>CAMELOT ORDER ALERT</h1></a>
+                    <hr>
+                    <a href="sixMonthsEksagoges.htm" class="btn btn-secondary" style='background-color: #227667' role="button"><h1>CAMELOT ORDER ALERT</h1></a>
 
                 </div>
                 <div class=" col-sm-4">
-                    <hr>
-                    <a href="sixMonthsEksagoges.htm" class="btn btn-secondary" style='background-color: #227667' role="button"><h1>CAMELOT ORDER ALERT</h1></a>
 
                 </div>
             </div>
