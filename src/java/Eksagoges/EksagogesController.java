@@ -6,8 +6,18 @@
 package Eksagoges;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class EksagogesController {
-    
+
+    @RequestMapping(value = "sixMonthsEksagoges")
+    public String deliveryDemo(ModelMap modelMap) {
+
+        modelMap.addAttribute("ar", "");
+        return "eksagoges/sixMonthsEksagoges";
+
+    }
+
 }

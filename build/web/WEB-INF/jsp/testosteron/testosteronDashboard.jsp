@@ -29,6 +29,7 @@
 
                 </div>
                 <div class=" col-sm-4">
+                    <a href="sixMonthEksagoges.htm" class="btn btn-secondary" style='background-color: #762276' role="button"><h1>CAMELOT ORDER ALERT</h1></a>
 
                 </div>
             </div>
