@@ -34,7 +34,11 @@
                     <center>
                         <%
                             Item item = (Item) request.getAttribute("item");
+                            String target = (String) request.getAttribute("trarget");
                             if (item == null) {
+                                out.println("Target Altercode: " + target);
+                                out.println("Item with that altercode<br>could not be found. ");
+                                out.println("Try again");
                             } else {
                                 out.println("<table class='table' style='background-color: #35B62F'>");
                                 out.println("<tbody>");
