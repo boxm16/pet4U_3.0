@@ -100,8 +100,9 @@ public class EndoControllerX {
 
         Set<String> keySet = this.proEndoBinder.getEndoApostoliss().keySet();
         ArrayList<String> endoIdsArray = new ArrayList<String>(keySet);
-        ArrayList<String> receivingEndoIdsArray = new ArrayList();
-        receivingEndoIdsArray.add(this.proEndoBinder.getEndoParalavis().getId());
+
+        LinkedHashMap<String, EndoApostolis> endoApostoliss = this.proEndoBinder.getEndoApostoliss();
+        ArrayList<String> receivingEndoIdsArray = new ArrayList(endoApostoliss.keySet());
 
         EndoDao endoDao = new EndoDao();
         LinkedHashMap<String, DeliveryItem> pet4UItemsRowByRow = endoDao.getPet4UItemsRowByRow();
@@ -477,8 +478,8 @@ public class EndoControllerX {
         System.out.println("OUTGOING ENDO ID: " + outgoingEndoId);
 
         EndoDaoX endoDaoX = new EndoDaoX();
-          String result = endoDaoX.deleteEndoApostolisVaribobis(outgoingEndoId);
-    
+        String result = endoDaoX.deleteEndoApostolisVaribobis(outgoingEndoId);
+
         System.out.println(result);
         return "redirect:endoApostoles.htm";
     }
