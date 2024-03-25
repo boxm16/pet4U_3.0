@@ -36,7 +36,7 @@
                             Item item = (Item) request.getAttribute("item");
                             String target = (String) request.getAttribute("target");
                             if (item == null) {
-                                out.println("<h3 style='color:red'>Target Altercode: " + target+"");
+                                out.println("<h3 style='color:red'>Target Altercode: " + target + "");
                                 out.println("<hr><br>Item with that altercode<br>could not be found. ");
                                 out.println("<hr><br>Try again  </h3>");
                             } else {
@@ -110,7 +110,7 @@
                         <a href="searchDashboard.htm"><h3>New Search</h3></a>
                         <hr>
                         <a href="index.htm"><h3>INDEX</h3></a>
-                        <br><br><br><br><br><br><br><br><br><br><br><br>
+                        <br><br><br><br><br><br>
                         <hr>
 
                         <% if (item != null) {
@@ -125,10 +125,11 @@
                             }%>
                     </center>
                 </div>
-            </div>
-            <div class=" col-sm-4">
+                <div class=" col-sm-4">
 
+                </div>
             </div>
+
         </div>
 
 
