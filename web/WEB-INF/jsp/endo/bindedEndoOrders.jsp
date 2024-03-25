@@ -49,6 +49,12 @@
 
         <h2>ΔΕΣΜΕΥΜΕΝΑ ΔΕΛΤΙΑ ΑΠΟΣΤΟΛΗΣ ΠΡΟΣ ΜΑΓΑΖΙΑ </h2>
         <hr>
+        <%
+            boolean isChanged = (boolean) request.getAttribute("isChanged");
+            if (isChanged) {
+                out.println("<h1 style='background-color:red'>Some Endo Apostolis Has Been Changed</h1>");
+            }
+        %>
         <table>
 
             <thead>

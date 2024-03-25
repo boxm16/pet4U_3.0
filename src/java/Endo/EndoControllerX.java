@@ -406,6 +406,7 @@ public class EndoControllerX {
                 bindedOutgoindDeltioApostolis.add(outgoingDeltioApostolisTitlesEntry.getValue());
             }
         }
+        modelMap.addAttribute("isChanged", true);
         modelMap.addAttribute("bindedOutgoindDeltioApostolis", bindedOutgoindDeltioApostolis);
         return "endo/bindedEndoOrders";
     }
