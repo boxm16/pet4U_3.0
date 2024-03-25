@@ -384,7 +384,7 @@ public class EndoControllerX {
     public String showBindedOrders(ModelMap modelMap) {
 
         EndoDaoX endoDaoX = new EndoDaoX();
-
+        boolean someEndoIsChanged = false;
         LinkedHashMap<String, String> allBindedOrders = endoDaoX.getAllBindedOrdersTitles();
 
         LinkedHashMap<String, EndoApostolis> outgoingDeltioApostolisTitles = endoDaoX.getOutgoingDeltioApostolisTitles("2024-02-07");
@@ -401,12 +401,13 @@ public class EndoControllerX {
 
             if (changedOutgoingDeltiaApostolis.contains(outgoingDeltioApostolisTitlesEntry.getKey())) {
                 outgoingDeltioApostolisTitlesEntry.getValue().setIsChanged(true);
+                someEndoIsChanged = true;
             }
             if (allBindedOrders.containsValue(outgoingDeltioApostolisTitlesEntry.getKey())) {
                 bindedOutgoindDeltioApostolis.add(outgoingDeltioApostolisTitlesEntry.getValue());
             }
         }
-        modelMap.addAttribute("isChanged", true);
+        modelMap.addAttribute("isChanged", someEndoIsChanged);
         modelMap.addAttribute("bindedOutgoindDeltioApostolis", bindedOutgoindDeltioApostolis);
         return "endo/bindedEndoOrders";
     }
