@@ -36,9 +36,9 @@
                             Item item = (Item) request.getAttribute("item");
                             String target = (String) request.getAttribute("target");
                             if (item == null) {
-                                out.println("<h3>Target Altercode: " + target+"");
-                                out.println("<br>Item with that altercode<br>could not be found. ");
-                                out.println("<br>Try again  </h3>");
+                                out.println("<h3 style='color:red'>Target Altercode: " + target+"");
+                                out.println("<hr><br>Item with that altercode<br>could not be found. ");
+                                out.println("<hr><br>Try again  </h3>");
                             } else {
                                 out.println("<table class='table' style='background-color: #35B62F'>");
                                 out.println("<tbody>");
