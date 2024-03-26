@@ -319,6 +319,7 @@ public class NotesDao {
     }
 
     public String addCamelotStockPosition(String altercode, String position) {
+        System.out.println("AL"+altercode);
         return "";
     }
 
