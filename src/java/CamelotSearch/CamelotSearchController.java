@@ -168,7 +168,7 @@ public class CamelotSearchController {
         String result = notesDao.addCamelotStockPosition(itemCode, position);
         model.addAttribute("result", result);
 
-        return "redirect:camelotStockPositions.htm?itemCode="+altercode;
+        return "redirect:camelotStockPositions.htm?itemCode="+itemCode;
         // return "vakulina/notesDisplay";
     }
 }
