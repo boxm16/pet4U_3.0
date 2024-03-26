@@ -44,13 +44,13 @@
                     <center>
                         <table>
                             <tr>
-                                <td>
+                                <td style='background-color: lightblue; font-size: 20px' >
                                     ${item.description}
                                 </td>
                             </tr>
 
                             <tr>
-                                <td>
+                                <td style='background-color: lightblue; font-size: 20px' >
                                     <%
                                         Item item = (Item) request.getAttribute("item");
 

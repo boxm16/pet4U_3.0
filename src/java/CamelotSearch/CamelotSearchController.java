@@ -158,4 +158,17 @@ public class CamelotSearchController {
         modelMap.addAttribute("item", item);
         return "camelotSearch/camelotStockPositions";
     }
+    
+     @RequestMapping(value = "saveCamelotStockPosition", method = RequestMethod.POST)
+    public String saveCamelotStockPosition(@RequestParam(name = "altercode") String altercode,
+            @RequestParam(name = "position") String position,
+            ModelMap model) {
+
+        NotesDao notesDao = new NotesDao();
+        String result = notesDao.addCamelotStockPosition(altercode, position);
+        model.addAttribute("result", result);
+
+        return "redirect:camelotStockPositions.htm?itemCode="+altercode;
+        // return "vakulina/notesDisplay";
+    }
 }

@@ -318,4 +318,8 @@ public class NotesDao {
         }
     }
 
+    public String addCamelotStockPosition(String altercode, String position) {
+        return "";
+    }
+
 }
