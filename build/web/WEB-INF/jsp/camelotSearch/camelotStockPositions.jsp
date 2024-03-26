@@ -72,15 +72,16 @@
                                 </td>
                             </tr>
                             <tr>
+                                <td style='background-color: lightblue; font-size: 20px' >
+                                    ${item.quantity}
+                                </td>
+                            </tr>
+                            <tr>
                                 <td>
                                     <form action='saveCamelotStockPosition.htm' method="POST">
-
-                                        <center>    <input type='text' readonly name='systemStock' style='font-size:15px; background-color: lightblue' value='${item.quantity}'></center>
-                                        <hr>
-
                                         <hr>
                                         <input name='altercode' hidden value='${altercode}'>
-                                       
+
                                         <input type='text' name='position'>
                                         <hr>
 
