@@ -85,7 +85,7 @@
                                         <input type='text' name='position'>
                                         <hr>
 
-                                        <input class='btn btn-lg btn-primary' type='submit' value='ADD STOCK POSITION'>
+                                        <input class='btn btn-lg btn-primary' type='submit' value='ADD NEW STOCK POSITION'>
 
                                     </form>
                                 </td>
