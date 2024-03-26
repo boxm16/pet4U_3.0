@@ -152,8 +152,10 @@ public class CamelotSearchController {
     }
 
     @RequestMapping(value = "camelotStockPositions", method = RequestMethod.GET)
-    public String camelotStockPositions(@RequestParam(name = "itemCode") String altercode) {
-       
+    public String camelotStockPositions(@RequestParam(name = "itemCode") String altercode, ModelMap modelMap) {
+        Item item = camelotSearchDao.getItemByAltercode(altercode);
+        modelMap.addAttribute("target", altercode);
+        modelMap.addAttribute("item", item);
         return "camelotSearch/camelotStockPositions";
     }
 }
