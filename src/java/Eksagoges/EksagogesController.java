@@ -5,6 +5,7 @@
  */
 package Eksagoges;
 
+import java.util.ArrayList;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,11 +14,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class EksagogesController {
 
     @RequestMapping(value = "sixMonthsEksagoges")
-    public String deliveryDemo(ModelMap modelMap) {
+    public String sixMonthsEksagoges(ModelMap modelMap) {
+        getSixMonthsEksagoges();
 
         modelMap.addAttribute("ar", "");
         return "eksagoges/sixMonthsEksagoges";
 
+    }
+
+    private void getSixMonthsEksagoges() {
+        EksagogesDao eksagogesDao = new EksagogesDao();
+        ArrayList<String> period = eksagogesDao.getSalesPeriod();
     }
 
 }
