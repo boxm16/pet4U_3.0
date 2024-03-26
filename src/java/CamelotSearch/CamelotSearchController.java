@@ -150,4 +150,10 @@ public class CamelotSearchController {
         notesDao.deleteAllCamelotNote();
         return "redirect:camelotNotesDisplay.htm";
     }
+
+    @RequestMapping(value = "camelotStockPositions", method = RequestMethod.GET)
+    public String camelotStockPositions(@RequestParam(name = "id") String id) {
+       
+        return "camelotSearch/camelotStockPositions";
+    }
 }
