@@ -152,7 +152,7 @@ public class CamelotSearchController {
     }
 
     @RequestMapping(value = "camelotStockPositions", method = RequestMethod.GET)
-    public String camelotStockPositions(@RequestParam(name = "id") String id) {
+    public String camelotStockPositions(@RequestParam(name = "altercode") String altercode) {
        
         return "camelotSearch/camelotStockPositions";
     }
