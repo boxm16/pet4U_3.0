@@ -80,7 +80,7 @@
                                 <td>
                                     <form action='saveCamelotStockPosition.htm' method="POST">
                                         <hr>
-                                        <input name='altercode' hidden value='${altercode}'>
+                                        <input name='itemCode' hidden value='${item.code}'>
 
                                         <input type='text' name='position'>
                                         <hr>

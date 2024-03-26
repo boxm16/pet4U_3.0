@@ -160,12 +160,12 @@ public class CamelotSearchController {
     }
     
      @RequestMapping(value = "saveCamelotStockPosition", method = RequestMethod.POST)
-    public String saveCamelotStockPosition(@RequestParam(name = "altercode") String altercode,
+    public String saveCamelotStockPosition(@RequestParam(name = "itemCode") String itemCode,
             @RequestParam(name = "position") String position,
             ModelMap model) {
 
         NotesDao notesDao = new NotesDao();
-        String result = notesDao.addCamelotStockPosition(altercode, position);
+        String result = notesDao.addCamelotStockPosition(itemCode, position);
         model.addAttribute("result", result);
 
         return "redirect:camelotStockPositions.htm?itemCode="+altercode;
