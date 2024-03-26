@@ -249,7 +249,7 @@ public class NotesDao {
             Logger.getLogger(NotesDao.class.getName()).log(Level.SEVERE, null, ex);
             return ex.getMessage();
         }
-        return "New Item Inventory Added Successfully";
+        return "New Camelot Note Added Successfully";
     }
 
     public ArrayList<InventoryItem> getAllCamelotNotes() {
@@ -318,9 +318,24 @@ public class NotesDao {
         }
     }
 
-    public String addCamelotStockPosition(String altercode, String position) {
-        System.out.println("AL"+altercode);
-        return "";
+    public String addCamelotStockPosition(String itemCode, String position) {
+    try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            Connection connection = databaseConnectionFactory.getMySQLConnection();
+
+            PreparedStatement itemInsertStatement = connection.prepareStatement("INSERT INTO camelot_notes (item_code, position) VALUES (?,?)");
+
+            itemInsertStatement.setString(1, itemCode);
+            itemInsertStatement.setString(2, position);
+
+            itemInsertStatement.execute();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(NotesDao.class.getName()).log(Level.SEVERE, null, ex);
+            return ex.getMessage();
+        }
+        return "New Item Inventory Added Successfully";
+      
     }
 
 }

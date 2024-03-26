@@ -1038,7 +1038,7 @@ public class TechManDao {
 
     String createCamelotStockPositionsDatabaseTable() {
         String query = "CREATE TABLE camelot_stock_positions("
-                + "id INT NOT NULL, "
+                + "id INT NOT NULL AUTO_INCREMENT, "
                 + "item_code VARCHAR (100) NOT NULL, "
                 + "position VARCHAR (30) NOT NULL) "
                 + "ENGINE = InnoDB "
