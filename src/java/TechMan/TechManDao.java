@@ -1036,4 +1036,42 @@ public class TechManDao {
         }
     }
 
+    String createCamelotStockPositionsDatabaseTable() {
+        String query = "CREATE TABLE camelot_stock_positions("
+                + "id INT NOT NULL, "
+                + "item_code VARCHAR (100) NOT NULL, "
+                + "position VARCHAR (30) NOT NULL) "
+                + "ENGINE = InnoDB "
+                + "DEFAULT CHARACTER SET = utf8;";
+
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+            statement.close();
+            connection.close();
+            return "Tables 'camelot_stock_positions' created succesfully";
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return "Table 'camelot_stock_positions' could not be created:" + ex;
+        }
+    }
+
+    String deleteCamelotStockPositionsDatabaseTable() {
+        String query1 = "DROP TABLE camelot_stock_positions";
+
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query1);
+
+            statement.close();
+            connection.close();
+            return "Table 'camelot_stock_positions' deleted succesfully";
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return "Table 'camelot_stock_positions' could not be deleted:" + ex;
+        }
+    }
+
 }

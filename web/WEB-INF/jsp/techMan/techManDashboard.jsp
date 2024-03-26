@@ -161,6 +161,11 @@
         <a href='createCamelotNotesDatabaseTable.htm'><h1>Create Camelot Notes Database Table</h1> </a>
         <a href='deleteCamelotNotesDatabaseTable.htm'><h1>Delete Camelot Notes Database Table</h1> </a>
         <hr>
+        
+          <h1> ${camelotStockPositionsDatabaseTableResult} </h1>
+        <a href='createCamelotStockPositionsDatabaseTable.htm'><h1>Create Camelot Notes Database Table</h1> </a>
+        <a href='deleteCamelotStockPositionsDatabaseTable.htm'><h1>Delete Camelot Notes Database Table</h1> </a>
+        <hr>
 
 
 

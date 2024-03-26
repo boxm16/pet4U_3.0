@@ -19,8 +19,8 @@ public class TechManController {
 
     @RequestMapping(value = "techMan")
     public String techMan() {
-        //   return "techMan/techManDashboard";
-        return "index";
+          return "techMan/techManDashboard";
+        // return "index";
     }
 
     //-----------------------------------------------------------------------
@@ -446,6 +446,25 @@ public class TechManController {
 
         camelotNotesDatabaseTableResult = camelotNotesDatabaseTableResult + "<br>";
         modelMap.addAttribute("camelotNotesDatabaseTableResult", camelotNotesDatabaseTableResult);
+        return "techMan/techManDashboard";
+    }
+
+    //---------------------------------------------------
+    @RequestMapping(value = "/createCamelotStockPositionsDatabaseTable", method = RequestMethod.GET)
+    public String createCamelotStockPositionsDatabaseTable(ModelMap modelMap) {
+        String camelotStockPositionsDatabaseTableResult = techManDao.createCamelotStockPositionsDatabaseTable();
+
+        camelotStockPositionsDatabaseTableResult = camelotStockPositionsDatabaseTableResult + "<br>";
+        modelMap.addAttribute("camelotStockPositionsDatabaseTableResult", camelotStockPositionsDatabaseTableResult);
+        return "techMan/techManDashboard";
+    }
+
+    @RequestMapping(value = "/deleteCamelotStockPositionsDatabaseTable", method = RequestMethod.GET)
+    public String deleteCamelotStockPositionsDatabaseTable(ModelMap modelMap) {
+        String camelotStockPositionsDatabaseTableResult = techManDao.deleteCamelotStockPositionsDatabaseTable();
+
+        camelotStockPositionsDatabaseTableResult = camelotStockPositionsDatabaseTableResult + "<br>";
+        modelMap.addAttribute("camelotStockPositionsDatabaseTableResult", camelotStockPositionsDatabaseTableResult);
         return "techMan/techManDashboard";
     }
 }
