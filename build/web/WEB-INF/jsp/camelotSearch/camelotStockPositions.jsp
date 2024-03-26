@@ -73,15 +73,15 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <form action='saveCamelotNote.htm' method="POST">
+                                    <form action='saveCamelotStockPosition.htm' method="POST">
 
-                                        <center>    <input type='text' readonly name='systemStock' style='font-size:30px; background-color: lightcoral' value='${item.quantity}'></center>
+                                        <center>    <input type='text' readonly name='systemStock' style='font-size:15px; background-color: lightblue' value='${item.quantity}'></center>
                                         <hr>
 
                                         <hr>
                                         <input name='altercode' hidden value='${altercode}'>
-                                        Make notes - 500 char. max.
-                                        <input type='text' name='note'>
+                                       
+                                        <input type='text' name='position'>
                                         <hr>
 
                                         <input class='btn btn-primary' type='submit' value='SAVE NOTE'>
