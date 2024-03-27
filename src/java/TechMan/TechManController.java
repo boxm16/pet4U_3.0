@@ -19,8 +19,8 @@ public class TechManController {
 
     @RequestMapping(value = "techMan")
     public String techMan() {
-         return "techMan/techManDashboard";
-        //  return "index";
+       //   return "techMan/techManDashboard";
+         return "index";
     }
 
     //-----------------------------------------------------------------------
