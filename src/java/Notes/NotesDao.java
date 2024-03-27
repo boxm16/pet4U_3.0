@@ -323,7 +323,7 @@ public class NotesDao {
             DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
             Connection connection = databaseConnectionFactory.getMySQLConnection();
 
-            PreparedStatement itemInsertStatement = connection.prepareStatement("INSERT INTO camelot_notes (item_code, position) VALUES (?,?)");
+            PreparedStatement itemInsertStatement = connection.prepareStatement("INSERT INTO camelot_stock_positions (item_code, position) VALUES (?,?)");
 
             itemInsertStatement.setString(1, itemCode);
             itemInsertStatement.setString(2, position);
