@@ -334,7 +334,7 @@ public class NotesDao {
             Logger.getLogger(NotesDao.class.getName()).log(Level.SEVERE, null, ex);
             return ex.getMessage();
         }
-        return "New Item Inventory Added Successfully";
+        return "New Camelot Stock Position Added Successfully";
       
     }
 
