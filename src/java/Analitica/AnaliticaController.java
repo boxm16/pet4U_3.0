@@ -28,7 +28,7 @@ public class AnaliticaController {
     public String itemAnalysis(@RequestParam String code, ModelMap model) {
 
         SearchDao searchDao = new SearchDao();
-        Item item = searchDao.getItemByAltercode(altercode);
+        Item item = searchDao.getItemByAltercode(code);
         model.addAttribute("item", item);
 
         String itemCode = item.getCode();
