@@ -112,7 +112,7 @@
                     out.println("</td>");
 
                     out.println("<td>");
-                    out.println("<a href='itemAnalysis.htm?altercode=" + camelotItemOfInterest.getCode() + "' target='_blank'>" + camelotItemOfInterest.getCode() + "</a>");
+                    out.println("<a href='itemAnalysis.htm?code=" + camelotItemOfInterest.getCode() + "' target='_blank'>" + camelotItemOfInterest.getCode() + "</a>");
                     out.println("</td>");
 
                     out.println("<td>");

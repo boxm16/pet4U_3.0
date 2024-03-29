@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class AnaliticaController {
 
     @RequestMapping(value = "/itemAnalysis", method = RequestMethod.GET)
-    public String itemAnalysis(@RequestParam String altercode, ModelMap model) {
+    public String itemAnalysis(@RequestParam String code, ModelMap model) {
 
         SearchDao searchDao = new SearchDao();
         Item item = searchDao.getItemByAltercode(altercode);
