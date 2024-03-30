@@ -53,7 +53,7 @@
             <th>Pet4u Description</th>
 
             <th>6 Months<br>Sales</th>
-            <th>2 Weeks<br> Sales</th>
+            <th>3 Weeks<br> Sales</th>
             <th>Pet4u <br>Stock</th>
             <th>Pet4u <br>Minimal<br>Stock</th>
 
@@ -76,7 +76,7 @@
                     int CamelotMinimalStock = camelotItemOfInterest.getCamelotMinimalStock();
                     double pet4uStock = camelotItemOfInterest.getPet4uStock() / camelotItemOfInterest.getWeightCoefficient();
                     double camelotFreeStock = camelotItemOfInterest.getCamelotStock() - camelotItemOfInterest.getCamelotBinded();
-                    Double twoWeekSales = camelotItemOfInterest.getTotalSalesInPieces() / 13.0357;
+                    Double threeWeekSales = camelotItemOfInterest.getTotalSalesInPieces() *21 / 182.5;
                     if (camelotFreeStock < CamelotMinimalStock || pet4uStock < minimalStock * 2) {
                         if (camelotItemOfInterest.getMinimalStock() == -989898) {
                             continue;
@@ -89,7 +89,7 @@
                         }
 
                         if (camelotFreeStock < CamelotMinimalStock) {
-                            if (pet4uStock < twoWeekSales) {
+                            if (pet4uStock < threeWeekSales) {
                                 alarmColor = "red";
                             } else {
                                 continue;
@@ -99,7 +99,7 @@
                         if (camelotItemOfInterest.getCamelotStock() < 1) {
                             if ((camelotItemOfInterest.getCamelotStock() < 1 || camelotFreeStock < CamelotMinimalStock) && pet4uStock < 1) {
                                 alarmColor = "brown";
-                            } else if ((camelotItemOfInterest.getCamelotStock() < 1 || camelotFreeStock < CamelotMinimalStock) && pet4uStock < twoWeekSales) {
+                            } else if ((camelotItemOfInterest.getCamelotStock() < 1 || camelotFreeStock < CamelotMinimalStock) && pet4uStock < threeWeekSales) {
                                 alarmColor = "#CD7F32";
                             } else {
                                 // alarmColor = "#2554C7";
@@ -134,7 +134,7 @@
                         out.println("</td>");
 
                         out.println("<td>");
-                        out.println(String.format("%.2f", twoWeekSales));
+                        out.println(String.format("%.2f", threeWeekSales));
                         out.println("</td>");
 
                         out.println("<td>");
