@@ -134,7 +134,7 @@
                         out.println("</td>");
 
                         out.println("<td>");
-                        out.println(twoWeekSales.intValue());
+                        out.println(String.format("%.2f", twoWeekSales));
                         out.println("</td>");
 
                         out.println("<td>");
