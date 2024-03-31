@@ -91,7 +91,7 @@
                                     out.println(positionsEntry.getValue());
                                     out.println("</td>");
                                     out.println("<td>");
-                                    out.println("DEL");
+                                    out.println("X");
                                     out.println("</td>");
                                     out.println("</tr>");
                                 }
