@@ -64,14 +64,14 @@ public class EndoController {
 
         this.endoIdsArray = createItemsIdsArray(endoIds);
         this.receivingEndoIdsArray = createItemsIdsArray(receivingEndoIds);
-
+        LinkedHashMap<String, DeliveryItem> sentItems = new LinkedHashMap<>();
+        LinkedHashMap<String, DeliveryItem> deliveredIetms = new LinkedHashMap<>();
         EndoDao endoDao = new EndoDao();
         LinkedHashMap<String, DeliveryItem> pet4UItemsRowByRow = endoDao.getPet4UItemsRowByRow();
-        LinkedHashMap<String, DeliveryItem> sentItems = endoDao.getSentItems(endoIdsArray, pet4UItemsRowByRow);
-        LinkedHashMap<String, DeliveryItem> deliveredIetms = endoDao.getReceivedItems(receivingEndoIdsArray, pet4UItemsRowByRow);
-
-        
-        
+        sentItems = endoDao.getSentItems(endoIdsArray, pet4UItemsRowByRow);
+        if (receivingEndoIdsArray.size() != 0) {
+            deliveredIetms = endoDao.getReceivedItems(receivingEndoIdsArray, pet4UItemsRowByRow);
+        }
         DeliveryInvoice deliveryInvoice = new DeliveryInvoice();
         for (Map.Entry<String, DeliveryItem> deliveredIetmsEntry : deliveredIetms.entrySet()) {
             DeliveryItem deliveredItem = deliveredIetmsEntry.getValue();
@@ -131,17 +131,17 @@ public class EndoController {
 
     }
 
-    private ArrayList<String> createItemsIdsArray(String inventoryItemsIds) {
+    private ArrayList<String> createItemsIdsArray(String itemsIds) {
         ArrayList idsArray = new ArrayList();
         //trimming and cleaning input
-        inventoryItemsIds = inventoryItemsIds.trim();
-        if (inventoryItemsIds.length() == 0) {
+        itemsIds = itemsIds.trim();
+        if (itemsIds.length() == 0) {
             return new ArrayList<String>();
         }
-        if (inventoryItemsIds.substring(inventoryItemsIds.length() - 1, inventoryItemsIds.length()).equals(",")) {
-            inventoryItemsIds = inventoryItemsIds.substring(0, inventoryItemsIds.length() - 1).trim();
+        if (itemsIds.substring(itemsIds.length() - 1, itemsIds.length()).equals(",")) {
+            itemsIds = itemsIds.substring(0, itemsIds.length() - 1).trim();
         }
-        String[] ids = inventoryItemsIds.split(",");
+        String[] ids = itemsIds.split(",");
         idsArray.addAll(Arrays.asList(ids));
         return idsArray;
 
@@ -157,7 +157,7 @@ public class EndoController {
 
         EndoDao endoDao = new EndoDao();
         ArrayList<Endo> endos = endoDao.getEndosOfItem(itemCode, this.endoIdsArray);
-        System.out.println("---------------");    
+        System.out.println("---------------");
         modelMap.addAttribute("itemCode", itemCode);
         modelMap.addAttribute("sentItem", sentItemDescription);
         modelMap.addAttribute("endos", endos);
