@@ -268,10 +268,6 @@ public class CamelotSearchDao {
         return stringBuilder;
     }
 
-    public LinkedHashMap<Integer, String> getStockPositions(Item item) {
-        LinkedHashMap<Integer, String> stockPositions = new LinkedHashMap<>();
-
-        return stockPositions;
-    }
+  
 
 }

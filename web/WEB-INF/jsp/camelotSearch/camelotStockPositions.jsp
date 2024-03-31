@@ -4,6 +4,8 @@
     Author     : Michail Sitmalidis
 --%>
 
+<%@page import="java.util.Map"%>
+<%@page import="java.util.LinkedHashMap"%>
 <%@page import="BasicModel.AltercodeContainer"%>
 <%@page import="BasicModel.Item"%>
 <%@page import="java.util.ArrayList"%>
@@ -75,6 +77,20 @@
                                 <td style='background-color: lightblue; font-size: 20px' >
                                     ${item.quantity}
                                 </td>
+                            </tr>
+                            <tr>
+                                <td > Stock Positions </td>
+                            </tr>
+                            <tr>
+                                <%
+                                        LinkedHashMap<Integer, String> positions = (LinkedHashMap) request.getAttribute("stockPositions");
+
+                                        for (Map.Entry<Integer, String> positionsEntry : positions.entrySet()) {
+                                            out.println(positionsEntry.getValue());
+                                            out.println("<br>");
+                                        }
+                                    }
+                                %>   
                             </tr>
                             <tr>
                                 <td>

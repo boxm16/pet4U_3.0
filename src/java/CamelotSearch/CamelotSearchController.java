@@ -154,7 +154,8 @@ public class CamelotSearchController {
     @RequestMapping(value = "camelotStockPositions", method = RequestMethod.GET)
     public String camelotStockPositions(@RequestParam(name = "itemCode") String altercode, ModelMap modelMap) {
         Item item = camelotSearchDao.getItemByAltercode(altercode);
-        LinkedHashMap<Integer, String> stockPositions = camelotSearchDao.getStockPositions(item);
+        NotesDao notesDao=new NotesDao();
+        LinkedHashMap<Integer, String> stockPositions = notesDao.getStockPositions(item);
       
         modelMap.addAttribute("item", item);
         modelMap.addAttribute("stockPositions", stockPositions);

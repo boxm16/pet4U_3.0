@@ -319,7 +319,7 @@ public class NotesDao {
     }
 
     public String addCamelotStockPosition(String itemCode, String position) {
-    try {
+        try {
             DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
             Connection connection = databaseConnectionFactory.getMySQLConnection();
 
@@ -335,7 +335,36 @@ public class NotesDao {
             return ex.getMessage();
         }
         return "New Camelot Stock Position Added Successfully";
-      
+
+    }
+
+    public LinkedHashMap<Integer, String> getStockPositions(Item item) {
+        LinkedHashMap<Integer, String> stockPositions = new LinkedHashMap<>();
+
+        String sql = "SELECT * FROM camelot_stock_positions WHERE item_code='" + item.getCode() + "' ;";
+        ResultSet resultSet;
+
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            Connection connection = databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+
+            resultSet = statement.executeQuery(sql);
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+
+                String position = resultSet.getString("position");
+                stockPositions.put(id, position);
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(NotesDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return stockPositions;
     }
 
 }
