@@ -46,13 +46,13 @@
                     <center>
                         <table>
                             <tr>
-                                <td style='background-color: lightblue; font-size: 20px' >
+                                <td style='background-color: lightblue; font-size: 20px' colspan="2">
                                     ${item.description}
                                 </td>
                             </tr>
 
                             <tr>
-                                <td style='background-color: lightblue; font-size: 20px' >
+                                <td style='background-color: lightblue; font-size: 20px'  colspan="2">
                                     <%
                                         Item item = (Item) request.getAttribute("item");
 
@@ -69,17 +69,17 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td style='background-color: lightblue; font-size: 20px' >
+                                <td style='background-color: lightblue; font-size: 20px' colspan="2">
                                     ${item.position}
                                 </td>
                             </tr>
                             <tr>
-                                <td style='background-color: lightblue; font-size: 20px' >
+                                <td style='background-color: lightblue; font-size: 20px' colspan="2" >
                                     ${item.quantity}
                                 </td>
                             </tr>
                             <tr style="font-size:30px; background-color: #E58DE2">
-                                <td> Stock Positions </td>
+                                <td colspan="2"> Stock Positions </td>
                             </tr>
 
                             <%
@@ -99,7 +99,7 @@
                             %>  
 
                             <tr>
-                                <td>
+                                <td colspan="2">
                                     <form action='addCamelotStockPosition.htm' method="POST">
                                         <hr>
                                         <input name='itemCode' hidden value='${item.code}'>
