@@ -4,6 +4,7 @@
     Author     : Michail Sitmalidis
 --%>
 
+<%@page import="java.util.LinkedHashMap"%>
 <%@page import="BasicModel.AltercodeContainer"%>
 <%@page import="BasicModel.Item"%>
 <%@page import="java.util.ArrayList"%>
@@ -81,9 +82,16 @@
                                 </td>
                             </tr>
 
+                            <tr>
+                                <%     LinkedHashMap<Integer, String> stockPositions = (LinkedHashMap) request.getAttribute("stockPositions");
+                                    out.println("<td>");
+                                    out.println(stockPositions);
+                                    out.println("</td>");
+                                %>
+                            </tr>
+
                             <c:forEach items="${stockPositions}" var="contactMap" varStatus="status">
                                 <tr>
-                                    <td>${stockPositions.key}</td>
                                     <td><input name="contactMap['${stockPositions.key}']" value="${stockPositions.value}"/></td>
                                 </tr>
                             </c:forEach>
