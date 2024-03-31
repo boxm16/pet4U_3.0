@@ -35,10 +35,10 @@
                         <h1 style="background-color: red"> ΠΡΟΣΟΧΗ </h1>
                         <h1 style="background-color: red"> ΠΑΣ ΝΑ ΣΒΗΣΕΙΣ ΘΕΣΗ ΣΤΟΚ. Η ΠΡΑΞΗ ΕΙΝΑΙ ΑΜΕΤΑΚΛΗΤΗ</h1>
 
-                        <a href="#link" class="btn btn-primary" role="button"><h1>ΕΠΙΒΕΒΑΙΩΝΩ, ΣΒΗΣΩ</h1></a>
+                        <a href="#link" class="btn btn-primary" role="button"><h1>ΣΒΗΝΩ</h1></a>
                         <hr>
                         <hr>
-                        <a href="#link" class="btn btn-danger" role="button"><h1>ΑΚΥΡΟ</h1></a>
+                        <a href="#link" class="btn btn-danger" role="button"><h1>ΔΕ ΣΒΗΝΩ</h1></a>
                     </center>
                 </div>
                 <div class=" col-sm-4">
