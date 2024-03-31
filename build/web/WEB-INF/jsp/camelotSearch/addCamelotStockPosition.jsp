@@ -27,9 +27,13 @@
                                     </td>
                                     <td style="width: 50px">  
                                 <center>  
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                                        Set Position
-                                    </button>
+                                    <form>
+                                        <input hidden name="itemCode" value="${itemCode}">
+                                        <input hidden name="position" value="${position}">
+                                        <button type="submit" class="btn btn-primary">
+                                            Set Position
+                                        </button>
+                                    </form>
                                 </center>
                                 </td>
                                 </tr>
