@@ -198,6 +198,10 @@ public class CamelotSearchController {
         stockPositions.add("Β8-1");
         stockPositions.add("Β8-2");
         stockPositions.add("Β8-3");
+
+        stockPositions.add("Β9-1");
+        stockPositions.add("Β9-2");
+        stockPositions.add("Β9-3");
         //------------------
         stockPositions.add("Γ1-1");
         stockPositions.add("Γ1-2");
@@ -230,6 +234,10 @@ public class CamelotSearchController {
         stockPositions.add("Γ8-1");
         stockPositions.add("Γ8-2");
         stockPositions.add("Γ8-3");
+
+        stockPositions.add("Γ9-1");
+        stockPositions.add("Γ9-2");
+        stockPositions.add("Γ9-3");
         //------------------
         stockPositions.add("Δ1-1");
         stockPositions.add("Δ1-2");
@@ -262,6 +270,10 @@ public class CamelotSearchController {
         stockPositions.add("Δ8-1");
         stockPositions.add("Δ8-2");
         stockPositions.add("Δ8-3");
+
+        stockPositions.add("Δ9-1");
+        stockPositions.add("Δ9-2");
+        stockPositions.add("Δ9-3");
         //------------------
         stockPositions.add("Ε1-1");
         stockPositions.add("Ε1-2");
@@ -294,10 +306,10 @@ public class CamelotSearchController {
         stockPositions.add("Ε8-1");
         stockPositions.add("Ε8-2");
         stockPositions.add("Ε8-3");
-        //--++
-        stockPositions.add("Β9-1");
-        stockPositions.add("Β9-2");
-        stockPositions.add("Β9-3");
+
+        stockPositions.add("Ε9-1");
+        stockPositions.add("Ε9-2");
+        stockPositions.add("Ε9-3");
 
         model.addAttribute("itemCode", itemCode);
         model.addAttribute("stockPositions", stockPositions);
