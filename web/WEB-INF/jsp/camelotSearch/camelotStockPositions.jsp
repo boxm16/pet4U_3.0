@@ -79,10 +79,10 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td > Stock Positions </td>
+                                <td style="font-size:20px"> Stock Positions </td>
                             </tr>
                             <tr>
-                                <td>
+                                <td style="font-size:20px">
                                     <%
                                         LinkedHashMap<Integer, String> positions = (LinkedHashMap) request.getAttribute("stockPositions");
 
