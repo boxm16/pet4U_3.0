@@ -337,7 +337,7 @@ public class CamelotSearchController {
             @RequestParam(name = "id") String id,
             ModelMap model) {
 
-        NotesDao notesDao = new NotesDao();
+   
         model.addAttribute("id", id);
         model.addAttribute("itemCode", itemCode);
 
