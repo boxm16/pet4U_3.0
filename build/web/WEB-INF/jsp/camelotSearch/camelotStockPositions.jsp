@@ -82,15 +82,17 @@
                                 <td > Stock Positions </td>
                             </tr>
                             <tr>
-                                <%
+                                <td>
+                                    <%
                                         LinkedHashMap<Integer, String> positions = (LinkedHashMap) request.getAttribute("stockPositions");
 
                                         for (Map.Entry<Integer, String> positionsEntry : positions.entrySet()) {
                                             out.println(positionsEntry.getValue());
                                             out.println("<br>");
                                         }
-                                    
-                                %>   
+
+                                    %>  
+                                </td>
                             </tr>
                             <tr>
                                 <td>
