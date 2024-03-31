@@ -9,6 +9,10 @@
 <%@page import="java.util.ArrayList"%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -76,6 +80,13 @@
                                     ${item.quantity}
                                 </td>
                             </tr>
+
+                            <c:forEach items="${stockPositions}" var="contactMap" varStatus="status">
+                                <tr>
+                                    <td>${stockPositions.key}</td>
+                                    <td><input name="contactMap['${stockPositions.key}']" value="${stockPositions.value}"/></td>
+                                </tr>
+                            </c:forEach>
                             <tr>
                                 <td>
                                     <form action='saveCamelotStockPosition.htm' method="POST">
