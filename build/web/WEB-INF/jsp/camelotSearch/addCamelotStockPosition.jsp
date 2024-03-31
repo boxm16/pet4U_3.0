@@ -26,7 +26,7 @@
                                 </tr>
                                 <c:forEach items="${stockPositions}" var="contactMap" varStatus="status">
                                     <tr>
-                                        <td><input name="contactMap['${contactMap.key}']" value="${contactMap.value}"/></td>
+                                        <td>${contactMap.value}</td>
                                         <td>${contactMap.key}</td>
                                     </tr>
                                 </c:forEach>
