@@ -19,15 +19,15 @@
 
                         <h3> <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Find Position" title="Type in a name">  </h3>
                             <form:form method="post" action="add.htm" modelAttribute="contactForm">
-                             <table id="myTable" class="table table-bordered" style="width:700px; font-size:25px" >
+                            <table id="myTable" class="table table-bordered" style="width:700px; font-size:25px" >
                                 <tr class="header">
                                     <th>Key</th>
                                     <th>Value</th>
                                 </tr>
                                 <c:forEach items="${stockPositions}" var="contactMap" varStatus="status">
                                     <tr>
-                                        <td>${contactMap.key}</td>
                                         <td><input name="contactMap['${contactMap.key}']" value="${contactMap.value}"/></td>
+                                        <td>${contactMap.key}</td>
                                     </tr>
                                 </c:forEach>
                             </table>	
