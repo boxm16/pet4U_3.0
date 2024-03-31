@@ -367,4 +367,21 @@ public class NotesDao {
         return stockPositions;
     }
 
+    public String deleteCamelotStockPosition(String id) {
+        String sql = "UPDATE camelot_stock_positions SET status='deleted' WHERE id='" + id + "'";
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            Connection connection = databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(sql);
+            statement.close();
+
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(NotesDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "Camelot Stock Position Deleted (Updated)";
+    }
+
 }

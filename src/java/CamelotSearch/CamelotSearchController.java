@@ -337,11 +337,23 @@ public class CamelotSearchController {
             @RequestParam(name = "id") String id,
             ModelMap model) {
 
-   
         model.addAttribute("id", id);
         model.addAttribute("itemCode", itemCode);
-
         return "camelotSearch/camelotStockPositionDeletion";
-
     }
+
+    @RequestMapping(value = "deleteCameltoStockPosition", method = RequestMethod.GET)
+    public String deleteCameltoStockPosition(@RequestParam(name = "itemCode") String itemCode,
+            @RequestParam(name = "id") String id,
+            ModelMap model) {
+
+        model.addAttribute("id", id);
+
+        NotesDao notesDao = new NotesDao();
+        String result = notesDao.deleteCamelotStockPosition(id);
+        
+        model.addAttribute("itemCode", itemCode);
+        return "redirect:camelotStockPositions.htm?itemCode=" + itemCode;
+    }
+
 }
