@@ -323,11 +323,11 @@ public class NotesDao {
             DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
             Connection connection = databaseConnectionFactory.getMySQLConnection();
 
-            PreparedStatement itemInsertStatement = connection.prepareStatement("INSERT INTO camelot_stock_positions (item_code, position) VALUES (?,?)");
+            PreparedStatement itemInsertStatement = connection.prepareStatement("INSERT INTO camelot_stock_positions (item_code, position, status) VALUES (?,?,?)");
 
             itemInsertStatement.setString(1, itemCode);
             itemInsertStatement.setString(2, position);
-
+            itemInsertStatement.setString(3, "active");
             itemInsertStatement.execute();
 
         } catch (SQLException ex) {
