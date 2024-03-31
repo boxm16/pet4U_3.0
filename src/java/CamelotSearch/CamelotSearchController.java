@@ -162,7 +162,6 @@ public class CamelotSearchController {
 
     @RequestMapping(value = "addCamelotStockPosition", method = RequestMethod.POST)
     public String addCamelotStockPosition(@RequestParam(name = "itemCode") String itemCode,
-            @RequestParam(name = "position") String position,
             ModelMap model) {
 
         ArrayList<String> stockPositions = new ArrayList<>();
