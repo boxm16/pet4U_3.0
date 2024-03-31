@@ -350,9 +350,9 @@ public class CamelotSearchController {
         model.addAttribute("id", id);
 
         NotesDao notesDao = new NotesDao();
-        String result = notesDao.deleteCamelotStockPosition(id);
-        
-        model.addAttribute("itemCode", itemCode);
+        notesDao.deleteCamelotStockPosition(id);
+
+       
         return "redirect:camelotStockPositions.htm?itemCode=" + itemCode;
     }
 
