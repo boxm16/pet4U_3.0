@@ -22,7 +22,9 @@
                         <table id="myTable" class="table table-bordered" style="width:700px; font-size:25px" >
                             <c:forEach items="${stockPositions}" var="contactMap" varStatus="status">
                                 <tr>
-                                    <td>${contactMap.value}</td>
+                                    <td style="width: 200px"> 
+                                        ${contactMap.value}
+                                    </td>
                                     <td style="width: 50px">  
                                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                                             Set Position
