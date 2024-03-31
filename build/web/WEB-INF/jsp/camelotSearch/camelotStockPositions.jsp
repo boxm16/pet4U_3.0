@@ -89,7 +89,7 @@
                                             out.println(positionsEntry.getValue());
                                             out.println("<br>");
                                         }
-                                    }
+                                    
                                 %>   
                             </tr>
                             <tr>
