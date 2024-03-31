@@ -90,7 +90,7 @@
                                     out.println("<td>");
                                     out.println(positionsEntry.getValue());
                                     out.println("</td>");
-                                    out.println("<td style='font-color:red'>");
+                                    out.println("<td>");
                                     out.println("X");
                                     out.println("</td>");
                                     out.println("</tr>");
