@@ -27,7 +27,7 @@
                                     </td>
                                     <td style="width: 50px">  
                                 <center>  
-                                    <form>
+                                    <form action="setCamelotStockPosition.htm"  method="POST">
                                         <input hidden name="itemCode" value="${itemCode}">
                                         <input hidden name="position" value="${position}">
                                         <button type="submit" class="btn btn-primary">

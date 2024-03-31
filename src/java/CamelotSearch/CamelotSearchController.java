@@ -317,8 +317,8 @@ public class CamelotSearchController {
         return "camelotSearch/addCamelotStockPosition";
     }
 
-    @RequestMapping(value = "saveCamelotStockPosition", method = RequestMethod.POST)
-    public String saveCamelotStockPosition(@RequestParam(name = "itemCode") String itemCode,
+    @RequestMapping(value = "setCamelotStockPosition", method = RequestMethod.POST)
+    public String setCamelotStockPosition(@RequestParam(name = "itemCode") String itemCode,
             @RequestParam(name = "position") String position,
             ModelMap model) {
 
