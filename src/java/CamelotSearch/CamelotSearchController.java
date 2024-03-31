@@ -154,9 +154,9 @@ public class CamelotSearchController {
     @RequestMapping(value = "camelotStockPositions", method = RequestMethod.GET)
     public String camelotStockPositions(@RequestParam(name = "itemCode") String altercode, ModelMap modelMap) {
         Item item = camelotSearchDao.getItemByAltercode(altercode);
-        NotesDao notesDao=new NotesDao();
+        NotesDao notesDao = new NotesDao();
         LinkedHashMap<Integer, String> stockPositions = notesDao.getStockPositions(item);
-      
+
         modelMap.addAttribute("item", item);
         modelMap.addAttribute("stockPositions", stockPositions);
         return "camelotSearch/camelotStockPositions";
@@ -330,5 +330,18 @@ public class CamelotSearchController {
 
         return "redirect:camelotStockPositions.htm?itemCode=" + itemCode;
         // return "vakulina/notesDisplay";
+    }
+
+    @RequestMapping(value = "camelotStockPositionDeletion", method = RequestMethod.POST)
+    public String deleteCamelotStockPosition(@RequestParam(name = "itemCode") String itemCode,
+            @RequestParam(name = "id") String id,
+            ModelMap model) {
+
+        NotesDao notesDao = new NotesDao();
+        model.addAttribute("id", id);
+        model.addAttribute("itemCode", itemCode);
+
+        return "camelotSearch/camelotStockPositionDeletion";
+
     }
 }

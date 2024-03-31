@@ -91,7 +91,7 @@
                                     out.println(positionsEntry.getValue());
                                     out.println("</td>");
                                     out.println("<td>");
-                                    out.println("<a href='deleteCamelotStockPosition.htm?id=" + positionsEntry.getKey() + "'>X</a>");
+                                    out.println("<a href='camelotStockPositionDeletion.htm?itemCode=" + item.getCode() + "&id=" + positionsEntry.getKey() + "'>X</a>");
                                     out.println("</td>");
                                     out.println("</tr>");
                                 }
