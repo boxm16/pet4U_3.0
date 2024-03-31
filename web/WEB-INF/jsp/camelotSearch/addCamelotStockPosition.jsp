@@ -26,9 +26,12 @@
                                         ${contactMap.value}
                                     </td>
                                     <td style="width: 50px">  
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                                            Set Position
-                                        </button></td>
+                                <center>  
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                        Set Position
+                                    </button>
+                                </center>
+                                </td>
                                 </tr>
                             </c:forEach>
                         </table>	
