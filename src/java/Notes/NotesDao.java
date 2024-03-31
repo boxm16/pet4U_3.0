@@ -341,7 +341,7 @@ public class NotesDao {
     public LinkedHashMap<Integer, String> getStockPositions(Item item) {
         LinkedHashMap<Integer, String> stockPositions = new LinkedHashMap<>();
 
-        String sql = "SELECT * FROM camelot_stock_positions WHERE item_code='" + item.getCode() + "' AND status!='deleted' ;";
+        String sql = "SELECT * FROM camelot_stock_positions WHERE item_code='" + item.getCode() + "' AND status='active' ;";
         ResultSet resultSet;
 
         try {
