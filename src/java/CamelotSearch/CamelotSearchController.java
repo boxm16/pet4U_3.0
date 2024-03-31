@@ -332,7 +332,7 @@ public class CamelotSearchController {
         // return "vakulina/notesDisplay";
     }
 
-    @RequestMapping(value = "camelotStockPositionDeletion", method = RequestMethod.POST)
+    @RequestMapping(value = "camelotStockPositionDeletion", method = RequestMethod.GET)
     public String deleteCamelotStockPosition(@RequestParam(name = "itemCode") String itemCode,
             @RequestParam(name = "id") String id,
             ModelMap model) {
