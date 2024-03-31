@@ -165,13 +165,73 @@ public class CamelotSearchController {
             @RequestParam(name = "position") String position,
             ModelMap model) {
 
-        LinkedHashMap<Integer, String> stockPositions = new LinkedHashMap<>();
-        stockPositions.put(1, "Β3-1");
-        stockPositions.put(2, "Β3-2");
-        stockPositions.put(3, "Β3-3");
-        stockPositions.put(4, "Α1-1");
-        stockPositions.put(5, "Α2-1");
-        stockPositions.put(6, "Α3-1");
+        ArrayList<String> stockPositions = new ArrayList<>();
+        stockPositions.add("Α1-1");
+
+        stockPositions.add("Β1-1");
+        stockPositions.add("Β1-2");
+        stockPositions.add("Β1-3");
+
+        stockPositions.add("Β2-1");
+        stockPositions.add("Β2-2");
+        stockPositions.add("Β2-3");
+
+        stockPositions.add("Β3-1");
+        stockPositions.add("Β3-2");
+        stockPositions.add("Β3-3");
+
+        stockPositions.add("Β4-1");
+        stockPositions.add("Β4-2");
+        stockPositions.add("Β4-3");
+
+        stockPositions.add("Β5-1");
+        stockPositions.add("Β5-2");
+        stockPositions.add("Β5-3");
+
+        stockPositions.add("Β6-1");
+        stockPositions.add("Β6-2");
+        stockPositions.add("Β6-3");
+
+        stockPositions.add("Β7-1");
+        stockPositions.add("Β7-2");
+        stockPositions.add("Β7-3");
+
+        stockPositions.add("Β8-1");
+        stockPositions.add("Β8-2");
+        stockPositions.add("Β8-3");
+
+        stockPositions.add("Γ1-1");
+        stockPositions.add("Γ1-2");
+        stockPositions.add("Γ1-3");
+
+        stockPositions.add("Γ2-1");
+        stockPositions.add("Γ2-2");
+        stockPositions.add("Γ2-3");
+
+        stockPositions.add("Γ3-1");
+        stockPositions.add("Γ3-2");
+        stockPositions.add("Γ3-3");
+
+        stockPositions.add("Γ4-1");
+        stockPositions.add("Γ4-2");
+        stockPositions.add("Γ4-3");
+
+        stockPositions.add("Γ5-1");
+        stockPositions.add("Γ5-2");
+        stockPositions.add("Γ5-3");
+
+        stockPositions.add("Γ6-1");
+        stockPositions.add("Γ6-2");
+        stockPositions.add("Γ6-3");
+
+        stockPositions.add("Γ7-1");
+        stockPositions.add("Γ7-2");
+        stockPositions.add("Γ7-3");
+
+        stockPositions.add("Γ8-1");
+        stockPositions.add("Γ8-2");
+        stockPositions.add("Γ8-3");
+
         model.addAttribute("stockPositions", stockPositions);
 
         return "camelotSearch/addCamelotStockPosition";

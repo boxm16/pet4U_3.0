@@ -20,10 +20,10 @@
 
                         <h3> <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Find Position" title="Type in a name">  </h3>
                         <table id="myTable" class="table table-bordered" style="width:700px; font-size:25px" >
-                            <c:forEach items="${stockPositions}" var="contactMap" varStatus="status">
+                            <c:forEach items="${stockPositions}" var="position" varStatus="status">
                                 <tr>
                                     <td style="width: 200px"> 
-                                        ${contactMap.value}
+                                        ${position}
                                     </td>
                                     <td style="width: 50px">  
                                 <center>  
@@ -35,28 +35,6 @@
                                 </tr>
                             </c:forEach>
                         </table>	
-
-
-                        <!-- Modal -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        DDDDDDD
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel Deletion</button>
-                                        <a href="deleteAllCamelotNotes.htm" class="btn btn-info" role="button">CONFIRM Deletion</a>   </div>
-                                </div>
-                            </div>
-                        </div>
-
                     </center>
                 </div>
             </div>
