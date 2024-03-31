@@ -23,9 +23,9 @@
                             <c:forEach items="${stockPositions}" var="contactMap" varStatus="status">
                                 <tr>
                                     <td>${contactMap.value}</td>
-                                    <td>  
+                                    <td style="width: 50px">  
                                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                                            DELETE ALL NOTES
+                                            Set Position
                                         </button></td>
                                 </tr>
                             </c:forEach>
