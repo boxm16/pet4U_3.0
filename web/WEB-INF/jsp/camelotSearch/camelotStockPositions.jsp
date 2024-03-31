@@ -78,22 +78,26 @@
                                     ${item.quantity}
                                 </td>
                             </tr>
-                            <tr>
-                                <td style="font-size:30px"> Stock Positions </td>
+                            <tr style="font-size:30px; background-color: #E58DE2">
+                                <td> Stock Positions </td>
                             </tr>
-                            <tr>
-                                <td style="font-size:40px">
-                                    <%
-                                        LinkedHashMap<Integer, String> positions = (LinkedHashMap) request.getAttribute("stockPositions");
 
-                                        for (Map.Entry<Integer, String> positionsEntry : positions.entrySet()) {
-                                            out.println(positionsEntry.getValue());
-                                            out.println("<br>");
-                                        }
+                            <%
+                                LinkedHashMap<Integer, String> positions = (LinkedHashMap) request.getAttribute("stockPositions");
 
-                                    %>  
-                                </td>
-                            </tr>
+                                for (Map.Entry<Integer, String> positionsEntry : positions.entrySet()) {
+                                    out.println("<tr style='font-size:30px; background-color: #E58DE2'>");
+                                    out.println("<td>");
+                                    out.println(positionsEntry.getValue());
+                                    out.println("</td>");
+                                    out.println("<td>");
+                                    out.println("DELETE");
+                                    out.println("</td>");
+                                    out.println("</tr>");
+                                }
+
+                            %>  
+
                             <tr>
                                 <td>
                                     <form action='addCamelotStockPosition.htm' method="POST">
