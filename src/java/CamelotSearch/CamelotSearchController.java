@@ -312,6 +312,260 @@ public class CamelotSearchController {
         stockPositions.add("Ε9-1");
         stockPositions.add("Ε9-2");
         stockPositions.add("Ε9-3");
+        //------------------
+        stockPositions.add("Ζ1-1");
+        stockPositions.add("Ζ1-2");
+        stockPositions.add("Ζ1-3");
+
+        stockPositions.add("Ζ2-1");
+        stockPositions.add("Ζ2-2");
+        stockPositions.add("Ζ2-3");
+
+        stockPositions.add("Ζ3-1");
+        stockPositions.add("Ζ3-2");
+        stockPositions.add("Ζ3-3");
+
+        stockPositions.add("Ζ4-1");
+        stockPositions.add("Ζ4-2");
+        stockPositions.add("Ζ4-3");
+
+        stockPositions.add("Ζ5-1");
+        stockPositions.add("Ζ5-2");
+        stockPositions.add("Ζ5-3");
+
+        stockPositions.add("Ζ6-1");
+        stockPositions.add("Ζ6-2");
+        stockPositions.add("Ζ6-3");
+
+        stockPositions.add("Ζ7-1");
+        stockPositions.add("Ζ7-2");
+        stockPositions.add("Ζ7-3");
+
+        stockPositions.add("Ζ8-1");
+        stockPositions.add("Ζ8-2");
+        stockPositions.add("Ζ8-3");
+
+        stockPositions.add("Ζ9-1");
+        stockPositions.add("Ζ9-2");
+        stockPositions.add("Ζ9-3");
+//------------------
+        stockPositions.add("Η1-1");
+        stockPositions.add("Η1-2");
+        stockPositions.add("Η1-3");
+
+        stockPositions.add("Η2-1");
+        stockPositions.add("Η2-2");
+        stockPositions.add("Η2-3");
+
+        stockPositions.add("Η3-1");
+        stockPositions.add("Η3-2");
+        stockPositions.add("Η3-3");
+
+        stockPositions.add("Η4-1");
+        stockPositions.add("Η4-2");
+        stockPositions.add("Η4-3");
+
+        stockPositions.add("Η5-1");
+        stockPositions.add("Η5-2");
+        stockPositions.add("Η5-3");
+
+        stockPositions.add("Η6-1");
+        stockPositions.add("Η6-2");
+        stockPositions.add("Η6-3");
+
+        stockPositions.add("Η7-1");
+        stockPositions.add("Η7-2");
+        stockPositions.add("Η7-3");
+
+        stockPositions.add("Η8-1");
+        stockPositions.add("Η8-2");
+        stockPositions.add("Η8-3");
+
+        stockPositions.add("Η9-1");
+        stockPositions.add("Η9-2");
+        stockPositions.add("Η9-3");
+        //------------------
+        stockPositions.add("Θ1-1");
+        stockPositions.add("Θ1-2");
+        stockPositions.add("Θ1-3");
+
+        stockPositions.add("Θ2-1");
+        stockPositions.add("Θ2-2");
+        stockPositions.add("Θ2-3");
+
+        stockPositions.add("Θ3-1");
+        stockPositions.add("Θ3-2");
+        stockPositions.add("Θ3-3");
+
+        stockPositions.add("Θ4-1");
+        stockPositions.add("Θ4-2");
+        stockPositions.add("Θ4-3");
+
+        stockPositions.add("Θ5-1");
+        stockPositions.add("Θ5-2");
+        stockPositions.add("Θ5-3");
+
+        stockPositions.add("Θ6-1");
+        stockPositions.add("Θ6-2");
+        stockPositions.add("Θ6-3");
+
+        stockPositions.add("Θ7-1");
+        stockPositions.add("Θ7-2");
+        stockPositions.add("Θ7-3");
+
+        stockPositions.add("Θ8-1");
+        stockPositions.add("Θ8-2");
+        stockPositions.add("Θ8-3");
+
+        stockPositions.add("Θ9-1");
+        stockPositions.add("Θ9-2");
+        stockPositions.add("Θ9-3");
+        //------------------
+        stockPositions.add("Ι1-1");
+        stockPositions.add("Ι1-2");
+        stockPositions.add("Ι1-3");
+
+        stockPositions.add("Ι2-1");
+        stockPositions.add("Ι2-2");
+        stockPositions.add("Ι2-3");
+
+        stockPositions.add("Ι3-1");
+        stockPositions.add("Ι3-2");
+        stockPositions.add("Ι3-3");
+
+        stockPositions.add("Ι4-1");
+        stockPositions.add("Ι4-2");
+        stockPositions.add("Ι4-3");
+
+        stockPositions.add("Ι5-1");
+        stockPositions.add("Ι5-2");
+        stockPositions.add("Ι5-3");
+
+        stockPositions.add("Ι6-1");
+        stockPositions.add("Ι6-2");
+        stockPositions.add("Ι6-3");
+
+        stockPositions.add("Ι7-1");
+        stockPositions.add("Ι7-2");
+        stockPositions.add("Ι7-3");
+
+        stockPositions.add("Ι8-1");
+        stockPositions.add("Ι8-2");
+        stockPositions.add("Ι8-3");
+
+        stockPositions.add("Ι9-1");
+        stockPositions.add("Ι9-2");
+        stockPositions.add("Ι9-3");
+        //------------------
+        stockPositions.add("Κ1-1");
+        stockPositions.add("Κ1-2");
+        stockPositions.add("Κ1-3");
+
+        stockPositions.add("Κ2-1");
+        stockPositions.add("Κ2-2");
+        stockPositions.add("Κ2-3");
+
+        stockPositions.add("Κ3-1");
+        stockPositions.add("Κ3-2");
+        stockPositions.add("Κ3-3");
+
+        stockPositions.add("Κ4-1");
+        stockPositions.add("Κ4-2");
+        stockPositions.add("Κ4-3");
+
+        stockPositions.add("Κ5-1");
+        stockPositions.add("Κ5-2");
+        stockPositions.add("Κ5-3");
+
+        stockPositions.add("Κ6-1");
+        stockPositions.add("Κ6-2");
+        stockPositions.add("Κ6-3");
+
+        stockPositions.add("Κ7-1");
+        stockPositions.add("Κ7-2");
+        stockPositions.add("Κ7-3");
+
+        stockPositions.add("Κ8-1");
+        stockPositions.add("Κ8-2");
+        stockPositions.add("Κ8-3");
+
+        stockPositions.add("Κ9-1");
+        stockPositions.add("Κ9-2");
+        stockPositions.add("Κ9-3");
+
+        //------------------
+        stockPositions.add("Λ1-1");
+        stockPositions.add("Λ1-2");
+        stockPositions.add("Λ1-3");
+
+        stockPositions.add("Λ2-1");
+        stockPositions.add("Λ2-2");
+        stockPositions.add("Λ2-3");
+
+        stockPositions.add("Λ3-1");
+        stockPositions.add("Λ3-2");
+        stockPositions.add("Λ3-3");
+
+        stockPositions.add("Λ4-1");
+        stockPositions.add("Λ4-2");
+        stockPositions.add("Λ4-3");
+
+        stockPositions.add("Λ5-1");
+        stockPositions.add("Λ5-2");
+        stockPositions.add("Λ5-3");
+
+        stockPositions.add("Λ6-1");
+        stockPositions.add("Λ6-2");
+        stockPositions.add("Λ6-3");
+
+        stockPositions.add("Λ7-1");
+        stockPositions.add("Λ7-2");
+        stockPositions.add("Λ7-3");
+
+        stockPositions.add("Λ8-1");
+        stockPositions.add("Λ8-2");
+        stockPositions.add("Λ8-3");
+
+        stockPositions.add("Λ9-1");
+        stockPositions.add("Λ9-2");
+        stockPositions.add("Λ9-3");
+
+        //------------------
+        stockPositions.add("Ν1-1");
+        stockPositions.add("Ν1-2");
+        stockPositions.add("Ν1-3");
+
+        stockPositions.add("Ν2-1");
+        stockPositions.add("Ν2-2");
+        stockPositions.add("Ν2-3");
+
+        stockPositions.add("Ν3-1");
+        stockPositions.add("Ν3-2");
+        stockPositions.add("Ν3-3");
+
+        stockPositions.add("Ν4-1");
+        stockPositions.add("Ν4-2");
+        stockPositions.add("Ν4-3");
+
+        stockPositions.add("Ν5-1");
+        stockPositions.add("Ν5-2");
+        stockPositions.add("Ν5-3");
+
+        stockPositions.add("Ν6-1");
+        stockPositions.add("Ν6-2");
+        stockPositions.add("Ν6-3");
+
+        stockPositions.add("Ν7-1");
+        stockPositions.add("Ν7-2");
+        stockPositions.add("Ν7-3");
+
+        stockPositions.add("Ν8-1");
+        stockPositions.add("Ν8-2");
+        stockPositions.add("Ν8-3");
+
+        stockPositions.add("Ν9-1");
+        stockPositions.add("Ν9-2");
+        stockPositions.add("Ν9-3");
 
         model.addAttribute("itemCode", itemCode);
         model.addAttribute("stockPositions", stockPositions);
@@ -352,7 +606,6 @@ public class CamelotSearchController {
         NotesDao notesDao = new NotesDao();
         notesDao.deleteCamelotStockPosition(id);
 
-       
         return "redirect:camelotStockPositions.htm?itemCode=" + itemCode;
     }
 
