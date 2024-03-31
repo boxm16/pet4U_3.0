@@ -5,7 +5,7 @@
     <head>
         <title>Set Camelot Stock Position</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -23,6 +23,10 @@
                             <c:forEach items="${stockPositions}" var="contactMap" varStatus="status">
                                 <tr>
                                     <td>${contactMap.value}</td>
+                                    <td>  
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                            DELETE ALL NOTES
+                                        </button></td>
                                 </tr>
                             </c:forEach>
                         </table>	
@@ -39,7 +43,7 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        ???????!!! ??? ?? ??????? ??? ?? ??????????. ? ????? ????? ??????????
+                                        DDDDDDD
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel Deletion</button>
