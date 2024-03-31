@@ -79,28 +79,7 @@
                             <tr>
                                 <td>
                                     <form action='addCamelotStockPosition.htm' method="POST">
-                                        <hr>
-                                        <input name='itemCode' hidden value='${item.code}'>
-
-                                        <input type='text' name='position'>
-                                        <hr>
-
                                         <input class='btn btn-lg btn-primary' type='submit' value='ADD NEW STOCK POSITION'>
-
-                                    </form>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <form action='saveCamelotStockPosition.htm' method="POST">
-                                        <hr>
-                                        <input name='itemCode' hidden value='${item.code}'>
-
-                                        <input type='text' name='position'>
-                                        <hr>
-
-                                        <input class='btn btn-lg btn-primary' type='submit' value='SAVE NEW STOCK POSITION'>
-
                                     </form>
                                 </td>
                             </tr>
