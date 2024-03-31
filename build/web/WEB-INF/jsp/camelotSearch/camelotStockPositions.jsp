@@ -4,16 +4,11 @@
     Author     : Michail Sitmalidis
 --%>
 
-<%@page import="java.util.LinkedHashMap"%>
 <%@page import="BasicModel.AltercodeContainer"%>
 <%@page import="BasicModel.Item"%>
 <%@page import="java.util.ArrayList"%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
-<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -81,20 +76,20 @@
                                     ${item.quantity}
                                 </td>
                             </tr>
-
                             <tr>
-                                <%     LinkedHashMap<Integer, String> stockPositions = (LinkedHashMap) request.getAttribute("stockPositions");
-                                    out.println("<td>");
-                                    out.println(stockPositions);
-                                    out.println("</td>");
-                                %>
-                            </tr>
+                                <td>
+                                    <form action='addCamelotStockPosition.htm' method="POST">
+                                        <hr>
+                                        <input name='itemCode' hidden value='${item.code}'>
 
-                            <c:forEach items="${stockPositions}" var="contactMap" varStatus="status">
-                                <tr>
-                                    <td><input name="contactMap['${stockPositions.key}']" value="${stockPositions.value}"/></td>
-                                </tr>
-                            </c:forEach>
+                                        <input type='text' name='position'>
+                                        <hr>
+
+                                        <input class='btn btn-lg btn-primary' type='submit' value='ADD NEW STOCK POSITION'>
+
+                                    </form>
+                                </td>
+                            </tr>
                             <tr>
                                 <td>
                                     <form action='saveCamelotStockPosition.htm' method="POST">
@@ -104,7 +99,7 @@
                                         <input type='text' name='position'>
                                         <hr>
 
-                                        <input class='btn btn-lg btn-primary' type='submit' value='ADD NEW STOCK POSITION'>
+                                        <input class='btn btn-lg btn-primary' type='submit' value='SAVE NEW STOCK POSITION'>
 
                                     </form>
                                 </td>

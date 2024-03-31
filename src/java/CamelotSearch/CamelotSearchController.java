@@ -154,17 +154,27 @@ public class CamelotSearchController {
     @RequestMapping(value = "camelotStockPositions", method = RequestMethod.GET)
     public String camelotStockPositions(@RequestParam(name = "itemCode") String altercode, ModelMap modelMap) {
         Item item = camelotSearchDao.getItemByAltercode(altercode);
-        LinkedHashMap<Integer, String> stockPositions = new LinkedHashMap<>();
-        stockPositions.put(1, "Β3-1");
-        stockPositions.put(1, "Β3-2");
-        stockPositions.put(1, "Β3-3");
-        stockPositions.put(1, "Α1-1");
-        stockPositions.put(1, "Α2-1");
-        stockPositions.put(1, "Α3-1");
-        modelMap.addAttribute("stockPositions", stockPositions);
+
         modelMap.addAttribute("target", altercode);
         modelMap.addAttribute("item", item);
         return "camelotSearch/camelotStockPositions";
+    }
+
+    @RequestMapping(value = "addCamelotStockPosition", method = RequestMethod.POST)
+    public String addCamelotStockPosition(@RequestParam(name = "itemCode") String itemCode,
+            @RequestParam(name = "position") String position,
+            ModelMap model) {
+
+        LinkedHashMap<Integer, String> stockPositions = new LinkedHashMap<>();
+        stockPositions.put(1, "Β3-1");
+        stockPositions.put(2, "Β3-2");
+        stockPositions.put(3, "Β3-3");
+        stockPositions.put(4, "Α1-1");
+        stockPositions.put(5, "Α2-1");
+        stockPositions.put(6, "Α3-1");
+        model.addAttribute("stockPositions", stockPositions);
+
+        return "camelotSearch/addCamelotStockPosition";
     }
 
     @RequestMapping(value = "saveCamelotStockPosition", method = RequestMethod.POST)
