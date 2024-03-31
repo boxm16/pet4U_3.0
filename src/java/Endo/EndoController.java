@@ -58,7 +58,7 @@ public class EndoController {
     }
 
     @RequestMapping(value = "compareEndos", method = RequestMethod.POST)
-    public String compareEndo(@RequestParam(name = "endoIds") String endoIds,
+    public String compareEndos(@RequestParam(name = "endoIds") String endoIds,
             @RequestParam(name = "receivingEndoIds") String receivingEndoIds,
             ModelMap modelMap) {
 
@@ -157,7 +157,7 @@ public class EndoController {
 
         EndoDao endoDao = new EndoDao();
         ArrayList<Endo> endos = endoDao.getEndosOfItem(itemCode, this.endoIdsArray);
-
+        System.out.println("---------------");    
         modelMap.addAttribute("itemCode", itemCode);
         modelMap.addAttribute("sentItem", sentItemDescription);
         modelMap.addAttribute("endos", endos);

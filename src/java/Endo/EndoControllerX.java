@@ -169,7 +169,7 @@ public class EndoControllerX {
     }
 
     @RequestMapping(value = "showDeltiaApostolisOfItem_B", method = RequestMethod.GET)
-    public String showDeltiaApostolisOfItem(@RequestParam(name = "itemCode") String itemCode, ModelMap modelMap) {
+    public String showDeltiaApostolisOfItem_B(@RequestParam(name = "itemCode") String itemCode, ModelMap modelMap) {
 
         Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
         LinkedHashMap<String, Item> pet4UItemsRowByRow = pet4uItemsDao.getPet4UItemsRowByRow();
