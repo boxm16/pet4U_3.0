@@ -81,6 +81,16 @@
                                     out.println("</tr>");
 
                                     out.println("<tr>");
+                                    out.println("<td colspan='2' style='font-size:20px'>");
+                                    LinkedHashMap<Integer, String> stockPositions = item.getStockPositions();
+                                    for (Map.Entry<Integer, String> stockPositionsEntry : stockPositions.entrySet()) {
+                                        out.println(stockPositionsEntry.getValue());
+                                        out.println("<br>");
+                                    }
+                                    out.println("</td>");
+                                    out.println("</tr>");
+
+                                    out.println("<tr>");
                                     out.println("<td colspan='2'>");
                                     out.println("<a href='deleteCamelotNoteCardMode.htm?id=" + item.getId() + "'>Delete</a>");
                                     out.println("</td>");
@@ -111,7 +121,7 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                     ΠΡΟΣΟΧΗ!!! ΠΑΣ ΝΑ ΣΒΗΣΕΙΣ ΟΛΑ ΤΑ ΣΗΜΕΙΩΜΑΤΑ. Η ΠΡΑΞΗ ΕΙΝΑΙ ΑΜΕΤΑΚΛΗΤΗ
+                                        ΠΡΟΣΟΧΗ!!! ΠΑΣ ΝΑ ΣΒΗΣΕΙΣ ΟΛΑ ΤΑ ΣΗΜΕΙΩΜΑΤΑ. Η ΠΡΑΞΗ ΕΙΝΑΙ ΑΜΕΤΑΚΛΗΤΗ
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel Deletion</button>
@@ -133,7 +143,7 @@
                 </div>
             </div>
         </div>
-       
+
     </body>
 </html>
 
