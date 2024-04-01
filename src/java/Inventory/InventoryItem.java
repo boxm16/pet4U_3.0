@@ -7,6 +7,7 @@ package Inventory;
 
 import BasicModel.Item;
 import java.util.Date;
+import java.util.LinkedHashMap;
 
 /**
  *
@@ -23,6 +24,7 @@ public class InventoryItem extends Item {
     private String realStock;
     private String note;
     private String inventarizationState;
+    private LinkedHashMap<Integer, String> stockPositions;
 
     public int getId() {
         return id;
@@ -94,6 +96,14 @@ public class InventoryItem extends Item {
 
     public void setInventarizationState(String inventarizationState) {
         this.inventarizationState = inventarizationState;
+    }
+
+    public LinkedHashMap<Integer, String> getStockPositions() {
+        return stockPositions;
+    }
+
+    public void setStockPositions(LinkedHashMap<Integer, String> stockPositions) {
+        this.stockPositions = stockPositions;
     }
 
 }

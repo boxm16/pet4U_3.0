@@ -387,4 +387,36 @@ public class NotesDao {
         return "Camelot Stock Position Deleted (Updated)";
     }
 
+    public LinkedHashMap<String, LinkedHashMap<Integer, String>> getAllStockPositions() {
+        LinkedHashMap<String, LinkedHashMap<Integer, String>> allPositions = new LinkedHashMap<>();
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+        Connection connection = databaseConnectionFactory.getMySQLConnection();
+
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("select * from camelot_stock_positions WHERE status='active';");
+
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String itemCode = resultSet.getString("item_code");
+                String position = resultSet.getString("position");
+                if (allPositions.containsKey(itemCode)) {
+                    LinkedHashMap<Integer, String> stockPosition = allPositions.get(itemCode);
+                    stockPosition.put(id, position);
+                    allPositions.put(itemCode, stockPosition);
+                } else {
+                    LinkedHashMap<Integer, String> stockPosition = new LinkedHashMap<>();
+                    stockPosition.put(id, position);
+                    allPositions.put(itemCode, stockPosition);
+                }
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(NotesDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return allPositions;
+    }
+
 }

@@ -79,15 +79,15 @@ public class CamelotSearchController {
         NotesDao notesDao = new NotesDao();
         ArrayList<InventoryItem> notes = notesDao.getAllCamelotNotes();
 
+        LinkedHashMap<String, LinkedHashMap<Integer, String>> allStockPositions = notesDao.getAllStockPositions();
+
         CamelotItemsOfInterestDao camelotItemsOfInterestDao = new CamelotItemsOfInterestDao();
         LinkedHashMap<String, Item> camelotItems = camelotItemsOfInterestDao.getCamelotItemsRowByRow();
 
         for (InventoryItem inventoryItem : notes) {
             //     System.out.println("ITETM:" + inventoryItem.getCode());
             String altercode = inventoryItem.getCode();
-
             Item camelotItem = camelotItems.get(altercode);
-
             if (camelotItem == null) {
                 System.out.println("CamelotItem with altercode " + altercode + "  not present in the lists from microsoft db");
             } else {
@@ -95,8 +95,16 @@ public class CamelotSearchController {
                 inventoryItem.setDescription(camelotItem.getDescription());
                 inventoryItem.setPosition(camelotItem.getPosition());
                 inventoryItem.setQuantity(camelotItem.getQuantity());
-                model.addAttribute("notes", notes);
             }
+            //---------
+            LinkedHashMap<Integer, String> itemStockPositions = allStockPositions.get(camelotItem.getCode());
+
+            if (itemStockPositions == null) {
+                System.out.println("CamelotItem with altercode " + altercode + "  does note have stock positions");
+            } else {
+                inventoryItem.setStockPositions(itemStockPositions);
+            }
+            model.addAttribute("notes", notes);
         }
         return "camelotSearch/camelotNotesDisplay";
     }
@@ -566,7 +574,7 @@ public class CamelotSearchController {
         stockPositions.add("Ν9-1");
         stockPositions.add("Ν9-2");
         stockPositions.add("Ν9-3");
-        
+
         //------------------
         stockPositions.add("Ξ1-1");
         stockPositions.add("Ξ1-2");
