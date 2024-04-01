@@ -114,6 +114,7 @@ public class CamelotSearchController {
 
         NotesDao notesDao = new NotesDao();
         ArrayList<InventoryItem> notes = notesDao.getAllCamelotNotes();
+        LinkedHashMap<String, LinkedHashMap<Integer, String>> allStockPositions = notesDao.getAllStockPositions();
 
         CamelotItemsOfInterestDao camelotItemsOfInterestDao = new CamelotItemsOfInterestDao();
         LinkedHashMap<String, Item> camelotItems = camelotItemsOfInterestDao.getCamelotItemsRowByRow();
@@ -132,6 +133,14 @@ public class CamelotSearchController {
                 inventoryItem.setPosition(camelotItem.getPosition());
                 inventoryItem.setQuantity(camelotItem.getQuantity());
 
+            }
+            //---------
+            LinkedHashMap<Integer, String> itemStockPositions = allStockPositions.get(camelotItem.getCode());
+
+            if (itemStockPositions == null) {
+                System.out.println("CamelotItem with altercode " + altercode + "  does note have stock positions");
+            } else {
+                inventoryItem.setStockPositions(itemStockPositions);
             }
         }
         model.addAttribute("notes", notes);
