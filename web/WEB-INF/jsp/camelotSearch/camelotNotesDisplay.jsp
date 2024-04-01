@@ -47,7 +47,7 @@
             <th>Description</th>
 
             <th>Note</th>
-            <th>Stock Positions</th>
+            <th>ΘΕΣΕΙΣ STOCK</th>
             <th>Delete</th>
 
 
