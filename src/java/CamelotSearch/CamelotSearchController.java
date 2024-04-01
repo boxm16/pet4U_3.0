@@ -566,6 +566,43 @@ public class CamelotSearchController {
         stockPositions.add("Ν9-1");
         stockPositions.add("Ν9-2");
         stockPositions.add("Ν9-3");
+        
+        //------------------
+        stockPositions.add("Ξ1-1");
+        stockPositions.add("Ξ1-2");
+        stockPositions.add("Ξ1-3");
+
+        stockPositions.add("Ξ2-1");
+        stockPositions.add("Ξ2-2");
+        stockPositions.add("Ξ2-3");
+
+        stockPositions.add("Ξ3-1");
+        stockPositions.add("Ξ3-2");
+        stockPositions.add("Ξ3-3");
+
+        stockPositions.add("Ξ4-1");
+        stockPositions.add("Ξ4-2");
+        stockPositions.add("Ξ4-3");
+
+        stockPositions.add("Ξ5-1");
+        stockPositions.add("Ξ5-2");
+        stockPositions.add("Ξ5-3");
+
+        stockPositions.add("Ξ6-1");
+        stockPositions.add("Ξ6-2");
+        stockPositions.add("Ξ6-3");
+
+        stockPositions.add("Ξ7-1");
+        stockPositions.add("Ξ7-2");
+        stockPositions.add("Ξ7-3");
+
+        stockPositions.add("Ξ8-1");
+        stockPositions.add("Ξ8-2");
+        stockPositions.add("Ξ8-3");
+
+        stockPositions.add("Ξ9-1");
+        stockPositions.add("Ξ9-2");
+        stockPositions.add("Ξ9-3");
 
         model.addAttribute("itemCode", itemCode);
         model.addAttribute("stockPositions", stockPositions);

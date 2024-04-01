@@ -9,7 +9,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -323,11 +325,12 @@ public class NotesDao {
             DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
             Connection connection = databaseConnectionFactory.getMySQLConnection();
 
-            PreparedStatement itemInsertStatement = connection.prepareStatement("INSERT INTO camelot_stock_positions (item_code, position, status) VALUES (?,?,?)");
+            PreparedStatement itemInsertStatement = connection.prepareStatement("INSERT INTO camelot_stock_positions (item_code, position, date_stamp, status) VALUES (?,?,?,?)");
 
             itemInsertStatement.setString(1, itemCode);
             itemInsertStatement.setString(2, position);
-            itemInsertStatement.setString(3, "active");
+            itemInsertStatement.setString(3, new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+            itemInsertStatement.setString(4, "active");
             itemInsertStatement.execute();
 
         } catch (SQLException ex) {

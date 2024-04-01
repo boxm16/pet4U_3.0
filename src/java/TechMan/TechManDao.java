@@ -1041,6 +1041,7 @@ public class TechManDao {
                 + "id INT NOT NULL AUTO_INCREMENT, "
                 + "item_code VARCHAR (100) NOT NULL, "
                 + "position VARCHAR (30) NOT NULL,"
+                + "date_stamp DATE NOT NULL, "
                 + "status VARCHAR (30) ,"
                 + "PRIMARY KEY (id)) "
                 + "ENGINE = InnoDB "
