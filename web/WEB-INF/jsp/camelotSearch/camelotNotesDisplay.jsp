@@ -47,7 +47,7 @@
             <th>Description</th>
 
             <th>Note</th>
-
+            <th>Stock Positions</th>
             <th>Delete</th>
 
 
@@ -73,6 +73,14 @@
 
                         out.println("<td>");
                         out.println(inventoryItem.getNote());
+                        out.println("</td>");
+
+                        out.println("<td>");
+                        LinkedHashMap<Integer, String> stockPositions = inventoryItem.getStockPositions();
+                        for (Map.Entry<Integer, String> stockPositionsEntry : stockPositions.entrySet()) {
+                            out.println(stockPositionsEntry.getValue());
+                            out.println("<br>");
+                        }
                         out.println("</td>");
 
                         out.println("<td>");
