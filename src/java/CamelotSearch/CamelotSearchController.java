@@ -721,7 +721,7 @@ public class CamelotSearchController {
 
         model.addAttribute("id", "");
 
-        return "camelotStockPositionsDisplay";
+        return "camelotSearch/camelotStockPositionsDisplay";
     }
 
 }
