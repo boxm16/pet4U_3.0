@@ -237,6 +237,38 @@ public class CamelotSearchController {
         stockPositions.add("Α9-3");
         stockPositions.add("Α9-4");
         stockPositions.add("Α9-5");
+
+        stockPositions.add("Α10-1");
+
+        stockPositions.add("Α11-1");
+        stockPositions.add("Α11-2");
+        stockPositions.add("Α11-3");
+        stockPositions.add("Α11-4");
+        stockPositions.add("Α11-5");
+
+        stockPositions.add("Α12-1");
+        stockPositions.add("Α12-2");
+        stockPositions.add("Α12-3");
+        stockPositions.add("Α12-4");
+        stockPositions.add("Α12-5");
+
+        stockPositions.add("Α13-1");
+        stockPositions.add("Α13-2");
+        stockPositions.add("Α13-3");
+        stockPositions.add("Α13-4");
+        stockPositions.add("Α13-5");
+
+        stockPositions.add("Α14-1");
+        stockPositions.add("Α14-2");
+        stockPositions.add("Α14-3");
+        stockPositions.add("Α14-4");
+        stockPositions.add("Α14-5");
+
+        stockPositions.add("Α15-1");
+        stockPositions.add("Α15-2");
+        stockPositions.add("Α15-3");
+        stockPositions.add("Α15-4");
+        stockPositions.add("Α15-5");
         //------------
 
         stockPositions.add("Β1-1");
