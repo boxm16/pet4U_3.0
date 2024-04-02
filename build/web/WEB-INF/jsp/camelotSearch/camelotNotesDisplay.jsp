@@ -76,10 +76,16 @@
                         out.println("</td>");
 
                         out.println("<td>");
+
                         LinkedHashMap<Integer, String> stockPositions = inventoryItem.getStockPositions();
-                        for (Map.Entry<Integer, String> stockPositionsEntry : stockPositions.entrySet()) {
-                            out.println(stockPositionsEntry.getValue());
-                            out.println("<br>");
+                        if (stockPositions == null) {
+                            out.println("");
+                        } else {
+
+                            for (Map.Entry<Integer, String> stockPositionsEntry : stockPositions.entrySet()) {
+                                out.println(stockPositionsEntry.getValue());
+                                out.println("<br>");
+                            }
                         }
                         out.println("</td>");
 

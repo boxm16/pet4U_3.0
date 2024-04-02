@@ -83,9 +83,14 @@
                                     out.println("<tr>");
                                     out.println("<td colspan='2' style='font-size:20px'>");
                                     LinkedHashMap<Integer, String> stockPositions = item.getStockPositions();
-                                    for (Map.Entry<Integer, String> stockPositionsEntry : stockPositions.entrySet()) {
-                                        out.println(stockPositionsEntry.getValue());
-                                        out.println("<br>");
+
+                                    if (stockPositions == null) {
+                                        out.println("");
+                                    } else {
+                                        for (Map.Entry<Integer, String> stockPositionsEntry : stockPositions.entrySet()) {
+                                            out.println(stockPositionsEntry.getValue());
+                                            out.println("<br>");
+                                        }
                                     }
                                     out.println("</td>");
                                     out.println("</tr>");
