@@ -716,4 +716,12 @@ public class CamelotSearchController {
         return "redirect:camelotStockPositions.htm?itemCode=" + itemCode;
     }
 
+    @RequestMapping(value = "camelotStockPositionsDisplay", method = RequestMethod.GET)
+    public String deleteCameltoStockPosition(ModelMap model) {
+
+        model.addAttribute("id", "");
+
+        return "camelotStockPositionsDisplay";
+    }
+
 }
