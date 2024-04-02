@@ -419,4 +419,36 @@ public class NotesDao {
         return allPositions;
     }
 
+    public LinkedHashMap<String, ArrayList<String>> getCamelotItemsByStockPositions() {
+        LinkedHashMap<String, ArrayList<String>> allPositions = new LinkedHashMap<>();
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+        Connection connection = databaseConnectionFactory.getMySQLConnection();
+
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("select * from camelot_stock_positions WHERE status='active' ORDER BY position;");
+
+            while (resultSet.next()) {
+                //    int id = resultSet.getInt("id");
+                String itemCode = resultSet.getString("item_code");
+                String position = resultSet.getString("position");
+                if (allPositions.containsKey(position)) {
+                    ArrayList<String> itemCodes = allPositions.get(position);
+                    itemCodes.add(itemCode);
+                    allPositions.put(position, itemCodes);
+                } else {
+                    ArrayList<String> itemCodes = new ArrayList<>();
+                    itemCodes.add(itemCode);
+                    allPositions.put(position, itemCodes);
+                }
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(NotesDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return allPositions;
+    }
+
 }

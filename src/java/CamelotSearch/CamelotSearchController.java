@@ -751,8 +751,9 @@ public class CamelotSearchController {
     @RequestMapping(value = "camelotStockPositionsDisplay", method = RequestMethod.GET)
     public String deleteCameltoStockPosition(ModelMap model) {
 
-        model.addAttribute("id", "");
-
+        NotesDao notesDao = new NotesDao();
+        LinkedHashMap<String, ArrayList<String>> camelotItemsByStockPosition = notesDao.getCamelotItemsByStockPositions();
+        model.addAttribute("camelotItemsByStockPosition", camelotItemsByStockPosition);
         return "camelotSearch/camelotStockPositionsDisplay";
     }
 
