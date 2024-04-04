@@ -65,7 +65,7 @@
                                         for (String itemCode : itemCodes) {
                                             out.println("<tr>");
 
-                                            out.println("<td>");
+                                            out.println("<td style='width:40px>");
                                             out.println(position);
                                             out.println("</td>");
 
