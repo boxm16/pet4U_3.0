@@ -15,7 +15,10 @@ public class TESTosteronController {
     public String testosteronDashboard(HttpSession session) {
         String superUserStatus = (String) session.getAttribute("superUser");
         System.out.println("Super User Status:" + superUserStatus);
-        if (superUserStatus.equals("identified")) {
+        if (superUserStatus == null) {
+            return "errorPage";
+        } else if (superUserStatus.equals(
+                "identified")) {
             return "testosteron/testosteronDashboard";
         } else {
             return "errorPage";
