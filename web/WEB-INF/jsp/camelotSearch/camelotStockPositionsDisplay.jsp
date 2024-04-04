@@ -20,7 +20,7 @@
                 border-collapse: collapse;
             }
             td {
-                font-size: 15px;
+                font-size: 35px;
             }
             th{
                 font-size: 15px;
