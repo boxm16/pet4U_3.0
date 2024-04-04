@@ -90,7 +90,7 @@
                         out.println("</td>");
 
                         out.println("<td>");
-                        out.println("<button id=" + inventoryItem.getId() + "' class='btn btn-outline-info' role='button' >Delete</button>");
+                        out.println("<button  ' class='btn btn-outline-info' role='button' onclick='delete("+inventoryItem.getId() + ")'>Delete</button>");
                         out.println("</td>");
 
 
