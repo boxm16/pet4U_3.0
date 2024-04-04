@@ -40,6 +40,7 @@
                 </div>
                 <div class=" col-sm-4">
                     <center>
+                        <h3><a href="index.htm">INDEX</a></h3>
                         <h5>Camelot Items By Stock Position</h5>
 
 
