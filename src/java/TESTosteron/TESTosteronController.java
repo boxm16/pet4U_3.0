@@ -14,7 +14,7 @@ public class TESTosteronController {
     @RequestMapping(value = "testosteronDashboard")
     public String testosteronDashboard(HttpSession session) {
         String superUserStatus = (String) session.getAttribute("superUser");
-        System.out.println(superUserStatus);
+        System.out.println("Super User Status:"+superUserStatus);
         return "testosteron/testosteronDashboard";
     }
 
