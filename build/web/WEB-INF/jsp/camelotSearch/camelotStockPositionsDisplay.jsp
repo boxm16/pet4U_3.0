@@ -36,56 +36,56 @@
     <body>
         <div class="container" >
             <div class="row">
+                <div class=" col-sm-4">
+                </div>
+                <div class=" col-sm-4">
+
+                    <h5>Camelot Items By Stock Position</h5>
+
+
+                    <table>
+                        <thead>
+
+                        <th>Position</th>
+
+                        <th>Item Code</th>
 
 
 
-                <h5>Camelot Items By Stock Position</h5>
 
+                        </thead>
+                        <%
+                            LinkedHashMap<String, ArrayList<String>> positions = (LinkedHashMap) request.getAttribute("camelotItemsByStockPosition");
+                            if (positions != null) {
 
-                <table>
-                    <thead>
+                                for (Map.Entry<String, ArrayList<String>> positionsEntry : positions.entrySet()) {
+                                    String position = positionsEntry.getKey();
+                                    ArrayList<String> itemCodes = positionsEntry.getValue();
 
-                    <th>Position</th>
+                                    for (String itemCode : itemCodes) {
+                                        out.println("<tr>");
 
-                    <th>Item Code</th>
+                                        out.println("<td>");
+                                        out.println(position);
+                                        out.println("</td>");
 
+                                        out.println("<td>");
+                                        out.println(itemCode);
+                                        out.println("</td>");
 
+                                        out.println("</tr>");
 
-
-                    </thead>
-                    <%
-                        LinkedHashMap<String, ArrayList<String>> positions = (LinkedHashMap) request.getAttribute("camelotItemsByStockPosition");
-                        if (positions != null) {
-                     
-                       
-                            
-                            for (Map.Entry<String, ArrayList<String>> positionsEntry : positions.entrySet()) {
-                                String position = positionsEntry.getKey();
-                                ArrayList<String> itemCodes = positionsEntry.getValue();
-
-                                for (String itemCode : itemCodes) {
-                                    out.println("<tr>");
-
-                                    out.println("<td>");
-                                    out.println(position);
-                                    out.println("</td>");
-
-                                    out.println("<td>");
-                                    out.println(itemCode);
-                                    out.println("</td>");
-
-                                    out.println("</tr>");
-
+                                    }
                                 }
                             }
-                        }
 
-                    %>
-                </table>
-                <hr>
+                        %>
+                    </table>
+                    <hr>
+                </div>
+            </div>
+            <div class=" col-sm-4">
             </div>
         </div>
-
-
     </body>
 </html>
