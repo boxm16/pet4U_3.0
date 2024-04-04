@@ -69,11 +69,11 @@
                                             out.println(position);
                                             out.println("</td>");
 
-                                            out.println("<td>");
+                                            out.println("<td style='text-align: center'>");
                                             out.println(itemCode);
                                             out.println("</td>");
 
-                                            out.println("<td>");
+                                            out.println("<td style='text-align: center'>");
                                             out.println("<input type='checkbox' style='width:28px;height:28px'>");
                                             out.println("</td>");
 
