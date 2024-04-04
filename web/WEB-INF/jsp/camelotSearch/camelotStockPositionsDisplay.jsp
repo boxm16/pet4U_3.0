@@ -50,7 +50,7 @@
 
                             <th>Item Code</th>
 
-
+                            <th>Checked</th>
 
 
                             </thead>
