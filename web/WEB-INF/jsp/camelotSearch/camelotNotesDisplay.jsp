@@ -90,7 +90,7 @@
                         out.println("</td>");
 
                         out.println("<td>");
-                        out.println("<button  ' class='btn btn-outline-info' role='button' onclick='delete(" + inventoryItem.getId() + ")'>Delete</button>");
+                        out.println("<button  ' class='btn btn-outline-info' role='button' onclick='del(" + inventoryItem.getId() + ")'>Delete</button>");
                         out.println("</td>");
 
 
@@ -140,7 +140,7 @@
     </center>
 
     <script>
-        function delete (id) {
+        function del(id) {
             window.location.href = "deleteCamelotNote.htm?id=" + id;
         }
     </script>
