@@ -4,6 +4,7 @@ import BasicModel.Item;
 import Pet4uItems.Pet4uItemsDao;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -11,8 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class TESTosteronController {
 
     @RequestMapping(value = "testosteronDashboard")
-    public String testosteronDashboard() {
-
+    public String testosteronDashboard(HttpSession session) {
+        String superUserStatus = (String) session.getAttribute("superUser");
+        System.out.println(superUserStatus);
         return "testosteron/testosteronDashboard";
     }
 
