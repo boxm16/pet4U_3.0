@@ -56,6 +56,9 @@
                     <%
                         LinkedHashMap<String, ArrayList<String>> positions = (LinkedHashMap) request.getAttribute("camelotItemsByStockPosition");
                         if (positions != null) {
+                     
+                       
+                            
                             for (Map.Entry<String, ArrayList<String>> positionsEntry : positions.entrySet()) {
                                 String position = positionsEntry.getKey();
                                 ArrayList<String> itemCodes = positionsEntry.getValue();
