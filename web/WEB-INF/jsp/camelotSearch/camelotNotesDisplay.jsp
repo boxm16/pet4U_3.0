@@ -90,8 +90,9 @@
                         out.println("</td>");
 
                         out.println("<td>");
-                        out.println("<a href='deleteCamelotNote.htm?id=" + inventoryItem.getId() + "'> Delete </a>");
+                        out.println("<a href='deleteCamelotNote.htm?id=" + inventoryItem.getId() + "' class='btn btn-info' role='button'>Delete</a>");
                         out.println("</td>");
+
 
                         /*
 
