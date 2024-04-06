@@ -14,7 +14,8 @@ import java.util.ArrayList;
  */
 public class CamelotSalesDao {
 
-    String insertNewUpload(String date, ArrayList<SoldItem> sodlItems) {
+    String insertNewUpload(String date, ArrayList<SoldItem> soldItems) {
+        System.out.println("SOLD ITEMS SIZE:" + soldItems.size());
         return "done";
     }
 
