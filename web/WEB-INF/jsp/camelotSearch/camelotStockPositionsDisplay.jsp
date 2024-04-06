@@ -20,7 +20,7 @@
                 border-collapse: collapse;
             }
             td {
-                font-size: 35px;
+                font-size: 25px;
             }
             th{
                 font-size: 15px;
@@ -71,11 +71,11 @@
                                             out.println("</td>");
 
                                             out.println("<td style='text-align: center'>");
-                                            out.println(itemCode);
+                                            out.println("<input type='checkbox' style='width:28px;height:28px'>");
                                             out.println("</td>");
 
                                             out.println("<td style='text-align: center'>");
-                                            out.println("<input type='checkbox' style='width:28px;height:28px'>");
+                                            out.println(itemCode);
                                             out.println("</td>");
 
                                             out.println("</tr>");

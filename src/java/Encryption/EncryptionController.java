@@ -8,11 +8,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class EncryptionController {
 
-    @RequestMapping(value = "encryptedIndex", method = RequestMethod.GET)
-    public String deltioApostolis(HttpSession session) {
-        session.setAttribute("superUser", "identified");
-        
+    @RequestMapping(value = "encryptedIndexMe", method = RequestMethod.GET)
+    public String encryptedIndexMe(HttpSession session) {
+        session.setAttribute("user", "identified");
+        session.setAttribute("userName", "me");
         return "redirect:index.htm";
-        
+    }
+
+    @RequestMapping(value = "encryptedIndexLefteris", method = RequestMethod.GET)
+    public String encryptedIndexLefteris(HttpSession session) {
+        session.setAttribute("user", "identified");
+        session.setAttribute("userName", "Lefteris");
+        return "redirect:index.htm";
     }
 }

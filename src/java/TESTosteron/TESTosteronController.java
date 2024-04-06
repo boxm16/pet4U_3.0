@@ -13,11 +13,11 @@ public class TESTosteronController {
 
     @RequestMapping(value = "testosteronDashboard")
     public String testosteronDashboard(HttpSession session) {
-        String superUserStatus = (String) session.getAttribute("superUser");
-        System.out.println("Super User Status:" + superUserStatus);
-        if (superUserStatus == null) {
+        String user = (String) session.getAttribute("user");
+        System.out.println("Super User Status:" + user);
+        if (user == null) {
             return "errorPage";
-        } else if (superUserStatus.equals(
+        } else if (user.equals(
                 "identified")) {
             return "testosteron/testosteronDashboard";
         } else {
