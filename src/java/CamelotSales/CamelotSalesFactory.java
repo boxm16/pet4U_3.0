@@ -36,7 +36,7 @@ public class CamelotSalesFactory {
             String itemEshopSalesLocationInTheRow = new StringBuilder("N").append(String.valueOf(rowIndex)).toString();
             String itemEshopSalesString = data.remove(itemEshopSalesLocationInTheRow);//at the same time reading and removing the cell from hash Map
 
-            if (itemCodeString == null) {//in theory this means that you reached the end of rows with data
+            if (itemCodeString.equals("END")) {//in theory this means that you reached the end of rows with data
                 break;
             }
 
