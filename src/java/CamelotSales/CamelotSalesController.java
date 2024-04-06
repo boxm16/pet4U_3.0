@@ -24,9 +24,6 @@ public class CamelotSalesController {
     @Autowired
     private Basement basement;
 
-    @Autowired
-    private CamelotSalesDao camelotSalesDao;
-
     @RequestMapping(value = "goForCamelotMonthSalesUpload")
     public String goForCamelotMonthSalesUpload(ModelMap model) {
         model.addAttribute("uploadTitle", "Camelot Last Six Months Upload");
@@ -71,8 +68,8 @@ public class CamelotSalesController {
 
         CamelotSalesFactory salesFactory = new CamelotSalesFactory();
         ArrayList<SoldItem> sodlItems = salesFactory.createSoldItemsFromUploadedFile(filePath);
-
-        String result = this.camelotSalesDao.insertNewUpload(date, sodlItems);
+        CamelotSalesDao camelotSalesDao = new CamelotSalesDao();
+        String result = camelotSalesDao.insertNewUpload(date, sodlItems);
 
         System.out.println("DATE:" + date);
         model.addAttribute("uploadTitle", "Camelot Last Six Months Upload");
