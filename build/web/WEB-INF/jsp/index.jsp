@@ -27,6 +27,7 @@
                 <a href="searchDashboard.htm"><h1 style="font-weight: bold; color: green">Find Pet4u Items</h1></a>
                 <hr><hr>
                 <a href="camelotSearchDashboard.htm"><h1 style="color: #D052DB ">Find Camelot Items</h1></a>
+                <hr><hr>
                 <a href="orderAlert.htm" class="btn btn-primary" style='background-color: #762276' role="button"><h1>CAMELOT ORDER ALERT</h1></a>
 
                 <hr> 

@@ -34,7 +34,7 @@ public class EncryptionController {
                 "identified")) {
             return "redirect:adminIndex.htm";
         } else {
-            modelMap.addAttribute("message", "You are not authorized for this paged");
+            modelMap.addAttribute("message", "You are not authorized for this page");
             return "errorPage";
         }
 
