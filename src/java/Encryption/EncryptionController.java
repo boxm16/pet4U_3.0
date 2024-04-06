@@ -32,7 +32,7 @@ public class EncryptionController {
             return "errorPage";
         } else if (user.equals(
                 "identified")) {
-            return "redirect:adminIndex.htm";
+            return "adminIndex.htm";
         } else {
             modelMap.addAttribute("message", "You are not authorized for this page");
             return "errorPage";
