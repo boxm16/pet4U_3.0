@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package SalesX;
+package CamelotSales;
 
+import SalesX.*;
 import Excel.ExcelReader;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,7 +14,7 @@ import java.util.HashMap;
  *
  * @author Michail Sitmalidis
  */
-public class SalesFactory {
+public class CamelotSalesFactory {
 
     public ArrayList<SoldItem> createSoldItemsFromUploadedFile(String filePath) {
         System.out.println("STARTING READING EXCEL FILE");
