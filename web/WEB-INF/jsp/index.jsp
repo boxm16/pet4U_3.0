@@ -25,7 +25,7 @@
         <div class="container">
             <center>
             
-               <a href="searchDashboard.htm" class="btn btn-primary" role="button" ><h1>Find Pet4u Items</h1></a>
+               <a href="searchDashboard.htm" class="btn btn-outline-success" role="button" ><h1>Find Pet4u Items</h1></a>
                
                 <hr><hr>
                 <a href="camelotSearchDashboard.htm"><h1 style="color: #D052DB ">Find Camelot Items</h1></a>
