@@ -5,8 +5,8 @@
  */
 package CamelotSales;
 
-import SalesX.*;
 import Excel.ExcelReader;
+import SalesX.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -30,19 +30,12 @@ public class CamelotSalesFactory {
         int rowIndex = 2;
         while (!data.isEmpty()) {
 
-            String itemCodeLocationInTheRow = new StringBuilder("A").append(String.valueOf(rowIndex)).toString();
+            String itemCodeLocationInTheRow = new StringBuilder("B").append(String.valueOf(rowIndex)).toString();
             String itemCodeString = data.remove(itemCodeLocationInTheRow);//at the same time reading and removing the cell from hash Map
 
-            String itemDescriptionLocationInTheRow = new StringBuilder("B").append(String.valueOf(rowIndex)).toString();
-            String itemDescriptionString = data.remove(itemDescriptionLocationInTheRow);//at the same time reading and removing the cell from hash Map
-
-            String itemEshopSalesLocationInTheRow = new StringBuilder("C").append(String.valueOf(rowIndex)).toString();
+            String itemEshopSalesLocationInTheRow = new StringBuilder("N").append(String.valueOf(rowIndex)).toString();
             String itemEshopSalesString = data.remove(itemEshopSalesLocationInTheRow);//at the same time reading and removing the cell from hash Map
 
-            String itemShopSupplyLocationInTheRow = new StringBuilder("D").append(String.valueOf(rowIndex)).toString();
-            String itemShopSupplyString = data.remove(itemShopSupplyLocationInTheRow);//at the same time reading and removing the cell from hash Map
-
-           
             if (itemCodeString == null) {//in theory this means that you reached the end of rows with data
                 break;
             }
@@ -50,8 +43,6 @@ public class CamelotSalesFactory {
             SoldItem soldItem = new SoldItem();
 
             soldItem.setCode(itemCodeString);
-
-            soldItem.setDescription(itemDescriptionString);
 
             if (itemEshopSalesString == null) {
                 soldItem.setEshopSales(0);
@@ -61,15 +52,6 @@ public class CamelotSalesFactory {
                 soldItem.setEshopSales(Double.parseDouble(itemEshopSalesString));
             }
 
-            if (itemShopSupplyString == null) {
-                soldItem.setShopsSupply(0);
-            } else if (itemShopSupplyString.isEmpty() || itemShopSupplyString.equals("")) {
-                soldItem.setShopsSupply(0);
-            } else {
-                soldItem.setShopsSupply(Double.parseDouble(itemShopSupplyString));
-            }
-
-           
             items.add(soldItem);
             rowIndex++;
         }
