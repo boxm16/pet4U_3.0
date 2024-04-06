@@ -2,6 +2,7 @@ package Encryption;
 
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -20,5 +21,22 @@ public class EncryptionController {
         session.setAttribute("user", "identified");
         session.setAttribute("userName", "Lefteris");
         return "redirect:index.htm";
+    }
+
+    @RequestMapping(value = "adminIndex", method = RequestMethod.GET)
+    public String adminIndex(HttpSession session, ModelMap modelMap) {
+        String user = (String) session.getAttribute("user");
+        System.out.println("Super User Status:" + user);
+        if (user == null) {
+            modelMap.addAttribute("message", "You are not authorized for this paged");
+            return "errorPage";
+        } else if (user.equals(
+                "identified")) {
+            return "redirect:adminIndex.htm";
+        } else {
+            modelMap.addAttribute("message", "You are not authorized for this paged");
+            return "errorPage";
+        }
+
     }
 }

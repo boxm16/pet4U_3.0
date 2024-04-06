@@ -13,5 +13,6 @@
     </head>
     <body>
         <h1>Something Wrong</h1>
+        <h1>${message}</h1>
     </body>
 </html>
