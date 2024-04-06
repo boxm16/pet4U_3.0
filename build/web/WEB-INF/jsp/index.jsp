@@ -29,12 +29,11 @@
                 <hr><hr>
                 <a href="camelotSearchDashboard.htm" class="btn btn-primary" role="button" style='background-color: #762276;'><h1>Find Camelot Items</h1></a>
                 <hr><hr>
+                <a href="endoParalaves.htm" class="btn btn-primary" role="button" style='background-color: #0C3CDD'><h1>ΕΝΔΟ ΠΑΡΑΛΑΒΕΣ</h1></a>
+                <a href="endoApostoles.htm" class="btn btn-primary" role="button" style='background-color: #55DD0C'><h1>ΕΝΔΟ ΑΠΟΣΤΟΛΕΣ</h1></a>
+                <hr>
                 <a href="orderAlert.htm" class="btn btn-primary" style='background-color: #762276' role="button"><h1>CAMELOT ORDER ALERT</h1></a>
                 <hr> 
-                <hr>
-                <a href="endoParalaves.htm" class="btn btn-primary" role="button" style='background-color: #DFB4F9'><h1>ΕΝΔΟ ΠΑΡΑΛΑΒΕΣ</h1></a>
-                <a href="endoApostoles.htm" class="btn btn-primary" role="button" style='background-color: #FAFAA5'><h1>ΕΝΔΟ ΑΠΟΣΤΟΛΕΣ</h1></a>
-                <hr>
                 <a href="deliveryDashboard.htm" class="btn btn-primary" style='background-color: red' role="button"><h1>Delivery Dashboard</h1></a>
                 <hr>
                 <a href="inventoryDashboard.htm"><h1 style="color: #999900">Inventory Dashboard</h1></a>
