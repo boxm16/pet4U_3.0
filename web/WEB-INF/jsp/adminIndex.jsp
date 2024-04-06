@@ -26,16 +26,15 @@
             <center>
                 <a href="searchDashboard.htm" class="btn btn-primary" role="button" style='background-color: green;'><h1>Find Pet4u Items</h1></a>
                 <hr><hr>
-                <a href="camelotSearchDashboard.htm"><h1 style="color: #D052DB ">Find Camelot Items</h1></a>
                 <a href="camelotSearchDashboard.htm" class="btn btn-primary" role="button" style='background-color: #762276;'><h1>Find Camelot Items</h1></a>
 
                 <hr> 
                 <hr>
                 <h1 style="color: blue"> <a href="endoDashboard.htm">Endo Dashboard</a></h1> 
-                <a href="endoParalaves.htm" class="btn btn-primary" role="button" style='background-color: #0C3CDD'>ΕΝΔΟ ΠΑΡΑΛΑΒΕΣ</a></h1>
+                <h1> <a href="endoParalaves.htm" class="btn btn-primary" role="button" style='background-color: #0C3CDD'>ΕΝΔΟ ΠΑΡΑΛΑΒΕΣ</a></h1>
                 <h1> <a href="endoApostoles.htm" class="btn btn-primary" role="button" style='background-color: #55DD0C'>ΕΝΔΟ ΑΠΟΣΤΟΛΕΣ</a></h1>
                 <hr>
-                <h1> <a href="orderAlert.htm" class="btn btn-primary" style='background-color: #762276' role="button">CAMELOT ORDER ALERT</a></h1>
+                <a href="orderAlert.htm" class="btn btn-primary" style='background-color: #762276' role="button"><h1>CAMELOT ORDER ALERT</h1></a>
                 <hr>
                 <h1>  <a href="deliveryDashboard.htm" class="btn btn-primary" style='background-color: red' role="button">Delivery Dashboard</a></h1>
                 <hr>
