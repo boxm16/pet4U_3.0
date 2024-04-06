@@ -5,10 +5,12 @@
  */
 package CamelotSales;
 
+import BasicModel.Item;
 import Excel.ExcelReader;
 import SalesX.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 /**
  *
@@ -16,16 +18,16 @@ import java.util.HashMap;
  */
 public class CamelotSalesFactory {
 
-    public ArrayList<SoldItem> createSoldItemsFromUploadedFile(String filePath) {
+    ArrayList<SoldItem> createSoldItemsFromUploadedFile(String filePath, LinkedHashMap<String, Item> camelotAllItems) {
         System.out.println("STARTING READING EXCEL FILE");
         ExcelReader excelReader = new ExcelReader();
         HashMap<String, String> cellsFromExcelFile = excelReader.getCellsFromExcelFile(filePath);
-        ArrayList<SoldItem> soldItems = convertExcelDataToSoldItems(cellsFromExcelFile);
+        ArrayList<SoldItem> soldItems = convertExcelDataToSoldItems(cellsFromExcelFile, camelotAllItems);
         System.out.println("READING EXCEL COMPLETED");
         return soldItems;
     }
 
-    private ArrayList<SoldItem> convertExcelDataToSoldItems(HashMap<String, String> data) {
+    private ArrayList<SoldItem> convertExcelDataToSoldItems(HashMap<String, String> data, LinkedHashMap<String, Item> camelotAllItems) {
         ArrayList<SoldItem> items = new ArrayList();
         int rowIndex = 2;
         while (!data.isEmpty()) {
@@ -33,29 +35,32 @@ public class CamelotSalesFactory {
             String itemCodeLocationInTheRow = new StringBuilder("B").append(String.valueOf(rowIndex)).toString();
             String itemCodeString = data.remove(itemCodeLocationInTheRow);//at the same time reading and removing the cell from hash Map
 
-            String itemEshopSalesLocationInTheRow = new StringBuilder("N").append(String.valueOf(rowIndex)).toString();
-            String itemEshopSalesString = data.remove(itemEshopSalesLocationInTheRow);//at the same time reading and removing the cell from hash Map
-
-            if (itemCodeString!=null&&itemCodeString.equals("END")) {//in theory this means that you reached the end of rows with data
+            if (itemCodeString != null && itemCodeString.equals("END")) {//YOU NEED TO PUT THIS WORD AT THE END OF FILE
                 break;
             }
+            if (camelotAllItems.containsKey(itemCodeString)) {
 
-            SoldItem soldItem = new SoldItem();
+                String itemEshopSalesLocationInTheRow = new StringBuilder("N").append(String.valueOf(rowIndex)).toString();
+                String itemEshopSalesString = data.remove(itemEshopSalesLocationInTheRow);//at the same time reading and removing the cell from hash Map
 
-            soldItem.setCode(itemCodeString);
+                SoldItem soldItem = new SoldItem();
 
-            if (itemEshopSalesString == null) {
-                soldItem.setEshopSales(0);
-            } else if (itemEshopSalesString.isEmpty() || itemEshopSalesString.equals("")) {
-                soldItem.setEshopSales(0);
-            } else {
-                soldItem.setEshopSales(Double.parseDouble(itemEshopSalesString));
+                soldItem.setCode(itemCodeString);
+
+                if (itemEshopSalesString == null) {
+                    soldItem.setEshopSales(0);
+                } else if (itemEshopSalesString.isEmpty() || itemEshopSalesString.equals("")) {
+                    soldItem.setEshopSales(0);
+                } else {
+                    soldItem.setEshopSales(Double.parseDouble(itemEshopSalesString));
+                }
+                items.add(soldItem);
             }
 
-            items.add(soldItem);
             rowIndex++;
         }
 
         return items;
     }
+
 }

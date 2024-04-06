@@ -5,11 +5,14 @@
  */
 package CamelotSales;
 
+import BasicModel.Item;
+import CamelotItemsOfInterest.CamelotDao;
 import SalesX.SoldItem;
 import Service.Basement;
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -65,9 +68,11 @@ public class CamelotSalesController {
             model.addAttribute("uploadStatus", "Upload could not been completed:" + e);
             return "monthSales/monthSalesUpload";
         }
+        CamelotDao camelotDao = new CamelotDao();
+        LinkedHashMap<String, Item> camelotAllItems = camelotDao.getCamelotItems();
 
         CamelotSalesFactory salesFactory = new CamelotSalesFactory();
-        ArrayList<SoldItem> sodlItems = salesFactory.createSoldItemsFromUploadedFile(filePath);
+        ArrayList<SoldItem> sodlItems = salesFactory.createSoldItemsFromUploadedFile(filePath, camelotAllItems);
         CamelotSalesDao camelotSalesDao = new CamelotSalesDao();
         String result = camelotSalesDao.insertNewUpload(date, sodlItems);
 
