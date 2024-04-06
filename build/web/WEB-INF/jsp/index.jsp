@@ -25,9 +25,9 @@
         <div class="container">
             <center>
 
-                <a href="searchDashboard.htm" class="btn btn-success" role="button" style='background-color: green;'><h1>Find Pet4u Items</h1></a>
+                <a href="searchDashboard.htm" class="btn btn-primary" role="button" style='background-color: green;'><h1>Find Pet4u Items</h1></a>
                 <hr><hr>
-                <a href="camelotSearchDashboard.htm" class="btn btn-light" role="button" style='background-color: #762276;'><h1>Find Camelot Items</h1></a>
+                <a href="camelotSearchDashboard.htm" class="btn btn-primary" role="button" style='background-color: #762276;'><h1>Find Camelot Items</h1></a>
                 <hr><hr>
                 <a href="orderAlert.htm" class="btn btn-primary" style='background-color: #762276' role="button"><h1>CAMELOT ORDER ALERT</h1></a>
                 <hr> 
