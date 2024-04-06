@@ -31,12 +31,12 @@
                 <hr> 
                 <hr>
                 <h1 style="color: blue"> <a href="endoDashboard.htm">Endo Dashboard</a></h1> 
-                 <a href="endoParalaves.htm" class="btn btn-primary" role="button" style='background-color: #0C3CDD'> <h1>ΕΝΔΟ ΠΑΡΑΛΑΒΕΣ</h1></a>
+                <a href="endoParalaves.htm" class="btn btn-primary" role="button" style='background-color: #0C3CDD'> <h1>ΕΝΔΟ ΠΑΡΑΛΑΒΕΣ</h1></a>
                 <a href="endoApostoles.htm" class="btn btn-primary" role="button" style='background-color: #55DD0C'> <h1>ΕΝΔΟ ΑΠΟΣΤΟΛΕΣ</h1></a>
                 <hr>
                 <a href="orderAlert.htm" class="btn btn-primary" style='background-color: #762276' role="button"><h1>CAMELOT ORDER ALERT</h1></a>
                 <hr>
-                <h1>  <a href="deliveryDashboard.htm" class="btn btn-primary" style='background-color: red' role="button">Delivery Dashboard</a></h1>
+                <a href="deliveryDashboard.htm" class="btn btn-primary" style='background-color: red' role="button"><h1>Delivery Dashboard</h1></a>
                 <hr>
                 <a href='pet4uNegativeStock.htm'><h1 style="color: gray">Pet4u Negative Stock</h1></a>
                 <hr>
