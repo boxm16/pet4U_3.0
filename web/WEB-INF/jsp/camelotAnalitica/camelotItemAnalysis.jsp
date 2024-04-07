@@ -173,276 +173,20 @@
                 </div>
 
                 <div class=" col-sm-4">
-                    <center><h3>Total Stock Analysis</h3></center>
-                    <table>
-                        <th>Name</th>
-                        <th>Quantity</th>
 
-                        <%                            StockAnalysis stockAnalysis = (StockAnalysis) request.getAttribute("stockAnalysis");
-
-                            out.println("<tr>");
-                            out.println("<td>");
-                            out.println("ΒΑΡΥΜΠΟΜΗ");
-                            out.println("</td>");
-                            out.println("<td>");
-                            out.println(stockAnalysis.getVaribobiStock());
-                            out.println("</td>");
-                            out.println("</tr>");
-
-                            out.println("<tr>");
-                            out.println("<td>");
-                            out.println("ΧΑΛΚΗΔΟΝΑ");
-                            out.println("</td>");
-                            out.println("<td>");
-                            out.println(stockAnalysis.getXalkidonaStock());
-                            out.println("</td>");
-                            out.println("</tr>");
-
-                            out.println("<tr>");
-                            out.println("<td>");
-                            out.println("ΜΕΝΙΔΙ");
-                            out.println("</td>");
-                            out.println("<td>");
-                            out.println(stockAnalysis.getMenidiStock());
-                            out.println("</td>");
-                            out.println("</tr>");
-
-                            out.println("<tr>");
-                            out.println("<td>");
-                            out.println("ΚΑΛΛΙΘΕΑ");
-                            out.println("</td>");
-                            out.println("<td>");
-                            out.println(stockAnalysis.getKallitheaStock());
-                            out.println("</td>");
-                            out.println("</tr>");
-
-                            out.println("<tr>");
-                            out.println("<td>");
-                            out.println("ΑΛΙΜΟΣ");
-                            out.println("</td>");
-                            out.println("<td>");
-                            out.println(stockAnalysis.getAlimosStock());
-                            out.println("</td>");
-                            out.println("</tr>");
-
-                            out.println("<tr>");
-                            out.println("<td>");
-                            out.println("ΑΓ.ΠΑΡΑΣΚΕΥΗ");
-                            out.println("</td>");
-                            out.println("<td>");
-                            out.println(stockAnalysis.getAghiaParaskeviStock());
-                            out.println("</td>");
-                            out.println("</tr>");
-
-                            out.println("<tr>");
-                            out.println("<td>");
-                            out.println("ΔΑΦΝΗ");
-                            out.println("</td>");
-                            out.println("<td>");
-                            out.println(stockAnalysis.getDafniStock());
-                            out.println("</td>");
-                            out.println("</tr>");
-
-                            out.println("<tr>");
-                            out.println("<td>");
-                            out.println("ΚΟΥΚΑΚΙ");
-                            out.println("</td>");
-                            out.println("<td>");
-                            out.println(stockAnalysis.getKoukakiStock());
-                            out.println("</td>");
-                            out.println("</tr>");
-
-                            out.println("<tr>");
-                            out.println("<td>");
-                            out.println("ΜΙΧΑΛΑΚΟΠΟΥΛΟΥ");
-                            out.println("</td>");
-                            out.println("<td>");
-                            out.println(stockAnalysis.getMixalakopoulouStock());
-                            out.println("</td>");
-                            out.println("</tr>");
-
-                            out.println("<tr>");
-                            out.println("<td>");
-                            out.println("ΧΑΛΑΝΔΡΙ");
-                            out.println("</td>");
-                            out.println("<td>");
-                            out.println(stockAnalysis.getXalandriStock());
-                            out.println("</td>");
-                            out.println("</tr>");
-
-                            out.println("<tr>");
-                            out.println("<td>");
-                            out.println("ΝΕΑ ΙΩΝΙΑ");
-                            out.println("</td>");
-                            out.println("<td>");
-                            out.println(stockAnalysis.getNeaIoniaStock());
-                            out.println("</td>");
-                            out.println("</tr>");
-
-                            out.println("<tr>");
-                            out.println("<td>");
-                            out.println("ΑΡΓΥΡΟΥΠΟΛΗ");
-                            out.println("</td>");
-                            out.println("<td>");
-                            out.println(stockAnalysis.getArghiroupoliStock());
-                            out.println("</td>");
-                            out.println("</tr>");
-
-                            out.println("<tr>");
-                            out.println("<td>");
-                            out.println("ΠΕΡΙΣΤΕΡΙ");
-                            out.println("</td>");
-                            out.println("<td>");
-                            out.println(stockAnalysis.getPeristeriStock());
-                            out.println("</td>");
-                            out.println("</tr>");
-
-                            out.println("<tr>");
-                            out.println("<td>");
-                            out.println("ΠΕΤΡΟΥΠΟΛΗ");
-                            out.println("</td>");
-                            out.println("<td>");
-                            out.println(stockAnalysis.getPetroupoliStock());
-                            out.println("</td>");
-                            out.println("</tr>");
-
-                            out.println("<tr>");
-                            out.println("<td>");
-                            out.println("Π. ΦΑΛΗΡΟ");
-                            out.println("</td>");
-
-                            out.println("<td>");
-                            out.println(stockAnalysis.getPalioFaliroStock());
-                            out.println("</td>");
-                            out.println("</tr>");
-
-                            out.println("<tr>");
-                            out.println("<td>");
-                            out.println("Προς Καταστρ.");
-                            out.println("</td>");
-
-                            out.println("<td>");
-                            out.println(stockAnalysis.getKatastrofi());
-                            out.println("</td>");
-                            out.println("</tr>");
-
-                            out.println("<tr>");
-                            out.println("<td>");
-                            out.println("Ενδο");
-                            out.println("</td>");
-
-                            out.println("<td>");
-                            out.println(stockAnalysis.getEndo());
-                            out.println("</td>");
-                            out.println("</tr>");
-
-
-                        %>
-                    </table>  
-                    <hr>
-                    <%         out.println("<a href='showItemTotalStockSnapshots.htm?item_code=" + stockAnalysis.getCode() + "' target='_blank'><h4>Show Item Total Stock Snapshots</h4></a>"); %>
-                    <hr>
                 </div>
 
             </div>
             <hr>
             <div class="row">
                 <div class=" col-sm-4">
-                    <center><h3>Offers</h3></center>
-                    <table>
-                        <th>Titel</th>
-                        <th>Start Date</th>
-                        <th>End Date</th>
-                            <%                                ArrayList<Offer> offers = (ArrayList<Offer>) request.getAttribute("offers");
-
-                                for (Offer offer : offers) {
-
-                                    out.println("<tr>");
-
-                                    out.println("<td>");
-                                    out.println(offer.getTitle());
-                                    out.println("</td>");
-
-                                    out.println("<td>");
-                                    out.println(offer.getStartDateString());
-                                    out.println("</td>");
-
-                                    LocalDate endDate = offer.getEndDate();
-                                    if (endDate == null) {
-                                        out.println("<td>");
-                                        out.println("<a href='endOfferDashboard.htm?id=" + offer.getId() + "'>End Offer</a>");
-                                        out.println("</td>");
-                                    } else {
-
-                                        out.println("<td>");
-                                        out.println(offer.getEndDateString());
-                                        out.println("</td>");
-                                    }
-
-                                    out.println("</tr>");
-
-                                }
-
-                            %>
-                    </table>
-
                 </div>
 
 
 
 
                 <div class=" col-sm-4">
-                    <center><h3>Varibobi Stock Analysis</h3></center>
-                    <table>
-                        <th>Date Stamp</th>
-                        <th>State</th>
-                        <th>Quantity</th>
-                            <%                                ArrayList<ItemSnapshot> itemSnapshots = (ArrayList) request.getAttribute("itemSnapshots");
-                                double stockBefore = 0.0;
 
-                                for (int x = 0; x < itemSnapshots.size() - 1; x++) {
-                                    ItemSnapshot itemSnapshot = itemSnapshots.get(x);
-                                    stockBefore = Double.parseDouble(itemSnapshots.get(x + 1).getQuantity());
-                                    Double stock = Double.parseDouble(itemSnapshot.getQuantity());
-
-                                    String date = itemSnapshot.getDateStamp();
-                                    Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(date);
-
-                                    String[] weekdays = {"Κυριακη.", "Δευτερα.", "Τρίτη", "Τετάρτη", "Πέμπτη.", "Παρασκεύη.", "Σάββατο."};
-                                    int day = date1.getDay();
-
-                                    if (day == 0) {
-                                        out.println("<tr style='background-color: #90EE90;'>");
-
-                                    } else {
-                                        out.println("<tr >");
-
-                                    }
-                                    out.println("<td>");
-                                    out.println(itemSnapshot.getReformatedDateStamp() + "<br>" + weekdays[day]);
-                                    out.println("</td>");
-
-                                    out.println("<td>");
-                                    out.println(itemSnapshot.getState());
-                                    out.println("</td>");
-
-                                    if (itemSnapshot.getQuantity().equals("0") || itemSnapshot.getQuantity().equals("0.000000")) {
-                                        out.println("<td style='background-color: #F7B2F7'>");
-                                    } else {
-                                        out.println("<td>");
-                                    }
-                                    out.println(itemSnapshot.getQuantity());
-                                    out.println("</td>");
-
-                                    out.println("<td>");
-                                    out.println(stock - stockBefore);
-                                    out.println("</td>");
-                                    out.println("</tr>");
-                                    stockBefore = stock;
-
-                                }
-                            %>
-                    </table>
                 </div>
                 <div class=" col-sm-4">
                     <center><h3>Camelot Stock Analysis</h3></center>
@@ -450,8 +194,7 @@
                         <th>Date Stamp</th>
                         <th>State</th>
                         <th>Quantity</th>
-                            <%
-                                ArrayList<ItemSnapshot> camelotItemSnapshots = (ArrayList) request.getAttribute("camelotItemSnapshots");
+                            <%                                ArrayList<ItemSnapshot> camelotItemSnapshots = (ArrayList) request.getAttribute("camelotItemSnapshots");
 
                                 double camelotStockBefore = 0.0;
                                 if (camelotItemSnapshots.size() == 1) {
