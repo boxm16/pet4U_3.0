@@ -16,7 +16,7 @@ public class CamelotAnaliticaController {
 
     @RequestMapping(value = "/camelotItemAnalysis", method = RequestMethod.GET)
     public String itemAnalysis(@RequestParam(name = "code") String code, ModelMap model) {
-        System.out.println("---------------");
+        System.out.println("-------------------------");
         CamelotSearchDao searchDao = new CamelotSearchDao();
         Item item = searchDao.getItemByAltercode(code);
         model.addAttribute("item", item);
