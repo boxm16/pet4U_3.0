@@ -60,7 +60,6 @@
     <context:component-scan base-package="Eksagoges"/>
     <context:component-scan base-package="Encryption"/>
     <context:component-scan base-package="CamelotSales"/>
-    <context:component-scan base-package="CamelotAnalitica"/>
     <!--
     Most controllers will use the ControllerClassNameHandlerMapping above, but
     for the index controller we are using ParameterizableViewController, so we must
