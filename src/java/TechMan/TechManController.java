@@ -467,4 +467,23 @@ public class TechManController {
         modelMap.addAttribute("camelotStockPositionsDatabaseTableResult", camelotStockPositionsDatabaseTableResult);
         return "techMan/techManDashboard";
     }
+    
+     //---------------------------------------------------
+    @RequestMapping(value = "/createCamelotSalesDatabaseTable", method = RequestMethod.GET)
+    public String createCamelotSalesDatabaseTable(ModelMap modelMap) {
+        String camelotSalesDatabaseTableResult = techManDao.createCamelotSalesDatabaseTable();
+
+        camelotSalesDatabaseTableResult = camelotSalesDatabaseTableResult + "<br>";
+        modelMap.addAttribute("camelotSalesDatabaseTableResult", camelotSalesDatabaseTableResult);
+        return "techMan/techManDashboard";
+    }
+
+    @RequestMapping(value = "/deleteCamelotSalesDatabaseTable", method = RequestMethod.GET)
+    public String deleteCamelotSalesDatabaseTable(ModelMap modelMap) {
+        String camelotSalesDatabaseTableResult = techManDao.deleteCamelotSalesDatabaseTable();
+
+        camelotSalesDatabaseTableResult = camelotSalesDatabaseTableResult + "<br>";
+        modelMap.addAttribute("camelotSalesDatabaseTableResult", camelotSalesDatabaseTableResult);
+        return "techMan/techManDashboard";
+    }
 }

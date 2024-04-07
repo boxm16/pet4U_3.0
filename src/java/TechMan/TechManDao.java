@@ -1078,4 +1078,41 @@ public class TechManDao {
         }
     }
 
+    String createCamelotSalesDatabaseTable() {
+        String query = "CREATE TABLE camelot_month_sales("
+                + "code VARCHAR (100) NOT NULL, "
+                + "date DATE NOT NULL, "
+                + "sales DOUBLE (10,4) NULL)"
+                + "ENGINE = InnoDB "
+                + "DEFAULT CHARACTER SET = utf8;";
+
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+            statement.close();
+            connection.close();
+            return "Table 'camelot_month_sales' created succesfully";
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return "Table 'camelot_month_sales' could not be created:" + ex;
+        }
+    }
+
+    String deleteCamelotSalesDatabaseTable() {
+        String query = "DROP TABLE camelot_month_sales";
+
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+            statement.close();
+            connection.close();
+            return "Table 'camelot_month_sales' deleted succesfully";
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return "Table 'camelot_month_sales' could not be deleted:" + ex;
+        }
+    }
+
 }
