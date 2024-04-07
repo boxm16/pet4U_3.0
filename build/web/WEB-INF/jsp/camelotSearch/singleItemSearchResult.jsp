@@ -97,6 +97,8 @@
                         <a href="getCamelotItemForNote.htm?altercode=${item.getCode()}" class="btn btn-warning btn-lg" role="button" aria-disabled="true"><h3>Make Note</h3></a>
                         <hr>
                         <a href="camelotStockPositions.htm?itemCode=${item.getCode()}" class="btn btn-success btn-lg" role="button" aria-disabled="true"><h3>ΘΕΣΕΙΣ ΣΤΟΚ</h3></a>
+                        <hr>
+                        <a href='camelotItemAnalysis.htm?code=" + item.getCode() + "' class='btn btn-info btn-lg' role='button' aria-disabled='true'><h3>Show Item Analysis</h3></a>
 
                         <hr>
                         <a href="camelotSearchDashboard.htm"><h3>New Search</h3></a>
