@@ -106,14 +106,15 @@
                 -->
 
                 <hr>
-                <a href="goForMonthSalesUpload.htm"><h1>Go For Month Sales  Upload</h1></a>
+                <a href="goForMonthSalesUpload.htm"><h1>Go For PET4U Month Sales  Upload</h1></a>
                 <hr>
                 <a href="scanninger.htm"><h1>Go for Scanning</h1></a>
                 <hr>
                 <a href="testosteronDashboard.htm"><h1>TESTing Dashboard</h1></a> 
                 <hr>
-                <a href="goForCamelotMonthSalesUpload.htm"><h1>Go For Camelot Month Sales  Upload</h1></a>
-
+                <a href="goForCamelotMonthSalesUpload.htm"><h1>Go For CAMELOT Month Sales  Upload</h1></a>
+                <hr>   <hr>
+                <a href="index.htm"><h1>index</h1></a>
             </center>
         </div>
     </body>
