@@ -105,10 +105,10 @@ public class AnaliticaController {
         Item item = searchDao.getItemByAltercode(code);
         model.addAttribute("item", item);
 
-        /*
+      
         MonthSalesDao monthSalesDao = new MonthSalesDao();
         ArrayList<String> period = monthSalesDao.getSalesPeriod();
-        MonthSales itemSales = monthSalesDao.getItemSales(itemCode);
+        MonthSales itemSales = monthSalesDao.getItemSales(item.getCode());
 
         for (String p : period) {
             DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -127,7 +127,7 @@ public class AnaliticaController {
         }
         model.addAttribute("itemSales", itemSales);
 
-         */
+     
         CamelotItemsOfInterestDao camelotItemsOfInterestDao = new CamelotItemsOfInterestDao();
 
         System.out.println("ITEMCODE FOR CAMELOT: " + item.getCode());

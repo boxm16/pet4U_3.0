@@ -25,7 +25,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Item Analysis</title>
+        <title>Camelot Item Analysis</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -58,7 +58,7 @@
 
                 <div class=" col-sm-4">
                     <h5><a href="index.htm">INDEX</a></h5>
-                    <h5>Pet4U Item Analysis</h5>
+                    <h5>Camelot Item Analysis</h5>
 
                     <table> 
                         <tr><td>Code</td><td>${item.code}</td></tr>
@@ -100,85 +100,85 @@
                     <table>
                         <th>-</th>
                         <th>Month Name</th>
-                        <th>E-Shop Sales</th>
-                        <th>Ενδοδιακ.</th>
-                            <%                                MonthSales itemSales = (MonthSales) request.getAttribute("itemSales");
-                                TreeMap<LocalDate, Sales> sales = itemSales.getSales();
-                                int totalMonths = sales.size();
-                                int currentMonth = 0;
-                                double totalSales = 0;
-                                double totalShopSupplies = 0;
+                        <th>Sales</th>
 
-                                for (Map.Entry<LocalDate, Sales> salesEntry : sales.entrySet()) {
-                                    LocalDate date = salesEntry.getKey();
-                                    Sales sale = salesEntry.getValue();
+                        <%                                MonthSales itemSales = (MonthSales) request.getAttribute("itemSales");
+                            TreeMap<LocalDate, Sales> sales = itemSales.getSales();
+                            int totalMonths = sales.size();
+                            int currentMonth = 0;
+                            double totalSales = 0;
+                            double totalShopSupplies = 0;
 
-                                    if (currentMonth >= (totalMonths - 6)) {
-                                        out.println("<tr style='background-color:#D0D0D0'>");
-                                    } else {
-                                        out.println("<tr>");
-                                    }
-                                    out.println("<td>");
-                                    out.println(date.getMonthValue());
-                                    out.println("</td>");
+                            for (Map.Entry<LocalDate, Sales> salesEntry : sales.entrySet()) {
+                                LocalDate date = salesEntry.getKey();
+                                Sales sale = salesEntry.getValue();
 
-                                    out.println("<td>");
-                                    out.println(date.getMonth());
-                                    out.println("</td>");
-
-                                    out.println("<td>");
-                                    out.println(sale.getEshopSales());
-                                    out.println("</td>");
-
-                                    out.println("<td>");
-                                    out.println(sale.getShopsSupply());
-                                    out.println("</td>");
-
-                                    out.println("</tr>");
-
-                                    if (currentMonth >= (totalMonths - 6)) {
-                                        totalSales += sale.getEshopSales();
-                                        totalShopSupplies += sale.getShopsSupply();
-                                    } else {
-                                        //do nothing
-                                    }
-                                    currentMonth++;
-
+                                if (currentMonth >= (totalMonths - 6)) {
+                                    out.println("<tr style='background-color:#D0D0D0'>");
+                                } else {
+                                    out.println("<tr>");
                                 }
-                                out.println("<tr style='color: green'>");
-                                out.println("<td colspan='2'>");
-                                out.println("LAST 6 MONTHS TOTALS");
-                                out.println("</td>");
                                 out.println("<td>");
-                                out.println(totalSales);
+                                out.println(date.getMonthValue());
                                 out.println("</td>");
-                                out.println("<td>");
-                                out.println(totalShopSupplies);
-                                out.println("</td>");
-                                out.println("</tr>");
 
-                                out.println("<tr style='color: blue'>");
-                                out.println("<td colspan='3'>");
-                                out.println("LAST 6 MONTHS GRAND TOTAL");
-                                out.println("</td>");
                                 out.println("<td>");
-                                out.println(totalSales + totalShopSupplies);
+                                out.println(date.getMonth());
                                 out.println("</td>");
-                                out.println("</tr>");
 
-                                out.println("<tr style='color: #BA4A00'>");
-                                out.println("<td colspan='3'>");
-                                out.println("One Month Average ΕΞΑΓΩΓΕΣ");
-                                out.println("</td>");
                                 out.println("<td>");
-                                out.println((totalSales + totalShopSupplies) / 6);
+                                out.println(sale.getEshopSales());
                                 out.println("</td>");
-                                out.println("</tr>");
+
+                                out.println("<td>");
+                                out.println(sale.getShopsSupply());
+                                out.println("</td>");
 
                                 out.println("</tr>");
 
+                                if (currentMonth >= (totalMonths - 6)) {
+                                    totalSales += sale.getEshopSales();
+                                    totalShopSupplies += sale.getShopsSupply();
+                                } else {
+                                    //do nothing
+                                }
+                                currentMonth++;
 
-                            %>
+                            }
+                            out.println("<tr style='color: green'>");
+                            out.println("<td colspan='2'>");
+                            out.println("LAST 6 MONTHS TOTALS");
+                            out.println("</td>");
+                            out.println("<td>");
+                            out.println(totalSales);
+                            out.println("</td>");
+                            out.println("<td>");
+                            out.println(totalShopSupplies);
+                            out.println("</td>");
+                            out.println("</tr>");
+
+                            out.println("<tr style='color: blue'>");
+                            out.println("<td colspan='3'>");
+                            out.println("LAST 6 MONTHS GRAND TOTAL");
+                            out.println("</td>");
+                            out.println("<td>");
+                            out.println(totalSales + totalShopSupplies);
+                            out.println("</td>");
+                            out.println("</tr>");
+
+                            out.println("<tr style='color: #BA4A00'>");
+                            out.println("<td colspan='3'>");
+                            out.println("One Month Average ΕΞΑΓΩΓΕΣ");
+                            out.println("</td>");
+                            out.println("<td>");
+                            out.println((totalSales + totalShopSupplies) / 6);
+                            out.println("</td>");
+                            out.println("</tr>");
+
+                            out.println("</tr>");
+
+
+                        %>
                     </table>
                 </div>
 
