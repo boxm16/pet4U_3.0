@@ -30,7 +30,7 @@ public class EncryptionController {
         String ipAddress = req.getRemoteAddr();
         System.out.println("Request IP Address: " + ipAddress);
 
-        if (ipAddress.equals("192.168.0.141")) {
+        if (ipAddress.equals("192.168.0.141")||ipAddress.contains("0:0:0:0:0:0:0:1")) {
             session.setAttribute("user", "identified");
             session.setAttribute("userName", "super");
             return "adminIndex";
