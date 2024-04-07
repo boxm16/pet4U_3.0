@@ -52,6 +52,7 @@ public class CamelotSalesFactory {
                 } else if (itemEshopSalesString.isEmpty() || itemEshopSalesString.equals("")) {
                     soldItem.setEshopSales(0);
                 } else {
+                    itemEshopSalesString=itemEshopSalesString.replace(".", "");
                     soldItem.setEshopSales(Double.parseDouble(itemEshopSalesString));
                 }
                 items.add(soldItem);
