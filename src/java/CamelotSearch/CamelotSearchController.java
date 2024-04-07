@@ -6,6 +6,7 @@ import Inventory.InventoryItem;
 import Notes.NotesDao;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -772,8 +773,7 @@ public class CamelotSearchController {
         stockPositions.add("CONTAINER_23");
         stockPositions.add("CONTAINER_24");
         stockPositions.add("CONTAINER_25");
-        
-        
+
         model.addAttribute("itemCode", itemCode);
         model.addAttribute("stockPositions", stockPositions);
 
@@ -781,12 +781,18 @@ public class CamelotSearchController {
     }
 
     @RequestMapping(value = "setCamelotStockPosition", method = RequestMethod.POST)
-    public String setCamelotStockPosition(@RequestParam(name = "itemCode") String itemCode,
+    public String setCamelotStockPosition(HttpSession session, @RequestParam(name = "itemCode") String itemCode,
             @RequestParam(name = "position") String position,
             ModelMap model) {
 
+        String user = (String) session.getAttribute("user");
+        System.out.println("Super User Status:" + user);
+        if (user == null) {
+            return "errorPage";
+        }
+        String userName = (String) session.getAttribute("userName");
         NotesDao notesDao = new NotesDao();
-        String result = notesDao.addCamelotStockPosition(itemCode, position);
+        String result = notesDao.addCamelotStockPosition(itemCode, position, userName);
         model.addAttribute("result", result);
 
         return "redirect:camelotStockPositions.htm?itemCode=" + itemCode;
@@ -794,7 +800,7 @@ public class CamelotSearchController {
     }
 
     @RequestMapping(value = "camelotStockPositionDeletion", method = RequestMethod.GET)
-    public String deleteCamelotStockPosition(@RequestParam(name = "itemCode") String itemCode,
+    public String camelotStockPositionDeletion(@RequestParam(name = "itemCode") String itemCode,
             @RequestParam(name = "id") String id,
             ModelMap model) {
 
@@ -804,20 +810,30 @@ public class CamelotSearchController {
     }
 
     @RequestMapping(value = "deleteCameltoStockPosition", method = RequestMethod.GET)
-    public String deleteCameltoStockPosition(@RequestParam(name = "itemCode") String itemCode,
+    public String deleteCameltoStockPosition(HttpSession session, @RequestParam(name = "itemCode") String itemCode,
             @RequestParam(name = "id") String id,
             ModelMap model) {
+        
+        
+        String user = (String) session.getAttribute("user");
+        System.out.println("Super User Status:" + user);
+        if (user == null) {
+            return "errorPage";
+        }
+        String userName = (String) session.getAttribute("userName");
 
         model.addAttribute("id", id);
+        
+        
 
         NotesDao notesDao = new NotesDao();
-        notesDao.deleteCamelotStockPosition(id);
+        notesDao.deleteCamelotStockPosition(id, userName);
 
         return "redirect:camelotStockPositions.htm?itemCode=" + itemCode;
     }
 
     @RequestMapping(value = "camelotStockPositionsDisplay", method = RequestMethod.GET)
-    public String deleteCameltoStockPosition(ModelMap model) {
+    public String camelotStockPositionsDisplay(ModelMap model) {
 
         NotesDao notesDao = new NotesDao();
         LinkedHashMap<String, ArrayList<String>> camelotItemsByStockPosition = notesDao.getCamelotItemsByStockPositions();

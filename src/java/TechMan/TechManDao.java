@@ -1043,6 +1043,7 @@ public class TechManDao {
                 + "position VARCHAR (30) NOT NULL,"
                 + "date_stamp DATE NOT NULL, "
                 + "status VARCHAR (30) ,"
+                + "user VARCHAR (30) ,"
                 + "PRIMARY KEY (id)) "
                 + "ENGINE = InnoDB "
                 + "DEFAULT CHARACTER SET = utf8;";

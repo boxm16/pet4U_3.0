@@ -320,17 +320,18 @@ public class NotesDao {
         }
     }
 
-    public String addCamelotStockPosition(String itemCode, String position) {
+    public String addCamelotStockPosition(String itemCode, String position, String username) {
         try {
             DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
             Connection connection = databaseConnectionFactory.getMySQLConnection();
 
-            PreparedStatement itemInsertStatement = connection.prepareStatement("INSERT INTO camelot_stock_positions (item_code, position, date_stamp, status) VALUES (?,?,?,?)");
+            PreparedStatement itemInsertStatement = connection.prepareStatement("INSERT INTO camelot_stock_positions (item_code, position, date_stamp, status, user) VALUES (?,?,?,?,?)");
 
             itemInsertStatement.setString(1, itemCode);
             itemInsertStatement.setString(2, position);
             itemInsertStatement.setString(3, new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
             itemInsertStatement.setString(4, "active");
+            itemInsertStatement.setString(5, username);
             itemInsertStatement.execute();
 
         } catch (SQLException ex) {
@@ -370,8 +371,8 @@ public class NotesDao {
         return stockPositions;
     }
 
-    public String deleteCamelotStockPosition(String id) {
-        String sql = "UPDATE camelot_stock_positions SET status='deleted' WHERE id='" + id + "'";
+    public String deleteCamelotStockPosition(String id, String userName) {
+        String sql = "UPDATE camelot_stock_positions SET status='deleted', user='" + userName + "'  WHERE id='" + id + "'";
         try {
             DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
             Connection connection = databaseConnectionFactory.getMySQLConnection();
