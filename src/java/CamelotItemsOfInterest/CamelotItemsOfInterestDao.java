@@ -27,11 +27,11 @@ public class CamelotItemsOfInterestDao {
 
         ArrayList<String> camelotAltercodes = new ArrayList();
         String sql = "SELECT altercode FROM camelot_altercode";
-
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
         ResultSet resultSet;
 
         try {
-            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Connection connection = databaseConnectionFactory.getMySQLConnection();
             Statement statement = connection.createStatement();
 
             resultSet = statement.executeQuery(sql);
