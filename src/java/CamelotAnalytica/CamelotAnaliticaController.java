@@ -1,4 +1,3 @@
-
 package CamelotAnalytica;
 
 import BasicModel.Item;
@@ -14,15 +13,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class CamelotAnaliticaController {
-  @RequestMapping(value = "/camelotItemAnalysis", method = RequestMethod.GET)
-    public String itemAnalysis(@RequestParam String code, ModelMap model) {
 
+    @RequestMapping(value = "/camelotItemAnalysis", method = RequestMethod.GET)
+    public String itemAnalysis(@RequestParam(name = "code") String code, ModelMap model) {
+        System.out.println("---------------");
         CamelotSearchDao searchDao = new CamelotSearchDao();
         Item item = searchDao.getItemByAltercode(code);
         model.addAttribute("item", item);
 
-      
-/*
+        /*
         MonthSalesDao monthSalesDao = new MonthSalesDao();
         ArrayList<String> period = monthSalesDao.getSalesPeriod();
         MonthSales itemSales = monthSalesDao.getItemSales(itemCode);
@@ -44,16 +43,14 @@ public class CamelotAnaliticaController {
         }
         model.addAttribute("itemSales", itemSales);
 
-     */
-
+         */
         CamelotItemsOfInterestDao camelotItemsOfInterestDao = new CamelotItemsOfInterestDao();
-       
 
         System.out.println("ITEMCODE FOR CAMELOT: " + item.getCode());
         ArrayList<ItemSnapshot> camelotItemSnapshots = camelotItemsOfInterestDao.getItemSnapshots(item.getCode());
-        System.out.println("size:"+camelotItemSnapshots.size());
+        System.out.println("size:" + camelotItemSnapshots.size());
         model.addAttribute("camelotItemSnapshots", camelotItemSnapshots);
 
         return "camelotAnalitica/camelotItemAnalysis";
-    }  
+    }
 }
