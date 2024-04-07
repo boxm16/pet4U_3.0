@@ -24,6 +24,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class AnaliticaController {
 
+    @RequestMapping(value = "/mmmm", method = RequestMethod.GET)
+    public String mmmm(@RequestParam(name = "code") String code, ModelMap model) {
+        System.out.println("+++++++++++++++");
+
+        return "camelotAnalitica/camelotItemAnalysis";
+    }
+
     @RequestMapping(value = "/itemAnalysis", method = RequestMethod.GET)
     public String itemAnalysis(@RequestParam String code, ModelMap model) {
 
@@ -75,7 +82,7 @@ public class AnaliticaController {
 
         System.out.println("ITEMCODE FOR CAMELOT: " + itemCode);
         ArrayList<ItemSnapshot> camelotItemSnapshots = camelotItemsOfInterestDao.getItemSnapshots(itemCode);
-        System.out.println("size:"+camelotItemSnapshots.size());
+        System.out.println("size:" + camelotItemSnapshots.size());
         model.addAttribute("camelotItemSnapshots", camelotItemSnapshots);
 
         return "analitica/itemAnalysis";

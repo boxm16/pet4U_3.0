@@ -14,13 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class CamelotAnaliticaController {
     
-    @RequestMapping(value = "/mmmm", method = RequestMethod.GET)
-    public String mmmm(@RequestParam(name = "code") String code, ModelMap model) {
-        System.out.println("+++++++++++++++");
-       
-
-        return "camelotAnalitica/camelotItemAnalysis";
-    }
+   
 
     @RequestMapping(value = "/camelotItemAnalysis", method = RequestMethod.GET)
     public String camelotItemAnalysis(@RequestParam(name = "code") String code, ModelMap model) {
