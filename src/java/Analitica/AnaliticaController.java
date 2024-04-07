@@ -3,6 +3,7 @@ package Analitica;
 import BasicModel.Item;
 import CamelotItemsOfInterest.CamelotItemsOfInterestDao;
 import CamelotItemsOfInterest.ItemSnapshot;
+import CamelotSales.CamelotSalesDao;
 import CamelotSearch.CamelotSearchDao;
 import MonthSales.MonthSales;
 import MonthSales.MonthSalesDao;
@@ -24,8 +25,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class AnaliticaController {
-
-    
 
     @RequestMapping(value = "/itemAnalysis", method = RequestMethod.GET)
     public String itemAnalysis(@RequestParam String code, ModelMap model) {
@@ -93,11 +92,8 @@ public class AnaliticaController {
 
         return "analitica/offerDashboard";
     }
-    
-    
-    //----------------++++++++++++++++++++_________________________
- 
 
+    //----------------++++++++++++++++++++_________________________
     @RequestMapping(value = "/camelotItemAnalysis", method = RequestMethod.GET)
     public String camelotItemAnalysis(@RequestParam(name = "code") String code, ModelMap model) {
         System.out.println("-------------------------");
@@ -105,8 +101,7 @@ public class AnaliticaController {
         Item item = searchDao.getItemByAltercode(code);
         model.addAttribute("item", item);
 
-      
-        MonthSalesDao monthSalesDao = new MonthSalesDao();
+        CamelotSalesDao monthSalesDao = new CamelotSalesDao();
         ArrayList<String> period = monthSalesDao.getSalesPeriod();
         MonthSales itemSales = monthSalesDao.getItemSales(item.getCode());
 
@@ -127,7 +122,6 @@ public class AnaliticaController {
         }
         model.addAttribute("itemSales", itemSales);
 
-     
         CamelotItemsOfInterestDao camelotItemsOfInterestDao = new CamelotItemsOfInterestDao();
 
         System.out.println("ITEMCODE FOR CAMELOT: " + item.getCode());
