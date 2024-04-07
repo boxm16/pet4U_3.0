@@ -1,5 +1,6 @@
 package Encryption;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -24,8 +25,12 @@ public class EncryptionController {
     }
 
     @RequestMapping(value = "adminIndex", method = RequestMethod.GET)
-    public String adminIndex(HttpSession session, ModelMap modelMap) {
+    public String adminIndex(HttpSession session, ModelMap modelMap, HttpServletRequest req) {
+        
+        String ipAddress=req.getRemoteAddr();
+        System.out.println("Request IP Address: "+ipAddress);
         String user = (String) session.getAttribute("user");
+        
         System.out.println("Super User Status:" + user);
         if (user == null) {
             modelMap.addAttribute("message", "You are not authorized for this paged");
