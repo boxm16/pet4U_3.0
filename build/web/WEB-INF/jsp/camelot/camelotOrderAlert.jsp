@@ -157,7 +157,7 @@
             %>
         </table>
         <hr> <hr> <hr>
-        <h1><a href='makeCamelotItemsInterestDayRestSnapshot.htm'>Make Snapshot Of Day Rest Of Items Of Interest</a></h1>
+    <!--    <h1><a href='makeCamelotItemsInterestDayRestSnapshot.htm'>Make Snapshot Of Day Rest Of Items Of Interest</a></h1> -->
         <h3>${snapshotInsertionResult}</h3>
     </center>
 </body>
