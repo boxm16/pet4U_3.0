@@ -3,6 +3,7 @@ package Analitica;
 import BasicModel.Item;
 import CamelotItemsOfInterest.CamelotItemsOfInterestDao;
 import CamelotItemsOfInterest.ItemSnapshot;
+import CamelotSearch.CamelotSearchDao;
 import MonthSales.MonthSales;
 import MonthSales.MonthSalesDao;
 import MonthSales.Sales;
@@ -30,6 +31,48 @@ public class AnaliticaController {
 
         return "camelotAnalitica/camelotItemAnalysis";
     }
+    
+
+    @RequestMapping(value = "/camelotItemAnalysis", method = RequestMethod.GET)
+    public String camelotItemAnalysis(@RequestParam(name = "code") String code, ModelMap model) {
+        System.out.println("-------------------------");
+        CamelotSearchDao searchDao = new CamelotSearchDao();
+        Item item = searchDao.getItemByAltercode(code);
+        model.addAttribute("item", item);
+
+        /*
+        MonthSalesDao monthSalesDao = new MonthSalesDao();
+        ArrayList<String> period = monthSalesDao.getSalesPeriod();
+        MonthSales itemSales = monthSalesDao.getItemSales(itemCode);
+
+        for (String p : period) {
+            DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate salePeriod = LocalDate.parse(p, formatter2);
+            if (itemSales.getSales().containsKey(salePeriod)) {
+            } else {
+                MonthSales ms = new MonthSales();
+
+                Sales sales = new Sales();
+                sales.setEshopSales(0);
+                sales.setShopsSupply(0);
+                ms.addSales(salePeriod, sales);
+                itemSales.addSales(salePeriod, sales);
+
+            }
+        }
+        model.addAttribute("itemSales", itemSales);
+
+         */
+        CamelotItemsOfInterestDao camelotItemsOfInterestDao = new CamelotItemsOfInterestDao();
+
+        System.out.println("ITEMCODE FOR CAMELOT: " + item.getCode());
+        ArrayList<ItemSnapshot> camelotItemSnapshots = camelotItemsOfInterestDao.getItemSnapshots(item.getCode());
+        System.out.println("size:" + camelotItemSnapshots.size());
+        model.addAttribute("camelotItemSnapshots", camelotItemSnapshots);
+
+        return "camelotAnalitica/camelotItemAnalysis";
+    }
+    //------------------------------------------
 
     @RequestMapping(value = "/itemAnalysis", method = RequestMethod.GET)
     public String itemAnalysis(@RequestParam String code, ModelMap model) {
