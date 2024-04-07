@@ -22,6 +22,7 @@ public class CamelotSearchDao {
     private DatabaseConnectionFactory databaseConnectionFactory;
 
     public Item getItemByAltercode(String altercode) {
+        DatabaseConnectionFactory databaseConnectionFactory=new DatabaseConnectionFactory();
         Connection connection = databaseConnectionFactory.getCamelotMicrosoftSQLConnection();
         Item item = null;
         try {
