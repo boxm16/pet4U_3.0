@@ -118,7 +118,14 @@
                                 out.println("<hr>");
                                 out.println(" <a href='makeBestBeforeStatement.htm?altercode=" + item.getCode() + "' class='btn btn-danger btn-lg' role='button' aria-disabled='true'><h3>Best Before</h3></a>");
                                 out.println("<hr>");
-                                out.println(" <a href='itemAnalysis.htm?code=" + item.getCode() + "' class='btn btn-info btn-lg' role='button' aria-disabled='true'><h3>Show Item Analysis</h3></a>");
+
+                                String userName = (String) session.getAttribute("userName");
+                                if (userName != null) {
+                                    if (userName.equals("me") || userName.equals("super")) {
+                                        out.println(" <a href='itemAnalysis.htm?code=" + item.getCode() + "' class='btn btn-info btn-lg' role='button' aria-disabled='true'><h3>Show Item Analysis</h3></a>");
+                                    }
+                                }
+
                                 out.println("<hr>");
                                 out.println(" <a href='getItemForNote.htm?altercode=" + item.getCode() + "' class='btn btn-warning btn-lg' role='button' aria-disabled='true'><h3>Make Note</h3></a>");
                                 out.println("<hr>");
