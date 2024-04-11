@@ -17,6 +17,7 @@ import StockAnalysis.StockAnalysisDao;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,7 +28,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class AnaliticaController {
 
     @RequestMapping(value = "/itemAnalysis", method = RequestMethod.GET)
-    public String itemAnalysis(@RequestParam String code, ModelMap model) {
+    public String itemAnalysis(HttpSession session, @RequestParam String code, ModelMap model) {
+
+        String userName = (String) session.getAttribute("userName");
+
+        if (userName == null) {
+            model.addAttribute("message", "You are not authorized for this paged");
+            return "errorPage";
+        }
+        if (!userName.equals("me")) {
+            model.addAttribute("message", "You are not authorized for this page");
+            return "errorPage";
+        }
 
         SearchDao searchDao = new SearchDao();
         Item item = searchDao.getItemByAltercode(code);
