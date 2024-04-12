@@ -33,7 +33,7 @@ public class CamelotSalesController {
 
         LinkedHashMap<String, SoldItem> camelotAllItemsForSales = camelotSalesDao.getCamelotItemsForSales();
 
-       LinkedHashMap<String, SoldItem> sodlItems = camelotSalesDao.getMonthSales(date, camelotAllItemsForSales);
+       LinkedHashMap<String, SoldItem> sodlItems = camelotSalesDao.getMonthSalesFromMicrosoftDB(date, camelotAllItemsForSales);
         String result = camelotSalesDao.insertNewUpload(date, sodlItems);
         return "monthSales/camelotSalesUpload";
     }

@@ -192,7 +192,7 @@ public class CamelotSalesDao {
         return items;
     }
 
-    LinkedHashMap<String, SoldItem> getMonthSales(String dateString, LinkedHashMap<String, SoldItem> camelotAllItemsForSales) {
+    LinkedHashMap<String, SoldItem> getMonthSalesFromMicrosoftDB(String dateString, LinkedHashMap<String, SoldItem> camelotAllItemsForSales) {
         LocalDate date = LocalDate.parse(dateString);
         LocalDate firstDate = date.with(TemporalAdjusters.firstDayOfMonth());
         LocalDate lastDate = date.with(TemporalAdjusters.lastDayOfMonth());
