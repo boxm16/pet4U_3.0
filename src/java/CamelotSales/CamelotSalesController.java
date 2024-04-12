@@ -33,7 +33,7 @@ public class CamelotSalesController {
 
         LinkedHashMap<String, SoldItem> camelotAllItemsForSales = camelotSalesDao.getCamelotItemsForSales();
 
-       LinkedHashMap<String, SoldItem> sodlItems = camelotSalesDao.getMonthSalesFromMicrosoftDB(date, camelotAllItemsForSales);
+        LinkedHashMap<String, SoldItem> sodlItems = camelotSalesDao.getMonthSalesFromMicrosoftDB(date, camelotAllItemsForSales);
         String result = camelotSalesDao.insertNewUpload(date, sodlItems);
         return "monthSales/camelotSalesUpload";
     }
@@ -88,4 +88,9 @@ public class CamelotSalesController {
         return "monthSales/monthSalesUpload";
     }
      */
+    @RequestMapping(value = "camelotSixMonthsSales")
+    public String camelotSixMonthsSales(ModelMap model) {
+
+        return "camelot/camelotSixMonthsSales";
+    }
 }
