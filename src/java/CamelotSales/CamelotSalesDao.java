@@ -209,7 +209,7 @@ public class CamelotSalesDao {
             while (resultSet.next()) {
                 String code = resultSet.getString("ABBREVIATION").trim();
                 SoldItem soldItem = camelotAllItemsForSales.get(code);
-                soldItem.setShopsSupply(resultSet.getDouble("SALES"));
+                soldItem.setEshopSales(resultSet.getDouble("SALES"));
                 camelotAllItemsForSales.put(code, soldItem);
             }
 
