@@ -5,21 +5,14 @@
  */
 package CamelotSales;
 
-import BasicModel.Item;
-import CamelotItemsOfInterest.CamelotDao;
 import SalesX.SoldItem;
 import Service.Basement;
-import java.io.BufferedOutputStream;
-import java.io.FileOutputStream;
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 @Controller
 public class CamelotSalesController {
@@ -31,10 +24,21 @@ public class CamelotSalesController {
     public String goForCamelotMonthSalesUpload(ModelMap model) {
         model.addAttribute("uploadTitle", "Camelot Last Six Months Upload");
         model.addAttribute("uploadTarget", "camelotMonthSalesUpload.htm");
-        return "monthSales/monthSalesUpload";
+        return "monthSales/camelotSalesUpload";
     }
 
-    @RequestMapping(value = "/camelotMonthSalesUpload", method = RequestMethod.POST)
+    @RequestMapping(value = "camelotMonthSalesUpload")
+    public String camelotMonthSalesUpload(@RequestParam String date, ModelMap model) {
+        CamelotSalesDao camelotSalesDao = new CamelotSalesDao();
+
+        LinkedHashMap<String, SoldItem> camelotAllItemsForSales = camelotSalesDao.getCamelotItemsForSales();
+
+       LinkedHashMap<String, SoldItem> sodlItems = camelotSalesDao.getMonthSales(date, camelotAllItemsForSales);
+        String result = camelotSalesDao.insertNewUpload(date, sodlItems);
+        return "monthSales/camelotSalesUpload";
+    }
+
+    /*   @RequestMapping(value = "/camelotMonthSalesUpload", method = RequestMethod.POST)
     public String camelotMonthSalesUpload(@RequestParam CommonsMultipartFile file, @RequestParam String date, ModelMap model) {
 
         System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
@@ -83,5 +87,5 @@ public class CamelotSalesController {
 
         return "monthSales/monthSalesUpload";
     }
-
+     */
 }

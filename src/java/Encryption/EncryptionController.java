@@ -39,7 +39,7 @@ public class EncryptionController {
 
         System.out.println("Super User Status:" + user);
         if (user == null) {
-            modelMap.addAttribute("message", "You are not authorized for this paged");
+            modelMap.addAttribute("message", "You are not authorized for this page");
             return "errorPage";
         } else if (user.equals(
                 "identified")) {

@@ -5,6 +5,7 @@
  */
 package CamelotSales;
 
+import BasicModel.AltercodeContainer;
 import MonthSales.MonthSales;
 import MonthSales.Sales;
 import SalesX.SoldItem;
@@ -16,7 +17,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -26,7 +30,7 @@ import java.util.logging.Logger;
  */
 public class CamelotSalesDao {
 
-    String insertNewUpload(String date, ArrayList<SoldItem> soldItems) {
+    String insertNewUpload(String date, LinkedHashMap<String, SoldItem> soldItems) {
         System.out.println("STARTING INSERTING UPLOADED DATA");
         System.out.println(" STARTING ADDING ITEMS TO 'camelot_month_sales' INSERTION BATCH");
         try {
@@ -36,8 +40,8 @@ public class CamelotSalesDao {
             connection.setAutoCommit(false);
             PreparedStatement itemInsertStatement = connection.prepareStatement("INSERT INTO camelot_month_sales (code, date, sales) VALUES (?,?,?)");
             int index = 0;
-            for (SoldItem soldItem : soldItems) {
-
+            for (Map.Entry<String, SoldItem> soldItemEntry : soldItems.entrySet()) {
+                SoldItem soldItem = soldItemEntry.getValue();
                 itemInsertStatement.setString(1, soldItem.getCode());
                 itemInsertStatement.setString(2, date);
                 itemInsertStatement.setDouble(3, soldItem.getEshopSales());
@@ -121,12 +125,11 @@ public class CamelotSalesDao {
 
                 int eshopSales = resultSet.getInt("sales");
 
-
                 item.setCode(code);
 
                 Sales sales = new Sales();
                 sales.setEshopSales(eshopSales);
-               
+
                 item.addSales(saleDate, sales);
 
             }
@@ -140,6 +143,84 @@ public class CamelotSalesDao {
         }
 
         return item;
+    }
+
+    LinkedHashMap<String, SoldItem> getCamelotItemsForSales() {
+        LinkedHashMap<String, SoldItem> items = new LinkedHashMap<>();
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+        Connection connection = databaseConnectionFactory.getCamelotMicrosoftSQLConnection();
+
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("select * from WH1 ORDER BY EXPR1, EXPR2;");
+
+            while (resultSet.next()) {
+                String code = resultSet.getString("ABBREVIATION").trim();
+                SoldItem item = null;
+                if (!items.containsKey(code)) {
+                    item = new SoldItem();
+                    item.setCode(resultSet.getString("ABBREVIATION").trim());
+                    item.setDescription(resultSet.getString("NAME").trim());
+                    String position_1 = "";
+                    String position_2 = "";
+                    if (resultSet.getString("EXPR1") != null) {
+                        position_1 = resultSet.getString("EXPR1").trim();
+                    }
+                    if (resultSet.getString("EXPR2") != null) {
+                        position_2 = resultSet.getString("EXPR2").trim();
+                    }
+                    item.setPosition(position_1 + position_2);
+                    item.setQuantity(resultSet.getString("QTYBALANCE").trim());
+                    items.put(code, item);
+                }
+                AltercodeContainer altercodeContainer = new AltercodeContainer();
+                altercodeContainer.setAltercode(resultSet.getString("ALTERNATECODE").trim());
+                if (resultSet.getString("CODEDESCRIPTION") == null) {
+                    altercodeContainer.setStatus("");
+                } else {
+                    altercodeContainer.setStatus(resultSet.getString("CODEDESCRIPTION").trim());
+                }
+                items.get(code).addAltercodeContainer(altercodeContainer);
+
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(CamelotSalesDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return items;
+    }
+
+    LinkedHashMap<String, SoldItem> getMonthSales(String dateString, LinkedHashMap<String, SoldItem> camelotAllItemsForSales) {
+        LocalDate date = LocalDate.parse(dateString);
+        LocalDate firstDate = date.with(TemporalAdjusters.firstDayOfMonth());
+        LocalDate lastDate = date.with(TemporalAdjusters.lastDayOfMonth());
+
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+        Connection connection = databaseConnectionFactory.getCamelotMicrosoftSQLConnection();
+
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT ITEMCODE, SUM(QTY) AS SALES"
+                    + "  FROM [fotiou].[dbo].[WH_SALES] WHERE ENTRYDATE >= '" + firstDate + "' "
+                    + "AND ENTRYDATE <= '" + lastDate + "' group by ITEMCODE order by ITEMCODE;");
+
+            while (resultSet.next()) {
+                String code = resultSet.getString("ABBREVIATION").trim();
+                SoldItem soldItem = camelotAllItemsForSales.get(code);
+                soldItem.setShopsSupply(resultSet.getDouble("SALES"));
+                camelotAllItemsForSales.put(code, soldItem);
+            }
+
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(CamelotSalesDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return camelotAllItemsForSales;
+
     }
 
 }
