@@ -207,7 +207,7 @@ public class CamelotSalesDao {
                     + "AND ENTRYDATE <= '" + lastDate + "' group by ITEMCODE order by ITEMCODE;");
 
             while (resultSet.next()) {
-                String code = resultSet.getString("ABBREVIATION").trim();
+                String code = resultSet.getString("ITEMCODE").trim();
                 SoldItem soldItem = camelotAllItemsForSales.get(code);
                 soldItem.setEshopSales(resultSet.getDouble("SALES"));
                 camelotAllItemsForSales.put(code, soldItem);
