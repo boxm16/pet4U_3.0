@@ -209,7 +209,9 @@ public class CamelotSalesDao {
             while (resultSet.next()) {
                 String code = resultSet.getString("ITEMCODE").trim();
                 SoldItem soldItem = camelotAllItemsForSales.get(code);
-                soldItem.setEshopSales(resultSet.getDouble("SALES"));
+                double sales = resultSet.getDouble("SALES");
+                System.out.println(code+" "+sales);
+                soldItem.setEshopSales(sales);
                 camelotAllItemsForSales.put(code, soldItem);
             }
 
