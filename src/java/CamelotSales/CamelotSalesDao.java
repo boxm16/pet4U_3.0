@@ -230,8 +230,8 @@ public class CamelotSalesDao {
 
     }
 
-    LinkedHashMap<String, MonthSales> getSales(List<String> sixMonthsPeriod) {
-        LinkedHashMap<String, MonthSales> sales = new LinkedHashMap<String, MonthSales>();
+    LinkedHashMap<String, Double> getSales(List<String> sixMonthsPeriod) {
+        LinkedHashMap<String, Double> sales = new LinkedHashMap<String, Double>();
 
         String firstDate = sixMonthsPeriod.get(0);
         String lastDate = sixMonthsPeriod.get(5);
@@ -241,7 +241,7 @@ public class CamelotSalesDao {
         Connection connection;
         Statement statement;
         ResultSet resultSet;
-        MonthSales item = new MonthSales();
+
         try {
             DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
             connection = databaseConnectionFactory.getMySQLConnection();
@@ -251,20 +251,11 @@ public class CamelotSalesDao {
             resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
                 String code = resultSet.getString("code");
-
-                String date = resultSet.getString("date");
-                DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-                LocalDate saleDate = LocalDate.parse(date, formatter2);
-
-                int eshopSales = resultSet.getInt("sales");
-
-                item.setCode(code);
-
-                /*   Sales sales = new Sales();
-                sales.setEshopSales(eshopSales);
-
-                item.addSales(saleDate, sales);
-                 */
+                double eshopSales = resultSet.getDouble("sales");
+                if (sales.containsKey(code)) {
+                    eshopSales = sales.get(code) + eshopSales;
+                }
+                sales.put(code, eshopSales);
             }
 
             resultSet.close();
