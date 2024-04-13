@@ -969,7 +969,7 @@ public class EndoDaoX {
     private boolean endoIsChanged(EndoApostolis endoApostolis, EndoApostolis lockedEndo) {
         LinkedHashMap<String, Item> items = endoApostolis.getItems();
         LinkedHashMap<String, Item> items1 = lockedEndo.getItems();
-        System.out.println("items size: " + items.size() + "--" + "items1 size: " + items1.size());
+        System.out.println("Endo Apostolis ID: "+endoApostolis+" items size: " + items.size() + "--" + "items1 size: " + items1.size());
         for (Map.Entry<String, Item> itemsEntry : items.entrySet()) {
             String key = itemsEntry.getKey();
             Item removedItem = items1.remove(key);
