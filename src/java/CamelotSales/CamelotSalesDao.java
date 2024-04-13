@@ -20,6 +20,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -229,7 +230,7 @@ public class CamelotSalesDao {
 
     }
 
-    LinkedHashMap<String, MonthSales> getSales(ArrayList<String> sixMonthsPeriod) {
+    LinkedHashMap<String, MonthSales> getSales(List<String> sixMonthsPeriod) {
         LinkedHashMap<String, MonthSales> sales = new LinkedHashMap<String, MonthSales>();
 
         String firstDate = sixMonthsPeriod.get(0);
