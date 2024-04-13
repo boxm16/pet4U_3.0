@@ -230,8 +230,7 @@ public class CamelotSalesDao {
 
     }
 
-    LinkedHashMap<String, Double> getSales(List<String> sixMonthsPeriod) {
-        LinkedHashMap<String, Double> sales = new LinkedHashMap<String, Double>();
+    LinkedHashMap<String, SoldItem> getSales(LinkedHashMap<String, SoldItem> camelotItemsForSales, List<String> sixMonthsPeriod) {
 
         String firstDate = sixMonthsPeriod.get(0);
         String lastDate = sixMonthsPeriod.get(5);
@@ -252,10 +251,15 @@ public class CamelotSalesDao {
             while (resultSet.next()) {
                 String code = resultSet.getString("code");
                 double eshopSales = resultSet.getDouble("sales");
-                if (sales.containsKey(code)) {
-                    eshopSales = sales.get(code) + eshopSales;
+
+                if (camelotItemsForSales.containsKey(code)) {
+                    SoldItem soldItem = camelotItemsForSales.get(code);
+                    soldItem.setEshopSales(soldItem.getEshopSales() + eshopSales);
+                    camelotItemsForSales.put(code, soldItem);
+                } else {
+                    System.out.println("There is sales for camelot item, but there is not item");
                 }
-                sales.put(code, eshopSales);
+
             }
 
             resultSet.close();
@@ -266,7 +270,7 @@ public class CamelotSalesDao {
             Logger.getLogger(CamelotSalesDao.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        return sales;
+        return camelotItemsForSales;
     }
 
 }

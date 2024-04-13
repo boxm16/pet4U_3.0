@@ -94,9 +94,10 @@ public class CamelotSalesController {
     public String camelotSixMonthsSales(ModelMap model) {
 
         CamelotSalesDao monthSalesDao = new CamelotSalesDao();
+        LinkedHashMap<String, SoldItem> camelotItemsForSales = monthSalesDao.getCamelotItemsForSales();
         ArrayList<String> period = monthSalesDao.getSalesPeriod();
         List<String> sixMonthsPeriod =  period.subList(period.size() - 7, period.size() - 1);
-        LinkedHashMap<String, Double> camelotSales = monthSalesDao.getSales(sixMonthsPeriod);
+        LinkedHashMap<String, SoldItem> camelotSales = monthSalesDao.getSales(camelotItemsForSales, sixMonthsPeriod);
         System.out.println("S:"+camelotSales.size());
         return "camelot/camelotSixMonthsSales";
     }
