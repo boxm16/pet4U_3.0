@@ -237,7 +237,7 @@ public class CamelotSalesDao {
         String lastDate = sixMonthsPeriod.get(5);
 
         String sql = "SELECT * FROM camelot_month_sales WHERE date >='" + firstDate + "' AND date <= '" + lastDate + "' ;";
-
+        System.out.println(sql);
         Connection connection;
         Statement statement;
         ResultSet resultSet;
