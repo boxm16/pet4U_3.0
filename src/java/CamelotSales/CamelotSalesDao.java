@@ -257,7 +257,7 @@ public class CamelotSalesDao {
                     soldItem.setEshopSales(soldItem.getEshopSales() + eshopSales);
                     camelotItemsForSales.put(code, soldItem);
                 } else {
-                    System.out.println("There is sales for camelot item, but there is not item");
+                    System.out.println("There is sales for camelot item, but there is not item." +code);
                 }
 
             }
