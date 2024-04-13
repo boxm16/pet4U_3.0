@@ -229,4 +229,52 @@ public class CamelotSalesDao {
 
     }
 
+    LinkedHashMap<String, MonthSales> getSales(ArrayList<String> sixMonthsPeriod) {
+        LinkedHashMap<String, MonthSales> sales = new LinkedHashMap<String, MonthSales>();
+
+        String firstDate = sixMonthsPeriod.get(0);
+        String lastDate = sixMonthsPeriod.get(5);
+
+        String sql = "SELECT * FROM camelot_month_sales WHERE date >='" + firstDate + "' AND date <= '" + lastDate + "' ;";
+
+        Connection connection;
+        Statement statement;
+        ResultSet resultSet;
+        MonthSales item = new MonthSales();
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            connection = databaseConnectionFactory.getMySQLConnection();
+
+            statement = connection.createStatement();
+
+            resultSet = statement.executeQuery(sql);
+            while (resultSet.next()) {
+                String code = resultSet.getString("code");
+
+                String date = resultSet.getString("date");
+                DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                LocalDate saleDate = LocalDate.parse(date, formatter2);
+
+                int eshopSales = resultSet.getInt("sales");
+
+                item.setCode(code);
+
+                /*   Sales sales = new Sales();
+                sales.setEshopSales(eshopSales);
+
+                item.addSales(saleDate, sales);
+                 */
+            }
+
+            resultSet.close();
+            statement.close();
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(CamelotSalesDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return sales;
+    }
+
 }

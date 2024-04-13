@@ -5,8 +5,10 @@
  */
 package CamelotSales;
 
+import MonthSales.MonthSales;
 import SalesX.SoldItem;
 import Service.Basement;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -91,6 +93,10 @@ public class CamelotSalesController {
     @RequestMapping(value = "camelotSixMonthsSales")
     public String camelotSixMonthsSales(ModelMap model) {
 
+        CamelotSalesDao monthSalesDao = new CamelotSalesDao();
+        ArrayList<String> period = monthSalesDao.getSalesPeriod();
+        ArrayList<String> sixMonthsPeriod = (ArrayList<String>) period.subList(period.size() - 7, period.size() - 1);
+        LinkedHashMap<String, MonthSales> camelotSales = monthSalesDao.getSales(sixMonthsPeriod);
         return "camelot/camelotSixMonthsSales";
     }
 }
