@@ -99,6 +99,7 @@ public class CamelotSalesController {
         List<String> sixMonthsPeriod =  period.subList(period.size() - 7, period.size() - 1);
         LinkedHashMap<String, SoldItem> camelotSales = monthSalesDao.getSales(camelotItemsForSales, sixMonthsPeriod);
         System.out.println("S:"+camelotSales.size());
+        model.addAttribute("camelotSales", camelotSales);
         return "camelot/camelotSixMonthsSales";
     }
 }

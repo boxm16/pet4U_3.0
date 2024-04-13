@@ -248,6 +248,7 @@ public class CamelotSalesDao {
             statement = connection.createStatement();
 
             resultSet = statement.executeQuery(sql);
+            int x=0;
             while (resultSet.next()) {
                 String code = resultSet.getString("code");
                 double eshopSales = resultSet.getDouble("sales");
@@ -257,7 +258,8 @@ public class CamelotSalesDao {
                     soldItem.setEshopSales(soldItem.getEshopSales() + eshopSales);
                     camelotItemsForSales.put(code, soldItem);
                 } else {
-                    System.out.println("There is sales for camelot item, but there is not item." +code);
+                    System.out.println("There is sales for camelot item, but there is not item. " +code +". Total those items: "+x);
+               x++;
                 }
 
             }
