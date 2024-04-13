@@ -976,6 +976,9 @@ public class EndoDaoX {
         for (Map.Entry<String, Item> itemsEntry : items.entrySet()) {
             String key = itemsEntry.getKey();
             Item removedItem = items1.remove(key);
+            if (removedItem == null) {
+                return true;
+            }
             String quantity1 = itemsEntry.getValue().getQuantity();
             String quantity = removedItem.getQuantity();
             if (!quantity.equals(quantity1)) {
