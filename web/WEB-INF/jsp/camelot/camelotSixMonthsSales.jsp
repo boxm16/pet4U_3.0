@@ -56,7 +56,8 @@
                         if (entrySet.getValue().getCode() == null) {
                             out.println("");
                         } else {
-                            out.println(entrySet.getValue().getCode());
+                            out.println("<a  href = 'camelotItemAnalysis.htm?code=" + entrySet.getValue().getCode() + "'  class ='btn btn-info btn-lg' role='button' aria-disabled='true'><h3>" + entrySet.getValue().getCode() + "</h3></a>");
+
                         }
 
                         out.println("</td>");
