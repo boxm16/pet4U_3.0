@@ -22,12 +22,15 @@
                 <div class=" col-sm-4">
                 </div>
                 <div class=" col-sm-4">
-                    <h1>You need authorization for this page</h1>
                     <center>
+                        <h1>You need authorization for this page</h1>
+                        <hr>
                         <form action="authorize.htm">
-                            <h1>  <label for="psw">Password</label>
-                                <input type="password" id="password" name="password">
-                                <input type="submit" value="Submit"></h1>
+                            <h1>  <label for="psw">Password</label></h1>
+                            <hr>
+                            <h1>  <input type="password" id="password" name="password"></h1>
+                            <hr>
+                            <h1>   <input type="submit" value="Submit"></h1>
                         </form>
                     </center>
                 </div>
