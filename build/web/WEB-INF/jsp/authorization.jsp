@@ -17,11 +17,25 @@
     </head>
     <body>
         <div class="container">
-            <form action="authorize.htm">
-                <label for="psw">Password</label>
-                <input type="password" id="password" name="password">
-                <input type="submit" value="Submit">
-            </form>
+
+            <div class="row">
+                <div class=" col-sm-4">
+                </div>
+                <div class=" col-sm-4">
+                    <h1>You need authorization for this page</h1>
+                    <center>
+                        <form action="authorize.htm">
+                            <h1>  <label for="psw">Password</label>
+                                <input type="password" id="password" name="password">
+                                <input type="submit" value="Submit"></h1>
+                        </form>
+                    </center>
+                </div>
+                <div class=" col-sm-4">
+
+                </div>
+            </div>
+
         </div>
 
 
