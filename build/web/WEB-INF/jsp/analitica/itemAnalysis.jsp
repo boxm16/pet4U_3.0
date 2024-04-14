@@ -414,11 +414,18 @@
                                     String[] weekdays = {"Κυριακη.", "Δευτερα.", "Τρίτη", "Τετάρτη", "Πέμπτη.", "Παρασκεύη.", "Σάββατο."};
                                     int day = date0.getDay();
 
-                                    if (currentMonth >= (totalMonths - 6)) {
-                                        out.println("<tr style='background-color:#D0D0D0'>");
+                                   
+
+                                    if (day == 0) {
+                                        out.println("<tr style='background-color: #90EE90;'>");
+
                                     } else {
-                                        out.println("<tr>");
+                                        out.println("<tr >");
+
                                     }
+                                    out.println("<td>");
+                                    out.println(date + "<br>" + weekdays[day]);
+                                    out.println("</td>");
 
                                     out.println("<td>");
                                     out.println(daysSalesEntry.getValue());
