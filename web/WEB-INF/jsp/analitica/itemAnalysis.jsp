@@ -418,7 +418,7 @@
                             <%                                LinkedHashMap<String, Double> daysSales = (LinkedHashMap) request.getAttribute("daysSales");
 
                                 double allDaysSales = 0;
-                                int days = 1;
+                                int days = 0;
                                 for (Map.Entry<String, Double> daysSalesEntry : daysSales.entrySet()) {
                                     String date = daysSalesEntry.getKey();
 
