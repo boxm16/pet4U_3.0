@@ -248,7 +248,7 @@ public class CamelotSalesDao {
             statement = connection.createStatement();
 
             resultSet = statement.executeQuery(sql);
-            int x=0;
+            int x = 0;
             while (resultSet.next()) {
                 String code = resultSet.getString("code");
                 double eshopSales = resultSet.getDouble("sales");
@@ -258,8 +258,8 @@ public class CamelotSalesDao {
                     soldItem.setEshopSales(soldItem.getEshopSales() + eshopSales);
                     camelotItemsForSales.put(code, soldItem);
                 } else {
-                    System.out.println("There is sales for camelot item, but there is not item. " +code +". Total those items: "+x);
-               x++;
+                    System.out.println("There is sales for camelot item, but there is not item. " + code + ". Total those items: " + x);
+                    x++;
                 }
 
             }
@@ -273,6 +273,47 @@ public class CamelotSalesDao {
         }
 
         return camelotItemsForSales;
+    }
+
+    public LinkedHashMap<String, Double> getLast30DaysSales(String itemCode) {
+        LocalDate date = LocalDate.now();
+        LocalDate firstDate = date.minusDays(31);
+        LocalDate lastDate = date.minusDays(1);
+
+        LinkedHashMap<String, Double> daysSales = new LinkedHashMap<>();
+
+        for (int x = 31; x > 0; x--) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            date = date.minusDays(1);
+            String formattedString = date.format(formatter) + " 00:00:00.0";
+            //   System.out.println(formattedString);
+            daysSales.put(formattedString, 0.0);
+        }
+
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+        Connection connection = databaseConnectionFactory.getCamelotMicrosoftSQLConnection();
+
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM [fotiou].[dbo].[WH_SALES] WHERE ABBREVIATION='" + itemCode + "' "
+                    + " AND ENTRYDATE >= '" + firstDate + "' "
+                    + "AND ENTRYDATE <= '" + lastDate + "'  ORDER BY ENTRYDATE DESC;");
+
+            while (resultSet.next()) {
+                String day = resultSet.getString("ENTRYDATE").trim();
+                //         System.out.println(day);
+                double sales = resultSet.getDouble("QTY");
+                daysSales.put(day, sales);
+
+            }
+
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(CamelotSalesDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return daysSales;
     }
 
 }

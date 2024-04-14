@@ -150,8 +150,6 @@
 
                             out.println("</tr>");
 
-                       
-
                             out.println("<tr style='color: #BA4A00'>");
                             out.println("<td colspan='2'>");
                             out.println("One Month Average ΕΞΑΓΩΓΕΣ");
@@ -177,67 +175,63 @@
             <div class="row">
                 <div class=" col-sm-4">
                 </div>
+                <center><h3>Day Sales</h3></center>
+                <table>
 
+                    <th>Date</th>
+                    <th>E-Shop Sales</th>
+                    <th>Ενδοδιακ.</th>
+                        <%                                LinkedHashMap<String, Double> daysSales = (LinkedHashMap) request.getAttribute("daysSales");
 
+                            double allDaysSales = 0;
 
+                            for (Map.Entry<String, Double> daysSalesEntry : daysSales.entrySet()) {
+                                String date = daysSalesEntry.getKey();
 
-                <div class=" col-sm-4">
+                                Date date0 = new SimpleDateFormat("yyyy-MM-dd").parse(date);
 
-                </div>
-                <div class=" col-sm-4">
-                    <center><h3>Camelot Stock Analysis</h3></center>
-                    <table>
-                        <th>Date Stamp</th>
-                        <th>State</th>
-                        <th>Quantity</th>
-                            <%                                ArrayList<ItemSnapshot> camelotItemSnapshots = (ArrayList) request.getAttribute("camelotItemSnapshots");
+                                String[] weekdays = {"Κυριακη.", "Δευτερα.", "Τρίτη", "Τετάρτη", "Πέμπτη.", "Παρασκεύη.", "Σάββατο."};
+                                int day = date0.getDay();
 
-                                double camelotStockBefore = 0.0;
-                                if (camelotItemSnapshots.size() == 1) {
-                                    ItemSnapshot camelotItemSnapshot = camelotItemSnapshots.get(0);
-
-                                    Double camelotStock = Double.parseDouble(camelotItemSnapshot.getQuantity());
-
-                                    String date = camelotItemSnapshot.getDateStamp();
-                                    Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(date);
-
-                                    String[] weekdays = {"Κυριακη.", "Δευτερα.", "Τρίτη", "Τετάρτη", "Πέμπτη.", "Παρασκεύη.", "Σάββατο."};
-                                    int day = date1.getDay();
-
-                                    if (day == 0) {
-                                        out.println("<tr style='background-color: #90EE90;'>");
-
-                                    } else {
-                                        out.println("<tr >");
-
-                                    }
-                                    out.println("<td>");
-                                    out.println(camelotItemSnapshot.getReformatedDateStamp() + "<br>" + weekdays[day]);
-                                    out.println("</td>");
-
-                                    out.println("<td>");
-                                    out.println(camelotItemSnapshot.getState());
-                                    out.println("</td>");
-
-                                    if (camelotItemSnapshot.getQuantity().equals("0") || camelotItemSnapshot.getQuantity().equals("0.000000")) {
-                                        out.println("<td style='background-color: #F7B2F7'>");
-                                    } else {
-                                        out.println("<td>");
-                                    }
-                                    out.println(camelotItemSnapshot.getQuantity());
-                                    out.println("</td>");
-
-                                    out.println("<td>");
-                                    out.println();
-                                    out.println("</td>");
-                                    out.println("</tr>");
+                                if (day == 0) {
+                                    out.println("<tr style='background-color: #90EE90;'>");
 
                                 } else {
+                                    out.println("<tr >");
 
-                                    for (int y = 0; y < camelotItemSnapshots.size() - 1; y++) {
-                                        ItemSnapshot camelotItemSnapshot = camelotItemSnapshots.get(y);
+                                }
 
-                                        camelotStockBefore = Double.parseDouble(camelotItemSnapshots.get(y + 1).getQuantity());
+                                SimpleDateFormat format2 = new SimpleDateFormat("dd-MM-yyyy");
+
+                                out.println("<td>");
+                                out.println(format2.format(date0) + "<br>" + weekdays[day]);
+                                out.println("</td>");
+
+                                out.println("<td>");
+                                out.println(daysSalesEntry.getValue());
+                                out.println("</td>");
+
+                                out.println("</tr>");
+
+                            }
+
+
+                        %>
+
+                    <div class=" col-sm-4">
+
+                    </div>
+                    <div class=" col-sm-4">
+                        <center><h3>Camelot Stock Analysis</h3></center>
+                        <table>
+                            <th>Date Stamp</th>
+                            <th>State</th>
+                            <th>Quantity</th>
+                                <%                                ArrayList<ItemSnapshot> camelotItemSnapshots = (ArrayList) request.getAttribute("camelotItemSnapshots");
+
+                                    double camelotStockBefore = 0.0;
+                                    if (camelotItemSnapshots.size() == 1) {
+                                        ItemSnapshot camelotItemSnapshot = camelotItemSnapshots.get(0);
 
                                         Double camelotStock = Double.parseDouble(camelotItemSnapshot.getQuantity());
 
@@ -271,15 +265,58 @@
                                         out.println("</td>");
 
                                         out.println("<td>");
-                                        out.println(camelotStock - camelotStockBefore);
+                                        out.println();
                                         out.println("</td>");
                                         out.println("</tr>");
-                                        camelotStockBefore = camelotStock;
+
+                                    } else {
+
+                                        for (int y = 0; y < camelotItemSnapshots.size() - 1; y++) {
+                                            ItemSnapshot camelotItemSnapshot = camelotItemSnapshots.get(y);
+
+                                            camelotStockBefore = Double.parseDouble(camelotItemSnapshots.get(y + 1).getQuantity());
+
+                                            Double camelotStock = Double.parseDouble(camelotItemSnapshot.getQuantity());
+
+                                            String date = camelotItemSnapshot.getDateStamp();
+                                            Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(date);
+
+                                            String[] weekdays = {"Κυριακη.", "Δευτερα.", "Τρίτη", "Τετάρτη", "Πέμπτη.", "Παρασκεύη.", "Σάββατο."};
+                                            int day = date1.getDay();
+
+                                            if (day == 0) {
+                                                out.println("<tr style='background-color: #90EE90;'>");
+
+                                            } else {
+                                                out.println("<tr >");
+
+                                            }
+                                            out.println("<td>");
+                                            out.println(camelotItemSnapshot.getReformatedDateStamp() + "<br>" + weekdays[day]);
+                                            out.println("</td>");
+
+                                            out.println("<td>");
+                                            out.println(camelotItemSnapshot.getState());
+                                            out.println("</td>");
+
+                                            if (camelotItemSnapshot.getQuantity().equals("0") || camelotItemSnapshot.getQuantity().equals("0.000000")) {
+                                                out.println("<td style='background-color: #F7B2F7'>");
+                                            } else {
+                                                out.println("<td>");
+                                            }
+                                            out.println(camelotItemSnapshot.getQuantity());
+                                            out.println("</td>");
+
+                                            out.println("<td>");
+                                            out.println(camelotStock - camelotStockBefore);
+                                            out.println("</td>");
+                                            out.println("</tr>");
+                                            camelotStockBefore = camelotStock;
+                                        }
                                     }
-                                }
-                            %>
-                    </table>
-                </div>
+                                %>
+                        </table>
+                    </div>
 
             </div>
         </div>

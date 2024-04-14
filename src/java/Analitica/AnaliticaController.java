@@ -129,9 +129,13 @@ public class AnaliticaController {
         Item item = searchDao.getItemByAltercode(code);
         model.addAttribute("item", item);
 
-        CamelotSalesDao monthSalesDao = new CamelotSalesDao();
-        ArrayList<String> period = monthSalesDao.getSalesPeriod();
-        MonthSales itemSales = monthSalesDao.getItemSales(item.getCode());
+        CamelotSalesDao camelotSalesDao = new CamelotSalesDao();
+
+        LinkedHashMap<String, Double> daysSales = camelotSalesDao.getLast30DaysSales(item.getCode());
+        model.addAttribute("daysSales", daysSales);
+
+        ArrayList<String> period = camelotSalesDao.getSalesPeriod();
+        MonthSales itemSales = camelotSalesDao.getItemSales(item.getCode());
 
         for (String p : period) {
             DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
