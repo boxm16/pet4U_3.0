@@ -275,7 +275,7 @@ public class MonthSalesDao {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             date = date.minusDays(1);
             String formattedString = date.format(formatter)+" 00:00:00.0";
-            System.out.println(formattedString);
+         //   System.out.println(formattedString);
             daysSales.put(formattedString, 0.0);
         }
 
@@ -290,7 +290,7 @@ public class MonthSalesDao {
 
             while (resultSet.next()) {
                 String day = resultSet.getString("ENTRYDATE").trim();
-                 System.out.println(day);
+        //         System.out.println(day);
                 double sales = resultSet.getDouble("QTY");
                 daysSales.put(day, sales);
 
