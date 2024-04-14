@@ -295,7 +295,7 @@ public class CamelotSalesDao {
 
         try {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM [fotiou].[dbo].[WH_SALES] WHERE ABBREVIATION='" + itemCode + "' "
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM [fotiou].[dbo].[WH_SALES] WHERE ITEMCODE='" + itemCode + "' "
                     + " AND ENTRYDATE >= '" + firstDate + "' "
                     + "AND ENTRYDATE <= '" + lastDate + "'  ORDER BY ENTRYDATE DESC;");
 
