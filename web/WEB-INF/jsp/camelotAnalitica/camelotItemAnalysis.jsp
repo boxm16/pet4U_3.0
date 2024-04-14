@@ -60,7 +60,7 @@
                     <h5><a href="index.htm">INDEX</a></h5>
                     <h5>Camelot Item Analysis</h5>
 
-                    <table> 
+                    <table style='background-color: #DB98EF'> 
                         <tr><td>Code</td><td>${item.code}</td></tr>
                         <tr><td>Description</td><td>${item.description}</td></tr>
                         <tr><td>Position</td><td>${item.position}</td></tr>

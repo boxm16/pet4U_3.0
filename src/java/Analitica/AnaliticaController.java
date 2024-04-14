@@ -107,8 +107,20 @@ public class AnaliticaController {
 
     //----------------++++++++++++++++++++_________________________
     @RequestMapping(value = "/camelotItemAnalysis", method = RequestMethod.GET)
-    public String camelotItemAnalysis(@RequestParam(name = "code") String code, ModelMap model) {
+    public String camelotItemAnalysis(HttpSession session, @RequestParam(name = "code") String code, ModelMap model) {
         System.out.println("-------------------------");
+        System.out.println("Camelot Item Analisys");
+        String userName = (String) session.getAttribute("userName");
+
+        if (userName == null) {
+            model.addAttribute("message", "You are not authorized for this paged");
+            return "errorPage";
+        }
+        if (!userName.equals("me")) {
+            model.addAttribute("message", "You are not authorized for this page");
+            return "errorPage";
+        }
+
         CamelotSearchDao searchDao = new CamelotSearchDao();
         Item item = searchDao.getItemByAltercode(code);
         model.addAttribute("item", item);
