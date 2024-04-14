@@ -93,6 +93,44 @@
                             out.println("</tr>");
                         %>
                     </table>
+                    <hr>
+                    <center><h3>Offers</h3></center>
+                    <table>
+                        <th>Titel</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                            <%                                ArrayList<Offer> offers = (ArrayList<Offer>) request.getAttribute("offers");
+
+                                for (Offer offer : offers) {
+
+                                    out.println("<tr>");
+
+                                    out.println("<td>");
+                                    out.println(offer.getTitle());
+                                    out.println("</td>");
+
+                                    out.println("<td>");
+                                    out.println(offer.getStartDateString());
+                                    out.println("</td>");
+
+                                    LocalDate endDate = offer.getEndDate();
+                                    if (endDate == null) {
+                                        out.println("<td>");
+                                        out.println("<a href='endOfferDashboard.htm?id=" + offer.getId() + "'>End Offer</a>");
+                                        out.println("</td>");
+                                    } else {
+
+                                        out.println("<td>");
+                                        out.println(offer.getEndDateString());
+                                        out.println("</td>");
+                                    }
+
+                                    out.println("</tr>");
+
+                                }
+
+                            %>
+                    </table>
                 </div>
 
                 <div class=" col-sm-4">
@@ -358,40 +396,38 @@
             <hr>
             <div class="row">
                 <div class=" col-sm-4">
-                    <center><h3>Offers</h3></center>
+                    <center><h3>Day Sales</h3></center>
                     <table>
-                        <th>Titel</th>
-                        <th>Start Date</th>
-                        <th>End Date</th>
-                            <%                                ArrayList<Offer> offers = (ArrayList<Offer>) request.getAttribute("offers");
+                        <th>-</th>
+                        <th>Date</th>
+                        <th>E-Shop Sales</th>
+                        <th>Ενδοδιακ.</th>
+                            <%                                LinkedHashMap<String, Double> daysSales = (LinkedHashMap) request.getAttribute("daysSales");
 
-                                for (Offer offer : offers) {
+                                double allDaysSales = 0;
 
-                                    out.println("<tr>");
+                                for (Map.Entry<String, Double> daysSalesEntry : daysSales.entrySet()) {
+                                    String date = daysSalesEntry.getKey();
 
-                                    out.println("<td>");
-                                    out.println(offer.getTitle());
-                                    out.println("</td>");
+                                    Date date0 = new SimpleDateFormat("yyyy-MM-dd").parse(date);
 
-                                    out.println("<td>");
-                                    out.println(offer.getStartDateString());
-                                    out.println("</td>");
+                                    String[] weekdays = {"Κυριακη.", "Δευτερα.", "Τρίτη", "Τετάρτη", "Πέμπτη.", "Παρασκεύη.", "Σάββατο."};
+                                    int day = date0.getDay();
 
-                                    LocalDate endDate = offer.getEndDate();
-                                    if (endDate == null) {
-                                        out.println("<td>");
-                                        out.println("<a href='endOfferDashboard.htm?id=" + offer.getId() + "'>End Offer</a>");
-                                        out.println("</td>");
+                                    if (currentMonth >= (totalMonths - 6)) {
+                                        out.println("<tr style='background-color:#D0D0D0'>");
                                     } else {
-
-                                        out.println("<td>");
-                                        out.println(offer.getEndDateString());
-                                        out.println("</td>");
+                                        out.println("<tr>");
                                     }
 
+                                    out.println("<td>");
+                                    out.println(daysSalesEntry.getValue());
+                                    out.println("</td>");
+                                    
                                     out.println("</tr>");
 
                                 }
+
 
                             %>
                     </table>
