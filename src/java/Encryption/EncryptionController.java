@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class EncryptionController {
 
-    @RequestMapping(value = "authorization", method = RequestMethod.POST)
+    @RequestMapping(value = "authorize", method = RequestMethod.POST)
     public String encryptedIndexLefteris(HttpSession session, @RequestParam(name = "password") String password) {
         if (password.equals("per4ito")) {
             session.setAttribute("user", "identified");
