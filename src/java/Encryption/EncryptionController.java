@@ -16,7 +16,7 @@ public class EncryptionController {
         if (password.equals("per4ito")) {
             session.setAttribute("user", "identified");
             session.setAttribute("userName", "me");
-            return "adminIndex.htm";
+            return "adminIndex";
         } else {
             return "errorPage";
         }
@@ -26,7 +26,7 @@ public class EncryptionController {
     public String encryptedIndexMe(HttpSession session) {
         session.setAttribute("user", "identified");
         session.setAttribute("userName", "me");
-        return "adminIndex.htm";
+        return "adminIndex";
     }
 
     @RequestMapping(value = "encryptedIndexLefteris", method = RequestMethod.GET)
@@ -38,13 +38,16 @@ public class EncryptionController {
 
     @RequestMapping(value = "adminIndex", method = RequestMethod.GET)
     public String adminIndex(HttpSession session, ModelMap modelMap, HttpServletRequest req) {
-        String user = (String) session.getAttribute("user");
+    
         String userName = (String) session.getAttribute("userName");
 
         if (userName == null) {
             return "authorization";
         }
-        return "adminIndex";
+        if (userName.equals("me")) {
+            return "adminIndex";
+        }
+        return "authorization";
 
     }
 }
