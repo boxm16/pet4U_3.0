@@ -34,7 +34,7 @@ public class AnaliticaController {
         String userName = (String) session.getAttribute("userName");
 
         if (userName == null) {
-            model.addAttribute("message", "You are not authorized for this paged");
+            model.addAttribute("message", "You are not authorized for this page");
             return "errorPage";
         }
         if (!userName.equals("me")) {
@@ -117,7 +117,7 @@ public class AnaliticaController {
         String userName = (String) session.getAttribute("userName");
 
         if (userName == null) {
-            model.addAttribute("message", "You are not authorized for this paged");
+            model.addAttribute("message", "You are not authorized for this page");
             return "errorPage";
         }
         if (!userName.equals("me")) {
