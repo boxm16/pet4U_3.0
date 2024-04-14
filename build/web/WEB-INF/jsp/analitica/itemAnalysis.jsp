@@ -398,7 +398,7 @@
                 <div class=" col-sm-4">
                     <center><h3>Day Sales</h3></center>
                     <table>
-                      
+
                         <th>Date</th>
                         <th>E-Shop Sales</th>
                         <th>Ενδοδιακ.</th>
@@ -414,8 +414,6 @@
                                     String[] weekdays = {"Κυριακη.", "Δευτερα.", "Τρίτη", "Τετάρτη", "Πέμπτη.", "Παρασκεύη.", "Σάββατο."};
                                     int day = date0.getDay();
 
-                                   
-
                                     if (day == 0) {
                                         out.println("<tr style='background-color: #90EE90;'>");
 
@@ -423,14 +421,17 @@
                                         out.println("<tr >");
 
                                     }
+
+                                    SimpleDateFormat format2 = new SimpleDateFormat("dd-MM-yyyy");
+
                                     out.println("<td>");
-                                    out.println(date0 + "<br>" + weekdays[day]);
+                                    out.println(format2.format(date0) + "<br>" + weekdays[day]);
                                     out.println("</td>");
 
                                     out.println("<td>");
                                     out.println(daysSalesEntry.getValue());
                                     out.println("</td>");
-                                    
+
                                     out.println("</tr>");
 
                                 }
