@@ -6,15 +6,27 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class EncryptionController {
+
+    @RequestMapping(value = "authorization", method = RequestMethod.POST)
+    public String encryptedIndexLefteris(HttpSession session, @RequestParam(name = "password") String password) {
+        if (password.equals("per4ito")) {
+            session.setAttribute("user", "identified");
+            session.setAttribute("userName", "me");
+            return "adminIndex.htm";
+        } else {
+            return "errorPage";
+        }
+    }
 
     @RequestMapping(value = "encryptedIndexMe", method = RequestMethod.GET)
     public String encryptedIndexMe(HttpSession session) {
         session.setAttribute("user", "identified");
         session.setAttribute("userName", "me");
-        return "redirect:adminIndex.htm";
+        return "adminIndex.htm";
     }
 
     @RequestMapping(value = "encryptedIndexLefteris", method = RequestMethod.GET)

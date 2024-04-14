@@ -25,7 +25,7 @@
                     <center>
                         <h1>You need authorization for this page</h1>
                         <hr>
-                        <form action="authorize.htm">
+                        <form action="authorize.htm" method="POST">
                             <h1>  <label for="psw">Password</label></h1>
                             <hr>
                             <h1>  <input type="password" id="password" name="password"></h1>
