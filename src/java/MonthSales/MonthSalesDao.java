@@ -270,8 +270,8 @@ public class MonthSalesDao {
         LocalDate date = LocalDate.now();
         for (int x = 31; x > 0; x--) {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            LocalDate d = date.minusDays(x);
-            String formattedString = d.format(formatter);
+            date= date.minusDays(x);
+            String formattedString = date.format(formatter);
             daysSales.put(formattedString, 0.0);
         }
         LocalDate firstDate = date.minusDays(31);
