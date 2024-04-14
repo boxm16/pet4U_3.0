@@ -265,17 +265,18 @@ public class MonthSalesDao {
     }
 
     public LinkedHashMap<String, Double> getLast30DaysSales(String itemCode) {
+        LocalDate date = LocalDate.now();
+        LocalDate firstDate = date.minusDays(31);
+        LocalDate lastDate = date.minusDays(1);
 
         LinkedHashMap<String, Double> daysSales = new LinkedHashMap<>();
-        LocalDate date = LocalDate.now();
+
         for (int x = 31; x > 0; x--) {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            date= date.minusDays(x);
+            date = date.minusDays(x);
             String formattedString = date.format(formatter);
             daysSales.put(formattedString, 0.0);
         }
-        LocalDate firstDate = date.minusDays(31);
-        LocalDate lastDate = date.minusDays(1);
 
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
         Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
