@@ -455,14 +455,21 @@
                                 out.println("<td>");
                                 out.println("Days");
                                 out.println("</td>");
+                                out.println("<td>");
                                 out.println(days);
+                                out.println("</td>");
+
                                 out.println("</tr>");
 
                                 out.println("<tr>");
                                 out.println("<td>");
                                 out.println("Average Sales <br> For One Day");
                                 out.println("</td>");
+
+                                out.println("<td>");
                                 out.println(allDaysSales / days);
+                                out.println("</td>");
+
                                 out.println("</tr>");
 
 
