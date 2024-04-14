@@ -91,10 +91,17 @@
                             }
                             out.println("</td>");
                             out.println("</tr>");
+                            String itemCode = item.getCode();
+                            if (item.getCode().contains(".-WE")) {
+                                itemCode = item.getCode().replace(".-WE", "");
+                            }
+                            if (itemCode.contains("-WE")) {
+                                itemCode = itemCode.replace("-WE", "");
+                            }
 
                             out.println("<tr>");
                             out.println("<td colspan='2' >");
-                            out.println("<a  href = 'camelotItemAnalysis.htm?code=" + item.getCode() + "' target='_blank'>Analysis </a>");
+                            out.println("<a  href = 'camelotItemAnalysis.htm?code=" + item.getCode() + "' target='_blank'>Camelot Analysis </a>");
                             out.println("</td>");
                             out.println("</tr>");
                         %>
