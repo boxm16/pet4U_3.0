@@ -117,7 +117,9 @@
                 <hr>
                 <a href="goForCamelotMonthSalesUpload.htm"><h1>Go For CAMELOT Month Sales  Upload</h1></a>
                 <hr>   <hr>
-                <a href="index.htm"><h1>index</h1></a>
+                <a href="index.htm"><h1>INDEX</h1></a>
+                <hr>   <hr>
+                <a href="signOut.htm"><h1>Sign Out</h1></a>
             </center>
         </div>
     </body>

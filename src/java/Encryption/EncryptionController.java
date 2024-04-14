@@ -50,6 +50,12 @@ public class EncryptionController {
             return "adminIndex";
         }
         return "authorization";
-
+    }
+    
+       @RequestMapping(value = "signOut", method = RequestMethod.GET)
+    public String signOut(HttpSession session) {
+        session.setAttribute("user", null);
+        session.setAttribute("userName", null);
+        return "adminIndex";
     }
 }
