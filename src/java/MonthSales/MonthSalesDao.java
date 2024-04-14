@@ -273,7 +273,7 @@ public class MonthSalesDao {
 
         for (int x = 31; x > 0; x--) {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            date = date.minusDays(x);
+            date = date.minusDays(1);
             String formattedString = date.format(formatter);
             daysSales.put(formattedString, 0.0);
         }
