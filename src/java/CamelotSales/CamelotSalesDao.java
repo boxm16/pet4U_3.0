@@ -277,12 +277,12 @@ public class CamelotSalesDao {
 
     public LinkedHashMap<String, Double> getLast30DaysSales(String itemCode) {
         LocalDate date = LocalDate.now();
-        LocalDate firstDate = date.minusDays(29);
+        LocalDate firstDate = date.minusDays(30);
         LocalDate lastDate = date.minusDays(1);
 
         LinkedHashMap<String, Double> daysSales = new LinkedHashMap<>();
 
-        for (int x = 31; x > 0; x--) {
+        for (int x = 30; x > 0; x--) {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             date = date.minusDays(1);
             String formattedString = date.format(formatter) + " 00:00:00.0";
