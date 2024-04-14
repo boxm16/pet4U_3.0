@@ -184,43 +184,43 @@
 
                         <th>Date</th>
                         <th>E-Shop Sales</th>
-                        <th>Ενδοδιακ.</th>
-                            <%                                LinkedHashMap<String, Double> daysSales = (LinkedHashMap) request.getAttribute("daysSales");
 
-                                double allDaysSales = 0;
+                        <%                                LinkedHashMap<String, Double> daysSales = (LinkedHashMap) request.getAttribute("daysSales");
 
-                                for (Map.Entry<String, Double> daysSalesEntry : daysSales.entrySet()) {
-                                    String date = daysSalesEntry.getKey();
+                            double allDaysSales = 0;
 
-                                    Date date0 = new SimpleDateFormat("yyyy-MM-dd").parse(date);
+                            for (Map.Entry<String, Double> daysSalesEntry : daysSales.entrySet()) {
+                                String date = daysSalesEntry.getKey();
 
-                                    String[] weekdays = {"Κυριακη.", "Δευτερα.", "Τρίτη", "Τετάρτη", "Πέμπτη.", "Παρασκεύη.", "Σάββατο."};
-                                    int day = date0.getDay();
+                                Date date0 = new SimpleDateFormat("yyyy-MM-dd").parse(date);
 
-                                    if (day == 0) {
-                                        out.println("<tr style='background-color: #90EE90;'>");
+                                String[] weekdays = {"Κυριακη.", "Δευτερα.", "Τρίτη", "Τετάρτη", "Πέμπτη.", "Παρασκεύη.", "Σάββατο."};
+                                int day = date0.getDay();
 
-                                    } else {
-                                        out.println("<tr >");
+                                if (day == 0) {
+                                    out.println("<tr style='background-color: #90EE90;'>");
 
-                                    }
-
-                                    SimpleDateFormat format2 = new SimpleDateFormat("dd-MM-yyyy");
-
-                                    out.println("<td>");
-                                    out.println(format2.format(date0) + "<br>" + weekdays[day]);
-                                    out.println("</td>");
-
-                                    out.println("<td>");
-                                    out.println(daysSalesEntry.getValue());
-                                    out.println("</td>");
-
-                                    out.println("</tr>");
+                                } else {
+                                    out.println("<tr >");
 
                                 }
 
+                                SimpleDateFormat format2 = new SimpleDateFormat("dd-MM-yyyy");
 
-                            %>
+                                out.println("<td>");
+                                out.println(format2.format(date0) + "<br>" + weekdays[day]);
+                                out.println("</td>");
+
+                                out.println("<td>");
+                                out.println(daysSalesEntry.getValue());
+                                out.println("</td>");
+
+                                out.println("</tr>");
+
+                            }
+
+
+                        %>
                     </table>
                 </div>
                 <div class=" col-sm-4">
