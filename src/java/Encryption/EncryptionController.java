@@ -26,28 +26,13 @@ public class EncryptionController {
 
     @RequestMapping(value = "adminIndex", method = RequestMethod.GET)
     public String adminIndex(HttpSession session, ModelMap modelMap, HttpServletRequest req) {
-
-        /*   String ipAddress = req.getRemoteAddr();
-        System.out.println("Request IP Address: " + ipAddress);
-        
-        if (ipAddress.equals("192.168.0.141") || ipAddress.contains("0:0:0:0:0:0:0:1")) {
-            session.setAttribute("user", "identified");
-            session.setAttribute("userName", "super");
-            return "adminIndex";
-        }
-         */
         String user = (String) session.getAttribute("user");
         String userName = (String) session.getAttribute("userName");
-        System.out.println("Super User Status:" + user);
-        if (user == null) {
-            modelMap.addAttribute("message", "You are not authorized for this page");
-            return "errorPage";
-        } else if (user.equals("identified") && userName.equals("me")) {
-            return "adminIndex";
-        } else {
-            modelMap.addAttribute("message", "You are not authorized for this page");
-            return "errorPage";
+
+        if (userName == null) {
+            return "authorization";
         }
+        return "adminIndex";
 
     }
 }
