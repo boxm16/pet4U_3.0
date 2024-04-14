@@ -56,6 +56,6 @@ public class EncryptionController {
     public String signOut(HttpSession session) {
         session.setAttribute("user", null);
         session.setAttribute("userName", null);
-        return "adminIndex";
+        return "index";
     }
 }
