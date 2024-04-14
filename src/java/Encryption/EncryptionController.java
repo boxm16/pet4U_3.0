@@ -18,6 +18,8 @@ public class EncryptionController {
             session.setAttribute("userName", "me");
             return "adminIndex";
         } else {
+            session.setAttribute("user", "unidentified");
+            session.setAttribute("userName", "unidentified");
             return "errorPage";
         }
     }
@@ -38,7 +40,7 @@ public class EncryptionController {
 
     @RequestMapping(value = "adminIndex", method = RequestMethod.GET)
     public String adminIndex(HttpSession session, ModelMap modelMap, HttpServletRequest req) {
-    
+
         String userName = (String) session.getAttribute("userName");
 
         if (userName == null) {
