@@ -266,7 +266,7 @@ public class MonthSalesDao {
 
     public LinkedHashMap<String, Double> getLast30DaysSales(String itemCode) {
         LocalDate date = LocalDate.now();
-        LocalDate firstDate = date.minusDays(30);
+        LocalDate firstDate = date.minusDays(29);
         LocalDate lastDate = date.minusDays(1);
 
         LinkedHashMap<String, Double> daysSales = new LinkedHashMap<>();
