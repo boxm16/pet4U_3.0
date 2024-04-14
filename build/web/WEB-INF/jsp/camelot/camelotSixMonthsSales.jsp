@@ -35,7 +35,7 @@
                     <th>CODE</th>
                     <th>POSITION</th>
                     <th>DESCRIPTION</th>
-
+                    <th>Stock Now</th>
                     <th>Eshop <br> Sales </th>
                     <!--     <th>Total<br> Sales In <br>Pieces </th>-->
 
@@ -67,6 +67,10 @@
 
                         out.println("<td>");
                         out.println(entrySet.getValue().getDescription());
+                        out.println("</td>");
+
+                        out.println("<td>");
+                        out.println(entrySet.getValue().getQuantity());
                         out.println("</td>");
 
                         out.println("<td>");
