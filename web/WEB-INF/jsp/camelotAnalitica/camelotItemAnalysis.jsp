@@ -174,6 +174,7 @@
             <hr>
             <div class="row">
                 <div class=" col-sm-4">
+
                 </div>
 
 
@@ -220,6 +221,7 @@
 
 
                             %>
+                    </table>
                 </div>
                 <div class=" col-sm-4">
                     <center><h3>Camelot Stock Analysis</h3></center>
