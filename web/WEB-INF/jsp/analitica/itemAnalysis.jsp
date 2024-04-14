@@ -398,7 +398,7 @@
                 <div class=" col-sm-4">
                     <center><h3>Day Sales</h3></center>
                     <table>
-                        <th>-</th>
+                      
                         <th>Date</th>
                         <th>E-Shop Sales</th>
                         <th>Ενδοδιακ.</th>
@@ -424,7 +424,7 @@
 
                                     }
                                     out.println("<td>");
-                                    out.println(date + "<br>" + weekdays[day]);
+                                    out.println(date0 + "<br>" + weekdays[day]);
                                     out.println("</td>");
 
                                     out.println("<td>");
