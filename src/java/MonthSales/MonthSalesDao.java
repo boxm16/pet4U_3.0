@@ -263,4 +263,36 @@ public class MonthSalesDao {
 
         return salesPeriod;
     }
+
+    public LinkedHashMap<String, Double> getLast30DaysSales(String itemCode) {
+
+        LinkedHashMap<String, Double> daysSales = new LinkedHashMap<>();
+        LocalDate date = LocalDate.now();
+        LocalDate firstDate = date.minusDays(31);
+        LocalDate lastDate = date.minusDays(1);
+
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+        Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
+
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM [petworld].[dbo].[WH_SALES_VAR] WHERE ABBREVIATION='" + itemCode + "' "
+                    + " AND ENTRYDATE >= '" + firstDate + "' "
+                    + "AND ENTRYDATE <= '" + lastDate + "'  ORDER BY ENTRYDATE DESC;");
+
+            while (resultSet.next()) {
+                String day = resultSet.getString("ENTRYDATE").trim();
+                double sales = resultSet.getDouble("QTY");
+                daysSales.put(day, sales);
+
+            }
+
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(MonthSalesDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return daysSales;
+    }
 }

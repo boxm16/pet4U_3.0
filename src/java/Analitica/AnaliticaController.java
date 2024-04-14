@@ -17,6 +17,7 @@ import StockAnalysis.StockAnalysisDao;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -70,6 +71,9 @@ public class AnaliticaController {
             }
         }
         model.addAttribute("itemSales", itemSales);
+
+        LinkedHashMap<String, Double> daysSales = monthSalesDao.getLast30DaysSales(item.getCode());
+        model.addAttribute("daysSales", daysSales);
 
         OfferDao offerDao = new OfferDao();
         ArrayList<Offer> offers = offerDao.getOffers(itemCode);
