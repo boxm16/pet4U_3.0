@@ -131,7 +131,9 @@
                             out.println("</td>");
                         } else {
                             out.println("<td  colspan='5'  style='background-color: red'>");
-                            out.println("<center><a href='checkSuggestedBinder.htm' class='btn btn-danger' style='font-size:30px' target='_blank'>SOMETHING WRONG. SEE WHY</a></center>");
+                         //   out.println("<center><a href='checkSuggestedBinder.htm' class='btn btn-danger' style='font-size:30px' target='_blank'>SOMETHING WRONG. SEE WHY</a></center>");
+                            out.println("SOMETHING WRONG. ΠΑΤΑ ΣΥΓΚΡΗΣΗ ΝΑ ΔΕΙΣ");
+                           
                             out.println("</td>");
                         }
                         out.println("</tr>");
