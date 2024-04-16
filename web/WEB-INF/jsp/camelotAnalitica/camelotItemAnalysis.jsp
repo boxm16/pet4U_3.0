@@ -188,6 +188,7 @@
                         <%                                LinkedHashMap<String, Double> daysSales = (LinkedHashMap) request.getAttribute("daysSales");
 
                             double allDaysSales = 0;
+                            int days = 0;
 
                             for (Map.Entry<String, Double> daysSalesEntry : daysSales.entrySet()) {
                                 String date = daysSalesEntry.getKey();
@@ -216,8 +217,39 @@
                                 out.println("</td>");
 
                                 out.println("</tr>");
-
+                                days++;
                             }
+                            out.println("<tr>");
+                            out.println("<td>");
+                            out.println("Days");
+                            out.println("</td>");
+                            out.println("<td>");
+                            out.println(days);
+                            out.println("</td>");
+
+                            out.println("</tr>");
+
+                            out.println("<tr>");
+                            out.println("<td>");
+                            out.println("Total Sales <br> For 30 Day");
+                            out.println("</td>");
+
+                            out.println("<td>");
+                            out.println(allDaysSales);
+                            out.println("</td>");
+
+                            out.println("</tr>");
+
+                            out.println("<tr>");
+                            out.println("<td>");
+                            out.println("Average Sales <br> For One Day");
+                            out.println("</td>");
+
+                            out.println("<td>");
+                            out.println(allDaysSales / days);
+                            out.println("</td>");
+
+                            out.println("</tr>");
 
 
                         %>
