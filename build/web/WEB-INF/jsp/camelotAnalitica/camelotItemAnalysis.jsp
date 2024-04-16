@@ -217,6 +217,8 @@
                                 out.println("</td>");
 
                                 out.println("</tr>");
+                                
+                                allDaysSales = allDaysSales + daysSalesEntry.getValue();
                                 days++;
                             }
                             out.println("<tr>");

@@ -419,7 +419,7 @@
 
                                 double allDaysSales = 0;
                                 int days = 0;
-                              
+
                                 for (Map.Entry<String, Double> daysSalesEntry : daysSales.entrySet()) {
                                     String date = daysSalesEntry.getKey();
 
@@ -445,9 +445,10 @@
                                     out.println("<td>");
                                     out.println(daysSalesEntry.getValue());
                                     out.println("</td>");
-                                    allDaysSales = allDaysSales + daysSalesEntry.getValue();
-                                    out.println("</tr>");
 
+                                    out.println("</tr>");
+                                    
+                                    allDaysSales = allDaysSales + daysSalesEntry.getValue();
                                     days++;
 
                                 }
