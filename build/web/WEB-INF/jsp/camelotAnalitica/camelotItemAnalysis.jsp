@@ -231,7 +231,7 @@
 
                             out.println("</tr>");
 
-                            out.println("<tr>");
+                            out.println("<tr style='font-size:30px>");
                             out.println("<td>");
                             out.println("Total Sales <br> For 30 Day");
                             out.println("</td>");
