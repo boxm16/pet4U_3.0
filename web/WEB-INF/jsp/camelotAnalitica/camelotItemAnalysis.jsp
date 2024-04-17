@@ -231,7 +231,7 @@
 
                             out.println("</tr>");
 
-                            out.println("<tr style='background-color: #BA4A00;font-size:30px'>");
+                            out.println("<tr style='background-color: BA9BC3;font-size:30px'>");
                             out.println("<td>");
                             out.println("Total Sales <br> For 30 Day");
                             out.println("</td>");
