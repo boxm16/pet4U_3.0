@@ -76,7 +76,7 @@
                     int CamelotMinimalStock = camelotItemOfInterest.getCamelotMinimalStock();
                     double pet4uStock = camelotItemOfInterest.getPet4uStock() / camelotItemOfInterest.getWeightCoefficient();
                     double camelotFreeStock = camelotItemOfInterest.getCamelotStock() - camelotItemOfInterest.getCamelotBinded();
-                    Double threeWeekSales = camelotItemOfInterest.getTotalSalesInPieces() *21 / 182.5;
+                    Double threeWeekSales = camelotItemOfInterest.getTotalSalesInPieces() * 21 / 182.5;
                     if (camelotFreeStock < CamelotMinimalStock || pet4uStock < minimalStock * 2) {
                         if (camelotItemOfInterest.getMinimalStock() == -989898) {
                             continue;
@@ -169,17 +169,17 @@
                         out.println("<a href='goForEditingCamelotItemOfInterest.htm?code=" + camelotItemOfInterest.getCode() + "'>Edit</a>");
                         out.println("</td>");
 
-                        out.println("<td>");
+                        /*    out.println("<td>");
                         out.println("<a href='itemSnapshots.htm?code=" + camelotItemOfInterest.getCode() + "' target='_blank'>Show Day Rest Snapshots</a>");
                         out.println("</td>");
-
+                         */
                         out.println("</tr>");
                     }
                 }
             %>
         </table>
         <hr> <hr> <hr>
-      <!--  <h1><a href='makeCamelotItemsInterestDayRestSnapshot.htm'>Make Snapshot Of Day Rest Of Items Of Interest</a></h1> -->
+        <!--  <h1><a href='makeCamelotItemsInterestDayRestSnapshot.htm'>Make Snapshot Of Day Rest Of Items Of Interest</a></h1> -->
         <h3>${snapshotInsertionResult}</h3>
     </center>
 </body>

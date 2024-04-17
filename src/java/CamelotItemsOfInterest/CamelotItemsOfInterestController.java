@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.TreeMap;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -25,10 +26,22 @@ public class CamelotItemsOfInterestController {
     private CamelotDao camelotDao;
 
     @RequestMapping(value = "camelotItemsOfOurInterestDashboard")
-    public String showCamelotItemsOfOurInterest(ModelMap model) {
+    public String camelotItemsOfOurInterestDashboard(HttpSession session, ModelMap model) {
 //        ArrayList<CamelotItemOfInterest> camelotItemsOfInterest = camelotItemsOfInterestDao.getItemsOfInterest();
         //   model.addAttribute("camelotItemsReferenceFile", StaticsDispatcher.getCamelotLastUploadedFileName());
         //  model.addAttribute("pet4UItemsReferenceFile", StaticsDispatcher.getPet4uLastUploadedFileName());
+
+        String userName = (String) session.getAttribute("userName");
+
+        if (userName == null) {
+            model.addAttribute("message", "You are not authorized for this page");
+            return "errorPage";
+        }
+        if (!userName.equals("me")) {
+            model.addAttribute("message", "You are not authorized for this page");
+            return "errorPage";
+        }
+
         TreeMap<String, CamelotItemOfInterest> camelotItemsOfInterestFilled = new TreeMap<>();
 
         LinkedHashMap<String, CamelotItemOfInterest> camelotItemsOfInterest = camelotItemsOfInterestDao.getCamelotItemsOfInterset();
@@ -297,7 +310,7 @@ public class CamelotItemsOfInterestController {
     }
 
     @RequestMapping(value = "editItemOfInterest")
-    public String editItemOfInterest(@RequestParam(name = "code") String code,
+    public String editItemOfInterest(HttpSession session, @RequestParam(name = "code") String code,
             @RequestParam(name = "owner") String owner,
             @RequestParam(name = "minimalStock") String minimalStock,
             @RequestParam(name = "weightCoefficient") String weightCoefficient,
@@ -306,6 +319,16 @@ public class CamelotItemsOfInterestController {
             @RequestParam(name = "camelotMinimalStock") String camelotMinimalStock,
             @RequestParam(name = "note") String note,
             ModelMap model) {
+        String userName = (String) session.getAttribute("userName");
+
+        if (userName == null) {
+            model.addAttribute("message", "You are not authorized for this page");
+            return "errorPage";
+        }
+        if (!userName.equals("me")) {
+            model.addAttribute("message", "You are not authorized for this page");
+            return "errorPage";
+        }
         CamelotItemOfInterest camelotItemOfInterest = new CamelotItemOfInterest();
         camelotItemOfInterest.setCode(code);
         camelotItemOfInterest.setOwner(owner);
