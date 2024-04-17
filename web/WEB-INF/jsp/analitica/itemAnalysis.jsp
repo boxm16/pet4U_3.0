@@ -447,7 +447,7 @@
                                     out.println("</td>");
 
                                     out.println("</tr>");
-                                    
+
                                     allDaysSales = allDaysSales + daysSalesEntry.getValue();
                                     days++;
 
@@ -463,7 +463,7 @@
 
                                 out.println("</tr>");
 
-                                out.println("<tr>");
+                                out.println("<tr style='background-color: #A6E2D0'>");
                                 out.println("<td>");
                                 out.println("Total Sales <br> For 30 Day");
                                 out.println("</td>");
