@@ -77,14 +77,14 @@
                         out.println(entrySet.getValue().getEshopSales());
                         out.println("</td>");
 
-                        out.println("<td>");
+                        /*     out.println("<td>");
 
                         out.println("<svg width='" + entrySet.getValue().getEshopSales() + "' height='30'>");
                         out.println("<rect width='" + entrySet.getValue().getEshopSales() + "' height='30' style='fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)' />");
                         out.println("</svg>");
 
                         out.println("</td>");
-
+                         */
                         out.println("</tr>");
                     }
                 %>
