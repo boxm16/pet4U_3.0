@@ -12,7 +12,26 @@
         <title>Error Page</title>
     </head>
     <body>
+    <center>
         <h1>Something Wrong</h1>
         <h1>${message}</h1>
-    </body>
+        <hr>
+        <br><br><br><br><br><br>
+        <br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br>
+        <br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br>
+        <br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br>
+        <br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br><br><a href="adminIndex.htm"><h1>x</h1></a>
+    </center>
+</body>
 </html>
