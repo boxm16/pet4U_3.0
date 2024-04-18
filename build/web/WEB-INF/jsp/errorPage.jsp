@@ -15,6 +15,7 @@
     <center>
         <h1>Something Wrong</h1>
         <h1>${message}</h1>
+        <a href="index.htm" ><h1>Index</h1></a>
         <hr>
         <br><br><br><br><br><br>
         <br><br><br><br><br><br><br>
