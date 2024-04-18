@@ -40,8 +40,6 @@
         <h1><a href="index.htm">INDEX</a></h1>
         <h1>Camelot: Items Of Our Interest: Orders Alert</h1>
         <hr>
-        <h3>  <a href="camelotItemsOfOurInterestDashboard.htm">Go Back To Dashboard</a></h3>
-        <hr>
         <h1 style="background-color: red">   </h1>
 
         <table>
