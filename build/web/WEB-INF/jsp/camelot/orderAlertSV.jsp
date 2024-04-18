@@ -46,8 +46,8 @@
             <thead>
             <th>Owner</th>
             <th>Position</th>
-            <th>Camelot<br> Position</th>
-            <th>Altercode</th>
+
+
             <th>Pet4u Description</th>
 
             <th>Pet4u <br>Stock</th>
@@ -55,9 +55,11 @@
 
             <th>Camelot<br> Stock</th>
             <th>Camelot<br>Minimal<br>Stock</th>
-
-            <th>Order<br>Unit</th>
+            <th>Camelot<br> Position</th>
+            <th>Altercode</th>
             <th>Ord.<br>Qty.</th>
+            <th>Order<br>Unit</th>
+
             <th>Note</th>
             <th>  Edit  </th>
 
@@ -113,14 +115,6 @@
                         out.println(camelotItemOfInterest.getPosition());
                         out.println("</td>");
 
-                        out.println("<td style='font-weight: bold;'>");
-                        out.println(camelotItemOfInterest.getCamelotPosition());
-                        out.println("</td>");
-
-                        out.println("<td>");
-                        out.println("<a href='itemAnalysis.htm?code=" + camelotItemOfInterest.getCode() + "' target='_blank'>" + camelotItemOfInterest.getCode() + "</a>");
-                        out.println("</td>");
-
                         out.println("<td>");
                         out.println(camelotItemOfInterest.getDescription());
                         out.println("</td>");
@@ -141,12 +135,20 @@
                         out.println(camelotItemOfInterest.getCamelotMinimalStock());
                         out.println("</td>");
 
-                        out.println("<td style='font-weight: bold;'>");
-                        out.println(camelotItemOfInterest.getOrderUnit());
+                        out.println("<td style='font-weight: bold; font-size:40px;'>");
+                        out.println(camelotItemOfInterest.getCamelotPosition());
+                        out.println("</td>");
+
+                        out.println("<td>");
+                        out.println("<a href='itemAnalysis.htm?code=" + camelotItemOfInterest.getCode() + "' target='_blank'>" + camelotItemOfInterest.getCode() + "</a>");
                         out.println("</td>");
 
                         out.println("<td style='font-weight: bold;'>");
                         out.println(camelotItemOfInterest.getOrderQuantity());
+                        out.println("</td>");
+
+                        out.println("<td style='font-weight: bold;'>");
+                        out.println(camelotItemOfInterest.getOrderUnit());
                         out.println("</td>");
 
                         out.println("<td>");
