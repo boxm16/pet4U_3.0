@@ -31,7 +31,7 @@
         <br><br><br><br><br><br>
         <br><br><br><br><br><br><br>
         <br><br><br><br><br><br><br><br>
-        <br><br><br><br><br><br><br><br><br><br><a href="adminIndex.htm"><h1>x</h1></a>
+        <br><br><br><br><br><br><br><br><br><br><a href="adminIndex.htm" target='_blank'><h1>x</h1></a>
     </center>
 </body>
 </html>
