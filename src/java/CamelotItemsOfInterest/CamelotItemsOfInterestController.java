@@ -236,6 +236,71 @@ public class CamelotItemsOfInterestController {
 
         return "/camelot/orderAlert";
     }
+    
+    @RequestMapping(value = "orderAlertSV")
+    public String orderAlertSV(ModelMap model) {
+        TreeMap<String, CamelotItemOfInterest> camelotItemsOfInterestFilled = new TreeMap<>();
+
+        LinkedHashMap<String, CamelotItemOfInterest> camelotItemsOfInterest = camelotItemsOfInterestDao.getCamelotItemsOfInterset();
+
+        LinkedHashMap<String, Item> pet4UItems = camelotItemsOfInterestDao.getPet4UItemsRowByRow();
+        LinkedHashMap<String, Item> camelotItems = camelotItemsOfInterestDao.getCamelotItemsRowByRow();
+
+        //    SalesDaoX salesDao = new SalesDaoX();
+        //  HashMap<String, SoldItem> sixMonthsSales = salesDao.getSixMonthsSalesX();
+        EksagogesControllerB eksagogesController = new EksagogesControllerB();
+        LinkedHashMap<String, ItemEksagoges> lastSixMonthsSales = eksagogesController.getLastSixMonthsSales();
+
+        for (Map.Entry<String, CamelotItemOfInterest> entrySet : camelotItemsOfInterest.entrySet()) {
+            String altercode = entrySet.getKey();
+            CamelotItemOfInterest camelotItemOfInterest = entrySet.getValue();
+            Item pet4uItem = pet4UItems.get(altercode);
+            Item camelotItem = camelotItems.get(altercode);
+
+            if (pet4uItem == null || camelotItem == null) {
+                System.out.println("ALtercode " + altercode + " is present in camelot_interest db table, but......");
+
+                if (pet4uItem == null) {
+                    System.out.println("Pet4uItem  not present in the lists from microsoft db");
+                }
+                if (pet4uItem == null) {
+                    System.out.println("CamelotItem not present in the lists from microsoft db");
+                }
+
+            } else {
+
+                camelotItemOfInterest.setDescription(pet4uItem.getDescription());
+
+                Double d1 = Double.parseDouble(pet4uItem.getQuantity());
+
+                camelotItemOfInterest.setPet4uStock(d1);
+
+                //  Double d2 = Double.parseDouble(camelotItem.getQuantity());
+                camelotItemOfInterest.setCamelotStock(Double.parseDouble(camelotItem.getQuantity()));
+
+                camelotItemOfInterest.setPosition(pet4uItem.getPosition());
+                camelotItemOfInterest.setCamelotPosition(camelotItem.getPosition());
+                String position = camelotItemOfInterest.getPosition();
+                if (camelotItemsOfInterestFilled.containsKey(position)) {
+                    position = position + ":A";
+                }
+
+                ItemEksagoges itemEksagoges = lastSixMonthsSales.get(pet4uItem.getCode());
+                if (itemEksagoges == null) {
+                    //do nothing
+                } else {
+                    EksagogesB eksagogesForLastMonths = itemEksagoges.getEksagogesForLastMonths(6);
+                    camelotItemOfInterest.setTotalSalesInPieces(eksagogesForLastMonths.getEshopSales() + eksagogesForLastMonths.getShopsSupply());
+                }
+
+                camelotItemsOfInterestFilled.put(position, camelotItemOfInterest);
+            }
+
+        }
+        model.addAttribute("camelotItemsOfInterest", camelotItemsOfInterestFilled);
+
+        return "/camelot/orderAlertSV";
+    }
 
 //--------------------------------------------------------------------
     @RequestMapping(value = "goForAddingItemOfInterest")
