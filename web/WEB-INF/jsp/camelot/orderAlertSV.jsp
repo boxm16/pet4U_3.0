@@ -135,19 +135,20 @@
                         out.println(camelotItemOfInterest.getCamelotMinimalStock());
                         out.println("</td>");
 
-                        out.println("<td style='font-weight: bold; font-size:40px;'>");
+                        out.println("<td style='font-weight: bold; font-size:30px;'>");
                         out.println(camelotItemOfInterest.getCamelotPosition());
                         out.println("</td>");
 
-                        out.println("<td>");
-                        out.println("<a href='itemAnalysis.htm?code=" + camelotItemOfInterest.getCode() + "' target='_blank'>" + camelotItemOfInterest.getCode() + "</a>");
+                        out.println("<td style='font-weight: bold; font-size:30px;'>");
+                        out.println(camelotItemOfInterest.getCode());
                         out.println("</td>");
 
-                        out.println("<td style='font-weight: bold;'>");
+                        out.println("<td style='font-weight: bold; font-size:30px;'>");
                         out.println(camelotItemOfInterest.getOrderQuantity());
                         out.println("</td>");
 
-                        out.println("<td style='font-weight: bold;'>");
+                        out.println("<td style='font-weight: bold; font-size:30px;'>");
+
                         out.println(camelotItemOfInterest.getOrderUnit());
                         out.println("</td>");
 
