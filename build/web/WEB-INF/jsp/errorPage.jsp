@@ -19,13 +19,6 @@
         <br><br><br><br><br><br>
         <br><br><br><br><br><br><br>
         <br><br><br><br><br><br><br><br>
-        <br><br><br><br><br><br><br><br><br><br>
-        <br><br><br><br><br><br>
-        <br><br><br><br><br><br><br>
-        <br><br><br><br><br><br><br><br>
-        <br><br><br><br><br><br><br><br><br><br>
-        <br><br><br><br><br><br>
-        <br><br><br><br><br><br><br>
         <br><br><br><br><br><br><br><br><a href="adminIndex.htm" target='_blank'><h1>.</h1></a>
     </center>
 </body>
