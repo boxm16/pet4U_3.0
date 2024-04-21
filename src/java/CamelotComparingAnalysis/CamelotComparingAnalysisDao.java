@@ -22,47 +22,40 @@ public class CamelotComparingAnalysisDao {
 
     LinkedHashMap<String, SoldItem3> getTotalSales(LinkedHashMap<String, SoldItem3> camelotItemsForSales) {
         String firstDate = "2023-7-1";
+        String lastDate = "2024-9-1";
+        // String lastDate = "2024-4-18";
 
-        String lastDate = "2024-4-19";
-
-        String sql = "SELECT * FROM camelot_month_sales WHERE date >='" + firstDate + "' AND date <= '" + lastDate + "' ;";
-        System.out.println(sql);
-        Connection connection;
-        Statement statement;
-        ResultSet resultSet;
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+        Connection connection = databaseConnectionFactory.getCamelotMicrosoftSQLConnection();
 
         try {
-            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
-            connection = databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT ITEMCODE, SUM(QTY) AS SALES"
+                    + "  FROM [fotiou].[dbo].[WH_SALES] WHERE ENTRYDATE >= '" + firstDate + "' "
+                    + "AND ENTRYDATE <= '" + lastDate + "' group by ITEMCODE order by ITEMCODE;");
 
-            statement = connection.createStatement();
-
-            resultSet = statement.executeQuery(sql);
-            int x = 0;
             while (resultSet.next()) {
-                String code = resultSet.getString("code");
-                double totalSales = resultSet.getDouble("sales");
-
-                if (camelotItemsForSales.containsKey(code)) {
-                    SoldItem3 soldItem = camelotItemsForSales.get(code);
-                    soldItem.setTotalSales(soldItem.getTotalSales() + totalSales);
-                    camelotItemsForSales.put(code, soldItem);
-                } else {
-                    System.out.println("There is sales for camelot item, but there is not item. " + code + ". Total those items: " + x);
-                    x++;
+                String code = resultSet.getString("ITEMCODE").trim();
+                SoldItem3 soldItem = camelotItemsForSales.get(code);
+                if (soldItem == null) {
+                    soldItem = new SoldItem3();
+                    soldItem.setCode(code);
+                    System.out.println("BAD THING WITH CODE : " + code);
                 }
-
+                double sales = resultSet.getDouble("SALES");
+                //   System.out.println(code+" "+sales);
+                soldItem.setEshopSales(sales);
+                camelotItemsForSales.put(code, soldItem);
             }
 
             resultSet.close();
             statement.close();
             connection.close();
-
         } catch (SQLException ex) {
             Logger.getLogger(CamelotSalesDao.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         return camelotItemsForSales;
+
     }
 
     public LinkedHashMap<String, SoldItem3> getCamelotItemsForSales() {
