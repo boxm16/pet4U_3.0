@@ -28,7 +28,7 @@ public class CamelotComparingAnalysisController {
 
         Factory factory = new Factory();
         ArrayList<SoldItem3> camelotSoldItemsArray = factory.createSoldItemsFromUploadedFile(filePath, camelotSoldItems1);
-
+        modelMap.addAttribute("camelotSoldItemsArray", camelotSoldItemsArray);
         System.out.println("Done");
         return "camelotComparingAnalysis/comparing";
     }
