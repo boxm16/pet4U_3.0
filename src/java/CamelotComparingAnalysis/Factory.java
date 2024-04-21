@@ -53,6 +53,7 @@ public class Factory {
                 } else {
 
                     if (pet4uSalesString.equals("ΝΕΑ ΕΡΥΘΡΑΙΑ")) {
+                        System.out.println("ΝΕΑ ΕΡΥΘΡΑΙΑ");
                         soldItem.setVaribobiSales(Double.parseDouble(pet4uSalesString));
                     } else {
                         soldItem.setShopSales(Double.parseDouble(pet4uSalesString));
