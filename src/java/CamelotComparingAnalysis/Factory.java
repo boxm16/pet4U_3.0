@@ -44,21 +44,11 @@ public class Factory {
 
                 SoldItem3 soldItem = camelotItemsForSales.get(itemCodeString);
 
-                if (pet4uSalesString == null) {
-                    soldItem.setShopSales(0);
-                    soldItem.setVaribobiSales(0);
-                } else if (pet4uSalesString.isEmpty() || pet4uSalesString.equals("")) {
-                    soldItem.setShopSales(0);
-                    soldItem.setVaribobiSales(0);
+                if (pet4uSalesString.equals("ΝΕΑ ΕΡΥΘΡΑΙΑ")) {
+                    System.out.println(shopNameString);
+                    soldItem.setVaribobiSales(Double.parseDouble(pet4uSalesString));
                 } else {
-
-                    if (pet4uSalesString.equals("ΝΕΑ ΕΡΥΘΡΑΙΑ")) {
-                        System.out.println(shopNameString);
-                        soldItem.setVaribobiSales(Double.parseDouble(pet4uSalesString));
-                    } else {
-                        System.out.println(shopNameString);
-                        soldItem.setShopSales(Double.parseDouble(pet4uSalesString));
-                    }
+                    System.out.println(shopNameString);
                 }
                 camelotItemsForSales.put(soldItem.getCode(), soldItem);
             } else {
