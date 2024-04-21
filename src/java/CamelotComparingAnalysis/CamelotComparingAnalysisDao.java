@@ -22,7 +22,7 @@ public class CamelotComparingAnalysisDao {
 
     LinkedHashMap<String, SoldItem> getSales(LinkedHashMap<String, SoldItem> camelotItemsForSales) {
         String firstDate ="2023-7-1";
-        String lastDate = "2023-10-18";
+        String lastDate = "2024-1-18";
       //  String lastDate = "2024-4-18";
 
         String sql = "SELECT * FROM camelot_month_sales WHERE date >='" + firstDate + "' AND date <= '" + lastDate + "' ;";
