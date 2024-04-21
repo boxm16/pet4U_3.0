@@ -5,8 +5,8 @@
  */
 package CamelotComparingAnalysis;
 
+import BasicModel.AltercodeContainer;
 import CamelotSales.CamelotSalesDao;
-import SalesX.SoldItem;
 import Service.DatabaseConnectionFactory;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -20,9 +20,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class CamelotComparingAnalysisDao {
 
-    LinkedHashMap<String, SoldItem> getSales(LinkedHashMap<String, SoldItem> camelotItemsForSales) {
-        String firstDate ="2023-7-1";
-      
+    LinkedHashMap<String, SoldItem3> getTotalSales(LinkedHashMap<String, SoldItem3> camelotItemsForSales) {
+        String firstDate = "2023-7-1";
+
         String lastDate = "2024-4-18";
 
         String sql = "SELECT * FROM camelot_month_sales WHERE date >='" + firstDate + "' AND date <= '" + lastDate + "' ;";
@@ -41,11 +41,11 @@ public class CamelotComparingAnalysisDao {
             int x = 0;
             while (resultSet.next()) {
                 String code = resultSet.getString("code");
-                double eshopSales = resultSet.getDouble("sales");
+                double totalSales = resultSet.getDouble("sales");
 
                 if (camelotItemsForSales.containsKey(code)) {
-                    SoldItem soldItem = camelotItemsForSales.get(code);
-                    soldItem.setEshopSales(soldItem.getEshopSales() + eshopSales);
+                    SoldItem3 soldItem = camelotItemsForSales.get(code);
+                    soldItem.setTotalSales(soldItem.getTotalSales() + totalSales);
                     camelotItemsForSales.put(code, soldItem);
                 } else {
                     System.out.println("There is sales for camelot item, but there is not item. " + code + ". Total those items: " + x);
@@ -65,4 +65,50 @@ public class CamelotComparingAnalysisDao {
         return camelotItemsForSales;
     }
 
+    public LinkedHashMap<String, SoldItem3> getCamelotItemsForSales() {
+        LinkedHashMap<String, SoldItem3> items = new LinkedHashMap<>();
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+        Connection connection = databaseConnectionFactory.getCamelotMicrosoftSQLConnection();
+
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("select * from WH1 ORDER BY EXPR1, EXPR2;");
+
+            while (resultSet.next()) {
+                String code = resultSet.getString("ABBREVIATION").trim();
+                SoldItem3 item = null;
+                if (!items.containsKey(code)) {
+                    item = new SoldItem3();
+                    item.setCode(resultSet.getString("ABBREVIATION").trim());
+                    item.setDescription(resultSet.getString("NAME").trim());
+                    String position_1 = "";
+                    String position_2 = "";
+                    if (resultSet.getString("EXPR1") != null) {
+                        position_1 = resultSet.getString("EXPR1").trim();
+                    }
+                    if (resultSet.getString("EXPR2") != null) {
+                        position_2 = resultSet.getString("EXPR2").trim();
+                    }
+                    item.setPosition(position_1 + position_2);
+                    item.setQuantity(resultSet.getString("QTYBALANCE").trim());
+                    items.put(code, item);
+                }
+                AltercodeContainer altercodeContainer = new AltercodeContainer();
+                altercodeContainer.setAltercode(resultSet.getString("ALTERNATECODE").trim());
+                if (resultSet.getString("CODEDESCRIPTION") == null) {
+                    altercodeContainer.setStatus("");
+                } else {
+                    altercodeContainer.setStatus(resultSet.getString("CODEDESCRIPTION").trim());
+                }
+                items.get(code).addAltercodeContainer(altercodeContainer);
+
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(CamelotSalesDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return items;
+    }
 }

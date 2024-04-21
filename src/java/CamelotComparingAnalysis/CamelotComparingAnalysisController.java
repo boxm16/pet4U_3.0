@@ -5,8 +5,8 @@
  */
 package CamelotComparingAnalysis;
 
-import CamelotSales.CamelotSalesDao;
-import SalesX.SoldItem;
+import Service.Basement;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -17,12 +17,19 @@ public class CamelotComparingAnalysisController {
 
     @RequestMapping(value = "camelotComparingAnalysis")
     public String camelotAllItems(ModelMap modelMap) {
-        CamelotSalesDao monthSalesDao = new CamelotSalesDao();
-        LinkedHashMap<String, SoldItem> camelotItemsForSales = monthSalesDao.getCamelotItemsForSales();
 
         CamelotComparingAnalysisDao dao = new CamelotComparingAnalysisDao();
-        LinkedHashMap<String, SoldItem> camelotSales = dao.getSales(camelotItemsForSales);
-        System.out.println("Database Part Done");
+
+        LinkedHashMap<String, SoldItem3> camelotSoldItems = dao.getCamelotItemsForSales();
+
+        LinkedHashMap<String, SoldItem3> camelotSoldItems1 = dao.getTotalSales(camelotSoldItems);
+        Basement basement = new Basement();
+        String filePath = basement.getBasementDirectory() + "/Pet4U_Uploads/SALES_PETCAMELOT_PET4U.xlsx";
+
+        Factory factory = new Factory();
+        ArrayList<SoldItem3> camelotSoldItemsArray = factory.createSoldItemsFromUploadedFile(filePath, camelotSoldItems1);
+
+        System.out.println("Done");
         return "camelotComparingAnalysis/comparing";
     }
 }
