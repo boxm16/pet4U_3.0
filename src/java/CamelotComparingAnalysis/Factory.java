@@ -30,8 +30,7 @@ public class Factory {
         while (!data.isEmpty()) {
             String shopNameLocationInTheRow = new StringBuilder("A").append(String.valueOf(rowIndex)).toString();
             String shopNameString = data.remove(shopNameLocationInTheRow);//at the same time reading and removing the cell from hash Map
-            System.out.println(shopNameString);
-            
+
             String itemCodeLocationInTheRow = new StringBuilder("B").append(String.valueOf(rowIndex)).toString();
             String itemCodeString = data.remove(itemCodeLocationInTheRow);//at the same time reading and removing the cell from hash Map
 
@@ -54,9 +53,10 @@ public class Factory {
                 } else {
 
                     if (pet4uSalesString.equals("ΝΕΑ ΕΡΥΘΡΑΙΑ")) {
-
+                        System.out.println(shopNameString);
                         soldItem.setVaribobiSales(Double.parseDouble(pet4uSalesString));
                     } else {
+                        System.out.println(shopNameString);
                         soldItem.setShopSales(Double.parseDouble(pet4uSalesString));
                     }
                 }
