@@ -91,7 +91,7 @@
                         out.println("</td>");
 
                         out.println("<td>");
-                        out.println(entrySet.getValue().getShopSales() - (entrySet.getValue().getShopSales() + entrySet.getValue().getVaribobiSales()));
+                        out.println(entrySet.getValue().getTotalSales() - (entrySet.getValue().getShopSales() + entrySet.getValue().getVaribobiSales()));
                         out.println("</td>");
 
                         out.println("<td>");
