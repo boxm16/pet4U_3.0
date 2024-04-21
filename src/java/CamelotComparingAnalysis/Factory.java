@@ -6,7 +6,6 @@
 package CamelotComparingAnalysis;
 
 import Excel.ExcelReader;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
@@ -16,17 +15,17 @@ import java.util.LinkedHashMap;
  */
 public class Factory {
 
-    ArrayList<SoldItem3> createSoldItemsFromUploadedFile(String filePath, LinkedHashMap<String, SoldItem3> camelotItemsForSales) {
+    LinkedHashMap<String, SoldItem3> createSoldItemsFromUploadedFile(String filePath, LinkedHashMap<String, SoldItem3> camelotItemsForSales) {
         System.out.println("STARTING READING EXCEL FILE");
         ExcelReader excelReader = new ExcelReader();
         HashMap<String, String> cellsFromExcelFile = excelReader.getCellsFromExcelFile(filePath);
-        ArrayList<SoldItem3> soldItems = convertExcelDataToSoldItems(cellsFromExcelFile, camelotItemsForSales);
+        LinkedHashMap<String, SoldItem3> soldItems = convertExcelDataToSoldItems(cellsFromExcelFile, camelotItemsForSales);
         System.out.println("READING EXCEL COMPLETED");
         return soldItems;
     }
 
-    private ArrayList<SoldItem3> convertExcelDataToSoldItems(HashMap<String, String> data, LinkedHashMap<String, SoldItem3> camelotItemsForSales) {
-        ArrayList<SoldItem3> items = new ArrayList();
+    private LinkedHashMap<String, SoldItem3> convertExcelDataToSoldItems(HashMap<String, String> data, LinkedHashMap<String, SoldItem3> camelotItemsForSales) {
+
         int rowIndex = 2;
         while (!data.isEmpty()) {
             String shopNameLocationInTheRow = new StringBuilder("A").append(String.valueOf(rowIndex)).toString();
@@ -59,12 +58,14 @@ public class Factory {
                         soldItem.setShopSales(Double.parseDouble(pet4uSalesString));
                     }
                 }
-                items.add(soldItem);
+                camelotItemsForSales.put(soldItem.getCode(), soldItem);
+            } else {
+                System.out.println("BAD THING");
             }
 
             rowIndex++;
         }
 
-        return items;
+        return camelotItemsForSales;
     }
 }

@@ -6,7 +6,6 @@
 package CamelotComparingAnalysis;
 
 import Service.Basement;
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -27,7 +26,7 @@ public class CamelotComparingAnalysisController {
         String filePath = basement.getBasementDirectory() + "/Pet4U_Uploads/SALES_PETCAMELOT_PET4U.xlsx";
 
         Factory factory = new Factory();
-        ArrayList<SoldItem3> camelotSoldItemsArray = factory.createSoldItemsFromUploadedFile(filePath, camelotSoldItems1);
+        LinkedHashMap<String, SoldItem3> camelotSoldItemsArray = factory.createSoldItemsFromUploadedFile(filePath, camelotSoldItems1);
         modelMap.addAttribute("camelotSoldItemsArray", camelotSoldItemsArray);
         System.out.println("Done");
         return "camelotComparingAnalysis/comparing";

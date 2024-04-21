@@ -5,6 +5,7 @@
 --%>
 
 
+<%@page import="java.util.LinkedHashMap"%>
 <%@page import="CamelotComparingAnalysis.SoldItem3"%>
 <%@page import="BasicModel.AltercodeContainer"%>
 <%@page import="SalesX.SoldItem"%>
@@ -49,49 +50,49 @@
 
 
                 <%
-                    ArrayList<SoldItem3> sales = (ArrayList) request.getAttribute("camelotSoldItemsArray");
+                    LinkedHashMap<String, SoldItem3> sales = (LinkedHashMap) request.getAttribute("camelotSoldItemsArray");
 
-                    for (SoldItem3 soldItem : sales) {
+                    for (Map.Entry<String, SoldItem3> entrySet : sales.entrySet()) {
                         out.println("<tr>");
 
                         out.println("<td>");
-                        if (soldItem.getCode() == null) {
+                        if (entrySet.getValue().getCode() == null) {
                             out.println("");
                         } else {
-                            out.println("<a  href = 'camelotItemAnalysis.htm?code=" + soldItem.getCode() + "'  class ='btn btn-info btn-lg' role='button' aria-disabled='true' target='_blank'><h3>" + entrySet.getValue().getCode() + "</h3></a>");
+                            out.println("<a  href = 'camelotItemAnalysis.htm?code=" + entrySet.getValue().getCode() + "'  class ='btn btn-info btn-lg' role='button' aria-disabled='true' target='_blank'><h3>" + entrySet.getValue().getCode() + "</h3></a>");
 
                         }
 
                         out.println("</td>");
 
                         out.println("<td>");
-                        out.println(soldItem.getPosition());
+                        out.println(entrySet.getValue().getPosition());
                         out.println("</td>");
 
                         out.println("<td>");
-                        out.println(soldItem.getDescription());
+                        out.println(entrySet.getValue().getDescription());
                         out.println("</td>");
 
                         out.println("<td>");
-                        out.println(soldItem.getQuantity());
+                        out.println(entrySet.getValue().getQuantity());
                         out.println("</td>");
 
                         out.println("<td>");
-                        out.println(soldItem.getTotalSales());
+                        out.println(entrySet.getValue().getTotalSales());
                         out.println("</td>");
 
                         out.println("<td>");
-                        out.println(soldItem.getShopSales());
+                        out.println(entrySet.getValue().getShopSales());
                         out.println("</td>");
 
                         out.println("<td>");
-                        out.println(soldItem.getVaribobiSales());
+                        out.println(entrySet.getValue().getVaribobiSales());
                         out.println("</td>");
 
                         out.println("<td>");
 
-                        out.println("<svg width='" + soldItem.getEshopSales() + "' height='30'>");
-                        out.println("<rect width='" + soldItem.getEshopSales() + "' height='30' style='fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)' />");
+                        out.println("<svg width='" + entrySet.getValue().getEshopSales() + "' height='30'>");
+                        out.println("<rect width='" + entrySet.getValue().getEshopSales() + "' height='30' style='fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)' />");
                         out.println("</svg>");
 
                         out.println("</td>");
