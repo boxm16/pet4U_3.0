@@ -26,7 +26,7 @@
         </style>
     </head>
     <body>
-        <table font-size:20px">
+        <table style="font-size:20px">
             <thead>
                 <tr> 
                     <th>CODE</th>
@@ -75,7 +75,7 @@
                         out.println(entrySet.getValue().getState());
                         out.println("</td>");
 
-                        Eksagoges eksagoges = entrySet.getValue().getEksagogesForLastMonths(6);
+                        EksagogesB eksagoges = entrySet.getValue().getEksagogesForLastMonths(6);
 
                         out.println("<td>");
                         out.println(eksagoges.getEshopSales());
