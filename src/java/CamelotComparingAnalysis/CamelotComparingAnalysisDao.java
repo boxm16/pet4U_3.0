@@ -25,7 +25,7 @@ public class CamelotComparingAnalysisDao {
 
         String lastDate = "2024-4-18";
 
-        String sql = "SELECT * FROM camelot_month_sales WHERE date >'" + firstDate + "' AND date < '" + lastDate + "' ;";
+        String sql = "SELECT * FROM camelot_month_sales WHERE date >='" + firstDate + "' AND date <= '" + lastDate + "' ;";
         System.out.println(sql);
         Connection connection;
         Statement statement;
