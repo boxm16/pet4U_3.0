@@ -81,6 +81,8 @@
                 <hr>
                 <h1><a href='camelotSixMonthsSales.htm'>Camelot 6 Months Sales</a></h1>
                 <hr>
+                <h1><a href='camelotComparingAnalysis.htm'>Camelot Comparing Analysis</a></h1>
+                <hr>
                 <h1><a href='itemsFromCamelot.htm'>Pet4U: All Items From Camelot</a></h1>
                 <hr>
 
