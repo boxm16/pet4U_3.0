@@ -75,7 +75,7 @@
                         out.println(entrySet.getValue().getState());
                         out.println("</td>");
 
-                        Eksagoges eksagoges = entrySet.getValue().getEksagogesForLastMonths(6);
+                        Eksagoges eksagoges = entrySet.getValue().getEksagoges();
 
                         out.println("<td>");
                         out.println(eksagoges.getEshopSales());
