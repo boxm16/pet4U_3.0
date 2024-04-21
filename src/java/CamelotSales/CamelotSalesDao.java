@@ -146,7 +146,7 @@ public class CamelotSalesDao {
         return item;
     }
 
-    LinkedHashMap<String, SoldItem> getCamelotItemsForSales() {
+    public LinkedHashMap<String, SoldItem> getCamelotItemsForSales() {
         LinkedHashMap<String, SoldItem> items = new LinkedHashMap<>();
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
         Connection connection = databaseConnectionFactory.getCamelotMicrosoftSQLConnection();

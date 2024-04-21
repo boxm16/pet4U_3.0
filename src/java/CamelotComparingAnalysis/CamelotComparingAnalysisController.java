@@ -5,15 +5,24 @@
  */
 package CamelotComparingAnalysis;
 
+import CamelotSales.CamelotSalesDao;
+import SalesX.SoldItem;
+import java.util.LinkedHashMap;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class CamelotComparingAnalysisController {
-  @RequestMapping(value = "camelotComparingAnalysis")
+
+    @RequestMapping(value = "camelotComparingAnalysis")
     public String camelotAllItems(ModelMap modelMap) {
-       
+        CamelotSalesDao monthSalesDao = new CamelotSalesDao();
+        LinkedHashMap<String, SoldItem> camelotItemsForSales = monthSalesDao.getCamelotItemsForSales();
+
+        CamelotComparingAnalysisDao dao = new CamelotComparingAnalysisDao();
+        LinkedHashMap<String, SoldItem> camelotSales = dao.getSales(camelotItemsForSales);
+     
         return "camelotComparingAnalysis/comparing";
     }
 }
