@@ -41,9 +41,10 @@
                     <th>Total <br> Sales </th>
                     <th>Shop <br> Sales </th>
                     <th>Varibobi <br> Sales </th>
+                    <th>Outer <br> Sales </th>
                     <!--     <th>Total<br> Sales In <br>Pieces </th>-->
 
-                    <th>SALES GRAPHICAL</th>
+                 
                 </tr>
             </thead>
             <tbody>
@@ -87,6 +88,10 @@
 
                         out.println("<td>");
                         out.println(entrySet.getValue().getVaribobiSales());
+                        out.println("</td>");
+
+                        out.println("<td>");
+                        out.println(entrySet.getValue().getShopSales() - (entrySet.getValue().getShopSales() + entrySet.getValue().getVaribobiSales()));
                         out.println("</td>");
 
                         out.println("<td>");
