@@ -22,7 +22,7 @@ public class CamelotComparingAnalysisController {
 
         CamelotComparingAnalysisDao dao = new CamelotComparingAnalysisDao();
         LinkedHashMap<String, SoldItem> camelotSales = dao.getSales(camelotItemsForSales);
-     
+        System.out.println("Database Part Done");
         return "camelotComparingAnalysis/comparing";
     }
 }
