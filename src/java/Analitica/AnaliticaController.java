@@ -44,6 +44,13 @@ public class AnaliticaController {
 
         SearchDao searchDao = new SearchDao();
         Item item = searchDao.getItemByAltercode(code);
+
+        if (item == null) {
+            model.addAttribute("code", code);
+            model.addAttribute("message", "No such code in Pet4u Database");
+
+            return "analitica/itemAnalysisErrorPage";
+        }
         model.addAttribute("item", item);
 
         String itemCode = item.getCode();
