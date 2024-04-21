@@ -44,11 +44,13 @@ public class Factory {
 
                 SoldItem3 soldItem = camelotItemsForSales.get(itemCodeString);
 
-                if (pet4uSalesString.equals("ΝΕΑ ΕΡΥΘΡΑΙΑ")) {
+                if (shopNameString.equals("ΝΕΑ ΕΡΥΘΡΑΙΑ")) {
                     System.out.println(shopNameString);
                     soldItem.setVaribobiSales(Double.parseDouble(pet4uSalesString));
                 } else {
+                  
                     System.out.println(shopNameString);
+                    soldItem.setVaribobiSales(Double.parseDouble(pet4uSalesString));
                 }
                 camelotItemsForSales.put(soldItem.getCode(), soldItem);
             } else {
