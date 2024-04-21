@@ -22,7 +22,7 @@ public class CamelotComparingAnalysisDao {
 
     LinkedHashMap<String, SoldItem3> getTotalSales(LinkedHashMap<String, SoldItem3> camelotItemsForSales) {
         String firstDate = "2023-7-1";
-        String lastDate = "2024-9-1";
+        String lastDate = "2023-9-1";
         // String lastDate = "2024-4-18";
 
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
