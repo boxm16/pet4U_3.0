@@ -66,32 +66,34 @@
                         <tr><td>Position</td><td>${item.position}</td></tr>
                         <tr><td>State</td><td>${item.state}</td></tr>
                         <tr><td>Stock</td><td>${item.quantity}</td></tr>
-                        <%
-                            Item item = (Item) request.getAttribute("item");
-                            out.println("<tr>");
-                            out.println("<td colspan='2' >");
+                        <tr><td colspan='2'><a href='https://www.petcamelot.gr/search-products-el.html?match=all&subcats=Y&pcode_from_q=Y&pshort=Y&pfull=Y&pname=Y&pkeywords=Y&search_performed=Y&q=${item.code} ' target='_blank'> <strong>SITE LINK</strong></a></td>
 
-                            ArrayList<AltercodeContainer> altercodes = item.getAltercodes();
-                            for (AltercodeContainer altercodeContainer : altercodes) {
-                                if (altercodeContainer.getStatus().equals("eshop")
-                                        || altercodeContainer.getStatus().equals("eshop-on")
-                                        || altercodeContainer.getStatus().equals("eshop-barf")
-                                        || altercodeContainer.getStatus().equals("eshop-pro")) {
+                            <%
+                                Item item = (Item) request.getAttribute("item");
+                                out.println("<tr>");
+                                out.println("<td colspan='2' >");
 
-                                    out.println("<a href='https://www.petcamelot.gr/search-products-el.html?match=all&subcats=Y&pcode_from_q=Y&pshort=Y&pfull=Y&pname=Y&pkeywords=Y&search_performed=Y&q=" + altercodeContainer.getAltercode() + "' target='_blank'>" + "<strong>" + altercodeContainer.getAltercode() + " : " + altercodeContainer.getStatus() + "</strong>" + "</a>");
-                                    out.println("<br>");
-                                } else {
-                                    if (altercodeContainer.getStatus().isEmpty()) {
-                                        out.println("<strong>" + altercodeContainer.getAltercode() + "</strong>");
+                                ArrayList<AltercodeContainer> altercodes = item.getAltercodes();
+                                for (AltercodeContainer altercodeContainer : altercodes) {
+                                    if (altercodeContainer.getStatus().equals("eshop")
+                                            || altercodeContainer.getStatus().equals("eshop-on")
+                                            || altercodeContainer.getStatus().equals("eshop-barf")
+                                            || altercodeContainer.getStatus().equals("eshop-pro")) {
+
+                                        out.println("<a href='https://www.petcamelot.gr/search-products-el.html?match=all&subcats=Y&pcode_from_q=Y&pshort=Y&pfull=Y&pname=Y&pkeywords=Y&search_performed=Y&q=" + altercodeContainer.getAltercode() + "' target='_blank'>" + "<strong>" + altercodeContainer.getAltercode() + " : " + altercodeContainer.getStatus() + "</strong>" + "</a>");
+                                        out.println("<br>");
                                     } else {
-                                        out.println("<strong>" + altercodeContainer.getAltercode() + " : " + altercodeContainer.getStatus() + "</strong>");
+                                        if (altercodeContainer.getStatus().isEmpty()) {
+                                            out.println("<strong>" + altercodeContainer.getAltercode() + "</strong>");
+                                        } else {
+                                            out.println("<strong>" + altercodeContainer.getAltercode() + " : " + altercodeContainer.getStatus() + "</strong>");
+                                        }
+                                        out.println("<br>");
                                     }
-                                    out.println("<br>");
                                 }
-                            }
-                            out.println("</td>");
-                            out.println("</tr>");
-                        %>
+                                out.println("</td>");
+                                out.println("</tr>");
+                            %>
                     </table>
                 </div>
 
