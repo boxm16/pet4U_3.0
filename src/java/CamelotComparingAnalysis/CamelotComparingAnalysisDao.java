@@ -22,8 +22,7 @@ public class CamelotComparingAnalysisDao {
 
     LinkedHashMap<String, SoldItem3> getTotalSales(LinkedHashMap<String, SoldItem3> camelotItemsForSales) {
         String firstDate = "2023-7-1";
-        String lastDate = "2023-9-1";
-        // String lastDate = "2024-4-18";
+        String lastDate = "2024-4-18";
 
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
         Connection connection = databaseConnectionFactory.getCamelotMicrosoftSQLConnection();
@@ -44,7 +43,7 @@ public class CamelotComparingAnalysisDao {
                 }
                 double sales = resultSet.getDouble("SALES");
                 //   System.out.println(code+" "+sales);
-                soldItem.setEshopSales(sales);
+                soldItem.setTotalSales(sales);
                 camelotItemsForSales.put(code, soldItem);
             }
 
