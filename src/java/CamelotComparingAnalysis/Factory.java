@@ -48,9 +48,11 @@ public class Factory {
                     System.out.println(shopNameString);
                     soldItem.setVaribobiSales(Double.parseDouble(pet4uSalesString));
                 } else {
-                  
+
                     System.out.println(shopNameString);
-                    soldItem.setVaribobiSales(Double.parseDouble(pet4uSalesString));
+                    double shopSales = soldItem.getShopSales();
+                    shopSales = shopSales + Double.parseDouble(pet4uSalesString);
+                    soldItem.setShopSales(shopSales);
                 }
                 camelotItemsForSales.put(soldItem.getCode(), soldItem);
             } else {
