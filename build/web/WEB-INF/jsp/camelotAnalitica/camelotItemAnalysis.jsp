@@ -95,7 +95,7 @@
                                 out.println("</tr>");
                                 out.println("<tr>");
                                 out.println("<td colspan='2'>");
-                                out.println(" <a href='itemAnalysis.htm?code=" + item.getCode() + "' class='btn btn-info btn-lg' role='button' aria-disabled='true'><h3>Pet4U Analysis</h3></a>");
+                                out.println(" <a href='itemAnalysis.htm?code=" + item.getCode() + "' target='_blank'><h3>Pet4U Analysis</h3></a>");
                                 out.println("</td>");
                                 out.println("</tr>");
                             %>
