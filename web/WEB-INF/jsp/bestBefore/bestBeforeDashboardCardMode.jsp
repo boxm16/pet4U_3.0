@@ -62,7 +62,7 @@
                                     out.println("Altercode");
                                     out.println("</td>");
                                     out.println("<td>");
-                                    out.println(" <a href='itemAnalysis.htm?code=" + statement.getAltercode() + "' ><h3>"+statement.getAltercode()+"</h3></a>");
+                                    out.println(" <a href='itemAnalysis.htm?code=" + statement.getAltercode() + "' >"+statement.getAltercode()+"</a>");
                                     out.println("</td>");
                                     out.println("</tr>");
 
