@@ -46,7 +46,7 @@
                             if (statements.size() > 0) {
                                 for (BestBeforeStatement statement : statements) {
 
-                                    out.println("<table class='table'>");
+                                    out.println("<table class='table'  style='background-color:" + statement.getAlertColor()+">");
                                     out.println("</tbody>");
                                     out.println("<tr>");
                                     out.println("<td style='width:70px'>");
