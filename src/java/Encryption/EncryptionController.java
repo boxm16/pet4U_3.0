@@ -13,7 +13,10 @@ public class EncryptionController {
 
     @RequestMapping(value = "authorize", method = RequestMethod.POST)
     public String encryptedIndexLefteris(HttpSession session, @RequestParam(name = "password") String password) {
-        if (password.equals("per4ito")||password.equals("PER4ITO")) {
+        if (password.equals("per4ito")
+                || password.equals("PER4ITO")
+                || password.equals("ΠΕΡ4ΙΤΟ")
+                || password.equals("περ4ιτο")) {
             session.setAttribute("user", "identified");
             session.setAttribute("userName", "me");
             return "adminIndex";
@@ -51,8 +54,8 @@ public class EncryptionController {
         }
         return "authorization";
     }
-    
-       @RequestMapping(value = "signOut", method = RequestMethod.GET)
+
+    @RequestMapping(value = "signOut", method = RequestMethod.GET)
     public String signOut(HttpSession session) {
         session.setAttribute("user", null);
         session.setAttribute("userName", null);
