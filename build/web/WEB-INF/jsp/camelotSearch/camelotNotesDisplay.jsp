@@ -27,7 +27,7 @@
                 font-weight: bold;
                 text-align: left;
                 background: #eee;
-                position: sticky;
+              
                 top: 0px;
             }
 
