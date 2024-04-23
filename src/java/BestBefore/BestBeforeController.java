@@ -73,10 +73,33 @@ public class BestBeforeController {
         return "bestBefore/bestBeforeDashboard";
     }
 
+    @RequestMapping(value = "bestBeforeDashboardCardMode", method = RequestMethod.GET)
+    public String bestBeforeDashboardCardMode(ModelMap modelMap) {
+        ArrayList<BestBeforeStatement> bestBeforeStatements = bestBeforeDao.getAllBestBeforeStatements();
+        LinkedHashMap<String, Item> pet4UItems = this.inventoryDao.getpet4UItemsRowByRow();
+        for (BestBeforeStatement statment : bestBeforeStatements) {
+            String altercode = statment.getAltercode();
+            Item pet4uItem = pet4UItems.get(altercode);
+            if (pet4uItem == null) {
+                System.out.println("Pet4uItem  not present in the lists from microsoft db");
+            }
+            statment.setDescription(pet4uItem.getDescription());
+            statment.setPosition(pet4uItem.getPosition());
+            modelMap.addAttribute("bestBeforeStatements", bestBeforeStatements);
+        }
+        return "bestBefore/bestBeforeDashboardCardMode";
+    }
+
     @RequestMapping(value = "deleteBestBeforeStatement", method = RequestMethod.GET)
     public String deleteBestBeforeStatement(@RequestParam(name = "id") String id) {
         bestBeforeDao.deleteStatement(id);
         return "redirect:bestBeforeDashboard.htm";
+    }
+
+    @RequestMapping(value = "deleteBestBeforeStatementCardMode", method = RequestMethod.GET)
+    public String deleteBestBeforeStatementCardMode(@RequestParam(name = "id") String id) {
+        bestBeforeDao.deleteStatement(id);
+        return "redirect:bestBeforeDashboardCardMode.htm";
     }
 
     @RequestMapping(value = "editBestBeforeStatement", method = RequestMethod.POST)

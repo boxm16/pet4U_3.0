@@ -45,6 +45,8 @@
                 <hr>
                 <a href="bestBeforeDashboard.htm"><h1 style="color: #CB230F">Best Before Dashboard</h1></a>
                 <hr>
+                 <a href="bestBeforeDashboardCardMode.htm"><h1 style="color: #CB230F">Best Before Dashboard Card Mode</h1></a>
+                <hr>
                 <!--  <a href="dayStockShortageAlert.htm"><h1 style="color: green">Day Stock Shortage Alert</h1></a>
                   <hr>
                 -->
