@@ -65,10 +65,47 @@ public class NotesController {
         return "vakulina/notesDisplay";
     }
     
+    @RequestMapping(value = "notesDisplayCardMode")
+    public String notesDisplayCardMode(ModelMap model) {
+
+        NotesDao notesDao = new NotesDao();
+        ArrayList<InventoryItem> notes = notesDao.getAllNotes();
+
+   
+        LinkedHashMap<String, Item> pet4UItems = notesDao.getpet4UItemsRowByRow();
+
+        for (InventoryItem inventoryItem : notes) {
+            //     System.out.println("ITETM:" + inventoryItem.getCode());
+            String altercode = inventoryItem.getCode();
+
+            Item pet4uItem = pet4UItems.get(altercode);
+
+            if (pet4uItem == null) {
+                System.out.println("Pet4uItem with altercode " + altercode + "  not present in the lists from microsoft db");
+            } else {
+                inventoryItem.setCode(pet4uItem.getCode());
+                inventoryItem.setDescription(pet4uItem.getDescription());
+                inventoryItem.setPosition(pet4uItem.getPosition());
+                inventoryItem.setState(pet4uItem.getState());
+                model.addAttribute("notes", notes);
+            }
+        }
+        return "vakulina/notesDisplayCardMode";
+    }
+    
     @RequestMapping(value = "deleteNote", method = RequestMethod.GET)
     public String deleteNote(@RequestParam(name = "id") String id) {
         NotesDao notesDao = new NotesDao();
         notesDao.deleteNote(id);
         return "redirect:notesDisplay.htm";
     }
+    
+     @RequestMapping(value = "deleteNoteCardMode", method = RequestMethod.GET)
+    public String deleteNoteCardMode(@RequestParam(name = "id") String id) {
+        NotesDao notesDao = new NotesDao();
+        notesDao.deleteNote(id);
+        return "redirect:notesDisplayCardMode.htm";
+    }
+    
+    
 }

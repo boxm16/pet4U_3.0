@@ -39,6 +39,8 @@
                 <a href="inventoryDashboard.htm"><h1 style="color: #999900">Inventory Dashboard</h1></a>
                 <hr>
                 <a href="notesDisplay.htm"><h1>Notes</h1></a>
+                <hr>
+                <a href="notesDisplayCardMode.htm"><h1>Notes: Card Mode</h1></a>
 
                 <hr>
                 <a href="camelotNotesCardMode.htm"><h1>Camelot Notes:Card Mode</h1></a>
