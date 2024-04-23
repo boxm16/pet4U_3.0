@@ -102,6 +102,12 @@
                                 out.println("</tr>");
 
                                 out.println("<tr>");
+                                out.println("<td style='width:70px' colspan='2'>");
+                                out.println("<a href='https://www.petcamelot.gr/search-products-el.html?match=all&subcats=Y&pcode_from_q=Y&pshort=Y&pfull=Y&pname=Y&pkeywords=Y&search_performed=Y&q=" + item.getCode() + "' target='_blank'>" + "<strong>SITE LINK</strong>" + "</a>");
+                                out.println("</td>");
+                                out.println("</tr>");
+
+                                out.println("<tr>");
                                 out.println("<td  colspan='2'>");
                                 out.println("<a href='getCamelotItemForNote.htm?altercode=" + item.getCode() + "' class='btn btn-warning btn-lg' role='button' aria-disabled='true'><h3>Make Note</h3></a>");
                                 out.println("</td>");
@@ -112,7 +118,6 @@
                                 out.println("<a href='camelotStockPositions.htm?itemCode=" + item.getCode() + "' class='btn btn-success btn-lg' role='button' aria-disabled='true'><h3>ΘΕΣΕΙΣ ΣΤΟΚ</h3></a>");
                                 out.println("</td>");
                                 out.println("</tr>");
-                                
 
                                 out.println("</tbody>");
                                 out.println("</table>");

@@ -91,7 +91,7 @@
                             out.println("</tr>");
 
                             out.println("<tr>");
-                            out.println("<td style='width:70px' colspan'2'>");
+                            out.println("<td style='width:70px' colspan='2'>");
                             out.println("<a href='https://www.petcamelot.gr/search-products-el.html?match=all&subcats=Y&pcode_from_q=Y&pshort=Y&pfull=Y&pname=Y&pkeywords=Y&search_performed=Y&q=" + item.getCode() + "' target='_blank'>" + "<strong>SITE LINK</strong>" + "</a>");
                             out.println("</td>");
                             out.println("</tr>");
