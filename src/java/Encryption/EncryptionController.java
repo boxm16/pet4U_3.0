@@ -13,7 +13,7 @@ public class EncryptionController {
 
     @RequestMapping(value = "authorize", method = RequestMethod.POST)
     public String encryptedIndexLefteris(HttpSession session, @RequestParam(name = "password") String password) {
-        if (password.equals("per4ito")) {
+        if (password.equals("per4ito")||password.equals("PER4ITO")) {
             session.setAttribute("user", "identified");
             session.setAttribute("userName", "me");
             return "adminIndex";
