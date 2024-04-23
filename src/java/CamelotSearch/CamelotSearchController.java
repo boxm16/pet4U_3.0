@@ -774,6 +774,8 @@ public class CamelotSearchController {
         stockPositions.add("CONTAINER_24");
         stockPositions.add("CONTAINER_25");
 
+        stockPositions.add("EVERCLEAN");
+
         model.addAttribute("itemCode", itemCode);
         model.addAttribute("stockPositions", stockPositions);
 
