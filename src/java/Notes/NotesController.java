@@ -43,7 +43,6 @@ public class NotesController {
         NotesDao notesDao = new NotesDao();
         ArrayList<InventoryItem> notes = notesDao.getAllNotes();
 
-   
         LinkedHashMap<String, Item> pet4UItems = notesDao.getpet4UItemsRowByRow();
 
         for (InventoryItem inventoryItem : notes) {
@@ -59,19 +58,19 @@ public class NotesController {
                 inventoryItem.setDescription(pet4uItem.getDescription());
                 inventoryItem.setPosition(pet4uItem.getPosition());
                 inventoryItem.setState(pet4uItem.getState());
+                inventoryItem.setQuantity(pet4uItem.getQuantity());
                 model.addAttribute("notes", notes);
             }
         }
         return "vakulina/notesDisplay";
     }
-    
+
     @RequestMapping(value = "notesDisplayCardMode")
     public String notesDisplayCardMode(ModelMap model) {
 
         NotesDao notesDao = new NotesDao();
         ArrayList<InventoryItem> notes = notesDao.getAllNotes();
 
-   
         LinkedHashMap<String, Item> pet4UItems = notesDao.getpet4UItemsRowByRow();
 
         for (InventoryItem inventoryItem : notes) {
@@ -87,25 +86,25 @@ public class NotesController {
                 inventoryItem.setDescription(pet4uItem.getDescription());
                 inventoryItem.setPosition(pet4uItem.getPosition());
                 inventoryItem.setState(pet4uItem.getState());
+                inventoryItem.setQuantity(pet4uItem.getQuantity());
                 model.addAttribute("notes", notes);
             }
         }
         return "vakulina/notesDisplayCardMode";
     }
-    
+
     @RequestMapping(value = "deleteNote", method = RequestMethod.GET)
     public String deleteNote(@RequestParam(name = "id") String id) {
         NotesDao notesDao = new NotesDao();
         notesDao.deleteNote(id);
         return "redirect:notesDisplay.htm";
     }
-    
-     @RequestMapping(value = "deleteNoteCardMode", method = RequestMethod.GET)
+
+    @RequestMapping(value = "deleteNoteCardMode", method = RequestMethod.GET)
     public String deleteNoteCardMode(@RequestParam(name = "id") String id) {
         NotesDao notesDao = new NotesDao();
         notesDao.deleteNote(id);
         return "redirect:notesDisplayCardMode.htm";
     }
-    
-    
+
 }
