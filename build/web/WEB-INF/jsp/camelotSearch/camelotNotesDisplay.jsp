@@ -112,7 +112,7 @@
         <hr>
 
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal">
             DELETE ALL NOTES
         </button>
 
