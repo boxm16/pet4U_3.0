@@ -55,6 +55,10 @@ public class EndoOrdersFactory {
                 break;
             }
 
+            if (itemCodeString.charAt(0) == '-') {
+                itemCodeString = itemCodeString.substring(1);
+            }
+
             if (endoOrders.containsKey(destinationString)) {
                 EndoOrder endoOrder = endoOrders.get(destinationString);
                 EndoOrderItem orderedItem = new EndoOrderItem();
