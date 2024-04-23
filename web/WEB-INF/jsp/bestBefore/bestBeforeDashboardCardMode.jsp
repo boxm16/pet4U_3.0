@@ -46,7 +46,7 @@
                             if (statements.size() > 0) {
                                 for (BestBeforeStatement statement : statements) {
 
-                                    out.println("<table class='table'  style='background-color:" + statement.getAlertColor()+"'>");
+                                    out.println("<table class='table'  style='background-color:" + statement.getAlertColor() + "'>");
                                     out.println("</tbody>");
                                     out.println("<tr>");
                                     out.println("<td style='width:70px'>");
@@ -62,7 +62,7 @@
                                     out.println("Altercode");
                                     out.println("</td>");
                                     out.println("<td>");
-                                    out.println("<strong>" + statement.getAltercode() + "</strong>");
+                                    out.println(" <a href='itemAnalysis.htm?code=" + statement.getAltercode() + "' class='btn btn-info btn-lg' role='button' aria-disabled='true'><h3>statement.getAltercode()</h3></a>");
                                     out.println("</td>");
                                     out.println("</tr>");
 
