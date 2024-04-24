@@ -47,6 +47,16 @@
 
                                     out.println("<table class='table'>");
                                     out.println("</tbody>");
+
+                                    out.println("<tr>");
+                                    out.println("<td style='width:70px'>");
+                                    out.println("Code");
+                                    out.println("</td>");
+                                    out.println("<td>");
+                                    out.println("<strong>" + item.getCode() + "</strong>");
+                                    out.println("</td>");
+                                    out.println("</tr>");
+
                                     out.println("<tr>");
                                     out.println("<td style='width:70px'>");
                                     out.println("Πε/φη");
