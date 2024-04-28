@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.logging.Level;
@@ -223,6 +224,41 @@ public class CamelotItemsOfOurInterestDao {
             statement.close();
             connection.close();
 
+        } catch (SQLException ex) {
+            Logger.getLogger(CamelotItemsOfOurInterestDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return camelotItemsOfOurInterest;
+    }
+
+    LinkedHashMap<String, CamelotItemOfInterest> addPet4ULast30DaysSalesData(LinkedHashMap<String, CamelotItemOfInterest> camelotItemsOfOurInterest, StringBuilder inPartForSqlQueryByItemCodes) {
+        LocalDate date = LocalDate.now();
+        LocalDate firstDate = date.minusDays(30);
+        LocalDate lastDate = date.minusDays(1);
+
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+        Connection connection = databaseConnectionFactory.getCamelotMicrosoftSQLConnection();
+
+        try {
+            Statement statement = connection.createStatement();
+
+            ResultSet resultSet = statement.executeQuery("SELECT ITEMCODE, SUM(QTY) AS SALES"
+                    + "  FROM [fotiou].[dbo].[WH_SALES] WHERE ENTRYDATE >= '" + firstDate + "' "
+                    + "AND ENTRYDATE <= '" + lastDate + "' group by ITEMCODE order by ITEMCODE;");
+
+            while (resultSet.next()) {
+
+                String itemCode = resultSet.getString("ITEMCODE").trim();
+
+                //         System.out.println(day);
+                double last30DaysSales = resultSet.getDouble("QTY");
+                CamelotItemOfInterest item = camelotItemsOfOurInterest.get(itemCode);
+                item.setLast30DaysSales(last30DaysSales);
+            }
+
+            resultSet.close();
+            statement.close();
+            connection.close();
         } catch (SQLException ex) {
             Logger.getLogger(CamelotItemsOfOurInterestDao.class.getName()).log(Level.SEVERE, null, ex);
         }
