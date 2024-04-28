@@ -243,7 +243,7 @@ public class CamelotItemsOfOurInterestDao {
             Statement statement = connection.createStatement();
 
             ResultSet resultSet = statement.executeQuery("SELECT ITEMCODE, SUM(QTY) AS SALES"
-                    + "  FROM [fotiou].[dbo].[WH_SALES] WHERE ENTRYDATE >= '" + firstDate + "' "
+                    + "  FROM [fotiou].[dbo].[WH_SALES] WHERE ITEMCODE IN " + inPartForSqlQueryByItemCodes + " AND ENTRYDATE >= '" + firstDate + "' "
                     + "AND ENTRYDATE <= '" + lastDate + "' group by ITEMCODE order by ITEMCODE;");
 
             while (resultSet.next()) {
