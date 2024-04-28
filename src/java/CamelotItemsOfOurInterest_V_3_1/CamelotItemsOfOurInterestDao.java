@@ -243,7 +243,7 @@ public class CamelotItemsOfOurInterestDao {
             Statement statement = connection.createStatement();
 
             ResultSet resultSet = statement.executeQuery("SELECT ABBREVIATION, SUM(QTY) AS SALES"
-                    + "  FROM [petworld].[dbo].[WH_SALES] WHERE ABBREVIATION IN " + inPartForSqlQueryByItemCodes + " AND ENTRYDATE >= '" + firstDate + "' "
+                    + "  FROM [petworld].[dbo].[WH_SALES_VAR]  WHERE ABBREVIATION IN " + inPartForSqlQueryByItemCodes + " AND ENTRYDATE >= '" + firstDate + "' "
                     + "AND ENTRYDATE <= '" + lastDate + "' group by ABBREVIATION order by ABBREVIATION;");
 
             while (resultSet.next()) {
