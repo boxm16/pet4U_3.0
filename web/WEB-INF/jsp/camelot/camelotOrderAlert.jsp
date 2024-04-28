@@ -66,7 +66,7 @@
             <th>Note</th>
             <th>State</th>
 
-            <th>Show<br>Snapshot</th>
+            <th>Edit</th>
             </thead>
 
             <%
@@ -78,7 +78,7 @@
                     int CamelotMinimalStock = camelotItemOfInterest.getCamelotMinimalStock();
                     double pet4uStock = camelotItemOfInterest.getPet4uStock() / camelotItemOfInterest.getWeightCoefficient();
                     double camelotFreeStock = camelotItemOfInterest.getCamelotStock();
-                    Double twoWeekSales = camelotItemOfInterest.getLastSixMonthsSoldPieces() / 13.0357;
+                    Double threeWeekSales = camelotItemOfInterest.getLastSixMonthsSoldPieces() * 21 / 182.5;
 
                     out.println("<td>");
                     out.println("<a href='itemAnalysis.htm?code=" + camelotItemOfInterest.getCode() + "' target='_blank'>" + camelotItemOfInterest.getCode() + "</a>");
@@ -97,13 +97,13 @@
                     out.println("</td>");
 
                     out.println("<td>");
-                    out.println(twoWeekSales.intValue());
+                    out.println(String.format("%.2f", threeWeekSales));
                     out.println("</td>");
 
                     out.println("<td>");
-                    out.println(camelotItemOfInterest.getLast30DaysSales()/2);
+                    out.println(camelotItemOfInterest.getLast30DaysSales() / 2);
                     out.println("</td>");
-                    
+
                     out.println("<td>");
                     out.println(camelotItemOfInterest.getPet4uStock() / camelotItemOfInterest.getWeightCoefficient());
                     out.println("</td>");
@@ -146,10 +146,6 @@
 
                     out.println("<td>");
                     out.println(camelotItemOfInterest.getState());
-                    out.println("</td>");
-
-                    out.println("<td>");
-                    out.println("<a href='itemSnapshots.htm?code=" + camelotItemOfInterest.getCode() + "' target='_blank'>Show Day Rest Snapshots</a>");
                     out.println("</td>");
 
                     out.println("<td>");
