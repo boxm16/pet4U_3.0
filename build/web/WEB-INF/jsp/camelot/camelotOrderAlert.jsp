@@ -101,7 +101,7 @@
                     out.println("</td>");
 
                     out.println("<td>");
-                    out.println(camelotItemOfInterest.getLast30DaysSales() / 30 * 21);
+                    out.println(String.format("%.2f", camelotItemOfInterest.getLast30DaysSales() / 30 * 21));
                     out.println("</td>");
 
                     out.println("<td>");
