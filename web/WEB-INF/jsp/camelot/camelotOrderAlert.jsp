@@ -54,7 +54,7 @@
 
             <th>Camelot<br> Stock</th>
             <th>Camelot<br>Minimal<br>Stock</th>
-            <th>Out<br>Stock</th>
+            <th>Camelot<br>Last 30<br> Days Sales </th>
 
             <th>Camelot<br> Position</th>
             <th>Referral<br>Altercode</th>
@@ -116,7 +116,7 @@
                     out.println("</td>");
 
                     out.println("<td>");
-                    out.println("----");
+                    out.println(camelotItemOfInterest.getLast30DaysSales());
                     out.println("</td>");
 
                     out.println("<td style='font-weight: bold;'>");
@@ -157,7 +157,7 @@
             %>
         </table>
         <hr> <hr> <hr>
-    <!--    <h1><a href='makeCamelotItemsInterestDayRestSnapshot.htm'>Make Snapshot Of Day Rest Of Items Of Interest</a></h1> -->
+        <!--    <h1><a href='makeCamelotItemsInterestDayRestSnapshot.htm'>Make Snapshot Of Day Rest Of Items Of Interest</a></h1> -->
         <h3>${snapshotInsertionResult}</h3>
     </center>
 </body>
