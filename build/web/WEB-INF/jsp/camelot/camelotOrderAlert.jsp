@@ -48,8 +48,8 @@
 
 
             <th>6 Months<br>Sales</th>
-            <th>3 Weeks<br> Sales</th>
-            <th>15 days<br> Sales</th>
+            <th>3 Weeks<br> Sales(by Months Sales)</th>
+            <th>21 days<br> Sales(by Daily Sales)</th>
             <th>Pet4u <br>Stock</th>
             <th>Pet4u <br>Minimal<br>Stock</th>
 
@@ -101,7 +101,7 @@
                     out.println("</td>");
 
                     out.println("<td>");
-                    out.println(camelotItemOfInterest.getLast30DaysSales() / 2);
+                    out.println(camelotItemOfInterest.getLast30DaysSales() / 30 * 21);
                     out.println("</td>");
 
                     out.println("<td>");
