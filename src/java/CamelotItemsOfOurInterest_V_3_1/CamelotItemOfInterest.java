@@ -15,6 +15,7 @@ public class CamelotItemOfInterest extends Item {
     private int weightCoefficient;
     private double camelotStock;
     private int camelotMinimalStock;
+    private double camelotLast30DaysSales;
 
     private double lastSixMonthsSales;
     private double last30DaysSales;
@@ -119,6 +120,14 @@ public class CamelotItemOfInterest extends Item {
 
     public void setLast30DaysSales(double last30DaysSales) {
         this.last30DaysSales = last30DaysSales;
+    }
+
+    public double getCamelotLast30DaysSales() {
+        return camelotLast30DaysSales;
+    }
+
+    public void setCamelotLast30DaysSales(double camelotLast30DaysSales) {
+        this.camelotLast30DaysSales = camelotLast30DaysSales;
     }
     
     

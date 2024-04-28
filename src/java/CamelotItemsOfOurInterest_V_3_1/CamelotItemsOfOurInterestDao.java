@@ -237,6 +237,41 @@ public class CamelotItemsOfOurInterestDao {
         LocalDate lastDate = date.minusDays(1);
 
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+        Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
+
+        try {
+            Statement statement = connection.createStatement();
+
+            ResultSet resultSet = statement.executeQuery("SELECT ABBREVIATION, SUM(QTY) AS SALES"
+                    + "  FROM [petworld].[dbo].[WH_SALES] WHERE ABBREVIATION IN " + inPartForSqlQueryByItemCodes + " AND ENTRYDATE >= '" + firstDate + "' "
+                    + "AND ENTRYDATE <= '" + lastDate + "' group by ABBREVIATION order by ABBREVIATION;");
+
+            while (resultSet.next()) {
+
+                String itemCode = resultSet.getString("ABBREVIATION").trim();
+
+                //         System.out.println(day);
+                double last30DaysSales = resultSet.getDouble("SALES");
+                CamelotItemOfInterest item = camelotItemsOfOurInterest.get(itemCode);
+                item.setLast30DaysSales(last30DaysSales);
+            }
+
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(CamelotItemsOfOurInterestDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return camelotItemsOfOurInterest;
+    }
+
+    LinkedHashMap<String, CamelotItemOfInterest> addCamelotLast30DaysSalesData(LinkedHashMap<String, CamelotItemOfInterest> camelotItemsOfOurInterest, StringBuilder inPartForSqlQueryByItemCodes) {
+        LocalDate date = LocalDate.now();
+        LocalDate firstDate = date.minusDays(30);
+        LocalDate lastDate = date.minusDays(1);
+
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
         Connection connection = databaseConnectionFactory.getCamelotMicrosoftSQLConnection();
 
         try {
@@ -253,7 +288,7 @@ public class CamelotItemsOfOurInterestDao {
                 //         System.out.println(day);
                 double last30DaysSales = resultSet.getDouble("SALES");
                 CamelotItemOfInterest item = camelotItemsOfOurInterest.get(itemCode);
-                item.setLast30DaysSales(last30DaysSales);
+                item.setCamelotLast30DaysSales(last30DaysSales);
             }
 
             resultSet.close();
@@ -262,7 +297,6 @@ public class CamelotItemsOfOurInterestDao {
         } catch (SQLException ex) {
             Logger.getLogger(CamelotItemsOfOurInterestDao.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         return camelotItemsOfOurInterest;
     }
 

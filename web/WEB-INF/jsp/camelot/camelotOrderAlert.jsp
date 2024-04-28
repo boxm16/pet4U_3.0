@@ -116,7 +116,7 @@
                     out.println("</td>");
 
                     out.println("<td>");
-                    out.println(camelotItemOfInterest.getLast30DaysSales());
+                    out.println(camelotItemOfInterest.getCamelotLast30DaysSales());
                     out.println("</td>");
 
                     out.println("<td style='font-weight: bold;'>");

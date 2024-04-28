@@ -40,8 +40,10 @@ public class CamelotItemsOfOurInterestController {
 
         StringBuilder lastSixMonthsForSqlQuery = buildStringFromArrayList(lastSixMonths);
         camelotItemsOfOurInterest = camelotItemsOfOurInterestDao.addSalesData(camelotItemsOfOurInterest, inPartForSqlQueryByItemCodes, lastSixMonthsForSqlQuery);
-
+       
         camelotItemsOfOurInterest = camelotItemsOfOurInterestDao.addPet4ULast30DaysSalesData(camelotItemsOfOurInterest, inPartForSqlQueryByItemCodes);
+
+        camelotItemsOfOurInterest = camelotItemsOfOurInterestDao.addCamelotLast30DaysSalesData(camelotItemsOfOurInterest, inPartForSqlQueryByItemCodes);
 
         modelMap.addAttribute("camelotItemsOfOurInterest", camelotItemsOfOurInterest);
         return "/camelot/camelotOrderAlert";
