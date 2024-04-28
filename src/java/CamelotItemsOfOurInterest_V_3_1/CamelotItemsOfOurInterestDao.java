@@ -251,7 +251,7 @@ public class CamelotItemsOfOurInterestDao {
                 String itemCode = resultSet.getString("ITEMCODE").trim();
 
                 //         System.out.println(day);
-                double last30DaysSales = resultSet.getDouble("QTY");
+                double last30DaysSales = resultSet.getDouble("SALES");
                 CamelotItemOfInterest item = camelotItemsOfOurInterest.get(itemCode);
                 item.setLast30DaysSales(last30DaysSales);
             }
