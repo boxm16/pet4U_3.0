@@ -49,7 +49,7 @@
 
             <th>6 Months<br>Sales</th>
             <th>3 Weeks<br> Sales(by Months Sales)</th>
-            <th>21 days<br> Sales(by Daily Sales)</th>
+            <th>Last 21 days<br> Sales(by Daily Sales)</th>
             <th>Pet4u <br>Stock</th>
             <th>Pet4u <br>Minimal<br>Stock</th>
 
