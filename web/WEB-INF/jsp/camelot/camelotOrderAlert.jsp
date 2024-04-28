@@ -48,7 +48,7 @@
 
 
             <th>6 Months<br>Sales</th>
-            <th>2 Weeks<br> Sales</th>
+            <th>3 Weeks<br> Sales</th>
             <th>15 days<br> Sales</th>
             <th>Pet4u <br>Stock</th>
             <th>Pet4u <br>Minimal<br>Stock</th>
