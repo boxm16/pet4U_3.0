@@ -20,7 +20,7 @@
                 font-size: 20px;
             }
             th{
-                font-size: 30px;
+                font-size: 20px;
                 font-weight: bold;
                 text-align: left;
                 background: #eee;
