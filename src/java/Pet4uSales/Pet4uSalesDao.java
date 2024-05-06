@@ -122,7 +122,7 @@ public class Pet4uSalesDao {
         } catch (SQLException ex) {
             Logger.getLogger(Pet4uSalesDao.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return camelotAllItemsForSales;
+        return pet4uAllItemsForSales;
     }
 
     String insertNewUpload(String date, LinkedHashMap<String, SoldItem> sodlItems) {
