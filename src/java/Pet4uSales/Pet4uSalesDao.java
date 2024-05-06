@@ -98,7 +98,7 @@ public class Pet4uSalesDao {
             }
 
             Statement statementEndo = connection.createStatement();
-            ResultSet resultSetSalesEndo = statementEndo.executeQuery("SELECT ABBREVIATION, SUM(QTY) AS SENT"
+            ResultSet resultSetSalesEndo = statementEndo.executeQuery("SELECT ABBREVIATION, SUM(QUANTITY) AS SENT"
                     + "  FROM [petworld].[dbo].[WH_ENDA_VAR] WHERE DOCDATE >= '" + firstDate + "' "
                     + "AND DOCDATE <= '" + lastDate + "' group by ABBREVIATION order by ABBREVIATION;");
             while (resultSetSalesEndo.next()) {
