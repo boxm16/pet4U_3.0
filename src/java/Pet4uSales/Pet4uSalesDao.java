@@ -99,8 +99,8 @@ public class Pet4uSalesDao {
 
             Statement statementEndo = connection.createStatement();
             ResultSet resultSetSalesEndo = statementEndo.executeQuery("SELECT ABBREVIATION, SUM(QTY) AS SENT"
-                    + "  FROM [petworld].[dbo].[WH_ENDA_VAR] WHERE ENTRYDATE >= '" + firstDate + "' "
-                    + "AND ENTRYDATE <= '" + lastDate + "' group by ABBREVIATION order by ABBREVIATION;");
+                    + "  FROM [petworld].[dbo].[WH_ENDA_VAR] WHERE DOCDATE >= '" + firstDate + "' "
+                    + "AND DOCDATE <= '" + lastDate + "' group by ABBREVIATION order by ABBREVIATION;");
             while (resultSetSalesEndo.next()) {
                 String code = resultSetSales.getString("ABBREVIATION").trim();
                 SoldItem soldItem = pet4uAllItemsForSales.get(code);
