@@ -9,12 +9,14 @@ import BasicModel.AltercodeContainer;
 import SalesX.SoldItem;
 import Service.DatabaseConnectionFactory;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
 import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -125,8 +127,45 @@ public class Pet4uSalesDao {
         return pet4uAllItemsForSales;
     }
 
-    String insertNewUpload(String date, LinkedHashMap<String, SoldItem> sodlItems) {
-        return "";
+    public String insertNewUpload(String date, LinkedHashMap<String, SoldItem> soldItems) {
+
+        System.out.println("STARTING INSERTING UPLOADED DATA");
+        System.out.println(" STARTING ADDING ITEMS TO 'month_sales' INSERTION BATCH");
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            Connection connection = databaseConnectionFactory.getMySQLConnection();
+
+            connection.setAutoCommit(false);
+            PreparedStatement itemInsertStatement = connection.prepareStatement("INSERT INTO month_sales (code, date,  eshop_sales, shops_supply) VALUES (?,?,?,?)");
+            int index = 0;
+            for (Map.Entry<String, SoldItem> soldItemEntry : soldItems.entrySet()) {
+                SoldItem soldItem = soldItemEntry.getValue();
+                itemInsertStatement.setString(1, soldItem.getCode());
+                itemInsertStatement.setString(2, date);
+                itemInsertStatement.setDouble(3, soldItem.getEshopSales());
+                itemInsertStatement.setDouble(4, soldItem.getShopsSupply());
+
+                itemInsertStatement.addBatch();
+                index++;
+                if (index % 1000 == 0) {
+                    System.out.println(index + " soldItems added to batch");
+                }
+
+            }
+
+            itemInsertStatement.executeBatch();
+            connection.commit();
+            itemInsertStatement.close();
+
+            connection.close();
+
+            System.out.println("'sales' INSERTION BATCH EXECUTED.");
+            System.out.println("-----------------------------------");
+        } catch (SQLException ex) {
+            Logger.getLogger(Pet4uSalesDao.class.getName()).log(Level.SEVERE, null, ex);
+            return ex.getMessage();
+        }
+        return "SALES UPLOAD  EXECUTED SUCCESSFULLY.";
     }
 
 }
