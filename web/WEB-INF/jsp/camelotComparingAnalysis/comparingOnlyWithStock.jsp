@@ -43,7 +43,7 @@
     <center>
         <h1>Camelot Comparing Analysis</h1>
         <h1>Comparing Analysis Period 2023-7-1 -----     2024-4-18</h1>
-        <h1><a href="camelotComparingAnalysisItemsWithStock.htm">SHOW ONLY ITEMS WITH STOCK</a></h1>
+        <h1><a href="camelotComparingAnalysis.htm">GO BACK</a></h1>
         <table style="font-size:20px">
             <thead>
                 <tr> 
