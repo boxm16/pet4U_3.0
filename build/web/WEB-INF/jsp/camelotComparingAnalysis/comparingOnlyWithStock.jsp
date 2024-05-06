@@ -67,7 +67,7 @@
 
                     for (Map.Entry<String, SoldItem3> entrySet : sales.entrySet()) {
 
-                        if (entrySet.getValue()==null||entrySet.getValue().getQuantity().equals("0.000000")) {
+                        if (entrySet.getValue()==null||entrySet.getValue().getQuantity()==null||entrySet.getValue().getQuantity().equals("0.000000")) {
                        continue;
                         }
                         out.println("<tr>");
