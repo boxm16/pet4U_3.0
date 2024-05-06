@@ -93,13 +93,17 @@ public class CamelotSalesController {
     @RequestMapping(value = "camelotSixMonthsSales")
     public String camelotSixMonthsSales(ModelMap model) {
 
+        //  System.out.println("S:"+camelotSales.size());
+        model.addAttribute("camelotSales", getCamelotSixMonthSales());
+        return "camelot/camelotSixMonthsSales";
+    }
+
+    public LinkedHashMap<String, SoldItem> getCamelotSixMonthSales() {
         CamelotSalesDao monthSalesDao = new CamelotSalesDao();
         LinkedHashMap<String, SoldItem> camelotItemsForSales = monthSalesDao.getCamelotItemsForSales();
         ArrayList<String> period = monthSalesDao.getSalesPeriod();
-        List<String> sixMonthsPeriod =  period.subList(period.size() - 6, period.size() );
+        List<String> sixMonthsPeriod = period.subList(period.size() - 6, period.size());
         LinkedHashMap<String, SoldItem> camelotSales = monthSalesDao.getSales(camelotItemsForSales, sixMonthsPeriod);
-        System.out.println("S:"+camelotSales.size());
-        model.addAttribute("camelotSales", camelotSales);
-        return "camelot/camelotSixMonthsSales";
+        return camelotSales;
     }
 }

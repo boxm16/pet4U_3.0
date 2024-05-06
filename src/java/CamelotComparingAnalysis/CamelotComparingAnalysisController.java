@@ -5,8 +5,11 @@
  */
 package CamelotComparingAnalysis;
 
+import CamelotSales.CamelotSalesController;
+import SalesX.SoldItem;
 import Service.Basement;
 import java.util.LinkedHashMap;
+import java.util.Map;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +24,15 @@ public class CamelotComparingAnalysisController {
 
         LinkedHashMap<String, SoldItem3> camelotSoldItems = dao.getCamelotItemsForSales();
 
-        LinkedHashMap<String, SoldItem3> camelotSoldItems1 = dao.getTotalSales(camelotSoldItems);
+        CamelotSalesController camelotSalesController = new CamelotSalesController();
+        LinkedHashMap<String, SoldItem> camelotSixMonthSales = camelotSalesController.getCamelotSixMonthSales();
+        for (Map.Entry<String, SoldItem3> camelotSoldItemsEntry : camelotSoldItems.entrySet()) {
+            String key = camelotSoldItemsEntry.getKey();
+            SoldItem sms = camelotSixMonthSales.get(key);
+            camelotSoldItemsEntry.getValue().setSixMonthsSales(sms.getEshopSales());
+        }
+
+        LinkedHashMap<String, SoldItem3> camelotSoldItems1 = dao.getTotalSalesForComparingAnalysisPeriod(camelotSoldItems);
         Basement basement = new Basement();
         String filePath = basement.getBasementDirectory() + "/Pet4U_Uploads/SALES_PETCAMELOT_PET4U.xlsx";
 

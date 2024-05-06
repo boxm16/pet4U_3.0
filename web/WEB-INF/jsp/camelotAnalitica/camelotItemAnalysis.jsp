@@ -186,11 +186,11 @@
 
 
                 <div class=" col-sm-4">
-                    <center><h3>Day Sales</h3></center>
+                    <center><h3>Daily Sales</h3></center>
                     <table>
 
                         <th>Date</th>
-                        <th>E-Shop Sales</th>
+                        <th>Sales</th>
 
                         <%                                LinkedHashMap<String, Double> daysSales = (LinkedHashMap) request.getAttribute("daysSales");
 

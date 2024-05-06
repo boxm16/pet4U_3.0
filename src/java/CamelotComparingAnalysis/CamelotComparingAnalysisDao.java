@@ -20,7 +20,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class CamelotComparingAnalysisDao {
 
-    LinkedHashMap<String, SoldItem3> getTotalSales(LinkedHashMap<String, SoldItem3> camelotItemsForSales) {
+    LinkedHashMap<String, SoldItem3> getTotalSalesForComparingAnalysisPeriod(LinkedHashMap<String, SoldItem3> camelotItemsForSales) {
         String firstDate = "2023-7-1";
         String lastDate = "2024-4-18";
 

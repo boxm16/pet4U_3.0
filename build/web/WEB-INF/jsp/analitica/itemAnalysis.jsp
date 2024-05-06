@@ -409,7 +409,7 @@
             <hr>
             <div class="row">
                 <div class=" col-sm-4">
-                    <center><h3>Day Sales</h3></center>
+                    <center><h3>Daily Sales</h3></center>
                     <table>
 
                         <th>Date</th>

@@ -11,11 +11,23 @@ import SalesX.SoldItem;
  *
  * @author Michail Sitmalidis
  */
-public class SoldItem3 extends SoldItem{
+public class SoldItem3 extends SoldItem {
+
+    private double sixMonthsSales;
     private double totalSales;
     private double varibobiSales;
     private double shopSales;
     private double otherSales;
+
+    public double getSixMonthsSales() {
+        return sixMonthsSales;
+    }
+
+    public void setSixMonthsSales(double sixMonthsSales) {
+        this.sixMonthsSales = sixMonthsSales;
+    }
+    
+    
 
     public double getTotalSales() {
         return totalSales;
@@ -48,6 +60,5 @@ public class SoldItem3 extends SoldItem{
     public void setOtherSales(double otherSales) {
         this.otherSales = otherSales;
     }
-    
-    
+
 }

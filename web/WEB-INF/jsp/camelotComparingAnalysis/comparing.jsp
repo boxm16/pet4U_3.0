@@ -19,7 +19,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Six Months Sales</title>
+        <title>Camelot Comparing Analysis</title>
         <style>
             table, th, td {
                 border: 1px solid ;
@@ -30,21 +30,22 @@
         </style>
     </head>
     <body>
-        <h1>SALES</h1>
-        <table font-size:20px">
+    <center>
+        <h1>Camelot Comparing Analysis</h1>
+        <h1>Comparing Analysis Period 2023-7-1 -----     2024-4-18</h1>
+        <table style="font-size:20px">
             <thead>
                 <tr> 
                     <th>CODE</th>
                     <th>POSITION</th>
                     <th>DESCRIPTION</th>
                     <th>Stock Now</th>
-                    <th>Total <br> Sales </th>
+                    <th>Last 6 <br> Months Sales</th>
+                    <th>Comparing Analysis<br>Total Sales </th>
                     <th>Shop <br> Sales </th>
                     <th>Varibobi <br> Sales </th>
                     <th>Outer <br> Sales </th>
                     <!--     <th>Total<br> Sales In <br>Pieces </th>-->
-
-                 
                 </tr>
             </thead>
             <tbody>
@@ -79,6 +80,10 @@
                         out.println("</td>");
 
                         out.println("<td>");
+                        out.println(entrySet.getValue().getSixMonthsSales());
+                        out.println("</td>");
+
+                        out.println("<td>");
                         out.println(entrySet.getValue().getTotalSales());
                         out.println("</td>");
 
@@ -108,5 +113,6 @@
 
             </tbody>
         </table>
-    </body>
+    </center>
+</body>
 </html>
