@@ -102,7 +102,7 @@ public class Pet4uSalesDao {
                     + "  FROM [petworld].[dbo].[WH_ENDA_VAR] WHERE DOCDATE >= '" + firstDate + "' "
                     + "AND DOCDATE <= '" + lastDate + "' group by ABBREVIATION order by ABBREVIATION;");
             while (resultSetSalesEndo.next()) {
-                String code = resultSetSales.getString("ABBREVIATION").trim();
+                String code = resultSetSalesEndo.getString("ABBREVIATION").trim();
                 SoldItem soldItem = pet4uAllItemsForSales.get(code);
                 if (soldItem == null) {
                     soldItem = new SoldItem();
