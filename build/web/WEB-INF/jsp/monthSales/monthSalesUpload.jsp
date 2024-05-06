@@ -19,7 +19,7 @@
             <input type="date"  name="date">
             <hr>
             <h1>SELECT FILE FOR UPLOAD</h1>
-            <input type="file" name="file"/>  
+      
             <input type="submit" value="Upload"/>  
         </form>  
     </center>
