@@ -26,7 +26,7 @@
                 border-collapse: collapse;
             }
             td {
-                font-size: 20px;
+                font-size: 30px;
             }
             th{
                 font-size: 30px;
@@ -81,7 +81,7 @@
                         out.println(entrySet.getValue().getPosition());
                         out.println("</td>");
 
-                        out.println("<td>");
+                        out.println("<td style='font-size: 20px;'>");
                         out.println(entrySet.getValue().getDescription());
                         out.println("</td>");
 
