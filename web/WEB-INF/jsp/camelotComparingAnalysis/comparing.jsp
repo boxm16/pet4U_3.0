@@ -26,7 +26,7 @@
                 border-collapse: collapse;
             }
             td {
-                font-size: 30px;
+                font-size: 25px;
             }
             th{
                 font-size: 30px;
