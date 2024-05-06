@@ -28,7 +28,7 @@ public class Pet4uSalesController {
 
         LinkedHashMap<String, SoldItem> pet4uAllItemsForSales = pet4uSalesDao.getPet4uItemsForSales();
 
-        LinkedHashMap<String, SoldItem> sodlItems = pet4uSalesDao.getMonthSalesFromMicrosoftDB(date, pet4uAllItemsForSales);
+        LinkedHashMap<String, SoldItem> sodlItems = pet4uSalesDao.getPet4uMonthSalesFromMicrosoftDB(date, pet4uAllItemsForSales);
         String result = pet4uSalesDao.insertNewUpload(date, sodlItems);
         return "monthSales/monthSalesUpload";
     }
