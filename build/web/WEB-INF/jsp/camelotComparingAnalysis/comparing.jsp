@@ -24,7 +24,17 @@
             table, th, td {
                 border: 1px solid ;
                 border-collapse: collapse;
-                font-size: 20px;
+            }
+            td {
+                font-size: 30px;
+            }
+            th{
+                font-size: 30px;
+                font-weight: bold;
+                text-align: left;
+                background: #eee;
+                position: sticky;
+                top: 0px;
             }
 
         </style>

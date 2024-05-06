@@ -29,7 +29,7 @@
     </head>
     <body>
         <h1>SALES</h1>
-        <table font-size:20px">
+        <table style="font-size:20px">
             <thead>
                 <tr> 
                     <th>CODE</th>
