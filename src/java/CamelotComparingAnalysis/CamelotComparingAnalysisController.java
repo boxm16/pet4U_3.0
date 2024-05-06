@@ -42,4 +42,30 @@ public class CamelotComparingAnalysisController {
         System.out.println("Done");
         return "camelotComparingAnalysis/comparing";
     }
+    
+     @RequestMapping(value = "camelotComparingAnalysisItemsWithStock")
+    public String camelotComparingAnalysisItemsWithStock(ModelMap modelMap) {
+
+        CamelotComparingAnalysisDao dao = new CamelotComparingAnalysisDao();
+
+        LinkedHashMap<String, SoldItem3> camelotSoldItems = dao.getCamelotItemsForSales();
+
+        CamelotSalesController camelotSalesController = new CamelotSalesController();
+        LinkedHashMap<String, SoldItem> camelotSixMonthSales = camelotSalesController.getCamelotSixMonthSales();
+        for (Map.Entry<String, SoldItem3> camelotSoldItemsEntry : camelotSoldItems.entrySet()) {
+            String key = camelotSoldItemsEntry.getKey();
+            SoldItem sms = camelotSixMonthSales.get(key);
+            camelotSoldItemsEntry.getValue().setSixMonthsSales(sms.getEshopSales());
+        }
+
+        LinkedHashMap<String, SoldItem3> camelotSoldItems1 = dao.getTotalSalesForComparingAnalysisPeriod(camelotSoldItems);
+        Basement basement = new Basement();
+        String filePath = basement.getBasementDirectory() + "/Pet4U_Uploads/SALES_PETCAMELOT_PET4U.xlsx";
+
+        Factory factory = new Factory();
+        LinkedHashMap<String, SoldItem3> camelotSoldItemsArray = factory.createSoldItemsFromUploadedFile(filePath, camelotSoldItems1);
+        modelMap.addAttribute("camelotSoldItemsArray", camelotSoldItemsArray);
+        System.out.println("Done");
+        return "camelotComparingAnalysis/comparingOnlyWithStock";
+    }
 }

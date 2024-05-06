@@ -66,6 +66,10 @@
                     LinkedHashMap<String, SoldItem3> sales = (LinkedHashMap) request.getAttribute("camelotSoldItemsArray");
 
                     for (Map.Entry<String, SoldItem3> entrySet : sales.entrySet()) {
+
+                        if (entrySet.getValue().getQuantity().equals("0.000000")) {
+                       continue;
+                        }
                         out.println("<tr>");
 
                         out.println("<td>");
