@@ -75,7 +75,7 @@ public class Pet4uSalesDao {
         LocalDate lastDate = date.with(TemporalAdjusters.lastDayOfMonth());
 
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
-        Connection connection = databaseConnectionFactory.getCamelotMicrosoftSQLConnection();
+        Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
 
         try {
             Statement statement = connection.createStatement();
