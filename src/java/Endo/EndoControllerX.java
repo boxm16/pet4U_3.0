@@ -44,7 +44,8 @@ public class EndoControllerX {
             if (endoParalavisId.equals("359761")
                     || endoParalavisId.equals("360140")
                     || endoParalavisId.equals("362926")
-                    || endoParalavisId.equals("362480")) {
+                    || endoParalavisId.equals("362480")
+                    || endoParalavisId.equals("371898")) {
                 endoParalavissIterator.remove();
             }
 
