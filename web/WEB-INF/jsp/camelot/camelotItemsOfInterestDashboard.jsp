@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Camelot Order Alert</title>
+        <title>Camelot Items Of Our Interest Dashboard</title>
 
         <style>
             table, th, td {
@@ -32,10 +32,8 @@
     <body>
     <center>
         <h1><a href="index.htm">INDEX</a></h1>
-        <h1>Camelot: Items Of Our Interest: Orders Alert</h1>
-        <hr>
-        <h3>  <a href="camelotItemsOfOurInterestDashboard.htm">Go Back To Dashboard</a></h3>
-        <hr>
+        <h1>Camelot: Items Of Our Interest Dashboard</h1>
+         <hr>
 
         <table>
             <thead>

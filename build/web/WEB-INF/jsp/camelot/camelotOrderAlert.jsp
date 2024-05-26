@@ -80,81 +80,112 @@
                     double camelotFreeStock = camelotItemOfInterest.getCamelotStock();
                     Double threeWeekSales = camelotItemOfInterest.getLastSixMonthsSoldPieces() * 21 / 182.5;
 
-                    out.println("<td>");
-                    out.println("<a href='itemAnalysis.htm?code=" + camelotItemOfInterest.getCode() + "' target='_blank'>" + camelotItemOfInterest.getCode() + "</a>");
-                    out.println("</td>");
+                    if (camelotFreeStock < CamelotMinimalStock || pet4uStock < minimalStock * 2) {
+                        if (camelotItemOfInterest.getMinimalStock() == -989898) {
+                            continue;
+                        }
+                        if (pet4uStock < minimalStock * 2) {
+                            alarmColor = "yellow";
+                        }
+                        if (pet4uStock < minimalStock) {
+                            alarmColor = "#F33A6A";
+                        }
 
-                    out.println("<td>");
-                    out.println(camelotItemOfInterest.getPosition());
-                    out.println("</td>");
+                        if (camelotFreeStock < CamelotMinimalStock) {
+                            if (pet4uStock < threeWeekSales) {
+                                alarmColor = "red";
+                            } else {
+                                continue;
+                            }
+                        }
 
-                    out.println("<td>");
-                    out.println(camelotItemOfInterest.getDescription());
-                    out.println("</td>");
+                        if (camelotItemOfInterest.getCamelotStock() < 1) {
+                            if ((camelotItemOfInterest.getCamelotStock() < 1 || camelotFreeStock < CamelotMinimalStock) && pet4uStock < 1) {
+                                alarmColor = "brown";
+                            } else if ((camelotItemOfInterest.getCamelotStock() < 1 || camelotFreeStock < CamelotMinimalStock) && pet4uStock < threeWeekSales) {
+                                alarmColor = "#CD7F32";
+                            } else {
+                                // alarmColor = "#2554C7";
+                                continue;
+                            }
 
-                    out.println("<td>");
-                    out.println(camelotItemOfInterest.getLastSixMonthsSoldPieces());
-                    out.println("</td>");
+                        }
 
-                    out.println("<td>");
-                    out.println(String.format("%.2f", threeWeekSales));
-                    out.println("</td>");
+                        out.println("<td>");
+                        out.println("<a href='itemAnalysis.htm?code=" + camelotItemOfInterest.getCode() + "' target='_blank'>" + camelotItemOfInterest.getCode() + "</a>");
+                        out.println("</td>");
 
-                    out.println("<td>");
-                    out.println(String.format("%.2f", camelotItemOfInterest.getLast30DaysSales() / 30 * 21 / camelotItemOfInterest.getWeightCoefficient()));
-                    out.println("</td>");
+                        out.println("<td>");
+                        out.println(camelotItemOfInterest.getPosition());
+                        out.println("</td>");
 
-                    out.println("<td>");
-                    out.println(camelotItemOfInterest.getPet4uStock() / camelotItemOfInterest.getWeightCoefficient());
-                    out.println("</td>");
+                        out.println("<td>");
+                        out.println(camelotItemOfInterest.getDescription());
+                        out.println("</td>");
 
-                    out.println("<td>");
-                    out.println(camelotItemOfInterest.getMinimalStock());
-                    out.println("</td>");
+                        out.println("<td>");
+                        out.println(camelotItemOfInterest.getLastSixMonthsSoldPieces());
+                        out.println("</td>");
 
-                    out.println("<td>");
-                    out.println(camelotFreeStock);
-                    out.println("</td>");
+                        out.println("<td>");
+                        out.println(String.format("%.2f", threeWeekSales));
+                        out.println("</td>");
 
-                    out.println("<td>");
-                    out.println(camelotItemOfInterest.getCamelotMinimalStock());
-                    out.println("</td>");
+                        out.println("<td>");
+                        out.println(String.format("%.2f", camelotItemOfInterest.getLast30DaysSales() / 30 * 21 / camelotItemOfInterest.getWeightCoefficient()));
+                        out.println("</td>");
 
-                    out.println("<td>");
-                    out.println(camelotItemOfInterest.getCamelotLast30DaysSales());
-                    out.println("</td>");
+                        out.println("<td>");
+                        out.println(camelotItemOfInterest.getPet4uStock() / camelotItemOfInterest.getWeightCoefficient());
+                        out.println("</td>");
 
-                    out.println("<td style='font-weight: bold;'>");
-                    out.println(camelotItemOfInterest.getCamelotPosition());
-                    out.println("</td>");
+                        out.println("<td>");
+                        out.println(camelotItemOfInterest.getMinimalStock());
+                        out.println("</td>");
 
-                    out.println("<td>");
-                    out.println("<a href='itemAnalysis.htm?code=" + camelotItemOfInterest.getReferralAltercode() + "' target='_blank'>" + camelotItemOfInterest.getReferralAltercode() + "</a>");
-                    out.println("</td>");
+                        out.println("<td>");
+                        out.println(camelotFreeStock);
+                        out.println("</td>");
 
-                    out.println("<td style='font-weight: bold;'>");
-                    out.println(camelotItemOfInterest.getOrderQuantity());
-                    out.println("</td>");
+                        out.println("<td>");
+                        out.println(camelotItemOfInterest.getCamelotMinimalStock());
+                        out.println("</td>");
 
-                    out.println("<td style='font-weight: bold;'>");
-                    out.println(camelotItemOfInterest.getOrderUnit());
-                    out.println("</td>");
+                        out.println("<td>");
+                        out.println(camelotItemOfInterest.getCamelotLast30DaysSales());
+                        out.println("</td>");
 
-                    out.println("<td>");
-                    out.println(camelotItemOfInterest.getNote());
-                    out.println("</td>");
+                        out.println("<td style='font-weight: bold;'>");
+                        out.println(camelotItemOfInterest.getCamelotPosition());
+                        out.println("</td>");
 
-                    out.println("<td>");
-                    out.println(camelotItemOfInterest.getState());
-                    out.println("</td>");
+                        out.println("<td>");
+                        out.println("<a href='itemAnalysis.htm?code=" + camelotItemOfInterest.getReferralAltercode() + "' target='_blank'>" + camelotItemOfInterest.getReferralAltercode() + "</a>");
+                        out.println("</td>");
 
-                    out.println("<td>");
-                    out.println("<a href='goForEditingCamelotItemOfInterest.htm?code=" + camelotItemOfInterest.getReferralAltercode() + "'>Edit</a>");
-                    out.println("</td>");
+                        out.println("<td style='font-weight: bold;'>");
+                        out.println(camelotItemOfInterest.getOrderQuantity());
+                        out.println("</td>");
 
-                    out.println("</tr>");
+                        out.println("<td style='font-weight: bold;'>");
+                        out.println(camelotItemOfInterest.getOrderUnit());
+                        out.println("</td>");
+
+                        out.println("<td>");
+                        out.println(camelotItemOfInterest.getNote());
+                        out.println("</td>");
+
+                        out.println("<td>");
+                        out.println(camelotItemOfInterest.getState());
+                        out.println("</td>");
+
+                        out.println("<td>");
+                        out.println("<a href='goForEditingCamelotItemOfInterest.htm?code=" + camelotItemOfInterest.getReferralAltercode() + "'>Edit</a>");
+                        out.println("</td>");
+
+                        out.println("</tr>");
+                    }
                 }
-
             %>
         </table>
         <hr> <hr> <hr>
