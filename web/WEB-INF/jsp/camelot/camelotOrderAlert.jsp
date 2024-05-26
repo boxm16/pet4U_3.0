@@ -79,7 +79,7 @@
                     double pet4uStock = camelotItemOfInterest.getPet4uStock() / camelotItemOfInterest.getWeightCoefficient();
                     double camelotFreeStock = camelotItemOfInterest.getCamelotStock();
                     Double threeWeekSales = camelotItemOfInterest.getLastSixMonthsSoldPieces() * 21 / 182.5;
-
+                    Double threeWeekSalesByDailySales = camelotItemOfInterest.getLast30DaysSales() / 30 * 21 / camelotItemOfInterest.getWeightCoefficient();
                     if (camelotFreeStock < CamelotMinimalStock || pet4uStock < minimalStock * 2) {
                         if (camelotItemOfInterest.getMinimalStock() == -989898) {
                             continue;
@@ -92,7 +92,7 @@
                         }
 
                         if (camelotFreeStock < CamelotMinimalStock) {
-                            if (pet4uStock < threeWeekSales) {
+                            if (pet4uStock < threeWeekSales || pet4uStock <) {
                                 alarmColor = "red";
                             } else {
                                 continue;
@@ -133,7 +133,7 @@
                         out.println("</td>");
 
                         out.println("<td>");
-                        out.println(String.format("%.2f", camelotItemOfInterest.getLast30DaysSales() / 30 * 21 / camelotItemOfInterest.getWeightCoefficient()));
+                        out.println(String.format("%.2f", threeWeekSalesByDailySales));
                         out.println("</td>");
 
                         out.println("<td>");
