@@ -112,6 +112,7 @@
                         }
 
                         out.println("<tr style='background-color: " + alarmColor + "'>");
+                        out.println("<td>");
                         out.println("<a href='itemAnalysis.htm?code=" + camelotItemOfInterest.getCode() + "' target='_blank'>" + camelotItemOfInterest.getCode() + "</a>");
                         out.println("</td>");
 
