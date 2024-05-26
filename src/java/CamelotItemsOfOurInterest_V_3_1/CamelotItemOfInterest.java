@@ -12,7 +12,7 @@ public class CamelotItemOfInterest extends Item {
 
     private String camelotPosition;
     private double pet4uStock;
-    // private int weightCoefficient;
+    private int weightCoefficient;
     private double camelotStock;
     private int camelotMinimalStock;
     private double camelotLast30DaysSales;
@@ -61,7 +61,6 @@ public class CamelotItemOfInterest extends Item {
         this.pet4uStock = pet4uStock;
     }
 
-    /*
     public int getWeightCoefficient() {
         return weightCoefficient;
     }
@@ -69,7 +68,6 @@ public class CamelotItemOfInterest extends Item {
     public void setWeightCoefficient(int weightCoefficient) {
         this.weightCoefficient = weightCoefficient;
     }
-     */
 
     public double getCamelotStock() {
         return camelotStock;
@@ -113,7 +111,7 @@ public class CamelotItemOfInterest extends Item {
 
     public double getLastSixMonthsSoldPieces() {
 
-        return this.lastSixMonthsSales / super.getWeightCoefficient();
+        return this.lastSixMonthsSales / this.weightCoefficient;
     }
 
     public double getLast30DaysSales() {
