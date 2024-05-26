@@ -149,7 +149,7 @@
                     out.println("</td>");
 
                     out.println("<td>");
-                    out.println("<a href='goForEditingCamelotItemOfInterest.htm?code=" + camelotItemOfInterest.getCode() + "'>Edit</a>");
+                    out.println("<a href='goForEditingCamelotItemOfInterest.htm?code=" + camelotItemOfInterest.getReferralAltercode() + "'>Edit</a>");
                     out.println("</td>");
 
                     out.println("</tr>");
