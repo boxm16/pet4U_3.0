@@ -18,8 +18,15 @@ public class CamelotItemsOfOurInterestController {
     @Autowired
     private CamelotItemsOfOurInterestDao camelotItemsOfOurInterestDao;
 
-    @RequestMapping(value = "camelotOrderAlert")
-    public String camelotOrderAlert(ModelMap modelMap) {
+    @RequestMapping(value = "camelotItemsOfInterestDashboard")
+    public String camelotItemsOfInterestDashboard(ModelMap modelMap) {
+
+        modelMap.addAttribute("camelotItemsOfOurInterest", getCamelotItemsOfOurInterest());
+
+        return "/camelot/camelotItemsOfInterestDashboard";
+    }
+
+    private LinkedHashMap<String, CamelotItemOfInterest> getCamelotItemsOfOurInterest() {
         //Sequence is important
         LinkedHashMap<String, CamelotItemOfInterest> camelotItemsOfOurInterest = camelotItemsOfOurInterestDao.getCamelotItemsOfOurInterset();
         ArrayList referalAltercodes = new ArrayList(camelotItemsOfOurInterest.keySet());
@@ -40,12 +47,18 @@ public class CamelotItemsOfOurInterestController {
 
         StringBuilder lastSixMonthsForSqlQuery = buildStringFromArrayList(lastSixMonths);
         camelotItemsOfOurInterest = camelotItemsOfOurInterestDao.addSalesData(camelotItemsOfOurInterest, inPartForSqlQueryByItemCodes, lastSixMonthsForSqlQuery);
-       
+
         camelotItemsOfOurInterest = camelotItemsOfOurInterestDao.addPet4ULast30DaysSalesData(camelotItemsOfOurInterest, inPartForSqlQueryByItemCodes);
 
         camelotItemsOfOurInterest = camelotItemsOfOurInterestDao.addCamelotLast30DaysSalesData(camelotItemsOfOurInterest, inPartForSqlQueryByItemCodes);
+        return camelotItemsOfOurInterest;
+    }
 
-        modelMap.addAttribute("camelotItemsOfOurInterest", camelotItemsOfOurInterest);
+    @RequestMapping(value = "camelotOrderAlert")
+    public String camelotOrderAlert(ModelMap modelMap) {
+
+        modelMap.addAttribute("camelotItemsOfOurInterest", getCamelotItemsOfOurInterest());
+
         return "/camelot/camelotOrderAlert";
     }
 
