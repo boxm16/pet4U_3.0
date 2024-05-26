@@ -92,10 +92,10 @@
                         }
 
                         if (camelotFreeStock < CamelotMinimalStock) {
-                            if (pet4uStock < threeWeekSales || pet4uStock <threeWeekSalesByDailySales) {
+                            if (pet4uStock < threeWeekSales || pet4uStock < threeWeekSalesByDailySales) {
                                 alarmColor = "red";
                             } else {
-                                continue;
+                                alarmColor = "blue";
                             }
                         }
 
