@@ -10,7 +10,6 @@
 <%@page import="SuppliersAndStock.Supplier"%>
 <%@page import="java.time.LocalDate"%>
 <%@page import="java.text.DecimalFormat"%>
-<%@page import="MonthSales.Eksagoges"%>
 <%@page import="java.util.Map"%>
 <%@page import="SuppliersAndStock.SuppliersItem"%>
 <%@page import="java.util.LinkedHashMap"%>
@@ -44,7 +43,7 @@
         </style>
     </head>
     <body>
-        <div class=""container-fluid">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-lg">
 
