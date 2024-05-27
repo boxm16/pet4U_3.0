@@ -33,7 +33,9 @@
     <center>
         <h1><a href="index.htm">INDEX</a></h1>
         <h1>Camelot: Items Of Our Interest Dashboard</h1>
-         <hr>
+        <hr>
+        <h3><a href="goForAddingItemOfInterest.htm">Add Item Of Interest</a></h3>
+        <hr>
 
         <table>
             <thead>
