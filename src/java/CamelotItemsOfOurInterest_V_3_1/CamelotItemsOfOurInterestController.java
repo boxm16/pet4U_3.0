@@ -7,6 +7,7 @@ package CamelotItemsOfOurInterest_V_3_1;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
