@@ -25,8 +25,8 @@ public class CamelotItemsOfInterestController {
     @Autowired
     private CamelotDao camelotDao;
 
-    @RequestMapping(value = "camelotItemsOfOurInterestDashboard")
-    public String camelotItemsOfOurInterestDashboard(HttpSession session, ModelMap model) {
+    @RequestMapping(value = "camelotItemsOfOurInterestDashboard_")
+    public String camelotItemsOfOurInterestDashboard_(HttpSession session, ModelMap model) {
 //        ArrayList<CamelotItemOfInterest> camelotItemsOfInterest = camelotItemsOfInterestDao.getItemsOfInterest();
         //   model.addAttribute("camelotItemsReferenceFile", StaticsDispatcher.getCamelotLastUploadedFileName());
         //  model.addAttribute("pet4UItemsReferenceFile", StaticsDispatcher.getPet4uLastUploadedFileName());

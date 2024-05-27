@@ -19,7 +19,17 @@ public class CamelotItemsOfOurInterestController {
     private CamelotItemsOfOurInterestDao camelotItemsOfOurInterestDao;
 
     @RequestMapping(value = "camelotItemsOfOurInterestDashboard")
-    public String camelotItemsOfInterestDashboard(ModelMap modelMap) {
+    public String camelotItemsOfInterestDashboard(HttpSession session, ModelMap modelMap) {
+         String userName = (String) session.getAttribute("userName");
+
+        if (userName == null) {
+            modelMap.addAttribute("message", "You are not authorized for this page");
+            return "errorPage";
+        }
+        if (!userName.equals("me")) {
+            modelMap.addAttribute("message", "You are not authorized for this page");
+            return "errorPage";
+        }
 
         modelMap.addAttribute("camelotItemsOfOurInterest", getCamelotItemsOfOurInterest());
 
