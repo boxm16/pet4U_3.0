@@ -18,12 +18,12 @@ public class CamelotItemsOfOurInterestController {
     @Autowired
     private CamelotItemsOfOurInterestDao camelotItemsOfOurInterestDao;
 
-    @RequestMapping(value = "camelotItemsOfInterestDashboard")
+    @RequestMapping(value = "camelotItemsOfOurInterestDashboard")
     public String camelotItemsOfInterestDashboard(ModelMap modelMap) {
 
         modelMap.addAttribute("camelotItemsOfOurInterest", getCamelotItemsOfOurInterest());
 
-        return "/camelot/camelotItemsOfInterestDashboard";
+        return "/camelot/camelotItemsOfOurInterestDashboard";
     }
 
     private LinkedHashMap<String, CamelotItemOfInterest> getCamelotItemsOfOurInterest() {
