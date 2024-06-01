@@ -1115,4 +1115,42 @@ public class TechManDao {
         }
     }
 
+    String createNotForEndoDatabaseTable() {
+        String query = "CREATE TABLE not_for_endo("
+                + "id INT(6) NOT NULL AUTO_INCREMENT, "
+                + "item_code VARCHAR(15) NOT NULL , "
+                + "note VARCHAR(360) NOT NULL, "
+                + "PRIMARY KEY (id)) "
+                + "ENGINE = InnoDB "
+                + "DEFAULT CHARACTER SET = utf8;";
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+            statement.close();
+            connection.close();
+            return "Table 'notForEndo' created succesfully";
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return "Table 'notForEndo' could not be created:" + ex;
+        }
+    }
+
+    String deleteNotForEndoDatabaseTable() {
+
+        String query = "DROP TABLE not_for_endo";
+
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+            statement.close();
+            connection.close();
+            return "Table 'notForEndo' deleted succesfully";
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return "Table 'notForEndo' could not be deleted:" + ex;
+        }
+    }
+
 }

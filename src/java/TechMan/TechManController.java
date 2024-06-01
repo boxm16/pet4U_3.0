@@ -19,8 +19,8 @@ public class TechManController {
 
     @RequestMapping(value = "techMan")
     public String techMan() {
-       //   return "techMan/techManDashboard";
-          return "index";
+        return "techMan/techManDashboard";
+        //     return "index";
     }
 
     //-----------------------------------------------------------------------
@@ -467,8 +467,8 @@ public class TechManController {
         modelMap.addAttribute("camelotStockPositionsDatabaseTableResult", camelotStockPositionsDatabaseTableResult);
         return "techMan/techManDashboard";
     }
-    
-     //---------------------------------------------------
+
+    //---------------------------------------------------
     @RequestMapping(value = "/createCamelotSalesDatabaseTable", method = RequestMethod.GET)
     public String createCamelotSalesDatabaseTable(ModelMap modelMap) {
         String camelotSalesDatabaseTableResult = techManDao.createCamelotSalesDatabaseTable();
@@ -478,12 +478,31 @@ public class TechManController {
         return "techMan/techManDashboard";
     }
 
-    @RequestMapping(value = "/deleteCamelotSalesDatabaseTable", method = RequestMethod.GET)
+    @RequestMapping(value = "/deleteCamelotSalesDatabaseTable1", method = RequestMethod.GET)
     public String deleteCamelotSalesDatabaseTable(ModelMap modelMap) {
         String camelotSalesDatabaseTableResult = techManDao.deleteCamelotSalesDatabaseTable();
 
         camelotSalesDatabaseTableResult = camelotSalesDatabaseTableResult + "<br>";
         modelMap.addAttribute("camelotSalesDatabaseTableResult", camelotSalesDatabaseTableResult);
+        return "techMan/techManDashboard";
+    }
+
+    //-----------------
+    @RequestMapping(value = "/createNotForEndoDatabaseTable", method = RequestMethod.GET)
+    public String createNotForEndoDatabaseTable(ModelMap modelMap) {
+        String notForEndoDatabaseTableResult = techManDao.createNotForEndoDatabaseTable();
+
+        notForEndoDatabaseTableResult = notForEndoDatabaseTableResult + "<br>";
+        modelMap.addAttribute("notForEndoDatabaseTableResult", notForEndoDatabaseTableResult);
+        return "techMan/techManDashboard";
+    }
+
+    @RequestMapping(value = "/deleteNotForEndoDatabaseTable", method = RequestMethod.GET)
+    public String deleteNotForEndoDatabaseTable(ModelMap modelMap) {
+        String notForEndoDatabaseTableResult = techManDao.deleteNotForEndoDatabaseTable();
+
+        notForEndoDatabaseTableResult = notForEndoDatabaseTableResult + "<br>";
+        modelMap.addAttribute("notForEndoDatabaseTableResult", notForEndoDatabaseTableResult);
         return "techMan/techManDashboard";
     }
 }
