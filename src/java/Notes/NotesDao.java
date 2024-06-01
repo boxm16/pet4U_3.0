@@ -453,7 +453,7 @@ public class NotesDao {
     }
 
     String saveNotForEndo(String altercode, String note) {
-    try {
+        try {
             DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
             Connection connection = databaseConnectionFactory.getMySQLConnection();
 
@@ -468,6 +468,41 @@ public class NotesDao {
             Logger.getLogger(NotesDao.class.getName()).log(Level.SEVERE, null, ex);
             return ex.getMessage();
         }
-        return "New 'Not For Endo' Saved Successfully";}
+        return "New 'Not For Endo' Saved Successfully";
+    }
+
+    ArrayList<InventoryItem> getAllNotForEndo() {
+        ArrayList<InventoryItem> inventories = new ArrayList<>();
+
+        String sql = "SELECT * FROM not_for_endo ;";
+        ResultSet resultSet;
+
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            Connection connection = databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+
+            resultSet = statement.executeQuery(sql);
+            while (resultSet.next()) {
+                InventoryItem inventoryItem = new InventoryItem();
+                int id = resultSet.getInt("id");
+                inventoryItem.setId(id);
+
+                String itemCode = resultSet.getString("item_code");
+                inventoryItem.setCode(itemCode.trim());
+                inventoryItem.setNote(resultSet.getString("note"));
+
+                inventories.add(inventoryItem);
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(NotesDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return inventories;
+    }
 
 }
