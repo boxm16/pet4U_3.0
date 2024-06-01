@@ -164,7 +164,7 @@ public class NotesController {
     @RequestMapping(value = "deleteNotForEndo", method = RequestMethod.GET)
     public String deleteNotForEndo(@RequestParam(name = "id") String id) {
         NotesDao notesDao = new NotesDao();
-        notesDao.deleteNote(id);
+        notesDao.deleteNotForEndo(id);
         return "redirect:notForEndoDisplay.htm";
     }
 
