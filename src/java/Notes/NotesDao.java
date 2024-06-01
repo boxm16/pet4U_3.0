@@ -453,7 +453,21 @@ public class NotesDao {
     }
 
     String saveNotForEndo(String altercode, String note) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            Connection connection = databaseConnectionFactory.getMySQLConnection();
+
+            PreparedStatement itemInsertStatement = connection.prepareStatement("INSERT INTO not_for_endo (item_code, note) VALUES (?,?)");
+
+            itemInsertStatement.setString(1, altercode);
+            itemInsertStatement.setString(2, note);
+
+            itemInsertStatement.execute();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(NotesDao.class.getName()).log(Level.SEVERE, null, ex);
+            return ex.getMessage();
+        }
+        return "New 'Not For Endo' Saved Successfully";}
 
 }
