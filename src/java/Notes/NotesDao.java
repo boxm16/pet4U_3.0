@@ -452,4 +452,8 @@ public class NotesDao {
         return allPositions;
     }
 
+    String saveNotForEndo(String altercode, String note) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

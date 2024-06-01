@@ -107,4 +107,29 @@ public class NotesController {
         return "redirect:notesDisplayCardMode.htm";
     }
 
+    //--------------
+    @RequestMapping(value = "getItemForNotForEndo", method = RequestMethod.GET)
+    public String getItemForNotForEndo(@RequestParam(name = "altercode") String altercode, ModelMap modelMap) {
+        NotesDao notesDao = new NotesDao();
+        Item item = notesDao.getItemForNote(altercode);
+
+        modelMap.addAttribute("item", item);
+        modelMap.addAttribute("altercode", altercode);
+        return "vakulina/notForEndoServant";
+
+    }
+
+    //-------------------------------------
+    @RequestMapping(value = "saveNotForEndo", method = RequestMethod.POST)
+    public String saveNotForEndo(@RequestParam(name = "altercode") String altercode,
+            @RequestParam(name = "note") String note,
+            ModelMap model) {
+
+        NotesDao notesDao = new NotesDao();
+        String result = notesDao.saveNotForEndo(altercode, note);
+        model.addAttribute("result", result);
+
+        return "redirect:notForEndoDisplay.htm";
+        // return "vakulina/notesDisplay";
+    }
 }

@@ -129,6 +129,10 @@
                                 out.println("<hr>");
                                 out.println(" <a href='getItemForNote.htm?altercode=" + item.getCode() + "' class='btn btn-warning btn-lg' role='button' aria-disabled='true'><h3>Make Note</h3></a>");
                                 out.println("<hr>");
+
+                                out.println("<hr>");
+                                out.println(" <a href='getItemForNotForEndo.htm?altercode=" + item.getCode() + "' class='btn btn-info btn-lg' role='button' aria-disabled='true'><h3>Mark As 'Not For Endo'</h3></a>");
+                                out.println("<hr>");
                             }%>
                     </center>
                 </div>
