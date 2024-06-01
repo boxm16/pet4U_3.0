@@ -77,6 +77,7 @@
 
                                         <center>    <input type='text' readonly name='systemStock' style='font-size:30px; background-color: lightcoral' value='${item.quantity}'></center>
                                         <hr>
+                                        <h3 style="background-color:#99A8E2">Mark Item As "NOT FOR ENDO"</h3>
 
                                         <hr>
                                         <input name='altercode' hidden value='${altercode}'>
