@@ -132,4 +132,32 @@ public class NotesController {
         return "redirect:notForEndoDisplay.htm";
         // return "vakulina/notesDisplay";
     }
+    
+    @RequestMapping(value = "notForEndoDisplay")
+    public String notForEndoDisplay(ModelMap model) {
+
+        NotesDao notesDao = new NotesDao();
+        ArrayList<InventoryItem> notes = notesDao.getAllNotForEndo();
+
+        LinkedHashMap<String, Item> pet4UItems = notesDao.getpet4UItemsRowByRow();
+
+        for (InventoryItem inventoryItem : notes) {
+            //     System.out.println("ITETM:" + inventoryItem.getCode());
+            String altercode = inventoryItem.getCode();
+
+            Item pet4uItem = pet4UItems.get(altercode);
+
+            if (pet4uItem == null) {
+                System.out.println("Pet4uItem with altercode " + altercode + "  not present in the lists from microsoft db");
+            } else {
+                inventoryItem.setCode(pet4uItem.getCode());
+                inventoryItem.setDescription(pet4uItem.getDescription());
+                inventoryItem.setPosition(pet4uItem.getPosition());
+                inventoryItem.setState(pet4uItem.getState());
+                inventoryItem.setQuantity(pet4uItem.getQuantity());
+                model.addAttribute("notes", notes);
+            }
+        }
+        return "vakulina/notesDisplay";
+    }
 }
