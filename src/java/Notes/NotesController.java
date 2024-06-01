@@ -132,7 +132,7 @@ public class NotesController {
         return "redirect:notForEndoDisplay.htm";
         // return "vakulina/notesDisplay";
     }
-    
+
     @RequestMapping(value = "notForEndoDisplay")
     public String notForEndoDisplay(ModelMap model) {
 
@@ -158,6 +158,14 @@ public class NotesController {
                 model.addAttribute("notes", notes);
             }
         }
-        return "vakulina/notesDisplay";
+        return "vakulina/notForEndoDisplay";
     }
+
+    @RequestMapping(value = "deleteNotForEndo", method = RequestMethod.GET)
+    public String deleteNotForEndo(@RequestParam(name = "id") String id) {
+        NotesDao notesDao = new NotesDao();
+        notesDao.deleteNote(id);
+        return "redirect:notForEndoDisplay.htm";
+    }
+
 }

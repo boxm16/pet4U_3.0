@@ -505,4 +505,20 @@ public class NotesDao {
         return inventories;
     }
 
+    void deleteNotForEndo(String id) {
+        String noteDeletionSql = "DELETE FROM not_for_endo WHERE id='" + id + "'";
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            Connection connection = databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(noteDeletionSql);
+            statement.close();
+
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(NotesDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 }
