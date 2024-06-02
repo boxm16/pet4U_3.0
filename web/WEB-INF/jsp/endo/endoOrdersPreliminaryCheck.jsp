@@ -37,9 +37,9 @@
 
         <table>
             <thead>
-            <th>Item Code</th>
+            <th>Destination:Item Code</th>
 
-            <th>Order Destination</th>
+          
 
 
 

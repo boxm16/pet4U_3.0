@@ -1024,13 +1024,13 @@ public class EndoDaoX {
             while (resultSet.next()) {
                 String orderId = resultSet.getString("id");
                 String itemCode = resultSet.getString("item_code");
-                System.out.println(orderId+ "itemCode: "+itemCode);
+
                 if (endoOrders.containsKey(orderId)) {
                     EndoOrderItem endoOrderItem = new EndoOrderItem();
 
                     endoOrderItem.setCode(itemCode);
                     endoOrders.get(orderId).addOrderItem(itemCode, endoOrderItem);
-               
+
                 } else {
                     EndoOrder endoOrder = new EndoOrder();
 
@@ -1038,7 +1038,7 @@ public class EndoDaoX {
                     endoOrder.setDestination(resultSet.getString("destination"));
                     endoOrder.setDateString(resultSet.getString("date"));
                     EndoOrderItem endoOrderItem = new EndoOrderItem();
-                   
+
                     endoOrderItem.setCode(itemCode);
                     endoOrder.addOrderItem(itemCode, endoOrderItem);
                     endoOrders.put(orderId, endoOrder);
