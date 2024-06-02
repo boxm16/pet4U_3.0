@@ -1015,7 +1015,7 @@ public class EndoDaoX {
         StringBuilder inPart = buildStringFromArrayList(keys);
 
         String query = "SELECT * FROM endo_order_title INNER JOIN endo_order_data ON endo_order_title.id=endo_order_data.order_id WHERE id IN " + inPart + ";";
-        System.out.println("Q" + query);
+       
         try {
             Connection connection = this.databaseConnectionFactory.getMySQLConnection();
             Statement statement = connection.createStatement();

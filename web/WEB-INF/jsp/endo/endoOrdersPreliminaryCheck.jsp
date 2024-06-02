@@ -39,11 +39,7 @@
             <thead>
             <th>Destination:Item Code</th>
 
-          
-
-
-
-            </thead>
+             </thead>
             <%
                 ArrayList<String> items = (ArrayList) request.getAttribute("notForEndosForTheseOrders");
 
