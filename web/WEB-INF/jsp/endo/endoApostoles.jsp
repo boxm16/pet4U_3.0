@@ -36,8 +36,8 @@
     <center>
         <h1>ΑΠΟΣΤΟΛΕΣ ΕΝΔΟΔΙΑΚΙΝΗΣΗΣ</h1>
         <a href="goForEndoOrdersUpload.htm" class="btn btn-primary" style='background-color: blue' role="button"><h3>GO FOR ENDO ORDERS UPLOAD</h3></a>
-        <a href="index.htm"><h3>INDEX</h3></a>
-        <hr>
+
+        &nbsp;&nbsp;&nbsp;
         <a href="endoOrdersPreliminaryCheck.htm" class="btn btn-primary" style='background-color: #F188B9' role="button"><h3>Preliminary Checking For 'NOT FOR ENDO' ITEMS</h3></a>
         <hr>
         <a href="endoApostoles.htm" class="btn btn-primary" style='background-color: green' role="button"><h1>ΑΝΑΝΕΩΣΗ ΣΕΛΙΔΑΣ</h1></a>
@@ -168,6 +168,8 @@
         </table>
         <hr><hr>
         <a href='showBindedOrders.htm'><h2>Show Binded Endo Orders</h2></a>
+        <hr><hr>
+        <a href="index.htm"><h3>INDEX</h3></a>
     </center>
     <form id="form" action="#" method="POST">
         <input hidden type="text" id="orderIdInput" name="orderId">
