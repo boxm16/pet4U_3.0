@@ -515,9 +515,7 @@ public class EndoControllerX {
         }
         NotesDao notesDao = new NotesDao();
         ArrayList<String> allNotForEndos = notesDao.getAllNotForEndoIds();
-        for (String s : allNotForEndos) {
-            System.out.println(s);
-        }
+
         LinkedHashMap<String, EndoOrder> endoOrders = endoDaoX.getEndoOrders(endoOrdersTitles);
 
         ArrayList<String> notForEndosForTheseOrders = new ArrayList<>();
@@ -526,7 +524,7 @@ public class EndoControllerX {
             LinkedHashMap<String, EndoOrderItem> orderedItems = endoOrder.getOrderedItems();
             for (Map.Entry<String, EndoOrderItem> orderedItemsEntry : orderedItems.entrySet()) {
                 EndoOrderItem orderedItem = orderedItemsEntry.getValue();
-                System.out.println("--"+orderedItem.getCode());
+                System.out.println("--" + orderedItem.getCode());
                 if (allNotForEndos.contains(orderedItem.getCode())) {
 
                     String notForEndo = endoOrder.getDestination() + " : " + orderedItem.getCode();
