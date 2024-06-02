@@ -155,9 +155,10 @@ public class NotesController {
                 inventoryItem.setPosition(pet4uItem.getPosition());
                 inventoryItem.setState(pet4uItem.getState());
                 inventoryItem.setQuantity(pet4uItem.getQuantity());
-                model.addAttribute("notes", notes);
+
             }
         }
+        model.addAttribute("notes", notes);
         return "vakulina/notForEndoDisplay";
     }
 

@@ -4,6 +4,7 @@ import BasicModel.Item;
 import Delivery.DeliveryInvoice;
 import Delivery.DeliveryItem;
 import Inventory.InventoryDao;
+import Notes.NotesDao;
 import Pet4uItems.Pet4uItemsDao;
 import Service.Basement;
 import java.io.BufferedOutputStream;
@@ -490,9 +491,46 @@ public class EndoControllerX {
     //-------------------------------------
     @RequestMapping(value = "endoOrdersPreliminaryCheck", method = RequestMethod.GET)
     public String endoOrdersPreliminaryCheck(ModelMap modelMap) {
-       
 
-    
+        EndoDaoX endoDaoX = new EndoDaoX();
+        String date = "2024-02-06";
+        String date1 = "2024-02-07";
+        LinkedHashMap<String, EndoOrder> endoOrdersTitles = endoDaoX.getEndoOrdersTitles(date);
+        LinkedHashMap<String, EndoApostolis> outgoingDeltioApostolisTitles = endoDaoX.getOutgoingDeltioApostolisTitles(date1);
+
+        LinkedHashMap<String, String> allBindedOrders = endoDaoX.getAllBindedOrdersTitles();
+
+        for (Map.Entry<String, String> allBindedOrdersEntry : allBindedOrders.entrySet()) {
+
+            if (endoOrdersTitles.containsKey(allBindedOrdersEntry.getKey())
+                    && outgoingDeltioApostolisTitles.containsKey(allBindedOrdersEntry.getValue())) {
+                endoOrdersTitles.remove(allBindedOrdersEntry.getKey());
+                outgoingDeltioApostolisTitles.remove(allBindedOrdersEntry.getValue());
+            } else {
+                if (allBindedOrdersEntry.getKey().contains("NoOrder")) {
+                    outgoingDeltioApostolisTitles.remove(allBindedOrdersEntry.getValue());
+
+                }
+            }
+        }
+        NotesDao notesDao = new NotesDao();
+        ArrayList<String> allNotForEndos = notesDao.getAllNotForEndoIds();
+
+        LinkedHashMap<String, EndoOrder> endoOrders = endoDaoX.getEndoOrders(endoOrdersTitles);
+
+        ArrayList<String> notForEndosForTheseOrders = new ArrayList<>();
+        for (Map.Entry<String, EndoOrder> endoOrdersEntrySet : endoOrders.entrySet()) {
+            EndoOrder endoOrder = endoOrdersEntrySet.getValue();
+            LinkedHashMap<String, EndoOrderItem> orderedItems = endoOrder.getOrderedItems();
+            for (Map.Entry<String, EndoOrderItem> orderedItemsEntry : orderedItems.entrySet()) {
+                EndoOrderItem orderedItem = orderedItemsEntry.getValue();
+                if (allNotForEndos.contains(orderedItem.getCode())) {
+                    String notForEndo = endoOrder.getDestination() + " : " + orderedItem.getCode();
+                    notForEndosForTheseOrders.add(notForEndo);
+                }
+            }
+        }
+        modelMap.addAttribute("notForEndosForTheseOrders", notForEndosForTheseOrders);
         return "endo/endoOrdersPreliminaryCheck";
     }
 

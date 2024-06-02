@@ -1009,4 +1009,48 @@ public class EndoDaoX {
         return "Order with id: " + outgoingEndoId + "hase been deleted.";
     }
 
+    LinkedHashMap<String, EndoOrder> getEndoOrders(LinkedHashMap<String, EndoOrder> endoOrdersTitles) {
+        LinkedHashMap<String, EndoOrder> endoOrders = new LinkedHashMap();
+        ArrayList<String> keys = new ArrayList<>(endoOrdersTitles.keySet());
+        StringBuilder inPart = buildStringFromArrayList(keys);
+
+        String query = "SELECT * FROM endo_order_title INNER JOIN endo_order_data ON endo_order_title.id=endo_order_data.order_id WHERE id IN " + inPart + ";";
+
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+
+            ResultSet resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                String orderId = resultSet.getString("id");
+                if (endoOrders.containsKey(orderId)) {
+                    EndoOrderItem endoOrderItem = new EndoOrderItem();
+                    String itemCode = resultSet.getString("item_code");
+                    endoOrderItem.setCode(itemCode);
+                    endoOrders.get(orderId).addOrderItem(orderId, endoOrderItem);
+                } else {
+                    EndoOrder endoOrder = new EndoOrder();
+
+                    endoOrder.setId(orderId);
+                    endoOrder.setDestination(resultSet.getString("destination"));
+                    endoOrder.setDateString(resultSet.getString("date"));
+                    EndoOrderItem endoOrderItem = new EndoOrderItem();
+                    String itemCode = resultSet.getString("item_code");
+                    endoOrderItem.setCode(itemCode);
+                    endoOrder.addOrderItem(itemCode, endoOrderItem);
+                }
+
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EndoDao.class
+                    .getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return endoOrders;
+    }
+
 }
