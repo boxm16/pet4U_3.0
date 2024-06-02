@@ -1029,7 +1029,7 @@ public class EndoDaoX {
                     EndoOrderItem endoOrderItem = new EndoOrderItem();
 
                     endoOrderItem.setCode(itemCode);
-                    endoOrders.get(orderId).addOrderItem(orderId, endoOrderItem);
+                    endoOrders.get(orderId).addOrderItem(itemCode, endoOrderItem);
                
                 } else {
                     EndoOrder endoOrder = new EndoOrder();
