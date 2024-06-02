@@ -19,8 +19,8 @@ public class TechManController {
 
     @RequestMapping(value = "techMan")
     public String techMan() {
-         return "techMan/techManDashboard";
-        //    return "index";
+        //       return "techMan/techManDashboard";
+        return "index";
     }
 
     //-----------------------------------------------------------------------
@@ -497,7 +497,7 @@ public class TechManController {
         return "techMan/techManDashboard";
     }
 
-    @RequestMapping(value = "/deleteNotForEndoDatabaseTable", method = RequestMethod.GET)
+    @RequestMapping(value = "/deleteNotForEndoDatabaseTable1", method = RequestMethod.GET)
     public String deleteNotForEndoDatabaseTable(ModelMap modelMap) {
         String notForEndoDatabaseTableResult = techManDao.deleteNotForEndoDatabaseTable();
 
