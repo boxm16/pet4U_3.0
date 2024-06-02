@@ -34,13 +34,11 @@
     </head>
     <body>
     <center>
+        <h1>ΑΠΟΣΤΟΛΕΣ ΕΝΔΟΔΙΑΚΙΝΗΣΗΣ</h1>
         <a href="goForEndoOrdersUpload.htm" class="btn btn-primary" style='background-color: blue' role="button"><h3>GO FOR ENDO ORDERS UPLOAD</h3></a>
-
         <a href="index.htm"><h3>INDEX</h3></a>
         <hr>
-        <h1>ΑΠΟΣΤΟΛΕΣ ΕΝΔΟΔΙΑΚΙΝΗΣΗΣ</h1>
-        <hr>
-
+        <a href="endoOrdersPreliminaryCheck.htm" class="btn btn-primary" style='background-color: #F188B9' role="button"><h3>Preliminary Checking For 'NOT FOR ENDO' ITEMS</h3></a>
         <hr>
         <a href="endoApostoles.htm" class="btn btn-primary" style='background-color: green' role="button"><h1>ΑΝΑΝΕΩΣΗ ΣΕΛΙΔΑΣ</h1></a>
         <hr>
@@ -53,7 +51,7 @@
                                 <th colspan='3'>ΠΑΡΑΓΓΕΛΙΕΣ</th>
                             </tr>
                             <tr>
-                                 <th>Delete</th>
+                                <th>Delete</th>
                                 <th>Order Destination</th>
                                 <th>Select</th>
                             </tr>

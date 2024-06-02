@@ -487,6 +487,13 @@ public class EndoControllerX {
         return "redirect:endoApostoles.htm";
     }
 
+    //-------------------------------------
+    @RequestMapping(value = "endoOrdersPreliminaryCheck", method = RequestMethod.GET)
+    public String endoOrdersPreliminaryCheck(ModelMap modelMap) {
+       
+
     
+        return "endo/endoOrdersPreliminaryCheck";
+    }
 
 }
