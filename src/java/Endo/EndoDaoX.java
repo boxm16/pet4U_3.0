@@ -1015,7 +1015,7 @@ public class EndoDaoX {
         StringBuilder inPart = buildStringFromArrayList(keys);
 
         String query = "SELECT * FROM endo_order_title INNER JOIN endo_order_data ON endo_order_title.id=endo_order_data.order_id WHERE id IN " + inPart + ";";
-
+        System.out.println("Q" + query);
         try {
             Connection connection = this.databaseConnectionFactory.getMySQLConnection();
             Statement statement = connection.createStatement();
@@ -1023,9 +1023,11 @@ public class EndoDaoX {
             ResultSet resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
                 String orderId = resultSet.getString("id");
+                String itemCode = resultSet.getString("item_code");
+                System.out.println("DDD" + item_code);
                 if (endoOrders.containsKey(orderId)) {
                     EndoOrderItem endoOrderItem = new EndoOrderItem();
-                    String itemCode = resultSet.getString("item_code");
+
                     endoOrderItem.setCode(itemCode);
                     endoOrders.get(orderId).addOrderItem(orderId, endoOrderItem);
                 } else {
@@ -1035,7 +1037,7 @@ public class EndoDaoX {
                     endoOrder.setDestination(resultSet.getString("destination"));
                     endoOrder.setDateString(resultSet.getString("date"));
                     EndoOrderItem endoOrderItem = new EndoOrderItem();
-                    String itemCode = resultSet.getString("item_code");
+                   
                     endoOrderItem.setCode(itemCode);
                     endoOrder.addOrderItem(itemCode, endoOrderItem);
                 }
