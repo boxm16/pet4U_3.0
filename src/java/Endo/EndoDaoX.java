@@ -1024,7 +1024,7 @@ public class EndoDaoX {
             while (resultSet.next()) {
                 String orderId = resultSet.getString("id");
                 String itemCode = resultSet.getString("item_code");
-              
+                System.out.println("itemCode: "+itemCode);
                 if (endoOrders.containsKey(orderId)) {
                     EndoOrderItem endoOrderItem = new EndoOrderItem();
 
