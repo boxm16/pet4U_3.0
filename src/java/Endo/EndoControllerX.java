@@ -524,7 +524,9 @@ public class EndoControllerX {
             LinkedHashMap<String, EndoOrderItem> orderedItems = endoOrder.getOrderedItems();
             for (Map.Entry<String, EndoOrderItem> orderedItemsEntry : orderedItems.entrySet()) {
                 EndoOrderItem orderedItem = orderedItemsEntry.getValue();
+                 System.out.println(orderedItem.getCode());
                 if (allNotForEndos.contains(orderedItem.getCode())) {
+                   
                     String notForEndo = endoOrder.getDestination() + " : " + orderedItem.getCode();
                     notForEndosForTheseOrders.add(notForEndo);
                 }
