@@ -170,6 +170,8 @@
         <a href='showBindedOrders.htm'><h2>Show Binded Endo Orders</h2></a>
         <hr><hr>
         <a href="index.htm"><h3>INDEX</h3></a>
+        <a href="notForEndoDisplay.htm" class="btn btn-primary" style='background-color: yellow' role="button"><h1>ΟΧΙ ΓΙΑ ΕΝΔΟ</h1></a>
+
     </center>
     <form id="form" action="#" method="POST">
         <input hidden type="text" id="orderIdInput" name="orderId">
