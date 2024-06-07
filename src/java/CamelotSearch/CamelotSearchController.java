@@ -171,8 +171,12 @@ public class CamelotSearchController {
 
     @RequestMapping(value = "camelotStockPositions", method = RequestMethod.GET)
     public String camelotStockPositions(@RequestParam(name = "itemCode") String altercode, ModelMap modelMap) {
-     
-         System.out.println("itemCode:"+altercode);
+
+        try {
+        } catch (IllegalArgumentException i) {
+            System.out.println("out of range encouneterd. Want to continue");
+            return "index";
+        }
         Item item = camelotSearchDao.getItemByAltercode(altercode);
         NotesDao notesDao = new NotesDao();
         LinkedHashMap<Integer, String> stockPositions = notesDao.getStockPositions(item);
@@ -856,7 +860,6 @@ public class CamelotSearchController {
             @RequestParam(name = "position") String position,
             ModelMap model) {
 
-       
         String user = (String) session.getAttribute("user");
         System.out.println("Super User Status:" + user);
         if (user == null) {
