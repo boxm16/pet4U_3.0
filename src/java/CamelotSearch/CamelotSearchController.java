@@ -169,7 +169,7 @@ public class CamelotSearchController {
         return "redirect:camelotNotesDisplay.htm";
     }
 
-    @RequestMapping(value = "camelotStockPositions", method = RequestMethod.GET)
+    @RequestMapping(value = "camelotStockPositions", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
     public String camelotStockPositions(@RequestParam(name = "itemCode") String altercode, ModelMap modelMap) {
 
         try {
