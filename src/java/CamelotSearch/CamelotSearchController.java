@@ -4,8 +4,12 @@ import BasicModel.Item;
 import CamelotItemsOfInterest.CamelotItemsOfInterestDao;
 import Inventory.InventoryItem;
 import Notes.NotesDao;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -169,14 +173,9 @@ public class CamelotSearchController {
         return "redirect:camelotNotesDisplay.htm";
     }
 
-    @RequestMapping(value = "camelotStockPositions", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+    @RequestMapping(value = "camelotStockPositions", method = RequestMethod.GET)
     public String camelotStockPositions(@RequestParam(name = "itemCode") String altercode, ModelMap modelMap) {
 
-        try {
-        } catch (IllegalArgumentException i) {
-            System.out.println("out of range encouneterd. Want to continue");
-            return "index";
-        }
         Item item = camelotSearchDao.getItemByAltercode(altercode);
         NotesDao notesDao = new NotesDao();
         LinkedHashMap<Integer, String> stockPositions = notesDao.getStockPositions(item);
@@ -859,20 +858,25 @@ public class CamelotSearchController {
     public String setCamelotStockPosition(HttpSession session, @RequestParam(name = "itemCode") String itemCode,
             @RequestParam(name = "position") String position,
             ModelMap model) {
+        try {
+            String user = (String) session.getAttribute("user");
+            System.out.println("Super User Status:" + user);
+            if (user == null) {
+                model.addAttribute("message", "You are not authorized for this paged");
+                return "errorPage";
+            }
+            String userName = (String) session.getAttribute("userName");
+            NotesDao notesDao = new NotesDao();
+            String result = notesDao.addCamelotStockPosition(itemCode, position, userName);
+            model.addAttribute("result", result);
 
-        String user = (String) session.getAttribute("user");
-        System.out.println("Super User Status:" + user);
-        if (user == null) {
-            model.addAttribute("message", "You are not authorized for this paged");
-            return "errorPage";
+            return "redirect:camelotStockPositions.htm?itemCode=" + URLEncoder.encode(itemCode, "UTF-8");
+            // return "vakulina/notesDisplay";
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(CamelotSearchController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        String userName = (String) session.getAttribute("userName");
-        NotesDao notesDao = new NotesDao();
-        String result = notesDao.addCamelotStockPosition(itemCode, position, userName);
-        model.addAttribute("result", result);
+        return "index";
 
-        return "redirect:camelotStockPositions.htm?itemCode=" + itemCode;
-        // return "vakulina/notesDisplay";
     }
 
     @RequestMapping(value = "camelotStockPositionDeletion", method = RequestMethod.GET)
