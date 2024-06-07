@@ -854,6 +854,7 @@ public class CamelotSearchController {
             @RequestParam(name = "position") String position,
             ModelMap model) {
 
+        System.out.println("itemCode:"+itemCode);
         String user = (String) session.getAttribute("user");
         System.out.println("Super User Status:" + user);
         if (user == null) {
