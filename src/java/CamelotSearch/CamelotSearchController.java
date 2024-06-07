@@ -875,7 +875,7 @@ public class CamelotSearchController {
         } catch (UnsupportedEncodingException ex) {
             Logger.getLogger(CamelotSearchController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return "index";
+        return "erroPage";
 
     }
 
