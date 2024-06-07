@@ -893,21 +893,26 @@ public class CamelotSearchController {
     public String deleteCameltoStockPosition(HttpSession session, @RequestParam(name = "itemCode") String itemCode,
             @RequestParam(name = "id") String id,
             ModelMap model) {
+        try {
+            String user = (String) session.getAttribute("user");
+            System.out.println("Super User Status:" + user);
+            if (user == null) {
+                model.addAttribute("message", "You are not authorized for this paged");
+                return "errorPage";
+            }
+            String userName = (String) session.getAttribute("userName");
 
-        String user = (String) session.getAttribute("user");
-        System.out.println("Super User Status:" + user);
-        if (user == null) {
-            model.addAttribute("message", "You are not authorized for this paged");
-            return "errorPage";
+            model.addAttribute("id", id);
+
+            NotesDao notesDao = new NotesDao();
+            notesDao.deleteCamelotStockPosition(id, userName);
+
+            return "redirect:camelotStockPositions.htm?itemCode=" + URLEncoder.encode(itemCode, "UTF-8");
+            // return "vakulina/notesDisplay";
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(CamelotSearchController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        String userName = (String) session.getAttribute("userName");
-
-        model.addAttribute("id", id);
-
-        NotesDao notesDao = new NotesDao();
-        notesDao.deleteCamelotStockPosition(id, userName);
-
-        return "redirect:camelotStockPositions.htm?itemCode=" + itemCode;
+        return "erroPage";
     }
 
     @RequestMapping(value = "camelotStockPositionsDisplay", method = RequestMethod.GET)
