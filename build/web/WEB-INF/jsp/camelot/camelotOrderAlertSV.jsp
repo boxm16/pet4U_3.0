@@ -85,14 +85,6 @@
                                 alarmColor = "#F33A6A";
                             }
 
-                            if (camelotFreeStock < CamelotMinimalStock) {
-                                if (pet4uStock < threeWeekSales || pet4uStock < threeWeekSalesByDailySales) {
-                                    alarmColor = "red";
-                                } else {
-                                    alarmColor = "lightgreen";
-                                }
-                            }
-
                             if (camelotItemOfInterest.getCamelotStock() < 1) {
                                 if ((camelotItemOfInterest.getCamelotStock() < 1 || camelotFreeStock < CamelotMinimalStock) && pet4uStock < 1) {
                                     alarmColor = "brown";
@@ -103,6 +95,14 @@
                                     continue;
                                 }
 
+                            }
+
+                            if (camelotFreeStock < CamelotMinimalStock) {
+                                if (pet4uStock < threeWeekSales || pet4uStock < threeWeekSalesByDailySales) {
+                                    alarmColor = "red";
+                                } else {
+                                    continue;
+                                }
                             }
 
                             out.println("<tr style='background-color: " + alarmColor + "'>");
