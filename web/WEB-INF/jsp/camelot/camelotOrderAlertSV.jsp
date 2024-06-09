@@ -89,7 +89,7 @@
                                 if (pet4uStock < threeWeekSales || pet4uStock < threeWeekSalesByDailySales) {
                                     alarmColor = "red";
                                 } else {
-                                    continue;
+                                   
                                     // alarmColor = "lightgreen";
                                 }
                             }
