@@ -91,24 +91,19 @@
                             alarmColor = "#F33A6A";
                         }
 
-                        if (camelotItemOfInterest.getCamelotStock() < 1) {
-                            if ((camelotItemOfInterest.getCamelotStock() < 1 || camelotFreeStock < CamelotMinimalStock) && pet4uStock < 1) {
-                                alarmColor = "brown";
-                            } else if ((camelotItemOfInterest.getCamelotStock() < 1 || camelotFreeStock < CamelotMinimalStock) && pet4uStock < threeWeekSales) {
-                                alarmColor = "#CD7F32";
-                            } else {
-                                // alarmColor = "#2554C7";
-                                continue;
-                            }
-
+                        if ((camelotItemOfInterest.getCamelotStock() < 1 || camelotFreeStock < CamelotMinimalStock) && pet4uStock < 1) {
+                            alarmColor = "brown";
+                        } else if ((camelotItemOfInterest.getCamelotStock() < 1 || camelotFreeStock < CamelotMinimalStock) && pet4uStock < threeWeekSales) {
+                            alarmColor = "#CD7F32";
                         }
 
                         if (camelotFreeStock < CamelotMinimalStock) {
                             if (pet4uStock < threeWeekSales || pet4uStock < threeWeekSalesByDailySales) {
                                 alarmColor = "red";
-                            } else {
-                                alarmColor = "lightgreen";
                             }
+                        }
+                        if (alarmColor.equals("")) {
+                            continue;
                         }
 
                         out.println("<tr style='background-color: " + alarmColor + "'>");
