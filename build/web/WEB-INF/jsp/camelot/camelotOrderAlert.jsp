@@ -92,11 +92,11 @@
                         }
 
                         if (camelotItemOfInterest.getCamelotStock() < 1) {
-                            if (pet4uStock < 1) {
-                                alarmColor = "brown";
-                            }
                             if (pet4uStock < threeWeekSales || pet4uStock < threeWeekSalesByDailySales) {
                                 alarmColor = "#CD7F32";
+                            }
+                            if (pet4uStock < 1) {
+                                alarmColor = "brown";
                             } else {
                                 alarmColor = "lightgreen";
                             }
