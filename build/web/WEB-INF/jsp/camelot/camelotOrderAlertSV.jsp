@@ -150,7 +150,7 @@
                             out.println(camelotItemOfInterest.getOrderUnit());
                             out.println("</td>");
 
-                            out.println("<td>");
+                            out.println("<td style='font-weight: bold; font-size:30px;'>");
                             out.println(camelotItemOfInterest.getNote());
                             out.println("</td>");
 
