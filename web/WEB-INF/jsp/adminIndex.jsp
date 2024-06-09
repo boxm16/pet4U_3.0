@@ -35,8 +35,6 @@
                 <a href="endoParalaves.htm" class="btn btn-primary" role="button" style='background-color: #0C3CDD'> <h1>ΕΝΔΟ ΠΑΡΑΛΑΒΕΣ</h1></a>
                 <a href="endoApostoles.htm" class="btn btn-primary" role="button" style='background-color: #55DD0C'> <h1>ΕΝΔΟ ΑΠΟΣΤΟΛΕΣ</h1></a>
                 <hr>
-                <a href="orderAlert.htm" class="btn btn-primary" style='background-color: #762276' role="button"><h1>CAMELOT ORDER ALERT</h1></a>
-                <hr>
                 <a href="camelotOrderAlert.htm" class="btn btn-primary" style='background-color: #762276' role="button"><h1>CAMELOT ORDER ALERT</h1></a>
                 <hr>
                 <a href="deliveryDashboard.htm" class="btn btn-primary" style='background-color: red' role="button"><h1>Delivery Dashboard</h1></a>

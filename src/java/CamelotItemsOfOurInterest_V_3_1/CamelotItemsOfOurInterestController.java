@@ -72,6 +72,14 @@ public class CamelotItemsOfOurInterestController {
 
         return "/camelot/camelotOrderAlert";
     }
+    
+    @RequestMapping(value = "camelotOrderAlertSV")
+    public String camelotOrderAlertSV(ModelMap modelMap) {
+
+        modelMap.addAttribute("camelotItemsOfOurInterest", getCamelotItemsOfOurInterest());
+
+        return "/camelot/camelotOrderAlertSV";
+    }
 
     private StringBuilder buildStringFromArrayList(ArrayList<String> arrayList) {
 
