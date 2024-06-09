@@ -108,9 +108,10 @@
                                     alarmColor = "lightgreen";
                                 }
                             }
-                            if (alarmColor.equals("")) {
-                                continue;
-                            }
+
+                        }
+                        if (alarmColor.equals("")) {
+                            continue;
                         }
 
                         out.println("<tr style='background-color: " + alarmColor + "'>");
