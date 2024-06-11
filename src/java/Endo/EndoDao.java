@@ -264,7 +264,7 @@ public class EndoDao {
 
                 Item item = pet4UItemsRowByRow.get(itemCode);
                 item.setQuantity(quantity);
-
+                System.out.println("DAO GET ENDO");
                 endo.getItems().put(itemCode, item);
 
             }
