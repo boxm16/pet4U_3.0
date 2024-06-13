@@ -471,7 +471,7 @@ public class NotesDao {
                     allItems.put(itemCode, allPositions);
                 } else {
                     ArrayList<String> allPositions = new ArrayList<>();
-                    allPositions.add(itemCode);
+                    allPositions.add(position);
                     allItems.put(itemCode, allPositions);
                 }
             }
