@@ -46,10 +46,10 @@
 
                         <table>
                             <thead>
-
+                            <th>Item Code</th>
                             <th>Position</th>
 
-                            <th>Item Code</th>
+
 
                             <th>Checked</th>
 
