@@ -926,4 +926,13 @@ public class CamelotSearchController {
         return "camelotSearch/camelotStockPositionsDisplay";
     }
 
+    @RequestMapping(value = "camelotStockPositionsByItemCodeDisplay", method = RequestMethod.GET)
+    public String camelotStockPositionsByItemCodeDisplay(ModelMap model) {
+
+        NotesDao notesDao = new NotesDao();
+        LinkedHashMap<String, ArrayList<String>> camelotStockPositionsByItemCode = notesDao.camelotStockPositionsByItemCode();
+        model.addAttribute("camelotStockPositionsByItemCode", camelotStockPositionsByItemCode);
+        return "camelotSearch/camelotStockPositionsByItemCodeDisplay";
+    }
+
 }

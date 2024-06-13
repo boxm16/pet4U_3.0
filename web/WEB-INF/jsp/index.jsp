@@ -47,7 +47,9 @@
                 <hr>
                 <a href="camelotNotesDisplay.htm"><h1>Camelot Notes</h1></a>
                 <hr>
-                <a href="camelotStockPositionsDisplay.htm"><h1>Camelot Stock Positions Display</h1></a>
+                <a href="camelotStockPositionsDisplay.htm"><h1>Camelot Stock Positions By Position </h1></a>
+                <hr>
+                <a href="camelotStockPositionsByItemCodeDisplay.htm"><h1>Camelot Stock Positions By Item Code </h1></a>
 
                 <hr>
                 <a href="adminIndex.htm"><h1>Admin Index</h1></a>

@@ -452,6 +452,38 @@ public class NotesDao {
         return allPositions;
     }
 
+    public LinkedHashMap<String, ArrayList<String>> camelotStockPositionsByItemCode() {
+        LinkedHashMap<String, ArrayList<String>> allItems = new LinkedHashMap<>();
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+        Connection connection = databaseConnectionFactory.getMySQLConnection();
+
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("select * from camelot_stock_positions WHERE status='active' ORDER BY position;");
+
+            while (resultSet.next()) {
+                //    int id = resultSet.getInt("id");
+                String itemCode = resultSet.getString("item_code");
+                String position = resultSet.getString("position");
+                if (allItems.containsKey(itemCode)) {
+                    ArrayList<String> allPositions = allItems.get(itemCode);
+                    allPositions.add(position);
+                    allItems.put(itemCode, allPositions);
+                } else {
+                    ArrayList<String> allPositions = new ArrayList<>();
+                    allPositions.add(itemCode);
+                    allItems.put(itemCode, allPositions);
+                }
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(NotesDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return allItems;
+    }
+
     String saveNotForEndo(String altercode, String note) {
         try {
             DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
@@ -534,10 +566,8 @@ public class NotesDao {
 
             resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
-             
 
                 String itemCode = resultSet.getString("item_code");
-               
 
                 ids.add(itemCode);
             }
