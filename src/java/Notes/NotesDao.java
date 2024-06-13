@@ -459,7 +459,7 @@ public class NotesDao {
 
         try {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("select * from camelot_stock_positions WHERE status='active' ORDER BY position;");
+            ResultSet resultSet = statement.executeQuery("select * from camelot_stock_positions WHERE status='active' ORDER BY item_code;");
 
             while (resultSet.next()) {
                 //    int id = resultSet.getInt("id");
