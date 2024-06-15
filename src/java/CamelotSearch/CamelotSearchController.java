@@ -8,6 +8,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.Map.Entry;
 import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -111,9 +112,10 @@ public class CamelotSearchController {
                 System.out.println("CamelotItem with altercode " + altercode + "  does note have stock positions");
             } else {
                 inventoryItem.setStockPositions(itemStockPositions);
-               
-                String firstStockPosition = itemStockPositions.get(0);
-                System.out.println("First Stock Posiion: "+firstStockPosition);
+
+                Entry<Integer, String> mapEntry = itemStockPositions.entrySet().iterator().next();
+                String firstStockPosition = mapEntry.getValue();
+                System.out.println("First Stock Posiion: " + firstStockPosition);
                 if (sortedNotes.containsKey(firstStockPosition)) {
                     firstStockPosition = firstStockPosition + "1";
                     sortedNotes.put(firstStockPosition, inventoryItem);
