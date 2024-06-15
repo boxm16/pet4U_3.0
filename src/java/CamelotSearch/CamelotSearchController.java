@@ -111,7 +111,9 @@ public class CamelotSearchController {
                 System.out.println("CamelotItem with altercode " + altercode + "  does note have stock positions");
             } else {
                 inventoryItem.setStockPositions(itemStockPositions);
+               
                 String firstStockPosition = itemStockPositions.get(0);
+                System.out.println("First Stock Posiion: "+firstStockPosition);
                 if (sortedNotes.containsKey(firstStockPosition)) {
                     firstStockPosition = firstStockPosition + "1";
                     sortedNotes.put(firstStockPosition, inventoryItem);
