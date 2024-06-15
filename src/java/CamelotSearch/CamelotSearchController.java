@@ -8,6 +8,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
@@ -89,6 +90,8 @@ public class CamelotSearchController {
         CamelotItemsOfInterestDao camelotItemsOfInterestDao = new CamelotItemsOfInterestDao();
         LinkedHashMap<String, Item> camelotItems = camelotItemsOfInterestDao.getCamelotItemsRowByRow();
 
+        TreeMap<String, InventoryItem> sortedNotes = new TreeMap();
+
         for (InventoryItem inventoryItem : notes) {
             //     System.out.println("ITETM:" + inventoryItem.getCode());
             String altercode = inventoryItem.getCode();
@@ -108,10 +111,19 @@ public class CamelotSearchController {
                 System.out.println("CamelotItem with altercode " + altercode + "  does note have stock positions");
             } else {
                 inventoryItem.setStockPositions(itemStockPositions);
+                String firstStockPosition = itemStockPositions.get(0);
+                if (sortedNotes.containsKey(firstStockPosition)) {
+                    firstStockPosition = firstStockPosition + "1";
+                    sortedNotes.put(firstStockPosition, inventoryItem);
+                } else {
+                    sortedNotes.put(firstStockPosition, inventoryItem);
+                }
             }
 
         }
-        model.addAttribute("notes", notes);
+
+        ArrayList<InventoryItem> sortedNotesArrayList = new ArrayList<InventoryItem>(sortedNotes.values());
+        model.addAttribute("notes", sortedNotesArrayList);
         return "camelotSearch/camelotNotesDisplay";
     }
 
