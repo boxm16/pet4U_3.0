@@ -79,7 +79,7 @@ public class CamelotSearchController {
     }
 
     @RequestMapping(value = "camelotNotesDisplay")
-    public String notesDisplay(ModelMap model) {
+    public String camelotNotesDisplay(ModelMap model) {
 
         NotesDao notesDao = new NotesDao();
         ArrayList<InventoryItem> notes = notesDao.getAllCamelotNotes();
@@ -109,8 +109,9 @@ public class CamelotSearchController {
             } else {
                 inventoryItem.setStockPositions(itemStockPositions);
             }
-            model.addAttribute("notes", notes);
+
         }
+        model.addAttribute("notes", notes);
         return "camelotSearch/camelotNotesDisplay";
     }
 
@@ -846,10 +847,9 @@ public class CamelotSearchController {
         stockPositions.add("CONTAINER_24");
         stockPositions.add("CONTAINER_25");
 
-    /*    for (String sp : stockPositions) {
+        /*    for (String sp : stockPositions) {
             System.out.println(sp);
         } */
-
         model.addAttribute("itemCode", itemCode);
         model.addAttribute("stockPositions", stockPositions);
 
