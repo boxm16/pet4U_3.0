@@ -35,18 +35,21 @@
                 <a href="camelotOrderAlertSV.htm" class="btn btn-primary" style='background-color: #762276' role="button"><h1>CAMELOT ORDER ALERT</h1></a>
                 <hr> 
                 <a href="deliveryDashboard.htm" class="btn btn-primary" style='background-color: red' role="button"><h1>Delivery Dashboard</h1></a>
+                <hr> <hr> <hr>
+                <a href="camelotNotesDisplay.htm" class="btn btn-outline-danger" role="button" style='background-color: #55DD0C'><h1>Camelot Notes</h1></a>
+                <hr>
+                <a href="camelotNotesCardMode.htm"><h1>Camelot Notes:Card Mode</h1></a>
+
                 <hr>
                 <a href="inventoryDashboard.htm"><h1 style="color: #999900">Inventory Dashboard</h1></a>
+
                 <hr>
                 <a href="notesDisplay.htm"><h1>Notes</h1></a>
                 <hr>
                 <a href="notesDisplayCardMode.htm"><h1>Notes: Card Mode</h1></a>
 
                 <hr>
-                <a href="camelotNotesCardMode.htm"><h1>Camelot Notes:Card Mode</h1></a>
-                <hr>
-                <a href="camelotNotesDisplay.htm" class="btn btn-outline-danger" role="button" style='background-color: #55DD0C'><h1>Camelot Notes</h1></a>
-                <hr>
+
                 <a href="camelotStockPositionsDisplay.htm"><h1>Camelot Stock Positions By Position </h1></a>
                 <hr>
                 <a href="camelotStockPositionsByItemCodeDisplay.htm"><h1>Camelot Stock Positions By Item Code </h1></a>
