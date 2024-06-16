@@ -43,7 +43,7 @@
                 <hr>
                 <a href="notesDisplay.htm" class="btn btn-primary" role="button" style='background-color: #2DEE0F'><h1>Pet4U Notes</h1></a>
                 <hr>
-                <a href="notesDisplayCardMode.htm"><h1>Notes: Card Mode</h1></a>
+                <a href="notesDisplayCardMode.htm"><h1>Pet4U Notes: Card Mode</h1></a>
                 <hr>
                 <a href="camelotStockPositionsDisplay.htm"><h1>Camelot Stock Positions By Position </h1></a>
                 <hr>
