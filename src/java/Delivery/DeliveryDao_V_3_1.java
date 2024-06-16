@@ -20,7 +20,7 @@ public class DeliveryDao_V_3_1 {
 
         try {
             Statement statement = connection.createStatement();
-            String sql = "SELECT DISTINCT  [DOCID], [DOCNUMBER],[DATEOFUPDATE],  [SUPPLIER] FROM  [petworld].[dbo].[WH_DEPA]  WHERE  [DOCDATE] = '" + date + "' ORDER BY [DOCID];";
+            String sql = "SELECT DISTINCT  [DOCID], [DOCNUMBER],[DATEOFUPDATE],  [SUPPLIER] FROM  [petworld].[dbo].[WH_DEPA]  WHERE  [DATEOFUPDATE] = '" + date + "' ORDER BY [DOCID];";
 
             ResultSet resultSet = statement.executeQuery(sql);
 
