@@ -5,8 +5,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.LinkedHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -74,8 +72,7 @@ public class DeliveryDao_V_3_1 {
                 String date = resultSet.getString("DATEOFUPDATE");
                 String[] splittedDate = date.split(" ");
                 date = splittedDate[0];
-                DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-                LocalDate invoiceDate = LocalDate.parse(date, formatter2);
+           
 
                 String number = resultSet.getString("DOCNUMBER");
                 String supplier = resultSet.getString("SUPPLIER");
@@ -83,7 +80,7 @@ public class DeliveryDao_V_3_1 {
                 String description = resultSet.getString("NAME");
                 String quantity = resultSet.getString("QUANT1");
 
-                deliveryInvoice.setInsertionDate(invoiceDate);
+                deliveryInvoice.setInsertionDate(date);
                 deliveryInvoice.setNumber(number);
                 deliveryInvoice.setSupplier(supplier);
 
