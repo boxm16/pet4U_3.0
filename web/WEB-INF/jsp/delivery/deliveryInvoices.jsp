@@ -12,7 +12,29 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Delivery Invoices</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+        <style>
+            table, th, td {
+                border: 1px solid ;
+                border-collapse: collapse;
+            }
+            td {
+                font-size: 30px;
+            }
+            th{
+                font-size: 30px;
+                font-weight: bold;
+            }
+
+
+
+
+
+        </style>
     </head>
     <body>
         <table>
