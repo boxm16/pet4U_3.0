@@ -83,21 +83,21 @@ public class DeliveryDao_V_3_1 {
                 String description = resultSet.getString("NAME");
                 String quantity = resultSet.getString("QUANT1");
 
-                deliveryInvoice.setInsertionDate(date);
+                deliveryInvoice.setInsertionDate(invoiceDate);
                 deliveryInvoice.setNumber(number);
                 deliveryInvoice.setSupplier(supplier);
 
                 LinkedHashMap<String, DeliveryItem> items = deliveryInvoice.getItems();
                 if (items.containsKey(itemCode)) {
                     DeliveryItem item = items.get(itemCode);
-                    String quantity1 = item.getSentQuantity();
+                    String quantity1 = item.getQuantity();
                     double sum = Double.valueOf(quantity1) + Double.valueOf(quantity);
-                    item.setSentQuantity(String.valueOf(sum));
+                    item.setQuantity(String.valueOf(sum));
                     deliveryInvoice.getItems().put(itemCode, item);
                 } else {
                     DeliveryItem item = new DeliveryItem();
                     item.setCode(itemCode);
-                    item.setSentQuantity(quantity);
+                    item.setQuantity(quantity);
                     item.setDescription(description);
                     deliveryInvoice.getItems().put(itemCode, item);
                 }
