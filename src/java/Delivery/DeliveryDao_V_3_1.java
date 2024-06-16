@@ -72,7 +72,6 @@ public class DeliveryDao_V_3_1 {
                 String date = resultSet.getString("DATEOFUPDATE");
                 String[] splittedDate = date.split(" ");
                 date = splittedDate[0];
-           
 
                 String number = resultSet.getString("DOCNUMBER");
                 String supplier = resultSet.getString("SUPPLIER");
@@ -95,6 +94,7 @@ public class DeliveryDao_V_3_1 {
                     DeliveryItem item = new DeliveryItem();
                     item.setCode(itemCode);
                     item.setQuantity(String.valueOf(Double.valueOf(quantity)));
+                    item.setDeliveredQuantity("0,0");
                     item.setDescription(description);
                     deliveryInvoice.getItems().put(itemCode, item);
                 }
