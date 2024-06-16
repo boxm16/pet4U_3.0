@@ -55,7 +55,7 @@ public class DeliveryDao_V_3_1 {
     }
 
     DeliveryInvoice getDeliveryInvoice(String id) {
-        String sql = "SELECT  [DOCID], [DOCNUMBER],  [DATEOFUPDATE],  [SUPPLIER], [ABBREVIATION], [NAME], [QUANTITY]   FROM [petworld].[dbo].[WH_DEPA] WHERE [DOCID]='" + id + "' ;";
+        String sql = "SELECT  [DOCID], [DOCNUMBER],  [DATEOFUPDATE],  [SUPPLIER], [ABBREVIATION], [NAME], [QUANT1]   FROM [petworld].[dbo].[WH_DEPA] WHERE [DOCID]='" + id + "' ;";
         Connection connection;
         Statement statement;
         ResultSet resultSet;
@@ -81,7 +81,7 @@ public class DeliveryDao_V_3_1 {
                 String supplier = resultSet.getString("SUPPLIER");
                 String itemCode = resultSet.getString("ABBREVIATION");
                 String description = resultSet.getString("NAME");
-                String quantity = resultSet.getString("QUANTITY");
+                String quantity = resultSet.getString("QUANT1");
 
                 deliveryInvoice.setInsertionDate(date);
                 deliveryInvoice.setNumber(number);
