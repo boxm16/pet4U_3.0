@@ -9,6 +9,7 @@ public class DeliveryInvoice {
     private String insertionDate;
     private LinkedHashMap<String, DeliveryItem> items;
     private String errorMessages;
+    private String supplier;
 
     public DeliveryInvoice() {
         this.errorMessages = "";
@@ -53,6 +54,14 @@ public class DeliveryInvoice {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getSupplier() {
+        return supplier;
+    }
+
+    public void setSupplier(String supplier) {
+        this.supplier = supplier;
     }
 
 }

@@ -5,6 +5,7 @@
  */
 package Delivery;
 
+import java.util.LinkedHashMap;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +15,10 @@ public class DeliveryController_V_3_1 {
 
     @RequestMapping(value = "deliveryDashboardTesting")
     public String deliveryDashboardTesting(ModelMap modelMap) {
-
+        DeliveryDao_V_3_1 deliveryDao = new DeliveryDao_V_3_1();
+        String date = "2024-06-13";
+        LinkedHashMap<String, DeliveryInvoice> deliveryInvoices = deliveryDao.getDeliveryInvoices(date);
+        modelMap.addAttribute("deliveryInvoices", deliveryInvoices);
         return "testosteron/testResult";
     }
 
