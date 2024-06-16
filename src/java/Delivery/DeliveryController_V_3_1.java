@@ -5,6 +5,7 @@
  */
 package Delivery;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -31,6 +32,11 @@ public class DeliveryController_V_3_1 {
         DeliveryDao_V_3_1 dao = new DeliveryDao_V_3_1();
 
         DeliveryInvoice deliveryInvoice = dao.getDeliveryInvoice(id);
+
+        DeliveryDao deliveryDao = new DeliveryDao();
+        ArrayList<DeliveryItem> pet4UItemsRowByRow = deliveryDao.getPet4UItemsRowByRow();
+
+        modelMap.addAttribute("pet4UItemsRowByRow", pet4UItemsRowByRow);
 
         modelMap.addAttribute("deliveryInvoice", deliveryInvoice);
         return "delivery/deliveryInvoiceChecking";
