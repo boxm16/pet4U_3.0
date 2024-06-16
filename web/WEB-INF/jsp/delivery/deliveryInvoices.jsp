@@ -37,6 +37,7 @@
         </style>
     </head>
     <body>
+    <center>
         <table>
             <tbody>
                 <tr><td colspan="5">ΔΕΛΤΙΑ ΑΠΟΣΤΟΛΗΣ ΑΠΟ ΠΡΟΜΗΘΕΥΤΕΣ</td></tr>
@@ -56,7 +57,7 @@
                         out.println("<tr>");
 
                         out.println("<td>");
-                        out.println("<a href='showDeltioApostolis.htm?id=" + entrySet.getValue().getId() + "' target='_blank'>" + entrySet.getValue().getId() + "</a>");
+                        out.println("<a href='openDeliveryInvoiceForChecking.htm?id=" + entrySet.getValue().getId() + "' target='_blank'>" + entrySet.getValue().getId() + "</a>");
                         out.println("</td>");
 
                         out.println("<td>");
@@ -76,5 +77,6 @@
                 %>    
             </tbody>
         </table>
-    </body>
+    </center>
+</body>
 </html>

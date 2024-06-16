@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.LinkedHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -50,6 +52,67 @@ public class DeliveryDao_V_3_1 {
             Logger.getLogger(DeliveryDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return deliveryInvoices;
+    }
+
+    DeliveryInvoice getDeliveryInvoice(String id) {
+        String sql = "SELECT  [DOCID], [DOCNUMBER],  [DATEOFUPDATE],  [SUPPLIER], [ABBREVIATION], [NAME], [QUANTITY]   FROM [petworld].[dbo].[WH_DEPA] WHERE [DOCID]='" + id + "' ;";
+        Connection connection;
+        Statement statement;
+        ResultSet resultSet;
+        DeliveryInvoice deliveryInvoice = new DeliveryInvoice();
+        deliveryInvoice.setId(id);
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
+
+            statement = connection.createStatement();
+
+            resultSet = statement.executeQuery(sql);
+
+            while (resultSet.next()) {
+
+                String date = resultSet.getString("DATEOFUPDATE");
+                String[] splittedDate = date.split(" ");
+                date = splittedDate[0];
+                DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                LocalDate invoiceDate = LocalDate.parse(date, formatter2);
+
+                String number = resultSet.getString("DOCNUMBER");
+                String supplier = resultSet.getString("SUPPLIER");
+                String itemCode = resultSet.getString("ABBREVIATION");
+                String description = resultSet.getString("NAME");
+                String quantity = resultSet.getString("QUANTITY");
+
+                deliveryInvoice.setInsertionDate(date);
+                deliveryInvoice.setNumber(number);
+                deliveryInvoice.setSupplier(supplier);
+
+                LinkedHashMap<String, DeliveryItem> items = deliveryInvoice.getItems();
+                if (items.containsKey(itemCode)) {
+                    DeliveryItem item = items.get(itemCode);
+                    String quantity1 = item.getSentQuantity();
+                    double sum = Double.valueOf(quantity1) + Double.valueOf(quantity);
+                    item.setSentQuantity(String.valueOf(sum));
+                    deliveryInvoice.getItems().put(itemCode, item);
+                } else {
+                    DeliveryItem item = new DeliveryItem();
+                    item.setCode(itemCode);
+                    item.setSentQuantity(quantity);
+                    item.setDescription(description);
+                    deliveryInvoice.getItems().put(itemCode, item);
+                }
+
+            }
+
+            resultSet.close();
+            statement.close();
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DeliveryDao_V_3_1.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return deliveryInvoice;
     }
 
 }

@@ -9,6 +9,8 @@ import java.util.LinkedHashMap;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class DeliveryController_V_3_1 {
@@ -22,4 +24,15 @@ public class DeliveryController_V_3_1 {
         return "delivery/deliveryInvoices";
     }
 
+    @RequestMapping(value = "openDeliveryInvoiceForChecking", method = RequestMethod.GET)
+    public String openDeliveryInvoiceForChecking(@RequestParam(name = "id") String id, ModelMap modelMap) {
+        System.out.println(id);
+
+        DeliveryDao_V_3_1 dao = new DeliveryDao_V_3_1();
+
+        DeliveryInvoice deliveryInvoice = dao.getDeliveryInvoice(id);
+
+        modelMap.addAttribute("deliveryInvoice", deliveryInvoice);
+        return "endo/deltioApostolisDisplay";
+    }
 }
