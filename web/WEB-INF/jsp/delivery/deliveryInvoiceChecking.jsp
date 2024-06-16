@@ -151,9 +151,10 @@
                                                 document.getElementById("descriptionDisplay").innerHTML = altercode + " : Unkown Barcode: " + altercode;
                                                 addRow(altercode, "Unkown Barcode: " + altercode);
                                             } else {
-                                                let v = unknownBarcodeX.value;
+                                                let unknownBarcodeD = document.getElementById(altercode + "_delivered");
+                                                let v = unknownBarcodeD.value;
                                                 v++;
-                                                unknownBarcodeX.value = v;
+                                                unknownBarcodeD.value = v;
                                             }
                                         } else {
                                             var code = item.code;
