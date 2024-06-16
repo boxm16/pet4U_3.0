@@ -33,6 +33,6 @@ public class DeliveryController_V_3_1 {
         DeliveryInvoice deliveryInvoice = dao.getDeliveryInvoice(id);
 
         modelMap.addAttribute("deliveryInvoice", deliveryInvoice);
-        return "endo/deltioApostolisDisplay";
+        return "delivery/deliveryInvoiceChecking";
     }
 }
