@@ -94,7 +94,7 @@ public class DeliveryDao_V_3_1 {
                     DeliveryItem item = new DeliveryItem();
                     item.setCode(itemCode);
                     item.setQuantity(String.valueOf(Double.valueOf(quantity)));
-                    item.setDeliveredQuantity(String.valueOf(Double.valueOf("0,0")));
+                    item.setDeliveredQuantity("0,0");
                     item.setDescription(description);
                     deliveryInvoice.getItems().put(itemCode, item);
                 }
