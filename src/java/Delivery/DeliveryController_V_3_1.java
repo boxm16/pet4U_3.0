@@ -19,7 +19,7 @@ public class DeliveryController_V_3_1 {
         String date = "2024-06-13";
         LinkedHashMap<String, DeliveryInvoice> deliveryInvoices = deliveryDao.getDeliveryInvoices(date);
         modelMap.addAttribute("deliveryInvoices", deliveryInvoices);
-        return "testosteron/testResult";
+        return "delivery/deliveryInvoices";
     }
 
 }
