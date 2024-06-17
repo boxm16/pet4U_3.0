@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class DeliveryController_V_3_1 {
 
     @RequestMapping(value = "deliveryDashboardTesting")
-    public String deliveryDashboardTesting(ModelMap modelMap) {
+    public String deliveryDashboardTesting(@RequestParam(name = "date") String date, ModelMap modelMap) {
         DeliveryDao_V_3_1 deliveryDao = new DeliveryDao_V_3_1();
-        String date = "2024-06-12";
+        System.out.println(date);
         LinkedHashMap<String, DeliveryInvoice> deliveryInvoices = deliveryDao.getDeliveryInvoices(date);
         modelMap.addAttribute("deliveryInvoices", deliveryInvoices);
         return "delivery/deliveryInvoices";
