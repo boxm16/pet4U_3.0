@@ -127,7 +127,7 @@ public class CamelotSearchController {
             System.out.println("First Stock Position: " + firstStockPosition);
             if (sortedNotes.containsKey(firstStockPosition)) {
                 System.out.println("Sorted Notes contain position : " + firstStockPosition);
-                firstStockPosition = firstStockPosition + x;
+                firstStockPosition = firstStockPosition + ":" + x;
                 System.out.println("Creating fake position : " + firstStockPosition);
                 sortedNotes.put(firstStockPosition, inventoryItem);
             } else {
