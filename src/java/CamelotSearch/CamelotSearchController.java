@@ -118,8 +118,7 @@ public class CamelotSearchController {
                 System.out.println("CamelotItem with altercode " + altercode + "  does note have stock positions");
                 itemStockPositions = new LinkedHashMap<>();
                 itemStockPositions.put(x, "NO STOCK POSITION");
-                x--;
-                System.out.println("X: "+x);
+                x++;
 
             }
             inventoryItem.setStockPositions(itemStockPositions);
@@ -128,7 +127,7 @@ public class CamelotSearchController {
             String firstStockPosition = mapEntry.getValue();
             System.out.println("First Stock Position: " + firstStockPosition);
             if (sortedNotes.containsKey(firstStockPosition)) {
-                firstStockPosition = firstStockPosition + "1";
+                firstStockPosition = firstStockPosition + x;
                 sortedNotes.put(firstStockPosition, inventoryItem);
             } else {
                 sortedNotes.put(firstStockPosition, inventoryItem);
