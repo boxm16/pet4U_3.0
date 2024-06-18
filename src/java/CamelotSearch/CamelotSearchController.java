@@ -92,7 +92,7 @@ public class CamelotSearchController {
         LinkedHashMap<String, Item> camelotItems = camelotItemsOfInterestDao.getCamelotItemsRowByRow();
 
         TreeMap<String, InventoryItem> sortedNotes = new TreeMap();
-
+        int x = 0;
         for (InventoryItem inventoryItem : notes) {
             //     System.out.println("ITETM:" + inventoryItem.getCode());
             String altercode = inventoryItem.getCode();
@@ -100,7 +100,7 @@ public class CamelotSearchController {
             if (camelotItem == null) {
                 System.out.println("CamelotItem with altercode " + altercode + "  not present in the lists from microsoft db");
                 camelotItem.setCode(altercode);
-                
+
                 inventoryItem.setCode(altercode);
                 inventoryItem.setDescription("No Data Available");
                 inventoryItem.setPosition("No Data Available");
@@ -117,14 +117,15 @@ public class CamelotSearchController {
             if (itemStockPositions == null) {
                 System.out.println("CamelotItem with altercode " + altercode + "  does note have stock positions");
                 itemStockPositions = new LinkedHashMap<>();
-                itemStockPositions.put(0, "NO STOCK POSITION");
+                itemStockPositions.put(x, "NO STOCK POSITION");
+                x++;
 
             }
             inventoryItem.setStockPositions(itemStockPositions);
 
             Entry<Integer, String> mapEntry = itemStockPositions.entrySet().iterator().next();
             String firstStockPosition = mapEntry.getValue();
-            System.out.println("First Stock Posiion: " + firstStockPosition);
+            System.out.println("First Stock Position: " + firstStockPosition);
             if (sortedNotes.containsKey(firstStockPosition)) {
                 firstStockPosition = firstStockPosition + "1";
                 sortedNotes.put(firstStockPosition, inventoryItem);
