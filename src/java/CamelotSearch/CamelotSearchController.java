@@ -99,6 +99,12 @@ public class CamelotSearchController {
             Item camelotItem = camelotItems.get(altercode);
             if (camelotItem == null) {
                 System.out.println("CamelotItem with altercode " + altercode + "  not present in the lists from microsoft db");
+                camelotItem.setCode(altercode);
+                
+                inventoryItem.setCode(altercode);
+                inventoryItem.setDescription("No Data Available");
+                inventoryItem.setPosition("No Data Available");
+                inventoryItem.setQuantity("No Data Available");
             } else {
                 inventoryItem.setCode(camelotItem.getCode());
                 inventoryItem.setDescription(camelotItem.getDescription());
@@ -110,7 +116,7 @@ public class CamelotSearchController {
 
             if (itemStockPositions == null) {
                 System.out.println("CamelotItem with altercode " + altercode + "  does note have stock positions");
-               itemStockPositions = new LinkedHashMap<>();
+                itemStockPositions = new LinkedHashMap<>();
                 itemStockPositions.put(0, "NO STOCK POSITION");
 
             }
