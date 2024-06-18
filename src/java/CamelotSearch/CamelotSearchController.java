@@ -118,7 +118,6 @@ public class CamelotSearchController {
                 System.out.println("CamelotItem with altercode " + altercode + "  does note have stock positions");
                 itemStockPositions = new LinkedHashMap<>();
                 itemStockPositions.put(x, "NO STOCK POSITION");
-                x++;
 
             }
             inventoryItem.setStockPositions(itemStockPositions);
@@ -127,11 +126,14 @@ public class CamelotSearchController {
             String firstStockPosition = mapEntry.getValue();
             System.out.println("First Stock Position: " + firstStockPosition);
             if (sortedNotes.containsKey(firstStockPosition)) {
+                System.out.println("Sorted Notes contain position : " + firstStockPosition);
                 firstStockPosition = firstStockPosition + x;
+                System.out.println("Creating fake position : " + firstStockPosition);
                 sortedNotes.put(firstStockPosition, inventoryItem);
             } else {
                 sortedNotes.put(firstStockPosition, inventoryItem);
             }
+            x++;
         }
 
         ArrayList<InventoryItem> sortedNotesArrayList = new ArrayList<InventoryItem>(sortedNotes.values());
