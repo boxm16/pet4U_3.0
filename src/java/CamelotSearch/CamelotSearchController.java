@@ -118,7 +118,8 @@ public class CamelotSearchController {
                 System.out.println("CamelotItem with altercode " + altercode + "  does note have stock positions");
                 itemStockPositions = new LinkedHashMap<>();
                 itemStockPositions.put(x, "NO STOCK POSITION");
-                x++;
+                x--;
+                System.out.println("X: "+x);
 
             }
             inventoryItem.setStockPositions(itemStockPositions);
