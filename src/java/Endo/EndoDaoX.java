@@ -465,7 +465,9 @@ public class EndoDaoX {
                 Item itemFromRowByRow = pet4UItemsRowByRow.get(itemCode);
                 if (itemFromRowByRow == null) {
                     itemFromRowByRow = pet4UItemsRowByRow.get(itemBarcode);
-                    comment = comment + ":" + "Item Found By Barcode";
+                    if (itemFromRowByRow != null) {
+                        comment = comment + ":" + "Item Found By Barcode";
+                    }
                 }
 
                 if (itemFromRowByRow != null) {
