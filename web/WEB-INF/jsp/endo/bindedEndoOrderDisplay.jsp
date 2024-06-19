@@ -58,8 +58,11 @@
             <thead> 
                 <tr>
                     <th>A/A</th>
-                    <th>Ordered<br>Altercode</th>
+
                     <th>Code</th>
+                    <th>Ordered<br>Altercode</th>
+                    <th>Ordered<br>Barcode</th>
+
                     <th>Description</th>
                     <th>Ordered</th>
                     <th>Invoiced</th>
@@ -84,13 +87,16 @@
                         out.println("<td>");
                         out.println(x);
                         out.println("</td>");
+                        out.println("<td style='padding-left: 5px; padding-left: 5px;'>");
+                        out.println("<a href='itemAnalysis.htm?code=" + orderedItem.getCode() + "' target='_blank'>" + orderedItem.getCode() + "</a>");
+                        out.println("</td>");
 
                         out.println("<td>");
                         out.println(orderedItem.getOrderedAltercode());
                         out.println("</td>");
 
-                        out.println("<td style='padding-left: 5px; padding-left: 5px;'>");
-                        out.println("<a href='itemAnalysis.htm?code=" + orderedItem.getCode() + "' target='_blank'>" + orderedItem.getCode() + "</a>");
+                        out.println("<td>");
+                        out.println(orderedItem.getItemBarcode());
                         out.println("</td>");
 
                         out.println("<td>");
