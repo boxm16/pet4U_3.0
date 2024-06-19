@@ -468,23 +468,25 @@ public class EndoDaoX {
                     comment = comment + ":" + "Item Found By Barcode";
                 }
 
-                String code = itemFromRowByRow.getCode();
+                if (itemFromRowByRow != null) {
+                    String code = itemFromRowByRow.getCode();
 
-                EndoOrderItem endoOrderItem = new EndoOrderItem();
+                    EndoOrderItem endoOrderItem = new EndoOrderItem();
 
-                endoOrderItem.setOrderedAltercode(itemCode);
+                    endoOrderItem.setOrderedAltercode(itemCode);
 
-                endoOrderItem.setCode(code);
-                endoOrderItem.setItemBarcode(itemBarcode);
+                    endoOrderItem.setCode(code);
+                    endoOrderItem.setItemBarcode(itemBarcode);
 
-                endoOrderItem.setDescription(resultSet.getString("item_description"));
-                endoOrderItem.setOrderedQuantity(resultSet.getDouble("ordered_quantity"));
-                endoOrderItem.setSentQuantity(resultSet.getDouble("sent_quantity"));
-                endoOrderItem.setPrice(resultSet.getDouble("price"));
-                endoOrderItem.setAmount(resultSet.getDouble("amount"));
-                endoOrderItem.setComment(comment);
-                endoOrder.addOrderItem(endoOrderItem.getCode(), endoOrderItem);
-
+                    endoOrderItem.setDescription(resultSet.getString("item_description"));
+                    endoOrderItem.setOrderedQuantity(resultSet.getDouble("ordered_quantity"));
+                    endoOrderItem.setSentQuantity(resultSet.getDouble("sent_quantity"));
+                    endoOrderItem.setPrice(resultSet.getDouble("price"));
+                    endoOrderItem.setAmount(resultSet.getDouble("amount"));
+                    endoOrderItem.setComment(comment);
+                    endoOrder.addOrderItem(endoOrderItem.getCode(), endoOrderItem);
+                } else {
+                }
             }
             resultSet.close();
             statement.close();
