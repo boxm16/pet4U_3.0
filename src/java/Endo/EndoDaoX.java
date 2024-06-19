@@ -488,6 +488,7 @@ public class EndoDaoX {
                     endoOrderItem.setComment(comment);
                     endoOrder.addOrderItem(endoOrderItem.getCode(), endoOrderItem);
                 } else {
+                      comment = comment + ":" + "Item Can Not Be Found In View";
 
                     EndoOrderItem endoOrderItem = new EndoOrderItem();
 
