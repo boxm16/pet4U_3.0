@@ -13,6 +13,7 @@ import BasicModel.Item;
  */
 public class EndoOrderItem extends Item {
 
+    private String itemBarcode;
     double price;
     double amount;
     double orderedQuantity;
@@ -67,7 +68,13 @@ public class EndoOrderItem extends Item {
     public void setOrderedAltercode(String orderedAltercode) {
         this.orderedAltercode = orderedAltercode;
     }
-    
-    
+
+    public String getItemBarcode() {
+        return itemBarcode;
+    }
+
+    public void setItemBarcode(String itemBarcode) {
+        this.itemBarcode = itemBarcode;
+    }
 
 }

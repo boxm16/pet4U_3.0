@@ -51,6 +51,9 @@ public class EndoOrdersFactory {
             String amountLocationInTheRow = new StringBuilder("M").append(String.valueOf(rowIndex)).toString();
             String amountString = data.remove(amountLocationInTheRow);//at the same time reading and removing the cell from hash Map
 
+            String itemBarcodeLocationInTheRow = new StringBuilder("N").append(String.valueOf(rowIndex)).toString();
+            String itemBarcodeString = data.remove(itemBarcodeLocationInTheRow);//at the same time reading and removing the cell from hash Map
+
             if (itemCodeString == null) {//in theory this means that you reached the end of rows with data
                 break;
             }
@@ -64,6 +67,8 @@ public class EndoOrdersFactory {
                 EndoOrderItem orderedItem = new EndoOrderItem();
 
                 orderedItem.setCode(itemCodeString);
+
+                orderedItem.setItemBarcode(itemBarcodeString);
 
                 orderedItem.setDescription(itemDescriptionString);
 
@@ -93,6 +98,8 @@ public class EndoOrdersFactory {
                 EndoOrderItem orderedItem = new EndoOrderItem();
 
                 orderedItem.setCode(itemCodeString);
+
+                orderedItem.setItemBarcode(itemBarcodeString);
 
                 orderedItem.setDescription(itemDescriptionString);
 

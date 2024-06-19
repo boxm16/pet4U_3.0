@@ -357,7 +357,7 @@ public class EndoDaoX {
 
             connection.setAutoCommit(false);
             PreparedStatement orderTitelInsertionPreparedStatement = connection.prepareStatement("INSERT INTO endo_order_title (id, date, destination, note) VALUES(?,?,?,?);");
-            PreparedStatement orderedItemsInsetionPreparedStatement = connection.prepareStatement("INSERT INTO endo_order_data (order_id, item_code, item_description, ordered_quantity, sent_quantity, price, amount, comment) VALUES (?,?,?,?,?,?,?,?);");
+            PreparedStatement orderedItemsInsetionPreparedStatement = connection.prepareStatement("INSERT INTO endo_order_data (order_id, item_code, item_barcode, item_description, ordered_quantity, sent_quantity, price, amount, comment) VALUES (?,?,?,?,?,?,?,?);");
 
             System.out.println("Starting INSERTION: ....");
 
@@ -374,12 +374,13 @@ public class EndoDaoX {
                 for (Map.Entry<String, EndoOrderItem> orderedItemsEntry : orderedItems.entrySet()) {
                     orderedItemsInsetionPreparedStatement.setString(1, endoOrdersEntry.getValue().getId());
                     orderedItemsInsetionPreparedStatement.setString(2, orderedItemsEntry.getValue().getCode());
-                    orderedItemsInsetionPreparedStatement.setString(3, orderedItemsEntry.getValue().getDescription());
-                    orderedItemsInsetionPreparedStatement.setDouble(4, orderedItemsEntry.getValue().getOrderedQuantity());
-                    orderedItemsInsetionPreparedStatement.setDouble(5, orderedItemsEntry.getValue().getSentQuantity());
-                    orderedItemsInsetionPreparedStatement.setDouble(6, orderedItemsEntry.getValue().getPrice());
-                    orderedItemsInsetionPreparedStatement.setDouble(7, orderedItemsEntry.getValue().getAmount());
-                    orderedItemsInsetionPreparedStatement.setString(8, orderedItemsEntry.getValue().getComment());
+                    orderedItemsInsetionPreparedStatement.setString(3, orderedItemsEntry.getValue().getItemBarcode());
+                    orderedItemsInsetionPreparedStatement.setString(4, orderedItemsEntry.getValue().getDescription());
+                    orderedItemsInsetionPreparedStatement.setDouble(5, orderedItemsEntry.getValue().getOrderedQuantity());
+                    orderedItemsInsetionPreparedStatement.setDouble(6, orderedItemsEntry.getValue().getSentQuantity());
+                    orderedItemsInsetionPreparedStatement.setDouble(7, orderedItemsEntry.getValue().getPrice());
+                    orderedItemsInsetionPreparedStatement.setDouble(8, orderedItemsEntry.getValue().getAmount());
+                    orderedItemsInsetionPreparedStatement.setString(9, orderedItemsEntry.getValue().getComment());
                     orderedItemsInsetionPreparedStatement.addBatch();
 
                 }
@@ -458,6 +459,7 @@ public class EndoDaoX {
 
                 String itemCode = resultSet.getString("item_code");
                 Item itemFromRowByRow = pet4UItemsRowByRow.get(itemCode);
+
                 System.out.println("itemCode" + itemCode);
                 String code = itemFromRowByRow.getCode();
 
