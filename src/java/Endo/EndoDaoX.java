@@ -486,6 +486,21 @@ public class EndoDaoX {
                     endoOrderItem.setComment(comment);
                     endoOrder.addOrderItem(endoOrderItem.getCode(), endoOrderItem);
                 } else {
+
+                    EndoOrderItem endoOrderItem = new EndoOrderItem();
+
+                    endoOrderItem.setOrderedAltercode(itemCode);
+
+                    endoOrderItem.setCode(itemCode);
+                    endoOrderItem.setItemBarcode(itemBarcode);
+
+                    endoOrderItem.setDescription(resultSet.getString("item_description"));
+                    endoOrderItem.setOrderedQuantity(resultSet.getDouble("ordered_quantity"));
+                    endoOrderItem.setSentQuantity(resultSet.getDouble("sent_quantity"));
+                    endoOrderItem.setPrice(resultSet.getDouble("price"));
+                    endoOrderItem.setAmount(resultSet.getDouble("amount"));
+                    endoOrderItem.setComment(comment);
+                    endoOrder.addOrderItem(endoOrderItem.getCode(), endoOrderItem);
                 }
             }
             resultSet.close();
