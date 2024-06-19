@@ -460,10 +460,12 @@ public class EndoDaoX {
 
                 String itemCode = resultSet.getString("item_code");
                 String itemBarcode = resultSet.getString("item_barcode");
+                String comment = resultSet.getString("comment");
 
                 Item itemFromRowByRow = pet4UItemsRowByRow.get(itemCode);
                 if (itemFromRowByRow == null) {
                     itemFromRowByRow = pet4UItemsRowByRow.get(itemBarcode);
+                    comment = comment + ":" + "Item Found By Barcode";
                 }
 
                 String code = itemFromRowByRow.getCode();
@@ -480,7 +482,7 @@ public class EndoDaoX {
                 endoOrderItem.setSentQuantity(resultSet.getDouble("sent_quantity"));
                 endoOrderItem.setPrice(resultSet.getDouble("price"));
                 endoOrderItem.setAmount(resultSet.getDouble("amount"));
-                endoOrderItem.setComment(resultSet.getString("comment"));
+                endoOrderItem.setComment(comment);
                 endoOrder.addOrderItem(endoOrderItem.getCode(), endoOrderItem);
 
             }

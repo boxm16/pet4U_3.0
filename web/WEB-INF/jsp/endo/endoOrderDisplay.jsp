@@ -46,8 +46,9 @@
 
                 <tr>
                     <th>A/A</th>
-                    <th>Ordered<br>Altercode</th>
                     <th>Code</th>
+                    <th>Ordered<br>Altercode</th>
+                    <th>Ordered<br>Barcode</th>
                     <th>Description</th>
                     <th>Ordered Qty</th>
                     <th>Price</th>
