@@ -387,7 +387,7 @@ public class EndoDaoX {
 
                 //Executing the batch
             }
-            
+
             orderTitelInsertionPreparedStatement.executeBatch();
             orderedItemsInsetionPreparedStatement.executeBatch();
 
@@ -459,18 +459,21 @@ public class EndoDaoX {
                 }
 
                 String itemCode = resultSet.getString("item_code");
+                String itemBarcode = resultSet.getString("item_barcode");
+
                 Item itemFromRowByRow = pet4UItemsRowByRow.get(itemCode);
+                if (itemFromRowByRow == null) {
+                    itemFromRowByRow = pet4UItemsRowByRow.get(itemBarcode);
+                }
 
-                System.out.println("itemCode" + itemCode);
                 String code = itemFromRowByRow.getCode();
-
-                LinkedHashMap<String, EndoOrderItem> orderedItems = endoOrder.getOrderedItems();
 
                 EndoOrderItem endoOrderItem = new EndoOrderItem();
 
                 endoOrderItem.setOrderedAltercode(itemCode);
 
                 endoOrderItem.setCode(code);
+                endoOrderItem.setItemBarcode(itemBarcode);
 
                 endoOrderItem.setDescription(resultSet.getString("item_description"));
                 endoOrderItem.setOrderedQuantity(resultSet.getDouble("ordered_quantity"));
