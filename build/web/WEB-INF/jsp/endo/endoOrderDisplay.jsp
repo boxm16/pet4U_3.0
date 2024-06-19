@@ -75,6 +75,7 @@
                         out.println("<td>");
                         out.println(item.getOrderedAltercode());
                         out.println("</td>");
+                        
                         out.println("<td>");
                         out.println(item.getItemBarcode());
                         out.println("</td>");
