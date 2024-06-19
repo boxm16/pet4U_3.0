@@ -458,6 +458,7 @@ public class EndoDaoX {
 
                 String itemCode = resultSet.getString("item_code");
                 Item itemFromRowByRow = pet4UItemsRowByRow.get(itemCode);
+                System.out.println("itemCode" + itemCode);
                 String code = itemFromRowByRow.getCode();
 
                 LinkedHashMap<String, EndoOrderItem> orderedItems = endoOrder.getOrderedItems();
@@ -1015,7 +1016,7 @@ public class EndoDaoX {
         StringBuilder inPart = buildStringFromArrayList(keys);
 
         String query = "SELECT * FROM endo_order_title INNER JOIN endo_order_data ON endo_order_title.id=endo_order_data.order_id WHERE id IN " + inPart + ";";
-       
+
         try {
             Connection connection = this.databaseConnectionFactory.getMySQLConnection();
             Statement statement = connection.createStatement();
