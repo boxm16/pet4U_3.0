@@ -387,6 +387,7 @@ public class EndoDaoX {
 
                 //Executing the batch
             }
+            
             orderTitelInsertionPreparedStatement.executeBatch();
             orderedItemsInsetionPreparedStatement.executeBatch();
 
