@@ -35,10 +35,16 @@
             <tbody>
                 <%
                     LinkedHashMap<String, Item> items = (LinkedHashMap) request.getAttribute("camelotAllItems");
+                    int index = 0;
                     for (Map.Entry<String, Item> entrySet : items.entrySet()) {
                         Item item = entrySet.getValue();
 
                         out.println("<tr>");
+
+                        out.println("<td>");
+                        out.println(x);
+                        out.println("</td>");
+
                         out.println("<td>");
                         out.println(item.getCode());
                         /*
@@ -72,6 +78,7 @@
                         out.println("</td>");
 
                         out.println("</tr>");
+                        x++;
                     }
                 %>
             </tbody>
