@@ -2,6 +2,7 @@ package TESTosteron;
 
 import BasicModel.Item;
 import CamelotItemsOfInterest.CamelotDao;
+import Notes.NotesDao;
 import Pet4uItems.Pet4uItemsDao;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -69,6 +70,11 @@ public class TESTosteronController {
     public String camelotStockPositonsTesting(ModelMap modelMap) {
         CamelotDao camelotDao = new CamelotDao();
         LinkedHashMap<String, Item> camelotAllItems = camelotDao.getCamelotItems();
+        NotesDao notesDao = new NotesDao();
+        for (Map.Entry<String, Item> caiEntrySet : camelotAllItems.entrySet()) {
+            String result = notesDao.saveCamelotNote(caiEntrySet.getValue().getCode(), "dokimastiko");
+            System.out.println(result);
+        }
         modelMap.addAttribute("camelotAllItems", camelotAllItems);
         return "testosteron/testResult";
     }
