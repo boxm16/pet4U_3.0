@@ -266,7 +266,7 @@ public class NotesDao {
     public ArrayList<InventoryItem> getAllCamelotNotes() {
         ArrayList<InventoryItem> inventories = new ArrayList<>();
 
-        String sql = "SELECT * FROM camelot_notes WHERE deletion_time=null;";
+        String sql = "SELECT * FROM camelot_notes WHERE deletion_time IS NULL;";
         ResultSet resultSet;
 
         try {
