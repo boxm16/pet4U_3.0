@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.logging.Level;
@@ -237,13 +238,21 @@ public class NotesDao {
 
     public String saveCamelotNote(String altercode, String note) {
         try {
+
+            String dateFormat = "yyyy-MM-dd HH:mm:ss";
+
+            Calendar cal = Calendar.getInstance();
+            SimpleDateFormat formater = new SimpleDateFormat(dateFormat);
+            String formatedDateNow = formater.format(cal.getTime());
+
             DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
             Connection connection = databaseConnectionFactory.getMySQLConnection();
 
-            PreparedStatement itemInsertStatement = connection.prepareStatement("INSERT INTO camelot_notes (item_code, note) VALUES (?,?)");
+            PreparedStatement itemInsertStatement = connection.prepareStatement("INSERT INTO camelot_notes (item_code, note, insertion_time) VALUES (?,?,?)");
 
             itemInsertStatement.setString(1, altercode);
             itemInsertStatement.setString(2, note);
+            itemInsertStatement.setString(3, formatedDateNow);
 
             itemInsertStatement.execute();
 
