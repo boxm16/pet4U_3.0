@@ -70,10 +70,13 @@ public class TESTosteronController {
     public String camelotStockPositonsTesting(ModelMap modelMap) {
         CamelotDao camelotDao = new CamelotDao();
         LinkedHashMap<String, Item> camelotAllItems = camelotDao.getCamelotItems();
+
         NotesDao notesDao = new NotesDao();
+        int index = 0;
         for (Map.Entry<String, Item> caiEntrySet : camelotAllItems.entrySet()) {
             String result = notesDao.saveCamelotNote(caiEntrySet.getValue().getCode(), "dokimastiko");
-            System.out.println(result);
+            System.out.println(index + " : " + caiEntrySet.getValue().getCode()+" : "+result);
+            index++;
         }
         modelMap.addAttribute("camelotAllItems", camelotAllItems);
         return "testosteron/testResult";
