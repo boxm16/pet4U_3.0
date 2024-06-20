@@ -54,15 +54,14 @@
             <%
                 ArrayList<InventoryItem> items = (ArrayList) request.getAttribute("notes");
                 if (items != null) {
-                    int index=0;
+                    int index = 0;
                     for (InventoryItem inventoryItem : items) {
 
                         out.println("<tr>");
 
-                        out.println("<td>");
-                        out.println(index);
-                        out.println("</td>");
-                        
+                        //  out.println("<td>");
+                        //   out.println(index);
+                        //   out.println("</td>");
                         out.println("<td>");
                         out.println(inventoryItem.getCode());
                         out.println("</td>");
@@ -109,7 +108,7 @@
                     out.println("</td>");
                          */
                         out.println("</tr>");
-                        
+
                         index++;
 
                     }
