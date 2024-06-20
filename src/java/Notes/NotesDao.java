@@ -304,7 +304,7 @@ public class NotesDao {
         SimpleDateFormat formater = new SimpleDateFormat(dateFormat);
         String formatedDateNow = formater.format(cal.getTime());
 
-        String noteDeletionSql = "UPDATE camelot_notes SET deletion_time=" + formatedDateNow + " WHERE id='" + id + "'";
+        String noteDeletionSql = "UPDATE camelot_notes SET deletion_time='" + formatedDateNow + "' WHERE id='" + id + "'";
         try {
             DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
             Connection connection = databaseConnectionFactory.getMySQLConnection();
