@@ -1,11 +1,13 @@
 package TESTosteron;
 
 import BasicModel.Item;
+import CamelotItemsOfInterest.CamelotDao;
 import Pet4uItems.Pet4uItemsDao;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -60,6 +62,14 @@ public class TESTosteronController {
 
         }
         System.out.println("TEST COMPLETED: RESULT SEE ABOVE");
+        return "testosteron/testResult";
+    }
+
+    @RequestMapping(value = "camelotStockPositonsTesting")
+    public String camelotStockPositonsTesting(ModelMap modelMap) {
+        CamelotDao camelotDao = new CamelotDao();
+        LinkedHashMap<String, Item> camelotAllItems = camelotDao.getCamelotItems();
+        modelMap.addAttribute("camelotAllItems", camelotAllItems);
         return "testosteron/testResult";
     }
 }
