@@ -42,7 +42,7 @@
                         out.println("<tr>");
 
                         out.println("<td>");
-                        out.println(x);
+                        out.println(index);
                         out.println("</td>");
 
                         out.println("<td>");
@@ -78,7 +78,7 @@
                         out.println("</td>");
 
                         out.println("</tr>");
-                        x++;
+                        index++;
                     }
                 %>
             </tbody>
