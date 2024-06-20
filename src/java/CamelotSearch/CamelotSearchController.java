@@ -76,7 +76,7 @@ public class CamelotSearchController {
         String result = notesDao.saveCamelotNote(altercode, note);
         String resultColor = "";
         if (!result.equals("New Camelot Note Added Successfully")) {
-            result = "ΚΑΤΙ ΠΗΓΕ ΣΤΡΑΒΑ. ΔΕΙΞΕ ΤΟ ΣΤΟΝ ΜΗΧΑΛΗ";
+            result = "ΚΑΤΙ ΠΗΓΕ ΣΤΡΑΒΑ. ΔΕΙΞΕ ΤΟ ΣΤΟΝ ΜΗΧΑΛΗ <br>"+result;
             resultColor = "red";
         }
         model.addAttribute("result", result);
