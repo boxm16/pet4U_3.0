@@ -19,8 +19,8 @@ public class TechManController {
 
     @RequestMapping(value = "techMan")
     public String techMan() {
-        //       return "techMan/techManDashboard";
-        return "index";
+        return "techMan/techManDashboard";
+        //     return "index";
     }
 
     //-----------------------------------------------------------------------
@@ -440,7 +440,7 @@ public class TechManController {
         return "techMan/techManDashboard";
     }
 
-    @RequestMapping(value = "/deleteCamelotNotesDatabaseTable1", method = RequestMethod.GET)
+    @RequestMapping(value = "/deleteCamelotNotesDatabaseTable", method = RequestMethod.GET)
     public String deleteCamelotNotesDatabaseTable(ModelMap modelMap) {
         String camelotNotesDatabaseTableResult = techManDao.deleteCamelotNotesDatabaseTable();
 
