@@ -256,6 +256,9 @@ public class NotesDao {
 
             itemInsertStatement.execute();
 
+            itemInsertStatement.close();
+            connection.close();
+
         } catch (SQLException ex) {
             Logger.getLogger(NotesDao.class.getName()).log(Level.SEVERE, null, ex);
             return ex.getMessage();

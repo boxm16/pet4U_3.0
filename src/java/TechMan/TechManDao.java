@@ -56,7 +56,7 @@ public class TechManDao {
     public String createCamelotNotesDatabaseTable() {
         String query = "CREATE TABLE camelot_notes("
                 + "id INT(6) NOT NULL AUTO_INCREMENT, "
-                + "item_code VARCHAR(15) NOT NULL , "
+                + "item_code VARCHAR(100) NOT NULL , "
                 + "note VARCHAR(360) NOT NULL, "
                 + "insertion_time DATETIME NOT NULL, "
                 + "deletion_time DATETIME  NULL,  "
