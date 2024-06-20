@@ -74,10 +74,16 @@ public class CamelotSearchController {
 
         NotesDao notesDao = new NotesDao();
         String result = notesDao.saveCamelotNote(altercode, note);
+        String resultColor = "";
+        if (!result.equals("New Camelot Note Added Successfully")) {
+            result = "ΚΑΤΙ ΠΗΓΕ ΣΤΡΑΒΑ. ΔΕΙΞΕ ΤΟ ΣΤΟΝ ΜΗΧΑΛΗ";
+            resultColor = "red";
+        }
         model.addAttribute("result", result);
+        model.addAttribute("resultColor", resultColor);
 
-        return "redirect:camelotNotesCardMode.htm";
-        // return "vakulina/notesDisplay";
+        return "camelotSearch/camelotNoteSavingResult";
+
     }
 
     @RequestMapping(value = "camelotNotesDisplay")
