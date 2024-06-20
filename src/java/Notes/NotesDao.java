@@ -298,12 +298,18 @@ public class NotesDao {
     }
 
     public void deleteCamelotNote(String id) {
-        String noteDeletionSql = "DELETE FROM camelot_notes WHERE id='" + id + "'";
+        String dateFormat = "yyyy-MM-dd HH:mm:ss";
+
+        Calendar cal = Calendar.getInstance();
+        SimpleDateFormat formater = new SimpleDateFormat(dateFormat);
+        String formatedDateNow = formater.format(cal.getTime());
+
+        String noteDeletionSql = "UPDATE camelot_notes SET deletion_time=" + formatedDateNow + " WHERE id='" + id + "'";
         try {
             DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
             Connection connection = databaseConnectionFactory.getMySQLConnection();
             Statement statement = connection.createStatement();
-            statement.execute(noteDeletionSql);
+            statement.executeUpdate(noteDeletionSql);
             statement.close();
 
             connection.close();
