@@ -607,4 +607,35 @@ public class NotesDao {
         return ids;
     }
 
+    public LinkedHashMap<String, Integer> getAllDeletedCamelotNotesBatches() {
+        LinkedHashMap<String, Integer> allDeletedCamelotNotesBatches = new LinkedHashMap<>();
+
+        String sql = "SELECT COUNT(deletion_time), deletion_time FROM camelot_notes WHERE  deletion_time IS NOT NULL  GROUP BY deletion_time ORDER BY deletion_time;";
+        ResultSet resultSet;
+
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            Connection connection = databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+
+            resultSet = statement.executeQuery(sql);
+            while (resultSet.next()) {
+
+                int count = resultSet.getInt("count");
+                String batch = resultSet.getString("deletion_time");
+
+                allDeletedCamelotNotesBatches.put(batch, count);
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(NotesDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return allDeletedCamelotNotesBatches;
+
+    }
+
 }

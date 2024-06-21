@@ -75,10 +75,18 @@ public class TESTosteronController {
         int index = 0;
         for (Map.Entry<String, Item> caiEntrySet : camelotAllItems.entrySet()) {
             String result = notesDao.saveCamelotNote(caiEntrySet.getValue().getCode(), "dokimastiko");
-            System.out.println(index + " : " + caiEntrySet.getValue().getCode()+" : "+result);
+            System.out.println(index + " : " + caiEntrySet.getValue().getCode() + " : " + result);
             index++;
         }
         modelMap.addAttribute("camelotAllItems", camelotAllItems);
-        return "testosteron/testResult";
+        return "testosteron/camelotAllItemsNotedTestResult";
+    }
+
+    @RequestMapping(value = "showAllDeletedCamelotNotesBatches")
+    public String showAllDeletedCamelotNotesBatches(ModelMap modelMap) {
+        NotesDao notesDao = new NotesDao();
+        LinkedHashMap<String, Integer> deletedCamelotNotesBatches = notesDao.getAllDeletedCamelotNotesBatches();
+        modelMap.addAttribute("deletedCamelotNotesBatches", deletedCamelotNotesBatches);
+        return "testosteron/allDeletedCamelotNotesBatches";
     }
 }
