@@ -2,14 +2,17 @@ package TESTosteron;
 
 import BasicModel.Item;
 import CamelotItemsOfInterest.CamelotDao;
+import Inventory.InventoryItem;
 import Notes.NotesDao;
 import Pet4uItems.Pet4uItemsDao;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class TESTosteronController {
@@ -89,4 +92,16 @@ public class TESTosteronController {
         modelMap.addAttribute("deletedCamelotNotesBatches", deletedCamelotNotesBatches);
         return "testosteron/allDeletedCamelotNotesBatches";
     }
+
+    @RequestMapping(value = "showDeletedCamelotNotesBatch")
+    public String showDeletedCamelotNotesBatch(@RequestParam(name = "batch") String batch, ModelMap modelMap) {
+
+        NotesDao notesDao = new NotesDao();
+        ArrayList<InventoryItem> notes = notesDao.getDeletedCamelotNotesBatch(batch);
+
+        modelMap.addAttribute("notes", notes);
+
+        return "testosteron/deletedCamelotNotesBatch";
+    }
+
 }

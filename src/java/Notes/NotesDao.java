@@ -638,4 +638,43 @@ public class NotesDao {
 
     }
 
+    public ArrayList<InventoryItem> getDeletedCamelotNotesBatch(String batch) {
+
+        ArrayList<InventoryItem> inventories = new ArrayList<>();
+
+        String sql = "SELECT * FROM camelot_notes WHERE deletion_time ='" + batch + "';";
+        ResultSet resultSet;
+
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            Connection connection = databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+
+            resultSet = statement.executeQuery(sql);
+            while (resultSet.next()) {
+                InventoryItem inventoryItem = new InventoryItem();
+                int id = resultSet.getInt("id");
+                inventoryItem.setId(id);
+
+                String itemCode = resultSet.getString("item_code");
+                inventoryItem.setCode(itemCode.trim());
+                inventoryItem.setNote(resultSet.getString("note"));
+                //here i`ll just use those 2 field, because i dont want to create new fields in this class
+                inventoryItem.setTimeStampString(resultSet.getString("insertion_time"));
+                inventoryItem.setDateStampString(resultSet.getString("deletion_time"));
+
+                inventories.add(inventoryItem);
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(NotesDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return inventories;
+
+    }
+
 }
