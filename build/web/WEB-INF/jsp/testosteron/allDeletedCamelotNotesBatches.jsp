@@ -58,7 +58,7 @@
                         out.println("</td>");
 
                         out.println("<td>");
-                        out.println(" <a href='showDeletedCamelotNotesBatch.htm?batch=" + deletedCamelotNotesBatchesEntrySet.getKey() + "'><h3>" + deletedCamelotNotesBatchesEntrySet.getKey() + "</h3></a>");
+                        out.println(" <a href='showDeletedCamelotNotesBatch.htm?batch=" + deletedCamelotNotesBatchesEntrySet.getKey() + "' target='_blank'><h3>" + deletedCamelotNotesBatchesEntrySet.getKey() + "</h3></a>");
                         out.println("</td>");
 
                         out.println("<td>");

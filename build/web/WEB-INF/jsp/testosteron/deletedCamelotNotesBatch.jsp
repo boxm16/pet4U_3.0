@@ -44,7 +44,7 @@
             <th>A/A</th>
             <th>Item Code</th>
 
-            <th>Notes Count</th>
+            <th>Note</th>
             <th>Insertion Time</th>
             <th>Deletion Time</th>
 
@@ -52,7 +52,7 @@
             <%
                 ArrayList<InventoryItem> deletedCamelotNotesBatch = (ArrayList) request.getAttribute("notes");
                 if (deletedCamelotNotesBatch.size() > 0) {
-                    int index = 0;
+                    int index = 1;
                     for (InventoryItem inventoryItem : deletedCamelotNotesBatch) {
 
                         out.println("<tr>");
