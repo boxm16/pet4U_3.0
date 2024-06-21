@@ -34,7 +34,9 @@
                     <hr>
                     <a href="sixMonthsEksagoges.htm" class="btn btn-secondary" style='background-color: #227667' role="button"><h1>ΕΞΑΓΩΓΕΣ ΕΞΙ ΜΗΝΩΝ</h1></a>
                     <hr>
-                    <a href="camelotStockPositonsTesting.htm" class="btn btn-secondary" style='background-color: yellow' role="button"><h1>Camelot Stock Positions Testing</h1></a>
+                  <!--  <a href="camelotStockPositonsTesting.htm" class="btn btn-secondary" style='background-color: yellow' role="button"><h1>Camelot Stock Positions Testing</h1></a>  -->
+                    <hr>
+                    <a href="showAllDeletedCamelotNotesBatches.htm" class="btn btn-secondary" style='background-color: yellow' role="button"><h1>Show Deleted Camelot Notes</h1></a>
 
                 </div>
                 <div class=" col-sm-4">
