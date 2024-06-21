@@ -610,7 +610,7 @@ public class NotesDao {
     public LinkedHashMap<String, Integer> getAllDeletedCamelotNotesBatches() {
         LinkedHashMap<String, Integer> allDeletedCamelotNotesBatches = new LinkedHashMap<>();
 
-        String sql = "SELECT COUNT(deletion_time), deletion_time FROM camelot_notes WHERE  deletion_time IS NOT NULL  GROUP BY deletion_time ORDER BY deletion_time;";
+        String sql = "SELECT COUNT(deletion_time) AS count, deletion_time FROM camelot_notes WHERE  deletion_time IS NOT NULL  GROUP BY deletion_time ORDER BY deletion_time;";
         ResultSet resultSet;
 
         try {
