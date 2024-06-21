@@ -20,10 +20,10 @@
                 border-collapse: collapse;
             }
             td {
-                font-size: 15px;
+                font-size: 25px;
             }
             th{
-                font-size: 15px;
+                font-size: 25px;
                 font-weight: bold;
                 text-align: left;
                 background: #eee;
@@ -51,27 +51,26 @@
                 if (deletedCamelotNotesBatches.size() > 0) {
                     int index = 0;
                     for (Map.Entry<String, Integer> deletedCamelotNotesBatchesEntrySet : deletedCamelotNotesBatches.entrySet()) {
-                  
 
-                            out.println("<tr>");
-                            out.println("<td>");
-                            out.println(index);
-                            out.println("</td>");
+                        out.println("<tr>");
+                        out.println("<td>");
+                        out.println(index);
+                        out.println("</td>");
 
-                            out.println("<td>");
-                            out.println(deletedCamelotNotesBatchesEntrySet.getKey());
-                            out.println("</td>");
+                        out.println("<td>");
+                        out.println(" <a href='showDeletedCamelotNotesBatch.htm?batch=" + deletedCamelotNotesBatchesEntrySet.getKey() + "'><h3>" + deletedCamelotNotesBatchesEntrySet.getKey() + "</h3></a>");
+                        out.println("</td>");
 
-                            out.println("<td>");
-                            out.println(deletedCamelotNotesBatchesEntrySet.getValue());
-                            out.println("</td>");
+                        out.println("<td>");
+                        out.println(deletedCamelotNotesBatchesEntrySet.getValue());
+                        out.println("</td>");
 
-                            out.println("</tr>");
+                        out.println("</tr>");
 
-                            index++;
+                        index++;
 
-                        }
                     }
+                }
             %>
         </table>
 
