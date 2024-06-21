@@ -51,7 +51,7 @@
                 if (deletedCamelotNotesBatches.size() > 0) {
                     int index = 0;
                     for (Map.Entry<String, Integer> deletedCamelotNotesBatchesEntrySet : deletedCamelotNotesBatches.entrySet()) {
-                        {
+                  
 
                             out.println("<tr>");
                             out.println("<td>");
