@@ -9,6 +9,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.nio.file.attribute.FileTime;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -123,6 +124,9 @@ public class DeliveryController {
                     = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm:ss");
             String timeStamp = localDateTime.format(DATE_FORMATTER);
             modelMap.addAttribute("timeStamp", timeStamp);
+
+            LocalDate date = LocalDate.now();
+            modelMap.addAttribute("date", date);
         } catch (IOException ex) {
             Logger.getLogger(DeliveryController.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println(ex.getMessage());

@@ -18,8 +18,9 @@ public class DeliveryController_V_3_1 {
 
     @RequestMapping(value = "deliveryDashboardTesting")
     public String deliveryDashboardTesting(@RequestParam(name = "date") String date, ModelMap modelMap) {
+
         DeliveryDao_V_3_1 deliveryDao = new DeliveryDao_V_3_1();
-        System.out.println(date);
+
         LinkedHashMap<String, DeliveryInvoice> deliveryInvoices = deliveryDao.getDeliveryInvoices(date);
         modelMap.addAttribute("deliveryInvoices", deliveryInvoices);
         return "delivery/deliveryInvoices";

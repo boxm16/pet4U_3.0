@@ -39,11 +39,11 @@
         <button class='btn-primary' onclick="location.href = 'loadRoyalData.htm'" type="button">
             Load Data</button>
         <hr>     <hr>     <hr>     <hr>     <hr>     <hr>
-        <h1>TRIAL, NO PRODUCTION YET</h1>
+        <h1>ATTENTION!!!! JUST FOR TRIAL, NO PRODUCTION YET</h1>
         <form action="deliveryDashboardTesting.htm" method="POST">
-            <input type="date" name="date">
+            <h1>  <input type="date"  name="date" value="${date}"></h1>
             <hr>
-            <button type="submit"> Delivery Dashboard</button>
+            <button type="submit" class="btn btn-primary"> Delivery Dashboard</button>
         </form>
         <hr>     <hr>     <hr>     <hr>     <hr>     <hr>
         <h4>All Deliveries</h4>
