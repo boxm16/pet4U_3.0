@@ -26,11 +26,7 @@
 
                 <div class=" col-sm-4">
 
-                    <form action="deliveryDashboardTesting.htm" method="POST">
-                        <input type="date" name="date">
-                        <hr>
-                        <button type="submit"> Delivery Dashboard</button>
-                    </form>
+                   
                     <hr>
                     <a href="sixMonthsEksagoges.htm" class="btn btn-secondary" style='background-color: #227667' role="button"><h1>ΕΞΑΓΩΓΕΣ ΕΞΙ ΜΗΝΩΝ</h1></a>
                     <hr>
