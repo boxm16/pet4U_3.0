@@ -43,7 +43,7 @@
         <form action="deliveryDashboardTesting.htm" method="POST">
             <h1>  <input type="date"  name="date" value="${date}"></h1>
             <hr>
-            <button type="submit" class="btn btn-primary"> Delivery Dashboard</button>
+            <button type="submit" class="btn btn-primary"> <h1> Delivery Dashboard </h1></button>
         </form>
         <hr>     <hr>     <hr>     <hr>     <hr>     <hr>
         <h4>All Deliveries</h4>
