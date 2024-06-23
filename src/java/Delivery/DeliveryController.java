@@ -376,38 +376,7 @@ public class DeliveryController {
         return deliveryInvoice;
     }
 
-    @RequestMapping(value = "saveCheckUp", method = RequestMethod.POST)
-    public String saveCheckUp(@RequestParam(name = "sentItems") String sentItemsData,
-            @RequestParam(name = "deliveredItems") String deliveredItemsData,
-            @RequestParam(name = "invoiceNumber") String invoiceNumber) {
-        DeliveryInvoice deliveryInvoice = new DeliveryInvoice();
-        deliveryInvoice.setNumber(invoiceNumber);
-
-        LinkedHashMap<String, String> deliveredItems = decodeDeliveredItemsData(deliveredItemsData);
-        LinkedHashMap<String, String> sentItems = decodeDeliveredItemsData(sentItemsData);
-
-        ArrayList<DeliveryItem> deliveryItems = new ArrayList<>();
-        for (Map.Entry<String, String> deliveredItemsEntry : deliveredItems.entrySet()) {
-            DeliveryItem deliveryItem = new DeliveryItem();
-            deliveryItem.setCode(deliveredItemsEntry.getKey());
-            deliveryItem.setDeliveredQuantity(deliveredItemsEntry.getValue());
-            deliveryItem.setSentQuantity(sentItems.get(deliveredItemsEntry.getKey()));
-            deliveryItems.add(deliveryItem);
-        }
-
-        ArrayList<DeliveryInvoice> allCheckedDeliveryInvoices = deliveryDao.getAllCheckedDeliveryInvoices();
-
-        for (DeliveryInvoice checkedDeliveryInvoice : allCheckedDeliveryInvoices) {
-            String checkedInvoiceNumber = checkedDeliveryInvoice.getNumber();
-            if (deliveryInvoice.getNumber().equals(checkedInvoiceNumber)) {
-                deliveryDao.deleteDeliveryChecking(checkedDeliveryInvoice.getId());
-                break;
-            }
-        }
-
-        String result = deliveryDao.saveDeliveryChecking(invoiceNumber, deliveryItems);
-        return "redirect:deliveryDashboard.htm";
-    }
+    
 
     private LinkedHashMap<String, String> decodeDeliveredItemsData(String data) {
         LinkedHashMap<String, String> decodedData = new LinkedHashMap<>();

@@ -40,11 +40,11 @@
     <center>
 
         <h1>Delivery Checking</h1>
-        <h3>Ημερομηνία Παραστατικού:${deliveryInvoice.insertionDate} 
+        <h3>Ημερομηνία Παραστατικού:  ${deliveryInvoice.insertionDate} 
             &nbsp;&nbsp;&nbsp; 
-            Προμηθευτής:${deliveryInvoice.supplier} 
+            Προμηθευτής:  ${deliveryInvoice.supplier} 
             &nbsp;&nbsp;&nbsp; 
-            Αριθμός Παραστατικού:${deliveryInvoice.number} </h3>
+            Αριθμός Παραστατικού:  ${deliveryInvoice.number} </h3>
         <hr>
 
         <table>
@@ -108,7 +108,9 @@
         <hr>
         ${saveButton}
         <form id="form" action="#" method="POST">
-            <input hidden type="text"  name="invoiceNumber" value="${deliveryInvoice.getInvoiceId()}">
+            <input hidden type="text"  name="invoiceId" value="${deliveryInvoice.invoiceId()}">
+            <input hidden type="text"  name="supplier" value="${deliveryInvoice.supplier()}">
+            <input hidden type="text"  name="invoiceNumber" value="${deliveryInvoice.number()}">
             <input hidden type="text" id="deliveredItems" name="deliveredItems">
             <input hidden type="text" id="sentItems" name="sentItems">
         </form>
