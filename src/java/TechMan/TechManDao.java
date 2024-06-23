@@ -373,11 +373,12 @@ public class TechManDao {
 
     String createDeliveryTitleDatabaseTable() {
         String query = "CREATE TABLE delivery_title("
+                + "invoice_id VARCHAR(30) NOT NULL, "
                 + "id VARCHAR(30) NOT NULL, "
                 + "number VARCHAR (30) NOT NULL, "
                 + "supplier VARCHAR (80) NOT NULL, "
                 + "note VARCHAR (500) NOT NULL, "
-                + "PRIMARY KEY (id)) "
+                + "PRIMARY KEY (invoice_id)) "
                 + "ENGINE = InnoDB "
                 + "DEFAULT CHARACTER SET = utf8;";
         try {

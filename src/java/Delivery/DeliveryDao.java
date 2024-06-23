@@ -66,15 +66,16 @@ public class DeliveryDao {
             Connection connection = databaseConnectionFactory.getMySQLConnection();
 
             connection.setAutoCommit(false);
-            PreparedStatement invoiceInsertionPreparedStatement = connection.prepareStatement("INSERT INTO delivery_title (id, number,supplier, note) VALUES(?,?,?,?);");
+            PreparedStatement invoiceInsertionPreparedStatement = connection.prepareStatement("INSERT INTO delivery_title (invoice_id, id, number,supplier, note) VALUES(?,?,?,?,?);");
             PreparedStatement deliveredItemsInPreparedStatement = connection.prepareStatement("INSERT INTO delivery_data (delivery_id, item_code, sent,delivered) VALUES (?,?,?,?);");
 
             System.out.println("Starting INSERTION: ....");
-
+            
             invoiceInsertionPreparedStatement.setString(1, idItem.toString());
-            invoiceInsertionPreparedStatement.setString(2, number);
-            invoiceInsertionPreparedStatement.setString(3, "ROYAL");
-            invoiceInsertionPreparedStatement.setString(4, " ");
+            invoiceInsertionPreparedStatement.setString(2, idItem.toString());
+            invoiceInsertionPreparedStatement.setString(3, number);
+            invoiceInsertionPreparedStatement.setString(4, "ROYAL");
+            invoiceInsertionPreparedStatement.setString(5, " ");
 
             invoiceInsertionPreparedStatement.addBatch();
 
@@ -184,10 +185,10 @@ public class DeliveryDao {
 
     String deleteDeliveryChecking(String invoiceId) {
 
-        String sql = "DELETE  FROM delivery_data WHERE delivery_id='" + invoiceId+"';";
+        String sql = "DELETE  FROM delivery_data WHERE delivery_id='" + invoiceId + "';";
 
         String sql1 = "DELETE  FROM delivery_title "
-                + "WHERE id='" + invoiceId+"';";
+                + "WHERE id='" + invoiceId + "';";
 
         try {
             DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();

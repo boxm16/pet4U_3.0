@@ -4,6 +4,7 @@ import java.util.LinkedHashMap;
 
 public class DeliveryInvoice {
 
+     private String invoiceId;
     private String id;
     private String number;
     private String insertionDate;
@@ -63,5 +64,15 @@ public class DeliveryInvoice {
     public void setSupplier(String supplier) {
         this.supplier = supplier;
     }
+
+    public String getInvoiceId() {
+        return invoiceId;
+    }
+
+    public void setInvoiceId(String invoiceId) {
+        this.invoiceId = invoiceId;
+    }
+    
+    
 
 }
