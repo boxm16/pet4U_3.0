@@ -108,9 +108,9 @@
         <hr>
         ${saveButton}
         <form id="form" action="#" method="POST">
-            <input hidden type="text"  name="invoiceId" value="${deliveryInvoice.invoiceId()}">
-            <input hidden type="text"  name="supplier" value="${deliveryInvoice.supplier()}">
-            <input hidden type="text"  name="invoiceNumber" value="${deliveryInvoice.number()}">
+            <input hidden type="text"  name="invoiceId" value="${deliveryInvoice.invoiceId}">
+            <input hidden type="text"  name="supplier" value="${deliveryInvoice.supplier}">
+            <input hidden type="text"  name="invoiceNumber" value="${deliveryInvoice.number}">
             <input hidden type="text" id="deliveredItems" name="deliveredItems">
             <input hidden type="text" id="sentItems" name="sentItems">
         </form>
