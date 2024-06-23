@@ -76,12 +76,14 @@ public class DeliveryDao_V_3_1 {
                 String[] splittedDate = date.split(" ");
                 date = splittedDate[0];
 
+                String invoiceId = resultSet.getString("DOCID");
                 String number = resultSet.getString("DOCNUMBER");
                 String supplier = resultSet.getString("SUPPLIER");
                 String itemCode = resultSet.getString("ABBREVIATION");
                 String description = resultSet.getString("NAME");
                 String quantity = resultSet.getString("QUANT1");
 
+                deliveryInvoice.setInvoiceId(invoiceId);
                 deliveryInvoice.setInsertionDate(date);
                 deliveryInvoice.setNumber(number);
                 deliveryInvoice.setSupplier(supplier);
