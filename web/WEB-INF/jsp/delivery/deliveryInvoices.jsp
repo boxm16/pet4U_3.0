@@ -38,43 +38,40 @@
     </head>
     <body>
     <center>
+        <a href="index.htm"><h1>INDEX</h1></a>
         <table>
             <tbody>
-                <tr><td colspan="5">ΔΕΛΤΙΑ ΑΠΟΣΤΟΛΗΣ ΑΠΟ ΠΡΟΜΗΘΕΥΤΕΣ</td></tr>
-                <tr>
-
-                    <th>A/A</th>
-                    <th>Date</th>
-                    <th>ΠΡΟΜΗΘΕΥΤΗΣ</th>
-                    <th>Number</th>
-                    <th>Select</th>
-                </tr>
+                <tr><td colspan="5"><center>ΔΕΛΤΙΑ ΑΠΟΣΤΟΛΗΣ ΑΠΟ ΠΡΟΜΗΘΕΥΤΕΣ</center></td></tr>
+            <tr>
 
 
-                <%                                LinkedHashMap<String, DeliveryInvoice> deliveryInvoices = (LinkedHashMap) request.getAttribute("deliveryInvoices");
-                    for (Map.Entry<String, DeliveryInvoice> entrySet : deliveryInvoices.entrySet()) {
+                <th>Date</th>
+                <th>ΠΡΟΜΗΘΕΥΤΗΣ</th>
+                <th>Number</th>
 
-                        out.println("<tr>");
+            </tr>
 
-                        out.println("<td>");
-                        out.println("<a href='openDeliveryInvoiceForChecking.htm?id=" + entrySet.getValue().getId() + "' target='_blank'>" + entrySet.getValue().getId() + "</a>");
-                        out.println("</td>");
 
-                        out.println("<td>");
-                        out.println(entrySet.getValue().getInsertionDate());
-                        out.println("</td>");
+            <%                                LinkedHashMap<String, DeliveryInvoice> deliveryInvoices = (LinkedHashMap) request.getAttribute("deliveryInvoices");
+                for (Map.Entry<String, DeliveryInvoice> entrySet : deliveryInvoices.entrySet()) {
 
-                        out.println("<td>");
-                        out.println(entrySet.getValue().getSupplier());
-                        out.println("</td>");
+                    out.println("<tr>");
 
-                        out.println("<td style='font-weight: bold;'>");
-                        out.println(entrySet.getValue().getNumber());
-                        out.println("</td>");
+                    out.println("<td>");
+                    out.println(entrySet.getValue().getInsertionDate());
+                    out.println("</td>");
 
-                        out.println("</tr>");
-                    }
-                %>    
+                    out.println("<td>");
+                    out.println("<a href='openDeliveryInvoiceForChecking.htm?id=" + entrySet.getValue().getSupplier() + "' target='_blank'>" + entrySet.getValue().getNumber() + "</a>");
+                    out.println("</td>");
+
+                    out.println("<td>");
+                    out.println(entrySet.getValue().getNumber());
+                    out.println("</td>");
+
+                    out.println("</tr>");
+                }
+            %>    
             </tbody>
         </table>
     </center>
