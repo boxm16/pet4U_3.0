@@ -36,55 +36,55 @@
         <h4>ROYAL deliveryExport.xlsx file data</h4>
         <h4>Last modified at:${timeStamp}</h4>
         <hr>
-        <h1>   <button class='btn-primary' onclick="location.href = 'loadRoyalData.htm'" type="button">  </h1> 
-        Load Data</button>
-    <hr>     <hr>     <hr>     <hr>     <hr>     <hr>
-    <h1>ATTENTION!!!! JUST FOR TRIAL, NO PRODUCTION YET</h1>
-    <form action="deliveryDashboardTesting.htm" method="POST">
-        <h1>  <input type="date"  name="date" value="${date}"></h1>
-        <hr>
-        <button type="submit" class="btn btn-primary"> <h1> Delivery Dashboard </h1></button>
-    </form>
-    <hr>     <hr>     <hr>     <hr>     <hr>     <hr>
-    <h4>All Deliveries</h4>
-    <table>
-        <thead>
+        <button class='btn-primary' onclick="location.href = 'loadRoyalData.htm'" type="button">   
+            <h1>  Load Data  </h1> </button>
+        <hr>     <hr>     <hr>     <hr>     <hr>     <hr>
+        <h1>ATTENTION!!!! JUST FOR TRIAL, NO PRODUCTION YET</h1>
+        <form action="deliveryDashboardTesting.htm" method="POST">
+            <h1>  <input type="date"  name="date" value="${date}"></h1>
+            <hr>
+            <button type="submit" class="btn btn-danger"> <h1> Delivery Dashboard </h1></button>
+        </form>
+        <hr>     <hr>     <hr>     <hr>     <hr>     <hr>
+        <h4>All Deliveries</h4>
+        <table>
+            <thead>
 
 
-            <tr> 
+                <tr> 
 
-                <th>Delivered Invoice Number</th>
-                <th>Load<th>
-            </tr>
-        </thead>
-        <tbody id="tableBody">
-            <%
+                    <th>Delivered Invoice Number</th>
+                    <th>Load<th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                <%
 
-                ArrayList<DeliveryInvoice> allCheckedDeliveryInvoices = (ArrayList) request.getAttribute("allCheckedDeliveryInvoices");
+                    ArrayList<DeliveryInvoice> allCheckedDeliveryInvoices = (ArrayList) request.getAttribute("allCheckedDeliveryInvoices");
 
-                for (int x = allCheckedDeliveryInvoices.size() - 1; x > -1; x--) {
-                    DeliveryInvoice deliveryInvoice = allCheckedDeliveryInvoices.get(x);
-                    out.println("<tr>");
+                    for (int x = allCheckedDeliveryInvoices.size() - 1; x > -1; x--) {
+                        DeliveryInvoice deliveryInvoice = allCheckedDeliveryInvoices.get(x);
+                        out.println("<tr>");
 
-                    out.println("<td style='padding-left: 5px; padding-left: 5px;'>");
-                    out.println(deliveryInvoice.getNumber());
-                    out.println("</td>");
+                        out.println("<td style='padding-left: 5px; padding-left: 5px;'>");
+                        out.println(deliveryInvoice.getNumber());
+                        out.println("</td>");
 
-                    out.println("<td>");
-                    out.println("<a href='loadCheckedRoyalDataFromDatabase.htm?number=" + deliveryInvoice.getNumber() + "'>Load Invoice</a>");
-                    out.println("</td>");
+                        out.println("<td>");
+                        out.println("<a href='loadCheckedRoyalDataFromDatabase.htm?number=" + deliveryInvoice.getNumber() + "'>Load Invoice</a>");
+                        out.println("</td>");
 
-                    out.println("</tr>");
+                        out.println("</tr>");
 
-                }
-            %>
-        </tbody>
-    </table>
-</center>
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+                    }
+                %>
+            </tbody>
+        </table>
+    </center>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>
