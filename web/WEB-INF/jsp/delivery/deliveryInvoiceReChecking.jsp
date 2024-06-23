@@ -106,7 +106,7 @@
         <hr>
 
         <form id="form" action="#" method="POST">
-            <input hidden type="text"  name="invoiceId" value="${deliveryInvoice.getId()}">
+            <input hidden type="text"  name="invoiceId" value="${deliveryInvoice.getInvoiceId()}">
             <input hidden type="text"  name="invoiceNumber" value="${deliveryInvoice.getNumber()}">
             <input hidden type="text"  name="insertionDate" value="${deliveryInvoice.getInsertionDate()}">
             <input hidden type="text" id="deliveredItems" name="deliveredItems">
