@@ -40,7 +40,9 @@
     <center>
 
         <h1>Delivery Checking</h1>
-        <h3>Delivery Invoice Number:${deliveryInvoice.getNumber()} </h3>
+        <h3>Ημερομηνία Παραστατικού:${deliveryInvoice.insertionDate} </h3>
+        <h3>Προμηθευτής:${deliveryInvoice.supplier} </h3>
+        <h3>Αριθμός Παραστατικού:${deliveryInvoice.number} </h3>
         <hr>
 
         <table>

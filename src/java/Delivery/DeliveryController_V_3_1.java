@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class DeliveryController_V_3_1 {
 
-    @RequestMapping(value = "deliveryDashboardTesting")
-    public String deliveryDashboardTesting(@RequestParam(name = "date") String date, ModelMap modelMap) {
+    @RequestMapping(value = "deliveryInvoicesForDate")
+    public String deliveryInvoicesForDate(@RequestParam(name = "date") String date, ModelMap modelMap) {
 
         DeliveryDao_V_3_1 deliveryDao = new DeliveryDao_V_3_1();
 
