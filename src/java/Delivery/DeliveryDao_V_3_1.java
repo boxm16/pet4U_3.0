@@ -5,7 +5,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -113,12 +112,11 @@ public class DeliveryDao_V_3_1 {
         return deliveryInvoice;
     }
 
-    public ArrayList<DeliveryInvoice> getAllCheckedDeliveryInvoices() {
-        ArrayList<DeliveryInvoice> deliveryInvoices = new ArrayList<>();
+    boolean deliveryInvocieIsChecked(String invoiceId) {
 
-        String sql = "SELECT * FROM delivery_title ;";
+        String sql = " SELECT COUNT(*) count FROM pet4u_db.delivery_title WHERE id='" + invoiceId + "';";
         ResultSet resultSet;
-
+        int count = 0;
         try {
             DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
             Connection connection = databaseConnectionFactory.getMySQLConnection();
@@ -126,22 +124,20 @@ public class DeliveryDao_V_3_1 {
 
             resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
-                DeliveryInvoice deliveryInvoice = new DeliveryInvoice();
-                deliveryInvoice.setInvoiceId(resultSet.getString("invoice_id"));
-                deliveryInvoice.setId(resultSet.getString("id"));
-                deliveryInvoice.setNumber(resultSet.getString("number"));
-
-                deliveryInvoices.add(deliveryInvoice);
+                count = resultSet.getInt("count");
             }
             resultSet.close();
             statement.close();
             connection.close();
 
         } catch (SQLException ex) {
-            Logger.getLogger(DeliveryDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DeliveryDao_V_3_1.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        return deliveryInvoices;
+        if (count == 0) {
+            return false;
+        }
+        return true;
     }
 
 }

@@ -30,20 +30,17 @@ public class DeliveryController_V_3_1 {
     public String openDeliveryInvoiceForChecking(@RequestParam(name = "id") String invoiceId, ModelMap modelMap) {
 
         DeliveryDao_V_3_1 dao = new DeliveryDao_V_3_1();
+        boolean isChecked = dao.deliveryInvocieIsChecked(invoiceId);
+
+        if (isChecked) {
+            modelMap.addAttribute("checkedInvoiceId", invoiceId);
+            return "delivery/deliveryPreloadChecking_V_3_1";
+        }
 
         DeliveryInvoice deliveryInvoice = dao.getDeliveryInvoice(invoiceId);
 
         DeliveryDao deliveryDao = new DeliveryDao();
         ArrayList<DeliveryItem> pet4UItemsRowByRow = deliveryDao.getPet4UItemsRowByRow();
-
-        ArrayList<DeliveryInvoice> allCheckedDeliveryInvoices = dao.getAllCheckedDeliveryInvoices();
-        for (DeliveryInvoice checkedDeliveryInvoice : allCheckedDeliveryInvoices) {
-
-            if (deliveryInvoice.getInvoiceId().equals(checkedDeliveryInvoice.getInvoiceId())) {
-                modelMap.addAttribute("checkedInvoiceId", invoiceId);
-                return "delivery/deliveryPreloadChecking_V_3_1";
-            }
-        }
 
         modelMap.addAttribute("pet4UItemsRowByRow", pet4UItemsRowByRow);
         modelMap.addAttribute("deliveryInvoice", deliveryInvoice);
