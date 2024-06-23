@@ -62,7 +62,7 @@
                     out.println("</td>");
 
                     out.println("<td>");
-                    out.println("<a href='openDeliveryInvoiceForChecking.htm?id=" + entrySet.getValue().getSupplier() + "' target='_blank'>" + entrySet.getValue().getNumber() + "</a>");
+                    out.println("<a href='openDeliveryInvoiceForChecking.htm?id=" + entrySet.getValue().getId()+ "' target='_blank'>" + entrySet.getValue().getSupplier()+ "</a>");
                     out.println("</td>");
 
                     out.println("<td>");
