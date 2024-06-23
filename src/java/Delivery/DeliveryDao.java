@@ -146,7 +146,7 @@ public class DeliveryDao {
 
         String sql = "SELECT * FROM delivery_title "
                 + "INNER JOIN delivery_data ON delivery_title.id=delivery_data.delivery_id "
-                + "WHERE number=" + number;
+                + "WHERE number='" + number+"';";
         ResultSet resultSet;
 
         try {
