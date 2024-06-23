@@ -114,7 +114,7 @@ public class DeliveryDao_V_3_1 {
 
     boolean deliveryInvocieIsChecked(String invoiceId) {
 
-        String sql = " SELECT COUNT(*) count FROM pet4u_db.delivery_title WHERE id='" + invoiceId + "';";
+        String sql = " SELECT COUNT(*) count FROM pet4u_db.delivery_title WHERE invoice_id='" + invoiceId + "';";
         ResultSet resultSet;
         int count = 0;
         try {
