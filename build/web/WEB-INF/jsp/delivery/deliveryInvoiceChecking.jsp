@@ -40,11 +40,11 @@
     <center>
 
         <h1>Delivery Checking</h1>
-        <h3>Ημερομηνία Παραστατικού:${deliveryInvoice.insertionDate} 
-            &nbsp;&nbsp;&nbsp; 
-            Προμηθευτής:${deliveryInvoice.supplier} 
-            &nbsp;&nbsp;&nbsp; 
-            Αριθμός Παραστατικού:${deliveryInvoice.number} </h3>
+        <h4>Ημερομηνία Παραστατικού:</h4> <h2>${deliveryInvoice.insertionDate}</h2> 
+        &nbsp;&nbsp;&nbsp; 
+        <h4> Προμηθευτής:</h4><h2>${deliveryInvoice.supplier} </h2> 
+        &nbsp;&nbsp;&nbsp; 
+        <h4> Αριθμός Παραστατικού:</h4><h2>${deliveryInvoice.number} </h2>
         <hr>
 
         <table>
