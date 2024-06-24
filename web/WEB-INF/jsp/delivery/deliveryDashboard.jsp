@@ -57,7 +57,8 @@
                         <th>Invoice Number<th>
                     -->
                     <th>Invoice Id<th>
-                  
+                    <th>Supplier<th>
+
                 </tr>
             </thead>
             <tbody id="tableBody">
