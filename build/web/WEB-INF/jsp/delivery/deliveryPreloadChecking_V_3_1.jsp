@@ -20,13 +20,13 @@
         <h4>It seems the delivery invoice you are going to check, has already been checked</h4>
         <h4>Invoice Id ${checkedInvoiceId}</h4>
         <hr>
-        <button class='btn-primary' onclick="location.href = 'reloadRoyalData.htm'" type="button">
-            ReLoad Same Invoice (Not Checked)</button>
+      <h1>   <button class='btn-primary' onclick="location.href = 'reloadRoyalData.htm'" type="button">
+             ReLoad Same Invoice (Not Checked)</button></h1>
         <hr>
-        <button class='btn-success' onclick="location.href = 'loadCheckedDataFromDatabase.htm?invoiceId=${checkedInvoiceId}'" type="button">
-            Load From Database SAVED (Already Checked) Invoice </button>
+       <h1>  <button class='btn-success' onclick="location.href = 'loadCheckedDataFromDatabase.htm?invoiceId=${checkedInvoiceId}'" type="button">
+            Load From Database SAVED (Already Checked) Invoice </button></h1>
         <hr>
-        <button class='btn-danger' onclick="location.href = 'checkDataFromViewAndDatabase.htm?invoiceId=${checkedInvoiceId}'" type="button">
+       <h1>  <button class='btn-danger' onclick="location.href = 'checkDataFromViewAndDatabase.htm?invoiceId=${checkedInvoiceId}'" type="button"></h1>
             JOINT LOAD- Load 'Sent' Data From The View, But 'Delivered' Data From Saved (Checked) Data </button>
         <hr>
 
