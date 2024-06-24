@@ -278,7 +278,7 @@ public class DeliveryDao_V_3_1 {
         String sql = "DELETE  FROM delivery_data WHERE delivery_id='" + invoiceId + "';";
 
         String sql1 = "DELETE  FROM delivery_title "
-                + "WHERE id='" + invoiceId + "';";
+                + "WHERE invoice_id='" + invoiceId + "';";
 
         try {
             DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();

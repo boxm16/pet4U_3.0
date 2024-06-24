@@ -88,7 +88,7 @@ public class DeliveryController_V_3_1 {
 
         DeliveryDao_V_3_1 dao = new DeliveryDao_V_3_1();
         String result = dao.saveDeliveryChecking(invoiceId, supplier, invoiceNumber, deliveryItems);
-        return "redirect:deliveryDashboard.htm";
+        return "redirect:deliveryDashboard_X.htm";
     }
 
     private LinkedHashMap<String, String> decodeDeliveredItemsData(String data) {
