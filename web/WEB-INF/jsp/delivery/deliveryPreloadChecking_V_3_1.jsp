@@ -26,8 +26,8 @@
        <h1>  <button class='btn-success' onclick="location.href = 'loadCheckedDataFromDatabase.htm?invoiceId=${checkedInvoiceId}'" type="button">
             Load From Database SAVED (Already Checked) Invoice </button></h1>
         <hr>
-       <h1>  <button class='btn-danger' onclick="location.href = 'checkDataFromViewAndDatabase.htm?invoiceId=${checkedInvoiceId}'" type="button"></h1>
-            JOINT LOAD- Load 'Sent' Data From The View, But 'Delivered' Data From Saved (Checked) Data </button>
+       <h1>  <button class='btn-danger' onclick="location.href = 'checkDataFromViewAndDatabase.htm?invoiceId=${checkedInvoiceId}'" type="button">
+            JOINT LOAD- Load 'Sent' Data From The View, But 'Delivered' Data From Saved (Checked) Data </button></h1>
         <hr>
 
     </center>
