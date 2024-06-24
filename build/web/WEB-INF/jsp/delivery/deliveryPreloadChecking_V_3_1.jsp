@@ -20,16 +20,16 @@
         <h4>It seems the delivery invoice you are going to check, has already been checked</h4>
         <h4>Invoice Id ${checkedInvoiceId}</h4>
         <hr>
-      <h1>   <button class='btn-primary' onclick="location.href = 'reloadRoyalData.htm'" type="button">
-             ReLoad Same Invoice (Not Checked)</button></h1>
+        <h1>   <button class='btn-primary' onclick="location.href = 'reloadRoyalData.htm'" type="button">
+                ReLoad Same Invoice (Not Checked)</button></h1>
         <hr>
-       <h1>  <button class='btn-success' onclick="location.href = 'loadCheckedDataFromDatabase.htm?invoiceId=${checkedInvoiceId}'" type="button">
-            Load From Database SAVED (Already Checked) Invoice </button></h1>
+        <h1>  <button class='btn-success' onclick="location.href = 'loadCheckedDataFromDatabase.htm?invoiceId=${checkedInvoiceId}'" type="button">
+                Load From Database SAVED (Already Checked) Invoice </button></h1>
+        <hr> <hr> <hr> <hr>
+        <h1>  <button class='btn-danger' onclick="location.href = 'checkDataFromViewAndDatabase.htm?invoiceId=${checkedInvoiceId}'" type="button">
+                JOINT LOAD <br> Load 'Sent' Data From The View, <br> But 'Delivered' Data From Saved (Checked) Data </button></h1>
         <hr>
-       <h1>  <button class='btn-danger' onclick="location.href = 'checkDataFromViewAndDatabase.htm?invoiceId=${checkedInvoiceId}'" type="button">
-               JOINT LOAD <br> Load 'Sent' Data From The View, <br> But 'Delivered' Data From Saved (Checked) Data </button></h1>
-        <hr>
-
+        <hr> <hr> <hr> <hr>
     </center>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
