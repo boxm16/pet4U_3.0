@@ -169,4 +169,51 @@ public class DeliveryController_V_3_1 {
         return "redirect:deliveryDashboard_X.htm";
     }
 
+    @RequestMapping(value = "deliveryInvoiceJointLoad")
+    public String deliveryInvoiceJointLoad(@RequestParam(name = "invoiceId") String invoiceId,
+            ModelMap modelMap) {
+
+        DeliveryDao deliveryDao = new DeliveryDao();
+        ArrayList<DeliveryItem> pet4UItemsRowByRow = deliveryDao.getPet4UItemsRowByRow();
+
+        modelMap.addAttribute("pet4UItemsRowByRow", pet4UItemsRowByRow);
+
+        DeliveryDao_V_3_1 dao = new DeliveryDao_V_3_1();
+        DeliveryInvoice deliveryInvoiceFromView = dao.getDeliveryInvoice(invoiceId);
+        DeliveryInvoice checkedDeliveryInvoice = dao.getDeliveryInvoiceByInvoiceId(invoiceId);
+        LinkedHashMap<String, DeliveryItem> deliveryItemsFromExcelFile = deliveryInvoiceFromView.getItems();
+        LinkedHashMap<String, DeliveryItem> deliveryItemsFromDatabase = checkedDeliveryInvoice.getItems();
+
+        for (DeliveryItem deliveryItem : pet4UItemsRowByRow) {
+            String code = deliveryItem.getCode();
+            if (deliveryItemsFromDatabase.containsKey(code)) {
+                DeliveryItem di = deliveryItemsFromDatabase.get(code);
+                di.setDescription(deliveryItem.getDescription());
+                deliveryItemsFromDatabase.put(code, di);
+            }
+        }
+
+        for (Map.Entry<String, DeliveryItem> deliveryItemsEntry : deliveryItemsFromDatabase.entrySet()) {
+            //   System.out.println("DELIVERY ITEM CODE:"+deliveryItemsEntry.getValue().getCode()+ "   DELIVERED QUANTITY:"+deliveryItemsEntry.getValue().getDeliveredQuantity());
+            DeliveryItem deliveryItemFromExcelFile = deliveryItemsFromExcelFile.remove(deliveryItemsEntry.getKey());
+            if (deliveryItemFromExcelFile == null) {
+                deliveryItemsEntry.getValue().setQuantity("0");
+            } else {
+                deliveryItemsEntry.getValue().setQuantity(deliveryItemFromExcelFile.getQuantity());
+            }
+        }
+        if (deliveryItemsFromExcelFile.size() > 0) {
+            for (Map.Entry<String, DeliveryItem> deliveryItemFromExcelFileEntry : deliveryItemsFromExcelFile.entrySet()) {
+                checkedDeliveryInvoice.getItems().put(deliveryItemFromExcelFileEntry.getKey(), deliveryItemFromExcelFileEntry.getValue());
+            }
+        }
+
+        modelMap.addAttribute("deliveryInvoice", checkedDeliveryInvoice);
+
+        String saveButton = "<button class=\"btn-danger\" onclick=\"requestRouter('rewriteDeliveryChecking.htm')\">Rewrite Checked Invoice</button>";
+        modelMap.addAttribute("saveButton", saveButton);
+
+        return "delivery/deliveryInvoiceReChecking";
+    }
+
 }
