@@ -52,12 +52,10 @@
 
 
                 <tr> 
-                    <!--    <th>Invoice Id<th>
-                        <th>Supplier</th>
-                        <th>Invoice Number<th>
-                    -->
-                    <th>Invoice Id<th>
-                    <th>Supplier<th>
+                   
+                    <th>Invoice Id</th>
+                    <th>Supplier</th>
+                    <th>Invoice Number</th>
 
                 </tr>
             </thead>
