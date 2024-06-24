@@ -20,7 +20,7 @@ public class DeliveryController_V_3_1 {
     @RequestMapping(value = "deliveryDashboard_X")
     public String deliveryDashboard(ModelMap modelMap) {
 
-        //-------------------------------
+        DeliveryDao_V_3_1 deliveryDao = new DeliveryDao_V_3_1();
         ArrayList<DeliveryInvoice> allCheckedDeliveryInvoices = deliveryDao.getAllCheckedDeliveryInvoices();
         modelMap.addAttribute("allCheckedDeliveryInvoices", allCheckedDeliveryInvoices);
         return "delivery/deliveryDashboard";

@@ -197,4 +197,36 @@ public class DeliveryDao_V_3_1 {
         }
     }
 
+    public ArrayList<DeliveryInvoice> getAllCheckedDeliveryInvoices() {
+        ArrayList<DeliveryInvoice> deliveryInvoices = new ArrayList<>();
+
+        String sql = "SELECT * FROM delivery_title ;";
+        ResultSet resultSet;
+
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            Connection connection = databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+
+            resultSet = statement.executeQuery(sql);
+            while (resultSet.next()) {
+                DeliveryInvoice deliveryInvoice = new DeliveryInvoice();
+                deliveryInvoice.setInvoiceId(resultSet.getString("invoice_id"));
+                deliveryInvoice.setId(resultSet.getString("id"));
+                deliveryInvoice.setSupplier(resultSet.getString("supplier"));
+                deliveryInvoice.setNumber(resultSet.getString("number"));
+
+                deliveryInvoices.add(deliveryInvoice);
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DeliveryDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return deliveryInvoices;
+    }
+
 }
