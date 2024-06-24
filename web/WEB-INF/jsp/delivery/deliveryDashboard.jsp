@@ -69,7 +69,7 @@
                         out.println("<tr>");
 
                         out.println("<td style='padding-left: 5px; padding-left: 5px;'>");
-                        out.println("<a href='loadCheckedRoyalDataFromDatabaseByInvoiceId.htm?number=" + deliveryInvoice.getInvoiceId() + "'>" + deliveryInvoice.getInvoiceId() + "</a>");
+                        out.println("<a href='loadCheckedRoyalDataFromDatabaseByInvoiceId.htm?invoiceId=" + deliveryInvoice.getInvoiceId() + "'>" + deliveryInvoice.getInvoiceId() + "</a>");
                         out.println("</td>");
 
                         out.println("<td style='padding-left: 5px; padding-left: 5px;'>");
