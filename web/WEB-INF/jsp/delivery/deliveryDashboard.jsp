@@ -65,13 +65,16 @@
                     for (int x = allCheckedDeliveryInvoices.size() - 1; x > -1; x--) {
                         DeliveryInvoice deliveryInvoice = allCheckedDeliveryInvoices.get(x);
                         out.println("<tr>");
-
                         out.println("<td style='padding-left: 5px; padding-left: 5px;'>");
-                        out.println(deliveryInvoice.getNumber());
+                        out.println("<a href='loadCheckedRoyalDataFromDatabaseByInvoiceId.htm?number=" + deliveryInvoice.getInvoiceId() + "'>" + deliveryInvoice.getInvoiceId() + "</a>");
+                        out.println("</td>");
+                        
+                        out.println("<td style='padding-left: 5px; padding-left: 5px;'>");
+                        out.println(deliveryInvoice.getSupplier());
                         out.println("</td>");
 
-                        out.println("<td>");
-                        out.println("<a href='loadCheckedRoyalDataFromDatabase.htm?number=" + deliveryInvoice.getNumber() + "'>Load Invoice</a>");
+                        out.println("<td style='padding-left: 5px; padding-left: 5px;'>");
+                        out.println("<a href='loadCheckedRoyalDataFromDatabase.htm?number=" + deliveryInvoice.getNumber() + "'>" + deliveryInvoice.getNumber() + "</a>");
                         out.println("</td>");
 
                         out.println("</tr>");
