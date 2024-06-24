@@ -5,6 +5,7 @@
  */
 package Delivery;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -19,7 +20,9 @@ public class DeliveryController_V_3_1 {
 
     @RequestMapping(value = "deliveryDashboard_X")
     public String deliveryDashboard(ModelMap modelMap) {
-
+        LocalDate date = LocalDate.now();
+        modelMap.addAttribute("date", date);
+        
         DeliveryDao_V_3_1 deliveryDao = new DeliveryDao_V_3_1();
         ArrayList<DeliveryInvoice> allCheckedDeliveryInvoices = deliveryDao.getAllCheckedDeliveryInvoices();
         modelMap.addAttribute("allCheckedDeliveryInvoices", allCheckedDeliveryInvoices);
