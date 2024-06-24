@@ -52,9 +52,9 @@
 
 
                 <tr> 
-
-                    <th>Delivered Invoice Number</th>
-                    <th>Load<th>
+                    <th>Invoice Id<th>
+                    <th>Supplier</th>
+                    <th>Invoice Number<th>
                 </tr>
             </thead>
             <tbody id="tableBody">
@@ -68,7 +68,7 @@
                         out.println("<td style='padding-left: 5px; padding-left: 5px;'>");
                         out.println("<a href='loadCheckedRoyalDataFromDatabaseByInvoiceId.htm?number=" + deliveryInvoice.getInvoiceId() + "'>" + deliveryInvoice.getInvoiceId() + "</a>");
                         out.println("</td>");
-                        
+
                         out.println("<td style='padding-left: 5px; padding-left: 5px;'>");
                         out.println(deliveryInvoice.getSupplier());
                         out.println("</td>");

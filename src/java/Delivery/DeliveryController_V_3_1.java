@@ -17,6 +17,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class DeliveryController_V_3_1 {
 
+    @RequestMapping(value = "deliveryDashboard_X")
+    public String deliveryDashboard(ModelMap modelMap) {
+
+        //-------------------------------
+        ArrayList<DeliveryInvoice> allCheckedDeliveryInvoices = deliveryDao.getAllCheckedDeliveryInvoices();
+        modelMap.addAttribute("allCheckedDeliveryInvoices", allCheckedDeliveryInvoices);
+        return "delivery/deliveryDashboard";
+    }
+
     @RequestMapping(value = "deliveryInvoicesForDate")
     public String deliveryInvoicesForDate(@RequestParam(name = "date") String date, ModelMap modelMap) {
 
