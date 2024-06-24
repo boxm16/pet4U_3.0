@@ -52,7 +52,7 @@
 
 
                 <tr> 
-                   
+
                     <th>Invoice Id</th>
                     <th>Supplier</th>
                     <th>Invoice Number</th>
@@ -77,7 +77,7 @@
                         out.println("</td>");
 
                         out.println("<td style='padding-left: 5px; padding-left: 5px;'>");
-                        out.println("<a href='loadCheckedRoyalDataFromDatabase.htm?number=" + deliveryInvoice.getNumber() + "'>" + deliveryInvoice.getNumber() + "</a>");
+                        out.println(deliveryInvoice.getNumber());
                         out.println("</td>");
 
                         out.println("</tr>");
