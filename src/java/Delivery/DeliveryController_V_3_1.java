@@ -22,7 +22,7 @@ public class DeliveryController_V_3_1 {
     public String deliveryDashboard(ModelMap modelMap) {
         LocalDate date = LocalDate.now();
         modelMap.addAttribute("date", date);
-        
+
         DeliveryDao_V_3_1 deliveryDao = new DeliveryDao_V_3_1();
         ArrayList<DeliveryInvoice> allCheckedDeliveryInvoices = deliveryDao.getAllCheckedDeliveryInvoices();
         modelMap.addAttribute("allCheckedDeliveryInvoices", allCheckedDeliveryInvoices);
@@ -140,6 +140,33 @@ public class DeliveryController_V_3_1 {
         String saveButton = "<button class=\"btn-danger\" onclick=\"requestRouter('rewriteDeliveryChecking.htm')\">Rewrite Checked Invoice</button>";
         modelMap.addAttribute("saveButton", saveButton);
         return "delivery/deliveryInvoiceReChecking";
+    }
+
+    @RequestMapping(value = "rewriteDeliveryChecking", method = RequestMethod.POST)
+    public String rewriteDeliveryChecking(@RequestParam(name = "sentItems") String sentItemsData,
+            @RequestParam(name = "deliveredItems") String deliveredItemsData,
+            @RequestParam(name = "invoiceNumber") String invoiceNumber,
+            @RequestParam(name = "invoiceId") String invoiceId,
+            @RequestParam(name = "supplier") String supplier) {
+        DeliveryInvoice deliveryInvoice = new DeliveryInvoice();
+
+        deliveryInvoice.setNumber(invoiceNumber);
+
+        LinkedHashMap<String, String> deliveredItems = decodeDeliveredItemsData(deliveredItemsData);
+        LinkedHashMap<String, String> sentItems = decodeDeliveredItemsData(sentItemsData);
+
+        ArrayList<DeliveryItem> deliveryItems = new ArrayList<>();
+        for (Map.Entry<String, String> deliveredItemsEntry : deliveredItems.entrySet()) {
+            DeliveryItem deliveryItem = new DeliveryItem();
+            deliveryItem.setCode(deliveredItemsEntry.getKey());
+            deliveryItem.setDeliveredQuantity(deliveredItemsEntry.getValue());
+            deliveryItem.setSentQuantity(sentItems.get(deliveredItemsEntry.getKey()));
+            deliveryItems.add(deliveryItem);
+        }
+        DeliveryDao_V_3_1 dao = new DeliveryDao_V_3_1();
+        String deleteResult = dao.deleteDeliveryChecking(invoiceId);
+        String result = dao.saveDeliveryChecking(invoiceId, supplier, invoiceNumber, deliveryItems);
+        return "redirect:deliveryDashboard_X.htm";
     }
 
 }

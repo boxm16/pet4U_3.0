@@ -23,7 +23,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -289,30 +288,7 @@ public class DeliveryController {
         return "delivery/deliveryInvoiceReChecking";
     }
 
-    @RequestMapping(value = "rewriteDeliveryChecking", method = RequestMethod.POST)
-    public String rewriteDeliveryChecking(@RequestParam(name = "sentItems") String sentItemsData,
-            @RequestParam(name = "deliveredItems") String deliveredItemsData,
-            @RequestParam(name = "invoiceNumber") String invoiceNumber,
-            @RequestParam(name = "invoiceId") String invoiceId) {
-        DeliveryInvoice deliveryInvoice = new DeliveryInvoice();
-
-        deliveryInvoice.setNumber(invoiceNumber);
-
-        LinkedHashMap<String, String> deliveredItems = decodeDeliveredItemsData(deliveredItemsData);
-        LinkedHashMap<String, String> sentItems = decodeDeliveredItemsData(sentItemsData);
-
-        ArrayList<DeliveryItem> deliveryItems = new ArrayList<>();
-        for (Map.Entry<String, String> deliveredItemsEntry : deliveredItems.entrySet()) {
-            DeliveryItem deliveryItem = new DeliveryItem();
-            deliveryItem.setCode(deliveredItemsEntry.getKey());
-            deliveryItem.setDeliveredQuantity(deliveredItemsEntry.getValue());
-            deliveryItem.setSentQuantity(sentItems.get(deliveredItemsEntry.getKey()));
-            deliveryItems.add(deliveryItem);
-        }
-        String deleteResult = deliveryDao.deleteDeliveryChecking(invoiceId);
-        String saveResult = deliveryDao.saveDeliveryChecking(invoiceNumber, deliveryItems);
-        return "redirect:deliveryDashboard.htm";
-    }
+   
 
     public DeliveryInvoice createDeliveryInvoiceFromExcelFile(String filePath) {
         System.out.println("STARTING READING ROYAL DELIVERY EXCEL FILE");

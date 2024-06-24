@@ -273,4 +273,30 @@ public class DeliveryDao_V_3_1 {
         return deliveryInvoice;
     }
 
+    String deleteDeliveryChecking(String invoiceId) {
+
+        String sql = "DELETE  FROM delivery_data WHERE delivery_id='" + invoiceId + "';";
+
+        String sql1 = "DELETE  FROM delivery_title "
+                + "WHERE id='" + invoiceId + "';";
+
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            Connection connection = databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+
+            statement.executeUpdate(sql);
+            statement.executeUpdate(sql1);
+
+            statement.close();
+
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DeliveryDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return "Delivery Checking with id" + invoiceId + "deleted";
+    }
+
 }

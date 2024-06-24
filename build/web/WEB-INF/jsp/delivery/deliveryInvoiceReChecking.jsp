@@ -38,11 +38,15 @@
     </head>
     <body>
     <center>
-        <h1><a href="deliveryDashboard.htm">Go Back</a></h1>
+        <h1><a href="deliveryDashboard_X.htm">Go Back</a></h1>
         <h1>Delivery ReChecking</h1>
-        <h3>Delivery Invoice Number:${deliveryInvoice.getNumber()} </h3>
+        <h3>Ημερομηνία Παραστατικού:  ${deliveryInvoice.insertionDate} 
+            &nbsp;&nbsp;&nbsp; 
+            Προμηθευτής:  ${deliveryInvoice.supplier} 
+            &nbsp;&nbsp;&nbsp; 
+            Αριθμός Παραστατικού:  ${deliveryInvoice.number} </h3>
         <hr>
-        <hr>
+
         <button onclick="rechechAll()" class="btn-lg btn-warning">ReCheck All Items </button>
         <hr>
         <table>
@@ -106,9 +110,9 @@
         <hr>
 
         <form id="form" action="#" method="POST">
-            <input hidden type="text"  name="invoiceId" value="${deliveryInvoice.getInvoiceId()}">
-            <input hidden type="text"  name="invoiceNumber" value="${deliveryInvoice.getNumber()}">
-            <input hidden type="text"  name="insertionDate" value="${deliveryInvoice.getInsertionDate()}">
+            <input hidden type="text"  name="invoiceId" value="${deliveryInvoice.invoiceId}">
+            <input hidden type="text"  name="supplier" value="${deliveryInvoice.supplier}">
+            <input hidden type="text"  name="invoiceNumber" value="${deliveryInvoice.number}">
             <input hidden type="text" id="deliveredItems" name="deliveredItems">
             <input hidden type="text" id="sentItems" name="sentItems">
         </form>
