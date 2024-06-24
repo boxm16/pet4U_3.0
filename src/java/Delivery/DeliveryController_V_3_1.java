@@ -110,4 +110,33 @@ public class DeliveryController_V_3_1 {
 
         return decodedData;
     }
+
+    @RequestMapping(value = "loadCheckedRoyalDataFromDatabaseByInvoiceId")
+    public String loadCheckedRoyalDataFromDatabaseByInvoiceId(@RequestParam(name = "invoiceId") String invoiceId,
+            ModelMap modelMap) {
+        DeliveryDao_V_3_1 dao = new DeliveryDao_V_3_1();
+        DeliveryInvoice deliveryInvoice = dao.getDeliveryInvoiceByInvoiceId(invoiceId);
+        modelMap.addAttribute("deliveryInvoice", deliveryInvoice);
+
+        DeliveryDao deliveryDao = new DeliveryDao();
+        ArrayList<DeliveryItem> pet4UItemsRowByRow = deliveryDao.getPet4UItemsRowByRow();
+
+        modelMap.addAttribute("pet4UItemsRowByRow", pet4UItemsRowByRow);
+
+        LinkedHashMap<String, DeliveryItem> deliveryItems = deliveryInvoice.getItems();
+        for (DeliveryItem deliveryItem : pet4UItemsRowByRow) {
+            String code = deliveryItem.getCode();
+            if (deliveryItems.containsKey(code)) {
+                DeliveryItem di = deliveryItems.get(code);
+                di.setDescription(deliveryItem.getDescription());
+                deliveryItems.put(code, di);
+            }
+        }
+        deliveryInvoice.setItems(deliveryItems);
+
+        String saveButton = "<button class=\"btn-danger\" onclick=\"requestRouter('rewriteDeliveryChecking.htm')\">Rewrite Checked Invoice</button>";
+        modelMap.addAttribute("saveButton", saveButton);
+        return "delivery/deliveryInvoiceReChecking";
+    }
+
 }

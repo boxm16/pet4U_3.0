@@ -229,4 +229,48 @@ public class DeliveryDao_V_3_1 {
         return deliveryInvoices;
     }
 
+    DeliveryInvoice getDeliveryInvoiceByInvoiceId(String invoiceId) {
+        DeliveryInvoice deliveryInvoice = new DeliveryInvoice();
+
+        String sql = "SELECT * FROM delivery_title "
+                + "INNER JOIN delivery_data ON delivery_title.invoice_id=delivery_data.delivery_id "
+                + "WHERE invoice_id='" + invoiceId + "';";
+        ResultSet resultSet;
+
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            Connection connection = databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+
+            resultSet = statement.executeQuery(sql);
+            int x = 0;
+            LinkedHashMap<String, DeliveryItem> deliveryItems = new LinkedHashMap<>();
+            while (resultSet.next()) {
+                if (x == 0) {
+                    deliveryInvoice.setInvoiceId(resultSet.getString("invoice_id"));
+                    deliveryInvoice.setId(resultSet.getString("id"));
+                    deliveryInvoice.setSupplier(resultSet.getString("supplier"));
+                    deliveryInvoice.setNumber(resultSet.getString("number"));
+
+                }
+                DeliveryItem deliveryItem = new DeliveryItem();
+                deliveryItem.setCode(resultSet.getString("item_code"));
+                deliveryItem.setQuantity(resultSet.getString("sent"));
+                deliveryItem.setDeliveredQuantity(resultSet.getString("delivered"));
+                deliveryItems.put(resultSet.getString("item_code"), deliveryItem);
+                x++;
+
+            }
+            deliveryInvoice.setItems(deliveryItems);
+            resultSet.close();
+            statement.close();
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DeliveryDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return deliveryInvoice;
+    }
+
 }
