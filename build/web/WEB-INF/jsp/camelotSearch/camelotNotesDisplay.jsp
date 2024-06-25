@@ -23,7 +23,7 @@
                 font-size: 15px;
             }
             th{
-                font-size: 15px;
+                font-size: 25px;
                 font-weight: bold;
                 text-align: left;
                 background: #eee;
