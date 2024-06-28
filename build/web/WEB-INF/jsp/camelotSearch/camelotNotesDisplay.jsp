@@ -34,9 +34,8 @@
     </head>
     <body>
     <center>
-
+        <br>
         <h5>Camelot: Notes</h5>
-
 
         <table>
             <thead>

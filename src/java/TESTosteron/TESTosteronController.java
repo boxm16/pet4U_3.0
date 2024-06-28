@@ -8,6 +8,8 @@ import Pet4uItems.Pet4uItemsDao;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import javax.print.PrintService;
+import javax.print.PrintServiceLookup;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -102,6 +104,20 @@ public class TESTosteronController {
         modelMap.addAttribute("notes", notes);
 
         return "testosteron/deletedCamelotNotesBatch";
+    }
+
+    //-------------------------------------
+    @RequestMapping(value = "printOut")
+    public String printOut(@RequestParam(name = "batch") String batch, ModelMap modelMap) {
+
+        PrintService[] printServices = PrintServiceLookup.lookupPrintServices(null, null);
+        System.out.println("Number of print services: " + printServices.length);
+
+        for (PrintService printer : printServices) {
+            System.out.println("Printer: " + printer.getName());
+        }
+
+        return "testosteron/testResult";
     }
 
 }
