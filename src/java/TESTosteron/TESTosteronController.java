@@ -108,7 +108,7 @@ public class TESTosteronController {
 
     //-------------------------------------
     @RequestMapping(value = "printOut")
-    public String printOut(@RequestParam(name = "batch") String batch, ModelMap modelMap) {
+    public String printOut( ModelMap modelMap) {
 
         PrintService[] printServices = PrintServiceLookup.lookupPrintServices(null, null);
         System.out.println("Number of print services: " + printServices.length);
