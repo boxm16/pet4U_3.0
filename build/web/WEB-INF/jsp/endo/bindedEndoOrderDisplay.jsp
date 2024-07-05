@@ -142,15 +142,19 @@
                         out.println("</td>");
 
                         out.println("<td style='padding-left: 5px; padding-left: 5px;'>");
-                        out.println("-------");
+                        out.println("<a href='itemAnalysis.htm?code=" + invoicedItem.getCode() + "' target='_blank'>" + invoicedItem.getCode() + "</a>");
                         out.println("</td>");
 
                         out.println("<td style='padding-left: 5px; padding-left: 5px;'>");
-                        out.println("<a href='itemAnalysis.htm?code=" + invoicedItem.getCode() + "' target='_blank'>" + invoicedItem.getCode() + "</a>");
+                        out.println("-------");
                         out.println("</td>");
 
                         out.println("<td>");
                         out.println(invoicedItem.getDescription());
+                        out.println("</td>");
+
+                        out.println("<td style='padding-left: 5px; padding-left: 5px;'>");
+                        out.println("-------");
                         out.println("</td>");
 
                         out.println("<td>");
