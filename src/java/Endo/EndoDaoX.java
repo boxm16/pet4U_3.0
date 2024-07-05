@@ -488,7 +488,7 @@ public class EndoDaoX {
                     endoOrderItem.setComment(comment);
                     endoOrder.addOrderItem(endoOrderItem.getCode(), endoOrderItem);
                 } else {
-                      comment = comment + ":" + "Item Can Not Be Found In Database View";
+                    comment = comment + ":" + "Item Can Not Be Found In Database View";
 
                     EndoOrderItem endoOrderItem = new EndoOrderItem();
 
@@ -998,7 +998,7 @@ public class EndoDaoX {
     private boolean endoIsChanged(EndoApostolis endoApostolis, EndoApostolis lockedEndo) {
         LinkedHashMap<String, Item> items = endoApostolis.getItems();
         LinkedHashMap<String, Item> items1 = lockedEndo.getItems();
-        System.out.println("Endo Apostolis ID: " + endoApostolis.getId() + " items size: " + items.size() + "--" + "items1 size: " + items1.size());
+        System.out.println("Endo Apostolis ID: " + endoApostolis.getId() + " items size: " + items.size() + "--" + "items size: " + items1.size());
         if (items.size() != items1.size()) {
             return true;
         }
@@ -1006,11 +1006,13 @@ public class EndoDaoX {
             String key = itemsEntry.getKey();
             Item removedItem = items1.remove(key);
             if (removedItem == null) {
+                System.out.println("Removed Item == null: Key= " + key);
                 return true;
             }
             String quantity1 = itemsEntry.getValue().getQuantity();
             String quantity = removedItem.getQuantity();
             if (!quantity.equals(quantity1)) {
+                System.out.println("Quantity changed for item code: " + key);
                 return true;
             }
 
