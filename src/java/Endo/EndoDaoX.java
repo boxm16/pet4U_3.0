@@ -996,7 +996,7 @@ public class EndoDaoX {
     }
 
     private boolean endoIsChanged(EndoApostolis endoApostolis, EndoApostolis lockedEndo) {
-      
+
         LinkedHashMap<String, Item> items = endoApostolis.getItems();
         LinkedHashMap<String, Item> items1 = lockedEndo.getItems();
         if (items.size() != items1.size()) {
@@ -1008,13 +1008,13 @@ public class EndoDaoX {
             String key = itemsEntry.getKey();
             Item removedItem = items1.remove(key);
             if (removedItem == null) {
-                System.out.println("Endo Apostolis ID: " + endoApostolis.getId()+ " Removed Item == null: Key= " + key);
+                System.out.println("Endo Apostolis ID: " + endoApostolis.getId() + " Item Code Changed for item with Item Code : " + key);
                 return true;
             }
             String quantity1 = itemsEntry.getValue().getQuantity();
             String quantity = removedItem.getQuantity();
             if (!quantity.equals(quantity1)) {
-                System.out.println("Endo Apostolis ID: " + endoApostolis.getId()+ " Quantity changed for item code: " + key);
+                System.out.println("Endo Apostolis ID: " + endoApostolis.getId() + " Quantity changed for item code: " + key);
                 return true;
             }
 
