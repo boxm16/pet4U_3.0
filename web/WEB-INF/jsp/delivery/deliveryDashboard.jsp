@@ -33,17 +33,13 @@
     <body>
     <center>
         <h1>Delivery Dashboard</h1>
-        <h4>ROYAL deliveryExport.xlsx file data</h4>
-        <h4>Last modified at:${timeStamp}</h4>
-        <hr>
-        <button class='btn-primary' onclick="location.href = 'loadRoyalData.htm'" type="button">   
-            <h1>  Load Data  </h1> </button>
-        <hr>     <hr>     <hr>     <hr>     <hr>     <hr>
+      
+       <hr>     <hr>
        
         <form action="deliveryInvoicesForDate.htm" method="POST">
             <h1>  <input type="date"  name="date" value="${date}"></h1>
             <hr>
-            <button type="submit" class="btn btn-danger"> <h1> Delivery Dashboard </h1></button>
+            <button type="submit" class="btn btn-danger"> <h1> Show  Deliveries </h1></button>
         </form>
         <hr>     <hr>     <hr>     <hr>     <hr>     <hr>
         <h4>All Deliveries</h4>
