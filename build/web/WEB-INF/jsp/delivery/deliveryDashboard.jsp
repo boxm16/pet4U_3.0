@@ -39,7 +39,7 @@
         <button class='btn-primary' onclick="location.href = 'loadRoyalData.htm'" type="button">   
             <h1>  Load Data  </h1> </button>
         <hr>     <hr>     <hr>     <hr>     <hr>     <hr>
-        <h1>ATTENTION!!!! JUST FOR TRIAL, NO PRODUCTION YET</h1>
+       
         <form action="deliveryInvoicesForDate.htm" method="POST">
             <h1>  <input type="date"  name="date" value="${date}"></h1>
             <hr>
