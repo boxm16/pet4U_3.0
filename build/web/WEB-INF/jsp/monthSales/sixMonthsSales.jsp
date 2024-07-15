@@ -32,7 +32,7 @@
                     <th>CODE</th>
                     <th>POSITION</th>
                     <th>DESCRIPTION</th>
-                   
+
                     <!--  <th>M.U.<br> UNIT</th> -->
                     <!--     <th>COEF.</th>-->
                     <th>State </th>
@@ -51,6 +51,10 @@
                     LinkedHashMap<String, ItemEksagoges> sales = (LinkedHashMap) request.getAttribute("eksagoges");
 
                     for (Map.Entry<String, ItemEksagoges> entrySet : sales.entrySet()) {
+
+                        if (entrySet.getValue().getPosition().equals("")) {
+                            continue;
+                        }
                         out.println("<tr>");
 
                         out.println("<td>");
@@ -84,12 +88,12 @@
                         out.println("<td>");
                         out.println(eksagoges.getShopsSupply());
                         out.println("</td>");
-                        
+
                         double totalEksagoges = eksagoges.getEshopSales() + eksagoges.getShopsSupply();
                         out.println("<td>");
                         out.println(totalEksagoges);
                         out.println("</td>");
-                        
+
                         out.println("<td>");
 
                         out.println("<svg width='" + totalEksagoges + "' height='30'>");
