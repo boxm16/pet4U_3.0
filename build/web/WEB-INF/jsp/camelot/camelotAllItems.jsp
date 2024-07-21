@@ -46,24 +46,7 @@
                         out.println("</td>");
 
                         out.println("<td>");
-                        for (AltercodeContainer altercodeContainer : altercodes) {
-                            if (altercodeContainer.getStatus().equals("eshop")
-                                    || altercodeContainer.getStatus().equals("eshop-on")
-                                    || altercodeContainer.getStatus().equals("eshop-barf")
-                                    || altercodeContainer.getStatus().equals("eshop-kat")
-                                    || altercodeContainer.getStatus().equals("eshop-pro")) {
-
-                                out.println("<a href='https://www.pet4u.gr/search-products-el.html?subcats=Y&status=A&match=all&pshort=N&pfull=N&pname=Y&pkeywords=N&pcode_from_q=Y&wg_go_direct=Y&search_performed=Y&q=" + altercodeContainer.getAltercode() + "' target='_blank'>" + "<strong>" + altercodeContainer.getAltercode() + " : " + altercodeContainer.getStatus() + "</strong>" + "</a>");
-                                out.println("<br>");
-                            } else {
-                                if (altercodeContainer.getStatus().isEmpty()) {
-                                    out.println("<strong>" + altercodeContainer.getAltercode() + "</strong>");
-                                } else {
-                                    out.println("<strong>" + altercodeContainer.getAltercode() + " : " + altercodeContainer.getStatus() + "</strong>");
-                                }
-                                out.println("<br>");
-                            }
-                        }
+                        out.println(" <a href='itemAnalysis.htm?code=" + item.getCode() + "' class='btn btn-info btn-lg' role='button' aria-disabled='true'><h3>"+item.getCode()+"</h3></a>");
                         out.println("</td>");
 
                         out.println("<td>");
