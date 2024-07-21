@@ -35,7 +35,7 @@
                 <a href="camelotOrderAlertSV.htm" class="btn btn-primary" style='background-color: #762276' role="button"><h1>CAMELOT ORDER ALERT</h1></a>
                 <hr> 
                
-                <a href="deliveryDashboard_X.htm" class="btn btn-primary" style='background-color: red' role="button"><h1>Delivery Dashboard _ X</h1></a>
+                <a href="deliveryDashboard_X.htm" class="btn btn-primary" style='background-color: red' role="button"><h1>Delivery Dashboard</h1></a>
                 <hr> <hr> <hr>
                 <a href="camelotNotesDisplay.htm" class="btn btn-primary" role="button" style='background-color: #B48199'><h1>Camelot Notes</h1></a>
                 <hr>
