@@ -46,7 +46,7 @@
                         out.println("</td>");
 
                         out.println("<td>");
-                        out.println(" <a href='itemAnalysis.htm?code=" + item.getCode() + "' class='btn btn-info btn-lg' role='button' aria-disabled='true'><h3>"+item.getCode()+"</h3></a>");
+                        out.println(" <a href='itemAnalysis.htm?code=" + item.getCode() + "' ><h3>"+item.getCode()+"</h3></a>");
                         out.println("</td>");
 
                         out.println("<td>");
