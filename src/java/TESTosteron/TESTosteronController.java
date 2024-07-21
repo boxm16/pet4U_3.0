@@ -8,8 +8,6 @@ import Pet4uItems.Pet4uItemsDao;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import javax.print.PrintService;
-import javax.print.PrintServiceLookup;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -106,18 +104,43 @@ public class TESTosteronController {
         return "testosteron/deletedCamelotNotesBatch";
     }
 
-    //-------------------------------------
+   //-------------------------------------
     @RequestMapping(value = "printOut")
-    public String printOut( ModelMap modelMap) {
+    public String printOut(ModelMap modelMap) {
 
+       /* 
         PrintService[] printServices = PrintServiceLookup.lookupPrintServices(null, null);
         System.out.println("Number of print services: " + printServices.length);
+        DocPrintJob job = null;
+        boolean printerCheck = false;
+        String printerMessage = "PRINTER MESSAGE:";
 
         for (PrintService printer : printServices) {
             System.out.println("Printer: " + printer.getName());
-        }
 
-        return "testosteron/testResult";
+            if (printer.getName().equals("HP LaserJet Pro MFP M127-M128 PCLmS")) {
+                System.out.println("----------");
+                System.out.println("Printer: " + printer.getName());
+
+                DocFlavor flavor = DocFlavor.INPUT_STREAM.AUTOSENSE;
+                InputStream inputStream = new ByteArrayInputStream(printerMessage.getBytes());
+                Doc doc = new SimpleDoc(inputStream, flavor, null);
+                job = printer.createPrintJob();
+                try {
+                    job.print(doc, null);
+                } catch (PrintException ex) {
+                    Logger.getLogger(TESTosteronController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                printerCheck = true;
+            }
+            //  }
+
+        }
+         */
+        String printName = "\\\\eshoplaptop\\ZDesigner GC420t (EPL) (Αντιγραφή 1)";
+        PrintWithoutDialog pwd = new PrintWithoutDialog();
+        pwd.printSomething(printName);
+        return "testosteron/trc";
     }
     
 
