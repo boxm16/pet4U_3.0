@@ -31,7 +31,7 @@ public class OrderController {
 
         LinkedHashMap<Integer, Order> orders = orderDao.getOrdersForDate(date);
         modelMap.addAttribute("orders", orders);
-        return "delivery/orders";
+        return "/order/orders";
     }
 
     @RequestMapping(value = "orderStatistics")
