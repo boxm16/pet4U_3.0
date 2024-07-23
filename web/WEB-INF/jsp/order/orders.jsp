@@ -31,10 +31,8 @@
                     <th>Order Id</th>
                     <th>Order DateTimeStamp</th>
                     <th>Order Number</th>
-                    <th>Item Code</th>
-                    <th>Description</th>
-                    <th>Quantity </th>
-                    <th>Position </th>
+                    <th>Items</th>
+
 
                 </tr>
             </thead>
@@ -65,19 +63,19 @@
                         for (Map.Entry<String, Item> itemEntrySet : items.entrySet()) {
                             out.println("<tr>");
 
-                            out.println("<td>");
+                            out.println("<td style='width:50px'>");
                             out.println(itemEntrySet.getValue().getCode());
                             out.println("</td>");
 
-                            out.println("<td>");
+                              out.println("<td style='width:250px'>");
                             out.println(itemEntrySet.getValue().getDescription());
                             out.println("</td>");
 
-                            out.println("<td>");
+                             out.println("<td style='width:50px'>");
                             out.println(itemEntrySet.getValue().getQuantity());
                             out.println("</td>");
 
-                            out.println("<td>");
+                             out.println("<td style='width:100px'>");
                             out.println(itemEntrySet.getValue().getPosition());
                             out.println("</td>");
 
