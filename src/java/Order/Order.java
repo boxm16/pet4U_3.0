@@ -16,7 +16,7 @@ import java.util.LinkedHashMap;
 public class Order {
 
     private int id;
-    private int number;
+    private String number;
     private LocalDateTime timeStamp;
     private LinkedHashMap<String, Item> items;
 
@@ -32,13 +32,15 @@ public class Order {
         this.id = id;
     }
 
-    public int getNumber() {
+    public String getNumber() {
         return number;
     }
 
-    public void setNumber(int number) {
+    public void setNumber(String number) {
         this.number = number;
     }
+
+   
 
     public LocalDateTime getTimeStamp() {
         return timeStamp;

@@ -31,7 +31,7 @@ public class OrderDao {
             while (resultSet.next()) {
                 String dateTimeStampString = resultSet.getString("ENTRYDATE");
                 int id = resultSet.getInt("DOCID");
-                int number = resultSet.getInt("DOCNUMBER");
+                String number = resultSet.getString("DOCNUMBER");
                 String itemCode = resultSet.getString("ABBREVIATION");
                 String description = resultSet.getString("NAME");
                 String quantity = resultSet.getString("QUANT1");
