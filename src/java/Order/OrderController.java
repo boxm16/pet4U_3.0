@@ -5,6 +5,7 @@
  */
 package Order;
 
+import java.util.LinkedHashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -18,6 +19,7 @@ public class OrderController {
 
     @RequestMapping(value = "orderStatistics")
     public String orderStatistics(ModelMap modelMap) {
+        LinkedHashMap<String, Order> allOrders = orderDao.getAllOrders();
 
         modelMap.addAttribute("orderStatistics", "");
 
