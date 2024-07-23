@@ -11,6 +11,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.LinkedHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,6 +32,10 @@ public class OrderDao {
 
             while (resultSet.next()) {
                 String dateTimeStampString = resultSet.getString("ENTRYDATE");
+
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-ddT00:00:00.000");
+                LocalDateTime dateTime = LocalDateTime.parse(dateTimeStampString, formatter);
+
                 int id = resultSet.getInt("DOCID");
                 String number = resultSet.getString("DOCNUMBER");
                 String itemCode = resultSet.getString("ABBREVIATION");
@@ -39,6 +45,7 @@ public class OrderDao {
                 if (!orders.containsKey(id)) {
                     Order order = new Order();
                     order.setId(id);
+                    order.setDateTimeStamp(dateTime);
                     order.setNumber(number);
                     orders.put(id, order);
                 }
@@ -46,6 +53,7 @@ public class OrderDao {
 
                 Item item = new Item();
                 item.setCode(itemCode);
+                item.setDescription(description);
                 item.setQuantity(quantity);
                 order.getItems().put(itemCode, item);
                 orders.put(id, order);

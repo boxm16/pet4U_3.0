@@ -17,7 +17,7 @@ public class Order {
 
     private int id;
     private String number;
-    private LocalDateTime timeStamp;
+    private LocalDateTime dateTimeStamp;
     private LinkedHashMap<String, Item> items;
 
     public Order() {
@@ -40,15 +40,17 @@ public class Order {
         this.number = number;
     }
 
+    public LocalDateTime getDateTimeStamp() {
+        return dateTimeStamp;
+    }
+
+    public void setDateTimeStamp(LocalDateTime dateTimeStamp) {
+        this.dateTimeStamp = dateTimeStamp;
+    }
+
    
 
-    public LocalDateTime getTimeStamp() {
-        return timeStamp;
-    }
-
-    public void setTimeStamp(LocalDateTime timeStamp) {
-        this.timeStamp = timeStamp;
-    }
+   
 
     public LinkedHashMap<String, Item> getItems() {
         return items;
