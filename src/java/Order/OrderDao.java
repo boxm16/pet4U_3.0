@@ -79,11 +79,11 @@ public class OrderDao {
 
             while (resultSet.next()) {
                 String dateTimeStampString = resultSet.getString("ENTRYDATE");
-                String dateTimeStampStringCut = dateTimeStampString.replace(" 00:00:00.000", "");
-                System.out.println(dateTimeStampStringCut);
+                 dateTimeStampString = dateTimeStampString.replace(" 00:00:00.0", "");
+       
 
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-                LocalDateTime dateTime = LocalDateTime.parse(dateTimeStampStringCut, formatter);
+                LocalDateTime dateTime = LocalDateTime.parse(dateTimeStampString, formatter);
 
                 int id = resultSet.getInt("DOCID");
                 String number = resultSet.getString("DOCNUMBER");
