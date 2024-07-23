@@ -26,7 +26,7 @@ public class OrderController {
         return "/order/orderDashboard";
     }
 
-    @RequestMapping(value = "orderssForDate")
+    @RequestMapping(value = "ordersForDate")
     public String deliveryInvoicesForDate(@RequestParam(name = "date") String date, ModelMap modelMap) {
 
         LinkedHashMap<Integer, Order> orders = orderDao.getOrdersForDate(date);
