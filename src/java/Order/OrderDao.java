@@ -80,7 +80,7 @@ public class OrderDao {
             while (resultSet.next()) {
                 String dateTimeStampString = resultSet.getString("ENTRYDATE");
 
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-ddT00:00:00.000");
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd 00:00:00.000");
                 LocalDateTime dateTime = LocalDateTime.parse(dateTimeStampString, formatter);
 
                 int id = resultSet.getInt("DOCID");
