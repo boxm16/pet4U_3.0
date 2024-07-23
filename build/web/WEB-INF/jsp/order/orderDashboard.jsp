@@ -17,11 +17,13 @@
 
     </head>
     <body>
+    <center>
         <hr>
-        <form action="deliveryInvoicesForDate.htm" method="POST">
+        <form action="ordersForDate.htm" method="POST">
             <h1>  <input type="date"  name="date" value="${date}"></h1>
             <hr>
             <button type="submit" class="btn btn-danger"> <h1> Show  Orders </h1></button>
         </form>
-    </body>
+    </center>
+</body>
 </html>

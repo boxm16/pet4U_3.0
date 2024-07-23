@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class OrderController {
@@ -23,6 +24,14 @@ public class OrderController {
         LocalDate date = LocalDate.now();
         modelMap.addAttribute("date", date);
         return "/order/orderDashboard";
+    }
+
+    @RequestMapping(value = "orderssForDate")
+    public String deliveryInvoicesForDate(@RequestParam(name = "date") String date, ModelMap modelMap) {
+
+        LinkedHashMap<Integer, Order> orders = orderDao.getOrdersForDate(date);
+        modelMap.addAttribute("orders", orders);
+        return "delivery/orders";
     }
 
     @RequestMapping(value = "orderStatistics")
