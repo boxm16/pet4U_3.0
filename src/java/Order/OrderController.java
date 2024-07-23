@@ -5,19 +5,24 @@
  */
 package Order;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
 @Controller
 public class OrderController {
-     @RequestMapping(value = "orderStatistics")
-    public String pet4uNegativeStock(ModelMap modelMap) {
-       
+
+    @Autowired
+    private OrderDao orderDao;
+
+    @RequestMapping(value = "orderStatistics")
+    public String orderStatistics(ModelMap modelMap) {
+
         modelMap.addAttribute("orderStatistics", "");
 
         return "/order/orderStatistics";
     }
     
+
 }
