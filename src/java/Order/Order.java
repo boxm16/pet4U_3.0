@@ -20,6 +20,10 @@ public class Order {
     private LocalDateTime timeStamp;
     private LinkedHashMap<String, Item> items;
 
+    public Order() {
+        items = new LinkedHashMap<>();
+    }
+
     public int getId() {
         return id;
     }
@@ -52,6 +56,4 @@ public class Order {
         this.items = items;
     }
 
-    
-    
 }
