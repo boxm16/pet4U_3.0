@@ -19,12 +19,11 @@ public class OrderController {
 
     @RequestMapping(value = "orderStatistics")
     public String orderStatistics(ModelMap modelMap) {
-        LinkedHashMap<String, Order> allOrders = orderDao.getAllOrders();
+        LinkedHashMap<Integer, Order> allOrders = orderDao.getAllOrders();
 
         modelMap.addAttribute("orderStatistics", "");
 
         return "/order/orderStatistics";
     }
-    
 
 }

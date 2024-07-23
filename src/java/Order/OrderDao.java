@@ -5,6 +5,7 @@
  */
 package Order;
 
+import BasicModel.Item;
 import Service.DatabaseConnectionFactory;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -18,8 +19,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class OrderDao {
 
-    public LinkedHashMap<String, Order> getAllOrders() {
-        LinkedHashMap<String, Order> items = new LinkedHashMap<>();
+    public LinkedHashMap<Integer, Order> getAllOrders() {
+        LinkedHashMap<Integer, Order> orders = new LinkedHashMap<>();
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
         Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
 
@@ -28,6 +29,26 @@ public class OrderDao {
             ResultSet resultSet = statement.executeQuery("select * from WH_SALES_DOCS WHERE ENTRYDATE > '2024-01-01 00:00:00.000' ;");
 
             while (resultSet.next()) {
+                String dateTimeStampString = resultSet.getString("ENTRYDATE");
+                int id = resultSet.getInt("DOCID");
+                int number = resultSet.getInt("DOCNUMBER");
+                String itemCode = resultSet.getString("ABBREVIATION");
+                String description = resultSet.getString("NAME");
+                String quantity = resultSet.getString("QUANT1");
+
+                if (!orders.containsKey(id)) {
+                    Order order = new Order();
+                    order.setId(id);
+                    order.setNumber(number);
+                    orders.put(id, order);
+                }
+                Order order = orders.get(id);
+
+                Item item = new Item();
+                item.setCode(itemCode);
+                item.setQuantity(quantity);
+                order.getItems().put(itemCode, item);
+                orders.put(id, order);
 
             }
             resultSet.close();
@@ -36,7 +57,7 @@ public class OrderDao {
         } catch (SQLException ex) {
             Logger.getLogger(OrderDao.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return items;
+        return orders;
     }
 
 }
