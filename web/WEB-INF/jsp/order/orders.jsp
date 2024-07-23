@@ -71,11 +71,11 @@
                             out.println(itemEntrySet.getValue().getDescription());
                             out.println("</td>");
 
-                            out.println("<td style='width:50px'>");
+                            out.println("<td style='width:150px'>");
                             out.println(itemEntrySet.getValue().getQuantity());
                             out.println("</td>");
 
-                            out.println("<td style='width:100px'>");
+                            out.println("<td style='width:200px'>");
                             out.println(itemEntrySet.getValue().getPosition());
                             out.println("</td>");
 
