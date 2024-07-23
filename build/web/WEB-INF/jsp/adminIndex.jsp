@@ -128,6 +128,9 @@
                 <hr>
                 <a href="goForCamelotMonthSalesUpload.htm"><h1>Go For CAMELOT Month Sales  Upload</h1></a>
                 <hr>   <hr>
+                <hr>
+                <a href="orderStatistics.htm"><h1>Pet4U Order Statistics</h1></a>
+                <hr>   <hr>
                 <a href="index.htm"><h1>INDEX</h1></a>
                 <hr>   <hr>
                 <a href="signOut.htm"><h1>Sign Out</h1></a>
