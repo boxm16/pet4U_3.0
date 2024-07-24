@@ -24,6 +24,10 @@
             <hr>
             <button type="submit" class="btn btn-danger"> <h1> Show  Orders </h1></button>
         </form>
+        <hr>
+        <hr>
+        <hr>
+        <a href="ordersSixMonthsStatistics.htm" class="btn btn-primary" role="button" style='background-color: green;'><h1>Στατιστική για πρώτο εξάμηνο</h1></a>
     </center>
 </body>
 </html>
