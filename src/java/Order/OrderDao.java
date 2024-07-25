@@ -22,6 +22,8 @@ import org.springframework.stereotype.Repository;
 public class OrderDao {
 
     public LinkedHashMap<Integer, Order> getAllOrders() {
+        LinkedHashMap<String, Item> pet4UItemsRowByRow = getPet4UItemsRowByRow();
+
         LinkedHashMap<Integer, Order> orders = new LinkedHashMap<>();
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
         Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
@@ -33,7 +35,7 @@ public class OrderDao {
             while (resultSet.next()) {
                 String dateTimeStampString = resultSet.getString("ENTRYDATE");
 
-                 dateTimeStampString = dateTimeStampString.replace(".0", "");
+                dateTimeStampString = dateTimeStampString.replace(".0", "");
 
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
                 LocalDateTime dateTime = LocalDateTime.parse(dateTimeStampString, formatter);
@@ -58,6 +60,13 @@ public class OrderDao {
                 item.setDescription(description);
                 item.setQuantity(quantity);
                 order.getItems().put(itemCode, item);
+
+                Item it = pet4UItemsRowByRow.get(itemCode);
+                if (it == null) {
+                    System.out.println("NO SUCH ITEM: OrderDao");
+                } else {
+                    item.setPosition(it.getPosition());
+                }
                 orders.put(id, order);
 
             }
@@ -71,6 +80,8 @@ public class OrderDao {
     }
 
     LinkedHashMap<Integer, Order> getOrdersForDate(String date) {
+        LinkedHashMap<String, Item> pet4UItemsRowByRow = getPet4UItemsRowByRow();
+
         LinkedHashMap<Integer, Order> orders = new LinkedHashMap<>();
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
         Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
@@ -106,6 +117,13 @@ public class OrderDao {
                 item.setDescription(description);
                 item.setQuantity(quantity);
                 order.getItems().put(itemCode, item);
+
+                Item it = pet4UItemsRowByRow.get(itemCode);
+                if (it == null) {
+                    System.out.println("NO SUCH ITEM: OrderDao");
+                } else {
+                    item.setPosition(it.getPosition());
+                }
                 orders.put(id, order);
 
             }
@@ -119,6 +137,8 @@ public class OrderDao {
     }
 
     Order getOrder(String orderNumber) {
+
+        LinkedHashMap<String, Item> pet4UItemsRowByRow = getPet4UItemsRowByRow();
 
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
         Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
@@ -148,6 +168,12 @@ public class OrderDao {
                 item.setCode(itemCode);
                 item.setDescription(description);
                 item.setQuantity(quantity);
+                Item it = pet4UItemsRowByRow.get(itemCode);
+                if (it == null) {
+                    System.out.println("NO SUCH ITEM: OrderDao");
+                } else {
+                    item.setPosition(it.getPosition());
+                }
                 order.getItems().put(itemCode, item);
 
             }
@@ -158,6 +184,41 @@ public class OrderDao {
             Logger.getLogger(OrderDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return order;
+    }
+
+    public LinkedHashMap<String, Item> getPet4UItemsRowByRow() {
+        LinkedHashMap<String, Item> items = new LinkedHashMap<>();
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+        Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
+
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("select * from WH1;");
+
+            while (resultSet.next()) {
+                String altercode = resultSet.getString("ALTERNATECODE").trim();
+                Item item = new Item();
+                item.setCode(resultSet.getString("ABBREVIATION").trim());
+                String description = resultSet.getString("NAME").trim();
+                description = description.replace("\"", "'");//replaces all occurrences of ' `  
+                item.setDescription(description);
+
+                if (resultSet.getString("EXPR1") != null) {
+                    item.setPosition(resultSet.getString("EXPR1").trim());
+                } else {
+                    item.setPosition("");
+                }
+                item.setQuantity(resultSet.getString("QTYBALANCE").trim());
+                items.put(altercode, item);
+
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(OrderDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return items;
     }
 
 }
