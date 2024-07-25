@@ -40,7 +40,7 @@ public class OrderController {
 
         Order order = orderDao.getOrder(orderNumber);
         modelMap.addAttribute("order", order);
-        
+
         return "/order/orderDisplay";
     }
 
@@ -61,6 +61,13 @@ public class OrderController {
         for (Map.Entry<Integer, Order> allOrdersEntry : allOrders.entrySet()) {
             Order order = allOrdersEntry.getValue();
             int codesQuantity = order.getItems().size();
+            if (!codesQuantityInOrders.containsKey(codesQuantity)) {
+                codesQuantityInOrders.put(codesQuantity, 1);
+            }else {
+                Integer cq = codesQuantityInOrders.get(codesQuantity);
+                cq=cq+1;
+                codesQuantityInOrders.put(codesQuantity, cq);
+            }
         }
         return codesQuantityInOrders;
     }

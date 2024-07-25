@@ -4,14 +4,56 @@
     Author     : Michail Sitmalidis
 --%>
 
+<%@page import="java.util.Map"%>
+<%@page import="java.util.LinkedHashMap"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Orders Statistica</title>
+        <style>
+            table, th, td {
+                border: 1px solid ;
+                border-collapse: collapse;
+                font-size: 20px;
+            }
+
+        </style>
     </head>
     <body>
-        <h1>Hello World!</h1>
-    </body>
+    <center>
+        <table style="font-size:20px">
+            <thead>
+                <tr> 
+                    <th>Codes Quantity</th>
+                    <th>Count</th>
+
+
+
+                </tr>
+            </thead>
+            <tbody>
+
+
+                <%
+                    LinkedHashMap<Integer, Integer> codeQuantityInOrders = (LinkedHashMap) request.getAttribute("codeQuantityInOrders");
+
+                    for (Map.Entry<Integer, Integer> entrySet : codeQuantityInOrders.entrySet()) {
+                        out.println("<tr>");
+
+                        out.println("<td>");
+                        out.println(entrySet.getKey());
+                        out.println("</td>");
+
+                        out.println("<td>");
+                        out.println(entrySet.getValue());
+                        out.println("</td>");
+
+                        out.println("</tr>");
+                    }
+                %>
+        </table>
+    </center>
+</body>
 </html>
