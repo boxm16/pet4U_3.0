@@ -79,8 +79,7 @@ public class OrderDao {
 
             while (resultSet.next()) {
                 String dateTimeStampString = resultSet.getString("ENTRYDATE");
-                 dateTimeStampString = dateTimeStampString.replace(".0", "");
-       
+                dateTimeStampString = dateTimeStampString.replace(".0", "");
 
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
                 LocalDateTime dateTime = LocalDateTime.parse(dateTimeStampString, formatter);
@@ -115,6 +114,48 @@ public class OrderDao {
             Logger.getLogger(OrderDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return orders;
+    }
+
+    Order getOrder(String orderNumber) {
+
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+        Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
+        Order order = new Order();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("select * from WH_SALES_DOCS WHERE DOCNUMBER = '" + orderNumber + "';");
+
+            while (resultSet.next()) {
+                String dateTimeStampString = resultSet.getString("ENTRYDATE");
+                dateTimeStampString = dateTimeStampString.replace(".0", "");
+
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                LocalDateTime dateTime = LocalDateTime.parse(dateTimeStampString, formatter);
+
+                int id = resultSet.getInt("DOCID");
+                String number = resultSet.getString("DOCNUMBER");
+                String itemCode = resultSet.getString("ABBREVIATION");
+                String description = resultSet.getString("NAME");
+                String quantity = resultSet.getString("QUANT1");
+
+                order.setId(id);
+                order.setDateTimeStamp(dateTime);
+                order.setNumber(number);
+
+                Item item = new Item();
+                item.setCode(itemCode);
+                item.setDescription(description);
+                item.setQuantity(quantity);
+                order.getItems().put(itemCode, item);
+
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(OrderDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return order;
     }
 
 }

@@ -7,6 +7,7 @@ package Order;
 
 import java.time.LocalDate;
 import java.util.LinkedHashMap;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -34,14 +35,34 @@ public class OrderController {
         return "/order/orders";
     }
 
+    @RequestMapping(value = "getOrder")
+    public String getOrder(@RequestParam(name = "orderNumber") String orderNumber, ModelMap modelMap) {
+
+        Order order = orderDao.getOrder(orderNumber);
+        modelMap.addAttribute("order", order);
+        
+        return "/order/orderDisplay";
+    }
+
     @RequestMapping(value = "ordersSixMonthsStatistics")
     public String orderStatistics(ModelMap modelMap) {
         LinkedHashMap<Integer, Order> allOrders = orderDao.getAllOrders();
 
-        modelMap.addAttribute("allOrders", allOrders);
+        LinkedHashMap<Integer, Integer> codeQuantityInOrders = countCodesQuantityInOrders(allOrders);
+
+        modelMap.addAttribute("codeQuantityInOrders", codeQuantityInOrders);
 
         return "/order/orderStatistics";
     }
-    
+
+    private LinkedHashMap<Integer, Integer> countCodesQuantityInOrders(LinkedHashMap<Integer, Order> allOrders) {
+        LinkedHashMap<Integer, Integer> codesQuantityInOrders = new LinkedHashMap<>();
+
+        for (Map.Entry<Integer, Order> allOrdersEntry : allOrders.entrySet()) {
+            Order order = allOrdersEntry.getValue();
+            int codesQuantity = order.getItems().size();
+        }
+        return codesQuantityInOrders;
+    }
 
 }

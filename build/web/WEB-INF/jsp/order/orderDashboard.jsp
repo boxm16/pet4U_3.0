@@ -28,6 +28,14 @@
         <hr>
         <hr>
         <a href="ordersSixMonthsStatistics.htm" class="btn btn-primary" role="button" style='background-color: green;'><h1>Στατιστικά για πρώτο εξάμηνο</h1></a>
+        <hr>
+        <hr>
+        <hr>
+        <form action="getOrder.htm" method="POST">
+            <h1>  <input type="text" name='orderNumber'></h1>
+            <hr>
+            <button type="submit" class="btn btn-primary"> <h1> Get  Order </h1></button>
+        </form>
     </center>
 </body>
 </html>
