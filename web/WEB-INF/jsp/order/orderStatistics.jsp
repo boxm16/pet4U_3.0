@@ -50,6 +50,10 @@
                         out.println("<td>");
                         out.println(entrySet.getValue());
                         out.println("</td>");
+                        
+                        out.println("<td>");
+                        out.println(100*entrySet.getValue()/codeQuantityInOrders.size());
+                        out.println("</td>");
 
                         out.println("</tr>");
                     }
