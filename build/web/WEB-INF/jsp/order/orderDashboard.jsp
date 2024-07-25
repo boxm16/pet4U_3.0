@@ -27,7 +27,7 @@
         <hr>
         <hr>
         <hr>
-        <a href="ordersSixMonthsStatistics.htm" class="btn btn-primary" role="button" style='background-color: green;'><h1>Στατιστική για πρώτο εξάμηνο</h1></a>
+        <a href="ordersSixMonthsStatistics.htm" class="btn btn-primary" role="button" style='background-color: green;'><h1>Στατιστικά για πρώτο εξάμηνο</h1></a>
     </center>
 </body>
 </html>

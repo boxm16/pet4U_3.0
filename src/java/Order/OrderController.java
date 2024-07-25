@@ -34,7 +34,7 @@ public class OrderController {
         return "/order/orders";
     }
 
-    @RequestMapping(value = "orderStatistics")
+    @RequestMapping(value = "ordersSixMonthsStatistics")
     public String orderStatistics(ModelMap modelMap) {
         LinkedHashMap<Integer, Order> allOrders = orderDao.getAllOrders();
 
@@ -42,5 +42,6 @@ public class OrderController {
 
         return "/order/orderStatistics";
     }
+    
 
 }
