@@ -25,6 +25,9 @@
     </head>
     <body>
     <center>
+        <hr>
+        <a href="adminIndex.htm"><h1>Admin Index</h1></a>
+        <hr>
         <table style="font-size:20px">
             <tr>  <td>Order Id</td><td>${order.id}</td></tr>
             <tr>  <td>Order DateTimeStamp</td><td>${order.dateTimeStamp}</td></tr>
@@ -34,6 +37,7 @@
         </table>
         <hr>
         <table style="font-size:20px">
+
             <tbody>
 
                 <%
