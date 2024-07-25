@@ -49,28 +49,29 @@ public class OrderController {
     public String orderStatistics(ModelMap modelMap) {
         LinkedHashMap<Integer, Order> allOrders = orderDao.getAllOrders();
 
-        TreeMap<Integer, Integer> codeQuantityInOrders = countCodesQuantityInOrders(allOrders);
+    
 
-        modelMap.addAttribute("codeQuantityInOrders", codeQuantityInOrders);
-
-        return "/order/orderStatistics";
-    }
-
-    private TreeMap<Integer, Integer> countCodesQuantityInOrders(LinkedHashMap<Integer, Order> allOrders) {
         TreeMap<Integer, Integer> codesQuantityInOrders = new TreeMap<>();
-
+        int totalOrders = 0;
         for (Map.Entry<Integer, Order> allOrdersEntry : allOrders.entrySet()) {
             Order order = allOrdersEntry.getValue();
             int codesQuantity = order.getItems().size();
             if (!codesQuantityInOrders.containsKey(codesQuantity)) {
                 codesQuantityInOrders.put(codesQuantity, 1);
-            }else {
+            } else {
                 Integer cq = codesQuantityInOrders.get(codesQuantity);
-                cq=cq+1;
+                cq = cq + 1;
                 codesQuantityInOrders.put(codesQuantity, cq);
             }
+            totalOrders++;
         }
-        return codesQuantityInOrders;
+        
+          modelMap.addAttribute("totalOrders", totalOrders);
+        modelMap.addAttribute("codesQuantityInOrders", codesQuantityInOrders);
+
+        return "/order/orderStatistics";
     }
+
+    
 
 }

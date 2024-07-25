@@ -38,9 +38,9 @@
 
 
                 <%
-                    TreeMap<Integer, Integer> codeQuantityInOrders = (TreeMap) request.getAttribute("codeQuantityInOrders");
-
-                    for (Map.Entry<Integer, Integer> entrySet : codeQuantityInOrders.entrySet()) {
+                    TreeMap<Integer, Integer> codesQuantityInOrders = (TreeMap) request.getAttribute("codesQuantityInOrders");
+                    Integer totalOrders = (Integer) request.getAttribute("totalOrders");
+                    for (Map.Entry<Integer, Integer> entrySet : codesQuantityInOrders.entrySet()) {
                         out.println("<tr>");
 
                         out.println("<td>");
@@ -50,9 +50,9 @@
                         out.println("<td>");
                         out.println(entrySet.getValue());
                         out.println("</td>");
-                        
+
                         out.println("<td>");
-                        out.println(100*entrySet.getValue()/codeQuantityInOrders.size());
+                        out.println(100 * entrySet.getValue()/totalOrders);
                         out.println("</td>");
 
                         out.println("</tr>");
