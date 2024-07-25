@@ -34,6 +34,9 @@
         <a href="positionsTraffic.htm" class="btn btn-primary" role="button" style='background-color: blue;'><h1>Positions Traffic - Analysis</h1></a>
         <hr>
         <hr>
+        <a href="positionsBlockTraffic.htm" class="btn btn-primary" role="button" style='background-color: blue;'><h1>Positions Block Traffic - Analysis</h1></a>
+        <hr>
+        <hr>
         <hr>
         <form action="getOrder.htm" method="POST">
             <h1>  <input type="text" name='orderNumber'></h1>
