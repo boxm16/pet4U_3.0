@@ -27,7 +27,11 @@
         <hr>
         <hr>
         <hr>
-        <a href="ordersSixMonthsStatistics.htm" class="btn btn-primary" role="button" style='background-color: green;'><h1>Στατιστικά για πρώτο εξάμηνο</h1></a>
+        <a href="codeQuantityInOrders.htm" class="btn btn-primary" role="button" style='background-color: green;'><h1>Code Quantity In Orders - Analysis</h1></a>
+        <hr>
+        <hr>
+
+        <a href="positionsTraffic.htm" class="btn btn-primary" role="button" style='background-color: blue;'><h1>Positions Traffic - Analysis</h1></a>
         <hr>
         <hr>
         <hr>

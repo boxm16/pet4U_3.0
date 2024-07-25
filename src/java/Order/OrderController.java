@@ -5,6 +5,7 @@
  */
 package Order;
 
+import BasicModel.Item;
 import java.time.LocalDate;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -45,7 +46,7 @@ public class OrderController {
         return "/order/orderDisplay";
     }
 
-    @RequestMapping(value = "ordersSixMonthsStatistics")
+    @RequestMapping(value = "codeQuantityInOrders")
     public String orderStatistics(ModelMap modelMap) {
         LinkedHashMap<Integer, Order> allOrders = orderDao.getAllOrders();
 
@@ -84,4 +85,34 @@ public class OrderController {
         return "/order/orders";
     }
 
+    @RequestMapping(value = "positionsTraffic")
+
+    public String positionsTraffic(ModelMap modelMap) {
+        LinkedHashMap<Integer, Order> allOrders = orderDao.getAllOrders();
+
+        TreeMap<String, Integer> positionsTraffic = new TreeMap<>();
+        int totalTraffic = 0;
+        for (Map.Entry<Integer, Order> allOrdersEntry : allOrders.entrySet()) {
+            Order order = allOrdersEntry.getValue();
+            LinkedHashMap<String, Item> items = order.getItems();
+            for (Map.Entry<String, Item> itemsEntry : items.entrySet()) {
+                Item item = itemsEntry.getValue();
+                String position = item.getPosition();
+                if (!positionsTraffic.containsKey(position)) {
+                    positionsTraffic.put(position, 1);
+                } else {
+                    Integer t = positionsTraffic.get(position);
+                    t = t + 1;
+                    positionsTraffic.put(position, t);
+                }
+            }
+
+            totalTraffic++;
+        }
+
+        modelMap.addAttribute("totalTraffic", totalTraffic);
+        modelMap.addAttribute("positionsTraffic", positionsTraffic);
+
+        return "/order/trafficStatistics";
+    }
 }
