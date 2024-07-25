@@ -80,7 +80,7 @@ public class OrderController {
                 orders.put(allOrdersEntry.getValue().getId(), allOrdersEntry.getValue());
             }
         }
-
+        modelMap.addAttribute("orders", orders);
         return "/order/orders";
     }
 
