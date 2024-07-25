@@ -4,6 +4,7 @@
     Author     : Michail Sitmalidis
 --%>
 
+<%@page import="java.util.TreeMap"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.LinkedHashMap"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -37,7 +38,7 @@
 
 
                 <%
-                    LinkedHashMap<Integer, Integer> codeQuantityInOrders = (LinkedHashMap) request.getAttribute("codeQuantityInOrders");
+                    TreeMap<Integer, Integer> codeQuantityInOrders = (TreeMap) request.getAttribute("codeQuantityInOrders");
 
                     for (Map.Entry<Integer, Integer> entrySet : codeQuantityInOrders.entrySet()) {
                         out.println("<tr>");

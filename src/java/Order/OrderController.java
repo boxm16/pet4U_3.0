@@ -8,6 +8,7 @@ package Order;
 import java.time.LocalDate;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.TreeMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -48,15 +49,15 @@ public class OrderController {
     public String orderStatistics(ModelMap modelMap) {
         LinkedHashMap<Integer, Order> allOrders = orderDao.getAllOrders();
 
-        LinkedHashMap<Integer, Integer> codeQuantityInOrders = countCodesQuantityInOrders(allOrders);
+        TreeMap<Integer, Integer> codeQuantityInOrders = countCodesQuantityInOrders(allOrders);
 
         modelMap.addAttribute("codeQuantityInOrders", codeQuantityInOrders);
 
         return "/order/orderStatistics";
     }
 
-    private LinkedHashMap<Integer, Integer> countCodesQuantityInOrders(LinkedHashMap<Integer, Order> allOrders) {
-        LinkedHashMap<Integer, Integer> codesQuantityInOrders = new LinkedHashMap<>();
+    private TreeMap<Integer, Integer> countCodesQuantityInOrders(LinkedHashMap<Integer, Order> allOrders) {
+        TreeMap<Integer, Integer> codesQuantityInOrders = new TreeMap<>();
 
         for (Map.Entry<Integer, Order> allOrdersEntry : allOrders.entrySet()) {
             Order order = allOrdersEntry.getValue();
