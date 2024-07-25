@@ -41,6 +41,7 @@
                     TreeMap<Integer, Integer> codesQuantityInOrders = (TreeMap) request.getAttribute("codesQuantityInOrders");
                     Integer totalOrders = (Integer) request.getAttribute("totalOrders");
                     for (Map.Entry<Integer, Integer> entrySet : codesQuantityInOrders.entrySet()) {
+                     double d=  100 * entrySet.getValue()/totalOrders;
                         out.println("<tr>");
 
                         out.println("<td>");
@@ -52,7 +53,7 @@
                         out.println("</td>");
 
                         out.println("<td>");
-                        out.println(100 * entrySet.getValue()/totalOrders);
+                        out.println(d);
                         out.println("</td>");
 
                         out.println("</tr>");
