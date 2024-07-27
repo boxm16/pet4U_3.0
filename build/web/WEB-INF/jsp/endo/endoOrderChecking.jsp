@@ -152,7 +152,7 @@
 
         Labels Count   <input  type="number" id="labelsCount" name="labelsCount">
 
-        <button style='font-size: 20px; width:60px; border-radius: 50%;' class="btn btn-warning" onclick="ajax(${routeNumber})"> ${routeNumber}</button>
+        <button style='font-size: 20px; width:60px;' class="btn btn-warning" onclick="ajax(${routeNumber})"> PRINT LABELS</button>
 
 
         <div id='printingResponseDisplay'></div>
