@@ -47,10 +47,10 @@ public class PrintWithoutDialog implements Printable {
         g2d.translate(pf.getImageableX(), pf.getImageableY());
         /* Now we perform our rendering */
 
-        g.setFont(new Font("Roman", 0, 20));
-        g.drawString("ΠΕΤΟΥΠΟΛΗ", 0, 40);//here0, is horizontla coordinat, but of imageable, 20 is vertical coordinat
+        g.setFont(new Font("Roman", 0, 30));
+        g.drawString("ΠΕΤΡΟΥΠΟΛΗ", 0, 40);//here0, is horizontla coordinat, but of imageable, 20 is vertical coordinat
 
-        g.drawString("1/1", 0, 80);
+        g.drawString("1/1", 100, 80);
 
         return PAGE_EXISTS;
     }
@@ -74,7 +74,7 @@ public class PrintWithoutDialog implements Printable {
              */
             PageFormat pf = job.defaultPage();
             Paper copy = pf.getPaper();
-            copy.setSize(0, pf.getHeight());
+            copy.setSize(pf.getWidth(), pf.getHeight());
             double cmPx300 = 300.0 / 2.54;
             copy.setImageableArea(0, 0, 7.0 * cmPx300, 3.0 * cmPx300);
             pf.setPaper(copy);
