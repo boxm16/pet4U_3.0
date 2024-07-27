@@ -148,15 +148,20 @@
         </table>
         <hr>
         ${saveButton}
-        <form id="form" action="#" method="POST">
-            <input hidden type="text"  name="invoiceNumber" value="${deliveryInvoice.getNumber()}">
-            <input hidden type="text" id="deliveredItems" name="deliveredItems">
-            <input hidden type="text" id="sentItems" name="sentItems">
-        </form>
+
+
+        Labels Count   <input  type="number" id="labelsCount" name="labelsCount">
+
+        <button style='font-size: 20px; width:60px; border-radius: 50%;' class="btn btn-warning" onclick="ajax(${routeNumber})"> ${routeNumber}</button>
+
+
+        <div id='printingResponseDisplay'></div>
         <hr>
         <h1>  <a href="bindOrderWithEndo.htm?orderId=${endoOrder.id}&outgoingEndoId=${endoApostolis.id}">SAVE (BIND) ENDO ORDER AND ENDO APOSTOLIS</a></h1>
 
     </center>
+
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -167,40 +172,54 @@
 
 
 
-        function rechechAll() {
-            var orderedItems = document.querySelectorAll(".ordered");
+            function rechechAll() {
+                var orderedItems = document.querySelectorAll(".ordered");
 
-            for (x = 0; x < orderedItems.length; x++) {
-                let orderedItem = orderedItems[x];
-                //  console.log(orderedItem);
-                const orderedItemArrayed = orderedItem.id.split("@");
-                let itemtemCode = orderedItemArrayed[0];
-                //   console.log("Item Code : " + itemtemCode);
-                let invoiced = document.getElementById(itemtemCode + "@invoiced");
-                if (invoiced == null) {
-                    console.log("WHOPA");
-                } else {
-                    invoiced = invoiced.value * 1;
-                }
+                for (x = 0; x < orderedItems.length; x++) {
+                    let orderedItem = orderedItems[x];
+                    //  console.log(orderedItem);
+                    const orderedItemArrayed = orderedItem.id.split("@");
+                    let itemtemCode = orderedItemArrayed[0];
+                    //   console.log("Item Code : " + itemtemCode);
+                    let invoiced = document.getElementById(itemtemCode + "@invoiced");
+                    if (invoiced == null) {
+                        console.log("WHOPA");
+                    } else {
+                        invoiced = invoiced.value * 1;
+                    }
 
-                let ordered = document.getElementById(itemtemCode + "@ordered").value * 1;
+                    let ordered = document.getElementById(itemtemCode + "@ordered").value * 1;
 
 
 
-                let colorDisplay = document.getElementById(itemtemCode + "@colorDisplay");
+                    let colorDisplay = document.getElementById(itemtemCode + "@colorDisplay");
 
-                let diff = invoiced - ordered;
-                if (diff > 0) {
-                    colorDisplay.style.backgroundColor = 'red';
-                }
-                if (diff < 0) {
-                    colorDisplay.style.backgroundColor = 'yellow';
-                }
-                if (diff === 0) {
-                    colorDisplay.style.backgroundColor = 'green';
+                    let diff = invoiced - ordered;
+                    if (diff > 0) {
+                        colorDisplay.style.backgroundColor = 'red';
+                    }
+                    if (diff < 0) {
+                        colorDisplay.style.backgroundColor = 'yellow';
+                    }
+                    if (diff === 0) {
+                        colorDisplay.style.backgroundColor = 'green';
+                    }
                 }
             }
-        }
+
+            //----------------------- PRINTING AJAX------------
+            function ajax(labelsCount) {
+                $("#printingResponseDisplay").innerHTML("lalalala");
+                $.ajax({
+                    url: 'printLabel.htm?labelsCount=' + labelsCount,
+                    //  contentType: "application/x-www-form-urlencoded;charset=UTF-8",
+
+                    success: function (status) {
+                        $("#printingResponseDisplay").innerHTML(status);
+                        console.log(status)
+                    }
+                });
+            }
     </script>
 </body>
 </html>

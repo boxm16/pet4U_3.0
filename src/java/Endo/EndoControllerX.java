@@ -22,6 +22,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 @Controller
@@ -363,6 +364,15 @@ public class EndoControllerX {
         modelMap.addAttribute("endoApostolis", endoApostolis);
         return "endo/endoOrderChecking";
     }
+
+    @RequestMapping(value = "/printLabel", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+    public @ResponseBody
+    String printLabel(@RequestParam("labelsCount") String labelsCount) {
+        System.out.println(labelsCount);
+
+        return "BRAVO";
+    }
+//---------------------------------
 
     @RequestMapping(value = "bindOrderWithEndo", method = RequestMethod.GET)
     public String bindOrderWithEndo(@RequestParam(name = "orderId") String orderId,
