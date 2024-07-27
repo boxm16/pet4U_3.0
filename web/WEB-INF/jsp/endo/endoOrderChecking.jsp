@@ -215,7 +215,7 @@
                     //  contentType: "application/x-www-form-urlencoded;charset=UTF-8",
 
                     success: function (status) {
-                        $("#printingResponseDisplay").innerHTML(status);
+                        $("#printingResponseDisplay").html(status);
                         console.log(status)
                     }
                 });
