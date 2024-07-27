@@ -152,7 +152,7 @@
 
         Labels Count   <input  type="number" id="labelsCount" name="labelsCount">
 
-        <button style='font-size: 20px; width:120px;' class="btn btn-warning" onclick="ajax(${routeNumber})"> PRINT LABELS</button>
+        <button style='font-size: 20px; width:120px;' class="btn btn-warning" onclick="ajax(0)"> PRINT LABELS</button>
 
 
         <div id='printingResponseDisplay'></div>
@@ -209,7 +209,7 @@
 
             //----------------------- PRINTING AJAX------------
             function ajax(labelsCount) {
-                $("#printingResponseDisplay").innerHTML("lalalala");
+                $("#printingResponseDisplay").html("lalalala");
                 $.ajax({
                     url: 'printLabel.htm?labelsCount=' + labelsCount,
                     //  contentType: "application/x-www-form-urlencoded;charset=UTF-8",
