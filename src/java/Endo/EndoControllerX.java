@@ -361,11 +361,11 @@ public class EndoControllerX {
         EndoOrder endoOrder = endoDaoX.getEndoOrder(orderId, pet4UItemsRowByRow);
         EndoApostolis endoApostolis = endoDaoX.getEndoApostolisVaribobis(outgoingEndoId);
 
-        LinkedHashMap<String, EndoPackaging> endoPackaging = endoDaoX.getAllEndoPackaging();
+        LinkedHashMap<String, EndoPackaging> allEndoPackaging = endoDaoX.getAllEndoPackaging();
        
         modelMap.addAttribute("endoOrder", endoOrder);
         modelMap.addAttribute("endoApostolis", endoApostolis);
-        modelMap.addAttribute("endoPackaging", endoPackaging);
+        modelMap.addAttribute("allEndoPackaging", allEndoPackaging);
         return "endo/endoOrderChecking";
     }
 

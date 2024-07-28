@@ -85,7 +85,6 @@
                         EndoOrderItem orderedItem = orderedItemEntry.getValue();
                         Item invoicedItem = invoicedItems.remove(orderedItemEntry.getKey());
 
-                        String description = invoicedItem.getDescription();
                         String rowColor = "inherited";
                         if (invoicedItem != null) {
                             EndoPackaging endoPackaging = allEndoPackaging.get(invoicedItem.getCode());
