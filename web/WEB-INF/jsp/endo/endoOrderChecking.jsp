@@ -37,17 +37,13 @@
                 position: sticky;
                 top: 0px;
             }
-            #packagesCount  {
+            #packagesCount     #labelsCount{
                 width: 3.5em;
                 font-size: 40px;
                 font-weight: bold;
                 background: lightgreen;
             }
-            #labelsCount {
-                width: 3.5em;
-                font-size: 30px;
-                font-weight: bold;
-            }
+
 
         </style>
     </head>
@@ -121,6 +117,20 @@
 
                     for (Map.Entry<String, Item> invoicedItemsEntry : invoicedItems.entrySet()) {
                         Item invoicedItem = invoicedItemsEntry.getValue();
+                        String description = invoicedItem.getDescription();
+                        if (description.contains("KG")
+                                || description.contains("Kg")
+                                || description.contains("kg")) {
+                            String kilogramms = description.replaceAll("[^0-9]+", " ");
+                            int kgs = 0;
+                            try {
+                                kgs = Integer.valueOf(kilogramms);
+                            } catch (NumberFormatException e) {
+
+                            }
+                            if (kgs >= 4) {
+                            }
+                        }
 
                         out.println("<tr>");
                         out.println("<td>");
