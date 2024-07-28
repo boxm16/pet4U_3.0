@@ -71,7 +71,7 @@
             <tbody id="tableBody">
                 <%
                     int x = 1;
-
+                    int y = 0;
                     EndoApostolis endoApostolis = (EndoApostolis) request.getAttribute("endoApostolis");
                     LinkedHashMap<String, Item> invoicedItems = endoApostolis.getItems();
 
@@ -159,9 +159,9 @@
         </table>
         <hr>
 
-        <h3> ΜΟΝΟΚΟΜΜΑΤΑ(τσουβάλια, κλουβιά, catsan): <%   out.println(x);%></h3>
-        <h3> ΔΕΜΑΤΑ(κουτιά)   <input  type="number" id="packagesCount" name="packagesCount">
-            ΣΥΝΟΛΟ ΕΤΙΚΕΤΩΝ   <input  type="number" id="labelsCount" name="labelsCount"> </h3>
+        <h3> ΜΟΝΟΚΟΜΜΑΤΑ(τσουβάλια, κλουβιά, catsan): <%   out.println(y);%></h3>
+        <h3> ΔΕΜΑΤΑ(κουτιά)   <input  type="number" id="packagesCount" name="packagesCount" value="0">
+            ΣΥΝΟΛΟ ΕΤΙΚΕΤΩΝ   <input  type="number" id="labelsCount" name="labelsCount" <%  out.println("value='" + y + "'");%> > </h3>
         <br>
         <button style='font-size: 20px; width:120px;' class="btn btn-warning" onclick="ajax(0)"> PRINT LABELS</button>
 
