@@ -148,7 +148,7 @@
         </table>
         <hr>
 
-        ΜΟΝΟΚΟΜΜΑΤΑ(τσουβάλια, κλουβιά, catsan) <div> 0 </div>
+        ΜΟΝΟΚΟΜΜΑΤΑ(τσουβάλια, κλουβιά, catsan) <%   out.println(x);%>
         ΔΕΜΑΤΑ(κουτιά)   <input  type="number" id="labelsCount" name="packagesCount">
         ΣΥΝΟΛΟ ΕΤΙΚΕΤΩΝ   <input  type="number" id="labelsCount" name="labelsCount">
         <br>
