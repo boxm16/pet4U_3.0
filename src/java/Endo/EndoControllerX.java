@@ -565,6 +565,6 @@ public class EndoControllerX {
             modelMap.addAttribute("buttonType", "update");
         }
 
-        return "editEndoPackaging";
+        return "endo/editEndoPackaging";
     }
 }
