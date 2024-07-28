@@ -81,11 +81,11 @@
                         EndoPackaging endoPackaging = allEndoPackaging.get(item.getCode());
                         if (endoPackaging == null) {
                             out.println("<td>");
-                            out.println("<a href='editEndoPackaging.htm?code=" + item.getCode() + "' target='_blank'>0/0</a>");
+                            out.println("<a href='goForEditEndoPackaging.htm?code=" + item.getCode() + "' target='_blank'>0/0</a>");
                             out.println("</td>");
                         } else {
                             out.println("<td>");
-                            out.println("<a href='editEndoPackaging.htm?code=" + item.getCode() + "' target='_blank'>" + endoPackaging.getItem() + "/" + endoPackaging.getLabel() + "</a>");
+                            out.println("<a href='goForEditEndoPackaging.htm?code=" + item.getCode() + "' target='_blank'>" + endoPackaging.getItem() + "/" + endoPackaging.getLabel() + "</a>");
                             out.println("</td>");
                         }
                         out.println("</tr>");

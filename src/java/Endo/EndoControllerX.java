@@ -549,20 +549,20 @@ public class EndoControllerX {
         return "endo/endoOrdersPreliminaryCheck";
     }
 
-    @RequestMapping(value = "editEndoPackaging", method = RequestMethod.GET)
-    public String editEndoPackaging(@RequestParam(name = "code") String itemCode,
+    @RequestMapping(value = "goForEditEndoPackaging", method = RequestMethod.GET)
+    public String goForEditEndoPackaging(@RequestParam(name = "code") String itemCode,
             ModelMap modelMap) {
 
         EndoDaoX endoDaoX = new EndoDaoX();
         EndoPackaging endoPackaging = endoDaoX.getEndoPackaging(itemCode);
         if (endoPackaging == null) {
-            endoPackaging=new EndoPackaging();
+            endoPackaging = new EndoPackaging();
             endoPackaging.setItemCode(itemCode);
             modelMap.addAttribute("endoPackaging", endoPackaging);
-            modelMap.addAttribute("buttonType", "insert");
+            modelMap.addAttribute("saveType", "insertEndoPackaging.htm");
         } else {
             modelMap.addAttribute("endoPackaging", endoPackaging);
-            modelMap.addAttribute("buttonType", "update");
+            modelMap.addAttribute("saveType", "editEndoPackaging.htm");
         }
 
         return "endo/editEndoPackaging";
