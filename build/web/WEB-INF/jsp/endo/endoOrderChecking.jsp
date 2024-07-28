@@ -38,8 +38,6 @@
                 top: 0px;
             }
             input[type="number"] {
-                font-size: 30px;
-                font-weight: bold;
                 width: 2.5em;
             }
 
