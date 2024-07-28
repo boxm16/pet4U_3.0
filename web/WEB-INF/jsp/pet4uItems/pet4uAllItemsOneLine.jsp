@@ -81,7 +81,7 @@
                         out.println(item.getQuantity());
                         out.println("</td>");
 
-                        EndoPackaging endoPackaging = allEndoPackaging.get(item.getCode());
+                 
                         if (endoPackaging == null) {
                             out.println("<td>");
                             out.println("<a href='goForEditEndoPackaging.htm?code=" + item.getCode() + "' target='_blank'>0/0</a>");
