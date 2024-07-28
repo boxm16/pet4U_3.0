@@ -7,7 +7,7 @@
         <style>
             input {
                 font-size: 40px;
-                width: 50em;
+                width: 100px;
             }
         </style>
     </head>
