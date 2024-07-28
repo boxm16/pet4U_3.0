@@ -117,13 +117,15 @@
 
                     for (Map.Entry<String, Item> invoicedItemsEntry : invoicedItems.entrySet()) {
                         Item invoicedItem = invoicedItemsEntry.getValue();
+                       
                         String description = invoicedItem.getDescription();
+                         out.println(description);
                         if (description.contains("KG")
                                 || description.contains("Kg")
                                 || description.contains("kg")) {
                             String kilogramms = description.replaceAll("[^0-9]", " ");
                             int kgs = 0;
-                              out.println(kgs);
+                             
                             try {
                                 
                                 kgs = Integer.valueOf(kilogramms);
