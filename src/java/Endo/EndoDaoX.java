@@ -1160,8 +1160,8 @@ public class EndoDaoX {
             insertStatement.setInt(2, endoPackaging.getItem());
             insertStatement.setInt(3, endoPackaging.getLabel());
             insertStatement.executeUpdate();
+            System.out.println(insertStatement);
             insertStatement.close();
-
             connection.close();
 
         } catch (SQLException ex) {
@@ -1183,7 +1183,7 @@ public class EndoDaoX {
             updateStatement.setInt(1, endoPackaging.getItem());
             updateStatement.setInt(2, endoPackaging.getLabel());
             updateStatement.setString(3, endoPackaging.getItemCode());
-            updateStatement.executeQuery();
+            updateStatement.executeUpdate();
             updateStatement.close();
 
             connection.close();
