@@ -5,11 +5,11 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Endo Packaging</title>
         <style>
-            input [type="text"]{
+            input [type=text]{
                 font-size: 40px;
                 width: 500px;
             }
-            input [type="number"]{
+            input [type=number]{
                 font-size: 40px;
                 width: 100px;
             }
