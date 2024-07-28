@@ -55,7 +55,10 @@
                         Item item = entrySet.getValue();
 
                         String rowColor = "inherited";
-
+                        EndoPackaging endoPackaging = allEndoPackaging.get(item.getCode());
+                        if (endoPackaging != null) {
+                            rowColor="#C2F2D7";
+                        }
                         out.println("<tr style='background-color:" + rowColor + "'>");
 
                         out.println("<td>");

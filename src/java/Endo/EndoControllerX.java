@@ -578,7 +578,7 @@ public class EndoControllerX {
             @RequestParam(name = "item") String item,
             @RequestParam(name = "label") String label,
             ModelMap model) {
-            System.out.println(itemCode);
+
 
         /*   
         String userName = (String) session.getAttribute("userName");
@@ -618,12 +618,12 @@ public class EndoControllerX {
     }
 
     @RequestMapping(value = "editEndoPackaging")
-    public String editEndoPackaging(HttpSession session, 
+    public String editEndoPackaging(HttpSession session,
             @RequestParam(name = "itemCode") String itemCode,
             @RequestParam(name = "item") String item,
             @RequestParam(name = "label") String label,
             ModelMap model) {
-        
+
 
         /*   
         String userName = (String) session.getAttribute("userName");
