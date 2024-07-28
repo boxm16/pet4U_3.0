@@ -147,11 +147,11 @@
             </tbody>
         </table>
         <hr>
-     
-        Τσουβάλια
-        Packages Count   <input  type="number" id="labelsCount" name="packagesCount">
-        Total Count   <input  type="number" id="labelsCount" name="labelsCount">
 
+        ΜΟΝΟΚΟΜΜΑΤΑ(τσουβαλια, κλουβια, catsan) <br>
+        ΔΕΜΑΤΑ   <input  type="number" id="labelsCount" name="packagesCount"><br>
+        Total Count   <input  type="number" id="labelsCount" name="labelsCount">
+        <br>
         <button style='font-size: 20px; width:120px;' class="btn btn-warning" onclick="ajax(0)"> PRINT LABELS</button>
 
 
