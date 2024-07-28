@@ -7,11 +7,11 @@
         <style>
             input {
                 font-size: 40px;
-                width: 500px;
+                width: 100px;
             }
             input #code{
                 font-size: 40px;
-                width: 100px;
+                width: 500px;
             }
 
         </style>
