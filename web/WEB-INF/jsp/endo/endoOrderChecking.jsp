@@ -3,6 +3,7 @@
     Created on : Jun 25, 2023, 6:30:28 PM
     Author     : Michail Sitmalidis
 --%>
+<%@page import="Endo.EndoPackaging"%>
 <%@page import="BasicModel.Item"%>
 <%@page import="Endo.EndoApostolis"%>
 <%@page import="Endo.EndoOrderItem"%>
@@ -43,7 +44,7 @@
                 font-weight: bold;
                 background: lightgreen;
             }
-             #labelsCount    {
+            #labelsCount    {
                 width: 3.5em;
                 font-size: 40px;
                 font-weight: bold;
@@ -79,33 +80,20 @@
 
                     EndoOrder endoOrder = (EndoOrder) request.getAttribute("endoOrder");
                     LinkedHashMap<String, EndoOrderItem> orderedItems = endoOrder.getOrderedItems();
+                    LinkedHashMap<String, EndoPackaging> allEndoPackaging = (LinkedHashMap) request.getAttribute("allEndoPackaging");
                     for (Map.Entry<String, EndoOrderItem> orderedItemEntry : orderedItems.entrySet()) {
                         EndoOrderItem orderedItem = orderedItemEntry.getValue();
                         Item invoicedItem = invoicedItems.remove(orderedItemEntry.getKey());
 
                         String description = invoicedItem.getDescription();
-                        String rowColor = "";
-                        if (description.contains("KG")
-                                || description.contains("Kg")
-                                || description.contains("kg")) {
-                            String kilogramms = description.replaceAll("[^0-9\\.\\,]", "");
-                           
-                            int kgs = 0;
-
-                            try {
-
-                                kgs = Integer.valueOf(kilogramms);
-
-                            } catch (NumberFormatException e) {
-
-                            }
-                            if (kgs >= 4) {
-                               rowColor = "#C2F2D7";
-                                y++;
-                            }
+                        String rowColor = "inherited";
+                        EndoPackaging endoPackaging = allEndoPackaging.get(invoicedItem.getCode());
+                        if (endoPackaging != null) {
+                            rowColor = "#C2F2D7";
+                            y++;
                         }
 
-                        out.println("<tr style='background-color:"+rowColor+"'>");
+                        out.println("<tr style='background-color:" + rowColor + "'>");
                         out.println("<td>");
                         out.println(x);
                         out.println("</td>");

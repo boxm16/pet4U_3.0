@@ -362,7 +362,7 @@ public class EndoControllerX {
         EndoApostolis endoApostolis = endoDaoX.getEndoApostolisVaribobis(outgoingEndoId);
 
         LinkedHashMap<String, EndoPackaging> endoPackaging = endoDaoX.getAllEndoPackaging();
-        System.out.println("EndoPackaging Size: " + endoPackaging.size());
+       
         modelMap.addAttribute("endoOrder", endoOrder);
         modelMap.addAttribute("endoApostolis", endoApostolis);
         modelMap.addAttribute("endoPackaging", endoPackaging);
