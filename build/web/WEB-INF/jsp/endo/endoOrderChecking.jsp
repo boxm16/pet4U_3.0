@@ -121,7 +121,7 @@
                         if (description.contains("KG")
                                 || description.contains("Kg")
                                 || description.contains("kg")) {
-                            String kilogramms = description.replaceAll("[^0-9]+", " ");
+                            String kilogramms = description.replaceAll("[^0-9]", " ");
                             int kgs = 0;
                             try {
                                 kgs = Integer.valueOf(kilogramms);
