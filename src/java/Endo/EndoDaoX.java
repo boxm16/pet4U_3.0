@@ -1115,4 +1115,38 @@ public class EndoDaoX {
         return allEndoPackaging;
     }
 
+    EndoPackaging getEndoPackaging(String itemCode) {
+        EndoPackaging endoPackaging = null;
+        String query = "SELECT * FROM endo_packaging WHERE item_code='" + itemCode + "';";
+
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+
+            ResultSet resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+
+                int item = resultSet.getInt("item");
+                int label = resultSet.getInt("label");
+
+                endoPackaging = new EndoPackaging();
+
+                endoPackaging.setId(id);
+                endoPackaging.setItemCode(itemCode);
+                endoPackaging.setItem(item);
+                endoPackaging.setLabel(label);
+
+            }
+
+            resultSet.close();
+            statement.close();
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EndoDaoX.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return endoPackaging;
+    }
+
 }
