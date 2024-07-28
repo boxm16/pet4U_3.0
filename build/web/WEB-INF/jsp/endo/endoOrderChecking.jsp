@@ -77,6 +77,26 @@
                         EndoOrderItem orderedItem = orderedItemEntry.getValue();
                         Item invoicedItem = invoicedItems.remove(orderedItemEntry.getKey());
 
+                        String description = invoicedItem.getDescription();
+
+                        if (description.contains("KG")
+                                || description.contains("Kg")
+                                || description.contains("kg")) {
+                            String kilogramms = description.replaceAll("[^0-9]", " ");
+                            int kgs = 0;
+
+                            try {
+
+                                kgs = Integer.valueOf(kilogramms);
+
+                            } catch (NumberFormatException e) {
+
+                            }
+                            if (kgs >= 4) {
+                                y++;
+                            }
+                        }
+
                         out.println("<tr>");
                         out.println("<td>");
                         out.println(x);
@@ -117,19 +137,19 @@
 
                     for (Map.Entry<String, Item> invoicedItemsEntry : invoicedItems.entrySet()) {
                         Item invoicedItem = invoicedItemsEntry.getValue();
-                       
+
                         String description = invoicedItem.getDescription();
-                         out.println(description);
+
                         if (description.contains("KG")
                                 || description.contains("Kg")
                                 || description.contains("kg")) {
                             String kilogramms = description.replaceAll("[^0-9]", " ");
                             int kgs = 0;
-                             
+
                             try {
-                                
+
                                 kgs = Integer.valueOf(kilogramms);
-                              
+
                             } catch (NumberFormatException e) {
 
                             }
