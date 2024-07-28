@@ -21,13 +21,10 @@
 
         <form action="${saveType}" method="POST" >
             <h2><table>
+
                     <tr>
                         <td>Item Code</td>
-                        <td>${endoPackaging.itemCode}</td>
-                    </tr>
-                    <tr>
-
-                        <td>  <input hidden type="number" name="itemCode" value="${endoPackaging.itemCode}"></td>
+                        <td>  <input  readonly type="number" name="itemCode" value="${endoPackaging.itemCode}"></td>
                     </tr>
 
                     <tr>

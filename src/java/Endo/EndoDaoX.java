@@ -1159,7 +1159,7 @@ public class EndoDaoX {
             insertStatement.setString(1, endoPackaging.getItemCode());
             insertStatement.setInt(2, endoPackaging.getItem());
             insertStatement.setInt(3, endoPackaging.getLabel());
-             System.out.println(insertStatement);
+         
             insertStatement.executeUpdate();
            
             insertStatement.close();
