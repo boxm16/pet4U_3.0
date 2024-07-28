@@ -24,7 +24,7 @@
 
                     <tr>
                         <td>Item Code</td>
-                        <td>  <input  readonly type="number" name="itemCode" value="${endoPackaging.itemCode}"></td>
+                        <td>  <input type="text" name="itemCode" value="${endoPackaging.itemCode}">  </td> 
                     </tr>
 
                     <tr>
