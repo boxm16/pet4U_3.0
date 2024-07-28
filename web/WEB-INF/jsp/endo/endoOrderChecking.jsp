@@ -87,10 +87,12 @@
 
                         String description = invoicedItem.getDescription();
                         String rowColor = "inherited";
-                        EndoPackaging endoPackaging = allEndoPackaging.get(invoicedItem.getCode());
-                        if (endoPackaging != null) {
-                            rowColor = "#C2F2D7";
-                            y++;
+                        if (invoicedItem != null) {
+                            EndoPackaging endoPackaging = allEndoPackaging.get(invoicedItem.getCode());
+                            if (endoPackaging != null) {
+                                rowColor = "#C2F2D7";
+                                y++;
+                            }
                         }
 
                         out.println("<tr style='background-color:" + rowColor + "'>");
