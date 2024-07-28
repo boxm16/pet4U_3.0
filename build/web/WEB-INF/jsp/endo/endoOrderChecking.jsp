@@ -124,7 +124,9 @@
                             String kilogramms = description.replaceAll("[^0-9]", " ");
                             int kgs = 0;
                             try {
+                                
                                 kgs = Integer.valueOf(kilogramms);
+                                out.println(kgs);
                             } catch (NumberFormatException e) {
 
                             }
