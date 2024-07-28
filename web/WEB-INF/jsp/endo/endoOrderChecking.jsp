@@ -37,8 +37,15 @@
                 position: sticky;
                 top: 0px;
             }
-            #packagesCount {
+            #packagesCount  {
                 width: 3.5em;
+                font-size: 30px;
+                font-weight: bold;
+            }
+            #totalCount {
+                width: 3.5em;
+                font-size: 30px;
+                font-weight: bold;
             }
 
         </style>
