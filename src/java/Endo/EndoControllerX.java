@@ -573,7 +573,7 @@ public class EndoControllerX {
     }
 
     @RequestMapping(value = "insertEndoPackaging")
-    public String insertEndoPackaging(HttpSession session, @RequestParam(name = "code") String code,
+    public String insertEndoPackaging(HttpSession session,
             @RequestParam(name = "itemCode") String itemCode,
             @RequestParam(name = "item") String item,
             @RequestParam(name = "label") String label,
@@ -617,7 +617,7 @@ public class EndoControllerX {
     }
 
     @RequestMapping(value = "editEndoPackaging")
-    public String editEndoPackaging(HttpSession session, @RequestParam(name = "code") String code,
+    public String editEndoPackaging(HttpSession session, 
             @RequestParam(name = "itemCode") String itemCode,
             @RequestParam(name = "item") String item,
             @RequestParam(name = "label") String label,
