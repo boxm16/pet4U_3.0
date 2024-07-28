@@ -6,7 +6,6 @@
 package Endo;
 
 import BasicModel.Item;
-import Notes.NotesDao;
 import Service.DatabaseConnectionFactory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -74,7 +73,7 @@ public class EndoDaoX {
             connection.close();
 
         } catch (SQLException ex) {
-            Logger.getLogger(EndoDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EndoDaoX.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return allEndoBinders;
@@ -122,7 +121,7 @@ public class EndoDaoX {
             connection.close();
 
         } catch (SQLException ex) {
-            Logger.getLogger(EndoDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EndoDaoX.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return endoInvoices;
@@ -168,7 +167,7 @@ public class EndoDaoX {
             connection.close();
 
         } catch (SQLException ex) {
-            Logger.getLogger(EndoDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EndoDaoX.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return endoInvoices;
@@ -206,7 +205,7 @@ public class EndoDaoX {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(EndoDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EndoDaoX.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         LinkedHashMap<String, EndoApostolis> endosApostolis = proEndoBinder.getEndoApostoliss();
@@ -244,7 +243,7 @@ public class EndoDaoX {
             connection.close();
 
         } catch (SQLException ex) {
-            Logger.getLogger(EndoDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EndoDaoX.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return proEndoBinder;
@@ -342,8 +341,7 @@ public class EndoDaoX {
             connection.close();
 
         } catch (SQLException ex) {
-            Logger.getLogger(EndoDao.class
-                    .getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EndoDaoX.class.getName()).log(Level.SEVERE, null, ex);
             return ex.getMessage();
         }
         return "Endos binding  EXECUTED SUCCESSFULLY.";
@@ -400,8 +398,7 @@ public class EndoDaoX {
             connection.close();
             return "";
         } catch (SQLException ex) {
-            Logger.getLogger(EndoDaoX.class
-                    .getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EndoDaoX.class.getName()).log(Level.SEVERE, null, ex);
 
             return ex.getMessage();
         }
@@ -432,8 +429,7 @@ public class EndoDaoX {
             connection.close();
 
         } catch (SQLException ex) {
-            Logger.getLogger(EndoDao.class
-                    .getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EndoDaoX.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return endoOrders;
@@ -511,8 +507,7 @@ public class EndoDaoX {
             connection.close();
 
         } catch (SQLException ex) {
-            Logger.getLogger(EndoDao.class
-                    .getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EndoDaoX.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return endoOrder;
@@ -555,8 +550,7 @@ public class EndoDaoX {
             connection.close();
 
         } catch (SQLException ex) {
-            Logger.getLogger(EndoDao.class
-                    .getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EndoDaoX.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return endoInvoices;
@@ -622,8 +616,7 @@ public class EndoDaoX {
             connection.close();
 
         } catch (SQLException ex) {
-            Logger.getLogger(EndoDao.class
-                    .getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EndoDaoX.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return endoApostolis;
@@ -692,8 +685,7 @@ public class EndoDaoX {
             connection.close();
 
         } catch (SQLException ex) {
-            Logger.getLogger(EndoDao.class
-                    .getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EndoDaoX.class.getName()).log(Level.SEVERE, null, ex);
             return ex.getMessage();
         }
         return "Endos binding  EXECUTED SUCCESSFULLY.";
@@ -722,7 +714,7 @@ public class EndoDaoX {
             connection.close();
 
         } catch (SQLException ex) {
-            Logger.getLogger(EndoDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EndoDaoX.class.getName()).log(Level.SEVERE, null, ex);
         }
         return allBindedOrders;
     }
@@ -748,7 +740,7 @@ public class EndoDaoX {
             connection.close();
 
         } catch (SQLException ex) {
-            Logger.getLogger(EndoDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EndoDaoX.class.getName()).log(Level.SEVERE, null, ex);
         }
         return orderId;
     }
@@ -768,8 +760,7 @@ public class EndoDaoX {
             connection.close();
 
         } catch (SQLException ex) {
-            Logger.getLogger(EndoDao.class
-                    .getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EndoDaoX.class.getName()).log(Level.SEVERE, null, ex);
             return ex.getMessage();
         }
         return "Endos binding  EXECUTED SUCCESSFULLY.";
@@ -815,8 +806,7 @@ public class EndoDaoX {
             connection.close();
             return "";
         } catch (SQLException ex) {
-            Logger.getLogger(EndoDaoX.class
-                    .getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EndoDaoX.class.getName()).log(Level.SEVERE, null, ex);
 
             return ex.getMessage();
         }
@@ -841,7 +831,7 @@ public class EndoDaoX {
             connection.close();
 
         } catch (SQLException ex) {
-            Logger.getLogger(EndoDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EndoDaoX.class.getName()).log(Level.SEVERE, null, ex);
         }
         return true;
     }
@@ -865,7 +855,7 @@ public class EndoDaoX {
             connection.close();
 
         } catch (SQLException ex) {
-            Logger.getLogger(EndoDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EndoDaoX.class.getName()).log(Level.SEVERE, null, ex);
         }
         return allLockedOutgoingDeltiaApostolisIds;
     }
@@ -935,8 +925,7 @@ public class EndoDaoX {
             statement.close();
             connection.close();
         } catch (SQLException ex) {
-            Logger.getLogger(EndoDao.class
-                    .getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EndoDaoX.class.getName()).log(Level.SEVERE, null, ex);
         }
         return endoApostoliss;
     }
@@ -989,8 +978,7 @@ public class EndoDaoX {
             statement.close();
             connection.close();
         } catch (SQLException ex) {
-            Logger.getLogger(EndoDao.class
-                    .getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EndoDaoX.class.getName()).log(Level.SEVERE, null, ex);
         }
         return endoApostoliss;
     }
@@ -1037,7 +1025,7 @@ public class EndoDaoX {
             connection.close();
 
         } catch (SQLException ex) {
-            Logger.getLogger(NotesDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EndoDaoX.class.getName()).log(Level.SEVERE, null, ex);
         }
         return "Order with id: " + outgoingEndoId + "hase been deleted.";
     }
@@ -1083,11 +1071,48 @@ public class EndoDaoX {
             connection.close();
 
         } catch (SQLException ex) {
-            Logger.getLogger(EndoDao.class
-                    .getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EndoDaoX.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return endoOrders;
+    }
+
+    LinkedHashMap<String, EndoPackaging> getAllEndoPackaging() {
+
+        LinkedHashMap<String, EndoPackaging> allEndoPackaging = new LinkedHashMap();
+
+        String query = "SELECT * FROM endo_packaging;";
+
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+
+            ResultSet resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String itemCode = resultSet.getString("item_code");
+                int item = resultSet.getInt("item");
+                int label = resultSet.getInt("label");
+
+                EndoPackaging endoPackaging = new EndoPackaging();
+
+                endoPackaging.setId(id);
+                endoPackaging.setItemCode(itemCode);
+                endoPackaging.setItem(item);
+                endoPackaging.setLabel(label);
+                allEndoPackaging.put(itemCode, endoPackaging);
+
+            }
+
+            resultSet.close();
+            statement.close();
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EndoDaoX.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return allEndoPackaging;
     }
 
 }
