@@ -25,6 +25,10 @@
                         <td>Item Code</td>
                         <td>${endoPackaging.itemCode}</td>
                     </tr>
+                    <tr>
+
+                        <td>  <input hidden type="number" name="item" value="${endoPackaging.itemCode}"></td>
+                    </tr>
 
                     <tr>
                         <td>Items</td>

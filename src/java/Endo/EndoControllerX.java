@@ -27,19 +27,19 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 @Controller
 public class EndoControllerX {
-
+    
     private EndoBinder proEndoBinder;
-
+    
     @RequestMapping(value = "endoParalaves", method = RequestMethod.GET)
     public String endoParalaves(ModelMap modelMap) {
         EndoDaoX endoDaoX = new EndoDaoX();
         LinkedHashMap<String, EndoBinder> allEndoBinders = endoDaoX.getAllEndoBinders();
-
+        
         LinkedHashMap<String, EndoApostolis> endoApostoliss = endoDaoX.getLastIncomingEndoApostoliss(10);
         LinkedHashMap<String, EndoParalavis> endoParalaviss = endoDaoX.getLastEndoParalaviss(10);
-
+        
         Iterator<Entry<String, EndoParalavis>> endoParalavissIterator = endoParalaviss.entrySet().iterator();
-
+        
         while (endoParalavissIterator.hasNext()) {
             Entry<String, EndoParalavis> endoParalavisEntry = endoParalavissIterator.next();
             String endoParalavisId = endoParalavisEntry.getKey();
@@ -51,7 +51,7 @@ public class EndoControllerX {
                     || endoParalavisId.equals("381889")) {
                 endoParalavissIterator.remove();
             }
-
+            
             if (allEndoBinders.containsKey(endoParalavisId)) {
                 endoParalavissIterator.remove();
                 EndoBinder endoBinder = allEndoBinders.get(endoParalavisId);
@@ -63,22 +63,22 @@ public class EndoControllerX {
                 }
             }
         }
-
+        
         modelMap.addAttribute("incomingEndos", endoApostoliss);
         modelMap.addAttribute("receivingEndos", endoParalaviss);
 
         //-----------------------------------------
         if (endoParalaviss.size() == 1) {
             this.proEndoBinder = new EndoBinder();
-
+            
             Map.Entry<String, EndoParalavis> entry = endoParalaviss.entrySet().stream().findFirst().get();
-
+            
             EndoParalavis endoParalavis = entry.getValue();
             this.proEndoBinder.setEndoParalavis(endoParalavis);
-
+            
             for (Map.Entry<String, EndoApostolis> endoApostolissEntry : endoApostoliss.entrySet()) {
                 if (endoParalavis.getThreeLastDigitsArrayList().contains(endoApostolissEntry.getValue().getShortNumber())) {
-
+                    
                     if (endoParalavis.getDateString().equals(endoApostolissEntry.getValue().getDateString())) {
                         this.proEndoBinder.addEndoApostolis(endoApostolissEntry.getValue().getId(), endoApostolissEntry.getValue());
                     }
@@ -88,40 +88,40 @@ public class EndoControllerX {
             this.proEndoBinder.checkTotals();
             modelMap.addAttribute("proEndoBinder", this.proEndoBinder);
         }
-
+        
         return "endo/endoParalaves";
     }
-
+    
     @RequestMapping(value = "saveEndoBinder", method = RequestMethod.GET)
     public String saveEndoBinder(ModelMap modelMap) {
         EndoDaoX endoDaoX = new EndoDaoX();
         String result = endoDaoX.saveBinder(this.proEndoBinder);
         return "redirect:endoParalaves.htm";
     }
-
+    
     @RequestMapping(value = "checkSuggestedBinder", method = RequestMethod.GET)
     public String checkSuggestedBinder(ModelMap modelMap) {
-
+        
         Set<String> keySet = this.proEndoBinder.getEndoApostoliss().keySet();
         ArrayList<String> endoIdsArray = new ArrayList<String>(keySet);
-
+        
         LinkedHashMap<String, EndoApostolis> endoApostoliss = this.proEndoBinder.getEndoApostoliss();
         ArrayList<String> receivingEndoIdsArray = new ArrayList(endoApostoliss.keySet());
-
+        
         EndoDao endoDao = new EndoDao();
         LinkedHashMap<String, DeliveryItem> pet4UItemsRowByRow = endoDao.getPet4UItemsRowByRow();
         LinkedHashMap<String, DeliveryItem> sentItems = endoDao.getSentItems(endoIdsArray, pet4UItemsRowByRow);
         LinkedHashMap<String, DeliveryItem> deliveredIetms = endoDao.getReceivedItems(receivingEndoIdsArray, pet4UItemsRowByRow);
-
+        
         DeliveryInvoice deliveryInvoice = new DeliveryInvoice();
         for (Map.Entry<String, DeliveryItem> deliveredIetmsEntry : deliveredIetms.entrySet()) {
             DeliveryItem deliveredItem = deliveredIetmsEntry.getValue();
-
+            
             String altercode = deliveredIetmsEntry.getKey();
-
+            
             DeliveryItem sentItem = sentItems.remove(altercode);
             Item itemWithDescription = pet4UItemsRowByRow.get(altercode);
-
+            
             if (sentItem == null) {
                 System.out.println("SENT ITEM IS NULL :" + altercode);
                 if (itemWithDescription == null) {
@@ -141,77 +141,77 @@ public class EndoControllerX {
                 deliveredIetms.put(altercode, deliveredItem);
             }
         }
-
+        
         if (sentItems.size()
                 > 0) {
-
+            
             System.out.println("LEFT OVERS: " + sentItems.size());
             for (Map.Entry<String, DeliveryItem> sentItemsEntry : sentItems.entrySet()) {
                 System.out.println("LEFTO OVER ITEM:" + sentItemsEntry.getKey());
                 String key = sentItemsEntry.getKey();
                 DeliveryItem di = sentItems.get(key);
-
+                
                 Item itemWithDescription = pet4UItemsRowByRow.get(key);
                 if (itemWithDescription == null) {
                     di.setDescription("NO DATA FOR THIS CODE");
                 } else {
                     di.setDescription(itemWithDescription.getDescription());
                 }
-
+                
                 di.setDeliveredQuantity("0");
                 deliveredIetms.put(key, di);
             }
-
+            
         }
-
+        
         deliveryInvoice.setItems(deliveredIetms);
-
+        
         modelMap.addAttribute(
                 "deliveryInvoice", deliveryInvoice);
-
+        
         return "endo/endoCheckingB";
     }
-
+    
     @RequestMapping(value = "showDeltiaApostolisOfItem_B", method = RequestMethod.GET)
     public String showDeltiaApostolisOfItem_B(@RequestParam(name = "itemCode") String itemCode, ModelMap modelMap) {
-
+        
         Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
         LinkedHashMap<String, Item> pet4UItemsRowByRow = pet4uItemsDao.getPet4UItemsRowByRow();
-
+        
         String sentItemDescription = pet4UItemsRowByRow.get(itemCode).getDescription();
-
+        
         EndoDao endoDao = new EndoDao();
         Set<String> keySet = this.proEndoBinder.getEndoApostoliss().keySet();
         ArrayList endoIdsArray = new ArrayList(keySet);
         ArrayList<Endo> endos = endoDao.getEndosOfItem(itemCode, endoIdsArray);
-
+        
         modelMap.addAttribute("itemCode", itemCode);
         modelMap.addAttribute("sentItem", sentItemDescription);
         modelMap.addAttribute("endos", endos);
         return "endo/deltiaApostolisDisplay";
     }
-
+    
     @RequestMapping(value = "seeLastEndoBinders", method = RequestMethod.GET)
     public String seeLastEndoBinders(ModelMap modelMap) {
         EndoDao endoDao = new EndoDao();
-
+        
         LinkedHashMap<String, Endo> incomingEndos = endoDao.getLastIncomingEndos(10);
         LinkedHashMap<String, Endo> receivingEndos = endoDao.getLastReceivingEndos(10);
         LinkedHashMap<String, BindedEndos> bindedEndos = endoDao.getAllBindedEndos();
-
+        
         LinkedHashMap<String, BindedEndos> filteredBinder = new LinkedHashMap();
-
+        
         for (Map.Entry<String, BindedEndos> bindedEndosEndtry : bindedEndos.entrySet()) {
             String bindedEndosId = bindedEndosEndtry.getKey();
             BindedEndos bindedEndoWrapper = bindedEndosEndtry.getValue();
-
+            
             if (receivingEndos.containsKey(bindedEndosId)) {
-
+                
                 bindedEndoWrapper.setBindingReceivingEndoId(bindedEndosId);
                 bindedEndoWrapper.setBindingReceivingEndo(receivingEndos.remove(bindedEndosId));
-
+                
                 LinkedHashMap<String, Endo> bindedSendingEndos = bindedEndoWrapper.getBindedSendingEndos();
-
+                
                 for (Map.Entry<String, Endo> bindedSendingEndosEntry : bindedSendingEndos.entrySet()) {
                     String sendingEndoId = bindedSendingEndosEntry.getKey();
                     if (incomingEndos.containsKey(sendingEndoId)) {
@@ -220,9 +220,9 @@ public class EndoControllerX {
                 }
                 filteredBinder.put(bindedEndosId, bindedEndoWrapper);
             }
-
+            
         }
-
+        
         modelMap.addAttribute("bindedEndos", filteredBinder);
         return "endo/endoBinders";
     }
@@ -230,14 +230,14 @@ public class EndoControllerX {
     //---------------------------------------
     @RequestMapping(value = "goForEndoOrdersUpload")
     public String goForEndoOrdersUpload(ModelMap model) {
-
+        
         LocalDate date = LocalDate.now();
         model.addAttribute("date", date);
         model.addAttribute("uploadTitle", "Upload Endo Orders For Today");
         model.addAttribute("uploadTarget", "uploadEndoOrders.htm");
         return "endo/endoOrdersUpload";
     }
-
+    
     @RequestMapping(value = "uploadEndoOrders", method = RequestMethod.POST)
     public String uploadEndoOrders(@RequestParam CommonsMultipartFile file, @RequestParam String date, ModelMap model) {
 
@@ -246,7 +246,7 @@ public class EndoControllerX {
         System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
         System.out.println("Endo Orders Upload: Starting .............. ");
         System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-
+        
         String filename = "endoOrders.xlsx";
         Basement basement = new Basement();
         String filePath = basement.getBasementDirectory() + "/Pet4U_Uploads/" + filename;
@@ -255,7 +255,7 @@ public class EndoControllerX {
             model.addAttribute("errorMessage", "No file has been selected");
             return "endo/endoOrdersUpload";
         }
-
+        
         if (date.isEmpty()) {
             model.addAttribute("uploadStatus", "Upload could not been completed");
             model.addAttribute("errorMessage", "No date has been selected");
@@ -263,31 +263,31 @@ public class EndoControllerX {
         }
         try {
             byte barr[] = file.getBytes();
-
+            
             BufferedOutputStream bout = new BufferedOutputStream(
                     new FileOutputStream(filePath));
             bout.write(barr);
             bout.flush();
             bout.close();
-
+            
         } catch (Exception e) {
             System.out.println(e);
             model.addAttribute("uploadStatus", "Upload could not been completed:" + e);
             return "endo/endoOrdersUpload";
         }
-
+        
         EndoOrdersFactory endoOrdersFactory = new EndoOrdersFactory();
         LinkedHashMap<String, EndoOrder> endoOrders = endoOrdersFactory.createEndoOrdersFromUploadedFile(filePath);
         EndoDaoX endoDaoX = new EndoDaoX();
         String result = endoDaoX.insertNewOrdersUpload(date, endoOrders);
-
+        
         System.out.println("Endo Orders Upload DATE:" + date);
         model.addAttribute("uploadTitle", "ENDO ORDERS UPLOAD COMPELTED SUCCESSFULLY");
         model.addAttribute("uploadStatus", result);
-
+        
         return "redirect:endoApostoles.htm";
     }
-
+    
     @RequestMapping(value = "endoApostoles")
     public String endoApostoles(ModelMap model) {
         EndoDaoX endoDaoX = new EndoDaoX();
@@ -295,11 +295,11 @@ public class EndoControllerX {
         String date1 = "2024-02-07";
         LinkedHashMap<String, EndoOrder> endoOrdersTitles = endoDaoX.getEndoOrdersTitles(date);
         LinkedHashMap<String, EndoApostolis> outgoingDeltioApostolisTitles = endoDaoX.getOutgoingDeltioApostolisTitles(date1);
-
+        
         LinkedHashMap<String, String> allBindedOrders = endoDaoX.getAllBindedOrdersTitles();
-
+        
         for (Map.Entry<String, String> allBindedOrdersEntry : allBindedOrders.entrySet()) {
-
+            
             if (endoOrdersTitles.containsKey(allBindedOrdersEntry.getKey())
                     && outgoingDeltioApostolisTitles.containsKey(allBindedOrdersEntry.getValue())) {
                 endoOrdersTitles.remove(allBindedOrdersEntry.getKey());
@@ -307,59 +307,59 @@ public class EndoControllerX {
             } else {
                 if (allBindedOrdersEntry.getKey().contains("NoOrder")) {
                     outgoingDeltioApostolisTitles.remove(allBindedOrdersEntry.getValue());
-
+                    
                 }
             }
         }
-
+        
         model.addAttribute("endoOrdersTitles", endoOrdersTitles);
         model.addAttribute("outgoingDeltioApostolisTitles", outgoingDeltioApostolisTitles);
-
+        
         return "endo/endoApostoles";
     }
-
+    
     @RequestMapping(value = "showEndoOrder")
     public String showEndoOrder(@RequestParam(name = "id") String id, ModelMap model) {
         EndoDaoX endoDaoX = new EndoDaoX();
-
+        
         InventoryDao inventoryDao = new InventoryDao();
         LinkedHashMap<String, Item> pet4UItemsRowByRow = inventoryDao.getpet4UItemsRowByRow();
-
+        
         EndoOrder endoOrder = endoDaoX.getEndoOrder(id, pet4UItemsRowByRow);
-
+        
         model.addAttribute("endoOrder", endoOrder);
-
+        
         return "endo/endoOrderDisplay";
     }
-
+    
     @RequestMapping(value = "showDeltioApostolisVaribobis", method = RequestMethod.GET)
     public String showDeltioApostolisVaribobis(@RequestParam(name = "id") String id, ModelMap modelMap) {
         System.out.println(id);
-
+        
         EndoDaoX endoDaoX = new EndoDaoX();
-
+        
         EndoApostolis endo = endoDaoX.getEndoApostolisVaribobis(id);
-
+        
         modelMap.addAttribute("endo", endo);
         return "endo/deltioApostolisVaribobisDisplay";
     }
-
+    
     @RequestMapping(value = "checkOrderWithEndo", method = RequestMethod.POST)
     public String checkOrderWithEndo(@RequestParam(name = "orderId") String orderId,
             @RequestParam(name = "outgoingEndoId") String outgoingEndoId,
             ModelMap modelMap) {
-
+        
         System.out.println("ORDER ID: " + orderId);
         System.out.println("OUTGOING ENDO ID: " + outgoingEndoId);
-
+        
         InventoryDao inventoryDao = new InventoryDao();
         LinkedHashMap<String, Item> pet4UItemsRowByRow = inventoryDao.getpet4UItemsRowByRow();
-
+        
         EndoDaoX endoDaoX = new EndoDaoX();
-
+        
         EndoOrder endoOrder = endoDaoX.getEndoOrder(orderId, pet4UItemsRowByRow);
         EndoApostolis endoApostolis = endoDaoX.getEndoApostolisVaribobis(outgoingEndoId);
-
+        
         LinkedHashMap<String, EndoPackaging> endoPackaging = endoDaoX.getAllEndoPackaging();
         System.out.println("EndoPackaging Size: " + endoPackaging.size());
         modelMap.addAttribute("endoOrder", endoOrder);
@@ -367,12 +367,12 @@ public class EndoControllerX {
         modelMap.addAttribute("endoPackaging", endoPackaging);
         return "endo/endoOrderChecking";
     }
-
+    
     @RequestMapping(value = "/printLabel", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
     public @ResponseBody
     String printLabel(@RequestParam("labelsCount") String labelsCount) {
         System.out.println(labelsCount);
-
+        
         return "BRAVO";
     }
 //---------------------------------
@@ -384,37 +384,37 @@ public class EndoControllerX {
         System.out.println("BINDING ENDO ORDER WITH ENDO APOSTOLIS");
         System.out.println("ORDER ID: " + orderId);
         System.out.println("OUTGOING ENDO ID: " + outgoingEndoId);
-
+        
         EndoDaoX endoDaoX = new EndoDaoX();
-
+        
         if (orderId.isEmpty()) {
             LocalDateTime timeNow = LocalDateTime.now();
             orderId = "NoOrder:" + timeNow.toString();
         }
         String result = endoDaoX.bindOrderWithEndo(orderId, outgoingEndoId);
-
+        
         return "redirect:endoApostoles.htm";
     }
-
+    
     @RequestMapping(value = "showBindedOrders", method = RequestMethod.GET)
     public String showBindedOrders(ModelMap modelMap) {
-
+        
         EndoDaoX endoDaoX = new EndoDaoX();
         boolean someEndoIsChanged = false;
         LinkedHashMap<String, String> allBindedOrders = endoDaoX.getAllBindedOrdersTitles();
-
+        
         LinkedHashMap<String, EndoApostolis> outgoingDeltioApostolisTitles = endoDaoX.getOutgoingDeltioApostolisTitles("2024-07-03");
-
+        
         ArrayList<String> lockedOutgoingDeltiaApostolis = endoDaoX.getAllLockedOutgoingDeltiaApostolisIds();
-
+        
         ArrayList<String> changedOutgoingDeltiaApostolis = endoDaoX.getAllChangedOutgoingDeltiaApostolisIds(lockedOutgoingDeltiaApostolis);
-
+        
         ArrayList<EndoApostolis> bindedOutgoindDeltioApostolis = new ArrayList();
         for (Map.Entry<String, EndoApostolis> outgoingDeltioApostolisTitlesEntry : outgoingDeltioApostolisTitles.entrySet()) {
             if (lockedOutgoingDeltiaApostolis.contains(outgoingDeltioApostolisTitlesEntry.getKey())) {
                 outgoingDeltioApostolisTitlesEntry.getValue().setIsLocked(true);
             }
-
+            
             if (changedOutgoingDeltiaApostolis.contains(outgoingDeltioApostolisTitlesEntry.getKey())) {
                 outgoingDeltioApostolisTitlesEntry.getValue().setIsChanged(true);
                 someEndoIsChanged = true;
@@ -427,17 +427,17 @@ public class EndoControllerX {
         modelMap.addAttribute("bindedOutgoindDeltioApostolis", bindedOutgoindDeltioApostolis);
         return "endo/bindedEndoOrders";
     }
-
+    
     @RequestMapping(value = "showBindedEndoOrder", method = RequestMethod.GET)
     public String showBindedEndoOrder(@RequestParam(name = "id") String outgoingEndoId,
             ModelMap modelMap) {
-
+        
         EndoDaoX endoDaoX = new EndoDaoX();
         String bindedOrderId = endoDaoX.getBindedOrderIdByEndoApostolis(outgoingEndoId);
-
+        
         System.out.println("ORDER ID: " + bindedOrderId);
         System.out.println("OUTGOING ENDO ID: " + outgoingEndoId);
-
+        
         InventoryDao inventoryDao = new InventoryDao();
         LinkedHashMap<String, Item> pet4UItemsRowByRow = inventoryDao.getpet4UItemsRowByRow();
         EndoApostolis endoApostolis = endoDaoX.getEndoApostolisVaribobis(outgoingEndoId);
@@ -449,7 +449,7 @@ public class EndoControllerX {
         } else {
             endoOrder = endoDaoX.getEndoOrder(bindedOrderId, pet4UItemsRowByRow);
         }
-
+        
         String lockerButton = "<center><a href='lockEndoApostolis.htm?outgoingEndoId=" + outgoingEndoId + "' class='btn btn-danger' style='font-size:30px'>LOCK ENDO APOSTOLIS</a></center>\n";
         if (locked) {
             lockerButton = "";
@@ -457,10 +457,10 @@ public class EndoControllerX {
         modelMap.addAttribute("lockerButton", lockerButton);
         modelMap.addAttribute("endoOrder", endoOrder);
         modelMap.addAttribute("endoApostolis", endoApostolis);
-
+        
         return "endo/bindedEndoOrderDisplay";
     }
-
+    
     @RequestMapping(value = "unbindOrderWithEndo", method = RequestMethod.GET)
     public String unbindOrderWithEndo(@RequestParam(name = "orderId") String orderId,
             @RequestParam(name = "outgoingEndoId") String outgoingEndoId,
@@ -468,36 +468,36 @@ public class EndoControllerX {
         System.out.println("UNBINDING ENDO ORDER WITH ENDO APOSTOLIS");
         System.out.println("ORDER ID: " + orderId);
         System.out.println("OUTGOING ENDO ID: " + outgoingEndoId);
-
+        
         EndoDaoX endoDaoX = new EndoDaoX();
-
+        
         String result = endoDaoX.unbindOrderWithEndo(orderId, outgoingEndoId);
-
+        
         return "redirect:endoApostoles.htm";
     }
-
+    
     @RequestMapping(value = "lockEndoApostolis", method = RequestMethod.GET)
     public String lockEndoApostolis(@RequestParam(name = "outgoingEndoId") String outgoingEndoId,
             ModelMap modelMap) {
         System.out.println("LOCKING ENDO APOSTOLIS");
         System.out.println("OUTGOING ENDO ID: " + outgoingEndoId);
-
+        
         EndoDaoX endoDaoX = new EndoDaoX();
         EndoApostolis endoApostolisVaribobis = endoDaoX.getEndoApostolisVaribobis(outgoingEndoId);
         String result = endoDaoX.copyEndoApostolis(endoApostolisVaribobis);
-
+        
         return "redirect:showBindedOrders.htm";
     }
-
+    
     @RequestMapping(value = "deleteEndoOrder", method = RequestMethod.GET)
     public String deleteEndoOrder(@RequestParam(name = "id") String outgoingEndoId,
             ModelMap modelMap) {
         System.out.println("DELETING ENDO APOSTOLIS");
         System.out.println("OUTGOING ENDO ID: " + outgoingEndoId);
-
+        
         EndoDaoX endoDaoX = new EndoDaoX();
         String result = endoDaoX.deleteEndoApostolisVaribobis(outgoingEndoId);
-
+        
         System.out.println(result);
         return "redirect:endoApostoles.htm";
     }
@@ -505,17 +505,17 @@ public class EndoControllerX {
     //-------------------------------------
     @RequestMapping(value = "endoOrdersPreliminaryCheck", method = RequestMethod.GET)
     public String endoOrdersPreliminaryCheck(ModelMap modelMap) {
-
+        
         EndoDaoX endoDaoX = new EndoDaoX();
         String date = "2024-02-06";
         String date1 = "2024-02-07";
         LinkedHashMap<String, EndoOrder> endoOrdersTitles = endoDaoX.getEndoOrdersTitles(date);
         LinkedHashMap<String, EndoApostolis> outgoingDeltioApostolisTitles = endoDaoX.getOutgoingDeltioApostolisTitles(date1);
-
+        
         LinkedHashMap<String, String> allBindedOrders = endoDaoX.getAllBindedOrdersTitles();
-
+        
         for (Map.Entry<String, String> allBindedOrdersEntry : allBindedOrders.entrySet()) {
-
+            
             if (endoOrdersTitles.containsKey(allBindedOrdersEntry.getKey())
                     && outgoingDeltioApostolisTitles.containsKey(allBindedOrdersEntry.getValue())) {
                 endoOrdersTitles.remove(allBindedOrdersEntry.getKey());
@@ -523,15 +523,15 @@ public class EndoControllerX {
             } else {
                 if (allBindedOrdersEntry.getKey().contains("NoOrder")) {
                     outgoingDeltioApostolisTitles.remove(allBindedOrdersEntry.getValue());
-
+                    
                 }
             }
         }
         NotesDao notesDao = new NotesDao();
         ArrayList<String> allNotForEndos = notesDao.getAllNotForEndoIds();
-
+        
         LinkedHashMap<String, EndoOrder> endoOrders = endoDaoX.getEndoOrders(endoOrdersTitles);
-
+        
         ArrayList<String> notForEndosForTheseOrders = new ArrayList<>();
         for (Map.Entry<String, EndoOrder> endoOrdersEntrySet : endoOrders.entrySet()) {
             EndoOrder endoOrder = endoOrdersEntrySet.getValue();
@@ -539,7 +539,7 @@ public class EndoControllerX {
             for (Map.Entry<String, EndoOrderItem> orderedItemsEntry : orderedItems.entrySet()) {
                 EndoOrderItem orderedItem = orderedItemsEntry.getValue();
                 if (allNotForEndos.contains(orderedItem.getCode())) {
-
+                    
                     String notForEndo = endoOrder.getDestination() + " : " + orderedItem.getCode();
                     notForEndosForTheseOrders.add(notForEndo);
                 }
@@ -548,23 +548,82 @@ public class EndoControllerX {
         modelMap.addAttribute("notForEndosForTheseOrders", notForEndosForTheseOrders);
         return "endo/endoOrdersPreliminaryCheck";
     }
-
+    
     @RequestMapping(value = "goForEditEndoPackaging", method = RequestMethod.GET)
     public String goForEditEndoPackaging(@RequestParam(name = "code") String itemCode,
             ModelMap modelMap) {
-
+        
         EndoDaoX endoDaoX = new EndoDaoX();
         EndoPackaging endoPackaging = endoDaoX.getEndoPackaging(itemCode);
         if (endoPackaging == null) {
             endoPackaging = new EndoPackaging();
             endoPackaging.setItemCode(itemCode);
+            endoPackaging.setItem(1);
+            endoPackaging.setLabel(1);
             modelMap.addAttribute("endoPackaging", endoPackaging);
             modelMap.addAttribute("saveType", "insertEndoPackaging.htm");
         } else {
             modelMap.addAttribute("endoPackaging", endoPackaging);
             modelMap.addAttribute("saveType", "editEndoPackaging.htm");
         }
-
+        
         return "endo/editEndoPackaging";
+    }
+    
+    
+     @RequestMapping(value = "editItemOfInterest")
+    public String editItemOfInterest(HttpSession session, @RequestParam(name = "code") String code,
+            @RequestParam(name = "owner") String owner,
+            @RequestParam(name = "minimalStock") String minimalStock,
+            @RequestParam(name = "weightCoefficient") String weightCoefficient,
+            @RequestParam(name = "orderUnit") String orderUnit,
+            @RequestParam(name = "orderQuantity") String orderQuantity,
+            @RequestParam(name = "camelotMinimalStock") String camelotMinimalStock,
+            @RequestParam(name = "note") String note,
+            ModelMap model) {
+        String userName = (String) session.getAttribute("userName");
+
+        if (userName == null) {
+            model.addAttribute("message", "You are not authorized for this page");
+            return "errorPage";
+        }
+        if (!userName.equals("me")) {
+            model.addAttribute("message", "You are not authorized for this page");
+            return "errorPage";
+        }
+        CamelotItemOfInterest camelotItemOfInterest = new CamelotItemOfInterest();
+        camelotItemOfInterest.setCode(code);
+        camelotItemOfInterest.setOwner(owner);
+        camelotItemOfInterest.setMinimalStock(Integer.parseInt(minimalStock));
+        camelotItemOfInterest.setWeightCoefficient(Integer.parseInt(weightCoefficient));
+        camelotItemOfInterest.setOrderUnit(orderUnit);
+        camelotItemOfInterest.setOrderQuantity(Integer.parseInt(orderQuantity));
+        camelotItemOfInterest.setCamelotMinimalStock(Integer.parseInt(camelotMinimalStock));
+        camelotItemOfInterest.setNote(note);
+        if (minimalStock.isEmpty() || orderQuantity.isEmpty() || camelotMinimalStock.isEmpty()) {
+            model.addAttribute("resultColor", "rose");
+            model.addAttribute("result", "SOMETHING IS MISSING.");
+            model.addAttribute("itemOfInterest", camelotItemOfInterest);
+            return "/camelot/editItem";
+        }
+        if (Integer.parseInt(weightCoefficient) == 0 || Integer.parseInt(weightCoefficient) < 0) {
+            model.addAttribute("resultColor", "rose");
+            model.addAttribute("result", "Bad Coefficient.");
+            model.addAttribute("itemOfInterest", camelotItemOfInterest);
+            return "/camelot/editItem";
+        }
+        ArrayList<String> camelotAltercodes = camelotItemsOfInterestDao.getCamelotAltercodesFromMicrosoftDB();
+        if (!camelotAltercodes.contains(code)) {
+            model.addAttribute("resultColor", "red");
+            model.addAttribute("result", "NO SUCH CODE IN CAMELOT");
+            model.addAttribute("itemOfInterest", camelotItemOfInterest);
+            return "/camelot/editItem";
+        }
+
+        String result = camelotItemsOfInterestDao.editItem(camelotItemOfInterest);
+        model.addAttribute("resultColor", "green");
+        model.addAttribute("result", result);
+        model.addAttribute("itemOfInterest", camelotItemOfInterest);
+         return "endo/editEndoPackaging";
     }
 }
