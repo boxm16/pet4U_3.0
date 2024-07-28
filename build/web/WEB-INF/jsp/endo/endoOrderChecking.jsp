@@ -41,8 +41,9 @@
                 width: 3.5em;
                 font-size: 30px;
                 font-weight: bold;
+                background: green;
             }
-            #totalCount {
+            #labelsCount {
                 width: 3.5em;
                 font-size: 30px;
                 font-weight: bold;
