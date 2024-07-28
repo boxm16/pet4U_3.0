@@ -6,7 +6,8 @@
         <title>Endo Packaging</title>
         <style>
             input {
-                font-size: 30px;
+                font-size: 40px;
+                width: 50em;
             }
         </style>
     </head>
