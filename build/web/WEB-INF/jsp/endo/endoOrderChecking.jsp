@@ -43,6 +43,12 @@
                 font-weight: bold;
                 background: lightgreen;
             }
+             #labelsCount    {
+                width: 3.5em;
+                font-size: 40px;
+                font-weight: bold;
+                background: lightgreen;
+            }
 
 
         </style>
