@@ -5,14 +5,15 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Endo Packaging</title>
         <style>
-            input [type=text]{
+            input {
                 font-size: 40px;
                 width: 500px;
             }
-            input [type=number]{
+            input #code{
                 font-size: 40px;
                 width: 100px;
             }
+
         </style>
     </head>
     <body>
@@ -25,7 +26,7 @@
             <h2><table>
                     <tr>
                         <td>Item Code</td>
-                        <td> <input type="text" readonly name="code" value="${endoPackaging.itemCode}"> </td>
+                        <td> <input type="text" readonly id="code" name="code" value="${endoPackaging.itemCode}"> </td>
                     </tr>
 
                     <tr>
