@@ -7,7 +7,7 @@
         <style>
             input {
                 font-size: 40px;
-                width: 500px;
+                width: 100px;
             }
 
 
@@ -23,7 +23,7 @@
             <h2><table>
                     <tr>
                         <td>Item Code</td>
-                        <td> <input type="text" readonly id="code" name="code" value="${endoPackaging.itemCode}"> </td>
+                        <td>${endoPackaging.itemCode}</td>
                     </tr>
 
                     <tr>
