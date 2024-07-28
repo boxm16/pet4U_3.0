@@ -569,6 +569,51 @@ public class EndoControllerX {
         }
 
         return "endo/editEndoPackaging";
+
+    }
+
+    @RequestMapping(value = "insertEndoPackaging")
+    public String insertEndoPackaging(HttpSession session, @RequestParam(name = "code") String code,
+            @RequestParam(name = "itemCode") String itemCode,
+            @RequestParam(name = "item") String item,
+            @RequestParam(name = "label") String label,
+            ModelMap model) {
+
+        /*   
+        String userName = (String) session.getAttribute("userName");
+        if (userName == null) {
+            model.addAttribute("message", "You are not authorized for this page");
+            return "errorPage";
+        }
+        if (!userName.equals("me")) {
+            model.addAttribute("message", "You are not authorized for this page");
+            return "errorPage";
+        }
+         */
+        EndoPackaging endoPackaging = new EndoPackaging();
+        endoPackaging.setItemCode(itemCode);
+        endoPackaging.setItem(Integer.parseInt(item));
+        endoPackaging.setLabel(Integer.parseInt(label));
+
+        if (item.isEmpty() || label.isEmpty()) {
+            model.addAttribute("resultColor", "rose");
+            model.addAttribute("result", "SOMETHING IS MISSING.");
+            model.addAttribute("endoPackaging", endoPackaging);
+            return "endo/editEndoPackaging";
+        }
+        if (Integer.parseInt(item) <= 0 || Integer.parseInt(label) <= 0) {
+            model.addAttribute("resultColor", "rose");
+            model.addAttribute("result", "Bad Coefficient.");
+            model.addAttribute("itemOfInterest", endoPackaging);
+            return "endo/editEndoPackaging";
+        }
+        EndoDaoX endoDaoX = new EndoDaoX();
+
+        String result = endoDaoX.insertEndoPackaging(endoPackaging);
+        model.addAttribute("resultColor", "green");
+        model.addAttribute("result", result);
+        model.addAttribute("endoPackaging", endoPackaging);
+        return "endo/editEndoPackaging";
     }
 
     @RequestMapping(value = "editEndoPackaging")

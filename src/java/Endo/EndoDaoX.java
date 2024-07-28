@@ -1149,6 +1149,29 @@ public class EndoDaoX {
         return endoPackaging;
     }
 
+    String insertEndoPackaging(EndoPackaging endoPackaging) {
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+        Connection connection = databaseConnectionFactory.getMySQLConnection();
+
+        try {
+            PreparedStatement insertStatement = connection.prepareStatement("INSERT INTO endo_packaging (item_code,  item, label) VALUES (?,?,?");
+
+            insertStatement.setString(1, endoPackaging.getItemCode());
+            insertStatement.setInt(2, endoPackaging.getItem());
+            insertStatement.setInt(3, endoPackaging.getLabel());
+            insertStatement.close();
+
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EndoDaoX.class.getName()).log(Level.SEVERE, null, ex);
+
+            return ex.getMessage();
+        }
+
+        return "Endo Packaging SAVED SUCCESSFULLY.";
+    }
+
     String editEndoPackaging(EndoPackaging endoPackaging) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
