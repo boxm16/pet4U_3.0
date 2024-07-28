@@ -39,9 +39,9 @@
             }
             #packagesCount  {
                 width: 3.5em;
-                font-size: 30px;
+                font-size: 40px;
                 font-weight: bold;
-                background: green;
+                background: lightgreen;
             }
             #labelsCount {
                 width: 3.5em;
