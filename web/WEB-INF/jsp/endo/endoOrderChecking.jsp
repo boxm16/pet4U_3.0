@@ -78,7 +78,7 @@
                         Item invoicedItem = invoicedItems.remove(orderedItemEntry.getKey());
 
                         String description = invoicedItem.getDescription();
-
+                        String rowColor = "";
                         if (description.contains("KG")
                                 || description.contains("Kg")
                                 || description.contains("kg")) {
@@ -93,11 +93,12 @@
 
                             }
                             if (kgs >= 4) {
+                               rowColor = "#C2F2D7";
                                 y++;
                             }
                         }
 
-                        out.println("<tr>");
+                        out.println("<tr style='background-color:"+rowColor+"'>");
                         out.println("<td>");
                         out.println(x);
                         out.println("</td>");
