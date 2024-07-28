@@ -49,16 +49,39 @@
                 <%
                     LinkedHashMap<String, Item> items = (LinkedHashMap) request.getAttribute("pet4uAllItems");
                     for (Map.Entry<String, Item> entrySet : items.entrySet()) {
+
                         Item item = entrySet.getValue();
 
-                        out.println("<tr>");
+                        String description = item.getDescription();
+                        String rowColor = "";
+                        if (description.contains("KG")
+                                || description.contains("Kg")
+                                || description.contains("kg")) {
+                            String kilogramms = description.replaceAll("[^0-9\\.\\,]", "");
+
+                            int kgs = 0;
+
+                            try {
+
+                                kgs = Integer.valueOf(kilogramms);
+
+                            } catch (NumberFormatException e) {
+
+                            }
+                            if (kgs >= 4) {
+                                rowColor = "#C2F2D7";
+                                //y++;
+                            }
+                        }
+
+                        out.println("<tr style='background-color:"+rowColor+"'>");
 
                         out.println("<td>");
                         out.println(item.getPosition());
                         out.println("</td>");
 
                         out.println("<td>");
-                        out.println("<a href='itemAnalysis.htm?code=" + item.getCode() + "' target='_blank'>"+item.getCode()+"</a>");
+                        out.println("<a href='itemAnalysis.htm?code=" + item.getCode() + "' target='_blank'>" + item.getCode() + "</a>");
                         out.println("</td>");
 
                         out.println("<td>");
