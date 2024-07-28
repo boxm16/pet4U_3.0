@@ -578,6 +578,7 @@ public class EndoControllerX {
             @RequestParam(name = "item") String item,
             @RequestParam(name = "label") String label,
             ModelMap model) {
+            System.out.println(itemCode);
 
         /*   
         String userName = (String) session.getAttribute("userName");
@@ -622,6 +623,7 @@ public class EndoControllerX {
             @RequestParam(name = "item") String item,
             @RequestParam(name = "label") String label,
             ModelMap model) {
+        
 
         /*   
         String userName = (String) session.getAttribute("userName");
