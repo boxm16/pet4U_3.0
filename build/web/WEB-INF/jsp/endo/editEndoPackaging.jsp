@@ -4,6 +4,11 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Endo Packaging</title>
+        <style>
+            input {
+                font-size: 30px;
+            }
+        </style>
     </head>
     <body>
     <center>
