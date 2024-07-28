@@ -171,10 +171,16 @@
         <a href='createCamelotSalesDatabaseTable.htm'><h1>Create Camelot Sales Database Table</h1> </a>
         <a href='deleteCamelotSalesDatabaseTable.htm'><h1>Delete Camelot Sales Database Table</h1> </a>
         <hr>
-        
-         <h1> ${notForEndoDatabaseTableResult} </h1>
+
+        <h1> ${notForEndoDatabaseTableResult} </h1>
         <a href='createNotForEndoDatabaseTable.htm'><h1>Create Not For Endo Sales Database Table</h1> </a>
         <a href='deleteNotForEndoDatabaseTable.htm'><h1>Delete Not For Endo Sales Database Table</h1> </a>
+        <hr>
+
+
+        <h1> ${endoPackagingDatabaseTableResult} </h1>
+        <a href='createEndoPackagingDatabaseTable.htm'><h1>Create Endo Packaging Database Table</h1> </a>
+        <a href='deleteEndoPackagingDatabaseTable.htm'><h1>Delete Endo Packaging Database Table</h1> </a>
         <hr>
 
 

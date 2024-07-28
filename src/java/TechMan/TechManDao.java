@@ -1157,4 +1157,42 @@ public class TechManDao {
         }
     }
 
+    String createEndoPackagingDatabaseTable() {
+        String query = "CREATE TABLE endo_packaging("
+                + "id INT(6) NOT NULL AUTO_INCREMENT, "
+                + "item_code VARCHAR(15) NOT NULL , "
+                + "item INT(3) NOT NULL, "
+                + "label INT(3) NOT NULL, "
+                + "PRIMARY KEY (id)) "
+                + "ENGINE = InnoDB "
+                + "DEFAULT CHARACTER SET = utf8;";
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+            statement.close();
+            connection.close();
+            return "Table 'endo_packaging' created succesfully";
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return "Table 'endo_packaging' could not be created:" + ex;
+        }
+    }
+
+    String deleteEndoPackagingDatabaseTable() {
+        String query = "DROP TABLE endo_packaging";
+
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+            statement.close();
+            connection.close();
+            return "Table 'endo_packaging' deleted succesfully";
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return "Table 'endo_packaging' could not be deleted:" + ex;
+        }
+    }
+
 }

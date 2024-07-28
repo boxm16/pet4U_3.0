@@ -19,8 +19,8 @@ public class TechManController {
 
     @RequestMapping(value = "techMan")
     public String techMan() {
-       //  return "techMan/techManDashboard";
-          return "index";
+        return "techMan/techManDashboard";
+        //   return "index";
     }
 
     //-----------------------------------------------------------------------
@@ -503,6 +503,25 @@ public class TechManController {
 
         notForEndoDatabaseTableResult = notForEndoDatabaseTableResult + "<br>";
         modelMap.addAttribute("notForEndoDatabaseTableResult", notForEndoDatabaseTableResult);
+        return "techMan/techManDashboard";
+    }
+
+    //-----------------
+    @RequestMapping(value = "/createEndoPackagingDatabaseTable", method = RequestMethod.GET)
+    public String createEndoPackagingDatabaseTable(ModelMap modelMap) {
+        String endoPackagingDatabaseTableResult = techManDao.createEndoPackagingDatabaseTable();
+
+        endoPackagingDatabaseTableResult = endoPackagingDatabaseTableResult + "<br>";
+        modelMap.addAttribute("endoPackagingDatabaseTableResult", endoPackagingDatabaseTableResult);
+        return "techMan/techManDashboard";
+    }
+
+    @RequestMapping(value = "/deleteEndoPackagingDatabaseTable", method = RequestMethod.GET)
+    public String deleteEndoPackegingDatabaseTable(ModelMap modelMap) {
+        String endoPackagingDatabaseTableResult = techManDao.deleteEndoPackagingDatabaseTable();
+
+        endoPackagingDatabaseTableResult = endoPackagingDatabaseTableResult + "<br>";
+        modelMap.addAttribute("endoPackagingDatabaseTableResult", endoPackagingDatabaseTableResult);
         return "techMan/techManDashboard";
     }
 }
