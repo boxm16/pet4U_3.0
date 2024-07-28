@@ -148,9 +148,9 @@
         </table>
         <hr>
 
-        ΜΟΝΟΚΟΜΜΑΤΑ(τσουβαλια, κλουβια, catsan) <br>
-        ΔΕΜΑΤΑ   <input  type="number" id="labelsCount" name="packagesCount"><br>
-        Total Count   <input  type="number" id="labelsCount" name="labelsCount">
+        ΜΟΝΟΚΟΜΜΑΤΑ(τσουβάλια, κλουβιά, catsan) <div> 0 </div>
+        ΔΕΜΑΤΑ(κουτιά)   <input  type="number" id="labelsCount" name="packagesCount">
+        ΣΥΝΟΛΟ ΕΤΙΚΕΤΩΝ   <input  type="number" id="labelsCount" name="labelsCount">
         <br>
         <button style='font-size: 20px; width:120px;' class="btn btn-warning" onclick="ajax(0)"> PRINT LABELS</button>
 
