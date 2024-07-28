@@ -37,7 +37,7 @@
                 position: sticky;
                 top: 0px;
             }
-            #packagesCount     #labelsCount{
+            #packagesCount    {
                 width: 3.5em;
                 font-size: 40px;
                 font-weight: bold;
