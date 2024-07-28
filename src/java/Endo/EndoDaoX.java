@@ -1159,6 +1159,7 @@ public class EndoDaoX {
             insertStatement.setString(1, endoPackaging.getItemCode());
             insertStatement.setInt(2, endoPackaging.getItem());
             insertStatement.setInt(3, endoPackaging.getLabel());
+            insertStatement.execute();
             insertStatement.close();
 
             connection.close();
@@ -1173,7 +1174,27 @@ public class EndoDaoX {
     }
 
     String editEndoPackaging(EndoPackaging endoPackaging) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+        Connection connection = databaseConnectionFactory.getMySQLConnection();
+
+        try {
+            PreparedStatement updateStatement = connection.prepareStatement("UPDATE endo_packaging  SET item=? , label=? WHERE item_code=?");
+
+            updateStatement.setInt(1, endoPackaging.getItem());
+            updateStatement.setInt(2, endoPackaging.getLabel());
+            updateStatement.setString(3, endoPackaging.getItemCode());
+            updateStatement.executeQuery();
+            updateStatement.close();
+
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EndoDaoX.class.getName()).log(Level.SEVERE, null, ex);
+
+            return ex.getMessage();
+        }
+
+        return "Endo Packaging EDITED SUCCESSFULLY.";
     }
 
 }
