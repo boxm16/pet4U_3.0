@@ -1154,7 +1154,7 @@ public class EndoDaoX {
         Connection connection = databaseConnectionFactory.getMySQLConnection();
 
         try {
-            PreparedStatement insertStatement = connection.prepareStatement("INSERT INTO endo_packaging (item_code,  item, label) VALUES (?,?,?");
+            PreparedStatement insertStatement = connection.prepareStatement("INSERT INTO endo_packaging (item_code,  item, label) VALUES (?,?,?);");
 
             insertStatement.setString(1, endoPackaging.getItemCode());
             insertStatement.setInt(2, endoPackaging.getItem());
