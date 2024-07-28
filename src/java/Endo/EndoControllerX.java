@@ -17,6 +17,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -570,19 +571,15 @@ public class EndoControllerX {
         return "endo/editEndoPackaging";
     }
     
-    
-     @RequestMapping(value = "editItemOfInterest")
+    @RequestMapping(value = "editItemOfInterest")
     public String editItemOfInterest(HttpSession session, @RequestParam(name = "code") String code,
-            @RequestParam(name = "owner") String owner,
-            @RequestParam(name = "minimalStock") String minimalStock,
-            @RequestParam(name = "weightCoefficient") String weightCoefficient,
-            @RequestParam(name = "orderUnit") String orderUnit,
-            @RequestParam(name = "orderQuantity") String orderQuantity,
-            @RequestParam(name = "camelotMinimalStock") String camelotMinimalStock,
-            @RequestParam(name = "note") String note,
+            @RequestParam(name = "itemCode") String itemCode,
+            @RequestParam(name = "item") String item,
+            @RequestParam(name = "label") String label,
             ModelMap model) {
-        String userName = (String) session.getAttribute("userName");
 
+        /*   
+        String userName = (String) session.getAttribute("userName");
         if (userName == null) {
             model.addAttribute("message", "You are not authorized for this page");
             return "errorPage";
@@ -591,39 +588,29 @@ public class EndoControllerX {
             model.addAttribute("message", "You are not authorized for this page");
             return "errorPage";
         }
-        CamelotItemOfInterest camelotItemOfInterest = new CamelotItemOfInterest();
-        camelotItemOfInterest.setCode(code);
-        camelotItemOfInterest.setOwner(owner);
-        camelotItemOfInterest.setMinimalStock(Integer.parseInt(minimalStock));
-        camelotItemOfInterest.setWeightCoefficient(Integer.parseInt(weightCoefficient));
-        camelotItemOfInterest.setOrderUnit(orderUnit);
-        camelotItemOfInterest.setOrderQuantity(Integer.parseInt(orderQuantity));
-        camelotItemOfInterest.setCamelotMinimalStock(Integer.parseInt(camelotMinimalStock));
-        camelotItemOfInterest.setNote(note);
-        if (minimalStock.isEmpty() || orderQuantity.isEmpty() || camelotMinimalStock.isEmpty()) {
+         */
+        EndoPackaging endoPackaging = new EndoPackaging();
+        endoPackaging.setItemCode(itemCode);
+        endoPackaging.setItem(Integer.parseInt(item));
+        endoPackaging.setLabel(Integer.parseInt(label));
+        
+        if (item.isEmpty() || label.isEmpty()) {
             model.addAttribute("resultColor", "rose");
             model.addAttribute("result", "SOMETHING IS MISSING.");
-            model.addAttribute("itemOfInterest", camelotItemOfInterest);
-            return "/camelot/editItem";
+            model.addAttribute("endoPackaging", endoPackaging);
+            return "endo/editEndoPackaging";
         }
-        if (Integer.parseInt(weightCoefficient) == 0 || Integer.parseInt(weightCoefficient) < 0) {
+        if (Integer.parseInt(item) <= 0 || Integer.parseInt(label) <= 0) {
             model.addAttribute("resultColor", "rose");
             model.addAttribute("result", "Bad Coefficient.");
-            model.addAttribute("itemOfInterest", camelotItemOfInterest);
-            return "/camelot/editItem";
+            model.addAttribute("itemOfInterest", endoPackaging);
+            return "endo/editEndoPackaging";
         }
-        ArrayList<String> camelotAltercodes = camelotItemsOfInterestDao.getCamelotAltercodesFromMicrosoftDB();
-        if (!camelotAltercodes.contains(code)) {
-            model.addAttribute("resultColor", "red");
-            model.addAttribute("result", "NO SUCH CODE IN CAMELOT");
-            model.addAttribute("itemOfInterest", camelotItemOfInterest);
-            return "/camelot/editItem";
-        }
-
-        String result = camelotItemsOfInterestDao.editItem(camelotItemOfInterest);
+        
+        String result = EndoDaoX.editEndoPackaging(endoPackaging);
         model.addAttribute("resultColor", "green");
         model.addAttribute("result", result);
-        model.addAttribute("itemOfInterest", camelotItemOfInterest);
-         return "endo/editEndoPackaging";
+        model.addAttribute("endoPackaging", endoPackaging);
+        return "endo/editEndoPackaging";
     }
 }
