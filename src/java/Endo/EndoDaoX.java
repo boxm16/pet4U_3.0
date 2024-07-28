@@ -1077,7 +1077,7 @@ public class EndoDaoX {
         return endoOrders;
     }
 
-    LinkedHashMap<String, EndoPackaging> getAllEndoPackaging() {
+    public LinkedHashMap<String, EndoPackaging> getAllEndoPackaging() {
 
         LinkedHashMap<String, EndoPackaging> allEndoPackaging = new LinkedHashMap();
 

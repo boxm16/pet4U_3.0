@@ -5,6 +5,8 @@ import BasicModel.Item;
 import CamelotItemsOfInterest.CamelotItemOfInterest;
 import CamelotItemsOfInterest.CamelotItemsOfInterestDao;
 import CamelotItemsOfInterest.ItemSnapshot;
+import Endo.EndoDaoX;
+import Endo.EndoPackaging;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
@@ -151,8 +153,11 @@ public class Pet4uItemsController {
     public String pet4uAllItemsOneLine(ModelMap modelMap) {
 
         LinkedHashMap<String, Item> pet4uAllItems = pet4uItemsDao.getAllItems();
+        EndoDaoX endoDaoX = new EndoDaoX();
+        LinkedHashMap<String, EndoPackaging> allEndoPackaging = endoDaoX.getAllEndoPackaging();
 
         modelMap.addAttribute("pet4uAllItems", pet4uAllItems);
+        modelMap.addAttribute("allEndoPackaging", allEndoPackaging);
         return "/pet4uItems/pet4uAllItemsOneLine";
     }
 
@@ -222,7 +227,5 @@ public class Pet4uItemsController {
         model.addAttribute("code", code);
         return "/pet4uItems/itemSnapshots";
     }
-
-    
 
 }

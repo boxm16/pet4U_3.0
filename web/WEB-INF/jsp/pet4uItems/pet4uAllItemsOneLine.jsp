@@ -4,6 +4,7 @@
     Author     : Michail Sitmalidis
 --%>
 
+<%@page import="Endo.EndoPackaging"%>
 <%@page import="java.util.LinkedHashMap"%>
 <%@page import="java.util.Map"%>
 <%@page import="BasicModel.AltercodeContainer"%>
@@ -48,6 +49,7 @@
             <tbody>
                 <%
                     LinkedHashMap<String, Item> items = (LinkedHashMap) request.getAttribute("pet4uAllItems");
+                    LinkedHashMap<String, EndoPackaging> allEndoPackaging = (LinkedHashMap) request.getAttribute("allEndoPackaging");
                     for (Map.Entry<String, Item> entrySet : items.entrySet()) {
 
                         Item item = entrySet.getValue();
@@ -76,10 +78,16 @@
                         out.println(item.getQuantity());
                         out.println("</td>");
 
-                        out.println("<td>");
-                        out.println("<a href='editEndoPackaging.htm?code=" + item.getCode() + "' target='_blank'>Show  Snapshots</a>");
-                        out.println("</td>");
-
+                        EndoPackaging endoPackaging = allEndoPackaging.get(item.getCode());
+                        if (endoPackaging == null) {
+                            out.println("<td>");
+                            out.println("<a href='editEndoPackaging.htm?code=" + item.getCode() + "' target='_blank'>0/0</a>");
+                            out.println("</td>");
+                        } else {
+                            out.println("<td>");
+                            out.println("<a href='editEndoPackaging.htm?code=" + item.getCode() + "' target='_blank'>" + endoPackaging.getItem() + "/" + endoPackaging.getLabel() + "</a>");
+                            out.println("</td>");
+                        }
                         out.println("</tr>");
                     }
                 %>
