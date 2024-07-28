@@ -24,10 +24,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class EndoDaoX {
 
-    static String editEndoPackaging(EndoPackaging endoPackaging) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     private DatabaseConnectionFactory databaseConnectionFactory;
 
     public EndoDaoX() {
@@ -1151,6 +1147,10 @@ public class EndoDaoX {
             Logger.getLogger(EndoDaoX.class.getName()).log(Level.SEVERE, null, ex);
         }
         return endoPackaging;
+    }
+
+    String editEndoPackaging(EndoPackaging endoPackaging) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
