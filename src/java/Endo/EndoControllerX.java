@@ -376,7 +376,7 @@ public class EndoControllerX {
         System.out.println(storeName);
         int labelsCountInteger = 0;
         try {
-            labelsCountInteger = Integer.parseInt(storeName);
+            labelsCountInteger = Integer.parseInt(labelsCount);
         } catch (NumberFormatException e) {
             return "SOMΕTHING WRONG";
         }
