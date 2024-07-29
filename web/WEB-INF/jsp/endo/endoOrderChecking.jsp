@@ -258,7 +258,7 @@
             }
 
             function ajax(labelsCount, storeName) {
-                $("#printingResponseDisplay").html("lalalala");
+                $("#printingResponseDisplay").html("Printig......");
                 $.ajax({
                     url: 'printLabel.htm?labelsCount=' + labelsCount + '&storeName=' + storeName,
                     //  contentType: "application/x-www-form-urlencoded;charset=UTF-8",
