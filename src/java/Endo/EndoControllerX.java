@@ -377,7 +377,7 @@ public class EndoControllerX {
         String printName = "\\\\eshoplaptop\\ZDesigner GC420t (EPL) (Αντιγραφή 1)";
         EndoLablePrinter endoLablePrinter = new EndoLablePrinter();
         endoLablePrinter.setLabelsCount(2);
-        endoLablePrinter.setStoreName("ΑΓ. ΠΑΡΑΣΕΚΥΗ");
+        endoLablePrinter.setStoreName(storeName);
         // endoLablePrinter.printSomething(printName);
         return "BRAVO";
     }

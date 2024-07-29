@@ -197,7 +197,7 @@
         <h3> ΔΕΜΑΤΑ(κουτιά)   <input  type="number" id="packagesCount" name="packagesCount" value="0">
             ΣΥΝΟΛΟ ΕΤΙΚΕΤΩΝ   <input  type="number" id="labelsCount" name="labelsCount" <%  out.println("value='" + y + "'");%> > </h3>
         <br>
-        <button style='font-size: 20px; width:120px;' class="btn btn-warning" onclick="ajax(1,'${endoApostolis.receiver}')"> PRINT LABELS</button>
+        <button style='font-size: 20px; width:120px;' class="btn btn-warning" onclick="printLabels()')"> PRINT LABELS</button>
 
 
         <div id='printingResponseDisplay'></div>
@@ -222,7 +222,6 @@
 
             function rechechAll() {
                 var orderedItems = document.querySelectorAll(".ordered");
-
                 for (x = 0; x < orderedItems.length; x++) {
                     let orderedItem = orderedItems[x];
                     //  console.log(orderedItem);
@@ -237,11 +236,7 @@
                     }
 
                     let ordered = document.getElementById(itemtemCode + "@ordered").value * 1;
-
-
-
                     let colorDisplay = document.getElementById(itemtemCode + "@colorDisplay");
-
                     let diff = invoiced - ordered;
                     if (diff > 0) {
                         colorDisplay.style.backgroundColor = 'red';
@@ -256,10 +251,14 @@
             }
 
             //----------------------- PRINTING AJAX------------
+
+            function printLabels() {
+                ajax(1, ${endoApostilis.receiver});
+            }
             function ajax(labelsCount, storeName) {
                 $("#printingResponseDisplay").html("lalalala");
                 $.ajax({
-                    url: 'printLabel.htm?labelsCount=' + labelsCount + '&storeName=' +storeName,
+                    url: 'printLabel.htm?labelsCount=' + labelsCount + '&storeName=' + storeName,
                     //  contentType: "application/x-www-form-urlencoded;charset=UTF-8",
 
                     success: function (status) {
