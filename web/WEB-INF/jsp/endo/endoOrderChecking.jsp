@@ -58,7 +58,7 @@
     <center>
 
         <h1>Endo Order Checking</h1>
-        <h1>${endoApostolis.receiver}</h1>
+        <h1 id>${endoApostolis.receiver}</h1>
         <hr>
         <table>
             <thead> 
@@ -253,8 +253,9 @@
             //----------------------- PRINTING AJAX------------
 
             function printLabels() {
-                ajax(1, ${endoApostilis.receiver});
+                ajax(1, ${endoApostolis.receiver});
             }
+            
             function ajax(labelsCount, storeName) {
                 $("#printingResponseDisplay").html("lalalala");
                 $.ajax({
