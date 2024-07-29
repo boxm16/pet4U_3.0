@@ -374,12 +374,18 @@ public class EndoControllerX {
     String printLabel(@RequestParam("labelsCount") String labelsCount, @RequestParam("storeName") String storeName) {
         System.out.println(labelsCount);
         System.out.println(storeName);
+        int labelsCountInteger = 0;
+        try {
+            labelsCountInteger = Integer.parseInt(storeName);
+        } catch (NumberFormatException e) {
+            return "SOMΕTHING WRONG";
+        }
         String printName = "\\\\eshoplaptop\\ZDesigner GC420t (EPL) (Αντιγραφή 1)";
         EndoLablePrinter endoLablePrinter = new EndoLablePrinter();
-        endoLablePrinter.setLabelsCount(2);
+        endoLablePrinter.setLabelsCount(labelsCountInteger);
         endoLablePrinter.setStoreName(storeName);
         // endoLablePrinter.printSomething(printName);
-        return "BRAVO";
+        return "DONE";
     }
 //---------------------------------
 
