@@ -12,9 +12,20 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.print.PrintService;
 
-
-
 public class EndoLablePrinter implements Printable {
+
+    private int labelsCount;
+    private String storeName;
+
+    public void setLabelsCount(int labelsCount) {
+        this.labelsCount = labelsCount;
+    }
+
+    public void setStoreName(String storeName) {
+        this.storeName = storeName;
+    }
+    
+    
 
     public PrintService findPrintService(String printerName) {
         for (PrintService service : PrinterJob.lookupPrintServices()) {
@@ -28,24 +39,26 @@ public class EndoLablePrinter implements Printable {
 
     @Override
     public int print(Graphics g, PageFormat pf, int page) throws PrinterException {
-        if (page > 0) {
-            /* We have only one page, and 'page' is zero-based */
-            return NO_SUCH_PAGE;
+
+        if (page < this.labelsCount) {
+            /* User (0,0) is typically outside the imageable area, so we must
+        * translate by the X and Y values in the PageFormat to avoid clipping
+             */
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.translate(pf.getImageableX(), pf.getImageableY());
+            /* Now we perform our rendering */
+
+            g.setFont(new Font("Roman", 0, 30));
+            g.drawString(this.storeName, 0, 40);//here0, is horizontla coordinat, but of imageable, 20 is vertical coordinat
+
+            g.drawString(page+1+"/"+labelsCount, 100, 80);
+
+            return PAGE_EXISTS;
         }
 
-        /* User (0,0) is typically outside the imageable area, so we must
-        * translate by the X and Y values in the PageFormat to avoid clipping
-         */
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.translate(pf.getImageableX(), pf.getImageableY());
-        /* Now we perform our rendering */
+        /* We have only one page, and 'page' is zero-based */
+        return NO_SUCH_PAGE;
 
-        g.setFont(new Font("Roman", 0, 30));
-        g.drawString("ΠΕΤΡΟΥΠΟΛΗ", 0, 40);//here0, is horizontla coordinat, but of imageable, 20 is vertical coordinat
-
-        g.drawString("1/1", 100, 80);
-
-        return PAGE_EXISTS;
     }
 
     public void printSomething(String printerName) {
