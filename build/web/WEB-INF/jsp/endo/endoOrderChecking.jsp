@@ -258,7 +258,7 @@
             function ajax(labelsCount) {
                 $("#printingResponseDisplay").html("lalalala");
                 $.ajax({
-                    url: 'printLabel.htm?labelsCount=' + labelsCount+'&storeName='+${endoApostolis.receiver},
+                    url: 'printLabel.htm?labelsCount=' + labelsCount,
                     //  contentType: "application/x-www-form-urlencoded;charset=UTF-8",
 
                     success: function (status) {
