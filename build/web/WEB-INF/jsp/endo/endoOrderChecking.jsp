@@ -58,6 +58,7 @@
     <center>
 
         <h1>Endo Order Checking</h1>
+        <h1>${endoApostolis.receiver}</h1>
         <hr>
         <table>
             <thead> 
@@ -258,7 +259,7 @@
             function ajax(labelsCount) {
                 $("#printingResponseDisplay").html("lalalala");
                 $.ajax({
-                    url: 'printLabel.htm?labelsCount=' + labelsCount+'&storeName=madama',
+                    url: 'printLabel.htm?labelsCount=' + labelsCount + '&storeName=' +${endoApostolis.receiver},
                     //  contentType: "application/x-www-form-urlencoded;charset=UTF-8",
 
                     success: function (status) {
