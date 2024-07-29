@@ -194,7 +194,8 @@
         <hr>
 
         <h3 style='background-color: #C2F2D7'> ΜΟΝΟΚΟΜΜΑΤΑ(τσουβάλια, κλουβιά, catsan): <%   out.println(y);%></h3>
-        <h3> ΔΕΜΑΤΑ(κουτιά)   <input  type="number" id="packagesCount" name="packagesCount" value="0">
+        <input hidden id="monokommata"  value="<%   out.println(y);%>" >
+        <h3> ΔΕΜΑΤΑ(κουτιά)   <input  type="number" id="packagesCount" name="packagesCount" value="0" onchange="sumUp()">
             ΣΥΝΟΛΟ ΕΤΙΚΕΤΩΝ   <input  type="number" id="labelsCount" name="labelsCount" <%  out.println("value='" + y + "'");%> > </h3>
         <br>
         <button style='font-size: 20px; width:120px;' class="btn btn-warning" onclick="printLabels()"> PRINT LABELS</button>
@@ -251,6 +252,11 @@
             }
 
             //----------------------- PRINTING AJAX------------
+
+
+            function sumUp() {
+                labelsCount.value = monokommata.value + packagesCount.value;
+            }
 
             function printLabels() {
 
