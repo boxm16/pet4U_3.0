@@ -255,7 +255,7 @@
 
 
             function sumUp() {
-                labelsCount.value = monokommata.value + packagesCount.value;
+                labelsCount.value = monokommata.value*1 + packagesCount.value*1;
             }
 
             function printLabels() {
