@@ -371,9 +371,9 @@ public class EndoControllerX {
 
     @RequestMapping(value = "/printLabel", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
     public @ResponseBody
-    String printLabel(@RequestParam("labelsCount") String labelsCount) {
+    String printLabel(@RequestParam("labelsCount") String labelsCount, @RequestParam("storeName") String storeName) {
         System.out.println(labelsCount);
-     //   System.out.println(storeName);
+        System.out.println(storeName);
         String printName = "\\\\eshoplaptop\\ZDesigner GC420t (EPL) (Αντιγραφή 1)";
         EndoLablePrinter endoLablePrinter = new EndoLablePrinter();
         endoLablePrinter.setLabelsCount(2);
