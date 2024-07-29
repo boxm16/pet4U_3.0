@@ -196,7 +196,7 @@
         <h3> ΔΕΜΑΤΑ(κουτιά)   <input  type="number" id="packagesCount" name="packagesCount" value="0">
             ΣΥΝΟΛΟ ΕΤΙΚΕΤΩΝ   <input  type="number" id="labelsCount" name="labelsCount" <%  out.println("value='" + y + "'");%> > </h3>
         <br>
-        <button style='font-size: 20px; width:120px;' class="btn btn-warning" onclick="ajax(0)"> PRINT LABELS</button>
+        <button style='font-size: 20px; width:120px;' class="btn btn-warning" onclick="ajax(1)"> PRINT LABELS</button>
 
 
         <div id='printingResponseDisplay'></div>
