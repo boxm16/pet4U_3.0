@@ -258,7 +258,7 @@
             function ajax(labelsCount) {
                 $("#printingResponseDisplay").html("lalalala");
                 $.ajax({
-                    url: 'printLabel.htm?labelsCount=' + labelsCount,
+                    url: 'printLabel.htm?labelsCount=' + labelsCount+'&storeName=madama',
                     //  contentType: "application/x-www-form-urlencoded;charset=UTF-8",
 
                     success: function (status) {
