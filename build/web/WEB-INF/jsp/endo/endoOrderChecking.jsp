@@ -253,7 +253,8 @@
             //----------------------- PRINTING AJAX------------
 
             function printLabels() {
-                ajax(1, "${endoApostolis.receiver}");
+
+                ajax(labelsCount.value, "${endoApostolis.receiver}");
             }
 
             function ajax(labelsCount, storeName) {
