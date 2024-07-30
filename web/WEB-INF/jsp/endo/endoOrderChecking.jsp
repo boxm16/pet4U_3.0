@@ -90,8 +90,11 @@
                         if (invoicedItem != null) {
                             EndoPackaging endoPackaging = allEndoPackaging.get(invoicedItem.getCode());
                             if (endoPackaging != null) {
+                                double q = Double.valueOf(invoicedItem.getQuantity());
+                                int qi = (int) q;
+
                                 rowColor = "#C2F2D7";
-                                y++;
+                                y = y + (qi / endoPackaging.getItem() * endoPackaging.getLabel());
                             }
                         }
 
@@ -135,26 +138,6 @@
 
                     for (Map.Entry<String, Item> invoicedItemsEntry : invoicedItems.entrySet()) {
                         Item invoicedItem = invoicedItemsEntry.getValue();
-
-                        String description = invoicedItem.getDescription();
-
-                        if (description.contains("KG")
-                                || description.contains("Kg")
-                                || description.contains("kg")) {
-                            String kilogramms = description.replaceAll("\\D+", "");
-                            int kgs = 0;
-
-                            try {
-
-                                kgs = Integer.valueOf(kilogramms);
-
-                            } catch (NumberFormatException e) {
-
-                            }
-                            if (kgs >= 4) {
-                                y++;
-                            }
-                        }
 
                         out.println("<tr>");
                         out.println("<td>");
@@ -255,7 +238,7 @@
 
 
             function sumUp() {
-                labelsCount.value = monokommata.value*1 + packagesCount.value*1;
+                labelsCount.value = monokommata.value * 1 + packagesCount.value * 1;
             }
 
             function printLabels() {
