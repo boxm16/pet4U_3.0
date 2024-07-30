@@ -248,6 +248,7 @@
 
             function  pressEnter(event) {
                 if (event.key === 'Enter') {
+                    console.log("VAVA");
                     printerButton.focus();
                 }
             }
