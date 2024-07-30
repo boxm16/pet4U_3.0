@@ -178,10 +178,10 @@
 
         <h3 style='background-color: #C2F2D7'> ΜΟΝΟΚΟΜΜΑΤΑ(τσουβάλια, κλουβιά, catsan): <%   out.println(y);%></h3>
         <input hidden id="monokommata"  value="<%   out.println(y);%>" >
-        <h3> ΔΕΜΑΤΑ(κουτιά)   <input  type="number" id="packagesCount" name="packagesCount" value="0" onkeyup="sumUp()" onchange="sumUp()">
+        <h3> ΔΕΜΑΤΑ(κουτιά)   <input  type="number" id="packagesCount" name="packagesCount" value="0" onkeydown="pressEnter()" onkeyup="sumUp()" onchange="sumUp()">
             ΣΥΝΟΛΟ ΕΤΙΚΕΤΩΝ   <input  type="number" id="labelsCount" name="labelsCount" <%  out.println("value='" + y + "'");%> > </h3>
         <br>
-        <button style='font-size: 20px; width:120px;' class="btn btn-warning" onclick="printLabels()"> PRINT LABELS</button>
+        <button id="printerButton" style='font-size: 20px; width:120px;' class="btn btn-warning" onclick="printLabels()"> PRINT LABELS</button>
 
 
         <div id='printingResponseDisplay'></div>
@@ -244,6 +244,10 @@
             function printLabels() {
 
                 ajax(labelsCount.value, "${endoApostolis.receiver}");
+            }
+
+            function  pressEnter() {
+                printerButton.focus;
             }
 
             function ajax(labelsCount, storeName) {
