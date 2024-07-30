@@ -139,6 +139,18 @@
                     for (Map.Entry<String, Item> invoicedItemsEntry : invoicedItems.entrySet()) {
                         Item invoicedItem = invoicedItemsEntry.getValue();
 
+                        String rowColor = "inherited";
+                        if (invoicedItem != null) {
+                            EndoPackaging endoPackaging = allEndoPackaging.get(invoicedItem.getCode());
+                            if (endoPackaging != null) {
+                                double q = Double.valueOf(invoicedItem.getQuantity());
+                                int qi = (int) q;
+
+                                rowColor = "#C2F2D7";
+                                y = y + (qi / endoPackaging.getItem() * endoPackaging.getLabel());
+                            }
+                        }
+
                         out.println("<tr>");
                         out.println("<td>");
                         out.println(x);
