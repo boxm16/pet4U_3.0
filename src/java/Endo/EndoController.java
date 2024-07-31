@@ -68,8 +68,10 @@ public class EndoController {
         LinkedHashMap<String, DeliveryItem> deliveredIetms = new LinkedHashMap<>();
         EndoDao endoDao = new EndoDao();
         LinkedHashMap<String, DeliveryItem> pet4UItemsRowByRow = endoDao.getPet4UItemsRowByRow();
-        sentItems = endoDao.getSentItems(endoIdsArray, pet4UItemsRowByRow);
-        if (receivingEndoIdsArray.size() != 0) {
+        if (!endoIdsArray.isEmpty()) {
+            sentItems = endoDao.getSentItems(endoIdsArray, pet4UItemsRowByRow);
+        }
+        if (!receivingEndoIdsArray.isEmpty()) {
             deliveredIetms = endoDao.getReceivedItems(receivingEndoIdsArray, pet4UItemsRowByRow);
         }
         DeliveryInvoice deliveryInvoice = new DeliveryInvoice();
@@ -225,10 +227,10 @@ public class EndoController {
         if (receivingEndos.containsKey("362926")) {
             receivingEndos.remove("362926");
         }
-         if (receivingEndos.containsKey("381889")) {
+        if (receivingEndos.containsKey("381889")) {
             receivingEndos.remove("381889");
         }
-        
+
         modelMap.addAttribute("receivingEndos", receivingEndos);
         modelMap.addAttribute("bindedEndos", filteredBinder);
 

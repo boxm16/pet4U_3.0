@@ -384,7 +384,7 @@ public class EndoControllerX {
         EndoLablePrinter endoLablePrinter = new EndoLablePrinter();
         endoLablePrinter.setLabelsCount(labelsCountInteger);
         endoLablePrinter.setStoreName(storeName);
-        // endoLablePrinter.printSomething(printName);
+        endoLablePrinter.printSomething(printName);
         return "DONE";
     }
 //---------------------------------
