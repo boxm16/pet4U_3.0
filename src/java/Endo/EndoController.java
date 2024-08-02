@@ -230,8 +230,11 @@ public class EndoController {
         if (receivingEndos.containsKey("381889")) {
             receivingEndos.remove("381889");
         }
-          if (receivingEndos.containsKey("383428")) {
+        if (receivingEndos.containsKey("383428")) {
             receivingEndos.remove("383428");
+        }
+        if (receivingEndos.containsKey("383703")) {
+            receivingEndos.remove("383703");
         }
 
         modelMap.addAttribute("receivingEndos", receivingEndos);
