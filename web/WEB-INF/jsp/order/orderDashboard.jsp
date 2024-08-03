@@ -26,6 +26,13 @@
         </form>
         <hr>
         <hr>
+        <form action="getOrder.htm" method="POST">
+            <h1>  <input type="text" name='orderNumber'></h1>
+            <hr>
+            <button type="submit" class="btn btn-primary"> <h1> Get  Order </h1></button>
+        </form>
+        <hr>
+        <h1>Statistics after 01.01.2024 till today</h1>
         <hr>
         <a href="codeQuantityInOrders.htm" class="btn btn-primary" role="button" style='background-color: green;'><h1>Code Quantity In Orders - Analysis</h1></a>
         <hr>
@@ -37,12 +44,10 @@
         <a href="positionsBlockTraffic.htm" class="btn btn-primary" role="button" style='background-color: blue;'><h1>Positions Block Traffic - Analysis</h1></a>
         <hr>
         <hr>
-        <hr>
-        <form action="getOrder.htm" method="POST">
-            <h1>  <input type="text" name='orderNumber'></h1>
-            <hr>
-            <button type="submit" class="btn btn-primary"> <h1> Get  Order </h1></button>
-        </form>
+        <h1>შედარებითი ანალიტიკა</h1>
+        <a href="ordersQuantityComparingAnalysis.htm" class="btn btn-primary" role="button" style='background-color: blue;'><h1>Orders Quantity Comparison</h1></a>
+
+
     </center>
 </body>
 </html>
