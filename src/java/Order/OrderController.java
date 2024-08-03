@@ -30,7 +30,7 @@ public class OrderController {
     }
 
     @RequestMapping(value = "ordersForDate")
-    public String deliveryInvoicesForDate(@RequestParam(name = "date") String date, ModelMap modelMap) {
+    public String ordersForDate(@RequestParam(name = "date") String date, ModelMap modelMap) {
 
         LinkedHashMap<Integer, Order> orders = orderDao.getOrdersForDate(date);
         modelMap.addAttribute("orders", orders);

@@ -28,6 +28,7 @@
         <table style="font-size:20px">
             <thead>
                 <tr> 
+                    <th>A/A</th>
                     <th>Order Id</th>
                     <th>Order DateTimeStamp</th>
                     <th>Order Number</th>
@@ -41,9 +42,13 @@
 
                 <%
                     LinkedHashMap<Integer, Order> orders = (LinkedHashMap) request.getAttribute("orders");
-
+                    int orderCount = 1;
                     for (Map.Entry<Integer, Order> entrySet : orders.entrySet()) {
                         out.println("<tr>");
+
+                        out.println("<td>");
+                        out.println(orderCount);
+                        out.println("</td>");
 
                         out.println("<td>");
                         out.println(entrySet.getValue().getId());
@@ -85,6 +90,7 @@
                         out.println("</td>");
 
                         out.println("</tr>");
+                        orderCount++;
                     }
                 %>
         </table>
