@@ -311,7 +311,7 @@ public class Pet4uItemsController {
 
         barcodePrinter.printSomething(printName);
 
-        return "testosteron/testosteronDashboard";
+        return "index";
     }
 
 }
