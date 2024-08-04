@@ -17,6 +17,7 @@
                 border: 1px solid ;
                 border-collapse: collapse;
                 font-size: 20px;
+                vertical-align:top;
             }
 
         </style>
