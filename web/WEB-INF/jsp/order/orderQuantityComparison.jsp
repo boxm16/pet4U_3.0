@@ -47,7 +47,7 @@
                                         DayOfWeek dayOfWeek = date.getDayOfWeek();
 
                                         if (dayOfWeek == DayOfWeek.SATURDAY) {
-                                            out.println("<tr style='background-color: #90EE90;'>");
+                                            out.println("<tr style='background-color: #F79A81 ;'>");
 
                                         } else {
                                             out.println("<tr >");
@@ -76,13 +76,13 @@
                             </thead>
                             <tbody>
                                 <%
-                                    TreeMap<Integer, Integer> counut2024 = (TreeMap) request.getAttribute("2024");
-                                    for (Map.Entry<Integer, Integer> entrySet : counut2024.entrySet()) {
-                                        LocalDateTime date = entrySet.getKey();
-                                        DayOfWeek dayOfWeek = date.getDayOfWeek();
+                                    TreeMap<LocalDateTime, Integer> counut2024 = (TreeMap) request.getAttribute("2024");
+                                    for (Map.Entry<LocalDateTime, Integer> entrySet : counut2024.entrySet()) {
+                                        LocalDateTime date2024 = entrySet.getKey();
+                                        DayOfWeek dayOfWeek = date2024.getDayOfWeek();
 
                                         if (dayOfWeek == DayOfWeek.SATURDAY) {
-                                            out.println("<tr style='background-color: #90EE90;'>");
+                                            out.println("<tr style='background-color: #F79A81 ;'>");
 
                                         } else {
                                             out.println("<tr >");
