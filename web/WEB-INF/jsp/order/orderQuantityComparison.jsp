@@ -43,7 +43,7 @@
                                     for (Map.Entry<LocalDateTime, Integer> entrySet : counut2023.entrySet()) {
                                         LocalDateTime date = entrySet.getKey();
 
-                                        Date date0 = new SimpleDateFormat("yyyy-MM-dd").parse(date);
+                                        Date date0 = new SimpleDateFormat("yyyy-MM-dd").parse(date.toString());
 
                                         String[] weekdays = {"Κυριακη.", "Δευτερα.", "Τρίτη", "Τετάρτη", "Πέμπτη.", "Παρασκεύη.", "Σάββατο."};
                                         int day = date0.getDay();
