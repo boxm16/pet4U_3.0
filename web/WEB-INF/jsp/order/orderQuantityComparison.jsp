@@ -46,7 +46,7 @@
                                         LocalDateTime date = entrySet.getKey();
                                         DayOfWeek dayOfWeek = date.getDayOfWeek();
 
-                                        if (dayOfWeek == DayOfWeek.SUNDAY) {
+                                        if (dayOfWeek == DayOfWeek.SATURDAY) {
                                             out.println("<tr style='background-color: #90EE90;'>");
 
                                         } else {
