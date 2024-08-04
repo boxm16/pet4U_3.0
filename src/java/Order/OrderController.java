@@ -7,6 +7,7 @@ package Order;
 
 import BasicModel.Item;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.TreeMap;
@@ -155,38 +156,8 @@ public class OrderController {
 
     @RequestMapping(value = "ordersQuantityComparingAnalysis")
     public String ordersQuantityComparingAnalysis(ModelMap modelMap) {
-        LinkedHashMap<Integer, Order> allOrders = orderDao.getAllOrders();
-
-        TreeMap<String, Integer> positionsTraffic = new TreeMap<>();
-        int totalTraffic = 0;
-        for (Map.Entry<Integer, Order> allOrdersEntry : allOrders.entrySet()) {
-            Order order = allOrdersEntry.getValue();
-            LinkedHashMap<String, Item> items = order.getItems();
-            for (Map.Entry<String, Item> itemsEntry : items.entrySet()) {
-                Item item = itemsEntry.getValue();
-                String position = item.getPosition();
-                int _count = position.length() - position.replaceAll("-", "").length();
-
-                if (_count > 1) {
-                    int first = position.indexOf("-");
-                    int second = position.indexOf("-", first + 1);
-                    position = position.substring(0, second);
-                }
-
-                if (!positionsTraffic.containsKey(position)) {
-                    positionsTraffic.put(position, 1);
-                } else {
-                    Integer t = positionsTraffic.get(position);
-                    t = t + 1;
-                    positionsTraffic.put(position, t);
-                }
-            }
-
-            totalTraffic++;
-        }
-
-        modelMap.addAttribute("totalTraffic", totalTraffic);
-        modelMap.addAttribute("positionsTraffic", positionsTraffic);
+        LinkedHashMap<LocalDateTime, Integer> ordersQuantityByDate2023 = orderDao.countOrdersByDate2023();
+        LinkedHashMap<LocalDateTime, Integer> ordersQuantityByDate2024 = orderDao.countOrdersByDate2024();
 
         return "/order/ordersQuantityComparison";
     }
