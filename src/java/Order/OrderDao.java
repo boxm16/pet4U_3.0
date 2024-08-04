@@ -221,6 +221,52 @@ public class OrderDao {
         return items;
     }
 
+    LinkedHashMap<LocalDateTime, Integer> countOrdersByDate2022() {
+        LinkedHashMap<LocalDateTime, Integer> ordersByDate2022 = new LinkedHashMap<>();
+
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+        Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
+        int kaelCount = 0;
+        int kapdCount = 0;
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT DISTINCT DOCID , ENTRYDATE , DOCNAME "
+                    + "  FROM [petworld].[dbo].[WH_SALES_DOCS] WHERE (DOCNAME='ΚΑΠΔ' OR DOCNAME= 'ΚΑΕΛ') "
+                    + "AND ENTRYDATE between  '2022-01-01' AND '2022-12-31' order by DOCID  ;;");
+
+            while (resultSet.next()) {
+                String dateTimeStampString = resultSet.getString("ENTRYDATE");
+                dateTimeStampString = dateTimeStampString.replace(".0", "");
+
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                LocalDateTime dateTime = LocalDateTime.parse(dateTimeStampString, formatter);
+
+                String docname = resultSet.getString("DOCNAME");
+                if (docname.equals("ΚΑΕΛ")) {
+                    kaelCount++;
+                } else {
+                    if (!ordersByDate2022.containsKey(dateTime)) {
+                        ordersByDate2022.put(dateTime, 1);
+                    } else {
+                        Integer c = ordersByDate2022.get(dateTime);
+                        c++;
+                        kapdCount++;
+                        ordersByDate2022.put(dateTime, c);
+                    }
+                }
+
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(OrderDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        System.out.println("KAPD COUNT: " + kapdCount);
+        System.out.println("KAEL COUNT: " + kaelCount);
+        return ordersByDate2022;
+    }
+
     LinkedHashMap<LocalDateTime, Integer> countOrdersByDate2023() {
 
         LinkedHashMap<LocalDateTime, Integer> ordersByDate2023 = new LinkedHashMap<>();

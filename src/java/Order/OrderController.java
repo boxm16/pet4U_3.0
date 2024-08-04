@@ -156,6 +156,7 @@ public class OrderController {
 
     @RequestMapping(value = "ordersQuantityComparingAnalysis")
     public String ordersQuantityComparingAnalysis(ModelMap modelMap) {
+        LinkedHashMap<LocalDateTime, Integer> ordersQuantityByDate2022 = orderDao.countOrdersByDate2022();
         LinkedHashMap<LocalDateTime, Integer> ordersQuantityByDate2023 = orderDao.countOrdersByDate2023();
         LinkedHashMap<LocalDateTime, Integer> ordersQuantityByDate2024 = orderDao.countOrdersByDate2024();
 
