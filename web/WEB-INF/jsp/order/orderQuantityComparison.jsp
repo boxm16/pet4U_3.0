@@ -78,7 +78,16 @@
                                 <%
                                     TreeMap<Integer, Integer> counut2024 = (TreeMap) request.getAttribute("2024");
                                     for (Map.Entry<Integer, Integer> entrySet : counut2024.entrySet()) {
-                                        out.println("<tr>");
+                                        LocalDateTime date = entrySet.getKey();
+                                        DayOfWeek dayOfWeek = date.getDayOfWeek();
+
+                                        if (dayOfWeek == DayOfWeek.SATURDAY) {
+                                            out.println("<tr style='background-color: #90EE90;'>");
+
+                                        } else {
+                                            out.println("<tr >");
+
+                                        }
 
                                         out.println("<td>");
                                         out.println(entrySet.getKey());
