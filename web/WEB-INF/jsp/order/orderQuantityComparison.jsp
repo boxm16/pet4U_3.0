@@ -4,6 +4,9 @@
     Author     : Michail Sitmalidis
 --%>
 
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.time.LocalDateTime"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.TreeMap"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -36,10 +39,22 @@
                             </thead>
                             <tbody>
                                 <%
-                                    TreeMap<Integer, Integer> counut2023 = (TreeMap) request.getAttribute("2023");
-                                    for (Map.Entry<Integer, Integer> entrySet : counut2023.entrySet()) {
-                                        out.println("<tr>");
+                                    TreeMap<LocalDateTime, Integer> counut2023 = (TreeMap) request.getAttribute("2023");
+                                    for (Map.Entry<LocalDateTime, Integer> entrySet : counut2023.entrySet()) {
+                                        LocalDateTime date = entrySet.getKey();
 
+                                        Date date0 = new SimpleDateFormat("yyyy-MM-dd").parse(date);
+
+                                        String[] weekdays = {"Κυριακη.", "Δευτερα.", "Τρίτη", "Τετάρτη", "Πέμπτη.", "Παρασκεύη.", "Σάββατο."};
+                                        int day = date0.getDay();
+
+                                        if (day == 0) {
+                                            out.println("<tr style='background-color: #90EE90;'>");
+
+                                        } else {
+                                            out.println("<tr >");
+
+                                        }
                                         out.println("<td>");
                                         out.println(entrySet.getKey());
                                         out.println("</td>");
