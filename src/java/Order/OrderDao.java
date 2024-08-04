@@ -14,6 +14,7 @@ import java.sql.Statement;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.LinkedHashMap;
+import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.stereotype.Repository;
@@ -267,9 +268,9 @@ public class OrderDao {
         return ordersByDate2022;
     }
 
-    LinkedHashMap<LocalDateTime, Integer> countOrdersByDate2023() {
+    TreeMap<LocalDateTime, Integer> countOrdersByDate2023() {
 
-        LinkedHashMap<LocalDateTime, Integer> ordersByDate2023 = new LinkedHashMap<>();
+        TreeMap<LocalDateTime, Integer> ordersByDate2023 = new TreeMap<>();
 
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
         Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
@@ -314,8 +315,8 @@ public class OrderDao {
         return ordersByDate2023;
     }
 
-    LinkedHashMap<LocalDateTime, Integer> countOrdersByDate2024() {
-        LinkedHashMap<LocalDateTime, Integer> ordersByDate2024 = new LinkedHashMap<>();
+    TreeMap<LocalDateTime, Integer> countOrdersByDate2024() {
+        TreeMap<LocalDateTime, Integer> ordersByDate2024 = new TreeMap<>();
 
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
         Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
