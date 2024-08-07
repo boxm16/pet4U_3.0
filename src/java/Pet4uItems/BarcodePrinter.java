@@ -75,7 +75,9 @@ public class BarcodePrinter implements Printable {
                 e.printStackTrace();
             }
             g.drawString(code, 130, 10);
-            g.drawString("*"+barcode, 150, 25);
+           // g.setFont(new Font("Roman", Font.BOLD, 50));
+            g.drawString("*" + barcode, 150, 25);
+          //  g.setFont(new Font("Roman", 0, 50));
             g.drawString(description, 10, 43);
 
             g.setFont(new Font("Roman", Font.BOLD, 50));
