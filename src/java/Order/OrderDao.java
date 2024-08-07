@@ -41,15 +41,20 @@ public class OrderDao {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
                 LocalDateTime dateTime = LocalDateTime.parse(dateTimeStampString, formatter);
 
-                String creationDateTimeStampString = resultSet.getString("DATE_TIME");
+              String creationDateTimeStampString = resultSet.getString("DATE_TIME");
                 DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
                 DateTimeFormatter formatter3 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SS");
+                DateTimeFormatter formatter4 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S");
+
                 LocalDateTime creationDateTime;
                 if (creationDateTimeStampString.length() == 23) {
                     creationDateTime = LocalDateTime.parse(creationDateTimeStampString, formatter2);
-                } else {
+                } else if (creationDateTimeStampString.length() == 22) {
                     creationDateTime = LocalDateTime.parse(creationDateTimeStampString, formatter3);
+                } else {
+                    creationDateTime = LocalDateTime.parse(creationDateTimeStampString, formatter4);
                 }
+                
                 int id = resultSet.getInt("DOCID");
                 String number = resultSet.getString("DOCNUMBER");
                 String itemCode = resultSet.getString("ABBREVIATION");
@@ -109,15 +114,20 @@ public class OrderDao {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
                 LocalDateTime dateTime = LocalDateTime.parse(dateTimeStampString, formatter);
 
-                String creationDateTimeStampString = resultSet.getString("DATE_TIME");
+                 String creationDateTimeStampString = resultSet.getString("DATE_TIME");
                 DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
                 DateTimeFormatter formatter3 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SS");
+                DateTimeFormatter formatter4 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S");
+
                 LocalDateTime creationDateTime;
                 if (creationDateTimeStampString.length() == 23) {
                     creationDateTime = LocalDateTime.parse(creationDateTimeStampString, formatter2);
-                } else {
+                } else if (creationDateTimeStampString.length() == 22) {
                     creationDateTime = LocalDateTime.parse(creationDateTimeStampString, formatter3);
+                } else {
+                    creationDateTime = LocalDateTime.parse(creationDateTimeStampString, formatter4);
                 }
+                
                 int id = resultSet.getInt("DOCID");
                 String number = resultSet.getString("DOCNUMBER");
                 String itemCode = resultSet.getString("ABBREVIATION");
@@ -181,11 +191,15 @@ public class OrderDao {
                 String creationDateTimeStampString = resultSet.getString("DATE_TIME");
                 DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
                 DateTimeFormatter formatter3 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SS");
+                DateTimeFormatter formatter4 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S");
+
                 LocalDateTime creationDateTime;
                 if (creationDateTimeStampString.length() == 23) {
                     creationDateTime = LocalDateTime.parse(creationDateTimeStampString, formatter2);
-                } else {
+                } else if (creationDateTimeStampString.length() == 22) {
                     creationDateTime = LocalDateTime.parse(creationDateTimeStampString, formatter3);
+                } else {
+                    creationDateTime = LocalDateTime.parse(creationDateTimeStampString, formatter4);
                 }
 
                 int id = resultSet.getInt("DOCID");
