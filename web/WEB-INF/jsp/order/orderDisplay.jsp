@@ -30,8 +30,10 @@
         <hr>
         <table style="font-size:20px">
             <tr>  <td>Order Id</td><td>${order.id}</td></tr>
-            <tr>  <td>Order DateTimeStamp</td><td>${order.dateTimeStamp}</td></tr>
             <tr>  <td>Order Number</td><td>${order.number}</td></tr>
+            <tr>  <td>Creation Time Stamp</td><td>${order.creationDateTime}</td></tr>
+            <tr>  <td>Sale DateTimeStamp</td><td>${order.dateTimeStamp}</td></tr>
+            <tr>  <td>Creation User</td><td>${order.creationUser}</td></tr>
 
 
         </table>

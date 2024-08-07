@@ -18,6 +18,8 @@ public class Order {
     private int id;
     private String number;
     private LocalDateTime dateTimeStamp;
+    private LocalDateTime creationDateTime;
+    private String creationUser;
     private LinkedHashMap<String, Item> items;
 
     public Order() {
@@ -48,10 +50,6 @@ public class Order {
         this.dateTimeStamp = dateTimeStamp;
     }
 
-   
-
-   
-
     public LinkedHashMap<String, Item> getItems() {
         return items;
     }
@@ -59,5 +57,23 @@ public class Order {
     public void setItems(LinkedHashMap<String, Item> items) {
         this.items = items;
     }
+
+    public LocalDateTime getCreationDateTime() {
+        return creationDateTime;
+    }
+
+    public void setCreationDateTime(LocalDateTime creationDateTime) {
+        this.creationDateTime = creationDateTime;
+    }
+
+    public String getCreationUser() {
+        return creationUser;
+    }
+
+    public void setCreationUser(String creationUser) {
+        this.creationUser = creationUser;
+    }
+    
+    
 
 }
