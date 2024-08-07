@@ -78,7 +78,7 @@ public class BarcodePrinter implements Printable {
             g.drawString("*"+barcode, 150, 25);
             g.drawString(description, 10, 43);
 
-            g.setFont(new Font("Roman", 0, 50));
+            g.setFont(new Font("Roman", Font.BOLD, 50));
             g.drawString(position, 10, 90);
 
             return PAGE_EXISTS;
