@@ -238,6 +238,73 @@ public class OrderDao {
         return order;
     }
 
+    Order getOrderById(String orderId) {
+        LinkedHashMap<String, Item> pet4UItemsRowByRow = getPet4UItemsRowByRow();
+
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+        Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
+        Order order = new Order();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("select * from WH_SALES_DOCS WHERE DOCID = '" + orderId + "';");
+
+            while (resultSet.next()) {
+                String dateTimeStampString = resultSet.getString("ENTRYDATE");
+                dateTimeStampString = dateTimeStampString.replace(".0", "");
+
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                LocalDateTime dateTime = LocalDateTime.parse(dateTimeStampString, formatter);
+
+                String creationDateTimeStampString = resultSet.getString("DATE_TIME");
+                DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
+                DateTimeFormatter formatter3 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SS");
+                DateTimeFormatter formatter4 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S");
+
+                LocalDateTime creationDateTime;
+                if (creationDateTimeStampString.length() == 23) {
+                    creationDateTime = LocalDateTime.parse(creationDateTimeStampString, formatter2);
+                } else if (creationDateTimeStampString.length() == 22) {
+                    creationDateTime = LocalDateTime.parse(creationDateTimeStampString, formatter3);
+                } else {
+                    creationDateTime = LocalDateTime.parse(creationDateTimeStampString, formatter4);
+                }
+
+                int id = resultSet.getInt("DOCID");
+                String number = resultSet.getString("DOCNUMBER");
+                String itemCode = resultSet.getString("ABBREVIATION");
+                String description = resultSet.getString("NAME");
+                String quantity = resultSet.getString("QUANT1");
+                String creationUser = resultSet.getString("USER_");
+
+                order.setId(id);
+                order.setId(id);
+                order.setDateTimeStamp(dateTime);
+                order.setNumber(number);
+                order.setCreationDateTime(creationDateTime);
+                order.setCreationUser(creationUser);
+
+                Item item = new Item();
+                item.setCode(itemCode);
+                item.setDescription(description);
+                item.setQuantity(quantity);
+                Item it = pet4UItemsRowByRow.get(itemCode);
+                if (it == null) {
+                    System.out.println("NO SUCH ITEM: OrderDao");
+                } else {
+                    item.setPosition(it.getPosition());
+                }
+                order.getItems().put(itemCode, item);
+
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(OrderDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return order;
+    }
+
     public LinkedHashMap<String, Item> getPet4UItemsRowByRow() {
         LinkedHashMap<String, Item> items = new LinkedHashMap<>();
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();

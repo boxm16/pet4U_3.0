@@ -38,6 +38,11 @@
             <button type="submit" class="btn btn-primary"> <h1> Get  Order </h1></button>
         </form>
         <hr>
+        <form action="getOrderById.htm" method="POST">
+            <h1>  <input type="text" name='orderId'></h1>
+            <hr>
+            <button type="submit" class="btn btn-secondary"> <h1> Get  Order By Id </h1></button>
+        </form>
         <h1>Statistics after 01.01.2024 till today</h1>
         <hr>
         <a href="codeQuantityInOrders.htm" class="btn btn-primary" role="button" style='background-color: green;'><h1>Code Quantity In Orders - Analysis</h1></a>
