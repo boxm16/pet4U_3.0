@@ -55,16 +55,16 @@
                         out.println(entrySet.getValue().getId());
                         out.println("</td>");
 
-                        /*   if (entrySet.getValue().getType().equals("ΚΑΠΔ")) {
-                            out.println("<td style='backgrοund-color:green'>");
+                        if (entrySet.getValue().getType().equals("ΚΑΠΔ")) {
+                            out.println("<td bgcolor='green'>");
                         } else if (entrySet.getValue().getType().equals("ΚΠΤΔ1")) {
-                            out.println("<td style='backgrοund-color:lightgreen'>");
+                            out.println("<td bgcolor='lightgreen'>");
                         } else if (entrySet.getValue().getType().equals("ΚΑΕΛ")
                                 || entrySet.getValue().getType().equals("ΚΔΑΤ1")) {
-                            out.println("<td style='backgrοund-color:pink'>");
+                            out.println("<td bgcolor='pink'>");
                         } else {
                             out.println("<td>");
-                        }*/
+                        }
                         out.println("<td bgcolor='green'>");
                         out.println(entrySet.getValue().getType());
                         out.println("</td>");
