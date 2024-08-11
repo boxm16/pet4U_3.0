@@ -413,7 +413,7 @@ public class OrderDao {
     }
 
     LinkedHashMap<Integer, Order> getOrdersOfDate(String date) {
-        System.out.println("DATE: "+date);
+        System.out.println("DATE: " + date);
         LinkedHashMap<String, Item> pet4UItemsRowByRow = getPet4UItemsRowByRow();
 
         LinkedHashMap<Integer, Order> orders = new LinkedHashMap<>();
@@ -421,6 +421,8 @@ public class OrderDao {
         Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
         String startDate = date + " 00:00:00.000";
         String endDate = date + " 24:00:00.000";
+        System.out.println("START DATE: " + startDate);
+        System.out.println("END DATE: " + endDate);
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("select * from WH_SALES_DOCS WHERE DATE_TIME >= '" + startDate + "' AND DATE_TIME <='" + endDate + "';");
