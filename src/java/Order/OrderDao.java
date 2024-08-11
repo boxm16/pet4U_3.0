@@ -425,7 +425,7 @@ public class OrderDao {
         System.out.println("END DATE: " + endDate);
         try {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("select * from WH_SALES_DOCS WHERE DATE_TIME >= '" + startDate + "' AND DATE_TIME <='" + endDate + "';");
+            ResultSet resultSet = statement.executeQuery("select * from WH_SALES_DOCS WHERE DATE_TIME >= '" + startDate + "' AND DATE_TIME <='" + endDate + "' ORDER BY DOCID;");
 
             while (resultSet.next()) {
                 String dateTimeStampString = resultSet.getString("ENTRYDATE");
