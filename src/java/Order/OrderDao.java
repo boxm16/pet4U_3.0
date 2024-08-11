@@ -422,7 +422,7 @@ public class OrderDao {
         String endDate = date + "24:00:00.000";
         try {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("select * from WH_SALES_DOCS WHERE DATE_TIME => '" + startDate + "' AND DATE_TIME <='" + endDate + "';");
+            ResultSet resultSet = statement.executeQuery("select * from WH_SALES_DOCS WHERE DATE_TIME >= '" + startDate + "' AND DATE_TIME <='" + endDate + "';");
 
             while (resultSet.next()) {
                 String dateTimeStampString = resultSet.getString("ENTRYDATE");
