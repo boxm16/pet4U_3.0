@@ -55,7 +55,7 @@
                         out.println(entrySet.getValue().getId());
                         out.println("</td>");
 
-                        if (entrySet.getValue().getType().equals("ΚΑΠΔ")) {
+                        /*   if (entrySet.getValue().getType().equals("ΚΑΠΔ")) {
                             out.println("<td style='backgrοund-color:green'>");
                         } else if (entrySet.getValue().getType().equals("ΚΠΤΔ1")) {
                             out.println("<td style='backgrοund-color:lightgreen'>");
@@ -64,8 +64,8 @@
                             out.println("<td style='backgrοund-color:pink'>");
                         } else {
                             out.println("<td>");
-                        }
-                         out.println("<td style='backgrοund-color:green'>");
+                        }*/
+                        out.println("<td style='backgrοund-color:green'>");
                         out.println(entrySet.getValue().getType());
                         out.println("</td>");
 
