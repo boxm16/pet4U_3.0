@@ -17,6 +17,7 @@ public class Order {
 
     private int id;
     private String number;
+    private String type;
     private LocalDateTime dateTimeStamp;
     private LocalDateTime creationDateTime;
     private String creationUser;
@@ -72,6 +73,14 @@ public class Order {
 
     public void setCreationUser(String creationUser) {
         this.creationUser = creationUser;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
     
     

@@ -450,6 +450,8 @@ public class OrderDao {
 
                 int id = resultSet.getInt("DOCID");
                 String number = resultSet.getString("DOCNUMBER");
+                String type = resultSet.getString("DOCNAME");
+
                 String itemCode = resultSet.getString("ABBREVIATION");
                 String description = resultSet.getString("NAME");
                 String quantity = resultSet.getString("QUANT1");
@@ -460,6 +462,7 @@ public class OrderDao {
                     order.setId(id);
                     order.setDateTimeStamp(dateTime);
                     order.setNumber(number);
+                    order.setType(type);
                     order.setCreationDateTime(creationDateTime);
                     order.setCreationUser(creationUser);
                     orders.put(id, order);

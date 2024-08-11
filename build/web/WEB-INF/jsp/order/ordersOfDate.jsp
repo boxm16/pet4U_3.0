@@ -30,6 +30,7 @@
                 <tr> 
                     <th>A/A</th>
                     <th>Order Id</th>
+                    <th>Order Type</th>
                     <th>Order DateTimeStamp</th>
                     <th>Order Number</th>
                     <th>Items</th>
@@ -52,6 +53,19 @@
 
                         out.println("<td>");
                         out.println(entrySet.getValue().getId());
+                        out.println("</td>");
+
+                        if (entrySet.getValue().getType().equals("ΚΑΠΔ")) {
+                            out.println("<td style='backgrpund-color:green'>");
+                        } else if (entrySet.getValue().getType().equals("ΚΠΤΔ1")) {
+                            out.println("<td style='backgrpund-color:lightgreen'>");
+                        } else if (entrySet.getValue().getType().equals("ΚΑΕΛ")
+                                || entrySet.getValue().getType().equals("ΚΔΑΤ1")) {
+                            out.println("<td style='backgrpund-color:pink'>");
+                        } else {
+                            out.println("<td>");
+                        }
+                        out.println(entrySet.getValue().getType());
                         out.println("</td>");
 
                         out.println("<td>");
