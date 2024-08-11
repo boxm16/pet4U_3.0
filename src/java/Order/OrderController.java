@@ -54,6 +54,15 @@ public class OrderController {
 
         return "/order/orderDisplay";
     }
+    
+    @RequestMapping(value = "getOrderById")
+    public String getOrderById(@RequestParam(name = "orderId") String orderId, ModelMap modelMap) {
+
+        Order order = orderDao.getOrderById(orderId);
+        modelMap.addAttribute("order", order);
+
+        return "/order/orderDisplay";
+    }
 
     @RequestMapping(value = "codeQuantityInOrders")
     public String orderStatistics(ModelMap modelMap) {
