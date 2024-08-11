@@ -56,12 +56,12 @@
                         out.println("</td>");
 
                         if (entrySet.getValue().getType().equals("ΚΑΠΔ")) {
-                            out.println("<td style='backgrpund-color:green'>");
+                            out.println("<td style='backgrοund-color:green'>");
                         } else if (entrySet.getValue().getType().equals("ΚΠΤΔ1")) {
-                            out.println("<td style='backgrpund-color:lightgreen'>");
+                            out.println("<td style='backgrοund-color:lightgreen'>");
                         } else if (entrySet.getValue().getType().equals("ΚΑΕΛ")
                                 || entrySet.getValue().getType().equals("ΚΔΑΤ1")) {
-                            out.println("<td style='backgrpund-color:pink'>");
+                            out.println("<td style='backgrοund-color:pink'>");
                         } else {
                             out.println("<td>");
                         }
