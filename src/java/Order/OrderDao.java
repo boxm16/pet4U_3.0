@@ -413,6 +413,7 @@ public class OrderDao {
     }
 
     LinkedHashMap<Integer, Order> getOrdersOfDate(String date) {
+        System.out.println("DATE: "+date);
         LinkedHashMap<String, Item> pet4UItemsRowByRow = getPet4UItemsRowByRow();
 
         LinkedHashMap<Integer, Order> orders = new LinkedHashMap<>();
