@@ -418,10 +418,11 @@ public class OrderDao {
         LinkedHashMap<Integer, Order> orders = new LinkedHashMap<>();
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
         Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
-
+        String startDate = date + "00:00:00.000";
+        String endDate = date + "24:00:00.000";
         try {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("select * from WH_SALES_DOCS WHERE DATE_TIME = '" + date + "';");
+            ResultSet resultSet = statement.executeQuery("select * from WH_SALES_DOCS WHERE DATE_TIME => '" + startDate + "' AND DATE_TIME <='" + endDate + "';");
 
             while (resultSet.next()) {
                 String dateTimeStampString = resultSet.getString("ENTRYDATE");
