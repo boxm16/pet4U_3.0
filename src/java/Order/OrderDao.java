@@ -420,7 +420,7 @@ public class OrderDao {
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
         Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
         String startDate = date + " 00:00:00.000";
-        String endDate = date + " 24:00:00.000";
+        String endDate = date + " 23:59:59.999";
         System.out.println("START DATE: " + startDate);
         System.out.println("END DATE: " + endDate);
         try {
