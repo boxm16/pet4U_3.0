@@ -22,7 +22,13 @@
         <form action="ordersForDate.htm" method="POST">
             <h1>  <input type="date"  name="date" value="${date}"></h1>
             <hr>
-            <button type="submit" class="btn btn-danger"> <h1> Show  Orders </h1></button>
+            <button type="submit" class="btn btn-danger"> <h1>Show orders FOR DATE</h1></button>
+        </form>
+        <hr>
+        <form action="ordersOfDate.htm" method="POST">
+            <h1>  <input type="date"  name="date" value="${date}"></h1>
+            <hr>
+            <button type="submit" class="btn btn-primary"> <h1>Show orders OF DATE</h1></button>
         </form>
         <hr>
         <hr>
