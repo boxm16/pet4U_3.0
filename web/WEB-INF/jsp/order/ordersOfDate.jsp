@@ -65,7 +65,7 @@
                         } else {
                             out.println("<td>");
                         }*/
-                        out.println("<td style='backgrοund-color:green'>");
+                        out.println("<td bgcolor='green'>");
                         out.println(entrySet.getValue().getType());
                         out.println("</td>");
 
