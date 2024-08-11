@@ -31,6 +31,7 @@
                     <th>A/A</th>
                     <th>Order Id</th>
                     <th>Order Type</th>
+                    <th>Creation DateTimeStamp</th>
                     <th>Order DateTimeStamp</th>
                     <th>Order Number</th>
                     <th>Items</th>
@@ -67,6 +68,9 @@
                         }
 
                         out.println(entrySet.getValue().getType());
+                        out.println("</td>");
+                        out.println("<td>");
+                        out.println(entrySet.getValue().getCreationDateTime());
                         out.println("</td>");
 
                         out.println("<td>");
