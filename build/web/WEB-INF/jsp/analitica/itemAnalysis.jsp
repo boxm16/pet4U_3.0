@@ -521,7 +521,7 @@
                                     } else {
                                         out.println("<td>");
                                         out.println();
-                                        out.println("<a  href = 'getAllSalesDocsForDateAndItem.htm?itemCode=" + item.getCode() + "&date=" + date + "' target='_blank'>" + daysSalesEntry.getValue().getSoldQuantiy() + "</a>");
+                                        out.println("<a  href = 'getAllSalesDocsOfDateAndItem.htm?itemCode=" + item.getCode() + "&date=" + date + "' target='_blank'>" + daysSalesEntry.getValue().getSoldQuantiy() + "</a>");
 
                                     }
 
