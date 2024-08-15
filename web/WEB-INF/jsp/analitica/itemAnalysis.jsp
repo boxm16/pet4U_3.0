@@ -630,31 +630,37 @@
 
                                 for (Map.Entry<LocalDate, ItemSnapshot> itemSnapshotsEntry : itemSnapshots.entrySet()) {
                                     LocalDate date0 = itemSnapshotsEntry.getKey();
+
+                                    if (date0.getDayOfWeek().toString().equals("SUNDAY")) {
+                                        out.println("<tr style='background-color: #90EE90;'>");
+
+                                    } else {
+                                        out.println("<tr >");
+
+                                    }
+                                    String[] weekdays = {"", "Δευτερα.", "Τρίτη", "Τετάρτη", "Πέμπτη.", "Παρασκεύη.", "Σάββατο.", "Κυριακη."};
+                                    int day = date0.getDayOfWeek().getValue();
+
+                                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+                                    out.println("<td>");
+                                    out.println(date0.format(formatter) + "<br>" + weekdays[day]);
+                                    out.println("</td>");
+                                    
                                     ItemSnapshot itemSnapshot = itemSnapshotsEntry.getValue();
- if (date0.getDayOfWeek().toString().equals("SUNDAY")) {
-                                            out.println("<tr style='background-color: #90EE90;'>");
-
-                                        } else {
-      u.println("<tr >");
-
-                                        }
-                                        String[] weekdays = {"", "Δευτερα.", "Τρίτη", "Τετάρτη", "Πέμπτη.", "Παρασκεύη.", "Σάββατο.", "Κυριακη."};
-                                        int day = date0.getDayOfWeek().getValue();
-
-                                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-                                        out.println("<td>");
-                                        out.println(date0.format(formatter) + "<br>" + weekdays[day]);
-                                        out.println("</td>");
                                     if (itemSnapshot == null) {
                                     } else {
                                         Double stock = Double.parseDouble(itemSnapshot.getQuantity());
-                                       
 
                                         out.println("<td>");
                                         out.println(itemSnapshotsEntry.getValue().getState());
                                         out.println("</td>");
 
-                                        if (itemSnapshotsEntry.getValue().getQuantity().equa.println(itemSnapshotsEntry.getValue().getQuantity());
+                                        if (itemSnapshotsEntry.getValue().getQuantity().equals("0") || itemSnapshotsEntry.getValue().getQuantity().equals("0.000000")) {
+                                            out.println("<td style='background-color: #F7B2F7'>");
+                                        } else {
+                                            out.println("<td>");
+                                        }
+                                        out.println(itemSnapshotsEntry.getValue().getQuantity());
                                         out.println("</td>");
 
                                         out.println("<td>");
