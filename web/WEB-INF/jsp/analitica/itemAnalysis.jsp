@@ -645,9 +645,15 @@
                                     out.println("<td>");
                                     out.println(date0.format(formatter) + "<br>" + weekdays[day]);
                                     out.println("</td>");
-                                    
+
                                     ItemSnapshot itemSnapshot = itemSnapshotsEntry.getValue();
                                     if (itemSnapshot == null) {
+                                        out.println("<td>");
+                                        out.println("N/A");
+                                        out.println("</td>");
+                                        out.println("<td>");
+                                        out.println("N/A");
+                                        out.println("</td>");
                                     } else {
                                         Double stock = Double.parseDouble(itemSnapshot.getQuantity());
 
@@ -666,10 +672,10 @@
                                         out.println("<td>");
                                         out.println(stock - stockBefore);
                                         out.println("</td>");
-                                       
+
                                         stockBefore = stock;
                                     }
-                                     out.println("</tr>");
+                                    out.println("</tr>");
                                 }
                             %>
                     </table>
