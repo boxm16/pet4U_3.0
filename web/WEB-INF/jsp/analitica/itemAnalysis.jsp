@@ -515,11 +515,9 @@
                                     out.println(date.format(formatter) + "<br>" + weekdays[day]);
                                     out.println("</td>");
 
-                                 
-                                        out.println("<td");
-                                        out.println(daysSalesEntry.getValue().getSoldQuantiy());
-                                
-
+                                    out.println("<td");
+                                    out.println("----");
+                                    out.println(daysSalesEntry.getValue().getSoldQuantiy());
                                     out.println("</td>");
 
                                     out.println("</tr>");
