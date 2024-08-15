@@ -667,6 +667,7 @@
                                         out.println("</tr>");
                                         stockBefore = stock;
                                     }
+                                }
                             %>
                     </table>
                 </div>
