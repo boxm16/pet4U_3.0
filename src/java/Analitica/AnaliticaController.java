@@ -60,6 +60,9 @@ public class AnaliticaController {
         ArrayList< ItemSnapshot> itemSnapshots = pet4uItemsDao.getItemSnapshots(itemCode);
         model.addAttribute("itemSnapshots", itemSnapshots);
 
+        LinkedHashMap<LocalDate, ItemSnapshot> last100DaysSnapshots = pet4uItemsDao.getLast100DaysSnapshots(item.getCode());
+        model.addAttribute("last100DaysSnapshots", last100DaysSnapshots);
+        
         MonthSalesDao monthSalesDao = new MonthSalesDao();
         ArrayList<String> period = monthSalesDao.getSalesPeriod();
         MonthSales itemSales = monthSalesDao.getItemSales(itemCode);
@@ -81,9 +84,8 @@ public class AnaliticaController {
         }
         model.addAttribute("itemSales", itemSales);
 
-     //   LinkedHashMap<String, Double> daysSales = monthSalesDao.getLast30DaysSales(item.getCode());
-       // model.addAttribute("daysSales", daysSales);
-
+        //   LinkedHashMap<String, Double> daysSales = monthSalesDao.getLast30DaysSales(item.getCode());
+        // model.addAttribute("daysSales", daysSales);
         DailySalesDao dailySalesDao = new DailySalesDao();
         LinkedHashMap<LocalDate, DailySale> dailySales = dailySalesDao.getLast30DaysSales(item.getCode());
         model.addAttribute("dailySales", dailySales);

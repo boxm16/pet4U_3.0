@@ -579,7 +579,7 @@
                         <th>Date Stamp</th>
                         <th>State</th>
                         <th>Quantity</th>
-                            <%                                ArrayList<ItemSnapshot> itemSnapshots = (ArrayList) request.getAttribute("itemSnapshots");
+                            <% /*                               ArrayList<ItemSnapshot> itemSnapshots = (ArrayList) request.getAttribute("itemSnapshots");
                                 double stockBefore = 0.0;
 
                                 for (int x = 0; x < itemSnapshots.size() - 1; x++) {
@@ -623,6 +623,50 @@
                                     stockBefore = stock;
 
                                 }
+                                 */
+                                LinkedHashMap<LocalDate, ItemSnapshot> itemSnapshots = (LinkedHashMap) request.getAttribute("last100DaysSnapshots");
+
+                                double stockBefore = 0.0;
+
+                                for (Map.Entry<LocalDate, ItemSnapshot> itemSnapshotsEntry : itemSnapshots.entrySet()) {
+                                    LocalDate date = itemSnapshotsEntry.getKey();
+                                    ItemSnapshot itemSnapshot = itemSnapshotsEntry.getValue();
+                                    if (itemSnapshot == null) {
+                                    } else {
+                                        Double stock = Double.parseDouble(itemSnapshot.getQuantity());
+                                        if (date.getDayOfWeek().toString().equals("SUNDAY")) {
+                                            out.println("<tr style='background-color: #90EE90;'>");
+
+                                        } else {
+                                            out.println("<tr >");
+
+                                        }
+                                        String[] weekdays = {"", "Δευτερα.", "Τρίτη", "Τετάρτη", "Πέμπτη.", "Παρασκεύη.", "Σάββατο.", "Κυριακη."};
+                                        int day = date.getDayOfWeek().getValue();
+
+                                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+                                        out.println("<td>");
+                                        out.println(date.format(formatter) + "<br>" + weekdays[day]);
+                                        out.println("</td>");
+
+                                        out.println("<td>");
+                                        out.println(itemSnapshotsEntry.getValue().getState());
+                                        out.println("</td>");
+
+                                        if (itemSnapshotsEntry.getValue().getQuantity().equals("0") || itemSnapshotsEntry.getValue().getQuantity().equals("0.000000")) {
+                                            out.println("<td style='background-color: #F7B2F7'>");
+                                        } else {
+                                            out.println("<td>");
+                                        }
+                                        out.println(itemSnapshotsEntry.getValue().getQuantity());
+                                        out.println("</td>");
+
+                                        out.println("<td>");
+                                        out.println(stock - stockBefore);
+                                        out.println("</td>");
+                                        out.println("</tr>");
+                                        stockBefore = stock;
+                                    }
                             %>
                     </table>
                 </div>

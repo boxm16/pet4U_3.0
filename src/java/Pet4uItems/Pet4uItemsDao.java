@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -450,6 +451,53 @@ public class Pet4uItemsDao {
             Logger.getLogger(Pet4uItemsDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return itemSnapshots;
+    }
+
+    public LinkedHashMap<LocalDate, ItemSnapshot> getLast100DaysSnapshots(String code) {
+        LinkedHashMap<LocalDate, ItemSnapshot> getLast100DaysSnapshots = new LinkedHashMap<>();
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+        Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
+
+        LocalDate date = LocalDate.now();
+        //  LocalDate firstDate = date.minusDays(30);
+        //  LocalDate lastDate = date.minusDays(1);
+        for (int x = 100; x > 0; x--) {
+            date = date.minusDays(1);
+
+            getLast100DaysSnapshots.put(date, null);
+        }
+
+        String sql = "SELECT * FROM item_state WHERE item_code='" + code + "' ORDER BY date_stamp DESC;";
+        ResultSet resultSet;
+
+        try {
+            Statement statement = connection.createStatement();
+            resultSet = statement.executeQuery(sql);
+            while (resultSet.next()) {
+                ItemSnapshot itemSnapshot = new ItemSnapshot();
+
+                String dateStamp = resultSet.getString("date_stamp");
+
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                LocalDate date1 = LocalDate.parse(dateStamp, formatter);
+
+                String quantity = resultSet.getString("item_stock");
+                String state = resultSet.getString("state");
+
+                itemSnapshot.setDateStamp(dateStamp);
+                itemSnapshot.setState(state);
+                itemSnapshot.setQuantity(quantity);
+
+                getLast100DaysSnapshots.put(date1, itemSnapshot);
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Pet4uItemsDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return getLast100DaysSnapshots;
     }
 
     public LinkedHashMap<String, Item> getPet4UItemsRowByRow() {
