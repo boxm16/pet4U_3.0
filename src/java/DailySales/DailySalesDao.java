@@ -61,13 +61,18 @@ public class DailySalesDao {
                     System.out.println("Something Wrong. DailySalesDao. dailySale=null");
                 } else {
                     String number = resultSet.getString("DOCNUMBER");
+                    String doctype = resultSet.getString("DOCNAME");
                     double quantity = resultSet.getDouble("QUANT1");
                     if (number.equals("0")) {
                         dailySale.setPresoldQuantiy(quantity + dailySale.getPresoldQuantiy());
-
+                        System.out.println("DOCNUMBER");
                     }
-                    dailySale.setSoldQuantiy(quantity + dailySale.getSoldQuantiy());
-
+                    if (doctype.equals("ΚΑΠΔ") || doctype.equals("ΚΔΑΤ1")) {
+                        dailySale.setSoldQuantiy(quantity + dailySale.getSoldQuantiy());
+                    }
+                    if (doctype.equals("ΚΑΕΛ") || doctype.equals("ΚΠΔΤ1")) {
+                        dailySale.setSoldQuantiy(quantity - dailySale.getSoldQuantiy());
+                    }
                 }
 
             }
