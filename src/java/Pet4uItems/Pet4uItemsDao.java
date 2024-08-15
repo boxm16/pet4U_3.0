@@ -454,9 +454,9 @@ public class Pet4uItemsDao {
     }
 
     public LinkedHashMap<LocalDate, ItemSnapshot> getLast100DaysSnapshots(String code) {
-        LinkedHashMap<LocalDate, ItemSnapshot> getLast100DaysSnapshots = new LinkedHashMap<>();
+        LinkedHashMap<LocalDate, ItemSnapshot> last100DaysSnapshots = new LinkedHashMap<>();
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
-        Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
+        Connection connection = databaseConnectionFactory.getMySQLConnection();
 
         LocalDate date = LocalDate.now();
         //  LocalDate firstDate = date.minusDays(30);
@@ -464,7 +464,7 @@ public class Pet4uItemsDao {
         for (int x = 100; x > 0; x--) {
             date = date.minusDays(1);
 
-            getLast100DaysSnapshots.put(date, null);
+            last100DaysSnapshots.put(date, null);
         }
 
         String sql = "SELECT * FROM item_state WHERE item_code='" + code + "' ORDER BY date_stamp DESC;";
@@ -488,7 +488,7 @@ public class Pet4uItemsDao {
                 itemSnapshot.setState(state);
                 itemSnapshot.setQuantity(quantity);
 
-                getLast100DaysSnapshots.put(date1, itemSnapshot);
+                last100DaysSnapshots.put(date1, itemSnapshot);
             }
             resultSet.close();
             statement.close();
