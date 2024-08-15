@@ -71,7 +71,7 @@ public class DailySalesDao {
                         dailySale.setSoldQuantiy(quantity + dailySale.getSoldQuantiy());
                     }
                     if (doctype.equals("ΚΑΕΛ") || doctype.equals("ΚΠΔΤ1")) {
-                        dailySale.setSoldQuantiy(quantity - dailySale.getSoldQuantiy());
+                        dailySale.setSoldQuantiy(dailySale.getSoldQuantiy() - quantity);
                     }
                 }
 
