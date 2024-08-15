@@ -625,8 +625,6 @@
                                 }
                                  */
                                 LinkedHashMap<LocalDate, ItemSnapshot> itemSnapshots = (LinkedHashMap) request.getAttribute("last100DaysSnapshots");
-
-                                double stockBefore = 0.0;
                                 Iterator<LocalDate> iterator = itemSnapshots.keySet().iterator();
                                 while (iterator.hasNext()) {
                                     LocalDate currentDate = iterator.next();
@@ -677,10 +675,9 @@
                                         out.println("</td>");
 
                                         out.println("<td>");
-                                        out.println(stock - stockBefore);
+                                        out.println(stock - Double.parseDouble(previousItem.getQuantity()));
                                         out.println("</td>");
 
-                                        stockBefore = stock;
                                     }
                                     out.println("</tr>");
                                 }
