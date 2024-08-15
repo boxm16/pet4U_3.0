@@ -5,6 +5,8 @@ import CamelotItemsOfInterest.CamelotItemsOfInterestDao;
 import CamelotItemsOfInterest.ItemSnapshot;
 import CamelotSales.CamelotSalesDao;
 import CamelotSearch.CamelotSearchDao;
+import DailySales.DailySale;
+import DailySales.DailySalesDao;
 import MonthSales.MonthSales;
 import MonthSales.MonthSalesDao;
 import MonthSales.Sales;
@@ -81,6 +83,10 @@ public class AnaliticaController {
 
         LinkedHashMap<String, Double> daysSales = monthSalesDao.getLast30DaysSales(item.getCode());
         model.addAttribute("daysSales", daysSales);
+
+        DailySalesDao dailySalesDao = new DailySalesDao();
+        LinkedHashMap<LocalDate, DailySale> dailySales = dailySalesDao.getLast30DaysSales(item.getCode());
+        model.addAttribute("dailySales", dailySales);
 
         OfferDao offerDao = new OfferDao();
         ArrayList<Offer> offers = offerDao.getOffers(itemCode);

@@ -34,7 +34,6 @@
                     <hr>
                     <a href="showAllDeletedCamelotNotesBatches.htm" class="btn btn-secondary" style='background-color: yellow' role="button"><h1>Show Deleted Camelot Notes</h1></a>
                     <hr>
-                    <a href="printOut.htm" class="btn btn-secondary" style='background-color: green' role="button"><h1>Printer</h1></a>
 
                 </div>
                 <div class=" col-sm-4">

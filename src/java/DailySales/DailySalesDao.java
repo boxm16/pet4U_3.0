@@ -1,0 +1,72 @@
+package DailySales;
+
+import Service.DatabaseConnectionFactory;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.LinkedHashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class DailySalesDao {
+
+    public LinkedHashMap<LocalDate, DailySale> getLast30DaysSales(String itemCode) {
+        LinkedHashMap<LocalDate, DailySale> dailySales = new LinkedHashMap<>();
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+        Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
+
+        LocalDate date = LocalDate.now();
+        //  LocalDate firstDate = date.minusDays(30);
+        //  LocalDate lastDate = date.minusDays(1);
+        for (int x = 30; x > 0; x--) {
+            date = date.minusDays(1);
+            //  DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            //  String formattedString = date.format(formatter);
+            //  String formattedString = date.format(formatter) + " 00:00:00.0";
+            //   System.out.println(formattedString);
+            dailySales.put(date, new DailySale());
+        }
+
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM [petworld].[dbo].[WH_SALES_VAR] WHERE ABBREVIATION='" + itemCode + "' "
+                    + " AND DATE_TIME >= '" + date + "' ORDER BY DATE_TIME;");
+
+            LocalDate creationDate;
+            while (resultSet.next()) {
+                String creationDateTimeStampString = resultSet.getString("DATE_TIME");
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                creationDate = LocalDate.parse(creationDateTimeStampString, formatter);
+
+                DailySale dailySale = dailySales.get(creationDate);
+                if (dailySale == null) {
+                    System.out.println("Something Wrong. DailySalesDao. dailySale=null");
+                } else {
+                    String number = resultSet.getString("DOCNUMBER");
+                    double quantity = resultSet.getDouble("QUANT1");
+                    if (number.equals("0")) {
+                        dailySale.setPresoldQuantiy(quantity + dailySale.getPresoldQuantiy());
+                    } else {
+                        dailySale.setSoldQuantiy(quantity + dailySale.getSoldQuantiy());
+                    }
+
+                }
+
+            }
+
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(DailySalesDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return dailySales;
+    }
+
+}
