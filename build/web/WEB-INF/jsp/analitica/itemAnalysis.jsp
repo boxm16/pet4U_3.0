@@ -517,10 +517,8 @@
                                     out.println("</td>");
 
                                     if (daysSalesEntry.getValue().getPresoldQuantiy() > 0) {
-                                        out.println("<td style='background-color: red;'>");
-                                        out.println("<a  href = 'getAllSalesDocsOfDateAndItem.htm?itemCode=" + item.getCode() + "&date=" + date + "' target='_blank'>" + daysSalesEntry.getValue().getSoldQuantiy() + "/" + daysSalesEntry.getValue().getPresoldQuantiy()) + "</a>"
-                                      
-                                        );
+                                        String bb = daysSalesEntry.getValue().getSoldQuantiy() + "/" + daysSalesEntry.getValue().getPresoldQuantiy();
+                                        out.println("<a  href = 'getAllSalesDocsOfDateAndItem.htm?itemCode=" + item.getCode() + "&date=" + date + "' target='_blank'>" + bb + "</a>");
 
                                     } else {
                                         out.println("<td>");
