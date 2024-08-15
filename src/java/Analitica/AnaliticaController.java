@@ -81,8 +81,8 @@ public class AnaliticaController {
         }
         model.addAttribute("itemSales", itemSales);
 
-        LinkedHashMap<String, Double> daysSales = monthSalesDao.getLast30DaysSales(item.getCode());
-        model.addAttribute("daysSales", daysSales);
+     //   LinkedHashMap<String, Double> daysSales = monthSalesDao.getLast30DaysSales(item.getCode());
+       // model.addAttribute("daysSales", daysSales);
 
         DailySalesDao dailySalesDao = new DailySalesDao();
         LinkedHashMap<LocalDate, DailySale> dailySales = dailySalesDao.getLast30DaysSales(item.getCode());

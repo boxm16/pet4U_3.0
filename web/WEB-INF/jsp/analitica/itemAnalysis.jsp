@@ -4,6 +4,7 @@
     Author     : Michail Sitmalidis
 --%>
 
+<%@page import="DailySales.DailySale"%>
 <%@page import="CamelotItemsOfInterest.ItemSnapshot"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.Map.Entry"%>
@@ -416,7 +417,9 @@
                         <th>Date</th>
                         <th>E-Shop Sales</th>
                         <th>Ενδοδιακ.</th>
-                            <%                                LinkedHashMap<String, Double> daysSales = (LinkedHashMap) request.getAttribute("daysSales");
+                            <%
+                                /*
+                                LinkedHashMap<String, Double> daysSales = (LinkedHashMap) request.getAttribute("daysSales");
 
                                 double allDaysSales = 0;
                                 int days = 0;
@@ -485,7 +488,78 @@
                                 out.println("</td>");
 
                                 out.println("</tr>");
+                                 */
 
+//-----------------
+                                LinkedHashMap<String, DailySale> daysSales = (LinkedHashMap) request.getAttribute("dailySales");
+
+                                double allDaysSales = 0;
+                                int days = 0;
+
+                                for (Map.Entry<String, DailySale> daysSalesEntry : daysSales.entrySet()) {
+                                    String date = daysSalesEntry.getKey();
+
+                                    Date date0 = new SimpleDateFormat("yyyy-MM-dd").parse(date);
+
+                                    String[] weekdays = {"Κυριακη.", "Δευτερα.", "Τρίτη", "Τετάρτη", "Πέμπτη.", "Παρασκεύη.", "Σάββατο."};
+                                    int day = date0.getDay();
+
+                                    if (day == 0) {
+                                        out.println("<tr style='background-color: #90EE90;'>");
+
+                                    } else {
+                                        out.println("<tr >");
+
+                                    }
+
+                                    SimpleDateFormat format2 = new SimpleDateFormat("dd-MM-yyyy");
+
+                                    out.println("<td>");
+                                    out.println(format2.format(date0) + "<br>" + weekdays[day]);
+                                    out.println("</td>");
+
+                                    out.println("<td>");
+                                    out.println(daysSalesEntry.getValue().getSoldQuantiy());
+                                    out.println("</td>");
+
+                                    out.println("</tr>");
+
+                                    allDaysSales = allDaysSales + daysSalesEntry.getValue().getSoldQuantiy();
+                                    days++;
+
+                                }
+
+                                out.println("<tr>");
+                                out.println("<td>");
+                                out.println("Days");
+                                out.println("</td>");
+                                out.println("<td>");
+                                out.println(days);
+                                out.println("</td>");
+
+                                out.println("</tr>");
+
+                                out.println("<tr style='background-color: #A6E2D0'>");
+                                out.println("<td>");
+                                out.println("Total Sales <br> For 30 Day");
+                                out.println("</td>");
+
+                                out.println("<td>");
+                                out.println(allDaysSales);
+                                out.println("</td>");
+
+                                out.println("</tr>");
+
+                                out.println("<tr>");
+                                out.println("<td>");
+                                out.println("Average Sales <br> For One Day");
+                                out.println("</td>");
+
+                                out.println("<td>");
+                                out.println(allDaysSales / days);
+                                out.println("</td>");
+
+                                out.println("</tr>");
                             %>
                     </table>
 
