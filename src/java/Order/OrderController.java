@@ -46,6 +46,13 @@ public class OrderController {
         return "/order/ordersOfDate";
     }
 
+    @RequestMapping(value = "getAllSalesDocsOfDateAndItem")
+    public String getAllSalesDocsOfDateAndItem(@RequestParam(name = "itemCode") String itemCode, @RequestParam(name = "date") String date, ModelMap modelMap) {
+        LinkedHashMap<Integer, Order> orders = orderDao.getAllSalesDocsOfDateAndItem(itemCode, date);
+        modelMap.addAttribute("orders", orders);
+        return "/order/ordersOfDate";
+    }
+
     @RequestMapping(value = "getOrder")
     public String getOrder(@RequestParam(name = "orderNumber") String orderNumber, ModelMap modelMap) {
 
@@ -54,7 +61,7 @@ public class OrderController {
 
         return "/order/orderDisplay";
     }
-    
+
     @RequestMapping(value = "getOrderById")
     public String getOrderById(@RequestParam(name = "orderId") String orderId, ModelMap modelMap) {
 

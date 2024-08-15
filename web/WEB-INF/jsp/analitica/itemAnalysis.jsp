@@ -520,7 +520,9 @@
                                         out.println(daysSalesEntry.getValue().getSoldQuantiy() + "/" + daysSalesEntry.getValue().getPresoldQuantiy());
                                     } else {
                                         out.println("<td>");
-                                        out.println(daysSalesEntry.getValue().getSoldQuantiy());
+                                        out.println();
+                                        out.println("<a  href = 'getAllSalesDocsForDateAndItem.htm?itemCode=" + item.getCode() + "&date=" + date + "' target='_blank'>" + daysSalesEntry.getValue().getSoldQuantiy() + "</a>");
+
                                     }
 
                                     out.println("</td>");
