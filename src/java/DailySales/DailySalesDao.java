@@ -64,9 +64,9 @@ public class DailySalesDao {
                     double quantity = resultSet.getDouble("QUANT1");
                     if (number.equals("0")) {
                         dailySale.setPresoldQuantiy(quantity + dailySale.getPresoldQuantiy());
-                    } else {
-                        dailySale.setSoldQuantiy(quantity + dailySale.getSoldQuantiy());
+
                     }
+                    dailySale.setSoldQuantiy(quantity + dailySale.getSoldQuantiy());
 
                 }
 
