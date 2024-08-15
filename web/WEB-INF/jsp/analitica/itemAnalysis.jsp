@@ -648,10 +648,13 @@
 
                                     ItemSnapshot itemSnapshot = itemSnapshotsEntry.getValue();
                                     if (itemSnapshot == null) {
-                                        out.println("<td>");
+                                        out.println("<td style='background-color: #F1BFB2 ;'>");
                                         out.println("N/A");
                                         out.println("</td>");
-                                        out.println("<td>");
+                                        out.println("<td style='background-color: #F1BFB2 ;'>");
+                                        out.println("N/A");
+                                        out.println("</td>");
+                                        out.println("<td style='background-color: #F1BFB2 ;'>");
                                         out.println("N/A");
                                         out.println("</td>");
                                     } else {
