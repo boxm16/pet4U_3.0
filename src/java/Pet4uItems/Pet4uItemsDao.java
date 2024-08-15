@@ -497,7 +497,7 @@ public class Pet4uItemsDao {
             Logger.getLogger(Pet4uItemsDao.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        return getLast100DaysSnapshots;
+        return last100DaysSnapshots;
     }
 
     public LinkedHashMap<String, Item> getPet4UItemsRowByRow() {
