@@ -510,7 +510,7 @@
                                     SimpleDateFormat format2 = new SimpleDateFormat("dd-MM-yyyy");
 
                                     out.println("<td>");
-                                    out.println(format2.format(date) + "<br>" + date.getDayOfWeek());
+                                    out.println("<br>" + date.getDayOfWeek());
                                     out.println("</td>");
 
                                     out.println("<td>");
