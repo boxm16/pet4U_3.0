@@ -499,7 +499,7 @@
                                 for (Map.Entry<LocalDate, DailySale> daysSalesEntry : daysSales.entrySet()) {
                                     LocalDate date = daysSalesEntry.getKey();
 
-                                    if (date.getDayOfWeek().equals("SUNDAY")) {
+                                    if (date.getDayOfWeek().toString().equals("SUNDAY")) {
                                         out.println("<tr style='background-color: #90EE90;'>");
 
                                     } else {
