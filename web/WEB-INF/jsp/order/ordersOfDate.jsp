@@ -115,6 +115,11 @@
                         out.println("</td>");
 
                         out.println("</tr>");
+                        out.println("<tr>");
+                        out.println("<td colspan='8'>");
+                        out.println("----");
+                        out.println("</td>");
+                        out.println("<tr>");
                         orderCount++;
                     }
                 %>
