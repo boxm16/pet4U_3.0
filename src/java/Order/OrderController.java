@@ -48,7 +48,13 @@ public class OrderController {
 
     @RequestMapping(value = "getAllSalesDocsOfDateAndItem")
     public String getAllSalesDocsOfDateAndItem(@RequestParam(name = "itemCode") String itemCode, @RequestParam(name = "date") String date, ModelMap modelMap) {
-        LinkedHashMap<Integer, Order> orders = orderDao.getAllSalesDocsOfDateAndItem(itemCode, date);
+        LinkedHashMap<Integer, Order> orders0 = orderDao.getOrdersOfDate(date);
+        LinkedHashMap<Integer, Order> orders = new LinkedHashMap<Integer, Order>();
+        for (Map.Entry<Integer, Order> ordersEntry : orders0.entrySet()) {
+            if (ordersEntry.getValue().getItems().containsKey(itemCode)) {
+                orders.put(ordersEntry.getKey(), ordersEntry.getValue());
+            }
+        }
         modelMap.addAttribute("orders", orders);
         return "/order/ordersOfDate";
     }

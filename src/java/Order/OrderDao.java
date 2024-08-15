@@ -560,7 +560,7 @@ public class OrderDao {
         return orders;
     }
 
-    LinkedHashMap<Integer, Order> getAllSalesDocsOfDateAndItem(String itemCode, String date) {
+    LinkedHashMap<Integer, Order> getAllSalesDocsOfDate(String date) {
         System.out.println("DATE: " + date);
         LinkedHashMap<String, Item> pet4UItemsRowByRow = getPet4UItemsRowByRow();
 
@@ -573,7 +573,7 @@ public class OrderDao {
         System.out.println("END DATE: " + endDate);
         try {
             Statement statement = connection.createStatement();
-            String query = "select * from WH_SALES_DOCS WHERE ABBREVIATION='" + itemCode + "' AND DATE_TIME >= '" + startDate + "' AND DATE_TIME <='" + endDate + "' ORDER BY DOCID;";
+            String query = "select * from WH_SALES_DOCS WHERE  DATE_TIME >= '" + startDate + "' AND DATE_TIME <='" + endDate + "' ORDER BY DOCID;";
             System.out.println(query);
             ResultSet resultSet = statement.executeQuery(query);
 
@@ -599,9 +599,11 @@ public class OrderDao {
                 }
 
                 int id = resultSet.getInt("DOCID");
+
                 String number = resultSet.getString("DOCNUMBER");
                 String type = resultSet.getString("DOCNAME");
 
+                String itemCode = resultSet.getString("ABBREVIATION");
                 String description = resultSet.getString("NAME");
                 String quantity = resultSet.getString("QUANT1");
                 String creationUser = resultSet.getString("USER_");
