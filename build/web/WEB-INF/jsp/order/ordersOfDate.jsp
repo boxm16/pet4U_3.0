@@ -59,10 +59,10 @@
 
                         if (entrySet.getValue().getType().equals("ΚΑΠΔ")) {
                             out.println("<td bgcolor='green'>");
-                        } else if (entrySet.getValue().getType().equals("ΚΠΤΔ1")) {
+                        } else if (entrySet.getValue().getType().equals("ΚΔΑΤ1")) {
                             out.println("<td bgcolor='lightgreen'>");
                         } else if (entrySet.getValue().getType().equals("ΚΑΕΛ")
-                                || entrySet.getValue().getType().equals("ΚΔΑΤ1")) {
+                                || entrySet.getValue().getType().equals("ΚΠΤΔ1")) {
                             out.println("<td bgcolor='pink'>");
                         } else {
                             out.println("<td>");
