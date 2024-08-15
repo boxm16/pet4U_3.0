@@ -4,6 +4,7 @@
     Author     : Michail Sitmalidis
 --%>
 
+<%@page import="java.util.List"%>
 <%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="DailySales.DailySale"%>
 <%@page import="CamelotItemsOfInterest.ItemSnapshot"%>
@@ -625,10 +626,10 @@
                                 }
                                  */
                                 LinkedHashMap<LocalDate, ItemSnapshot> itemSnapshots = (LinkedHashMap) request.getAttribute("last100DaysSnapshots");
-                                Iterator<LocalDate> iterator = itemSnapshots.keySet().iterator();
-                                while (iterator.hasNext()) {
-                                    LocalDate currentDate = iterator.next();
-                                    LocalDate previousDate = iterator.next();;   // Will fail if there isn't another element.
+                                List<LocalDate> keys = new ArrayList<>(itemSnapshots.keySet());
+                                for (int k = 0; k < keys.size() - 1; k++) {
+                                    LocalDate currentDate = keys.get(k);
+                                    LocalDate previousDate = keys.get(k + 1);;   // Will fail if there isn't another element.
 
                                     ItemSnapshot currentItem = itemSnapshots.get(currentDate);
                                     ItemSnapshot previousItem = itemSnapshots.get(previousDate);
@@ -678,7 +679,7 @@
                                         if (previousItem == null) {
                                             out.println("-");
                                         } else {
-                                            out.println(stock +" //"+ previousDate.toString());
+                                            out.println(stock + " //" + previousDate.toString());
 
                                         }
                                         out.println("</td>");
