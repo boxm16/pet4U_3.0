@@ -507,10 +507,12 @@
                                         out.println("<tr >");
 
                                     }
+                                    String[] weekdays = {"Κυριακη.", "Δευτερα.", "Τρίτη", "Τετάρτη", "Πέμπτη.", "Παρασκεύη.", "Σάββατο."};
+                                    int day = date.getDayOfWeek().getValue();
 
                                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
                                     out.println("<td>");
-                                    out.println(date.format(formatter) + "<br>" + date.getDayOfWeek());
+                                    out.println(date.format(formatter) + "<br>" + weekdays[day]);
                                     out.println("</td>");
 
                                     out.println("<td>");
