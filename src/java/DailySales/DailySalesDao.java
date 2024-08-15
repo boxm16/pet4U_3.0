@@ -34,7 +34,7 @@ public class DailySalesDao {
 
         try {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM [petworld].[dbo].[WH_SALES_VAR] WHERE ABBREVIATION='" + itemCode + "' "
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM [petworld].[dbo].[WH_SALES_DOCS] WHERE ABBREVIATION='" + itemCode + "' "
                     + " AND DATE_TIME >= '" + date + "' ORDER BY DATE_TIME;");
 
             LocalDate creationDate;
