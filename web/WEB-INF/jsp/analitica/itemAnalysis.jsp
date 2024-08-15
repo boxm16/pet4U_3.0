@@ -71,7 +71,7 @@
                             Item item = (Item) request.getAttribute("item");
                             out.println("<tr>");
                             out.println("<td colspan='2' >");
-
+                            
                             ArrayList<AltercodeContainer> altercodes = item.getAltercodes();
                             for (AltercodeContainer altercodeContainer : altercodes) {
                                 if (altercodeContainer.getStatus().equals("eshop")
@@ -79,7 +79,7 @@
                                         || altercodeContainer.getStatus().equals("eshop-barf")
                                         || altercodeContainer.getStatus().equals("eshop-kat")
                                         || altercodeContainer.getStatus().equals("eshop-pro")) {
-
+                                    
                                     out.println("<a href='https://www.pet4u.gr/search-products-el.html?subcats=Y&status=A&match=all&pshort=N&pfull=N&pname=Y&pkeywords=N&pcode_from_q=Y&wg_go_direct=Y&search_performed=Y&q=" + altercodeContainer.getAltercode() + "' target='_blank'>" + "<strong>" + altercodeContainer.getAltercode() + " : " + altercodeContainer.getStatus() + "</strong>" + "</a>");
                                     out.println("<br>");
                                 } else {
@@ -100,7 +100,7 @@
                             if (itemCode.contains("-WE")) {
                                 itemCode = itemCode.replace("-WE", "");
                             }
-
+                            
                             out.println("<tr>");
                             out.println("<td colspan='2' >");
                             out.println("<a  href = 'camelotItemAnalysis.htm?code=" + item.getCode() + "' target='_blank'>Camelot Analysis </a>");
@@ -115,33 +115,33 @@
                         <th>Start Date</th>
                         <th>End Date</th>
                             <%                                ArrayList<Offer> offers = (ArrayList<Offer>) request.getAttribute("offers");
-
+                                
                                 for (Offer offer : offers) {
-
+                                    
                                     out.println("<tr>");
-
+                                    
                                     out.println("<td>");
                                     out.println(offer.getTitle());
                                     out.println("</td>");
-
+                                    
                                     out.println("<td>");
                                     out.println(offer.getStartDateString());
                                     out.println("</td>");
-
+                                    
                                     LocalDate endDate = offer.getEndDate();
                                     if (endDate == null) {
                                         out.println("<td>");
                                         out.println("<a href='endOfferDashboard.htm?id=" + offer.getId() + "'>End Offer</a>");
                                         out.println("</td>");
                                     } else {
-
+                                        
                                         out.println("<td>");
                                         out.println(offer.getEndDateString());
                                         out.println("</td>");
                                     }
-
+                                    
                                     out.println("</tr>");
-
+                                    
                                 }
 
                             %>
@@ -161,11 +161,11 @@
                                 int currentMonth = 0;
                                 double totalSales = 0;
                                 double totalShopSupplies = 0;
-
+                                
                                 for (Map.Entry<LocalDate, Sales> salesEntry : sales.entrySet()) {
                                     LocalDate date = salesEntry.getKey();
                                     Sales sale = salesEntry.getValue();
-
+                                    
                                     if (currentMonth >= (totalMonths - 6)) {
                                         out.println("<tr style='background-color:#D0D0D0'>");
                                     } else {
@@ -174,21 +174,21 @@
                                     out.println("<td>");
                                     out.println(date.getMonthValue());
                                     out.println("</td>");
-
+                                    
                                     out.println("<td>");
                                     out.println(date.getMonth());
                                     out.println("</td>");
-
+                                    
                                     out.println("<td>");
                                     out.println(sale.getEshopSales());
                                     out.println("</td>");
-
+                                    
                                     out.println("<td>");
                                     out.println(sale.getShopsSupply());
                                     out.println("</td>");
-
+                                    
                                     out.println("</tr>");
-
+                                    
                                     if (currentMonth >= (totalMonths - 6)) {
                                         totalSales += sale.getEshopSales();
                                         totalShopSupplies += sale.getShopsSupply();
@@ -196,7 +196,7 @@
                                         //do nothing
                                     }
                                     currentMonth++;
-
+                                    
                                 }
                                 out.println("<tr style='color: green'>");
                                 out.println("<td colspan='2'>");
@@ -209,7 +209,7 @@
                                 out.println(totalShopSupplies);
                                 out.println("</td>");
                                 out.println("</tr>");
-
+                                
                                 out.println("<tr style='color: blue'>");
                                 out.println("<td colspan='3'>");
                                 out.println("LAST 6 MONTHS GRAND TOTAL");
@@ -218,7 +218,7 @@
                                 out.println(totalSales + totalShopSupplies);
                                 out.println("</td>");
                                 out.println("</tr>");
-
+                                
                                 out.println("<tr style='color: #BA4A00'>");
                                 out.println("<td colspan='3'>");
                                 out.println("One Month Average ΕΞΑΓΩΓΕΣ");
@@ -227,9 +227,9 @@
                                 out.println((totalSales + totalShopSupplies) / 6);
                                 out.println("</td>");
                                 out.println("</tr>");
-
+                                
                                 out.println("</tr>");
-
+                                
 
                             %>
                     </table>
@@ -242,7 +242,7 @@
                         <th>Quantity</th>
 
                         <%                            StockAnalysis stockAnalysis = (StockAnalysis) request.getAttribute("stockAnalysis");
-
+                            
                             out.println("<tr>");
                             out.println("<td>");
                             out.println("ΒΑΡΥΜΠΟΜΗ");
@@ -251,7 +251,7 @@
                             out.println(stockAnalysis.getVaribobiStock());
                             out.println("</td>");
                             out.println("</tr>");
-
+                            
                             out.println("<tr>");
                             out.println("<td>");
                             out.println("ΧΑΛΚΗΔΟΝΑ");
@@ -260,7 +260,7 @@
                             out.println(stockAnalysis.getXalkidonaStock());
                             out.println("</td>");
                             out.println("</tr>");
-
+                            
                             out.println("<tr>");
                             out.println("<td>");
                             out.println("ΜΕΝΙΔΙ");
@@ -269,7 +269,7 @@
                             out.println(stockAnalysis.getMenidiStock());
                             out.println("</td>");
                             out.println("</tr>");
-
+                            
                             out.println("<tr>");
                             out.println("<td>");
                             out.println("ΚΑΛΛΙΘΕΑ");
@@ -278,7 +278,7 @@
                             out.println(stockAnalysis.getKallitheaStock());
                             out.println("</td>");
                             out.println("</tr>");
-
+                            
                             out.println("<tr>");
                             out.println("<td>");
                             out.println("ΑΛΙΜΟΣ");
@@ -287,7 +287,7 @@
                             out.println(stockAnalysis.getAlimosStock());
                             out.println("</td>");
                             out.println("</tr>");
-
+                            
                             out.println("<tr>");
                             out.println("<td>");
                             out.println("ΑΓ.ΠΑΡΑΣΚΕΥΗ");
@@ -296,7 +296,7 @@
                             out.println(stockAnalysis.getAghiaParaskeviStock());
                             out.println("</td>");
                             out.println("</tr>");
-
+                            
                             out.println("<tr>");
                             out.println("<td>");
                             out.println("ΔΑΦΝΗ");
@@ -305,7 +305,7 @@
                             out.println(stockAnalysis.getDafniStock());
                             out.println("</td>");
                             out.println("</tr>");
-
+                            
                             out.println("<tr>");
                             out.println("<td>");
                             out.println("ΚΟΥΚΑΚΙ");
@@ -314,7 +314,7 @@
                             out.println(stockAnalysis.getKoukakiStock());
                             out.println("</td>");
                             out.println("</tr>");
-
+                            
                             out.println("<tr>");
                             out.println("<td>");
                             out.println("ΜΙΧΑΛΑΚΟΠΟΥΛΟΥ");
@@ -323,7 +323,7 @@
                             out.println(stockAnalysis.getMixalakopoulouStock());
                             out.println("</td>");
                             out.println("</tr>");
-
+                            
                             out.println("<tr>");
                             out.println("<td>");
                             out.println("ΧΑΛΑΝΔΡΙ");
@@ -332,7 +332,7 @@
                             out.println(stockAnalysis.getXalandriStock());
                             out.println("</td>");
                             out.println("</tr>");
-
+                            
                             out.println("<tr>");
                             out.println("<td>");
                             out.println("ΝΕΑ ΙΩΝΙΑ");
@@ -341,7 +341,7 @@
                             out.println(stockAnalysis.getNeaIoniaStock());
                             out.println("</td>");
                             out.println("</tr>");
-
+                            
                             out.println("<tr>");
                             out.println("<td>");
                             out.println("ΑΡΓΥΡΟΥΠΟΛΗ");
@@ -350,7 +350,7 @@
                             out.println(stockAnalysis.getArghiroupoliStock());
                             out.println("</td>");
                             out.println("</tr>");
-
+                            
                             out.println("<tr>");
                             out.println("<td>");
                             out.println("ΠΕΡΙΣΤΕΡΙ");
@@ -359,7 +359,7 @@
                             out.println(stockAnalysis.getPeristeriStock());
                             out.println("</td>");
                             out.println("</tr>");
-
+                            
                             out.println("<tr>");
                             out.println("<td>");
                             out.println("ΠΕΤΡΟΥΠΟΛΗ");
@@ -368,37 +368,37 @@
                             out.println(stockAnalysis.getPetroupoliStock());
                             out.println("</td>");
                             out.println("</tr>");
-
+                            
                             out.println("<tr>");
                             out.println("<td>");
                             out.println("Π. ΦΑΛΗΡΟ");
                             out.println("</td>");
-
+                            
                             out.println("<td>");
                             out.println(stockAnalysis.getPalioFaliroStock());
                             out.println("</td>");
                             out.println("</tr>");
-
+                            
                             out.println("<tr>");
                             out.println("<td>");
                             out.println("Προς Καταστρ.");
                             out.println("</td>");
-
+                            
                             out.println("<td>");
                             out.println(stockAnalysis.getKatastrofi());
                             out.println("</td>");
                             out.println("</tr>");
-
+                            
                             out.println("<tr>");
                             out.println("<td>");
                             out.println("Ενδο");
                             out.println("</td>");
-
+                            
                             out.println("<td>");
                             out.println(stockAnalysis.getEndo());
                             out.println("</td>");
                             out.println("</tr>");
-
+                            
 
                         %>
                     </table>  
@@ -491,44 +491,39 @@
                                  */
 
 //-----------------
-                                LinkedHashMap<String, DailySale> daysSales = (LinkedHashMap) request.getAttribute("dailySales");
-
+                                LinkedHashMap<LocalDate, DailySale> daysSales = (LinkedHashMap) request.getAttribute("dailySales");
+                                
                                 double allDaysSales = 0;
                                 int days = 0;
-
-                                for (Map.Entry<String, DailySale> daysSalesEntry : daysSales.entrySet()) {
-                                    String date = daysSalesEntry.getKey();
-
-                                    Date date0 = new SimpleDateFormat("yyyy-MM-dd").parse(date);
-
-                                    String[] weekdays = {"Κυριακη.", "Δευτερα.", "Τρίτη", "Τετάρτη", "Πέμπτη.", "Παρασκεύη.", "Σάββατο."};
-                                    int day = date0.getDay();
-
-                                    if (day == 0) {
+                                
+                                for (Map.Entry<LocalDate, DailySale> daysSalesEntry : daysSales.entrySet()) {
+                                    LocalDate date = daysSalesEntry.getKey();
+                                    
+                                    if (date.getDayOfWeek().equals("SUNDAY")) {
                                         out.println("<tr style='background-color: #90EE90;'>");
-
+                                        
                                     } else {
                                         out.println("<tr >");
-
+                                        
                                     }
-
+                                    
                                     SimpleDateFormat format2 = new SimpleDateFormat("dd-MM-yyyy");
-
+                                    
                                     out.println("<td>");
                                     out.println(format2.format(date0) + "<br>" + weekdays[day]);
                                     out.println("</td>");
-
+                                    
                                     out.println("<td>");
                                     out.println(daysSalesEntry.getValue().getSoldQuantiy());
                                     out.println("</td>");
-
+                                    
                                     out.println("</tr>");
-
+                                    
                                     allDaysSales = allDaysSales + daysSalesEntry.getValue().getSoldQuantiy();
                                     days++;
-
+                                    
                                 }
-
+                                
                                 out.println("<tr>");
                                 out.println("<td>");
                                 out.println("Days");
@@ -536,29 +531,29 @@
                                 out.println("<td>");
                                 out.println(days);
                                 out.println("</td>");
-
+                                
                                 out.println("</tr>");
-
+                                
                                 out.println("<tr style='background-color: #A6E2D0'>");
                                 out.println("<td>");
                                 out.println("Total Sales <br> For 30 Day");
                                 out.println("</td>");
-
+                                
                                 out.println("<td>");
                                 out.println(allDaysSales);
                                 out.println("</td>");
-
+                                
                                 out.println("</tr>");
-
+                                
                                 out.println("<tr>");
                                 out.println("<td>");
                                 out.println("Average Sales <br> For One Day");
                                 out.println("</td>");
-
+                                
                                 out.println("<td>");
                                 out.println(allDaysSales / days);
                                 out.println("</td>");
-
+                                
                                 out.println("</tr>");
                             %>
                     </table>
@@ -576,33 +571,33 @@
                         <th>Quantity</th>
                             <%                                ArrayList<ItemSnapshot> itemSnapshots = (ArrayList) request.getAttribute("itemSnapshots");
                                 double stockBefore = 0.0;
-
+                                
                                 for (int x = 0; x < itemSnapshots.size() - 1; x++) {
                                     ItemSnapshot itemSnapshot = itemSnapshots.get(x);
                                     stockBefore = Double.parseDouble(itemSnapshots.get(x + 1).getQuantity());
                                     Double stock = Double.parseDouble(itemSnapshot.getQuantity());
-
+                                    
                                     String date = itemSnapshot.getDateStamp();
                                     Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(date);
-
+                                    
                                     String[] weekdays = {"Κυριακη.", "Δευτερα.", "Τρίτη", "Τετάρτη", "Πέμπτη.", "Παρασκεύη.", "Σάββατο."};
                                     int day = date1.getDay();
-
+                                    
                                     if (day == 0) {
                                         out.println("<tr style='background-color: #90EE90;'>");
-
+                                        
                                     } else {
                                         out.println("<tr >");
-
+                                        
                                     }
                                     out.println("<td>");
                                     out.println(itemSnapshot.getReformatedDateStamp() + "<br>" + weekdays[day]);
                                     out.println("</td>");
-
+                                    
                                     out.println("<td>");
                                     out.println(itemSnapshot.getState());
                                     out.println("</td>");
-
+                                    
                                     if (itemSnapshot.getQuantity().equals("0") || itemSnapshot.getQuantity().equals("0.000000")) {
                                         out.println("<td style='background-color: #F7B2F7'>");
                                     } else {
@@ -610,13 +605,13 @@
                                     }
                                     out.println(itemSnapshot.getQuantity());
                                     out.println("</td>");
-
+                                    
                                     out.println("<td>");
                                     out.println(stock - stockBefore);
                                     out.println("</td>");
                                     out.println("</tr>");
                                     stockBefore = stock;
-
+                                    
                                 }
                             %>
                     </table>
@@ -627,36 +622,36 @@
                         <th>Date Stamp</th>
                         <th>State</th>
                         <th>Quantity</th>
-                            <%
+                            <%    
                                 ArrayList<ItemSnapshot> camelotItemSnapshots = (ArrayList) request.getAttribute("camelotItemSnapshots");
-
+                                
                                 double camelotStockBefore = 0.0;
                                 if (camelotItemSnapshots.size() == 1) {
                                     ItemSnapshot camelotItemSnapshot = camelotItemSnapshots.get(0);
-
+                                    
                                     Double camelotStock = Double.parseDouble(camelotItemSnapshot.getQuantity());
-
+                                    
                                     String date = camelotItemSnapshot.getDateStamp();
                                     Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(date);
-
+                                    
                                     String[] weekdays = {"Κυριακη.", "Δευτερα.", "Τρίτη", "Τετάρτη", "Πέμπτη.", "Παρασκεύη.", "Σάββατο."};
                                     int day = date1.getDay();
-
+                                    
                                     if (day == 0) {
                                         out.println("<tr style='background-color: #90EE90;'>");
-
+                                        
                                     } else {
                                         out.println("<tr >");
-
+                                        
                                     }
                                     out.println("<td>");
                                     out.println(camelotItemSnapshot.getReformatedDateStamp() + "<br>" + weekdays[day]);
                                     out.println("</td>");
-
+                                    
                                     out.println("<td>");
                                     out.println(camelotItemSnapshot.getState());
                                     out.println("</td>");
-
+                                    
                                     if (camelotItemSnapshot.getQuantity().equals("0") || camelotItemSnapshot.getQuantity().equals("0.000000")) {
                                         out.println("<td style='background-color: #F7B2F7'>");
                                     } else {
@@ -664,42 +659,42 @@
                                     }
                                     out.println(camelotItemSnapshot.getQuantity());
                                     out.println("</td>");
-
+                                    
                                     out.println("<td>");
                                     out.println();
                                     out.println("</td>");
                                     out.println("</tr>");
-
+                                    
                                 } else {
-
+                                    
                                     for (int y = 0; y < camelotItemSnapshots.size() - 1; y++) {
                                         ItemSnapshot camelotItemSnapshot = camelotItemSnapshots.get(y);
-
+                                        
                                         camelotStockBefore = Double.parseDouble(camelotItemSnapshots.get(y + 1).getQuantity());
-
+                                        
                                         Double camelotStock = Double.parseDouble(camelotItemSnapshot.getQuantity());
-
+                                        
                                         String date = camelotItemSnapshot.getDateStamp();
                                         Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(date);
-
+                                        
                                         String[] weekdays = {"Κυριακη.", "Δευτερα.", "Τρίτη", "Τετάρτη", "Πέμπτη.", "Παρασκεύη.", "Σάββατο."};
                                         int day = date1.getDay();
-
+                                        
                                         if (day == 0) {
                                             out.println("<tr style='background-color: #90EE90;'>");
-
+                                            
                                         } else {
                                             out.println("<tr >");
-
+                                            
                                         }
                                         out.println("<td>");
                                         out.println(camelotItemSnapshot.getReformatedDateStamp() + "<br>" + weekdays[day]);
                                         out.println("</td>");
-
+                                        
                                         out.println("<td>");
                                         out.println(camelotItemSnapshot.getState());
                                         out.println("</td>");
-
+                                        
                                         if (camelotItemSnapshot.getQuantity().equals("0") || camelotItemSnapshot.getQuantity().equals("0.000000")) {
                                             out.println("<td style='background-color: #F7B2F7'>");
                                         } else {
@@ -707,7 +702,7 @@
                                         }
                                         out.println(camelotItemSnapshot.getQuantity());
                                         out.println("</td>");
-
+                                        
                                         out.println("<td>");
                                         out.println(camelotStock - camelotStockBefore);
                                         out.println("</td>");
