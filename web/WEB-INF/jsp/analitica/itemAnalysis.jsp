@@ -675,7 +675,12 @@
                                         out.println("</td>");
 
                                         out.println("<td>");
-                                        out.println(stock - Double.parseDouble(previousItem.getQuantity()));
+                                        if (previousItem == null) {
+                                            out.println("-");
+                                        } else {
+                                            out.println(stock - Double.parseDouble(previousItem.getQuantity()));
+
+                                        }
                                         out.println("</td>");
 
                                     }
