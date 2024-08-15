@@ -4,6 +4,7 @@
     Author     : Michail Sitmalidis
 --%>
 
+<%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="DailySales.DailySale"%>
 <%@page import="CamelotItemsOfInterest.ItemSnapshot"%>
 <%@page import="java.util.Iterator"%>
@@ -507,10 +508,9 @@
 
                                     }
 
-                                    SimpleDateFormat format2 = new SimpleDateFormat("dd-MM-yyyy");
-
+                                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
                                     out.println("<td>");
-                                    out.println(date.format(format2)+"<br>" + date.getDayOfWeek());
+                                    out.println(date.format(formatter) + "<br>" + date.getDayOfWeek());
                                     out.println("</td>");
 
                                     out.println("<td>");
