@@ -431,6 +431,7 @@ public class Pet4uItemsDao {
             Connection connection = databaseConnectionFactory.getMySQLConnection();
             Statement statement = connection.createStatement();
             resultSet = statement.executeQuery(sql);
+
             while (resultSet.next()) {
                 ItemSnapshot item = new ItemSnapshot();
 

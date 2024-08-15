@@ -4,6 +4,7 @@ import BasicModel.Item;
 
 public class CamelotItemOfInterest extends Item {
 
+  
     private String owner;
     private int minimalStock;
     private String orderUnit;
@@ -19,6 +20,7 @@ public class CamelotItemOfInterest extends Item {
     private double totalSalesInPieces;
     private String note;
 
+ 
     public String getOwner() {
         return owner;
     }

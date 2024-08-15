@@ -627,11 +627,16 @@
                                 LinkedHashMap<LocalDate, ItemSnapshot> itemSnapshots = (LinkedHashMap) request.getAttribute("last100DaysSnapshots");
 
                                 double stockBefore = 0.0;
+                                Iterator<LocalDate> iterator = itemSnapshots.keySet().iterator();
+                                while (iterator.hasNext()) {
+                                    LocalDate currentDate = iterator.next();
+                                    LocalDate previousDate = iterator.next();;   // Will fail if there isn't another element.
 
-                                for (Map.Entry<LocalDate, ItemSnapshot> itemSnapshotsEntry : itemSnapshots.entrySet()) {
-                                    LocalDate date0 = itemSnapshotsEntry.getKey();
+                                    ItemSnapshot currentItem = itemSnapshots.get(currentDate);
+                                    ItemSnapshot previousItem = itemSnapshots.get(previousDate);
 
-                                    if (date0.getDayOfWeek().toString().equals("SUNDAY")) {
+                                    // ...
+                                    if (currentDate.getDayOfWeek().toString().equals("SUNDAY")) {
                                         out.println("<tr style='background-color: #90EE90;'>");
 
                                     } else {
@@ -639,15 +644,14 @@
 
                                     }
                                     String[] weekdays = {"", "Δευτερα.", "Τρίτη", "Τετάρτη", "Πέμπτη.", "Παρασκεύη.", "Σάββατο.", "Κυριακη."};
-                                    int day = date0.getDayOfWeek().getValue();
+                                    int day = currentDate.getDayOfWeek().getValue();
 
                                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
                                     out.println("<td>");
-                                    out.println(date0.format(formatter) + "<br>" + weekdays[day]);
+                                    out.println(currentDate.format(formatter) + "<br>" + weekdays[day]);
                                     out.println("</td>");
 
-                                    ItemSnapshot itemSnapshot = itemSnapshotsEntry.getValue();
-                                    if (itemSnapshot == null) {
+                                    if (currentItem == null) {
                                         out.println("<td style='background-color: #F1BFB2 ;'>");
                                         out.println("N/A");
                                         out.println("</td>");
@@ -658,18 +662,18 @@
                                         out.println("N/A");
                                         out.println("</td>");
                                     } else {
-                                        Double stock = Double.parseDouble(itemSnapshot.getQuantity());
+                                        Double stock = Double.parseDouble(currentItem.getQuantity());
 
                                         out.println("<td>");
-                                        out.println(itemSnapshotsEntry.getValue().getState());
+                                        out.println(currentItem.getState());
                                         out.println("</td>");
 
-                                        if (itemSnapshotsEntry.getValue().getQuantity().equals("0") || itemSnapshotsEntry.getValue().getQuantity().equals("0.000000")) {
+                                        if (currentItem.getQuantity().equals("0") || currentItem.getQuantity().equals("0.000000")) {
                                             out.println("<td style='background-color: #F7B2F7'>");
                                         } else {
                                             out.println("<td>");
                                         }
-                                        out.println(itemSnapshotsEntry.getValue().getQuantity());
+                                        out.println(currentItem.getQuantity());
                                         out.println("</td>");
 
                                         out.println("<td>");
