@@ -573,7 +573,9 @@ public class OrderDao {
         System.out.println("END DATE: " + endDate);
         try {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("select * from WH_SALES_DOCS WHERE ABBREVIATION='" + itemCode + "' AND DATE_TIME >= '" + startDate + "' AND DATE_TIME <='" + endDate + "' ORDER BY DOCID;");
+            String query = "select * from WH_SALES_DOCS WHERE ABBREVIATION='" + itemCode + "' AND DATE_TIME >= '" + startDate + "' AND DATE_TIME <='" + endDate + "' ORDER BY DOCID;";
+            System.out.println(query);
+            ResultSet resultSet = statement.executeQuery(query);
 
             while (resultSet.next()) {
                 String dateTimeStampString = resultSet.getString("ENTRYDATE");
