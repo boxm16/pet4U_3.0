@@ -678,7 +678,7 @@
                                         if (previousItem == null) {
                                             out.println("-");
                                         } else {
-                                            out.println(stock +" //"+ previousItem.getQuantity());
+                                            out.println(stock +" //"+ previousDate.toString());
 
                                         }
                                         out.println("</td>");
