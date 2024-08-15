@@ -515,8 +515,14 @@
                                     out.println(date.format(formatter) + "<br>" + weekdays[day]);
                                     out.println("</td>");
 
-                                    out.println("<td>");
-                                    out.println(daysSalesEntry.getValue().getSoldQuantiy());
+                                    if (daysSalesEntry.getValue().getPresoldQuantiy() > 0) {
+                                        out.println("<td style='background-color: red;'>");
+                                        out.println(daysSalesEntry.getValue().getSoldQuantiy() + "/" + daysSalesEntry.getValue().getPresoldQuantiy());
+                                    } else {
+                                        out.println("<td");
+                                        out.println(daysSalesEntry.getValue().getSoldQuantiy());
+                                    }
+
                                     out.println("</td>");
 
                                     out.println("</tr>");
