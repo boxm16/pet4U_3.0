@@ -423,7 +423,7 @@ public class Pet4uItemsDao {
     public ArrayList<ItemSnapshot> getItemSnapshots(String code) {
         ArrayList<ItemSnapshot> itemSnapshots = new ArrayList<>();
 
-        String sql = "SELECT * FROM item_state WHERE item_code='" + code + "' ORDER BY date_stamp DESC;";
+        String sql = "SELECT * FROM item_state WHERE item_code='" + code + "' ORDER BY date_stamp;";
         ResultSet resultSet;
 
         try {
