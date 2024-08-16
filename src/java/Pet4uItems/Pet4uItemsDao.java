@@ -225,17 +225,21 @@ public class Pet4uItemsDao {
             Connection connection = databaseConnectionFactory.getMySQLConnection();
 
             connection.setAutoCommit(false);
-            PreparedStatement incertionPreparedStatement = connection.prepareStatement("INSERT INTO item_state (item_code, date_stamp, state, item_stock ) VALUES(?,?,?,?);");
+            PreparedStatement incertionPreparedStatement = connection.prepareStatement("INSERT INTO item_state (item_code, date_stamp, state, position, site_state, item_stock ) VALUES(?,?,?,?,?,?);");
 
             System.out.println("Starting INSERTION: ....");
 
             for (Map.Entry< String, Item> itemEntry : pet4uAllItems.entrySet()) {
                 LocalDate nowDate = LocalDate.now();
 
+               
                 incertionPreparedStatement.setString(1, itemEntry.getValue().getCode());
                 incertionPreparedStatement.setString(2, nowDate.toString());
                 incertionPreparedStatement.setString(3, itemEntry.getValue().getState());
-                incertionPreparedStatement.setString(4, itemEntry.getValue().getQuantity());
+                incertionPreparedStatement.setString(4, itemEntry.getValue().getPosition());
+                incertionPreparedStatement.setString(5, null);
+                incertionPreparedStatement.setString(6, itemEntry.getValue().getQuantity());
+
                 incertionPreparedStatement.addBatch();
 
             }
