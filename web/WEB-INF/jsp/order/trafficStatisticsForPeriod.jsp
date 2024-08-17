@@ -51,7 +51,7 @@
                         out.println("</td>");
 
                         out.println("<td>");
-                        out.println("<a  href = 'allOrdersForPositionBlockForPeriod.htm?position=" + entrySet.getValue() + "&startDate="+startDate+"&endDate="+endDate+"' target='_blank'>" + entrySet.getValue() + "</a>");
+                        out.println("<a  href = 'allOrdersForPositionBlockForPeriod.htm?position=" + entrySet.getKey() + "&startDate="+startDate+"&endDate="+endDate+"' target='_blank'>" + entrySet.getValue() + "</a>");
                         out.println("</td>");
 
                         out.println("<td>");
