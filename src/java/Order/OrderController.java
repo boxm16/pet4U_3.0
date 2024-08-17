@@ -187,10 +187,10 @@ public class OrderController {
 
         return "/order/trafficStatistics";
     }
-    
+
     @RequestMapping(value = "positionsBlockTrafficForPeriod")
     public String positionsBlockTrafficForPeriod(@RequestParam(name = "startDate") String startDate, @RequestParam(name = "endDate") String endDate, ModelMap modelMap) {
-        LinkedHashMap<Integer, Order> allOrders = orderDao.getAllOrders();
+        LinkedHashMap<Integer, Order> allOrders = orderDao.getAllOrdersForPeriod(startDate, endDate);
 
         TreeMap<String, Integer> positionsTraffic = new TreeMap<>();
         int totalTraffic = 0;
