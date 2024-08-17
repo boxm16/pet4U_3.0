@@ -581,6 +581,7 @@
                     <table>
                         <th>Date Stamp</th>
                         <th>State</th>
+                        <th>Positon</th>
                         <th>Quantity</th>
                             <% /*                               ArrayList<ItemSnapshot> itemSnapshots = (ArrayList) request.getAttribute("itemSnapshots");
                                 double stockBefore = 0.0;
@@ -667,6 +668,10 @@
 
                                         out.println("<td>");
                                         out.println(currentItem.getState());
+                                        out.println("</td>");
+                                        
+                                         out.println("<td>");
+                                        out.println(currentItem.getPosition());
                                         out.println("</td>");
 
                                         if (currentItem.getQuantity().equals("0") || currentItem.getQuantity().equals("0.000000")) {
