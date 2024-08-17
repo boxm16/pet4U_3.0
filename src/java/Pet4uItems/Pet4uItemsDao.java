@@ -232,7 +232,6 @@ public class Pet4uItemsDao {
             for (Map.Entry< String, Item> itemEntry : pet4uAllItems.entrySet()) {
                 LocalDate nowDate = LocalDate.now();
 
-               
                 incertionPreparedStatement.setString(1, itemEntry.getValue().getCode());
                 incertionPreparedStatement.setString(2, nowDate.toString());
                 incertionPreparedStatement.setString(3, itemEntry.getValue().getState());
@@ -488,9 +487,11 @@ public class Pet4uItemsDao {
 
                 String quantity = resultSet.getString("item_stock");
                 String state = resultSet.getString("state");
+                String position = resultSet.getString("position");
 
                 itemSnapshot.setDateStamp(dateStamp);
                 itemSnapshot.setState(state);
+                itemSnapshot.setPosition(position);
                 itemSnapshot.setQuantity(quantity);
 
                 last100DaysSnapshots.put(date1, itemSnapshot);
