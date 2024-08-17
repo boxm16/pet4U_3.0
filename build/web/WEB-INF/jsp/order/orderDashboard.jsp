@@ -44,13 +44,7 @@
             <button type="submit" class="btn btn-secondary"> <h1> Get  Order By Id </h1></button>
         </form>
         <hr>
-        <hr>
-        <form action="ordersOfDate.htm" method="POST">
-            <h1>  <input type="date"  name="startDate" value="${startDate}"></h1>
-            <h1>  <input type="date"  name="endDate" value="${nowDate}"></h1>
-            <hr>
-            <button type="submit" class="btn btn-primary"> <h1>Show orders OF DATE For Period Of Time</h1></button>
-        </form>
+
         <hr>
         <h1>Statistics after 01.01.2024 till today</h1>
         <hr>
@@ -63,6 +57,13 @@
         <hr>
         <a href="positionsBlockTraffic.htm" class="btn btn-primary" role="button" style='background-color: blue;'><h1>Positions Block Traffic - Analysis</h1></a>
         <hr>
+        <hr>
+        <form action="positionsBlockTrafficForPeriod.htm" method="POST">
+            <h1>  <input type="date"  name="startDate" value="${startDate}"></h1>
+            <h1>  <input type="date"  name="endDate" value="${nowDate}"></h1>
+            <hr>
+            <button type="submit" class="btn btn-primary"> <h1>Positions Block Traffic For Period Of Time</h1></button>
+        </form>
         <hr>
         <h1>შედარებითი ანალიტიკა</h1>
         <a href="ordersQuantityComparingAnalysis.htm" class="btn btn-primary" role="button" style='background-color: blue;'><h1>Orders Quantity Comparison</h1></a>
