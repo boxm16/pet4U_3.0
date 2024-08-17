@@ -135,6 +135,7 @@ public class OrderDao {
                 String number = resultSet.getString("DOCNUMBER");
                 String itemCode = resultSet.getString("ABBREVIATION");
                 String description = resultSet.getString("NAME");
+                  String type = resultSet.getString("DOCNAME");
                 String quantity = resultSet.getString("QUANT1");
                 String creationUser = resultSet.getString("USER_");
                 if (!orders.containsKey(id)) {
@@ -142,6 +143,7 @@ public class OrderDao {
                     order.setId(id);
                     order.setDateTimeStamp(dateTime);
                     order.setNumber(number);
+                    order.setType(type);
                     order.setCreationDateTime(creationDateTime);
                     order.setCreationUser(creationUser);
                     orders.put(id, order);
