@@ -43,6 +43,15 @@
             <hr>
             <button type="submit" class="btn btn-secondary"> <h1> Get  Order By Id </h1></button>
         </form>
+        <hr>
+        <hr>
+        <form action="ordersOfDate.htm" method="POST">
+            <h1>  <input type="date"  name="startDate" value="${startDate}"></h1>
+            <h1>  <input type="date"  name="endDate" value="${nowDate}"></h1>
+            <hr>
+            <button type="submit" class="btn btn-primary"> <h1>Show orders OF DATE For Period Of Time</h1></button>
+        </form>
+        <hr>
         <h1>Statistics after 01.01.2024 till today</h1>
         <hr>
         <a href="codeQuantityInOrders.htm" class="btn btn-primary" role="button" style='background-color: green;'><h1>Code Quantity In Orders - Analysis</h1></a>

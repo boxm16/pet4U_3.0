@@ -26,7 +26,11 @@ public class OrderController {
     @RequestMapping(value = "orderDashboard")
     public String orderDashboard(ModelMap modelMap) {
         LocalDate date = LocalDate.now();
+        LocalDate startDate = LocalDate.parse("2024-01-01");
+        LocalDate nowDate = LocalDate.now();
         modelMap.addAttribute("date", date);
+        modelMap.addAttribute("startDate", startDate);
+        modelMap.addAttribute("nowDate", nowDate);
         return "/order/orderDashboard";
     }
 
