@@ -222,8 +222,42 @@ public class OrderController {
 
         modelMap.addAttribute("totalTraffic", totalTraffic);
         modelMap.addAttribute("positionsTraffic", positionsTraffic);
+        modelMap.addAttribute("startDate", startDate);
+        modelMap.addAttribute("endDate", endDate);
 
-        return "/order/trafficStatistics";
+        return "/order/trafficStatisticsForPeriod";
+    }
+
+    @RequestMapping(value = "allOrdersForPositionBlockForPeriod")
+    public String allOrdersForPositionBlockForPeriod(@RequestParam(name = "position") String position0, @RequestParam(name = "startDate") String startDate, @RequestParam(name = "endDate") String endDate, ModelMap modelMap) {
+        LinkedHashMap<Integer, Order> allOrders = orderDao.getAllOrdersForPeriod(startDate, endDate);
+
+        LinkedHashMap<Integer, Order> orders = new LinkedHashMap<Integer, Order>();
+
+        for (Map.Entry<Integer, Order> allOrdersEntry : allOrders.entrySet()) {
+            Order order = allOrdersEntry.getValue();
+            LinkedHashMap<String, Item> items = order.getItems();
+            for (Map.Entry<String, Item> itemsEntry : items.entrySet()) {
+                Item item = itemsEntry.getValue();
+                String position = item.getPosition();
+                int _count = position.length() - position.replaceAll("-", "").length();
+
+                if (_count > 1) {
+                    int first = position.indexOf("-");
+                    int second = position.indexOf("-", first + 1);
+                    position = position.substring(0, second);
+                }
+
+                if (position0.equals(position)) {
+                    orders.put(allOrdersEntry.getKey(), order);
+                }
+            }
+
+        }
+
+        modelMap.addAttribute("orders", orders);
+        return "/order/ordersOfDate";
+
     }
 
     @RequestMapping(value = "ordersQuantityComparingAnalysis")
