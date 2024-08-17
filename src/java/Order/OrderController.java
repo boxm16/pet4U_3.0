@@ -230,8 +230,8 @@ public class OrderController {
 
     @RequestMapping(value = "allOrdersForPositionBlockForPeriod")
     public String allOrdersForPositionBlockForPeriod(@RequestParam(name = "position") String position0, @RequestParam(name = "startDate") String startDate, @RequestParam(name = "endDate") String endDate, ModelMap modelMap) {
+        System.out.println("POSITION"+position0);
         LinkedHashMap<Integer, Order> allOrders = orderDao.getAllOrdersForPeriod(startDate, endDate);
-
         LinkedHashMap<Integer, Order> orders = new LinkedHashMap<Integer, Order>();
 
         for (Map.Entry<Integer, Order> allOrdersEntry : allOrders.entrySet()) {
