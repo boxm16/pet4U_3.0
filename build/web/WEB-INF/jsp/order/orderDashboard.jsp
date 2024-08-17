@@ -55,10 +55,10 @@
         <a href="positionsTraffic.htm" class="btn btn-primary" role="button" style='background-color: blue;'><h1>Positions Traffic - Analysis</h1></a>
         <hr>
         <hr>
-        <a href="positionsBlockTraffic.htm" class="btn btn-primary" role="button" style='background-color: blue;'><h1>Positions Block Traffic - Analysis</h1></a>
+        <a href="positionsBlockTraffic.htm" class="btn btn-primary" role="button" style='background-color: blue;' target="_blank"><h1>Positions Block Traffic - Analysis</h1></a>
         <hr>
         <hr>
-        <form action="positionsBlockTrafficForPeriod.htm" method="POST">
+        <form action="positionsBlockTrafficForPeriod.htm" method="POST" target="_blank">
             <h1>  <input type="date"  name="startDate" value="${startDate}"></h1>
             <h1>  <input type="date"  name="endDate" value="${nowDate}"></h1>
             <hr>
