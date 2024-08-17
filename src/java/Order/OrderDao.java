@@ -105,7 +105,7 @@ public class OrderDao {
 
         try {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("select * from WH_SALES_DOCS WHERE ENTRYDATE between  '" + startDate + "' AND '" + endDate + "' order by DOCID ORDER BY DOCID;");
+            ResultSet resultSet = statement.executeQuery("select * from WH_SALES_DOCS WHERE ENTRYDATE between  '" + startDate + "' AND '" + endDate + "' ORDER BY DOCID;");
 
             while (resultSet.next()) {
                 String dateTimeStampString = resultSet.getString("ENTRYDATE");
