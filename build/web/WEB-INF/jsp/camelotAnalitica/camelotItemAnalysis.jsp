@@ -4,6 +4,7 @@
     Author     : Michail Sitmalidis
 --%>
 
+<%@page import="java.util.List"%>
 <%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="CamelotItemsOfInterest.ItemSnapshot"%>
 <%@page import="java.util.Iterator"%>
