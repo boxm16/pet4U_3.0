@@ -39,7 +39,7 @@ public class OrderController {
     public String ordersTimeStructureOfDate(@RequestParam(name = "date") String date, ModelMap modelMap) {
         LinkedHashMap<LocalDateTime, Integer> ordersTimeStrucuterOfDate = new LinkedHashMap<>();
         LinkedHashMap<Integer, Order> orders = orderDao.getOrdersOfDate(date);
-
+  System.out.println("ST:" + date);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDateTime startTime = LocalDateTime.parse(date, formatter);
         System.out.println("ST:" + startTime);
