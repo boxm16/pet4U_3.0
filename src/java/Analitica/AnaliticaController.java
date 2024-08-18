@@ -56,13 +56,13 @@ public class AnaliticaController {
         model.addAttribute("item", item);
 
         String itemCode = item.getCode();
-       Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
-      //  ArrayList< ItemSnapshot> itemSnapshots = pet4uItemsDao.getItemSnapshots(itemCode);
-     //   model.addAttribute("itemSnapshots", itemSnapshots);
+        Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
+        //  ArrayList< ItemSnapshot> itemSnapshots = pet4uItemsDao.getItemSnapshots(itemCode);
+        //   model.addAttribute("itemSnapshots", itemSnapshots);
 
         LinkedHashMap<LocalDate, ItemSnapshot> last100DaysSnapshots = pet4uItemsDao.getLast100DaysSnapshots(item.getCode());
         model.addAttribute("last100DaysSnapshots", last100DaysSnapshots);
-        
+
         MonthSalesDao monthSalesDao = new MonthSalesDao();
         ArrayList<String> period = monthSalesDao.getSalesPeriod();
         MonthSales itemSales = monthSalesDao.getItemSales(itemCode);
@@ -107,9 +107,9 @@ public class AnaliticaController {
         }
 
         System.out.println("ITEMCODE FOR CAMELOT: " + itemCode);
-        ArrayList<ItemSnapshot> camelotItemSnapshots = camelotItemsOfInterestDao.getItemSnapshots(itemCode);
-        System.out.println("size:" + camelotItemSnapshots.size());
-        model.addAttribute("camelotItemSnapshots", camelotItemSnapshots);
+        LinkedHashMap<LocalDate, ItemSnapshot> camelotLast100DaysSnapshots = camelotItemsOfInterestDao.getLast100DaysSnapshots(itemCode);
+        System.out.println("size:" + camelotLast100DaysSnapshots.size());
+        model.addAttribute("camelotLast100DaysSnapshots", camelotLast100DaysSnapshots);
 
         return "analitica/itemAnalysis";
     }
@@ -172,9 +172,9 @@ public class AnaliticaController {
         CamelotItemsOfInterestDao camelotItemsOfInterestDao = new CamelotItemsOfInterestDao();
 
         System.out.println("ITEMCODE FOR CAMELOT: " + item.getCode());
-        ArrayList<ItemSnapshot> camelotItemSnapshots = camelotItemsOfInterestDao.getItemSnapshots(item.getCode());
-        System.out.println("size:" + camelotItemSnapshots.size());
-        model.addAttribute("camelotItemSnapshots", camelotItemSnapshots);
+        LinkedHashMap<LocalDate, ItemSnapshot> camelotLast100DaysSnapshots = camelotItemsOfInterestDao.getLast100DaysSnapshots(item.getCode());
+        System.out.println("size:" + camelotLast100DaysSnapshots.size());
+        model.addAttribute("camelotLast100DaysSnapshots", camelotLast100DaysSnapshots);
 
         return "camelotAnalitica/camelotItemAnalysis";
     }

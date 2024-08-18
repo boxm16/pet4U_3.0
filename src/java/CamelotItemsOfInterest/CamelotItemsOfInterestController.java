@@ -481,8 +481,8 @@ public class CamelotItemsOfInterestController {
     @RequestMapping(value = "itemSnapshots")
     public String itemSnapshots(@RequestParam(name = "code") String code, ModelMap model) {
         CamelotItemsOfInterestDao camelotItemsOfInterestDao = new CamelotItemsOfInterestDao();
-        ArrayList<ItemSnapshot> itemSnapshots = camelotItemsOfInterestDao.getItemSnapshots(code);
-        model.addAttribute("itemSnapshots", itemSnapshots);
+       LinkedHashMap<LocalDate, ItemSnapshot> last100DaysSnapshots = camelotItemsOfInterestDao.getLast100DaysSnapshots(code);
+        model.addAttribute("last100DaysSnapshots", last100DaysSnapshots);
         model.addAttribute("code", code);
         return "/camelot/itemSnapshots";
     }

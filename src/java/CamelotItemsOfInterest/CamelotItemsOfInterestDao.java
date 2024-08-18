@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -465,10 +466,19 @@ public class CamelotItemsOfInterestDao {
         return items;
     }
 
-    public ArrayList<ItemSnapshot> getItemSnapshots(String code) {
-        ArrayList<ItemSnapshot> itemSnapshots = new ArrayList<>();
+    public LinkedHashMap<LocalDate, ItemSnapshot> getLast100DaysSnapshots(String code) {
+        LinkedHashMap<LocalDate, ItemSnapshot> last100DaysSnapshots = new LinkedHashMap<>();
 
-        String sql = "SELECT * FROM camelot_day_rest WHERE item_code='" + code + "' ORDER BY date_stamp DESC;";
+        LocalDate startDate = LocalDate.now();
+        //  LocalDate firstDate = date.minusDays(30);
+        //  LocalDate lastDate = date.minusDays(1);
+        LocalDate endDate = LocalDate.now();
+        for (int x = 100; x > 0; x--) {
+            endDate = endDate.minusDays(1);
+            last100DaysSnapshots.put(endDate, null);
+        }
+
+        String sql = "SELECT * FROM camelot_day_rest WHERE item_code='" + code + "' and date_stamp between '" + endDate + "' AND '" + startDate + "' ORDER BY date_stamp DESC;";
         ResultSet resultSet;
 
         try {
@@ -478,12 +488,14 @@ public class CamelotItemsOfInterestDao {
             resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
                 ItemSnapshot itemSnapshot = new ItemSnapshot();
-
                 String dateStamp = resultSet.getString("date_stamp");
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                LocalDate date1 = LocalDate.parse(dateStamp, formatter);
+
                 String quantity = resultSet.getString("item_rest");
                 itemSnapshot.setDateStamp(dateStamp);
                 itemSnapshot.setQuantity(quantity);
-                itemSnapshots.add(itemSnapshot);
+                last100DaysSnapshots.put(date1, itemSnapshot);
             }
             resultSet.close();
             statement.close();
@@ -491,7 +503,7 @@ public class CamelotItemsOfInterestDao {
         } catch (SQLException ex) {
             Logger.getLogger(CamelotItemsOfInterestDao.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return itemSnapshots;
+        return last100DaysSnapshots;
     }
 
     LinkedHashMap<String, CamelotItemOfInterest> getAllCamelotItemsAsItemsOfInterest() {
