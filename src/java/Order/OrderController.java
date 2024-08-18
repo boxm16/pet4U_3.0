@@ -43,7 +43,7 @@ public class OrderController {
         for (Map.Entry<Integer, Order> orderEntry : orders.entrySet()) {
             LocalDateTime creationDateTime = orderEntry.getValue().getCreationDateTime();
         }
-        return "/order/ordersTimeStrucuterOfDate";
+        return "/order/ordersTimeStructureOfDate";
     }
 
     @RequestMapping(value = "ordersForDate")
