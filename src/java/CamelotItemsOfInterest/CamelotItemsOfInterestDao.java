@@ -572,7 +572,7 @@ public class CamelotItemsOfInterestDao {
             snapshots.put(date, null);
         }
 
-        String sql = "SELECT * FROM camelot_day_rest WHERE item_code='" + itemCode + "' and date_stamp between '2023-03-09' AND '" + nowDate + "' ORDER BY date_stamp DESC;";
+        String sql = "SELECT * FROM camelot_day_rest_full_version WHERE item_code='" + itemCode + "' and date_stamp between '2023-03-09' AND '" + nowDate + "' ORDER BY date_stamp DESC;";
         ResultSet resultSet;
 
         try {
