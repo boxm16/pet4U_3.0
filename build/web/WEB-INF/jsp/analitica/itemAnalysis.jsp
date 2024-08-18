@@ -709,8 +709,8 @@
                                     LocalDate currentDate = camelotKeys.get(k);
                                     LocalDate previousDate = camelotKeys.get(k + 1);;   // Will fail if there isn't another element.
 
-                                    ItemSnapshot currentItem = itemSnapshots.get(currentDate);
-                                    ItemSnapshot previousItem = itemSnapshots.get(previousDate);
+                                    ItemSnapshot currentItem = camelotItemSnapshots.get(currentDate);
+                                    ItemSnapshot previousItem = camelotItemSnapshots.get(previousDate);
 
                                     // ...
                                     if (currentDate.getDayOfWeek().toString().equals("SUNDAY")) {
