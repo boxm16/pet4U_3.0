@@ -67,7 +67,7 @@ public class OrderController {
                 ordersThreeLayersTimeStrucuterOfDate.put("11-15", k);
             }
             if (hour >= 15) {
-                Integer l = ordersThreeLayersTimeStrucuterOfDate.get("00-11");
+                Integer l = ordersThreeLayersTimeStrucuterOfDate.get("15-24");
                 l++;
                 ordersThreeLayersTimeStrucuterOfDate.put("15-24", l);
             }
