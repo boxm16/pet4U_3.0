@@ -486,7 +486,9 @@ public class CamelotItemsOfInterestDao {
             Connection connection = databaseConnectionFactory.getMySQLConnection();
             Statement statement = connection.createStatement();
             resultSet = statement.executeQuery(sql);
+            int index = 0;
             while (resultSet.next()) {
+                index++;
                 ItemSnapshot itemSnapshot = new ItemSnapshot();
                 String dateStamp = resultSet.getString("date_stamp");
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -496,6 +498,9 @@ public class CamelotItemsOfInterestDao {
                 itemSnapshot.setDateStamp(dateStamp);
                 itemSnapshot.setQuantity(quantity);
                 last100DaysSnapshots.put(date1, itemSnapshot);
+            }
+            if (index == 0) {
+                last100DaysSnapshots = new LinkedHashMap<>();//that means resultSet came empty
             }
             resultSet.close();
             statement.close();
