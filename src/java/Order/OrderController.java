@@ -34,6 +34,19 @@ public class OrderController {
         return "/order/orderDashboard";
     }
 
+    @RequestMapping(value = "ordersTimeStructureOfDate")
+    public String ordersTimeStructureOfDate(@RequestParam(name = "date") String date, ModelMap modelMap) {
+        LinkedHashMap<LocalDateTime, Integer> ordersTimeStrucuterOfDate = new LinkedHashMap<>();
+        LinkedHashMap<Integer, Order> orders = orderDao.getOrdersOfDate(date);
+
+        LocalDateTime startTime = LocalDateTime.parse(date);
+        System.out.println("ST:" + startTime);
+        for (Map.Entry<Integer, Order> orderEntry : orders.entrySet()) {
+            LocalDateTime creationDateTime = orderEntry.getValue().getCreationDateTime();
+        }
+        return "/order/ordersTimeStrucuterOfDate";
+    }
+
     @RequestMapping(value = "ordersForDate")
     public String ordersForDate(@RequestParam(name = "date") String date, ModelMap modelMap) {
 
@@ -230,7 +243,7 @@ public class OrderController {
 
     @RequestMapping(value = "allOrdersForPositionBlockForPeriod")
     public String allOrdersForPositionBlockForPeriod(@RequestParam(name = "position") String position0, @RequestParam(name = "startDate") String startDate, @RequestParam(name = "endDate") String endDate, ModelMap modelMap) {
-        System.out.println("POSITION"+position0);
+        System.out.println("POSITION" + position0);
         LinkedHashMap<Integer, Order> allOrders = orderDao.getAllOrdersForPeriod(startDate, endDate);
         LinkedHashMap<Integer, Order> orders = new LinkedHashMap<Integer, Order>();
 
