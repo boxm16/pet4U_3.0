@@ -215,13 +215,6 @@ public class AnaliticaController {
         //   System.out.println("Retrieving Item. Done: " + LocalDateTime.now());
 
         String itemCode = item.getCode();
-        Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
-        //  ArrayList< ItemSnapshot> itemSnapshots = pet4uItemsDao.getItemSnapshots(itemCode);
-        //   model.addAttribute("itemSnapshots", itemSnapshots);
-
-        LinkedHashMap<LocalDate, ItemSnapshot> last100DaysSnapshots = pet4uItemsDao.getItemSnapshotsFullVersion(item.getCode());
-        model.addAttribute("last100DaysSnapshots", last100DaysSnapshots);
-        // System.out.println("Retrieving Last 100 Days Snapshot. Done: " + LocalDateTime.now());
 
         MonthSalesDao monthSalesDao = new MonthSalesDao();
         ArrayList<String> period = monthSalesDao.getSalesPeriod();
@@ -262,6 +255,14 @@ public class AnaliticaController {
         model.addAttribute("stockAnalysis", stockAnalysis);
         //  System.out.println("Retrieving Stock Analysis. Done: " + LocalDateTime.now());
 
+        Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
+        //  ArrayList< ItemSnapshot> itemSnapshots = pet4uItemsDao.getItemSnapshots(itemCode);
+        //   model.addAttribute("itemSnapshots", itemSnapshots);
+
+        LinkedHashMap<LocalDate, ItemSnapshot> last100DaysSnapshots = pet4uItemsDao.getItemSnapshotsFullVersion(item.getCode());
+        model.addAttribute("last100DaysSnapshots", last100DaysSnapshots);// its not for 100 days, its for full version
+        // System.out.println("Retrieving Last 100 Days Snapshot. Done: " + LocalDateTime.now());
+//--------------------------------------------------------
         CamelotItemsOfInterestDao camelotItemsOfInterestDao = new CamelotItemsOfInterestDao();
         if (itemCode.contains(".-WE")) {
             itemCode = itemCode.replace(".-WE", "");
@@ -276,7 +277,7 @@ public class AnaliticaController {
         //    System.out.println("Retrieving Camelot Last 100 Days Snapshots. Done: " + LocalDateTime.now());
         System.out.println("Analysis Done: " + LocalDateTime.now());
 
-        return "analitica/itemAnalysisFullVersion";
+        return "analitica/itemAnalysis";
     }
 
 }

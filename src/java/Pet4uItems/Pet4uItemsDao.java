@@ -558,7 +558,7 @@ public class Pet4uItemsDao {
             snapshots.put(date, null);
         }
 
-        String sql = "SELECT * FROM item_state_full_version WHERE item_code='" + code + "' and date_stamp between '2023-09-12' AND '" + nowDate + "' ORDER BY date_stamp DESC;";
+        String sql = "SELECT * FROM item_state_full_version WHERE item_code='" + code + "' and date_stamp between '2023-09-11' AND '" + nowDate + "' ORDER BY date_stamp DESC;";
         // System.out.println("SQL: " + sql);
         ResultSet resultSet;
 
