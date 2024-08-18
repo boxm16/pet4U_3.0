@@ -558,4 +558,51 @@ public class CamelotItemsOfInterestDao {
         return items;
     }
 
+    public LinkedHashMap<LocalDate, ItemSnapshot> getCamelotItemSnapshotsFullVersion(String itemCode) {
+        LinkedHashMap<LocalDate, ItemSnapshot> snapshots = new LinkedHashMap<>();
+
+       LocalDate nowDate = LocalDate.now();
+        //  LocalDate firstDate = date.minusDays(30);
+        //  LocalDate lastDate = date.minusDays(1);
+        LocalDate date = LocalDate.now();
+        LocalDate firstDate = LocalDate.parse("2023-03-09");
+
+        while (date.isBefore(firstDate)) {
+            date = date.minusDays(1);
+            snapshots.put(date, null);
+        }
+
+        String sql = "SELECT * FROM camelot_day_rest WHERE item_code='" + itemCode + "' and date_stamp between '2023-03-09' AND '" + nowDate + "' ORDER BY date_stamp DESC;";
+        ResultSet resultSet;
+
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            Connection connection = databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            resultSet = statement.executeQuery(sql);
+            int index = 0;
+            while (resultSet.next()) {
+                index++;
+                ItemSnapshot itemSnapshot = new ItemSnapshot();
+                String dateStamp = resultSet.getString("date_stamp");
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                LocalDate date1 = LocalDate.parse(dateStamp, formatter);
+
+                String quantity = resultSet.getString("item_rest");
+                itemSnapshot.setDateStamp(dateStamp);
+                itemSnapshot.setQuantity(quantity);
+                snapshots.put(date1, itemSnapshot);
+            }
+            if (index == 0) {
+                snapshots = new LinkedHashMap<>();//that means resultSet came empty
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(CamelotItemsOfInterestDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return snapshots;
+    }
+
 }
