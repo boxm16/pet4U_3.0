@@ -60,6 +60,42 @@
                     }
                 %>
         </table>
+        <hr><hr>
+        <table style="font-size:20px">
+            <thead>
+                <tr> 
+                    <th>Codes Quantity</th>
+                    <th>Count</th>
+                    <th>%</th>
+
+                </tr>
+            </thead>
+            <tbody>
+
+
+                <%
+                    LinkedHashMap<String, Integer> map2 = (LinkedHashMap) request.getAttribute("ordersThreeLayersTimeStrucuterOfDate");
+                  
+                    for (Map.Entry<String, Integer> entrySet2 : map2.entrySet()) {
+                        out.println("<tr>");
+
+                        out.println("<td>");
+                        out.println(entrySet2.getKey());
+                        out.println("</td>");
+
+                        out.println("<td>");
+                        out.println(entrySet2.getValue());
+                        out.println("</td>");
+
+                        out.println("<td>");
+                        double d = Double.valueOf(100) * Double.valueOf(entrySet2.getValue()) / Double.valueOf(total);
+                        out.println(d);
+                        out.println("</td>");
+
+                        out.println("</tr>");
+                    }
+                %>
+        </table>
     </center>
 </body>
 </html>

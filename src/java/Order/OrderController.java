@@ -37,6 +37,11 @@ public class OrderController {
     @RequestMapping(value = "ordersTimeStructureOfDate")
     public String ordersTimeStructureOfDate(@RequestParam(name = "date") String date, ModelMap modelMap) {
         LinkedHashMap<Integer, Integer> ordersTimeStrucuterOfDate = new LinkedHashMap<>();
+
+        LinkedHashMap<String, Integer> ordersThreeLayersTimeStrucuterOfDate = new LinkedHashMap<>();
+        ordersThreeLayersTimeStrucuterOfDate.put("00-11", 0);
+        ordersThreeLayersTimeStrucuterOfDate.put("11-15", 0);
+        ordersThreeLayersTimeStrucuterOfDate.put("15-24", 0);
         LinkedHashMap<Integer, Order> orders = orderDao.getOrdersOfDate(date);
         LocalDateTime startTime = LocalDateTime.parse(date + "T00:00:00.000");
 
@@ -48,13 +53,27 @@ public class OrderController {
             LocalDateTime creationDateTime = orderEntry.getValue().getCreationDateTime();
             int hour = creationDateTime.getHour();
             Integer q = ordersTimeStrucuterOfDate.get(hour);
-        
             q++;
             total++;
             ordersTimeStrucuterOfDate.put(hour, q);
+            if (hour < 11) {
+                Integer j = ordersThreeLayersTimeStrucuterOfDate.get("00-11");
+                j++;
+                ordersThreeLayersTimeStrucuterOfDate.put("00-11", j);
+            } else if (hour >= 11 && hour < 15) {
+                Integer k = ordersThreeLayersTimeStrucuterOfDate.get("11-15");
+                k++;
+                ordersThreeLayersTimeStrucuterOfDate.put("11-15", k);
+            } else {
+                Integer l = ordersThreeLayersTimeStrucuterOfDate.get("00-11");
+                l++;
+                ordersThreeLayersTimeStrucuterOfDate.put("15-24", l);
+            }
         }
         modelMap.addAttribute("date", date);
         modelMap.addAttribute("ordersTimeStrucuterOfDate", ordersTimeStrucuterOfDate);
+        modelMap.addAttribute("ordersThreeLayersTimeStrucuterOfDate", ordersThreeLayersTimeStrucuterOfDate);
+
         modelMap.addAttribute("total", total);
         return "/order/ordersTimeStructureOfDate";
     }
