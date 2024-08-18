@@ -52,8 +52,7 @@
                         out.println("</td>");
 
                         out.println("<td>");
-                        double d=0.00;
-                        d=entrySet.getValue() * 100 / total;
+                        double d = Double.valueOf(100) * Double.valueOf(entrySet.getValue()) / Double.valueOf(total);
                         out.println(d);
                         out.println("</td>");
 
