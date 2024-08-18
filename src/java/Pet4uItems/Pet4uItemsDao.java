@@ -472,7 +472,7 @@ public class Pet4uItemsDao {
         }
 
         String sql = "SELECT * FROM item_state WHERE item_code='" + code + "' and date_stamp between '" + endDate + "' AND '" + startDate + "' ORDER BY date_stamp DESC;";
-        System.out.println("SQL: " + sql);
+       // System.out.println("SQL: " + sql);
         ResultSet resultSet;
 
         try {

@@ -55,7 +55,7 @@ public class AnaliticaController {
             return "analitica/itemAnalysisErrorPage";
         }
         model.addAttribute("item", item);
-        System.out.println("Retrieving Item. Done: " + LocalDateTime.now());
+     //   System.out.println("Retrieving Item. Done: " + LocalDateTime.now());
 
         String itemCode = item.getCode();
         Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
@@ -64,7 +64,7 @@ public class AnaliticaController {
 
         LinkedHashMap<LocalDate, ItemSnapshot> last100DaysSnapshots = pet4uItemsDao.getLast100DaysSnapshots(item.getCode());
         model.addAttribute("last100DaysSnapshots", last100DaysSnapshots);
-        System.out.println("Retrieving Last 100 Days Snapshot. Done: " + LocalDateTime.now());
+        // System.out.println("Retrieving Last 100 Days Snapshot. Done: " + LocalDateTime.now());
 
         MonthSalesDao monthSalesDao = new MonthSalesDao();
         ArrayList<String> period = monthSalesDao.getSalesPeriod();
@@ -86,24 +86,24 @@ public class AnaliticaController {
             }
         }
         model.addAttribute("itemSales", itemSales);
-        System.out.println("Retrieving Item Sales. Done: " + LocalDateTime.now());
+        //  System.out.println("Retrieving Item Sales. Done: " + LocalDateTime.now());
 
         //   LinkedHashMap<String, Double> daysSales = monthSalesDao.getLast30DaysSales(item.getCode());
         // model.addAttribute("daysSales", daysSales);
         DailySalesDao dailySalesDao = new DailySalesDao();
         LinkedHashMap<LocalDate, DailySale> dailySales = dailySalesDao.getLast30DaysSales(item.getCode());
         model.addAttribute("dailySales", dailySales);
-        System.out.println("Retrieving Daily Sales. Done: " + LocalDateTime.now());
+        //   System.out.println("Retrieving Daily Sales. Done: " + LocalDateTime.now());
 
         OfferDao offerDao = new OfferDao();
         ArrayList<Offer> offers = offerDao.getOffers(itemCode);
         model.addAttribute("offers", offers);
-        System.out.println("Retrieving Offers. Done: " + LocalDateTime.now());
+       // System.out.println("Retrieving Offers. Done: " + LocalDateTime.now());
 
         StockAnalysisDao stockDao = new StockAnalysisDao();
         StockAnalysis stockAnalysis = stockDao.getStock(itemCode);
         model.addAttribute("stockAnalysis", stockAnalysis);
-        System.out.println("Retrieving Stock Analysis. Done: " + LocalDateTime.now());
+        //  System.out.println("Retrieving Stock Analysis. Done: " + LocalDateTime.now());
 
         CamelotItemsOfInterestDao camelotItemsOfInterestDao = new CamelotItemsOfInterestDao();
         if (itemCode.contains(".-WE")) {
@@ -116,7 +116,9 @@ public class AnaliticaController {
         LinkedHashMap<LocalDate, ItemSnapshot> camelotLast100DaysSnapshots = camelotItemsOfInterestDao.getLast100DaysSnapshots(itemCode);
         System.out.println("size:" + camelotLast100DaysSnapshots.size());
         model.addAttribute("camelotLast100DaysSnapshots", camelotLast100DaysSnapshots);
-        System.out.println("Retrieving Camelot Last 100 Days Snapshots. Done: " + LocalDateTime.now());
+    //    System.out.println("Retrieving Camelot Last 100 Days Snapshots. Done: " + LocalDateTime.now());
+        System.out.println("Analysis Done: " + LocalDateTime.now());
+
         return "analitica/itemAnalysis";
     }
 
