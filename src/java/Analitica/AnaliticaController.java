@@ -55,7 +55,7 @@ public class AnaliticaController {
             return "analitica/itemAnalysisErrorPage";
         }
         model.addAttribute("item", item);
-     //   System.out.println("Retrieving Item. Done: " + LocalDateTime.now());
+        //   System.out.println("Retrieving Item. Done: " + LocalDateTime.now());
 
         String itemCode = item.getCode();
         Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
@@ -98,7 +98,7 @@ public class AnaliticaController {
         OfferDao offerDao = new OfferDao();
         ArrayList<Offer> offers = offerDao.getOffers(itemCode);
         model.addAttribute("offers", offers);
-       // System.out.println("Retrieving Offers. Done: " + LocalDateTime.now());
+        // System.out.println("Retrieving Offers. Done: " + LocalDateTime.now());
 
         StockAnalysisDao stockDao = new StockAnalysisDao();
         StockAnalysis stockAnalysis = stockDao.getStock(itemCode);
@@ -116,7 +116,7 @@ public class AnaliticaController {
         LinkedHashMap<LocalDate, ItemSnapshot> camelotLast100DaysSnapshots = camelotItemsOfInterestDao.getLast100DaysSnapshots(itemCode);
         System.out.println("size:" + camelotLast100DaysSnapshots.size());
         model.addAttribute("camelotLast100DaysSnapshots", camelotLast100DaysSnapshots);
-    //    System.out.println("Retrieving Camelot Last 100 Days Snapshots. Done: " + LocalDateTime.now());
+        //    System.out.println("Retrieving Camelot Last 100 Days Snapshots. Done: " + LocalDateTime.now());
         System.out.println("Analysis Done: " + LocalDateTime.now());
 
         return "analitica/itemAnalysis";
@@ -187,5 +187,44 @@ public class AnaliticaController {
         return "camelotAnalitica/camelotItemAnalysis";
     }
     //------------------------------------------
+
+    @RequestMapping(value = "/getFullItemAnalysis", method = RequestMethod.GET)
+    public String getFullItemAnalysis(HttpSession session, @RequestParam String code, ModelMap model) {
+        System.out.println("Starting analysis: " + LocalDateTime.now());
+        String userName = (String) session.getAttribute("userName");
+
+        if (userName == null) {
+            model.addAttribute("message", "You are not authorized for this page");
+            return "errorPage";
+        }
+        if (!userName.equals("me")) {
+            model.addAttribute("message", "You are not authorized for this page");
+            return "errorPage";
+        }
+
+        Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
+        //  ArrayList< ItemSnapshot> itemSnapshots = pet4uItemsDao.getItemSnapshots(itemCode);
+        //   model.addAttribute("itemSnapshots", itemSnapshots);
+
+        LinkedHashMap<LocalDate, ItemSnapshot> snapshots = pet4uItemsDao.getItemSnapshotsFullVersion(code);
+        model.addAttribute("snapshots", snapshots);
+        // System.out.println("Retrieving Last 100 Days Snapshot. Done: " + LocalDateTime.now());
+
+        CamelotItemsOfInterestDao camelotItemsOfInterestDao = new CamelotItemsOfInterestDao();
+        if (code.contains(".-WE")) {
+            code = code.replace(".-WE", "");
+        }
+        if (code.contains("-WE")) {
+            code = code.replace("-WE", "");
+        }
+
+        LinkedHashMap<LocalDate, ItemSnapshot> camelotLast100DaysSnapshots = camelotItemsOfInterestDao.getLast100DaysSnapshots(code);
+        System.out.println("size:" + camelotLast100DaysSnapshots.size());
+        model.addAttribute("camelotLast100DaysSnapshots", camelotLast100DaysSnapshots);
+        //    System.out.println("Retrieving Camelot Last 100 Days Snapshots. Done: " + LocalDateTime.now());
+        System.out.println("Analysis Done: " + LocalDateTime.now());
+
+        return "analitica/itemAnalysisFullVersion";
+    }
 
 }

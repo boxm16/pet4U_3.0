@@ -628,7 +628,7 @@
 
                                 }
                                  */
-                                LinkedHashMap<LocalDate, ItemSnapshot> itemSnapshots = (LinkedHashMap) request.getAttribute("last100DaysSnapshots");
+                                LinkedHashMap<LocalDate, ItemSnapshot> itemSnapshots = (LinkedHashMap) request.getAttribute("snapshots");
                                 List<LocalDate> keys = new ArrayList<>(itemSnapshots.keySet());
                                 for (int k = 0; k < keys.size() - 1; k++) {
                                     LocalDate currentDate = keys.get(k);
