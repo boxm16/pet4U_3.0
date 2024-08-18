@@ -628,7 +628,7 @@
 
                                 }
                                  */
-                                LinkedHashMap<LocalDate, ItemSnapshot> itemSnapshots = (LinkedHashMap) request.getAttribute("snapshots");
+                                LinkedHashMap<LocalDate, ItemSnapshot> itemSnapshots = (LinkedHashMap) request.getAttribute("last100DaysSnapshots");
                                 List<LocalDate> keys = new ArrayList<>(itemSnapshots.keySet());
                                 for (int k = 0; k < keys.size() - 1; k++) {
                                     LocalDate currentDate = keys.get(k);
@@ -857,11 +857,8 @@
                             %>
                     </table>
                 </div>
-                <hr> 
-                <%                        out.println("<a  href = 'getFullItemAnalysis.htm?code=" + item.getCode() + "' target='_blank'>Camelot Analysis </a>");
-                %>   
-
             </div>
+
         </div>
 
     </body>

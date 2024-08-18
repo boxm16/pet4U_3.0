@@ -857,11 +857,12 @@
                             %>
                     </table>
                 </div>
-                <hr> 
-                <%                        out.println("<a  href = 'getFullItemAnalysis.htm?code=" + item.getCode() + "' target='_blank'>Camelot Analysis </a>");
-                %>   
+
 
             </div>
+            <hr> 
+            <%                        out.println("<a  href = 'getFullItemAnalysis.htm?code=" + item.getCode() + "' target='_blank'>Full Analysis </a>");
+            %>  
         </div>
 
     </body>
