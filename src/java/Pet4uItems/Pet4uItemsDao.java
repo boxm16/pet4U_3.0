@@ -471,7 +471,7 @@ public class Pet4uItemsDao {
             last100DaysSnapshots.put(date, null);
         }
 
-        String sql = "SELECT * FROM item_state WHERE item_code='" + code + "' ORDER BY date_stamp DESC;";
+        String sql = "SELECT * FROM item_state_full_version WHERE item_code='" + code + "' ORDER BY date_stamp DESC;";
         ResultSet resultSet;
 
         try {
