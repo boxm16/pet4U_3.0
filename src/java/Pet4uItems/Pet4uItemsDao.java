@@ -462,16 +462,17 @@ public class Pet4uItemsDao {
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
         Connection connection = databaseConnectionFactory.getMySQLConnection();
 
-        LocalDate date = LocalDate.now();
+        LocalDate startDate = LocalDate.now();
         //  LocalDate firstDate = date.minusDays(30);
         //  LocalDate lastDate = date.minusDays(1);
+        LocalDate endDate = LocalDate.now();
         for (int x = 100; x > 0; x--) {
-            date = date.minusDays(1);
-
-            last100DaysSnapshots.put(date, null);
+            endDate = endDate.minusDays(1);
+            last100DaysSnapshots.put(endDate, null);
         }
 
-        String sql = "SELECT * FROM item_state_full_version WHERE item_code='" + code + "' ORDER BY date_stamp DESC;";
+        String sql = "SELECT * FROM item_state_full_version WHERE item_code='" + code + "' and date_stamp between '" + startDate + "' AND '" + endDate + "' ORDER BY date_stamp DESC;";
+        System.out.println("SQL: "+sql);
         ResultSet resultSet;
 
         try {
