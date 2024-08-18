@@ -567,7 +567,7 @@ public class CamelotItemsOfInterestDao {
         LocalDate date = LocalDate.now();
         LocalDate firstDate = LocalDate.parse("2023-03-09");
 
-        while (date.isBefore(firstDate)) {
+        while (date.isAfter(firstDate)) {
             date = date.minusDays(1);
             snapshots.put(date, null);
         }

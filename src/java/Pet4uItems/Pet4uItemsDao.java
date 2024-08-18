@@ -553,7 +553,7 @@ public class Pet4uItemsDao {
         LocalDate date = LocalDate.now();
         LocalDate firstDate = LocalDate.parse("2023-09-12");
 
-        while (date.isBefore(firstDate)) {
+        while (date.isAfter(firstDate)) {
             date = date.minusDays(1);
             System.out.println("DAte: "+date );
             snapshots.put(date, null);
