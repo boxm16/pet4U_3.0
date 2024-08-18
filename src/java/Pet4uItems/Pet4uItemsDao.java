@@ -555,6 +555,7 @@ public class Pet4uItemsDao {
 
         while (date.isBefore(firstDate)) {
             date = date.minusDays(1);
+            System.out.println("DAte: "+date );
             snapshots.put(date, null);
         }
 
