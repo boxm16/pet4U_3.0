@@ -8,7 +8,6 @@ package Order;
 import BasicModel.Item;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.TreeMap;
@@ -39,9 +38,7 @@ public class OrderController {
     public String ordersTimeStructureOfDate(@RequestParam(name = "date") String date, ModelMap modelMap) {
         LinkedHashMap<LocalDateTime, Integer> ordersTimeStrucuterOfDate = new LinkedHashMap<>();
         LinkedHashMap<Integer, Order> orders = orderDao.getOrdersOfDate(date);
-  System.out.println("ST:" + date);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDateTime startTime = LocalDateTime.parse(date, formatter);
+        LocalDateTime startTime = LocalDateTime.parse(date + "T00:00:00.000");
         System.out.println("ST:" + startTime);
         for (Map.Entry<Integer, Order> orderEntry : orders.entrySet()) {
             LocalDateTime creationDateTime = orderEntry.getValue().getCreationDateTime();
