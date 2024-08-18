@@ -39,7 +39,7 @@ public class OrderController {
         LinkedHashMap<LocalDateTime, Integer> ordersTimeStrucuterOfDate = new LinkedHashMap<>();
         LinkedHashMap<Integer, Order> orders = orderDao.getOrdersOfDate(date);
 
-        LocalDateTime startTime = LocalDateTime.parse(date);
+        LocalDateTime startTime = LocalDateTime.parse(date+" 00:00:00.000");
         System.out.println("ST:" + startTime);
         for (Map.Entry<Integer, Order> orderEntry : orders.entrySet()) {
             LocalDateTime creationDateTime = orderEntry.getValue().getCreationDateTime();
