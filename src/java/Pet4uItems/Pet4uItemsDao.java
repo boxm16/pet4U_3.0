@@ -471,8 +471,8 @@ public class Pet4uItemsDao {
             last100DaysSnapshots.put(endDate, null);
         }
 
-        String sql = "SELECT * FROM item_state_full_version WHERE item_code='" + code + "' and date_stamp between '" + startDate + "' AND '" + endDate + "' ORDER BY date_stamp DESC;";
-        System.out.println("SQL: "+sql);
+        String sql = "SELECT * FROM item_state_full_version WHERE item_code='" + code + "' and date_stamp between '" + endDate + "' AND '" + startDate + "' ORDER BY date_stamp DESC;";
+        System.out.println("SQL: " + sql);
         ResultSet resultSet;
 
         try {
