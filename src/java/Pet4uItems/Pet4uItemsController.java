@@ -314,4 +314,10 @@ public class Pet4uItemsController {
         return "index";
     }
 
+    public void updateItemsStateFullVersion() {
+        Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
+        LinkedHashMap<String, Item> pet4uAllItems = pet4uItemsDao.getAllItems();
+        pet4uItemsDao.insertPet4uItemsSnapshotFullVersion(pet4uAllItems);
+    }
+
 }

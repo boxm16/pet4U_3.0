@@ -595,4 +595,47 @@ public class Pet4uItemsDao {
         return snapshots;
     }
 
+     public String insertPet4uItemsSnapshotFullVersion(LinkedHashMap<String, Item> pet4uAllItems) {
+      try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            Connection connection = databaseConnectionFactory.getMySQLConnection();
+
+            connection.setAutoCommit(false);
+            PreparedStatement incertionPreparedStatement = connection.prepareStatement("INSERT INTO item_state_full_version (item_code, date_stamp, state, position, site_state, item_stock ) VALUES(?,?,?,?,?,?);");
+
+            System.out.println("Starting INSERTION: ....");
+
+            for (Map.Entry< String, Item> itemEntry : pet4uAllItems.entrySet()) {
+                LocalDate nowDate = LocalDate.now();
+
+                incertionPreparedStatement.setString(1, itemEntry.getValue().getCode());
+                incertionPreparedStatement.setString(2, nowDate.toString());
+                incertionPreparedStatement.setString(3, itemEntry.getValue().getState());
+                incertionPreparedStatement.setString(4, itemEntry.getValue().getPosition());
+                incertionPreparedStatement.setString(5, null);
+                incertionPreparedStatement.setString(6, itemEntry.getValue().getQuantity());
+
+                incertionPreparedStatement.addBatch();
+
+            }
+
+            //Executing the batch
+            incertionPreparedStatement.executeBatch();
+
+            System.out.println(" Batch Insertion: DONE");
+
+            //Saving the changes
+            connection.commit();
+            //  deleteTripPeriodPreparedStatement.close();
+            // deleteTripVoucherPreparedStatement.close();
+            incertionPreparedStatement.close();
+
+            connection.close();
+            return "";
+        } catch (SQLException ex) {
+            Logger.getLogger(Pet4uItemsDao.class.getName()).log(Level.SEVERE, null, ex);
+
+            return ex.getMessage();
+        }
+     }
 }

@@ -236,7 +236,7 @@ public class CamelotItemsOfInterestController {
 
         return "/camelot/orderAlert";
     }
-    
+
     @RequestMapping(value = "orderAlertSV")
     public String orderAlertSV(ModelMap model) {
         TreeMap<String, CamelotItemOfInterest> camelotItemsOfInterestFilled = new TreeMap<>();
@@ -481,9 +481,19 @@ public class CamelotItemsOfInterestController {
     @RequestMapping(value = "itemSnapshots")
     public String itemSnapshots(@RequestParam(name = "code") String code, ModelMap model) {
         CamelotItemsOfInterestDao camelotItemsOfInterestDao = new CamelotItemsOfInterestDao();
-       LinkedHashMap<LocalDate, ItemSnapshot> last100DaysSnapshots = camelotItemsOfInterestDao.getLast100DaysSnapshots(code);
+        LinkedHashMap<LocalDate, ItemSnapshot> last100DaysSnapshots = camelotItemsOfInterestDao.getLast100DaysSnapshots(code);
         model.addAttribute("last100DaysSnapshots", last100DaysSnapshots);
         model.addAttribute("code", code);
         return "/camelot/itemSnapshots";
+    }
+
+    public void addSnapshotToFullVersion() {
+        CamelotItemsOfInterestDao camelotItemsOfInterestDao = new CamelotItemsOfInterestDao();
+        LinkedHashMap<String, CamelotItemOfInterest> allCamelotItems = camelotItemsOfInterestDao.getAllCamelotItemsAsItemsOfInterest();
+
+        LocalDate nowDate = LocalDate.now();
+        String snapshotInsertionResult = camelotItemsOfInterestDao.insertDayRestSnapshotToFullVersion(nowDate, allCamelotItems);
+
+        System.out.println("Insertion for " + nowDate + ".Result:" + snapshotInsertionResult);
     }
 }

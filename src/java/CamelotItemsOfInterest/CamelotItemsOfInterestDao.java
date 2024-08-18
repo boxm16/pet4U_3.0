@@ -561,7 +561,7 @@ public class CamelotItemsOfInterestDao {
     public LinkedHashMap<LocalDate, ItemSnapshot> getCamelotItemSnapshotsFullVersion(String itemCode) {
         LinkedHashMap<LocalDate, ItemSnapshot> snapshots = new LinkedHashMap<>();
 
-       LocalDate nowDate = LocalDate.now();
+        LocalDate nowDate = LocalDate.now();
         //  LocalDate firstDate = date.minusDays(30);
         //  LocalDate lastDate = date.minusDays(1);
         LocalDate date = LocalDate.now();
@@ -603,6 +603,37 @@ public class CamelotItemsOfInterestDao {
             Logger.getLogger(CamelotItemsOfInterestDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return snapshots;
+    }
+
+    String insertDayRestSnapshotToFullVersion(LocalDate nowDate, LinkedHashMap<String, CamelotItemOfInterest> camelotItemsOfInterest) {
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            Connection connection = databaseConnectionFactory.getMySQLConnection();
+            connection.setAutoCommit(false);
+            PreparedStatement itemsInsertStatement = connection.prepareStatement("INSERT INTO camelot_day_rest_full_version (item_code, date_stamp, item_rest) VALUES (?,?,?)");
+            for (Map.Entry<String, CamelotItemOfInterest> itemEntry : camelotItemsOfInterest.entrySet()) {
+                CamelotItemOfInterest itemOfInterest = itemEntry.getValue();
+
+                itemsInsertStatement.setString(1, itemOfInterest.getCode());
+                itemsInsertStatement.setString(2, nowDate.toString());
+
+                if (itemOfInterest.getQuantity() == null) {
+                    itemOfInterest.setQuantity("");
+                }
+                itemsInsertStatement.setString(3, itemOfInterest.getQuantity());
+
+                itemsInsertStatement.addBatch();
+
+            }
+            itemsInsertStatement.executeBatch();
+            connection.commit();
+            itemsInsertStatement.close();
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(CamelotItemsOfInterestDao.class.getName()).log(Level.SEVERE, null, ex);
+            return ex.getMessage();
+        }
+        return "New Snapshot Of Items Of Our Interest Added Successfully";
     }
 
 }

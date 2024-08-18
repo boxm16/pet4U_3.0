@@ -61,9 +61,14 @@ public class Scheduler {
                             CamelotItemsOfInterestController camelotItemsOfInteresController = new CamelotItemsOfInterestController();
                             camelotItemsOfInteresController.addSnapshot();
 
+                            System.out.println("Going For Camelot Full Version Snapshοt Insertion");
+                            camelotItemsOfInteresController.addSnapshotToFullVersion();
+
                             System.out.println("Going For Pet4U Varibobi Snapshοt Insertion");
                             Pet4uItemsController pet4uItemsController = new Pet4uItemsController();
                             pet4uItemsController.updateItemsState();
+                            System.out.println("Going For Pet4U Varibobi Snapshοt Insertion");
+                            pet4uItemsController.updateItemsStateFullVersion();
 
                             System.out.println("Going For Pet4U Total Stock Snapshοt Insertion");
                             StockAnalysisController stockAnalysisController = new StockAnalysisController();
