@@ -270,7 +270,73 @@
                         <th>Date Stamp</th>
                         <th>State</th>
                         <th>Quantity</th>
-                            <%                                ArrayList<ItemSnapshot> camelotItemSnapshots = (ArrayList) request.getAttribute("camelotItemSnapshots");
+                            <%
+                                 LinkedHashMap<LocalDate, ItemSnapshot> camelotItemSnapshots = (LinkedHashMap) request.getAttribute("camelotLast100DaysSnapshots");
+                                List<LocalDate> camelotKeys = new ArrayList<>(camelotItemSnapshots.keySet());
+                                for (int k = 0; k < camelotKeys.size() - 1; k++) {
+                                    LocalDate currentDate = camelotKeys.get(k);
+                                    LocalDate previousDate = camelotKeys.get(k + 1);;   // Will fail if there isn't another element.
+
+                                    ItemSnapshot currentItem = camelotItemSnapshots.get(currentDate);
+                                    ItemSnapshot previousItem = camelotItemSnapshots.get(previousDate);
+
+                                    // ...
+                                    if (currentDate.getDayOfWeek().toString().equals("SUNDAY")) {
+                                        out.println("<tr style='background-color: #90EE90;'>");
+
+                                    } else {
+                                        out.println("<tr >");
+
+                                    }
+                                    String[] weekdays = {"", "Δευτερα.", "Τρίτη", "Τετάρτη", "Πέμπτη.", "Παρασκεύη.", "Σάββατο.", "Κυριακη."};
+                                    int day = currentDate.getDayOfWeek().getValue();
+
+                                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+                                    out.println("<td>");
+                                    out.println(currentDate.format(formatter) + "<br>" + weekdays[day]);
+                                    out.println("</td>");
+
+                                    if (currentItem == null) {
+                                        out.println("<td style='background-color: #F1BFB2 ;'>");
+                                        out.println("N/A");
+                                        out.println("</td>");
+                                        out.println("<td style='background-color: #F1BFB2 ;'>");
+                                        out.println("N/A");
+                                        out.println("</td>");
+                                        out.println("<td style='background-color: #F1BFB2 ;'>");
+                                        out.println("N/A");
+                                        out.println("</td>");
+                                    } else {
+                                        Double stock = Double.parseDouble(currentItem.getQuantity());
+
+                                        out.println("<td>");
+                                        out.println(currentItem.getState());
+                                        out.println("</td>");
+                                        
+                                      
+
+                                        if (currentItem.getQuantity().equals("0") || currentItem.getQuantity().equals("0.000000")) {
+                                            out.println("<td style='background-color: #F7B2F7'>");
+                                        } else {
+                                            out.println("<td>");
+                                        }
+                                        out.println(currentItem.getQuantity());
+                                        out.println("</td>");
+
+                                        out.println("<td>");
+                                        if (previousItem == null) {
+                                            out.println("-");
+                                        } else {
+                                            out.println(stock - Double.parseDouble(previousItem.getQuantity()));
+                                        }
+                                        out.println("</td>");
+
+                                    }
+                                    out.println("</tr>");
+                                }
+                                
+                                /*
+                                ArrayList<ItemSnapshot> camelotItemSnapshots = (ArrayList) request.getAttribute("camelotItemSnapshots");
 
                                 double camelotStockBefore = 0.0;
                                 if (camelotItemSnapshots.size() == 1) {
@@ -357,6 +423,7 @@
                                         camelotStockBefore = camelotStock;
                                     }
                                 }
+*/
                             %>
                     </table>
                 </div>
