@@ -272,9 +272,8 @@ public class AnaliticaController {
         }
 
         LinkedHashMap<LocalDate, ItemSnapshot> camelotLast100DaysSnapshots = camelotItemsOfInterestDao.getCamelotItemSnapshotsFullVersion(itemCode);
-        System.out.println("size:" + camelotLast100DaysSnapshots.size());
         model.addAttribute("camelotLast100DaysSnapshots", camelotLast100DaysSnapshots);
-        //    System.out.println("Retrieving Camelot Last 100 Days Snapshots. Done: " + LocalDateTime.now());
+      
         System.out.println("Analysis Done: " + LocalDateTime.now());
 
         return "analitica/itemAnalysis";
