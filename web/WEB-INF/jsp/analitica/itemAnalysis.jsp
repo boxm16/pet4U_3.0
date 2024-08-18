@@ -861,7 +861,9 @@
 
             </div>
             <hr> 
-            <%                        out.println("<a  href = 'getFullItemAnalysis.htm?code=" + item.getCode() + "' target='_blank'>Full Analysis </a>");
+            <%                out.println("<h1>");
+                out.println("<a  href = 'getFullItemAnalysis.htm?code=" + item.getCode() + "' target='_blank'>Full Analysis </a>");
+                out.println("</h1>");
             %>  
         </div>
 
