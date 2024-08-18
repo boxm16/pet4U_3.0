@@ -241,15 +241,10 @@ public class MonthSalesDao {
         try {
             DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
             connection = databaseConnectionFactory.getMySQLConnection();
-
             statement = connection.createStatement();
-
             resultSet = statement.executeQuery(sql);
-            System.out.println("SALES REFERAL MONTHS");
             while (resultSet.next()) {
-
                 String date = resultSet.getString("date");
-                System.out.println(date);
                 salesPeriod.add(date);
             }
 
