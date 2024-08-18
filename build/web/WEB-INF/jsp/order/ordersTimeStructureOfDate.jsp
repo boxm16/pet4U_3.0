@@ -39,7 +39,7 @@
 
                 <%
                     LinkedHashMap<Integer, Integer> map = (LinkedHashMap) request.getAttribute("ordersTimeStrucuterOfDate");
-                    Integer totalTraffic = (Integer) request.getAttribute("totalTraffic");
+                    Integer total = (Integer) request.getAttribute("total");
                     for (Map.Entry<Integer, Integer> entrySet : map.entrySet()) {
                         out.println("<tr>");
 
@@ -49,6 +49,10 @@
 
                         out.println("<td>");
                         out.println(entrySet.getValue());
+                        out.println("</td>");
+
+                        out.println("<td>");
+                        out.println(entrySet.getValue() * 100 / total);
                         out.println("</td>");
 
                         out.println("</tr>");

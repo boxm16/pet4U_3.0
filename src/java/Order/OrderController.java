@@ -43,16 +43,19 @@ public class OrderController {
         for (int x = 0; x < 24; x++) {
             ordersTimeStrucuterOfDate.put(x, 0);
         }
-
+        int total = 0;
         for (Map.Entry<Integer, Order> orderEntry : orders.entrySet()) {
             LocalDateTime creationDateTime = orderEntry.getValue().getCreationDateTime();
             int hour = creationDateTime.getHour();
             Integer q = ordersTimeStrucuterOfDate.get(hour);
-            System.out.println("q: "+q);
+            System.out.println("q: " + q);
             q++;
+            total++;
             ordersTimeStrucuterOfDate.put(hour, q);
         }
+        modelMap.addAttribute("date", date);
         modelMap.addAttribute("ordersTimeStrucuterOfDate", ordersTimeStrucuterOfDate);
+        modelMap.addAttribute("total", total);
         return "/order/ordersTimeStructureOfDate";
     }
 
