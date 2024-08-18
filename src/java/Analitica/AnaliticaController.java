@@ -58,7 +58,7 @@ public class AnaliticaController {
         String itemCode = item.getCode();
         Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
         ArrayList< ItemSnapshot> itemSnapshots = pet4uItemsDao.getItemSnapshots(itemCode);
-        model.addAttribute("itemSnapshots", itemSnapshots);
+     //   model.addAttribute("itemSnapshots", itemSnapshots);
 
         LinkedHashMap<LocalDate, ItemSnapshot> last100DaysSnapshots = pet4uItemsDao.getLast100DaysSnapshots(item.getCode());
         model.addAttribute("last100DaysSnapshots", last100DaysSnapshots);
