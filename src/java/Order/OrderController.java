@@ -60,11 +60,13 @@ public class OrderController {
                 Integer j = ordersThreeLayersTimeStrucuterOfDate.get("00-11");
                 j++;
                 ordersThreeLayersTimeStrucuterOfDate.put("00-11", j);
-            } else if (hour >= 11 && hour < 15) {
+            }
+            if (hour >= 11 && hour < 15) {
                 Integer k = ordersThreeLayersTimeStrucuterOfDate.get("11-15");
                 k++;
                 ordersThreeLayersTimeStrucuterOfDate.put("11-15", k);
-            } else {
+            }
+            if (hour >= 15) {
                 Integer l = ordersThreeLayersTimeStrucuterOfDate.get("00-11");
                 l++;
                 ordersThreeLayersTimeStrucuterOfDate.put("15-24", l);
