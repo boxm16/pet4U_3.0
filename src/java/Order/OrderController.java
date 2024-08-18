@@ -36,13 +36,22 @@ public class OrderController {
 
     @RequestMapping(value = "ordersTimeStructureOfDate")
     public String ordersTimeStructureOfDate(@RequestParam(name = "date") String date, ModelMap modelMap) {
-        LinkedHashMap<LocalDateTime, Integer> ordersTimeStrucuterOfDate = new LinkedHashMap<>();
+        LinkedHashMap<Integer, Integer> ordersTimeStrucuterOfDate = new LinkedHashMap<>();
         LinkedHashMap<Integer, Order> orders = orderDao.getOrdersOfDate(date);
         LocalDateTime startTime = LocalDateTime.parse(date + "T00:00:00.000");
-        System.out.println("ST:" + startTime);
+
+        for (int x = 0; x < 24; x++) {
+            ordersTimeStrucuterOfDate.put(x, 0);
+        }
+
         for (Map.Entry<Integer, Order> orderEntry : orders.entrySet()) {
             LocalDateTime creationDateTime = orderEntry.getValue().getCreationDateTime();
+            int hour = creationDateTime.getHour();
+            Integer q = ordersTimeStrucuterOfDate.get(hour);
+            q++;
+            ordersTimeStrucuterOfDate.put(hour, q);
         }
+        modelMap.addAttribute("ordersTimeStrucuterOfDate", ordersTimeStrucuterOfDate);
         return "/order/ordersTimeStructureOfDate";
     }
 
