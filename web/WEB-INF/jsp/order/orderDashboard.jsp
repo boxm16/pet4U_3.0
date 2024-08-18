@@ -19,11 +19,12 @@
     <body>
     <center>
         <hr>
-        <form action="ordersTimeStructureOfDate.htm" method="POST">
+        <form action="ordersTimeStructureOfDate.htm" method="POST" target="_blank">
             <h1>  <input type="date"  name="date" value="${date}"></h1>
             <hr>
             <button type="submit" class="btn btn-info"> <h1>Show orders Time Structure FOR DATE</h1></button>
         </form>
+        <hr><hr>
         <form action="ordersForDate.htm" method="POST">
             <h1>  <input type="date"  name="date" value="${date}"></h1>
             <hr>
