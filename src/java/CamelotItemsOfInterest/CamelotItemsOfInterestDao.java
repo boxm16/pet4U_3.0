@@ -500,7 +500,7 @@ public class CamelotItemsOfInterestDao {
                 last100DaysSnapshots.put(date1, itemSnapshot);
             }
             if (index == 0) {
-             //   last100DaysSnapshots = new LinkedHashMap<>();//that means resultSet came empty
+                last100DaysSnapshots = new LinkedHashMap<>();//that means resultSet came empty
             }
             resultSet.close();
             statement.close();
