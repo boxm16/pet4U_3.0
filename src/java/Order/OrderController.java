@@ -48,7 +48,7 @@ public class OrderController {
             LocalDateTime creationDateTime = orderEntry.getValue().getCreationDateTime();
             int hour = creationDateTime.getHour();
             Integer q = ordersTimeStrucuterOfDate.get(hour);
-            System.out.println("q: " + q);
+        
             q++;
             total++;
             ordersTimeStrucuterOfDate.put(hour, q);

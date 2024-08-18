@@ -52,7 +52,9 @@
                         out.println("</td>");
 
                         out.println("<td>");
-                        out.println(entrySet.getValue() * 100 / total);
+                        double d=0.00;
+                        d=entrySet.getValue() * 100 / total;
+                        out.println(d);
                         out.println("</td>");
 
                         out.println("</tr>");
