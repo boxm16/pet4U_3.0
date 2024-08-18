@@ -25,6 +25,7 @@
     <body>
     <center>
         <h1>Orders Time Structure for ${date}</h1>
+           <h1>Total orders ${total}</h1>
         <table style="font-size:20px">
             <thead>
                 <tr> 
