@@ -24,7 +24,7 @@
     </head>
     <body>
     <center>
-        <h1>Position Traffic Statistica</h1>
+        <h1>Orders Time Structure for ${date}</h1>
         <table style="font-size:20px">
             <thead>
                 <tr> 
