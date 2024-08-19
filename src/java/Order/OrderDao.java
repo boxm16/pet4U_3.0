@@ -474,7 +474,7 @@ public class OrderDao {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT DISTINCT DOCID , ENTRYDATE , DOCNAME "
                     + "  FROM [petworld].[dbo].[WH_SALES_DOCS] WHERE (DOCNAME='ΚΑΠΔ' OR DOCNAME= 'ΚΔΑΤ1') "
-                    + "AND DATE_TIME between  '2023-01-01 00:00:00.000' AND '2023-12-31 59:59:59.999' order by DOCID  ;");
+                    + "AND DATE_TIME between  '2023-01-01' AND '2023-12-31' order by DOCID  ;");
 
             while (resultSet.next()) {
                 String dateTimeStampString = resultSet.getString("ENTRYDATE");
@@ -511,7 +511,7 @@ public class OrderDao {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT DISTINCT DOCID , ENTRYDATE , DOCNAME "
                     + "  FROM [petworld].[dbo].[WH_SALES_DOCS] WHERE (DOCNAME='ΚΑΠΔ' OR DOCNAME= 'ΚΑΕΛ') "
-                    + "AND DATE_TIME between  '2024-01-01 00:00:00.000' AND '2024-12-31 59:59:59.999' order by DOCID  ;;");
+                    + "AND DATE_TIME between  '2024-01-01' AND '2024-12-31' order by DOCID  ;;");
 
             while (resultSet.next()) {
                 String dateTimeStampString = resultSet.getString("ENTRYDATE");
