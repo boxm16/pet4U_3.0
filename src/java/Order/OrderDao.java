@@ -135,7 +135,7 @@ public class OrderDao {
                 String number = resultSet.getString("DOCNUMBER");
                 String itemCode = resultSet.getString("ABBREVIATION");
                 String description = resultSet.getString("NAME");
-                  String type = resultSet.getString("DOCNAME");
+                String type = resultSet.getString("DOCNAME");
                 String quantity = resultSet.getString("QUANT1");
                 String creationUser = resultSet.getString("USER_");
                 if (!orders.containsKey(id)) {
@@ -470,13 +470,11 @@ public class OrderDao {
 
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
         Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
-        int kaelCount = 0;
-        int kapdCount = 0;
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT DISTINCT DOCID , ENTRYDATE , DOCNAME "
-                    + "  FROM [petworld].[dbo].[WH_SALES_DOCS] WHERE (DOCNAME='ΚΑΠΔ' OR DOCNAME= 'ΚΑΕΛ') "
-                    + "AND ENTRYDATE between  '2023-01-01' AND '2023-12-31' order by DOCID  ;;");
+                    + "  FROM [petworld].[dbo].[WH_SALES_DOCS] WHERE (DOCNAME='ΚΑΠΔ' OR DOCNAME= 'ΚΔΑΤ1') "
+                    + "AND DATE_TIME between  '2023-01-01 00:00:00.000' AND '2023-12-31 59:59:59.999' order by DOCID  ;");
 
             while (resultSet.next()) {
                 String dateTimeStampString = resultSet.getString("ENTRYDATE");
@@ -484,30 +482,22 @@ public class OrderDao {
 
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
                 LocalDateTime dateTime = LocalDateTime.parse(dateTimeStampString, formatter);
-
-                String docname = resultSet.getString("DOCNAME");
-                if (docname.equals("ΚΑΕΛ")) {
-                    kaelCount++;
+                if (!ordersByDate2023.containsKey(dateTime)) {
+                    ordersByDate2023.put(dateTime, 1);
                 } else {
-                    if (!ordersByDate2023.containsKey(dateTime)) {
-                        ordersByDate2023.put(dateTime, 1);
-                    } else {
-                        Integer c = ordersByDate2023.get(dateTime);
-                        c++;
-                        kapdCount++;
-                        ordersByDate2023.put(dateTime, c);
-                    }
-                }
+                    Integer c = ordersByDate2023.get(dateTime);
 
+                    ordersByDate2023.put(dateTime, c);
+                }
             }
+
             resultSet.close();
             statement.close();
             connection.close();
         } catch (SQLException ex) {
             Logger.getLogger(OrderDao.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println("KAPD COUNT: " + kapdCount);
-        System.out.println("KAEL COUNT: " + kaelCount);
+
         return ordersByDate2023;
     }
 
@@ -516,13 +506,12 @@ public class OrderDao {
 
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
         Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
-        int kaelCount = 0;
-        int kapdCount = 0;
+
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT DISTINCT DOCID , ENTRYDATE , DOCNAME "
                     + "  FROM [petworld].[dbo].[WH_SALES_DOCS] WHERE (DOCNAME='ΚΑΠΔ' OR DOCNAME= 'ΚΑΕΛ') "
-                    + "AND ENTRYDATE between  '2024-01-01' AND '2024-12-31' order by DOCID  ;;");
+                    + "AND DATE_TIME between  '2024-01-01 00:00:00.000' AND '2024-12-31 59:59:59.999' order by DOCID  ;;");
 
             while (resultSet.next()) {
                 String dateTimeStampString = resultSet.getString("ENTRYDATE");
@@ -532,28 +521,23 @@ public class OrderDao {
                 LocalDateTime dateTime = LocalDateTime.parse(dateTimeStampString, formatter);
 
                 String docname = resultSet.getString("DOCNAME");
-                if (docname.equals("ΚΑΕΛ")) {
-                    kaelCount++;
-                } else {
-                    if (!ordersByDate2024.containsKey(dateTime)) {
-                        ordersByDate2024.put(dateTime, 1);
-                    } else {
-                        Integer c = ordersByDate2024.get(dateTime);
-                        c++;
-                        kapdCount++;
-                        ordersByDate2024.put(dateTime, c);
-                    }
-                }
 
+                if (!ordersByDate2024.containsKey(dateTime)) {
+                    ordersByDate2024.put(dateTime, 1);
+                } else {
+                    Integer c = ordersByDate2024.get(dateTime);
+                    c++;
+                    ordersByDate2024.put(dateTime, c);
+                }
             }
+
             resultSet.close();
             statement.close();
             connection.close();
         } catch (SQLException ex) {
             Logger.getLogger(OrderDao.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println("KAPD COUNT: " + kapdCount);
-        System.out.println("KAEL COUNT: " + kaelCount);
+
         return ordersByDate2024;
     }
 
@@ -721,7 +705,5 @@ public class OrderDao {
         }
         return orders;
     }
-
-  
 
 }
