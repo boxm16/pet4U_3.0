@@ -486,7 +486,7 @@ public class OrderDao {
                     ordersByDate2023.put(dateTime, 1);
                 } else {
                     Integer c = ordersByDate2023.get(dateTime);
-
+                    c++;
                     ordersByDate2023.put(dateTime, c);
                 }
             }
