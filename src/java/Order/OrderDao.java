@@ -511,7 +511,7 @@ public class OrderDao {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT DISTINCT DOCID , ENTRYDATE , DOCNAME "
                     + "  FROM [petworld].[dbo].[WH_SALES_DOCS] WHERE  "
-                    + "AND DATE_TIME >=  '2024-01-01 00:00:00.000 ' AND DATE_TIME <= '2024-12-31 23:59:59.999' order by DOCID  ;");
+                    + " DATE_TIME >=  '2024-01-01 00:00:00.000 ' AND DATE_TIME <= '2024-12-31 23:59:59.999' order by DOCID  ;");
 
             while (resultSet.next()) {
                 String dateTimeStampString = resultSet.getString("ENTRYDATE");
