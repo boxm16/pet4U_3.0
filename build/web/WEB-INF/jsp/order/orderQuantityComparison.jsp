@@ -42,9 +42,9 @@
                             </thead>
                             <tbody>
                                 <%
-                                    TreeMap<LocalDateTime, Integer> counut2023 = (TreeMap) request.getAttribute("2023");
-                                    for (Map.Entry<LocalDateTime, Integer> entrySet : counut2023.entrySet()) {
-                                        LocalDateTime date = entrySet.getKey();
+                                   TreeMap<LocalDate, Integer> counut2023 = (TreeMap) request.getAttribute("2023");
+                                    for (Map.Entry<LocalDate, Integer> entrySet : counut2023.entrySet()) {
+                                        LocalDate date = entrySet.getKey();
                                         DayOfWeek dayOfWeek = date.getDayOfWeek();
 
                                         if (dayOfWeek == DayOfWeek.SATURDAY) {

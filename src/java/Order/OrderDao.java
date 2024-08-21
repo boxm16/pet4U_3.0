@@ -465,30 +465,42 @@ public class OrderDao {
         return ordersByDate2022;
     }
 
-    TreeMap<LocalDateTime, Integer> countOrdersByDate2023() {
+    TreeMap<LocalDate, Integer> countOrdersByDate2023() {
 
-        TreeMap<LocalDateTime, Integer> ordersByDate2023 = new TreeMap<>();
+        TreeMap<LocalDate, Integer> ordersByDate2023 = new TreeMap<>();
+      
 
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
         Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
+
         try {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT DISTINCT DOCID , ENTRYDATE , DOCNAME "
-                    + "  FROM [petworld].[dbo].[WH_SALES_DOCS] WHERE (DOCNAME='ΚΑΠΔ' OR DOCNAME= 'ΚΔΑΤ1' OR DOCNAME= 'ΚΑΕΛ' OR DOCNAME= 'ΚΠΤΔ1' ) "
-                    + "AND DATE_TIME between  '2022-12-31' AND '2024-01-01' order by DOCID  ;");
+            ResultSet resultSet = statement.executeQuery("SELECT DISTINCT DOCID , DATE_TIME "
+                    + "  FROM [petworld].[dbo].[WH_SALES_DOCS] WHERE  "
+                    + " DATE_TIME >=  '2023-01-01 00:00:00.000 ' AND DATE_TIME <= '2023-12-31 23:59:59.999' order by DOCID  ;");
 
             while (resultSet.next()) {
-                String dateTimeStampString = resultSet.getString("ENTRYDATE");
-                dateTimeStampString = dateTimeStampString.replace(".0", "");
 
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-                LocalDateTime dateTime = LocalDateTime.parse(dateTimeStampString, formatter);
-                if (!ordersByDate2023.containsKey(dateTime)) {
-                    ordersByDate2023.put(dateTime, 1);
+                String creationDateTimeStampString = resultSet.getString("DATE_TIME");
+                DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
+                DateTimeFormatter formatter3 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SS");
+                DateTimeFormatter formatter4 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S");
+
+                LocalDateTime creationDateTime;
+                if (creationDateTimeStampString.length() == 23) {
+                    creationDateTime = LocalDateTime.parse(creationDateTimeStampString, formatter2);
+                } else if (creationDateTimeStampString.length() == 22) {
+                    creationDateTime = LocalDateTime.parse(creationDateTimeStampString, formatter3);
                 } else {
-                    Integer c = ordersByDate2023.get(dateTime);
+                    creationDateTime = LocalDateTime.parse(creationDateTimeStampString, formatter4);
+                }
+
+                if (!ordersByDate2023.containsKey(creationDateTime.toLocalDate())) {
+                    ordersByDate2023.put(creationDateTime.toLocalDate(), 1);
+                } else {
+                    Integer c = ordersByDate2023.get(creationDateTime.toLocalDate());
                     c++;
-                    ordersByDate2023.put(dateTime, c);
+                    ordersByDate2023.put(creationDateTime.toLocalDate(), c);
                 }
             }
 
