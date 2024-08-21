@@ -133,7 +133,7 @@
                                             total23 = total23 + entrySet.getValue();
 
                                         }
-                                    }
+                                    
                                 %>
                             </tbody>
                         </table>
