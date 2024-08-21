@@ -30,12 +30,20 @@ public class OrderController_V_3_1 {
         return "/order/orderDashboard";
     }
 
-    @RequestMapping(value = "ordersOfDate")
+    @RequestMapping(value = "ordersForDate")
     public String ordersForDate(@RequestParam(name = "date") String date, ModelMap modelMap) {
+
+        LinkedHashMap<Integer, Order> orders = orderDao.getOrdersForDate(date);
+        modelMap.addAttribute("orders", orders);
+        return "/order/orders";
+    }
+
+    @RequestMapping(value = "ordersOfDate")
+    public String ordersOfDate(@RequestParam(name = "date") String date, ModelMap modelMap) {
 
         LinkedHashMap<Integer, Order> orders = orderDao.getOrdersOfDate(date);
         modelMap.addAttribute("orders", orders);
-        return "/order/orders";
+        return "/order/ordersOfDate";
     }
 
 }
