@@ -6,7 +6,6 @@
 package Order;
 
 import BasicModel.Item;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -23,16 +22,7 @@ public class OrderController {
     @Autowired
     private OrderDao orderDao;
 
-    @RequestMapping(value = "orderDashboard")
-    public String orderDashboard(ModelMap modelMap) {
-        LocalDate date = LocalDate.now();
-        LocalDate startDate = LocalDate.parse("2024-01-01");
-        LocalDate nowDate = LocalDate.now();
-        modelMap.addAttribute("date", date);
-        modelMap.addAttribute("startDate", startDate);
-        modelMap.addAttribute("nowDate", nowDate);
-        return "/order/orderDashboard";
-    }
+  
 
     @RequestMapping(value = "ordersTimeStructureOfDate")
     public String ordersTimeStructureOfDate(@RequestParam(name = "date") String date, ModelMap modelMap) {
@@ -80,13 +70,7 @@ public class OrderController {
         return "/order/ordersTimeStructureOfDate";
     }
 
-    @RequestMapping(value = "ordersForDate")
-    public String ordersForDate(@RequestParam(name = "date") String date, ModelMap modelMap) {
-
-        LinkedHashMap<Integer, Order> orders = orderDao.getOrdersForDate(date);
-        modelMap.addAttribute("orders", orders);
-        return "/order/orders";
-    }
+   
 
     @RequestMapping(value = "ordersOfDate")
     public String ordersOfDate(@RequestParam(name = "date") String date, ModelMap modelMap) {
