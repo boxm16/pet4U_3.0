@@ -29,7 +29,7 @@
         <table style="font-size:20px">
             <thead>
                 <tr> 
-                    <th>Codes Quantity</th>
+                    <th>Time</th>
                     <th>Count</th>
                     <th>%</th>
 
