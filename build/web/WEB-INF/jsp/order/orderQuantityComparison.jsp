@@ -43,6 +43,7 @@
                             <tbody>
                                 <%
                                     int days = 0;
+                                    int fixDays=0;
                                     int total24 = 0;
                                     TreeMap<LocalDate, Integer> counut2024 = (TreeMap) request.getAttribute("2024");
                                     for (Map.Entry<LocalDate, Integer> entrySet : counut2024.entrySet()) {
@@ -78,6 +79,7 @@
                                     out.println("</td>");
 
                                     out.println("</tr>");
+                                    fixDays=days;
                                 %>
                             </tbody>
                         </table>
@@ -101,7 +103,7 @@
                                         if (days == 0) {
                                             out.println("<tr style='background-color: green ;'>");
                                             out.println("<td>");
-                                            out.println("Days: " + days);
+                                            out.println("Days: " + fixDays);
                                             out.println("</td>");
 
                                             out.println("<td>");
