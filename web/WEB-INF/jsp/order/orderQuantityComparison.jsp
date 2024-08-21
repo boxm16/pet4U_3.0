@@ -42,8 +42,10 @@
                             </thead>
                             <tbody>
                                 <%
-                                   TreeMap<LocalDate, Integer> counut2023 = (TreeMap) request.getAttribute("2023");
-                                    for (Map.Entry<LocalDate, Integer> entrySet : counut2023.entrySet()) {
+                                    int days = 0;
+                                    int total24 = 0;
+                                    TreeMap<LocalDate, Integer> counut2024 = (TreeMap) request.getAttribute("2024");
+                                    for (Map.Entry<LocalDate, Integer> entrySet : counut2024.entrySet()) {
                                         LocalDate date = entrySet.getKey();
                                         DayOfWeek dayOfWeek = date.getDayOfWeek();
 
@@ -63,7 +65,19 @@
                                         out.println("</td>");
 
                                         out.println("</tr>");
+                                        days++;
+                                        total24 = total24 + entrySet.getValue();
                                     }
+                                    out.println("<tr style='background-color: green ;'>");
+                                    out.println("<td>");
+                                    out.println("Days: " + days);
+                                    out.println("</td>");
+
+                                    out.println("<td>");
+                                    out.println("Orders: " + total24);
+                                    out.println("</td>");
+
+                                    out.println("</tr>");
                                 %>
                             </tbody>
                         </table>
@@ -77,28 +91,45 @@
                             </thead>
                             <tbody>
                                 <%
-                                    TreeMap<LocalDate, Integer> counut2024 = (TreeMap) request.getAttribute("2024");
-                                    for (Map.Entry<LocalDate, Integer> entrySet : counut2024.entrySet()) {
-                                        LocalDate date2024 = entrySet.getKey();
-                                        DayOfWeek dayOfWeek = date2024.getDayOfWeek();
+                                    TreeMap<LocalDate, Integer> counut2023 = (TreeMap) request.getAttribute("2023");
 
-                                        if (dayOfWeek == DayOfWeek.SATURDAY) {
-                                            out.println("<tr style='background-color: #F79A81 ;'>");
+                                    int total23 = 0;
+                                    for (Map.Entry<LocalDate, Integer> entrySet : counut2023.entrySet()) {
+                                        LocalDate date2023 = entrySet.getKey();
+                                        DayOfWeek dayOfWeek = date2023.getDayOfWeek();
 
+                                        if (days == 0) {
+                                            out.println("<tr style='background-color: green ;'>");
+                                            out.println("<td>");
+                                            out.println("Days: " + days);
+                                            out.println("</td>");
+
+                                            out.println("<td>");
+                                            out.println("Orders: " + total24);
+                                            out.println("</td>");
                                         } else {
-                                            out.println("<tr >");
+
+                                            if (dayOfWeek == DayOfWeek.SATURDAY) {
+                                                out.println("<tr style='background-color: #F79A81 ;'>");
+
+                                            } else {
+                                                out.println("<tr >");
+
+                                            }
+
+                                            out.println("<td>");
+                                            out.println(entrySet.getKey());
+                                            out.println("</td>");
+
+                                            out.println("<td>");
+                                            out.println(entrySet.getValue());
+                                            out.println("</td>");
+
+                                            out.println("</tr>");
+                                            days--;
+                                            total23 = total23 + entrySet.getValue();
 
                                         }
-
-                                        out.println("<td>");
-                                        out.println(entrySet.getKey());
-                                        out.println("</td>");
-
-                                        out.println("<td>");
-                                        out.println(entrySet.getValue());
-                                        out.println("</td>");
-
-                                        out.println("</tr>");
                                     }
                                 %>
                             </tbody>
