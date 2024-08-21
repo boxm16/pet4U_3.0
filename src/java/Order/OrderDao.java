@@ -530,7 +530,7 @@ public class OrderDao {
                     creationDateTime = LocalDateTime.parse(creationDateTimeStampString, formatter4);
                 }
 
-                if (!ordersByDate2024.containsKey(creationDateTime)) {
+                if (!ordersByDate2024.containsKey(creationDateTime.toLocalDate())) {
                     ordersByDate2024.put(creationDateTime.toLocalDate(), 1);
                 } else {
                     Integer c = ordersByDate2024.get(creationDateTime.toLocalDate());
