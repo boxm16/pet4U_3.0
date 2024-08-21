@@ -105,14 +105,16 @@ public class OrderDao {
         LinkedHashMap<Integer, Order> orders = new LinkedHashMap<>();
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
         Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
-
+        startDate = startDate + " 00:00:00.000";
+        endDate = endDate + " 23:59:59.999";
+        System.out.println("START DATE: " + startDate);
+        System.out.println("END DATE: " + endDate);
         try {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("select * from WH_SALES_DOCS WHERE ENTRYDATE between  '" + startDate + "' AND '" + endDate + "' ORDER BY DOCID;");
+            ResultSet resultSet = statement.executeQuery("select * from WH_SALES_DOCS WHERE DATE_TIME >= '" + startDate + "' AND DATE_TIME <='" + endDate + "' ORDER BY DOCID;");
 
             while (resultSet.next()) {
                 String dateTimeStampString = resultSet.getString("ENTRYDATE");
-
                 dateTimeStampString = dateTimeStampString.replace(".0", "");
 
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -468,7 +470,6 @@ public class OrderDao {
     TreeMap<LocalDate, Integer> countOrdersByDate2023() {
 
         TreeMap<LocalDate, Integer> ordersByDate2023 = new TreeMap<>();
-      
 
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
         Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
