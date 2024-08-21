@@ -105,7 +105,7 @@
                                             out.println("</td>");
 
                                             out.println("<td>");
-                                            out.println("Orders: " + total24);
+                                            out.println("Orders: " + total23);
                                             out.println("</td>");
                                              days--;
                                         } else {
