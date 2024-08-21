@@ -309,7 +309,7 @@ public class OrderController {
     @RequestMapping(value = "ordersQuantityComparingAnalysis")
     public String ordersQuantityComparingAnalysis(ModelMap modelMap) {
         TreeMap<LocalDateTime, Integer> ordersQuantityByDate2023 = orderDao.countOrdersByDate2023();
-        TreeMap<LocalDateTime, Integer> ordersQuantityByDate2024 = orderDao.countOrdersByDate2024();
+        TreeMap<LocalDate, Integer> ordersQuantityByDate2024 = orderDao.countOrdersByDate2024();
         modelMap.addAttribute("2023", ordersQuantityByDate2023);
         modelMap.addAttribute("2024", ordersQuantityByDate2024);
         return "/order/orderQuantityComparison";

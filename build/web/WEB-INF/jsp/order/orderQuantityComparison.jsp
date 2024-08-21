@@ -5,6 +5,7 @@
 --%>
 
 
+<%@page import="java.time.LocalDate"%>
 <%@page import="java.time.DayOfWeek"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
@@ -76,9 +77,9 @@
                             </thead>
                             <tbody>
                                 <%
-                                    TreeMap<LocalDateTime, Integer> counut2024 = (TreeMap) request.getAttribute("2024");
-                                    for (Map.Entry<LocalDateTime, Integer> entrySet : counut2024.entrySet()) {
-                                        LocalDateTime date2024 = entrySet.getKey();
+                                    TreeMap<LocalDate, Integer> counut2024 = (TreeMap) request.getAttribute("2024");
+                                    for (Map.Entry<LocalDate, Integer> entrySet : counut2024.entrySet()) {
+                                        LocalDate date2024 = entrySet.getKey();
                                         DayOfWeek dayOfWeek = date2024.getDayOfWeek();
 
                                         if (dayOfWeek == DayOfWeek.SATURDAY) {
