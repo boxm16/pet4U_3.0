@@ -107,6 +107,7 @@
                                             out.println("<td>");
                                             out.println("Orders: " + total24);
                                             out.println("</td>");
+                                             days--;
                                         } else {
 
                                             if (dayOfWeek == DayOfWeek.SATURDAY) {
