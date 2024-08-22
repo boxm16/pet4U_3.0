@@ -71,6 +71,14 @@
             <button type="submit" class="btn btn-primary"> <h1>Positions Block Traffic For Period Of Time</h1></button>
         </form>
         <hr>
+        <hr>
+        <form action="positionsBlockTrafficForPeriodOneOrderOneVisit.htm" method="POST" target="_blank">
+            <h1>  <input type="date"  name="startDate" value="${startDate}"></h1>
+            <h1>  <input type="date"  name="endDate" value="${nowDate}"></h1>
+            <hr>
+            <button type="submit" class="btn btn-secondary"> <h1>Positions Block Traffic For Period Of Time - One Order = One Visit</h1></button>
+        </form>
+        <hr>
         <h1>შედარებითი ანალიტიკა</h1>
         <a href="ordersQuantityComparingAnalysis.htm" class="btn btn-primary" role="button" style='background-color: blue;'><h1>Orders Quantity Comparison</h1></a>
 
