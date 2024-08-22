@@ -109,7 +109,7 @@
                             out.println("</td>");
 
                             if (itemEntrySet.getValue().getPosition().contains(position)) {
-                                out.println("<td style='background-color:green; width:200px'>");
+                                out.println("<td style='background-color:#caf8ba; width:200px'>");
                             } else {
                                 out.println("<td style='width:200px'>");
                             }
