@@ -350,7 +350,7 @@ public class OrderController {
         }
 
         modelMap.addAttribute("totalTraffic", totalTraffic);
-        modelMap.addAttribute("positionsTraffic", positionsTraffic);
+        modelMap.addAttribute("positionsBlockTrafficOneOrderOneVisit", positionsTraffic);
         modelMap.addAttribute("startDate", startDate);
         modelMap.addAttribute("endDate", endDate);
 
