@@ -340,14 +340,14 @@ public class OrderController {
                 if (!positionsTraffic.containsKey(position)) {
                     positionsTraffic.put(position, 1);
                     innerPool.add(position);
-                    break;
+                  
                 } else {
                     Integer t = positionsTraffic.get(position);
-                    if (innerPool.contains(position)) {
+                    if (!innerPool.contains(position)) {
 
                         t = t + 1;
                         positionsTraffic.put(position, t);
-                        break;
+
                     }
                 }
             }
