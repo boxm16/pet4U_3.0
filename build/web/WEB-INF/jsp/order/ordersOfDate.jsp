@@ -45,6 +45,9 @@
 
                 <%
                     LinkedHashMap<Integer, Order> orders = (LinkedHashMap) request.getAttribute("orders");
+
+                    String position = (String) request.getAttribute("position");
+
                     int orderCount = 1;
                     for (Map.Entry<Integer, Order> entrySet : orders.entrySet()) {
                         out.println("<tr>");
@@ -105,7 +108,11 @@
                             out.println(itemEntrySet.getValue().getQuantity());
                             out.println("</td>");
 
-                            out.println("<td style='width:200px'>");
+                            if (itemEntrySet.getValue().getPosition().contains(position)) {
+                                out.println("<td style='background-color:green; width:200px'>");
+                            } else {
+                                out.println("<td style='width:200px'>");
+                            }
                             out.println(itemEntrySet.getValue().getPosition());
                             out.println("</td>");
 

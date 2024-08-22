@@ -277,7 +277,7 @@ public class OrderController {
 
     @RequestMapping(value = "allOrdersForPositionBlockForPeriod")
     public String allOrdersForPositionBlockForPeriod(@RequestParam(name = "position") String position0, @RequestParam(name = "startDate") String startDate, @RequestParam(name = "endDate") String endDate, ModelMap modelMap) {
-        System.out.println("POSITION" + position0);
+
         LinkedHashMap<Integer, Order> allOrders = orderDao.getAllOrdersForPeriod(startDate, endDate);
         LinkedHashMap<Integer, Order> orders = new LinkedHashMap<Integer, Order>();
 
@@ -302,6 +302,7 @@ public class OrderController {
 
         }
 
+        modelMap.addAttribute("position", position0);
         modelMap.addAttribute("orders", orders);
         return "/order/ordersOfDate";
 
@@ -340,7 +341,7 @@ public class OrderController {
                 if (!positionsTraffic.containsKey(position)) {
                     positionsTraffic.put(position, 1);
                     innerPool.add(position);
-                  
+
                 } else {
                     Integer t = positionsTraffic.get(position);
                     if (!innerPool.contains(position)) {

@@ -39,7 +39,6 @@
 
                 <%
                     TreeMap<String, Integer> positionsTraffic = (TreeMap) request.getAttribute("positionsBlockTrafficOneOrderOneVisit");
-                    Integer totalTraffic = (Integer) request.getAttribute("totalTraffic");
                     String startDate = (String) request.getAttribute("startDate");
                     String endDate = (String) request.getAttribute("endDate");
                     for (Map.Entry<String, Integer> entrySet : positionsTraffic.entrySet()) {
