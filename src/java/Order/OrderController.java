@@ -8,6 +8,7 @@ package Order;
 import BasicModel.Item;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.TreeMap;
@@ -320,9 +321,10 @@ public class OrderController {
         LinkedHashMap<Integer, Order> allOrders = orderDao.getAllOrdersForPeriod(startDate, endDate);
 
         TreeMap<String, Integer> positionsTraffic = new TreeMap<>();
-       
+
         for (Map.Entry<Integer, Order> allOrdersEntry : allOrders.entrySet()) {
             Order order = allOrdersEntry.getValue();
+            ArrayList<String> innerPool = new ArrayList();//if order has more then 1 codes that are for same block, i need this array so all codes are counted as one visit
             LinkedHashMap<String, Item> items = order.getItems();
             for (Map.Entry<String, Item> itemsEntry : items.entrySet()) {
                 Item item = itemsEntry.getValue();
@@ -337,19 +339,22 @@ public class OrderController {
 
                 if (!positionsTraffic.containsKey(position)) {
                     positionsTraffic.put(position, 1);
+                    innerPool.add(position);
                     break;
                 } else {
                     Integer t = positionsTraffic.get(position);
-                    t = t + 1;
-                    positionsTraffic.put(position, t);
-                    break;
+                    if (innerPool.contains(position)) {
+
+                        t = t + 1;
+                        positionsTraffic.put(position, t);
+                        break;
+                    }
                 }
             }
 
-           
         }
 
-      //  modelMap.addAttribute("totalTraffic", totalTraffic);
+        //  modelMap.addAttribute("totalTraffic", totalTraffic);
         modelMap.addAttribute("positionsBlockTrafficOneOrderOneVisit", positionsTraffic);
         modelMap.addAttribute("startDate", startDate);
         modelMap.addAttribute("endDate", endDate);
