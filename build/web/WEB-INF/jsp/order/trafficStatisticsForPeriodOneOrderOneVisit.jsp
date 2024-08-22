@@ -30,7 +30,7 @@
                 <tr> 
                     <th>Codes Quantity</th>
                     <th>Count</th>
-                    <th>%</th>
+
 
                 </tr>
             </thead>
@@ -43,7 +43,6 @@
                     String startDate = (String) request.getAttribute("startDate");
                     String endDate = (String) request.getAttribute("endDate");
                     for (Map.Entry<String, Integer> entrySet : positionsTraffic.entrySet()) {
-                        double d = Double.valueOf(100) * Double.valueOf(entrySet.getValue()) / Double.valueOf(totalTraffic);
                         out.println("<tr>");
 
                         out.println("<td>");
@@ -52,10 +51,6 @@
 
                         out.println("<td>");
                         out.println("<a  href = 'allOrdersForPositionBlockForPeriod.htm?position=" + entrySet.getKey() + "&startDate=" + startDate + "&endDate=" + endDate + "' target='_blank'>" + entrySet.getValue() + "</a>");
-                        out.println("</td>");
-
-                        out.println("<td>");
-                        out.println(d);
                         out.println("</td>");
 
                         out.println("</tr>");
