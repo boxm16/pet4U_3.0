@@ -320,7 +320,7 @@ public class OrderController {
         LinkedHashMap<Integer, Order> allOrders = orderDao.getAllOrdersForPeriod(startDate, endDate);
 
         TreeMap<String, Integer> positionsTraffic = new TreeMap<>();
-        int totalTraffic = 0;
+       
         for (Map.Entry<Integer, Order> allOrdersEntry : allOrders.entrySet()) {
             Order order = allOrdersEntry.getValue();
             LinkedHashMap<String, Item> items = order.getItems();
@@ -346,7 +346,7 @@ public class OrderController {
                 }
             }
 
-            totalTraffic++;
+           
         }
 
       //  modelMap.addAttribute("totalTraffic", totalTraffic);
