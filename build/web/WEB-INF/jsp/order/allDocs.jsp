@@ -97,11 +97,7 @@
                         for (Map.Entry<String, Item> itemEntrySet : items.entrySet()) {
                             out.println("<tr>");
 
-                            if (itemEntrySet.getValue().getCode().equals(itemCode)) {
-                                out.println("<td style='background-color:#8ff56c;>");
-                            } else {
-                                out.println("<td>");
-                            }
+                            out.println("<td>");
                             out.println(itemEntrySet.getValue().getCode());
                             out.println("</td>");
 
