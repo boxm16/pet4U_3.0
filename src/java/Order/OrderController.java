@@ -391,7 +391,7 @@ public class OrderController {
                 LinkedHashMap<String, Item> items = ordersEntry.getValue().getItems();
                 for (Map.Entry<String, Item> itemsEntry : items.entrySet()) {
                     if (itemsEntry.getValue().getPosition().contains(blockPosition)) {
-                       orders.put(ordersEntry.getKey(), items);
+                       orders.put(ordersEntry.getKey(), ordersEntry.getValue());
                     }
                 }
             }
