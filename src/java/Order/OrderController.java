@@ -382,6 +382,7 @@ public class OrderController {
 
     @RequestMapping(value = "getAllDocsForItemBetweenTwoDatesWithThisBlockPosition")
     public String getAllDocsForItemBetweenTwoDatesWithThisBlockPosition(@RequestParam(name = "blockPosition") String blockPosition, @RequestParam(name = "itemCode") String itemCode, @RequestParam(name = "startDate") String startDate, @RequestParam(name = "endDate") String endDate, ModelMap modelMap) {
+        System.out.println("BP:"+blockPosition);
         LinkedHashMap<Integer, Order> orders0 = orderDao.getAllDocs(startDate, endDate);
         LinkedHashMap<Integer, Order> orders = new LinkedHashMap<Integer, Order>();
         for (Map.Entry<Integer, Order> ordersEntry : orders0.entrySet()) {
