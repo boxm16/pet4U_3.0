@@ -32,6 +32,7 @@ public class OrderController {
         modelMap.addAttribute("date", date);
         modelMap.addAttribute("startDate", startDate);
         modelMap.addAttribute("nowDate", nowDate);
+          modelMap.addAttribute("before10DaysDate", nowDate.minusDays(10));
         return "/order/orderDashboard";
     }
 
