@@ -412,6 +412,7 @@ public class OrderController {
                 totalTraffic++;
             }
         }
+        modelMap.addAttribute("itemCode", itemCode);
         modelMap.addAttribute("totalTraffic", totalTraffic);
         modelMap.addAttribute("positionsTraffic", positionsTraffic);
         modelMap.addAttribute("startDate", startDate);
