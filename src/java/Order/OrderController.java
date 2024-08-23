@@ -374,8 +374,9 @@ public class OrderController {
                 orders.put(ordersEntry.getKey(), ordersEntry.getValue());
             }
         }
+        modelMap.addAttribute("itemCode", itemCode);
         modelMap.addAttribute("orders", orders);
-        modelMap.addAttribute("position", "");
-        return "/order/ordersOfDate";
+        modelMap.addAttribute("position", "====");//=== is just bullshit
+        return "/order/allDocs";
     }
 }
