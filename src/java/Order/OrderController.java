@@ -370,6 +370,7 @@ public class OrderController {
         LinkedHashMap<Integer, Order> orders = orderDao.getAllDocs(itemCode, startDate, endDate);
         System.out.println("____" + orders);
         modelMap.addAttribute("orders", orders);
-        return "/order/orders";
+        modelMap.addAttribute("position", "");
+        return "/order/ordersOfDate";
     }
 }
