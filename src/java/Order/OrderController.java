@@ -379,4 +379,43 @@ public class OrderController {
         modelMap.addAttribute("position", "====");//=== is just bullshit
         return "/order/allDocs";
     }
+
+    @RequestMapping(value = "itemsCollateralPositions")
+    public String itemsCollateralPositions(@RequestParam(name = "itemCode") String itemCode, @RequestParam(name = "startDate") String startDate, @RequestParam(name = "endDate") String endDate, ModelMap modelMap) {
+        LinkedHashMap<Integer, Order> allOrders = orderDao.getAllDocs(startDate, endDate);
+        TreeMap<String, Integer> positionsTraffic = new TreeMap<>();
+        int totalTraffic = 0;
+        for (Map.Entry<Integer, Order> allOrdersEntry : allOrders.entrySet()) {
+            Order order = allOrdersEntry.getValue();
+            LinkedHashMap<String, Item> items = order.getItems();
+            if (items.containsKey(itemCode)) {
+                for (Map.Entry<String, Item> itemsEntry : items.entrySet()) {
+                    Item item = itemsEntry.getValue();
+                    String position = item.getPosition();
+                    int _count = position.length() - position.replaceAll("-", "").length();
+
+                    if (_count > 1) {
+                        int first = position.indexOf("-");
+                        int second = position.indexOf("-", first + 1);
+                        position = position.substring(0, second);
+                    }
+
+                    if (!positionsTraffic.containsKey(position)) {
+                        positionsTraffic.put(position, 1);
+                    } else {
+                        Integer t = positionsTraffic.get(position);
+                        t = t + 1;
+                        positionsTraffic.put(position, t);
+                    }
+                }
+
+                totalTraffic++;
+            }
+        }
+        modelMap.addAttribute("totalTraffic", totalTraffic);
+        modelMap.addAttribute("positionsTraffic", positionsTraffic);
+        modelMap.addAttribute("startDate", startDate);
+        modelMap.addAttribute("endDate", endDate);
+        return "/order/itemsCollateralPositions";
+    }
 }
