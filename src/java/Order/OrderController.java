@@ -380,18 +380,38 @@ public class OrderController {
         return "/order/allDocs";
     }
 
+    @RequestMapping(value = "getAllDocsForItemBetweenTwoDates")
+    public String getAllDocsForItemBetweenTwoDatesWithThisBlockPosition(@RequestParam(name = "blockPosition") String position, @RequestParam(name = "itemCode") String itemCode, @RequestParam(name = "startDate") String startDate, @RequestParam(name = "endDate") String endDate, ModelMap modelMap) {
+        LinkedHashMap<Integer, Order> orders0 = orderDao.getAllDocs(startDate, endDate);
+        LinkedHashMap<Integer, Order> orders = new LinkedHashMap<Integer, Order>();
+        for (Map.Entry<Integer, Order> ordersEntry : orders0.entrySet()) {
+            LinkedHashMap<String, Item> items = ordersEntry.getValue().getItems();
+            for (Map.Entry<String, Item> itemsEntry : items.entrySet()) {
+                Item item = itemsEntry.getValue();
+                if (item.getCode().equals("itemCode") && item.getPosition().contains(position)) {
+                orders.put(ordersEntry.getKey(), ordersEntry.getValue());
+                }
+            }
+        }
+        modelMap.addAttribute("itemCode", itemCode);
+        modelMap.addAttribute("orders", orders);
+        modelMap.addAttribute("position", position);//=== is just bullshit
+        return "/order/allDocs";
+    }
+
     @RequestMapping(value = "itemsCollateralPositions")
     public String itemsCollateralPositions(@RequestParam(name = "itemCode") String itemCode, @RequestParam(name = "startDate") String startDate, @RequestParam(name = "endDate") String endDate, ModelMap modelMap) {
         LinkedHashMap<Integer, Order> allOrders = orderDao.getAllDocs(startDate, endDate);
         TreeMap<String, Integer> positionsTraffic = new TreeMap<>();
         int totalTraffic = 0;
+        String position = "N/A";//its blockPosition
         for (Map.Entry<Integer, Order> allOrdersEntry : allOrders.entrySet()) {
             Order order = allOrdersEntry.getValue();
             LinkedHashMap<String, Item> items = order.getItems();
             if (items.containsKey(itemCode)) {
                 for (Map.Entry<String, Item> itemsEntry : items.entrySet()) {
                     Item item = itemsEntry.getValue();
-                    String position = item.getPosition();
+                    position = item.getPosition();
                     int _count = position.length() - position.replaceAll("-", "").length();
 
                     if (_count > 1) {
@@ -417,6 +437,7 @@ public class OrderController {
         modelMap.addAttribute("positionsTraffic", positionsTraffic);
         modelMap.addAttribute("startDate", startDate);
         modelMap.addAttribute("endDate", endDate);
+        modelMap.addAttribute("position", position);
         return "/order/itemsCollateralPositions";
 
     }
