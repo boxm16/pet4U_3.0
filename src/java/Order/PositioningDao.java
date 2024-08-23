@@ -5,10 +5,11 @@
  */
 package Order;
 
-/**
- *
- * @author Michail Sitmalidis
- */
+import org.springframework.stereotype.Repository;
+
+
+@Repository
+
 public class PositioningDao {
     
 }
