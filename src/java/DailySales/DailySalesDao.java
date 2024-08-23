@@ -25,12 +25,13 @@ public class DailySalesDao {
         //  LocalDate firstDate = date.minusDays(30);
         //  LocalDate lastDate = date.minusDays(1);
         for (int x = 30; x > 0; x--) {
-            date = date.minusDays(1);
+
             //  DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             //  String formattedString = date.format(formatter);
             //  String formattedString = date.format(formatter) + " 00:00:00.0";
             //   System.out.println(formattedString);
             dailySales.put(date, new DailySale());
+            date = date.minusDays(1);
         }
 
         try {
