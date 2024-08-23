@@ -32,7 +32,7 @@ public class OrderController {
         modelMap.addAttribute("date", date);
         modelMap.addAttribute("startDate", startDate);
         modelMap.addAttribute("nowDate", nowDate);
-          modelMap.addAttribute("before10DaysDate", nowDate.minusDays(10));
+        modelMap.addAttribute("before10DaysDate", nowDate.minusDays(10));
         return "/order/orderDashboard";
     }
 
@@ -368,8 +368,8 @@ public class OrderController {
     @RequestMapping(value = "getAllDocsForItemBetweenTwoDates")
     public String getAllDocsForItemBetweenTwoDates(@RequestParam(name = "itemCode") String itemCode, @RequestParam(name = "startDate") String startDate, @RequestParam(name = "endDate") String endDate, ModelMap modelMap) {
         LinkedHashMap<Integer, Order> orders = orderDao.getAllDocs(itemCode, startDate, endDate);
-        System.out.println("____"+orders);
+        System.out.println("____" + orders);
         modelMap.addAttribute("orders", orders);
-        return "/order/ordersOfDate";
+        return "/order/orders";
     }
 }
