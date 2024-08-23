@@ -93,6 +93,7 @@ public class OrderController {
     public String ordersOfDate(@RequestParam(name = "date") String date, ModelMap modelMap) {
 
         LinkedHashMap<Integer, Order> orders = orderDao.getOrdersOfDate(date);
+        modelMap.addAttribute("position", "");
         modelMap.addAttribute("orders", orders);
         return "/order/ordersOfDate";
     }
