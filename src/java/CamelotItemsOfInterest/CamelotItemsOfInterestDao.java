@@ -474,8 +474,9 @@ public class CamelotItemsOfInterestDao {
         //  LocalDate lastDate = date.minusDays(1);
         LocalDate endDate = LocalDate.now();
         for (int x = 100; x > 0; x--) {
-            endDate = endDate.minusDays(1);
+
             last100DaysSnapshots.put(endDate, null);
+            endDate = endDate.minusDays(1);
         }
 
         String sql = "SELECT * FROM camelot_day_rest WHERE item_code='" + code + "' and date_stamp between '" + endDate + "' AND '" + startDate + "' ORDER BY date_stamp DESC;";

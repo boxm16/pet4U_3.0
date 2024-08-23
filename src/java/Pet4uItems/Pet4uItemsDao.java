@@ -467,8 +467,9 @@ public class Pet4uItemsDao {
         //  LocalDate lastDate = date.minusDays(1);
         LocalDate endDate = LocalDate.now();
         for (int x = 100; x > 0; x--) {
-            endDate = endDate.minusDays(1);
+
             last100DaysSnapshots.put(endDate, null);
+            endDate = endDate.minusDays(1);
         }
 
         String sql = "SELECT * FROM item_state WHERE item_code='" + code + "' and date_stamp between '" + endDate + "' AND '" + startDate + "' ORDER BY date_stamp DESC;";
@@ -555,7 +556,7 @@ public class Pet4uItemsDao {
 
         while (date.isAfter(firstDate)) {
             date = date.minusDays(1);
-          
+
             snapshots.put(date, null);
         }
 
@@ -595,8 +596,8 @@ public class Pet4uItemsDao {
         return snapshots;
     }
 
-     public String insertPet4uItemsSnapshotFullVersion(LinkedHashMap<String, Item> pet4uAllItems) {
-      try {
+    public String insertPet4uItemsSnapshotFullVersion(LinkedHashMap<String, Item> pet4uAllItems) {
+        try {
             DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
             Connection connection = databaseConnectionFactory.getMySQLConnection();
 
@@ -637,5 +638,5 @@ public class Pet4uItemsDao {
 
             return ex.getMessage();
         }
-     }
+    }
 }
