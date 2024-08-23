@@ -367,8 +367,13 @@ public class OrderController {
 
     @RequestMapping(value = "getAllDocsForItemBetweenTwoDates")
     public String getAllDocsForItemBetweenTwoDates(@RequestParam(name = "itemCode") String itemCode, @RequestParam(name = "startDate") String startDate, @RequestParam(name = "endDate") String endDate, ModelMap modelMap) {
-        LinkedHashMap<Integer, Order> orders = orderDao.getAllDocs(itemCode, startDate, endDate);
-        System.out.println("____" + orders);
+        LinkedHashMap<Integer, Order> orders0 = orderDao.getAllDocs(startDate, endDate);
+        LinkedHashMap<Integer, Order> orders = new LinkedHashMap<Integer, Order>();
+        for (Map.Entry<Integer, Order> ordersEntry : orders0.entrySet()) {
+            if (ordersEntry.getValue().getItems().containsKey(itemCode)) {
+                orders.put(ordersEntry.getKey(), ordersEntry.getValue());
+            }
+        }
         modelMap.addAttribute("orders", orders);
         modelMap.addAttribute("position", "");
         return "/order/ordersOfDate";
