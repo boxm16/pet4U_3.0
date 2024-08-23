@@ -97,7 +97,11 @@
                         for (Map.Entry<String, Item> itemEntrySet : items.entrySet()) {
                             out.println("<tr>");
 
-                            out.println("<td>");
+                            if (itemEntrySet.getValue().getCode().equals(itemCode)) {
+                                out.println("<td style='background-color:#8ff56c; width:200px'>");
+                            } else {
+                                out.println("<td style='width:200px'>");
+                            }
                             out.println(itemEntrySet.getValue().getCode());
                             out.println("</td>");
 
@@ -110,7 +114,7 @@
                             out.println("</td>");
 
                             if (itemEntrySet.getValue().getPosition().contains(position)) {
-                                out.println("<td style='background-color:#8ff56c;>");
+                                out.println("<td style='background-color:#8ff56c; width:200px'>");
                             } else {
                                 out.println("<td style='width:200px'>");
                             }
