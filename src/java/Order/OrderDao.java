@@ -764,7 +764,7 @@ public class OrderDao {
                 
                 int id = resultSet.getInt("DOCID");
                 String number = resultSet.getString("DOCNUMBER");
-                String itemCode = resultSet.getString("ANNREVIATION");
+                String itemCode = resultSet.getString("ABBREVIATION");
                 String description = resultSet.getString("NAME");
                 String type = resultSet.getString("DOCNAME");
                 String quantity = resultSet.getString("QUANT1");
