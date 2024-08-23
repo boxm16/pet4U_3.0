@@ -9,9 +9,41 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Positioning</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
-    </body>
+        <h1>Positioning</h1>
+    <center>
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        Π
+                    </td>
+                    <td>
+                        Ο
+                    </td>
+                    <td>
+                        ___
+                    </td>
+                    <td>
+                        Ξ
+                    </td>
+                    <td>
+                        Ν
+                    </td>
+                    <td>
+                        __
+                    </td>
+                    <td>
+                        Μ
+                    </td>
+                    <td>
+                       
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </center>
+</body>
 </html>
