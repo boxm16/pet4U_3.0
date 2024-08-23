@@ -39,14 +39,12 @@
 
                 <%
                     TreeMap<String, Integer> positionsTraffic = (TreeMap) request.getAttribute("positionsTraffic");
-                    Integer totalTraffic = (Integer) request.getAttribute("totalTraffic");
                     String startDate = (String) request.getAttribute("startDate");
                     String endDate = (String) request.getAttribute("endDate");
                     String itemCode = (String) request.getAttribute("itemCode");
                     String position = (String) request.getAttribute("position");
 
                     for (Map.Entry<String, Integer> entrySet : positionsTraffic.entrySet()) {
-                        double d = Double.valueOf(100) * Double.valueOf(entrySet.getValue()) / Double.valueOf(totalTraffic);
                         out.println("<tr>");
 
                         out.println("<td>");
@@ -57,9 +55,7 @@
                         out.println("<a  href = 'getAllDocsForItemBetweenTwoDatesWithThisBlockPosition.htm?blockPosition=" + position + "&itemCode=" + itemCode + "&startDate=" + startDate + "&endDate=" + endDate + "' target='_blank'>" + entrySet.getValue() + "</a>");
                         out.println("</td>");
 
-                        out.println("<td>");
-                        out.println(d);
-                        out.println("</td>");
+                       
 
                         out.println("</tr>");
                     }

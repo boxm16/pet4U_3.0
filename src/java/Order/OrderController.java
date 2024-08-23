@@ -396,7 +396,7 @@ public class OrderController {
         }
         modelMap.addAttribute("itemCode", itemCode);
         modelMap.addAttribute("orders", orders);
-        modelMap.addAttribute("position", position);//=== is just bullshit
+        modelMap.addAttribute("position", blockPosition);//=== is just bullshit
         return "/order/allDocs";
     }
 
