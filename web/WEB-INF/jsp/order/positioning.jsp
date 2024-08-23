@@ -12,8 +12,9 @@
         <title>Positioning</title>
     </head>
     <body>
-        <h1>Positioning</h1>
+
     <center>
+        <h1>Positioning</h1>
         <table>
             <tbody>
                 <tr>
@@ -39,7 +40,7 @@
                         Μ
                     </td>
                     <td>
-                       
+
                     </td>
                 </tr>
             </tbody>

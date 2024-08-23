@@ -362,4 +362,12 @@ public class OrderController {
 
         return "/order/trafficStatisticsForPeriodOneOrderOneVisit";
     }
+
+    @RequestMapping(value = "getAllDocsForItemBetweenTwoDates")
+    public String getAllDocsForItemBetweenTwoDates(@RequestParam(name = "itemCode") String itemCode, @RequestParam(name = "startDate") String startDate, @RequestParam(name = "endDate") String endDate, ModelMap modelMap) {
+        LinkedHashMap<Integer, Order> orders = orderDao.getAllDocs(itemCode, startDate, endDate);
+
+        modelMap.addAttribute("orders", orders);
+        return "/order/ordersOfDate";
+    }
 }
