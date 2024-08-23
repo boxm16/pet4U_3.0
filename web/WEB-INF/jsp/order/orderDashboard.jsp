@@ -81,6 +81,9 @@
         <hr>
         <h1>შედარებითი ანალიტიკა</h1>
         <a href="ordersQuantityComparingAnalysis.htm" class="btn btn-primary" role="button" style='background-color: blue;'><h1>Orders Quantity Comparison</h1></a>
+        <hr> <hr> <hr> <hr>
+        <h1>POSITIONING</h1>
+        <a href="positioning.htm" class="btn btn-primary" role="button" style='background-color: blue;'><h1>Positioning</h1></a>
 
 
     </center>
