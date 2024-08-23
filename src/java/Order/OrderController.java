@@ -381,14 +381,15 @@ public class OrderController {
     }
 
     @RequestMapping(value = "getAllDocsForItemBetweenTwoDatesWithThisBlockPosition")
-    public String getAllDocsForItemBetweenTwoDatesWithThisBlockPosition(@RequestParam(name = "blockPosition") String position, @RequestParam(name = "itemCode") String itemCode, @RequestParam(name = "startDate") String startDate, @RequestParam(name = "endDate") String endDate, ModelMap modelMap) {
+    public String getAllDocsForItemBetweenTwoDatesWithThisBlockPosition(@RequestParam(name = "blockPosition") String blockPosition, @RequestParam(name = "itemCode") String itemCode, @RequestParam(name = "startDate") String startDate, @RequestParam(name = "endDate") String endDate, ModelMap modelMap) {
         LinkedHashMap<Integer, Order> orders0 = orderDao.getAllDocs(startDate, endDate);
         LinkedHashMap<Integer, Order> orders = new LinkedHashMap<Integer, Order>();
         for (Map.Entry<Integer, Order> ordersEntry : orders0.entrySet()) {
             LinkedHashMap<String, Item> items = ordersEntry.getValue().getItems();
             for (Map.Entry<String, Item> itemsEntry : items.entrySet()) {
                 Item item = itemsEntry.getValue();
-                if (item.getCode().equals("itemCode") && item.getPosition().contains(position)) {
+                if (item.getCode().equals("itemCode") && item.getPosition().contains(blockPosition)) {
+                    System.out.println("UARRA");
                 orders.put(ordersEntry.getKey(), ordersEntry.getValue());
                 }
             }
