@@ -109,7 +109,8 @@ public class OrderController {
             }
         }
         modelMap.addAttribute("orders", orders);
-        modelMap.addAttribute("position", "");
+        modelMap.addAttribute("position", "===");
+        modelMap.addAttribute("itemCode", itemCode);
         return "/order/ordersOfDate";
     }
 
