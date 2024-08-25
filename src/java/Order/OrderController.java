@@ -411,33 +411,30 @@ public class OrderController {
         int totalTraffic = 0;
         String position = "N/A";//its blockPosition
         for (Map.Entry<Integer, Order> allOrdersEntry : allOrders.entrySet()) {
-             Order order = allOrdersEntry.getValue();
-            ArrayList<String> innerPool = new ArrayList();//if order has more then 1 codes that are for same block, i need this array so all codes are counted as one visit
+            Order order = allOrdersEntry.getValue();
             LinkedHashMap<String, Item> items = order.getItems();
-            for (Map.Entry<String, Item> itemsEntry : items.entrySet()) {
-                Item item = itemsEntry.getValue();
-                position = item.getPosition();
-                int _count = position.length() - position.replaceAll("-", "").length();
+            if (items.containsKey(itemCode)) {
+                for (Map.Entry<String, Item> itemsEntry : items.entrySet()) {
+                    Item item = itemsEntry.getValue();
+                    position = item.getPosition();
+                    int _count = position.length() - position.replaceAll("-", "").length();
 
-                if (_count > 1) {
-                    int first = position.indexOf("-");
-                    int second = position.indexOf("-", first + 1);
-                    position = position.substring(0, second);
-                }
+                    if (_count > 1) {
+                        int first = position.indexOf("-");
+                        int second = position.indexOf("-", first + 1);
+                        position = position.substring(0, second);
+                    }
 
-                if (!positionsTraffic.containsKey(position)) {
-                    positionsTraffic.put(position, 1);
-                    innerPool.add(position);
-
-                } else {
-                    Integer t = positionsTraffic.get(position);
-                    if (!innerPool.contains(position)) {
-
+                    if (!positionsTraffic.containsKey(position)) {
+                        positionsTraffic.put(position, 1);
+                    } else {
+                        Integer t = positionsTraffic.get(position);
                         t = t + 1;
                         positionsTraffic.put(position, t);
-
                     }
                 }
+
+                totalTraffic++;
             }
         }
         modelMap.addAttribute("itemCode", itemCode);
