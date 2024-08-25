@@ -427,20 +427,16 @@ public class OrderController {
                     }
 
                     if (!innerPool.contains(position)) {
-                        positionsTraffic.put(position, 1);
-                        innerPool.add(position);
-
-                    } else {
-                        Integer t = positionsTraffic.get(position);
-                        if (!innerPool.contains(position)) {
-                            System.out.println("POSITION IN :" + allOrdersEntry.getKey() + "-" + position);
-
+                        if (positionsTraffic.containsKey(position)) {
+                            Integer t = positionsTraffic.get(position);
                             t = t + 1;
                             positionsTraffic.put(position, t);
-
+                        } else {
+                            positionsTraffic.put(position, 1);
                         }
-                    }
+                        innerPool.add(position);
 
+                    }
                 }
 
                 totalTraffic++;
