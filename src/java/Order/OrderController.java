@@ -426,7 +426,7 @@ public class OrderController {
                         position = position.substring(0, second);
                     }
 
-                    if (!positionsTraffic.containsKey(position)) {
+                    if (!innerPool.contains(position)) {
                         positionsTraffic.put(position, 1);
                         innerPool.add(position);
 
