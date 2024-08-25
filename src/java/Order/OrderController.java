@@ -432,6 +432,7 @@ public class OrderController {
 
                     } else {
                         Integer t = positionsTraffic.get(position);
+                        System.out.println("POSITION IN :"+allOrdersEntry.getKey()+"-"+position);
                         if (!innerPool.contains(position)) {
 
                             t = t + 1;
