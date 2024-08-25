@@ -441,7 +441,7 @@ public class OrderController {
         modelMap.addAttribute("positionsTraffic", positionsTraffic);
         modelMap.addAttribute("startDate", startDate);
         modelMap.addAttribute("endDate", endDate);
-        modelMap.addAttribute("position", position);
+      
         return "/order/itemsCollateralPositions";
 
     }
