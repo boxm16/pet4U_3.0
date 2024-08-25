@@ -408,14 +408,14 @@ public class OrderController {
         LinkedHashMap<Integer, Order> allOrders = orderDao.getAllDocs(startDate, endDate);
         TreeMap<String, Integer> positionsTraffic = new TreeMap<>();
         int totalTraffic = 0;
-        String position = "N/A";//its blockPosition
+      
         for (Map.Entry<Integer, Order> allOrdersEntry : allOrders.entrySet()) {
             Order order = allOrdersEntry.getValue();
             LinkedHashMap<String, Item> items = order.getItems();
             if (items.containsKey(itemCode)) {
                 for (Map.Entry<String, Item> itemsEntry : items.entrySet()) {
                     Item item = itemsEntry.getValue();
-                    position = item.getPosition();
+                 String   position = item.getPosition();
                     int _count = position.length() - position.replaceAll("-", "").length();
 
                     if (_count > 1) {
