@@ -342,18 +342,15 @@ public class OrderController {
                     position = position.substring(0, second);
                 }
 
-                if (!positionsTraffic.containsKey(position)) {
-                    positionsTraffic.put(position, 1);
-                    innerPool.add(position);
-
-                } else {
-                    Integer t = positionsTraffic.get(position);
-                    if (!innerPool.contains(position)) {
-
+                if (!innerPool.contains(position)) {
+                    if (positionsTraffic.containsKey(position)) {
+                        Integer t = positionsTraffic.get(position);
                         t = t + 1;
                         positionsTraffic.put(position, t);
-
+                    } else {
+                        positionsTraffic.put(position, 1);
                     }
+                    innerPool.add(position);
                 }
             }
 
