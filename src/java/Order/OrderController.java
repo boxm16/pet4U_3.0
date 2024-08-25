@@ -405,7 +405,7 @@ public class OrderController {
 
     @RequestMapping(value = "itemsCollateralPositions")
     public String itemsCollateralPositions(@RequestParam(name = "itemCode") String itemCode, @RequestParam(name = "startDate") String startDate, @RequestParam(name = "endDate") String endDate, ModelMap modelMap) {
-        LinkedHashMap<Integer, Order> allOrders = orderDao.getAllDocs(startDate, endDate);
+        LinkedHashMap<Integer, Order> allOrders = orderDao.getAllOrdersForPeriod(startDate, endDate);
         TreeMap<String, Integer> positionsTraffic = new TreeMap<>();
         int totalTraffic = 0;
 
