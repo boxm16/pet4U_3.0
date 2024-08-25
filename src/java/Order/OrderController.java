@@ -408,14 +408,16 @@ public class OrderController {
         LinkedHashMap<Integer, Order> allOrders = orderDao.getAllDocs(startDate, endDate);
         TreeMap<String, Integer> positionsTraffic = new TreeMap<>();
         int totalTraffic = 0;
-      
+
         for (Map.Entry<Integer, Order> allOrdersEntry : allOrders.entrySet()) {
             Order order = allOrdersEntry.getValue();
             LinkedHashMap<String, Item> items = order.getItems();
+            ArrayList<String> innerPool = new ArrayList();//if order has more then 1 codes that are for same block, i need this array so all codes are counted as one visit
+
             if (items.containsKey(itemCode)) {
                 for (Map.Entry<String, Item> itemsEntry : items.entrySet()) {
                     Item item = itemsEntry.getValue();
-                 String   position = item.getPosition();
+                    String position = item.getPosition();
                     int _count = position.length() - position.replaceAll("-", "").length();
 
                     if (_count > 1) {
@@ -426,11 +428,18 @@ public class OrderController {
 
                     if (!positionsTraffic.containsKey(position)) {
                         positionsTraffic.put(position, 1);
+                        innerPool.add(position);
+
                     } else {
                         Integer t = positionsTraffic.get(position);
-                        t = t + 1;
-                        positionsTraffic.put(position, t);
+                        if (!innerPool.contains(position)) {
+
+                            t = t + 1;
+                            positionsTraffic.put(position, t);
+
+                        }
                     }
+
                 }
 
                 totalTraffic++;
@@ -441,7 +450,7 @@ public class OrderController {
         modelMap.addAttribute("positionsTraffic", positionsTraffic);
         modelMap.addAttribute("startDate", startDate);
         modelMap.addAttribute("endDate", endDate);
-      
+
         return "/order/itemsCollateralPositions";
 
     }
