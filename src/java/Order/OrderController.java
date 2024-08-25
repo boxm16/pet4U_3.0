@@ -408,16 +408,14 @@ public class OrderController {
         LinkedHashMap<Integer, Order> allOrders = orderDao.getAllDocs(startDate, endDate);
         TreeMap<String, Integer> positionsTraffic = new TreeMap<>();
         int totalTraffic = 0;
-
+        String position = "N/A";//its blockPosition
         for (Map.Entry<Integer, Order> allOrdersEntry : allOrders.entrySet()) {
             Order order = allOrdersEntry.getValue();
-            ArrayList<String> innerPool = new ArrayList();//if order has more then 1 codes that are for same block, i need this array so all codes are counted as one visit
-
             LinkedHashMap<String, Item> items = order.getItems();
             if (items.containsKey(itemCode)) {
                 for (Map.Entry<String, Item> itemsEntry : items.entrySet()) {
                     Item item = itemsEntry.getValue();
-                    String position = item.getPosition();
+                    position = item.getPosition();
                     int _count = position.length() - position.replaceAll("-", "").length();
 
                     if (_count > 1) {
@@ -428,33 +426,23 @@ public class OrderController {
 
                     if (!positionsTraffic.containsKey(position)) {
                         positionsTraffic.put(position, 1);
-                        innerPool.add(position);
-
                     } else {
                         Integer t = positionsTraffic.get(position);
-                        if (!innerPool.contains(position)) {
-
-                            t = t + 1;
-                            positionsTraffic.put(position, t);
-
-                        }
+                        t = t + 1;
+                        positionsTraffic.put(position, t);
                     }
-
-                    totalTraffic++;
                 }
+
+                totalTraffic++;
             }
-            modelMap.addAttribute("itemCode", itemCode);
-            modelMap.addAttribute("totalTraffic", totalTraffic);
-            modelMap.addAttribute("positionsTraffic", positionsTraffic);
-            modelMap.addAttribute("startDate", startDate);
-            modelMap.addAttribute("endDate", endDate);
-
-            return "/order/itemsCollateralPositions";
-
-            //  modelMap.addAttribute("totalTraffic", totalTraffic);
-            modelMap.addAttribute("positionsBlockTrafficOneOrderOneVisit", positionsTraffic);
-            modelMap.addAttribute("startDate", startDate);
-            modelMap.addAttribute("endDate", endDate);
-
         }
+        modelMap.addAttribute("itemCode", itemCode);
+        modelMap.addAttribute("totalTraffic", totalTraffic);
+        modelMap.addAttribute("positionsTraffic", positionsTraffic);
+        modelMap.addAttribute("startDate", startDate);
+        modelMap.addAttribute("endDate", endDate);
+        modelMap.addAttribute("position", position);
+        return "/order/itemsCollateralPositions";
+
     }
+}
