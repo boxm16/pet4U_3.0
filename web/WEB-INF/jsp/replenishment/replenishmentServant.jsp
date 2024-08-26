@@ -77,15 +77,15 @@
 
                                         <center>    <input type='text' readonly name='systemStock' style='font-size:30px; background-color: lightcoral' value='${item.quantity}'></center>
                                         <hr>
-                                        <center>     Real Stock</center> 
-                                        <input type='number' name='realStock' style='font-size:30px'>
+                                        <center>     SHELF REPLENISHMENT</center> 
+                                        <input type='number' name='replenishment' style='font-size:30px'>
                                         <hr>
                                         <input name='altercode' hidden value='${altercode}'>
                                         Make notes - 500 char. max.
                                         <input type='text' name='note'>
                                         <hr>
 
-                                        <input class='btn btn-primary' type='submit' value='SAVE ITEM INVENTORY'>
+                                        <input class='btn btn-primary' type='submit' value='MAKE REPLENISHMENT'>
 
                                     </form>
                                 </td>
