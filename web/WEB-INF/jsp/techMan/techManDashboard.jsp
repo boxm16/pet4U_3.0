@@ -184,8 +184,8 @@
         <hr>
 
         <h1> ${shelvesReplenishmentDatabaseTableResult} </h1>
-        <a href='createShelvesReplenishmentDatabaseTable.htm'><h1>Create Endo Packaging Database Table</h1> </a>
-        <a href='deleteShelvesReplenishmentDatabaseTable.htm'><h1>Delete Endo Packaging Database Table</h1> </a>
+        <a href='createShelvesReplenishmentDatabaseTable.htm'><h1>Create Shelves Replenishment Database Table</h1> </a>
+        <a href='deleteShelvesReplenishmentDatabaseTable.htm'><h1>Delete Shelves Replenishment Database Table</h1> </a>
         <hr>
 
 
