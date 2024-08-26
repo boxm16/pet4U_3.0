@@ -14,7 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class ReplenishmentController {
-     @RequestMapping(value = "goForReplenishment", method = RequestMethod.GET)
+
+    @RequestMapping(value = "goForReplenishment", method = RequestMethod.GET)
     public String getItemForNote(@RequestParam(name = "altercode") String altercode, ModelMap modelMap) {
         ReplenishmentDao notesDao = new ReplenishmentDao();
         Item item = notesDao.getItemForReplenishment(altercode);
@@ -23,5 +24,15 @@ public class ReplenishmentController {
         modelMap.addAttribute("altercode", altercode);
         return "replenishment/replenishmentServant";
 
+    }
+
+    @RequestMapping(value = "saveReplenishment", method = RequestMethod.POST)
+    public String saveItemInventory(@RequestParam(name = "altercode") String altercode,
+            @RequestParam(name = "replenishment") String replenishment,
+            @RequestParam(name = "note") String note,
+            ModelMap model) {
+
+        return "index";
+       
     }
 }
