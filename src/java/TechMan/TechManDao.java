@@ -1197,4 +1197,46 @@ public class TechManDao {
         }
     }
 
+    //-------------------------------------
+    String createShelvesReplenishmentDatabaseTable() {
+
+        String query = "CREATE TABLE shelves_replenishment("
+                + "id INT NOT NULL AUTO_INCREMENT, "
+                + "altercode VARCHAR (100) NOT NULL, "
+                + "referal_date_time DATETIME NOT NULL, "
+                + "quantity INT(3) NOT NULL, "
+                + "note VARCHAR (500) NOT NULL, "
+                + "PRIMARY KEY (id)) "
+                + "ENGINE = InnoDB "
+                + "DEFAULT CHARACTER SET = utf8;";
+
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+            statement.close();
+            connection.close();
+            return "Table 'shelves_replenishment' created succesfully";
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return "Table 'shelves_replenishment' could not be created:" + ex;
+        }
+    }
+
+    String deleteShelvesReplenishmentDatabaseTable() {
+        String query = "DROP TABLE shelves_replenishment";
+
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+            statement.close();
+            connection.close();
+            return "Table 'shelves_replenishment' deleted succesfully";
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return "Table 'shelves_replenishment' could not be deleted:" + ex;
+        }
+    }
+
 }

@@ -524,4 +524,23 @@ public class TechManController {
         modelMap.addAttribute("endoPackagingDatabaseTableResult", endoPackagingDatabaseTableResult);
         return "techMan/techManDashboard";
     }
+    
+     //-----------------
+    @RequestMapping(value = "/createShelvesReplenishmentDatabaseTable", method = RequestMethod.GET)
+    public String createShelvesReplenishmentDatabaseTable(ModelMap modelMap) {
+        String shelvesReplenishmentDatabaseTableResult = techManDao.createShelvesReplenishmentDatabaseTable();
+
+        shelvesReplenishmentDatabaseTableResult = shelvesReplenishmentDatabaseTableResult + "<br>";
+        modelMap.addAttribute("shelvesReplenishmentDatabaseTableResult", shelvesReplenishmentDatabaseTableResult);
+        return "techMan/techManDashboard";
+    }
+
+    @RequestMapping(value = "/deleteShelvesReplenishmentDatabaseTable", method = RequestMethod.GET)
+    public String deleteShelvesReplenishmentDatabaseTable(ModelMap modelMap) {
+        String shelvesReplenishmentDatabaseTableResult = techManDao.deleteShelvesReplenishmentDatabaseTable();
+
+        shelvesReplenishmentDatabaseTableResult = shelvesReplenishmentDatabaseTableResult + "<br>";
+        modelMap.addAttribute("shelvesReplenishmentDatabaseTableResult", shelvesReplenishmentDatabaseTableResult);
+        return "techMan/techManDashboard";
+    }
 }
