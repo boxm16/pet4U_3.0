@@ -182,10 +182,10 @@
         <a href='createEndoPackagingDatabaseTable.htm'><h1>Create Endo Packaging Database Table</h1> </a>
         <a href='deleteEndoPackagingDatabaseTable.htm'><h1>Delete Endo Packaging Database Table</h1> </a>
         <hr>
-        
-          <h1> ${endoPackagingDatabaseTableResult} </h1>
-        <a href='createEndoPackagingDatabaseTable.htm'><h1>Create Endo Packaging Database Table</h1> </a>
-        <a href='deleteEndoPackagingDatabaseTable.htm'><h1>Delete Endo Packaging Database Table</h1> </a>
+
+        <h1> ${shelvesReplenishmentDatabaseTableResult} </h1>
+        <a href='createShelvesReplenishmentDatabaseTable.htm'><h1>Create Endo Packaging Database Table</h1> </a>
+        <a href='deleteShelvesReplenishmentDatabaseTable.htm'><h1>Delete Endo Packaging Database Table</h1> </a>
         <hr>
 
 
