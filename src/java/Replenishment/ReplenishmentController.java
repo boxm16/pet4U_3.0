@@ -67,8 +67,7 @@ public class ReplenishmentController {
         return "replenishment/replenishmentSavingResult";
 
     }
-    
-    
+
     @RequestMapping(value = "editReplenishment", method = RequestMethod.POST)
     public String updateReplenishment(@RequestParam(name = "itemCode") String itemCode,
             @RequestParam(name = "replenishmentQuantity") String replenishmentQuantity,
@@ -84,6 +83,13 @@ public class ReplenishmentController {
         model.addAttribute("result", result);
         model.addAttribute("resultColor", resultColor);
         return "replenishment/replenishmentSavingResult";
+
+    }
+
+    @RequestMapping(value = "shelvesReplenishmentSV", method = RequestMethod.POST)
+    public String shelvesReplenishmentSV(ModelMap model) {
+        
+        return "replenishment/replenishmentDashboard";
 
     }
 }
