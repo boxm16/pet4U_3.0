@@ -27,14 +27,17 @@ public class ReplenishmentController {
             replenishment.setCode(item.getCode());
             replenishment.setDescription(item.getDescription());
             replenishment.setAltercodes(item.getAltercodes());
+            replenishment.setQuantity(item.getQuantity());
             replenishment.setPosition(item.getPosition());
             modelMap.addAttribute("replenishment", replenishment);
             modelMap.addAttribute("saveType", "insertReplenishment.htm");
         } else {
             modelMap.addAttribute("replenishment", replenishment);
             replenishment.setCode(item.getCode());
+
             replenishment.setDescription(item.getDescription());
             replenishment.setAltercodes(item.getAltercodes());
+            replenishment.setQuantity(item.getQuantity());
             replenishment.setPosition(item.getPosition());
             modelMap.addAttribute("replenishment", replenishment);
             modelMap.addAttribute("saveType", "editReplenishment.htm");
