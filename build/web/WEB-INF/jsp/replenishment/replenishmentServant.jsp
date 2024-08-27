@@ -73,7 +73,8 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <form action='saveReplenishment.htm' method="POST">
+
+                                    <form action="${saveType}" method="POST">
 
                                         <center>    <input type='text' readonly name='systemStock' style='font-size:30px; background-color: lightcoral' value='${item.quantity}'></center>
                                         <hr>
@@ -101,4 +102,18 @@
 
         </div>
     </body>
+</html>
+
+
+
+
+
+<h1 style="background-color: ${resultColor}">${result}</h1>
+
+
+<hr>
+<hr>   <hr>   <hr>   <hr>   <hr>   <hr>   <hr>   <hr>
+<h1 ><a href="deleteEndoPackaging.htm?code=${endoPackaging.itemCode}" style="color:red">DELETE Endo Packaging</a></h1>
+</center>
+</body>
 </html>

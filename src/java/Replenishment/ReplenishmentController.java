@@ -17,11 +17,22 @@ public class ReplenishmentController {
 
     @RequestMapping(value = "goForReplenishment", method = RequestMethod.GET)
     public String getItemForNote(@RequestParam(name = "altercode") String altercode, ModelMap modelMap) {
-        ReplenishmentDao notesDao = new ReplenishmentDao();
-        Item item = notesDao.getItemForReplenishment(altercode);
+        ReplenishmentDao replenishmentDao = new ReplenishmentDao();
+        Item item = replenishmentDao.getItemForReplenishment(altercode);
 
-        modelMap.addAttribute("item", item);
-        modelMap.addAttribute("altercode", altercode);
+        Replenishment replenishment = replenishmentDao.getItemReplenishment(item.getCode());
+
+        if (replenishment == null) {
+            replenishment = new Replenishment();
+            replenishment.setCode(item.getCode());
+            replenishment.setDescription(item.getDescription());
+            modelMap.addAttribute("replenishment", replenishment);
+            modelMap.addAttribute("saveType", "insertReplenishment.htm");
+        } else {
+            modelMap.addAttribute("endoPackaging", replenishment);
+            modelMap.addAttribute("saveType", "editReplenishment.htm");
+        }
+
         return "replenishment/replenishmentServant";
 
     }
@@ -31,8 +42,10 @@ public class ReplenishmentController {
             @RequestParam(name = "replenishment") String replenishment,
             @RequestParam(name = "note") String note,
             ModelMap model) {
+        ReplenishmentDao replenishmentDao = new ReplenishmentDao();
+        replenishmentDao.updateReplenishment
 
         return "index";
-       
+
     }
 }
