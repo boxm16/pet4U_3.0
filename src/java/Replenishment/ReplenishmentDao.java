@@ -74,7 +74,7 @@ public class ReplenishmentDao {
     }
 
     Replenishment getItemReplenishment(String code) {
-        return new Replenishment();
+        return null;
     }
 
 }
