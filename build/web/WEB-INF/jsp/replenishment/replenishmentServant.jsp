@@ -46,7 +46,7 @@
                         <table>
                             <tr>
                                 <td>
-                                    ${item.description}
+                                    ${replenishment.description}
                                 </td>
                             </tr>
 
@@ -69,7 +69,7 @@
                             </tr>
                             <tr>
                                 <td style='background-color: lightblue; font-size: 20px' >
-                                    ${item.position}
+                                    ${replenishment.position}
                                 </td>
                             </tr>
                             <tr>

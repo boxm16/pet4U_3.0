@@ -31,7 +31,7 @@ public class ReplenishmentController {
             modelMap.addAttribute("replenishment", replenishment);
             modelMap.addAttribute("saveType", "insertReplenishment.htm");
         } else {
-            modelMap.addAttribute("endoPackaging", replenishment);
+            modelMap.addAttribute("replenishment", replenishment);
             replenishment.setCode(item.getCode());
             replenishment.setDescription(item.getDescription());
             replenishment.setAltercodes(item.getAltercodes());
