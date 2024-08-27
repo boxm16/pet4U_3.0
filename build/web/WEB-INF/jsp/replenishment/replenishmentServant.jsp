@@ -4,6 +4,7 @@
     Author     : Michail Sitmalidis
 --%>
 
+<%@page import="Replenishment.Replenishment"%>
 <%@page import="BasicModel.AltercodeContainer"%>
 <%@page import="BasicModel.Item"%>
 <%@page import="java.util.ArrayList"%>
@@ -52,7 +53,7 @@
                             <tr>
                                 <td>
                                     <%
-                                        Item item = (Item) request.getAttribute("replenishment");
+                                        Replenishment item = (Replenishment) request.getAttribute("replenishment");
 
                                         ArrayList<AltercodeContainer> altercodes = item.getAltercodes();
                                         for (AltercodeContainer altercode : altercodes) {
