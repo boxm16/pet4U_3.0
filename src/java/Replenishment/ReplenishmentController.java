@@ -24,9 +24,9 @@ public class ReplenishmentController {
 
         if (replenishment == null) {
             replenishment = new Replenishment();
-             replenishment.setCode(item.getCode());
-             replenishment.setReplenishmentQuantity(0);
-             
+            replenishment.setCode(item.getCode());
+            replenishment.setReplenishmentQuantity(0);
+
             replenishment.setCode(item.getCode());
             replenishment.setDescription(item.getDescription());
             replenishment.setAltercodes(item.getAltercodes());
@@ -50,14 +50,21 @@ public class ReplenishmentController {
 
     }
 
-    @RequestMapping(value = "saveReplenishment", method = RequestMethod.POST)
-    public String saveItemInventory(@RequestParam(name = "altercode") String altercode,
-            @RequestParam(name = "replenishment") String replenishment,
+    @RequestMapping(value = "insertReplenishment", method = RequestMethod.POST)
+    public String saveItemInventory(@RequestParam(name = "itemCode") String itemCode,
+            @RequestParam(name = "replenishmentQuantity") String replenishmentQuantity,
             @RequestParam(name = "note") String note,
             ModelMap model) {
         ReplenishmentDao replenishmentDao = new ReplenishmentDao();
-
-        return "index";
+        String result = replenishmentDao.insertReplenishment(itemCode, replenishmentQuantity, note);
+        String resultColor = "";
+        if (!result.equals("New Replenishment Done Successfully")) {
+            result = "ΚΑΤΙ ΠΗΓΕ ΣΤΡΑΒΑ. <br>" + result;
+            resultColor = "red";
+        }
+        model.addAttribute("result", result);
+        model.addAttribute("resultColor", resultColor);
+        return "replenishment/replenishmentSavingResult";
 
     }
 }

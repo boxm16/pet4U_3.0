@@ -64,9 +64,9 @@
                                         <center>    <input type='text' readonly name='systemStock' style='font-size:30px; background-color: lightgreen' value='${replenishment.quantity}'></center>
                                         <hr>
                                         <center>     SHELF REPLENISHMENT</center> 
-                                        <input type='number' name='replenishment'  value='${replenishment.replenishmentQuantity}' style='font-size:30px' >
+                                        <input type='number' name='replenishmentQuantity'  value='${replenishment.replenishmentQuantity}' style='font-size:30px' >
                                         <hr>
-                                        <input name='altercode' hidden value='${item.code}'>
+                                        <input name='itemCode' hidden value='${item.code}'>
                                         Make notes - 500 char. max.
                                         <input type='text' name='note'>
                                         <hr>
@@ -77,6 +77,7 @@
                                 </td>
                             </tr>
                         </table>
+                                        <hr>
                         <a href='index.htm'>Index</a>
                     </center>
                 </div>

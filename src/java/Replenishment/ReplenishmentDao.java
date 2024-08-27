@@ -10,6 +10,7 @@ import BasicModel.Item;
 import Notes.NotesDao;
 import Service.DatabaseConnectionFactory;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -75,6 +76,32 @@ public class ReplenishmentDao {
 
     Replenishment getItemReplenishment(String code) {
         return null;
+    }
+
+    public String insertReplenishment(String itemCode, String replenishmentQuantity, String note) {
+        try {
+
+            String dateFormat = "yyyy-MM-dd HH:mm:ss";
+
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            Connection connection = databaseConnectionFactory.getMySQLConnection();
+
+            PreparedStatement itemInsertStatement = connection.prepareStatement("INSERT INTO shelves_replenishment (altercode, referal_date_time, quantity, note) VALUES (?,?,?,?)");
+
+            itemInsertStatement.setString(1, itemCode);
+            itemInsertStatement.setString(2, "now()");
+            itemInsertStatement.setString(3, replenishmentQuantity);
+            itemInsertStatement.setString(4, note);
+            itemInsertStatement.execute();
+
+            itemInsertStatement.close();
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ReplenishmentDao.class.getName()).log(Level.SEVERE, null, ex);
+            return ex.getMessage();
+        }
+        return "New Replenishment Done Successfully";
     }
 
 }
