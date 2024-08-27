@@ -50,23 +50,7 @@
                                 </td>
                             </tr>
 
-                            <tr>
-                                <td>
-                                    <%
-                                        Replenishment item = (Replenishment) request.getAttribute("replenishment");
-
-                                        ArrayList<AltercodeContainer> altercodes = item.getAltercodes();
-                                        for (AltercodeContainer altercode : altercodes) {
-                                            if (altercode.getStatus().equals("eshop")) {
-                                                out.println("<br><a href='https://www.pet4u.gr/search-products-el.html?subcats=Y&status=A&match=all&pshort=N&pfull=N&pname=Y&pkeywords=N&pcode_from_q=Y&wg_go_direct=Y&search_performed=Y&q=" + altercode.getAltercode() + "' target='_blank'>" + altercode.getAltercode() + "</a><br>");
-                                            } else {
-                                                out.println(altercode.getAltercode());
-                                                out.println("<br>");
-                                            }
-                                        }
-                                    %>
-                                </td>
-                            </tr>
+                            
                             <tr>
                                 <td style='background-color: lightblue; font-size: 20px' >
                                     ${replenishment.position}
