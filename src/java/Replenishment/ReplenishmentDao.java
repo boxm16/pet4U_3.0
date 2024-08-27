@@ -128,4 +128,27 @@ public class ReplenishmentDao {
         return "New Replenishment Done Successfully";
     }
 
+    String updateReplenishment(String itemCode, String replenishmentQuantity, String note) {
+   DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+        Connection connection = databaseConnectionFactory.getMySQLConnection();
+
+        try {
+            PreparedStatement updateStatement = connection.prepareStatement("UPDATE shelves_replenishment  SET referal_date_time=now() , quantity=?, note=? WHERE altercode=?");
+
+            updateStatement.setString(1, replenishmentQuantity);
+            updateStatement.setString(2, note);
+            updateStatement.setString(3, itemCode);
+            updateStatement.executeUpdate();
+            updateStatement.close();
+
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ReplenishmentDao.class.getName()).log(Level.SEVERE, null, ex);
+
+            return ex.getMessage();
+        }
+
+        return "Replenishment Updated Successfully"; }
+
 }

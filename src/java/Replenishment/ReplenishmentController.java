@@ -67,4 +67,23 @@ public class ReplenishmentController {
         return "replenishment/replenishmentSavingResult";
 
     }
+    
+    
+    @RequestMapping(value = "updateReplenishment", method = RequestMethod.POST)
+    public String updateReplenishment(@RequestParam(name = "itemCode") String itemCode,
+            @RequestParam(name = "replenishmentQuantity") String replenishmentQuantity,
+            @RequestParam(name = "note") String note,
+            ModelMap model) {
+        ReplenishmentDao replenishmentDao = new ReplenishmentDao();
+        String result = replenishmentDao.updateReplenishment(itemCode, replenishmentQuantity, note);
+        String resultColor = "";
+        if (!result.equals("Replenishment Updated Successfully")) {
+            result = "ΚΑΤΙ ΠΗΓΕ ΣΤΡΑΒΑ. <br>" + result;
+            resultColor = "red";
+        }
+        model.addAttribute("result", result);
+        model.addAttribute("resultColor", resultColor);
+        return "replenishment/replenishmentSavingResult";
+
+    }
 }
