@@ -86,7 +86,7 @@ public class ReplenishmentController {
 
     }
 
-    @RequestMapping(value = "shelvesReplenishmentSV", method = RequestMethod.POST)
+    @RequestMapping(value = "shelvesReplenishmentSV", method = RequestMethod.GET)
     public String shelvesReplenishmentSV(ModelMap model) {
         
         return "replenishment/replenishmentDashboard";
