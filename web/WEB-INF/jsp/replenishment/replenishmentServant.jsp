@@ -52,7 +52,7 @@
                             <tr>
                                 <td>
                                     <%
-                                        Item item = (Item) request.getAttribute("item");
+                                        Item item = (Item) request.getAttribute("replenishment");
 
                                         ArrayList<AltercodeContainer> altercodes = item.getAltercodes();
                                         for (AltercodeContainer altercode : altercodes) {
@@ -81,7 +81,7 @@
                                         <center>     SHELF REPLENISHMENT</center> 
                                         <input type='number' name='replenishment' style='font-size:30px'>
                                         <hr>
-                                        <input name='altercode' hidden value='${altercode}'>
+                                        <input name='altercode' hidden value='${item.code}'>
                                         Make notes - 500 char. max.
                                         <input type='text' name='note'>
                                         <hr>
