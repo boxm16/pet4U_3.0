@@ -535,7 +535,7 @@ public class TechManController {
         return "techMan/techManDashboard";
     }
 
-    @RequestMapping(value = "/deleteShelvesReplenishmentDatabaseTable1", method = RequestMethod.GET)
+    @RequestMapping(value = "/deleteShelvesReplenishmentDatabaseTable", method = RequestMethod.GET)
     public String deleteShelvesReplenishmentDatabaseTable(ModelMap modelMap) {
         String shelvesReplenishmentDatabaseTableResult = techManDao.deleteShelvesReplenishmentDatabaseTable();
 
