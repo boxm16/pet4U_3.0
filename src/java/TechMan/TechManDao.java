@@ -1205,6 +1205,7 @@ public class TechManDao {
                 + "altercode VARCHAR (100) NOT NULL, "
                 + "referal_date_time DATETIME NOT NULL, "
                 + "quantity INT(3) NOT NULL, "
+                + "minimal_stock INT(3) DEFAULT 1, "
                 + "note VARCHAR (500) NOT NULL, "
                 + "PRIMARY KEY (id)) "
                 + "ENGINE = InnoDB "
