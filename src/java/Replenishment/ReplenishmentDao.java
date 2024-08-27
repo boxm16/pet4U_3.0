@@ -89,7 +89,7 @@ public class ReplenishmentDao {
                 item = new Replenishment();
                 item.setReplenishmentQuantity(resultSet.getInt("quantity"));
 
-                String dateTimeString = resultSet.getString("quantity");
+                String dateTimeString = resultSet.getString("referal_date_time");
                 DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
                 LocalDateTime dateTime = LocalDateTime.parse(dateTimeString, format);
                 item.setDateTime(dateTime);
