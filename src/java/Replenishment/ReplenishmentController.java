@@ -26,10 +26,15 @@ public class ReplenishmentController {
             replenishment = new Replenishment();
             replenishment.setCode(item.getCode());
             replenishment.setDescription(item.getDescription());
+            replenishment.setAltercodes(item.getAltercodes());
+
             modelMap.addAttribute("replenishment", replenishment);
             modelMap.addAttribute("saveType", "insertReplenishment.htm");
         } else {
             modelMap.addAttribute("endoPackaging", replenishment);
+            replenishment.setCode(item.getCode());
+            replenishment.setDescription(item.getDescription());
+            replenishment.setAltercodes(item.getAltercodes());
             modelMap.addAttribute("saveType", "editReplenishment.htm");
         }
 
@@ -43,7 +48,7 @@ public class ReplenishmentController {
             @RequestParam(name = "note") String note,
             ModelMap model) {
         ReplenishmentDao replenishmentDao = new ReplenishmentDao();
-      
+
         return "index";
 
     }
