@@ -24,6 +24,9 @@ public class ReplenishmentController {
 
         if (replenishment == null) {
             replenishment = new Replenishment();
+             replenishment.setCode(item.getCode());
+             replenishment.setReplenishmentQuantity(0);
+             
             replenishment.setCode(item.getCode());
             replenishment.setDescription(item.getDescription());
             replenishment.setAltercodes(item.getAltercodes());

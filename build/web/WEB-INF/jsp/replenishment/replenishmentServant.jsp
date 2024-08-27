@@ -50,7 +50,7 @@
                                 </td>
                             </tr>
 
-                            
+
                             <tr>
                                 <td style='background-color: lightblue; font-size: 20px' >
                                     ${replenishment.position}
@@ -64,7 +64,7 @@
                                         <center>    <input type='text' readonly name='systemStock' style='font-size:30px; background-color: lightgreen' value='${replenishment.quantity}'></center>
                                         <hr>
                                         <center>     SHELF REPLENISHMENT</center> 
-                                        <input type='number' name='replenishment' style='font-size:30px'>
+                                        <input type='number' name='replenishment'  value='${replenishment.replenishmentQuantity}' style='font-size:30px' >
                                         <hr>
                                         <input name='altercode' hidden value='${item.code}'>
                                         Make notes - 500 char. max.
