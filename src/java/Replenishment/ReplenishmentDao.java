@@ -74,7 +74,7 @@ public class ReplenishmentDao {
     }
 
     Replenishment getItemReplenishment(String code) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return new Replenishment();
     }
 
 }

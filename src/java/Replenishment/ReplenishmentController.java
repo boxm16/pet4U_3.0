@@ -43,8 +43,7 @@ public class ReplenishmentController {
             @RequestParam(name = "note") String note,
             ModelMap model) {
         ReplenishmentDao replenishmentDao = new ReplenishmentDao();
-        replenishmentDao.updateReplenishment
-
+      
         return "index";
 
     }
