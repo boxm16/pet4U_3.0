@@ -66,7 +66,7 @@
                                         <center>     SHELF REPLENISHMENT</center> 
                                         <input type='number' name='replenishmentQuantity'  value='${replenishment.replenishmentQuantity}' style='font-size:30px' >
                                         <hr>
-                                        <input name='itemCode' hidden value='${item.code}'>
+                                        <input name='itemCode' hidden value='${replenishment.code}'>
                                         Make notes - 500 char. max.
                                         <input type='text' name='note'>
                                         <hr>
