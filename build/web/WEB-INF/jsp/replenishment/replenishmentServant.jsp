@@ -61,7 +61,7 @@
 
                                     <form action="${saveType}" method="POST">
 
-                                        <center>    <input type='text' readonly name='systemStock' style='font-size:30px; background-color: lightcoral' value='${item.quantity}'></center>
+                                        <center>    <input type='text' readonly name='systemStock' style='font-size:30px; background-color: lightgreen' value='${replenishment.quantity}'></center>
                                         <hr>
                                         <center>     SHELF REPLENISHMENT</center> 
                                         <input type='number' name='replenishment' style='font-size:30px'>
