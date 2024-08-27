@@ -86,12 +86,12 @@ public class ReplenishmentDao {
             DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
             Connection connection = databaseConnectionFactory.getMySQLConnection();
 
-            PreparedStatement itemInsertStatement = connection.prepareStatement("INSERT INTO shelves_replenishment (altercode, referal_date_time, quantity, note) VALUES (?,?,?,?)");
+            PreparedStatement itemInsertStatement = connection.prepareStatement("INSERT INTO shelves_replenishment (altercode, referal_date_time, quantity, note) VALUES (?, now() ,?,?)");
 
             itemInsertStatement.setString(1, itemCode);
-            itemInsertStatement.setString(2, " now() ");
-            itemInsertStatement.setString(3, replenishmentQuantity);
-            itemInsertStatement.setString(4, note);
+    
+            itemInsertStatement.setString(2, replenishmentQuantity);
+            itemInsertStatement.setString(3, note);
             itemInsertStatement.execute();
 
             itemInsertStatement.close();
