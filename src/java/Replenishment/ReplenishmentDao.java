@@ -14,6 +14,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.stereotype.Repository;
@@ -80,13 +82,17 @@ public class ReplenishmentDao {
         Replenishment item = null;
         try {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("select * FROM shelves_replenishment WHERE item_code='" + code + "' ;");
+            ResultSet resultSet = statement.executeQuery("select * FROM shelves_replenishment WHERE altercode='" + code + "' ;");
 
             while (resultSet.next()) {
 
                 item = new Replenishment();
                 item.setReplenishmentQuantity(resultSet.getInt("quantity"));
-                item.setReplenishmentQuantity(resultSet.getInt("quantity"));
+
+                String dateTimeString = resultSet.getString("quantity");
+                DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
+                LocalDateTime dateTime = LocalDateTime.parse(dateTimeString, format);
+                item.setDateTime(dateTime);
                 item.setNote(resultSet.getString("note"));
             }
             resultSet.close();
