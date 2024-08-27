@@ -89,7 +89,7 @@ public class ReplenishmentDao {
             PreparedStatement itemInsertStatement = connection.prepareStatement("INSERT INTO shelves_replenishment (altercode, referal_date_time, quantity, note) VALUES (?,?,?,?)");
 
             itemInsertStatement.setString(1, itemCode);
-            itemInsertStatement.setString(2, "now()");
+            itemInsertStatement.setString(2, " now() ");
             itemInsertStatement.setString(3, replenishmentQuantity);
             itemInsertStatement.setString(4, note);
             itemInsertStatement.execute();
