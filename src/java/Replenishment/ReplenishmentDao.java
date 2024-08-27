@@ -75,13 +75,31 @@ public class ReplenishmentDao {
     }
 
     Replenishment getItemReplenishment(String code) {
-        return null;
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+        Connection connection = databaseConnectionFactory.getMySQLConnection();
+        Replenishment item = null;
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("select * FROM shelves_replenishment WHERE item_code='" + code + "' ;");
+
+            while (resultSet.next()) {
+
+                item = new Replenishment();
+                item.setReplenishmentQuantity(resultSet.getInt("quantity"));
+                item.setReplenishmentQuantity(resultSet.getInt("quantity"));
+                item.setNote(resultSet.getString("note"));
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ReplenishmentDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return item;
     }
 
     public String insertReplenishment(String itemCode, String replenishmentQuantity, String note) {
         try {
-
-            String dateFormat = "yyyy-MM-dd HH:mm:ss";
 
             DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
             Connection connection = databaseConnectionFactory.getMySQLConnection();
@@ -89,7 +107,7 @@ public class ReplenishmentDao {
             PreparedStatement itemInsertStatement = connection.prepareStatement("INSERT INTO shelves_replenishment (altercode, referal_date_time, quantity, note) VALUES (?, now() ,?,?)");
 
             itemInsertStatement.setString(1, itemCode);
-    
+
             itemInsertStatement.setString(2, replenishmentQuantity);
             itemInsertStatement.setString(3, note);
             itemInsertStatement.execute();

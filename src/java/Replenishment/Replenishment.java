@@ -6,6 +6,7 @@
 package Replenishment;
 
 import BasicModel.Item;
+import java.time.LocalDateTime;
 
 /**
  *
@@ -14,6 +15,8 @@ import BasicModel.Item;
 public class Replenishment extends Item{
     
     private int replenishmentQuantity;
+    private String note;
+    private LocalDateTime dateTime;
 
     public int getReplenishmentQuantity() {
         return replenishmentQuantity;
@@ -21,6 +24,22 @@ public class Replenishment extends Item{
 
     public void setReplenishmentQuantity(int replenishmentQuantity) {
         this.replenishmentQuantity = replenishmentQuantity;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public LocalDateTime getDateTime() {
+        return dateTime;
+    }
+
+    public void setDateTime(LocalDateTime dateTime) {
+        this.dateTime = dateTime;
     }
     
     
