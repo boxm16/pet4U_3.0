@@ -106,15 +106,3 @@
 </html>
 
 
-
-
-
-<h1 style="background-color: ${resultColor}">${result}</h1>
-
-
-<hr>
-<hr>   <hr>   <hr>   <hr>   <hr>   <hr>   <hr>   <hr>
-<h1 ><a href="deleteEndoPackaging.htm?code=${endoPackaging.itemCode}" style="color:red">DELETE Endo Packaging</a></h1>
-</center>
-</body>
-</html>
