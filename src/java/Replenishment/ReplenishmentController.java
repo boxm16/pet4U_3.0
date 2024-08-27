@@ -69,7 +69,7 @@ public class ReplenishmentController {
     }
     
     
-    @RequestMapping(value = "updateReplenishment", method = RequestMethod.POST)
+    @RequestMapping(value = "editReplenishment", method = RequestMethod.POST)
     public String updateReplenishment(@RequestParam(name = "itemCode") String itemCode,
             @RequestParam(name = "replenishmentQuantity") String replenishmentQuantity,
             @RequestParam(name = "note") String note,
