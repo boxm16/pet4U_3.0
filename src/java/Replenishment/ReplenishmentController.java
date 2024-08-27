@@ -35,6 +35,7 @@ public class ReplenishmentController {
             replenishment.setCode(item.getCode());
             replenishment.setDescription(item.getDescription());
             replenishment.setAltercodes(item.getAltercodes());
+            modelMap.addAttribute("replenishment", replenishment);
             modelMap.addAttribute("saveType", "editReplenishment.htm");
         }
 
