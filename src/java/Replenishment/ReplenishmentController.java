@@ -6,6 +6,8 @@
 package Replenishment;
 
 import BasicModel.Item;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -88,8 +90,48 @@ public class ReplenishmentController {
 
     @RequestMapping(value = "shelvesReplenishmentSV", method = RequestMethod.GET)
     public String shelvesReplenishmentSV(ModelMap model) {
-        
-        return "replenishment/replenishmentDashboard";
+        model.addAttribute("replenishments", getReplenishments());
+        return "replenishment/shelvesReplenishemtnSV";
 
+    }
+     @RequestMapping(value = "shelvesReplenishmentDashboard", method = RequestMethod.GET)
+    public String shelvesReplenishmentDashboard(ModelMap model) {
+        model.addAttribute("replenishments", getReplenishments());
+        return "replenishment/shelvesReplenishmentDashboard";
+
+    }
+
+    private LinkedHashMap<String, Replenishment> getReplenishments() {
+        ReplenishmentDao replenishmentDao=new ReplenishmentDao();
+        
+        LinkedHashMap<String, Replenishment> replenishments = replenishmentDao.getAllReplenishments;
+      
+          ArrayList referalAltercodes = new ArrayList(replenishments.keySet());
+        StringBuilder inPartForSqlQueryByReferralAltercodes = buildStringFromArrayList(referalAltercodes);
+
+        return replenishments;
+
+    }
+    
+    private StringBuilder buildStringFromArrayList(ArrayList<String> arrayList) {
+
+        StringBuilder stringBuilder = new StringBuilder("(");
+        if (arrayList.isEmpty()) {
+            stringBuilder.append(")");
+            return stringBuilder;
+        }
+        int x = 0;
+        for (String entry : arrayList) {
+            if (x == 0) {
+                stringBuilder.append("'").append(entry).append("'");
+            } else {
+                stringBuilder.append(",'").append(entry).append("'");
+            }
+            if (x == arrayList.size() - 1) {
+                stringBuilder.append(")");
+            }
+            x++;
+        }
+        return stringBuilder;
     }
 }
