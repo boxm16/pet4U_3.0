@@ -13,5 +13,7 @@
     </head>
     <body>
         <h1>Dont hurry, we`re working here</h1>
+         <a href="shelvesReplenishmentDashboard.htm" class="btn btn-success btn-lg" role="button" aria-disabled="true"><h3>Shelves Replenishment Dashboard</h3></a>
+                        <hr>
     </body>
 </html>

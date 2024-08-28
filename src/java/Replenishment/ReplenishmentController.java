@@ -90,29 +90,34 @@ public class ReplenishmentController {
 
     @RequestMapping(value = "shelvesReplenishmentSV", method = RequestMethod.GET)
     public String shelvesReplenishmentSV(ModelMap model) {
-        model.addAttribute("replenishments", getReplenishments());
+        LinkedHashMap<String, Replenishment> replenishments = getReplenishments();
+        model.addAttribute("replenishments", replenishments);
         return "replenishment/shelvesReplenishemtnSV";
 
     }
-     @RequestMapping(value = "shelvesReplenishmentDashboard", method = RequestMethod.GET)
+
+    @RequestMapping(value = "shelvesReplenishmentDashboard", method = RequestMethod.GET)
     public String shelvesReplenishmentDashboard(ModelMap model) {
-        model.addAttribute("replenishments", getReplenishments());
+
+        ReplenishmentDao replenishmentDao = new ReplenishmentDao();
+        LinkedHashMap<String, Replenishment> replenishments = replenishmentDao.getAllReplenishments();
+        model.addAttribute("replenishments", replenishments);
         return "replenishment/shelvesReplenishmentDashboard";
 
     }
 
     private LinkedHashMap<String, Replenishment> getReplenishments() {
-        ReplenishmentDao replenishmentDao=new ReplenishmentDao();
-        
-        LinkedHashMap<String, Replenishment> replenishments = replenishmentDao.getAllReplenishments;
-      
-          ArrayList referalAltercodes = new ArrayList(replenishments.keySet());
+        ReplenishmentDao replenishmentDao = new ReplenishmentDao();
+
+        LinkedHashMap<String, Replenishment> replenishments = replenishmentDao.getAllReplenishments();
+
+        ArrayList referalAltercodes = new ArrayList(replenishments.keySet());
         StringBuilder inPartForSqlQueryByReferralAltercodes = buildStringFromArrayList(referalAltercodes);
 
         return replenishments;
 
     }
-    
+
     private StringBuilder buildStringFromArrayList(ArrayList<String> arrayList) {
 
         StringBuilder stringBuilder = new StringBuilder("(");

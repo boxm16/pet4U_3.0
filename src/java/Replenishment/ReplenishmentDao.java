@@ -16,6 +16,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.LinkedHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.stereotype.Repository;
@@ -129,7 +130,7 @@ public class ReplenishmentDao {
     }
 
     String updateReplenishment(String itemCode, String replenishmentQuantity, String note) {
-   DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
         Connection connection = databaseConnectionFactory.getMySQLConnection();
 
         try {
@@ -149,6 +150,38 @@ public class ReplenishmentDao {
             return ex.getMessage();
         }
 
-        return "Replenishment Updated Successfully"; }
+        return "Replenishment Updated Successfully";
+    }
+
+    LinkedHashMap<String, Replenishment> getAllReplenishments() {
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+        Connection connection = databaseConnectionFactory.getMySQLConnection();
+        LinkedHashMap<String, Replenishment> allReplenishments = new LinkedHashMap<String, Replenishment>();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("select * FROM shelves_replenishment;");
+
+            while (resultSet.next()) {
+
+                Replenishment item = new Replenishment();
+                String itemCode = resultSet.getString("item_code");
+                item.setCode(itemCode);
+                item.setReplenishmentQuantity(resultSet.getInt("quantity"));
+
+                String dateTimeString = resultSet.getString("referal_date_time");
+                DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                LocalDateTime dateTime = LocalDateTime.parse(dateTimeString, format);
+                item.setDateTime(dateTime);
+                item.setNote(resultSet.getString("note"));
+                allReplenishments.put(itemCode, item);
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ReplenishmentDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return allReplenishments;
+    }
 
 }
