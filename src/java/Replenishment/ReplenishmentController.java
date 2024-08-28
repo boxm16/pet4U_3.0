@@ -92,7 +92,7 @@ public class ReplenishmentController {
     public String shelvesReplenishmentSV(ModelMap model) {
         LinkedHashMap<String, Replenishment> replenishments = getReplenishments();
         model.addAttribute("replenishments", replenishments);
-        return "replenishment/shelvesReplenishemtnSV";
+        return "replenishment/shelvesReplenishmentSV";
 
     }
 
