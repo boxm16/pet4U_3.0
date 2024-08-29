@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class ReplenishmentController {
 
     @RequestMapping(value = "goForReplenishment", method = RequestMethod.GET)
-    public String getItemForNote(@RequestParam(name = "altercode") String altercode, ModelMap modelMap) {
+    public String goForReplenishment(@RequestParam(name = "altercode") String altercode, ModelMap modelMap) {
         ReplenishmentDao replenishmentDao = new ReplenishmentDao();
         Item item = replenishmentDao.getItemForReplenishment(altercode);
 
