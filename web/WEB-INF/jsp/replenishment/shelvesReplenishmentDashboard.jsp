@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Camelot Items Of Our Interest Dashboard</title>
+        <title>Shelves Replenishment Dashboard</title>
 
         <style>
             table, th, td {

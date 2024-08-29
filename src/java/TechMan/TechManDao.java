@@ -1202,7 +1202,7 @@ public class TechManDao {
 
         String query = "CREATE TABLE shelves_replenishment("
                 + "id INT NOT NULL AUTO_INCREMENT, "
-                + "altercode VARCHAR (100) NOT NULL, "
+                + "item_code VARCHAR (100) NOT NULL, "
                 + "referal_date_time DATETIME NOT NULL, "
                 + "quantity INT(3) NOT NULL, "
                 + "minimal_stock INT(3) DEFAULT 1, "
