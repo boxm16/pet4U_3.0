@@ -167,7 +167,7 @@ public class ReplenishmentDao {
                 String itemCode = resultSet.getString("item_code");
                 item.setCode(itemCode);
                 item.setReplenishmentQuantity(resultSet.getInt("quantity"));
-
+                item.setMinimalShelfStock(resultSet.getInt("minimal_stock"));
                 String dateTimeString = resultSet.getString("referal_date_time");
                 DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
                 LocalDateTime dateTime = LocalDateTime.parse(dateTimeString, format);
@@ -182,6 +182,61 @@ public class ReplenishmentDao {
             Logger.getLogger(ReplenishmentDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return allReplenishments;
+    }
+
+    public LinkedHashMap<String, Replenishment> addPet4uBasicData(LinkedHashMap<String, Replenishment> replenishments, StringBuilder inPartForSqlQuery) {
+        LinkedHashMap<String, Replenishment> returnedHashMap = new LinkedHashMap<>();
+        //i need new linkedHashMap to set order for positions from pet4udatabase
+        StringBuilder query
+                = new StringBuilder("SELECT * FROM WH1 WHERE  ALTERNATECODE IN ")
+                        .append(inPartForSqlQuery).append(" ORDER BY EXPR1;");
+     //   System.out.println(query);
+        ResultSet resultSet;
+
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
+            Statement statement = connection.createStatement();
+
+            resultSet = statement.executeQuery(query.toString());
+            while (resultSet.next()) {
+
+                String referalAltercode = resultSet.getString("ALTERNATECODE").trim();
+                String itemCode = resultSet.getString("ABBREVIATION").trim();
+
+                if (replenishments.containsKey(referalAltercode)) {
+                    Replenishment replenishment = replenishments.get(referalAltercode);
+                    replenishment.setCode(itemCode);
+                    replenishment.setDescription(resultSet.getString("NAME").trim());
+                    String position = "";
+                    if (resultSet.getString("EXPR1") != null) {
+                        position = resultSet.getString("EXPR1").trim();
+                    } else {
+                        System.out.println("Something Wrong Here. Position null for referalCode in pet4u main database (WH1): " + referalAltercode);
+                    }
+                    if (position.isEmpty()) {
+                        System.out.println("Something Wrong Here.Empty position for referalCode in pet4u main database (WH1): " + referalAltercode);
+                        continue;
+                    }
+                    replenishment.setPosition(position);
+                    replenishment.setQuantity(resultSet.getString("QTYBALANCE"));
+                    String state = "";
+                    if (resultSet.getString("EXPR2") != null) {
+                        state = resultSet.getString("EXPR2").trim();
+                    }
+                    replenishment.setState(state);
+                    returnedHashMap.put(itemCode, replenishment);
+                } else {
+                    System.out.println("Something Wrong Here. Can't find referalAltercode in pet4u main database (WH1): " + referalAltercode);
+                }
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ReplenishmentDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return returnedHashMap;
     }
 
 }
