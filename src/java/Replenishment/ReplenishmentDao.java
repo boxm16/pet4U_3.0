@@ -253,9 +253,9 @@ public class ReplenishmentDao {
         LinkedHashMap<String, Replenishment> returnedHashMap = new LinkedHashMap<>();
         //i need new linkedHashMap to set order for positions from pet4udatabase
         StringBuilder query
-                = new StringBuilder("SELECT ABBREVIATION, DATE_TIME, QUANT1 FROM WH_SALES_DOCS WHERE  ABBREVIATION IN ")
+                = new StringBuilder("SELECT ABBREVIATION, DATE_TIME, QUANT1, DOCNAME FROM WH_SALES_DOCS WHERE  ABBREVIATION IN ")
                         .append(inPartForSqlQuery).append(" AND DATE_TIME >='" + oldestReplenishmentDateTimeString + "' ORDER BY DOCID;");
-           System.out.println(query);
+        System.out.println(query);
         ResultSet resultSet;
         try {
             DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
@@ -291,8 +291,16 @@ public class ReplenishmentDao {
                     //   String type = resultSet.getString("DOCNAME");
                     int quantity = resultSet.getInt("QUANT1");
                     //   String creationUser = resultSet.getString("USER_");
+                    String doctype = resultSet.getString("DOCNAME");
                     int sailsAfterReplenishment = replenishment.getSailsAfterReplenishment();
-                    sailsAfterReplenishment=sailsAfterReplenishment+quantity;
+
+                    if (doctype.equals("ΚΑΠΔ") || doctype.equals("ΚΔΑΤ1")) {
+                        sailsAfterReplenishment = sailsAfterReplenishment + quantity;
+                    }
+                    if (doctype.equals("ΚΑΕΛ") || doctype.equals("ΚΠΔΤ1")) {
+                        sailsAfterReplenishment = sailsAfterReplenishment - quantity;
+                    }
+
                     replenishment.setSailsAfterReplenishment(sailsAfterReplenishment);
                     returnedHashMap.put(itemCode, replenishment);
                 } else {
