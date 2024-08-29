@@ -88,7 +88,7 @@
                     out.println("</td>");
 
                     out.println("<td>");
-                    out.println("<a href='goForReplenishment.htm?altercode=" + replenishment.getCode() + "'>Edit</a>");
+                    out.println("<a href='goForReplenishment.htm?altercode=" + replenishment.getCode() + "' target='_blank'>Edit</a>");
                     out.println("</td>");
 
                     out.println("</tr>");
