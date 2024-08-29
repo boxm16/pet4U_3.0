@@ -24,6 +24,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class ReplenishmentDao {
 
+    private LocalDateTime oldestReplenishmentDateTime;
+
     Item getItemForReplenishment(String altercode) {
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
         Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
@@ -154,6 +156,7 @@ public class ReplenishmentDao {
     }
 
     LinkedHashMap<String, Replenishment> getAllReplenishments() {
+        oldestReplenishmentDateTime = LocalDateTime.now();
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
         Connection connection = databaseConnectionFactory.getMySQLConnection();
         LinkedHashMap<String, Replenishment> allReplenishments = new LinkedHashMap<String, Replenishment>();
@@ -174,6 +177,10 @@ public class ReplenishmentDao {
                 item.setDateTime(dateTime);
                 item.setNote(resultSet.getString("note"));
                 allReplenishments.put(itemCode, item);
+
+                if (dateTime.isBefore(oldestReplenishmentDateTime)) {
+                    oldestReplenishmentDateTime = dateTime;
+                }
             }
             resultSet.close();
             statement.close();
@@ -190,7 +197,7 @@ public class ReplenishmentDao {
         StringBuilder query
                 = new StringBuilder("SELECT * FROM WH1 WHERE  ALTERNATECODE IN ")
                         .append(inPartForSqlQuery).append(" ORDER BY EXPR1;");
-     //   System.out.println(query);
+        //   System.out.println(query);
         ResultSet resultSet;
 
         try {
@@ -228,6 +235,68 @@ public class ReplenishmentDao {
                     returnedHashMap.put(itemCode, replenishment);
                 } else {
                     System.out.println("Something Wrong Here. Can't find referalAltercode in pet4u main database (WH1): " + referalAltercode);
+                }
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ReplenishmentDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return returnedHashMap;
+    }
+
+    LinkedHashMap<String, Replenishment> addSailsData(LinkedHashMap<String, Replenishment> replenishments, StringBuilder inPartForSqlQuery) {
+        DateTimeFormatter CUSTOM_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+        String oldestReplenishmentDateTimeString = oldestReplenishmentDateTime.format(CUSTOM_FORMATTER);  //2022-12-09 18:25:58
+        LinkedHashMap<String, Replenishment> returnedHashMap = new LinkedHashMap<>();
+        //i need new linkedHashMap to set order for positions from pet4udatabase
+        StringBuilder query
+                = new StringBuilder("SELECT ABBREVIATION, DATE_TIME, QUANT1 FROM WH_SALES_DOCS WHERE  ABBREVIATION IN ")
+                        .append(inPartForSqlQuery).append(" AND DATE_TIME >='" + oldestReplenishmentDateTimeString + "' ORDER BY EXPR1;");
+        //   System.out.println(query);
+        ResultSet resultSet;
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
+            Statement statement = connection.createStatement();
+
+            resultSet = statement.executeQuery(query.toString());
+            while (resultSet.next()) {
+
+                String itemCode = resultSet.getString("ABBREVIATION").trim();
+
+                if (replenishments.containsKey(itemCode)) {
+                    Replenishment replenishment = replenishments.get(itemCode);
+
+                    String sailDateTimeStampString = resultSet.getString("DATE_TIME");
+                    DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
+                    DateTimeFormatter formatter3 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SS");
+                    DateTimeFormatter formatter4 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S");
+
+                    LocalDateTime sailDateTime;
+                    if (sailDateTimeStampString.length() == 23) {
+                        sailDateTime = LocalDateTime.parse(sailDateTimeStampString, formatter2);
+                    } else if (sailDateTimeStampString.length() == 22) {
+                        sailDateTime = LocalDateTime.parse(sailDateTimeStampString, formatter3);
+                    } else {
+                        sailDateTime = LocalDateTime.parse(sailDateTimeStampString, formatter4);
+                    }
+
+                    //int id = resultSet.getInt("DOCID");
+                    // String number = resultSet.getString("DOCNUMBER");
+                    //  String itemCode = resultSet.getString("ABBREVIATION");
+                    //  String description = resultSet.getString("NAME");
+                    //   String type = resultSet.getString("DOCNAME");
+                    int quantity = resultSet.getInt("QUANT1");
+                    //   String creationUser = resultSet.getString("USER_");
+                    int sailsAfterReplenishment = replenishment.getSailsAfterReplenishment();
+                    sailsAfterReplenishment=sailsAfterReplenishment+quantity;
+                    replenishment.setSailsAfterReplenishment(sailsAfterReplenishment);
+                    returnedHashMap.put(itemCode, replenishment);
+                } else {
+                    System.out.println("Something Wrong Here. Can't find item code  in pet4u main database (WH1): " + itemCode);
                 }
             }
             resultSet.close();

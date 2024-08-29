@@ -104,6 +104,7 @@ public class ReplenishmentController {
         ArrayList referalAltercodes = new ArrayList(replenishments.keySet());
         StringBuilder inPartForSqlQueryByReferralAltercodes = buildStringFromArrayList(referalAltercodes);
         replenishments = replenishmentDao.addPet4uBasicData(replenishments, inPartForSqlQueryByReferralAltercodes);
+        replenishments = replenishmentDao.addSailsData(replenishments, inPartForSqlQueryByReferralAltercodes);
 
         model.addAttribute("replenishments", replenishments);
         return "replenishment/shelvesReplenishmentDashboard";

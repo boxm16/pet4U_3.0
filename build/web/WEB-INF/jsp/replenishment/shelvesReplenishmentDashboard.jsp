@@ -42,8 +42,9 @@
             <th>Item<br>Code</th>
             <th>Position</th>
             <th>Pet4u Description</th>
-            <th>Referal DateTime</th>
+            <th>Referral DateTime</th>
             <th>Replenishment Quantity</th>
+            <th>Sails After Referral DateTime</th>
             <th>Minimal Shelf Stock</th>
             <th>Note</th>
             <th>Edit</th>
@@ -75,21 +76,19 @@
                     out.println("</td>");
 
                     out.println("<td>");
-                    out.println(replenishment.getMinimalShelfStock());
+                    out.println(replenishment.getSailsAfterReplenishment());
                     out.println("</td>");
 
-                  
-
-                  
+                    out.println("<td>");
+                    out.println(replenishment.getMinimalShelfStock());
+                    out.println("</td>");
 
                     out.println("<td>");
                     out.println(replenishment.getNote());
                     out.println("</td>");
 
-                   
-
                     out.println("<td>");
-                    out.println("<a href='goForEditingReplenishment.htm?code=" + replenishment.getCode()+ "'>Edit</a>");
+                    out.println("<a href='goForEditingReplenishment.htm?code=" + replenishment.getCode() + "'>Edit</a>");
                     out.println("</td>");
 
                     out.println("</tr>");
