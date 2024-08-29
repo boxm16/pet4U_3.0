@@ -254,7 +254,7 @@ public class ReplenishmentDao {
         //i need new linkedHashMap to set order for positions from pet4udatabase
         StringBuilder query
                 = new StringBuilder("SELECT ABBREVIATION, DATE_TIME, QUANT1 FROM WH_SALES_DOCS WHERE  ABBREVIATION IN ")
-                        .append(inPartForSqlQuery).append(" AND DATE_TIME >='" + oldestReplenishmentDateTimeString + "' ORDER BY EXPR1;");
+                        .append(inPartForSqlQuery).append(" AND DATE_TIME >='" + oldestReplenishmentDateTimeString + "' ORDER BY DOCID;");
         //   System.out.println(query);
         ResultSet resultSet;
         try {
