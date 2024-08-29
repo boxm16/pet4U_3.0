@@ -88,11 +88,11 @@ public class ReplenishmentController {
 
     }
 
-    @RequestMapping(value = "shelvesReplenishmentSV", method = RequestMethod.GET)
+    @RequestMapping(value = "shelvesReplenishment", method = RequestMethod.GET)
     public String shelvesReplenishmentSV(ModelMap model) {
         LinkedHashMap<String, Replenishment> replenishments = getReplenishments();
         model.addAttribute("replenishments", replenishments);
-        return "replenishment/shelvesReplenishmentSV";
+        return "replenishment/shelvesReplenishment";
 
     }
 

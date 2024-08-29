@@ -36,7 +36,7 @@
                 <hr> 
                  <hr> 
                
-                <a href="shelvesReplenishmentSV.htm" class="btn btn-primary" style='background-color: #f955d4' role="button"><h1>Αναπλήρωση Ραφιών</h1></a>
+                <a href="shelvesReplenishment.htm" class="btn btn-primary" style='background-color: #f955d4' role="button"><h1>Αναπλήρωση Ραφιών</h1></a>
                 <hr>
                
                 <a href="deliveryDashboard_X.htm" class="btn btn-primary" style='background-color: red' role="button"><h1>Delivery Dashboard</h1></a>
