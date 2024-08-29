@@ -255,7 +255,7 @@ public class ReplenishmentDao {
         StringBuilder query
                 = new StringBuilder("SELECT ABBREVIATION, DATE_TIME, QUANT1 FROM WH_SALES_DOCS WHERE  ABBREVIATION IN ")
                         .append(inPartForSqlQuery).append(" AND DATE_TIME >='" + oldestReplenishmentDateTimeString + "' ORDER BY DOCID;");
-        //   System.out.println(query);
+           System.out.println(query);
         ResultSet resultSet;
         try {
             DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
