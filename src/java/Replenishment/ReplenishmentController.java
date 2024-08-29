@@ -101,6 +101,10 @@ public class ReplenishmentController {
 
         ReplenishmentDao replenishmentDao = new ReplenishmentDao();
         LinkedHashMap<String, Replenishment> replenishments = replenishmentDao.getAllReplenishments();
+        ArrayList referalAltercodes = new ArrayList(replenishments.keySet());
+        StringBuilder inPartForSqlQueryByReferralAltercodes = buildStringFromArrayList(referalAltercodes);
+        replenishments = replenishmentDao.addPet4uBasicData(replenishments, inPartForSqlQueryByReferralAltercodes);
+
         model.addAttribute("replenishments", replenishments);
         return "replenishment/shelvesReplenishmentDashboard";
 
