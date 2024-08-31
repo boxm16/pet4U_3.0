@@ -133,7 +133,7 @@ public class ReplenishmentDao {
         return "New Replenishment Done Successfully";
     }
 
-    String updateReplenishment(String itemCode, String replenishmentQuantity, String note) {
+    public String updateReplenishment(String itemCode, String replenishmentQuantity, String note) {
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
         Connection connection = databaseConnectionFactory.getMySQLConnection();
 
@@ -302,7 +302,7 @@ public class ReplenishmentDao {
         return replenishments;
     }
 
-    String updateReplenishment(String itemCode, String minimalShelfStock) {
+  public  String updateReplenishment(String itemCode, String minimalShelfStock) {
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
         Connection connection = databaseConnectionFactory.getMySQLConnection();
 
