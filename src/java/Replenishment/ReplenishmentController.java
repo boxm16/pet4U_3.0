@@ -123,6 +123,18 @@ public class ReplenishmentController {
         return replenishments;
 
     }
+    
+    
+            
+            @RequestMapping(value = "goForEditingReplenishment", method = RequestMethod.GET)
+    public String goForEditingReplenishment(@RequestParam(name = "itemCode") String itemCode, ModelMap model) {
+
+        ReplenishmentDao replenishmentDao = new ReplenishmentDao();
+        Replenishment replenishment = replenishmentDao.getItemReplenishment(itemCode);
+        model.addAttribute("replenishment", replenishment);
+        return "replenishment/editReplenishment";
+
+    }
 
     private StringBuilder buildStringFromArrayList(ArrayList<String> arrayList) {
 
