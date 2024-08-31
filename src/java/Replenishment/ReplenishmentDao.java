@@ -192,11 +192,8 @@ public class ReplenishmentDao {
     }
 
     public LinkedHashMap<String, Replenishment> addPet4uBasicData(LinkedHashMap<String, Replenishment> replenishments, StringBuilder inPartForSqlQuery) {
-        LinkedHashMap<String, Replenishment> returnedHashMap = new LinkedHashMap<>();
-        //i need new linkedHashMap to set order for positions from pet4udatabase
-        StringBuilder query
-                = new StringBuilder("SELECT * FROM WH1 WHERE  ALTERNATECODE IN ")
-                        .append(inPartForSqlQuery).append(" ORDER BY EXPR1;");
+        StringBuilder query = new StringBuilder("SELECT * FROM WH1 WHERE  ALTERNATECODE IN ")
+                .append(inPartForSqlQuery).append(";");
         //   System.out.println(query);
         ResultSet resultSet;
 
@@ -215,16 +212,8 @@ public class ReplenishmentDao {
                     Replenishment replenishment = replenishments.get(referalAltercode);
                     replenishment.setCode(itemCode);
                     replenishment.setDescription(resultSet.getString("NAME").trim());
-                    String position = "";
-                    if (resultSet.getString("EXPR1") != null) {
-                        position = resultSet.getString("EXPR1").trim();
-                    } else {
-                        System.out.println("Something Wrong Here. Position null for referalCode in pet4u main database (WH1): " + referalAltercode);
-                    }
-                    if (position.isEmpty()) {
-                        System.out.println("Something Wrong Here.Empty position for referalCode in pet4u main database (WH1): " + referalAltercode);
-                        continue;
-                    }
+                    String position = resultSet.getString("EXPR1").trim();
+
                     replenishment.setPosition(position);
                     replenishment.setQuantity(resultSet.getString("QTYBALANCE"));
                     String state = "";
@@ -232,7 +221,7 @@ public class ReplenishmentDao {
                         state = resultSet.getString("EXPR2").trim();
                     }
                     replenishment.setState(state);
-                    returnedHashMap.put(itemCode, replenishment);
+                    replenishments.put(itemCode, replenishment);
                 } else {
                     System.out.println("Something Wrong Here. Can't find referalAltercode in pet4u main database (WH1): " + referalAltercode);
                 }
@@ -243,7 +232,7 @@ public class ReplenishmentDao {
         } catch (SQLException ex) {
             Logger.getLogger(ReplenishmentDao.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return returnedHashMap;
+        return replenishments;
     }
 
     LinkedHashMap<String, Replenishment> addSailsData(LinkedHashMap<String, Replenishment> replenishments, StringBuilder inPartForSqlQuery) {
