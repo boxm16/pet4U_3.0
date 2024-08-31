@@ -90,6 +90,7 @@ public class ReplenishmentDao {
             while (resultSet.next()) {
 
                 item = new Replenishment();
+                item.setCode(resultSet.getString("item_code"));
                 item.setReplenishmentQuantity(resultSet.getInt("quantity"));
 
                 String dateTimeString = resultSet.getString("referal_date_time");
