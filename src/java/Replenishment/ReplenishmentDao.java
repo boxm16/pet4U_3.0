@@ -96,6 +96,7 @@ public class ReplenishmentDao {
                 DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
                 LocalDateTime dateTime = LocalDateTime.parse(dateTimeString, format);
                 item.setDateTime(dateTime);
+                item.setMinimalShelfStock(resultSet.getInt("minimalStock"));
                 item.setNote(resultSet.getString("note"));
             }
             resultSet.close();
