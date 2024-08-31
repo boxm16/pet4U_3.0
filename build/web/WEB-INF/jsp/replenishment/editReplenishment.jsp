@@ -10,7 +10,7 @@
         <h1><a href="index.htm">INDEX</a></h1>
         <h1 style="background-color: ${resultColor}">${result}</h1>
 
-        <form action="editReplenishment.htm" method="POST" >
+        <form action="editReplenishmentMinimalStock.htm" method="POST" >
             <table>
                 <tr>
                     <td>Item Code</td>
