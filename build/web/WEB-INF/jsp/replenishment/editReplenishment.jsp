@@ -19,7 +19,7 @@
                    
                     <tr>
                         <td>Minimal Stock</td>
-                        <td>  <input type="number" name="minimalStock" value="${replenishment.minimalStock}">  </td> 
+                        <td>  <input type="number" name="minimalShelfStock" value="${replenishment.minimalShelfStock}">  </td> 
                     </tr>
                    
                    
@@ -31,8 +31,6 @@
           
         </form>
         <hr>
-        <hr>   <hr>   <hr>   <hr>   <hr>   <hr>   <hr>   <hr>
-        <h1 ><a href="deleteItemOfInterest.htm?code=${itemOfInterest.code}" style="color:red">DELETE ITEM</a></h1>
     </center>
 </body>
 </html>
