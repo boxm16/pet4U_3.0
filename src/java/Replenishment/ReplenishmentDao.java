@@ -239,7 +239,7 @@ public class ReplenishmentDao {
         DateTimeFormatter CUSTOM_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
         String oldestReplenishmentDateTimeString = oldestReplenishmentDateTime.format(CUSTOM_FORMATTER);  //2022-12-09 18:25:58
-        LinkedHashMap<String, Replenishment> returnedHashMap = new LinkedHashMap<>();
+      
         //i need new linkedHashMap to set order for positions from pet4udatabase
         StringBuilder query
                 = new StringBuilder("SELECT ABBREVIATION, DATE_TIME, QUANT1, DOCNAME FROM WH_SALES_DOCS WHERE  ABBREVIATION IN ")
@@ -291,7 +291,7 @@ public class ReplenishmentDao {
                     }
 
                     replenishment.setSailsAfterReplenishment(sailsAfterReplenishment);
-                    returnedHashMap.put(itemCode, replenishment);
+                    replenishments.put(itemCode, replenishment);
                 } else {
                     System.out.println("Something Wrong Here. Can't find item code  in pet4u main database (WH1): " + itemCode);
                 }
@@ -302,7 +302,7 @@ public class ReplenishmentDao {
         } catch (SQLException ex) {
             Logger.getLogger(ReplenishmentDao.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return returnedHashMap;
+        return replenishments;
     }
 
 }
