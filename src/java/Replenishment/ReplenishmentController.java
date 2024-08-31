@@ -134,7 +134,7 @@ public class ReplenishmentController {
 
     }
 
-    @RequestMapping(value = "editReplenishmentMinimalStock", method = RequestMethod.GET)
+    @RequestMapping(value = "editReplenishmentMinimalStock", method = RequestMethod.POST)
     public String editReplenishmentMinimalStock(@RequestParam(name = "itemCode") String itemCode, @RequestParam(name = "minimalShelfStock") String minimalShelfStock, ModelMap model) {
 
         ReplenishmentDao replenishmentDao = new ReplenishmentDao();
