@@ -123,15 +123,29 @@ public class ReplenishmentController {
         return replenishments;
 
     }
-    
-    
-            
-            @RequestMapping(value = "goForEditingReplenishment", method = RequestMethod.GET)
+
+    @RequestMapping(value = "goForEditingReplenishment", method = RequestMethod.GET)
     public String goForEditingReplenishment(@RequestParam(name = "itemCode") String itemCode, ModelMap model) {
 
         ReplenishmentDao replenishmentDao = new ReplenishmentDao();
         Replenishment replenishment = replenishmentDao.getItemReplenishment(itemCode);
         model.addAttribute("replenishment", replenishment);
+        return "replenishment/editReplenishment";
+
+    }
+
+    @RequestMapping(value = "editReplenishment", method = RequestMethod.GET)
+    public String editReplenishment(@RequestParam(name = "itemCode") String itemCode, @RequestParam(name = "minimalShelfStock") String minimalShelfStock, ModelMap model) {
+
+        ReplenishmentDao replenishmentDao = new ReplenishmentDao();
+        String result = replenishmentDao.updateReplenishment(itemCode, minimalShelfStock);
+
+        if (result.equals("Replenishment Updated Successfully")) {
+            model.addAttribute("resultColor", "green");
+        } else {
+            model.addAttribute("resultColor", "red");
+        }
+        model.addAttribute("result", result);
         return "replenishment/editReplenishment";
 
     }

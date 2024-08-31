@@ -302,4 +302,27 @@ public class ReplenishmentDao {
         return replenishments;
     }
 
+    String updateReplenishment(String itemCode, String minimalShelfStock) {
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+        Connection connection = databaseConnectionFactory.getMySQLConnection();
+
+        try {
+            PreparedStatement updateStatement = connection.prepareStatement("UPDATE shelves_replenishment  SET minimal_stock=? WHERE item_code=?");
+
+            updateStatement.setString(1, minimalShelfStock);
+            updateStatement.setString(2, itemCode);
+            updateStatement.executeUpdate();
+            updateStatement.close();
+
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ReplenishmentDao.class.getName()).log(Level.SEVERE, null, ex);
+
+            return ex.getMessage();
+        }
+
+        return "Replenishment Updated Successfully";
+    }
+
 }
