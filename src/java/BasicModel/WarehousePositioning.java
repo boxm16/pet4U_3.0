@@ -18,6 +18,8 @@ public class WarehousePositioning {
     private LinkedHashMap<String, Object> KS;
     private LinkedHashMap<String, Object> N;
     private LinkedHashMap<String, Object> M;
+
+    private LinkedHashMap<String, Object> Y;
     private LinkedHashMap<String, Object> A;
 
     public WarehousePositioning() {
@@ -200,6 +202,28 @@ public class WarehousePositioning {
         this.M.put("05Μ-27", "--");
         this.M.put("05Μ-28", "--");
         this.M.put("05Μ-29", "--");
+
+        this.Y = new LinkedHashMap<>();
+        this.Y.put("20Υ-01", "--");
+
+        this.A = new LinkedHashMap<>();
+
+        this.A.put("07Α-01", "--");
+        this.A.put("07Α-02", "--");
+        this.A.put("07Α-03", "--");
+        this.A.put("07Α-04", "--");
+        this.A.put("07Α-05", "--");
+        this.A.put("07Α-06", "--");
+        this.A.put("07Α-07", "--");
+        this.A.put("07Α-08", "--");
+        this.A.put("07Α-09", "--");
+        this.A.put("07Α-10", "--");
+        this.A.put("07Α-11", "--");
+        this.A.put("07Α-12", "--");
+        this.A.put("07Α-13", "--");
+        this.A.put("07Α-14", "--");
+        this.A.put("07Α-15", "--");
+
     }
 
     public LinkedHashMap<String, Object> getP() {
