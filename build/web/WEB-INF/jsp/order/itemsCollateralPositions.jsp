@@ -79,7 +79,7 @@
                                         }
 
                                         out.println("<tr height='20px'>");
-                                        out.println("<td style='width:30px; font-size: 30px; background-color: lightgreen;'>");
+                                        out.println("<td style='width:30px; font-size: 20px; background-color: lightgreen;'>");
 
                                         if (positionsTraffic.containsKey(k)) {
                                             if (entrySet.getValue().equals("")) {
@@ -97,7 +97,7 @@
                                         }
 
                                         out.println("</td>");
-                                        out.println("<td style='width:20px; font-size: 20px;'>");
+                                        out.println("<td style='width:20px; font-size: 15px;'>");
                                         out.println(entrySet.getKey());
                                         out.println("</td>");
 
