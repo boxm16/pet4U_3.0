@@ -14,6 +14,11 @@ import java.util.LinkedHashMap;
 public class WarehousePositioning {
 
     private LinkedHashMap<String, Object> P;
+    private LinkedHashMap<String, Object> O;
+    private LinkedHashMap<String, Object> KS;
+    private LinkedHashMap<String, Object> N;
+    private LinkedHashMap<String, Object> M;
+    private LinkedHashMap<String, Object> A;
 
     public WarehousePositioning() {
         this.P = new LinkedHashMap<>();
@@ -33,6 +38,7 @@ public class WarehousePositioning {
         this.P.put("01Π-14", null);
         this.P.put("01Π-15", null);
         this.P.put("01Π-16", null);
+        this.P.put("   ", null);
         this.P.put("01Π-17", null);
         this.P.put("01Π-18", null);
         this.P.put("01Π-19", null);
@@ -45,6 +51,37 @@ public class WarehousePositioning {
         this.P.put("01Π-26", null);
         this.P.put("01Π-27", null);
 
+        this.O = new LinkedHashMap<>();
+
+        this.P.put("02O-1", null);
+        this.P.put("02O-2", null);
+        this.P.put("02O-3", null);
+        this.P.put("02O-4", null);
+        this.P.put("02O-5", null);
+        this.P.put("02O-6", null);
+        this.P.put("02O-7", null);
+        this.P.put("02O-8", null);
+        this.P.put("02O-9", null);
+        this.P.put("02O-10", null);
+        this.P.put("02O-11", null);
+        this.P.put("02O-12", null);
+        this.P.put("02O-13", null);
+        this.P.put("02O-14", null);
+        this.P.put("02O-15", null);
+        this.P.put("02O-16", null);
+        this.P.put("   ", null);
+        this.P.put("02O-17", null);
+        this.P.put("02O-18", null);
+        this.P.put("02O-19", null);
+        this.P.put("02O-20", null);
+        this.P.put("02O-21", null);
+        this.P.put("02O-22", null);
+        this.P.put("02O-23", null);
+        this.P.put("02O-24", null);
+        this.P.put("02O-25", null);
+        this.P.put("02O-26", null);
+        this.P.put("02O-27", null);
+
     }
 
     public LinkedHashMap<String, Object> getP() {
@@ -54,6 +91,15 @@ public class WarehousePositioning {
     public void setP(LinkedHashMap<String, Object> P) {
         this.P = P;
     }
+
+    public LinkedHashMap<String, Object> getO() {
+        return O;
+    }
+
+    public void setO(LinkedHashMap<String, Object> O) {
+        this.O = O;
+    }
     
     
+
 }
