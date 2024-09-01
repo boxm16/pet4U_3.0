@@ -29,7 +29,7 @@
                                     LinkedHashMap<String, Object> p = positions.getP();
                                     for (Map.Entry<String, Object> entrySet : p.entrySet()) {
 
-                                        out.println("<tr height='30px'>");
+                                        out.println("<tr height='20px'>");
                                         out.println("<td>");
                                         out.println(entrySet.getValue());
                                         out.println("</td>");
@@ -47,10 +47,10 @@
                         <table>
                             <tbody>
                                 <%
-                                    LinkedHashMap<String, Object> O = positions.getP();
-                                    for (Map.Entry<String, Object> entrySet : p.entrySet()) {
+                                    LinkedHashMap<String, Object> o = positions.getP();
+                                    for (Map.Entry<String, Object> entrySet : o.entrySet()) {
 
-                                        out.println("<tr height='30px'>");
+                                        out.println("<tr height='20px'>");
 
                                         out.println("<td>");
                                         out.println(entrySet.getKey());
