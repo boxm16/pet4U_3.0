@@ -82,8 +82,8 @@ public class WarehousePositioning {
         this.O.put("02O-25", "--");
         this.O.put("02O-26", "--");
         this.O.put("02O-27", "--");
-        
-         this.O = new LinkedHashMap<>();
+
+        this.KS = new LinkedHashMap<>();
 
         this.KS.put("03Ξ-1", "--");
         this.KS.put("03Ξ-2", "--");
