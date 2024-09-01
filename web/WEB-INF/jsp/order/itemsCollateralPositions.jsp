@@ -130,7 +130,7 @@
                                     for (Map.Entry<String, Object> entrySet : o.entrySet()) {
                                         String k = entrySet.getKey();
 
-                                        out.println("<tr height='25px'>");
+                                        out.println("<tr height='30px'>");
 
                                         if (entrySet.getKey().contains("emptySpace")) {
                                             out.println("<td style='width:20px; font-size: 15px;'>");
@@ -184,7 +184,7 @@
                                 <%
                                     for (int x = 0; x < 29; x++) {
 
-                                        out.println("<tr height='25px'>");
+                                        out.println("<tr height='30px'>");
 
                                         out.println("<td width='20px'>");
                                         out.println("    ");
@@ -204,7 +204,7 @@
                                     for (Map.Entry<String, Object> entrySet : ks.entrySet()) {
                                         String k = entrySet.getKey();
 
-                                        out.println("<tr height='25px'>");
+                                        out.println("<tr height='30px'>");
                                         if (positionsTraffic.containsKey(k)) {
                                             if (entrySet.getKey().contains("emptySpace")) {
                                                 out.println("<td style='width:30px;'>");
@@ -259,7 +259,7 @@
                                     for (Map.Entry<String, Object> entrySet : n.entrySet()) {
                                         String k = entrySet.getKey();
 
-                                        out.println("<tr height='25px'>");
+                                        out.println("<tr height='30px'>");
 
                                         if (entrySet.getKey().contains("emptySpace")) {
                                             out.println("<td style='width:20px; font-size: 15px;'>");
@@ -313,7 +313,7 @@
                                 <%
                                     for (int x = 0; x < 30; x++) {
 
-                                        out.println("<tr height='25px'>");
+                                        out.println("<tr height='30px'>");
 
                                         out.println("<td width='20px'>");
                                         out.println("    ");
@@ -333,7 +333,7 @@
                                     for (Map.Entry<String, Object> entrySet : m.entrySet()) {
                                         String k = entrySet.getKey();
 
-                                        out.println("<tr height='25px'>");
+                                        out.println("<tr height='30px'>");
                                         if (positionsTraffic.containsKey(k)) {
                                             if (entrySet.getKey().contains("emptySpace")) {
                                                 out.println("<td style='width:30px;'>");
