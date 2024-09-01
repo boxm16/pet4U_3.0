@@ -387,10 +387,15 @@
                                     for (int x = 0; x < 33; x++) {
 
                                         out.println("<tr height='31px'>");
-
-                                        out.println("<td style='width:10px; background-color:black'>");
-                                        out.println("  ");
-                                        out.println("</td>");
+                                        if (x == 2) {
+                                            out.println("<td style='width:10px;>");
+                                            out.println("  ");
+                                            out.println("</td>");
+                                        } else {
+                                            out.println("<td style='width:10px; background-color:black'>");
+                                            out.println("  ");
+                                            out.println("</td>");
+                                        }
 
                                         out.println("</tr>");
                                     }
