@@ -3,6 +3,7 @@
     Created on : Jun 25, 2023, 6:30:28 PM
     Author     : Michail Sitmalidis
 --%>
+<%@page import="java.time.LocalDate"%>
 <%@page import="Endo.EndoPackaging"%>
 <%@page import="BasicModel.Item"%>
 <%@page import="Endo.EndoApostolis"%>
@@ -59,7 +60,10 @@
 
         <h1>Endo Order Checking</h1>
         <h1>${endoApostolis.receiver}</h1>
-         <h1>${endoApostolis.dateString}</h1>
+        <% EndoApostolis endoApostolis = (EndoApostolis) request.getAttribute("endoApostolis");
+            LocalDate date = endoApostolis.getDate();
+        %>
+        <h1>${endoOrder.dateString}</h1>
         <hr>
         <table>
             <thead> 
@@ -77,7 +81,6 @@
                 <%
                     int x = 1;
                     int y = 0;
-                    EndoApostolis endoApostolis = (EndoApostolis) request.getAttribute("endoApostolis");
                     LinkedHashMap<String, Item> invoicedItems = endoApostolis.getItems();
 
                     EndoOrder endoOrder = (EndoOrder) request.getAttribute("endoOrder");

@@ -5,6 +5,9 @@
  */
 package Endo;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+
 /**
  *
  * @author Michail Sitmalidis
@@ -52,4 +55,13 @@ public class EndoApostolis extends EndoParalavis {
         this.isChanged = isChanged;
     }
 
+    public LocalDate calculateDayOfApostilis() {
+
+        LocalDate now = LocalDate.now();
+        if (now.getDayOfWeek() == DayOfWeek.FRIDAY) {
+            return now.plusDays(3);
+        } else {
+            return now.plusDays(1);
+        }
+    }
 }
