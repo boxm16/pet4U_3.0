@@ -23,15 +23,15 @@ public class WarehousePositioning {
     public WarehousePositioning() {
 
         this.P = new LinkedHashMap<>();
-        this.P.put("01Π-1", "--");
-        this.P.put("01Π-2", "--");
-        this.P.put("01Π-3", "--");
-        this.P.put("01Π-4", "--");
-        this.P.put("01Π-5", "--");
-        this.P.put("01Π-6", "--");
-        this.P.put("01Π-7", "--");
-        this.P.put("01Π-8", "--");
-        this.P.put("01Π-9", "--");
+        this.P.put("01Π-01", "--");
+        this.P.put("01Π-02", "--");
+        this.P.put("01Π-03", "--");
+        this.P.put("01Π-04", "--");
+        this.P.put("01Π-05", "--");
+        this.P.put("01Π-06", "--");
+        this.P.put("01Π-07", "--");
+        this.P.put("01Π-08", "--");
+        this.P.put("01Π-09", "--");
         this.P.put("01Π-10", "--");
         this.P.put("01Π-11", "--");
         this.P.put("01Π-12", "--");
@@ -55,15 +55,15 @@ public class WarehousePositioning {
 
         this.O = new LinkedHashMap<>();
 
-        this.O.put("02O-1", "--");
-        this.O.put("02O-2", "--");
-        this.O.put("02O-3", "--");
-        this.O.put("02O-4", "--");
-        this.O.put("02O-5", "--");
-        this.O.put("02O-6", "--");
-        this.O.put("02O-7", "--");
-        this.O.put("02O-8", "--");
-        this.O.put("02O-9", "--");
+        this.O.put("02O-01", "--");
+        this.O.put("02O-02", "--");
+        this.O.put("02O-03", "--");
+        this.O.put("02O-04", "--");
+        this.O.put("02O-05", "--");
+        this.O.put("02O-06", "--");
+        this.O.put("02O-07", "--");
+        this.O.put("02O-08", "--");
+        this.O.put("02O-09", "--");
         this.O.put("02O-10", "--");
         this.O.put("02O-11", "--");
         this.O.put("02O-12", "--");
