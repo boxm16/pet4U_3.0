@@ -408,14 +408,11 @@
                             <tbody>
                                 <%
                                     LinkedHashMap<String, Object> y = positions.getY();
-                                    int x = 0;
+
                                     for (Map.Entry<String, Object> entrySet : y.entrySet()) {
                                         String k = entrySet.getKey();
-                                        if (x > 5) {
-                                            out.println("<tr height='60px'>");
-                                        } else {
-                                            out.println("<tr height='30px'>");
-                                        }
+
+                                        out.println("<tr height='30px'>");
 
                                         if (entrySet.getKey().contains("emptySpace")) {
                                             out.println("<td style='width:20px; font-size: 15px;'>");
@@ -464,8 +461,12 @@
                                     LinkedHashMap<String, Object> a = positions.getA();
                                     for (Map.Entry<String, Object> entrySet : a.entrySet()) {
                                         String k = entrySet.getKey();
-
-                                        out.println("<tr height='30px'>");
+                                        int x = 0;
+                                        if (x > 5) {
+                                            out.println("<tr height='60px'>");
+                                        } else {
+                                            out.println("<tr height='30px'>");
+                                        }
 
                                         if (entrySet.getKey().contains("emptySpace")) {
                                             out.println("<td style='width:20px; font-size: 15px;'>");
