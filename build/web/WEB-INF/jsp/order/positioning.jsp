@@ -31,7 +31,7 @@
 
                                         out.println("<tr>");
                                         out.println("<td>");
-                                        out.println("--");
+                                        out.println(entrySet.getValue());
                                         out.println("</td>");
                                         out.println("<td>");
                                         out.println(entrySet.getKey());
@@ -56,7 +56,7 @@
                                         out.println(entrySet.getKey());
                                         out.println("</td>");
                                         out.println("<td>");
-                                        out.println("--");
+                                        out.println(entrySet.getValue());
                                         out.println("</td>");
 
                                         out.println("</tr>");
