@@ -42,7 +42,23 @@
                         </table>
                     </td>
                     <td>
-                        _______________----
+                        <table>
+                            <tbody>
+                                <%
+                                    LinkedHashMap<String, Object> O = positions.getP();
+                                    for (Map.Entry<String, Object> entrySet : p.entrySet()) {
+
+                                        out.println("<tr>");
+
+                                        out.println("<td>");
+                                        out.println(entrySet.getKey());
+                                        out.println("</td>");
+
+                                        out.println("</tr>");
+                                    }
+                                %>
+                            </tbody>
+                        </table>
                     </td>
                     <td>
                         ++++
