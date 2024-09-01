@@ -576,7 +576,7 @@ public class EndoDaoX {
             while (resultSet.next()) {
                 if (rowIndex == 0) {
                     String number = resultSet.getString("DOCNUMBER");
-                  //  String destination = resultSet.getString("DESTINATION");
+                    //  String destination = resultSet.getString("DESTINATION");
                     String destination = translateStoreNameV(resultSet.getString("DESTINATION"));
                     String date = resultSet.getString("DOCDATE");
                     String[] splittedDate = date.split(" ");
@@ -1051,6 +1051,7 @@ public class EndoDaoX {
                     EndoOrderItem endoOrderItem = new EndoOrderItem();
 
                     endoOrderItem.setCode(itemCode);
+                    endoOrderItem.setDescription(resultSet.getString("item_description"));
                     endoOrders.get(orderId).addOrderItem(itemCode, endoOrderItem);
 
                 } else {

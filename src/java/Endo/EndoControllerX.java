@@ -554,7 +554,7 @@ public class EndoControllerX {
                 EndoOrderItem orderedItem = orderedItemsEntry.getValue();
                 if (allNotForEndos.contains(orderedItem.getCode())) {
 
-                    String notForEndo = endoOrder.getDestination() + " : " + orderedItem.getCode();
+                    String notForEndo = endoOrder.getDestination() + " : " + orderedItem.getCode() + " : " + orderedItem.getDescription();
                     notForEndosForTheseOrders.add(notForEndo);
                 }
             }
