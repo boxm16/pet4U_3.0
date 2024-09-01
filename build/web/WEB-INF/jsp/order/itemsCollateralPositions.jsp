@@ -99,18 +99,23 @@
                                     LinkedHashMap<String, Object> o = positions.getO();
                                     for (Map.Entry<String, Object> entrySet : o.entrySet()) {
                                         String k = entrySet.getKey();
-                                        int traffic = 0;
-                                        if (positionsTraffic.containsKey(k)) {
-                                            traffic = positionsTraffic.get(k);
-                                        }
 
                                         out.println("<tr height='20px'>");
 
                                         out.println("<td>");
                                         out.println(entrySet.getKey());
                                         out.println("</td>");
+
                                         out.println("<td>");
-                                        out.println(traffic);
+                                        if (positionsTraffic.containsKey(k)) {
+                                            if (entrySet.getValue().equals("")) {
+                                                out.println("");
+                                            } else {
+                                                out.println(positionsTraffic.get(k));
+                                            }
+                                        } else {
+                                            out.println(0);
+                                        }
                                         out.println("</td>");
 
                                         out.println("</tr>");
