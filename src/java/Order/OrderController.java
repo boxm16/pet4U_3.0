@@ -446,6 +446,8 @@ public class OrderController {
         modelMap.addAttribute("startDate", startDate);
         modelMap.addAttribute("endDate", endDate);
 
+        WarehousePositioning warehousePositioning = new WarehousePositioning();
+        modelMap.addAttribute("warehousePositioning", warehousePositioning);
         return "/order/itemsCollateralPositions";
     }
 

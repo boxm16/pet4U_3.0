@@ -61,6 +61,155 @@
                     }
                 %>
         </table>
+        <hr><hr><hr><hr><hr><hr><hr><hr><hr>
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        <table>
+                            <tbody>
+                                <%
+                                    LinkedHashMap<String, Object> p = positions.getP();
+                                    for (Map.Entry<String, Object> entrySet : p.entrySet()) {
+
+                                        out.println("<tr height='20px'>");
+                                        out.println("<td>");
+                                        out.println(entrySet.getValue());
+                                        out.println("</td>");
+                                        out.println("<td>");
+                                        out.println(entrySet.getKey());
+                                        out.println("</td>");
+
+                                        out.println("</tr>");
+                                    }
+                                %>
+                            </tbody>
+                        </table>
+                    </td>
+                    <td>
+                        <table>
+                            <tbody>
+                                <%
+                                    LinkedHashMap<String, Object> o = positions.getO();
+                                    for (Map.Entry<String, Object> entrySet : o.entrySet()) {
+
+                                        out.println("<tr height='20px'>");
+
+                                        out.println("<td>");
+                                        out.println(entrySet.getKey());
+                                        out.println("</td>");
+                                        out.println("<td>");
+                                        out.println(entrySet.getValue());
+                                        out.println("</td>");
+
+                                        out.println("</tr>");
+                                    }
+                                %>
+                            </tbody>
+                        </table>
+                    </td>
+                    <td>
+                        <table>
+                            <tbody>
+                                <%
+                                    for (int x = 0; x < 29; x++) {
+
+                                        out.println("<tr height='20px'>");
+
+                                        out.println("<td width='20px'>");
+                                        out.println("    ");
+                                        out.println("</td>");
+
+                                        out.println("</tr>");
+                                    }
+                                %>
+                            </tbody>
+                        </table>
+                    </td>
+                    <td>
+                        <table>
+                            <tbody>
+                                <%
+                                    LinkedHashMap<String, Object> ks = positions.getKS();
+                                    for (Map.Entry<String, Object> entrySet : ks.entrySet()) {
+
+                                        out.println("<tr height='20px'>");
+                                        out.println("<td>");
+                                        out.println(entrySet.getValue());
+                                        out.println("</td>");
+                                        out.println("<td>");
+                                        out.println(entrySet.getKey());
+                                        out.println("</td>");
+
+                                        out.println("</tr>");
+                                    }
+                                %>
+                            </tbody>
+                        </table>
+                    </td>
+                    <td>
+                        <table>
+                            <tbody>
+                                <%
+                                    LinkedHashMap<String, Object> n = positions.getN();
+                                    for (Map.Entry<String, Object> entrySet : n.entrySet()) {
+
+                                        out.println("<tr height='20px'>");
+                                        out.println("<td>");
+                                        out.println(entrySet.getKey());
+                                        out.println("</td>");
+                                        out.println("<td>");
+                                        out.println(entrySet.getValue());
+                                        out.println("</td>");
+
+                                        out.println("</tr>");
+                                    }
+                                %>
+                            </tbody>
+                        </table>
+                    </td>
+                    <td>
+                        <table>
+                            <tbody>
+                                <%
+                                    for (int x = 0; x < 29; x++) {
+
+                                        out.println("<tr height='20px'>");
+
+                                        out.println("<td width='20px'>");
+                                        out.println("    ");
+                                        out.println("</td>");
+
+                                        out.println("</tr>");
+                                    }
+                                %>
+                            </tbody>
+                        </table>
+                    </td>
+                    <td>
+                        <table>
+                            <tbody>
+                                <%
+                                    LinkedHashMap<String, Object> m = positions.getM();
+                                    for (Map.Entry<String, Object> entrySet : m.entrySet()) {
+
+                                        out.println("<tr height='20px'>");
+                                        out.println("<td>");
+                                        out.println(entrySet.getValue());
+                                        out.println("</td>");
+                                        out.println("<td>");
+                                        out.println(entrySet.getKey());
+                                        out.println("</td>");
+
+                                        out.println("</tr>");
+                                    }
+                                %>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </center>
 </body>
 </html>
