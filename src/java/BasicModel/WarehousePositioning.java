@@ -87,15 +87,15 @@ public class WarehousePositioning {
 
         this.KS = new LinkedHashMap<>();
 
-        this.KS.put("03Ξ-1", "--");
-        this.KS.put("03Ξ-2", "--");
-        this.KS.put("03Ξ-3", "--");
-        this.KS.put("03Ξ-4", "--");
-        this.KS.put("03Ξ-5", "--");
-        this.KS.put("03Ξ-6", "--");
-        this.KS.put("03Ξ-7", "--");
-        this.KS.put("03Ξ-8", "--");
-        this.KS.put("03Ξ-9", "--");
+        this.KS.put("03Ξ-01", "--");
+        this.KS.put("03Ξ-02", "--");
+        this.KS.put("03Ξ-03", "--");
+        this.KS.put("03Ξ-04", "--");
+        this.KS.put("03Ξ-05", "--");
+        this.KS.put("03Ξ-06", "--");
+        this.KS.put("03Ξ-07", "--");
+        this.KS.put("03Ξ-08", "--");
+        this.KS.put("03Ξ-09", "--");
         this.KS.put("03Ξ-10", "--");
         this.KS.put("03Ξ-11", "--");
         this.KS.put("03Ξ-12", "--");
@@ -119,15 +119,15 @@ public class WarehousePositioning {
 
         this.N = new LinkedHashMap<>();
 
-        this.N.put("04Ν-1", "--");
-        this.N.put("04Ν-2", "--");
-        this.N.put("04Ν-3", "--");
-        this.N.put("04Ν-4", "--");
-        this.N.put("04Ν-5", "--");
-        this.N.put("04Ν-6", "--");
-        this.N.put("04Ν-7", "--");
-        this.N.put("04Ν-8", "--");
-        this.N.put("04Ν-9", "--");
+        this.N.put("04Ν-01", "--");
+        this.N.put("04Ν-02", "--");
+        this.N.put("04Ν-03", "--");
+        this.N.put("04Ν-04", "--");
+        this.N.put("04Ν-05", "--");
+        this.N.put("04Ν-06", "--");
+        this.N.put("04Ν-07", "--");
+        this.N.put("04Ν-08", "--");
+        this.N.put("04Ν-09", "--");
         this.N.put("04Ν-10", "--");
         this.N.put("04Ν-11", "--");
         this.N.put("04Ν-12", "--");
@@ -151,15 +151,15 @@ public class WarehousePositioning {
 
         this.M = new LinkedHashMap<>();
 
-        this.M.put("05Μ-1", "--");
-        this.M.put("05Μ-2", "--");
-        this.M.put("05Μ-3", "--");
-        this.M.put("05Μ-4", "--");
-        this.M.put("05Μ-5", "--");
-        this.M.put("05Μ-6", "--");
-        this.M.put("05Μ-7", "--");
-        this.M.put("05Μ-8", "--");
-        this.M.put("05Μ-9", "--");
+        this.M.put("05Μ-01", "--");
+        this.M.put("05Μ-02", "--");
+        this.M.put("05Μ-03", "--");
+        this.M.put("05Μ-04", "--");
+        this.M.put("05Μ-05", "--");
+        this.M.put("05Μ-06", "--");
+        this.M.put("05Μ-07", "--");
+        this.M.put("05Μ-08", "--");
+        this.M.put("05Μ-09", "--");
         this.M.put("05Μ-10", "--");
         this.M.put("05Μ-11", "--");
         this.M.put("05Μ-12", "--");
