@@ -182,7 +182,7 @@
                         <table>
                             <tbody>
                                 <%
-                                    for (int x = 0; x < 30; x++) {
+                                    for (int x = 0; x < 29; x++) {
 
                                         out.println("<tr height='30px'>");
 
@@ -311,7 +311,7 @@
                         <table>
                             <tbody>
                                 <%
-                                    for (int x = 0; x < 30; x++) {
+                                    for (int x = 0; x < 29; x++) {
 
                                         out.println("<tr height='30px'>");
 
