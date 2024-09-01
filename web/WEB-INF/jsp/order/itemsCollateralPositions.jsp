@@ -184,7 +184,7 @@
                                 <%
                                     for (int x = 0; x < 29; x++) {
 
-                                        out.println("<tr height='30px'>");
+                                        out.println("<tr height='31px'>");
 
                                         out.println("<td width='20px'>");
                                         out.println("    ");
@@ -313,7 +313,7 @@
                                 <%
                                     for (int x = 0; x < 29; x++) {
 
-                                        out.println("<tr height='35px'>");
+                                        out.println("<tr height='31px'>");
 
                                         out.println("<td width='20px'>");
                                         out.println("    ");
