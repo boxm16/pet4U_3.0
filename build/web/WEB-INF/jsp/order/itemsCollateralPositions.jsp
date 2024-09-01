@@ -105,7 +105,12 @@
                                         }
 
                                         out.println("<td style='width:20px; font-size: 15px;'>");
-                                        out.println(entrySet.getKey());
+                                        if (entrySet.getKey().contains("emptySpace")) {
+                                            out.println("");
+                                        } else {
+                                            out.println(entrySet.getKey());
+                                        }
+
                                         out.println("</td>");
 
                                         out.println("</tr>");
