@@ -21,6 +21,7 @@ public class WarehousePositioning {
     private LinkedHashMap<String, Object> A;
 
     public WarehousePositioning() {
+
         this.P = new LinkedHashMap<>();
         this.P.put("01Π-1", "--");
         this.P.put("01Π-2", "--");
@@ -99,7 +100,5 @@ public class WarehousePositioning {
     public void setO(LinkedHashMap<String, Object> O) {
         this.O = O;
     }
-    
-    
 
 }

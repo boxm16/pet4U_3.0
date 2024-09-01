@@ -66,7 +66,23 @@
                         </table>
                     </td>
                     <td>
-                        ++++
+                        <table>
+                            <tbody>
+                                <%
+                                    for (int x = 0; x < 29; x++) {
+
+                                        out.println("<tr height='20px'>");
+
+                                        out.println("<td width='20px'>");
+                                        out.println("    ");
+                                        out.println("</td>");
+                                       
+
+                                        out.println("</tr>");
+                                    }
+                                %>
+                            </tbody>
+                        </table>
                     </td>
                     <td>
                         ___
