@@ -204,7 +204,7 @@
                                     for (Map.Entry<String, Object> entrySet : ks.entrySet()) {
                                         String k = entrySet.getKey();
 
-                                        out.println("<tr height='25px'>");
+                                        out.println("<tr height='28px'>");
                                         if (positionsTraffic.containsKey(k)) {
                                             if (entrySet.getKey().contains("emptySpace")) {
                                                 out.println("<td style='width:30px;'>");
@@ -311,7 +311,7 @@
                         <table>
                             <tbody>
                                 <%
-                                    for (int x = 0; x < 29; x++) {
+                                    for (int x = 0; x < 30; x++) {
 
                                         out.println("<tr height='25px'>");
 
