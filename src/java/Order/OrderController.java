@@ -450,8 +450,9 @@ public class OrderController {
     }
 
     @RequestMapping(value = "positioning")
-    public String positioning() {
-        WarehousePositioning warehousePositioning=new WarehousePositioning();
+    public String positioning(ModelMap modelMap) {
+        WarehousePositioning warehousePositioning = new WarehousePositioning();
+        modelMap.addAttribute("warehousePositioning", warehousePositioning);
         return "/order/positioning";
     }
 }

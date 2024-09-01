@@ -4,6 +4,9 @@
     Author     : Michail Sitmalidis
 --%>
 
+<%@page import="java.util.Map"%>
+<%@page import="java.util.LinkedHashMap"%>
+<%@page import="BasicModel.WarehousePositioning"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,14 +15,31 @@
         <title>Positioning</title>
     </head>
     <body>
-
+        <%  WarehousePositioning positions = (WarehousePositioning) request.getAttribute("warehousePositioning");
+        %>
     <center>
         <h1>Positioning</h1>
         <table>
             <tbody>
                 <tr>
                     <td>
-                        Π
+                        <table>
+                            <tbody>
+                                <%
+                                    LinkedHashMap<String, Object> p = positions.getP();
+                                    for (Map.Entry<String, Object> entrySet : p.entrySet()) {
+
+                                        out.println("<tr>");
+
+                                        out.println("<td>");
+                                        out.println(entrySet.getKey());
+                                        out.println("</td>");
+
+                                        out.println("</tr>");
+                                    }
+                                %>
+                            </tbody>
+                        </table>
                     </td>
                     <td>
                         Ο
