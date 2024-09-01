@@ -130,28 +130,47 @@
                                     for (Map.Entry<String, Object> entrySet : o.entrySet()) {
                                         String k = entrySet.getKey();
 
-                                        out.println("<tr height='20px'>");
+                                        out.println("<tr height='25px'>");
 
-                                        out.println("<td>");
-                                        out.println(entrySet.getKey());
-                                        out.println("</td>");
-
-                                        out.println("<td>");
-                                        if (positionsTraffic.containsKey(k)) {
-                                            if (entrySet.getValue().equals("")) {
-                                                out.println("");
-                                            } else {
-                                                out.println(positionsTraffic.get(k));
-                                            }
+                                        if (entrySet.getKey().contains("emptySpace")) {
+                                            out.println("<td style='width:20px; font-size: 15px;'>");
+                                            out.println("");
+                                            out.println("</td>");
                                         } else {
-                                            if (entrySet.getValue().equals("")) {
-                                                out.println("");
+                                            if (itemBlockPosition.equals(entrySet.getKey())) {
+                                                out.println("<td style='width:20px; font-size: 15px; background-color: red;'>");
+                                                out.println(entrySet.getKey());
+                                                out.println("</td>");
                                             } else {
-                                                out.println(0);
+                                                out.println("<td style='width:20px; font-size: 15px;'>");
+                                                out.println(entrySet.getKey());
+                                                out.println("</td>");
                                             }
 
                                         }
-                                        out.println("</td>");
+
+                                        if (positionsTraffic.containsKey(k)) {
+                                            if (entrySet.getKey().contains("emptySpace")) {
+                                                out.println("<td style='width:30px;'>");
+                                                out.println("");
+                                                out.println("</td>");
+                                            } else {
+                                                out.println("<td style='width:30px; font-size: 25px; background-color: lightgreen;'>");
+                                                out.println(positionsTraffic.get(k));
+                                                out.println("</td>");
+                                            }
+                                        } else {
+                                            if (entrySet.getKey().contains("emptySpace")) {
+                                                out.println("<td style='width:30px; '>");
+                                                out.println("");
+                                                out.println("</td>");
+                                            } else {
+                                                out.println("<td style='width:30px; font-size: 25px; background-color: lightgreen;'>");
+                                                out.println(0);
+                                                out.println("</td>");
+                                            }
+
+                                        }
 
                                         out.println("</tr>");
                                     }
