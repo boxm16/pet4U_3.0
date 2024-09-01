@@ -59,6 +59,7 @@
 
         <h1>Endo Order Checking</h1>
         <h1>${endoApostolis.receiver}</h1>
+         <h1>${endoApostolis.dateString}</h1>
         <hr>
         <table>
             <thead> 
