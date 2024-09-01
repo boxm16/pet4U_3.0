@@ -388,7 +388,7 @@
 
                                         out.println("<tr height='31px'>");
                                         if (x == 2) {
-                                            out.println("<td style='width:10px;>");
+                                            out.println("<td style='width:10px;'>");
                                             out.println("  ");
                                             out.println("</td>");
                                         } else {
