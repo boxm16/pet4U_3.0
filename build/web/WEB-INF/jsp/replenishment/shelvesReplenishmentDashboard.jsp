@@ -46,6 +46,7 @@
             <th>Replenishment Quantity</th>
             <th>Sails After Referral DateTime</th>
             <th>Minimal Shelf Stock</th>
+            <th>Stock</th>
             <th>Note</th>
             <th>Edit</th>
             </thead>
@@ -81,6 +82,10 @@
 
                     out.println("<td>");
                     out.println(replenishment.getMinimalShelfStock());
+                    out.println("</td>");
+
+                    out.println("<td>");
+                    out.println(replenishment.getQunatityAsPieces());
                     out.println("</td>");
 
                     out.println("<td>");
