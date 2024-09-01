@@ -205,7 +205,7 @@
         <div id='printingResponseDisplay'></div>
         <hr>
         <h1>  <a href="bindOrderWithEndo.htm?orderId=${endoOrder.id}&outgoingEndoId=${endoApostolis.id}">SAVE (BIND) ENDO ORDER AND ENDO APOSTOLIS</a></h1>
-
+ <hr> <hr> <hr> <hr> <hr> <hr> <hr> <hr> <hr> <hr> <hr> <hr> <hr> <hr> <hr>
     </center>
 
 
