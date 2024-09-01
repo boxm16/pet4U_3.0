@@ -39,8 +39,8 @@ public class WarehousePositioning {
         this.P.put("01Π-14", "--");
         this.P.put("01Π-15", "--");
         this.P.put("01Π-16", "--");
-        this.P.put("   ", "");
-        this.P.put("   ", "");
+        this.P.put("emptySpace1", "");
+        this.P.put("emptySpace2", "");
         this.P.put("01Π-17", "--");
         this.P.put("01Π-18", "--");
         this.P.put("01Π-19", "--");
