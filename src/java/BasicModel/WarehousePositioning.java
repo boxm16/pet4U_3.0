@@ -211,6 +211,7 @@ public class WarehousePositioning {
         this.A.put("07Α-01", "--");
         this.A.put("07Α-02", "--");
         this.A.put("07Α-03", "--");
+        this.A.put("emptySpace1", "--");
         this.A.put("07Α-04", "--");
         this.A.put("07Α-05", "--");
         this.A.put("07Α-06", "--");
@@ -273,7 +274,6 @@ public class WarehousePositioning {
     public void setY(LinkedHashMap<String, Object> Y) {
         this.Y = Y;
     }
-    
 
     public LinkedHashMap<String, Object> getA() {
         return A;
