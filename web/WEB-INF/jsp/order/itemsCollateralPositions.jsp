@@ -79,10 +79,10 @@
                                         }
 
                                         out.println("<tr height='20px'>");
-                                        out.println("<td font-size='20px'>");
+                                        out.println("<td style='font-size: 30px;'>");
                                         out.println(traffic);
                                         out.println("</td>");
-                                       out.println("<td font-size='10px'>");
+                                        out.println("<td style='font-size: 10px;'>");
                                         out.println(entrySet.getKey());
                                         out.println("</td>");
 
