@@ -30,7 +30,9 @@
                                     for (Map.Entry<String, Object> entrySet : p.entrySet()) {
 
                                         out.println("<tr>");
-
+                                        out.println("<td>");
+                                        out.println("--");
+                                        out.println("</td>");
                                         out.println("<td>");
                                         out.println(entrySet.getKey());
                                         out.println("</td>");
@@ -52,6 +54,9 @@
 
                                         out.println("<td>");
                                         out.println(entrySet.getKey());
+                                        out.println("</td>");
+                                        out.println("<td>");
+                                        out.println("--");
                                         out.println("</td>");
 
                                         out.println("</tr>");
