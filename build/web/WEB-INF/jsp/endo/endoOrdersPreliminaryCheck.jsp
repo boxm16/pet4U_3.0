@@ -37,7 +37,7 @@
 
         <table>
             <thead>
-            <th>Destination:Item Code</th>
+            <th>Destination:Item Code:Item Description</th>
 
              </thead>
             <%
