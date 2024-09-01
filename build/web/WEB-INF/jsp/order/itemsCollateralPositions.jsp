@@ -408,7 +408,7 @@
                             <tbody>
                                 <%
                                     LinkedHashMap<String, Object> y = positions.getY();
-                                    for (Map.Entry<String, Object> entrySet : a.entrySet()) {
+                                    for (Map.Entry<String, Object> entrySet : y.entrySet()) {
                                         String k = entrySet.getKey();
 
                                         out.println("<tr height='30px'>");
