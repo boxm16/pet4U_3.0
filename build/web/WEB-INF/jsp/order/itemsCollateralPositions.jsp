@@ -72,10 +72,12 @@
                                 <%
                                     LinkedHashMap<String, Object> p = positions.getP();
                                     for (Map.Entry<String, Object> entrySet : p.entrySet()) {
+                                        String k = entrySet.getKey();
+                                        int traffic = positionsTraffic.get(k);
 
                                         out.println("<tr height='20px'>");
                                         out.println("<td>");
-                                        out.println(entrySet.getValue());
+                                        out.println(traffic);
                                         out.println("</td>");
                                         out.println("<td>");
                                         out.println(entrySet.getKey());
