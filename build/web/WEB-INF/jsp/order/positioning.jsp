@@ -85,7 +85,26 @@
                         </table>
                     </td>
                     <td>
-                        ___
+                       <table>
+                            <tbody>
+                                <%
+                                    LinkedHashMap<String, Object> o = positions.getP();
+                                    for (Map.Entry<String, Object> entrySet : o.entrySet()) {
+
+                                        out.println("<tr height='20px'>");
+
+                                        out.println("<td>");
+                                        out.println(entrySet.getKey());
+                                        out.println("</td>");
+                                        out.println("<td>");
+                                        out.println(entrySet.getValue());
+                                        out.println("</td>");
+
+                                        out.println("</tr>");
+                                    }
+                                %>
+                            </tbody>
+                        </table>
                     </td>
                     <td>
                         Ξ

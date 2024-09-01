@@ -82,6 +82,37 @@ public class WarehousePositioning {
         this.O.put("02O-25", "--");
         this.O.put("02O-26", "--");
         this.O.put("02O-27", "--");
+        
+         this.O = new LinkedHashMap<>();
+
+        this.KS.put("03Ξ-1", "--");
+        this.KS.put("03Ξ-2", "--");
+        this.KS.put("03Ξ-3", "--");
+        this.KS.put("03Ξ-4", "--");
+        this.KS.put("03Ξ-5", "--");
+        this.KS.put("03Ξ-6", "--");
+        this.KS.put("03Ξ-7", "--");
+        this.KS.put("03Ξ-8", "--");
+        this.KS.put("03Ξ-9", "--");
+        this.KS.put("03Ξ-10", "--");
+        this.KS.put("03Ξ-11", "--");
+        this.KS.put("03Ξ-12", "--");
+        this.KS.put("03Ξ-13", "--");
+        this.KS.put("03Ξ-14", "--");
+        this.KS.put("03Ξ-15", "--");
+        this.KS.put("03Ξ-16", "--");
+        this.KS.put("   ", "");
+        this.KS.put("03Ξ-17", "--");
+        this.KS.put("03Ξ-18", "--");
+        this.KS.put("03Ξ-19", "--");
+        this.KS.put("03Ξ-20", "--");
+        this.KS.put("03Ξ-21", "--");
+        this.KS.put("03Ξ-22", "--");
+        this.KS.put("03Ξ-23", "--");
+        this.KS.put("03Ξ-24", "--");
+        this.KS.put("03Ξ-25", "--");
+        this.KS.put("03Ξ-26", "--");
+        this.KS.put("03Ξ-27", "--");
 
     }
 
