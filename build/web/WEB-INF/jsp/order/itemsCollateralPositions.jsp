@@ -92,7 +92,7 @@
                                                 out.println("</td>");
                                             }
                                         } else {
-                                            if (entrySet.getValue().equals("")) {
+                                            if (entrySet.getKey().contains("emptySpace")) {
                                                 out.println("<td style='width:30px; '>");
                                                 out.println("");
                                                 out.println("</td>");
