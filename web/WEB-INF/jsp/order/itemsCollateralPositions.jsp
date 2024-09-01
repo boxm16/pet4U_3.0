@@ -78,7 +78,7 @@
                                             traffic = positionsTraffic.get(k);
                                         }
 
-                                        out.println("<tr height='20px'>");
+                                        out.println("<tr height='25px'>");
 
                                         if (positionsTraffic.containsKey(k)) {
 
@@ -87,7 +87,7 @@
                                                 out.println("");
                                                 out.println("</td>");
                                             } else {
-                                                out.println("<td style='width:30px; font-size: 20px; background-color: lightgreen;'>");
+                                                out.println("<td style='width:30px; font-size: 25px; background-color: lightgreen;'>");
                                                 out.println(positionsTraffic.get(k));
                                                 out.println("</td>");
                                             }
@@ -97,7 +97,7 @@
                                                 out.println("");
                                                 out.println("</td>");
                                             } else {
-                                                out.println("<td style='width:30px; font-size: 20px; background-color: lightgreen;'>");
+                                                out.println("<td style='width:30px; font-size: 25px; background-color: lightgreen;'>");
                                                 out.println(0);
                                                 out.println("</td>");
                                             }
