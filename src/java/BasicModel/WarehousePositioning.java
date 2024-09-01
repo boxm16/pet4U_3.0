@@ -29,6 +29,7 @@ public class WarehousePositioning {
         this.P.put("emptySpace02", "");
         this.P.put("emptySpace03", "");
         this.P.put("emptySpace04", "");
+        this.P.put("emptySpace05", "");
         this.P.put("01Π-01", "--");
         this.P.put("01Π-02", "--");
         this.P.put("01Π-03", "--");
@@ -65,6 +66,7 @@ public class WarehousePositioning {
         this.O.put("emptySpace02", "");
         this.O.put("emptySpace03", "");
         this.O.put("emptySpace04", "");
+        this.O.put("emptySpace05", "");
         this.O.put("02Ο-01", "--");
         this.O.put("02Ο-02", "--");
         this.O.put("02Ο-03", "--");
@@ -101,6 +103,7 @@ public class WarehousePositioning {
         this.KS.put("emptySpace02", "");
         this.KS.put("emptySpace03", "");
         this.KS.put("emptySpace04", "");
+        this.KS.put("emptySpace05", "");
         this.KS.put("03Ξ-01", "--");
         this.KS.put("03Ξ-02", "--");
         this.KS.put("03Ξ-03", "--");
@@ -137,6 +140,7 @@ public class WarehousePositioning {
         this.N.put("emptySpace02", "");
         this.N.put("emptySpace03", "");
         this.N.put("emptySpace04", "");
+        this.N.put("emptySpace05", "");
         this.N.put("04Ν-01", "--");
         this.N.put("04Ν-02", "--");
         this.N.put("04Ν-03", "--");
@@ -173,6 +177,7 @@ public class WarehousePositioning {
         this.M.put("emptySpace02", "");
         this.M.put("emptySpace03", "");
         this.M.put("emptySpace04", "");
+        this.M.put("emptySpace05", "");
         this.M.put("05Μ-01", "--");
         this.M.put("05Μ-02", "--");
         this.M.put("05Μ-03", "--");
