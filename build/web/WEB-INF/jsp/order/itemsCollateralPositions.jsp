@@ -182,7 +182,7 @@
                         <table>
                             <tbody>
                                 <%
-                                    for (int x = 0; x < 29; x++) {
+                                    for (int x = 0; x < 33; x++) {
 
                                         out.println("<tr height='31px'>");
 
@@ -311,7 +311,7 @@
                         <table>
                             <tbody>
                                 <%
-                                    for (int x = 0; x < 29; x++) {
+                                    for (int x = 0; x < 33; x++) {
 
                                         out.println("<tr height='31px'>");
 
@@ -373,6 +373,24 @@
                                             }
 
                                         }
+
+                                        out.println("</tr>");
+                                    }
+                                %>
+                            </tbody>
+                        </table>
+                    </td>
+                    <td>
+                        <table>
+                            <tbody>
+                                <%
+                                    for (int x = 0; x < 33; x++) {
+
+                                        out.println("<tr height='31px'>");
+
+                                        out.println("<td style='width:10px; background-color:black'>");
+                                        out.println("  ");
+                                        out.println("</td>");
 
                                         out.println("</tr>");
                                     }
