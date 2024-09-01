@@ -114,7 +114,12 @@
                                                 out.println(positionsTraffic.get(k));
                                             }
                                         } else {
-                                            out.println(0);
+                                            if (entrySet.getValue().equals("")) {
+                                                out.println("");
+                                            } else {
+                                                out.println(0);
+                                            }
+
                                         }
                                         out.println("</td>");
 
