@@ -73,15 +73,9 @@
                                     LinkedHashMap<String, Object> p = positions.getP();
                                     for (Map.Entry<String, Object> entrySet : p.entrySet()) {
                                         String k = entrySet.getKey();
-                                        int traffic = 0;
-                                        if (positionsTraffic.containsKey(k)) {
-                                            traffic = positionsTraffic.get(k);
-                                        }
 
                                         out.println("<tr height='25px'>");
-
                                         if (positionsTraffic.containsKey(k)) {
-
                                             if (entrySet.getKey().contains("emptySpace")) {
                                                 out.println("<td style='width:30px;'>");
                                                 out.println("");
@@ -110,7 +104,6 @@
                                         } else {
                                             out.println(entrySet.getKey());
                                         }
-
                                         out.println("</td>");
 
                                         out.println("</tr>");
