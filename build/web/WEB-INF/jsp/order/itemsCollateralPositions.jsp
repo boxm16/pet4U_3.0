@@ -80,7 +80,22 @@
 
                                         out.println("<tr height='20px'>");
                                         out.println("<td style='width:30px; font-size: 30px; background-color: lightgreen;'>");
-                                        out.println(traffic);
+
+                                        if (positionsTraffic.containsKey(k)) {
+                                            if (entrySet.getValue().equals("")) {
+                                                out.println("");
+                                            } else {
+                                                out.println(positionsTraffic.get(k));
+                                            }
+                                        } else {
+                                            if (entrySet.getValue().equals("")) {
+                                                out.println("");
+                                            } else {
+                                                out.println(0);
+                                            }
+
+                                        }
+
                                         out.println("</td>");
                                         out.println("<td style='width:20px; font-size: 20px;'>");
                                         out.println(entrySet.getKey());
