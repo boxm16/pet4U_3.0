@@ -88,8 +88,8 @@
                        <table>
                             <tbody>
                                 <%
-                                    LinkedHashMap<String, Object> o = positions.getP();
-                                    for (Map.Entry<String, Object> entrySet : o.entrySet()) {
+                                    LinkedHashMap<String, Object> ks = positions.getKS();
+                                    for (Map.Entry<String, Object> entrySet : ks.entrySet()) {
 
                                         out.println("<tr height='20px'>");
 

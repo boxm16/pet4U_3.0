@@ -132,4 +132,36 @@ public class WarehousePositioning {
         this.O = O;
     }
 
+    public LinkedHashMap<String, Object> getKS() {
+        return KS;
+    }
+
+    public void setKS(LinkedHashMap<String, Object> KS) {
+        this.KS = KS;
+    }
+
+    public LinkedHashMap<String, Object> getN() {
+        return N;
+    }
+
+    public void setN(LinkedHashMap<String, Object> N) {
+        this.N = N;
+    }
+
+    public LinkedHashMap<String, Object> getM() {
+        return M;
+    }
+
+    public void setM(LinkedHashMap<String, Object> M) {
+        this.M = M;
+    }
+
+    public LinkedHashMap<String, Object> getA() {
+        return A;
+    }
+
+    public void setA(LinkedHashMap<String, Object> A) {
+        this.A = A;
+    }
+
 }
