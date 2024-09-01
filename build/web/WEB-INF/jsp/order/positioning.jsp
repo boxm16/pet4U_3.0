@@ -76,7 +76,6 @@
                                         out.println("<td width='20px'>");
                                         out.println("    ");
                                         out.println("</td>");
-                                       
 
                                         out.println("</tr>");
                                     }
@@ -85,14 +84,34 @@
                         </table>
                     </td>
                     <td>
-                       <table>
+                        <table>
                             <tbody>
                                 <%
                                     LinkedHashMap<String, Object> ks = positions.getKS();
                                     for (Map.Entry<String, Object> entrySet : ks.entrySet()) {
 
                                         out.println("<tr height='20px'>");
+                                        out.println("<td>");
+                                        out.println(entrySet.getValue());
+                                        out.println("</td>");
+                                        out.println("<td>");
+                                        out.println(entrySet.getKey());
+                                        out.println("</td>");
 
+                                        out.println("</tr>");
+                                    }
+                                %>
+                            </tbody>
+                        </table>
+                    </td>
+                    <td>
+                        <table>
+                            <tbody>
+                                <%
+                                    LinkedHashMap<String, Object> n = positions.getKS();
+                                    for (Map.Entry<String, Object> entrySet : n.entrySet()) {
+
+                                        out.println("<tr height='20px'>");
                                         out.println("<td>");
                                         out.println(entrySet.getKey());
                                         out.println("</td>");
@@ -107,19 +126,43 @@
                         </table>
                     </td>
                     <td>
-                        Ξ
-                    </td>
-                    <td>
-                        Ν
-                    </td>
-                    <td>
-                        __
-                    </td>
-                    <td>
-                        Μ
-                    </td>
-                    <td>
+                        <table>
+                            <tbody>
+                                <%
+                                    for (int x = 0; x < 29; x++) {
 
+                                        out.println("<tr height='20px'>");
+
+                                        out.println("<td width='20px'>");
+                                        out.println("    ");
+                                        out.println("</td>");
+
+                                        out.println("</tr>");
+                                    }
+                                %>
+                            </tbody>
+                        </table>
+                    </td>
+                    <td>
+                        <table>
+                            <tbody>
+                                <%
+                                    LinkedHashMap<String, Object> m = positions.getKS();
+                                    for (Map.Entry<String, Object> entrySet : m.entrySet()) {
+
+                                        out.println("<tr height='20px'>");
+                                        out.println("<td>");
+                                        out.println(entrySet.getValue());
+                                        out.println("</td>");
+                                        out.println("<td>");
+                                        out.println(entrySet.getKey());
+                                        out.println("</td>");
+
+                                        out.println("</tr>");
+                                    }
+                                %>
+                            </tbody>
+                        </table>
                     </td>
                 </tr>
             </tbody>

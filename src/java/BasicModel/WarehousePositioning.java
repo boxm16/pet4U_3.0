@@ -40,6 +40,7 @@ public class WarehousePositioning {
         this.P.put("01Π-15", "--");
         this.P.put("01Π-16", "--");
         this.P.put("   ", "");
+        this.P.put("   ", "");
         this.P.put("01Π-17", "--");
         this.P.put("01Π-18", "--");
         this.P.put("01Π-19", "--");
@@ -70,6 +71,7 @@ public class WarehousePositioning {
         this.O.put("02O-14", "--");
         this.O.put("02O-15", "--");
         this.O.put("02O-16", "--");
+        this.O.put("   ", "");
         this.O.put("   ", "");
         this.O.put("02O-17", "--");
         this.O.put("02O-18", "--");
@@ -102,6 +104,7 @@ public class WarehousePositioning {
         this.KS.put("03Ξ-15", "--");
         this.KS.put("03Ξ-16", "--");
         this.KS.put("   ", "");
+        this.KS.put("   ", "");
         this.KS.put("03Ξ-17", "--");
         this.KS.put("03Ξ-18", "--");
         this.KS.put("03Ξ-19", "--");
@@ -114,6 +117,69 @@ public class WarehousePositioning {
         this.KS.put("03Ξ-26", "--");
         this.KS.put("03Ξ-27", "--");
 
+        this.N = new LinkedHashMap<>();
+
+        this.N.put("04Ν-1", "--");
+        this.N.put("04Ν-2", "--");
+        this.N.put("04Ν-3", "--");
+        this.N.put("04Ν-4", "--");
+        this.N.put("04Ν-5", "--");
+        this.N.put("04Ν-6", "--");
+        this.N.put("04Ν-7", "--");
+        this.N.put("04Ν-8", "--");
+        this.N.put("04Ν-9", "--");
+        this.N.put("04Ν-10", "--");
+        this.N.put("04Ν-11", "--");
+        this.N.put("04Ν-12", "--");
+        this.N.put("04Ν-13", "--");
+        this.N.put("04Ν-14", "--");
+        this.N.put("04Ν-15", "--");
+        this.N.put("04Ν-16", "--");
+        this.N.put("   ", "");
+        this.N.put("   ", "");
+        this.N.put("04Ν-17", "--");
+        this.N.put("04Ν-18", "--");
+        this.N.put("04Ν-19", "--");
+        this.N.put("04Ν-20", "--");
+        this.N.put("04Ν-21", "--");
+        this.N.put("04Ν-22", "--");
+        this.N.put("04Ν-23", "--");
+        this.N.put("04Ν-24", "--");
+        this.N.put("04Ν-25", "--");
+        this.N.put("04Ν-26", "--");
+        this.N.put("04Ν-27", "--");
+
+        this.M = new LinkedHashMap<>();
+
+        this.M.put("05Μ-1", "--");
+        this.M.put("05Μ-2", "--");
+        this.M.put("05Μ-3", "--");
+        this.M.put("05Μ-4", "--");
+        this.M.put("05Μ-5", "--");
+        this.M.put("05Μ-6", "--");
+        this.M.put("05Μ-7", "--");
+        this.M.put("05Μ-8", "--");
+        this.M.put("05Μ-9", "--");
+        this.M.put("05Μ-10", "--");
+        this.M.put("05Μ-11", "--");
+        this.M.put("05Μ-12", "--");
+        this.M.put("05Μ-13", "--");
+        this.M.put("05Μ-14", "--");
+        this.M.put("05Μ-15", "--");
+        this.M.put("05Μ-16", "--");
+        this.M.put("05Μ-17", "--");
+        this.M.put("05Μ-18", "--");
+        this.M.put("05Μ-19", "--");
+        this.M.put("05Μ-20", "--");
+        this.M.put("05Μ-21", "--");
+        this.M.put("05Μ-22", "--");
+        this.M.put("05Μ-23", "--");
+        this.M.put("05Μ-24", "--");
+        this.M.put("05Μ-25", "--");
+        this.M.put("05Μ-26", "--");
+        this.M.put("05Μ-27", "--");
+        this.M.put("05Μ-28", "--");
+        this.M.put("05Μ-29", "--");
     }
 
     public LinkedHashMap<String, Object> getP() {
