@@ -459,9 +459,11 @@
 
                                     //-----------------------------------
                                     LinkedHashMap<String, Object> a = positions.getA();
+                                    int x = 0;
                                     for (Map.Entry<String, Object> entrySet : a.entrySet()) {
+                                        x++;
                                         String k = entrySet.getKey();
-                                        int x = 0;
+
                                         if (x > 5) {
                                             out.println("<tr height='60px'>");
                                         } else {
