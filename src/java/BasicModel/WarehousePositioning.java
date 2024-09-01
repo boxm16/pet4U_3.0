@@ -53,34 +53,34 @@ public class WarehousePositioning {
 
         this.O = new LinkedHashMap<>();
 
-        this.P.put("02O-1", null);
-        this.P.put("02O-2", null);
-        this.P.put("02O-3", null);
-        this.P.put("02O-4", null);
-        this.P.put("02O-5", null);
-        this.P.put("02O-6", null);
-        this.P.put("02O-7", null);
-        this.P.put("02O-8", null);
-        this.P.put("02O-9", null);
-        this.P.put("02O-10", null);
-        this.P.put("02O-11", null);
-        this.P.put("02O-12", null);
-        this.P.put("02O-13", null);
-        this.P.put("02O-14", null);
-        this.P.put("02O-15", null);
-        this.P.put("02O-16", null);
-        this.P.put("   ", null);
-        this.P.put("02O-17", null);
-        this.P.put("02O-18", null);
-        this.P.put("02O-19", null);
-        this.P.put("02O-20", null);
-        this.P.put("02O-21", null);
-        this.P.put("02O-22", null);
-        this.P.put("02O-23", null);
-        this.P.put("02O-24", null);
-        this.P.put("02O-25", null);
-        this.P.put("02O-26", null);
-        this.P.put("02O-27", null);
+        this.O.put("02O-1", null);
+        this.O.put("02O-2", null);
+        this.O.put("02O-3", null);
+        this.O.put("02O-4", null);
+        this.O.put("02O-5", null);
+        this.O.put("02O-6", null);
+        this.O.put("02O-7", null);
+        this.O.put("02O-8", null);
+        this.O.put("02O-9", null);
+        this.O.put("02O-10", null);
+        this.O.put("02O-11", null);
+        this.O.put("02O-12", null);
+        this.O.put("02O-13", null);
+        this.O.put("02O-14", null);
+        this.O.put("02O-15", null);
+        this.O.put("02O-16", null);
+        this.O.put("   ", null);
+        this.O.put("02O-17", null);
+        this.O.put("02O-18", null);
+        this.O.put("02O-19", null);
+        this.O.put("02O-20", null);
+        this.O.put("02O-21", null);
+        this.O.put("02O-22", null);
+        this.O.put("02O-23", null);
+        this.O.put("02O-24", null);
+        this.O.put("02O-25", null);
+        this.O.put("02O-26", null);
+        this.O.put("02O-27", null);
 
     }
 
