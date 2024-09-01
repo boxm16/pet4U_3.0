@@ -71,8 +71,8 @@ public class WarehousePositioning {
         this.O.put("02Ο-14", "--");
         this.O.put("02Ο-15", "--");
         this.O.put("02Ο-16", "--");
-        this.O.put("   ", "");
-        this.O.put("   ", "");
+        this.O.put("emptySpace1", "");
+        this.O.put("emptySpace2", "");
         this.O.put("02Ο-17", "--");
         this.O.put("02Ο-18", "--");
         this.O.put("02Ο-19", "--");
@@ -103,8 +103,8 @@ public class WarehousePositioning {
         this.KS.put("03Ξ-14", "--");
         this.KS.put("03Ξ-15", "--");
         this.KS.put("03Ξ-16", "--");
-        this.KS.put("   ", "");
-        this.KS.put("   ", "");
+        this.KS.put("emptySpace1", "");
+        this.KS.put("emptySpace2", "");
         this.KS.put("03Ξ-17", "--");
         this.KS.put("03Ξ-18", "--");
         this.KS.put("03Ξ-19", "--");
@@ -135,8 +135,8 @@ public class WarehousePositioning {
         this.N.put("04Ν-14", "--");
         this.N.put("04Ν-15", "--");
         this.N.put("04Ν-16", "--");
-        this.N.put("   ", "");
-        this.N.put("   ", "");
+        this.N.put("emptySpace1", "");
+        this.N.put("emptySpace2", "");
         this.N.put("04Ν-17", "--");
         this.N.put("04Ν-18", "--");
         this.N.put("04Ν-19", "--");
