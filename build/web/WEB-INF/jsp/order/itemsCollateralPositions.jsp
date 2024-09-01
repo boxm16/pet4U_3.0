@@ -79,7 +79,7 @@
                                         }
 
                                         out.println("<tr height='20px'>");
-                                        out.println("<td style='width:30px; font-size: 30px; color: blue;;'>");
+                                        out.println("<td style='width:30px; font-size: 30px; background-color: lightgreen;'>");
                                         out.println(traffic);
                                         out.println("</td>");
                                         out.println("<td style='width:20px; font-size: 20px;'>");
