@@ -29,7 +29,7 @@
                                     LinkedHashMap<String, Object> p = positions.getP();
                                     for (Map.Entry<String, Object> entrySet : p.entrySet()) {
 
-                                        out.println("<tr>");
+                                        out.println("<tr height='30px'>");
                                         out.println("<td>");
                                         out.println(entrySet.getValue());
                                         out.println("</td>");
@@ -50,7 +50,7 @@
                                     LinkedHashMap<String, Object> O = positions.getP();
                                     for (Map.Entry<String, Object> entrySet : p.entrySet()) {
 
-                                        out.println("<tr>");
+                                        out.println("<tr height='30px'>");
 
                                         out.println("<td>");
                                         out.println(entrySet.getKey());
