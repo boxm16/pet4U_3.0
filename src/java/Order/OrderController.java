@@ -7,6 +7,7 @@ package Order;
 
 import BasicModel.Item;
 import BasicModel.WarehousePositioning;
+import Search.SearchDao;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -403,6 +404,17 @@ public class OrderController {
 
     @RequestMapping(value = "itemsCollateralPositions")
     public String itemsCollateralPositions(@RequestParam(name = "itemCode") String itemCode, @RequestParam(name = "startDate") String startDate, @RequestParam(name = "endDate") String endDate, ModelMap modelMap) {
+        SearchDao searchDao = new SearchDao();
+        String itemPosition = searchDao.getItemByAltercode(itemCode).getPosition();
+        String itemBlockPosition = "";
+        int _count_0 = itemPosition.length() - itemPosition.replaceAll("-", "").length();
+
+        if (_count_0 > 1) {
+            int first = itemPosition.indexOf("-");
+            int second = itemPosition.indexOf("-", first + 1);
+            itemBlockPosition = itemPosition.substring(0, second);
+        }
+
         LinkedHashMap<Integer, Order> allOrders = orderDao.getAllOrdersForPeriod(startDate, endDate);
         TreeMap<String, Integer> positionsTraffic = new TreeMap<>();
         int totalTraffic = 0;
@@ -441,6 +453,7 @@ public class OrderController {
             }
         }
         modelMap.addAttribute("itemCode", itemCode);
+        modelMap.addAttribute("itemBlockPosition", itemBlockPosition);
         modelMap.addAttribute("totalTraffic", totalTraffic);
         modelMap.addAttribute("positionsTraffic", positionsTraffic);
         modelMap.addAttribute("startDate", startDate);

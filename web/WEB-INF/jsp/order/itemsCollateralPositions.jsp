@@ -62,6 +62,7 @@
         </table>
         <hr><hr><hr><hr><hr><hr><hr><hr><hr>
         <%  WarehousePositioning positions = (WarehousePositioning) request.getAttribute("warehousePositioning");
+            String itemBlockPosition = (String) request.getAttribute("itemBlockPosition");
         %>
         <table>
             <tbody>
@@ -98,13 +99,22 @@
 
                                         }
 
-                                        out.println("<td style='width:20px; font-size: 15px;'>");
                                         if (entrySet.getKey().contains("emptySpace")) {
+                                            out.println("<td style='width:20px; font-size: 15px;'>");
                                             out.println("");
+                                            out.println("</td>");
                                         } else {
-                                            out.println(entrySet.getKey());
+                                            if (itemBlockPosition.equals(entrySet.getKey())) {
+                                                out.println("<td style='width:20px; font-size: 15px; background-color: red;'>");
+                                                out.println(entrySet.getKey());
+                                                out.println("</td>");
+                                            } else {
+                                                out.println("<td style='width:20px; font-size: 15px;'>");
+                                                out.println(entrySet.getKey());
+                                                out.println("</td>");
+                                            }
+
                                         }
-                                        out.println("</td>");
 
                                         out.println("</tr>");
                                     }
