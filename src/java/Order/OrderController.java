@@ -45,7 +45,7 @@ public class OrderController {
         ordersThreeLayersTimeStrucuterOfDate.put("11-15", 0);
         ordersThreeLayersTimeStrucuterOfDate.put("15-24", 0);
         LinkedHashMap<Integer, Order> orders = orderDao.getOrdersOfDate(date);
-        LocalDateTime startTime = LocalDateTime.parse(date + "T00:00:00.000");
+     //   LocalDateTime startTime = LocalDateTime.parse(date + "T00:00:00.000");
 
         for (int x = 0; x < 24; x++) {
             ordersTimeStrucuterOfDate.put(x, 0);
