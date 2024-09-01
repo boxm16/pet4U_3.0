@@ -63,6 +63,7 @@
         <% EndoApostolis endoApostolis = (EndoApostolis) request.getAttribute("endoApostolis");
             LocalDate date = endoApostolis.getDate();
         %>
+        <h1>${endoApostolis.dateString}</h1>
         <h1>${endoOrder.dateString}</h1>
         <hr>
         <table>
