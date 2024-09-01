@@ -266,6 +266,15 @@ public class WarehousePositioning {
         this.M = M;
     }
 
+    public LinkedHashMap<String, Object> getY() {
+        return Y;
+    }
+
+    public void setY(LinkedHashMap<String, Object> Y) {
+        this.Y = Y;
+    }
+    
+
     public LinkedHashMap<String, Object> getA() {
         return A;
     }
