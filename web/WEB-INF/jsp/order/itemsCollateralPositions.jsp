@@ -4,6 +4,7 @@
     Author     : Michail Sitmalidis
 --%>
 
+<%@page import="BasicModel.WarehousePositioning"%>
 <%@page import="java.util.TreeMap"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.LinkedHashMap"%>
@@ -55,13 +56,13 @@
                         out.println("<a  href = 'getAllDocsForItemBetweenTwoDatesWithThisBlockPosition.htm?blockPosition=" + entrySet.getKey() + "&itemCode=" + itemCode + "&startDate=" + startDate + "&endDate=" + endDate + "' target='_blank'>" + entrySet.getValue() + "</a>");
                         out.println("</td>");
 
-                       
-
                         out.println("</tr>");
                     }
                 %>
         </table>
         <hr><hr><hr><hr><hr><hr><hr><hr><hr>
+        <%  WarehousePositioning positions = (WarehousePositioning) request.getAttribute("warehousePositioning");
+        %>
         <table>
             <tbody>
                 <tr>
