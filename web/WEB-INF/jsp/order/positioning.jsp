@@ -47,7 +47,7 @@
                         <table>
                             <tbody>
                                 <%
-                                    LinkedHashMap<String, Object> o = positions.getP();
+                                    LinkedHashMap<String, Object> o = positions.getO();
                                     for (Map.Entry<String, Object> entrySet : o.entrySet()) {
 
                                         out.println("<tr height='20px'>");
@@ -108,7 +108,7 @@
                         <table>
                             <tbody>
                                 <%
-                                    LinkedHashMap<String, Object> n = positions.getKS();
+                                    LinkedHashMap<String, Object> n = positions.getN();
                                     for (Map.Entry<String, Object> entrySet : n.entrySet()) {
 
                                         out.println("<tr height='20px'>");
@@ -147,7 +147,7 @@
                         <table>
                             <tbody>
                                 <%
-                                    LinkedHashMap<String, Object> m = positions.getKS();
+                                    LinkedHashMap<String, Object> m = positions.getM();
                                     for (Map.Entry<String, Object> entrySet : m.entrySet()) {
 
                                         out.println("<tr height='20px'>");
