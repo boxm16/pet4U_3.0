@@ -497,6 +497,7 @@
 
                                     LinkedHashMap<String, Object> K = positions.getK();
                                     out.println("<tr height='20px'>");
+
                                     out.println("<td>");
                                     out.println("<table>");
                                     out.println("<tr height='20px'>");
@@ -504,27 +505,33 @@
                                     out.println("<td>");
                                     out.println(positionsTraffic.get("15Κ-01"));
                                     out.println("</td>");
+                                    out.println("</tr>");
+
+                                    out.println("<tr>");
                                     out.println("<td>");
                                     out.println("15Κ-01)");
                                     out.println("</td>");
-
                                     out.println("</tr>");
+
                                     out.println("</table>");
 
                                     out.println("</td>");
-                                    
+//-----
                                     out.println("<td>");
                                     out.println("<table>");
                                     out.println("<tr height='20px'>");
 
                                     out.println("<td>");
-                                    out.println(positionsTraffic.get("15Κ-02"));
+                                    out.println(positionsTraffic.get("15Κ-01"));
                                     out.println("</td>");
-                                    out.println("<td>");
-                                    out.println("15Κ-02)");
-                                    out.println("</td>");
-
                                     out.println("</tr>");
+
+                                    out.println("<tr>");
+                                    out.println("<td>");
+                                    out.println("15Κ-01)");
+                                    out.println("</td>");
+                                    out.println("</tr>");
+
                                     out.println("</table>");
 
                                     out.println("</td>");
