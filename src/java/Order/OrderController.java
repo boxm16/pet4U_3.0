@@ -406,6 +406,7 @@ public class OrderController {
     public String itemsCollateralPositions(@RequestParam(name = "itemCode") String itemCode, @RequestParam(name = "startDate") String startDate, @RequestParam(name = "endDate") String endDate, ModelMap modelMap) {
         SearchDao searchDao = new SearchDao();
         String itemPosition = searchDao.getItemByAltercode(itemCode).getPosition();
+        itemCode = searchDao.getItemByAltercode(itemCode).getCode();
         String itemBlockPosition = "";
         int _count_0 = itemPosition.length() - itemPosition.replaceAll("-", "").length();
 
