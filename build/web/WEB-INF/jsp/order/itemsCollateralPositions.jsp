@@ -487,7 +487,9 @@
                     <td valign='top'>
                         <table>
                             <tbody>
-                                <%                                    out.println("<tr height='1000px'>");
+                                <%       
+                                    //diadromos
+                                    out.println("<tr height='1000px'>");
 
                                     out.println("<td width='40px'>");
                                     out.println("    ");
@@ -496,6 +498,7 @@
                                     out.println("</tr>");
 
                                     LinkedHashMap<String, Object> K = positions.getK();
+
                                     out.println("<tr height='20px'>");
 
                                     out.println("<td>");
@@ -513,7 +516,7 @@
 
                                     out.println("<tr>");
                                     out.println("<td>");
-                                    out.println("15Κ-01)");
+                                    out.println("15Κ-01");
                                     out.println("</td>");
                                     out.println("</tr>");
 
@@ -544,7 +547,7 @@
                                     out.println("</table>");
 
                                     out.println("</td>");
-                                    
+                                    out.println("</tr>");
 
 
                                 %>
