@@ -532,14 +532,14 @@
                             </tbody>
                         </table>
                     </td>
-                    <td>
+                    <td valign='top'>
                         <table>
                             <tbody>
                                 <%                                    LinkedHashMap<String, Object> b = positions.getB();
                                     for (Map.Entry<String, Object> entrySet : b.entrySet()) {
                                         String k = entrySet.getKey();
 
-                                        out.println("<tr height='30px'>");
+                                        out.println("<tr height='80px'>");
                                         if (positionsTraffic.containsKey(k)) {
                                             if (entrySet.getKey().contains("emptySpace")) {
                                                 out.println("<td style='width:30px;'>");
