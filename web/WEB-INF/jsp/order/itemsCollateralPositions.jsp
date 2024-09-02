@@ -639,6 +639,21 @@
                     <td valign='top'>
                         <table>
                             <tbody>
+                                <%                                    out.println("<tr height='1000px'>");
+
+                                    out.println("<td width='40px'>");
+                                    out.println("    ");
+                                    out.println("</td>");
+
+                                    out.println("</tr>");
+
+                                %>
+                            </tbody>
+                        </table>
+                    </td>
+                    <td valign='top'>
+                        <table>
+                            <tbody>
                                 <%                                    LinkedHashMap<String, Object> d = positions.getD();
                                     for (Map.Entry<String, Object> entrySet : d.entrySet()) {
                                         String k = entrySet.getKey();
