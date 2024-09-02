@@ -235,11 +235,11 @@
                                         } else {
                                             if (itemBlockPosition.equals(entrySet.getKey())) {
                                                 out.println("<td style='width:20px; font-size: 15px; background-color: red;'>");
-                                                out.println(entrySet.getKey());
+                                                out.println("<a  href = 'getAllDocsForItemBetweenTwoDatesWithThisBlockPosition.htm?blockPosition=" + entrySet.getKey() + "&itemCode=" + itemCode + "&startDate=" + startDate + "&endDate=" + endDate + "' target='_blank'>" + positionsTraffic.get(k) + "</a>");
                                                 out.println("</td>");
                                             } else {
                                                 out.println("<td style='width:20px; font-size: 15px;'>");
-                                                out.println("<a  href = 'getAllDocsForItemBetweenTwoDatesWithThisBlockPosition.htm?blockPosition=" + entrySet.getKey() + "&itemCode=" + itemCode + "&startDate=" + startDate + "&endDate=" + endDate + "' target='_blank'>" + positionsTraffic.get(k) + "</a>");
+                                                out.println(entrySet.getKey());
                                                 out.println("</td>");
                                             }
 
