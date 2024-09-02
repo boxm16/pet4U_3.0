@@ -544,7 +544,7 @@
                                     out.println("</table>");
 
                                     out.println("</td>");
-                                    out.println("</tr>");
+                                    
 
 
                                 %>
