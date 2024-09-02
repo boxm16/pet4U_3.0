@@ -182,16 +182,14 @@
                         <table>
                             <tbody>
                                 <%
-                                    for (int x = 0; x < 34; x++) {
+                                    out.println("<tr height='1000px'>");
 
-                                        out.println("<tr height='31px'>");
+                                    out.println("<td width='40px'>");
+                                    out.println("    ");
+                                    out.println("</td>");
 
-                                        out.println("<td width='20px'>");
-                                        out.println("    ");
-                                        out.println("</td>");
+                                    out.println("</tr>");
 
-                                        out.println("</tr>");
-                                    }
                                 %>
                             </tbody>
                         </table>
@@ -199,8 +197,7 @@
                     <td valign='top'>
                         <table>
                             <tbody>
-                                <%
-                                    LinkedHashMap<String, Object> ks = positions.getKS();
+                                <%                                    LinkedHashMap<String, Object> ks = positions.getKS();
                                     for (Map.Entry<String, Object> entrySet : ks.entrySet()) {
                                         String k = entrySet.getKey();
 
@@ -311,16 +308,14 @@
                         <table>
                             <tbody>
                                 <%
-                                    for (int x = 0; x < 34; x++) {
+                                    out.println("<tr height='1000px'>");
 
-                                        out.println("<tr height='31px'>");
+                                    out.println("<td width='40px'>");
+                                    out.println("    ");
+                                    out.println("</td>");
 
-                                        out.println("<td width='20px'>");
-                                        out.println("    ");
-                                        out.println("</td>");
+                                    out.println("</tr>");
 
-                                        out.println("</tr>");
-                                    }
                                 %>
                             </tbody>
                         </table>
@@ -328,8 +323,7 @@
                     <td valign='top'>
                         <table>
                             <tbody>
-                                <%
-                                    LinkedHashMap<String, Object> m = positions.getM();
+                                <%                                    LinkedHashMap<String, Object> m = positions.getM();
                                     for (Map.Entry<String, Object> entrySet : m.entrySet()) {
                                         String k = entrySet.getKey();
 
