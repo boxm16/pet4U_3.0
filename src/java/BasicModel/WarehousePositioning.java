@@ -294,7 +294,7 @@ public class WarehousePositioning {
         this.E.put("10Ε-08", "--");
         this.E.put("10Ε-09", "--");
         this.E.put("10Ε-10", "--");
-        this.E.put("10Ε-12", "--");
+        this.E.put("10Ε-11", "--");
         this.E.put("10Ε-12", "--");
 
         this.Z = new LinkedHashMap<>();
