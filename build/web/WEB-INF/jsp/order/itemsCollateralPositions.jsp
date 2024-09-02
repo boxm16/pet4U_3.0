@@ -504,7 +504,7 @@
 
                                     out.println("<td>");
                                     if (positionsTraffic.get("15Κ-01") == null) {
-                                        out.println(positionsTraffic.get(0));
+                                        out.println(0);
                                     } else {
                                         out.println(positionsTraffic.get("15Κ-01"));
                                     }
@@ -527,7 +527,7 @@
 
                                     out.println("<td>");
                                     if (positionsTraffic.get("15Κ-02") == null) {
-                                        out.println(positionsTraffic.get(0));
+                                        out.println(0);
                                     } else {
                                         out.println(positionsTraffic.get("15Κ-02"));
                                     }
