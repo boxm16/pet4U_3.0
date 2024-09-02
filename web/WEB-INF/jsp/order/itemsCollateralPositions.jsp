@@ -13,7 +13,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Position Traffic Statistica</title>
+        <title>Position Traffic Statistica: Collaterals</title>
         <style>
             table, th, td {
                 border: 1px solid ;
