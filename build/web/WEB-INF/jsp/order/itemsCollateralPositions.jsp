@@ -33,7 +33,7 @@
             String endDate = (String) request.getAttribute("endDate");
             String itemCode = (String) request.getAttribute("itemCode");
             String position = (String) request.getAttribute("position");
-            
+
             WarehousePositioning positions = (WarehousePositioning) request.getAttribute("warehousePositioning");
             String itemBlockPosition = (String) request.getAttribute("itemBlockPosition");
         %>
@@ -939,7 +939,8 @@
                     </td>
                 </tr>
             </tbody>
-        </table>
+        </table>  
+        <hr><hr><hr><hr><hr><hr><hr><hr>
         <table style="font-size:20px">
             <thead>
                 <tr> 
