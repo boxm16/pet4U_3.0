@@ -1063,6 +1063,7 @@ public class EndoDaoX {
                     EndoOrderItem endoOrderItem = new EndoOrderItem();
 
                     endoOrderItem.setCode(itemCode);
+                    endoOrderItem.setDescription(resultSet.getString("item_description"));
                     endoOrder.addOrderItem(itemCode, endoOrderItem);
                     endoOrders.put(orderId, endoOrder);
                 }
