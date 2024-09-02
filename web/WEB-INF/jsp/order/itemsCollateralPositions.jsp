@@ -307,7 +307,7 @@
                             </tbody>
                         </table>
                     </td>
-                    <td>
+                    <td valign='top'>
                         <table>
                             <tbody>
                                 <%
