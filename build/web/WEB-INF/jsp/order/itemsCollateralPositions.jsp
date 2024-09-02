@@ -586,6 +586,62 @@
                             </tbody>
                         </table>
                     </td>
+                    <td>
+                        <table>
+                            <tbody>
+                                <%
+                                    LinkedHashMap<String, Object> g = positions.getG();
+                                    for (Map.Entry<String, Object> entrySet : g.entrySet()) {
+                                        String k = entrySet.getKey();
+
+                                        out.println("<tr height='80px'>");
+
+                                        if (entrySet.getKey().contains("emptySpace")) {
+                                            out.println("<td style='width:20px; font-size: 15px;'>");
+                                            out.println("");
+                                            out.println("</td>");
+                                        } else {
+                                            if (itemBlockPosition.equals(entrySet.getKey())) {
+                                                out.println("<td style='width:20px; font-size: 15px; background-color: red;'>");
+                                                out.println(entrySet.getKey());
+                                                out.println("</td>");
+                                            } else {
+                                                out.println("<td style='width:20px; font-size: 15px;'>");
+                                                out.println(entrySet.getKey());
+                                                out.println("</td>");
+                                            }
+
+                                        }
+
+                                        if (positionsTraffic.containsKey(k)) {
+                                            if (entrySet.getKey().contains("emptySpace")) {
+                                                out.println("<td style='width:30px;'>");
+                                                out.println("");
+                                                out.println("</td>");
+                                            } else {
+                                                out.println("<td style='width:30px; font-size: 25px; background-color: lightgreen;'>");
+                                                out.println(positionsTraffic.get(k));
+                                                out.println("</td>");
+                                            }
+                                        } else {
+                                            if (entrySet.getKey().contains("emptySpace")) {
+                                                out.println("<td style='width:30px; '>");
+                                                out.println("");
+                                                out.println("</td>");
+                                            } else {
+                                                out.println("<td style='width:30px; font-size: 25px; background-color: lightgreen;'>");
+                                                out.println(0);
+                                                out.println("</td>");
+                                            }
+
+                                        }
+
+                                        out.println("</tr>");
+                                    }
+                                %>
+                            </tbody>
+                        </table>
+                    </td>
                 </tr>
             </tbody>
         </table>

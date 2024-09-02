@@ -24,6 +24,15 @@ public class WarehousePositioning {
     private LinkedHashMap<String, Object> A;
 
     private LinkedHashMap<String, Object> B;
+    private LinkedHashMap<String, Object> G;
+
+    private LinkedHashMap<String, Object> D;
+    private LinkedHashMap<String, Object> E;
+
+    private LinkedHashMap<String, Object> Z;
+    private LinkedHashMap<String, Object> H;
+
+    private LinkedHashMap<String, Object> TH;
 
     public WarehousePositioning() {
 
@@ -246,6 +255,89 @@ public class WarehousePositioning {
         this.B.put("06Β-08", "--");
         this.B.put("06Β-09", "--");
 
+        this.G = new LinkedHashMap<>();
+
+        this.G.put("emptySpace01", "");
+        this.G.put("08Γ-01", "--");
+        this.G.put("08Γ-02", "--");
+        this.G.put("08Γ-03", "--");
+        this.G.put("08Γ-04", "--");
+        this.G.put("08Γ-05", "--");
+        this.G.put("08Γ-06", "--");
+        this.G.put("08Γ-07", "--");
+        this.G.put("08Γ-08", "--");
+        this.G.put("08Γ-09", "--");
+
+        this.D = new LinkedHashMap<>();
+
+        this.D.put("emptySpace01", "");
+        this.D.put("09Δ-01", "--");
+        this.D.put("09Δ-02", "--");
+        this.D.put("09Δ-03", "--");
+        this.D.put("09Δ-04", "--");
+        this.D.put("09Δ-05", "--");
+        this.D.put("09Δ-06", "--");
+        this.D.put("09Δ-07", "--");
+        this.D.put("09Δ-08", "--");
+        this.D.put("09Δ-09", "--");
+
+        this.E = new LinkedHashMap<>();
+
+        this.E.put("emptySpace01", "");
+        this.E.put("10Ε-01", "--");
+        this.E.put("10Ε-02", "--");
+        this.E.put("10Ε-03", "--");
+        this.E.put("10Ε-04", "--");
+        this.E.put("10Ε-05", "--");
+        this.E.put("10Ε-06", "--");
+        this.E.put("10Ε-07", "--");
+        this.E.put("10Ε-08", "--");
+        this.E.put("10Ε-09", "--");
+        this.E.put("10Ε-10", "--");
+        this.E.put("10Ε-12", "--");
+        this.E.put("10Ε-12", "--");
+
+        this.Z = new LinkedHashMap<>();
+
+        this.Z.put("emptySpace01", "");
+        this.Z.put("11Ζ-01", "--");
+        this.Z.put("11Ζ-02", "--");
+        this.Z.put("11Ζ-03", "--");
+        this.Z.put("11Ζ-04", "--");
+        this.Z.put("11Ζ-05", "--");
+        this.Z.put("11Ζ-06", "--");
+        this.Z.put("11Ζ-07", "--");
+        this.Z.put("11Ζ-08", "--");
+        this.Z.put("11Ζ-09", "--");
+
+        this.H = new LinkedHashMap<>();
+
+        this.H.put("emptySpace01", "");
+        this.H.put("12Η-01", "--");
+        this.H.put("12Η-02", "--");
+        this.H.put("12Η-03", "--");
+        this.H.put("12Η-04", "--");
+        this.H.put("12Η-05", "--");
+        this.H.put("12Η-06", "--");
+        this.H.put("12Η-07", "--");
+        this.H.put("12Η-08", "--");
+        this.H.put("12Η-09", "--");
+
+        this.TH = new LinkedHashMap<>();
+
+        this.TH.put("13Θ-01", "--");
+        this.TH.put("13Θ-02", "--");
+        this.TH.put("13Θ-03", "--");
+        this.TH.put("13Θ-04", "--");
+        this.TH.put("13Θ-05", "--");
+        this.TH.put("13Θ-06", "--");
+        this.TH.put("13Θ-07", "--");
+        this.TH.put("13Θ-08", "--");
+        this.TH.put("13Θ-09", "--");
+        this.TH.put("13Θ-10", "--");
+        this.TH.put("13Θ-12", "--");
+        this.TH.put("13Θ-13", "--");
+
     }
 
     public LinkedHashMap<String, Object> getP() {
@@ -312,6 +404,52 @@ public class WarehousePositioning {
         this.B = B;
     }
 
-    
-    
+    public LinkedHashMap<String, Object> getG() {
+        return G;
+    }
+
+    public void setG(LinkedHashMap<String, Object> G) {
+        this.G = G;
+    }
+
+    public LinkedHashMap<String, Object> getD() {
+        return D;
+    }
+
+    public void setD(LinkedHashMap<String, Object> D) {
+        this.D = D;
+    }
+
+    public LinkedHashMap<String, Object> getE() {
+        return E;
+    }
+
+    public void setE(LinkedHashMap<String, Object> E) {
+        this.E = E;
+    }
+
+    public LinkedHashMap<String, Object> getZ() {
+        return Z;
+    }
+
+    public void setZ(LinkedHashMap<String, Object> Z) {
+        this.Z = Z;
+    }
+
+    public LinkedHashMap<String, Object> getH() {
+        return H;
+    }
+
+    public void setH(LinkedHashMap<String, Object> H) {
+        this.H = H;
+    }
+
+    public LinkedHashMap<String, Object> getTH() {
+        return TH;
+    }
+
+    public void setTH(LinkedHashMap<String, Object> TH) {
+        this.TH = TH;
+    }
+
 }
