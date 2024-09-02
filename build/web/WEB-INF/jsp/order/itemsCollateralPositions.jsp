@@ -517,12 +517,12 @@
                             </tbody>
                         </table>
                     </td>
-                    <td>
+                    <td valign='top'>
                         <table>
                             <tbody>
-                                <%                                    out.println("<tr height='520px'>");
+                                <%                                    out.println("<tr height='1200px'>");
 
-                                    out.println("<td width='20px'>");
+                                    out.println("<td width='40px'>");
                                     out.println("    ");
                                     out.println("</td>");
 
