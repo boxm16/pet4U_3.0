@@ -503,7 +503,11 @@
                                     out.println("<tr height='20px'>");
 
                                     out.println("<td>");
-                                    out.println(positionsTraffic.get("15Κ-01"));
+                                    if (positionsTraffic.get("15Κ-01") == null) {
+                                        out.println(positionsTraffic.get(0));
+                                    } else {
+                                        out.println(positionsTraffic.get("15Κ-01"));
+                                    }
                                     out.println("</td>");
                                     out.println("</tr>");
 
@@ -522,13 +526,18 @@
                                     out.println("<tr height='20px'>");
 
                                     out.println("<td>");
-                                    out.println(positionsTraffic.get("15Κ-01"));
+                                    if (positionsTraffic.get("15Κ-02") == null) {
+                                        out.println(positionsTraffic.get(0));
+                                    } else {
+                                        out.println(positionsTraffic.get("15Κ-02"));
+                                    }
+
                                     out.println("</td>");
                                     out.println("</tr>");
 
                                     out.println("<tr>");
                                     out.println("<td>");
-                                    out.println("15Κ-01)");
+                                    out.println("15Κ-02");
                                     out.println("</td>");
                                     out.println("</tr>");
 
