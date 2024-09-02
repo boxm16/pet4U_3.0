@@ -26,42 +26,15 @@
     <body>
     <center>
         <h1>Position Traffic Statistica</h1>
-        <table style="font-size:20px">
-            <thead>
-                <tr> 
-                    <th>Codes Quantity</th>
-                    <th>Count</th>
-                    <th>%</th>
-
-                </tr>
-            </thead>
-            <tbody>
-
-
-                <%
-                    TreeMap<String, Integer> positionsTraffic = (TreeMap) request.getAttribute("positionsTraffic");
-                    String startDate = (String) request.getAttribute("startDate");
-                    String endDate = (String) request.getAttribute("endDate");
-                    String itemCode = (String) request.getAttribute("itemCode");
-                    String position = (String) request.getAttribute("position");
-
-                    for (Map.Entry<String, Integer> entrySet : positionsTraffic.entrySet()) {
-                        out.println("<tr>");
-
-                        out.println("<td>");
-                        out.println(entrySet.getKey());
-                        out.println("</td>");
-
-                        out.println("<td>");
-                        out.println("<a  href = 'getAllDocsForItemBetweenTwoDatesWithThisBlockPosition.htm?blockPosition=" + entrySet.getKey() + "&itemCode=" + itemCode + "&startDate=" + startDate + "&endDate=" + endDate + "' target='_blank'>" + entrySet.getValue() + "</a>");
-                        out.println("</td>");
-
-                        out.println("</tr>");
-                    }
-                %>
-        </table>
-        <hr><hr><hr><hr><hr><hr><hr><hr><hr>
-        <%  WarehousePositioning positions = (WarehousePositioning) request.getAttribute("warehousePositioning");
+        <hr>
+        <%
+            TreeMap<String, Integer> positionsTraffic = (TreeMap) request.getAttribute("positionsTraffic");
+            String startDate = (String) request.getAttribute("startDate");
+            String endDate = (String) request.getAttribute("endDate");
+            String itemCode = (String) request.getAttribute("itemCode");
+            String position = (String) request.getAttribute("position");
+            
+            WarehousePositioning positions = (WarehousePositioning) request.getAttribute("warehousePositioning");
             String itemBlockPosition = (String) request.getAttribute("itemBlockPosition");
         %>
         <table>
@@ -967,6 +940,35 @@
                 </tr>
             </tbody>
         </table>
+        <table style="font-size:20px">
+            <thead>
+                <tr> 
+                    <th>Codes Quantity</th>
+                    <th>Count</th>
+                    <th>%</th>
+
+                </tr>
+            </thead>
+            <tbody>
+
+
+                <%
+                    for (Map.Entry<String, Integer> entrySet : positionsTraffic.entrySet()) {
+                        out.println("<tr>");
+
+                        out.println("<td>");
+                        out.println(entrySet.getKey());
+                        out.println("</td>");
+
+                        out.println("<td>");
+                        out.println("<a  href = 'getAllDocsForItemBetweenTwoDatesWithThisBlockPosition.htm?blockPosition=" + entrySet.getKey() + "&itemCode=" + itemCode + "&startDate=" + startDate + "&endDate=" + endDate + "' target='_blank'>" + entrySet.getValue() + "</a>");
+                        out.println("</td>");
+
+                        out.println("</tr>");
+                    }
+                %>
+        </table>
+        <hr><hr><hr><hr><hr><hr><hr><hr>
     </center>
 </body>
 </html>
