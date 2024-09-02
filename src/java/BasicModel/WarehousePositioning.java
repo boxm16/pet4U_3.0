@@ -244,7 +244,6 @@ public class WarehousePositioning {
 
         this.B = new LinkedHashMap<>();
 
-        this.B.put("emptySpace01", "");
         this.B.put("06Β-01", "--");
         this.B.put("06Β-02", "--");
         this.B.put("06Β-03", "--");
@@ -281,7 +280,6 @@ public class WarehousePositioning {
 
         this.E = new LinkedHashMap<>();
 
-        this.E.put("emptySpace01", "");
         this.E.put("10Ε-01", "--");
         this.E.put("10Ε-02", "--");
         this.E.put("10Ε-03", "--");
