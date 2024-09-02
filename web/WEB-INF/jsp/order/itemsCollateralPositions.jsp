@@ -514,7 +514,7 @@
                                         <table>
                                             <tbody>
                                                 <tr>
-                                                    <td>
+                                                    <td valign='top'>
                                                         <table>
                                                             <tbody>
                                                                 <%                                    LinkedHashMap<String, Object> b = positions.getB();
