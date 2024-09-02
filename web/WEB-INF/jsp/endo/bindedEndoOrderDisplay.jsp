@@ -156,10 +156,7 @@
                         out.println(invoicedItem.getDescription());
                         out.println("</td>");
 
-                        out.println("<td style='padding-left: 5px; padding-left: 5px;'>");
-                        out.println("-------");
-                        out.println("</td>");
-
+                       
                         out.println("<td>");
                         out.println("<input  class='ordered' type='number' id='" + invoicedItem.getCode() + "@ordered' value='0.0' readonly width='10px'>");
                         out.println("</td>");
