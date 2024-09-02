@@ -459,12 +459,12 @@
 
                                     //-----------------------------------
                                     LinkedHashMap<String, Object> a = positions.getA();
-                                    int x = 0;
+                                    int r = 0;
                                     for (Map.Entry<String, Object> entrySet : a.entrySet()) {
-                                        x++;
+                                        r++;
                                         String k = entrySet.getKey();
 
-                                        if (x > 5) {
+                                        if (r > 5) {
                                             out.println("<tr height='60px'>");
                                         } else {
                                             out.println("<tr height='30px'>");
@@ -513,6 +513,79 @@
                                         out.println("</tr>");
                                     }
 
+                                %>
+                            </tbody>
+                        </table>
+                    </td>
+                    <td>
+                        <table>
+                            <tbody>
+                                <%                                  
+                                    for (int x = 0; x < 34; x++) {
+
+                                        out.println("<tr height='20px'>");
+
+                                        out.println("<td width='20px'>");
+                                        out.println("    ");
+                                        out.println("</td>");
+
+                                        out.println("</tr>");
+                                    }
+                                %>
+                            </tbody>
+                        </table>
+                    </td>
+                    <td>
+                        <table>
+                            <tbody>
+                                <%
+                                    LinkedHashMap<String, Object> b = positions.getB();
+                                    for (Map.Entry<String, Object> entrySet : b.entrySet()) {
+                                        String k = entrySet.getKey();
+
+                                        out.println("<tr height='30px'>");
+                                        if (positionsTraffic.containsKey(k)) {
+                                            if (entrySet.getKey().contains("emptySpace")) {
+                                                out.println("<td style='width:30px;'>");
+                                                out.println("");
+                                                out.println("</td>");
+                                            } else {
+                                                out.println("<td style='width:30px; font-size: 25px; background-color: lightgreen;'>");
+                                                out.println(positionsTraffic.get(k));
+                                                out.println("</td>");
+                                            }
+                                        } else {
+                                            if (entrySet.getKey().contains("emptySpace")) {
+                                                out.println("<td style='width:30px; '>");
+                                                out.println("");
+                                                out.println("</td>");
+                                            } else {
+                                                out.println("<td style='width:30px; font-size: 25px; background-color: lightgreen;'>");
+                                                out.println(0);
+                                                out.println("</td>");
+                                            }
+
+                                        }
+
+                                        if (entrySet.getKey().contains("emptySpace")) {
+                                            out.println("<td style='width:20px; font-size: 15px;'>");
+                                            out.println("");
+                                            out.println("</td>");
+                                        } else {
+                                            if (itemBlockPosition.equals(entrySet.getKey())) {
+                                                out.println("<td style='width:20px; font-size: 15px; background-color: red;'>");
+                                                out.println(entrySet.getKey());
+                                                out.println("</td>");
+                                            } else {
+                                                out.println("<td style='width:20px; font-size: 15px;'>");
+                                                out.println(entrySet.getKey());
+                                                out.println("</td>");
+                                            }
+
+                                        }
+
+                                        out.println("</tr>");
+                                    }
                                 %>
                             </tbody>
                         </table>
