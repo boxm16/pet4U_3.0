@@ -560,7 +560,7 @@
                                                                 out.println("<table>");
 
                                                                 out.println("<tr>");
-                                                                out.println("<td>");
+                                                                out.println("<td width='150px'>");
                                                                 if (positionsTraffic.get("19Λ-01") == null) {
                                                                     out.println(0);
                                                                 } else {
@@ -571,7 +571,7 @@
 
                                                                 //++++++++
                                                                 out.println("<tr>");
-                                                                out.println("<td>");
+                                                                out.println("<td width='150px'>");
                                                                 out.println("19Λ-01");
                                                                 out.println("</td>");
 
@@ -597,7 +597,7 @@
                                                                 out.println("<table>");
 
                                                                 out.println("<tr>");
-                                                                out.println("<td>");
+                                                               out.println("<td width='150px'>");
                                                                 if (positionsTraffic.get("19Λ-03") == null) {
                                                                     out.println(0);
                                                                 } else {
@@ -608,7 +608,7 @@
 
                                                                 //++++++++
                                                                 out.println("<tr>");
-                                                                out.println("<td>");
+                                                                out.println("<td width='150px'>");
                                                                 out.println("19Λ-03");
                                                                 out.println("</td>");
 
