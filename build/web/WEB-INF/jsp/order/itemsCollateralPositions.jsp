@@ -486,6 +486,12 @@
                                     out.println("</td>");
                                     out.println("</tr>");
 
+                                    out.println("<tr  style='height: 10px; background-color: black;'>");
+                                    out.println("<td>");
+                                    out.println("");
+                                    out.println("</td>");
+                                    out.println("</tr>");
+
 
                                 %>
                             </tbody>
