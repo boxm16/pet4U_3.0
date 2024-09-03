@@ -551,7 +551,63 @@
                                     <td>
                                         <table>
                                             <tr>
-                                                <td style="width:150px">LAMBA 1</td>
+                                                <td valign='top'>
+                                                    <table>
+                                                        <tbody>
+                                                            <%                                    //diadromos start
+                                                                out.println("<tr height='1000px'>");
+
+                                                                out.println("<td width='40px'>");
+                                                                out.println("    ");
+                                                                out.println("</td>");
+
+                                                                out.println("</tr>");
+
+                                                                out.println("<tr>");
+
+                                                                out.println("<td width='40px'>");
+                                                                out.println("<table>");
+
+                                                                out.println("<tr>");
+                                                                out.println("<td>");
+                                                                if (positionsTraffic.get("15Κ-01") == null) {
+                                                                    out.println(0);
+                                                                } else {
+                                                                    out.println(positionsTraffic.get("15Κ-01"));
+                                                                }
+
+                                                                out.println("</td>");
+
+                                                                out.println("<td>");
+                                                                if (positionsTraffic.get("15Κ-02") == null) {
+                                                                    out.println(0);
+                                                                } else {
+                                                                    out.println(positionsTraffic.get("15Κ-02"));
+                                                                }
+
+                                                                out.println("</td>");
+                                                                //++++++++
+                                                                out.println("<tr>");
+                                                                out.println("<td>");
+                                                                out.println("15Κ-01");
+                                                                out.println("</td>");
+
+                                                                out.println("<td>");
+                                                                out.println("15Κ-02");
+                                                                out.println("</td>");
+
+                                                                out.println("</tr>");
+
+                                                                out.println("</table>");
+                                                                out.println("</td>");
+
+                                                                out.println("</tr>");
+
+
+                                                            %>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
                                                 <td style="width:300px"></td>
                                                 <td style="width:150px">LAMBA 3</td>
                                             </tr>
