@@ -825,7 +825,7 @@
 
                                                                         String k = entrySet.getKey();
 
-                                                                        out.println("<tr height='65px'>");
+                                                                        out.println("<tr height='60px'>");
 
                                                                         if (entrySet.getKey().contains("emptySpace")) {
                                                                             out.println("<td style='width:20px; font-size: 15px;'>");
