@@ -548,9 +548,15 @@
                         <table>
                             <tbody>
                                 <tr>
-                                    <td>LAMBA 1</td>
-                                    <td>____________________________ 1</td>
-                                    <td>LAMBA 3</td>
+                                    <td>
+                                        <table>
+                                            <tr>
+                                                <td>LAMBA 1</td>
+                                                <td>____________________________ 1</td>
+                                                <td>LAMBA 3</td>
+                                            </tr>
+                                        </table>
+                                    </td>
                                 </tr>
 
                                 <tr>
