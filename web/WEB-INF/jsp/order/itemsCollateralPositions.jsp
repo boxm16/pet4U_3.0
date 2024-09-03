@@ -554,16 +554,7 @@
                                                 <td valign='top'>
                                                     <table>
                                                         <tbody>
-                                                            <%                                    //diadromos start
-                                                                out.println("<tr height='1000px'>");
-
-                                                                out.println("<td width='40px'>");
-                                                                out.println("    ");
-                                                                out.println("</td>");
-
-                                                                out.println("</tr>");
-
-                                                                out.println("<tr>");
+                                                            <%                                                                out.println("<tr>");
 
                                                                 out.println("<td width='40px'>");
                                                                 out.println("<table>");
