@@ -487,8 +487,7 @@
                     <td valign='top'>
                         <table>
                             <tbody>
-                                <%       
-                                    //diadromos
+                                <%                                    //diadromos start
                                     out.println("<tr height='1000px'>");
 
                                     out.println("<td width='40px'>");
@@ -497,12 +496,15 @@
 
                                     out.println("</tr>");
 
+                                    //diadromos end
                                     LinkedHashMap<String, Object> K = positions.getK();
-
-                                    out.println("<tr height='20px'>");
+                                    //k start
+                                    out.println("<tr height='30px'>");
 
                                     out.println("<td>");
+
                                     out.println("<table>");
+
                                     out.println("<tr height='20px'>");
 
                                     out.println("<td>");
@@ -523,9 +525,12 @@
                                     out.println("</table>");
 
                                     out.println("</td>");
+
 //-----
                                     out.println("<td>");
+
                                     out.println("<table>");
+
                                     out.println("<tr height='20px'>");
 
                                     out.println("<td>");
@@ -538,10 +543,12 @@
                                     out.println("</td>");
                                     out.println("</tr>");
 
-                                    out.println("<tr>");
+                                    out.println("<tr height='20px'>");
+
                                     out.println("<td>");
                                     out.println("15Κ-02");
                                     out.println("</td>");
+
                                     out.println("</tr>");
 
                                     out.println("</table>");
