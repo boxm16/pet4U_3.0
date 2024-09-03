@@ -1092,12 +1092,7 @@
                                                                 out.println("<table>");
 
                                                                 out.println("<tr>");
-
-                                                                out.println("<td  style='200px; >");
-                                                                out.println("");
-
-                                                                out.println("</td>");
-
+                                                                
                                                                 out.println("<td  style='40px; font-size: 25px; background-color: lightgreen;'>");
                                                                 if (positionsTraffic.get("14Ι-00") == null) {
                                                                     out.println(0);
@@ -1201,7 +1196,7 @@
                                                         </tbody>
                                                     </table>
                                                 </td>
-
+                                                
                                                 <td valign='top'>
                                                     <table>
                                                         <tbody>
@@ -1238,7 +1233,7 @@
                                                         </tbody>
                                                     </table>
                                                 </td>
-
+                                                
                                                 <td valign='top'>
                                                     <table>
                                                         <tbody>
@@ -1275,7 +1270,7 @@
                                                         </tbody>
                                                     </table>
                                                 </td>
-
+                                                
                                                 <td valign='top'>
                                                     <table>
                                                         <tbody>
