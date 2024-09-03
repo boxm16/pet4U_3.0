@@ -512,7 +512,12 @@
                                     out.println("</td>");
 
                                     out.println("<td>");
-                                    out.println("kapa2");
+                                    if (positionsTraffic.get("15Κ-02") == null) {
+                                        out.println(0);
+                                    } else {
+                                        out.println(positionsTraffic.get("15Κ-02"));
+                                    }
+
                                     out.println("</td>");
                                     //++++++++
                                     out.println("<tr>");
