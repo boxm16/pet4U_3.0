@@ -502,11 +502,11 @@
                                     out.println("<table>");
                                     out.println("<tr>");
                                     out.println("<td>");
-                                    out.println("EDO k1");
+                                    out.println("kapa1");
                                     out.println("</td>");
 
                                     out.println("<td>");
-                                    out.println("EDO k2");
+                                    out.println("kapa2");
                                     out.println("</td>");
 
                                     out.println("</tr>");
@@ -517,11 +517,11 @@
                                     out.println("<table>");
                                     out.println("<tr>");
                                     out.println("<td>");
-                                    out.println("15Κ-01");
+                                    out.println("kapa1");
                                     out.println("</td>");
 
                                     out.println("<td>");
-                                    out.println("15Κ-02");
+                                    out.println("kapa2");
                                     out.println("</td>");
 
                                     out.println("</tr>");
