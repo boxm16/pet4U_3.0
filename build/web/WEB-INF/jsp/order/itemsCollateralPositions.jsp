@@ -511,21 +511,6 @@
 
                                     out.println("</tr>");
                                     
-                                    out.println("<tr>");
-
-                                    out.println("<td width='40px'>");
-                                    out.println("<table>");
-                                    out.println("<tr>");
-                                    out.println("<td>");
-                                    out.println("kapa1");
-                                    out.println("</td>");
-
-                                    out.println("<td>");
-                                    out.println("kapa2");
-                                    out.println("</td>");
-
-                                    out.println("</tr>");
-                                    
                                     out.println("</table>");
                                     out.println("</td>");
 
@@ -592,7 +577,14 @@
                                                                                 out.println(entrySet.getKey());
                                                                                 out.println("</td>");
                                                                             } else {
-                                                   out.println("</tr>");
+                                                                                out.println("<td style='width:20px; font-size: 15px;'>");
+                                                                                out.println(entrySet.getKey());
+                                                                                out.println("</td>");
+                                                                            }
+
+                                                                        }
+
+                                                                        out.println("</tr>");
                                                                     }
                                                                 %>
                                                             </tbody>
@@ -641,7 +633,14 @@
                                                                                 out.println("");
                                                                                 out.println("</td>");
                                                                             } else {
-                                                                                                     println("</tr>");
+                                                                                out.println("<td style='width:30px; font-size: 25px; background-color: lightgreen;'>");
+                                                                                out.println(0);
+                                                                                out.println("</td>");
+                                                                            }
+
+                                                                        }
+
+                                                                        out.println("</tr>");
                                                                     }
                                                                 %>
                                                             </tbody>
@@ -703,7 +702,14 @@
                                                                                 out.println(entrySet.getKey());
                                                                                 out.println("</td>");
                                                                             } else {
-                                                  out.println("</tr>");
+                                                                                out.println("<td style='width:20px; font-size: 15px;'>");
+                                                                                out.println(entrySet.getKey());
+                                                                                out.println("</td>");
+                                                                            }
+
+                                                                        }
+
+                                                                        out.println("</tr>");
                                                                     }
                                                                 %>
                                                             </tbody>
@@ -755,7 +761,14 @@
                                                                                 out.println("");
                                                                                 out.println("</td>");
                                                                             } else {
-                                                                                                      rintln("</tr>");
+                                                                                out.println("<td style='width:30px; font-size: 25px; background-color: lightgreen;'>");
+                                                                                out.println(0);
+                                                                                out.println("</td>");
+                                                                            }
+
+                                                                        }
+
+                                                                        out.println("</tr>");
                                                                     }
 
                                                                 %>
@@ -819,7 +832,14 @@
                                                                                 out.println(entrySet.getKey());
                                                                                 out.println("</td>");
                                                                             } else {
-                                                   out.println("</tr>");
+                                                                                out.println("<td style='width:20px; font-size: 15px;'>");
+                                                                                out.println(entrySet.getKey());
+                                                                                out.println("</td>");
+                                                                            }
+
+                                                                        }
+
+                                                                        out.println("</tr>");
                                                                     }
                                                                 %>
                                                             </tbody>
@@ -870,7 +890,14 @@
                                                                                 out.println("");
                                                                                 out.println("</td>");
                                                                             } else {
-                                                                                                      rintln("</tr>");
+                                                                                out.println("<td style='width:30px; font-size: 25px; background-color: lightgreen;'>");
+                                                                                out.println(0);
+                                                                                out.println("</td>");
+                                                                            }
+
+                                                                        }
+
+                                                                        out.println("</tr>");
                                                                     }
 
                                                                 %>
