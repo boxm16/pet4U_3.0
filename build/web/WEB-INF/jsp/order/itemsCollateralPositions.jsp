@@ -1077,6 +1077,239 @@
                                         </table>
                                     </td>
                                 </tr>
+
+                                <!-- pame I -->
+                                <tr>
+                                    <td>
+                                        <table>
+                                            <tr>
+                                                <td valign='top'>
+                                                    <table>
+                                                        <tbody>
+                                                            <%                                                                out.println("<tr>");
+
+                                                                out.println("<td width='40px'>");
+                                                                out.println("<table>");
+
+                                                                out.println("<tr>");
+                                                                out.println("<td  style='40px; font-size: 25px; background-color: lightgreen;'>");
+                                                                if (positionsTraffic.get("14Ι-00") == null) {
+                                                                    out.println(0);
+                                                                } else {
+                                                                    out.println(positionsTraffic.get("14Ι-00"));
+                                                                }
+
+                                                                out.println("</td>");
+
+                                                                //++++++++
+                                                                out.println("<tr>");
+                                                                out.println("<td width='40px'>");
+                                                                out.println("14Ι-00");
+                                                                out.println("</td>");
+
+                                                                out.println("</tr>");
+
+                                                                out.println("</table>");
+                                                                out.println("</td>");
+
+                                                                out.println("</tr>");
+
+
+                                                            %>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+
+
+                                                <td valign='top'>
+                                                    <table>
+                                                        <tbody>
+                                                            <%                                                                out.println("<tr>");
+
+                                                                out.println("<td width='40px'>");
+                                                                out.println("<table>");
+
+                                                                out.println("<tr>");
+                                                                out.println("<td  style='40px; font-size: 25px; background-color: lightgreen;'>");
+                                                                if (positionsTraffic.get("14Ι-01") == null) {
+                                                                    out.println(0);
+                                                                } else {
+                                                                    out.println(positionsTraffic.get("14Ι-01"));
+                                                                }
+
+                                                                out.println("</td>");
+
+                                                                //++++++++
+                                                                out.println("<tr>");
+                                                                out.println("<td width='40px'>");
+                                                                out.println("14Ι-01");
+                                                                out.println("</td>");
+
+                                                                out.println("</tr>");
+
+                                                                out.println("</table>");
+                                                                out.println("</td>");
+
+                                                                out.println("</tr>");
+
+
+                                                            %>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+
+
+                                                <td valign='top'>
+                                                    <table>
+                                                        <tbody>
+                                                            <%                                                                out.println("<tr>");
+
+                                                                out.println("<td width='40px'>");
+                                                                out.println("<table>");
+
+                                                                out.println("<tr>");
+                                                                out.println("<td  style='40px; font-size: 25px; background-color: lightgreen;'>");
+                                                                if (positionsTraffic.get("14Ι-02") == null) {
+                                                                    out.println(0);
+                                                                } else {
+                                                                    out.println(positionsTraffic.get("14Ι-02"));
+                                                                }
+
+                                                                out.println("</td>");
+
+                                                                //++++++++
+                                                                out.println("<tr>");
+                                                                out.println("<td width='40px'>");
+                                                                out.println("14Ι-02");
+                                                                out.println("</td>");
+
+                                                                out.println("</tr>");
+
+                                                                out.println("</table>");
+                                                                out.println("</td>");
+
+                                                                out.println("</tr>");
+
+
+                                                            %>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                                
+                                                <td valign='top'>
+                                                    <table>
+                                                        <tbody>
+                                                            <%                                                                out.println("<tr>");
+
+                                                                out.println("<td width='40px'>");
+                                                                out.println("<table>");
+
+                                                                out.println("<tr>");
+                                                                out.println("<td  style='40px; font-size: 25px; background-color: lightgreen;'>");
+                                                                if (positionsTraffic.get("14Ι-03") == null) {
+                                                                    out.println(0);
+                                                                } else {
+                                                                    out.println(positionsTraffic.get("14Ι-03"));
+                                                                }
+
+                                                                out.println("</td>");
+
+                                                                //++++++++
+                                                                out.println("<tr>");
+                                                                out.println("<td width='40px'>");
+                                                                out.println("14Ι-03");
+                                                                out.println("</td>");
+
+                                                                out.println("</tr>");
+
+                                                                out.println("</table>");
+                                                                out.println("</td>");
+
+                                                                out.println("</tr>");
+
+
+                                                            %>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                                
+                                                <td valign='top'>
+                                                    <table>
+                                                        <tbody>
+                                                            <%                                                                out.println("<tr>");
+
+                                                                out.println("<td width='40px'>");
+                                                                out.println("<table>");
+
+                                                                out.println("<tr>");
+                                                                out.println("<td  style='40px; font-size: 25px; background-color: lightgreen;'>");
+                                                                if (positionsTraffic.get("14Ι-04") == null) {
+                                                                    out.println(0);
+                                                                } else {
+                                                                    out.println(positionsTraffic.get("14Ι-04"));
+                                                                }
+
+                                                                out.println("</td>");
+
+                                                                //++++++++
+                                                                out.println("<tr>");
+                                                                out.println("<td width='40px'>");
+                                                                out.println("14Ι-04");
+                                                                out.println("</td>");
+
+                                                                out.println("</tr>");
+
+                                                                out.println("</table>");
+                                                                out.println("</td>");
+
+                                                                out.println("</tr>");
+
+
+                                                            %>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                                
+                                                <td valign='top'>
+                                                    <table>
+                                                        <tbody>
+                                                            <%                                                                out.println("<tr>");
+
+                                                                out.println("<td width='40px'>");
+                                                                out.println("<table>");
+
+                                                                out.println("<tr>");
+                                                                out.println("<td  style='40px; font-size: 25px; background-color: lightgreen;'>");
+                                                                if (positionsTraffic.get("14Ι-05") == null) {
+                                                                    out.println(0);
+                                                                } else {
+                                                                    out.println(positionsTraffic.get("14Ι-05"));
+                                                                }
+
+                                                                out.println("</td>");
+
+                                                                //++++++++
+                                                                out.println("<tr>");
+                                                                out.println("<td width='40px'>");
+                                                                out.println("14Ι-05");
+                                                                out.println("</td>");
+
+                                                                out.println("</tr>");
+
+                                                                out.println("</table>");
+                                                                out.println("</td>");
+
+                                                                out.println("</tr>");
+
+
+                                                            %>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </td>
