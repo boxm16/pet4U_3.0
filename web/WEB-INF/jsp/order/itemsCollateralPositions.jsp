@@ -496,6 +496,14 @@
 
                                     out.println("</tr>");
 
+                                    out.println("<tr>");
+
+                                    out.println("<td width='40px'>");
+                                    out.println("KAPA");
+                                    out.println("</td>");
+
+                                    out.println("</tr>");
+
 
                                 %>
                             </tbody>
