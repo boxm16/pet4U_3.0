@@ -512,11 +512,11 @@
                                     //++++++++
                                     out.println("<tr>");
                                     out.println("<td>");
-                                    out.println("kapa1");
+                                    out.println("15Κ-01");
                                     out.println("</td>");
 
                                     out.println("<td>");
-                                    out.println("kapa2");
+                                    out.println("15Κ-02");
                                     out.println("</td>");
 
                                     out.println("</tr>");
