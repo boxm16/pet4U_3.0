@@ -500,6 +500,16 @@
 
                                     out.println("<td width='40px'>");
                                     out.println("<table>");
+
+                                    out.println("<tr>");
+                                    out.println("<td>");
+                                    out.println("kapa1");
+                                    out.println("</td>");
+
+                                    out.println("<td>");
+                                    out.println("kapa2");
+                                    out.println("</td>");
+                                    //++++++++
                                     out.println("<tr>");
                                     out.println("<td>");
                                     out.println("kapa1");
@@ -510,7 +520,7 @@
                                     out.println("</td>");
 
                                     out.println("</tr>");
-                                    
+
                                     out.println("</table>");
                                     out.println("</td>");
 
