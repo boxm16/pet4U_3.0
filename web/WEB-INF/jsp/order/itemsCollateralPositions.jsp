@@ -588,7 +588,42 @@
                                                     </table>
                                                 </td>
                                                 <td style="width:300px"></td>
-                                                <td style="width:150px">LAMBA 3</td>
+                                                <td valign='top'>
+                                                    <table>
+                                                        <tbody>
+                                                            <%                                                                out.println("<tr>");
+
+                                                                out.println("<td width='40px'>");
+                                                                out.println("<table>");
+
+                                                                out.println("<tr>");
+                                                                out.println("<td>");
+                                                                if (positionsTraffic.get("19Λ-03") == null) {
+                                                                    out.println(0);
+                                                                } else {
+                                                                    out.println(positionsTraffic.get("19Λ-03"));
+                                                                }
+
+                                                                out.println("</td>");
+
+                                                                //++++++++
+                                                                out.println("<tr>");
+                                                                out.println("<td>");
+                                                                out.println("19Λ-03");
+                                                                out.println("</td>");
+
+                                                                out.println("</tr>");
+
+                                                                out.println("</table>");
+                                                                out.println("</td>");
+
+                                                                out.println("</tr>");
+
+
+                                                            %>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
                                             </tr>
                                         </table>
                                     </td>
