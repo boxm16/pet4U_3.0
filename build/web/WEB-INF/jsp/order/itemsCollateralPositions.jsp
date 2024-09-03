@@ -1092,18 +1092,10 @@
                                                                 out.println("<table>");
 
                                                                 out.println("<tr>");
-                                                                out.println("<td width='200px'>");
-                                                                out.println("");
-                                                                out.println("</td>");
-                                                                out.println("</tr>");
 
-                                                                out.println("<tr>");
-                                                                out.println("<td width='200px'>");
+                                                                out.println("<td  style='200px; >");
                                                                 out.println("");
-                                                                out.println("</td>");
-                                                                out.println("</tr>");
 
-                                                                out.println("</table>");
                                                                 out.println("</td>");
 
                                                                 out.println("<td  style='40px; font-size: 25px; background-color: lightgreen;'>");
@@ -1114,7 +1106,6 @@
                                                                 }
 
                                                                 out.println("</td>");
-                                                                out.println("</tr>");
 
                                                                 //++++++++
                                                                 out.println("<tr>");
