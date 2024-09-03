@@ -488,7 +488,7 @@
                         <table>
                             <tbody>
                                 <%                                    //diadromos start
-                                    out.println("<tr height='870px'>");
+                                    out.println("<tr height='880px'>");
 
                                     out.println("<td width='40px'>");
                                     out.println("    ");
