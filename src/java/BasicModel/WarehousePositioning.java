@@ -500,4 +500,20 @@ public class WarehousePositioning {
         this.L = L;
     }
 
+    public LinkedHashMap<String, Object> getI() {
+        return I;
+    }
+
+    public void setI(LinkedHashMap<String, Object> I) {
+        this.I = I;
+    }
+
+    public LinkedHashMap<String, Object> getR() {
+        return R;
+    }
+
+    public void setR(LinkedHashMap<String, Object> R) {
+        this.R = R;
+    }
+
 }
