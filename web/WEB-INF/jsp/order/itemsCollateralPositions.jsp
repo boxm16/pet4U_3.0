@@ -1026,7 +1026,7 @@
                                                                     for (Map.Entry<String, Object> entrySet : th.entrySet()) {
                                                                         String k = entrySet.getKey();
 
-                                                                        out.println("<tr height='40px'>");
+                                                                        out.println("<tr height='60px'>");
                                                                         if (positionsTraffic.containsKey(k)) {
                                                                             if (entrySet.getKey().contains("emptySpace")) {
                                                                                 out.println("<td style='width:30px;'>");
