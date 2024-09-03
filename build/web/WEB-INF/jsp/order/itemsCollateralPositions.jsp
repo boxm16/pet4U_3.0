@@ -552,8 +552,8 @@
                                         <table>
                                             <tr>
                                                 <td style="width:100px">LAMBA 1</td>
-                                                <td>____________________________ 1</td>
-                                                <td style="width:100px">LAMBA 1</td>
+                                                <td style="width:300px"></td>
+                                                <td style="width:100px">LAMBA 3</td>
                                             </tr>
                                         </table>
                                     </td>
