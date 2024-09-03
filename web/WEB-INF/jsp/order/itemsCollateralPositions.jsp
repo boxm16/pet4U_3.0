@@ -556,7 +556,7 @@
                                                         <tbody>
                                                             <%                                                                out.println("<tr>");
 
-                                                                out.println("<td width='40px'>");
+                                                                out.println("<td width='150px'>");
                                                                 out.println("<table>");
 
                                                                 out.println("<tr>");
@@ -593,7 +593,7 @@
                                                         <tbody>
                                                             <%                                                                out.println("<tr>");
 
-                                                                out.println("<td width='40px'>");
+                                                                out.println("<td width='150px'>");
                                                                 out.println("<table>");
 
                                                                 out.println("<tr>");
