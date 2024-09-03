@@ -502,14 +502,30 @@
                                     out.println("<table>");
                                     out.println("<tr>");
                                     out.println("<td>");
-                                    out.println("kapa1");
+                                    out.println("EDO k1");
                                     out.println("</td>");
 
                                     out.println("<td>");
-                                    out.println("kapa2");
+                                    out.println("EDO k2");
                                     out.println("</td>");
 
                                     out.println("</tr>");
+
+                                    out.println("<tr>");
+
+                                    out.println("<td width='40px'>");
+                                    out.println("<table>");
+                                    out.println("<tr>");
+                                    out.println("<td>");
+                                    out.println("15Κ-01");
+                                    out.println("</td>");
+
+                                    out.println("<td>");
+                                    out.println("15Κ-02");
+                                    out.println("</td>");
+
+                                    out.println("</tr>");
+
                                     out.println("</table>");
                                     out.println("</td>");
 
