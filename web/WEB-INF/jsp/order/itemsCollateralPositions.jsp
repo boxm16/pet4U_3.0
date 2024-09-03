@@ -561,19 +561,19 @@
 
                                                                 out.println("<tr>");
                                                                 out.println("<td>");
-                                                                if (positionsTraffic.get("15Κ-01") == null) {
+                                                                if (positionsTraffic.get("19Λ-01") == null) {
                                                                     out.println(0);
                                                                 } else {
-                                                                    out.println(positionsTraffic.get("15Κ-01"));
+                                                                    out.println(positionsTraffic.get("19Λ-01"));
                                                                 }
 
                                                                 out.println("</td>");
 
                                                                 out.println("<td>");
-                                                                if (positionsTraffic.get("15Κ-02") == null) {
+                                                                if (positionsTraffic.get("19Λ-02") == null) {
                                                                     out.println(0);
                                                                 } else {
-                                                                    out.println(positionsTraffic.get("15Κ-02"));
+                                                                    out.println(positionsTraffic.get("19Λ-02"));
                                                                 }
 
                                                                 out.println("</td>");
