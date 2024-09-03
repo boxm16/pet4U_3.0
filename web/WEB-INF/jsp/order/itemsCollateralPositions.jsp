@@ -1083,24 +1083,24 @@
                                     <td>
                                         <table>
                                             <tr>
-
+                                                <!-- porta -->
                                                 <td valign='top'>
                                                     <table>
                                                         <tbody>
                                                             <%                                                                out.println("<tr>");
 
-                                                                out.println("<td width='200px'>");
+                                                                out.println("<td style='width:200px; '>");
                                                                 out.println("<table>");
 
                                                                 out.println("<tr>");
 
-                                                                out.println("<td  style='200px; '>");
+                                                                out.println("<td  style='width:200px; '>");
                                                                 out.println(" ");
                                                                 out.println("</td>");
                                                                 out.println("</tr>");
                                                                 //++++++++
                                                                 out.println("<tr>");
-                                                                out.println("<td  style='200px; '>");
+                                                                out.println("<td  style='width:200px; '>");
                                                                 out.println(" ");
                                                                 out.println("</td>");
 
