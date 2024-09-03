@@ -1083,6 +1083,40 @@
                                     <td>
                                         <table>
                                             <tr>
+
+                                                <td valign='top'>
+                                                    <table>
+                                                        <tbody>
+                                                            <%                                                                out.println("<tr>");
+
+                                                                out.println("<td width='200px'>");
+                                                                out.println("<table>");
+
+                                                                out.println("<tr>");
+
+                                                                out.println("<td  style='200px; '>");
+                                                                out.println(" ");
+                                                                out.println("</td>");
+                                                                out.println("</tr>");
+                                                                //++++++++
+                                                                out.println("<tr>");
+                                                                out.println("<td  style='200px; '>");
+                                                                out.println(" ");
+                                                                out.println("</td>");
+
+                                                                out.println("</tr>");
+
+                                                                out.println("</table>");
+                                                                out.println("</td>");
+
+                                                                out.println("</tr>");
+
+
+                                                            %>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+
                                                 <td valign='top'>
                                                     <table>
                                                         <tbody>
@@ -1092,7 +1126,7 @@
                                                                 out.println("<table>");
 
                                                                 out.println("<tr>");
-                                                                
+
                                                                 out.println("<td  style='40px; font-size: 25px; background-color: lightgreen;'>");
                                                                 if (positionsTraffic.get("14Ι-00") == null) {
                                                                     out.println(0);
@@ -1101,6 +1135,7 @@
                                                                 }
 
                                                                 out.println("</td>");
+                                                                out.println("</tr>");
 
                                                                 //++++++++
                                                                 out.println("<tr>");
@@ -1139,6 +1174,7 @@
                                                                 }
 
                                                                 out.println("</td>");
+                                                                out.println("</tr>");
 
                                                                 //++++++++
                                                                 out.println("<tr>");
@@ -1177,6 +1213,7 @@
                                                                 }
 
                                                                 out.println("</td>");
+                                                                out.println("</tr>");
 
                                                                 //++++++++
                                                                 out.println("<tr>");
@@ -1196,7 +1233,7 @@
                                                         </tbody>
                                                     </table>
                                                 </td>
-                                                
+
                                                 <td valign='top'>
                                                     <table>
                                                         <tbody>
@@ -1214,6 +1251,7 @@
                                                                 }
 
                                                                 out.println("</td>");
+                                                                out.println("</tr>");
 
                                                                 //++++++++
                                                                 out.println("<tr>");
@@ -1233,7 +1271,7 @@
                                                         </tbody>
                                                     </table>
                                                 </td>
-                                                
+
                                                 <td valign='top'>
                                                     <table>
                                                         <tbody>
@@ -1251,7 +1289,7 @@
                                                                 }
 
                                                                 out.println("</td>");
-
+                                                                out.println("</tr>");
                                                                 //++++++++
                                                                 out.println("<tr>");
                                                                 out.println("<td width='90px'>");
@@ -1270,7 +1308,7 @@
                                                         </tbody>
                                                     </table>
                                                 </td>
-                                                
+
                                                 <td valign='top'>
                                                     <table>
                                                         <tbody>
@@ -1288,7 +1326,7 @@
                                                                 }
 
                                                                 out.println("</td>");
-
+                                                                out.println("</tr>");
                                                                 //++++++++
                                                                 out.println("<tr>");
                                                                 out.println("<td width='90px'>");
