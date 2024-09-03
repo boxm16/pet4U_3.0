@@ -484,7 +484,23 @@
                             </tbody>
                         </table>
                     </td>
-                    
+                    <td valign='top'>
+                        <table>
+                            <tbody>
+                                <%                                    //diadromos start
+                                    out.println("<tr height='1000px'>");
+
+                                    out.println("<td width='40px'>");
+                                    out.println("    ");
+                                    out.println("</td>");
+
+                                    out.println("</tr>");
+
+
+                                %>
+                            </tbody>
+                        </table>
+                    </td>
 
 
 
