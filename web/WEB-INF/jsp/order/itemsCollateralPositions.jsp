@@ -513,7 +513,7 @@
 
                                     out.println("<td style='width:30px; font-size: 25px; background-color: lightgreen;'>");
                                     if (positionsTraffic.get("15Κ-02") == null) {
-                                        
+
                                         out.println(0);
                                     } else {
                                         out.println(positionsTraffic.get("15Κ-02"));
@@ -561,7 +561,7 @@
                                                                 out.println("<table>");
 
                                                                 out.println("<tr>");
-                                                                out.println("<td width='150px'>");
+                                                                out.println("<td  style='150px; font-size: 25px; background-color: lightgreen;>");
                                                                 if (positionsTraffic.get("19Λ-01") == null) {
                                                                     out.println(0);
                                                                 } else {
@@ -598,7 +598,7 @@
                                                                 out.println("<table>");
 
                                                                 out.println("<tr>");
-                                                               out.println("<td width='150px'>");
+                                                                out.println("<td  style='150px; font-size: 25px; background-color: lightgreen;>");
                                                                 if (positionsTraffic.get("19Λ-03") == null) {
                                                                     out.println(0);
                                                                 } else {
