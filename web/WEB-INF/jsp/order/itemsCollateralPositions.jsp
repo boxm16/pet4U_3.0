@@ -1093,8 +1093,8 @@
 
                                                                 out.println("<tr>");
                                                                 // porta
-                                                                out.println("<td  style='width:200px;'>");
-                                                                out.println("");
+                                                                out.println("<td  style='40px; font-size: 25px; background-color: lightgreen;'>");
+                                                                out.println(0);
                                                                 out.println("</td>");
 
                                                                 out.println("<td  style='40px; font-size: 25px; background-color: lightgreen;'>");
