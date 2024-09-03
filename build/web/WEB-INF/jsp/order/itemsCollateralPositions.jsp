@@ -569,22 +569,10 @@
 
                                                                 out.println("</td>");
 
-                                                                out.println("<td>");
-                                                                if (positionsTraffic.get("19Λ-02") == null) {
-                                                                    out.println(0);
-                                                                } else {
-                                                                    out.println(positionsTraffic.get("19Λ-02"));
-                                                                }
-
-                                                                out.println("</td>");
                                                                 //++++++++
                                                                 out.println("<tr>");
                                                                 out.println("<td>");
-                                                                out.println("15Κ-01");
-                                                                out.println("</td>");
-
-                                                                out.println("<td>");
-                                                                out.println("15Κ-02");
+                                                                out.println("19Λ-01");
                                                                 out.println("</td>");
 
                                                                 out.println("</tr>");
