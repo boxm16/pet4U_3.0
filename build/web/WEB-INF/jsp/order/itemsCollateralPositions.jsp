@@ -477,14 +477,14 @@
 
                                         }
 
-                                        out.println("</tr>");
-
-                                        out.println("<tr  style='width:30px; height: 10px; '>");
-                                        out.println("<td>");
-                                        out.println("");
-                                        out.println("</td>");
-                                        out.println("</tr>");
                                     }
+                                    out.println("</tr>");
+
+                                    out.println("<tr  style='width:200px; height: 10px; '>");
+                                    out.println("<td>");
+                                    out.println("");
+                                    out.println("</td>");
+                                    out.println("</tr>");
 
 
                                 %>
