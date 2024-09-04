@@ -619,6 +619,10 @@
 
                                     //=============
                                     out.println("<tr>");
+
+                                    out.println("<td>");
+                                    out.println("<table>");
+                                    out.println("<tr>");
                                     out.println("<td  style='20px; font-size: 20px; background-color: lightgreen;'>");
                                     if (positionsTraffic.get("18Ρ-04") == null) {
                                         out.println(0);
@@ -626,7 +630,7 @@
                                         out.println(positionsTraffic.get("18Ρ-04"));
                                     }
                                     out.println("</td>");
-                                   
+
                                     out.println("<td  style='20px; font-size: 20px; background-color: lightgreen;'>");
                                     if (positionsTraffic.get("18Ρ-05") == null) {
                                         out.println(0);
@@ -634,7 +638,7 @@
                                         out.println(positionsTraffic.get("18Ρ-05"));
                                     }
                                     out.println("</td>");
-                                   
+
                                     out.println("<td  style='20px; font-size: 20px; background-color: lightgreen;'>");
                                     if (positionsTraffic.get("18Ρ-06") == null) {
                                         out.println(0);
@@ -642,13 +646,17 @@
                                         out.println(positionsTraffic.get("18Ρ-06"));
                                     }
                                     out.println("</td>");
-                                  
+
                                     out.println("<td  style='20px; font-size: 20px; background-color: lightgreen;'>");
                                     if (positionsTraffic.get("18Ρ-07") == null) {
                                         out.println(0);
                                     } else {
                                         out.println(positionsTraffic.get("18Ρ-07"));
                                     }
+                                    out.println("</td>");
+
+                                    out.println("</tr>");
+                                    out.println("<table>");
                                     out.println("</td>");
                                     out.println("</tr>");
 
