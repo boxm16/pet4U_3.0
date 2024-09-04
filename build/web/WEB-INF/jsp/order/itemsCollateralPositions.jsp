@@ -623,7 +623,7 @@
                                     out.println("<td>");
                                     out.println("<table>");
                                     out.println("<tr>");
-                                    out.println("<td  style='30px; font-size: 30px; background-color: lightgreen;'>");
+                                    out.println("<td  style='width:30px; font-size: 30px; background-color: lightgreen;'>");
                                     if (positionsTraffic.get("18Ρ-04") == null) {
                                         out.println(0);
                                     } else {
@@ -631,7 +631,7 @@
                                     }
                                     out.println("</td>");
 
-                                    out.println("<td  style='30px; font-size: 30px; background-color: lightgreen;'>");
+                                    out.println("<td  style='width:30px; font-size: 30px; background-color: lightgreen;'>");
                                     if (positionsTraffic.get("18Ρ-05") == null) {
                                         out.println(0);
                                     } else {
@@ -639,7 +639,7 @@
                                     }
                                     out.println("</td>");
 
-                                    out.println("<td  style='30px; font-size: 30px; background-color: lightgreen;'>");
+                                    out.println("<td  style='width:30px; font-size: 30px; background-color: lightgreen;'>");
                                     if (positionsTraffic.get("18Ρ-06") == null) {
                                         out.println(0);
                                     } else {
@@ -647,7 +647,7 @@
                                     }
                                     out.println("</td>");
 
-                                    out.println("<td  style='30px; font-size: 30px; background-color: lightgreen;'>");
+                                    out.println("<td  style='width:30px; font-size: 30px; background-color: lightgreen;'>");
                                     if (positionsTraffic.get("18Ρ-07") == null) {
                                         out.println(0);
                                     } else {
