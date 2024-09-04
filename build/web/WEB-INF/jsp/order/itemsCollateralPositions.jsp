@@ -656,7 +656,7 @@
                                     out.println("</td>");
 
                                     out.println("</tr>");
-                                    out.println("<table>");
+                                    out.println("</table>");
                                     out.println("</td>");
                                     out.println("</tr>");
 
