@@ -668,7 +668,7 @@
                                     out.println("<table>");
 
                                     out.println("<tr>");
-                                    out.println("<td  style='width:40px;'>");
+                                    out.println("<td  style='width:90px;'>");
                                     out.println("     ");
                                     out.println("</td>");
                                     out.println("<td  style='width:40px; font-size: 25px; background-color: lightgreen;'>");
@@ -681,7 +681,7 @@
                                     out.println("</tr>");
 
                                     out.println("<tr>");
-                                    out.println("<td  style='width:40px;'>");
+                                    out.println("<td  style='width:90px;'>");
                                     out.println("     ");
                                     out.println("</td>");
                                     out.println("<td  style='width:40px; font-size: 25px; background-color: lightgreen;'>");
@@ -694,7 +694,7 @@
                                     out.println("</tr>");
 
                                     out.println("<tr>");
-                                    out.println("<td  style='width:40px;'>");
+                                    out.println("<td  style='width:90px;'>");
                                     out.println("     ");
                                     out.println("</td>");
                                     out.println("<td  style='width:40px; font-size: 25px; background-color: lightgreen;'>");
