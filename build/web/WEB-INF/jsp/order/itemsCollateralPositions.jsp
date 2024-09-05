@@ -664,6 +664,9 @@
 
                                     //------------------------ Σ +++--------------------------------
                                     out.println("<tr>");
+                                    out.println("<td>");
+                                    out.println("<table>");
+                                    out.println("<tr>");
 
                                     out.println("<td>");
                                     out.println("     ");
@@ -703,6 +706,11 @@
                                         out.println(positionsTraffic.get("17Σ-01"));
                                     }
                                     out.println("</td>");
+                                    out.println("</tr>");
+
+                                    out.println("</td>");
+                                    out.println("</tr>");
+                                    out.println("</table>");
                                     out.println("</tr>");
                                     //------------------------------------------------------------------
 
