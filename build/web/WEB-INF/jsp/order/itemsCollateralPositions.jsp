@@ -669,7 +669,7 @@
 
                                     out.println("<tr>");
                                     out.println("<td>");
-                                    out.println("");
+                                    out.println("     ");
                                     out.println("</td>");
                                     out.println("<td  style='width:40px; font-size: 25px; background-color: lightgreen;'>");
                                     if (positionsTraffic.get("17Σ-03") == null) {
@@ -682,7 +682,7 @@
 
                                     out.println("<tr>");
                                     out.println("<td>");
-                                    out.println("");
+                                    out.println("     ");
                                     out.println("</td>");
                                     out.println("<td  style='width:40px; font-size: 25px; background-color: lightgreen;'>");
                                     if (positionsTraffic.get("17Σ-02") == null) {
@@ -695,7 +695,7 @@
 
                                     out.println("<tr>");
                                     out.println("<td>");
-                                    out.println("");
+                                    out.println("     ");
                                     out.println("</td>");
                                     out.println("<td  style='width:40px; font-size: 25px; background-color: lightgreen;'>");
                                     if (positionsTraffic.get("17Σ-01") == null) {
