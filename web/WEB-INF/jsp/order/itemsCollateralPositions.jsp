@@ -531,11 +531,13 @@
                                     
                                     
                                     
-                                    out.println("<td>");
+                                     if (itemBlockPosition.equals("18Ρ-01")) {
+                                        out.println("<td style='width:90px; background-color: red;'>");
+                                    } else {
+                                        out.println("<td width='90px'>");
+                                    }
                                     out.println("18Ρ-01");
                                     out.println("</td>");
-                                    
-                                    
                                     
                                     
                                     out.println("<td  style='40px; font-size: 25px; background-color: lightgreen;'>");
