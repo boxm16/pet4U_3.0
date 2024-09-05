@@ -374,6 +374,8 @@
                         <table>
                             <tbody>
                                 <%
+                                    //---- Y stop existing-----------
+                                    /*
                                     LinkedHashMap<String, Object> y = positions.getY();
 
                                     for (Map.Entry<String, Object> entrySet : y.entrySet()) {
@@ -423,7 +425,7 @@
 
                                         out.println("</tr>");
                                     }
-
+                                     */
                                     //-----------------------------------
                                     LinkedHashMap<String, Object> a = positions.getA();
                                     int r = 0;
