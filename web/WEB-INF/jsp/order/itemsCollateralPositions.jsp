@@ -1352,10 +1352,11 @@
 
                                                                 //++++++++
                                                                 out.println("<tr>");
-                                                                out.println("<td width='90px'>");
-                                                                out.println("14Ι-01");
-                                                                out.println("</td>");
-
+                                                                if (itemBlockPosition.equals("14Ι-01")) {
+                                                                    out.println("<td style='width:90px; background-color: red;'>");
+                                                                } else {
+                                                                    out.println("<td width='90px'>");
+                                                                }
                                                                 out.println("</tr>");
 
                                                                 out.println("</table>");
@@ -1391,10 +1392,11 @@
 
                                                                 //++++++++
                                                                 out.println("<tr>");
-                                                                out.println("<td width='90px'>");
-                                                                out.println("14Ι-02");
-                                                                out.println("</td>");
-
+                                                                if (itemBlockPosition.equals("14Ι-02")) {
+                                                                    out.println("<td style='width:90px; background-color: red;'>");
+                                                                } else {
+                                                                    out.println("<td width='90px'>");
+                                                                }
                                                                 out.println("</tr>");
 
                                                                 out.println("</table>");
@@ -1429,10 +1431,11 @@
 
                                                                 //++++++++
                                                                 out.println("<tr>");
-                                                                out.println("<td width='90px'>");
-                                                                out.println("14Ι-03");
-                                                                out.println("</td>");
-
+                                                                if (itemBlockPosition.equals("14Ι-03")) {
+                                                                    out.println("<td style='width:90px; background-color: red;'>");
+                                                                } else {
+                                                                    out.println("<td width='90px'>");
+                                                                }
                                                                 out.println("</tr>");
 
                                                                 out.println("</table>");
@@ -1466,10 +1469,11 @@
                                                                 out.println("</tr>");
                                                                 //++++++++
                                                                 out.println("<tr>");
-                                                                out.println("<td width='90px'>");
-                                                                out.println("14Ι-04");
-                                                                out.println("</td>");
-
+                                                                if (itemBlockPosition.equals("14Ι-04")) {
+                                                                    out.println("<td style='width:90px; background-color: red;'>");
+                                                                } else {
+                                                                    out.println("<td width='90px'>");
+                                                                }
                                                                 out.println("</tr>");
 
                                                                 out.println("</table>");
