@@ -533,4 +533,22 @@ public class WarehousePositioning {
         this.R = R;
     }
 
+    public LinkedHashMap<String, Object> getS() {
+        return S;
+    }
+
+    public void setS(LinkedHashMap<String, Object> S) {
+        this.S = S;
+    }
+
+    public LinkedHashMap<String, Object> getT() {
+        return T;
+    }
+
+    public void setT(LinkedHashMap<String, Object> T) {
+        this.T = T;
+    }
+    
+    
+
 }
