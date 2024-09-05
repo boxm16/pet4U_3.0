@@ -497,7 +497,7 @@
                                     out.println("</td>");
                                     out.println("</tr>");
 
-//-------------------------
+                                    //---------------R ----------
                                     out.println("<tr>");
 
                                     out.println("<tr>");
@@ -1580,9 +1580,71 @@
                             </tbody>
                         </table>
                         <table>
-                            <tr>
-                                <td>dddddddddddd</td>
-                            </tr>
+
+                            <%                                   //---------------T ----------
+                                out.println("<tr>");
+
+                                out.println("<tr>");
+                                if (itemBlockPosition.equals("16Τ-03")) {
+                                    out.println("<td style='width:90px; background-color: red;'>");
+                                } else {
+                                    out.println("<td width='90px'>");
+                                }
+                                out.println("16Τ-03");
+                                out.println("</td>");
+
+                                out.println("<td  style='40px; font-size: 25px; background-color: lightgreen;'>");
+                                if (positionsTraffic.get("16Τ-03") == null) {
+                                    out.println(0);
+                                } else {
+                                    out.println(positionsTraffic.get("16Τ-03"));
+                                }
+
+                                out.println("</td>");
+                                out.println("</tr>");
+
+                                out.println("<tr>");
+                                if (itemBlockPosition.equals("16Τ-02")) {
+                                    out.println("<td style='width:90px; background-color: red;'>");
+                                } else {
+                                    out.println("<td width='90px'>");
+                                }
+                                out.println("16Τ-02");
+                                out.println("</td>");
+
+                                out.println("<td  style='40px; font-size: 25px; background-color: lightgreen;'>");
+                                if (positionsTraffic.get("16Τ-02") == null) {
+                                    out.println(0);
+                                } else {
+                                    out.println(positionsTraffic.get("16Τ-02"));
+                                }
+
+                                out.println("</td>");
+                                out.println("</tr>");
+
+                                out.println("<tr>");
+
+                                if (itemBlockPosition.equals("16Τ-01")) {
+                                    out.println("<td style='width:90px; background-color: red;'>");
+                                } else {
+                                    out.println("<td width='90px'>");
+                                }
+                                out.println("16Τ-01");
+                                out.println("</td>");
+
+                                out.println("<td  style='40px; font-size: 25px; background-color: lightgreen;'>");
+                                if (positionsTraffic.get("16Τ-01") == null) {
+                                    out.println(0);
+                                } else {
+                                    out.println(positionsTraffic.get("16Τ-01"));
+                                }
+
+                                out.println("</td>");
+                                out.println("</tr>");
+
+                                
+                            %>
+
                         </table>
                     </td>
 
