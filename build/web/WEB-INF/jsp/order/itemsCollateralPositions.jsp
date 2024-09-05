@@ -669,7 +669,7 @@
 
                                     out.println("<tr>");
                                     out.println("<td  style='width:100px;'>");
-                                    out.println("dasdasdasdasdasd");
+                                    out.println("");
                                     out.println("</td>");
                                     out.println("<td  style='width:40px; font-size: 25px; background-color: lightgreen;'>");
                                     if (positionsTraffic.get("17Σ-03") == null) {
