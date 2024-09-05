@@ -595,11 +595,20 @@
                                     out.println("</td>");
                                     //++++++++
                                     out.println("<tr>");
-                                    out.println("<td>");
+
+                                    if (itemBlockPosition.equals("15Κ-01")) {
+                                        out.println("<td style='width:90px; background-color: red;'>");
+                                    } else {
+                                        out.println("<td width='90px'>");
+                                    }
                                     out.println("15Κ-01");
                                     out.println("</td>");
 
-                                    out.println("<td>");
+                                    if (itemBlockPosition.equals("15Κ-02")) {
+                                        out.println("<td style='width:90px; background-color: red;'>");
+                                    } else {
+                                        out.println("<td width='90px'>");
+                                    }
                                     out.println("15Κ-02");
                                     out.println("</td>");
 
