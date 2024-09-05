@@ -410,10 +410,14 @@ public class OrderController {
         String itemBlockPosition = "";
         int _count_0 = itemPosition.length() - itemPosition.replaceAll("-", "").length();
 
-        if (_count_0 > 1) {
-            int first = itemPosition.indexOf("-");
-            int second = itemPosition.indexOf("-", first + 1);
-            itemBlockPosition = itemPosition.substring(0, second);
+        if (itemPosition.equals("18Ρ-00/Μ29")) {
+            itemBlockPosition = itemPosition;
+        } else {
+            if (_count_0 > 1) {
+                int first = itemPosition.indexOf("-");
+                int second = itemPosition.indexOf("-", first + 1);
+                itemBlockPosition = itemPosition.substring(0, second);
+            }
         }
 
         LinkedHashMap<Integer, Order> allOrders = orderDao.getAllOrdersForPeriod(startDate, endDate);
@@ -453,7 +457,7 @@ public class OrderController {
                 totalTraffic++;
             }
         }
-        System.out.println("itemBlockPosition: "+itemBlockPosition);
+        System.out.println("itemBlockPosition: " + itemBlockPosition);
         modelMap.addAttribute("itemCode", itemCode);
         modelMap.addAttribute("itemBlockPosition", itemBlockPosition);
         modelMap.addAttribute("totalTraffic", totalTraffic);
