@@ -662,6 +662,47 @@
                                     out.println("</td>");
                                     out.println("</tr>");
 
+                                    //------------------------ Σ +++--------------------------------
+                                    out.println("<tr>");
+                                    out.println("<td>");
+                                    out.println("     ");
+                                    out.println("</td>");
+                                    out.println("<td  style='40px; font-size: 25px; background-color: lightgreen;'>");
+                                    if (positionsTraffic.get("17Σ-03") == null) {
+                                        out.println(0);
+                                    } else {
+                                        out.println(positionsTraffic.get("17Σ-03"));
+                                    }
+
+                                    out.println("</td>");
+                                    out.println("</tr>");
+
+                                    out.println("<tr>");
+                                    out.println("<td>");
+                                    out.println("   ");
+                                    out.println("</td>");
+                                    out.println("<td  style='40px; font-size: 25px; background-color: lightgreen;'>");
+                                    if (positionsTraffic.get("17Σ-02") == null) {
+                                        out.println(0);
+                                    } else {
+                                        out.println(positionsTraffic.get("17Σ-02"));
+                                    }
+
+                                    out.println("</td>");
+                                    out.println("</tr>");
+
+                                    out.println("<tr>");
+                                    out.println("<td>");
+                                    out.println("      ");
+                                    out.println("</td>");
+                                    out.println("<td  style='40px; font-size: 25px; background-color: lightgreen;'>");
+                                    if (positionsTraffic.get("17Σ-01") == null) {
+                                        out.println(0);
+                                    } else {
+                                        out.println(positionsTraffic.get("17Σ-01"));
+                                    }
+
+                                    //------------------------------------------------------------------
 
                                 %>
                             </tbody>
