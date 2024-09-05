@@ -233,6 +233,7 @@ public class WarehousePositioning {
 
         this.A = new LinkedHashMap<>();
 
+        this.A.put("07Α-00", "--");
         this.A.put("07Α-01", "--");
         this.A.put("07Α-02", "--");
         this.A.put("07Α-03", "--");
