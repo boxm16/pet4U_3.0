@@ -1505,7 +1505,7 @@
                                                                 out.println("<tr>");
 
                                                                 if (itemBlockPosition.equals("14Ι-05")) {
-                                                                    out.println("<td style='width:90px; font-size: 15px; background-color: red;'>");
+                                                                    out.println("<td style='width:90px; background-color: red;'>");
                                                                 } else {
                                                                     out.println("<td width='90px'>");
                                                                 }
