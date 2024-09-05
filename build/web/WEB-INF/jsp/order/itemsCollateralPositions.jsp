@@ -666,8 +666,8 @@
                                     out.println("<tr>");
                                     out.println("<td>");
                                     out.println("<table>");
-                                    out.println("<tr>");
 
+                                    out.println("<tr>");
                                     out.println("<td>");
                                     out.println("     ");
                                     out.println("</td>");
@@ -677,7 +677,9 @@
                                     } else {
                                         out.println(positionsTraffic.get("17Σ-03"));
                                     }
-
+                                    out.println("</td>");
+                                    out.println("<td>");
+                                    out.println("17Σ-03");
                                     out.println("</td>");
                                     out.println("</tr>");
 
@@ -691,7 +693,9 @@
                                     } else {
                                         out.println(positionsTraffic.get("17Σ-02"));
                                     }
-
+                                    out.println("</td>");
+                                    out.println("<td>");
+                                    out.println("17Σ-02");
                                     out.println("</td>");
                                     out.println("</tr>");
 
@@ -705,6 +709,9 @@
                                     } else {
                                         out.println(positionsTraffic.get("17Σ-01"));
                                     }
+                                    out.println("</td>");
+                                    out.println("<td>");
+                                    out.println("17Σ-01");
                                     out.println("</td>");
                                     out.println("</tr>");
 
