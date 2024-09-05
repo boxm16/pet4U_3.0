@@ -453,6 +453,7 @@ public class OrderController {
                 totalTraffic++;
             }
         }
+        System.out.println("itemBlockPosition: "+itemBlockPosition);
         modelMap.addAttribute("itemCode", itemCode);
         modelMap.addAttribute("itemBlockPosition", itemBlockPosition);
         modelMap.addAttribute("totalTraffic", totalTraffic);
