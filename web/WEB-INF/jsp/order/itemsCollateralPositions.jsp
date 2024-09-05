@@ -668,10 +668,10 @@
                                     out.println("<table>");
 
                                     out.println("<tr>");
-                                    out.println("<td>");
+                                    out.println("<td  style='width:40px;");
                                     out.println("     ");
                                     out.println("</td>");
-                                    out.println("<td  style='40px; font-size: 25px; background-color: lightgreen;'>");
+                                    out.println("<td  style='width:40px; font-size: 25px; background-color: lightgreen;'>");
                                     if (positionsTraffic.get("17Σ-03") == null) {
                                         out.println(0);
                                     } else {
@@ -684,10 +684,10 @@
                                     out.println("</tr>");
 
                                     out.println("<tr>");
-                                    out.println("<td>");
+                                    out.println("<td  style='width:40px;");
                                     out.println("   ");
                                     out.println("</td>");
-                                    out.println("<td  style='40px; font-size: 25px; background-color: lightgreen;'>");
+                                    out.println("<td  style='width:40px; font-size: 25px; background-color: lightgreen;'>");
                                     if (positionsTraffic.get("17Σ-02") == null) {
                                         out.println(0);
                                     } else {
@@ -700,10 +700,10 @@
                                     out.println("</tr>");
 
                                     out.println("<tr>");
-                                    out.println("<td>");
+                                     out.println("<td  style='width:40px;");
                                     out.println("      ");
                                     out.println("</td>");
-                                    out.println("<td  style='40px; font-size: 25px; background-color: lightgreen;'>");
+                                    out.println("<td  style='width:40px; font-size: 25px; background-color: lightgreen;'>");
                                     if (positionsTraffic.get("17Σ-01") == null) {
                                         out.println(0);
                                     } else {
