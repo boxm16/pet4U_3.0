@@ -668,8 +668,8 @@
                                     out.println("<table>");
 
                                     out.println("<tr>");
-                                    out.println("<td  style='width:100px;'");
-                                    out.println("dasdasdasdasdasd              ");
+                                    out.println("<td  style='width:100px;'>");
+                                    out.println("dasdasdasdasdasd");
                                     out.println("</td>");
                                     out.println("<td  style='width:40px; font-size: 25px; background-color: lightgreen;'>");
                                     if (positionsTraffic.get("17Σ-03") == null) {
@@ -684,7 +684,7 @@
                                     out.println("</tr>");
 
                                     out.println("<tr>");
-                                    out.println("<td  style='width:100px;'");
+                                    out.println("<td  style='width:100px;'>");
                                     out.println("              ");
                                     out.println("</td>");
                                     out.println("<td  style='width:40px; font-size: 25px; background-color: lightgreen;'>");
@@ -700,7 +700,7 @@
                                     out.println("</tr>");
 
                                     out.println("<tr>");
-                                    out.println("<td  style='width:100px;'");
+                                    out.println("<td  style='width:100px;'>");
                                     out.println("              ");
                                     out.println("</td>");
                                     out.println("<td  style='width:40px; font-size: 25px; background-color: lightgreen;'>");
