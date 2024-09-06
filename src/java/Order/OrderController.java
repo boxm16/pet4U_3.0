@@ -362,6 +362,14 @@ public class OrderController {
         modelMap.addAttribute("positionsBlockTrafficOneOrderOneVisit", positionsTraffic);
         modelMap.addAttribute("startDate", startDate);
         modelMap.addAttribute("endDate", endDate);
+        
+        
+        modelMap.addAttribute("positionsTraffic", positionsTraffic);
+        modelMap.addAttribute("startDate", startDate);
+        modelMap.addAttribute("endDate", endDate);
+
+        WarehousePositioning warehousePositioning = new WarehousePositioning();
+        modelMap.addAttribute("warehousePositioning", warehousePositioning);
 
         return "/order/trafficStatisticsForPeriodOneOrderOneVisit";
     }
@@ -457,7 +465,7 @@ public class OrderController {
                 totalTraffic++;
             }
         }
-        System.out.println("itemBlockPosition: " + itemBlockPosition);
+      
         modelMap.addAttribute("itemCode", itemCode);
         modelMap.addAttribute("itemBlockPosition", itemBlockPosition);
         modelMap.addAttribute("totalTraffic", totalTraffic);
