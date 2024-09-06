@@ -362,6 +362,17 @@ public class OrderController {
         modelMap.addAttribute("positionsBlockTrafficOneOrderOneVisit", positionsTraffic);
         modelMap.addAttribute("startDate", startDate);
         modelMap.addAttribute("endDate", endDate);
+        
+        
+         modelMap.addAttribute("itemCode", "");
+        modelMap.addAttribute("itemBlockPosition", "");
+        modelMap.addAttribute("totalTraffic", "");
+        modelMap.addAttribute("positionsTraffic", positionsTraffic);
+        modelMap.addAttribute("startDate", startDate);
+        modelMap.addAttribute("endDate", endDate);
+
+        WarehousePositioning warehousePositioning = new WarehousePositioning();
+        modelMap.addAttribute("warehousePositioning", warehousePositioning);
 
         return "/order/trafficStatisticsForPeriodOneOrderOneVisit";
     }
