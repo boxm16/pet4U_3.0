@@ -1381,6 +1381,7 @@
                                                                     out.println(0);
                                                                 } else {
                                                                     out.println(positionsTraffic.get("14Ι-01"));
+                                                                    
                                                                 }
 
                                                                 out.println("</td>");
@@ -1637,6 +1638,7 @@
                                     out.println(0);
                                 } else {
                                     out.println(positionsTraffic.get("16Τ-01"));
+                                    
                                 }
 
                                 out.println("</td>");
