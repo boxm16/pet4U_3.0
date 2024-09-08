@@ -366,16 +366,17 @@ public class EndoControllerX {
         LocalDate deliveryDay = null;
         if (endoOrder.getDate().getDayOfWeek() == DayOfWeek.SATURDAY) {
             deliveryDay = endoOrder.getDate().plusDays(3);
+
         } else {
             deliveryDay = endoOrder.getDate().plusDays(1);
         }
-
+        System.out.println("Delivery Date:" + deliveryDay);
         if (deliveryDay.equals(endoApostolis.getDate())) {
             modelMap.addAttribute("dateCheckColor", "green");
         } else {
             modelMap.addAttribute("dateCheckColor", "red");
         }
-        
+
         LinkedHashMap<String, EndoPackaging> allEndoPackaging = endoDaoX.getAllEndoPackaging();
 
         modelMap.addAttribute("endoOrder", endoOrder);

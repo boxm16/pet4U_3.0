@@ -582,13 +582,20 @@ public class EndoDaoX {
 
             while (resultSet.next()) {
                 if (rowIndex == 0) {
+                    endoApostolis.setId(id);
                     String number = resultSet.getString("DOCNUMBER");
                     //  String destination = resultSet.getString("DESTINATION");
                     String destination = translateStoreNameV(resultSet.getString("DESTINATION"));
-                    String date = resultSet.getString("DOCDATE");
-                    String[] splittedDate = date.split(" ");
-                    endoApostolis.setId(id);
-                    endoApostolis.setDateString(splittedDate[0]);
+                    String dateString = resultSet.getString("DOCDATE");
+                    String[] splittedDate = dateString.split(" ");
+
+                    dateString = resultSet.getString(splittedDate[0]);
+                    endoApostolis.setDateString(dateString);
+
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                    LocalDate date = LocalDate.parse(dateString, formatter);
+                    endoApostolis.setDate(date);
+
                     endoApostolis.setReceiver(destination);
                     endoApostolis.setNumber(number);
                     rowIndex++;
