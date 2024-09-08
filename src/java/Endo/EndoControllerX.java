@@ -364,7 +364,7 @@ public class EndoControllerX {
         EndoOrder endoOrder = endoDaoX.getEndoOrder(orderId, pet4UItemsRowByRow);
         EndoApostolis endoApostolis = endoDaoX.getEndoApostolisVaribobis(outgoingEndoId);
         LocalDate deliveryDay = null;
-        if (endoOrder.getDate().getDayOfWeek() == DayOfWeek.SATURDAY) {
+        if (endoOrder.getDate().getDayOfWeek() == DayOfWeek.FRIDAY ) {
             deliveryDay = endoOrder.getDate().plusDays(3);
 
         } else {
