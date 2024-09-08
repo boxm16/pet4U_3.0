@@ -66,10 +66,10 @@
                 <th>Order Date</th>
                 <th>Delivery Date</th>
             </tr>
-            <tr style=" font-size: 30px;">
-                <td>${endoApostolis.receiver}</td>
-                <td>${endoOrder.dateString}</td>
-                <td style="background-color:${dateCheckColor}">${endoApostolis.dateString}</td>
+            <tr >
+                <td style=" font-size: 30px;">${endoApostolis.receiver}</td>
+                <td style=" font-size: 30px;">${endoOrder.dateString}</td>
+                <td style="font-size: 30px;background-color:${dateCheckColor}">${endoApostolis.dateString}</td>
             </tr>
         </table>
         <hr>
