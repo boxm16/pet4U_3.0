@@ -1660,7 +1660,9 @@
                                     if (positionsTraffic.get("ΤΧ-01") == null) {
                                         out.println(0);
                                     } else {
-                                        out.println(positionsTraffic.get("ΤΧ-01"));
+
+                                        out.println("<a  href = 'getAllDocsForItemBetweenTwoDatesWithThisBlockPosition.htm?blockPosition=ΤΧ-01&itemCode=" + itemCode + "&startDate=" + startDate + "&endDate=" + endDate + "' target='_blank'>" +  positionsTraffic.get("ΤΧ-01") + "</a>");
+                                        out.println();
 
                                     }
                                     out.println("</td>");
