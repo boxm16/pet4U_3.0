@@ -1656,31 +1656,37 @@
                         <table>
                             <tr>
 
-                                <%                                    ize: 25px; background-color: lightgreen;'>");
+                                <%                                    out.println("<td  style='90px; font-size: 25px; background-color: lightgreen;'>");
                                     if (positionsTraffic.get("ΤΧ-03") == null) {
                                         out.println(0);
                                     } else {
 
-                                        out.println("<a  href = 'getAllDocsForItemBetweenTwoDatesWithThisBlockPosition.htm?blockPosition=ΤΧ-03&itemCode=" + itemCode + "&startDate=" + startDate + "&endDate=" + endDate + "' target='_blank'>" +  positionsTraffic.get("ΤΧ-03") + "</ ");
+                                        out.println("<a  href = 'getAllDocsForItemBetweenTwoDatesWithThisBlockPosition.htm?blockPosition=ΤΧ-03&itemCode=" + itemCode + "&startDate=" + startDate + "&endDate=" + endDate + "' target='_blank'>" + positionsTraffic.get("ΤΧ-03") + "</a>");
                                         out.println();
 
                                     }
                                     out.println("</td>");
-                                    
-                                            out.println("<td  style='90px; font-size: 25px; background-color: lightgreen;'>");
+                                    out.println("<td  style='90px; font-size: 25px; background-color: lightgreen;'>");
                                     if (positionsTraffic.get("ΤΧ-02") == null) {
                                         out.println(0);
                                     } else {
 
-                                        out.println("<a  href = 'getAllDocsForItemBetweenTwoDatesWithThisBlockPosition.htm?blockPosition=ΤΧ-02&itemCode=" + itemCode + "&startDate=" + startDate + "&endDate=" + endDate + "' target='_bla '>" +  positionsTraffic.get("ΤΧ-02") + "</a>");
+                                        out.println("<a  href = 'getAllDocsForItemBetweenTwoDatesWithThisBlockPosition.htm?blockPosition=ΤΧ-02&itemCode=" + itemCode + "&startDate=" + startDate + "&endDate=" + endDate + "' target='_blank'>" + positionsTraffic.get("ΤΧ-02") + "</a>");
                                         out.println();
 
                                     }
-                                    out.println("</t                                    startDate + "&endDate=" + endDate + "' target='_blank'>" +  positionsTraff                                        );
-                                                           .println();
+                                    out.println("</td>");
 
-                                                    }
-                                                                  /td>");
+                                    out.println("<td  style='90px; font-size: 25px; background-color: lightgreen;'>");
+                                    if (positionsTraffic.get("ΤΧ-01") == null) {
+                                        out.println(0);
+                                    } else {
+
+                                        out.println("<a  href = 'getAllDocsForItemBetweenTwoDatesWithThisBlockPosition.htm?blockPosition=ΤΧ-01&itemCode=" + itemCode + "&startDate=" + startDate + "&endDate=" + endDate + "' target='_blank'>" + positionsTraffic.get("ΤΧ-01") + "</a>");
+                                        out.println();
+
+                                    }
+                                    out.println("</td>");
 
                                 %>
 
