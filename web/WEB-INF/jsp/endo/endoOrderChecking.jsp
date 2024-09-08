@@ -89,6 +89,8 @@
                 <%
                     int x = 1;
                     int y = 0;
+                    EndoApostolis endoApostolis = (EndoApostolis) request.getAttribute("endoApostolis");
+
                     LinkedHashMap<String, Item> invoicedItems = endoApostolis.getItems();
 
                     EndoOrder endoOrder = (EndoOrder) request.getAttribute("endoOrder");
