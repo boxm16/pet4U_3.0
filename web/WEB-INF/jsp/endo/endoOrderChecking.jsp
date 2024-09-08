@@ -61,10 +61,10 @@
         <h1>Endo Order Checking</h1>
 
         <table>
-            <tr style=" font-size: 20px;">
-                <th>ΚΑΤΑΣΤΗΜΑ</th>
-                <th>Order Date</th>
-                <th>Delivery Date</th>
+            <tr>
+                <th style=" font-size: 20px;">ΚΑΤΑΣΤΗΜΑ</th>
+                <th style=" font-size: 20px;">Order Date</th>
+                <th style=" font-size: 20px;">Delivery Date</th>
             </tr>
             <tr >
                 <td style=" font-size: 30px;">${endoApostolis.receiver}</td>
