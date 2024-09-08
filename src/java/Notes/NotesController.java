@@ -4,6 +4,7 @@ import BasicModel.Item;
 import Inventory.InventoryItem;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -94,7 +95,19 @@ public class NotesController {
     }
 
     @RequestMapping(value = "deleteNote", method = RequestMethod.GET)
-    public String deleteNote(@RequestParam(name = "id") String id) {
+    public String deleteNote(@RequestParam(name = "id") String id, ModelMap model, HttpSession session) {
+        
+        String userName = (String) session.getAttribute("userName");
+
+        if (userName == null) {
+            model.addAttribute("message", "You are not authorized for this action. Don`t this again.");
+            return "errorPage";
+        }
+        if (!userName.equals("me")) {
+            model.addAttribute("message", "You are not authorized for this action. Don`t this again.");
+            return "errorPage";
+        }
+        
         NotesDao notesDao = new NotesDao();
         notesDao.deleteNote(id);
         return "redirect:notesDisplay.htm";
