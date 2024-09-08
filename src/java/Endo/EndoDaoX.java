@@ -589,7 +589,7 @@ public class EndoDaoX {
                     String dateString = resultSet.getString("DOCDATE");
                     String[] splittedDate = dateString.split(" ");
 
-                    dateString = resultSet.getString(splittedDate[0]);
+                    dateString = splittedDate[0];
                     endoApostolis.setDateString(dateString);
 
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
