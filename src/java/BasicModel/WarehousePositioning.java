@@ -46,6 +46,8 @@ public class WarehousePositioning {
 
     private LinkedHashMap<String, Object> T;
 
+    private LinkedHashMap<String, Object> ΤΧ;
+
     public WarehousePositioning() {
 
         this.P = new LinkedHashMap<>();
@@ -387,6 +389,25 @@ public class WarehousePositioning {
         this.T.put("17Σ-02", "--");
         this.T.put("17Σ-03", "--");
 
+        this.ΤΧ = new LinkedHashMap<>();
+        this.T.put("ΤΧ-01", "--");
+        this.T.put("ΤΧ-02", "--");
+        this.T.put("ΤΧ-03", "--");
+        this.T.put("ΤΧ-04", "--");
+        this.T.put("ΤΧ-05", "--");
+        this.T.put("ΤΧ-06", "--");
+        this.T.put("ΤΧ-07", "--");
+        this.T.put("ΤΧ-08", "--");
+        this.T.put("ΤΧ-09", "--");
+        this.T.put("ΤΧ-10", "--");
+        this.T.put("ΤΧ-11", "--");
+        this.T.put("ΤΧ-12", "--");
+        this.T.put("ΤΧ-13", "--");
+        this.T.put("ΤΧ-14", "--");
+        this.T.put("ΤΧ-15", "--");
+        this.T.put("ΤΧ-16", "--");
+        this.T.put("ΤΧ-17", "--");
+
     }
 
     public LinkedHashMap<String, Object> getP() {
@@ -548,7 +569,5 @@ public class WarehousePositioning {
     public void setT(LinkedHashMap<String, Object> T) {
         this.T = T;
     }
-    
-    
 
 }

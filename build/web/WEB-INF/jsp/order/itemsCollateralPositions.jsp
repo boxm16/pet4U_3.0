@@ -482,7 +482,7 @@
                                     }
                                     out.println("</tr>");
 
-                                    out.println("<tr  style='height: 80px; '>");
+                                    out.println("<tr  style='height: 75px; '>");
                                     out.println("<td>");
                                     out.println("");
                                     out.println("</td>");
@@ -1381,7 +1381,7 @@
                                                                     out.println(0);
                                                                 } else {
                                                                     out.println(positionsTraffic.get("14Ι-01"));
-                                                                    
+
                                                                 }
 
                                                                 out.println("</td>");
@@ -1638,13 +1638,13 @@
                                     out.println(0);
                                 } else {
                                     out.println(positionsTraffic.get("16Τ-01"));
-                                    
+
                                 }
 
                                 out.println("</td>");
                                 out.println("</tr>");
 
-                                
+
                             %>
 
                         </table>
@@ -1653,7 +1653,51 @@
                 </tr>
                 <tr>
                     <td colspan="7">
-                        fdfsdfsdfd
+                        <table>
+                            <tr>
+                                <td valign='top'>
+                                    <table>
+                                        <tbody>
+                                            <%                                                                out.println("<tr>");
+
+                                                out.println("<td width='90px'>");
+                                                out.println("<table>");
+
+                                                out.println("<tr>");
+                                                out.println("<td  style='90px; font-size: 25px; background-color: lightgreen;'>");
+                                                if (positionsTraffic.get("ΤΧ-01") == null) {
+                                                    out.println(0);
+                                                } else {
+                                                    out.println(positionsTraffic.get("ΤΧ-01"));
+
+                                                }
+
+                                                out.println("</td>");
+                                                out.println("</tr>");
+
+                                                //++++++++
+                                                out.println("<tr>");
+                                                if (itemBlockPosition.equals("ΤΧ-01")) {
+                                                    out.println("<td style='width:90px; background-color: red;'>");
+                                                } else {
+                                                    out.println("<td width='90px'>");
+                                                }
+                                                out.println("ΤΧ-01");
+                                                out.println("</td>");
+                                                out.println("</tr>");
+
+                                                out.println("</table>");
+                                                out.println("</td>");
+
+                                                out.println("</tr>");
+
+
+                                            %>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
                     </td>
                 </tr>
             </tbody>
