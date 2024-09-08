@@ -392,7 +392,7 @@ public class WarehousePositioning {
         this.ΤΧ = new LinkedHashMap<>();
         this.T.put("ΤΧ-01", "--");
         this.T.put("ΤΧ-02", "--");
-        this.T.put("ΤΧ-03", "--");
+            this.T.put("ΤΧ-03", "--");
         this.T.put("ΤΧ-04", "--");
         this.T.put("ΤΧ-05", "--");
         this.T.put("ΤΧ-06", "--");

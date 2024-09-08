@@ -1655,47 +1655,20 @@
                     <td colspan="7">
                         <table>
                             <tr>
-                                <td valign='top'>
-                                    <table>
-                                        <tbody>
-                                            <%                                                                out.println("<tr>");
 
-                                                out.println("<td width='90px'>");
-                                                out.println("<table>");
+                                <%                                                out.println("<td  style='90px; font-size: 25px; background-color: lightgreen;'>");
+                                    if (positionsTraffic.get("ΤΧ-01") == null) {
+                                        out.println(0);
+                                    } else {
+                                        out.println(positionsTraffic.get("ΤΧ-01"));
 
-                                                out.println("<tr>");
-                                                out.println("<td  style='90px; font-size: 25px; background-color: lightgreen;'>");
-                                                if (positionsTraffic.get("ΤΧ-01") == null) {
-                                                    out.println(0);
-                                                } else {
-                                                    out.println(positionsTraffic.get("ΤΧ-01"));
-
-                                                }
-
-                                                out.println("</td>");
-                                                out.println("</tr>");
-
-                                                //++++++++
-                                                out.println("<tr>");
-                                                if (itemBlockPosition.equals("ΤΧ-01")) {
-                                                    out.println("<td style='width:90px; background-color: red;'>");
-                                                } else {
-                                                    out.println("<td width='90px'>");
-                                                }
-                                                out.println("ΤΧ-01");
-                                                out.println("</td>");
-                                                out.println("</tr>");
-
-                                                out.println("</table>");
-                                                out.println("</td>");
-
-                                                out.println("</tr>");
+                                    }
+                                    out.println("</td>");
 
 
-                                            %>
-                                        </tbody>
-                                    </table>
-                                </td>
+                                %>
+
+
                             </tr>
                         </table>
                     </td>
