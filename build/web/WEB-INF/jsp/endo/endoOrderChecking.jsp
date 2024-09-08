@@ -122,7 +122,7 @@
                         out.println("</td>");
 
                         out.println("<td style='padding-left: 5px; padding-left: 5px;'>");
-                        out.println("<a href='itemAnalysis.htm?code=" + orderedItem.getCode() + "' target='_blank'>" + orderedItem.getCode() + "</a>");
+                        out.println("<a href='findItemByAltercode.htm?code=" + orderedItem.getCode() + "' target='_blank'>" + orderedItem.getCode() + "</a>");
                         out.println("</td>");
 
                         out.println("<td>");
