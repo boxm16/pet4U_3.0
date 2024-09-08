@@ -482,7 +482,7 @@
                                     }
                                     out.println("</tr>");
 
-                                    out.println("<tr  style='height: 100px; '>");
+                                    out.println("<tr  style='height: 80px; '>");
                                     out.println("<td>");
                                     out.println("");
                                     out.println("</td>");
