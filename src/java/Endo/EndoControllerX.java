@@ -9,6 +9,7 @@ import Pet4uItems.Pet4uItemsDao;
 import Service.Basement;
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -362,7 +363,19 @@ public class EndoControllerX {
 
         EndoOrder endoOrder = endoDaoX.getEndoOrder(orderId, pet4UItemsRowByRow);
         EndoApostolis endoApostolis = endoDaoX.getEndoApostolisVaribobis(outgoingEndoId);
+        LocalDate deliveryDay = null;
+        if (endoOrder.getDate().getDayOfWeek() == DayOfWeek.SATURDAY) {
+            deliveryDay = endoOrder.getDate().plusDays(3);
+        } else {
+            deliveryDay = endoOrder.getDate().plusDays(1);
+        }
 
+        if (deliveryDay.equals(endoApostolis.getDate())) {
+            modelMap.addAttribute("dateCheckColor", "green");
+        } else {
+            modelMap.addAttribute("dateCheckColor", "red");
+        }
+        
         LinkedHashMap<String, EndoPackaging> allEndoPackaging = endoDaoX.getAllEndoPackaging();
 
         modelMap.addAttribute("endoOrder", endoOrder);
