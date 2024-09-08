@@ -61,12 +61,12 @@
         <h1>Endo Order Checking</h1>
 
         <table>
-            <tr>
+            <tr style=" font-size: 20px;">
                 <th>ΚΑΤΑΣΤΗΜΑ</th>
                 <th>Order Date</th>
                 <th>Delivery Date</th>
             </tr>
-            <tr>
+            <tr style=" font-size: 30px;">
                 <td>${endoApostolis.receiver}</td>
                 <td>${endoOrder.dateString}</td>
                 <td style="background-color:${dateCheckColor}">${endoApostolis.dateString}</td>
