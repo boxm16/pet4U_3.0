@@ -159,7 +159,7 @@
                             out.println("</td>");
 
                             out.println("<td>");
-                            out.println("<a href='getCamelotItemForNote.htm?altercode=" + camelotItemOfInterest.getReferralAltercode() + "'>Make Order</a>");
+                            out.println("<a href='getCamelotItemForNote.htm?altercode=" + camelotItemOfInterest.getReferralAltercode() + "' target='_blank'>Make Order</a>");
                             out.println("</td>");
 
                             out.println("</tr>");
