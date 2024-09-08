@@ -1657,7 +1657,86 @@
                             <tbody>
                                 <tr>
 
-                                    <%                                        out.println("<td  style='90px; font-size: 25px; background-color: lightgreen;'>");
+                                    <%  
+                                        
+                                            out.println("<td  style='90px; font-size: 25px; background-color: lightgreen;'>");
+                                        if (positionsTraffic.get("ΤΧ-17") == null) {
+                                            out.println(0);
+                                        } else {
+
+                                            out.println("<a  href = 'getAllDocsForItemBetweenTwoDatesWithThisBlockPosition.htm?blockPosition=ΤΧ-17&itemCode=" + itemCode + "&startDate=" + startDate + "&endDate=" + endDate + "' target='_blank'>" + positionsTraffic.get("ΤΧ-17") + "</a>");
+                                            out.println();
+
+                                        }
+                                        out.println("</td>");
+                                        
+                                            out.println("<td  style='90px; font-size: 25px; background-color: lightgreen;'>");
+                                        if (positionsTraffic.get("ΤΧ-16") == null) {
+                                            out.println(0);
+                                        } else {
+
+                                            out.println("<a  href = 'getAllDocsForItemBetweenTwoDatesWithThisBlockPosition.htm?blockPosition=ΤΧ-16&itemCode=" + itemCode + "&startDate=" + startDate + "&endDate=" + endDate + "' target='_blank'>" + positionsTraffic.get("ΤΧ-16") + "</a>");
+                                            out.println();
+
+                                        }
+                                        out.println("</td>");
+                                        
+                                            out.println("<td  style='90px; font-size: 25px; background-color: lightgreen;'>");
+                                        if (positionsTraffic.get("ΤΧ-15") == null) {
+                                            out.println(0);
+                                        } else {
+
+                                            out.println("<a  href = 'getAllDocsForItemBetweenTwoDatesWithThisBlockPosition.htm?blockPosition=ΤΧ-15&itemCode=" + itemCode + "&startDate=" + startDate + "&endDate=" + endDate + "' target='_blank'>" + positionsTraffic.get("ΤΧ-15") + "</a>");
+                                            out.println();
+
+                                        }
+                                        out.println("</td>");
+                                        
+                                            out.println("<td  style='90px; font-size: 25px; background-color: lightgreen;'>");
+                                        if (positionsTraffic.get("ΤΧ-14") == null) {
+                                            out.println(0);
+                                        } else {
+
+                                            out.println("<a  href = 'getAllDocsForItemBetweenTwoDatesWithThisBlockPosition.htm?blockPosition=ΤΧ-14&itemCode=" + itemCode + "&startDate=" + startDate + "&endDate=" + endDate + "' target='_blank'>" + positionsTraffic.get("ΤΧ-14") + "</a>");
+                                            out.println();
+
+                                        }
+                                        out.println("</td>");
+                                        
+                                            out.println("<td  style='90px; font-size: 25px; background-color: lightgreen;'>");
+                                        if (positionsTraffic.get("ΤΧ-13") == null) {
+                                            out.println(0);
+                                        } else {
+
+                                            out.println("<a  href = 'getAllDocsForItemBetweenTwoDatesWithThisBlockPosition.htm?blockPosition=ΤΧ-13&itemCode=" + itemCode + "&startDate=" + startDate + "&endDate=" + endDate + "' target='_blank'>" + positionsTraffic.get("ΤΧ-13") + "</a>");
+                                            out.println();
+
+                                        }
+                                        out.println("</td>");
+                                        
+                                            out.println("<td  style='90px; font-size: 25px; background-color: lightgreen;'>");
+                                        if (positionsTraffic.get("ΤΧ-12") == null) {
+                                            out.println(0);
+                                        } else {
+
+                                            out.println("<a  href = 'getAllDocsForItemBetweenTwoDatesWithThisBlockPosition.htm?blockPosition=ΤΧ-12&itemCode=" + itemCode + "&startDate=" + startDate + "&endDate=" + endDate + "' target='_blank'>" + positionsTraffic.get("ΤΧ-12") + "</a>");
+                                            out.println();
+
+                                        }
+                                        out.println("</td>");
+                                        
+                                            out.println("<td  style='90px; font-size: 25px; background-color: lightgreen;'>");
+                                        if (positionsTraffic.get("ΤΧ-11") == null) {
+                                            out.println(0);
+                                        } else {
+
+                                            out.println("<a  href = 'getAllDocsForItemBetweenTwoDatesWithThisBlockPosition.htm?blockPosition=ΤΧ-11&itemCode=" + itemCode + "&startDate=" + startDate + "&endDate=" + endDate + "' target='_blank'>" + positionsTraffic.get("ΤΧ-11") + "</a>");
+                                            out.println();
+
+                                        }
+                                        out.println("</td>");
+                                        
+                                        out.println("<td  style='90px; font-size: 25px; background-color: lightgreen;'>");
                                         if (positionsTraffic.get("ΤΧ-10") == null) {
                                             out.println(0);
                                         } else {
