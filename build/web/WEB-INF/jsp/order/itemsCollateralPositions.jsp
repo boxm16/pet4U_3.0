@@ -1833,7 +1833,7 @@
                                         }
                                         out.println("</td>");
 
-                                        out.println("<td  style='90px; font-size: 25px; background-color: lightgreen;'>");
+                                        out.println("<td  style='width:90px; font-size: 25px; background-color: lightgreen;'>");
                                         if (positionsTraffic.get("ΤΧ-01") == null) {
                                             out.println(0);
                                         } else {
