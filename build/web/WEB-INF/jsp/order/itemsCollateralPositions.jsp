@@ -1334,7 +1334,7 @@
 
                                                                 out.println("<tr>");
 
-                                                                out.println("<td  style='40px; font-size: 25px; background-color: lightgreen;'>");
+                                                                out.println("<td  style='width:90px; font-size: 25px; background-color: lightgreen;'>");
                                                                 if (positionsTraffic.get("14Ι-00") == null) {
                                                                     out.println(0);
                                                                 } else {
@@ -1376,7 +1376,7 @@
                                                                 out.println("<table>");
 
                                                                 out.println("<tr>");
-                                                                out.println("<td  style='90px; font-size: 25px; background-color: lightgreen;'>");
+                                                                out.println("<td  style='width:90px; font-size: 25px; background-color: lightgreen;'>");
                                                                 if (positionsTraffic.get("14Ι-01") == null) {
                                                                     out.println(0);
                                                                 } else {
@@ -1419,7 +1419,7 @@
                                                                 out.println("<table>");
 
                                                                 out.println("<tr>");
-                                                                out.println("<td  style='90px; font-size: 25px; background-color: lightgreen;'>");
+                                                                out.println("<td  style='width:90px; font-size: 25px; background-color: lightgreen;'>");
                                                                 if (positionsTraffic.get("14Ι-02") == null) {
                                                                     out.println(0);
                                                                 } else {
@@ -1460,7 +1460,7 @@
                                                                 out.println("<table>");
 
                                                                 out.println("<tr>");
-                                                                out.println("<td  style='90px; font-size: 25px; background-color: lightgreen;'>");
+                                                                out.println("<td  style='width:90px; font-size: 25px; background-color: lightgreen;'>");
                                                                 if (positionsTraffic.get("14Ι-03") == null) {
                                                                     out.println(0);
                                                                 } else {
@@ -1501,7 +1501,7 @@
                                                                 out.println("<table>");
 
                                                                 out.println("<tr>");
-                                                                out.println("<td  style='90px; font-size: 25px; background-color: lightgreen;'>");
+                                                                out.println("<td  style='width:90px; font-size: 25px; background-color: lightgreen;'>");
                                                                 if (positionsTraffic.get("14Ι-04") == null) {
                                                                     out.println(0);
                                                                 } else {
@@ -1541,7 +1541,7 @@
                                                                 out.println("<table>");
 
                                                                 out.println("<tr>");
-                                                                out.println("<td  style='90px; font-size: 25px; background-color: lightgreen;'>");
+                                                                out.println("<td  style='width:90px; font-size: 25px; background-color: lightgreen;'>");
                                                                 if (positionsTraffic.get("14Ι-05") == null) {
                                                                     out.println(0);
                                                                 } else {
@@ -1594,7 +1594,7 @@
                                 out.println("16Τ-03");
                                 out.println("</td>");
 
-                                out.println("<td  style='40px; font-size: 25px; background-color: lightgreen;'>");
+                                out.println("<td  style='width:40px; font-size: 25px; background-color: lightgreen;'>");
                                 if (positionsTraffic.get("16Τ-03") == null) {
                                     out.println(0);
                                 } else {
@@ -1613,7 +1613,7 @@
                                 out.println("16Τ-02");
                                 out.println("</td>");
 
-                                out.println("<td  style='40px; font-size: 25px; background-color: lightgreen;'>");
+                                out.println("<td  style='width:40px; font-size: 25px; background-color: lightgreen;'>");
                                 if (positionsTraffic.get("16Τ-02") == null) {
                                     out.println(0);
                                 } else {
@@ -1633,7 +1633,7 @@
                                 out.println("16Τ-01");
                                 out.println("</td>");
 
-                                out.println("<td  style='40px; font-size: 25px; background-color: lightgreen;'>");
+                                out.println("<td  style='width:40px;  font-size: 25px; background-color: lightgreen;'>");
                                 if (positionsTraffic.get("16Τ-01") == null) {
                                     out.println(0);
                                 } else {
@@ -1844,7 +1844,7 @@
                                         }
                                         out.println("</td>");
 
-                                        out.println("<td  style='40px; font-size: 25px; background-color: lightgreen;'>");
+                                        out.println("<td  style='width:40px;'>");
                                         out.println("TX");
                                         out.println("</td>");
 
