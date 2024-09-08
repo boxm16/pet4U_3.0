@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -450,7 +451,13 @@ public class EndoDaoX {
                 if (rowIndex == 0) {
                     endoOrder.setId(resultSet.getString("id"));
                     endoOrder.setDestination(resultSet.getString("destination"));
-                    endoOrder.setDateString(resultSet.getString("date"));
+                    String dateString = resultSet.getString("date");
+                    endoOrder.setDateString(dateString);
+
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                    LocalDate date = LocalDate.parse(dateString, formatter);
+                    endoOrder.setDate(date);
+
                     endoOrder.setNote(resultSet.getString("note"));
                 }
 

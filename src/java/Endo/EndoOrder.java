@@ -27,6 +27,7 @@ public class EndoOrder {
     }
 
     public LocalDate getDate() {
+        
         return date;
     }
 
