@@ -64,7 +64,7 @@
             LocalDate date = endoApostolis.getDate();
         %>
         <h1>Order Date:${endoOrder.dateString}</h1>
-        <p style="background-color:${dateCheckColor}"><h1>Delivery Date:${endoApostolis.dateString}</h1></p>
+        <p style="background-color:${dateCheckColor}">Delivery Date:${endoApostolis.dateString}</p>
 
     <hr>
     <table>
