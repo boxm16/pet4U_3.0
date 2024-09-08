@@ -100,11 +100,11 @@ public class NotesController {
         String userName = (String) session.getAttribute("userName");
 
         if (userName == null) {
-            model.addAttribute("message", "You are not authorized for this action. Don`t this again.");
+            model.addAttribute("message", "You are not authorized for this action. Don`t do this again.");
             return "errorPage";
         }
         if (!userName.equals("me")) {
-            model.addAttribute("message", "You are not authorized for this action. Don`t this again.");
+            model.addAttribute("message", "You are not authorized for this action. Don`t do this again.");
             return "errorPage";
         }
         
