@@ -59,7 +59,7 @@
             <th>Note</th>
             <th>State</th>
 
-            <th>Edit</th>
+            <th>Make Order</th>
             </thead>
             <tbody>
 
@@ -159,7 +159,7 @@
                             out.println("</td>");
 
                             out.println("<td>");
-                            out.println("<a href='goForEditingCamelotItemOfInterest.htm?code=" + camelotItemOfInterest.getReferralAltercode() + "'>Edit</a>");
+                            out.println("<a href='getCamelotItemForNote.htm?altercode=" + camelotItemOfInterest.getReferralAltercode() + "'>Edit</a>");
                             out.println("</td>");
 
                             out.println("</tr>");
