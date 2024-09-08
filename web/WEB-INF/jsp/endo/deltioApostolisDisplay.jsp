@@ -50,7 +50,7 @@
             <tbody id='tableBody'>
                 <c:forEach items="${endo.items}" var="itemEntry" varStatus="status">
                     <tr>
-                        <td><a  href = 'itemAnalysis.htm?code=${itemEntry.value.code}' target='_blank'> ${itemEntry.value.code}</a></td>
+                        <td><a  href = 'findItemByAltercode.htm.htm?altercode=${itemEntry.value.code}' target='_blank'> ${itemEntry.value.code}</a></td>
                         <td>${itemEntry.value.description}</td>
                         <td>${itemEntry.value.quantity}</td>
                     </tr>
