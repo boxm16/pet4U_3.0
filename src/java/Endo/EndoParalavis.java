@@ -7,6 +7,7 @@ package Endo;
 
 import BasicModel.Item;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
@@ -20,6 +21,8 @@ public class EndoParalavis {
     private String dateString;
     private String number;
     private LocalDate date;
+    private LocalDateTime dateTime;
+    private String user;
     private ArrayList threeLastDigitsArrayList;
 
     private LinkedHashMap<String, Item> items;
@@ -78,7 +81,7 @@ public class EndoParalavis {
     }
 
     public void setNumberAsArrayList(String number) {
-       
+
         String[] splittedNumber = number.split("/");
         for (int x = 0; x < splittedNumber.length; x++) {
             String numb = splittedNumber[x];
@@ -87,6 +90,22 @@ public class EndoParalavis {
                 this.threeLastDigitsArrayList.add(substr);
             }
         }
+    }
+
+    public LocalDateTime getDateTime() {
+        return dateTime;
+    }
+
+    public void setDateTime(LocalDateTime dateTime) {
+        this.dateTime = dateTime;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
     }
 
 }
