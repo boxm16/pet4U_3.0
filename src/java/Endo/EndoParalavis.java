@@ -21,8 +21,8 @@ public class EndoParalavis {
     private String dateString;
     private String number;
     private LocalDate date;
-    private LocalDateTime dateTime;
-    private String user;
+    private LocalDateTime creationDateTime;
+    private String creationUser;
     private ArrayList threeLastDigitsArrayList;
 
     private LinkedHashMap<String, Item> items;
@@ -92,20 +92,20 @@ public class EndoParalavis {
         }
     }
 
-    public LocalDateTime getDateTime() {
-        return dateTime;
+    public LocalDateTime getCreationDateTime() {
+        return creationDateTime;
     }
 
-    public void setDateTime(LocalDateTime dateTime) {
-        this.dateTime = dateTime;
+    public void setCreationDateTime(LocalDateTime creationDateTime) {
+        this.creationDateTime = creationDateTime;
     }
 
-    public String getUser() {
-        return user;
+    public String getCreationUser() {
+        return creationUser;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setCreationUser(String creationUser) {
+        this.creationUser = creationUser;
     }
 
 }

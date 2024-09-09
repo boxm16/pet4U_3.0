@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.LinkedHashMap;
 import java.util.logging.Level;
@@ -20,59 +21,77 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class EndoAnalysisDao {
-
+    
     private DatabaseConnectionFactory databaseConnectionFactory;
-
+    
     public EndoAnalysisDao() {
         this.databaseConnectionFactory = new DatabaseConnectionFactory();
-
+        
     }
-
+    
     public LinkedHashMap<String, EndoApostolis> getEndoApostolissVaribobis() {
         LinkedHashMap<String, EndoApostolis> endoApostoliss = new LinkedHashMap();
-
+        
         String query = "SELECT * FROM  [petworld].[dbo].[WH_ENDA_VAR] ;";
         //   System.out.println(query);
 
         Connection connection;
         Statement statement;
         ResultSet resultSet;
-
+        
         try {
-
+            
             connection = this.databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
-
+            
             statement = connection.createStatement();
-
+            
             resultSet = statement.executeQuery(query);
-
+            
             while (resultSet.next()) {
                 String id = resultSet.getString("DOCID");
                 if (!endoApostoliss.containsKey(id)) {
                     EndoApostolis endoApostolis = new EndoApostolis();
                     endoApostolis.setId(id);
+                    
+                    String creationDateTimeStampString = resultSet.getString("DATE_TIME");
+                    DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
+                    DateTimeFormatter formatter3 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SS");
+                    DateTimeFormatter formatter4 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S");
+                    
+                    LocalDateTime creationDateTime;
+                    if (creationDateTimeStampString.length() == 23) {
+                        creationDateTime = LocalDateTime.parse(creationDateTimeStampString, formatter2);
+                    } else if (creationDateTimeStampString.length() == 22) {
+                        creationDateTime = LocalDateTime.parse(creationDateTimeStampString, formatter3);
+                    } else {
+                        creationDateTime = LocalDateTime.parse(creationDateTimeStampString, formatter4);
+                    }
+                    
                     String number = resultSet.getString("DOCNUMBER");
                     //  String destination = resultSet.getString("DESTINATION");
                     String destination = translateStoreNameV(resultSet.getString("DESTINATION"));
                     String dateString = resultSet.getString("DOCDATE");
                     String[] splittedDate = dateString.split(" ");
-
+                    
                     dateString = splittedDate[0];
                     endoApostolis.setDateString(dateString);
-
+                    
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                     LocalDate date = LocalDate.parse(dateString, formatter);
                     endoApostolis.setDate(date);
-
+                    
                     endoApostolis.setReceiver(destination);
                     endoApostolis.setNumber(number);
+                    
+                    endoApostolis.setCreationDateTime(creationDateTime);
+                    endoApostolis.setCreationUser(resultSet.getString("USERNAME"));
                     endoApostoliss.put(id, endoApostolis);
-
+                    
                 }
                 EndoApostolis endoApostolis = endoApostoliss.get(id);
                 String itemCode = resultSet.getString("ABBREVIATION");
                 String quantity = resultSet.getString("QUANTITY");
-
+                
                 LinkedHashMap<String, Item> items = endoApostolis.getItems();
                 if (items.containsKey(itemCode)) {
                     Item item = items.get(itemCode);
@@ -86,7 +105,7 @@ public class EndoAnalysisDao {
                     item.setQuantity(quantity);
                     endoApostolis.getItems().put(itemCode, item);
                 }
-
+                
             }
             resultSet.close();
             statement.close();
@@ -96,7 +115,7 @@ public class EndoAnalysisDao {
         }
         return endoApostoliss;
     }
-
+    
     private String translateStoreNameV(String name) {
         String translatedName = name;
         switch (name) {
@@ -145,5 +164,5 @@ public class EndoAnalysisDao {
         }
         return translatedName;
     }
-
+    
 }
