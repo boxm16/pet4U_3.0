@@ -326,7 +326,7 @@ public class ReplenishmentDao {
     }
 
     String deleteReplenishment(String itemCode) {
-        String noteDeletionSql = "DELETE FROM shelves_replenishment WHERE itemCode='" + itemCode + "'";
+        String noteDeletionSql = "DELETE FROM shelves_replenishment WHERE item_code='" + itemCode + "'";
         try {
             DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
             Connection connection = databaseConnectionFactory.getMySQLConnection();
