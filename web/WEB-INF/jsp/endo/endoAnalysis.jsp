@@ -59,6 +59,8 @@
                     <th>Date</th>
                     <th>Number</th>
                     <th>DESTINATION</th>
+                    <th>User</th>
+                    <th>DateTime</th>
                     <th>Show  Endo Apostolis</th>
 
                 </tr>
@@ -107,23 +109,19 @@
                         out.println("</td>");
 
                         out.println("<td>");
+                        out.println(endoApostolis.getCreationUser());
+                        out.println("</td>");
+
+                        out.println("<td>");
+                        out.println(endoApostolis.getCreationDateTime());
+                        out.println("</td>");
+
+                        out.println("<td>");
+                        out.println(endoApostolis.getCreationUser());
+                        out.println("</td>");
+
+                        out.println("<td>");
                         out.println("<center><a href='showBindedEndoOrder.htm?id=" + endoApostolis.getId() + "' class='btn btn-primary' style='font-size:30px' target='_blank'>Show Binded Endo Order</a></center>");
-                        out.println("</td>");
-
-                        out.println("<td>");
-                        if (endoApostolis.isIsLocked()) {
-                            out.println("<div style='background-color:green'>LOCKED</div>");
-                        } else {
-                            out.println();
-                        }
-                        out.println("</td>");
-
-                        out.println("<td>");
-                        if (endoApostolis.isIsChanged()) {
-                            out.println("<div style='background-color:red'>CHANGED</div>");
-                        } else {
-                            out.println();
-                        }
                         out.println("</td>");
 
                         out.println("</tr>");
