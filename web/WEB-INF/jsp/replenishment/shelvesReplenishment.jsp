@@ -44,6 +44,7 @@
             <th>Referral DateTime</th>
             <th>Replenishment Quantity</th>
             <th>Sails After Referral DateTime</th>
+            <th>Endo Sails After Referral DateTime</th>
             <th>Minimal Shelf Stock</th>
             <th>Stock</th>
             <th>Note</th>
@@ -86,6 +87,10 @@
 
                     out.println("<td>");
                     out.println(replenishment.getSailsAfterReplenishment());
+                    out.println("</td>");
+
+                    out.println("<td>");
+                    out.println(replenishment.getEndoSailsAfterReplenishment());
                     out.println("</td>");
 
                     out.println("<td>");
