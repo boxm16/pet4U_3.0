@@ -47,7 +47,7 @@
             <th>Minimal Shelf Stock</th>
             <th>Stock</th>
             <th>Note</th>
-            <th>Edit</th>
+
             </thead>
 
             <%
