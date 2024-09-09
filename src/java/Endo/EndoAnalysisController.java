@@ -18,6 +18,6 @@ public class EndoAnalysisController {
         EndoAnalysisDao endoAnalysisDao = new EndoAnalysisDao();
        LinkedHashMap<String, EndoApostolis> endoApostolissVaribobis = endoAnalysisDao.getEndoApostolissVaribobis();
         
-        return "endoAnalysis";
+        return "endo/endoAnalysis";
     } 
 }
