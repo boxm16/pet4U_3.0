@@ -19,6 +19,7 @@ public class Replenishment extends Item{
     private LocalDateTime dateTime;
     private int minimalShelfStock;
     private int sailsAfterReplenishment;
+    private int endoSailsAfterReplenishment;
 
     public int getReplenishmentQuantity() {
         return replenishmentQuantity;
@@ -58,6 +59,14 @@ public class Replenishment extends Item{
 
     public void setSailsAfterReplenishment(int sailsAfterReplenishment) {
         this.sailsAfterReplenishment = sailsAfterReplenishment;
+    }
+
+    public int getEndoSailsAfterReplenishment() {
+        return endoSailsAfterReplenishment;
+    }
+
+    public void setEndoSailsAfterReplenishment(int endoSailsAfterReplenishment) {
+        this.endoSailsAfterReplenishment = endoSailsAfterReplenishment;
     }
     
     

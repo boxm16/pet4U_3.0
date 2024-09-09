@@ -97,6 +97,7 @@ public class ReplenishmentController {
         StringBuilder inPartForSqlQueryByReferralAltercodes = buildStringFromArrayList(referalAltercodes);
         replenishments = replenishmentDao.addPet4uBasicData(replenishments, inPartForSqlQueryByReferralAltercodes);
         replenishments = replenishmentDao.addSailsData(replenishments, inPartForSqlQueryByReferralAltercodes);
+        replenishments = replenishmentDao.addEndoSailsData(replenishments, inPartForSqlQueryByReferralAltercodes);
 
         model.addAttribute("replenishments", replenishments);
         return "replenishment/shelvesReplenishment";
@@ -112,6 +113,7 @@ public class ReplenishmentController {
         StringBuilder inPartForSqlQueryByReferralAltercodes = buildStringFromArrayList(referalAltercodes);
         replenishments = replenishmentDao.addPet4uBasicData(replenishments, inPartForSqlQueryByReferralAltercodes);
         replenishments = replenishmentDao.addSailsData(replenishments, inPartForSqlQueryByReferralAltercodes);
+        replenishments = replenishmentDao.addEndoSailsData(replenishments, inPartForSqlQueryByReferralAltercodes);
 
         model.addAttribute("replenishments", replenishments);
         return "replenishment/shelvesReplenishmentDashboard";

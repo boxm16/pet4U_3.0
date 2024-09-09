@@ -343,4 +343,63 @@ public class ReplenishmentDao {
         return "Replenishment Deleted Successfully";
     }
 
+    LinkedHashMap<String, Replenishment> addEndoSailsData(LinkedHashMap<String, Replenishment> replenishments, StringBuilder inPartForSqlQuery) {
+        DateTimeFormatter CUSTOM_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+        String oldestReplenishmentDateTimeString = oldestReplenishmentDateTime.format(CUSTOM_FORMATTER);  //2022-12-09 18:25:58
+
+        //i need new linkedHashMap to set order for positions from pet4udatabase
+        StringBuilder query
+                = new StringBuilder("SELECT ABBREVIATION, DATE_TIME, QUANTITY FROM WH_ENDA_VAR WHERE  ABBREVIATION IN ")
+                        .append(inPartForSqlQuery).append(" AND DATE_TIME >='" + oldestReplenishmentDateTimeString + "' ORDER BY DOCID;");
+        System.out.println(query);
+        ResultSet resultSet;
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
+            Statement statement = connection.createStatement();
+
+            resultSet = statement.executeQuery(query.toString());
+            while (resultSet.next()) {
+
+                String itemCode = resultSet.getString("ABBREVIATION").trim();
+
+                if (replenishments.containsKey(itemCode)) {
+                    Replenishment replenishment = replenishments.get(itemCode);
+                    LocalDateTime referralDateTime = replenishment.getDateTime();
+                    String saleDateTimeStampString = resultSet.getString("DATE_TIME");
+                    DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
+                    DateTimeFormatter formatter3 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SS");
+                    DateTimeFormatter formatter4 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S");
+
+                    LocalDateTime saleDateTime;
+                    if (saleDateTimeStampString.length() == 23) {
+                        saleDateTime = LocalDateTime.parse(saleDateTimeStampString, formatter2);
+                    } else if (saleDateTimeStampString.length() == 22) {
+                        saleDateTime = LocalDateTime.parse(saleDateTimeStampString, formatter3);
+                    } else {
+                        saleDateTime = LocalDateTime.parse(saleDateTimeStampString, formatter4);
+                    }
+                    if (saleDateTime.isAfter(referralDateTime) || saleDateTime.isEqual(referralDateTime)) {
+                        int quantity = resultSet.getInt("QUANTITY");
+                        //   String creationUser = resultSet.getString("USER_");
+
+                        int endoSailsAfterReplenishment = replenishment.getEndoSailsAfterReplenishment();
+
+                        replenishment.setEndoSailsAfterReplenishment(endoSailsAfterReplenishment + quantity);
+                        replenishments.put(itemCode, replenishment);
+                    }
+                } else {
+                    System.out.println("Something Wrong Here. Can't find item code  in pet4u main database (WH1): " + itemCode);
+                }
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ReplenishmentDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return replenishments;
+    }
+
 }
