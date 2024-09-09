@@ -66,6 +66,7 @@ public class EndoAnalysisDao {
 
                     endoApostolis.setReceiver(destination);
                     endoApostolis.setNumber(number);
+                    endoApostoliss.put(id, endoApostolis);
 
                 }
                 EndoApostolis endoApostolis = endoApostoliss.get(id);
