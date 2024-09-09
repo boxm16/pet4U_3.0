@@ -48,7 +48,7 @@
             <th>Minimal Shelf Stock</th>
             <th>Stock</th>
             <th>Note</th>
-         
+            <th>Edit</th>
             </thead>
 
             <%
@@ -56,7 +56,7 @@
                 for (Map.Entry<String, Replenishment> entrySet : replenishments.entrySet()) {
                     Replenishment replenishment = entrySet.getValue();
                     out.println("<tr>");
-                    
+
                     out.println("<td>");
                     out.println("<a href='itemAnalysis.htm?code=" + replenishment.getCode() + "' target='_blank'>" + replenishment.getCode() + "</a>");
                     out.println("</td>");
