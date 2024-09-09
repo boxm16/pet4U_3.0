@@ -32,7 +32,7 @@ public class EndoAnalysisDao {
     public LinkedHashMap<String, EndoApostolis> getEndoApostolissVaribobis() {
         LinkedHashMap<String, EndoApostolis> endoApostoliss = new LinkedHashMap();
         
-        String query = "SELECT * FROM  [petworld].[dbo].[WH_ENDA_VAR] ;";
+        String query = "SELECT * FROM  [petworld].[dbo].[WH_ENDA_VAR] ORDER BY DOCID;";
         //   System.out.println(query);
 
         Connection connection;
