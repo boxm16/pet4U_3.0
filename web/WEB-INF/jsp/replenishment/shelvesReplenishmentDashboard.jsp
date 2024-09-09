@@ -55,7 +55,8 @@
                 LinkedHashMap<String, Replenishment> replenishments = (LinkedHashMap) request.getAttribute("replenishments");
                 for (Map.Entry<String, Replenishment> entrySet : replenishments.entrySet()) {
                     Replenishment replenishment = entrySet.getValue();
-
+                    out.println("<tr>");
+                    
                     out.println("<td>");
                     out.println("<a href='itemAnalysis.htm?code=" + replenishment.getCode() + "' target='_blank'>" + replenishment.getCode() + "</a>");
                     out.println("</td>");

@@ -53,8 +53,17 @@
             <%
                 LinkedHashMap<String, Replenishment> replenishments = (LinkedHashMap) request.getAttribute("replenishments");
                 for (Map.Entry<String, Replenishment> entrySet : replenishments.entrySet()) {
-                    Replenishment replenishment = entrySet.getValue();
+                    String alarmColor = "";
 
+                    Replenishment replenishment = entrySet.getValue();
+                    int stockOnShelfNow = replenishment.getReplenishmentQuantity() - replenishment.getSailsAfterReplenishment();
+                    if (stockOnShelfNow < replenishment.getMinimalShelfStock() * 2) {
+                        alarmColor = "yellow";
+                    }
+                    if (stockOnShelfNow < replenishment.getMinimalShelfStock()) {
+                        alarmColor = "#F33A6A";;
+                    }
+                    out.println("<tr style='background-color: " + alarmColor + "'>");
                     out.println("<td>");
                     out.println("<a href='itemAnalysis.htm?code=" + replenishment.getCode() + "' target='_blank'>" + replenishment.getCode() + "</a>");
                     out.println("</td>");
@@ -89,10 +98,6 @@
 
                     out.println("<td>");
                     out.println(replenishment.getNote());
-                    out.println("</td>");
-
-                    out.println("<td>");
-                    out.println("<a href='goForEditingReplenishment.htm?itemCode=" + replenishment.getCode() + "' target='_blank'>Edit</a>");
                     out.println("</td>");
 
                     out.println("</tr>");
