@@ -8,6 +8,7 @@ package Replenishment;
 import BasicModel.Item;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -141,6 +142,32 @@ public class ReplenishmentController {
         String result = replenishmentDao.updateReplenishment(itemCode, minimalShelfStock);
 
         if (result.equals("Replenishment Updated Successfully")) {
+            model.addAttribute("resultColor", "green");
+        } else {
+            model.addAttribute("resultColor", "red");
+        }
+        model.addAttribute("result", result);
+        return "replenishment/editReplenishment";
+
+    }
+
+    @RequestMapping(value = "deleteReplenishment", method = RequestMethod.GET)
+    public String deleteReplenishment(@RequestParam(name = "itemCode") String itemCode, ModelMap model, HttpSession session) {
+        String userName = (String) session.getAttribute("userName");
+
+        if (userName == null) {
+            model.addAttribute("message", "You are not authorized for this action. Don`t do this again.");
+            return "errorPage";
+        }
+        if (!userName.equals("me")) {
+            model.addAttribute("message", "You are not authorized for this action. Don`t do this again.");
+            return "errorPage";
+        }
+
+        ReplenishmentDao replenishmentDao = new ReplenishmentDao();
+        String result = replenishmentDao.deleteReplenishment(itemCode);
+
+        if (result.equals("Replenishment Deleted Successfully")) {
             model.addAttribute("resultColor", "green");
         } else {
             model.addAttribute("resultColor", "red");

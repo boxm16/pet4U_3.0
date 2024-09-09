@@ -32,7 +32,8 @@
             <button type="submit" style="width:300px; height :60px; background-color: lightblue"><h1>Edit Replenishment</h1></button>
 
         </form>
-        <hr>
+        <hr><hr><hr><hr><hr><hr><hr>
+        <h1>  <a href="deleteReplenishment.htm?itemCode=${replenishment.code}">Delete Replenishment</a></h1>
     </center>
 </body>
 </html>

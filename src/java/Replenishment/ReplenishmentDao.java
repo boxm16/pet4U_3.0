@@ -302,7 +302,7 @@ public class ReplenishmentDao {
         return replenishments;
     }
 
-  public  String updateReplenishment(String itemCode, String minimalShelfStock) {
+    public String updateReplenishment(String itemCode, String minimalShelfStock) {
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
         Connection connection = databaseConnectionFactory.getMySQLConnection();
 
@@ -323,6 +323,24 @@ public class ReplenishmentDao {
         }
 
         return "Replenishment Updated Successfully";
+    }
+
+    String deleteReplenishment(String itemCode) {
+        String noteDeletionSql = "DELETE FROM shelves_replenishment WHERE itemCode='" + itemCode + "'";
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            Connection connection = databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(noteDeletionSql);
+            statement.close();
+
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(NotesDao.class.getName()).log(Level.SEVERE, null, ex);
+            return ex.toString();
+        }
+        return "Replenishment Deleted Successfully";
     }
 
 }
