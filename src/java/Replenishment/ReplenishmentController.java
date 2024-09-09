@@ -91,7 +91,13 @@ public class ReplenishmentController {
 
     @RequestMapping(value = "shelvesReplenishment", method = RequestMethod.GET)
     public String shelvesReplenishmentSV(ModelMap model) {
-        LinkedHashMap<String, Replenishment> replenishments = getReplenishments();
+        ReplenishmentDao replenishmentDao = new ReplenishmentDao();
+        LinkedHashMap<String, Replenishment> replenishments = replenishmentDao.getAllReplenishments();
+        ArrayList referalAltercodes = new ArrayList(replenishments.keySet());
+        StringBuilder inPartForSqlQueryByReferralAltercodes = buildStringFromArrayList(referalAltercodes);
+        replenishments = replenishmentDao.addPet4uBasicData(replenishments, inPartForSqlQueryByReferralAltercodes);
+        replenishments = replenishmentDao.addSailsData(replenishments, inPartForSqlQueryByReferralAltercodes);
+
         model.addAttribute("replenishments", replenishments);
         return "replenishment/shelvesReplenishment";
 
