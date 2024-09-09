@@ -33,7 +33,7 @@
     <body>
     <center>
         <h1><a href="index.htm">INDEX</a></h1>
-        <h1>Shelves Replenishment Dashboard</h1>
+        <h1><a href="shelvesReplenishment.htm">Go Back</a></h1>
         <hr>
 
         <table>
@@ -48,7 +48,7 @@
             <th>Minimal Shelf Stock</th>
             <th>Stock</th>
             <th>Note</th>
-            <th>Edit</th>
+         
             </thead>
 
             <%
