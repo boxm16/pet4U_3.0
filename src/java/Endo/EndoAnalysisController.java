@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class EndoAnalysisController {
-   @RequestMapping(value = "saveEndoBinder", method = RequestMethod.GET)
-    public String saveEndoBinder(ModelMap modelMap) {
+   @RequestMapping(value = "endoAnalysis", method = RequestMethod.GET)
+    public String endoAnalysis(ModelMap modelMap) {
         EndoAnalysisDao endoAnalysisDao = new EndoAnalysisDao();
        LinkedHashMap<String, EndoApostolis> endoApostolissVaribobis = endoAnalysisDao.getEndoApostolissVaribobis();
         
-        return "redirect:endoParalaves.htm";
+        return "endoAnalysis";
     } 
 }
