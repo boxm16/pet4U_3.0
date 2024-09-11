@@ -63,9 +63,10 @@
                     <th>DESTINATION</th>
                     <th>User</th>
                     <th>DateTime</th>
-                    <th>კოდების რაოდენობა</th>
-                    <th>Spent Time</th>
-                    <th>Show  Endo Apostolis</th>
+                    <th>კოდ.<br>რაოდ</th>
+                    <th>კოდ.<br>მთლიანი<br>რაოდ</th>
+                    <th>Spent<br>Time</th>
+                    <th>Show EA</th>
 
                 </tr>
             </thead>
@@ -126,11 +127,19 @@
                             out.println("</td>");
 
                             out.println("<td>");
+                            if (endoApostolis.getId().equals(endoApostolisDasEntry.getValue().getLastEndoIdOfTheDay())) {
+                                out.println(endoApostolisDasEntry.getValue().getAllCodesQuantityOfDay());
+                            } else {
+                                out.println("-");
+                            }
+                            out.println("</td>");
+
+                            out.println("<td>");
                             out.println(store);
                             out.println("</td>");
 
                             out.println("<td>");
-                            out.println("<center><a href='showBindedEndoOrder.htm?id=" + endoApostolis.getId() + "' class='btn btn-primary' style='font-size:30px' target='_blank'>Show Binded Endo Order</a></center>");
+                            out.println("<center><a href='showBindedEndoOrder.htm?id=" + endoApostolis.getId() + "' class='btn btn-primary' style='font-size:30px' target='_blank'>Show EA</a></center>");
                             out.println("</td>");
 
                             out.println("</tr>");

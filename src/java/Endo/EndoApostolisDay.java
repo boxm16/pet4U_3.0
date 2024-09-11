@@ -5,7 +5,9 @@
  */
 package Endo;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class EndoApostolisDay {
 
@@ -30,6 +32,32 @@ public class EndoApostolisDay {
 
     public void setEndoApostoliss(LinkedHashMap<String, EndoApostolis> endoApostoliss) {
         this.endoApostoliss = endoApostoliss;
+    }
+
+    public int getAllCodesQuantityOfDay() {
+        int q = 0;
+        for (Map.Entry<String, EndoApostolis> endoApostolissEntry : endoApostoliss.entrySet()) {
+            q = q + endoApostolissEntry.getValue().getItems().size();
+        }
+        return q;
+    }
+
+    public String getFirstEndoIdOfTheDay() {
+        ArrayList<String> arrayList = new ArrayList<>(this.endoApostoliss.keySet());
+        if (arrayList.size() > 0) {
+            return arrayList.get(0);
+        } else {
+            return "";
+        }
+    }
+
+    public String getLastEndoIdOfTheDay() {
+        ArrayList<String> arrayList = new ArrayList<>(this.endoApostoliss.keySet());
+        if (arrayList.size() > 0) {
+            return arrayList.get(arrayList.size() - 1);
+        } else {
+            return "";
+        }
     }
 
 }
