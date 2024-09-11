@@ -76,7 +76,7 @@
             <h1>  <input type="date"  name="startDate" value="${startDate}"></h1>
             <h1>  <input type="date"  name="endDate" value="${nowDate}"></h1>
             <hr>
-            <button type="submit" class="btn btn-secondary"> <h1>Positions Block Traffic For Period Of Time - One Order = One Visit</h1></button>
+            <button type="submit" class="btn btn-secondary"> <h1>ბლოკების ტრაფიკინგიგ ანალიზი დროის მონაკვეთის მიხედვით-ერთი შეკვეთა ერთი ვიზიტი </h1></button>
         </form>
         <hr>
         <hr>
@@ -101,7 +101,7 @@
         <a href="ordersQuantityComparingAnalysis.htm" class="btn btn-primary" role="button" style='background-color: blue;'><h1>Orders Quantity Comparison</h1></a>
         <hr> <hr> <hr> <hr> <hr> <hr> <hr> <hr>
         <h1>Endo Analysis</h1>
-        <a href="endoAnalysis.htm" class="btn btn-primary" role="button" style='background-color: blue;'><h1>Positioning</h1></a>
+        <a href="endoAnalysis.htm" class="btn btn-primary" role="button" style='background-color: blue;'><h1>ენდოდიაკინისის ანალიზი</h1></a>
         <hr> <hr> <hr>
         <h1>POSITIONING</h1>
         <a href="positioning.htm" class="btn btn-primary" role="button" style='background-color: blue;'><h1>Positioning</h1></a>
