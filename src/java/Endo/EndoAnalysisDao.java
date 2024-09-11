@@ -187,7 +187,7 @@ public class EndoAnalysisDao {
                 String id = resultSet.getString("DOCID");
                 String dateString = resultSet.getString("DOCDATE");
 
-                String creationUser = resultSet.getString("DOCDATE");
+                String creationUser = resultSet.getString("USERNAME");
 
                 if (creationUser.equals("ΜΙΧΑΛΗΣ")
                         || creationUser.equals("VASILIS")
