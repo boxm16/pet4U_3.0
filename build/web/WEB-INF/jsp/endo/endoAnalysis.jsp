@@ -121,10 +121,6 @@
                             out.println("</td>");
 
                             out.println("<td>");
-                            out.println(endoApostolis.getCreationUser());
-                            out.println("</td>");
-
-                            out.println("<td>");
                             out.println(store);
                             out.println("</td>");
 
