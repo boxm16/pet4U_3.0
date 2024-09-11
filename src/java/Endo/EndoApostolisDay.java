@@ -5,6 +5,7 @@
  */
 package Endo;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -58,6 +59,11 @@ public class EndoApostolisDay {
         } else {
             return "";
         }
+    }
+
+    public Duration getTimeSpentForDayEndo() {
+        Duration timeSpent = Duration.between(this.endoApostoliss.get(getFirstEndoIdOfTheDay()).getCreationDateTime(), this.endoApostoliss.get(getLastEndoIdOfTheDay()).getCreationDateTime());
+        return timeSpent;
     }
 
 }

@@ -135,7 +135,11 @@
                             out.println("</td>");
 
                             out.println("<td>");
-                            out.println(store);
+                            if (endoApostolis.getId().equals(endoApostolisDasEntry.getValue().getLastEndoIdOfTheDay())) {
+                                out.println(endoApostolisDasEntry.getValue().getTimeSpentForDayEndo());
+                            } else {
+                                out.println("-");
+                            }
                             out.println("</td>");
 
                             out.println("<td>");
