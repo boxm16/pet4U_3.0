@@ -101,10 +101,10 @@
         <a href="ordersQuantityComparingAnalysis.htm" class="btn btn-primary" role="button" style='background-color: blue;'><h1>Orders Quantity Comparison</h1></a>
         <hr> <hr> <hr> <hr> <hr> <hr> <hr> <hr>
         <h1>Endo Analysis</h1>
-        <a href="endoAnalysis.htm" class="btn btn-primary" role="button" style='background-color: blue;'><h1>ენდოდიაკინისის ანალიზი</h1></a>
+        <a href="endoAnalysis.htm" class="btn btn-primary" role="button" style='background-color: blue;' target="_blank"><h1>ენდოდიაკინისის ანალიზი</h1></a>
         <hr>
        
-        <a href="endoAnalysisVMD.htm" class="btn btn-primary" role="button" style='background-color: blue;'><h1>ენდოდიაკინისის ანალიზი VMD</h1></a>
+        <a href="endoAnalysisVMD.htm" class="btn btn-primary" role="button" style='background-color: blue;' target="_blank"><h1>ენდოდიაკინისის ანალიზი VMD</h1></a>
         <hr> <hr>
         <h1>POSITIONING</h1>
         <a href="positioning.htm" class="btn btn-primary" role="button" style='background-color: blue;'><h1>Positioning</h1></a>
