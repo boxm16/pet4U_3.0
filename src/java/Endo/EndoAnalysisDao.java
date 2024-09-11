@@ -167,7 +167,6 @@ public class EndoAnalysisDao {
 
     LinkedHashMap<String, EndoApostolisDay> getEndoApostolisDays() {
         LinkedHashMap<String, EndoApostolisDay> endoApostolisDays = new LinkedHashMap();
-        
 
         String query = "SELECT * FROM  [petworld].[dbo].[WH_ENDA_VAR] ORDER BY DOCID;";
         //   System.out.println(query);
@@ -229,8 +228,14 @@ public class EndoAnalysisDao {
                     endoApostolis.setNumber(number);
 
                     endoApostolis.setCreationDateTime(creationDateTime);
-                    endoApostolis.setCreationUser(resultSet.getString("USERNAME"));
-                    endoApostoliss.put(id, endoApostolis);
+
+                    String creationUser = resultSet.getString("USERNAME");
+                    endoApostolis.setCreationUser(creationUser);
+                    if (creationUser.equals("ΜΙΧΑΛΗΣ")
+                            || creationUser.equals("VASILIS")
+                            || creationUser.equals("ΔΗΜΗΤΡΗΣ")) {
+                        endoApostoliss.put(id, endoApostolis);
+                    }
 
                 }
                 EndoApostolis endoApostolis = endoApostoliss.get(id);
