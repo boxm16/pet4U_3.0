@@ -7,10 +7,14 @@ package Endo;
 
 import java.util.LinkedHashMap;
 
-
 public class EndoApostolisDay {
-   private String date;
-   LinkedHashMap<String, EndoApostolis> endoApostoliss;
+
+    private String date;
+    LinkedHashMap<String, EndoApostolis> endoApostoliss;
+
+    public EndoApostolisDay() {
+        endoApostoliss = new LinkedHashMap<String, EndoApostolis>();
+    }
 
     public String getDate() {
         return date;
@@ -27,7 +31,5 @@ public class EndoApostolisDay {
     public void setEndoApostoliss(LinkedHashMap<String, EndoApostolis> endoApostoliss) {
         this.endoApostoliss = endoApostoliss;
     }
-   
-   
-    
+
 }
