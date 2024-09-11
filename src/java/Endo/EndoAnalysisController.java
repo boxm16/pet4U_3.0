@@ -17,9 +17,9 @@ public class EndoAnalysisController {
     @RequestMapping(value = "endoAnalysis", method = RequestMethod.GET)
     public String endoAnalysis(ModelMap modelMap) {
         EndoAnalysisDao endoAnalysisDao = new EndoAnalysisDao();
-        LinkedHashMap<String, EndoApostolis> endoApostolissVaribobis = endoAnalysisDao.getEndoApostolissVaribobis();
+        LinkedHashMap<String, EndoApostolisDay> endoApostolisDays = endoAnalysisDao.getEndoApostolisDays();
 
-        modelMap.addAttribute("endoApostolissVaribobis", endoApostolissVaribobis);
+        modelMap.addAttribute("endoApostolisDays", endoApostolisDays);
         return "endo/endoAnalysis";
     }
 }

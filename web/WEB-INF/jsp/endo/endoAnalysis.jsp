@@ -4,6 +4,8 @@
     Author     : Michail Sitmalidis
 --%>
 
+<%@page import="Endo.EndoApostolisDay"%>
+<%@page import="java.time.LocalDateTime"%>
 <%@page import="Endo.EndoApostolis"%>
 <%@page import="java.util.Collections"%>
 <%@page import="java.util.List"%>
@@ -61,71 +63,73 @@
                     <th>DESTINATION</th>
                     <th>User</th>
                     <th>DateTime</th>
+                    <th>Spent Time</th>
                     <th>Show  Endo Apostolis</th>
 
                 </tr>
             </thead>
             <tbody>
-                <%     LinkedHashMap<String, EndoApostolis> endoApostoliss = (LinkedHashMap) request.getAttribute("endoApostolissVaribobis");
+                <%     LinkedHashMap<String, EndoApostolisDay> endoApostolisDays = (LinkedHashMap) request.getAttribute("endoApostolisDays");
+                    for (Map.Entry<String, EndoApostolisDay> endoApostolisDasEntry : endoApostolisDays.entrySet()) {
+                        LinkedHashMap<String, EndoApostolis> endoApostoliss = endoApostolisDasEntry.getValue().getEndoApostoliss();
+                        for (Map.Entry<String, EndoApostolis> endoApostolissEntry : endoApostoliss.entrySet()) {
+                            EndoApostolis endoApostolis = endoApostolissEntry.getValue();
 
-                    // reverse order of keys
-                    // iterate LHM using reverse order of keys
-                    for (Map.Entry<String, EndoApostolis> endoApostolissEntry : endoApostoliss.entrySet()) {
-                        EndoApostolis endoApostolis = endoApostolissEntry.getValue();
-                        if (endoApostolis.getReceiver().equals("ΠΕΡΙΣΤΕΡΙ")
-                                || endoApostolis.getReceiver().equals("Ν. ΙΩΝΙΑ")
-                                || endoApostolis.getReceiver().equals("ΧΑΛΚΗΔΟΝΑ")
-                                || endoApostolis.getReceiver().equals("ΚΑΛΛΙΘΕΑ")
-                                || endoApostolis.getReceiver().equals("ΠΕΤΡΟΥΠΟΛΗ")
-                                || endoApostolis.getReceiver().equals("MΕΝΙΔΙ")
-                                || endoApostolis.getReceiver().equals("ΚΟΥΚΑΚΙ")) {
-                            out.println("<tr style='background-color:#DFB4F9;'>");
+                            if (endoApostolis.getReceiver().equals("ΠΕΡΙΣΤΕΡΙ")
+                                    || endoApostolis.getReceiver().equals("Ν. ΙΩΝΙΑ")
+                                    || endoApostolis.getReceiver().equals("ΧΑΛΚΗΔΟΝΑ")
+                                    || endoApostolis.getReceiver().equals("ΚΑΛΛΙΘΕΑ")
+                                    || endoApostolis.getReceiver().equals("ΠΕΤΡΟΥΠΟΛΗ")
+                                    || endoApostolis.getReceiver().equals("MΕΝΙΔΙ")
+                                    || endoApostolis.getReceiver().equals("ΚΟΥΚΑΚΙ")) {
+                                out.println("<tr style='background-color:#DFB4F9;'>");
+                            }
+
+                            if (endoApostolis.getReceiver().equals("ΑΓ_ΠΑΡΑΣΚΕΥΗ")
+                                    || endoApostolis.getReceiver().equals("ΔΑΦΝΗ")
+                                    || endoApostolis.getReceiver().equals("Π. ΦΑΛΗΡΟ")
+                                    || endoApostolis.getReceiver().equals("ΑΛΙΜΟΣ")
+                                    || endoApostolis.getReceiver().equals("ΧΑΛΑΝΔΡΙ")
+                                    || endoApostolis.getReceiver().equals("ΑΡΓΥΡΟΥΠΟΛΗ")
+                                    || endoApostolis.getReceiver().equals("ΜΙΧΑΛΑΚΟΠΟΥΛΟΥ")) {
+                                out.println("<tr style='background-color:#FAFAA5 ;'>");
+                            }
+
+                            out.println("<td>");
+                            out.println(endoApostolis.getId());
+                            out.println("</td>");
+
+                            out.println("<td>");
+                            out.println(endoApostolis.getDateString());
+                            out.println("</td>");
+
+                            out.println("<td>");
+                            out.println(endoApostolis.getNumber());
+                            out.println("</td>");
+
+                            out.println("<td>");
+                            out.println(endoApostolis.getReceiver());
+                            out.println("</td>");
+
+                            out.println("<td>");
+                            out.println(endoApostolis.getCreationUser());
+                            out.println("</td>");
+
+                            out.println("<td>");
+                            out.println(endoApostolis.getCreationDateTime());
+                            out.println("</td>");
+
+                            out.println("<td>");
+                            out.println(endoApostolis.getCreationUser());
+                            out.println("</td>");
+
+                            out.println("<td>");
+                            out.println("<center><a href='showBindedEndoOrder.htm?id=" + endoApostolis.getId() + "' class='btn btn-primary' style='font-size:30px' target='_blank'>Show Binded Endo Order</a></center>");
+                            out.println("</td>");
+
+                            out.println("</tr>");
+
                         }
-
-                        if (endoApostolis.getReceiver().equals("ΑΓ_ΠΑΡΑΣΚΕΥΗ")
-                                || endoApostolis.getReceiver().equals("ΔΑΦΝΗ")
-                                || endoApostolis.getReceiver().equals("Π. ΦΑΛΗΡΟ")
-                                || endoApostolis.getReceiver().equals("ΑΛΙΜΟΣ")
-                                || endoApostolis.getReceiver().equals("ΧΑΛΑΝΔΡΙ")
-                                || endoApostolis.getReceiver().equals("ΑΡΓΥΡΟΥΠΟΛΗ")
-                                || endoApostolis.getReceiver().equals("ΜΙΧΑΛΑΚΟΠΟΥΛΟΥ")) {
-                            out.println("<tr style='background-color:#FAFAA5 ;'>");
-                        }
-
-                        out.println("<td>");
-                        out.println(endoApostolis.getId());
-                        out.println("</td>");
-
-                        out.println("<td>");
-                        out.println(endoApostolis.getDateString());
-                        out.println("</td>");
-
-                        out.println("<td>");
-                        out.println(endoApostolis.getNumber());
-                        out.println("</td>");
-
-                        out.println("<td>");
-                        out.println(endoApostolis.getReceiver());
-                        out.println("</td>");
-
-                        out.println("<td>");
-                        out.println(endoApostolis.getCreationUser());
-                        out.println("</td>");
-
-                        out.println("<td>");
-                        out.println(endoApostolis.getCreationDateTime());
-                        out.println("</td>");
-
-                        out.println("<td>");
-                        out.println(endoApostolis.getCreationUser());
-                        out.println("</td>");
-
-                        out.println("<td>");
-                        out.println("<center><a href='showBindedEndoOrder.htm?id=" + endoApostolis.getId() + "' class='btn btn-primary' style='font-size:30px' target='_blank'>Show Binded Endo Order</a></center>");
-                        out.println("</td>");
-
-                        out.println("</tr>");
-
                     }
                 %>
 
