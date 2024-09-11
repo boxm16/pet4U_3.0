@@ -87,7 +87,7 @@
                                     || endoApostolis.getReceiver().equals("ΚΟΥΚΑΚΙ")) {
                                 out.println("<tr style='background-color:#DFB4F9;'>");
                             }
-
+                            
                             if (endoApostolis.getReceiver().equals("ΑΓ_ΠΑΡΑΣΚΕΥΗ")
                                     || endoApostolis.getReceiver().equals("ΔΑΦΝΗ")
                                     || endoApostolis.getReceiver().equals("Π. ΦΑΛΗΡΟ")
@@ -97,35 +97,35 @@
                                     || endoApostolis.getReceiver().equals("ΜΙΧΑΛΑΚΟΠΟΥΛΟΥ")) {
                                 out.println("<tr style='background-color:#FAFAA5 ;'>");
                             }
-
+                            
                             out.println("<td>");
                             out.println(endoApostolis.getId());
                             out.println("</td>");
-
+                            
                             out.println("<td>");
                             out.println(endoApostolis.getDateString());
                             out.println("</td>");
-
+                            
                             out.println("<td>");
                             out.println(endoApostolis.getNumber());
                             out.println("</td>");
-
+                            
                             out.println("<td>");
                             out.println(endoApostolis.getReceiver());
                             out.println("</td>");
-
+                            
                             out.println("<td>");
                             out.println(endoApostolis.getCreationUser());
                             out.println("</td>");
-
+                            
                             out.println("<td>");
                             out.println(endoApostolis.getCreationDateTime());
                             out.println("</td>");
-
+                            
                             out.println("<td>");
                             out.println(endoApostolis.getItems().size());
                             out.println("</td>");
-
+                            
                             out.println("<td>");
                             if (endoApostolis.getId().equals(endoApostolisDasEntry.getValue().getLastEndoIdOfTheDay())) {
                                 out.println(endoApostolisDasEntry.getValue().getAllCodesQuantityOfDay());
@@ -133,7 +133,7 @@
                                 out.println("-");
                             }
                             out.println("</td>");
-
+                            
                             out.println("<td>");
                             if (endoApostolis.getId().equals(endoApostolisDasEntry.getValue().getLastEndoIdOfTheDay())) {
                                 out.println(endoApostolisDasEntry.getValue().getTimeSpentForDayEndo());
@@ -141,13 +141,21 @@
                                 out.println("-");
                             }
                             out.println("</td>");
-
+                            
+                            out.println("<td>");
+                            if (endoApostolis.getId().equals(endoApostolisDasEntry.getValue().getLastEndoIdOfTheDay())) {
+                                out.println(endoApostolisDasEntry.getValue().getTimeSpentForDayEndo().dividedBy(endoApostolisDasEntry.getValue().getAllCodesQuantityOfDay()));
+                            } else {
+                                out.println("-");
+                            }
+                            out.println("</td>");
+                            
                             out.println("<td>");
                             out.println("<center><a href='showBindedEndoOrder.htm?id=" + endoApostolis.getId() + "' class='btn btn-primary' style='font-size:30px' target='_blank'>Show EA</a></center>");
                             out.println("</td>");
-
+                            
                             out.println("</tr>");
-
+                            
                         }
                     }
                 %>
