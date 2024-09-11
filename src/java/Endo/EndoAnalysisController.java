@@ -22,4 +22,14 @@ public class EndoAnalysisController {
         modelMap.addAttribute("endoApostolisDays", endoApostolisDays);
         return "endo/endoAnalysis";
     }
+
+    @RequestMapping(value = "endoAnalysisVMD", method = RequestMethod.GET)
+    public String endoAnalysisVMD(ModelMap modelMap) {
+        EndoAnalysisDao endoAnalysisDao = new EndoAnalysisDao();
+        LinkedHashMap<String, EndoApostolisDay> endoApostolisDays = endoAnalysisDao.getEndoApostolisDaysVMD();
+
+        modelMap.addAttribute("endoApostolisDays", endoApostolisDays);
+        return "endo/endoAnalysis";
+    }
+
 }

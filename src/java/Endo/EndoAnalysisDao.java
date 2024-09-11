@@ -167,6 +167,104 @@ public class EndoAnalysisDao {
 
     LinkedHashMap<String, EndoApostolisDay> getEndoApostolisDays() {
         LinkedHashMap<String, EndoApostolisDay> endoApostolisDays = new LinkedHashMap();
+        
+
+        String query = "SELECT * FROM  [petworld].[dbo].[WH_ENDA_VAR] ORDER BY DOCID;";
+        //   System.out.println(query);
+
+        Connection connection;
+        Statement statement;
+        ResultSet resultSet;
+
+        try {
+
+            connection = this.databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
+
+            statement = connection.createStatement();
+
+            resultSet = statement.executeQuery(query);
+
+            while (resultSet.next()) {
+                String id = resultSet.getString("DOCID");
+                String dateString = resultSet.getString("DOCDATE");
+                if (!endoApostolisDays.containsKey(dateString)) {
+                    EndoApostolisDay endoApostolisDay = new EndoApostolisDay();
+                    endoApostolisDay.setDate(dateString);
+                    endoApostolisDays.put(dateString, endoApostolisDay);
+                }
+                EndoApostolisDay endoApostolisDay = endoApostolisDays.get(dateString);
+                LinkedHashMap<String, EndoApostolis> endoApostoliss = endoApostolisDay.getEndoApostoliss();
+                if (!endoApostoliss.containsKey(id)) {
+                    EndoApostolis endoApostolis = new EndoApostolis();
+                    endoApostolis.setId(id);
+
+                    String creationDateTimeStampString = resultSet.getString("DATE_TIME");
+                    DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
+                    DateTimeFormatter formatter3 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SS");
+                    DateTimeFormatter formatter4 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S");
+
+                    LocalDateTime creationDateTime;
+                    if (creationDateTimeStampString.length() == 23) {
+                        creationDateTime = LocalDateTime.parse(creationDateTimeStampString, formatter2);
+                    } else if (creationDateTimeStampString.length() == 22) {
+                        creationDateTime = LocalDateTime.parse(creationDateTimeStampString, formatter3);
+                    } else {
+                        creationDateTime = LocalDateTime.parse(creationDateTimeStampString, formatter4);
+                    }
+
+                    String number = resultSet.getString("DOCNUMBER");
+                    //  String destination = resultSet.getString("DESTINATION");
+                    String destination = translateStoreNameV(resultSet.getString("DESTINATION"));
+
+                    String[] splittedDate = dateString.split(" ");
+
+                    dateString = splittedDate[0];
+                    endoApostolis.setDateString(dateString);
+
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                    LocalDate date = LocalDate.parse(dateString, formatter);
+                    endoApostolis.setDate(date);
+
+                    endoApostolis.setReceiver(destination);
+                    endoApostolis.setNumber(number);
+
+                    endoApostolis.setCreationDateTime(creationDateTime);
+                    endoApostolis.setCreationUser(resultSet.getString("USERNAME"));
+                    endoApostoliss.put(id, endoApostolis);
+
+                }
+                EndoApostolis endoApostolis = endoApostoliss.get(id);
+                String itemCode = resultSet.getString("ABBREVIATION");
+                String quantity = resultSet.getString("QUANTITY");
+
+                LinkedHashMap<String, Item> items = endoApostolis.getItems();
+                if (items.containsKey(itemCode)) {
+                    Item item = items.get(itemCode);
+                    String quantity1 = item.getQuantity();
+                    double sum = Double.valueOf(quantity1) + Double.valueOf(quantity);
+                    item.setQuantity(String.valueOf(sum));
+                    endoApostolis.getItems().put(itemCode, item);
+                } else {
+                    Item item = new Item();
+                    item.setCode(itemCode);
+                    item.setQuantity(quantity);
+                    endoApostolis.getItems().put(itemCode, item);
+                }
+
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(EndoAnalysisDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return endoApostolisDays;
+    }
+    
+    
+    
+     LinkedHashMap<String, EndoApostolisDay> getEndoApostolisDaysVMD() {
+        LinkedHashMap<String, EndoApostolisDay> endoApostolisDays = new LinkedHashMap();
 
         String query = "SELECT * FROM  [petworld].[dbo].[WH_ENDA_VAR] ORDER BY DOCID;";
         //   System.out.println(query);
