@@ -63,6 +63,7 @@
                     <th>DESTINATION</th>
                     <th>User</th>
                     <th>DateTime</th>
+                    <th>კოდების რაოდენობა</th>
                     <th>Spent Time</th>
                     <th>Show  Endo Apostolis</th>
 
@@ -118,6 +119,10 @@
 
                             out.println("<td>");
                             out.println(endoApostolis.getCreationDateTime());
+                            out.println("</td>");
+
+                            out.println("<td>");
+                            out.println(endoApostolis.getItems().size());
                             out.println("</td>");
 
                             out.println("<td>");
