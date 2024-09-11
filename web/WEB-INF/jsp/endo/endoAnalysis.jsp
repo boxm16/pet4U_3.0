@@ -72,9 +72,10 @@
                 <%     LinkedHashMap<String, EndoApostolisDay> endoApostolisDays = (LinkedHashMap) request.getAttribute("endoApostolisDays");
                     for (Map.Entry<String, EndoApostolisDay> endoApostolisDasEntry : endoApostolisDays.entrySet()) {
                         LinkedHashMap<String, EndoApostolis> endoApostoliss = endoApostolisDasEntry.getValue().getEndoApostoliss();
+                        int store = 0;
                         for (Map.Entry<String, EndoApostolis> endoApostolissEntry : endoApostoliss.entrySet()) {
                             EndoApostolis endoApostolis = endoApostolissEntry.getValue();
-
+                            store++;
                             if (endoApostolis.getReceiver().equals("ΠΕΡΙΣΤΕΡΙ")
                                     || endoApostolis.getReceiver().equals("Ν. ΙΩΝΙΑ")
                                     || endoApostolis.getReceiver().equals("ΧΑΛΚΗΔΟΝΑ")
@@ -121,6 +122,10 @@
 
                             out.println("<td>");
                             out.println(endoApostolis.getCreationUser());
+                            out.println("</td>");
+
+                            out.println("<td>");
+                            out.println(store);
                             out.println("</td>");
 
                             out.println("<td>");
