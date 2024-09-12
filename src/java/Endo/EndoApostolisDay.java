@@ -40,10 +40,11 @@ public class EndoApostolisDay {
         int row = 0;
         for (Map.Entry<String, EndoApostolis> endoApostolissEntry : endoApostoliss.entrySet()) {
             if (row == 0) {
-                continue;
+                row++;
+            } else {
+
+                q = q + endoApostolissEntry.getValue().getItems().size();
             }
-            q = q + endoApostolissEntry.getValue().getItems().size();
-            row++;
         }
         return q;
     }
