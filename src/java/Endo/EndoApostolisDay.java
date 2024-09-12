@@ -37,8 +37,13 @@ public class EndoApostolisDay {
 
     public int getAllCodesQuantityOfDay() {
         int q = 0;
+        int row = 0;
         for (Map.Entry<String, EndoApostolis> endoApostolissEntry : endoApostoliss.entrySet()) {
+            if (row == 0) {
+                continue;
+            }
             q = q + endoApostolissEntry.getValue().getItems().size();
+            row++;
         }
         return q;
     }
