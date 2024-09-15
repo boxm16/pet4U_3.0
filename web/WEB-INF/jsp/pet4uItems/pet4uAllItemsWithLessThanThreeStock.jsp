@@ -48,7 +48,7 @@
 
             <tbody>
                 <%
-                    LinkedHashMap<String, Item> items = (LinkedHashMap) request.getAttribute("pet4uAllItems");
+                    LinkedHashMap<String, Item> items = (LinkedHashMap) request.getAttribute("items");
                    for (Map.Entry<String, Item> entrySet : items.entrySet()) {
 
                         Item item = entrySet.getValue();
