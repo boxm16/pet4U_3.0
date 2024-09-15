@@ -51,13 +51,14 @@
                     int x = 0;
                     LinkedHashMap<String, Item> items = (LinkedHashMap) request.getAttribute("items");
                     for (Map.Entry<String, Item> entrySet : items.entrySet()) {
-                        x++;
+
                         Item item = entrySet.getValue();
                         String quantityString = item.getQuantity();
                         double quantity = Double.parseDouble(quantityString);
                         if (quantity == 0 || quantity > 3 || item.getPosition().equals("")) {
                             continue;
                         }
+                        x++;
                         out.println("<tr>");
 
                         out.println("<td>");
