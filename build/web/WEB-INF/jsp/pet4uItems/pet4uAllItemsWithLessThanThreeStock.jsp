@@ -55,7 +55,7 @@
                         Item item = entrySet.getValue();
                         String quantityString = item.getQuantity();
                         int quantity = Integer.parseInt(quantityString);
-                        if (quantity < 3||item.getPosition().equals("")) {
+                        if (quantity==0||quantity > 3||item.getPosition().equals("")) {
                             continue;
                         }
                         out.println("<tr>");

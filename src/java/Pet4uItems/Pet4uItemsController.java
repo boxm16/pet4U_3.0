@@ -192,7 +192,7 @@ public class Pet4uItemsController {
         LinkedHashMap<String, Item> items = pet4uItemsDao.getAllItemsWithPosition();
 
         modelMap.addAttribute("items", items);
-        return "/pet4uItems/pet4uItemsLessThanThree";
+        return "/pet4uItems/pet4uAllItemsWithLessThanThreeStock";
     }
 
     public void updateItemsState() {
