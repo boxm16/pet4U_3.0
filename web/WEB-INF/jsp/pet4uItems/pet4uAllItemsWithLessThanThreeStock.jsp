@@ -4,6 +4,7 @@
     Author     : Michail Sitmalidis
 --%>
 
+<%@page import="Endo.EndoPackaging"%>
 <%@page import="java.util.LinkedHashMap"%>
 <%@page import="java.util.Map"%>
 <%@page import="BasicModel.AltercodeContainer"%>
@@ -14,7 +15,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Camelot: All Items</title>
+        <title>Pet4U: All Items One Line</title>
         <style>
             table, th, td {
                 border: 1px solid ;
@@ -33,10 +34,7 @@
     <body>
     <center>
         <h1><a href="index.htm">INDEX</a></h1>
-        <h1><a href="pet4uAllItemsOneLine.htm">Show Items With Only One Altercode</a></h1>
-        <h1><a href="pet4uItemsWithPosition.htm">Show Only Items With Position </a></h1>
-        <h1><a href="pet4uItemsOffSite.htm">Show Only OFF SITE Items</a></h1>
-        <h1><a href="pet4uItemsLessThanThree.htm">Show Items With Less Than 3 Stock</a></h1>
+        <h1><a href="pet4uAllItems.htm">Show Full Version</a></h1>
 
         <table>
 
@@ -45,14 +43,21 @@
             <th>Description</th>
             <th>State</th>
             <th>Stock</th>
-            <th>Show  Snapshots</th>
+
+
 
             <tbody>
                 <%
                     LinkedHashMap<String, Item> items = (LinkedHashMap) request.getAttribute("pet4uAllItems");
+                    LinkedHashMap<String, EndoPackaging> allEndoPackaging = (LinkedHashMap) request.getAttribute("allEndoPackaging");
                     for (Map.Entry<String, Item> entrySet : items.entrySet()) {
-                        Item item = entrySet.getValue();
 
+                        Item item = entrySet.getValue();
+                        String quantityString = item.getQuantity();
+                        int quantity = Integer.parseInt(quantityString);
+                        if (quantity < 3) {
+                            continue;
+                        }
                         out.println("<tr>");
 
                         out.println("<td>");
@@ -60,20 +65,7 @@
                         out.println("</td>");
 
                         out.println("<td>");
-                        ArrayList<AltercodeContainer> altercodes = item.getAltercodes();
-                        for (AltercodeContainer altercodeContainer : altercodes) {
-                            if (altercodeContainer.getStatus().equals("eshop")
-                                    || altercodeContainer.getStatus().equals("eshop-on")
-                                    || altercodeContainer.getStatus().equals("eshop-barf")
-                                    || altercodeContainer.getStatus().equals("eshop-pro")) {
-
-                                out.println("<a href='https://www.pet4u.gr/search-products-el.html?subcats=Y&status=A&match=all&pshort=N&pfull=N&pname=Y&pkeywords=N&pcode_from_q=Y&wg_go_direct=Y&search_performed=Y&q=" + altercodeContainer.getAltercode() + "' target='_blank'>" + altercodeContainer.getAltercode() + " : " + altercodeContainer.getStatus() + "</a>");
-                                out.println("<br>");
-                            } else {
-                                out.println(altercodeContainer.getAltercode() + "</strong>");
-                                out.println("<br>");
-                            }
-                        }
+                        out.println("<a href='itemAnalysis.htm?code=" + item.getCode() + "' target='_blank'>" + item.getCode() + "</a>");
                         out.println("</td>");
 
                         out.println("<td>");
@@ -86,10 +78,6 @@
 
                         out.println("<td>");
                         out.println(item.getQuantity());
-                        out.println("</td>");
-
-                        out.println("<td>");
-                        out.println("<a href='pet4uItemSnapshots.htm?code=" + item.getCode() + "' target='_blank'>Show  Snapshots</a>");
                         out.println("</td>");
 
                         out.println("</tr>");

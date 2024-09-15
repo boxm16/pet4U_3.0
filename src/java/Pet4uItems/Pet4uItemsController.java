@@ -183,6 +183,17 @@ public class Pet4uItemsController {
         modelMap.addAttribute("items", items);
         return "/pet4uItems/pet4uItemsWithPosition";
     }
+    
+    
+    
+    @RequestMapping(value = "pet4uItemsLessThanThree")
+    public String pet4uItemsLessThanThree(ModelMap modelMap) {
+
+        LinkedHashMap<String, Item> items = pet4uItemsDao.getAllItemsWithPosition();
+
+        modelMap.addAttribute("items", items);
+        return "/pet4uItems/pet4uItemsLessThanThree";
+    }
 
     public void updateItemsState() {
         Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
