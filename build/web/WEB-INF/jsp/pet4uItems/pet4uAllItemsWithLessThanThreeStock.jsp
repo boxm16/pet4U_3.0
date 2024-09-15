@@ -37,7 +37,7 @@
         <h1><a href="pet4uAllItems.htm">Show Full Version</a></h1>
 
         <table>
-
+            <th>A/A</th>
             <th>Position</th>
             <th>Altercode</th>
             <th>Description</th>
@@ -48,9 +48,10 @@
 
             <tbody>
                 <%
+                    int x = 0;
                     LinkedHashMap<String, Item> items = (LinkedHashMap) request.getAttribute("items");
                     for (Map.Entry<String, Item> entrySet : items.entrySet()) {
-
+                        x++;
                         Item item = entrySet.getValue();
                         String quantityString = item.getQuantity();
                         double quantity = Double.parseDouble(quantityString);
@@ -58,6 +59,10 @@
                             continue;
                         }
                         out.println("<tr>");
+
+                        out.println("<td>");
+                        out.println(x);
+                        out.println("</td>");
 
                         out.println("<td>");
                         out.println(item.getPosition());
