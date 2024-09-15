@@ -49,12 +49,12 @@
             <tbody>
                 <%
                     LinkedHashMap<String, Item> items = (LinkedHashMap) request.getAttribute("items");
-                   for (Map.Entry<String, Item> entrySet : items.entrySet()) {
+                    for (Map.Entry<String, Item> entrySet : items.entrySet()) {
 
                         Item item = entrySet.getValue();
                         String quantityString = item.getQuantity();
-                        int quantity = Integer.parseInt(quantityString);
-                        if (quantity==0||quantity > 3||item.getPosition().equals("")) {
+                        double quantity = Double.parseDouble(quantityString);
+                        if (quantity == 0 || quantity > 3 || item.getPosition().equals("")) {
                             continue;
                         }
                         out.println("<tr>");
