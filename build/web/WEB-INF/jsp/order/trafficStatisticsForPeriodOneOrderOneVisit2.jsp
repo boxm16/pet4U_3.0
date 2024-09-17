@@ -57,7 +57,7 @@
                                             } else {
                                                 out.println("<td style='width:30px; font-size: 25px; background-color: lightgreen;'>");
                                                 out.println("<a  href = 'getAllDocsForItemBetweenTwoDatesWithThisBlockPosition.htm?blockPosition=" + entrySet.getKey() + "&itemCode=" + itemCode + "&startDate=" + startDate + "&endDate=" + endDate + "' target='_blank'>" + positionsTraffic.get(k) + "</a>");
-                                                out.println("<a  href = 'allOrdersForPositionBlockForPeriod.htm?position=" + entrySet.getKey() + "&startDate=" + startDate + "&endDate=" + endDate + "' target='_blank'>" + entrySet.getValue() + "</a>");
+                                                out.println("//<a  href = 'allOrdersForPositionBlockForPeriod.htm?position=" + entrySet.getKey() + "&startDate=" + startDate + "&endDate=" + endDate + "' target='_blank'>" + positionsTraffic.get(k) + "</a>");
                                                 out.println("</td>");
                                             }
                                         } else {
