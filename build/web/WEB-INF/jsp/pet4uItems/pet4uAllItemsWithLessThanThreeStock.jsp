@@ -15,7 +15,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Pet4U: All Items One Line</title>
+        <title>Pet4U: Less Than 3</title>
         <style>
             table, th, td {
                 border: 1px solid ;

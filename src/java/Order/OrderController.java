@@ -374,8 +374,8 @@ public class OrderController {
         WarehousePositioning warehousePositioning = new WarehousePositioning();
         modelMap.addAttribute("warehousePositioning", warehousePositioning);
 
-        return "/order/trafficStatisticsForPeriodOneOrderOneVisit";
-      //   return "/order/trafficStatisticsForPeriodOneOrderOneVisit2";
+     //    return "/order/trafficStatisticsForPeriodOneOrderOneVisit";
+        return "/order/trafficStatisticsForPeriodOneOrderOneVisit2";
     }
 
     @RequestMapping(value = "getAllDocsForItemBetweenTwoDates")
