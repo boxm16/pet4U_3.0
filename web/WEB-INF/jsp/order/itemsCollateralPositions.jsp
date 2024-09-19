@@ -705,10 +705,12 @@
                                     out.println("     ");
                                     out.println("</td>");
                                     out.println("<td  style='width:40px; font-size: 25px; background-color: lightgreen;'>");
-                                    if (positionsTraffic.get("17Σ-03") == null) {
+                                    String posi = "17Σ-03";
+                                    if (positionsTraffic.get(posi) == null) {
                                         out.println(0);
                                     } else {
-                                        out.println(positionsTraffic.get("17Σ-03"));
+                                        out.println("<a  href = 'getAllDocsForItemBetweenTwoDatesWithThisBlockPosition.htm?blockPosition=" + posi + "&itemCode=" + itemCode + "&startDate=" + startDate + "&endDate=" + endDate + "' target='_blank'>" + positionsTraffic.get(posi) + "</a>");
+
                                     }
                                     out.println("</td>");
                                     out.println("</tr>");
@@ -718,10 +720,12 @@
                                     out.println("     ");
                                     out.println("</td>");
                                     out.println("<td  style='width:40px; font-size: 25px; background-color: lightgreen;'>");
-                                    if (positionsTraffic.get("17Σ-02") == null) {
+
+                                    posi = "17Σ-01";
+                                    if (positionsTraffic.get(posi) == null) {
                                         out.println(0);
                                     } else {
-                                        out.println(positionsTraffic.get("17Σ-02"));
+                                        out.println("<a  href = 'getAllDocsForItemBetweenTwoDatesWithThisBlockPosition.htm?blockPosition=" + posi + "&itemCode=" + itemCode + "&startDate=" + startDate + "&endDate=" + endDate + "' target='_blank'>" + positionsTraffic.get(posi) + "</a>");
                                     }
                                     out.println("</td>");
                                     out.println("</tr>");
@@ -731,10 +735,12 @@
                                     out.println("     ");
                                     out.println("</td>");
                                     out.println("<td  style='width:40px; font-size: 25px; background-color: lightgreen;'>");
-                                    if (positionsTraffic.get("17Σ-01") == null) {
+
+                                    posi = "17Σ-01";
+                                    if (positionsTraffic.get(posi) == null) {
                                         out.println(0);
                                     } else {
-                                        out.println(positionsTraffic.get("17Σ-01"));
+                                        out.println("<a  href = 'getAllDocsForItemBetweenTwoDatesWithThisBlockPosition.htm?blockPosition=" + posi + "&itemCode=" + itemCode + "&startDate=" + startDate + "&endDate=" + endDate + "' target='_blank'>" + positionsTraffic.get(posi) + "</a>");
                                     }
                                     out.println("</td>");
                                     out.println("</tr>");
