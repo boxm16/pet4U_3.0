@@ -331,6 +331,9 @@ public class WarehousePositioning {
         this.H.put("12Η-07", "--");
         this.H.put("12Η-08", "--");
         this.H.put("12Η-09", "--");
+        this.H.put("12Η-10", "--");
+        this.H.put("12Η-11", "--");
+        this.H.put("12Η-12", "--");
 
         this.TH = new LinkedHashMap<>();
 
@@ -385,28 +388,28 @@ public class WarehousePositioning {
 
         this.T = new LinkedHashMap<>();
 
-        this.T.put("17Σ-01", "--");
-        this.T.put("17Σ-02", "--");
-        this.T.put("17Σ-03", "--");
+        this.T.put("16Τ-01", "--");
+        this.T.put("16Τ-02", "--");
+        this.T.put("16Τ-03", "--");
 
         this.ΤΧ = new LinkedHashMap<>();
-        this.T.put("ΤΧ-01", "--");
-        this.T.put("ΤΧ-02", "--");
-            this.T.put("ΤΧ-03", "--");
-        this.T.put("ΤΧ-04", "--");
-        this.T.put("ΤΧ-05", "--");
-        this.T.put("ΤΧ-06", "--");
-        this.T.put("ΤΧ-07", "--");
-        this.T.put("ΤΧ-08", "--");
-        this.T.put("ΤΧ-09", "--");
-        this.T.put("ΤΧ-10", "--");
-        this.T.put("ΤΧ-11", "--");
-        this.T.put("ΤΧ-12", "--");
-        this.T.put("ΤΧ-13", "--");
-        this.T.put("ΤΧ-14", "--");
-        this.T.put("ΤΧ-15", "--");
-        this.T.put("ΤΧ-16", "--");
-        this.T.put("ΤΧ-17", "--");
+        this.ΤΧ.put("ΤΧ-01", "--");
+        this.ΤΧ.put("ΤΧ-02", "--");
+        this.ΤΧ.put("ΤΧ-03", "--");
+        this.ΤΧ.put("ΤΧ-04", "--");
+        this.ΤΧ.put("ΤΧ-05", "--");
+        this.ΤΧ.put("ΤΧ-06", "--");
+        this.ΤΧ.put("ΤΧ-07", "--");
+        this.ΤΧ.put("ΤΧ-08", "--");
+        this.ΤΧ.put("ΤΧ-09", "--");
+        this.ΤΧ.put("ΤΧ-10", "--");
+        this.ΤΧ.put("ΤΧ-11", "--");
+        this.ΤΧ.put("ΤΧ-12", "--");
+        this.ΤΧ.put("ΤΧ-13", "--");
+        this.ΤΧ.put("ΤΧ-14", "--");
+        this.ΤΧ.put("ΤΧ-15", "--");
+        this.ΤΧ.put("ΤΧ-16", "--");
+        this.ΤΧ.put("ΤΧ-17", "--");
 
     }
 
