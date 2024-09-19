@@ -1591,39 +1591,20 @@
                             <%                                   //---------------T ----------
                                 out.println("<tr>");
 
-                                out.println("<tr>");
-                                if (itemBlockPosition.equals("16Τ-03")) {
+                                posi = "16Τ-03";
+                                if (itemBlockPosition.equals(posi)) {
                                     out.println("<td style='width:90px; background-color: red;'>");
                                 } else {
                                     out.println("<td width='90px'>");
                                 }
-                                out.println("16Τ-03");
+                                out.println(posi);
                                 out.println("</td>");
 
                                 out.println("<td  style='width:40px; font-size: 25px; background-color: lightgreen;'>");
-                                if (positionsTraffic.get("16Τ-03") == null) {
+                                if (positionsTraffic.get(posi) == null) {
                                     out.println(0);
                                 } else {
-                                    out.println(positionsTraffic.get("16Τ-03"));
-                                }
-
-                                out.println("</td>");
-                                out.println("</tr>");
-
-                                out.println("<tr>");
-                                if (itemBlockPosition.equals("16Τ-02")) {
-                                    out.println("<td style='width:90px; background-color: red;'>");
-                                } else {
-                                    out.println("<td width='90px'>");
-                                }
-                                out.println("16Τ-02");
-                                out.println("</td>");
-
-                                out.println("<td  style='width:40px; font-size: 25px; background-color: lightgreen;'>");
-                                if (positionsTraffic.get("16Τ-02") == null) {
-                                    out.println(0);
-                                } else {
-                                    out.println(positionsTraffic.get("16Τ-02"));
+                                    out.println("<a  href = 'getAllDocsForItemBetweenTwoDatesWithThisBlockPosition.htm?blockPosition=" + posi + "&itemCode=" + itemCode + "&startDate=" + startDate + "&endDate=" + endDate + "' target='_blank'>" + positionsTraffic.get(posi) + "</a>");
                                 }
 
                                 out.println("</td>");
@@ -1631,20 +1612,41 @@
 
                                 out.println("<tr>");
 
-                                if (itemBlockPosition.equals("16Τ-01")) {
+                                posi = "16Τ-02";
+                                if (itemBlockPosition.equals(posi)) {
                                     out.println("<td style='width:90px; background-color: red;'>");
                                 } else {
                                     out.println("<td width='90px'>");
                                 }
-                                out.println("16Τ-01");
+                                out.println(posi);
                                 out.println("</td>");
 
-                                out.println("<td  style='width:40px;  font-size: 25px; background-color: lightgreen;'>");
-                                if (positionsTraffic.get("16Τ-01") == null) {
+                                out.println("<td  style='width:40px; font-size: 25px; background-color: lightgreen;'>");
+                                if (positionsTraffic.get(posi) == null) {
                                     out.println(0);
                                 } else {
-                                    out.println(positionsTraffic.get("16Τ-01"));
+                                    out.println("<a  href = 'getAllDocsForItemBetweenTwoDatesWithThisBlockPosition.htm?blockPosition=" + posi + "&itemCode=" + itemCode + "&startDate=" + startDate + "&endDate=" + endDate + "' target='_blank'>" + positionsTraffic.get(posi) + "</a>");
+                                }
 
+                                out.println("</td>");
+                                out.println("</tr>");
+
+                                out.println("<tr>");
+
+                                posi = "16Τ-01";
+                                if (itemBlockPosition.equals(posi)) {
+                                    out.println("<td style='width:90px; background-color: red;'>");
+                                } else {
+                                    out.println("<td width='90px'>");
+                                }
+                                out.println(posi);
+                                out.println("</td>");
+
+                                out.println("<td  style='width:40px; font-size: 25px; background-color: lightgreen;'>");
+                                if (positionsTraffic.get(posi) == null) {
+                                    out.println(0);
+                                } else {
+                                    out.println("<a  href = 'getAllDocsForItemBetweenTwoDatesWithThisBlockPosition.htm?blockPosition=" + posi + "&itemCode=" + itemCode + "&startDate=" + startDate + "&endDate=" + endDate + "' target='_blank'>" + positionsTraffic.get(posi) + "</a>");
                                 }
 
                                 out.println("</td>");
