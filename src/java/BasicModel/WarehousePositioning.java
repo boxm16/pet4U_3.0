@@ -333,7 +333,7 @@ public class WarehousePositioning {
         this.H.put("12Η-09", "--");
         this.H.put("12Η-10", "--");
         this.H.put("12Η-11", "--");
-        this.H.put("12Η-12", "--");
+      
 
         this.TH = new LinkedHashMap<>();
 
