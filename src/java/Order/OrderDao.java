@@ -75,18 +75,27 @@ public class OrderDao {
                 }
                 Order order = orders.get(id);
 
-                Item item = new Item();
-                item.setCode(itemCode);
-                item.setDescription(description);
-                item.setQuantity(quantity);
-                order.getItems().put(itemCode, item);
-
-                Item it = pet4UItemsRowByRow.get(itemCode);
-                if (it == null) {
-                    System.out.println("NO SUCH ITEM: OrderDao");
+                LinkedHashMap<String, Item> items = order.getItems();
+                if (items.containsKey(itemCode)) {
+                    Item item = items.get(itemCode);
+                    String quantity1 = item.getQuantity();
+                    double sum = Double.valueOf(quantity1) + Double.valueOf(quantity);
+                    item.setQuantity(String.valueOf(sum));
+                    Item it = pet4UItemsRowByRow.get(itemCode);
+                    if (it == null) {
+                        System.out.println("NO SUCH ITEM: OrderDao");
+                    } else {
+                        item.setPosition(it.getPosition());
+                    }
+                    order.getItems().put(itemCode, item);
                 } else {
-                    item.setPosition(it.getPosition());
+                    Item item = new Item();
+                    item.setCode(itemCode);
+                    item.setQuantity(quantity);
+                    item.setDescription(description);
+                    order.getItems().put(itemCode, item);
                 }
+
                 orders.put(id, order);
 
             }
@@ -153,17 +162,25 @@ public class OrderDao {
                 }
                 Order order = orders.get(id);
 
-                Item item = new Item();
-                item.setCode(itemCode);
-                item.setDescription(description);
-                item.setQuantity(quantity);
-                order.getItems().put(itemCode, item);
-
-                Item it = pet4UItemsRowByRow.get(itemCode);
-                if (it == null) {
-                    System.out.println("NO SUCH ITEM: OrderDao");
+                LinkedHashMap<String, Item> items = order.getItems();
+                if (items.containsKey(itemCode)) {
+                    Item item = items.get(itemCode);
+                    String quantity1 = item.getQuantity();
+                    double sum = Double.valueOf(quantity1) + Double.valueOf(quantity);
+                    item.setQuantity(String.valueOf(sum));
+                    Item it = pet4UItemsRowByRow.get(itemCode);
+                    if (it == null) {
+                        System.out.println("NO SUCH ITEM: OrderDao");
+                    } else {
+                        item.setPosition(it.getPosition());
+                    }
+                    order.getItems().put(itemCode, item);
                 } else {
-                    item.setPosition(it.getPosition());
+                    Item item = new Item();
+                    item.setCode(itemCode);
+                    item.setQuantity(quantity);
+                    item.setDescription(description);
+                    order.getItems().put(itemCode, item);
                 }
                 orders.put(id, order);
 
@@ -227,17 +244,25 @@ public class OrderDao {
                 }
                 Order order = orders.get(id);
 
-                Item item = new Item();
-                item.setCode(itemCode);
-                item.setDescription(description);
-                item.setQuantity(quantity);
-                order.getItems().put(itemCode, item);
-
-                Item it = pet4UItemsRowByRow.get(itemCode);
-                if (it == null) {
-                    System.out.println("NO SUCH ITEM: OrderDao");
+                LinkedHashMap<String, Item> items = order.getItems();
+                if (items.containsKey(itemCode)) {
+                    Item item = items.get(itemCode);
+                    String quantity1 = item.getQuantity();
+                    double sum = Double.valueOf(quantity1) + Double.valueOf(quantity);
+                    item.setQuantity(String.valueOf(sum));
+                    Item it = pet4UItemsRowByRow.get(itemCode);
+                    if (it == null) {
+                        System.out.println("NO SUCH ITEM: OrderDao");
+                    } else {
+                        item.setPosition(it.getPosition());
+                    }
+                    order.getItems().put(itemCode, item);
                 } else {
-                    item.setPosition(it.getPosition());
+                    Item item = new Item();
+                    item.setCode(itemCode);
+                    item.setQuantity(quantity);
+                    item.setDescription(description);
+                    order.getItems().put(itemCode, item);
                 }
                 orders.put(id, order);
 
@@ -365,23 +390,31 @@ public class OrderDao {
                 String creationUser = resultSet.getString("USER_");
 
                 order.setId(id);
-                order.setId(id);
                 order.setDateTimeStamp(dateTime);
                 order.setNumber(number);
                 order.setCreationDateTime(creationDateTime);
                 order.setCreationUser(creationUser);
 
-                Item item = new Item();
-                item.setCode(itemCode);
-                item.setDescription(description);
-                item.setQuantity(quantity);
-                Item it = pet4UItemsRowByRow.get(itemCode);
-                if (it == null) {
-                    System.out.println("NO SUCH ITEM: OrderDao");
+                LinkedHashMap<String, Item> items = order.getItems();
+                if (items.containsKey(itemCode)) {
+                    Item item = items.get(itemCode);
+                    String quantity1 = item.getQuantity();
+                    double sum = Double.valueOf(quantity1) + Double.valueOf(quantity);
+                    item.setQuantity(String.valueOf(sum));
+                    Item it = pet4UItemsRowByRow.get(itemCode);
+                    if (it == null) {
+                        System.out.println("NO SUCH ITEM: OrderDao");
+                    } else {
+                        item.setPosition(it.getPosition());
+                    }
+                    order.getItems().put(itemCode, item);
                 } else {
-                    item.setPosition(it.getPosition());
+                    Item item = new Item();
+                    item.setCode(itemCode);
+                    item.setQuantity(quantity);
+                    item.setDescription(description);
+                    order.getItems().put(itemCode, item);
                 }
-                order.getItems().put(itemCode, item);
 
             }
             resultSet.close();
@@ -626,17 +659,25 @@ public class OrderDao {
                 }
                 Order order = orders.get(id);
 
-                Item item = new Item();
-                item.setCode(itemCode);
-                item.setDescription(description);
-                item.setQuantity(quantity);
-                order.getItems().put(itemCode, item);
-
-                Item it = pet4UItemsRowByRow.get(itemCode);
-                if (it == null) {
-                    System.out.println("NO SUCH ITEM: OrderDao");
+                LinkedHashMap<String, Item> items = order.getItems();
+                if (items.containsKey(itemCode)) {
+                    Item item = items.get(itemCode);
+                    String quantity1 = item.getQuantity();
+                    double sum = Double.valueOf(quantity1) + Double.valueOf(quantity);
+                    item.setQuantity(String.valueOf(sum));
+                    Item it = pet4UItemsRowByRow.get(itemCode);
+                    if (it == null) {
+                        System.out.println("NO SUCH ITEM: OrderDao");
+                    } else {
+                        item.setPosition(it.getPosition());
+                    }
+                    order.getItems().put(itemCode, item);
                 } else {
-                    item.setPosition(it.getPosition());
+                    Item item = new Item();
+                    item.setCode(itemCode);
+                    item.setQuantity(quantity);
+                    item.setDescription(description);
+                    order.getItems().put(itemCode, item);
                 }
                 orders.put(id, order);
 
@@ -710,18 +751,27 @@ public class OrderDao {
                 }
                 Order order = orders.get(id);
 
-                Item item = new Item();
-                item.setCode(itemCode);
-                item.setDescription(description);
-                item.setQuantity(quantity);
-                order.getItems().put(itemCode, item);
-
-                Item it = pet4UItemsRowByRow.get(itemCode);
-                if (it == null) {
-                    System.out.println("NO SUCH ITEM: OrderDao");
+                LinkedHashMap<String, Item> items = order.getItems();
+                if (items.containsKey(itemCode)) {
+                    Item item = items.get(itemCode);
+                    String quantity1 = item.getQuantity();
+                    double sum = Double.valueOf(quantity1) + Double.valueOf(quantity);
+                    item.setQuantity(String.valueOf(sum));
+                    Item it = pet4UItemsRowByRow.get(itemCode);
+                    if (it == null) {
+                        System.out.println("NO SUCH ITEM: OrderDao");
+                    } else {
+                        item.setPosition(it.getPosition());
+                    }
+                    order.getItems().put(itemCode, item);
                 } else {
-                    item.setPosition(it.getPosition());
+                    Item item = new Item();
+                    item.setCode(itemCode);
+                    item.setQuantity(quantity);
+                    item.setDescription(description);
+                    order.getItems().put(itemCode, item);
                 }
+
                 orders.put(id, order);
 
             }
@@ -788,17 +838,25 @@ public class OrderDao {
                 }
                 Order order = orders.get(id);
 
-                Item item = new Item();
-                item.setCode(itemCode);
-                item.setDescription(description);
-                item.setQuantity(quantity);
-                order.getItems().put(itemCode, item);
-
-                Item it = pet4UItemsRowByRow.get(itemCode);
-                if (it == null) {
-                    System.out.println("NO SUCH ITEM: OrderDao");
+                LinkedHashMap<String, Item> items = order.getItems();
+                if (items.containsKey(itemCode)) {
+                    Item item = items.get(itemCode);
+                    String quantity1 = item.getQuantity();
+                    double sum = Double.valueOf(quantity1) + Double.valueOf(quantity);
+                    item.setQuantity(String.valueOf(sum));
+                    Item it = pet4UItemsRowByRow.get(itemCode);
+                    if (it == null) {
+                        System.out.println("NO SUCH ITEM: OrderDao");
+                    } else {
+                        item.setPosition(it.getPosition());
+                    }
+                    order.getItems().put(itemCode, item);
                 } else {
-                    item.setPosition(it.getPosition());
+                    Item item = new Item();
+                    item.setCode(itemCode);
+                    item.setQuantity(quantity);
+                    item.setDescription(description);
+                    order.getItems().put(itemCode, item);
                 }
                 orders.put(id, order);
 
