@@ -81,18 +81,19 @@ public class OrderDao {
                     String quantity1 = item.getQuantity();
                     double sum = Double.valueOf(quantity1) + Double.valueOf(quantity);
                     item.setQuantity(String.valueOf(sum));
-                    Item it = pet4UItemsRowByRow.get(itemCode);
-                    if (it == null) {
-                        System.out.println("NO SUCH ITEM: OrderDao");
-                    } else {
-                        item.setPosition(it.getPosition());
-                    }
+
                     order.getItems().put(itemCode, item);
                 } else {
                     Item item = new Item();
                     item.setCode(itemCode);
                     item.setQuantity(quantity);
                     item.setDescription(description);
+                    Item it = pet4UItemsRowByRow.get(itemCode);
+                    if (it == null) {
+                        System.out.println("NO SUCH ITEM: OrderDao");
+                    } else {
+                        item.setPosition(it.getPosition());
+                    }
                     order.getItems().put(itemCode, item);
                 }
 
@@ -168,18 +169,19 @@ public class OrderDao {
                     String quantity1 = item.getQuantity();
                     double sum = Double.valueOf(quantity1) + Double.valueOf(quantity);
                     item.setQuantity(String.valueOf(sum));
-                    Item it = pet4UItemsRowByRow.get(itemCode);
-                    if (it == null) {
-                        System.out.println("NO SUCH ITEM: OrderDao");
-                    } else {
-                        item.setPosition(it.getPosition());
-                    }
+
                     order.getItems().put(itemCode, item);
                 } else {
                     Item item = new Item();
                     item.setCode(itemCode);
                     item.setQuantity(quantity);
                     item.setDescription(description);
+                    Item it = pet4UItemsRowByRow.get(itemCode);
+                    if (it == null) {
+                        System.out.println("NO SUCH ITEM: OrderDao");
+                    } else {
+                        item.setPosition(it.getPosition());
+                    }
                     order.getItems().put(itemCode, item);
                 }
                 orders.put(id, order);
@@ -250,18 +252,19 @@ public class OrderDao {
                     String quantity1 = item.getQuantity();
                     double sum = Double.valueOf(quantity1) + Double.valueOf(quantity);
                     item.setQuantity(String.valueOf(sum));
-                    Item it = pet4UItemsRowByRow.get(itemCode);
-                    if (it == null) {
-                        System.out.println("NO SUCH ITEM: OrderDao");
-                    } else {
-                        item.setPosition(it.getPosition());
-                    }
+
                     order.getItems().put(itemCode, item);
                 } else {
                     Item item = new Item();
                     item.setCode(itemCode);
                     item.setQuantity(quantity);
                     item.setDescription(description);
+                    Item it = pet4UItemsRowByRow.get(itemCode);
+                    if (it == null) {
+                        System.out.println("NO SUCH ITEM: OrderDao");
+                    } else {
+                        item.setPosition(it.getPosition());
+                    }
                     order.getItems().put(itemCode, item);
                 }
                 orders.put(id, order);
@@ -327,18 +330,19 @@ public class OrderDao {
                     String quantity1 = item.getQuantity();
                     double sum = Double.valueOf(quantity1) + Double.valueOf(quantity);
                     item.setQuantity(String.valueOf(sum));
-                    Item it = pet4UItemsRowByRow.get(itemCode);
-                    if (it == null) {
-                        System.out.println("NO SUCH ITEM: OrderDao");
-                    } else {
-                        item.setPosition(it.getPosition());
-                    }
+
                     order.getItems().put(itemCode, item);
                 } else {
                     Item item = new Item();
                     item.setCode(itemCode);
                     item.setQuantity(quantity);
                     item.setDescription(description);
+                    Item it = pet4UItemsRowByRow.get(itemCode);
+                    if (it == null) {
+                        System.out.println("NO SUCH ITEM: OrderDao");
+                    } else {
+                        item.setPosition(it.getPosition());
+                    }
                     order.getItems().put(itemCode, item);
                 }
             }
@@ -401,18 +405,19 @@ public class OrderDao {
                     String quantity1 = item.getQuantity();
                     double sum = Double.valueOf(quantity1) + Double.valueOf(quantity);
                     item.setQuantity(String.valueOf(sum));
-                    Item it = pet4UItemsRowByRow.get(itemCode);
-                    if (it == null) {
-                        System.out.println("NO SUCH ITEM: OrderDao");
-                    } else {
-                        item.setPosition(it.getPosition());
-                    }
+
                     order.getItems().put(itemCode, item);
                 } else {
                     Item item = new Item();
                     item.setCode(itemCode);
                     item.setQuantity(quantity);
                     item.setDescription(description);
+                    Item it = pet4UItemsRowByRow.get(itemCode);
+                    if (it == null) {
+                        System.out.println("NO SUCH ITEM: OrderDao");
+                    } else {
+                        item.setPosition(it.getPosition());
+                    }
                     order.getItems().put(itemCode, item);
                 }
 
@@ -758,18 +763,19 @@ public class OrderDao {
                     String quantity1 = item.getQuantity();
                     double sum = Double.valueOf(quantity1) + Double.valueOf(quantity);
                     item.setQuantity(String.valueOf(sum));
-                    Item it = pet4UItemsRowByRow.get(itemCode);
-                    if (it == null) {
-                        System.out.println("NO SUCH ITEM: OrderDao");
-                    } else {
-                        item.setPosition(it.getPosition());
-                    }
+
                     order.getItems().put(itemCode, item);
                 } else {
                     Item item = new Item();
                     item.setCode(itemCode);
                     item.setQuantity(quantity);
                     item.setDescription(description);
+                    Item it = pet4UItemsRowByRow.get(itemCode);
+                    if (it == null) {
+                        System.out.println("NO SUCH ITEM: OrderDao");
+                    } else {
+                        item.setPosition(it.getPosition());
+                    }
                     order.getItems().put(itemCode, item);
                 }
 
@@ -845,18 +851,19 @@ public class OrderDao {
                     String quantity1 = item.getQuantity();
                     double sum = Double.valueOf(quantity1) + Double.valueOf(quantity);
                     item.setQuantity(String.valueOf(sum));
-                    Item it = pet4UItemsRowByRow.get(itemCode);
-                    if (it == null) {
-                        System.out.println("NO SUCH ITEM: OrderDao");
-                    } else {
-                        item.setPosition(it.getPosition());
-                    }
+
                     order.getItems().put(itemCode, item);
                 } else {
                     Item item = new Item();
                     item.setCode(itemCode);
                     item.setQuantity(quantity);
                     item.setDescription(description);
+                    Item it = pet4UItemsRowByRow.get(itemCode);
+                    if (it == null) {
+                        System.out.println("NO SUCH ITEM: OrderDao");
+                    } else {
+                        item.setPosition(it.getPosition());
+                    }
                     order.getItems().put(itemCode, item);
                 }
                 orders.put(id, order);
