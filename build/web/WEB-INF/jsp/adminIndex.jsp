@@ -135,7 +135,7 @@
                 <hr>   <hr>
                 <hr>
 
-                <a href="itemCodeChanging.htm" class="btn btn-primary" role="button" style='background-color: #b3ccff;'><h1>Go For (Main) Item Code Changing</h1></a>
+                <a href="itemCodeChangingDashboard.htm" class="btn btn-primary" role="button" style='background-color: #b3ccff;'><h1>Item Code Changing Dashboard</h1></a>
 
                 <a href="index.htm"><h1>INDEX</h1></a>
                 <hr>   <hr>

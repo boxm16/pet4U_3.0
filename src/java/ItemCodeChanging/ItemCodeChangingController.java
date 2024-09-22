@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class ItemCodeChangingController {
 
-    @RequestMapping(value = "orderDashboard")
+    @RequestMapping(value = "itemCodeChangingDashboard")
     public String orderDashboard(ModelMap modelMap) {
 
         return "/itemCodeChanging/itemCodeChangingDashboard";
