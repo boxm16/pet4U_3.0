@@ -8,12 +8,19 @@ package ItemCodeChanging;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class ItemCodeChangingController {
 
     @RequestMapping(value = "itemCodeChangingDashboard")
-    public String orderDashboard(ModelMap modelMap) {
+    public String itemCodeChangingDashboard() {
+
+        return "/itemCodeChanging/itemCodeChangingDashboard";
+    }
+
+    @RequestMapping(value = "changeItemCode")
+    public String changeItemCode(@RequestParam(name = "oldItemCode") String oldItemCode,@RequestParam(name = "newItemCode") String newItemCode, ModelMap modelMap) {
 
         return "/itemCodeChanging/itemCodeChangingDashboard";
     }
