@@ -23,7 +23,7 @@ public class ItemCodeChangingDao {
         try {
             DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
             Connection connection = databaseConnectionFactory.getMySQLConnection();
-            PreparedStatement itemInsertStatement = connection.prepareStatement("UPDATE " + tableName + " SET item_code=?,  WHERE item_code=?");
+            PreparedStatement itemInsertStatement = connection.prepareStatement("UPDATE " + tableName + " SET item_code=?  WHERE item_code=?");
 
             itemInsertStatement.setString(1, newItemCode);
             itemInsertStatement.setString(2, oldItemCode);

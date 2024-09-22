@@ -24,7 +24,7 @@
             <button type="submit" class="btn btn-secondary"> <h1> Change Item Code In MySQL DataBase Tables </h1></button>
         </form>
         <hr><hr>
-        ${result}
+        <h1>  ${result} </h1>
     </center>
 </body>
 </html>
