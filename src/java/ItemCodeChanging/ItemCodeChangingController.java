@@ -20,8 +20,9 @@ public class ItemCodeChangingController {
     }
 
     @RequestMapping(value = "changeItemCode")
-    public String changeItemCode(@RequestParam(name = "oldItemCode") String oldItemCode,@RequestParam(name = "newItemCode") String newItemCode, ModelMap modelMap) {
+    public String changeItemCode(@RequestParam(name = "oldItemCode") String oldItemCode, @RequestParam(name = "newItemCode") String newItemCode, ModelMap modelMap) {
 
+        modelMap.addAttribute("result", "GOOD");
         return "/itemCodeChanging/itemCodeChangingDashboard";
     }
 }
