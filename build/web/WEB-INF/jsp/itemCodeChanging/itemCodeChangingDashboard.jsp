@@ -9,10 +9,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Change Item Code</title>
     </head>
     <body>
     <center>
+                <h1>Change Item Code</h1>
         <hr>
         <form action="changeItemCode.htm" method="POST">
             <h1>  <input type="text" name='oldItemCode'></h1>
