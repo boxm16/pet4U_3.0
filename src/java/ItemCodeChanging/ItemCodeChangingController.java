@@ -21,8 +21,11 @@ public class ItemCodeChangingController {
 
     @RequestMapping(value = "changeItemCode")
     public String changeItemCode(@RequestParam(name = "oldItemCode") String oldItemCode, @RequestParam(name = "newItemCode") String newItemCode, ModelMap modelMap) {
-
-        modelMap.addAttribute("result", "GOOD");
+        String result = "";
+        ItemCodeChangingDao itemCodeChangingDao = new ItemCodeChangingDao();
+        String result1 = itemCodeChangingDao.changeItemCodeIn("camelot_day_rest", oldItemCode, newItemCode);
+        result = result1 + "<br>";
+        modelMap.addAttribute("result", result);
         return "/itemCodeChanging/itemCodeChangingDashboard";
     }
 }
