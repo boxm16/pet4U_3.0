@@ -29,6 +29,9 @@ public class ItemCodeChangingDao {
             itemInsertStatement.setString(2, oldItemCode);
 
             itemInsertStatement.execute();
+           
+            itemInsertStatement.close();
+            connection.close();
 
         } catch (SQLException ex) {
             Logger.getLogger(ItemCodeChangingDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -47,6 +50,9 @@ public class ItemCodeChangingDao {
             itemInsertStatement.setString(2, oldItemCode);
 
             itemInsertStatement.execute();
+
+            itemInsertStatement.close();
+            connection.close();
 
         } catch (SQLException ex) {
             Logger.getLogger(ItemCodeChangingDao.class.getName()).log(Level.SEVERE, null, ex);
