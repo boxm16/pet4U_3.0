@@ -37,4 +37,22 @@ public class ItemCodeChangingDao {
         return "Table: " + tableName + ". Item Code Changed Successfully";
     }
 
+    String changeItemIn(String tableName, String oldItemCode, String newItemCode) {
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            Connection connection = databaseConnectionFactory.getMySQLConnection();
+            PreparedStatement itemInsertStatement = connection.prepareStatement("UPDATE " + tableName + " SET code=?  WHERE code=?");
+
+            itemInsertStatement.setString(1, newItemCode);
+            itemInsertStatement.setString(2, oldItemCode);
+
+            itemInsertStatement.execute();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ItemCodeChangingDao.class.getName()).log(Level.SEVERE, null, ex);
+            return ex.getMessage();
+        }
+        return "Table: " + tableName + ".  Code Changed Successfully";
+    }
+
 }
