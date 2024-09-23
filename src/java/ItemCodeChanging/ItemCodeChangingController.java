@@ -142,9 +142,63 @@ public class ItemCodeChangingController {
 
         for (Map.Entry<String, String> itemCodesFromExcelFileEntry : itemCodesFromExcelFile.entrySet()) {
             System.out.println(itemCodesFromExcelFileEntry.getKey() + "-:-" + itemCodesFromExcelFileEntry.getValue());
+            changeItemCode(itemCodesFromExcelFileEntry.getKey(), itemCodesFromExcelFileEntry.getValue());
         }
         model.addAttribute("result", "DONE" + itemCodesFromExcelFile.size());
 
         return "/itemCodeChanging/itemCodeChangingDashboard";
+    }
+
+    private void changeItemCode(String oldItemCode, String newItemCode) {
+        System.out.println("Old Code : " + oldItemCode + "---------" + newItemCode);
+        ItemCodeChangingDao itemCodeChangingDao = new ItemCodeChangingDao();
+        String result1 = itemCodeChangingDao.changeItemCodeIn("camelot_day_rest", oldItemCode, newItemCode);
+
+        String result2 = itemCodeChangingDao.changeItemCodeIn("camelot_day_rest_full_version", oldItemCode, newItemCode);
+
+        String result3 = itemCodeChangingDao.changeItemCodeIn("camelot_interest", oldItemCode, newItemCode);
+
+        String result4 = itemCodeChangingDao.changeItemIn("camelot_month_sales", oldItemCode, newItemCode);
+
+        String result5 = itemCodeChangingDao.changeItemCodeIn("camelot_notes", oldItemCode, newItemCode);
+
+        String result6 = itemCodeChangingDao.changeItemCodeIn("camelot_stock_positions", oldItemCode, newItemCode);
+
+        String result7 = itemCodeChangingDao.changeItemCodeIn("delivery_data", oldItemCode, newItemCode);
+
+        String result8 = itemCodeChangingDao.changeItemCodeIn("endo", oldItemCode, newItemCode);
+
+        String result9 = itemCodeChangingDao.changeItemCodeIn("endo_locker_data", oldItemCode, newItemCode);
+
+        String result10 = itemCodeChangingDao.changeItemCodeIn("endo_order_data", oldItemCode, newItemCode);
+
+        String result11 = itemCodeChangingDao.changeItemCodeIn("endo_packaging", oldItemCode, newItemCode);
+
+        String result12 = itemCodeChangingDao.changeItemCodeIn("inventory", oldItemCode, newItemCode);
+
+        String result13 = itemCodeChangingDao.changeItemCodeIn("item_state", oldItemCode, newItemCode);
+
+        String result14 = itemCodeChangingDao.changeItemCodeIn("item_state_full_version", oldItemCode, newItemCode);
+
+        String result15 = itemCodeChangingDao.changeItemIn("month_sales", oldItemCode, newItemCode);
+
+        String result16 = itemCodeChangingDao.changeItemCodeIn("not_for_endo", oldItemCode, newItemCode);
+
+        String result17 = itemCodeChangingDao.changeItemCodeIn("notes", oldItemCode, newItemCode);
+
+        String result18 = itemCodeChangingDao.changeItemCodeIn("offers", oldItemCode, newItemCode);
+
+        String result19 = itemCodeChangingDao.changeItemCodeIn("pet4u_stock_snapshot", oldItemCode, newItemCode);
+
+        String result20 = itemCodeChangingDao.changeItemCodeIn("royal_stock_management", oldItemCode, newItemCode);
+
+        String result21 = itemCodeChangingDao.changeItemIn("sales", oldItemCode, newItemCode);
+
+        String result22 = itemCodeChangingDao.changeItemIn("sales_x", oldItemCode, newItemCode);
+
+        String result23 = itemCodeChangingDao.changeItemCodeIn("shelves_replenishment", oldItemCode, newItemCode);
+
+        String result24 = itemCodeChangingDao.changeItemCodeIn("stock_management", oldItemCode, newItemCode);
+        System.out.println("END-------------------------------------------------------------------------------");
     }
 }
