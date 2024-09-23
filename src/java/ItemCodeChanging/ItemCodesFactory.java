@@ -27,7 +27,7 @@ public class ItemCodesFactory {
 
     private TreeMap<String, String> convertExcelDataToItemCodesData(HashMap<String, String> cellsFromExcelFile) {
         TreeMap<String, String> itemCodes = new TreeMap<>();
-        int excelRowIndex = 1;
+        int excelRowIndex = 2;
 
         while (!cellsFromExcelFile.isEmpty()) {
             String locationA = new StringBuilder("A").append(String.valueOf(excelRowIndex)).toString();
