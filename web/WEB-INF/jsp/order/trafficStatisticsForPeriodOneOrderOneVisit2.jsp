@@ -25,7 +25,7 @@
     </head>
     <body>
     <center>
-        <h1>Position Traffic Statistica: Collaterals</h1>
+        <h1>Position Traffic Statistics</h1>
         <hr>
         <%
             TreeMap<String, Integer> positionsTraffic = (TreeMap) request.getAttribute("positionsTraffic");

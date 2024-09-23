@@ -25,6 +25,14 @@
         </form>
         <hr><hr>
         <h1>  ${result} </h1>
+
+
+        <hr><hr>
+        <form action="changeItemCodes" method="POST" enctype="multipart/form-data">  
+            <h1>Upload Excel File With Old And New Item Codes</h1>
+            <input type="file" name="file"/>  
+            <input type="submit" value="ატვირთვა"/>   
+        </form> 
     </center>
 </body>
 </html>
