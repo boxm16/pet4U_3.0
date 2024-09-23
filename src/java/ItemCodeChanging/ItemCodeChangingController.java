@@ -105,7 +105,7 @@ public class ItemCodeChangingController {
         return "/itemCodeChanging/itemCodeChangingDashboard";
     }
 
-    @RequestMapping(value = "/changeItemCodes", method = RequestMethod.POST)
+    @RequestMapping(value = "changeItemCodes", method = RequestMethod.POST)
     public String uploadPlannedData(@RequestParam CommonsMultipartFile file, ModelMap model) {
 
         System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
