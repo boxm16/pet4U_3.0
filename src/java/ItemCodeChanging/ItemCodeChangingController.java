@@ -114,9 +114,9 @@ public class ItemCodeChangingController {
 
         String filename = "itemCodesChanging.xlsx";
         Basement basement = new Basement();
-        String filePath = basement.getBasementDirectory() + "/uploads/" + filename;
+        String filePath = basement.getBasementDirectory() + "/Pet4U_Uploads/" + filename;
         if (file.isEmpty()) {
-            model.addAttribute("uploadStatus", "Upload could not been completed");
+            model.addAttribute("result", "Upload could not been completed");
             model.addAttribute("errorMessage", "არცერთი ფაილი არ იყო არჩეული");
             return "upload";
         }
@@ -131,10 +131,11 @@ public class ItemCodeChangingController {
 
         } catch (Exception e) {
             System.out.println(e);
-            model.addAttribute("uploadStatus", "Upload could not been completed:" + e);
-            return "upload";
+            model.addAttribute("result", "Upload could not been completed:" + e);
+            return "/itemCodeChanging/itemCodeChangingDashboard";
         }
         //--------------- Starting new Thread For Upload-----------------------
+        model.addAttribute("result", "DONE");
 
         return "/itemCodeChanging/itemCodeChangingDashboard";
     }
