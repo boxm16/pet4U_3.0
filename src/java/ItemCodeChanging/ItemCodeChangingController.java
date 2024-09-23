@@ -137,7 +137,7 @@ public class ItemCodeChangingController {
         }
         //--------------- Starting new Thread For Upload-----------------------
         ItemCodesFactory itemCodesFactory = new ItemCodesFactory();
-        TreeMap<String, String> itemCodesFromExcelFile = itemCodesFactory.getItemCodesFromExcelFile(filename);
+        TreeMap<String, String> itemCodesFromExcelFile = itemCodesFactory.getItemCodesFromExcelFile(filePath);
         model.addAttribute("result", "DONE" + itemCodesFromExcelFile.size());
 
         return "/itemCodeChanging/itemCodeChangingDashboard";

@@ -20,14 +20,14 @@ public class ItemCodesFactory {
         System.out.println("STARTING READING EXCEL FILE");
         ExcelReader excelReader = new ExcelReader();
         HashMap<String, String> cellsFromExcelFile = excelReader.getCellsFromExcelFile(pathFile);
-        TreeMap<String, String> routes = convertExcelDataToItemCodesData(cellsFromExcelFile);
+        TreeMap<String, String> itemCodes = convertExcelDataToItemCodesData(cellsFromExcelFile);
         System.out.println("COMPLETED READING EXCEL FILE");
-        return routes;
+        return itemCodes;
     }
 
     private TreeMap<String, String> convertExcelDataToItemCodesData(HashMap<String, String> cellsFromExcelFile) {
         TreeMap<String, String> itemCodes = new TreeMap<>();
-        int excelRowIndex = 7;
+        int excelRowIndex = 1;
 
         while (!cellsFromExcelFile.isEmpty()) {
             String locationA = new StringBuilder("A").append(String.valueOf(excelRowIndex)).toString();
