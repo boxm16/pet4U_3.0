@@ -33,9 +33,10 @@
             <input type="file" name="file"/>  
             <input type="submit" value="ატვირთვა"/>   
         </form> 
-                <hr><hr>
-                 <h1>  ${errorMessage} </h1>
-        
+        <hr><hr>
+        <h1>  ${result} </h1>
+        <h1>  ${errorMessage} </h1>
+
     </center>
 </body>
 </html>

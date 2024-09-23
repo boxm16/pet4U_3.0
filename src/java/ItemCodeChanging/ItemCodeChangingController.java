@@ -8,6 +8,7 @@ package ItemCodeChanging;
 import Service.Basement;
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
+import java.util.TreeMap;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -135,7 +136,9 @@ public class ItemCodeChangingController {
             return "/itemCodeChanging/itemCodeChangingDashboard";
         }
         //--------------- Starting new Thread For Upload-----------------------
-        model.addAttribute("result", "DONE");
+        ItemCodesFactory itemCodesFactory = new ItemCodesFactory();
+        TreeMap<String, String> itemCodesFromExcelFile = itemCodesFactory.getItemCodesFromExcelFile(filename);
+        model.addAttribute("result", "DONE" + itemCodesFromExcelFile.size());
 
         return "/itemCodeChanging/itemCodeChangingDashboard";
     }
