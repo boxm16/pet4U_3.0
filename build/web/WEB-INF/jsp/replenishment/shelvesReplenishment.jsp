@@ -64,6 +64,10 @@
                     if (stockOnShelfNow < replenishment.getMinimalShelfStock()) {
                         alarmColor = "#F33A6A";;
                     }
+                    double stockNow = Double.parseDouble(replenishment.getQuantity());
+                    if (stockNow == 0 || stockNow == stockOnShelfNow) {
+                        alarmColor = "";;
+                    }
                     out.println("<tr style='background-color: " + alarmColor + "'>");
                     out.println("<td>");
                     out.println("<a href='itemAnalysis.htm?code=" + replenishment.getCode() + "' target='_blank'>" + replenishment.getCode() + "</a>");
