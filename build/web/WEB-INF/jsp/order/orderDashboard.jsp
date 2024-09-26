@@ -103,12 +103,19 @@
         <h1>Endo Analysis</h1>
         <a href="endoAnalysis.htm" class="btn btn-primary" role="button" style='background-color: blue;' target="_blank"><h1>ენდოდიაკინისის ანალიზი</h1></a>
         <hr>
-       
+
         <a href="endoAnalysisVMD.htm" class="btn btn-primary" role="button" style='background-color: blue;' target="_blank"><h1>ენდოდიაკინისის ანალიზი VMD</h1></a>
         <hr> <hr>
         <h1>POSITIONING</h1>
         <a href="positioning.htm" class="btn btn-primary" role="button" style='background-color: blue;'><h1>Positioning</h1></a>
-
+        <hr>        <hr> <hr>
+        <form action="inputOutput.htm" method="POST" target="_blank">
+            <h1>  <input type="text"  name="itemCode" value=""></h1>
+            <h1>  <input type="date"  name="startDate" value="${startDate}"></h1>
+            <h1>  <input type="date"  name="endDate" value="${nowDate}"></h1>
+            <hr>
+            <button type="submit" class="btn btn-secondary"> <h1>კოდის  მოძრაობა (შემოსვლა/გასვლა)</h1></button>
+        </form>
 
     </center>
 </body>

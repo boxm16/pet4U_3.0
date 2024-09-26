@@ -362,9 +362,8 @@ public class OrderController {
         modelMap.addAttribute("positionsBlockTrafficOneOrderOneVisit", positionsTraffic);
         modelMap.addAttribute("startDate", startDate);
         modelMap.addAttribute("endDate", endDate);
-        
-        
-         modelMap.addAttribute("itemCode", "");
+
+        modelMap.addAttribute("itemCode", "");
         modelMap.addAttribute("itemBlockPosition", "");
         modelMap.addAttribute("totalTraffic", "");
         modelMap.addAttribute("positionsTraffic", positionsTraffic);
@@ -374,7 +373,7 @@ public class OrderController {
         WarehousePositioning warehousePositioning = new WarehousePositioning();
         modelMap.addAttribute("warehousePositioning", warehousePositioning);
 
-     //    return "/order/trafficStatisticsForPeriodOneOrderOneVisit";
+        //    return "/order/trafficStatisticsForPeriodOneOrderOneVisit";
         return "/order/trafficStatisticsForPeriodOneOrderOneVisit2";
     }
 
@@ -487,5 +486,11 @@ public class OrderController {
         WarehousePositioning warehousePositioning = new WarehousePositioning();
         modelMap.addAttribute("warehousePositioning", warehousePositioning);
         return "/order/positioning";
+    }
+
+    @RequestMapping(value = "inputOutput")
+    public String inputOutput(ModelMap modelMap) {
+       
+        return "/order/inputOutput";
     }
 }
