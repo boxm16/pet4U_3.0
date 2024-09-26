@@ -494,10 +494,27 @@ public class OrderController {
 
     @RequestMapping(value = "inputOutput")
     public String inputOutput(@RequestParam(name = "itemCode") String itemCode, @RequestParam(name = "startDate") String startDate, @RequestParam(name = "endDate") String endDate, ModelMap modelMap) {
+        if (itemCode.isEmpty()) {
+            modelMap.addAttribute("code", itemCode);
+            modelMap.addAttribute("message", "Empty text.");
+
+            return "analitica/itemAnalysisErrorPage";
+        }
+        SearchDao searchDao = new SearchDao();
+        Item item = searchDao.getItemByAltercode(itemCode);
+
+        if (item == null) {
+            modelMap.addAttribute("code", itemCode);
+            modelMap.addAttribute("message", "No such code in Pet4u Database");
+
+            return "analitica/itemAnalysisErrorPage";
+        }
+        modelMap.addAttribute("item", item);
+
         DailySalesDao dailySalesDao = new DailySalesDao();
         LinkedHashMap<LocalDate, DailySale> dailySales = dailySalesDao.getLast300DaysSales(itemCode);
         modelMap.addAttribute("dailySales", dailySales);
-  
+
         Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
         LinkedHashMap<LocalDate, ItemSnapshot> allSnapshots = pet4uItemsDao.getItemSnapshotsFullVersion(itemCode);
         modelMap.addAttribute("allSnapshots", allSnapshots);

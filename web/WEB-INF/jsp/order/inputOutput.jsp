@@ -91,6 +91,8 @@
                         <th>E-Shop Sales</th>
                         <th>Ενδοδιακ.</th>
                             <%
+                                
+                                  Item item = (Item) request.getAttribute("item");
                                 /*
                                 LinkedHashMap<String, Double> daysSales = (LinkedHashMap) request.getAttribute("daysSales");
 
