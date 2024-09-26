@@ -7,6 +7,10 @@ package Order;
 
 import BasicModel.Item;
 import BasicModel.WarehousePositioning;
+import CamelotItemsOfInterest.ItemSnapshot;
+import DailySales.DailySale;
+import DailySales.DailySalesDao;
+import Pet4uItems.Pet4uItemsDao;
 import Search.SearchDao;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -489,8 +493,16 @@ public class OrderController {
     }
 
     @RequestMapping(value = "inputOutput")
-    public String inputOutput(ModelMap modelMap) {
-       
+    public String inputOutput(@RequestParam(name = "itemCode") String itemCode, @RequestParam(name = "startDate") String startDate, @RequestParam(name = "endDate") String endDate, ModelMap modelMap) {
+        DailySalesDao dailySalesDao = new DailySalesDao();
+        LinkedHashMap<LocalDate, DailySale> dailySales = dailySalesDao.getLast300DaysSales(itemCode);
+        modelMap.addAttribute("dailySales", dailySales);
+  
+        Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
+        LinkedHashMap<LocalDate, ItemSnapshot> allSnapshots = pet4uItemsDao.getItemSnapshotsFullVersion(itemCode);
+        modelMap.addAttribute("allSnapshots", allSnapshots);
+        // System.out.println("Retrieving Last 100 Days Snapshot. Done: " + LocalDateTime.now());
+
         return "/order/inputOutput";
     }
 }
