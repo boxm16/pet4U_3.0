@@ -40,7 +40,7 @@
         <h1><a href="index.htm">INDEX</a></h1>
         <h1>Camelot: Items Of Our Interest: Orders Alert</h1>
         <hr>
-        <h1 style="background-color: red">   </h1>
+        <h1 style="background-color: red">Billy, ξεχασα να κοψω επιστροφη για ΜΠΟΥΤΟ, τα έχω πίσω από τη καρέκλα μου, σ`ένα κουτί, 6 τεμαχια hairball ληγμένα (νομιζω ο κωδικος ειναι 22.01.030) και 1 τεμαχια 5-οκιλο ND (κωδικό δε ξέρω, μαζί είναι) </h1>
 
         <table>
             <thead>
