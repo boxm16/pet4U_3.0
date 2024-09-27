@@ -109,9 +109,10 @@ public class InventoryController {
                 } else {
                     sortedInventories.put(pet4uItem.getCode(), inventoryItem);
                 }
-                model.addAttribute("inventories", inventories);
+              
             }
         }
+        model.addAttribute("sortedInventories", sortedInventories);
         return "inventory/sortedInventoriesDisplay";
     }
 

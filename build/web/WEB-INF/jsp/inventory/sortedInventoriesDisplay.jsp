@@ -54,7 +54,7 @@
 
             </thead>
             <%
-                TreeMap<String, InventoryItem> items = (TreeMap) request.getAttribute("inventories");
+                TreeMap<String, InventoryItem> items = (TreeMap) request.getAttribute("sortedInventories");
                 for (Map.Entry<String, InventoryItem> inventoryItemEntrySet : items.entrySet()) {
                     InventoryItem inventoryItem = inventoryItemEntrySet.getValue();
                     out.println("<tr>");
