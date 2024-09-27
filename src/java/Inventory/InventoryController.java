@@ -109,7 +109,7 @@ public class InventoryController {
                 } else {
                     sortedInventories.put(pet4uItem.getCode(), inventoryItem);
                 }
-              
+
             }
         }
         model.addAttribute("sortedInventories", sortedInventories);
@@ -154,6 +154,38 @@ public class InventoryController {
         }
 
         return "inventory/printMode";
+    }
+
+    @RequestMapping(value = "printModeSorted")
+    public String printModeSorted(@RequestParam("itemsIds") String inventoryItemsIds, ModelMap model) {
+        ArrayList<String> inventoryItemsIdsArray = createItemsIdsArray(inventoryItemsIds);
+
+        ArrayList<InventoryItem> inventories = this.inventoryDao.getInventories(inventoryItemsIdsArray);
+
+        TreeMap<String, InventoryItem> sortedInventories = new TreeMap();
+
+        LinkedHashMap<String, Item> pet4UItems = this.inventoryDao.getpet4UItemsRowByRow();
+        int x = 0;
+        for (InventoryItem inventoryItem : inventories) {
+            String altercode = inventoryItem.getCode();
+
+            Item pet4uItem = pet4UItems.get(altercode);
+
+            if (pet4uItem == null) {
+                System.out.println("Pet4uItem  not present in the lists from microsoft db");
+            } else {
+                inventoryItem.setCode(pet4uItem.getCode());
+                inventoryItem.setDescription(pet4uItem.getDescription());
+                inventoryItem.setPosition(pet4uItem.getPosition());
+                if (sortedInventories.containsKey(pet4uItem.getCode())) {
+                    sortedInventories.put(pet4uItem.getCode() + x, inventoryItem);
+                } else {
+                    sortedInventories.put(pet4uItem.getCode(), inventoryItem);
+                }
+            }
+        }
+        model.addAttribute("sortedInventories", sortedInventories);
+        return "inventory/printModeSorted";
     }
 
     private ArrayList<String> createItemsIdsArray(String inventoryItemsIds) {

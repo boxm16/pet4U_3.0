@@ -130,7 +130,7 @@
             <input hidden type="text" id="inventoryItemsInput" name="itemsIds">
         </form>
 
-        <a href="#" onclick="requestRouter('printMode.htm')"><h4>Print Mode</h4></a>
+        <a href="#" onclick="requestRouter('printModeSorted.htm')"><h4>Print Mode</h4></a>
         <hr><hr><hr><hr><hr><hr><hr><hr><hr><hr>
         <a href="#" onclick="requestRouter('archivizeItems.htm')"><h4>Archivize Selected Items</h4></a>
         <hr><hr><hr><hr><hr><hr><hr><hr><hr><hr>
