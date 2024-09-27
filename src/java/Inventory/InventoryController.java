@@ -167,6 +167,7 @@ public class InventoryController {
         LinkedHashMap<String, Item> pet4UItems = this.inventoryDao.getpet4UItemsRowByRow();
         int x = 0;
         for (InventoryItem inventoryItem : inventories) {
+           x++;
             String altercode = inventoryItem.getCode();
 
             Item pet4uItem = pet4UItems.get(altercode);
