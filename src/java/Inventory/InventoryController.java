@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.LinkedHashMap;
+import java.util.TreeMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -79,6 +80,39 @@ public class InventoryController {
             }
         }
         return "inventory/inventoriesDisplay";
+    }
+
+    @RequestMapping(value = "showSortedInventories")
+    public String showSortedInventories(ModelMap model) {
+        model.addAttribute("title", "Active Inventories Display : Sorted");
+        ArrayList<InventoryItem> inventories = this.inventoryDao.getAllActiveInventories();
+        TreeMap<String, InventoryItem> sortedInventories = new TreeMap();
+
+        LinkedHashMap<String, Item> pet4UItems = this.inventoryDao.getpet4UItemsRowByRow();
+        int x = 0;
+        for (InventoryItem inventoryItem : inventories) {
+            x++;
+            //     System.out.println("ITETM:" + inventoryItem.getCode());
+            String altercode = inventoryItem.getCode();
+
+            Item pet4uItem = pet4UItems.get(altercode);
+
+            if (pet4uItem == null) {
+                System.out.println("Pet4uItem with altercode " + altercode + "  not present in the lists from microsoft db");
+            } else {
+                inventoryItem.setCode(pet4uItem.getCode());
+                inventoryItem.setDescription(pet4uItem.getDescription());
+                inventoryItem.setPosition(pet4uItem.getPosition());
+                inventoryItem.setState(pet4uItem.getState());
+                if (sortedInventories.containsKey(pet4uItem.getCode())) {
+                    sortedInventories.put(pet4uItem.getCode() + x, inventoryItem);
+                } else {
+                    sortedInventories.put(pet4uItem.getCode(), inventoryItem);
+                }
+                model.addAttribute("inventories", inventories);
+            }
+        }
+        return "inventory/sortedInventoriesDisplay";
     }
 
     @RequestMapping(value = "deleteInventoryItem", method = RequestMethod.GET)
