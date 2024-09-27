@@ -31,7 +31,9 @@
 
 
         <a href="showInventories.htm" class="btn btn-primary" role="button"><h1>ΔΕΣ ΑΠΟΓΡΑΦΕΣ</h1></a>
-
+        <hr><hr>
+        <a href="showSortedInventories.htm" class="btn btn-secondary" role="button"><h1>ΔΕΣ SORTED ΑΠΟΓΡΑΦΕΣ</h1></a>
+        
     </center>
 </body>
 </html>
