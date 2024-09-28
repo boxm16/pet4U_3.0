@@ -183,9 +183,7 @@ public class Pet4uItemsController {
         modelMap.addAttribute("items", items);
         return "/pet4uItems/pet4uItemsWithPosition";
     }
-    
-    
-    
+
     @RequestMapping(value = "pet4uItemsLessThanThree")
     public String pet4uItemsLessThanThree(ModelMap modelMap) {
 
@@ -309,9 +307,12 @@ public class Pet4uItemsController {
                 Logger.getLogger(Pet4uItemsController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-
+//-------------
         String printName = "\\\\eshoplaptop\\ZDesigner GC420t (EPL) (Αντιγραφή 1)";
         BarcodePrinter barcodePrinter = new BarcodePrinter();
+        // String printName = "ZDesigner GC420t (EPL)";
+        // BarcodePrinter2 barcodePrinter = new BarcodePrinter2();
+//---------------
         barcodePrinter.setLabelsCount(1);
 
         barcodePrinter.setCode(item.getCode());
