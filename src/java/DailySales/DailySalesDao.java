@@ -59,7 +59,8 @@ public class DailySalesDao {
 
                 DailySale dailySale = dailySales.get(creationDate);
                 if (dailySale == null) {
-                    System.out.println("Something Wrong. DailySalesDao. dailySale=null");
+                    System.out.println("Something Wrong. DailySalesDao. dailySale=null:"+ creationDateTimeStampString);
+                    
                 } else {
                     String number = resultSet.getString("DOCNUMBER");
                     String doctype = resultSet.getString("DOCNAME");
