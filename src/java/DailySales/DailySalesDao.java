@@ -97,7 +97,7 @@ public class DailySalesDao {
         LocalDate date = LocalDate.now();
         //  LocalDate firstDate = date.minusDays(30);
         //  LocalDate lastDate = date.minusDays(1);
-        for (int x = 300; x > 0; x--) {
+        for (int x = 301; x > 0; x--) {
 
             //  DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             //  String formattedString = date.format(formatter);
