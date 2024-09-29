@@ -24,7 +24,7 @@
 
             input[type="number"] {
                 width: 2.5em;
-                font-size: 40px;
+                font-size: 55px;
             }
 
         </style>
