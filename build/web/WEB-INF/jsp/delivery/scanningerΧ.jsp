@@ -117,7 +117,7 @@
                                                 delivered = delivered.value * 1;
                                             }
 
-                                            let delivered = document.getElementById(code + "_delivered").innerHTML * 1;
+                                             delivered = document.getElementById(code + "_delivered").innerHTML * 1;
                                             delivered++;
 
                                             document.getElementById(code + "_delivered").innerHTML = delivered;
