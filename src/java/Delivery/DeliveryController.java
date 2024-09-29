@@ -288,8 +288,6 @@ public class DeliveryController {
         return "delivery/deliveryInvoiceReChecking";
     }
 
-   
-
     public DeliveryInvoice createDeliveryInvoiceFromExcelFile(String filePath) {
         System.out.println("STARTING READING ROYAL DELIVERY EXCEL FILE");
         ExcelReader excelReader = new ExcelReader();
@@ -352,8 +350,6 @@ public class DeliveryController {
         return deliveryInvoice;
     }
 
-    
-
     private LinkedHashMap<String, String> decodeDeliveredItemsData(String data) {
         LinkedHashMap<String, String> decodedData = new LinkedHashMap<>();
         //trimming and cleaning input
@@ -386,6 +382,7 @@ public class DeliveryController {
         ArrayList<DeliveryItem> pet4UItemsRowByRow = deliveryDao.getPet4UItemsRowByRow();
         modelMap.addAttribute("pet4UItemsRowByRow", pet4UItemsRowByRow);
 
+        //  return "delivery/scanninger";
         return "delivery/scanningerΧ";
     }
 
