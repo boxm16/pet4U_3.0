@@ -132,6 +132,12 @@
                                 out.println(" <a href='printBarcode.htm?altercode=" + target + "' class='btn btn-danger btn-lg' role='button' aria-disabled='true'><h3>PRINT LABEL</h3></a>");
                                 out.println("<hr>");
 
+                                out.println("<form action='printSmallLabels.htm' method='POST' target='_blank'>");
+                                out.println("<h1>  <input type='text' hidden  name='altercode' value='"+target+"'></h1>");
+                                out.println("<h1>  <input type='number'  name='lablesQuantity' value='1'></h1>");
+                                out.println("<button type='submit' class='btn btn-success'> <h1>Print Small Labels</h1></button>");
+                                out.println("</form>");
+
                                 String userName = (String) session.getAttribute("userName");
                                 if (userName != null) {
                                     if (userName.equals("me") || userName.equals("super")) {

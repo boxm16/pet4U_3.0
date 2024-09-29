@@ -307,6 +307,7 @@ public class Pet4uItemsController {
                 Logger.getLogger(Pet4uItemsController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+
 //-------------
         String printName = "\\\\eshoplaptop\\ZDesigner GC420t (EPL) (Αντιγραφή 1)";
         BarcodePrinter barcodePrinter = new BarcodePrinter();
@@ -326,6 +327,86 @@ public class Pet4uItemsController {
         return "index";
     }
 
+    //--//--//--//--//--//--//--//
+    @RequestMapping(value = "printSmallLabels")
+    public String printSmallLabels(@RequestParam(name = "altercode") String altercode, @RequestParam(name = "labelsQuantity") String labelsQuantity, ModelMap model) {
+        System.out.println(" Printing Small Labels For Altercode :" + altercode);
+        SearchDao searchDao = new SearchDao();
+        Item item = searchDao.getItemByAltercode(altercode);
+
+        if (item == null) {
+            System.out.println("Item Null");
+        }
+
+        OutputStream out = null;
+        try {
+//this part is for barcode, dont need it here, just keep , maybe will neef later
+            Code128Bean barcode128Bean = new Code128Bean();
+            barcode128Bean.setCodeset(Code128Constants.CODESET_B);
+            final int dpi = 100;
+            //Configure the barcode generator
+            //adjust barcode width here
+            barcode128Bean.setModuleWidth(UnitConv.in2mm(5.0f / dpi));
+            barcode128Bean.doQuietZone(false);
+            barcode128Bean.setBarHeight(8);
+            //bean.setVerticalQuietZone(3);
+            barcode128Bean.setQuietZone(0);
+            barcode128Bean.setMsgPosition(HumanReadablePlacement.HRP_NONE);
+            //Open output file
+            File outputFile = new File("C:/Pet4U_3.0/barcode.png");
+            out = new FileOutputStream(outputFile);
+            try {
+                BitmapCanvasProvider canvasProvider = new BitmapCanvasProvider(
+                        out, "image/x-png", dpi, BufferedImage.TYPE_BYTE_BINARY, false, 0);
+
+                barcode128Bean.generateBarcode(canvasProvider, altercode);
+
+                try {
+                    canvasProvider.finish();
+                } catch (IOException ex) {
+                    Logger.getLogger(Pet4uItemsController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } finally {
+                try {
+                    out.close();
+                } catch (IOException ex) {
+                    Logger.getLogger(Pet4uItemsController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+            // model.addAttribute("code", code);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Pet4uItemsController.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                out.close();
+            } catch (IOException ex) {
+                Logger.getLogger(Pet4uItemsController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+//-------------
+        //String printName = "\\\\eshoplaptop\\ZDesigner GC420t (EPL) (Αντιγραφή 1)";
+        // BarcodePrinter barcodePrinter = new BarcodePrinter();
+        String printName = "ZDesigner GC420t (EPL)";
+        BarcodePrinter2 barcodePrinter = new BarcodePrinter2();
+//---------------
+
+        int labelsCount = Integer.parseInt(labelsQuantity);
+        barcodePrinter.setLabelsCount(labelsCount);
+
+        barcodePrinter.setCode(item.getCode());
+        barcodePrinter.setBarcode(altercode.substring(altercode.length() - 6));
+        barcodePrinter.setDescription(item.getDescription());
+        String position = item.getPosition().substring(2);
+        barcodePrinter.setPosition(position);
+
+        barcodePrinter.printSomething(printName);
+
+        return "index";
+    }
+
+    //-----------------------------+++++++++++++++++++++++++++++++++++++++++----------------
     public void updateItemsStateFullVersion() {
         Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
         LinkedHashMap<String, Item> pet4uAllItems = pet4uItemsDao.getAllItems();
