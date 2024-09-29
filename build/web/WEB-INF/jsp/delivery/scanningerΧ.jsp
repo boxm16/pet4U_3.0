@@ -110,14 +110,14 @@
                                             document.getElementById("descriptionDisplay").innerHTML = altercode + " : " + description;
 
 
-                                            let delivered = document.getElementById(code + "_delivered").innerHTML * 1;
+                                            let delivered = document.getElementById(code + "_delivered");
                                             if (delivered == null) {
                                                 addRow(item.code, item.description);
                                             } else {
                                                 delivered = delivered.value * 1;
                                             }
 
-                                             delivered = document.getElementById(code + "_delivered").innerHTML * 1;
+                                            delivered = document.getElementById(code + "_delivered").innerHTML * 1;
                                             delivered++;
 
                                             document.getElementById(code + "_delivered").innerHTML = delivered;
