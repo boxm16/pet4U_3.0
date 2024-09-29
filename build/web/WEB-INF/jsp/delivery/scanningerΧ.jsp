@@ -55,7 +55,6 @@
                 <tr>
                     <th>Code</th>
                     <th>Description</th>
-                    <th>Sent</th>
                     <th>Qty</th>
                 </tr>
             </thead>
@@ -111,11 +110,11 @@
                                             document.getElementById("descriptionDisplay").innerHTML = altercode + " : " + description;
 
 
-                                            let sent = document.getElementById(code + "_sent");
-                                            if (sent == null) {
+                                            let delivered = document.getElementById(code + "_delivered").innerHTML * 1;
+                                            if (delivered == null) {
                                                 addRow(item.code, item.description);
                                             } else {
-                                                sent = sent.value * 1;
+                                                delivered = delivered.value * 1;
                                             }
 
                                             let delivered = document.getElementById(code + "_delivered").innerHTML * 1;
@@ -141,7 +140,7 @@
                                     // Create cells
                                     let c1 = document.createElement("td")
                                     let c2 = document.createElement("td")
-                                  //  let c3 = document.createElement("td")
+                                    //  let c3 = document.createElement("td")
                                     let c4 = document.createElement("td")
 
                                     // Insert data to cells
@@ -156,7 +155,7 @@
                                     // Append cells to row
                                     row.appendChild(c1);
                                     row.appendChild(c2);
-                                   // row.appendChild(c3);
+                                    // row.appendChild(c3);
                                     row.appendChild(c4);
 
 
