@@ -22,6 +22,10 @@
                 text-align: center;
             }
 
+            input[type="number"] {
+                width: 2.5em;
+            }
+
         </style>
     </head>
     <body>
@@ -133,8 +137,8 @@
                                 out.println("<hr>");
 
                                 out.println("<form action='printSmallLabels.htm' method='POST' target='_blank'>");
-                                out.println("<h1>  <input type='text' hidden  name='altercode' value='"+target+"'></h1>");
-                                out.println("<h1>  <input type='number'  name='lablesQuantity' value='1'></h1>");
+                                out.println("<h1>  <input type='text' hidden  name='altercode' value='" + target + "'></h1>");
+                                out.println("<h1>  <input type='number'  name='labelsQuantity' value='1'></h1>");
                                 out.println("<button type='submit' class='btn btn-success'> <h1>Print Small Labels</h1></button>");
                                 out.println("</form>");
 
