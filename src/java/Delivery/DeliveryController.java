@@ -386,7 +386,7 @@ public class DeliveryController {
         ArrayList<DeliveryItem> pet4UItemsRowByRow = deliveryDao.getPet4UItemsRowByRow();
         modelMap.addAttribute("pet4UItemsRowByRow", pet4UItemsRowByRow);
 
-        return "delivery/scanninger";
+        return "delivery/scanningerΧ";
     }
 
 }
