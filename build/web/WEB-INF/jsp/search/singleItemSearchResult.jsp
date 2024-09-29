@@ -134,7 +134,7 @@
                                 out.println(" <a href='getItemForNotForEndo.htm?altercode=" + item.getCode() + "' class='btn btn-info btn-lg' role='button' aria-disabled='true'><h3>Mark As 'Not For Endo'</h3></a>");
                                 out.println("<hr>");
                                 out.println("<hr>");
-                                out.println(" <a href='printBarcode.htm?altercode=" + target + "' class='btn btn-danger btn-lg' role='button' aria-disabled='true'><h3>PRINT LABEL</h3></a>");
+                                out.println(" <a href='printBarcode.htm?altercode=" + target + "' class='btn btn-danger btn-lg' role='button' aria-disabled='true'><h3>PRINT BARCODE LABEL</h3></a>");
                                 out.println("<hr>");
 
                                 out.println("<form action='printSmallLabels.htm' method='POST' target='_blank'>");
