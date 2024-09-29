@@ -146,7 +146,7 @@ public class DailySalesDao {
                     if (doctype.equals("ΚΑΠΔ") || doctype.equals("ΚΔΑΤ1")) {
                         dailySale.setSoldQuantiy(quantity + dailySale.getSoldQuantiy());
                     }
-                    if (doctype.equals("ΚΑΕΛ") || doctype.equals("ΚΠΔΤ1")) {
+                    if (doctype.equals("ΚΑΕΛ") || doctype.equals("ΚΠΤΔ1")) {
                         dailySale.setSoldQuantiy(dailySale.getSoldQuantiy() - quantity);
                     }
                 }
