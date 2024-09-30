@@ -8,6 +8,8 @@ package Replenishment;
 import BasicModel.Item;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.TreeMap;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -93,13 +95,20 @@ public class ReplenishmentController {
     public String shelvesReplenishmentSV(ModelMap model) {
         ReplenishmentDao replenishmentDao = new ReplenishmentDao();
         LinkedHashMap<String, Replenishment> replenishments = replenishmentDao.getAllReplenishments();
+
         ArrayList referalAltercodes = new ArrayList(replenishments.keySet());
         StringBuilder inPartForSqlQueryByReferralAltercodes = buildStringFromArrayList(referalAltercodes);
         replenishments = replenishmentDao.addPet4uBasicData(replenishments, inPartForSqlQueryByReferralAltercodes);
         replenishments = replenishmentDao.addSailsData(replenishments, inPartForSqlQueryByReferralAltercodes);
         replenishments = replenishmentDao.addEndoSailsData(replenishments, inPartForSqlQueryByReferralAltercodes);
-
+        TreeMap<String, Replenishment> sortedByPositionReplenishment = new TreeMap();
+        for (Map.Entry<String, Replenishment> replenishmentsEntry : replenishments.entrySet()) {
+            Replenishment replenishment = replenishmentsEntry.getValue();
+            String position = replenishment.getPosition();
+            sortedByPositionReplenishment.put(position, replenishment);
+        }
         model.addAttribute("replenishments", replenishments);
+        model.addAttribute("sortedByPositionReplenishment", sortedByPositionReplenishment);
         return "replenishment/shelvesReplenishment";
 
     }
