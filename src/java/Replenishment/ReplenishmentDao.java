@@ -110,17 +110,18 @@ public class ReplenishmentDao {
     }
 
     public String insertReplenishment(String itemCode, String replenishmentQuantity, String note) {
+        LocalDateTime timeNow = LocalDateTime.now();
         try {
 
             DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
             Connection connection = databaseConnectionFactory.getMySQLConnection();
 
-            PreparedStatement itemInsertStatement = connection.prepareStatement("INSERT INTO shelves_replenishment (item_code, referal_date_time, quantity, note) VALUES (?, now() ,?,?)");
+            PreparedStatement itemInsertStatement = connection.prepareStatement("INSERT INTO shelves_replenishment (item_code, referal_date_time, quantity, note) VALUES (?,?,?,?)");
 
             itemInsertStatement.setString(1, itemCode);
-
-            itemInsertStatement.setString(2, replenishmentQuantity);
-            itemInsertStatement.setString(3, note);
+            itemInsertStatement.setString(2, timeNow.toString());
+            itemInsertStatement.setString(3, replenishmentQuantity);
+            itemInsertStatement.setString(4, note);
             itemInsertStatement.execute();
 
             itemInsertStatement.close();
