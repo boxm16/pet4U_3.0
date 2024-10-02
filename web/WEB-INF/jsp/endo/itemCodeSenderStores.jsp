@@ -50,6 +50,7 @@
                     <th>Number</th>
                     <th>Sender</th>
                     <th>Quantity</th>
+                    <th>State</th>
                 </tr>
             </thead>
             <tbody id="tableBody">
@@ -80,6 +81,10 @@
                         out.println("<td>");
                         String itemCode = (String) request.getAttribute("itemCode");
                         out.println(endo.getItems().get(itemCode).getQuantity());
+                        out.println("</td>");
+
+                        out.println("<td>");
+                        out.println(endo.getItems().get(itemCode).getState());
                         out.println("</td>");
 
                         out.println("</tr>");
