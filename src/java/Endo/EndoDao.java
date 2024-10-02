@@ -784,4 +784,53 @@ public class EndoDao {
         return "UNBINDED";
     }
 
+    ArrayList<Endo> getEndosOfItem(String itemCode, String startDate, String endDate) {
+        ArrayList<Endo> endos = new ArrayList<>();
+           startDate = startDate + " 00:00:00.000";
+        endDate = endDate + " 23:59:59.999";
+
+        String query = "SELECT  [DOCID], [DOCNUMBER],  [DOCDATE], [FROM_WH], [ABBREVIATION], [QUANTITY], [PRICEBC] FROM [petworld].[dbo].[WH_ENDA]"
+                + " WHERE [ABBREVIATION]='" + itemCode + "' AND  WHERE DATE_TIME >= '" + startDate + "' AND DATE_TIME <='" + endDate + "' ORDER BY DOCID;";
+       
+        ResultSet resultSet;
+
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
+            Statement statement = connection.createStatement();
+
+            resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                Endo endo = new Endo();
+                endo.setId(resultSet.getString("DOCID"));
+
+                String date = resultSet.getString("DOCDATE");
+                String[] splittedDate = date.split(" ");
+                endo.setDateString(splittedDate[0]);
+
+                endo.setNumber(resultSet.getString("DOCNUMBER"));
+
+                String storeName = translateStoreName(resultSet.getString("FROM_WH"));
+                endo.setSender(storeName);
+
+                Item item = new Item();
+                item.setCode(resultSet.getString("ABBREVIATION"));
+                item.setQuantity(resultSet.getString("QUANTITY"));
+                LinkedHashMap<String, Item> items = new LinkedHashMap<>();
+                items.put(itemCode, item);
+                endo.setItems(items);
+                endos.add(endo);
+
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EndoDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return endos;
+    }
+
 }

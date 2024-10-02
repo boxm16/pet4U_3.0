@@ -197,6 +197,26 @@ public class EndoControllerX {
         return "endo/deltiaApostolisDisplay";
     }
 
+    //-------------------------
+    @RequestMapping(value = "getItemCodeSenderStore", method = RequestMethod.GET)
+    public String getItemCodeSenderStore(@RequestParam(name = "itemCode") String itemCode, @RequestParam(name = "startDate") String startDate, @RequestParam(name = "endDate") String endDate, ModelMap modelMap) {
+
+        Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
+        LinkedHashMap<String, Item> pet4UItemsRowByRow = pet4uItemsDao.getPet4UItemsRowByRow();
+
+        Item sentItem = pet4UItemsRowByRow.get(itemCode);
+
+        EndoDao endoDao = new EndoDao();
+
+        ArrayList<Endo> endos = endoDao.getEndosOfItem(itemCode, startDate, endDate);
+
+        modelMap.addAttribute("itemCode", itemCode);
+        modelMap.addAttribute("sentItem", sentItem);
+        modelMap.addAttribute("endos", endos);
+        return "endo/itemCodeSenderStores";
+    }
+    //-------------------------
+
     @RequestMapping(value = "seeLastEndoBinders", method = RequestMethod.GET)
     public String seeLastEndoBinders(ModelMap modelMap) {
         EndoDao endoDao = new EndoDao();
