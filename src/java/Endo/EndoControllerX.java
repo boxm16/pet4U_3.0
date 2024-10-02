@@ -198,7 +198,7 @@ public class EndoControllerX {
     }
 
     //-------------------------
-    @RequestMapping(value = "getItemCodeSenderStore", method = RequestMethod.GET)
+    @RequestMapping(value = "getItemCodeSenderStore", method = RequestMethod.POST)
     public String getItemCodeSenderStore(@RequestParam(name = "itemCode") String itemCode, @RequestParam(name = "startDate") String startDate, @RequestParam(name = "endDate") String endDate, ModelMap modelMap) {
 
         Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
