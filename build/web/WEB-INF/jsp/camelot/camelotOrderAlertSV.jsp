@@ -34,7 +34,7 @@
         <h1><a href="index.htm">INDEX</a></h1>
         <h1>Camelot: Items Of Our Interest: Orders Alert</h1>
         <hr>
-        <h1 style="background-color: red">Billy, πάλι κάτι ξέχασα. Εχουμε μια επιστροφη για ΑΣΤΡΟΝ (HILLS), ενα τσουβάλι με barcode 052742025735 , το έχω πίσω από την καρέκλα μου. Είναι ανοιγμένη. Άμα έρθουν πρινα να έρθω εγώ, κόψε και δόσε.</h1><hr>
+        <h1 style="background-color: red">Billy καλημέρα,<br> Αμα βρεις χρόνο και ευκαιρία, βάλε όλα τα κλουβια που έχουμε πάνω στα everclea (και γύρω γύρω) στις θέσεις τους (όσα χοράνε), γιατί βλέπω πάμε για να μπλοκάρουμε λίγο. </h1><hr>
         <table>
             <thead>
             <th>Position</th>
