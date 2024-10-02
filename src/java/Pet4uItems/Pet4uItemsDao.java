@@ -531,6 +531,11 @@ public class Pet4uItemsDao {
                     item.setPosition("");
                 }
                 item.setQuantity(resultSet.getString("QTYBALANCE").trim());
+                String state = "";
+                if (resultSet.getString("EXPR2") != null) {
+                    state = resultSet.getString("EXPR2").trim();
+                }
+                item.setState(state);
                 items.put(altercode, item);
 
             }
