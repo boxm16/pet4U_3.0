@@ -1,20 +1,25 @@
+<%-- 
+    Document   : deltiaApostilisDisplay
+    Created on : Jan 4, 2024, 11:21:00 PM
+    Author     : Michail Sitmalidis
+--%>
+
+<%@page import="Endo.Endo"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
 <html>
     <head>
-        <title>ΔΕΛΤΙΟ ΑΠΟΣΤΟΛΗΣ</title>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Ενδο Αποστολης Απο Μαγαζι Για Τον Κωδικό</title>
         <style>
             table, th, td {
                 border: 1px solid ;
                 border-collapse: collapse;
             }
             td {
-                font-size: 20px;
+                font-size: 40px;
+                text-align: center;
             }
             th{
                 font-size: 30px;
@@ -28,45 +33,61 @@
         </style>
     </head>
     <body>
+
     <center>
-        <h4><a href="index.htm">Index</a></h4>
-        <h4>ΔΕΛΤΙΟ ΑΠΟΣΤΟΛΗΣ ΕΝΔΟΔΙΑΚΙΝΗΣΗΣ</h4>
+        <a href="index.htm"><h3>INDEX</h3></a>
         <hr>
-
-        <input type="text" readonly name="id" value="${endo.id}"/>
-        <input name="dateString" readonly type="text" value="${endo.dateString}">
-        <input type="text" readonly name="id" value="${endo.number}"/>
-        <input type="text" readonly name="sender" value="${endo.sender}" />
-
-        <hr>
+        <h1>Sent Item</h1>
+        <h1><a  href = 'findItemByAltercode.htm?altercode=${itemCode}' target='_blank'>${itemCode}</a> : ${sentItem}</h1>
         <table>
             <thead> 
+
+
+
                 <tr>
-                    <th>ΚΩΔΙΚΟΣ</th>
-                    <th>ΠΕΡΙΓΡΑΦΗ</th>
-                    <th>ΠΟΣΟΤΗΤΑ</th>
+                    <th>A/A</th>
+                    <th>Date</th>
+                    <th>Number</th>
+                    <th>Sender</th>
+                    <th>Quantity</th>
                 </tr>
             </thead>
-            <tbody id='tableBody'>
-                <c:forEach items="${endo.items}" var="itemEntry" varStatus="status">
-                    <tr>
-                        <td><a  href = 'itemAnalysis.htm?code=${itemEntry.value.code}' target='_blank'> ${itemEntry.value.code}</a></td>
-                        <td>${itemEntry.value.description}</td>
-                        <td>${itemEntry.value.quantity}</td>
-                    </tr>
-                </c:forEach>
+            <tbody id="tableBody">
+                <%
+                    int x = 1;
+                    ArrayList<Endo> endos = (ArrayList<Endo>) request.getAttribute("endos");
+
+                    for (Endo endo : endos) {
+
+                        out.println("<tr>");
+
+                        out.println("<td>");
+                        out.println("<a href='showDeltioApostolis.htm?id=" + endo.getId() + "'>" + endo.getId() + "</a>");
+                        out.println("</td>");
+
+                        out.println("<td>");
+                        out.println(endo.getDateString());
+                        out.println("</td>");
+
+                        out.println("<td>");
+                        out.println(endo.getNumber());
+                        out.println("</td>");
+
+                        out.println("<td>");
+                        out.println(endo.getSender());
+                        out.println("</td>");
+
+                        out.println("<td>");
+                        String itemCode = (String) request.getAttribute("itemCode");
+                        out.println(endo.getItems().get(itemCode).getQuantity());
+                        out.println("</td>");
+
+                        out.println("</tr>");
+                        x++;
+                    }
+                %>
             </tbody>
-        </table>	
-        <br/>
-
-
+        </table>
     </center>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
-
 </body>
 </html>
