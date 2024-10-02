@@ -790,7 +790,7 @@ public class EndoDao {
         endDate = endDate + " 23:59:59.999";
 
         String query = "SELECT  [DOCID], [DOCNUMBER],  [DOCDATE], [FROM_WH], [ABBREVIATION], [QUANTITY], [PRICEBC] FROM [petworld].[dbo].[WH_ENDA]"
-                + " WHERE [ABBREVIATION]='" + itemCode + "' AND  WHERE DATE_TIME >= '" + startDate + "' AND DATE_TIME <='" + endDate + "' ORDER BY DOCID;";
+                + " WHERE [ABBREVIATION]='" + itemCode + "' AND DATE_TIME >= '" + startDate + "' AND DATE_TIME <='" + endDate + "' ORDER BY DOCID;";
        
         ResultSet resultSet;
 

@@ -38,7 +38,7 @@
         <a href="index.htm"><h3>INDEX</h3></a>
         <hr>
         <h1>Sent Item</h1>
-        <h1><a  href = 'findItemByAltercode.htm?altercode=${itemCode}' target='_blank'>${itemCode}</a> : ${sentItem}</h1>
+        <h1><a  href = 'findItemByAltercode.htm?altercode=${itemCode}' target='_blank'>${itemCode}</a> : ${sentItem.description}</h1>
         <table>
             <thead> 
 
