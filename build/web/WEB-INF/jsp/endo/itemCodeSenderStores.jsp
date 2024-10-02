@@ -4,6 +4,7 @@
     Author     : Michail Sitmalidis
 --%>
 
+<%@page import="BasicModel.Item"%>
 <%@page import="Endo.Endo"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -39,6 +40,7 @@
         <hr>
         <h1>Sent Item</h1>
         <h1><a  href = 'findItemByAltercode.htm?altercode=${itemCode}' target='_blank'>${itemCode}</a> : ${sentItem.description}</h1>
+        <h1>${sentItem.state}</h1>
         <table>
             <thead> 
 
@@ -50,14 +52,13 @@
                     <th>Number</th>
                     <th>Sender</th>
                     <th>Quantity</th>
-                    <th>State</th>
+
                 </tr>
             </thead>
             <tbody id="tableBody">
                 <%
                     int x = 1;
                     ArrayList<Endo> endos = (ArrayList<Endo>) request.getAttribute("endos");
-
                     for (Endo endo : endos) {
 
                         out.println("<tr>");
@@ -81,10 +82,6 @@
                         out.println("<td>");
                         String itemCode = (String) request.getAttribute("itemCode");
                         out.println(endo.getItems().get(itemCode).getQuantity());
-                        out.println("</td>");
-
-                        out.println("<td>");
-                        out.println(endo.getItems().get(itemCode).getState());
                         out.println("</td>");
 
                         out.println("</tr>");
