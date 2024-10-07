@@ -69,16 +69,16 @@ public class BarcodePrinter2 implements Printable {
             /* Now we perform our rendering */
             try {
                 int x = 10;                                        //print start at 100 on x axies
-                int y = 2;                                          //print start at 10 on y axies
+                int y = 55;                                          //print start at 10 on y axies
                 int imagewidth = 100;
-                int imageheight = 30;
+                int imageheight = 7;
                 BufferedImage read = ImageIO.read(new File("C:/Pet4U_3.0/barcode.png"));
-                //g2d.drawImage(read, x, y, imagewidth, imageheight, null);         //draw image
+                g2d.drawImage(read, x, y, imagewidth, imageheight, null);         //draw image
             } catch (IOException e) {
                 e.printStackTrace();
             }
             g.setFont(new Font("Roman", Font.BOLD, 15));
-            g.drawString(code+"-:-"+barcode, 10, 50);
+            g.drawString(code+"-:-"+barcode, 5, 50);
 
             // g.setFont(new Font("Roman", Font.BOLD, 15));
             // g.drawString("*" + barcode, 150, 25);
