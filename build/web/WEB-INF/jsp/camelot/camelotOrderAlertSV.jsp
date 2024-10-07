@@ -34,7 +34,7 @@
         <h1><a href="index.htm">INDEX</a></h1>
         <h1>Camelot: Items Of Our Interest: Orders Alert</h1>
         <hr>
-        <h1 style="background-color: red">Billy καλημέρα,<br>Δελτια του Πασσαλη ειναι ΟΚ,  σφράγησε και δόσε, όταν έρθει (και άμα έρθει)</h1><hr>
+        <h1 style="background-color: red"></h1><hr>
         <table>
             <thead>
             <th>Position</th>
