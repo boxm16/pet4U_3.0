@@ -66,7 +66,7 @@
                         alarmColor = "#F33A6A";;
                     }
                     double stockNow = Double.parseDouble(replenishment.getQuantity());
-                    if (stockNow == 0 || stockNow == stockOnShelfNow) {
+                    if (stockNow == 0 || stockNow <=stockOnShelfNow) {
                         alarmColor = "";;
                     }
                     out.println("<tr style='background-color: " + alarmColor + "'>");
@@ -147,7 +147,7 @@
                         alarmColor = "#F33A6A";;
                     }
                     double stockNow = Double.parseDouble(replenishment.getQuantity());
-                    if (stockNow == 0 || stockNow == stockOnShelfNow) {
+                    if (stockNow == 0 || stockNow <= stockOnShelfNow) {
                         alarmColor = "";;
                     }
                     out.println("<tr style='background-color: " + alarmColor + "'>");
