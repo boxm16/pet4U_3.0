@@ -487,7 +487,7 @@ public class EndoControllerX {
         boolean someEndoIsChanged = false;
         LinkedHashMap<String, String> allBindedOrders = endoDaoX.getAllBindedOrdersTitles();
 
-        LinkedHashMap<String, EndoApostolis> outgoingDeltioApostolisTitles = endoDaoX.getOutgoingDeltioApostolisTitles("2024-09-10");
+        LinkedHashMap<String, EndoApostolis> outgoingDeltioApostolisTitles = endoDaoX.getOutgoingDeltioApostolisTitles("2024-01-01");
 
         ArrayList<String> lockedOutgoingDeltiaApostolis = endoDaoX.getAllLockedOutgoingDeltiaApostolisIds();
 
