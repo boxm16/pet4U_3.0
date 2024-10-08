@@ -455,7 +455,7 @@ public class EndoControllerX {
         boolean someEndoIsChanged = false;
         LinkedHashMap<String, String> allBindedOrders = endoDaoX.getAllBindedOrdersTitles();
 
-        LinkedHashMap<String, EndoApostolis> outgoingDeltioApostolisTitles = endoDaoX.getOutgoingDeltioApostolisTitles("2024-05-10");
+        LinkedHashMap<String, EndoApostolis> outgoingDeltioApostolisTitles = endoDaoX.getOutgoingDeltioApostolisTitles("2024-09-10");
 
         ArrayList<String> lockedOutgoingDeltiaApostolis = endoDaoX.getAllLockedOutgoingDeltiaApostolisIds();
 
@@ -478,6 +478,38 @@ public class EndoControllerX {
         modelMap.addAttribute("isChanged", someEndoIsChanged);
         modelMap.addAttribute("bindedOutgoindDeltioApostolis", bindedOutgoindDeltioApostolis);
         return "endo/bindedEndoOrders";
+    }
+    
+    @RequestMapping(value = "showAllBindedOrders", method = RequestMethod.GET)
+    public String showAllBindedOrders(ModelMap modelMap) {
+
+        EndoDaoX endoDaoX = new EndoDaoX();
+        boolean someEndoIsChanged = false;
+        LinkedHashMap<String, String> allBindedOrders = endoDaoX.getAllBindedOrdersTitles();
+
+        LinkedHashMap<String, EndoApostolis> outgoingDeltioApostolisTitles = endoDaoX.getOutgoingDeltioApostolisTitles("2024-09-10");
+
+        ArrayList<String> lockedOutgoingDeltiaApostolis = endoDaoX.getAllLockedOutgoingDeltiaApostolisIds();
+
+        ArrayList<String> changedOutgoingDeltiaApostolis = endoDaoX.getAllChangedOutgoingDeltiaApostolisIds(lockedOutgoingDeltiaApostolis);
+
+        ArrayList<EndoApostolis> bindedOutgoindDeltioApostolis = new ArrayList();
+        for (Map.Entry<String, EndoApostolis> outgoingDeltioApostolisTitlesEntry : outgoingDeltioApostolisTitles.entrySet()) {
+            if (lockedOutgoingDeltiaApostolis.contains(outgoingDeltioApostolisTitlesEntry.getKey())) {
+                outgoingDeltioApostolisTitlesEntry.getValue().setIsLocked(true);
+            }
+
+            if (changedOutgoingDeltiaApostolis.contains(outgoingDeltioApostolisTitlesEntry.getKey())) {
+                outgoingDeltioApostolisTitlesEntry.getValue().setIsChanged(true);
+                someEndoIsChanged = true;
+            }
+            if (allBindedOrders.containsValue(outgoingDeltioApostolisTitlesEntry.getKey())) {
+                bindedOutgoindDeltioApostolis.add(outgoingDeltioApostolisTitlesEntry.getValue());
+            }
+        }
+        modelMap.addAttribute("isChanged", someEndoIsChanged);
+        modelMap.addAttribute("bindedOutgoindDeltioApostolis", bindedOutgoindDeltioApostolis);
+        return "endo/allBindedEndoOrders";
     }
 
     @RequestMapping(value = "showBindedEndoOrder", method = RequestMethod.GET)

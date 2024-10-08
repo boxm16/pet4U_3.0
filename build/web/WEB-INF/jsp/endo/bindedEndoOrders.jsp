@@ -141,7 +141,10 @@
 
             </tbody>
         </table>
-        <hr>
+        <hr> 
+        <hr><hr>
+        <a href='showAllBindedOrders.htm'><h2>Show All Binded Endo Orders</h2></a>
+        <hr><hr>
         <form id="form" action="#" method="POST">
             <input hidden type="text" id="endoIdsInput" name="endoIds">
             <input hidden type="text" id="receivingEndoIdsInput" name="receivingEndoIds">
