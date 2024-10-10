@@ -137,13 +137,13 @@ public class ReplenishmentDao {
     public String updateReplenishment(String itemCode, String replenishmentQuantity, String note) {
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
         Connection connection = databaseConnectionFactory.getMySQLConnection();
-
+        LocalDateTime timeNow = LocalDateTime.now();
         try {
-            PreparedStatement updateStatement = connection.prepareStatement("UPDATE shelves_replenishment  SET referal_date_time=now() , quantity=?, note=? WHERE item_code=?");
-
-            updateStatement.setString(1, replenishmentQuantity);
-            updateStatement.setString(2, note);
-            updateStatement.setString(3, itemCode);
+            PreparedStatement updateStatement = connection.prepareStatement("UPDATE shelves_replenishment  SET referal_date_time=? , quantity=?, note=? WHERE item_code=?");
+            updateStatement.setString(1, timeNow.toString());
+            updateStatement.setString(2, replenishmentQuantity);
+            updateStatement.setString(3, note);
+            updateStatement.setString(4, itemCode);
             updateStatement.executeUpdate();
             updateStatement.close();
 
