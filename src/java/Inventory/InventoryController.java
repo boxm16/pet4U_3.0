@@ -85,7 +85,7 @@ public class InventoryController {
     @RequestMapping(value = "showSortedInventories")
     public String showSortedInventories(ModelMap model) {
         model.addAttribute("title", "Active Inventories Display : Sorted");
-        ArrayList<InventoryItem> inventories = this.inventoryDao.getAllActiveInventories();
+        ArrayList<InventoryItem> inventories = this.inventoryDao.getAllActiveInventoriesOrderedByDate();
         TreeMap<String, InventoryItem> sortedInventories = new TreeMap();
 
         LinkedHashMap<String, Item> pet4UItems = this.inventoryDao.getpet4UItemsRowByRow();
