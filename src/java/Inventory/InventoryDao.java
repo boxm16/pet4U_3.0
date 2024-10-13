@@ -232,11 +232,11 @@ public class InventoryDao {
         return inventories;
 
     }
-    
+
     ArrayList<InventoryItem> getAllActiveInventoriesOrderedByDate() {
         ArrayList<InventoryItem> inventories = new ArrayList<>();
 
-        String sql = "SELECT * FROM inventory ORDERED BY date_stamp";
+        String sql = "SELECT * FROM inventory ORDER BY date_stamp";
         ResultSet resultSet;
 
         try {
@@ -301,7 +301,7 @@ public class InventoryDao {
 
     public LinkedHashMap<String, Item> getpet4UItemsRowByRow() {
         LinkedHashMap<String, Item> items = new LinkedHashMap<>();
-        DatabaseConnectionFactory databaseConnectionFactory=new DatabaseConnectionFactory();
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
         Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
 
         try {
@@ -376,7 +376,7 @@ public class InventoryDao {
 
         StringBuilder queryBuilderInitialPart = new StringBuilder("SELECT * FROM inventory WHERE ");
         StringBuilder queryBuilderIdsPart = buildStringFromArrayList(inventoryItemsIdsArray);
-        StringBuilder query = queryBuilderInitialPart.append(" id IN ").append(queryBuilderIdsPart);
+        StringBuilder query = queryBuilderInitialPart.append(" id IN ").append(queryBuilderIdsPart).append(" ORDER by date_time ;");
 
         ResultSet resultSet;
 
@@ -389,44 +389,42 @@ public class InventoryDao {
             while (resultSet.next()) {
 
                 String state = resultSet.getString("state");
-               
 
-                    InventoryItem inventoryItem = new InventoryItem();
-                    int id = resultSet.getInt("id");
-                    inventoryItem.setId(id);
+                InventoryItem inventoryItem = new InventoryItem();
+                int id = resultSet.getInt("id");
+                inventoryItem.setId(id);
 
-                    String itemCode = resultSet.getString("item_code");
-                    inventoryItem.setCode(itemCode.trim());
+                String itemCode = resultSet.getString("item_code");
+                inventoryItem.setCode(itemCode.trim());
 
-                    inventoryItem.setDateStampString(resultSet.getString("date_stamp"));
-                    Date date = null;
-                    try {
-                        date = new SimpleDateFormat("yyyy-MM-dd").parse(resultSet.getString("date_stamp"));
-                    } catch (ParseException ex) {
-                        Logger.getLogger(InventoryDao.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    inventoryItem.setDateStamp(date);
+                inventoryItem.setDateStampString(resultSet.getString("date_stamp"));
+                Date date = null;
+                try {
+                    date = new SimpleDateFormat("yyyy-MM-dd").parse(resultSet.getString("date_stamp"));
+                } catch (ParseException ex) {
+                    Logger.getLogger(InventoryDao.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                inventoryItem.setDateStamp(date);
 
-                    inventoryItem.setTimeStampString(resultSet.getString("time_stamp"));
+                inventoryItem.setTimeStampString(resultSet.getString("time_stamp"));
 
-                    SimpleDateFormat dateTimeFormatter = new SimpleDateFormat("HH:mm:ss");
+                SimpleDateFormat dateTimeFormatter = new SimpleDateFormat("HH:mm:ss");
 
-                    Date dateTime = null;
-                    try {
-                        dateTime = dateTimeFormatter.parse(resultSet.getString("time_stamp"));
+                Date dateTime = null;
+                try {
+                    dateTime = dateTimeFormatter.parse(resultSet.getString("time_stamp"));
 
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
 
-                    inventoryItem.setTimeStamp(dateTime);
-                    inventoryItem.setSystemStock(resultSet.getString("system_stock"));
-                    inventoryItem.setRealStock(resultSet.getString("real_stock"));
-                    inventoryItem.setNote(resultSet.getString("note"));
+                inventoryItem.setTimeStamp(dateTime);
+                inventoryItem.setSystemStock(resultSet.getString("system_stock"));
+                inventoryItem.setRealStock(resultSet.getString("real_stock"));
+                inventoryItem.setNote(resultSet.getString("note"));
 
-                    inventoryItem.setInventarizationState(state);
-                    inventories.add(inventoryItem);
-                
+                inventoryItem.setInventarizationState(state);
+                inventories.add(inventoryItem);
 
             }
             resultSet.close();
