@@ -91,7 +91,7 @@ public class InventoryController {
         LinkedHashMap<String, Item> pet4UItems = this.inventoryDao.getpet4UItemsRowByRow();
         int x = 0;
         for (InventoryItem inventoryItem : inventories) {
-            x++;
+
             //     System.out.println("ITETM:" + inventoryItem.getCode());
             String altercode = inventoryItem.getCode();
 
@@ -106,6 +106,7 @@ public class InventoryController {
                 inventoryItem.setState(pet4uItem.getState());
                 if (sortedInventories.containsKey(pet4uItem.getCode())) {
                     sortedInventories.put(pet4uItem.getCode() + x, inventoryItem);
+                    x++;
                 } else {
                     sortedInventories.put(pet4uItem.getCode(), inventoryItem);
                 }
@@ -167,7 +168,7 @@ public class InventoryController {
         LinkedHashMap<String, Item> pet4UItems = this.inventoryDao.getpet4UItemsRowByRow();
         int x = 0;
         for (InventoryItem inventoryItem : inventories) {
-           x++;
+            x++;
             String altercode = inventoryItem.getCode();
 
             Item pet4uItem = pet4UItems.get(altercode);
