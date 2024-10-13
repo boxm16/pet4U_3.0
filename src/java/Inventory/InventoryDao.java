@@ -376,7 +376,7 @@ public class InventoryDao {
 
         StringBuilder queryBuilderInitialPart = new StringBuilder("SELECT * FROM inventory WHERE ");
         StringBuilder queryBuilderIdsPart = buildStringFromArrayList(inventoryItemsIdsArray);
-        StringBuilder query = queryBuilderInitialPart.append(" id IN ").append(queryBuilderIdsPart).append(" ORDER by date_time ;");
+        StringBuilder query = queryBuilderInitialPart.append(" id IN ").append(queryBuilderIdsPart).append(" ORDER by date_stamp ;");
 
         ResultSet resultSet;
 
