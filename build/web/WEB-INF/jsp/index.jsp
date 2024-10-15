@@ -34,11 +34,11 @@
                 <hr>
                 <a href="camelotOrderAlertSV.htm" class="btn btn-primary" style='background-color: #762276' role="button"><h1>CAMELOT ORDER ALERT</h1></a>
                 <hr> 
-                 <hr> 
-               
+                <hr> 
+
                 <a href="shelvesReplenishment.htm" class="btn btn-primary" style='background-color: #f955d4' role="button"><h1>Αναπλήρωση Ραφιών</h1></a>
                 <hr>
-               
+
                 <a href="deliveryDashboard_X.htm" class="btn btn-primary" style='background-color: red' role="button"><h1>Delivery Dashboard</h1></a>
                 <hr> <hr> <hr>
                 <a href="camelotNotesDisplay.htm" class="btn btn-primary" role="button" style='background-color: #B48199'><h1>Camelot Notes</h1></a>
@@ -55,6 +55,8 @@
                 <a href="camelotStockPositionsByItemCodeDisplay.htm"><h1>Camelot Stock Positions By Item Code </h1></a>
                 <hr>
                 <a href="inventoryDashboard.htm"><h1 style="color: #999900">Inventory Dashboard</h1></a>
+                <hr>
+                <h1><a href="pet4uAllItemsOneLine.htm">Show Items With Only One Altercode</a></h1>
                 <hr>
                 <a href="adminIndex.htm"><h1>Admin Index</h1></a>
 
