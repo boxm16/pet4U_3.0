@@ -56,7 +56,7 @@
                 <hr>
                 <a href="inventoryDashboard.htm"><h1 style="color: #999900">Inventory Dashboard</h1></a>
                 <hr>
-                <h1><a href="pet4uAllItemsOneLine.htm">Show Items With Only One Altercode</a></h1>
+              <h1><a href="pet4uItemsWithPosition.htm">Show Items By Position </a></h1>
                 <hr>
                 <a href="adminIndex.htm"><h1>Admin Index</h1></a>
 
