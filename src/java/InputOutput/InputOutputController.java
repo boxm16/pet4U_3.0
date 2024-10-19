@@ -48,11 +48,10 @@ public class InputOutputController {
         System.out.println("SD:" + sd);
         System.out.println("ED:" + ed);
         while (sd.isBefore(ed)) {
-            System.out.println("");
             InputOutput inputOutput = new InputOutput();
             inputOutputs.put(ed, inputOutput);
             ed = ed.minusDays(1);
-            System.out.println("ED:" + ed);
+           
         }
 
         InputOutputDao inputOutputDao = new InputOutputDao();

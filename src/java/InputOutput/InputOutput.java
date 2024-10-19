@@ -7,8 +7,9 @@ package InputOutput;
 
 import DailySales.DailySale;
 
-
 public class InputOutput {
+
+    private DailySale dailySale;
 
     public DailySale getDailySale() {
         return dailySale;
@@ -17,8 +18,4 @@ public class InputOutput {
     public void setDailySale(DailySale dailySale) {
         this.dailySale = dailySale;
     }
-    
-    private DailySale dailySale;
-    
-    
 }
