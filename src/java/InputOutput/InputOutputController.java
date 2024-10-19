@@ -39,6 +39,53 @@ public class InputOutputController {
             return "analitica/itemAnalysisErrorPage";
         }
         modelMap.addAttribute("item", item);
+        LinkedHashMap<LocalDate, InputOutput> inputOutputs = new LinkedHashMap<>();
+
+        //  LocalDate firstDate = date.minusDays(30);
+        //  LocalDate lastDate = date.minusDays(1);
+        LocalDate sd = LocalDate.parse(startDate);
+        LocalDate ed = LocalDate.parse(endDate);
+
+        while (ed.isAfter(sd)) {
+            InputOutput inputOutput = new InputOutput();
+            inputOutputs.put(sd, inputOutput);
+            sd = sd.minusDays(1);
+        }
+
+        InputOutputDao inputOutputDao = new InputOutputDao();
+
+        inputOutputs = inputOutputDao.fillSales(inputOutputs, itemCode, startDate, endDate);
+
+        DailySalesDao dailySalesDao = new DailySalesDao();
+        LinkedHashMap<LocalDate, DailySale> dailySales = dailySalesDao.getLast300DaysSales(item.getCode());
+        modelMap.addAttribute("dailySales", dailySales);
+
+        Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
+        LinkedHashMap<LocalDate, ItemSnapshot> allSnapshots = pet4uItemsDao.getItemSnapshotsFullVersion(item.getCode());
+        modelMap.addAttribute("allSnapshots", allSnapshots);
+        // System.out.println("Retrieving Last 100 Days Snapshot. Done: " + LocalDateTime.now());
+
+        return "/order/inputOutput";
+    }
+
+    @RequestMapping(value = "inputOutputR")
+    public String inputOutputR(@RequestParam(name = "itemCode") String itemCode, @RequestParam(name = "startDate") String startDate, @RequestParam(name = "endDate") String endDate, ModelMap modelMap) {
+        if (itemCode.isEmpty()) {
+            modelMap.addAttribute("code", itemCode);
+            modelMap.addAttribute("message", "Empty text.");
+
+            return "analitica/itemAnalysisErrorPage";
+        }
+        SearchDao searchDao = new SearchDao();
+        Item item = searchDao.getItemByAltercode(itemCode);
+
+        if (item == null) {
+            modelMap.addAttribute("code", itemCode);
+            modelMap.addAttribute("message", "No such code in Pet4u Database");
+
+            return "analitica/itemAnalysisErrorPage";
+        }
+        modelMap.addAttribute("item", item);
 
         DailySalesDao dailySalesDao = new DailySalesDao();
         LinkedHashMap<LocalDate, DailySale> dailySales = dailySalesDao.getLast300DaysSales(item.getCode());

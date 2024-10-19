@@ -5,7 +5,20 @@
  */
 package InputOutput;
 
+import DailySales.DailySale;
+
 
 public class InputOutput {
+
+    public DailySale getDailySale() {
+        return dailySale;
+    }
+
+    public void setDailySale(DailySale dailySale) {
+        this.dailySale = dailySale;
+    }
+    
+    private DailySale dailySale;
+    
     
 }
