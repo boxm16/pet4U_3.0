@@ -48,6 +48,7 @@ public class InputOutputController {
         System.out.println("SD:" + sd);
         System.out.println("ED:" + ed);
         sd = sd.minusDays(1);
+        ed = ed.plusDays(1);
         while (sd.isBefore(ed)) {
             InputOutput inputOutput = new InputOutput();
             inputOutputs.put(ed, inputOutput);

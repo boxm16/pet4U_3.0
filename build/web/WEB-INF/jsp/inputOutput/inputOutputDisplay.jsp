@@ -85,98 +85,99 @@
             <hr>
             <div class="row">
                 <div class=" col-sm-4">
-                    <center><h3>Daily Sales</h3></center>
+                    <center><h3>Daily Input Output</h3></center>
                     <table>
 
                         <th>Date</th>
-                        <th>E-Shop Sales</th>
                         <th>Delivery</th>
-                            <%
+                        <th>E-Shop Sales</th>
 
-                                Item item = (Item) request.getAttribute("item");
+                        <%
+
+                            Item item = (Item) request.getAttribute("item");
 
 //-----------------
-                                LinkedHashMap<LocalDate, InputOutput> inputOutputs = (LinkedHashMap) request.getAttribute("inputOutputs");
+                            LinkedHashMap<LocalDate, InputOutput> inputOutputs = (LinkedHashMap) request.getAttribute("inputOutputs");
 
-                                double allDaysSales = 0;
-                                int days = 0;
+                            double allDaysSales = 0;
+                            int days = 0;
 
-                                for (Map.Entry<LocalDate, InputOutput> inputOutputsEntry : inputOutputs.entrySet()) {
-                                    LocalDate date = inputOutputsEntry.getKey();
-                                    InputOutput inputOutput = inputOutputsEntry.getValue();
-                                    DailySale dailySale = inputOutput.getDailySale();
-                                    if (date.getDayOfWeek().toString().equals("SUNDAY")) {
-                                        out.println("<tr style='background-color: #90EE90;'>");
+                            for (Map.Entry<LocalDate, InputOutput> inputOutputsEntry : inputOutputs.entrySet()) {
+                                LocalDate date = inputOutputsEntry.getKey();
+                                InputOutput inputOutput = inputOutputsEntry.getValue();
+                                DailySale dailySale = inputOutput.getDailySale();
+                                if (date.getDayOfWeek().toString().equals("SUNDAY")) {
+                                    out.println("<tr style='background-color: #90EE90;'>");
 
-                                    } else {
-                                        out.println("<tr >");
+                                } else {
+                                    out.println("<tr >");
 
-                                    }
-                                    String[] weekdays = {"", "Δευτερα.", "Τρίτη", "Τετάρτη", "Πέμπτη.", "Παρασκεύη.", "Σάββατο.", "Κυριακη."};
-                                    int day = date.getDayOfWeek().getValue();
+                                }
+                                String[] weekdays = {"", "Δευτερα.", "Τρίτη", "Τετάρτη", "Πέμπτη.", "Παρασκεύη.", "Σάββατο.", "Κυριακη."};
+                                int day = date.getDayOfWeek().getValue();
 
-                                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+                                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+                                out.println("<td>");
+                                out.println(date.format(formatter) + "<br>" + weekdays[day]);
+                                out.println("</td>");
+
+                                out.println("<td>");
+                                out.println(inputOutput.getDelivery());
+                                out.println("</td>");
+
+                                if (dailySale.getPresoldQuantiy() > 0) {
+                                    out.println("<td style='background-color: red;'>");
+                                    String bb = dailySale.getSoldQuantiy() + "/" + dailySale.getPresoldQuantiy();
+                                    out.println("<a  href = 'getAllSalesDocsOfDateAndItem.htm?itemCode=" + item.getCode() + "&date=" + date + "' target='_blank'>" + bb + "</a>");
+
+                                } else {
                                     out.println("<td>");
-                                    out.println(date.format(formatter) + "<br>" + weekdays[day]);
-                                    out.println("</td>");
 
-                                    if (dailySale.getPresoldQuantiy() > 0) {
-                                        out.println("<td style='background-color: red;'>");
-                                        String bb = dailySale.getSoldQuantiy() + "/" + dailySale.getPresoldQuantiy();
-                                        out.println("<a  href = 'getAllSalesDocsOfDateAndItem.htm?itemCode=" + item.getCode() + "&date=" + date + "' target='_blank'>" + bb + "</a>");
-
-                                    } else {
-                                        out.println("<td>");
-
-                                        out.println("<a  href = 'getAllSalesDocsOfDateAndItem.htm?itemCode=" + item.getCode() + "&date=" + date + "' target='_blank'>" + dailySale.getSoldQuantiy() + "</a>");
-
-                                    }
-
-                                    out.println("</td>");
-
-                                    out.println("<td>");
-                                    out.println(inputOutput.getDelivery());
-                                    out.println("</td>");
-
-                                    out.println("</tr>");
-
-                                    allDaysSales = allDaysSales + dailySale.getSoldQuantiy();
-                                    days++;
+                                    out.println("<a  href = 'getAllSalesDocsOfDateAndItem.htm?itemCode=" + item.getCode() + "&date=" + date + "' target='_blank'>" + dailySale.getSoldQuantiy() + "</a>");
 
                                 }
 
-                                out.println("<tr>");
-                                out.println("<td>");
-                                out.println("Days");
-                                out.println("</td>");
-                                out.println("<td>");
-                                out.println(days);
                                 out.println("</td>");
 
                                 out.println("</tr>");
 
-                                out.println("<tr style='background-color: #A6E2D0'>");
-                                out.println("<td>");
-                                out.println("Total Sales <br> For 30 Day");
-                                out.println("</td>");
+                                allDaysSales = allDaysSales + dailySale.getSoldQuantiy();
+                                days++;
 
-                                out.println("<td>");
-                                out.println(allDaysSales);
-                                out.println("</td>");
+                            }
 
-                                out.println("</tr>");
+                            out.println("<tr>");
+                            out.println("<td>");
+                            out.println("Days");
+                            out.println("</td>");
+                            out.println("<td>");
+                            out.println(days);
+                            out.println("</td>");
 
-                                out.println("<tr>");
-                                out.println("<td>");
-                                out.println("Average Sales <br> For One Day");
-                                out.println("</td>");
+                            out.println("</tr>");
 
-                                out.println("<td>");
-                                out.println(allDaysSales / days);
-                                out.println("</td>");
+                            out.println("<tr style='background-color: #A6E2D0'>");
+                            out.println("<td>");
+                            out.println("Total Sales <br> For 30 Day");
+                            out.println("</td>");
 
-                                out.println("</tr>");
-                            %>
+                            out.println("<td>");
+                            out.println(allDaysSales);
+                            out.println("</td>");
+
+                            out.println("</tr>");
+
+                            out.println("<tr>");
+                            out.println("<td>");
+                            out.println("Average Sales <br> For One Day");
+                            out.println("</td>");
+
+                            out.println("<td>");
+                            out.println(allDaysSales / days);
+                            out.println("</td>");
+
+                            out.println("</tr>");
+                        %>
                     </table>
 
                 </div>
