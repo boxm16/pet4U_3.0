@@ -46,10 +46,11 @@ public class InputOutputController {
         LocalDate sd = LocalDate.parse(startDate);
         LocalDate ed = LocalDate.parse(endDate);
 
-        while (sd.isAfter(ed)) {
+        while (ed.isAfter(sd)) {
+            System.out.println("SD: " + sd);
             InputOutput inputOutput = new InputOutput();
-            inputOutputs.put(ed, inputOutput);
-            ed = ed.minusDays(1);
+            inputOutputs.put(sd, inputOutput);
+            sd = sd.minusDays(1);
         }
 
         InputOutputDao inputOutputDao = new InputOutputDao();
