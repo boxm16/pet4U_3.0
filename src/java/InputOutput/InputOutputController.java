@@ -51,7 +51,7 @@ public class InputOutputController {
             System.out.println("");
             InputOutput inputOutput = new InputOutput();
             inputOutputs.put(ed, inputOutput);
-            ed = sd.minusDays(1);
+            ed = ed.minusDays(1);
             System.out.println("ED:" + ed);
         }
 
