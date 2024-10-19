@@ -90,4 +90,28 @@ public class InputOutputDao {
         return inputOutputs;
     }
 
+    LinkedHashMap<LocalDate, InputOutput> fillDeliveries(LinkedHashMap<LocalDate, InputOutput> inputOutputs, String itemCode, String startDate, String endDate) {
+
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+        Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
+
+        try {
+            Statement statement = connection.createStatement();
+            String sql = "SELECT [DATEOFUPDATE],  [QUANT1] FROM  [petworld].[dbo].[WH_DEPA]  WHERE [ABBREVIATION]='"+itemCode+"'  AND [DATEOFUPDATE] BETWEEN '" + startDate + "' AND '" + endDate + "' ORDER BY [DATEOFUPDATE];";
+
+            ResultSet resultSet = statement.executeQuery(sql);
+
+            while (resultSet.next()) {
+                
+            }
+
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(InputOutputDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return inputOutputs;
+    }
+
 }

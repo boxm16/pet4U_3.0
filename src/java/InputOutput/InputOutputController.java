@@ -58,6 +58,8 @@ public class InputOutputController {
         InputOutputDao inputOutputDao = new InputOutputDao();
 
         inputOutputs = inputOutputDao.fillSales(inputOutputs, itemCode, startDate, endDate);
+        inputOutputs = inputOutputDao.fillDeliveries(inputOutputs, itemCode, startDate, endDate);
+
         modelMap.addAttribute("inputOutputs", inputOutputs);
 
         DailySalesDao dailySalesDao = new DailySalesDao();

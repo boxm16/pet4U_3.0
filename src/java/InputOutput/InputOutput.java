@@ -9,6 +9,7 @@ import DailySales.DailySale;
 
 public class InputOutput {
 
+    private double delivery;
     private DailySale dailySale;
 
     public InputOutput() {
@@ -22,4 +23,14 @@ public class InputOutput {
     public void setDailySale(DailySale dailySale) {
         this.dailySale = dailySale;
     }
+
+    public double getDelivery() {
+        return delivery;
+    }
+
+    public void setDelivery(double delivery) {
+        this.delivery = delivery;
+    }
+    
+    
 }
