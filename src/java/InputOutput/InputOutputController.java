@@ -47,16 +47,18 @@ public class InputOutputController {
         LocalDate ed = LocalDate.parse(endDate);
         System.out.println("SD:" + sd);
         System.out.println("ED:" + ed);
+        sd = sd.minusDays(1);
         while (sd.isBefore(ed)) {
             InputOutput inputOutput = new InputOutput();
             inputOutputs.put(ed, inputOutput);
             ed = ed.minusDays(1);
-           
+
         }
 
         InputOutputDao inputOutputDao = new InputOutputDao();
 
         inputOutputs = inputOutputDao.fillSales(inputOutputs, itemCode, startDate, endDate);
+        modelMap.addAttribute("inputOutputs", inputOutputs);
 
         DailySalesDao dailySalesDao = new DailySalesDao();
         LinkedHashMap<LocalDate, DailySale> dailySales = dailySalesDao.getLast300DaysSales(item.getCode());
@@ -67,7 +69,7 @@ public class InputOutputController {
         modelMap.addAttribute("allSnapshots", allSnapshots);
         // System.out.println("Retrieving Last 100 Days Snapshot. Done: " + LocalDateTime.now());
 
-        return "/order/inputOutput";
+        return "/inputOutput/inputOutputDisplay";
     }
 
     @RequestMapping(value = "inputOutputR")
