@@ -49,6 +49,8 @@ public class InputOutputController {
         System.out.println("ED:" + ed);
         sd = sd.minusDays(1);
         ed = ed.plusDays(1);
+        startDate = sd.toString();
+        endDate = ed.toString();
         while (sd.isBefore(ed)) {
             InputOutput inputOutput = new InputOutput();
             inputOutputs.put(ed, inputOutput);
