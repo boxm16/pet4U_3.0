@@ -45,14 +45,15 @@ public class InputOutputController {
         //  LocalDate lastDate = date.minusDays(1);
         LocalDate sd = LocalDate.parse(startDate);
         LocalDate ed = LocalDate.parse(endDate);
-        System.out.println("SD:"+sd);
-           System.out.println("ED:"+ed);
-      /*  while (sd.isAfter(ed)) {
+        System.out.println("SD:" + sd);
+        System.out.println("ED:" + ed);
+        while (sd.isBefore(ed)) {
             System.out.println("");
             InputOutput inputOutput = new InputOutput();
             inputOutputs.put(ed, inputOutput);
-            ed = ed.minusDays(1);
-        }*/
+            ed = sd.minusDays(1);
+            System.out.println("ED:" + ed);
+        }
 
         InputOutputDao inputOutputDao = new InputOutputDao();
 
