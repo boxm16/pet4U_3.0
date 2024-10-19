@@ -11,6 +11,10 @@ public class InputOutput {
 
     private DailySale dailySale;
 
+    public InputOutput() {
+        dailySale = new DailySale();
+    }
+
     public DailySale getDailySale() {
         return dailySale;
     }
