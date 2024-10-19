@@ -97,12 +97,33 @@ public class InputOutputDao {
 
         try {
             Statement statement = connection.createStatement();
-            String sql = "SELECT [DATEOFUPDATE],  [QUANT1] FROM  [petworld].[dbo].[WH_DEPA]  WHERE [ABBREVIATION]='"+itemCode+"'  AND [DATEOFUPDATE] BETWEEN '" + startDate + "' AND '" + endDate + "' ORDER BY [DATEOFUPDATE];";
+            String sql = "SELECT [DATEOFUPDATE], [ABBREVIATION], [QUANT1] FROM  [petworld].[dbo].[WH_DEPA]  WHERE [ABBREVIATION]='" + itemCode + "'  AND [DATEOFUPDATE] BETWEEN '" + startDate + "' AND '" + endDate + "' ORDER BY [DATEOFUPDATE];";
 
             ResultSet resultSet = statement.executeQuery(sql);
-
+            LocalDate creationDate;
             while (resultSet.next()) {
-                
+                String creationDateTimeStampString = resultSet.getString("DATEOFUPDATE");
+                DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
+                DateTimeFormatter formatter3 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SS");
+                DateTimeFormatter formatter4 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S");
+
+                LocalDateTime creationDateTime;
+                if (creationDateTimeStampString.length() == 23) {
+                    creationDateTime = LocalDateTime.parse(creationDateTimeStampString, formatter2);
+                } else if (creationDateTimeStampString.length() == 22) {
+                    creationDateTime = LocalDateTime.parse(creationDateTimeStampString, formatter3);
+                } else {
+                    creationDateTime = LocalDateTime.parse(creationDateTimeStampString, formatter4);
+                }
+
+                creationDate = creationDateTime.toLocalDate();
+                InputOutput inputOutput = inputOutputs.get(creationDate);
+
+                if (inputOutput == null) {
+                    System.out.println("Something Wrong. InputOutputDao. inputOutput=null:" + creationDate);
+                } else {
+                    System.out.println("---" + resultSet.getString("QUANT1"));
+                }
             }
 
             resultSet.close();
