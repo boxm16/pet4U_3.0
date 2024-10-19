@@ -90,7 +90,7 @@
 
                         <th>Date</th>
                         <th>E-Shop Sales</th>
-                        <th>Ενδοδιακ.</th>
+                        <th>Delivery</th>
                             <%
 
                                 Item item = (Item) request.getAttribute("item");
@@ -132,6 +132,10 @@
 
                                     }
 
+                                    out.println("</td>");
+
+                                    out.println("<td>");
+                                    out.println(inputOutput.getDelivery());
                                     out.println("</td>");
 
                                     out.println("</tr>");

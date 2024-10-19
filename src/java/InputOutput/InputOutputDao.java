@@ -122,7 +122,10 @@ public class InputOutputDao {
                 if (inputOutput == null) {
                     System.out.println("Something Wrong. InputOutputDao. inputOutput=null:" + creationDate);
                 } else {
-                    System.out.println("---" + resultSet.getString("QUANT1"));
+                    double delivery = inputOutput.getDelivery();
+                    delivery = delivery + Double.parseDouble(resultSet.getString("QUANT1"));
+                    inputOutput.setDelivery(delivery);
+                    inputOutputs.put(creationDate, inputOutput);
                 }
             }
 
