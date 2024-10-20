@@ -62,6 +62,7 @@ public class InputOutputController {
 
         inputOutputs = inputOutputDao.fillSales(inputOutputs, itemCode, startDate, endDate);
         inputOutputs = inputOutputDao.fillDeliveries(inputOutputs, itemCode, startDate, endDate);
+        inputOutputs = inputOutputDao.fillEndoParalaves(inputOutputs, itemCode, startDate, endDate);
 
         modelMap.addAttribute("inputOutputs", inputOutputs);
 

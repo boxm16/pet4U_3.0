@@ -11,6 +11,7 @@ public class InputOutput {
 
     private double delivery;
     private DailySale dailySale;
+    private double endoParalavi;
 
     public InputOutput() {
         dailySale = new DailySale();
@@ -30,6 +31,14 @@ public class InputOutput {
 
     public void setDelivery(double delivery) {
         this.delivery = delivery;
+    }
+
+    public double getEndoParalavi() {
+        return endoParalavi;
+    }
+
+    public void setEndoParalavi(double endoParalavi) {
+        this.endoParalavi = endoParalavi;
     }
     
     

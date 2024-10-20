@@ -90,6 +90,7 @@
 
                         <th>Date</th>
                         <th>Delivery</th>
+                        <th>Ενδο Παραλαβη</th>
                         <th>E-Shop Sales</th>
 
                         <%
@@ -123,6 +124,10 @@
 
                                 out.println("<td>");
                                 out.println(inputOutput.getDelivery());
+                                out.println("</td>");
+
+                                out.println("<td>");
+                                out.println(inputOutput.getEndoParalavi());
                                 out.println("</td>");
 
                                 if (dailySale.getPresoldQuantiy() > 0) {
