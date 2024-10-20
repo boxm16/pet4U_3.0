@@ -142,8 +142,62 @@ public class InputOutputDao {
 
         startDate = startDate + " 00:00:00.000";
         endDate = endDate + " 23:59:59.999";
-        String query = "SELECT    [DOCDATE],  [ABBREVIATION], [QUANTITY]  FROM [petworld].[dbo].[WH_ENDA]"
-                + " WHERE [ABBREVIATION]='" + itemCode + "' AND DATE_TIME BETWEEN '" + startDate + "' AND '" + endDate + "' ORDER BY [DOCDATE];";
+        String query = "SELECT    [DOCDATE],  [ABBREVIATION], [QUANTITY]  FROM [petworld].[dbo].[WH_ENDP]"
+                + " WHERE [ABBREVIATION]='" + itemCode + "' AND DOCDATE BETWEEN '" + startDate + "' AND '" + endDate + "' ORDER BY [DOCDATE];";
+
+        ResultSet resultSet;
+
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
+            Statement statement = connection.createStatement();
+
+            resultSet = statement.executeQuery(query);
+            LocalDate creationDate;
+            while (resultSet.next()) {
+                String creationDateTimeStampString = resultSet.getString("DOCDATE");
+                DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
+                DateTimeFormatter formatter3 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SS");
+                DateTimeFormatter formatter4 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S");
+
+                LocalDateTime creationDateTime;
+                if (creationDateTimeStampString.length() == 23) {
+                    creationDateTime = LocalDateTime.parse(creationDateTimeStampString, formatter2);
+                } else if (creationDateTimeStampString.length() == 22) {
+                    creationDateTime = LocalDateTime.parse(creationDateTimeStampString, formatter3);
+                } else {
+                    creationDateTime = LocalDateTime.parse(creationDateTimeStampString, formatter4);
+                }
+
+                creationDate = creationDateTime.toLocalDate();
+                InputOutput inputOutput = inputOutputs.get(creationDate);
+
+                if (inputOutput == null) {
+                    System.out.println("Something Wrong. InputOutputDao. inputOutput=null:" + creationDate);
+                } else {
+                    double endoParalavi = inputOutput.getEndoParalavi();
+                    endoParalavi = endoParalavi + Double.parseDouble(resultSet.getString("QUANTITY"));
+                    inputOutput.setEndoParalavi(endoParalavi);
+                    inputOutputs.put(creationDate, inputOutput);
+                }
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(InputOutputDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return inputOutputs;
+    }
+
+    LinkedHashMap<LocalDate, InputOutput> fillEndoApostoles(LinkedHashMap<LocalDate, InputOutput> inputOutputs, String itemCode, String startDate, String endDate) {
+
+        startDate = startDate + " 00:00:00.000";
+        endDate = endDate + " 23:59:59.999";
+        String query = "SELECT    [DATE_TIME],  [ABBREVIATION], [QUANTITY]  FROM [petworld].[dbo].[WH_ENDA_VAR]"
+                + " WHERE [ABBREVIATION]='" + itemCode + "' AND DATE_TIME BETWEEN '" + startDate + "' AND '" + endDate + "' ORDER BY [DATE_TIME];";
 
         ResultSet resultSet;
 
