@@ -129,6 +129,11 @@
                                 out.println("<td>");
                                 out.println(inputOutput.getEndoParalavi());
                                 out.println("</td>");
+                                
+                                  out.println("<td>");
+                                out.println(inputOutput.getEn());
+                                out.println("</td>");
+                                
 
                                 if (dailySale.getPresoldQuantiy() > 0) {
                                     out.println("<td style='background-color: red;'>");
@@ -143,6 +148,8 @@
                                 }
 
                                 out.println("</td>");
+                                
+                                
 
                                 out.println("</tr>");
 

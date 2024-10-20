@@ -175,9 +175,9 @@ public class InputOutputDao {
                 if (inputOutput == null) {
                     System.out.println("Something Wrong. InputOutputDao. inputOutput=null:" + creationDate);
                 } else {
-                    double endoParalavi = inputOutput.getEndoParalavi();
-                    endoParalavi = endoParalavi + Double.parseDouble(resultSet.getString("QUANTITY"));
-                    inputOutput.setEndoParalavi(endoParalavi);
+                    double endoApostoli = inputOutput.getEndoApostoli();
+                    endoApostoli = endoApostoli + Double.parseDouble(resultSet.getString("QUANTITY"));
+                    inputOutput.setEndoApostoli(endoApostoli);
                     inputOutputs.put(creationDate, inputOutput);
                 }
             }
