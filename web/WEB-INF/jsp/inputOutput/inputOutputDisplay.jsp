@@ -91,6 +91,7 @@
                         <th>Date</th>
                         <th>Delivery</th>
                         <th>Ενδο Παραλαβη</th>
+                        <th>Ενδο Αποστολη</th>
                         <th>E-Shop Sales</th>
 
                         <%
@@ -129,11 +130,10 @@
                                 out.println("<td>");
                                 out.println(inputOutput.getEndoParalavi());
                                 out.println("</td>");
-                                
-                                  out.println("<td>");
+
+                                out.println("<td>");
                                 out.println(inputOutput.getEndoApostoli());
                                 out.println("</td>");
-                                
 
                                 if (dailySale.getPresoldQuantiy() > 0) {
                                     out.println("<td style='background-color: red;'>");
@@ -148,8 +148,6 @@
                                 }
 
                                 out.println("</td>");
-                                
-                                
 
                                 out.println("</tr>");
 
