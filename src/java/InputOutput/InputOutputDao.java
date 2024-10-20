@@ -209,7 +209,7 @@ public class InputOutputDao {
             resultSet = statement.executeQuery(query);
             LocalDate creationDate;
             while (resultSet.next()) {
-                String creationDateTimeStampString = resultSet.getString("DOCDATE");
+                String creationDateTimeStampString = resultSet.getString("DATE_TIME");
                 DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
                 DateTimeFormatter formatter3 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SS");
                 DateTimeFormatter formatter4 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S");
