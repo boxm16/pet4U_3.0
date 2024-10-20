@@ -191,7 +191,10 @@
                     </table>
 
                 </div>
+                <div class=" col-sm-4">
+                    <center><h3>Camelot Stock Analysis</h3></center>
 
+                </div>
 
 
 
@@ -315,10 +318,7 @@
                             %>
                     </table>
                 </div>
-                <div class=" col-sm-4">
-                    <center><h3>Camelot Stock Analysis</h3></center>
 
-                </div>
 
 
             </div>
