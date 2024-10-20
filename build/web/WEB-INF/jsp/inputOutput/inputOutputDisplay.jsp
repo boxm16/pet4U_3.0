@@ -131,7 +131,7 @@
                                 out.println("</td>");
                                 
                                   out.println("<td>");
-                                out.println(inputOutput.getEn());
+                                out.println(inputOutput.getEndoApostoli());
                                 out.println("</td>");
                                 
 
