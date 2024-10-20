@@ -142,7 +142,7 @@ public class InputOutputDao {
 
         startDate = startDate + " 00:00:00.000";
         endDate = endDate + " 23:59:59.999";
-        String query = "SELECT    [DOCDATE],  [ABBREVIATION], [QUANTITY],  FROM [petworld].[dbo].[WH_ENDA]"
+        String query = "SELECT    [DOCDATE],  [ABBREVIATION], [QUANTITY]  FROM [petworld].[dbo].[WH_ENDA]"
                 + " WHERE [ABBREVIATION]='" + itemCode + "' AND DATE_TIME BETWEEN '" + startDate + "' AND '" + endDate + "' ORDER BY [DOCDATE];";
 
         ResultSet resultSet;
