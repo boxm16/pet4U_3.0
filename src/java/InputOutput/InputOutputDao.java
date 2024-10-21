@@ -142,8 +142,8 @@ public class InputOutputDao {
 
         startDate = startDate + " 00:00:00.000";
         endDate = endDate + " 23:59:59.999";
-        String query = "SELECT    [DOCDATE],  [ABBREVIATION], [QUANTITY]  FROM [petworld].[dbo].[WH_ENDP]"
-                + " WHERE [ABBREVIATION]='" + itemCode + "' AND DOCDATE BETWEEN '" + startDate + "' AND '" + endDate + "' ORDER BY [DOCDATE];";
+        String query = "SELECT    [DOCDATE], [DATE_TIME], [ABBREVIATION], [QUANTITY]  FROM [petworld].[dbo].[WH_ENDP]"
+                + " WHERE [ABBREVIATION]='" + itemCode + "' AND DATE_TIME BETWEEN '" + startDate + "' AND '" + endDate + "' ORDER BY [DATE_TIME];";
 
         ResultSet resultSet;
 
@@ -155,7 +155,7 @@ public class InputOutputDao {
             resultSet = statement.executeQuery(query);
             LocalDate creationDate;
             while (resultSet.next()) {
-                String creationDateTimeStampString = resultSet.getString("DOCDATE");
+                String creationDateTimeStampString = resultSet.getString("DATE_TIME");
                 DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
                 DateTimeFormatter formatter3 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SS");
                 DateTimeFormatter formatter4 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S");
