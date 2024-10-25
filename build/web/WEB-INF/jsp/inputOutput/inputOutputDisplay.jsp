@@ -156,37 +156,7 @@
 
                             }
 
-                            out.println("<tr>");
-                            out.println("<td>");
-                            out.println("Days");
-                            out.println("</td>");
-                            out.println("<td>");
-                            out.println(days);
-                            out.println("</td>");
-
-                            out.println("</tr>");
-
-                            out.println("<tr style='background-color: #A6E2D0'>");
-                            out.println("<td>");
-                            out.println("Total Sales <br> For 30 Day");
-                            out.println("</td>");
-
-                            out.println("<td>");
-                            out.println(allDaysSales);
-                            out.println("</td>");
-
-                            out.println("</tr>");
-
-                            out.println("<tr>");
-                            out.println("<td>");
-                            out.println("Average Sales <br> For One Day");
-                            out.println("</td>");
-
-                            out.println("<td>");
-                            out.println(allDaysSales / days);
-                            out.println("</td>");
-
-                            out.println("</tr>");
+                            
                         %>
                     </table>
 
