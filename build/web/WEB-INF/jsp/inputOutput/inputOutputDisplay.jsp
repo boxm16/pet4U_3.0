@@ -128,21 +128,42 @@
                                         out.println(currentItem.getPosition());
                                         out.println("</td>");
                                         //-----------++++++-----------input Output-----+++++++-----
-                                        out.println("<td>");
-                                        out.println(currentItem.getInputOutput().getDelivery());
-                                        out.println("</td>");
+                                        InputOutput inputOutput = currentItem.getInputOutput();
+                                        if (inputOutput == null) {
 
-                                        out.println("<td>");
-                                        out.println(currentItem.getInputOutput().getEndoParalavi());
-                                        out.println("</td>");
+                                            out.println("<td>");
+                                            out.println("N/A");
+                                            out.println("</td>");
 
-                                        out.println("<td>");
-                                        out.println(currentItem.getInputOutput().getEndoApostoli());
-                                        out.println("</td>");
+                                            out.println("<td>");
+                                            out.println("N/A");
+                                            out.println("</td>");
 
-                                        out.println("<td>");
-                                        out.println(currentItem.getInputOutput().getDailySale());
-                                        out.println("</td>");
+                                            out.println("<td>");
+                                            out.println("N/A");
+                                            out.println("</td>");
+
+                                            out.println("<td>");
+                                            out.println("N/A");
+                                            out.println("</td>");
+
+                                        } else {
+                                            out.println("<td>");
+                                            out.println(currentItem.getInputOutput().getDelivery());
+                                            out.println("</td>");
+
+                                            out.println("<td>");
+                                            out.println(currentItem.getInputOutput().getEndoParalavi());
+                                            out.println("</td>");
+
+                                            out.println("<td>");
+                                            out.println(currentItem.getInputOutput().getEndoApostoli());
+                                            out.println("</td>");
+
+                                            out.println("<td>");
+                                            out.println(currentItem.getInputOutput().getDailySale());
+                                            out.println("</td>");
+                                        }
 
                                         if (currentItem.getQuantity().equals("0") || currentItem.getQuantity().equals("0.000000")) {
                                             out.println("<td style='background-color: #F7B2F7'>");
