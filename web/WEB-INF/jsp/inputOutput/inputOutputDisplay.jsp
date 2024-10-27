@@ -197,7 +197,7 @@
                                             double stockDiff = stock - Double.parseDouble(previousItem.getQuantity());
                                             double diff = inputOutputDiff - stockDiff;
                                             if (diff != 0) {
-                                                out.println("ALLLLLLLLLLLLLLLLLLLLLLARM");
+                                                out.println("<div style='background-color:red'>ALLLLLLLLLLLLLLLLLLLLLLARM</div>");
                                             } else {
                                                 out.println("");
                                             }
