@@ -232,7 +232,7 @@
                         <th>Ενδο Αποστολη</th>
                         <th>E-Shop Sales</th>
 
-                        <%/*
+                        <% /*
                             Item item = (Item) request.getAttribute("item");
 
 //-----------------
@@ -293,9 +293,9 @@
 
                             }
 
-
+  */
                         %>
-                        */
+                      
                     </table>
 
                 </div>
