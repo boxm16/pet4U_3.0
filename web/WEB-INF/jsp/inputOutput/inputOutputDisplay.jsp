@@ -190,14 +190,13 @@
                                         if (previousItem == null) {
                                             out.println("-");
                                         } else {
-                                            double inputOutputDiff = stock
-                                                    + currentItem.getInputOutput().getDelivery()
+                                            double inputOutputDiff = currentItem.getInputOutput().getDelivery()
                                                     + currentItem.getInputOutput().getEndoParalavi()
                                                     - currentItem.getInputOutput().getEndoApostoli()
                                                     - currentItem.getInputOutput().getDailySale().getSoldQuantiy();
                                             double stockDiff = stock - Double.parseDouble(previousItem.getQuantity());
                                             double diff = inputOutputDiff - stockDiff;
-                                            out.println(inputOutputDiff+"?"+stockDiff+"="+diff);
+                                            out.println(inputOutputDiff + "?" + stockDiff + "=" + diff);
                                         }
                                         out.println("</td>");
 
