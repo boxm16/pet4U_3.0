@@ -76,6 +76,10 @@
                         <th>Date Stamp</th>
                         <th>State</th>
                         <th>Positon</th>
+                        <th>Delivery</th>
+                        <th>Ενδο Παραλαβη</th>
+                        <th>Ενδο Αποστολη</th>
+                        <th>E-Shop Sales</th>
                         <th>Quantity</th>
                             <%
                                 LinkedHashMap<LocalDate, ItemSnapshot> itemSnapshotsWithInputOutput = (LinkedHashMap) request.getAttribute("allSnapshots");
@@ -122,6 +126,22 @@
 
                                         out.println("<td>");
                                         out.println(currentItem.getPosition());
+                                        out.println("</td>");
+                                        //-----------++++++-----------input Output-----+++++++-----
+                                        out.println("<td>");
+                                        out.println(currentItem.getInputOutput().getDelivery());
+                                        out.println("</td>");
+
+                                        out.println("<td>");
+                                        out.println(currentItem.getInputOutput().getEndoParalavi());
+                                        out.println("</td>");
+
+                                        out.println("<td>");
+                                        out.println(currentItem.getInputOutput().getEndoApostoli());
+                                        out.println("</td>");
+
+                                        out.println("<td>");
+                                        out.println(currentItem.getInputOutput().getDailySale());
                                         out.println("</td>");
 
                                         if (currentItem.getQuantity().equals("0") || currentItem.getQuantity().equals("0.000000")) {
