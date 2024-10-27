@@ -288,7 +288,7 @@ public class InputOutputDao {
                 itemSnapshot.setPosition(position);
                 itemSnapshot.setQuantity(quantity);
                 
-                itemSnapshot.setInputOutput(inputOutputs.get(dateStamp));
+                itemSnapshot.setInputOutput(inputOutputs.get(date1));
                 
                 snapshots.put(date1, itemSnapshot);
             }
