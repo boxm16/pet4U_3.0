@@ -161,7 +161,7 @@
                                             out.println("</td>");
 
                                             out.println("<td>");
-                                            out.println(currentItem.getInputOutput().getDailySale());
+                                            out.println(currentItem.getInputOutput().getDailySale().getSoldQuantiy());
                                             out.println("</td>");
                                         }
 
