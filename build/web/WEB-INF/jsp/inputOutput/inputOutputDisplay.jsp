@@ -84,51 +84,52 @@
                         <th>Diff</th>
                         <th>Alarm</th>
                             <%
-                                LinkedHashMap<LocalDate, ItemSnapshot> itemSnapshotsWithInputOutput = (LinkedHashMap) request.getAttribute("allSnapshots");
-                                List<LocalDate> dates = new ArrayList<>(itemSnapshotsWithInputOutput.keySet());
-                                for (int k = 0; k < dates.size() - 1; k++) {
-                                    LocalDate currentDate = dates.get(k);
-                                    LocalDate previousDate = dates.get(k + 1);;   // Will fail if there isn't another element.
+                                    LinkedHashMap<LocalDate, ItemSnapshot> itemSnapshotsWithInputOutput = (LinkedHashMap) request.getAttribute("allSnapshots");
+                                    List<LocalDate> dates = new ArrayList<>(itemSnapshotsWithInputOutput.keySet());
+                                    for (int k = 0; k < dates.size() - 1; k++) {
+                                        LocalDate currentDate = dates.get(k);
+                                        LocalDate previousDate = dates.get(k + 1);;   // Will fail if there isn't another element.
 
-                                    ItemSnapshot currentItem = itemSnapshotsWithInputOutput.get(currentDate);
-                                    ItemSnapshot previousItem = itemSnapshotsWithInputOutput.get(previousDate);
+                                        ItemSnapshot currentItem = itemSnapshotsWithInputOutput.get(currentDate);
+                                        ItemSnapshot previousItem = itemSnapshotsWithInputOutput.get(previousDate);
 
-                                    // ...
-                                    if (currentDate.getDayOfWeek().toString().equals("SUNDAY")) {
-                                        out.println("<tr style='background-color: #90EE90;'>");
+                                        // ...
+                                        if (currentDate.getDayOfWeek().toString().equals("SUNDAY")) {
+                                            out.println("<tr style='background-color: #90EE90;'>");
 
-                                    } else {
-                                        out.println("<tr >");
+                                        } else {
+                                            out.println("<tr >");
 
-                                    }
-                                    String[] weekdays = {"", "Δευτερα.", "Τρίτη", "Τετάρτη", "Πέμπτη.", "Παρασκεύη.", "Σάββατο.", "Κυριακη."};
-                                    int day = currentDate.getDayOfWeek().getValue();
+                                        }
+                                        String[] weekdays = {"", "Δευτερα.", "Τρίτη", "Τετάρτη", "Πέμπτη.", "Παρασκεύη.", "Σάββατο.", "Κυριακη."};
+                                        int day = currentDate.getDayOfWeek().getValue();
 
-                                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-                                    out.println("<td>");
-                                    out.println(currentDate.format(formatter) + "<br>" + weekdays[day]);
-                                    out.println("</td>");
-
-                                    if (currentItem == null) {
-                                        out.println("<td style='background-color: #F1BFB2 ;'>");
-                                        out.println("N/A");
-                                        out.println("</td>");
-                                        out.println("<td style='background-color: #F1BFB2 ;'>");
-                                        out.println("N/A");
-                                        out.println("</td>");
-                                        out.println("<td style='background-color: #F1BFB2 ;'>");
-                                        out.println("N/A");
-                                        out.println("</td>");
-                                    } else {
-                                        Double stock = Double.parseDouble(currentItem.getQuantity());
-
+                                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
                                         out.println("<td>");
-                                        out.println(currentItem.getState());
+                                        out.println(currentDate.format(formatter) + "<br>" + weekdays[day]);
                                         out.println("</td>");
 
-                                        out.println("<td>");
-                                        out.println(currentItem.getPosition());
-                                        out.println("</td>");
+                                        if (currentItem == null) {
+                                            out.println("<td style='background-color: #F1BFB2 ;'>");
+                                            out.println("N/A");
+                                            out.println("</td>");
+                                            out.println("<td style='background-color: #F1BFB2 ;'>");
+                                            out.println("N/A");
+                                            out.println("</td>");
+                                            out.println("<td style='background-color: #F1BFB2 ;'>");
+                                            out.println("N/A");
+                                            out.println("</td>");
+                                        } else {
+                                            Double stock = Double.parseDouble(currentItem.getQuantity());
+
+                                            out.println("<td>");
+                                            out.println(currentItem.getState());
+                                            out.println("</td>");
+
+                                            out.println("<td>");
+                                            out.println(currentItem.getPosition());
+                                            out.println("</td>");
+                                        }
                                         //-----------++++++-----------input Output-----+++++++-----
                                         InputOutput inputOutput = currentItem.getInputOutput();
                                         if (inputOutput == null) {
@@ -182,7 +183,13 @@
                                         if (previousItem == null) {
                                             out.println("-");
                                         } else {
-                                            out.println(stock - Double.parseDouble(previousItem.getQuantity()));
+                                            if (currentItem == null) {
+                                                out.println("-");
+                                            } else {
+
+                                                Double stock = Double.parseDouble(currentItem.getQuantity());
+                                                out.println(stock - Double.parseDouble(previousItem.getQuantity()));
+                                            }
                                         }
                                         out.println("</td>");
 
@@ -190,16 +197,22 @@
                                         if (previousItem == null) {
                                             out.println("-");
                                         } else {
-                                            double inputOutputDiff = currentItem.getInputOutput().getDelivery()
-                                                    + currentItem.getInputOutput().getEndoParalavi()
-                                                    - currentItem.getInputOutput().getEndoApostoli()
-                                                    - currentItem.getInputOutput().getDailySale().getSoldQuantiy();
-                                            double stockDiff = stock - Double.parseDouble(previousItem.getQuantity());
-                                            double diff = inputOutputDiff - stockDiff;
-                                            if (diff != 0) {
-                                                out.println("<div style='background-color:red'>ALLLLLLLLLLLLLLLLLLLLLLARM</div>");
+
+                                            if (currentItem == null) {
+                                                out.println("-");
                                             } else {
-                                                out.println("");
+
+                                                double inputOutputDiff = currentItem.getInputOutput().getDelivery()
+                                                        + currentItem.getInputOutput().getEndoParalavi()
+                                                        - currentItem.getInputOutput().getEndoApostoli()
+                                                        - currentItem.getInputOutput().getDailySale().getSoldQuantiy();
+                                                double stockDiff = stock - Double.parseDouble(previousItem.getQuantity());
+                                                double diff = inputOutputDiff - stockDiff;
+                                                if (diff != 0) {
+                                                    out.println("<div style='background-color:red'>ALLLLLLLLLLLLLLLLLLLLLLARM</div>");
+                                                } else {
+                                                    out.println("");
+                                                }
                                             }
 
                                         }
@@ -293,9 +306,9 @@
 
                             }
 
-  */
+                             */
                         %>
-                      
+
                     </table>
 
                 </div>
@@ -379,7 +392,7 @@
                                     }
                                     out.println("</tr>");
                                 }
-*/
+                                 */
                             %>
                     </table>
                 </div>
