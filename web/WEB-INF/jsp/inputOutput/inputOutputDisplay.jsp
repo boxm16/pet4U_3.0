@@ -232,7 +232,7 @@
                         <th>Ενδο Αποστολη</th>
                         <th>E-Shop Sales</th>
 
-                        <%
+                        <%/*
                             Item item = (Item) request.getAttribute("item");
 
 //-----------------
@@ -295,6 +295,7 @@
 
 
                         %>
+                        */
                     </table>
 
                 </div>
@@ -312,51 +313,7 @@
                         <th>State</th>
                         <th>Positon</th>
                         <th>Quantity</th>
-                            <% /*                               ArrayList<ItemSnapshot> itemSnapshots = (ArrayList) request.getAttribute("itemSnapshots");
-                                double stockBefore = 0.0;
-
-                                for (int x = 0; x < itemSnapshots.size() - 1; x++) {
-                                    ItemSnapshot itemSnapshot = itemSnapshots.get(x);
-                                    stockBefore = Double.parseDouble(itemSnapshots.get(x + 1).getQuantity());
-                                    Double stock = Double.parseDouble(itemSnapshot.getQuantity());
-
-                                    String date = itemSnapshot.getDateStamp();
-                                    Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(date);
-
-                                    String[] weekdays = {"Κυριακη.", "Δευτερα.", "Τρίτη", "Τετάρτη", "Πέμπτη.", "Παρασκεύη.", "Σάββατο."};
-                                    int day = date1.getDay();
-
-                                    if (day == 0) {
-                                        out.println("<tr style='background-color: #90EE90;'>");
-
-                                    } else {
-                                        out.println("<tr >");
-
-                                    }
-                                    out.println("<td>");
-                                    out.println(itemSnapshot.getReformatedDateStamp() + "<br>" + weekdays[day]);
-                                    out.println("</td>");
-
-                                    out.println("<td>");
-                                    out.println(itemSnapshot.getState());
-                                    out.println("</td>");
-
-                                    if (itemSnapshot.getQuantity().equals("0") || itemSnapshot.getQuantity().equals("0.000000")) {
-                                        out.println("<td style='background-color: #F7B2F7'>");
-                                    } else {
-                                        out.println("<td>");
-                                    }
-                                    out.println(itemSnapshot.getQuantity());
-                                    out.println("</td>");
-
-                                    out.println("<td>");
-                                    out.println(stock - stockBefore);
-                                    out.println("</td>");
-                                    out.println("</tr>");
-                                    stockBefore = stock;
-
-                                }
-                                 */
+                            <% /*  
                                 LinkedHashMap<LocalDate, ItemSnapshot> itemSnapshots = (LinkedHashMap) request.getAttribute("allSnapshots");
                                 List<LocalDate> keys = new ArrayList<>(itemSnapshots.keySet());
                                 for (int k = 0; k < keys.size() - 1; k++) {
@@ -422,6 +379,7 @@
                                     }
                                     out.println("</tr>");
                                 }
+*/
                             %>
                     </table>
                 </div>
