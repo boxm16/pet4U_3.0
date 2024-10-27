@@ -81,6 +81,8 @@
                         <th>Ενδο Αποστολη</th>
                         <th>E-Shop Sales</th>
                         <th>Quantity</th>
+                        <th>Diff</th>
+                        <th>Alarm</th>
                             <%
                                 LinkedHashMap<LocalDate, ItemSnapshot> itemSnapshotsWithInputOutput = (LinkedHashMap) request.getAttribute("allSnapshots");
                                 List<LocalDate> dates = new ArrayList<>(itemSnapshotsWithInputOutput.keySet());
@@ -146,6 +148,9 @@
                                             out.println("<td>");
                                             out.println("N/A");
                                             out.println("</td>");
+                                            out.println("<td>");
+                                            out.println("N/A");
+                                            out.println("</td>");
 
                                         } else {
                                             out.println("<td>");
@@ -178,6 +183,21 @@
                                             out.println("-");
                                         } else {
                                             out.println(stock - Double.parseDouble(previousItem.getQuantity()));
+                                        }
+                                        out.println("</td>");
+
+                                        out.println("<td>");
+                                        if (previousItem == null) {
+                                            out.println("-");
+                                        } else {
+                                            double inputOutputDiff = stock
+                                                    + currentItem.getInputOutput().getDelivery()
+                                                    + currentItem.getInputOutput().getEndoParalavi()
+                                                    - currentItem.getInputOutput().getEndoApostoli()
+                                                    - currentItem.getInputOutput().getDailySale().getSoldQuantiy();
+                                            double stockDiff = stock - Double.parseDouble(previousItem.getQuantity());
+                                            double diff = inputOutputDiff - stockDiff;
+                                            out.println(diff);
                                         }
                                         out.println("</td>");
 
