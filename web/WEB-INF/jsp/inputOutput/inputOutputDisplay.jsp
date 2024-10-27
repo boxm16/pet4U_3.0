@@ -196,7 +196,12 @@
                                                     - currentItem.getInputOutput().getDailySale().getSoldQuantiy();
                                             double stockDiff = stock - Double.parseDouble(previousItem.getQuantity());
                                             double diff = inputOutputDiff - stockDiff;
-                                            out.println(inputOutputDiff + "?" + stockDiff + "=" + diff);
+                                            if (diff != 0) {
+                                                out.println("ALLLLLLLLLLLLLLLLLLLLLLARM");
+                                            } else {
+                                                out.println("");
+                                            }
+
                                         }
                                         out.println("</td>");
 
