@@ -77,15 +77,15 @@
                         <th>State</th>
                         <th>Positon</th>
                         <th>Quantity</th>
-                            <% 
-                                LinkedHashMap<LocalDate, ItemSnapshot> itemSnapshots = (LinkedHashMap) request.getAttribute("allSnapshots");
-                                List<LocalDate> keys = new ArrayList<>(itemSnapshots.keySet());
-                                for (int k = 0; k < keys.size() - 1; k++) {
-                                    LocalDate currentDate = keys.get(k);
-                                    LocalDate previousDate = keys.get(k + 1);;   // Will fail if there isn't another element.
+                            <%
+                                LinkedHashMap<LocalDate, ItemSnapshot> itemSnapshotsWithInputOutput = (LinkedHashMap) request.getAttribute("allSnapshots");
+                                List<LocalDate> dates = new ArrayList<>(itemSnapshotsWithInputOutput.keySet());
+                                for (int k = 0; k < dates.size() - 1; k++) {
+                                    LocalDate currentDate = dates.get(k);
+                                    LocalDate previousDate = dates.get(k + 1);;   // Will fail if there isn't another element.
 
-                                    ItemSnapshot currentItem = itemSnapshots.get(currentDate);
-                                    ItemSnapshot previousItem = itemSnapshots.get(previousDate);
+                                    ItemSnapshot currentItem = itemSnapshotsWithInputOutput.get(currentDate);
+                                    ItemSnapshot previousItem = itemSnapshotsWithInputOutput.get(previousDate);
 
                                     // ...
                                     if (currentDate.getDayOfWeek().toString().equals("SUNDAY")) {
@@ -168,7 +168,6 @@
                         <th>E-Shop Sales</th>
 
                         <%
-
                             Item item = (Item) request.getAttribute("item");
 
 //-----------------
@@ -229,7 +228,7 @@
 
                             }
 
-                            
+
                         %>
                     </table>
 
