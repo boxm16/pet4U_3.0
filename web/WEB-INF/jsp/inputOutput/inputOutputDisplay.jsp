@@ -201,7 +201,7 @@
                                             if (currentItem == null) {
                                                 out.println("-");
                                             } else {
-
+                                                Double stock = Double.parseDouble(currentItem.getQuantity());
                                                 double inputOutputDiff = currentItem.getInputOutput().getDelivery()
                                                         + currentItem.getInputOutput().getEndoParalavi()
                                                         - currentItem.getInputOutput().getEndoApostoli()
