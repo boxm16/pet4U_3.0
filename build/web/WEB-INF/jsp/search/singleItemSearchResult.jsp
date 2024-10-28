@@ -122,7 +122,7 @@
                         <% if (item != null) {
                                 out.println(" <a href='getItemForInventory.htm?altercode=" + item.getCode() + "' class='btn btn-primary btn-lg' role='button' aria-disabled='true'><h3>Inventory</h3></a>");
                                 out.println("<hr>");
-                                out.println(" <a href='goForReplenishment.htm?altercode=" + item.getCode() + "' class='btn btn-danger btn-lg' role='button' aria-disabled='true'><h3>Go For Replenishing</h3></a>");
+                                out.println(" <a href='goForReplenishment.htm?altercode=" + item.getCode() + "' class='btn btn-danger btn-lg' role='button' aria-disabled='true' style='background-color: #f955d4'><h3>Go For Replenishing</h3></a>");
                                 // out.println(" <a href='makeBestBeforeStatement.htm?altercode=" + item.getCode() + "' class='btn btn-danger btn-lg' role='button' aria-disabled='true'><h3>Best Before</h3></a>");
                                 out.println("<hr>");
 
