@@ -65,6 +65,11 @@
                     double stockNow = Double.parseDouble(replenishment.getQuantity());
 
                     int stockOnShelfNow = replenishment.getReplenishmentQuantity() - replenishment.getSailsAfterReplenishment();
+
+                    if (stockNow == 0 || stockNow == stockOnShelfNow) {
+                        continue;
+                    }
+
                     if (stockOnShelfNow < replenishment.getMinimalShelfStock() * 2) {
                         alarmColor = "yellow";
                     } else if (stockOnShelfNow < replenishment.getMinimalShelfStock()) {
