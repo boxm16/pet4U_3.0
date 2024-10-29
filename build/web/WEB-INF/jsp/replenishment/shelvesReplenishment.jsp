@@ -39,6 +39,7 @@
         <hr>
         <a href="shelvesReplenishmentDashboard.htm" class="btn btn-success btn-lg" role="button" aria-disabled="true"><h3>Shelves Replenishment Dashboard</h3></a>
         <hr>
+
         <table>
             <thead>
 
@@ -55,8 +56,89 @@
 
             </thead>
 
-            <%
-                LinkedHashMap<String, Replenishment> replenishments = (LinkedHashMap) request.getAttribute("replenishments");
+            <%                TreeMap<String, Replenishment> orderedRreplenishments = (TreeMap) request.getAttribute("sortedByPositionReplenishment");
+                for (Map.Entry<String, Replenishment> entrySet : orderedRreplenishments.entrySet()) {
+                    String alarmColor = "";
+
+                    Replenishment replenishment = entrySet.getValue();
+
+                    double stockNow = Double.parseDouble(replenishment.getQuantity());
+
+                    int stockOnShelfNow = replenishment.getReplenishmentQuantity() - replenishment.getSailsAfterReplenishment();
+                    if (stockOnShelfNow < replenishment.getMinimalShelfStock() * 2) {
+                        alarmColor = "yellow";
+                    } else if (stockOnShelfNow < replenishment.getMinimalShelfStock()) {
+                        alarmColor = "#F33A6A";;
+                    } else {
+                        continue;
+                    }
+
+                    out.println("<tr style='background-color: " + alarmColor + "'>");
+                    out.println("<td>");
+                    out.println("<a href='itemAnalysis.htm?code=" + replenishment.getCode() + "' target='_blank'>" + replenishment.getCode() + "</a>");
+                    out.println("</td>");
+
+                    out.println("<td>");
+                    out.println(replenishment.getPosition());
+                    out.println("</td>");
+
+                    out.println("<td>");
+                    out.println(replenishment.getDescription());
+                    out.println("</td>");
+
+                    out.println("<td>");
+                    out.println(replenishment.getDateTime());
+                    out.println("</td>");
+
+                    out.println("<td>");
+                    out.println(replenishment.getReplenishmentQuantity());
+                    out.println("</td>");
+
+                    out.println("<td>");
+                    out.println(replenishment.getSailsAfterReplenishment());
+                    out.println("</td>");
+
+                    out.println("<td>");
+                    out.println(replenishment.getEndoSailsAfterReplenishment());
+                    out.println("</td>");
+
+                    out.println("<td>");
+                    out.println(replenishment.getMinimalShelfStock());
+                    out.println("</td>");
+
+                    out.println("<td>");
+                    out.println(replenishment.getQunatityAsPieces());
+                    out.println("</td>");
+
+                    out.println("<td>");
+                    out.println(replenishment.getNote());
+                    out.println("</td>");
+
+                    out.println("</tr>");
+                }
+
+            %>
+        </table>
+
+
+        <hr><hr><hr><hr><hr>
+        <table>
+            <thead>
+
+            <th>Item<br>Code</th>
+            <th>Position</th>
+            <th>Pet4u Description</th>
+            <th>Referral DateTime</th>
+            <th>Replenishment Quantity</th>
+            <th>Sails After Referral DateTime</th>
+            <th>Endo Sails After Referral DateTime</th>
+            <th>Minimal Shelf Stock</th>
+            <th>Stock</th>
+            <th>Note</th>
+
+            </thead>
+
+            <%                LinkedHashMap<String, Replenishment> replenishments = (LinkedHashMap) request.getAttribute("replenishments");
                 for (Map.Entry<String, Replenishment> entrySet : replenishments.entrySet()) {
                     String alarmColor = "";
 
