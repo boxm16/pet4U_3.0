@@ -37,8 +37,7 @@
         <h1><a href="index.htm">INDEX</a></h1>
         <h1>Shelves Replenishment Dashboard</h1>
         <hr>
-        <a href="shelvesReplenishmentDashboard.htm" class="btn btn-success btn-lg" role="button" aria-disabled="true"><h3>Shelves Replenishment Dashboard</h3></a>
-        <hr>
+
 
         <table>
             <thead>
@@ -287,6 +286,8 @@
             %>
         </table>
         <hr> <hr> <hr>
+        <a href="shelvesReplenishmentDashboard.htm" class="btn btn-success btn-lg" role="button" aria-disabled="true"><h3>Shelves Replenishment Dashboard</h3></a>
+        <hr>
 
     </center>
 </body>
