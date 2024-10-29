@@ -56,8 +56,8 @@
 
             </thead>
 
-            <%                TreeMap<String, Replenishment> orderedRreplenishments = (TreeMap) request.getAttribute("sortedByPositionReplenishment");
-                for (Map.Entry<String, Replenishment> entrySet : orderedRreplenishments.entrySet()) {
+            <%                TreeMap<String, Replenishment> orderedRreplenishmentsCardMode = (TreeMap) request.getAttribute("sortedByPositionReplenishment");
+                for (Map.Entry<String, Replenishment> entrySet : orderedRreplenishmentsCardMode.entrySet()) {
                     String alarmColor = "";
 
                     Replenishment replenishment = entrySet.getValue();
