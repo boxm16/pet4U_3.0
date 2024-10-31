@@ -66,8 +66,8 @@
                                 continue;
                             }
 
-                            out.println("<table class='table'>");
-                            out.println("</tbody>");
+                            out.println("<table class='table' style='background-color:" + alarmColor + "'>");
+                            out.println("<tbody>");
 
                             out.println("<tr>");
                             out.println("<td style='width:70px'>");
@@ -106,7 +106,19 @@
                             out.println("</tr>");
 
                             out.println("<tr>");
-                            out.println("<td colspan='2' style='font-size:20px'>");
+                            out.println("<td style='width:70px'>");
+                            out.println("Ref.Date");
+                            out.println("</td>");
+                            out.println("<td>");
+                            out.println("<strong>" + replenishment.getDateTime() + "</strong>");
+                            out.println("</td>");
+                            out.println("</tr>");
+
+                            out.println("<tr>");
+                            out.println("<td style='width:70px'>");
+                            out.println("Note.");
+                            out.println("</td>");
+                            out.println("<td>");
                             out.println("<strong>" + replenishment.getNote() + "</strong>");
                             out.println("</td>");
                             out.println("</tr>");
