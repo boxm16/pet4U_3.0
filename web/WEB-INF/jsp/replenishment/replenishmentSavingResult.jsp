@@ -31,6 +31,10 @@
                         <hr>
                         <hr>
                         <h1 style="background-color: ${resultColor}"> ${result} </h1>
+                        <hr>
+                        <hr>  
+                        <a href="shelvesReplenishment.htm" class="btn btn-primary" style='background-color: #f955d4' role="button"><h1>Αναπλήρωση Ραφιών</h1></a>
+
                     </center>
                 </div>
                 <div class=" col-sm-4">

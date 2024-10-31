@@ -117,7 +117,7 @@
                             out.println("<tr>");
 
                             out.println("<td colspan='2'>");
-                            out.println("<strong>Repl.Q-" + replenishment.getReplenishmentQuantity()
+                            out.println("<strong>R.Q-" + replenishment.getReplenishmentQuantity()
                                     + ": S-" + replenishment.getSailsAfterReplenishment()
                                     + ": E.S-" + replenishment.getEndoSailsAfterReplenishment()
                                     + ": M.S.S-" + replenishment.getMinimalShelfStock()
