@@ -40,6 +40,62 @@
                     <h1> Replenishment</h1>
                     <hr>
 
+                    <%
+                        TreeMap<String, Replenishment> orderedRreplenishmentsCardModeX = (TreeMap) request.getAttribute("sortedByPositionReplenishment");
+                        for (Map.Entry<String, Replenishment> entrySet : orderedRreplenishmentsCardModeX.entrySet()) {
+                            Replenishment item = entrySet.getValue();
+
+                            out.println("<table class='table'>");
+                            out.println("</tbody>");
+
+                            out.println("<tr>");
+                            out.println("<td style='width:70px'>");
+                            out.println("Code");
+                            out.println("</td>");
+                            out.println("<td>");
+                            out.println("<strong>" + item.getCode() + "</strong>");
+                            out.println("</td>");
+                            out.println("</tr>");
+
+                            out.println("<tr>");
+                            out.println("<td style='width:70px'>");
+                            out.println("Πε/φη");
+                            out.println("</td>");
+                            out.println("<td>");
+                            out.println("<strong>" + item.getDescription() + "</strong>");
+                            out.println("</td>");
+                            out.println("</tr>");
+
+                            out.println("<tr>");
+                            out.println("<td style='width:70px'>");
+                            out.println("Θεση");
+                            out.println("</td>");
+                            out.println("<td>");
+                            out.println("<strong>" + item.getPosition() + "</strong>");
+                            out.println("</td>");
+                            out.println("</tr>");
+
+                            out.println("<tr>");
+                            out.println("<td style='width:70px'>");
+                            out.println("Υπλ.");
+                            out.println("</td>");
+                            out.println("<td>");
+                            out.println("<strong>" + item.getQuantity() + "</strong>");
+                            out.println("</td>");
+                            out.println("</tr>");
+
+                            out.println("<tr>");
+                            out.println("<td colspan='2' style='font-size:20px'>");
+                            out.println("<strong>" + item.getNote() + "</strong>");
+                            out.println("</td>");
+                            out.println("</tr>");
+
+                            out.println("</tbody>");
+                            out.println("</table>");
+                            out.println("<div STYLE=\"background-color:lightblue; height:10px; width:100%;\"></div>");
+                        }
+                    %>
+
 
                     <table>
                         <thead>
