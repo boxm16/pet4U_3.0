@@ -117,10 +117,10 @@
                             out.println("<tr>");
 
                             out.println("<td colspan='2'>");
-                            out.println("<strong>Repl.Q:" + replenishment.getReplenishmentQuantity()
-                                    + ". S:" + replenishment.getSailsAfterReplenishment()
-                                    + ". E.S:" + replenishment.getEndoSailsAfterReplenishment()
-                                    + ". M.S.S:" + replenishment.getMinimalShelfStock()
+                            out.println("<strong>Repl.Q: " + replenishment.getReplenishmentQuantity()
+                                    + ". S: " + replenishment.getSailsAfterReplenishment()
+                                    + ". E.S: " + replenishment.getEndoSailsAfterReplenishment()
+                                    + ". M.S.S: " + replenishment.getMinimalShelfStock()
                                     + "</strong>");
                             out.println("</td>");
                             out.println("</tr>");
