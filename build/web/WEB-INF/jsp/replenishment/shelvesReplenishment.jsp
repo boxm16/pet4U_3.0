@@ -35,320 +35,327 @@
     <body>
         <div class="container">
             <div class="row">
-                <center>
-                    <h1><a href="index.htm">INDEX</a></h1>
-                    <h1> Replenishment</h1>
-                    <hr>
+                <div class=" col-sm-4">
 
-                    <%
-                        TreeMap<String, Replenishment> orderedRreplenishmentsCardModeX = (TreeMap) request.getAttribute("sortedByPositionReplenishment");
-                        for (Map.Entry<String, Replenishment> entrySet : orderedRreplenishmentsCardModeX.entrySet()) {
-                            Replenishment item = entrySet.getValue();
+                </div>
+                <div class=" col-sm-4">
+                    <center>
+                        <h1><a href="index.htm">INDEX</a></h1>
+                        <h1> Replenishment</h1>
+                        <hr>
 
-                            out.println("<table class='table'>");
-                            out.println("</tbody>");
+                        <%
+                            TreeMap<String, Replenishment> orderedRreplenishmentsCardModeX = (TreeMap) request.getAttribute("sortedByPositionReplenishment");
+                            for (Map.Entry<String, Replenishment> entrySet : orderedRreplenishmentsCardModeX.entrySet()) {
+                                Replenishment item = entrySet.getValue();
 
-                            out.println("<tr>");
-                            out.println("<td style='width:70px'>");
-                            out.println("Code");
-                            out.println("</td>");
-                            out.println("<td>");
-                            out.println("<strong>" + item.getCode() + "</strong>");
-                            out.println("</td>");
-                            out.println("</tr>");
+                                out.println("<table class='table'>");
+                                out.println("</tbody>");
 
-                            out.println("<tr>");
-                            out.println("<td style='width:70px'>");
-                            out.println("Πε/φη");
-                            out.println("</td>");
-                            out.println("<td>");
-                            out.println("<strong>" + item.getDescription() + "</strong>");
-                            out.println("</td>");
-                            out.println("</tr>");
-
-                            out.println("<tr>");
-                            out.println("<td style='width:70px'>");
-                            out.println("Θεση");
-                            out.println("</td>");
-                            out.println("<td>");
-                            out.println("<strong>" + item.getPosition() + "</strong>");
-                            out.println("</td>");
-                            out.println("</tr>");
-
-                            out.println("<tr>");
-                            out.println("<td style='width:70px'>");
-                            out.println("Υπλ.");
-                            out.println("</td>");
-                            out.println("<td>");
-                            out.println("<strong>" + item.getQuantity() + "</strong>");
-                            out.println("</td>");
-                            out.println("</tr>");
-
-                            out.println("<tr>");
-                            out.println("<td colspan='2' style='font-size:20px'>");
-                            out.println("<strong>" + item.getNote() + "</strong>");
-                            out.println("</td>");
-                            out.println("</tr>");
-
-                            out.println("</tbody>");
-                            out.println("</table>");
-                            out.println("<div STYLE=\"background-color:lightblue; height:10px; width:100%;\"></div>");
-                        }
-                    %>
-
-
-                    <table>
-                        <thead>
-
-                        <th>Item<br>Code</th>
-                        <th>Position</th>
-                        <th>Pet4u Description</th>
-                        <th>Referral DateTime</th>
-                        <th>Replenishment Quantity</th>
-                        <th>Sails After Referral DateTime</th>
-                        <th>Endo Sails After Referral DateTime</th>
-                        <th>Minimal Shelf Stock</th>
-                        <th>Stock</th>
-                        <th>Note</th>
-
-                        </thead>
-
-                        <%                TreeMap<String, Replenishment> orderedRreplenishmentsCardMode = (TreeMap) request.getAttribute("sortedByPositionReplenishment");
-                            for (Map.Entry<String, Replenishment> entrySet : orderedRreplenishmentsCardMode.entrySet()) {
-                                String alarmColor = "";
-
-                                Replenishment replenishment = entrySet.getValue();
-
-                                double stockNow = Double.parseDouble(replenishment.getQuantity());
-
-                                int stockOnShelfNow = replenishment.getReplenishmentQuantity() - replenishment.getSailsAfterReplenishment();
-
-                                if (stockNow == 0 || stockNow == stockOnShelfNow) {
-                                    continue;
-                                }
-
-                                if (stockOnShelfNow < replenishment.getMinimalShelfStock() * 2) {
-                                    alarmColor = "yellow";
-                                } else if (stockOnShelfNow < replenishment.getMinimalShelfStock()) {
-                                    alarmColor = "#F33A6A";;
-                                } else {
-                                    continue;
-                                }
-
-                                out.println("<tr style='background-color: " + alarmColor + "'>");
-                                out.println("<td>");
-                                out.println("<a href='itemAnalysis.htm?code=" + replenishment.getCode() + "' target='_blank'>" + replenishment.getCode() + "</a>");
+                                out.println("<tr>");
+                                out.println("<td style='width:70px'>");
+                                out.println("Code");
                                 out.println("</td>");
-
                                 out.println("<td>");
-                                out.println(replenishment.getPosition());
+                                out.println("<strong>" + item.getCode() + "</strong>");
                                 out.println("</td>");
-
-                                out.println("<td>");
-                                out.println(replenishment.getDescription());
-                                out.println("</td>");
-
-                                out.println("<td>");
-                                out.println(replenishment.getDateTime());
-                                out.println("</td>");
-
-                                out.println("<td>");
-                                out.println(replenishment.getReplenishmentQuantity());
-                                out.println("</td>");
-
-                                out.println("<td>");
-                                out.println(replenishment.getSailsAfterReplenishment());
-                                out.println("</td>");
-
-                                out.println("<td>");
-                                out.println(replenishment.getEndoSailsAfterReplenishment());
-                                out.println("</td>");
-
-                                out.println("<td>");
-                                out.println(replenishment.getMinimalShelfStock());
-                                out.println("</td>");
-
-                                out.println("<td>");
-                                out.println(replenishment.getQunatityAsPieces());
-                                out.println("</td>");
-
-                                out.println("<td>");
-                                out.println(replenishment.getNote());
-                                out.println("</td>");
-
                                 out.println("</tr>");
-                            }
 
-                        %>
-                    </table>
-
-
-                    <hr><hr><hr><hr><hr>
-                    <table>
-                        <thead>
-
-                        <th>Item<br>Code</th>
-                        <th>Position</th>
-                        <th>Pet4u Description</th>
-                        <th>Referral DateTime</th>
-                        <th>Replenishment Quantity</th>
-                        <th>Sails After Referral DateTime</th>
-                        <th>Endo Sails After Referral DateTime</th>
-                        <th>Minimal Shelf Stock</th>
-                        <th>Stock</th>
-                        <th>Note</th>
-
-                        </thead>
-
-                        <%                LinkedHashMap<String, Replenishment> replenishments = (LinkedHashMap) request.getAttribute("replenishments");
-                            for (Map.Entry<String, Replenishment> entrySet : replenishments.entrySet()) {
-                                String alarmColor = "";
-
-                                Replenishment replenishment = entrySet.getValue();
-                                int stockOnShelfNow = replenishment.getReplenishmentQuantity() - replenishment.getSailsAfterReplenishment();
-                                if (stockOnShelfNow < replenishment.getMinimalShelfStock() * 2) {
-                                    alarmColor = "yellow";
-                                }
-                                if (stockOnShelfNow < replenishment.getMinimalShelfStock()) {
-                                    alarmColor = "#F33A6A";;
-                                }
-                                double stockNow = Double.parseDouble(replenishment.getQuantity());
-                                if (stockNow == 0 || stockNow == stockOnShelfNow) {
-                                    alarmColor = "";;
-                                }
-                                out.println("<tr style='background-color: " + alarmColor + "'>");
-                                out.println("<td>");
-                                out.println("<a href='itemAnalysis.htm?code=" + replenishment.getCode() + "' target='_blank'>" + replenishment.getCode() + "</a>");
+                                out.println("<tr>");
+                                out.println("<td style='width:70px'>");
+                                out.println("Πε/φη");
                                 out.println("</td>");
-
                                 out.println("<td>");
-                                out.println(replenishment.getPosition());
+                                out.println("<strong>" + item.getDescription() + "</strong>");
                                 out.println("</td>");
-
-                                out.println("<td>");
-                                out.println(replenishment.getDescription());
-                                out.println("</td>");
-
-                                out.println("<td>");
-                                out.println(replenishment.getDateTime());
-                                out.println("</td>");
-
-                                out.println("<td>");
-                                out.println(replenishment.getReplenishmentQuantity());
-                                out.println("</td>");
-
-                                out.println("<td>");
-                                out.println(replenishment.getSailsAfterReplenishment());
-                                out.println("</td>");
-
-                                out.println("<td>");
-                                out.println(replenishment.getEndoSailsAfterReplenishment());
-                                out.println("</td>");
-
-                                out.println("<td>");
-                                out.println(replenishment.getMinimalShelfStock());
-                                out.println("</td>");
-
-                                out.println("<td>");
-                                out.println(replenishment.getQunatityAsPieces());
-                                out.println("</td>");
-
-                                out.println("<td>");
-                                out.println(replenishment.getNote());
-                                out.println("</td>");
-
                                 out.println("</tr>");
-                            }
 
-                        %>
-                    </table>
-                    <hr> <hr> <hr>
-                    <h1>   Ordered By Position  </h1>
-                    <hr>
-                    <table>
-                        <thead>
-
-                        <th>Item<br>Code</th>
-                        <th>Position</th>
-                        <th>Pet4u Description</th>
-                        <th>Referral DateTime</th>
-                        <th>Replenishment Quantity</th>
-                        <th>Sails After Referral DateTime</th>
-                        <th>Endo Sails After Referral DateTime</th>
-                        <th>Minimal Shelf Stock</th>
-                        <th>Stock</th>
-                        <th>Note</th>
-
-                        </thead>
-
-                        <%                TreeMap<String, Replenishment> orderedRreplenishments = (TreeMap) request.getAttribute("sortedByPositionReplenishment");
-                            for (Map.Entry<String, Replenishment> entrySet : orderedRreplenishments.entrySet()) {
-                                String alarmColor = "";
-
-                                Replenishment replenishment = entrySet.getValue();
-                                int stockOnShelfNow = replenishment.getReplenishmentQuantity() - replenishment.getSailsAfterReplenishment();
-                                if (stockOnShelfNow < replenishment.getMinimalShelfStock() * 2) {
-                                    alarmColor = "yellow";
-                                }
-                                if (stockOnShelfNow < replenishment.getMinimalShelfStock()) {
-                                    alarmColor = "#F33A6A";;
-                                }
-                                double stockNow = Double.parseDouble(replenishment.getQuantity());
-                                if (stockNow == 0 || stockNow == stockOnShelfNow) {
-                                    alarmColor = "";;
-                                }
-                                out.println("<tr style='background-color: " + alarmColor + "'>");
-                                out.println("<td>");
-                                out.println("<a href='itemAnalysis.htm?code=" + replenishment.getCode() + "' target='_blank'>" + replenishment.getCode() + "</a>");
+                                out.println("<tr>");
+                                out.println("<td style='width:70px'>");
+                                out.println("Θεση");
                                 out.println("</td>");
-
                                 out.println("<td>");
-                                out.println(replenishment.getPosition());
+                                out.println("<strong>" + item.getPosition() + "</strong>");
                                 out.println("</td>");
-
-                                out.println("<td>");
-                                out.println(replenishment.getDescription());
-                                out.println("</td>");
-
-                                out.println("<td>");
-                                out.println(replenishment.getDateTime());
-                                out.println("</td>");
-
-                                out.println("<td>");
-                                out.println(replenishment.getReplenishmentQuantity());
-                                out.println("</td>");
-
-                                out.println("<td>");
-                                out.println(replenishment.getSailsAfterReplenishment());
-                                out.println("</td>");
-
-                                out.println("<td>");
-                                out.println(replenishment.getEndoSailsAfterReplenishment());
-                                out.println("</td>");
-
-                                out.println("<td>");
-                                out.println(replenishment.getMinimalShelfStock());
-                                out.println("</td>");
-
-                                out.println("<td>");
-                                out.println(replenishment.getQunatityAsPieces());
-                                out.println("</td>");
-
-                                out.println("<td>");
-                                out.println(replenishment.getNote());
-                                out.println("</td>");
-
                                 out.println("</tr>");
+
+                                out.println("<tr>");
+                                out.println("<td style='width:70px'>");
+                                out.println("Υπλ.");
+                                out.println("</td>");
+                                out.println("<td>");
+                                out.println("<strong>" + item.getQuantity() + "</strong>");
+                                out.println("</td>");
+                                out.println("</tr>");
+
+                                out.println("<tr>");
+                                out.println("<td colspan='2' style='font-size:20px'>");
+                                out.println("<strong>" + item.getNote() + "</strong>");
+                                out.println("</td>");
+                                out.println("</tr>");
+
+                                out.println("</tbody>");
+                                out.println("</table>");
+                                out.println("<div STYLE=\"background-color:lightblue; height:10px; width:100%;\"></div>");
                             }
-
                         %>
-                    </table>
-                    <hr> <hr> <hr>
-                    <a href="shelvesReplenishmentDashboard.htm" class="btn btn-success btn-lg" role="button" aria-disabled="true"><h3>Shelves Replenishment Dashboard</h3></a>
-                    <hr>
+                        </div>
+                        <div class=" col-sm-4">
 
-                </center>
+                        </div>
+
+                        <table>
+                            <thead>
+
+                            <th>Item<br>Code</th>
+                            <th>Position</th>
+                            <th>Pet4u Description</th>
+                            <th>Referral DateTime</th>
+                            <th>Replenishment Quantity</th>
+                            <th>Sails After Referral DateTime</th>
+                            <th>Endo Sails After Referral DateTime</th>
+                            <th>Minimal Shelf Stock</th>
+                            <th>Stock</th>
+                            <th>Note</th>
+
+                            </thead>
+
+                            <%                TreeMap<String, Replenishment> orderedRreplenishmentsCardMode = (TreeMap) request.getAttribute("sortedByPositionReplenishment");
+                                for (Map.Entry<String, Replenishment> entrySet : orderedRreplenishmentsCardMode.entrySet()) {
+                                    String alarmColor = "";
+
+                                    Replenishment replenishment = entrySet.getValue();
+
+                                    double stockNow = Double.parseDouble(replenishment.getQuantity());
+
+                                    int stockOnShelfNow = replenishment.getReplenishmentQuantity() - replenishment.getSailsAfterReplenishment();
+
+                                    if (stockNow == 0 || stockNow == stockOnShelfNow) {
+                                        continue;
+                                    }
+
+                                    if (stockOnShelfNow < replenishment.getMinimalShelfStock() * 2) {
+                                        alarmColor = "yellow";
+                                    } else if (stockOnShelfNow < replenishment.getMinimalShelfStock()) {
+                                        alarmColor = "#F33A6A";;
+                                    } else {
+                                        continue;
+                                    }
+
+                                    out.println("<tr style='background-color: " + alarmColor + "'>");
+                                    out.println("<td>");
+                                    out.println("<a href='itemAnalysis.htm?code=" + replenishment.getCode() + "' target='_blank'>" + replenishment.getCode() + "</a>");
+                                    out.println("</td>");
+
+                                    out.println("<td>");
+                                    out.println(replenishment.getPosition());
+                                    out.println("</td>");
+
+                                    out.println("<td>");
+                                    out.println(replenishment.getDescription());
+                                    out.println("</td>");
+
+                                    out.println("<td>");
+                                    out.println(replenishment.getDateTime());
+                                    out.println("</td>");
+
+                                    out.println("<td>");
+                                    out.println(replenishment.getReplenishmentQuantity());
+                                    out.println("</td>");
+
+                                    out.println("<td>");
+                                    out.println(replenishment.getSailsAfterReplenishment());
+                                    out.println("</td>");
+
+                                    out.println("<td>");
+                                    out.println(replenishment.getEndoSailsAfterReplenishment());
+                                    out.println("</td>");
+
+                                    out.println("<td>");
+                                    out.println(replenishment.getMinimalShelfStock());
+                                    out.println("</td>");
+
+                                    out.println("<td>");
+                                    out.println(replenishment.getQunatityAsPieces());
+                                    out.println("</td>");
+
+                                    out.println("<td>");
+                                    out.println(replenishment.getNote());
+                                    out.println("</td>");
+
+                                    out.println("</tr>");
+                                }
+
+                            %>
+                        </table>
+
+
+                        <hr><hr><hr><hr><hr>
+                        <table>
+                            <thead>
+
+                            <th>Item<br>Code</th>
+                            <th>Position</th>
+                            <th>Pet4u Description</th>
+                            <th>Referral DateTime</th>
+                            <th>Replenishment Quantity</th>
+                            <th>Sails After Referral DateTime</th>
+                            <th>Endo Sails After Referral DateTime</th>
+                            <th>Minimal Shelf Stock</th>
+                            <th>Stock</th>
+                            <th>Note</th>
+
+                            </thead>
+
+                            <%                LinkedHashMap<String, Replenishment> replenishments = (LinkedHashMap) request.getAttribute("replenishments");
+                                for (Map.Entry<String, Replenishment> entrySet : replenishments.entrySet()) {
+                                    String alarmColor = "";
+
+                                    Replenishment replenishment = entrySet.getValue();
+                                    int stockOnShelfNow = replenishment.getReplenishmentQuantity() - replenishment.getSailsAfterReplenishment();
+                                    if (stockOnShelfNow < replenishment.getMinimalShelfStock() * 2) {
+                                        alarmColor = "yellow";
+                                    }
+                                    if (stockOnShelfNow < replenishment.getMinimalShelfStock()) {
+                                        alarmColor = "#F33A6A";;
+                                    }
+                                    double stockNow = Double.parseDouble(replenishment.getQuantity());
+                                    if (stockNow == 0 || stockNow == stockOnShelfNow) {
+                                        alarmColor = "";;
+                                    }
+                                    out.println("<tr style='background-color: " + alarmColor + "'>");
+                                    out.println("<td>");
+                                    out.println("<a href='itemAnalysis.htm?code=" + replenishment.getCode() + "' target='_blank'>" + replenishment.getCode() + "</a>");
+                                    out.println("</td>");
+
+                                    out.println("<td>");
+                                    out.println(replenishment.getPosition());
+                                    out.println("</td>");
+
+                                    out.println("<td>");
+                                    out.println(replenishment.getDescription());
+                                    out.println("</td>");
+
+                                    out.println("<td>");
+                                    out.println(replenishment.getDateTime());
+                                    out.println("</td>");
+
+                                    out.println("<td>");
+                                    out.println(replenishment.getReplenishmentQuantity());
+                                    out.println("</td>");
+
+                                    out.println("<td>");
+                                    out.println(replenishment.getSailsAfterReplenishment());
+                                    out.println("</td>");
+
+                                    out.println("<td>");
+                                    out.println(replenishment.getEndoSailsAfterReplenishment());
+                                    out.println("</td>");
+
+                                    out.println("<td>");
+                                    out.println(replenishment.getMinimalShelfStock());
+                                    out.println("</td>");
+
+                                    out.println("<td>");
+                                    out.println(replenishment.getQunatityAsPieces());
+                                    out.println("</td>");
+
+                                    out.println("<td>");
+                                    out.println(replenishment.getNote());
+                                    out.println("</td>");
+
+                                    out.println("</tr>");
+                                }
+
+                            %>
+                        </table>
+                        <hr> <hr> <hr>
+                        <h1>   Ordered By Position  </h1>
+                        <hr>
+                        <table>
+                            <thead>
+
+                            <th>Item<br>Code</th>
+                            <th>Position</th>
+                            <th>Pet4u Description</th>
+                            <th>Referral DateTime</th>
+                            <th>Replenishment Quantity</th>
+                            <th>Sails After Referral DateTime</th>
+                            <th>Endo Sails After Referral DateTime</th>
+                            <th>Minimal Shelf Stock</th>
+                            <th>Stock</th>
+                            <th>Note</th>
+
+                            </thead>
+
+                            <%                TreeMap<String, Replenishment> orderedRreplenishments = (TreeMap) request.getAttribute("sortedByPositionReplenishment");
+                                for (Map.Entry<String, Replenishment> entrySet : orderedRreplenishments.entrySet()) {
+                                    String alarmColor = "";
+
+                                    Replenishment replenishment = entrySet.getValue();
+                                    int stockOnShelfNow = replenishment.getReplenishmentQuantity() - replenishment.getSailsAfterReplenishment();
+                                    if (stockOnShelfNow < replenishment.getMinimalShelfStock() * 2) {
+                                        alarmColor = "yellow";
+                                    }
+                                    if (stockOnShelfNow < replenishment.getMinimalShelfStock()) {
+                                        alarmColor = "#F33A6A";;
+                                    }
+                                    double stockNow = Double.parseDouble(replenishment.getQuantity());
+                                    if (stockNow == 0 || stockNow == stockOnShelfNow) {
+                                        alarmColor = "";;
+                                    }
+                                    out.println("<tr style='background-color: " + alarmColor + "'>");
+                                    out.println("<td>");
+                                    out.println("<a href='itemAnalysis.htm?code=" + replenishment.getCode() + "' target='_blank'>" + replenishment.getCode() + "</a>");
+                                    out.println("</td>");
+
+                                    out.println("<td>");
+                                    out.println(replenishment.getPosition());
+                                    out.println("</td>");
+
+                                    out.println("<td>");
+                                    out.println(replenishment.getDescription());
+                                    out.println("</td>");
+
+                                    out.println("<td>");
+                                    out.println(replenishment.getDateTime());
+                                    out.println("</td>");
+
+                                    out.println("<td>");
+                                    out.println(replenishment.getReplenishmentQuantity());
+                                    out.println("</td>");
+
+                                    out.println("<td>");
+                                    out.println(replenishment.getSailsAfterReplenishment());
+                                    out.println("</td>");
+
+                                    out.println("<td>");
+                                    out.println(replenishment.getEndoSailsAfterReplenishment());
+                                    out.println("</td>");
+
+                                    out.println("<td>");
+                                    out.println(replenishment.getMinimalShelfStock());
+                                    out.println("</td>");
+
+                                    out.println("<td>");
+                                    out.println(replenishment.getQunatityAsPieces());
+                                    out.println("</td>");
+
+                                    out.println("<td>");
+                                    out.println(replenishment.getNote());
+                                    out.println("</td>");
+
+                                    out.println("</tr>");
+                                }
+
+                            %>
+                        </table>
+                        <hr> <hr> <hr>
+                        <a href="shelvesReplenishmentDashboard.htm" class="btn btn-success btn-lg" role="button" aria-disabled="true"><h3>Shelves Replenishment Dashboard</h3></a>
+                        <hr>
+
+                    </center>
+                </div>
             </div>
-        </div>
     </body>
 </html>
