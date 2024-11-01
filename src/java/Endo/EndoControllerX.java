@@ -53,8 +53,7 @@ public class EndoControllerX {
                     || endoParalavisId.equals("381889")
                     || endoParalavisId.equals("383428")
                     || endoParalavisId.equals("383703")
-                    || endoParalavisId.equals("388760")
-                    ) {
+                    || endoParalavisId.equals("388760")) {
                 endoParalavissIterator.remove();
 
             }
@@ -209,7 +208,7 @@ public class EndoControllerX {
 
         EndoDao endoDao = new EndoDao();
 
-        ArrayList<Endo> endos = endoDao.getEndosOfItem(itemCode, startDate, endDate);
+        ArrayList<Endo> endos = endoDao.getEndosOfItem(sentItem.getCode(), startDate, endDate);
 
         modelMap.addAttribute("itemCode", itemCode);
         modelMap.addAttribute("sentItem", sentItem);
@@ -479,7 +478,7 @@ public class EndoControllerX {
         modelMap.addAttribute("bindedOutgoindDeltioApostolis", bindedOutgoindDeltioApostolis);
         return "endo/bindedEndoOrders";
     }
-    
+
     @RequestMapping(value = "showAllBindedOrders", method = RequestMethod.GET)
     public String showAllBindedOrders(ModelMap modelMap) {
 

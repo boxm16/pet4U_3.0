@@ -39,9 +39,10 @@
         <a href="index.htm"><h3>INDEX</h3></a>
         <hr>
         <h1>Sent Item</h1>
-        <h1><a  href = 'findItemByAltercode.htm?altercode=${itemCode}' target='_blank'>${itemCode}</a> : ${sentItem.description}</h1>
+        <h1>Target code: ${itemCode}</h1>
+        <h1><a  href = 'findItemByAltercode.htm?altercode=${sentItem.code}' target='_blank'>${sentItem.code}</a> : ${sentItem.description}</h1>
         <h1>State: ${sentItem.state}</h1>
-        
+
         <table>
             <thead> 
 
