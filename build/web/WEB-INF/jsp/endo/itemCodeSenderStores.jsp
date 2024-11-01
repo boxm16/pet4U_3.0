@@ -82,8 +82,8 @@
                         out.println("</td>");
 
                         out.println("<td>");
-                        String itemCode = (String) request.getAttribute("itemCode");
-                        out.println(endo.getItems().get(itemCode).getQuantity());
+                        Item sentItem = (Item) request.getAttribute("sentItem.code");
+                        out.println(endo.getItems().get(sentItem.getCode()).getQuantity());
                         out.println("</td>");
 
                         out.println("</tr>");
