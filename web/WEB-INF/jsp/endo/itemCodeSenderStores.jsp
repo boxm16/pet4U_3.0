@@ -82,7 +82,7 @@
                         out.println("</td>");
 
                         out.println("<td>");
-                        Item sentItem = (Item) request.getAttribute("sentItem.code");
+                        Item sentItem = (Item) request.getAttribute("sentItem");
                         out.println(endo.getItems().get(sentItem.getCode()).getQuantity());
                         out.println("</td>");
 
