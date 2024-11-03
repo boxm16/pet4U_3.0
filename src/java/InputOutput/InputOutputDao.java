@@ -388,6 +388,9 @@ public class InputOutputDao {
 
                 creationDate = creationDateTime.toLocalDate();
                 InputOutputContainer ioc = inputOutputContainers.get(itemCode);
+                if (ioc == null) {
+                    continue;
+                }
                 LinkedHashMap<LocalDate, InputOutput> inputOutputs = ioc.getInputOutputs();
                 InputOutput inputOutput = inputOutputs.get(creationDate);
 
