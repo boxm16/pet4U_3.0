@@ -144,7 +144,7 @@ public class InputOutputController {
 
         InputOutputDao inputOutputDao = new InputOutputDao();
 
-        //    inputOutputs = inputOutputDao.fillSales(inputOutputs, itemCode, startDate, endDate);
+        inputOutputContainers = inputOutputDao.fillInputOutputContainersWithSales(inputOutputContainers, startDate, endDate);
         //  inputOutputs = inputOutputDao.fillDeliveries(inputOutputs, itemCode, startDate, endDate);
         //inputOutputs = inputOutputDao.fillEndoParalaves(inputOutputs, itemCode, startDate, endDate);
         //inputOutputs = inputOutputDao.fillEndoApostoles(inputOutputs, itemCode, startDate, endDate);
