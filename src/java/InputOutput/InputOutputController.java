@@ -140,6 +140,7 @@ public class InputOutputController {
             }
             InputOutputContainer inputOutputContainer = new InputOutputContainer();
             inputOutputContainer.setInputOutputs(inputOutputs);
+            inputOutputContainers.put(allItemsEntry.getKey(), inputOutputContainer);
         }
 
         InputOutputDao inputOutputDao = new InputOutputDao();
