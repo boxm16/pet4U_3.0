@@ -124,7 +124,14 @@ public class ReplenishmentController {
         replenishments = replenishmentDao.addSailsData(replenishments, inPartForSqlQueryByReferralAltercodes);
         replenishments = replenishmentDao.addEndoSailsData(replenishments, inPartForSqlQueryByReferralAltercodes);
 
-        model.addAttribute("replenishments", replenishments);
+         TreeMap<String, Replenishment> sortedByPositionReplenishment = new TreeMap();
+        for (Map.Entry<String, Replenishment> replenishmentsEntry : replenishments.entrySet()) {
+            Replenishment replenishment = replenishmentsEntry.getValue();
+            String position = replenishment.getPosition();
+            sortedByPositionReplenishment.put(position, replenishment);
+        }
+        
+        model.addAttribute("sortedByPositionReplenishment", sortedByPositionReplenishment);
         return "replenishment/shelvesReplenishmentDashboard";
 
     }

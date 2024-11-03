@@ -53,7 +53,7 @@
             </thead>
 
             <%
-                LinkedHashMap<String, Replenishment> replenishments = (LinkedHashMap) request.getAttribute("replenishments");
+                LinkedHashMap<String, Replenishment> replenishments = (LinkedHashMap) request.getAttribute("sortedByPositionReplenishment");
                 for (Map.Entry<String, Replenishment> entrySet : replenishments.entrySet()) {
                     Replenishment replenishment = entrySet.getValue();
                     out.println("<tr>");
