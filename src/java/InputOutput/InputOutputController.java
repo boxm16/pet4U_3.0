@@ -65,7 +65,7 @@ public class InputOutputController {
         inputOutputs = inputOutputDao.fillEndoParalaves(inputOutputs, itemCode, startDate, endDate);
         inputOutputs = inputOutputDao.fillEndoApostoles(inputOutputs, itemCode, startDate, endDate);
 
-        LinkedHashMap<LocalDate, ItemSnapshot> allSnapshots = inputOutputDao.fillSnapshots(inputOutputs, itemCode);
+        LinkedHashMap<LocalDate, ItemSnapshot> allSnapshots = inputOutputDao.fillSnapshots(inputOutputs, itemCode, startDate, endDate);
         modelMap.addAttribute("inputOutputs", inputOutputs);
 
         //  DailySalesDao dailySalesDao = new DailySalesDao();
