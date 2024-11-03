@@ -392,6 +392,7 @@ public class InputOutputDao {
                     System.out.println("Item Code is null/is not in inputOutputContainers:" + itemCode);
                     continue;
                 }
+                System.out.println("ITEM CODE NOW:"+itemCode);
                 LinkedHashMap<LocalDate, InputOutput> inputOutputs = ioc.getInputOutputs();
                 InputOutput inputOutput = inputOutputs.get(creationDate);
 
