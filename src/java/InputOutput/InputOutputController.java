@@ -119,26 +119,27 @@ public class InputOutputController {
         Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
         LinkedHashMap<String, Item> allItems = pet4uItemsDao.getAllItems();
 
-        LinkedHashMap<LocalDate, InputOutput> inputOutputs = new LinkedHashMap<>();
-
-        //  LocalDate firstDate = date.minusDays(30);
-        //  LocalDate lastDate = date.minusDays(1);
-        LocalDate sd = LocalDate.parse(startDate);
-        LocalDate ed = LocalDate.parse(endDate);
-        System.out.println("SD:" + sd);
-        System.out.println("ED:" + ed);
-        sd = sd.minusDays(1);
-        ed = ed.plusDays(1);
-        startDate = sd.toString();
-        endDate = ed.toString();
-        while (sd.isBefore(ed)) {
-            InputOutput inputOutput = new InputOutput();
-            inputOutputs.put(ed, inputOutput);
-            ed = ed.minusDays(1);
-
-        }
+        LinkedHashMap<String, InputOutputContainer> inputOutputContainers = new LinkedHashMap<String, InputOutputContainer>();
 
         for (Map.Entry<String, Item> allItemsEntry : allItems.entrySet()) {
+
+            LinkedHashMap<LocalDate, InputOutput> inputOutputs = new LinkedHashMap<>();
+
+            LocalDate sd = LocalDate.parse(startDate);
+            LocalDate ed = LocalDate.parse(endDate);
+
+            sd = sd.minusDays(1);
+            ed = ed.plusDays(1);
+            startDate = sd.toString();
+            endDate = ed.toString();
+            while (sd.isBefore(ed)) {
+                InputOutput inputOutput = new InputOutput();
+                inputOutputs.put(ed, inputOutput);
+                ed = ed.minusDays(1);
+
+            }
+            InputOutputContainer inputOutputContainer = new InputOutputContainer();
+            inputOutputContainer.setInputOutputs(inputOutputs);
         }
 
         InputOutputDao inputOutputDao = new InputOutputDao();
@@ -148,7 +149,7 @@ public class InputOutputController {
         //inputOutputs = inputOutputDao.fillEndoParalaves(inputOutputs, itemCode, startDate, endDate);
         //inputOutputs = inputOutputDao.fillEndoApostoles(inputOutputs, itemCode, startDate, endDate);
         //   LinkedHashMap<LocalDate, ItemSnapshot> allSnapshots = inputOutputDao.fillSnapshots(inputOutputs, itemCode, startDate, endDate);
-        modelMap.addAttribute("inputOutputs", inputOutputs);
+        modelMap.addAttribute("inputOutputContainers", inputOutputContainers);
 
         return "/inputOutput/inputOutputAlarms";
     }
