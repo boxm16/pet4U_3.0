@@ -1,6 +1,7 @@
 
 
 
+<%@page import="java.util.TreeMap"%>
 <%@page import="Replenishment.Replenishment"%>
 <%@page import="CamelotItemsOfOurInterest_V_3_1.CamelotItemOfInterest"%>
 <%@page import="java.util.Map"%>
@@ -53,7 +54,7 @@
             </thead>
 
             <%
-                LinkedHashMap<String, Replenishment> replenishments = (LinkedHashMap) request.getAttribute("sortedByPositionReplenishment");
+                TreeMap<String, Replenishment> replenishments = (TreeMap) request.getAttribute("sortedByPositionReplenishment");
                 for (Map.Entry<String, Replenishment> entrySet : replenishments.entrySet()) {
                     Replenishment replenishment = entrySet.getValue();
                     out.println("<tr>");
