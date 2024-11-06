@@ -122,7 +122,10 @@ public class InputOutputController {
         LinkedHashMap<String, InputOutputContainer> inputOutputContainers = new LinkedHashMap<String, InputOutputContainer>();
 
         for (Map.Entry<String, Item> allItemsEntry : allItems.entrySet()) {
-
+            Item item = allItemsEntry.getValue();
+            if (item.getPosition() == null || item.getPosition().equals("")) {
+                continue;
+            }
             LinkedHashMap<LocalDate, InputOutput> inputOutputs = new LinkedHashMap<>();
 
             LocalDate sd = LocalDate.parse(startDate);
