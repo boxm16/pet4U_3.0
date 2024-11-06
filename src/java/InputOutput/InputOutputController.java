@@ -120,10 +120,12 @@ public class InputOutputController {
         LinkedHashMap<String, Item> allItems = pet4uItemsDao.getAllItems();
 
         LinkedHashMap<String, InputOutputContainer> inputOutputContainers = new LinkedHashMap<String, InputOutputContainer>();
-
+        int a = 0;
+        int b = 0;
         for (Map.Entry<String, Item> allItemsEntry : allItems.entrySet()) {
             Item item = allItemsEntry.getValue();
             if (item.getPosition() == null || item.getPosition().equals("")) {
+                System.out.println("A" + a++);
                 continue;
             }
             LinkedHashMap<LocalDate, InputOutput> inputOutputs = new LinkedHashMap<>();
@@ -144,11 +146,12 @@ public class InputOutputController {
             InputOutputContainer inputOutputContainer = new InputOutputContainer();
             inputOutputContainer.setInputOutputs(inputOutputs);
             inputOutputContainers.put(allItemsEntry.getKey(), inputOutputContainer);
+            System.out.println("B" + b++);
         }
 
         InputOutputDao inputOutputDao = new InputOutputDao();
 
-       // inputOutputContainers = inputOutputDao.fillInputOutputContainersWithSales(inputOutputContainers, startDate, endDate);
+        // inputOutputContainers = inputOutputDao.fillInputOutputContainersWithSales(inputOutputContainers, startDate, endDate);
         //  inputOutputs = inputOutputDao.fillDeliveries(inputOutputs, itemCode, startDate, endDate);
         //inputOutputs = inputOutputDao.fillEndoParalaves(inputOutputs, itemCode, startDate, endDate);
         //inputOutputs = inputOutputDao.fillEndoApostoles(inputOutputs, itemCode, startDate, endDate);
