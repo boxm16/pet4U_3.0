@@ -111,7 +111,7 @@
         <hr>        <hr> <hr>
         <form action="inputOutput.htm" method="POST" target="_blank">
             <h1>  <input type="text"  name="itemCode" value=""></h1>
-            <h1>  <input type="date"  name="startDate" value="${startDate}"></h1>
+            <h1>  <input type="date"  name="startDate" value="${before10DaysDate}"></h1>
             <h1>  <input type="date"  name="endDate" value="${nowDate}"></h1>
             <hr>
             <button type="submit" class="btn btn-secondary"> <h1>კოდის  მოძრაობა (შემოსვლა/გასვლა)</h1></button>
@@ -120,7 +120,7 @@
         <hr>        <hr> <hr>
         <form action="inputOutputAlarms.htm" method="POST" target="_blank">
 
-            <h1>  <input type="date"  name="startDate" value="${startDate}"></h1>
+            <h1>  <input type="date"  name="startDate" value="${before10DaysDate}"></h1>
             <h1>  <input type="date"  name="endDate" value="${nowDate}"></h1>
             <hr>
             <button type="submit" class="btn btn-danger"> <h1>კოდის მოძრაობის ალარმები</h1></button>
