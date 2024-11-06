@@ -58,10 +58,10 @@
                                 continue;
                             }
 
-                            if (stockOnShelfNow < replenishment.getMinimalShelfStock() * 2) {
-                                alarmColor = "yellow";
-                            } else if (stockOnShelfNow < replenishment.getMinimalShelfStock()) {
+                            if (stockOnShelfNow < replenishment.getMinimalShelfStock()) {
                                 alarmColor = "#F33A6A";;
+                            } else if (stockOnShelfNow < replenishment.getMinimalShelfStock() * 2) {
+                                alarmColor = "yellow";
                             } else {
                                 continue;
                             }
