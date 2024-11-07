@@ -392,7 +392,7 @@ public class InputOutputDao {
                     System.out.println("Item Code is null/is not in inputOutputContainers:" + itemCode);
                     continue;
                 }
-                System.out.println("ITEM CODE NOW:"+itemCode);
+                System.out.println("ITEM CODE NOW:" + itemCode);
                 LinkedHashMap<LocalDate, InputOutput> inputOutputs = ioc.getInputOutputs();
                 InputOutput inputOutput = inputOutputs.get(creationDate);
 
@@ -425,6 +425,63 @@ public class InputOutputDao {
         }
 
         return inputOutputContainers;
+    }
+
+    LinkedHashMap<LocalDate, ItemSnapshot> combineInputOutputContainersWithSnapshots(LinkedHashMap<String, InputOutputContainer> inputOutputContainers, String startDate, String endDate) {
+        LinkedHashMap<LocalDate, ItemSnapshot> snapshots = new LinkedHashMap<>();
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+        Connection connection = databaseConnectionFactory.getMySQLConnection();
+
+        LocalDate nowDate = LocalDate.now();
+        //  LocalDate firstDate = date.minusDays(30);
+        //  LocalDate lastDate = date.minusDays(1);
+
+//     LocalDate date = LocalDate.now();
+        // LocalDate firstDate = LocalDate.parse("2023-09-12");
+        LocalDate date = LocalDate.parse(startDate);
+        LocalDate firstDate = LocalDate.parse(endDate);
+        while (date.isAfter(firstDate)) {
+            date = date.minusDays(1);
+
+            snapshots.put(date, null);
+        }
+
+        String sql = "SELECT * FROM item_state_full_version WHERE  date_stamp between '" + startDate + "' AND '" + endDate + "' ORDER BY date_stamp DESC;";
+        // System.out.println("SQL: " + sql);
+        ResultSet resultSet;
+
+        try {
+            Statement statement = connection.createStatement();
+            resultSet = statement.executeQuery(sql);
+            while (resultSet.next()) {
+                ItemSnapshot itemSnapshot = new ItemSnapshot();
+
+                String dateStamp = resultSet.getString("date_stamp");
+
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                LocalDate date1 = LocalDate.parse(dateStamp, formatter);
+
+                String quantity = resultSet.getString("item_stock");
+                String state = resultSet.getString("state");
+                String position = resultSet.getString("position");
+
+                itemSnapshot.setDateStamp(dateStamp);
+                itemSnapshot.setState(state);
+                itemSnapshot.setPosition(position);
+                itemSnapshot.setQuantity(quantity);
+
+                itemSnapshot.setInputOutputContainer(inputOutputContainers.get(date1));
+
+                snapshots.put(date1, itemSnapshot);
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(InputOutputDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return snapshots;
     }
 
 }

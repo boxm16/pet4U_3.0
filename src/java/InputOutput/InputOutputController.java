@@ -154,12 +154,12 @@ public class InputOutputController {
 
         InputOutputDao inputOutputDao = new InputOutputDao();
 
-         inputOutputContainers = inputOutputDao.fillInputOutputContainersWithSales(inputOutputContainers, startDate, endDate);
+        inputOutputContainers = inputOutputDao.fillInputOutputContainersWithSales(inputOutputContainers, startDate, endDate);
         //  inputOutputs = inputOutputDao.fillDeliveries(inputOutputs, itemCode, startDate, endDate);
         //inputOutputs = inputOutputDao.fillEndoParalaves(inputOutputs, itemCode, startDate, endDate);
         //inputOutputs = inputOutputDao.fillEndoApostoles(inputOutputs, itemCode, startDate, endDate);
-        //   LinkedHashMap<LocalDate, ItemSnapshot> allSnapshots = inputOutputDao.fillSnapshots(inputOutputs, itemCode, startDate, endDate);
-        modelMap.addAttribute("inputOutputContainers", inputOutputContainers);
+        LinkedHashMap<LocalDate, ItemSnapshot> allSnapshots = inputOutputDao.combineInputOutputContainersWithSnapshots(inputOutputContainers, startDate, endDate);
+        modelMap.addAttribute("allSnapshots", allSnapshots);
 
         return "/inputOutput/inputOutputAlarms";
     }
