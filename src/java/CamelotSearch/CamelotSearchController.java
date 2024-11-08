@@ -4,6 +4,13 @@ import BasicModel.Item;
 import CamelotItemsOfInterest.CamelotItemsOfInterestDao;
 import Inventory.InventoryItem;
 import Notes.NotesDao;
+import Pet4uItems.Pet4uItemsController;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
@@ -13,6 +20,11 @@ import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
+import org.krysalis.barcode4j.HumanReadablePlacement;
+import org.krysalis.barcode4j.impl.code128.Code128Bean;
+import org.krysalis.barcode4j.impl.code128.Code128Constants;
+import org.krysalis.barcode4j.output.bitmap.BitmapCanvasProvider;
+import org.krysalis.barcode4j.tools.UnitConv;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -76,7 +88,7 @@ public class CamelotSearchController {
         String result = notesDao.saveCamelotNote(altercode, note);
         String resultColor = "";
         if (!result.equals("New Camelot Note Added Successfully")) {
-            result = "ΚΑΤΙ ΠΗΓΕ ΣΤΡΑΒΑ. ΔΕΙΞΕ ΤΟ ΣΤΟΝ ΜΗΧΑΛΗ <br>"+result;
+            result = "ΚΑΤΙ ΠΗΓΕ ΣΤΡΑΒΑ. ΔΕΙΞΕ ΤΟ ΣΤΟΝ ΜΗΧΑΛΗ <br>" + result;
             resultColor = "red";
         }
         model.addAttribute("result", result);
@@ -965,6 +977,84 @@ public class CamelotSearchController {
         LinkedHashMap<String, ArrayList<String>> camelotStockPositionsByItemCode = notesDao.camelotStockPositionsByItemCode();
         model.addAttribute("camelotStockPositionsByItemCode", camelotStockPositionsByItemCode);
         return "camelotSearch/camelotStockPositionsByItemCodeDisplay";
+    }
+
+    //-----------------------------Barcode PRintig--------------------
+    @RequestMapping(value = "printCamelotBarcode")
+    public String printCamelotBarcode(@RequestParam(name = "altercode") String altercode, ModelMap model) {
+        System.out.println("Altercode :" + altercode);
+        CamelotSearchDao searchDao = new CamelotSearchDao();
+        Item item = searchDao.getItemByAltercode(altercode);
+
+        if (item == null) {
+            System.out.println("Item Null");
+        }
+
+        OutputStream out = null;
+        try {
+
+            Code128Bean barcode128Bean = new Code128Bean();
+            barcode128Bean.setCodeset(Code128Constants.CODESET_B);
+            final int dpi = 100;
+            //Configure the barcode generator
+            //adjust barcode width here
+            barcode128Bean.setModuleWidth(UnitConv.in2mm(5.0f / dpi));
+            barcode128Bean.doQuietZone(false);
+            barcode128Bean.setBarHeight(8);
+            //bean.setVerticalQuietZone(3);
+            barcode128Bean.setQuietZone(0);
+            barcode128Bean.setMsgPosition(HumanReadablePlacement.HRP_NONE);
+            //Open output file
+            File outputFile = new File("C:/Pet4U_3.0/barcode.png");
+            out = new FileOutputStream(outputFile);
+            try {
+                BitmapCanvasProvider canvasProvider = new BitmapCanvasProvider(
+                        out, "image/x-png", dpi, BufferedImage.TYPE_BYTE_BINARY, false, 0);
+
+                barcode128Bean.generateBarcode(canvasProvider, altercode);
+
+                try {
+                    canvasProvider.finish();
+                } catch (IOException ex) {
+                    Logger.getLogger(Pet4uItemsController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } finally {
+                try {
+                    out.close();
+                } catch (IOException ex) {
+                    Logger.getLogger(Pet4uItemsController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+            // model.addAttribute("code", code);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Pet4uItemsController.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                out.close();
+            } catch (IOException ex) {
+                Logger.getLogger(Pet4uItemsController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+//-------------
+        String printName = "\\\\eshoplaptop\\ZDesigner GC420t (EPL) (Αντιγραφή 1)";
+        CamelotBarcodePrinter barcodePrinter = new CamelotBarcodePrinter();
+        // String printName = "ZDesigner GC420t (EPL)";
+        // BarcodePrinter2 barcodePrinter = new BarcodePrinter2();
+//---------------
+        barcodePrinter.setLabelsCount(1);
+
+        barcodePrinter.setCode(item.getCode());
+        //  barcodePrinter.setBarcode(altercode.substring(altercode.length() - 6));
+        barcodePrinter.setBarcode(altercode);
+        barcodePrinter.setDescription(item.getDescription());
+        // String position = item.getPosition().substring(2);
+        barcodePrinter.setPosition(item.getPosition());
+
+        barcodePrinter.printSomething(printName);
+
+        return "index";
     }
 
 }
