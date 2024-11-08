@@ -190,16 +190,16 @@
                                         if (previousItem == null) {
                                             out.println("-");
                                         } else {
-                                            double inputOutputDiff = currentItem.getInputOutput().getDelivery()
-                                                    + currentItem.getInputOutput().getEndoParalavi()
-                                                    - currentItem.getInputOutput().getEndoApostoli()
-                                                    - currentItem.getInputOutput().getDailySale().getSoldQuantiy();
+                                         //   double inputOutputDiff = currentItem.getInputOutput().getDelivery()
+                                         //           + currentItem.getInputOutput().getEndoParalavi()
+                                        //            - currentItem.getInputOutput().getEndoApostoli()
+                                        //            - currentItem.getInputOutput().getDailySale().getSoldQuantiy();
                                             double stockDiff = stock - Double.parseDouble(previousItem.getQuantity());
-                                            double diff = inputOutputDiff - stockDiff;
-                                            if (diff != 0) {
-                                                out.println("<div style='background-color:red'>ALLLLLLLLLLLLLLLLLLLLLLARM</div>");
-                                            } else {
-                                                out.println("");
+                                       //     double diff = inputOutputDiff - stockDiff;
+                                       //     if (diff != 0) {
+                                         //       out.println("<div style='background-color:red'>ALLLLLLLLLLLLLLLLLLLLLLARM</div>");
+                                        //    } else {
+                                         //       out.println("");
                                             }
 
                                         }
