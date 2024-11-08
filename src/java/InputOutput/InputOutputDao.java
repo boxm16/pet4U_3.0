@@ -371,6 +371,7 @@ public class InputOutputDao {
                     = new StringBuilder("SELECT * FROM [petworld].[dbo].[WH_SALES_DOCS] WHERE  ABBREVIATION IN ")
                             .append(inPartForSqlQuery).append(" AND DATE_TIME BETWEEN  '").append(startDate).append("' AND  '")
                             .append(endDate).append("' ORDER BY DATE_TIME;");
+            System.out.println("QUWERL: "+query.toString());
 
             resultSet = statement.executeQuery(query.toString());
 
