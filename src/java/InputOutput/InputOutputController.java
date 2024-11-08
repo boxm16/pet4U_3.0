@@ -139,7 +139,7 @@ public class InputOutputController {
             LocalDate sd = LocalDate.parse(startDate);
             LocalDate ed = LocalDate.parse(endDate);
 
-            //sd = sd.minusDays(1);
+            sd = sd.minusDays(1);
           //  ed = ed.plusDays(1);
             startDateX = sd.toString();
             endDateX = ed.toString();
