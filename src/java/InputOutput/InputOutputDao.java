@@ -359,16 +359,23 @@ public class InputOutputDao {
         return snapshots;
     }
 
-    LinkedHashMap<String, InputOutputContainer> fillInputOutputContainersWithSales(LinkedHashMap<String, InputOutputContainer> inputOutputContainers, String startDate, String endDate) {
+    LinkedHashMap<String, InputOutputContainer> fillInputOutputContainersWithSales(LinkedHashMap<String, InputOutputContainer> inputOutputContainers, StringBuilder inPartForSqlQuery, String startDate, String endDate) {
+
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
         Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
-
+        ResultSet resultSet;
         try {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM [petworld].[dbo].[WH_SALES_DOCS] WHERE "
-                    + " DATE_TIME BETWEEN  '" + startDate + "' AND  '" + endDate + "' ORDER BY DATE_TIME;");
+
+            StringBuilder query
+                    = new StringBuilder("SELECT * FROM [petworld].[dbo].[WH_SALES_DOCS] WHERE  ABBREVIATION IN ")
+                            .append(inPartForSqlQuery).append(" AND DATE_TIME BETWEEN  '").append(startDate).append("' AND  '")
+                            .append(endDate).append("' ORDER BY DATE_TIME;");
+
+            resultSet = statement.executeQuery(query.toString());
 
             LocalDate creationDate;
+
             while (resultSet.next()) {
                 String itemCode = resultSet.getString("ABBREVIATION");
 
@@ -389,7 +396,7 @@ public class InputOutputDao {
                 creationDate = creationDateTime.toLocalDate();
                 InputOutputContainer ioc = inputOutputContainers.get(itemCode);
                 if (ioc == null) {
-                  //  System.out.println("Item Code is null/is not in inputOutputContainers:" + itemCode);
+                    //  System.out.println("Item Code is null/is not in inputOutputContainers:" + itemCode);
                     continue;
                 }
                 System.out.println("ITEM CODE NOW:" + itemCode);
@@ -427,7 +434,7 @@ public class InputOutputDao {
         return inputOutputContainers;
     }
 
-    LinkedHashMap<LocalDate, ItemSnapshot> combineInputOutputContainersWithSnapshots(LinkedHashMap<String, InputOutputContainer> inputOutputContainers, String startDate, String endDate) {
+    LinkedHashMap<LocalDate, ItemSnapshot> combineInputOutputContainersWithSnapshots(LinkedHashMap<String, InputOutputContainer> inputOutputContainers, StringBuilder inPartForSqlQuery, String startDate, String endDate) {
         LinkedHashMap<LocalDate, ItemSnapshot> snapshots = new LinkedHashMap<>();
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
         Connection connection = databaseConnectionFactory.getMySQLConnection();
@@ -446,13 +453,16 @@ public class InputOutputDao {
             snapshots.put(date, null);
         }
 
-        String sql = "SELECT * FROM item_state_full_version WHERE  date_stamp between '" + startDate + "' AND '" + endDate + "' ORDER BY date_stamp DESC;";
-        // System.out.println("SQL: " + sql);
         ResultSet resultSet;
+
+        StringBuilder query
+                = new StringBuilder("SELECT * FROM item_state_full_version WHERE item_code IN ")
+                        .append(inPartForSqlQuery).append(" AND date_stamp BETWEEN  '").append(startDate).append("' AND  '")
+                        .append(endDate).append("' date_stamp DESC;");
 
         try {
             Statement statement = connection.createStatement();
-            resultSet = statement.executeQuery(sql);
+            resultSet = statement.executeQuery(query.toString());
             while (resultSet.next()) {
                 ItemSnapshot itemSnapshot = new ItemSnapshot();
 

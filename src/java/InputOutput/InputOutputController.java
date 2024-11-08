@@ -12,6 +12,7 @@ import DailySales.DailySalesDao;
 import Pet4uItems.Pet4uItemsDao;
 import Search.SearchDao;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import org.springframework.stereotype.Controller;
@@ -122,12 +123,15 @@ public class InputOutputController {
         LinkedHashMap<String, InputOutputContainer> inputOutputContainers = new LinkedHashMap<String, InputOutputContainer>();
         int a = 0;
         int b = 0;
+        ArrayList<String> targetItemCodes = new ArrayList();
         for (Map.Entry<String, Item> allItemsEntry : allItems.entrySet()) {
             Item item = allItemsEntry.getValue();
             if (item.getPosition() == null || item.getPosition().equals("")) {
                 System.out.println("A" + a++);
                 continue;
             }
+            targetItemCodes.add(item.getCode());
+
             LinkedHashMap<LocalDate, InputOutput> inputOutputs = new LinkedHashMap<>();
 
             LocalDate sd = LocalDate.parse(startDate);
@@ -143,25 +147,52 @@ public class InputOutputController {
                 ed = ed.minusDays(1);
 
             }
+
             InputOutputContainer inputOutputContainer = new InputOutputContainer();
             inputOutputContainer.setInputOutputs(inputOutputs);
             inputOutputContainers.put(allItemsEntry.getKey(), inputOutputContainer);
+
             System.out.println("B" + b++);
             if (b > 200) {
                 break;
             }
         }
+        
+          StringBuilder inPartForSqlQueryByReferralAltercodes = buildStringFromArrayList(targetItemCodes);
 
         InputOutputDao inputOutputDao = new InputOutputDao();
 
-        inputOutputContainers = inputOutputDao.fillInputOutputContainersWithSales(inputOutputContainers, startDate, endDate);
+        inputOutputContainers = inputOutputDao.fillInputOutputContainersWithSales(inputOutputContainers, inPartForSqlQueryByReferralAltercodes, startDate, endDate);
         //  inputOutputs = inputOutputDao.fillDeliveries(inputOutputs, itemCode, startDate, endDate);
         //inputOutputs = inputOutputDao.fillEndoParalaves(inputOutputs, itemCode, startDate, endDate);
         //inputOutputs = inputOutputDao.fillEndoApostoles(inputOutputs, itemCode, startDate, endDate);
-        LinkedHashMap<LocalDate, ItemSnapshot> allSnapshots = inputOutputDao.combineInputOutputContainersWithSnapshots(inputOutputContainers, startDate, endDate);
+        LinkedHashMap<LocalDate, ItemSnapshot> allSnapshots = inputOutputDao.combineInputOutputContainersWithSnapshots(inputOutputContainers,inPartForSqlQueryByReferralAltercodes,  startDate, endDate);
         modelMap.addAttribute("allSnapshots", allSnapshots);
 
         return "/inputOutput/inputOutputAlarms";
+    }
+    
+    
+     private StringBuilder buildStringFromArrayList(ArrayList<String> arrayList) {
+
+        StringBuilder stringBuilder = new StringBuilder("(");
+        if (arrayList.isEmpty()) {
+            stringBuilder.append(")");
+            return stringBuilder;
+        }
+        int x = 0;
+        for (String entry : arrayList) {
+            if (x == 0) {
+                stringBuilder.append("'").append(entry).append("'");
+            } else {
+                stringBuilder.append(",'").append(entry).append("'");
+            }
+            if (x == arrayList.size() - 1) {
+                stringBuilder.append(")");
+            }
+            x++;
+        }
+        return stringBuilder;
     }
 
 }
