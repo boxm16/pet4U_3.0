@@ -154,7 +154,7 @@ public class InputOutputController {
             inputOutputContainer.setInputOutputs(inputOutputs);
             inputOutputContainers.put(allItemsEntry.getKey(), inputOutputContainer);
 
-            System.out.println("B" + b++);
+        //    System.out.println("B" + b++);
             if (b > 200) {
                 break;
             }
