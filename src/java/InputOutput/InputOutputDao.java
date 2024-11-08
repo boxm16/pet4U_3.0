@@ -389,7 +389,7 @@ public class InputOutputDao {
                 creationDate = creationDateTime.toLocalDate();
                 InputOutputContainer ioc = inputOutputContainers.get(itemCode);
                 if (ioc == null) {
-                    System.out.println("Item Code is null/is not in inputOutputContainers:" + itemCode);
+                  //  System.out.println("Item Code is null/is not in inputOutputContainers:" + itemCode);
                     continue;
                 }
                 System.out.println("ITEM CODE NOW:" + itemCode);
