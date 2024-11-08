@@ -123,11 +123,13 @@ public class InputOutputController {
         LinkedHashMap<String, InputOutputContainer> inputOutputContainers = new LinkedHashMap<String, InputOutputContainer>();
         int a = 0;
         int b = 0;
+        String startDateX = "";
+        String endDateX = "";
         ArrayList<String> targetItemCodes = new ArrayList();
         for (Map.Entry<String, Item> allItemsEntry : allItems.entrySet()) {
             Item item = allItemsEntry.getValue();
             if (item.getPosition() == null || item.getPosition().equals("")) {
-                System.out.println("A" + a++);
+               // System.out.println("A" + a++);
                 continue;
             }
             targetItemCodes.add(item.getCode());
@@ -139,8 +141,8 @@ public class InputOutputController {
 
             sd = sd.minusDays(1);
             ed = ed.plusDays(1);
-            startDate = sd.toString();
-            endDate = ed.toString();
+            startDateX = sd.toString();
+            endDateX = ed.toString();
             while (sd.isBefore(ed)) {
                 InputOutput inputOutput = new InputOutput();
                 inputOutputs.put(ed, inputOutput);
@@ -157,23 +159,22 @@ public class InputOutputController {
                 break;
             }
         }
-        
-          StringBuilder inPartForSqlQueryByReferralAltercodes = buildStringFromArrayList(targetItemCodes);
+
+        StringBuilder inPartForSqlQueryByReferralAltercodes = buildStringFromArrayList(targetItemCodes);
 
         InputOutputDao inputOutputDao = new InputOutputDao();
 
-        inputOutputContainers = inputOutputDao.fillInputOutputContainersWithSales(inputOutputContainers, inPartForSqlQueryByReferralAltercodes, startDate, endDate);
+        inputOutputContainers = inputOutputDao.fillInputOutputContainersWithSales(inputOutputContainers, inPartForSqlQueryByReferralAltercodes, startDateX, endDateX);
         //  inputOutputs = inputOutputDao.fillDeliveries(inputOutputs, itemCode, startDate, endDate);
         //inputOutputs = inputOutputDao.fillEndoParalaves(inputOutputs, itemCode, startDate, endDate);
         //inputOutputs = inputOutputDao.fillEndoApostoles(inputOutputs, itemCode, startDate, endDate);
-        LinkedHashMap<LocalDate, ItemSnapshot> allSnapshots = inputOutputDao.combineInputOutputContainersWithSnapshots(inputOutputContainers,inPartForSqlQueryByReferralAltercodes,  startDate, endDate);
+        LinkedHashMap<LocalDate, ItemSnapshot> allSnapshots = inputOutputDao.combineInputOutputContainersWithSnapshots(inputOutputContainers, inPartForSqlQueryByReferralAltercodes, startDateX, endDateX);
         modelMap.addAttribute("allSnapshots", allSnapshots);
 
         return "/inputOutput/inputOutputAlarms";
     }
-    
-    
-     private StringBuilder buildStringFromArrayList(ArrayList<String> arrayList) {
+
+    private StringBuilder buildStringFromArrayList(ArrayList<String> arrayList) {
 
         StringBuilder stringBuilder = new StringBuilder("(");
         if (arrayList.isEmpty()) {
