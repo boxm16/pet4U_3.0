@@ -129,7 +129,7 @@ public class InputOutputController {
         for (Map.Entry<String, Item> allItemsEntry : allItems.entrySet()) {
             Item item = allItemsEntry.getValue();
             if (item.getPosition() == null || item.getPosition().equals("")) {
-               // System.out.println("A" + a++);
+                // System.out.println("A" + a++);
                 continue;
             }
             targetItemCodes.add(item.getCode());
@@ -139,10 +139,10 @@ public class InputOutputController {
             LocalDate sd = LocalDate.parse(startDate);
             LocalDate ed = LocalDate.parse(endDate);
 
-            sd = sd.minusDays(1);
-          //  ed = ed.plusDays(1);
             startDateX = sd.toString();
             endDateX = ed.toString();
+            sd = sd.minusDays(1);
+            ed = ed.plusDays(1);
             while (sd.isBefore(ed)) {
                 InputOutput inputOutput = new InputOutput();
                 inputOutputs.put(ed, inputOutput);
