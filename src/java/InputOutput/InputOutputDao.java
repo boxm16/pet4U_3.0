@@ -458,7 +458,7 @@ public class InputOutputDao {
         StringBuilder query
                 = new StringBuilder("SELECT * FROM item_state_full_version WHERE item_code IN ")
                         .append(inPartForSqlQuery).append(" AND date_stamp BETWEEN  '").append(startDate).append("' AND  '")
-                        .append(endDate).append("' date_stamp DESC;");
+                        .append(endDate).append("'ORDER BY date_stamp DESC;");
 
         try {
             Statement statement = connection.createStatement();
