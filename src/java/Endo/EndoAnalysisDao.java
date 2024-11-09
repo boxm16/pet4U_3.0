@@ -290,7 +290,8 @@ public class EndoAnalysisDao {
                 if (creationUser.equals("ΜΙΧΑΛΗΣ")
                         || creationUser.equals("VASILIS")
                         || creationUser.equals("ΔΗΜΗΤΡΗΣ")
-                        || creationUser.equals("GOLOMOLZIN")) {
+                        || creationUser.equals("GOLOMOLZIN")
+                        || creationUser.equals("LIVANIS")) {
 
                     if (!endoApostolisDays.containsKey(dateString)) {
                         EndoApostolisDay endoApostolisDay = new EndoApostolisDay();
