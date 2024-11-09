@@ -5,6 +5,7 @@
  */
 package InputOutput;
 
+import CamelotItemsOfInterest.ItemSnapshot;
 import DailySales.DailySale;
 
 public class InputOutput {
@@ -13,6 +14,7 @@ public class InputOutput {
     private DailySale dailySale;
     private double endoParalavi;
     private double endoApostoli;
+    private ItemSnapshot itemSnapshot;
 
     public InputOutput() {
         dailySale = new DailySale();
@@ -48,6 +50,14 @@ public class InputOutput {
 
     public void setEndoApostoli(double endoApostoli) {
         this.endoApostoli = endoApostoli;
+    }
+
+    public ItemSnapshot getItemSnapshot() {
+        return itemSnapshot;
+    }
+
+    public void setItemSnapshot(ItemSnapshot itemSnapshot) {
+        this.itemSnapshot = itemSnapshot;
     }
 
 }

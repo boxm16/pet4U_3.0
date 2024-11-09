@@ -1,7 +1,5 @@
 package CamelotItemsOfInterest;
 
-import InputOutput.InputOutput;
-import InputOutput.InputOutputContainer;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -15,8 +13,6 @@ import java.util.logging.Logger;
 public class ItemSnapshot extends CamelotItemOfInterest {
 
     String dateStamp;
-    private InputOutput inputOutput;
-    private InputOutputContainer inputOutputContainer;
 
     public String getDateStamp() {
         return dateStamp;
@@ -24,14 +20,6 @@ public class ItemSnapshot extends CamelotItemOfInterest {
 
     public void setDateStamp(String dateStamp) {
         this.dateStamp = dateStamp;
-    }
-
-    public InputOutput getInputOutput() {
-        return inputOutput;
-    }
-
-    public void setInputOutput(InputOutput inputOutput) {
-        this.inputOutput = inputOutput;
     }
 
     public String getReformatedDateStamp() {
@@ -45,14 +33,6 @@ public class ItemSnapshot extends CamelotItemOfInterest {
             Logger.getLogger(ItemSnapshot.class.getName()).log(Level.SEVERE, null, ex);
         }
         return "Couldnt parse date";
-    }
-
-    public InputOutputContainer getInputOutputContainer() {
-        return inputOutputContainer;
-    }
-
-    public void setInputOutputContainer(InputOutputContainer inputOutputContainer) {
-        this.inputOutputContainer = inputOutputContainer;
     }
 
 }

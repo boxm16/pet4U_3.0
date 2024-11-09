@@ -288,8 +288,6 @@ public class InputOutputDao {
                 itemSnapshot.setPosition(position);
                 itemSnapshot.setQuantity(quantity);
 
-                itemSnapshot.setInputOutput(inputOutputs.get(date1));
-
                 snapshots.put(date1, itemSnapshot);
             }
             resultSet.close();
@@ -345,8 +343,6 @@ public class InputOutputDao {
                 itemSnapshot.setPosition(position);
                 itemSnapshot.setQuantity(quantity);
 
-                itemSnapshot.setInputOutput(inputOutputs.get(date1));
-
                 snapshots.put(date1, itemSnapshot);
             }
             resultSet.close();
@@ -371,7 +367,7 @@ public class InputOutputDao {
                     = new StringBuilder("SELECT * FROM [petworld].[dbo].[WH_SALES_DOCS] WHERE  ABBREVIATION IN ")
                             .append(inPartForSqlQuery).append(" AND DATE_TIME BETWEEN  '").append(startDate).append("' AND  '")
                             .append(endDate).append("' ORDER BY DATE_TIME;");
-            System.out.println("QUWERL: "+query.toString());
+            System.out.println("QUWERL: " + query.toString());
 
             resultSet = statement.executeQuery(query.toString());
 
@@ -480,8 +476,6 @@ public class InputOutputDao {
                 itemSnapshot.setState(state);
                 itemSnapshot.setPosition(position);
                 itemSnapshot.setQuantity(quantity);
-
-                itemSnapshot.setInputOutputContainer(inputOutputContainers.get(date1));
 
                 snapshots.put(date1, itemSnapshot);
             }
