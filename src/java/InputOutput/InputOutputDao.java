@@ -489,4 +489,8 @@ public class InputOutputDao {
         return snapshots;
     }
 
+    LinkedHashMap<String, InputOutputContainer> fillInputOutputContainersWithSnapshots(LinkedHashMap<String, InputOutputContainer> inputOutputContainers, StringBuilder inPartForSqlQueryByReferralAltercodes, String startDateX, String endDateX) {
+        return inputOutputContainers;
+    }
+
 }

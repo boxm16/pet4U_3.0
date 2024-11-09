@@ -154,7 +154,7 @@ public class InputOutputController {
             inputOutputContainer.setInputOutputs(inputOutputs);
             inputOutputContainers.put(allItemsEntry.getKey(), inputOutputContainer);
 
-        //    System.out.println("B" + b++);
+            //    System.out.println("B" + b++);
             if (b > 200) {
                 break;
             }
@@ -169,6 +169,9 @@ public class InputOutputController {
         //inputOutputs = inputOutputDao.fillEndoParalaves(inputOutputs, itemCode, startDate, endDate);
         //inputOutputs = inputOutputDao.fillEndoApostoles(inputOutputs, itemCode, startDate, endDate);
         LinkedHashMap<LocalDate, ItemSnapshot> allSnapshots = inputOutputDao.combineInputOutputContainersWithSnapshots(inputOutputContainers, inPartForSqlQueryByReferralAltercodes, startDateX, endDateX);
+
+        inputOutputContainers = inputOutputDao.fillInputOutputContainersWithSnapshots(inputOutputContainers, inPartForSqlQueryByReferralAltercodes, startDateX, endDateX);
+        modelMap.addAttribute("inputOutputContainers", inputOutputContainers);
         modelMap.addAttribute("allSnapshots", allSnapshots);
 
         return "/inputOutput/inputOutputAlarms";
