@@ -130,45 +130,7 @@
                                         out.println(currentItem.getPosition());
                                         out.println("</td>");
                                         //-----------++++++-----------input Output-----+++++++-----
-                                        InputOutput inputOutput = currentItem.getInputOutput();
-                                        if (inputOutput == null) {
-
-                                            out.println("<td>");
-                                            out.println("N/A");
-                                            out.println("</td>");
-
-                                            out.println("<td>");
-                                            out.println("N/A");
-                                            out.println("</td>");
-
-                                            out.println("<td>");
-                                            out.println("N/A");
-                                            out.println("</td>");
-
-                                            out.println("<td>");
-                                            out.println("N/A");
-                                            out.println("</td>");
-                                            out.println("<td>");
-                                            out.println("N/A");
-                                            out.println("</td>");
-
-                                        } else {
-                                            out.println("<td>");
-                                            out.println(currentItem.getInputOutput().getDelivery());
-                                            out.println("</td>");
-
-                                            out.println("<td>");
-                                            out.println(currentItem.getInputOutput().getEndoParalavi());
-                                            out.println("</td>");
-
-                                            out.println("<td>");
-                                            out.println(currentItem.getInputOutput().getEndoApostoli());
-                                            out.println("</td>");
-
-                                            out.println("<td>");
-                                            out.println(currentItem.getInputOutput().getDailySale().getSoldQuantiy());
-                                            out.println("</td>");
-                                        }
+                                       
 
                                         if (currentItem.getQuantity().equals("0") || currentItem.getQuantity().equals("0.000000")) {
                                             out.println("<td style='background-color: #F7B2F7'>");
@@ -186,24 +148,7 @@
                                         }
                                         out.println("</td>");
 
-                                        out.println("<td>");
-                                        if (previousItem == null) {
-                                            out.println("-");
-                                        } else {
-                                            double inputOutputDiff = currentItem.getInputOutput().getDelivery()
-                                                    + currentItem.getInputOutput().getEndoParalavi()
-                                                    - currentItem.getInputOutput().getEndoApostoli()
-                                                    - currentItem.getInputOutput().getDailySale().getSoldQuantiy();
-                                            double stockDiff = stock - Double.parseDouble(previousItem.getQuantity());
-                                            double diff = inputOutputDiff - stockDiff;
-                                            if (diff != 0) {
-                                                out.println("<div style='background-color:red'>ALLLLLLLLLLLLLLLLLLLLLLARM</div>");
-                                            } else {
-                                                out.println("");
-                                            }
-
-                                        }
-                                        out.println("</td>");
+                                        
 
                                     }
                                     out.println("</tr>");
