@@ -549,15 +549,19 @@ public class InputOutputDao {
         return inputOutputContainers;
     }
 
-    LinkedHashMap<String, InputOutputContainer> fillInputOutputContainersWithDeliveries(LinkedHashMap<String, InputOutputContainer> inputOutputContainers, StringBuilder inPartForSqlQueryByReferralAltercodes, String startDateX, String endDateX) {
+    LinkedHashMap<String, InputOutputContainer> fillInputOutputContainersWithDeliveries(LinkedHashMap<String, InputOutputContainer> inputOutputContainers, StringBuilder inPartForSqlQuery, String startDateX, String endDateX) {
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
         Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
 
         try {
             Statement statement = connection.createStatement();
-            String sql = "SELECT [DATEOFUPDATE], [ABBREVIATION], [QUANT1] FROM  [petworld].[dbo].[WH_DEPA]  WHERE  [DATEOFUPDATE] BETWEEN '" + startDateX + "' AND '" + endDateX + "' ORDER BY [DATEOFUPDATE];";
+            //      String sql = "SELECT [DATEOFUPDATE], [ABBREVIATION], [QUANT1] FROM  [petworld].[dbo].[WH_DEPA]  WHERE  [DATEOFUPDATE] BETWEEN '" + startDateX + "' AND '" + endDateX + "' ORDER BY [DATEOFUPDATE];";
 
-            ResultSet resultSet = statement.executeQuery(sql);
+            StringBuilder query
+                    = new StringBuilder("SELECT [DATEOFUPDATE], [ABBREVIATION], [QUANT1] FROM  [petworld].[dbo].[WH_DEPA]  WHERE [ABBREVIATION] IN ")
+                            .append(inPartForSqlQuery).append(" AND [DATEOFUPDATE] BETWEEN  '").append(startDateX).append("' AND  '")
+                            .append(endDateX).append("' ORDER BY [DATEOFUPDATE];");
+            ResultSet resultSet = statement.executeQuery(query.toString());
             LocalDate creationDate;
             while (resultSet.next()) {
                 String creationDateTimeStampString = resultSet.getString("DATEOFUPDATE");
