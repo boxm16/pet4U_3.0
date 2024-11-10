@@ -323,6 +323,16 @@
                                         out.println(inputOutputDiff);
                                         out.println("</td>");
 
+                                        if (snapshotDiff == inputOutputDiff) {
+                                            out.println("<td>");
+                                            out.println();
+                                            out.println("</td>");
+                                        } else {
+                                            out.println("<td style='background-color:red'>");
+                                            out.println("ALARM");
+                                            out.println("</td>");
+                                        }
+
                                         previousDayStock = stock;
                                     }
 
