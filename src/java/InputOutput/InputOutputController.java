@@ -154,7 +154,7 @@ public class InputOutputController {
             while (ed.isBefore(sd)) {
                 InputOutput inputOutput = new InputOutput();
                 inputOutputs.put(sd, inputOutput);
-                ed = ed.plusDays(1);
+                sd = sd.plusDays(1);
             }
 
             InputOutputContainer inputOutputContainer = new InputOutputContainer();
