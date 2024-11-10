@@ -159,6 +159,7 @@ public class InputOutputController {
             if (b > 200) {
                 break;
             }
+            b++;
         }
 
         StringBuilder inPartForSqlQueryByReferralAltercodes = buildStringFromArrayList(targetItemCodes);

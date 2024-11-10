@@ -216,7 +216,7 @@
                                 LinkedHashMap<LocalDate, InputOutput> inputOutputs = inputOutputContainer.getInputOutputs();
                                 Item item = inputOutputContainer.getItem();
                                 out.println("<tr>");
-                                out.println("<td colspan='5'>");
+                                out.println("<td>");
                                 out.println(index++);
                                 out.println("</td>");
                                 out.println("<td colspan='5'>");
