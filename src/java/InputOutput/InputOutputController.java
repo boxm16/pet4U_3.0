@@ -183,8 +183,12 @@ public class InputOutputController {
         inputOutputContainers = inputOutputDao.fillInputOutputContainersWithSnapshots(inputOutputContainers, inPartForSqlQuery, startDateX, endDateX);
         modelMap.addAttribute("inputOutputContainers", inputOutputContainers);
         //    modelMap.addAttribute("allSnapshots", allSnapshots);
+        if (checkboxValue != null) {
+            return "/inputOutput/inputOutputAlarmsSV";
+        } else {
+            return "/inputOutput/inputOutputAlarms";
+        }
 
-        return "/inputOutput/inputOutputAlarms";
     }
 
     private StringBuilder buildStringFromArrayList(ArrayList<String> arrayList) {
