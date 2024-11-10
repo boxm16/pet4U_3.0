@@ -62,9 +62,8 @@
 
             <hr>
             <div class="row">
-                <div class=" col-sm-4">
-                </div>
-                <div class=" col-sm-4">
+                
+                <div class=" col-sm-12">
                     <center><h3>Daily Input Output</h3></center>
                     <table>
                         <th>Code</th>
@@ -190,8 +189,7 @@
                         %>
                     </table>
                 </div>
-                <div class=" col-sm-4">
-                </div>
+               
             </div>
         </div>
     </body>
