@@ -151,6 +151,7 @@ public class InputOutputController {
             }
 
             InputOutputContainer inputOutputContainer = new InputOutputContainer();
+            inputOutputContainer.setItem(item);
             inputOutputContainer.setInputOutputs(inputOutputs);
             inputOutputContainers.put(allItemsEntry.getKey(), inputOutputContainer);
 

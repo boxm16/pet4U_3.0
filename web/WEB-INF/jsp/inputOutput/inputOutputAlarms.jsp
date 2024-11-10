@@ -193,14 +193,18 @@
                     <table>
 
                         <th>Date</th>
+
+                        <th>State</th>
+                        <th>Position</th>
                         <th>Delivery</th>
                         <th>Ενδο Παραλαβη</th>
                         <th>Ενδο Αποστολη</th>
                         <th>E-Shop Sales</th>
+                        <th>Stock</th>
+
+
 
                         <%
-                            Item item = (Item) request.getAttribute("item");
-
 //-----------------
                             LinkedHashMap<String, InputOutputContainer> inputOutputContainers = (LinkedHashMap) request.getAttribute("inputOutputContainers");
 
@@ -210,10 +214,10 @@
                             for (Map.Entry<String, InputOutputContainer> inputOutputContainersEntry : inputOutputContainers.entrySet()) {
                                 InputOutputContainer inputOutputContainer = inputOutputContainersEntry.getValue();
                                 LinkedHashMap<LocalDate, InputOutput> inputOutputs = inputOutputContainer.getInputOutputs();
-                                String itemCode = inputOutputContainersEntry.getKey();
+                                Item item = inputOutputContainer.getItem();
                                 out.println("<tr>");
-                                out.println("<td>");
-                                out.println(itemCode);
+                                out.println("<td colspan='5'>");
+                                out.println(item.getCode() + ": " + item.getDescription());
                                 out.println("</td>");
                                 out.println("</tr>");
                                 for (Map.Entry<LocalDate, InputOutput> inputOutputsEntry : inputOutputs.entrySet()) {
@@ -250,12 +254,12 @@
                                     if (dailySale.getPresoldQuantiy() > 0) {
                                         out.println("<td style='background-color: red;'>");
                                         String bb = dailySale.getSoldQuantiy() + "/" + dailySale.getPresoldQuantiy();
-                                        out.println("<a  href = 'getAllSalesDocsOfDateAndItem.htm?itemCode=" + itemCode + "&date=" + date + "' target='_blank'>" + bb + "</a>");
+                                        out.println("<a  href = 'getAllSalesDocsOfDateAndItem.htm?itemCode=" + item.getCode() + "&date=" + date + "' target='_blank'>" + bb + "</a>");
 
                                     } else {
                                         out.println("<td>");
 
-                                        out.println("<a  href = 'getAllSalesDocsOfDateAndItem.htm?itemCode=" + itemCode + "&date=" + date + "' target='_blank'>" + dailySale.getSoldQuantiy() + "</a>");
+                                        out.println("<a  href = 'getAllSalesDocsOfDateAndItem.htm?itemCode=" + item.getCode() + "&date=" + date + "' target='_blank'>" + dailySale.getSoldQuantiy() + "</a>");
                                     }
 
                                     out.println("</td>");

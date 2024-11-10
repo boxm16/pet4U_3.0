@@ -5,6 +5,7 @@
  */
 package InputOutput;
 
+import BasicModel.Item;
 import java.time.LocalDate;
 import java.util.LinkedHashMap;
 
@@ -14,20 +15,22 @@ import java.util.LinkedHashMap;
  */
 public class InputOutputContainer {
 
-    private String itemCode;
+    private Item item;
     private LinkedHashMap<LocalDate, InputOutput> inputOutputs;
 
     public InputOutputContainer() {
         inputOutputs = new LinkedHashMap<LocalDate, InputOutput>();
     }
 
-    public String getItemCode() {
-        return itemCode;
+    public Item getItem() {
+        return item;
     }
 
-    public void setItemCode(String itemCode) {
-        this.itemCode = itemCode;
+    public void setItem(Item item) {
+        this.item = item;
     }
+
+   
 
     public LinkedHashMap<LocalDate, InputOutput> getInputOutputs() {
         return inputOutputs;
