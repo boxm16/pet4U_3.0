@@ -108,6 +108,10 @@
                                     } else {
                                         out.println("<tr>");
                                         out.println("<td>");
+                                        out.println(date.format(formatter));
+                                        out.println("</td>");
+
+                                        out.println("<td>");
                                         out.println(inputOutput.getItemSnapshot().getPosition());
                                         out.println("</td>");
 
