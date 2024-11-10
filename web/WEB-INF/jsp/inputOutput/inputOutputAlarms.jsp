@@ -291,9 +291,20 @@
 
                                     out.println("</td>");
 
-                                    out.println("<td>");
-                                    out.println(inputOutput.getItemSnapshot().getQuantity());
-                                    out.println("</td>");
+                                    if (itemSnapshot == null) {
+
+                                        out.println("<td>");
+                                        out.println("--");
+                                        out.println("</td>");
+
+                                    } else {
+
+                                        out.println("<td>");
+                                        out.println(inputOutput.getItemSnapshot().getQuantity());
+                                        out.println("</td>");
+
+                                       
+                                    }
 
                                     out.println("</tr>");
 
