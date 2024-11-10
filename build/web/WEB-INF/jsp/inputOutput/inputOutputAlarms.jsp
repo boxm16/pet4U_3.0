@@ -193,9 +193,9 @@
                     <table>
 
                         <th>Date</th>
-
-                        <th>State</th>
                         <th>Position</th>
+                        <th>State</th>
+
                         <th>Delivery</th>
                         <th>Ενδο Παραλαβη</th>
                         <th>Ενδο Αποστολη</th>
@@ -207,7 +207,7 @@
                         <%
 //-----------------
                             LinkedHashMap<String, InputOutputContainer> inputOutputContainers = (LinkedHashMap) request.getAttribute("inputOutputContainers");
-
+                            int index = 1;
                             double allDaysSales = 0;
                             int days = 0;
 
@@ -216,6 +216,9 @@
                                 LinkedHashMap<LocalDate, InputOutput> inputOutputs = inputOutputContainer.getInputOutputs();
                                 Item item = inputOutputContainer.getItem();
                                 out.println("<tr>");
+                                out.println("<td colspan='5'>");
+                                out.println(index++);
+                                out.println("</td>");
                                 out.println("<td colspan='5'>");
                                 out.println(item.getCode() + ": " + item.getDescription());
                                 out.println("</td>");
