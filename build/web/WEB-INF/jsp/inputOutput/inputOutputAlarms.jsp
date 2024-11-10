@@ -225,6 +225,7 @@
                                 out.println("</tr>");
 
                                 double previousDayStock = 0;
+                                int snapshotIndex = 0;
 
                                 for (Map.Entry<LocalDate, InputOutput> inputOutputsEntry : inputOutputs.entrySet()) {
                                     LocalDate date = inputOutputsEntry.getKey();
@@ -323,7 +324,7 @@
                                         out.println(inputOutputDiff);
                                         out.println("</td>");
 
-                                        if (snapshotDiff == inputOutputDiff) {
+                                        if (snapshotDiff == inputOutputDiff || snapshotIndex == 0) {
                                             out.println("<td>");
                                             out.println();
                                             out.println("</td>");
@@ -337,7 +338,7 @@
                                     }
 
                                     out.println("</tr>");
-
+                                    snapshotIndex++;
                                 }
                                 out.println("<tr>");
                                 out.println("<td>");
