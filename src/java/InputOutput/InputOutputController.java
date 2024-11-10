@@ -169,19 +169,19 @@ public class InputOutputController {
             b++;
         }
 
-        StringBuilder inPartForSqlQueryByReferralAltercodes = buildStringFromArrayList(targetItemCodes);
+        StringBuilder inPartForSqlQuery = buildStringFromArrayList(targetItemCodes);
 
         InputOutputDao inputOutputDao = new InputOutputDao();
-        inputOutputContainers = inputOutputDao.fillInputOutputContainersWithDeliveries(inputOutputContainers, inPartForSqlQueryByReferralAltercodes, startDateX, endDateX);
-        inputOutputContainers = inputOutputDao.fillInputOutputContainersWithSales(inputOutputContainers, inPartForSqlQueryByReferralAltercodes, startDateX, endDateX);
+        inputOutputContainers = inputOutputDao.fillInputOutputContainersWithDeliveries(inputOutputContainers, inPartForSqlQuery, startDateX, endDateX);
+        inputOutputContainers = inputOutputDao.fillInputOutputContainersWithEndoParalaves(inputOutputContainers, inPartForSqlQuery, startDateX, endDateX);
 
-        //inputOutputs = inputOutputDao.fillEndoParalaves(inputOutputs, itemCode, startDate, endDate);
+        inputOutputContainers = inputOutputDao.fillInputOutputContainersWithSales(inputOutputContainers, inPartForSqlQuery, startDateX, endDateX);
+
         //inputOutputs = inputOutputDao.fillEndoApostoles(inputOutputs, itemCode, startDate, endDate);
-        LinkedHashMap<LocalDate, ItemSnapshot> allSnapshots = inputOutputDao.combineInputOutputContainersWithSnapshots(inputOutputContainers, inPartForSqlQueryByReferralAltercodes, startDateX, endDateX);
-
-        inputOutputContainers = inputOutputDao.fillInputOutputContainersWithSnapshots(inputOutputContainers, inPartForSqlQueryByReferralAltercodes, startDateX, endDateX);
+        //  LinkedHashMap<LocalDate, ItemSnapshot> allSnapshots = inputOutputDao.combineInputOutputContainersWithSnapshots(inputOutputContainers, inPartForSqlQuery, startDateX, endDateX);
+        inputOutputContainers = inputOutputDao.fillInputOutputContainersWithSnapshots(inputOutputContainers, inPartForSqlQuery, startDateX, endDateX);
         modelMap.addAttribute("inputOutputContainers", inputOutputContainers);
-        modelMap.addAttribute("allSnapshots", allSnapshots);
+        //    modelMap.addAttribute("allSnapshots", allSnapshots);
 
         return "/inputOutput/inputOutputAlarms";
     }
