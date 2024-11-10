@@ -201,6 +201,8 @@
                         <th>Ενδο Αποστολη</th>
                         <th>E-Shop Sales</th>
                         <th>Stock</th>
+                        <th>Snapshot<br>Stock<br>Diff</th>
+                        <th>Input Output<br>Diff</th>
                         <th>Alarms</th>
 
 
@@ -300,6 +302,9 @@
                                         out.println("<td>");
                                         out.println("--");
                                         out.println("</td>");
+                                        out.println("<td>");
+                                        out.println("--");
+                                        out.println("</td>");
 
                                     } else {
                                         double stock = Double.parseDouble(inputOutput.getItemSnapshot().getQuantity());
@@ -307,8 +312,15 @@
                                         out.println(stock);
                                         out.println("</td>");
                                         out.println("<td>");
-                                        double diff = stock-previousDayStock ;
-                                        out.println(diff);
+                                        double snapshotDiff = stock - previousDayStock;
+                                        out.println(snapshotDiff);
+                                        out.println("</td>");
+                                        out.println("<td>");
+                                        double inputOutputDiff = inputOutput.getDelivery()
+                                                + inputOutput.getEndoParalavi()
+                                                - inputOutput.getEndoApostoli()
+                                                - inputOutput.getDailySale().getSoldQuantiy();
+                                        out.println(inputOutputDiff);
                                         out.println("</td>");
 
                                         previousDayStock = stock;
