@@ -165,16 +165,16 @@
                                             } else {
                                                 out.println("");
                                             }
-                                             */
+                                            
 
                                         }
                                         out.println("</td>");
 
                                     }
                                     out.println("</tr>");
-                                }
+                                } */
                             %>
-                        */
+
                     </table>
 
                 </div>
@@ -210,7 +210,7 @@
                             for (Map.Entry<String, InputOutputContainer> inputOutputContainersEntry : inputOutputContainers.entrySet()) {
                                 InputOutputContainer inputOutputContainer = inputOutputContainersEntry.getValue();
                                 LinkedHashMap<LocalDate, InputOutput> inputOutputs = inputOutputContainer.getInputOutputs();
-String itemCode=inputOutputContainersEntry.getKey();
+                                String itemCode = inputOutputContainersEntry.getKey();
                                 out.println("<tr>");
                                 out.println("<td>");
                                 out.println(itemCode);
