@@ -172,9 +172,9 @@ public class InputOutputController {
         StringBuilder inPartForSqlQueryByReferralAltercodes = buildStringFromArrayList(targetItemCodes);
 
         InputOutputDao inputOutputDao = new InputOutputDao();
-
+        inputOutputContainers = inputOutputDao.fillInputOutputContainersWithDeliveries(inputOutputContainers, inPartForSqlQueryByReferralAltercodes, startDateX, endDateX);
         inputOutputContainers = inputOutputDao.fillInputOutputContainersWithSales(inputOutputContainers, inPartForSqlQueryByReferralAltercodes, startDateX, endDateX);
-        //  inputOutputs = inputOutputDao.fillDeliveries(inputOutputs, itemCode, startDate, endDate);
+
         //inputOutputs = inputOutputDao.fillEndoParalaves(inputOutputs, itemCode, startDate, endDate);
         //inputOutputs = inputOutputDao.fillEndoApostoles(inputOutputs, itemCode, startDate, endDate);
         LinkedHashMap<LocalDate, ItemSnapshot> allSnapshots = inputOutputDao.combineInputOutputContainersWithSnapshots(inputOutputContainers, inPartForSqlQueryByReferralAltercodes, startDateX, endDateX);

@@ -549,4 +549,55 @@ public class InputOutputDao {
         return inputOutputContainers;
     }
 
+    LinkedHashMap<String, InputOutputContainer> fillInputOutputContainersWithDeliveries(LinkedHashMap<String, InputOutputContainer> inputOutputContainers, StringBuilder inPartForSqlQueryByReferralAltercodes, String startDateX, String endDateX) {
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+        Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
+
+        try {
+            Statement statement = connection.createStatement();
+            String sql = "SELECT [DATEOFUPDATE], [ABBREVIATION], [QUANT1] FROM  [petworld].[dbo].[WH_DEPA]  WHERE  [DATEOFUPDATE] BETWEEN '" + startDateX + "' AND '" + endDateX + "' ORDER BY [DATEOFUPDATE];";
+
+            ResultSet resultSet = statement.executeQuery(sql);
+            LocalDate creationDate;
+            while (resultSet.next()) {
+                String creationDateTimeStampString = resultSet.getString("DATEOFUPDATE");
+                DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
+                DateTimeFormatter formatter3 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SS");
+                DateTimeFormatter formatter4 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S");
+
+                LocalDateTime creationDateTime;
+                if (creationDateTimeStampString.length() == 23) {
+                    creationDateTime = LocalDateTime.parse(creationDateTimeStampString, formatter2);
+                } else if (creationDateTimeStampString.length() == 22) {
+                    creationDateTime = LocalDateTime.parse(creationDateTimeStampString, formatter3);
+                } else {
+                    creationDateTime = LocalDateTime.parse(creationDateTimeStampString, formatter4);
+                }
+
+                creationDate = creationDateTime.toLocalDate();
+
+                String itemCode = resultSet.getString("ABBREVIATION");
+                InputOutputContainer ioc = inputOutputContainers.get(itemCode);
+                LinkedHashMap<LocalDate, InputOutput> inputOutputs = ioc.getInputOutputs();
+                InputOutput inputOutput = inputOutputs.get(creationDate);
+
+                if (inputOutput == null) {
+                    System.out.println("Something Wrong. InputOutputDao. inputOutput=null:" + creationDate);
+                } else {
+                    double delivery = inputOutput.getDelivery();
+                    delivery = delivery + Double.parseDouble(resultSet.getString("QUANT1"));
+                    inputOutput.setDelivery(delivery);
+                    inputOutputs.put(creationDate, inputOutput);
+                }
+            }
+
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(InputOutputDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return inputOutputs;
+    }
+
 }
