@@ -223,6 +223,7 @@
                                 for (Map.Entry<LocalDate, InputOutput> inputOutputsEntry : inputOutputs.entrySet()) {
                                     LocalDate date = inputOutputsEntry.getKey();
                                     InputOutput inputOutput = inputOutputsEntry.getValue();
+
                                     DailySale dailySale = inputOutput.getDailySale();
                                     if (date.getDayOfWeek().toString().equals("SUNDAY")) {
                                         out.println("<tr style='background-color: #90EE90;'>");
@@ -235,16 +236,32 @@
                                     int day = date.getDayOfWeek().getValue();
 
                                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
+                                    ItemSnapshot itemSnapshot = inputOutput.getItemSnapshot();
+
                                     out.println("<td>");
                                     out.println(date.format(formatter) + "<br>" + weekdays[day]);
                                     out.println("</td>");
-                                    out.println("<td>");
-                                    out.println(inputOutput.getItemSnapshot().getPosition());
-                                    out.println("</td>");
 
-                                    out.println("<td>");
-                                    out.println(inputOutput.getItemSnapshot().getState());
-                                    out.println("</td>");
+                                    if (itemSnapshot == null) {
+
+                                        out.println("<td>");
+                                        out.println("--");
+                                        out.println("</td>");
+
+                                        out.println("<td>");
+                                        out.println("--");
+                                        out.println("</td>");
+                                    } else {
+
+                                        out.println("<td>");
+                                        out.println(inputOutput.getItemSnapshot().getPosition());
+                                        out.println("</td>");
+
+                                        out.println("<td>");
+                                        out.println(inputOutput.getItemSnapshot().getState());
+                                        out.println("</td>");
+                                    }
 
                                     out.println("<td>");
                                     out.println(inputOutput.getDelivery());
