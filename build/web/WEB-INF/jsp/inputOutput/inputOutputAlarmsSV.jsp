@@ -114,7 +114,7 @@
                                                 - inputOutput.getEndoApostoli()
                                                 - inputOutput.getDailySale().getSoldQuantiy();
 
-                                        if (snapshotDiff == inputOutputDiff || snapshotIndex == 0) {
+                                        if (snapshotDiff == inputOutputDiff ) {
                                             continue;
                                         }
                                         out.println("<tr>");
