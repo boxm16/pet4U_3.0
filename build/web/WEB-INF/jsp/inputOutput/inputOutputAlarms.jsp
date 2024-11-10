@@ -208,6 +208,12 @@
                             for (Map.Entry<String, InputOutputContainer> inputOutputContainersEntry : inputOutputContainers.entrySet()) {
                                 InputOutputContainer inputOutputContainer = inputOutputContainersEntry.getValue();
                                 LinkedHashMap<LocalDate, InputOutput> inputOutputs = inputOutputContainer.getInputOutputs();
+
+                                out.println("<tr>");
+                                out.println("<td>");
+                                out.println(inputOutputContainersEntry.getKey());
+                                out.println("</td>");
+                                out.println("</tr>");
                                 for (Map.Entry<LocalDate, InputOutput> inputOutputsEntry : inputOutputs.entrySet()) {
                                     LocalDate date = inputOutputsEntry.getKey();
                                     InputOutput inputOutput = inputOutputsEntry.getValue();
@@ -247,8 +253,7 @@
                                     } else {
                                         out.println("<td>");
 
-                                       // out.println("<a  href = 'getAllSalesDocsOfDateAndItem.htm?itemCode=" + item.getCode() + "&date=" + date + "' target='_blank'>" + dailySale.getSoldQuantiy() + "</a>");
-
+                                        // out.println("<a  href = 'getAllSalesDocsOfDateAndItem.htm?itemCode=" + item.getCode() + "&date=" + date + "' target='_blank'>" + dailySale.getSoldQuantiy() + "</a>");
                                     }
 
                                     out.println("</td>");
@@ -261,7 +266,7 @@
                                 }
                                 out.println("<tr>");
                                 out.println("<td>");
-                                out.println("------------------------------");
+                                out.println("-------");
                                 out.println("</td>");
                                 out.println("</tr>");
 
