@@ -163,10 +163,10 @@ public class InputOutputController {
             inputOutputContainers.put(allItemsEntry.getKey(), inputOutputContainer);
 
             //    System.out.println("B" + b++);
-            if (b > 500) {
+            if (b > 300) {
                 break;
             }
-          
+            b++;
         }
 
         StringBuilder inPartForSqlQuery = buildStringFromArrayList(targetItemCodes);
