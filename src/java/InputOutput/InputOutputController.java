@@ -139,8 +139,6 @@ public class InputOutputController {
             LocalDate sd = LocalDate.parse(startDate);
             LocalDate ed = LocalDate.parse(endDate);
 
-            startDateX = sd.toString();
-            endDateX = ed.toString();
             /*sd = sd.minusDays(1);
             ed = ed.plusDays(1);
             while (sd.isBefore(ed)) {
@@ -151,6 +149,8 @@ public class InputOutputController {
             }*/
             sd = sd.minusDays(1);
             ed = ed.plusDays(1);
+            startDateX = sd.toString();
+            endDateX = ed.toString();
             while (ed.isAfter(sd)) {
                 InputOutput inputOutput = new InputOutput();
                 inputOutputs.put(sd, inputOutput);
