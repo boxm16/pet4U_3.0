@@ -208,10 +208,10 @@
                             for (Map.Entry<String, InputOutputContainer> inputOutputContainersEntry : inputOutputContainers.entrySet()) {
                                 InputOutputContainer inputOutputContainer = inputOutputContainersEntry.getValue();
                                 LinkedHashMap<LocalDate, InputOutput> inputOutputs = inputOutputContainer.getInputOutputs();
-
+String itemCode=inputOutputContainersEntry.getKey();
                                 out.println("<tr>");
                                 out.println("<td>");
-                                out.println(inputOutputContainersEntry.getKey());
+                                out.println(itemCode);
                                 out.println("</td>");
                                 out.println("</tr>");
                                 for (Map.Entry<LocalDate, InputOutput> inputOutputsEntry : inputOutputs.entrySet()) {
@@ -248,12 +248,12 @@
                                     if (dailySale.getPresoldQuantiy() > 0) {
                                         out.println("<td style='background-color: red;'>");
                                         String bb = dailySale.getSoldQuantiy() + "/" + dailySale.getPresoldQuantiy();
-                                        out.println("<a  href = 'getAllSalesDocsOfDateAndItem.htm?itemCode=" + item.getCode() + "&date=" + date + "' target='_blank'>" + bb + "</a>");
+                                        out.println("<a  href = 'getAllSalesDocsOfDateAndItem.htm?itemCode=" + itemCode + "&date=" + date + "' target='_blank'>" + bb + "</a>");
 
                                     } else {
                                         out.println("<td>");
 
-                                        // out.println("<a  href = 'getAllSalesDocsOfDateAndItem.htm?itemCode=" + item.getCode() + "&date=" + date + "' target='_blank'>" + dailySale.getSoldQuantiy() + "</a>");
+                                        out.println("<a  href = 'getAllSalesDocsOfDateAndItem.htm?itemCode=" + itemCode + "&date=" + date + "' target='_blank'>" + dailySale.getSoldQuantiy() + "</a>");
                                     }
 
                                     out.println("</td>");
