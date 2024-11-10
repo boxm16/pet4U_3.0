@@ -166,7 +166,7 @@ public class InputOutputController {
             if (b > 300) {
                 break;
             }
-            b++;
+           // b++;
         }
 
         StringBuilder inPartForSqlQuery = buildStringFromArrayList(targetItemCodes);
