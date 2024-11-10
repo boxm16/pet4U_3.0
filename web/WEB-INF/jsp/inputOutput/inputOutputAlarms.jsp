@@ -311,6 +311,7 @@
                                         out.println(diff);
                                         out.println("</td>");
 
+                                        previousDayStock = stock;
                                     }
 
                                     out.println("</tr>");
