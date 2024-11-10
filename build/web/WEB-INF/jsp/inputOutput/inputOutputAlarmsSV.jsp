@@ -161,58 +161,45 @@
 
                                     out.println("</td>");
 
-                                    if (itemSnapshot == null) {
+                                    double stock = Double.parseDouble(inputOutput.getItemSnapshot().getQuantity());
+                                    out.println("<td>");
+                                    out.println(stock);
+                                    out.println("</td>");
+                                    out.println("<td>");
+                                    double snapshotDiff = stock - previousDayStock;
+                                    out.println(snapshotDiff);
+                                    out.println("</td>");
+                                    out.println("<td>");
+                                    double inputOutputDiff = inputOutput.getDelivery()
+                                            + inputOutput.getEndoParalavi()
+                                            - inputOutput.getEndoApostoli()
+                                            - inputOutput.getDailySale().getSoldQuantiy();
+                                    out.println(inputOutputDiff);
+                                    out.println("</td>");
 
+                                    if (snapshotDiff == inputOutputDiff || snapshotIndex == 0) {
                                         out.println("<td>");
-                                        out.println("--");
+                                        out.println();
                                         out.println("</td>");
-                                        out.println("<td>");
-                                        out.println("--");
-                                        out.println("</td>");
-                                        out.println("<td>");
-                                        out.println("--");
-                                        out.println("</td>");
-
                                     } else {
-                                        double stock = Double.parseDouble(inputOutput.getItemSnapshot().getQuantity());
-                                        out.println("<td>");
-                                        out.println(stock);
+                                        out.println("<td style='background-color:red'>");
+                                        out.println("ALARM");
                                         out.println("</td>");
-                                        out.println("<td>");
-                                        double snapshotDiff = stock - previousDayStock;
-                                        out.println(snapshotDiff);
-                                        out.println("</td>");
-                                        out.println("<td>");
-                                        double inputOutputDiff = inputOutput.getDelivery()
-                                                + inputOutput.getEndoParalavi()
-                                                - inputOutput.getEndoApostoli()
-                                                - inputOutput.getDailySale().getSoldQuantiy();
-                                        out.println(inputOutputDiff);
-                                        out.println("</td>");
-
-                                        if (snapshotDiff == inputOutputDiff || snapshotIndex == 0) {
-                                            out.println("<td>");
-                                            out.println();
-                                            out.println("</td>");
-                                        } else {
-                                            out.println("<td style='background-color:red'>");
-                                            out.println("ALARM");
-                                            out.println("</td>");
-                                        }
-
-                                        previousDayStock = stock;
                                     }
 
-                                    out.println("</tr>");
-                                    snapshotIndex++;
+                                    previousDayStock = stock;
                                 }
-                                out.println("<tr>");
-                                out.println("<td>");
-                                out.println("-------");
-                                out.println("</td>");
-                                out.println("</tr>");
 
+                                out.println("</tr>");
+                                snapshotIndex++;
                             }
+                            out.println("<tr>");
+                            out.println("<td>");
+                            out.println("-------");
+                            out.println("</td>");
+                            out.println("</tr>");
+
+
                         %>
                     </table>
                 </div>
