@@ -85,6 +85,7 @@
                         <th>Diff</th>
                         <th>Alarm</th>
                             <%
+                                /*
                                 LinkedHashMap<LocalDate, ItemSnapshot> itemSnapshotsWithInputOutput = (LinkedHashMap) request.getAttribute("allSnapshots");
                                 List<LocalDate> dates = new ArrayList<>(itemSnapshotsWithInputOutput.keySet());
                                 for (int k = 0; k < dates.size() - 1; k++) {
@@ -173,6 +174,7 @@
                                     out.println("</tr>");
                                 }
                             %>
+                        */
                     </table>
 
                 </div>
