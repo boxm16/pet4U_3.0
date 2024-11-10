@@ -201,15 +201,13 @@
                         <th>Ενδο Αποστολη</th>
                         <th>E-Shop Sales</th>
                         <th>Stock</th>
-
+                        <th>Alarms</th>
 
 
                         <%
 //-----------------
                             LinkedHashMap<String, InputOutputContainer> inputOutputContainers = (LinkedHashMap) request.getAttribute("inputOutputContainers");
                             int index = 1;
-                            double allDaysSales = 0;
-                            int days = 0;
 
                             for (Map.Entry<String, InputOutputContainer> inputOutputContainersEntry : inputOutputContainers.entrySet()) {
                                 InputOutputContainer inputOutputContainer = inputOutputContainersEntry.getValue();
@@ -223,6 +221,9 @@
                                 out.println(item.getCode() + ": " + item.getDescription());
                                 out.println("</td>");
                                 out.println("</tr>");
+
+                                double previousDayStock = 0;
+
                                 for (Map.Entry<LocalDate, InputOutput> inputOutputsEntry : inputOutputs.entrySet()) {
                                     LocalDate date = inputOutputsEntry.getKey();
                                     InputOutput inputOutput = inputOutputsEntry.getValue();
@@ -296,20 +297,23 @@
                                         out.println("<td>");
                                         out.println("--");
                                         out.println("</td>");
-
-                                    } else {
-
                                         out.println("<td>");
-                                        out.println(inputOutput.getItemSnapshot().getQuantity());
+                                        out.println("--");
                                         out.println("</td>");
 
-                                       
+                                    } else {
+                                        double stock = Double.parseDouble(inputOutput.getItemSnapshot().getQuantity());
+                                        out.println("<td>");
+                                        out.println(stock);
+                                        out.println("</td>");
+                                        out.println("<td>");
+                                        double diff = previousDayStock - stock;
+                                        out.println(diff);
+                                        out.println("</td>");
+
                                     }
 
                                     out.println("</tr>");
-
-                                    allDaysSales = allDaysSales + dailySale.getSoldQuantiy();
-                                    days++;
 
                                 }
                                 out.println("<tr>");
