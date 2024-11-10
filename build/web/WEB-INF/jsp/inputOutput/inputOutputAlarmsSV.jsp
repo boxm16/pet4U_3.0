@@ -115,6 +115,7 @@
                                                 - inputOutput.getDailySale().getSoldQuantiy();
 
                                         if (snapshotDiff == inputOutputDiff || snapshotIndex == 0) {
+                                            previousDayStock = stock;
                                             snapshotIndex++;
                                             continue;
                                         }
