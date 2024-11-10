@@ -597,7 +597,7 @@ public class InputOutputDao {
         } catch (SQLException ex) {
             Logger.getLogger(InputOutputDao.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return inputOutputs;
+        return inputOutputContainers;
     }
 
 }
