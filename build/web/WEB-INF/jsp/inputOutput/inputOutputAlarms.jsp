@@ -238,6 +238,13 @@
                                     out.println("<td>");
                                     out.println(date.format(formatter) + "<br>" + weekdays[day]);
                                     out.println("</td>");
+                                    out.println("<td>");
+                                    out.println(inputOutput.getItemSnapshot().getPosition());
+                                    out.println("</td>");
+
+                                    out.println("<td>");
+                                    out.println(inputOutput.getItemSnapshot().getState());
+                                    out.println("</td>");
 
                                     out.println("<td>");
                                     out.println(inputOutput.getDelivery());
