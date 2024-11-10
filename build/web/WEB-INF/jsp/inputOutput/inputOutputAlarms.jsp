@@ -291,6 +291,10 @@
 
                                     out.println("</td>");
 
+                                    out.println("<td>");
+                                    out.println(inputOutput.getItemSnapshot().getQuantity());
+                                    out.println("</td>");
+
                                     out.println("</tr>");
 
                                     allDaysSales = allDaysSales + dailySale.getSoldQuantiy();
