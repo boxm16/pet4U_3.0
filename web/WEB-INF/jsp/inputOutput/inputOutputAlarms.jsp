@@ -307,7 +307,7 @@
                                         out.println(stock);
                                         out.println("</td>");
                                         out.println("<td>");
-                                        double diff = previousDayStock - stock;
+                                        double diff = stock-previousDayStock ;
                                         out.println(diff);
                                         out.println("</td>");
 
