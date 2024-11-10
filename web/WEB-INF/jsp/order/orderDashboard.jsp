@@ -122,8 +122,9 @@
 
             <h1>  <input type="date"  name="startDate" value="${before10DaysDate}"></h1>
             <h1>  <input type="date"  name="endDate" value="${nowDate}"></h1>
+            <input type="checkbox"  name="shortVersion" checked value="shortVersion">
             <hr>
-            <button type="submit" class="btn btn-danger"> <h1>კოდის მოძრაობის ალარმები</h1></button>
+            <button type="submit" class="btn btn-danger"> <h1>კოდების ალარმები</h1></button>
         </form>
 
         <hr>

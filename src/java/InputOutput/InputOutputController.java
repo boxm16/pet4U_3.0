@@ -115,7 +115,7 @@ public class InputOutputController {
 
     /////
     @RequestMapping(value = "inputOutputAlarms")
-    public String inputOutputAlarms(@RequestParam(name = "startDate") String startDate, @RequestParam(name = "endDate") String endDate, ModelMap modelMap) {
+    public String inputOutputAlarms(@RequestParam(name = "startDate") String startDate, @RequestParam(name = "endDate") String endDate, @RequestParam(value = "shortVersion", required = false) String checkboxValue, ModelMap modelMap) {
 
         Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
         LinkedHashMap<String, Item> allItems = pet4uItemsDao.getAllItems();
