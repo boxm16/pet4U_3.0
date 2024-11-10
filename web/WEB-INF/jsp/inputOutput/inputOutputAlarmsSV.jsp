@@ -98,23 +98,10 @@
                                     InputOutput inputOutput = inputOutputsEntry.getValue();
 
                                     DailySale dailySale = inputOutput.getDailySale();
-                                    if (date.getDayOfWeek().toString().equals("SUNDAY")) {
-                                        out.println("<tr style='background-color: #90EE90;'>");
-
-                                    } else {
-                                        out.println("<tr >");
-
-                                    }
-                                    String[] weekdays = {"", "Δευτερα.", "Τρίτη", "Τετάρτη", "Πέμπτη.", "Παρασκεύη.", "Σάββατο.", "Κυριακη."};
-                                    int day = date.getDayOfWeek().getValue();
 
                                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
                                     ItemSnapshot itemSnapshot = inputOutput.getItemSnapshot();
-
-                                    out.println("<td>");
-                                    out.println(date.format(formatter) + "<br>" + weekdays[day]);
-                                    out.println("</td>");
 
                                     if (itemSnapshot == null) {
 
@@ -134,46 +121,32 @@
                                         out.println("<td>");
                                         out.println(inputOutput.getItemSnapshot().getState());
                                         out.println("</td>");
-                                    }
-
-                                    out.println("<td>");
-                                    out.println(inputOutput.getDelivery());
-                                    out.println("</td>");
-
-                                    out.println("<td>");
-                                    out.println(inputOutput.getEndoParalavi());
-                                    out.println("</td>");
-
-                                    out.println("<td>");
-                                    out.println(inputOutput.getEndoApostoli());
-                                    out.println("</td>");
-
-                                    if (dailySale.getPresoldQuantiy() > 0) {
-                                        out.println("<td style='background-color: red;'>");
-                                        String bb = dailySale.getSoldQuantiy() + "/" + dailySale.getPresoldQuantiy();
-                                        out.println("<a  href = 'getAllSalesDocsOfDateAndItem.htm?itemCode=" + item.getCode() + "&date=" + date + "' target='_blank'>" + bb + "</a>");
-
-                                    } else {
-                                        out.println("<td>");
-
-                                        out.println("<a  href = 'getAllSalesDocsOfDateAndItem.htm?itemCode=" + item.getCode() + "&date=" + date + "' target='_blank'>" + dailySale.getSoldQuantiy() + "</a>");
-                                    }
-
-                                    out.println("</td>");
-
-                                    if (itemSnapshot == null) {
 
                                         out.println("<td>");
-                                        out.println("--");
-                                        out.println("</td>");
-                                        out.println("<td>");
-                                        out.println("--");
-                                        out.println("</td>");
-                                        out.println("<td>");
-                                        out.println("--");
+                                        out.println(inputOutput.getDelivery());
                                         out.println("</td>");
 
-                                    } else {
+                                        out.println("<td>");
+                                        out.println(inputOutput.getEndoParalavi());
+                                        out.println("</td>");
+
+                                        out.println("<td>");
+                                        out.println(inputOutput.getEndoApostoli());
+                                        out.println("</td>");
+
+                                        if (dailySale.getPresoldQuantiy() > 0) {
+                                            out.println("<td style='background-color: red;'>");
+                                            String bb = dailySale.getSoldQuantiy() + "/" + dailySale.getPresoldQuantiy();
+                                            out.println("<a  href = 'getAllSalesDocsOfDateAndItem.htm?itemCode=" + item.getCode() + "&date=" + date + "' target='_blank'>" + bb + "</a>");
+
+                                        } else {
+                                            out.println("<td>");
+
+                                            out.println("<a  href = 'getAllSalesDocsOfDateAndItem.htm?itemCode=" + item.getCode() + "&date=" + date + "' target='_blank'>" + dailySale.getSoldQuantiy() + "</a>");
+                                        }
+
+                                        out.println("</td>");
+
                                         double stock = Double.parseDouble(inputOutput.getItemSnapshot().getQuantity());
                                         out.println("<td>");
                                         out.println(stock);
