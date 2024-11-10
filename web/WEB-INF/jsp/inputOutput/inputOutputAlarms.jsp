@@ -4,6 +4,7 @@
     Author     : Michail Sitmalidis
 --%>
 
+<%@page import="InputOutput.InputOutputContainer"%>
 <%@page import="InputOutput.InputOutput"%>
 <%@page import="java.util.List"%>
 <%@page import="java.time.format.DateTimeFormatter"%>
@@ -130,7 +131,6 @@
                                         out.println(currentItem.getPosition());
                                         out.println("</td>");
                                         //-----------++++++-----------input Output-----+++++++-----
-                                        
 
                                         if (currentItem.getQuantity().equals("0") || currentItem.getQuantity().equals("0.000000")) {
                                             out.println("<td style='background-color: #F7B2F7'>");
@@ -196,68 +196,76 @@
                         <th>Ενδο Αποστολη</th>
                         <th>E-Shop Sales</th>
 
-                        <% /*
+                        <%
                             Item item = (Item) request.getAttribute("item");
 
 //-----------------
-                            LinkedHashMap<LocalDate, InputOutput> inputOutputs = (LinkedHashMap) request.getAttribute("inputOutputs");
+                            LinkedHashMap<String, InputOutputContainer> inputOutputContainers = (LinkedHashMap) request.getAttribute("inputOutputContainers");
 
                             double allDaysSales = 0;
                             int days = 0;
 
-                            for (Map.Entry<LocalDate, InputOutput> inputOutputsEntry : inputOutputs.entrySet()) {
-                                LocalDate date = inputOutputsEntry.getKey();
-                                InputOutput inputOutput = inputOutputsEntry.getValue();
-                                DailySale dailySale = inputOutput.getDailySale();
-                                if (date.getDayOfWeek().toString().equals("SUNDAY")) {
-                                    out.println("<tr style='background-color: #90EE90;'>");
+                            for (Map.Entry<String, InputOutputContainer> inputOutputContainersEntry : inputOutputContainers.entrySet()) {
+                                InputOutputContainer inputOutputContainer = inputOutputContainersEntry.getValue();
+                                LinkedHashMap<LocalDate, InputOutput> inputOutputs = inputOutputContainer.getInputOutputs();
+                                for (Map.Entry<LocalDate, InputOutput> inputOutputsEntry : inputOutputs.entrySet()) {
+                                    LocalDate date = inputOutputsEntry.getKey();
+                                    InputOutput inputOutput = inputOutputsEntry.getValue();
+                                    DailySale dailySale = inputOutput.getDailySale();
+                                    if (date.getDayOfWeek().toString().equals("SUNDAY")) {
+                                        out.println("<tr style='background-color: #90EE90;'>");
 
-                                } else {
-                                    out.println("<tr >");
+                                    } else {
+                                        out.println("<tr >");
 
-                                }
-                                String[] weekdays = {"", "Δευτερα.", "Τρίτη", "Τετάρτη", "Πέμπτη.", "Παρασκεύη.", "Σάββατο.", "Κυριακη."};
-                                int day = date.getDayOfWeek().getValue();
+                                    }
+                                    String[] weekdays = {"", "Δευτερα.", "Τρίτη", "Τετάρτη", "Πέμπτη.", "Παρασκεύη.", "Σάββατο.", "Κυριακη."};
+                                    int day = date.getDayOfWeek().getValue();
 
-                                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-                                out.println("<td>");
-                                out.println(date.format(formatter) + "<br>" + weekdays[day]);
-                                out.println("</td>");
-
-                                out.println("<td>");
-                                out.println(inputOutput.getDelivery());
-                                out.println("</td>");
-
-                                out.println("<td>");
-                                out.println(inputOutput.getEndoParalavi());
-                                out.println("</td>");
-
-                                out.println("<td>");
-                                out.println(inputOutput.getEndoApostoli());
-                                out.println("</td>");
-
-                                if (dailySale.getPresoldQuantiy() > 0) {
-                                    out.println("<td style='background-color: red;'>");
-                                    String bb = dailySale.getSoldQuantiy() + "/" + dailySale.getPresoldQuantiy();
-                                    out.println("<a  href = 'getAllSalesDocsOfDateAndItem.htm?itemCode=" + item.getCode() + "&date=" + date + "' target='_blank'>" + bb + "</a>");
-
-                                } else {
+                                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
                                     out.println("<td>");
+                                    out.println(date.format(formatter) + "<br>" + weekdays[day]);
+                                    out.println("</td>");
 
-                                    out.println("<a  href = 'getAllSalesDocsOfDateAndItem.htm?itemCode=" + item.getCode() + "&date=" + date + "' target='_blank'>" + dailySale.getSoldQuantiy() + "</a>");
+                                    out.println("<td>");
+                                    out.println(inputOutput.getDelivery());
+                                    out.println("</td>");
+
+                                    out.println("<td>");
+                                    out.println(inputOutput.getEndoParalavi());
+                                    out.println("</td>");
+
+                                    out.println("<td>");
+                                    out.println(inputOutput.getEndoApostoli());
+                                    out.println("</td>");
+
+                                    if (dailySale.getPresoldQuantiy() > 0) {
+                                        out.println("<td style='background-color: red;'>");
+                                        String bb = dailySale.getSoldQuantiy() + "/" + dailySale.getPresoldQuantiy();
+                                        out.println("<a  href = 'getAllSalesDocsOfDateAndItem.htm?itemCode=" + item.getCode() + "&date=" + date + "' target='_blank'>" + bb + "</a>");
+
+                                    } else {
+                                        out.println("<td>");
+
+                                        out.println("<a  href = 'getAllSalesDocsOfDateAndItem.htm?itemCode=" + item.getCode() + "&date=" + date + "' target='_blank'>" + dailySale.getSoldQuantiy() + "</a>");
+
+                                    }
+
+                                    out.println("</td>");
+
+                                    out.println("</tr>");
+
+                                    allDaysSales = allDaysSales + dailySale.getSoldQuantiy();
+                                    days++;
 
                                 }
-
+                                out.println("<tr>");
+                                out.println("<td>");
+                                out.println("------------------------------");
                                 out.println("</td>");
-
                                 out.println("</tr>");
 
-                                allDaysSales = allDaysSales + dailySale.getSoldQuantiy();
-                                days++;
-
                             }
-
-
                         %>
 
                     </table>
