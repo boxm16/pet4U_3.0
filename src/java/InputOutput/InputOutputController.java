@@ -141,13 +141,20 @@ public class InputOutputController {
 
             startDateX = sd.toString();
             endDateX = ed.toString();
-            sd = sd.minusDays(1);
+            /*sd = sd.minusDays(1);
             ed = ed.plusDays(1);
             while (sd.isBefore(ed)) {
                 InputOutput inputOutput = new InputOutput();
                 inputOutputs.put(ed, inputOutput);
                 ed = ed.minusDays(1);
 
+            }*/
+            sd = sd.minusDays(1);
+            ed = ed.plusDays(1);
+            while (ed.isBefore(sd)) {
+                InputOutput inputOutput = new InputOutput();
+                inputOutputs.put(sd, inputOutput);
+                ed = ed.plusDays(1);
             }
 
             InputOutputContainer inputOutputContainer = new InputOutputContainer();
