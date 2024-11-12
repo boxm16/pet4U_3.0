@@ -24,7 +24,8 @@
         %>
         <div class="container">
             <center>
-                <hr>
+                
+                <hr style=" border-top: 1px solid red;">
                 <a href="searchDashboard.htm" class="btn btn-primary" role="button" style='background-color: green;'><h1>Find Pet4u Items</h1></a>
                 <hr><hr>
                 <a href="camelotSearchDashboard.htm" class="btn btn-primary" role="button" style='background-color: #762276;'><h1>Find Camelot Items</h1></a>
