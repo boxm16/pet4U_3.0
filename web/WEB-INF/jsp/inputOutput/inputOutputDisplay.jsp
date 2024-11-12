@@ -4,6 +4,7 @@
     Author     : Michail Sitmalidis
 --%>
 
+<%@page import="InputOutput.InputOutputContainer"%>
 <%@page import="InputOutput.InputOutput"%>
 <%@page import="java.util.List"%>
 <%@page import="java.time.format.DateTimeFormatter"%>
@@ -84,6 +85,7 @@
                         <th>Diff</th>
                         <th>Alarm</th>
                             <%
+                                /*
                                 LinkedHashMap<LocalDate, ItemSnapshot> itemSnapshotsWithInputOutput = (LinkedHashMap) request.getAttribute("allSnapshots");
                                 List<LocalDate> dates = new ArrayList<>(itemSnapshotsWithInputOutput.keySet());
                                 for (int k = 0; k < dates.size() - 1; k++) {
@@ -130,7 +132,6 @@
                                         out.println(currentItem.getPosition());
                                         out.println("</td>");
                                         //-----------++++++-----------input Output-----+++++++-----
-                                       
 
                                         if (currentItem.getQuantity().equals("0") || currentItem.getQuantity().equals("0.000000")) {
                                             out.println("<td style='background-color: #F7B2F7'>");
@@ -148,12 +149,32 @@
                                         }
                                         out.println("</td>");
 
-                                        
+                                        out.println("<td>");
+                                        if (previousItem == null) {
+                                            out.println("-");
+                                        } else {
+                                            /*
+                                            double inputOutputDiff = currentItem.getInputOutput().getDelivery()
+                                                    + currentItem.getInputOutput().getEndoParalavi()
+                                                    - currentItem.getInputOutput().getEndoApostoli()
+                                                    - currentItem.getInputOutput().getDailySale().getSoldQuantiy();
+                                            double stockDiff = stock - Double.parseDouble(previousItem.getQuantity());
+                                            double diff = inputOutputDiff - stockDiff;
+                                            if (diff != 0) {
+                                                out.println("<div style='background-color:red'>ALLLLLLLLLLLLLLLLLLLLLLARM</div>");
+                                            } else {
+                                                out.println("");
+                                            }
+                                            
+
+                                        }
+                                        out.println("</td>");
 
                                     }
                                     out.println("</tr>");
-                                }
+                                } */
                             %>
+
                     </table>
 
                 </div>
@@ -172,73 +193,149 @@
                     <table>
 
                         <th>Date</th>
+                        <th>Position</th>
+                        <th>State</th>
+
                         <th>Delivery</th>
                         <th>Ενδο Παραλαβη</th>
                         <th>Ενδο Αποστολη</th>
                         <th>E-Shop Sales</th>
+                        <th>Stock</th>
+                        <th>Snapshot<br>Stock<br>Diff</th>
+                        <th>Input Output<br>Diff</th>
+                        <th>Alarms</th>
 
-                        <% /*
-                            Item item = (Item) request.getAttribute("item");
 
+                        <%
 //-----------------
-                            LinkedHashMap<LocalDate, InputOutput> inputOutputs = (LinkedHashMap) request.getAttribute("inputOutputs");
+                                Item item = (Item) request.getAttribute("item");
+                                LinkedHashMap<LocalDate, InputOutput> inputOutputs = (LinkedHashMap) request.getAttribute("inputOutputs");
+                                int index = 1;
 
-                            double allDaysSales = 0;
-                            int days = 0;
+                                for (Map.Entry<LocalDate, InputOutput> inputOutputsEntry : inputOutputs.entrySet()) {
+                                    InputOutput inputOutput = inputOutputsEntry.getValue();
 
-                            for (Map.Entry<LocalDate, InputOutput> inputOutputsEntry : inputOutputs.entrySet()) {
-                                LocalDate date = inputOutputsEntry.getKey();
-                                InputOutput inputOutput = inputOutputsEntry.getValue();
-                                DailySale dailySale = inputOutput.getDailySale();
-                                if (date.getDayOfWeek().toString().equals("SUNDAY")) {
-                                    out.println("<tr style='background-color: #90EE90;'>");
+                                    double previousDayStock = 0;
+                                    int snapshotIndex = 0;
 
-                                } else {
-                                    out.println("<tr >");
+                                    LocalDate date = inputOutputsEntry.getKey();
 
-                                }
-                                String[] weekdays = {"", "Δευτερα.", "Τρίτη", "Τετάρτη", "Πέμπτη.", "Παρασκεύη.", "Σάββατο.", "Κυριακη."};
-                                int day = date.getDayOfWeek().getValue();
+                                    DailySale dailySale = inputOutput.getDailySale();
+                                    if (date.getDayOfWeek().toString().equals("SUNDAY")) {
+                                        out.println("<tr style='background-color: #90EE90;'>");
 
-                                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-                                out.println("<td>");
-                                out.println(date.format(formatter) + "<br>" + weekdays[day]);
-                                out.println("</td>");
+                                    } else {
+                                        out.println("<tr >");
 
-                                out.println("<td>");
-                                out.println(inputOutput.getDelivery());
-                                out.println("</td>");
+                                    }
+                                    String[] weekdays = {"", "Δευτερα.", "Τρίτη", "Τετάρτη", "Πέμπτη.", "Παρασκεύη.", "Σάββατο.", "Κυριακη."};
+                                    int day = date.getDayOfWeek().getValue();
 
-                                out.println("<td>");
-                                out.println(inputOutput.getEndoParalavi());
-                                out.println("</td>");
+                                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
-                                out.println("<td>");
-                                out.println(inputOutput.getEndoApostoli());
-                                out.println("</td>");
+                                    ItemSnapshot itemSnapshot = inputOutput.getItemSnapshot();
 
-                                if (dailySale.getPresoldQuantiy() > 0) {
-                                    out.println("<td style='background-color: red;'>");
-                                    String bb = dailySale.getSoldQuantiy() + "/" + dailySale.getPresoldQuantiy();
-                                    out.println("<a  href = 'getAllSalesDocsOfDateAndItem.htm?itemCode=" + item.getCode() + "&date=" + date + "' target='_blank'>" + bb + "</a>");
-
-                                } else {
                                     out.println("<td>");
+                                    out.println(date.format(formatter) + "<br>" + weekdays[day]);
+                                    out.println("</td>");
 
-                                    out.println("<a  href = 'getAllSalesDocsOfDateAndItem.htm?itemCode=" + item.getCode() + "&date=" + date + "' target='_blank'>" + dailySale.getSoldQuantiy() + "</a>");
+                                    if (itemSnapshot == null) {
 
+                                        out.println("<td>");
+                                        out.println("--");
+                                        out.println("</td>");
+
+                                        out.println("<td>");
+                                        out.println("--");
+                                        out.println("</td>");
+                                    } else {
+
+                                        out.println("<td>");
+                                        out.println(inputOutput.getItemSnapshot().getPosition());
+                                        out.println("</td>");
+
+                                        out.println("<td>");
+                                        out.println(inputOutput.getItemSnapshot().getState());
+                                        out.println("</td>");
+                                    }
+
+                                    out.println("<td>");
+                                    out.println(inputOutput.getDelivery());
+                                    out.println("</td>");
+
+                                    out.println("<td>");
+                                    out.println(inputOutput.getEndoParalavi());
+                                    out.println("</td>");
+
+                                    out.println("<td>");
+                                    out.println(inputOutput.getEndoApostoli());
+                                    out.println("</td>");
+
+                                    if (dailySale.getPresoldQuantiy() > 0) {
+                                        out.println("<td style='background-color: red;'>");
+                                        String bb = dailySale.getSoldQuantiy() + "/" + dailySale.getPresoldQuantiy();
+                                        out.println("<a  href = 'getAllSalesDocsOfDateAndItem.htm?itemCode=" + item.getCode() + "&date=" + date + "' target='_blank'>" + bb + "</a>");
+
+                                    } else {
+                                        out.println("<td>");
+
+                                        out.println("<a  href = 'getAllSalesDocsOfDateAndItem.htm?itemCode=" + item.getCode() + "&date=" + date + "' target='_blank'>" + dailySale.getSoldQuantiy() + "</a>");
+                                    }
+
+                                    out.println("</td>");
+
+                                    if (itemSnapshot == null) {
+
+                                        out.println("<td>");
+                                        out.println("--");
+                                        out.println("</td>");
+                                        out.println("<td>");
+                                        out.println("--");
+                                        out.println("</td>");
+                                        out.println("<td>");
+                                        out.println("--");
+                                        out.println("</td>");
+
+                                    } else {
+                                        double stock = Double.parseDouble(inputOutput.getItemSnapshot().getQuantity());
+                                        out.println("<td>");
+                                        out.println(stock);
+                                        out.println("</td>");
+                                        out.println("<td>");
+                                        double snapshotDiff = stock - previousDayStock;
+                                        out.println(snapshotDiff);
+                                        out.println("</td>");
+                                        out.println("<td>");
+                                        double inputOutputDiff = inputOutput.getDelivery()
+                                                + inputOutput.getEndoParalavi()
+                                                - inputOutput.getEndoApostoli()
+                                                - inputOutput.getDailySale().getSoldQuantiy();
+                                        out.println(inputOutputDiff);
+                                        out.println("</td>");
+
+                                        if (snapshotDiff == inputOutputDiff || snapshotIndex == 0) {
+                                            out.println("<td>");
+                                            out.println();
+                                            out.println("</td>");
+                                        } else {
+                                            out.println("<td style='background-color:red'>");
+                                            out.println("ALARM");
+                                            out.println("</td>");
+                                        }
+
+                                        previousDayStock = stock;
+                                    }
+
+                                    out.println("</tr>");
+                                    snapshotIndex++;
                                 }
-
+                                out.println("<tr>");
+                                out.println("<td>");
+                                out.println("-------");
                                 out.println("</td>");
-
                                 out.println("</tr>");
 
-                                allDaysSales = allDaysSales + dailySale.getSoldQuantiy();
-                                days++;
-
-                            }
-
-
+                            
                         %>
 
                     </table>

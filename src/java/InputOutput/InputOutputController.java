@@ -67,17 +67,11 @@ public class InputOutputController {
         inputOutputs = inputOutputDao.fillEndoParalaves(inputOutputs, itemCode, startDate, endDate);
         inputOutputs = inputOutputDao.fillEndoApostoles(inputOutputs, itemCode, startDate, endDate);
 
-        LinkedHashMap<LocalDate, ItemSnapshot> allSnapshots = inputOutputDao.fillSnapshots(inputOutputs, itemCode, startDate, endDate);
+      inputOutputs = inputOutputDao.fillWithSnapshots(inputOutputs, itemCode, startDate, endDate);
+
         modelMap.addAttribute("inputOutputs", inputOutputs);
 
-        //  DailySalesDao dailySalesDao = new DailySalesDao();
-        // LinkedHashMap<LocalDate, DailySale> dailySales = dailySalesDao.getLast300DaysSales(item.getCode());
-        // modelMap.addAttribute("dailySales", dailySales);
-        //Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
-        // LinkedHashMap<LocalDate, ItemSnapshot> allSnapshots = pet4uItemsDao.getItemSnapshotsFullVersion(item.getCode());
-        modelMap.addAttribute("allSnapshots", allSnapshots);
-        // System.out.println("Retrieving Last 100 Days Snapshot. Done: " + LocalDateTime.now());
-
+      
         return "/inputOutput/inputOutputDisplay";
     }
 
@@ -166,7 +160,7 @@ public class InputOutputController {
             if (b > 300) {
                 break;
             }
-           // b++;
+            // b++;
         }
 
         StringBuilder inPartForSqlQuery = buildStringFromArrayList(targetItemCodes);

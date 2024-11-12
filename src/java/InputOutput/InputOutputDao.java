@@ -719,4 +719,58 @@ public class InputOutputDao {
         return inputOutputContainers;
     }
 
+    LinkedHashMap<LocalDate, InputOutput> fillWithSnapshots(LinkedHashMap<LocalDate, InputOutput> inputOutputs, String itemCode, String startDate, String endDate) {
+        //  LinkedHashMap<LocalDate, ItemSnapshot> snapshots = new LinkedHashMap<>();
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+        Connection connection = databaseConnectionFactory.getMySQLConnection();
+        /*
+        LocalDate date = LocalDate.parse(startDate);
+        LocalDate firstDate = LocalDate.parse(endDate);
+        while (date.isAfter(firstDate)) {
+            date = date.minusDays(1);
+
+            snapshots.put(date, null);
+        }
+         */
+        ResultSet resultSet;
+
+        String sql = "SELECT * FROM item_state_full_version WHERE item_code='" + itemCode + "' and date_stamp between '" + startDate + "' AND '" + endDate + "' ORDER BY date_stamp DESC;";
+
+        try {
+            Statement statement = connection.createStatement();
+            resultSet = statement.executeQuery(sql);
+            while (resultSet.next()) {
+                ItemSnapshot itemSnapshot = new ItemSnapshot();
+
+                String dateStamp = resultSet.getString("date_stamp");
+
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                LocalDate date1 = LocalDate.parse(dateStamp, formatter);
+
+                String quantity = resultSet.getString("item_stock");
+                String state = resultSet.getString("state");
+                String position = resultSet.getString("position");
+
+                itemSnapshot.setDateStamp(dateStamp);
+                itemSnapshot.setState(state);
+                itemSnapshot.setPosition(position);
+                itemSnapshot.setQuantity(quantity);
+
+                InputOutput io = inputOutputs.get(date1);
+                if (io == null) {
+                    System.out.println("null here :");
+                } else {
+                    io.setItemSnapshot(itemSnapshot);
+                }
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(InputOutputDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return inputOutputs;
+    }
+
 }
