@@ -11,7 +11,12 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <style>
+            hr {
+                border-top: 1px solid red;
+            }
 
+        </style>
     </head>
 
     <body>
@@ -24,8 +29,8 @@
         %>
         <div class="container">
             <center>
-                
-                <hr style=" border-top: 1px solid red;">
+
+                <hr>
                 <a href="searchDashboard.htm" class="btn btn-primary" role="button" style='background-color: green;'><h1>Find Pet4u Items</h1></a>
                 <hr><hr>
                 <a href="camelotSearchDashboard.htm" class="btn btn-primary" role="button" style='background-color: #762276;'><h1>Find Camelot Items</h1></a>
@@ -53,10 +58,10 @@
                 <!--  <a href="dayStockShortageAlert.htm"><h1 style="color: green">Day Stock Shortage Alert</h1></a>
                   <hr>
                 -->
-             
+
                 <a href="itemsStateUpdates.htm"><h1 style="color: #63E32C">Show Items State Updates</h1></a>
                 <hr>
-              
+
                 <h1><a href='sixMonthsSalesY.htm'>Pet4u:Last Six Months Sales Y</a></h1>
                 <hr><hr>
                 <hr>
@@ -83,7 +88,7 @@
                 <hr>
                 <h1><a href='camelotSixMonthsSales.htm'>Camelot 6 Months Sales</a></h1>
                 <hr>
-               
+
                 <h1><a href='itemsFromCamelot.htm'>Pet4U: All Items From Camelot</a></h1>
                 <hr>
 
@@ -92,13 +97,13 @@
                 <a href="weightItems.htm"><h1>Show Items With Weight</h1></a>
 
 
-         
-               
+
+
 
                 <a href="scanninger.htm"><h1>Go for Scanning</h1></a>
                 <hr>
-             
-               
+
+
                 <a href="index.htm"><h1>INDEX</h1></a>
                 <hr>   <hr>
                 <a href="signOut.htm"><h1>Sign Out</h1></a>
