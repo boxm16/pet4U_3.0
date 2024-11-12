@@ -25,7 +25,7 @@ public class EncryptionController {
                 || password.equals("ωασιλισ")
                 || password.equals("ΩΑΣΙΛΙΣ")) {
             session.setAttribute("user", "identified");
-            session.setAttribute("userName", "me");
+            session.setAttribute("userName", "vasilis");
             return "vasilisIndex";
         } else {
             session.setAttribute("user", "unidentified");
