@@ -43,7 +43,7 @@
                         <%
                             ArrayList<BestBeforeStatement> statements = (ArrayList) request.getAttribute("bestBeforeStatements");
 
-                            if (statements.size() > 0) {
+                             if (statements!=null&&statements.size() > 0) {
                                 for (BestBeforeStatement statement : statements) {
 
                                     out.println("<table class='table'  style='background-color:" + statement.getAlertColor() + "'>");

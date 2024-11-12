@@ -52,48 +52,50 @@
             </thead>
             <%
                 ArrayList<BestBeforeStatement> statements = (ArrayList) request.getAttribute("bestBeforeStatements");
-                for (BestBeforeStatement statement : statements) {
+                if (statements.size() > 0) {
+                    for (BestBeforeStatement statement : statements) {
 
-                    out.println("<tr style='background-color:" + statement.getAlertColor() + "'>");
+                        out.println("<tr style='background-color:" + statement.getAlertColor() + "'>");
 
-                    out.println("<td>");
-                    out.println(statement.getId());
-                    out.println("</td>");
+                        out.println("<td>");
+                        out.println(statement.getId());
+                        out.println("</td>");
 
-                    out.println("<td>");
-                    out.println(statement.getAltercode());
-                    out.println("</td>");
+                        out.println("<td>");
+                        out.println(statement.getAltercode());
+                        out.println("</td>");
 
-                    out.println("<td>");
-                    out.println(statement.getPosition());
-                    out.println("</td>");
+                        out.println("<td>");
+                        out.println(statement.getPosition());
+                        out.println("</td>");
 
-                    out.println("<td>");
-                    out.println(statement.getDescription());
-                    out.println("</td>");
+                        out.println("<td>");
+                        out.println(statement.getDescription());
+                        out.println("</td>");
 
-                    out.println("<td>");
-                    out.println("<input id='" + statement.getId() + "_alert' style='font-size:25px' type='date' value='" + statement.getAlert() + "'");
-                    out.println("</td>");
+                        out.println("<td>");
+                        out.println("<input id='" + statement.getId() + "_alert' style='font-size:25px' type='date' value='" + statement.getAlert() + "'");
+                        out.println("</td>");
 
-                    out.println("<td>");
-                    out.println("<input id='" + statement.getId() + "_bestBefore' style='font-size:25px'  type='date' value='" + statement.getBestBefore() + "'");
-                    out.println("</td>");
+                        out.println("<td>");
+                        out.println("<input id='" + statement.getId() + "_bestBefore' style='font-size:25px'  type='date' value='" + statement.getBestBefore() + "'");
+                        out.println("</td>");
 
-                    out.println("<td>");
-                    out.println(statement.getNote());
-                    out.println("</td>");
+                        out.println("<td>");
+                        out.println(statement.getNote());
+                        out.println("</td>");
 
-                    out.println("<td>");
-                    out.println("<button style='background-color:green' onclick='submit(" + statement.getId() + ")'>Edit Statement </button><a href='editBestBeforeStatement.htm?id=" + statement.getId() + "&bestBefore=" + statement.getBestBefore() + "&alert=" + statement.getAlert() + "'></a>");
-                    out.println("</td>");
+                        out.println("<td>");
+                        out.println("<button style='background-color:green' onclick='submit(" + statement.getId() + ")'>Edit Statement </button><a href='editBestBeforeStatement.htm?id=" + statement.getId() + "&bestBefore=" + statement.getBestBefore() + "&alert=" + statement.getAlert() + "'></a>");
+                        out.println("</td>");
 
-                    out.println("<td>");
-                    out.println("<a href='deleteBestBeforeStatement.htm?id=" + statement.getId() + "'>Delete Best Before Statement</a>");
-                    out.println("</td>");
+                        out.println("<td>");
+                        out.println("<a href='deleteBestBeforeStatement.htm?id=" + statement.getId() + "'>Delete Best Before Statement</a>");
+                        out.println("</td>");
 
-                    out.println("</tr>");
+                        out.println("</tr>");
 
+                    }
                 }
             %>
 
