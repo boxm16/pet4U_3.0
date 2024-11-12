@@ -43,35 +43,32 @@ public class InputOutputController {
         modelMap.addAttribute("item", item);
         LinkedHashMap<LocalDate, InputOutput> inputOutputs = new LinkedHashMap<>();
 
-        //  LocalDate firstDate = date.minusDays(30);
-        //  LocalDate lastDate = date.minusDays(1);
         LocalDate sd = LocalDate.parse(startDate);
         LocalDate ed = LocalDate.parse(endDate);
-        System.out.println("SD:" + sd);
-        System.out.println("ED:" + ed);
+
+        String startDateX = "";
+        String endDateX = "";
         sd = sd.minusDays(1);
         ed = ed.plusDays(1);
-        startDate = sd.toString();
-        endDate = ed.toString();
-        while (sd.isBefore(ed)) {
+        startDateX = sd.toString();
+        endDateX = ed.toString();
+        while (ed.isAfter(sd)) {
             InputOutput inputOutput = new InputOutput();
-            inputOutputs.put(ed, inputOutput);
-            ed = ed.minusDays(1);
-
+            inputOutputs.put(sd, inputOutput);
+            sd = sd.plusDays(1);
         }
 
         InputOutputDao inputOutputDao = new InputOutputDao();
 
-        inputOutputs = inputOutputDao.fillSales(inputOutputs, itemCode, startDate, endDate);
-        inputOutputs = inputOutputDao.fillDeliveries(inputOutputs, itemCode, startDate, endDate);
-        inputOutputs = inputOutputDao.fillEndoParalaves(inputOutputs, itemCode, startDate, endDate);
-        inputOutputs = inputOutputDao.fillEndoApostoles(inputOutputs, itemCode, startDate, endDate);
+        inputOutputs = inputOutputDao.fillSales(inputOutputs, itemCode, startDateX, endDateX);
+        inputOutputs = inputOutputDao.fillDeliveries(inputOutputs, itemCode, startDateX, endDateX);
+        inputOutputs = inputOutputDao.fillEndoParalaves(inputOutputs, itemCode, startDateX, endDateX);
+        inputOutputs = inputOutputDao.fillEndoApostoles(inputOutputs, itemCode, startDateX, endDateX);
 
-      inputOutputs = inputOutputDao.fillWithSnapshots(inputOutputs, itemCode, startDate, endDate);
+        inputOutputs = inputOutputDao.fillWithSnapshots(inputOutputs, itemCode, startDateX, endDateX);
 
         modelMap.addAttribute("inputOutputs", inputOutputs);
 
-      
         return "/inputOutput/inputOutputDisplay";
     }
 
