@@ -56,6 +56,9 @@ public class EncryptionController {
         if (userName == null) {
             return "authorization";
         }
+        if (userName.equals("vasilis")) {
+            return "vasilisIndex";
+        }
         if (userName.equals("me")) {
             return "adminIndex";
         }

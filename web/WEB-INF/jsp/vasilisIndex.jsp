@@ -96,13 +96,7 @@
 
                 <a href="scanninger.htm"><h1>Go for Scanning</h1></a>
                 <hr>
-                
-               
-                <hr>
-
-                <a href="orderDashboard.htm" class="btn btn-primary" role="button" style='background-color: #661400;'><h1>Pet4U Order Dashboard</h1></a>
-
-                <hr>   <hr>
+             
                
                 <a href="index.htm"><h1>INDEX</h1></a>
                 <hr>   <hr>
