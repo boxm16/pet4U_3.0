@@ -62,12 +62,13 @@
             <div class="row">
 
                 <div class=" col-sm-12">
-                    <h5><a href="index.htm">INDEX</a></h5>
-                    <h5>Pet4U Item Input Output</h5>
+                    <center>    <h1><a href="index.htm">INDEX</a></h1></center>
+                    <center>    <h2>Pet4U Item Input Output</h2></center>
 
 
 
                     <center><h3>Daily Input Output</h3></center>
+                    ${item.code} &nbsp;   ${item.description}
                     <table>
 
                         <th>Date</th>
