@@ -68,7 +68,7 @@
 
 
                     <center><h3>Daily Input Output</h3></center>
-                  <center><h1>   ${item.code} &nbsp;   ${item.description}</h1></center>
+                    <center><h1>   ${item.code} &nbsp;   ${item.description}</h1></center>
                     <table>
 
                         <th>Date</th>
@@ -88,13 +88,11 @@
                         <%
                             Item item = (Item) request.getAttribute("item");
                             LinkedHashMap<LocalDate, InputOutput> inputOutputs = (LinkedHashMap) request.getAttribute("inputOutputs");
-                            int index = 1;
 
+                            double previousDayStock = 0;
+                            int snapshotIndex = 0;
                             for (Map.Entry<LocalDate, InputOutput> inputOutputsEntry : inputOutputs.entrySet()) {
                                 InputOutput inputOutput = inputOutputsEntry.getValue();
-
-                                double previousDayStock = 0;
-                                int snapshotIndex = 0;
 
                                 LocalDate date = inputOutputsEntry.getKey();
 
