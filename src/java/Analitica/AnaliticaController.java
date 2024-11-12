@@ -40,86 +40,87 @@ public class AnaliticaController {
             model.addAttribute("message", "You are not authorized for this page");
             return "errorPage";
         }
-        if (!userName.equals("me")) {
-            model.addAttribute("message", "You are not authorized for this page");
-            return "errorPage";
-        }
 
-        SearchDao searchDao = new SearchDao();
-        Item item = searchDao.getItemByAltercode(code);
+        if (userName.equals("me") || userName.equals("vasilis")) {
 
-        if (item == null) {
-            model.addAttribute("code", code);
-            model.addAttribute("message", "No such code in Pet4u Database");
+            SearchDao searchDao = new SearchDao();
+            Item item = searchDao.getItemByAltercode(code);
 
-            return "analitica/itemAnalysisErrorPage";
-        }
-        model.addAttribute("item", item);
-        //   System.out.println("Retrieving Item. Done: " + LocalDateTime.now());
+            if (item == null) {
+                model.addAttribute("code", code);
+                model.addAttribute("message", "No such code in Pet4u Database");
 
-        String itemCode = item.getCode();
-        Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
-        //  ArrayList< ItemSnapshot> itemSnapshots = pet4uItemsDao.getItemSnapshots(itemCode);
-        //   model.addAttribute("itemSnapshots", itemSnapshots);
-
-        LinkedHashMap<LocalDate, ItemSnapshot> last100DaysSnapshots = pet4uItemsDao.getLast100DaysSnapshots(item.getCode());
-        model.addAttribute("last100DaysSnapshots", last100DaysSnapshots);
-        // System.out.println("Retrieving Last 100 Days Snapshot. Done: " + LocalDateTime.now());
-
-        MonthSalesDao monthSalesDao = new MonthSalesDao();
-        ArrayList<String> period = monthSalesDao.getSalesPeriod();
-        MonthSales itemSales = monthSalesDao.getItemSales(itemCode);
-
-        for (String p : period) {
-            DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            LocalDate salePeriod = LocalDate.parse(p, formatter2);
-            if (itemSales.getSales().containsKey(salePeriod)) {
-            } else {
-                MonthSales ms = new MonthSales();
-
-                Sales sales = new Sales();
-                sales.setEshopSales(0);
-                sales.setShopsSupply(0);
-                ms.addSales(salePeriod, sales);
-                itemSales.addSales(salePeriod, sales);
-
+                return "analitica/itemAnalysisErrorPage";
             }
+            model.addAttribute("item", item);
+            //   System.out.println("Retrieving Item. Done: " + LocalDateTime.now());
+
+            String itemCode = item.getCode();
+            Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
+            //  ArrayList< ItemSnapshot> itemSnapshots = pet4uItemsDao.getItemSnapshots(itemCode);
+            //   model.addAttribute("itemSnapshots", itemSnapshots);
+
+            LinkedHashMap<LocalDate, ItemSnapshot> last100DaysSnapshots = pet4uItemsDao.getLast100DaysSnapshots(item.getCode());
+            model.addAttribute("last100DaysSnapshots", last100DaysSnapshots);
+            // System.out.println("Retrieving Last 100 Days Snapshot. Done: " + LocalDateTime.now());
+
+            MonthSalesDao monthSalesDao = new MonthSalesDao();
+            ArrayList<String> period = monthSalesDao.getSalesPeriod();
+            MonthSales itemSales = monthSalesDao.getItemSales(itemCode);
+
+            for (String p : period) {
+                DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                LocalDate salePeriod = LocalDate.parse(p, formatter2);
+                if (itemSales.getSales().containsKey(salePeriod)) {
+                } else {
+                    MonthSales ms = new MonthSales();
+
+                    Sales sales = new Sales();
+                    sales.setEshopSales(0);
+                    sales.setShopsSupply(0);
+                    ms.addSales(salePeriod, sales);
+                    itemSales.addSales(salePeriod, sales);
+
+                }
+            }
+            model.addAttribute("itemSales", itemSales);
+            //  System.out.println("Retrieving Item Sales. Done: " + LocalDateTime.now());
+
+            //   LinkedHashMap<String, Double> daysSales = monthSalesDao.getLast30DaysSales(item.getCode());
+            // model.addAttribute("daysSales", daysSales);
+            DailySalesDao dailySalesDao = new DailySalesDao();
+            LinkedHashMap<LocalDate, DailySale> dailySales = dailySalesDao.getLast30DaysSales(item.getCode());
+            model.addAttribute("dailySales", dailySales);
+            //   System.out.println("Retrieving Daily Sales. Done: " + LocalDateTime.now());
+
+            OfferDao offerDao = new OfferDao();
+            ArrayList<Offer> offers = offerDao.getOffers(itemCode);
+            model.addAttribute("offers", offers);
+            // System.out.println("Retrieving Offers. Done: " + LocalDateTime.now());
+
+            StockAnalysisDao stockDao = new StockAnalysisDao();
+            StockAnalysis stockAnalysis = stockDao.getStock(itemCode);
+            model.addAttribute("stockAnalysis", stockAnalysis);
+            //  System.out.println("Retrieving Stock Analysis. Done: " + LocalDateTime.now());
+
+            CamelotItemsOfInterestDao camelotItemsOfInterestDao = new CamelotItemsOfInterestDao();
+            if (itemCode.contains(".-WE")) {
+                itemCode = itemCode.replace(".-WE", "");
+            }
+            if (itemCode.contains("-WE")) {
+                itemCode = itemCode.replace("-WE", "");
+            }
+
+            LinkedHashMap<LocalDate, ItemSnapshot> camelotLast100DaysSnapshots = camelotItemsOfInterestDao.getLast100DaysSnapshots(itemCode);
+            System.out.println("size:" + camelotLast100DaysSnapshots.size());
+            model.addAttribute("camelotLast100DaysSnapshots", camelotLast100DaysSnapshots);
+            //    System.out.println("Retrieving Camelot Last 100 Days Snapshots. Done: " + LocalDateTime.now());
+            System.out.println("Analysis Done: " + LocalDateTime.now());
+
+            return "analitica/itemAnalysis";
         }
-        model.addAttribute("itemSales", itemSales);
-        //  System.out.println("Retrieving Item Sales. Done: " + LocalDateTime.now());
-
-        //   LinkedHashMap<String, Double> daysSales = monthSalesDao.getLast30DaysSales(item.getCode());
-        // model.addAttribute("daysSales", daysSales);
-        DailySalesDao dailySalesDao = new DailySalesDao();
-        LinkedHashMap<LocalDate, DailySale> dailySales = dailySalesDao.getLast30DaysSales(item.getCode());
-        model.addAttribute("dailySales", dailySales);
-        //   System.out.println("Retrieving Daily Sales. Done: " + LocalDateTime.now());
-
-        OfferDao offerDao = new OfferDao();
-        ArrayList<Offer> offers = offerDao.getOffers(itemCode);
-        model.addAttribute("offers", offers);
-        // System.out.println("Retrieving Offers. Done: " + LocalDateTime.now());
-
-        StockAnalysisDao stockDao = new StockAnalysisDao();
-        StockAnalysis stockAnalysis = stockDao.getStock(itemCode);
-        model.addAttribute("stockAnalysis", stockAnalysis);
-        //  System.out.println("Retrieving Stock Analysis. Done: " + LocalDateTime.now());
-
-        CamelotItemsOfInterestDao camelotItemsOfInterestDao = new CamelotItemsOfInterestDao();
-        if (itemCode.contains(".-WE")) {
-            itemCode = itemCode.replace(".-WE", "");
-        }
-        if (itemCode.contains("-WE")) {
-            itemCode = itemCode.replace("-WE", "");
-        }
-
-        LinkedHashMap<LocalDate, ItemSnapshot> camelotLast100DaysSnapshots = camelotItemsOfInterestDao.getLast100DaysSnapshots(itemCode);
-        System.out.println("size:" + camelotLast100DaysSnapshots.size());
-        model.addAttribute("camelotLast100DaysSnapshots", camelotLast100DaysSnapshots);
-        //    System.out.println("Retrieving Camelot Last 100 Days Snapshots. Done: " + LocalDateTime.now());
-        System.out.println("Analysis Done: " + LocalDateTime.now());
-
-        return "analitica/itemAnalysis";
+        model.addAttribute("message", "You are not authorized for this page");
+        return "errorPage";
     }
 
     @RequestMapping(value = "/offerDashboard", method = RequestMethod.GET)
@@ -273,7 +274,7 @@ public class AnaliticaController {
 
         LinkedHashMap<LocalDate, ItemSnapshot> camelotLast100DaysSnapshots = camelotItemsOfInterestDao.getCamelotItemSnapshotsFullVersion(itemCode);
         model.addAttribute("camelotLast100DaysSnapshots", camelotLast100DaysSnapshots);
-      
+
         System.out.println("Analysis Done: " + LocalDateTime.now());
 
         return "analitica/itemAnalysis";
