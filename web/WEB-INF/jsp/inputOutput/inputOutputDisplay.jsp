@@ -68,7 +68,7 @@
 
 
                     <center><h3>Daily Input Output</h3></center>
-                    ${item.code} &nbsp;   ${item.description}
+                  <center><h1>   ${item.code} &nbsp;   ${item.description}</h1></center>
                     <table>
 
                         <th>Date</th>
