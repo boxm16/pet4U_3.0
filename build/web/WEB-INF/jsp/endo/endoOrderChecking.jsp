@@ -230,6 +230,7 @@
     <script type="text/javascript">
 
             packagesCount.addEventListener(`focus`, () => packagesCount.select());
+            labelsCount.addEventListener(`focus`, () => labelsCount.select());
 
             document.getElementById("packagesCount")
                     .addEventListener("keyup", function (event) {
