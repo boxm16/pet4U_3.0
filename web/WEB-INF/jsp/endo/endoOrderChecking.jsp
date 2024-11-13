@@ -266,6 +266,7 @@
 
             function sumUp() {
                 labelsCount.value = monokommata.value * 1 + packagesCount.value * 1;
+                document.getElementById('printerButton').focus();
             }
 
             function printLabels() {
