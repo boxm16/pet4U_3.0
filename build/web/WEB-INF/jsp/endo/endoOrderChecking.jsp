@@ -282,12 +282,7 @@
                 ajax(labelsCount.value, "${endoApostolis.receiver}");
             }
 
-            function  pressEnter(event) {
-                if (event.key === 13) {
-                    console.log("sdsds");
-                    document.getElementById('printerButton').focus();
-                }
-            }
+        
 
             function ajax(labelsCount, storeName) {
                 $("#printingResponseDisplay").html("Printig......");
