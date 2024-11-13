@@ -205,7 +205,7 @@
         <h3 style='background-color: #C2F2D7'> ΜΟΝΟΚΟΜΜΑΤΑ(τσουβάλια, κλουβιά, catsan): <%   out.println(y);%></h3>
         <input hidden id="monokommata"  value="<%   out.println(y);%>" >
         <h3> ΔΕΜΑΤΑ(κουτιά)   <input  type="number" id="packagesCount" name="packagesCount" value="0" onkeydown="pressEnter(this)" onkeyup="sumUp()" onchange="sumUp()">
-            ΣΥΝΟΛΟ ΕΤΙΚΕΤΩΝ   <input  type="number" id="labelsCount" name="labelsCount" <%  out.println("value='" + y + "'");%> > </h3>
+            ΣΥΝΟΛΟ ΕΤΙΚΕΤΩΝ   <input  type="number" id="labelsCount" name="labelsCount" <%  out.println("value='" + y + "'");%> onkeydown="pressEnter(this)"> </h3>
         <br>
         <button id="printerButton" style='font-size: 40px; width:250px;' class="btn btn-warning" onclick="printLabels()"> PRINT LABELS</button>
 
@@ -266,7 +266,6 @@
 
             function sumUp() {
                 labelsCount.value = monokommata.value * 1 + packagesCount.value * 1;
-                document.getElementById('printerButton').focus();
             }
 
             function printLabels() {
@@ -276,7 +275,6 @@
 
             function  pressEnter(event) {
                 if (event.key === 'Enter') {
-                    console.log("VAVA");
                     printerButton.focus();
                 }
             }
