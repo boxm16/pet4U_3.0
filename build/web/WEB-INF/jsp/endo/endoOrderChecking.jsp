@@ -229,9 +229,16 @@
 
     <script type="text/javascript">
 
-
+            packagesCount.addEventListener(`focus`, () => packagesCount.select());
 
             document.getElementById("packagesCount")
+                    .addEventListener("keyup", function (event) {
+                        event.preventDefault();
+                        if (event.keyCode === 13) {
+                            document.getElementById("printerButton").focus();
+                        }
+                    });
+            document.getElementById("labelsCount")
                     .addEventListener("keyup", function (event) {
                         event.preventDefault();
                         if (event.keyCode === 13) {
@@ -282,7 +289,7 @@
                 ajax(labelsCount.value, "${endoApostolis.receiver}");
             }
 
-        
+
 
             function ajax(labelsCount, storeName) {
                 $("#printingResponseDisplay").html("Printig......");
