@@ -275,7 +275,7 @@
 
             function  pressEnter(event) {
                 if (event.key === 'Enter') {
-                    printerButton.focus();
+                    document.getElementById('printerButton').focus();
                 }
             }
 
