@@ -5,9 +5,7 @@
  */
 package CamelotReplenishment;
 
-import org.springframework.stereotype.Controller;
 
-@Controller
-public class CamelotReplenishmentController {
-
+public class CamelotReplenishmentDao {
+    
 }
