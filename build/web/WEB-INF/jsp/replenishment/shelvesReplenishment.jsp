@@ -41,7 +41,7 @@
                 <div class=" col-sm-4">
 
                     <h1><a href="index.htm">INDEX</a></h1>
-                    <h1> Replenishment</h1>
+                    <h1>ΑΝΑΠΛΗΡΩΣΗ ΡΑΦΙΩΝ</h1>
                     <hr>
 
                     <%
