@@ -1240,4 +1240,47 @@ public class TechManDao {
         }
     }
 
+    String createCamelotShelvesReplenishmentDatabaseTable() {
+        String query = "CREATE TABLE camelot_shelves_replenishment("
+                + "id INT NOT NULL AUTO_INCREMENT, "
+                + "item_code VARCHAR (100) NOT NULL, "
+                + "referal_date_time DATETIME NOT NULL, "
+                + "replenishment_unit VARCHAR(30) NOT NULL, "
+                + "replenishment_quantity INT(3) NOT NULL, "
+                + "items_int_replenishment_unit INT(3) NOT NULL, "
+                + "minimal_stock INT(3) DEFAULT 1, "
+                + "note VARCHAR (500) NOT NULL, "
+                + "PRIMARY KEY (id)) "
+                + "ENGINE = InnoDB "
+                + "DEFAULT CHARACTER SET = utf8;";
+
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+            statement.close();
+            connection.close();
+            return "Table 'camelot_shelves_replenishment' created succesfully";
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return "Table 'camelot_shelves_replenishment' could not be created:" + ex;
+        }
+    }
+
+    String deleteCamelotShelvesReplenishmentDatabaseTable() {
+        String query = "DROP TABLE camelot_shelves_replenishment";
+
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+            statement.close();
+            connection.close();
+            return "Table 'camelot_shelves_replenishment' deleted succesfully";
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return "Table 'camelot_shelves_replenishment' could not be deleted:" + ex;
+        }
+    }
+
 }

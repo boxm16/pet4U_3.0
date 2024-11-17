@@ -19,8 +19,8 @@ public class TechManController {
 
     @RequestMapping(value = "techMan")
     public String techMan() {
-       //  return "techMan/techManDashboard";
-      return "index";
+       return "techMan/techManDashboard";
+        //   return "index";
     }
 
     //-----------------------------------------------------------------------
@@ -543,4 +543,24 @@ public class TechManController {
         modelMap.addAttribute("shelvesReplenishmentDatabaseTableResult", shelvesReplenishmentDatabaseTableResult);
         return "techMan/techManDashboard";
     }
+
+    //-----------------
+    @RequestMapping(value = "/createCamelotShelvesReplenishmentDatabaseTable", method = RequestMethod.GET)
+    public String createCamelotShelvesReplenishmentDatabaseTable(ModelMap modelMap) {
+        String camelotShelvesReplenishmentDatabaseTableResult = techManDao.createCamelotShelvesReplenishmentDatabaseTable();
+
+        camelotShelvesReplenishmentDatabaseTableResult = camelotShelvesReplenishmentDatabaseTableResult + "<br>";
+        modelMap.addAttribute("camelotShelvesReplenishmentDatabaseTableResult", camelotShelvesReplenishmentDatabaseTableResult);
+        return "techMan/techManDashboard";
+    }
+
+    @RequestMapping(value = "/deleteCamelotShelvesReplenishmentDatabaseTable1", method = RequestMethod.GET)
+    public String deleteCamelotShelvesReplenishmentDatabaseTable1(ModelMap modelMap) {
+        String camelotShelvesReplenishmentDatabaseTableResult = techManDao.deleteCamelotShelvesReplenishmentDatabaseTable();
+
+        camelotShelvesReplenishmentDatabaseTableResult = camelotShelvesReplenishmentDatabaseTableResult + "<br>";
+        modelMap.addAttribute("camelotShelvesReplenishmentDatabaseTableResult", camelotShelvesReplenishmentDatabaseTableResult);
+        return "techMan/techManDashboard";
+    }
+
 }

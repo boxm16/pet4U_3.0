@@ -189,6 +189,12 @@
         <hr>
 
 
+        <h1> ${camelotShelvesReplenishmentDatabaseTableResult} </h1>
+        <a href='createCamelotShelvesReplenishmentDatabaseTable.htm'><h1>Create Camelot Shelves Replenishment Database Table</h1> </a>
+        <a href='deleteCamelotShelvesReplenishmentDatabaseTable.htm'><h1>Delete Camelot Shelves Replenishment Database Table</h1> </a>
+        <hr>
+
+
 
 
 
