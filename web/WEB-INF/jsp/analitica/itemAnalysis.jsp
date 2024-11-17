@@ -857,13 +857,15 @@
                             %>
                     </table>
                 </div>
+            </div>
+            <div class="row">
                 <hr> 
-                <%                out.println("<center><h1>");
+                <%                        out.println("<center><h1>");
                     out.println("<a  href = 'getFullItemAnalysis.htm?code=" + item.getCode() + "' target='_blank'>Full Analysis </a>");
                     out.println("</h1></center>");
                 %> 
-
             </div>
+
             <div class="row">
                 <div class="col-sm-4">
                     <form action="getItemCodeSenderStore.htm" method="POST" target="_blank">
@@ -877,9 +879,9 @@
 
                 <div class="col-sm-4">
                     <form action="inputOutput.htm" method="POST" target="_blank">
-                        <h1>  <input type="text"  name="itemCode" value=""></h1>
-                        <h1>  <input type="date"  name="startDate" value="${before10DaysDate}"></h1>
-                        <h1>  <input type="date"  name="endDate" value="${nowDate}"></h1>
+                        <h3>  <input type="text" hidden name="itemCode" value="${item.code}"></h3>
+                        <h3>  <input type="date"  name="startDate" value="${before10DaysDate}"></h3>
+                        <h3>  <input type="date"  name="endDate" value="${nowDate}"></h3>
                         <hr>
                         <button type="submit" class="btn btn-secondary"> <h1>კოდის  მოძრაობა (შემოსვლა/გასვლა)</h1></button>
                     </form>      
