@@ -115,8 +115,16 @@ public class AnaliticaController {
             System.out.println("size:" + camelotLast100DaysSnapshots.size());
             model.addAttribute("camelotLast100DaysSnapshots", camelotLast100DaysSnapshots);
             //    System.out.println("Retrieving Camelot Last 100 Days Snapshots. Done: " + LocalDateTime.now());
+
             System.out.println("Analysis Done: " + LocalDateTime.now());
 
+            LocalDate date = LocalDate.now();
+         //   LocalDate startDate = LocalDate.parse("2024-01-01");
+            LocalDate nowDate = LocalDate.now();
+            model.addAttribute("date", date);
+           // model.addAttribute("startDate", startDate);
+            model.addAttribute("nowDate", nowDate);
+            model.addAttribute("before10DaysDate", nowDate.minusDays(10));
             return "analitica/itemAnalysis";
         }
         model.addAttribute("message", "You are not authorized for this page");
