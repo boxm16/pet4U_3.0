@@ -3,9 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Michail%20Sitmalidis/Pet4U_3.0/web/WEB-INF/jsp/endo/endoChecking.jsp</file>
-            <file>file:/C:/Users/Michail%20Sitmalidis/Pet4U_3.0/web/WEB-INF/jsp/order/itemsCollateralPositions.jsp</file>
-            <file>file:/C:/Users/Michail%20Sitmalidis/Pet4U_3.0/src/java/BasicModel/WarehousePositioning.java</file>
+            <file>file:/C:/Users/Michail%20Sitmalidis/Pet4U_3.0/web/WEB-INF/jsp/camelotReplenishment/replenishmentServant.jsp</file>
+            <file>file:/C:/Users/Michail%20Sitmalidis/Pet4U_3.0/src/java/Replenishment/ReplenishmentDao.java</file>
+            <file>file:/C:/Users/Michail%20Sitmalidis/Pet4U_3.0/src/java/CamelotReplenishment/CamelotReplenishmentController.java</file>
+            <file>file:/C:/Users/Michail%20Sitmalidis/Pet4U_3.0/src/java/CamelotReplenishment/CamelotReplenishmentDao.java</file>
         </group>
     </open-files>
 </project-private>
