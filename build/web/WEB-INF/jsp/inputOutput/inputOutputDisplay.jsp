@@ -41,7 +41,7 @@
                 border-collapse: collapse;
             }
             td {
-                font-size: 15px;
+                font-size: 25px;
             }
             th{
                 font-size: 20px;
@@ -50,6 +50,9 @@
                 background: #eee;
                 position: sticky;
                 top: 0px;
+            }
+            .table td {
+                text-align: center;   
             }
 
 
@@ -69,7 +72,7 @@
 
                     <center><h3>Daily Input Output</h3></center>
                     <center><h1>   ${item.code} &nbsp;   ${item.description}</h1></center>
-                    <table>
+                    <table class="table">
 
                         <th>Date</th>
                         <th>Position</th>
