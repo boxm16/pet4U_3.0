@@ -857,25 +857,40 @@
                             %>
                     </table>
                 </div>
-
+                <hr> 
+                <%                out.println("<center><h1>");
+                    out.println("<a  href = 'getFullItemAnalysis.htm?code=" + item.getCode() + "' target='_blank'>Full Analysis </a>");
+                    out.println("</h1></center>");
+                %> 
 
             </div>
             <div class="row">
-                <div class="col-sm-12">
+                <div class="col-sm-4">
                     <form action="getItemCodeSenderStore.htm" method="POST" target="_blank">
+                        <h3>  <input type="text" hidden name="itemCode" value="${item.code}"></h3>
+                        <h3>  <input type="date"  name="startDate" value="${before10DaysDate}"></h3>
+                        <h3>  <input type="date"  name="endDate" value="${nowDate}"></h3>
+                        <hr>
+                        <button type="submit" class="btn btn-success"> <h5>კოდის ენდოდან შემოსვლა</h5></button>
+                    </form>
+                </div>
+
+                <div class="col-sm-4">
+                    <form action="inputOutput.htm" method="POST" target="_blank">
                         <h1>  <input type="text"  name="itemCode" value=""></h1>
                         <h1>  <input type="date"  name="startDate" value="${before10DaysDate}"></h1>
                         <h1>  <input type="date"  name="endDate" value="${nowDate}"></h1>
                         <hr>
-                        <button type="submit" class="btn btn-success"> <h1>კოდის ენდოდან შემოსვლა</h1></button>
-                    </form>
+                        <button type="submit" class="btn btn-secondary"> <h1>კოდის  მოძრაობა (შემოსვლა/გასვლა)</h1></button>
+                    </form>      
+                </div>
+
+                <div class="col-sm-4">
+
                 </div>
             </div>
-            <hr> 
-            <%                out.println("<center><h1>");
-                out.println("<a  href = 'getFullItemAnalysis.htm?code=" + item.getCode() + "' target='_blank'>Full Analysis </a>");
-                out.println("</h1></center>");
-            %>  
+
+
         </div>
 
     </body>
