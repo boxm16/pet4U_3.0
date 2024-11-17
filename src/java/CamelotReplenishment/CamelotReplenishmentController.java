@@ -5,9 +5,48 @@
  */
 package CamelotReplenishment;
 
+import BasicModel.Item;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class CamelotReplenishmentController {
 
+    @RequestMapping(value = "goForCamelotReplenishment", method = RequestMethod.GET)
+    public String goForReplenishment(@RequestParam(name = "altercode") String altercode, ModelMap modelMap) {
+        CamelotReplenishmentDao camelotReplenishmentDao = new CamelotReplenishmentDao();
+        Item item = camelotReplenishmentDao.getItemForReplenishment(altercode);
+
+        CamelotReplenishment replenishment = camelotReplenishmentDao.getItemReplenishment(item.getCode());
+
+        if (replenishment == null) {
+            replenishment = new CamelotReplenishment();
+            replenishment.setCode(item.getCode());
+            replenishment.setReplenishmentQuantity(0);
+
+            replenishment.setCode(item.getCode());
+            replenishment.setDescription(item.getDescription());
+            replenishment.setAltercodes(item.getAltercodes());
+            replenishment.setQuantity(item.getQuantity());
+            replenishment.setPosition(item.getPosition());
+            modelMap.addAttribute("replenishment", replenishment);
+            modelMap.addAttribute("saveType", "insertReplenishment.htm");
+        } else {
+            modelMap.addAttribute("replenishment", replenishment);
+            replenishment.setCode(item.getCode());
+
+            replenishment.setDescription(item.getDescription());
+            replenishment.setAltercodes(item.getAltercodes());
+            replenishment.setQuantity(item.getQuantity());
+            replenishment.setPosition(item.getPosition());
+            modelMap.addAttribute("replenishment", replenishment);
+            modelMap.addAttribute("saveType", "editReplenishment.htm");
+        }
+
+        return "camelotReplenishment/replenishmentServant";
+
+    }
 }
