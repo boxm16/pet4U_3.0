@@ -63,7 +63,7 @@
 
                                         <center>    <input type='text' readonly name='systemStock' style='font-size:30px; background-color: lightgreen' value='${replenishment.quantity}'></center>
                                         <hr>
-                                        <center>    <h1 style="background-color:#f955d4">ΜΟΝΑΔΑ ΑΝΑΠΛΗΡΩΣΗΣ: </h1>    </center> 
+                                        <center>    <h3 style="background-color:#f955d4">ΜΟΝΑΔΑ ΑΝΑΠΛΗΡΩΣΗΣ: </h3>    </center> 
                                         <h1>  
                                             <select name="orderUnit" > 
                                                 <option value="box" ${itemOfInterest.orderUnit == "box" ? 'selected="selected"' : ''}>ΚΟΥΤΙ-ΠΑΚΕΤΟ</option>
@@ -71,8 +71,9 @@
                                                 <option value="item" ${itemOfInterest.orderUnit == "item" ? 'selected="selected"' : ''}>ΤΕΜΑΧΙΟ</option>
                                             </select>
                                         </h1>
-                                        <center>    <h1 style="background-color:#f955d4">ΤΕΜΑΧΙΑ ΣΤΗ ΜΟΝΑΔΑ ΑΝΑΠΛΗΡΩΣΗΣ: </h1>    </center> 
+                                        <center>    <h3 style="background-color:#f955d4">ΤΕΜΑΧΙΑ ΣΤΗ ΜΟΝΑΔΑ ΑΝΑΠΛΗΡΩΣΗΣ: </h3>    </center> 
                                         <input type="number" name="itemsInReplenishmentUnit"  value="${replenishment.itemsInReplenishmentUnit}" style="font-size:30px" >
+                                        <center>    <h3 style="background-color:#f955d4">ΠΟΣΟΤΗΤΑ ΑΝΑΠΛΗΡΩΣΗΣ: </h3>    </center> 
                                         <input type='number' name='replenishmentQuantity'  value='${replenishment.replenishmentQuantity}' style='font-size:30px' >
                                         <hr>
                                         <input name='itemCode' hidden value='${replenishment.code}'>
