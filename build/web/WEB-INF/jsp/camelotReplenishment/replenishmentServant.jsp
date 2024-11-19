@@ -59,7 +59,7 @@
                             <tr>
                                 <td> <center>    <input type='text' readonly name='systemStock' style='font-size:30px; background-color: lightgreen' value='${replenishment.quantity}'></center></td>
                             </tr>
-                            <tr style="background-color">
+                            <tr style="background-color:#f955d4">
                                 <td>MONADA<br>ΑΝΑΠΛΗΡΩΣΗ
                                 </td>
                                 <td>
@@ -70,7 +70,7 @@
                                     </select>
                                 </td>
                             </tr>
-                            <tr style="background-color">
+                            <tr style="background-color:#f955d4">
                                 <td>ΤΕΜΑΧΙΑ ΣΤΗ ΜΟΝΑΔΑ ΑΝΑΠΛΗΡΩΣΗΣ
                                 </td>
                                 <td>
