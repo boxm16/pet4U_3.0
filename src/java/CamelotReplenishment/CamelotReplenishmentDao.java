@@ -9,6 +9,7 @@ import BasicModel.AltercodeContainer;
 import BasicModel.Item;
 import Service.DatabaseConnectionFactory;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -108,8 +109,31 @@ public class CamelotReplenishmentDao {
         return item;
     }
 
-    String insertReplenishment(String itemCode, String replenishmentUnit, String itemsInReplenishmentUnit, String replenishmentQuantity, String note) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String insertReplenishment(String itemCode, String replenishmentUnit, String itemsInReplenishmentUnit, String replenishmentQuantity, String note) {
+        LocalDateTime timeNow = LocalDateTime.now();
+        try {
+
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            Connection connection = databaseConnectionFactory.getMySQLConnection();
+
+            PreparedStatement itemInsertStatement = connection.prepareStatement("INSERT INTO camelot_shelves_replenishment (item_code, referal_date_time, replenishment_unit,items_int_replenishment_unit,  replenishment_quantity, note) VALUES (?,?,?,?,?,?)");
+
+            itemInsertStatement.setString(1, itemCode);
+            itemInsertStatement.setString(2, timeNow.toString());
+            itemInsertStatement.setString(3, replenishmentUnit);
+            itemInsertStatement.setString(4, itemsInReplenishmentUnit);
+            itemInsertStatement.setString(5, replenishmentQuantity);
+            itemInsertStatement.setString(6, note);
+            itemInsertStatement.execute();
+
+            itemInsertStatement.close();
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(CamelotReplenishmentDao.class.getName()).log(Level.SEVERE, null, ex);
+            return ex.getMessage();
+        }
+        return "New Replenishment Done Successfully";
     }
 
 }
