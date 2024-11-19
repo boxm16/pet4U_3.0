@@ -81,7 +81,7 @@
                                         <input type='text' name='note'>
                                         <hr>
 
-                                        <h3>  <input class='btn btn-primary' type='submit' value='SAVE SETTINGS AND  MAKE REPLENISHMENT'> </h3>
+                                        <h1>  <input class='btn btn-primary' type='submit' value='SAVE SETTINGS AND  MAKE REPLENISHMENT'> </h1>
 
                                     </form>
                                 </td>
