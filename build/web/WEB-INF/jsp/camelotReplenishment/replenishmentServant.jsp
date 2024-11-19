@@ -65,16 +65,14 @@
                                         <hr>
                                         <center>    <h3 style="background-color:#f955d4">MONADA ΑΝΑΠΛΗΡΩΣΗ:  
                                                 <h5>  
-                                                    <select readonly name="replenishmentUnit" > 
+                                                    <select disabled  name="replenishmentUnit" > 
                                                         <option value="box" ${replenishment.replenishmentUnit == "box" ? 'selected="selected"' : ''}>ΚΟΥΤΙ-ΠΑΚΕΤΟ</option>
                                                         <option value="pallet" ${replenishment.replenishmentUnit == "pallet" ? 'selected="selected"' : ''}>ΠΑΛΕΤΑ</option>
                                                         <option value="item" ${replenishment.replenishmentUnit == "item" ? 'selected="selected"' : ''}>ΤΕΜΑΧΙΟ</option>
                                                     </select>
                                                 </h5>
                                         </center> 
-                                        <center>    <h5 style="background-color:#f955d4">ΤΕΜΑΧΙΑ ΣΤΗ ΜΟΝΑΔΑ ΑΝΑΠΛΗΡΩΣΗΣ: </h5>    </center> 
-                                        <input type="number" readonly name="itemsInReplenishmentUnit"  value="${replenishment.itemsInReplenishmentUnit}" style="font-size:30px" >
-
+                                        <center>    <h5 style="background-color:#f955d4">ΤΕΜΑΧΙΑ ΣΤΗ ΜΟΝΑΔΑ ΑΝΑΠΛΗΡΩΣΗΣ: ${replenishment.itemsInReplenishmentUnit}</h5>    </center> 
 
                                         <input type='number' name='replenishmentQuantity'  value='${replenishment.replenishmentQuantity}' style='font-size:30px' >
                                         <hr>
