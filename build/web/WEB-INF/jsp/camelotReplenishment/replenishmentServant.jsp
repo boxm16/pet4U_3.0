@@ -64,13 +64,13 @@
                                         <center>    <input type='text' readonly name='systemStock' style='font-size:30px; background-color: lightgreen' value='${replenishment.quantity}'></center>
                                         <hr>
                                         <center>    <h3 style="background-color:#f955d4">MONADA ΑΝΑΠΛΗΡΩΣΗ:  
-                                                <h5>  
+                                               
                                                     <select disabled  name="replenishmentUnit" > 
                                                         <option value="box" ${replenishment.replenishmentUnit == "box" ? 'selected="selected"' : ''}>ΚΟΥΤΙ-ΠΑΚΕΤΟ</option>
                                                         <option value="pallet" ${replenishment.replenishmentUnit == "pallet" ? 'selected="selected"' : ''}>ΠΑΛΕΤΑ</option>
                                                         <option value="item" ${replenishment.replenishmentUnit == "item" ? 'selected="selected"' : ''}>ΤΕΜΑΧΙΟ</option>
                                                     </select>
-                                                </h5>
+                                                </h3>
                                         </center> 
                                         <center>    <h5 style="background-color:#f955d4">ΤΕΜΑΧΙΑ ΣΤΗ ΜΟΝΑΔΑ ΑΝΑΠΛΗΡΩΣΗΣ: ${replenishment.itemsInReplenishmentUnit}</h5>    </center> 
 
