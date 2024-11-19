@@ -34,6 +34,7 @@ public class CamelotReplenishmentController {
             replenishment.setPosition(item.getPosition());
             modelMap.addAttribute("replenishment", replenishment);
             modelMap.addAttribute("saveType", "insertCamelotReplenishment.htm");
+            return "camelotReplenishment/replenishmentSettingsServant";
         } else {
             modelMap.addAttribute("replenishment", replenishment);
             replenishment.setCode(item.getCode());
@@ -44,9 +45,8 @@ public class CamelotReplenishmentController {
             replenishment.setPosition(item.getPosition());
             modelMap.addAttribute("replenishment", replenishment);
             modelMap.addAttribute("saveType", "editCamelotReplenishment.htm");
+            return "camelotReplenishment/replenishmentServant";
         }
-
-        return "camelotReplenishment/replenishmentServant";
 
     }
 }
