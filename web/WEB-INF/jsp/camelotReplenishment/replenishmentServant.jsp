@@ -60,7 +60,7 @@
                                 <td> <center>    <input type='text' readonly name='systemStock' style='font-size:30px; background-color: lightgreen' value='${replenishment.quantity}'></center></td>
                             </tr>
                             <tr style="background-color:#f955d4">
-                                <td>MONADA<br>ΑΝΑΠΛΗΡΩΣΗ
+                                <td>MONADA ΑΝΑΠΛΗΡΩΣΗ:
 
                                     <select disabled  name="replenishmentUnit" > 
                                         <option value="box" ${replenishment.replenishmentUnit == "box" ? 'selected="selected"' : ''}>ΚΟΥΤΙ-ΠΑΚΕΤΟ</option>
@@ -70,7 +70,7 @@
                                 </td>
                             </tr>
                             <tr style="background-color:#f955d4">
-                                <td>ΤΕΜΑΧΙΑ ΣΤΗ ΜΟΝΑΔΑ ΑΝΑΠΛΗΡΩΣΗΣ
+                                <td>ΤΕΜΑΧΙΑ ΣΤΗ ΜΟΝΑΔΑ ΑΝΑΠΛΗΡΩΣΗΣ:
 
                                     ${replenishment.itemsInReplenishmentUnit}  
                                 </td>
