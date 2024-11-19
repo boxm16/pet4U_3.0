@@ -57,22 +57,30 @@
                                 </td>
                             </tr>
                             <tr>
+                                <td> <center>    <input type='text' readonly name='systemStock' style='font-size:30px; background-color: lightgreen' value='${replenishment.quantity}'></center></td>
+                            </tr>
+                            <tr style="background-color">
+                                <td>MONADA<br>ΑΝΑΠΛΗΡΩΣΗ
+                                </td>
+                                <td>
+                                    <select disabled  name="replenishmentUnit" > 
+                                        <option value="box" ${replenishment.replenishmentUnit == "box" ? 'selected="selected"' : ''}>ΚΟΥΤΙ-ΠΑΚΕΤΟ</option>
+                                        <option value="pallet" ${replenishment.replenishmentUnit == "pallet" ? 'selected="selected"' : ''}>ΠΑΛΕΤΑ</option>
+                                        <option value="item" ${replenishment.replenishmentUnit == "item" ? 'selected="selected"' : ''}>ΤΕΜΑΧΙΟ</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr style="background-color">
+                                <td>ΤΕΜΑΧΙΑ ΣΤΗ ΜΟΝΑΔΑ ΑΝΑΠΛΗΡΩΣΗΣ
+                                </td>
+                                <td>
+                                    ${replenishment.itemsInReplenishmentUnit}  
+                                </td>
+                            </tr>
+                            <tr>
                                 <td>
 
                                     <form action="${saveType}" method="POST">
-
-                                        <center>    <input type='text' readonly name='systemStock' style='font-size:30px; background-color: lightgreen' value='${replenishment.quantity}'></center>
-
-                                        <h3 style="background-color:#f955d4">MONADA<br>ΑΝΑΠΛΗΡΩΣΗ:  
-
-                                            <select disabled  name="replenishmentUnit" > 
-                                                <option value="box" ${replenishment.replenishmentUnit == "box" ? 'selected="selected"' : ''}>ΚΟΥΤΙ-ΠΑΚΕΤΟ</option>
-                                                <option value="pallet" ${replenishment.replenishmentUnit == "pallet" ? 'selected="selected"' : ''}>ΠΑΛΕΤΑ</option>
-                                                <option value="item" ${replenishment.replenishmentUnit == "item" ? 'selected="selected"' : ''}>ΤΕΜΑΧΙΟ</option>
-                                            </select>
-                                        </h3>
-
-                                        <center>    <h5 style="background-color:#f955d4">ΤΕΜΑΧΙΑ ΣΤΗ ΜΟΝΑΔΑ ΑΝΑΠΛΗΡΩΣΗΣ: ${replenishment.itemsInReplenishmentUnit}</h5>    </center> 
 
                                         <input type='number' name='replenishmentQuantity'  value='${replenishment.replenishmentQuantity}' style='font-size:30px' >
                                         <hr>
