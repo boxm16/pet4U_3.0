@@ -108,4 +108,8 @@ public class CamelotReplenishmentDao {
         return item;
     }
 
+    String insertReplenishment(String itemCode, String replenishmentUnit, String itemsInReplenishmentUnit, String replenishmentQuantity, String note) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

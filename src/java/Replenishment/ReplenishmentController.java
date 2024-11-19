@@ -56,7 +56,7 @@ public class ReplenishmentController {
     }
 
     @RequestMapping(value = "insertReplenishment", method = RequestMethod.POST)
-    public String saveItemInventory(@RequestParam(name = "itemCode") String itemCode,
+    public String insertReplenishment(@RequestParam(name = "itemCode") String itemCode,
             @RequestParam(name = "replenishmentQuantity") String replenishmentQuantity,
             @RequestParam(name = "note") String note,
             ModelMap model) {

@@ -47,6 +47,25 @@ public class CamelotReplenishmentController {
             modelMap.addAttribute("saveType", "editCamelotReplenishment.htm");
             return "camelotReplenishment/replenishmentServant";
         }
+    }
+
+    @RequestMapping(value = "insertCamelotReplenishment", method = RequestMethod.POST)
+    public String insertReplenishment(@RequestParam(name = "itemCode") String itemCode,
+            @RequestParam(name = "replenishmentUnit") String replenishmentUnit,
+            @RequestParam(name = "itemsInReplenishmentUnit") String itemsInReplenishmentUnit,
+            @RequestParam(name = "replenishmentQuantity") String replenishmentQuantity,
+            @RequestParam(name = "note") String note,
+            ModelMap model) {
+        CamelotReplenishmentDao replenishmentDao = new CamelotReplenishmentDao();
+        String result = replenishmentDao.insertReplenishment(itemCode, replenishmentUnit, itemsInReplenishmentUnit, replenishmentQuantity, note);
+        String resultColor = "";
+        if (!result.equals("New Replenishment Done Successfully")) {
+            result = "ΚΑΤΙ ΠΗΓΕ ΣΤΡΑΒΑ. <br>" + result;
+            resultColor = "red";
+        }
+        model.addAttribute("result", result);
+        model.addAttribute("resultColor", resultColor);
+        return "camelotReplenishment/replenishmentSavingResult";
 
     }
 }
