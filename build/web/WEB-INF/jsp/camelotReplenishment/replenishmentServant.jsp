@@ -63,14 +63,17 @@
 
                                         <center>    <input type='text' readonly name='systemStock' style='font-size:30px; background-color: lightgreen' value='${replenishment.quantity}'></center>
                                         <hr>
-                                        <center>    <h1 style="background-color:#f955d4">ΑΝΑΠΛΗΡΩΣΗ ΡΑΦΙΟΥ</h1>    </center> 
-                                        <center>    <h1 style="background-color:#f955d4">MONADA ΑΝΑΠΛΗΡΩΣΗ: </h1>    </center> 
-                                       
-                                        <select name="orderUnit" > 
-                                            <option value="box" ${itemOfInterest.orderUnit == "box" ? 'selected="selected"' : ''}>ΚΟΥΤΙ-ΠΑΚΕΤΟ</option>
-                                            <option value="pallet" ${itemOfInterest.orderUnit == "pallet" ? 'selected="selected"' : ''}>ΠΑΛΕΤΑ</option>
-                                            <option value="item" ${itemOfInterest.orderUnit == "item" ? 'selected="selected"' : ''}>ΤΕΜΑΧΙΟ</option>
-                                        </select>
+                                        <center>    <h3 style="background-color:#f955d4">MONADA ΑΝΑΠΛΗΡΩΣΗ: </h3>    </center> 
+                                        <h3>  
+                                            <select readonly name="replenishmentUnit" > 
+                                                <option value="box" ${replenishment.replenishmentUnit == "box" ? 'selected="selected"' : ''}>ΚΟΥΤΙ-ΠΑΚΕΤΟ</option>
+                                                <option value="pallet" ${replenishment.replenishmentUnit == "pallet" ? 'selected="selected"' : ''}>ΠΑΛΕΤΑ</option>
+                                                <option value="item" ${replenishment.replenishmentUnit == "item" ? 'selected="selected"' : ''}>ΤΕΜΑΧΙΟ</option>
+                                            </select>
+                                        </h3>
+                                        <center>    <h5 style="background-color:#f955d4">ΤΕΜΑΧΙΑ ΣΤΗ ΜΟΝΑΔΑ ΑΝΑΠΛΗΡΩΣΗΣ: </h5>    </center> 
+                                        <input type="number" readonly name="itemsInReplenishmentUnit"  value="${replenishment.itemsInReplenishmentUnit}" style="font-size:30px" >
+
 
                                         <input type='number' name='replenishmentQuantity'  value='${replenishment.replenishmentQuantity}' style='font-size:30px' >
                                         <hr>
