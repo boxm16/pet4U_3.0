@@ -62,11 +62,13 @@
                             <tr style="background-color:#f955d4">
                                 <td>MONADA ΑΝΑΠΛΗΡΩΣΗ:
 
-                                    <select disabled  name="replenishmentUnit" > 
-                                        <option value="box" ${replenishment.replenishmentUnit == "box" ? 'selected="selected"' : ''}>ΚΟΥΤΙ-ΠΑΚΕΤΟ</option>
-                                        <option value="pallet" ${replenishment.replenishmentUnit == "pallet" ? 'selected="selected"' : ''}>ΠΑΛΕΤΑ</option>
-                                        <option value="item" ${replenishment.replenishmentUnit == "item" ? 'selected="selected"' : ''}>ΤΕΜΑΧΙΟ</option>
-                                    </select>
+                                    <h4> 
+                                        <select disabled  name="replenishmentUnit" > 
+                                            <option value="box" ${replenishment.replenishmentUnit == "box" ? 'selected="selected"' : ''}>ΚΟΥΤΙ-ΠΑΚΕΤΟ</option>
+                                            <option value="pallet" ${replenishment.replenishmentUnit == "pallet" ? 'selected="selected"' : ''}>ΠΑΛΕΤΑ</option>
+                                            <option value="item" ${replenishment.replenishmentUnit == "item" ? 'selected="selected"' : ''}>ΤΕΜΑΧΙΟ</option>
+                                        </select>
+                                    </h4>
                                 </td>
                             </tr>
                             <tr style="background-color:#f955d4">
