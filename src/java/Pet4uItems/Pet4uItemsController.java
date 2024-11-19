@@ -23,6 +23,7 @@ import java.util.logging.Logger;
 import org.krysalis.barcode4j.HumanReadablePlacement;
 import org.krysalis.barcode4j.impl.code128.Code128Bean;
 import org.krysalis.barcode4j.impl.code128.Code128Constants;
+import org.krysalis.barcode4j.impl.upcean.EAN13Bean;
 import org.krysalis.barcode4j.output.bitmap.BitmapCanvasProvider;
 import org.krysalis.barcode4j.tools.UnitConv;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -283,6 +284,80 @@ public class Pet4uItemsController {
                         out, "image/x-png", dpi, BufferedImage.TYPE_BYTE_BINARY, false, 0);
 
                 barcode128Bean.generateBarcode(canvasProvider, altercode);
+
+                try {
+                    canvasProvider.finish();
+                } catch (IOException ex) {
+                    Logger.getLogger(Pet4uItemsController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } finally {
+                try {
+                    out.close();
+                } catch (IOException ex) {
+                    Logger.getLogger(Pet4uItemsController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+            // model.addAttribute("code", code);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Pet4uItemsController.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                out.close();
+            } catch (IOException ex) {
+                Logger.getLogger(Pet4uItemsController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+//-------------
+        String printName = "\\\\eshoplaptop\\ZDesigner GC420t (EPL) (Αντιγραφή 1)";
+        BarcodePrinter barcodePrinter = new BarcodePrinter();
+        // String printName = "ZDesigner GC420t (EPL)";
+        // BarcodePrinter2 barcodePrinter = new BarcodePrinter2();
+//---------------
+        barcodePrinter.setLabelsCount(1);
+
+        barcodePrinter.setCode(item.getCode());
+        barcodePrinter.setBarcode(altercode.substring(altercode.length() - 6));
+        barcodePrinter.setDescription(item.getDescription());
+        String position = item.getPosition().substring(2);
+        barcodePrinter.setPosition(position);
+
+        barcodePrinter.printSomething(printName);
+
+        return "index";
+    }
+
+    @RequestMapping(value = "printEANBarcode")
+    public String printEANBarcode(@RequestParam(name = "altercode") String altercode, ModelMap model) {
+        System.out.println("Altercode :" + altercode);
+
+        if (altercode.length() != 13) {
+            model.addAttribute("message", "Barcode length is not valid for this type of barcode generator. Barcode must be 13  digits length. Only 0–9 digits allowed.");
+            return "errorPage";
+        }
+        SearchDao searchDao = new SearchDao();
+        Item item = searchDao.getItemByAltercode(altercode);
+
+        if (item == null) {
+            System.out.println("Item Null");
+        }
+
+        OutputStream out = null;
+        try {
+
+            EAN13Bean barcodeGenerator = new EAN13Bean();
+
+            final int dpi = 100;
+
+            //Open output file
+            File outputFile = new File("C:/Pet4U_3.0/barcode.png");
+            out = new FileOutputStream(outputFile);
+            try {
+                BitmapCanvasProvider canvasProvider = new BitmapCanvasProvider(
+                        out, "image/x-png", dpi, BufferedImage.TYPE_BYTE_BINARY, false, 0);
+
+                barcodeGenerator.generateBarcode(canvasProvider, altercode);
 
                 try {
                     canvasProvider.finish();

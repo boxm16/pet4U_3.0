@@ -136,6 +136,8 @@
                                 out.println("<hr>");
                                 out.println(" <a href='printBarcode.htm?altercode=" + target + "' class='btn btn-danger btn-lg' role='button' aria-disabled='true'><h3>PRINT BARCODE LABEL</h3></a>");
                                 out.println("<hr>");
+                                out.println(" <a href='printEANBarcode.htm?altercode=" + target + "' class='btn btn-danger btn-lg' role='button' aria-disabled='true' style='background-color: #d69f93'><h3>PRINT EAN<br>BARCODE LABEL</h3></a>");
+                                out.println("<hr>");
 
                                 out.println("<form action='printSmallLabels.htm' method='POST' target='_blank'>");
                                 out.println("<h1>  <input type='text' hidden  name='altercode' value='" + target + "'></h1>");
@@ -145,7 +147,7 @@
 
                                 String userName = (String) session.getAttribute("userName");
                                 if (userName != null) {
-                                    if (userName.equals("me") || userName.equals("super")) {
+                                    if (userName.equals("me") || userName.equals("vasilis") || userName.equals("super")) {
                                         out.println("<hr>");
                                         out.println("<hr>");
                                         out.println("<hr>");

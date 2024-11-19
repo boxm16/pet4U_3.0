@@ -111,7 +111,7 @@
 
                                 String userName = (String) session.getAttribute("userName");
                                 if (userName != null) {
-                                    if (userName.equals("me") || userName.equals("super")) {
+                                    if (userName.equals("me") ||userName.equals("vasilis") || userName.equals("super")) {
                                         out.println("<a  href = 'itemAnalysis.htm?code=" + item.getCode() + "' target='_blank'>Analysis </a>");
                                     }
                                 }
