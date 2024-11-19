@@ -348,7 +348,17 @@ public class Pet4uItemsController {
 
             EAN13Bean barcodeGenerator = new EAN13Bean();
 
+            //----
             final int dpi = 100;
+            //Configure the barcode generator
+            //adjust barcode width here
+            //    barcodeGenerator.setModuleWidth(UnitConv.in2mm(5.0f / dpi));
+            //  barcodeGenerator.doQuietZone(false);
+            // barcodeGenerator.setBarHeight(8);
+            //bean.setVerticalQuietZone(3);
+            // barcodeGenerator.setQuietZone(0);
+            //barcodeGenerator.setMsgPosition(HumanReadablePlacement.HRP_NONE);
+            //-----
 
             //Open output file
             File outputFile = new File("C:/Pet4U_3.0/barcode.png");
