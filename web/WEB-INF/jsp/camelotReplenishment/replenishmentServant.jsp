@@ -63,7 +63,7 @@
 
                                         <center>    <input type='text' readonly name='systemStock' style='font-size:30px; background-color: lightgreen' value='${replenishment.quantity}'></center>
 
-                                        <h3 style="background-color:#f955d4">MONADA ΑΝΑΠΛΗΡΩΣΗ:  
+                                        <h3 style="background-color:#f955d4">MONADA<br>ΑΝΑΠΛΗΡΩΣΗ:  
 
                                             <select disabled  name="replenishmentUnit" > 
                                                 <option value="box" ${replenishment.replenishmentUnit == "box" ? 'selected="selected"' : ''}>ΚΟΥΤΙ-ΠΑΚΕΤΟ</option>
