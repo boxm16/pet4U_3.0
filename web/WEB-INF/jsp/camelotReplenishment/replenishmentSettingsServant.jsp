@@ -79,7 +79,7 @@
                                         <input type='text' name='note'>
                                         <hr>
 
-                                        <input class='btn btn-primary' type='submit' value='SAVE SETTINGS AND <br>MAKE REPLENISHMENT'>
+                                        <input class='btn btn-primary' type='submit' value='SAVE SETTINGS AND <br> MAKE REPLENISHMENT'>
 
                                     </form>
                                 </td>
