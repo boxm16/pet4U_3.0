@@ -61,8 +61,7 @@
                             </tr>
                             <tr style="background-color:#f955d4">
                                 <td>MONADA<br>ΑΝΑΠΛΗΡΩΣΗ
-                                </td>
-                                <td>
+
                                     <select disabled  name="replenishmentUnit" > 
                                         <option value="box" ${replenishment.replenishmentUnit == "box" ? 'selected="selected"' : ''}>ΚΟΥΤΙ-ΠΑΚΕΤΟ</option>
                                         <option value="pallet" ${replenishment.replenishmentUnit == "pallet" ? 'selected="selected"' : ''}>ΠΑΛΕΤΑ</option>
@@ -72,8 +71,7 @@
                             </tr>
                             <tr style="background-color:#f955d4">
                                 <td>ΤΕΜΑΧΙΑ ΣΤΗ ΜΟΝΑΔΑ ΑΝΑΠΛΗΡΩΣΗΣ
-                                </td>
-                                <td>
+
                                     ${replenishment.itemsInReplenishmentUnit}  
                                 </td>
                             </tr>
