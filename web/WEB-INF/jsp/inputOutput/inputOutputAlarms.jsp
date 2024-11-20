@@ -79,6 +79,7 @@
                         <th>Positon</th>
                         <th>Delivery</th>
                         <th>Ενδο Παραλαβη</th>
+                        <th>Camelot Παραλαβη</th>
                         <th>Ενδο Αποστολη</th>
                         <th>E-Shop Sales</th>
                         <th>Quantity</th>
@@ -198,6 +199,7 @@
 
                         <th>Delivery</th>
                         <th>Ενδο Παραλαβη</th>
+                        <th>Camelot Παραλαβη</th>
                         <th>Ενδο Αποστολη</th>
                         <th>E-Shop Sales</th>
                         <th>Stock</th>
@@ -279,6 +281,10 @@
                                     out.println("</td>");
 
                                     out.println("<td>");
+                                    out.println(inputOutput.getCamelotParalavi());
+                                    out.println("</td>");
+
+                                    out.println("<td>");
                                     out.println(inputOutput.getEndoApostoli());
                                     out.println("</td>");
 
@@ -319,6 +325,7 @@
                                         out.println("<td>");
                                         double inputOutputDiff = inputOutput.getDelivery()
                                                 + inputOutput.getEndoParalavi()
+                                                + inputOutput.getCamelotParalavi()
                                                 - inputOutput.getEndoApostoli()
                                                 - inputOutput.getDailySale().getSoldQuantiy();
                                         out.println(inputOutputDiff);
