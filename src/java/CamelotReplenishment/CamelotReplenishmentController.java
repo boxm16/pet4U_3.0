@@ -6,6 +6,10 @@
 package CamelotReplenishment;
 
 import BasicModel.Item;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.TreeMap;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -86,5 +90,49 @@ public class CamelotReplenishmentController {
         model.addAttribute("resultColor", resultColor);
         return "camelotReplenishment/replenishmentSavingResult";
 
+    }
+
+    @RequestMapping(value = "camelotShelvesReplenishment", method = RequestMethod.GET)
+    public String camelotShelvesReplenishment(ModelMap model) {
+        CamelotReplenishmentDao camelptReplenishmentDao = new CamelotReplenishmentDao();
+        LinkedHashMap<String, CamelotReplenishment> replenishments = camelptReplenishmentDao.getAllReplenishments();
+
+        ArrayList referalAltercodes = new ArrayList(replenishments.keySet());
+        StringBuilder inPartForSqlQueryByReferralAltercodes = buildStringFromArrayList(referalAltercodes);
+        replenishments = camelptReplenishmentDao.addCamelotBasicData(replenishments, inPartForSqlQueryByReferralAltercodes);
+        replenishments = camelptReplenishmentDao.addSailsData(replenishments, inPartForSqlQueryByReferralAltercodes);
+        replenishments = camelptReplenishmentDao.addVarPcData(replenishments, inPartForSqlQueryByReferralAltercodes);
+        TreeMap<String, CamelotReplenishment> sortedByPositionReplenishment = new TreeMap();
+        for (Map.Entry<String, CamelotReplenishment> replenishmentsEntry : replenishments.entrySet()) {
+            CamelotReplenishment replenishment = replenishmentsEntry.getValue();
+            String position = replenishment.getPosition();
+            sortedByPositionReplenishment.put(position, replenishment);
+        }
+        model.addAttribute("replenishments", replenishments);
+        model.addAttribute("sortedByPositionReplenishment", sortedByPositionReplenishment);
+        return "camelotReplenishment/shelvesReplenishment";
+
+    }
+
+    private StringBuilder buildStringFromArrayList(ArrayList<String> arrayList) {
+
+        StringBuilder stringBuilder = new StringBuilder("(");
+        if (arrayList.isEmpty()) {
+            stringBuilder.append(")");
+            return stringBuilder;
+        }
+        int x = 0;
+        for (String entry : arrayList) {
+            if (x == 0) {
+                stringBuilder.append("'").append(entry).append("'");
+            } else {
+                stringBuilder.append(",'").append(entry).append("'");
+            }
+            if (x == arrayList.size() - 1) {
+                stringBuilder.append(")");
+            }
+            x++;
+        }
+        return stringBuilder;
     }
 }

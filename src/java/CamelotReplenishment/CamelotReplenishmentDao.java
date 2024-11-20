@@ -15,12 +15,18 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.LinkedHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class CamelotReplenishmentDao {
+    
+     private LocalDateTime oldestReplenishmentDateTime;
+     
 
     public Item getItemForReplenishment(String altercode) {
+        
+        
 
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
         Connection connection = databaseConnectionFactory.getCamelotMicrosoftSQLConnection();
@@ -138,7 +144,7 @@ public class CamelotReplenishmentDao {
     }
 
     String updateReplenishment(String itemCode, String replenishmentQuantity, String note) {
-     DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
         Connection connection = databaseConnectionFactory.getMySQLConnection();
         LocalDateTime timeNow = LocalDateTime.now();
         try {
@@ -158,6 +164,55 @@ public class CamelotReplenishmentDao {
             return ex.getMessage();
         }
 
-        return "Camelot Replenishment Updated Successfully"; }
+        return "Camelot Replenishment Updated Successfully";
+    }
+
+  LinkedHashMap<String, CamelotReplenishment> getAllReplenishments() {
+        oldestReplenishmentDateTime = LocalDateTime.now();
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+        Connection connection = databaseConnectionFactory.getMySQLConnection();
+        LinkedHashMap<String, CamelotReplenishment> allReplenishments = new LinkedHashMap<String, CamelotReplenishment>();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("select * FROM camelot_shelves_replenishment;");
+
+            while (resultSet.next()) {
+
+                CamelotReplenishment item = new CamelotReplenishment();
+                String itemCode = resultSet.getString("item_code");
+                item.setCode(itemCode);
+                item.setReplenishmentQuantity(resultSet.getInt("quantity"));
+                item.setMinimalShelfStock(resultSet.getInt("minimal_stock"));
+                String dateTimeString = resultSet.getString("referal_date_time");
+                DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                LocalDateTime dateTime = LocalDateTime.parse(dateTimeString, format);
+                item.setDateTime(dateTime);
+                item.setNote(resultSet.getString("note"));
+                allReplenishments.put(itemCode, item);
+
+                if (dateTime.isBefore(oldestReplenishmentDateTime)) {
+                    oldestReplenishmentDateTime = dateTime;
+                }
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(CamelotReplenishmentDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return allReplenishments;
+    }
+
+    LinkedHashMap<String, CamelotReplenishment> addCamelotBasicData(LinkedHashMap<String, CamelotReplenishment> replenishments, StringBuilder inPartForSqlQueryByReferralAltercodes) {
+        return replenishments;
+    }
+
+    LinkedHashMap<String, CamelotReplenishment> addSailsData(LinkedHashMap<String, CamelotReplenishment> replenishments, StringBuilder inPartForSqlQueryByReferralAltercodes) {
+        return replenishments;
+    }
+
+    LinkedHashMap<String, CamelotReplenishment> addVarPcData(LinkedHashMap<String, CamelotReplenishment> replenishments, StringBuilder inPartForSqlQueryByReferralAltercodes) {
+        return replenishments;
+    }
 
 }
