@@ -116,7 +116,7 @@ public class CamelotReplenishmentDao {
             DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
             Connection connection = databaseConnectionFactory.getMySQLConnection();
 
-            PreparedStatement itemInsertStatement = connection.prepareStatement("INSERT INTO camelot_shelves_replenishment (item_code, referal_date_time, replenishment_unit,items_int_replenishment_unit, minimal_stock,  replenishment_quantity, note) VALUES (?,?,?,?,?,?)");
+            PreparedStatement itemInsertStatement = connection.prepareStatement("INSERT INTO camelot_shelves_replenishment (item_code, referal_date_time, replenishment_unit,items_int_replenishment_unit, minimal_stock,  replenishment_quantity, note) VALUES (?,?,?,?,?,?,?)");
 
             itemInsertStatement.setString(1, itemCode);
             itemInsertStatement.setString(2, timeNow.toString());
