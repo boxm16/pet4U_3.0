@@ -44,7 +44,7 @@ public class CamelotReplenishmentController {
             replenishment.setQuantity(item.getQuantity());
             replenishment.setPosition(item.getPosition());
             modelMap.addAttribute("replenishment", replenishment);
-            modelMap.addAttribute("saveType", "editCamelotReplenishment.htm");
+            modelMap.addAttribute("saveType", "updateCamelotReplenishment.htm");
             return "camelotReplenishment/replenishmentServant";
         }
     }
@@ -59,6 +59,24 @@ public class CamelotReplenishmentController {
             ModelMap model) {
         CamelotReplenishmentDao replenishmentDao = new CamelotReplenishmentDao();
         String result = replenishmentDao.insertReplenishment(itemCode, replenishmentUnit, itemsInReplenishmentUnit, minimalShelfStock, replenishmentQuantity, note);
+        String resultColor = "";
+        if (!result.equals("New Replenishment Done Successfully")) {
+            result = "ΚΑΤΙ ΠΗΓΕ ΣΤΡΑΒΑ. <br>" + result;
+            resultColor = "red";
+        }
+        model.addAttribute("result", result);
+        model.addAttribute("resultColor", resultColor);
+        return "camelotReplenishment/replenishmentSavingResult";
+
+    }
+
+    @RequestMapping(value = "updateCamelotReplenishment", method = RequestMethod.POST)
+    public String updateCamelotReplenishment(@RequestParam(name = "itemCode") String itemCode,
+            @RequestParam(name = "replenishmentQuantity") String replenishmentQuantity,
+            @RequestParam(name = "note") String note,
+            ModelMap model) {
+        CamelotReplenishmentDao replenishmentDao = new CamelotReplenishmentDao();
+        String result = replenishmentDao.updateReplenishment(itemCode, replenishmentQuantity, note);
         String resultColor = "";
         if (!result.equals("New Replenishment Done Successfully")) {
             result = "ΚΑΤΙ ΠΗΓΕ ΣΤΡΑΒΑ. <br>" + result;

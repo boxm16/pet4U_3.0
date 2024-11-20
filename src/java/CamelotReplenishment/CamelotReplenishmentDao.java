@@ -137,4 +137,27 @@ public class CamelotReplenishmentDao {
         return "New Replenishment Done Successfully";
     }
 
+    String updateReplenishment(String itemCode, String replenishmentQuantity, String note) {
+     DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+        Connection connection = databaseConnectionFactory.getMySQLConnection();
+        LocalDateTime timeNow = LocalDateTime.now();
+        try {
+            PreparedStatement updateStatement = connection.prepareStatement("UPDATE camelot_shelves_replenishment  SET referal_date_time=? , quantity=?, note=? WHERE item_code=?");
+            updateStatement.setString(1, timeNow.toString());
+            updateStatement.setString(2, replenishmentQuantity);
+            updateStatement.setString(3, note);
+            updateStatement.setString(4, itemCode);
+            updateStatement.executeUpdate();
+            updateStatement.close();
+
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(CamelotReplenishmentDao.class.getName()).log(Level.SEVERE, null, ex);
+
+            return ex.getMessage();
+        }
+
+        return "Camelot Replenishment Updated Successfully"; }
+
 }
