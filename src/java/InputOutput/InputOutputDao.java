@@ -836,7 +836,7 @@ public class InputOutputDao {
         endDateX = endDateX + " 23:59:59.999";
         String query = "SELECT    [DATEOFUPDATE], [CREUSERDATE], [ABBREVIATION], [QUANT1]  FROM [petworld].[dbo].[WH_VAR_PC]"
                 + " WHERE [ABBREVIATION]='" + itemCode + "' AND DATE_TIME BETWEEN '" + startDateX + "' AND '" + endDateX + "' ORDER BY [CREUSERDATE];";
-
+        System.out.println(query);
         ResultSet resultSet;
 
         try {
