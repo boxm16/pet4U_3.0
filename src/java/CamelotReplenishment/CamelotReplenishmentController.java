@@ -78,7 +78,7 @@ public class CamelotReplenishmentController {
         CamelotReplenishmentDao replenishmentDao = new CamelotReplenishmentDao();
         String result = replenishmentDao.updateReplenishment(itemCode, replenishmentQuantity, note);
         String resultColor = "";
-        if (!result.equals("New Replenishment Done Successfully")) {
+        if (!result.equals("Camelot Replenishment Updated Successfully")) {
             result = "ΚΑΤΙ ΠΗΓΕ ΣΤΡΑΒΑ. <br>" + result;
             resultColor = "red";
         }
