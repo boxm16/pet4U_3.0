@@ -73,6 +73,9 @@
                                         </h1>
                                         <center>    <h3 style="background-color:#f955d4">ΤΕΜΑΧΙΑ ΣΤΗ ΜΟΝΑΔΑ ΑΝΑΠΛΗΡΩΣΗΣ: </h3>    </center> 
                                         <input type="number" name="itemsInReplenishmentUnit"  value="${replenishment.itemsInReplenishmentUnit}" style="font-size:30px" >
+                                        <center>    <h3 style="background-color:#f955d4">MINIMAL STOCK: </h3>    </center> 
+                                        <input type="number" name="minimalShelfStock"  value="${replenishment.minimalShelfStock}" style="font-size:30px" >
+                                       
                                         <center>    <h3 style="background-color:#f955d4">ΠΟΣΟΤΗΤΑ ΑΝΑΠΛΗΡΩΣΗΣ: </h3>    </center> 
                                         <input type='number' name='replenishmentQuantity'  value='${replenishment.replenishmentQuantity}' style='font-size:30px' >
                                         <hr>
