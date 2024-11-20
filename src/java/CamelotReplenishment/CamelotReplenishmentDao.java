@@ -109,21 +109,22 @@ public class CamelotReplenishmentDao {
         return item;
     }
 
-    public String insertReplenishment(String itemCode, String replenishmentUnit, String itemsInReplenishmentUnit, String replenishmentQuantity, String note) {
+    public String insertReplenishment(String itemCode, String replenishmentUnit, String itemsInReplenishmentUnit, String minimalShelfStock, String replenishmentQuantity, String note) {
         LocalDateTime timeNow = LocalDateTime.now();
         try {
 
             DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
             Connection connection = databaseConnectionFactory.getMySQLConnection();
 
-            PreparedStatement itemInsertStatement = connection.prepareStatement("INSERT INTO camelot_shelves_replenishment (item_code, referal_date_time, replenishment_unit,items_int_replenishment_unit,  replenishment_quantity, note) VALUES (?,?,?,?,?,?)");
+            PreparedStatement itemInsertStatement = connection.prepareStatement("INSERT INTO camelot_shelves_replenishment (item_code, referal_date_time, replenishment_unit,items_int_replenishment_unit, minimal_stock,  replenishment_quantity, note) VALUES (?,?,?,?,?,?)");
 
             itemInsertStatement.setString(1, itemCode);
             itemInsertStatement.setString(2, timeNow.toString());
             itemInsertStatement.setString(3, replenishmentUnit);
             itemInsertStatement.setString(4, itemsInReplenishmentUnit);
-            itemInsertStatement.setString(5, replenishmentQuantity);
-            itemInsertStatement.setString(6, note);
+            itemInsertStatement.setString(5, minimalShelfStock);
+            itemInsertStatement.setString(6, replenishmentQuantity);
+            itemInsertStatement.setString(7, note);
             itemInsertStatement.execute();
 
             itemInsertStatement.close();

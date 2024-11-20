@@ -53,11 +53,12 @@ public class CamelotReplenishmentController {
     public String insertReplenishment(@RequestParam(name = "itemCode") String itemCode,
             @RequestParam(name = "replenishmentUnit") String replenishmentUnit,
             @RequestParam(name = "itemsInReplenishmentUnit") String itemsInReplenishmentUnit,
+            @RequestParam(name = "minimalShelfStock") String minimalShelfStock,
             @RequestParam(name = "replenishmentQuantity") String replenishmentQuantity,
             @RequestParam(name = "note") String note,
             ModelMap model) {
         CamelotReplenishmentDao replenishmentDao = new CamelotReplenishmentDao();
-        String result = replenishmentDao.insertReplenishment(itemCode, replenishmentUnit, itemsInReplenishmentUnit, replenishmentQuantity, note);
+        String result = replenishmentDao.insertReplenishment(itemCode, replenishmentUnit, itemsInReplenishmentUnit, minimalShelfStock, replenishmentQuantity, note);
         String resultColor = "";
         if (!result.equals("New Replenishment Done Successfully")) {
             result = "ΚΑΤΙ ΠΗΓΕ ΣΤΡΑΒΑ. <br>" + result;
