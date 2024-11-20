@@ -165,6 +165,7 @@ public class InputOutputController {
         InputOutputDao inputOutputDao = new InputOutputDao();
         inputOutputContainers = inputOutputDao.fillInputOutputContainersWithDeliveries(inputOutputContainers, inPartForSqlQuery, startDateX, endDateX);
         inputOutputContainers = inputOutputDao.fillInputOutputContainersWithEndoParalaves(inputOutputContainers, inPartForSqlQuery, startDateX, endDateX);
+        inputOutputContainers = inputOutputDao.fillInputOutputContainersWithCamelotParalaves(inputOutputContainers, inPartForSqlQuery, startDateX, endDateX);
 
         inputOutputContainers = inputOutputDao.fillInputOutputContainersWithEndoApostoles(inputOutputContainers, inPartForSqlQuery, startDateX, endDateX);
         inputOutputContainers = inputOutputDao.fillInputOutputContainersWithSales(inputOutputContainers, inPartForSqlQuery, startDateX, endDateX);

@@ -13,6 +13,7 @@ public class InputOutput {
     private double delivery;
     private DailySale dailySale;
     private double endoParalavi;
+    private double camelotParalavi;
     private double endoApostoli;
     private ItemSnapshot itemSnapshot;
 
@@ -59,5 +60,14 @@ public class InputOutput {
     public void setItemSnapshot(ItemSnapshot itemSnapshot) {
         this.itemSnapshot = itemSnapshot;
     }
+
+    public double getCamelotParalavi() {
+        return camelotParalavi;
+    }
+
+    public void setCamelotParalavi(double camelotParalavi) {
+        this.camelotParalavi = camelotParalavi;
+    }
+    
 
 }

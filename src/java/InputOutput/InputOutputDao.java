@@ -773,4 +773,62 @@ public class InputOutputDao {
         return inputOutputs;
     }
 
+    LinkedHashMap<String, InputOutputContainer> fillInputOutputContainersWithCamelotParalaves(LinkedHashMap<String, InputOutputContainer> inputOutputContainers, StringBuilder inPartForSqlQuery, String startDateX, String endDateX) {
+        startDateX = startDateX + " 00:00:00.000";
+        endDateX = endDateX + " 23:59:59.999";
+
+        StringBuilder query = new StringBuilder("SELECT    [DATEOFUPDATE], [CREUSERDATE], [ABBREVIATION], [QUANT1]  FROM [petworld].[dbo].[WH_VAR_PC] WHERE [ABBREVIATION] IN ")
+                .append(inPartForSqlQuery).append(" AND [DATE_TIME] BETWEEN  '").append(startDateX).append("' AND  '")
+                .append(endDateX).append("' ORDER BY [DATEOFUPDATE];");
+
+        ResultSet resultSet;
+
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
+            Statement statement = connection.createStatement();
+
+            resultSet = statement.executeQuery(query.toString());
+            LocalDate creationDate;
+            while (resultSet.next()) {
+                String creationDateTimeStampString = resultSet.getString("CREUSERDATE");
+                DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
+                DateTimeFormatter formatter3 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SS");
+                DateTimeFormatter formatter4 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S");
+
+                LocalDateTime creationDateTime;
+                if (creationDateTimeStampString.length() == 23) {
+                    creationDateTime = LocalDateTime.parse(creationDateTimeStampString, formatter2);
+                } else if (creationDateTimeStampString.length() == 22) {
+                    creationDateTime = LocalDateTime.parse(creationDateTimeStampString, formatter3);
+                } else {
+                    creationDateTime = LocalDateTime.parse(creationDateTimeStampString, formatter4);
+                }
+
+                creationDate = creationDateTime.toLocalDate();
+
+                String itemCode = resultSet.getString("ABBREVIATION");
+                InputOutputContainer ioc = inputOutputContainers.get(itemCode);
+                LinkedHashMap<LocalDate, InputOutput> inputOutputs = ioc.getInputOutputs();
+                InputOutput inputOutput = inputOutputs.get(creationDate);
+
+                if (inputOutput == null) {
+                    System.out.println("Something Wrong. InputOutputDao. inputOutput=null:" + creationDate);
+                } else {
+                    double camelotParalavi = inputOutput.getCamelotParalavi();
+                    camelotParalavi = camelotParalavi + Double.parseDouble(resultSet.getString("QUANT1"));
+                    inputOutput.setCamelotParalavi(camelotParalavi);
+                    inputOutputs.put(creationDate, inputOutput);
+                }
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(InputOutputDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return inputOutputContainers;
+    }
+
 }
