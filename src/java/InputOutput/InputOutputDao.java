@@ -778,7 +778,7 @@ public class InputOutputDao {
         endDateX = endDateX + " 23:59:59.999";
 
         StringBuilder query = new StringBuilder("SELECT    [DATEOFUPDATE], [CREUSERDATE], [ABBREVIATION], [QUANT1]  FROM [petworld].[dbo].[WH_VAR_PC] WHERE [ABBREVIATION] IN ")
-                .append(inPartForSqlQuery).append(" AND [DATE_TIME] BETWEEN  '").append(startDateX).append("' AND  '")
+                .append(inPartForSqlQuery).append(" AND [CREUSERDATE] BETWEEN  '").append(startDateX).append("' AND  '")
                 .append(endDateX).append("' ORDER BY [DATEOFUPDATE];");
 
         ResultSet resultSet;
@@ -835,7 +835,7 @@ public class InputOutputDao {
         startDateX = startDateX + " 00:00:00.000";
         endDateX = endDateX + " 23:59:59.999";
         String query = "SELECT    [DATEOFUPDATE], [CREUSERDATE], [ABBREVIATION], [QUANT1]  FROM [petworld].[dbo].[WH_VAR_PC]"
-                + " WHERE [ABBREVIATION]='" + itemCode + "' AND DATE_TIME BETWEEN '" + startDateX + "' AND '" + endDateX + "' ORDER BY [CREUSERDATE];";
+                + " WHERE [ABBREVIATION]='" + itemCode + "' AND CREUSERDATE BETWEEN '" + startDateX + "' AND '" + endDateX + "' ORDER BY [CREUSERDATE];";
         System.out.println(query);
         ResultSet resultSet;
 
