@@ -63,6 +63,8 @@ public class InputOutputController {
         inputOutputs = inputOutputDao.fillSales(inputOutputs, itemCode, startDateX, endDateX);
         inputOutputs = inputOutputDao.fillDeliveries(inputOutputs, itemCode, startDateX, endDateX);
         inputOutputs = inputOutputDao.fillEndoParalaves(inputOutputs, itemCode, startDateX, endDateX);
+        inputOutputs = inputOutputDao.fillCamelotParalaves(inputOutputs, itemCode, startDateX, endDateX);
+       
         inputOutputs = inputOutputDao.fillEndoApostoles(inputOutputs, itemCode, startDateX, endDateX);
 
         inputOutputs = inputOutputDao.fillWithSnapshots(inputOutputs, itemCode, startDateX, endDateX);
