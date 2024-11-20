@@ -142,7 +142,7 @@ public class CamelotReplenishmentDao {
         Connection connection = databaseConnectionFactory.getMySQLConnection();
         LocalDateTime timeNow = LocalDateTime.now();
         try {
-            PreparedStatement updateStatement = connection.prepareStatement("UPDATE camelot_shelves_replenishment  SET referal_date_time=? , quantity=?, note=? WHERE item_code=?");
+            PreparedStatement updateStatement = connection.prepareStatement("UPDATE camelot_shelves_replenishment  SET referal_date_time=? , replenishment_quantity=?, note=? WHERE item_code=?");
             updateStatement.setString(1, timeNow.toString());
             updateStatement.setString(2, replenishmentQuantity);
             updateStatement.setString(3, note);
