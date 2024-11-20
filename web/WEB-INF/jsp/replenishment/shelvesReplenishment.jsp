@@ -181,6 +181,17 @@
                             } else {
                                 continue;
                             }
+                            if (stockNow == 0 || stockNow == stockOnShelfNow) {
+                                continue;
+                            }
+
+                            if (stockOnShelfNow < replenishment.getMinimalShelfStock()) {
+                                alarmColor = "#F33A6A";;
+                            } else if (stockOnShelfNow < replenishment.getMinimalShelfStock() * 2) {
+                                alarmColor = "yellow";
+                            } else {
+                                continue;
+                            }
 
                             out.println("<tr style='background-color: " + alarmColor + "'>");
                             out.println("<td>");
