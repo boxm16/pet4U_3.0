@@ -340,11 +340,11 @@
 
                     </thead>
 
-                    <%                TreeMap<String, Replenishment> orderedRreplenishments = (TreeMap) request.getAttribute("sortedByPositionReplenishment");
-                        for (Map.Entry<String, Replenishment> entrySet : orderedRreplenishments.entrySet()) {
+                    <%                TreeMap<String, CamelotReplenishment> orderedRreplenishments = (TreeMap) request.getAttribute("sortedByPositionReplenishment");
+                        for (Map.Entry<String, CamelotReplenishment> entrySet : orderedRreplenishments.entrySet()) {
                             String alarmColor = "";
 
-                            Replenishment replenishment = entrySet.getValue();
+                            CamelotReplenishment replenishment = entrySet.getValue();
                             int stockOnShelfNow = replenishment.getReplenishmentQuantity() - replenishment.getSailsAfterReplenishment();
                             if (stockOnShelfNow < replenishment.getMinimalShelfStock() * 2) {
                                 alarmColor = "yellow";
