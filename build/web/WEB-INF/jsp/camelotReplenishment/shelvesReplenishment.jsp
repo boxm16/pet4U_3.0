@@ -1,4 +1,5 @@
 
+<%@page import="CamelotReplenishment.CamelotReplenishment"%>
 <%@page import="java.util.TreeMap"%>
 <%@page import="Replenishment.Replenishment"%>
 <%@page import="CamelotItemsOfOurInterest_V_3_1.CamelotItemOfInterest"%>
@@ -45,10 +46,10 @@
                     <hr>
 
                     <%
-                        TreeMap<String, Replenishment> orderedRreplenishmentsCardModeX = (TreeMap) request.getAttribute("sortedByPositionReplenishment");
-                        for (Map.Entry<String, Replenishment> entrySet : orderedRreplenishmentsCardModeX.entrySet()) {
+                        TreeMap<String, CamelotReplenishment> orderedRreplenishmentsCardModeX = (TreeMap) request.getAttribute("sortedByPositionReplenishment");
+                        for (Map.Entry<String, CamelotReplenishment> entrySet : orderedRreplenishmentsCardModeX.entrySet()) {
                             String alarmColor = "";
-                            Replenishment replenishment = entrySet.getValue();
+                            CamelotReplenishment replenishment = entrySet.getValue();
 
                             double stockNow = Double.parseDouble(replenishment.getQuantity());
 
