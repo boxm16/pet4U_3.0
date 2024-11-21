@@ -5,6 +5,13 @@ import CamelotItemsOfInterest.CamelotItemsOfInterestDao;
 import Inventory.InventoryItem;
 import Notes.NotesDao;
 import Pet4uItems.Pet4uItemsController;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.EncodeHintType;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.WriterException;
+import com.google.zxing.client.j2se.MatrixToImageWriter;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -14,7 +21,9 @@ import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.TreeMap;
 import java.util.logging.Level;
@@ -1036,6 +1045,21 @@ public class CamelotSearchController {
                 Logger.getLogger(Pet4uItemsController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        //+++++++++++++++++++++++
+        String path = "C:/Pet4U_3.0/qrCode.png";
+        String charset = "UTF-8";
+        Map<EncodeHintType, ErrorCorrectionLevel> hashMap = new HashMap<EncodeHintType, ErrorCorrectionLevel>();
+//generates QR code with Low level(L) error correction capability
+        hashMap.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L);
+        try {
+            //invoking the user-defined method that creates the QR code
+            generateQRcode(altercode, path, charset, hashMap, 200, 200);//increase or decrease height and width accodingly
+//prints if the QR code is generated
+        } catch (WriterException ex) {
+            Logger.getLogger(Pet4uItemsController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Pet4uItemsController.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
 //-------------
         String printName = "\\\\eshoplaptop\\ZDesigner GC420t (EPL) (Αντιγραφή 1)";
@@ -1055,6 +1079,13 @@ public class CamelotSearchController {
         barcodePrinter.printSomething(printName);
 
         return "index";
+    }
+
+    public static void generateQRcode(String data, String path, String charset, Map map, int h, int w) throws WriterException, IOException {
+//the BitMatrix class represents the 2D matrix of bits  
+//MultiFormatWriter is a factory class that finds the appropriate Writer subclass for the BarcodeFormat requested and encodes the barcode with the supplied contents.  
+        BitMatrix matrix = new MultiFormatWriter().encode(new String(data.getBytes(charset), charset), BarcodeFormat.QR_CODE, w, h);
+        MatrixToImageWriter.writeToFile(matrix, path.substring(path.lastIndexOf('.') + 1), new File(path));
     }
 
 }

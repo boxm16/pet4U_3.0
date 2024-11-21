@@ -315,6 +315,21 @@ public class Pet4uItemsController {
                 Logger.getLogger(Pet4uItemsController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        //+++++++++++++++++++++++
+        String path = "C:/Pet4U_3.0/qrCode.png";
+        String charset = "UTF-8";
+        Map<EncodeHintType, ErrorCorrectionLevel> hashMap = new HashMap<EncodeHintType, ErrorCorrectionLevel>();
+//generates QR code with Low level(L) error correction capability
+        hashMap.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L);
+        try {
+            //invoking the user-defined method that creates the QR code
+            generateQRcode(altercode, path, charset, hashMap, 200, 200);//increase or decrease height and width accodingly
+//prints if the QR code is generated
+        } catch (WriterException ex) {
+            Logger.getLogger(Pet4uItemsController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Pet4uItemsController.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
 //-------------
         String printName = "\\\\eshoplaptop\\ZDesigner GC420t (EPL) (Αντιγραφή 1)";

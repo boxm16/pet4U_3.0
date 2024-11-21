@@ -66,23 +66,32 @@ public class CamelotBarcodePrinter implements Printable {
             /* Now we perform our rendering */
             try {
                 int x = 10;                                        //print start at 100 on x axies
-                int y = 2;                                          //print start at 10 on y axies
+                int y = 2;
+                int xQR = 110;    // dont change                                    //print start at 100 on x axies
+                int yQR = -5;
+//print start at 10 on y axies
+
                 int imagewidth = 100;
                 int imageheight = 30;
+                int imagewidthQR = 60;
+                int imageheightQR = 60;
                 BufferedImage read = ImageIO.read(new File("C:/Pet4U_3.0/barcode.png"));
                 g2d.drawImage(read, x, y, imagewidth, imageheight, null);         //draw image
+
+                BufferedImage readQR = ImageIO.read(new File("C:/Pet4U_3.0/qrCode.png"));
+                g2d.drawImage(readQR, xQR, yQR, imagewidthQR, imageheightQR, null);         //draw image
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            g.drawString(code, 10, 45);
             g.setFont(new Font("Roman", Font.BOLD, 15));
-            g.drawString(code, 120, 12);
-            g.setFont(new Font("Roman", Font.BOLD, 15));
-            g.drawString(barcode, 120, 30);
+            g.drawString("*" + barcode, 165, 15);
             g.setFont(new Font("Roman", Font.BOLD, 10));
-            g.drawString(description, 10, 43);
+            g.drawString(description, 10, 55);
 
-            g.setFont(new Font("Roman", Font.BOLD, 50));
-            g.drawString(position, 10, 90);
+            g.setFont(new Font("Roman", Font.BOLD, 53));
+            g.drawString(position, 5, 100);
 
             return PAGE_EXISTS;
         }
