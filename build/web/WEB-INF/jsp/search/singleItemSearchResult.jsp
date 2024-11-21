@@ -88,7 +88,7 @@
 
                                 ArrayList<AltercodeContainer> altercodes = item.getAltercodes();
                                 for (AltercodeContainer altercodeContainer : altercodes) {
-                                    String color = "green";
+                                    String color = "";
                                     if (altercodeContainer.isMainBarcode()) {
                                         color = "red";
                                     }
