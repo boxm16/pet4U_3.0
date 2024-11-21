@@ -48,6 +48,21 @@ public class EncryptionController {
         return "redirect:index.htm";
     }
 
+    @RequestMapping(value = "encryptedIndexVasilis", method = RequestMethod.GET)
+    public String encryptedIndexVasilis(HttpSession session) {
+        session.setAttribute("user", "identified");
+        session.setAttribute("userName", "Vasilis");
+        return "redirect:index.htm";
+    }
+
+    @RequestMapping(value = "encryptedIndexStavros", method = RequestMethod.GET)
+    public String encryptedIndexStavros(HttpSession session) {
+        System.out.println("SHEM<OVIDA IS VINC");
+        session.setAttribute("user", "identified");
+        session.setAttribute("userName", "Stavros");
+        return "redirect:index.htm";
+    }
+
     @RequestMapping(value = "adminIndex", method = RequestMethod.GET)
     public String adminIndex(HttpSession session, ModelMap modelMap, HttpServletRequest req) {
 

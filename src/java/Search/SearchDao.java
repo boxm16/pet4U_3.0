@@ -61,6 +61,15 @@ public class SearchDao {
                 } else {
                     altercodeContainer.setStatus(resultSet.getString("CODEDESCRIPTION").trim());
                 }
+                if (resultSet.getString("MAIN_BARCODE") == null) {
+                    //do nothing
+                } else {
+                    if (resultSet.getString("MAIN_BARCODE").equals(resultSet.getString("ALTERNATECODE"))) {
+                        altercodeContainer.setMainBarcode(true);
+                    } else {
+                        altercodeContainer.setMainBarcode(false);
+                    }
+                }
                 if (item != null) {//It should never be, i mean, if there is an altercode, there is an item. But, just in any case
                     item.addAltercodeContainer(altercodeContainer);
                 }

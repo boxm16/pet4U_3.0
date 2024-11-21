@@ -4,6 +4,7 @@ public class AltercodeContainer {
 
     private String altercode;
     private String status;
+    private boolean mainBarcode;
 
     public String getAltercode() {
         return altercode;
@@ -19,6 +20,14 @@ public class AltercodeContainer {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public boolean isMainBarcode() {
+        return mainBarcode;
+    }
+
+    public void setMainBarcode(boolean mainBarcode) {
+        this.mainBarcode = mainBarcode;
     }
 
 }
