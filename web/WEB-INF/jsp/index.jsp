@@ -45,17 +45,12 @@
                 <hr>
                 <a href="camelotNotesCardMode.htm"><h1>Camelot Notes:Card Mode</h1></a>
 
-                <hr>
-                <a href="notesDisplay.htm" class="btn btn-primary" role="button" style='background-color: #2DEE0F'><h1>Pet4U Notes</h1></a>
-                <hr>
-                <a href="notesDisplayCardMode.htm"><h1>Pet4U Notes: Card Mode</h1></a>
-                <hr>
+               
                 <a href="camelotStockPositionsDisplay.htm"><h1>Camelot Stock Positions By Position </h1></a>
                 <hr>
                 <a href="camelotStockPositionsByItemCodeDisplay.htm"><h1>Camelot Stock Positions By Item Code </h1></a>
                 <hr>
-                <a href="inventoryDashboard.htm"><h1 style="color: #999900">Inventory Dashboard</h1></a>
-                <hr>
+                
               <h1><a href="pet4uItemsWithPosition.htm">Show Items By Position </a></h1>
                 <hr>
                 <a href="adminIndex.htm"><h1>Admin Index</h1></a>
