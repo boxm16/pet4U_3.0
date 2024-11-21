@@ -203,9 +203,50 @@ public class CamelotReplenishmentDao {
         return allReplenishments;
     }
 
-    LinkedHashMap<String, CamelotReplenishment> addCamelotBasicData(LinkedHashMap<String, CamelotReplenishment> replenishments, StringBuilder inPartForSqlQueryByReferralAltercodes) {
-        return replenishments;
-    }
+    LinkedHashMap<String, CamelotReplenishment> addCamelotBasicData(LinkedHashMap<String, CamelotReplenishment> replenishments, StringBuilder inPartForSqlQuery) {
+    StringBuilder query = new StringBuilder("SELECT * FROM WH1 WHERE  ALTERNATECODE IN ")
+                .append(inPartForSqlQuery).append(";");
+        //   System.out.println(query);
+        ResultSet resultSet;
+
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
+            Statement statement = connection.createStatement();
+
+            resultSet = statement.executeQuery(query.toString());
+            while (resultSet.next()) {
+
+                String referalAltercode = resultSet.getString("ALTERNATECODE").trim();
+                String itemCode = resultSet.getString("ABBREVIATION").trim();
+
+                if (replenishments.containsKey(referalAltercode)) {
+                    CamelotReplenishment replenishment = replenishments.get(referalAltercode);
+                    replenishment.setCode(itemCode);
+                    replenishment.setDescription(resultSet.getString("NAME").trim());
+                    String position_1 = "";
+                    String position_2 = "";
+                    if (resultSet.getString("EXPR1") != null) {
+                        position_1 = resultSet.getString("EXPR1").trim();
+                    }
+                    if (resultSet.getString("EXPR2") != null) {
+                        position_2 = resultSet.getString("EXPR2").trim();
+                    }
+                    replenishment.setPosition(position_1 + position_2);
+
+                    replenishment.setQuantity(resultSet.getString("QTYBALANCE").trim());
+                    replenishments.put(itemCode, replenishment);
+                } else {
+                    System.out.println("Something Wrong Here. Can't find referalAltercode in Camelot main database (WH1): " + referalAltercode);
+                }
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(CamelotReplenishmentDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return replenishments;}
 
     LinkedHashMap<String, CamelotReplenishment> addSailsData(LinkedHashMap<String, CamelotReplenishment> replenishments, StringBuilder inPartForSqlQueryByReferralAltercodes) {
         return replenishments;
