@@ -39,6 +39,11 @@
                 <hr>
                 <a href="camelotOrderAlert.htm" class="btn btn-primary" style='background-color: #762276' role="button"><h1>CAMELOT ORDER ALERT</h1></a>
                 <hr>
+                <hr>
+                <a href="notesDisplay.htm" class="btn btn-primary" role="button" style='background-color: #2DEE0F'><h1>Pet4U Notes</h1></a>
+                <hr>
+                <a href="notesDisplayCardMode.htm"><h1>Pet4U Notes: Card Mode</h1></a>
+                <hr>
                 <a href="deliveryDashboard.htm" class="btn btn-primary" style='background-color: red' role="button"><h1>Delivery Dashboard</h1></a>
                 <hr>
                 <a href='pet4uNegativeStock.htm'><h1 style="color: gray">Pet4u Negative Stock</h1></a>
@@ -49,9 +54,8 @@
                 <hr>
                 <a href="bestBeforeDashboardCardMode.htm"><h1 style="color: #CB230F">Best Before Dashboard Card Mode</h1></a>
                 <hr>
-                <!--  <a href="dayStockShortageAlert.htm"><h1 style="color: green">Day Stock Shortage Alert</h1></a>
-                  <hr>
-                -->
+                <a href="inventoryDashboard.htm"><h1 style="color: #999900">Inventory Dashboard</h1></a>
+                <hr>
                 <a href="suppliersAndStockDashboard.htm"><h1 style="color: #5F74BC">Suppliers And Stock Dashboard</h1></a>
                 <hr>
                 <a href="itemsStateUpdates.htm"><h1 style="color: #63E32C">Show Items State Updates</h1></a>
