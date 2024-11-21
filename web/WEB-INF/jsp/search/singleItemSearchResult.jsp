@@ -90,7 +90,7 @@
                                 for (AltercodeContainer altercodeContainer : altercodes) {
                                     String backgroundColor = "inherit";
                                     if (altercodeContainer.isMainBarcode()) {
-                                        backgroundColor = "rose";
+                                        backgroundColor = "red";
                                     }
                                     if (altercodeContainer.getStatus().equals("eshop")
                                             || altercodeContainer.getStatus().equals("eshop-on")
