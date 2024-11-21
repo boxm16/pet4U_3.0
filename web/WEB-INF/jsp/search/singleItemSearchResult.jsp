@@ -104,6 +104,9 @@
                                         }
 
                                     }
+                                    if(altercodeContainer.isMainBarcode()){
+                                    out.println("-----------------");
+                                    }
                                     out.println("<br>");
                                 }
                                 out.println("</td>");
