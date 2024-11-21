@@ -88,7 +88,7 @@
 
                                 ArrayList<AltercodeContainer> altercodes = item.getAltercodes();
                                 for (AltercodeContainer altercodeContainer : altercodes) {
-                                    String backgroundColor = "inherit";
+                                    String backgroundColor = "inherited";
                                     if (altercodeContainer.isMainBarcode()) {
                                         backgroundColor = "red";
                                     }
