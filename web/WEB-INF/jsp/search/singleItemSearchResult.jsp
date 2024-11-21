@@ -102,9 +102,9 @@
 
                                     } else {
                                         if (altercodeContainer.getStatus().isEmpty()) {
-                                            out.println("<div>" + altercodeContainer.getAltercode() + "</div>");
+                                            out.println("<strong style='background_color:"+backgroundColor+"'>" + altercodeContainer.getAltercode() + "</strong>");
                                         } else {
-                                            out.println("<div>" + altercodeContainer.getAltercode() + " : " + altercodeContainer.getStatus() + "</div>");
+                                            out.println("<strong style='background_color:"+backgroundColor+"'>" + altercodeContainer.getAltercode() + " : " + altercodeContainer.getStatus() + "</strong>");
                                         }
 
                                     }
