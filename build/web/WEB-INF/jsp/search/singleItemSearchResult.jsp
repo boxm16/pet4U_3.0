@@ -88,6 +88,10 @@
 
                                 ArrayList<AltercodeContainer> altercodes = item.getAltercodes();
                                 for (AltercodeContainer altercodeContainer : altercodes) {
+                                    String backgroundColor = "green";
+                                    if (altercodeContainer.isMainBarcode()) {
+                                        backgroundColor = "red";
+                                    }
                                     if (altercodeContainer.getStatus().equals("eshop")
                                             || altercodeContainer.getStatus().equals("eshop-on")
                                             || altercodeContainer.getStatus().equals("eshop-barf")
@@ -98,18 +102,15 @@
 
                                     } else {
                                         if (altercodeContainer.getStatus().isEmpty()) {
-                                            out.println("<strong>" + altercodeContainer.getAltercode() + "</strong>");
+                                            out.println("<div>" + altercodeContainer.getAltercode() + "</div>");
                                         } else {
-                                            out.println("<strong>" + altercodeContainer.getAltercode() + " : " + altercodeContainer.getStatus() + "</strong>");
+                                            out.println("<div>" + altercodeContainer.getAltercode() + " : " + altercodeContainer.getStatus() + "</div>");
                                         }
 
                                     }
 
                                     out.println("<br>");
-                                    if (altercodeContainer.isMainBarcode()) {
-                                        out.println("-----------------");
-                                        out.println("<br>");
-                                    }
+
                                 }
                                 out.println("</td>");
                                 out.println("</tr>");
