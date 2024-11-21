@@ -161,11 +161,11 @@
 
                     </thead>
 
-                    <%                TreeMap<String, Replenishment> orderedRreplenishmentsCardMode = (TreeMap) request.getAttribute("sortedByPositionReplenishment");
-                        for (Map.Entry<String, Replenishment> entrySet : orderedRreplenishmentsCardMode.entrySet()) {
+                    <%                TreeMap<String, CamelotReplenishment> orderedRreplenishmentsCardMode = (TreeMap) request.getAttribute("sortedByPositionReplenishment");
+                        for (Map.Entry<String, CamelotReplenishment> entrySet : orderedRreplenishmentsCardMode.entrySet()) {
                             String alarmColor = "";
 
-                            Replenishment replenishment = entrySet.getValue();
+                            CamelotReplenishment replenishment = entrySet.getValue();
 
                             double stockNow = Double.parseDouble(replenishment.getQuantity());
 
@@ -259,11 +259,11 @@
 
                     </thead>
 
-                    <%                LinkedHashMap<String, Replenishment> replenishments = (LinkedHashMap) request.getAttribute("replenishments");
-                        for (Map.Entry<String, Replenishment> entrySet : replenishments.entrySet()) {
+                    <%                LinkedHashMap<String, CamelotReplenishment> replenishments = (LinkedHashMap) request.getAttribute("replenishments");
+                        for (Map.Entry<String, CamelotReplenishment> entrySet : replenishments.entrySet()) {
                             String alarmColor = "";
 
-                            Replenishment replenishment = entrySet.getValue();
+                            CamelotReplenishment replenishment = entrySet.getValue();
                             int stockOnShelfNow = replenishment.getReplenishmentQuantity() - replenishment.getSailsAfterReplenishment();
                             if (stockOnShelfNow < replenishment.getMinimalShelfStock() * 2) {
                                 alarmColor = "yellow";
