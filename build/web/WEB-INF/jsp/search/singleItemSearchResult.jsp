@@ -104,10 +104,12 @@
                                         }
 
                                     }
-                                    if(altercodeContainer.isMainBarcode()){
-                                    out.println("-----------------");
-                                    }
+
                                     out.println("<br>");
+                                    if (altercodeContainer.isMainBarcode()) {
+                                        out.println("-----------------");
+                                        out.println("<br>");
+                                    }
                                 }
                                 out.println("</td>");
                                 out.println("</tr>");
