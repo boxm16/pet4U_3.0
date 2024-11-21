@@ -88,10 +88,6 @@
 
                                 ArrayList<AltercodeContainer> altercodes = item.getAltercodes();
                                 for (AltercodeContainer altercodeContainer : altercodes) {
-                                    String backgroundColor = "green";
-                                    if (altercodeContainer.isMainBarcode()) {
-                                        backgroundColor = "red";
-                                    }
                                     if (altercodeContainer.getStatus().equals("eshop")
                                             || altercodeContainer.getStatus().equals("eshop-on")
                                             || altercodeContainer.getStatus().equals("eshop-barf")
@@ -102,9 +98,9 @@
                                         out.println("<br>");
                                     } else {
                                         if (altercodeContainer.getStatus().isEmpty()) {
-                                            out.println("<div style='background_color:" + backgroundColor + "'><strong>" + altercodeContainer.getAltercode() + "</strong></div>"); 
+                                            out.println("<strong>" + altercodeContainer.getAltercode() + "</strong>");
                                         } else {
-                                            out.println("<div style='background_color:" + backgroundColor + "'><strong>" + altercodeContainer.getAltercode() + " : " + altercodeContainer.getStatus() + "</strong></div>");
+                                            out.println("<strong>" + altercodeContainer.getAltercode() + " : " + altercodeContainer.getStatus() + "</strong>");
                                         }
                                         out.println("<br>");
                                     }
