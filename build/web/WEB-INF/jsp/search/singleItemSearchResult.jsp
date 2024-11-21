@@ -102,7 +102,7 @@
                                         out.println("<br>");
                                     } else {
                                         if (altercodeContainer.getStatus().isEmpty()) {
-                                            out.println("<div style='background_color:" + backgroundColor + "'><strong>" + altercodeContainer.getAltercode() + "</strong></div>");
+                                            out.println("<div style='background_color:" + backgroundColor + "'><strong>" + altercodeContainer.getAltercode() + "</strong></div>"); 
                                         } else {
                                             out.println("<div style='background_color:" + backgroundColor + "'><strong>" + altercodeContainer.getAltercode() + " : " + altercodeContainer.getStatus() + "</strong></div>");
                                         }
