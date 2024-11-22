@@ -46,7 +46,7 @@ public class SearchDao {
                         position = resultSet.getString("EXPR1").trim();
                     }
                     item.setPosition(position);
-                    item.setQuantity(resultSet.getString("QTYBALANCE").trim());
+                    item.setQuantity(resultSet.getString("QTYBALANCE"));
                     String state = "";
                     if (resultSet.getString("EXPR2") != null) {
                         state = resultSet.getString("EXPR2").trim();
