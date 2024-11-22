@@ -79,7 +79,7 @@ public class Pet4uItemsDao {
 
         try {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("select * from WH1 WHERE DISABLED!='1' ORDER BY EXPR1;");
+            ResultSet resultSet = statement.executeQuery("select * from WH1 WHERE DISABLED IS NULL ORDER BY EXPR1;");
 
             while (resultSet.next()) {
             
