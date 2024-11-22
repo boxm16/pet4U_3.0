@@ -171,7 +171,7 @@ public class CamelotSalesDao {
                         position_2 = resultSet.getString("EXPR2").trim();
                     }
                     item.setPosition(position_1 + position_2);
-                    item.setQuantity(resultSet.getString("QTYBALANCE").trim());
+                    item.setQuantity(resultSet.getString("QTYBALANCE"));
                     items.put(code, item);
                 }
                 AltercodeContainer altercodeContainer = new AltercodeContainer();
