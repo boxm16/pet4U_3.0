@@ -114,7 +114,7 @@ public class Pet4uItemsController {
     public String camelotItemsWithPossitionDifference(ModelMap modelMap) {
         ArrayList<ArrayList<String>> differences = new ArrayList();
 
-        LinkedHashMap<String, Item> pet4uItems = pet4uItemsDao.getAllItems();
+        LinkedHashMap<String, Item> pet4uItems = pet4uItemsDao.getAllActiveItems();
         LinkedHashMap<String, Item> camelotItemsRowByRow = camelotItemsOfInterestDao.getCamelotItemsRowByRow();
 
         for (Map.Entry<String, Item> pet4uItemsEntry : pet4uItems.entrySet()) {
