@@ -306,7 +306,7 @@ public class InventoryDao {
 
         try {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("select * from WH1;");
+            ResultSet resultSet = statement.executeQuery("SELECT * from WH1 WHERE QTYBALANCE IS NOT NULL ;");
 
             while (resultSet.next()) {
                 String altercode = resultSet.getString("ALTERNATECODE").trim();
