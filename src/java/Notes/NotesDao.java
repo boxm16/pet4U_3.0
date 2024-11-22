@@ -134,7 +134,7 @@ public class NotesDao {
 
         try {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("select * from WH1;");
+            ResultSet resultSet = statement.executeQuery("select ABBREVIATION, ALTERNATECODE, NAME, EXPR1, EXPR2   from WH1;");
 
             while (resultSet.next()) {
                 String altercode = resultSet.getString("ALTERNATECODE").trim();
@@ -147,7 +147,7 @@ public class NotesDao {
                 } else {
                     item.setPosition("");
                 }
-                item.setQuantity(resultSet.getString("QTYBALANCE").trim());
+              //  item.setQuantity(resultSet.getString("QTYBALANCE"));
 
                 String state = "";
                 if (resultSet.getString("EXPR2") != null) {
