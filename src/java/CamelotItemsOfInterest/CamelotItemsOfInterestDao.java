@@ -440,7 +440,7 @@ public class CamelotItemsOfInterestDao {
 
         try {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("select * from WH1;");
+            ResultSet resultSet = statement.executeQuery("select ABBREVIATION, ALTERNATECODE, NAME, EXPR1, QTYBALANCE  from WH1;");
 
             while (resultSet.next()) {
                 String altercode = resultSet.getString("ALTERNATECODE").trim();
