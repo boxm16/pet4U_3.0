@@ -310,7 +310,7 @@ public class Pet4uItemsDao {
 
         try {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("select * from item_state;");
+            ResultSet resultSet = statement.executeQuery("select item_code, state from item_state;");
 
             while (resultSet.next()) {
                 String code = resultSet.getString("item_code");
