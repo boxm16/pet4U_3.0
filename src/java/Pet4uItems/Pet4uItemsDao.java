@@ -71,7 +71,7 @@ public class Pet4uItemsDao {
         }
         return items;
     }
-    
+
     public LinkedHashMap<String, Item> getAllActiveItems() {
         LinkedHashMap<String, Item> items = new LinkedHashMap<>();
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
@@ -79,10 +79,13 @@ public class Pet4uItemsDao {
 
         try {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("select * from WH1 WHERE QTYBALANCE IS NOT NULL ORDER BY EXPR1;");
+            ResultSet resultSet = statement.executeQuery("select * from WH1  ORDER BY EXPR1;");
 
             while (resultSet.next()) {
-            
+                if (resultSet.getString("DISABLED") == null) {
+                    continue;
+                }
+
                 String code = resultSet.getString("ABBREVIATION").trim();
                 Item item = null;
                 if (!items.containsKey(code)) {
