@@ -453,7 +453,7 @@ public class OrderDao {
                 } else {
                     item.setPosition("");
                 }
-                item.setQuantity(resultSet.getString("QTYBALANCE").trim());
+                item.setQuantity(resultSet.getString("QTYBALANCE"));
                 items.put(altercode, item);
 
             }
