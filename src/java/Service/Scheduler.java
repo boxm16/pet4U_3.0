@@ -25,7 +25,7 @@ public class Scheduler {
             public void run() {
                 Basement basement = new Basement();
                 String applicationHostName = basement.getApplicationHostName();
-                System.out.println("Half an Hour 'Ship Bell':" + LocalDateTime.now());
+                System.out.println("Half an Hour 'Ship Bell':" + LocalDateTime.now().minusDays(1));
                 if (applicationHostName.equals("LAPTOP")) {
                     //do nothing
                 } else {
