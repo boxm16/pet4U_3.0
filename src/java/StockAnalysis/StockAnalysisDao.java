@@ -104,7 +104,7 @@ public class StockAnalysisDao {
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
         Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
         HashMap<String, StockAnalysis> totalStock = new HashMap();
-        LocalDate today = LocalDate.now().minusDays(1);
+        LocalDate today = LocalDate.now();
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("select * from WH_ALL;");
