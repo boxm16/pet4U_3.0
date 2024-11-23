@@ -30,7 +30,7 @@ public class Scheduler {
                     //do nothing
                 } else {
                     int hour = LocalDateTime.now().getHour();
-                    if (hour >= 22) {
+                   // if (hour >= 22) {
                          if (hour == 0) {
                         //time for 
                         System.out.println("Time For Snapshot");
