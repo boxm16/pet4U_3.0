@@ -150,8 +150,8 @@
                                 out.println("<hr>");
                                 out.println("<hr>");
                                 out.println(" <a href='printBarcode.htm?altercode=" + target + "' class='btn btn-danger btn-lg' role='button' aria-disabled='true'><h3>PRINT BARCODE LABEL</h3></a>");
-                                out.println("<hr>");
-                                out.println(" <a href='printQRcode.htm?altercode=" + target + "' class='btn btn-danger btn-lg' role='button' aria-disabled='true' style='background-color: #d69f93'><h3>PRINT EAN<br>BARCODE LABEL</h3></a>");
+                              //  out.println("<hr>");
+                               // out.println(" <a href='printQRcode.htm?altercode=" + target + "' class='btn btn-danger btn-lg' role='button' aria-disabled='true' style='background-color: #d69f93'><h3>PRINT EAN<br>BARCODE LABEL</h3></a>");
                                 out.println("<hr>");
 
                                 out.println("<form action='printSmallLabels.htm' method='POST' target='_blank'>");
