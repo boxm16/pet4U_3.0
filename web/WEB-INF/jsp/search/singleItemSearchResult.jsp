@@ -152,14 +152,14 @@
                                 out.println("<tbody>");
                                 out.println("<tr>");
                                 out.println("<td>");
-                                out.println(" <a href='printBarcode.htm?altercode=" + target + "' class='btn btn-danger btn-lg' role='button' aria-disabled='true'><h3>PRINT  LABEL</h3></a>");
+                                out.println(" <a href='printBarcode.htm?altercode=" + target + "' class='btn btn-danger btn-lg' role='button' aria-disabled='true'><h3>PRINT (wys) LABEL</h3></a>");
                                 out.println("</td>");
                                 out.println("<td>");
                                 out.println("___");
                                 out.println("</td>");
 
                                 out.println("<td>");
-                                out.println(" <a href='printBarcode.htm?altercode=" + target + "' class='btn btn-danger btn-lg' role='button' aria-disabled='true' style='background-color: #d67965'><h3>PL+</h3></a>");
+                                out.println(" <a href='printMainBarcode.htm?altercode=" + target + "' class='btn btn-danger btn-lg' role='button' aria-disabled='true' style='background-color: #d67965'><h3>PrMB</h3></a>");
                                 out.println("</td>");
                                 out.println("</tr>");
                                 out.println("</tbody>");

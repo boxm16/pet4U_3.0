@@ -11,7 +11,7 @@ public class Item {
     private String quantity;
     private String state;
     private String supplier;
-    
+    private String mainBarcode;
 
     public Item() {
         altercodes = new ArrayList();
@@ -132,5 +132,15 @@ public class Item {
     public void setSupplier(String supplier) {
         this.supplier = supplier;
     }
+
+    public String getMainBarcode() {
+        return mainBarcode;
+    }
+
+    public void setMainBarcode(String mainBarcode) {
+        this.mainBarcode = mainBarcode;
+    }
+    
+    
 
 }

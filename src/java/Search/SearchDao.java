@@ -66,6 +66,8 @@ public class SearchDao {
                 } else {
                     if (resultSet.getString("MAIN_BARCODE").equals(resultSet.getString("ALTERNATECODE"))) {
                         altercodeContainer.setMainBarcode(true);
+                      //  item.setMainBarcode(resultSet.getString("ALTERNATECODE"));// HERE ALTERNATECODE AND MAIN_CODE IS THE SAME
+                        item.setMainBarcode(resultSet.getString("ALTERNATECODE"));//
                     } else {
                         altercodeContainer.setMainBarcode(false);
                     }
