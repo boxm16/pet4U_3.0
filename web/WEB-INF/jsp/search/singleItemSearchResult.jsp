@@ -93,7 +93,7 @@
                                         color = "red";
                                     }
 
-                                    if (altercodeContainer.getAltercode().equals(item.getClass())) {
+                                    if (altercodeContainer.getAltercode().equals(item.getCode())) {
                                         color = "brown";
                                     }
                                     if (altercodeContainer.getStatus().equals("eshop")
