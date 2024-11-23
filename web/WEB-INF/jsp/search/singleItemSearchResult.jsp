@@ -92,6 +92,10 @@
                                     if (altercodeContainer.isMainBarcode()) {
                                         color = "red";
                                     }
+
+                                    if (altercodeContainer.getAltercode().equals(item.getClass())) {
+                                        color = "brown";
+                                    }
                                     if (altercodeContainer.getStatus().equals("eshop")
                                             || altercodeContainer.getStatus().equals("eshop-on")
                                             || altercodeContainer.getStatus().equals("eshop-barf")
