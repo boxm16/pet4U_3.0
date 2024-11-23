@@ -86,6 +86,10 @@ public class Pet4uItemsDao {
                     continue;
                 }
 
+                if (resultSet.getString("QTYBALANCE") == null) {
+                    continue;
+                }
+
                 String code = resultSet.getString("ABBREVIATION").trim();
                 Item item = null;
                 if (!items.containsKey(code)) {
