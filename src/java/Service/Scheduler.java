@@ -31,9 +31,10 @@ public class Scheduler {
                 } else {
                     int hour = LocalDateTime.now().getHour();
                     if (hour >= 22) {
+                         if (hour == 0) {
                         //time for 
                         System.out.println("Time For Snapshot");
-                        LocalDate nowDate = LocalDate.now();
+                        LocalDate nowDate = LocalDate.now().minusDays(1);
 
                         if (StaticsDispatcher.getLastCamelotSnapshotDate() == null) {
                             System.out.println("Last Snapshot Time Not Available From 'RAM'. Going for searching database");
