@@ -27,8 +27,6 @@
                 font-size: 55px;
             }
 
-            li { display: inline-block }
-
         </style>
     </head>
     <body>
@@ -150,16 +148,10 @@
                                 out.println("<hr>");
                                 out.println(" <a href='getItemForNotForEndo.htm?altercode=" + item.getCode() + "' class='btn btn-info btn-lg' role='button' aria-disabled='true'><h3>Mark As 'Not For Endo'</h3></a>");
                                 out.println("<hr>");
-                                out.println("<ul>");
-
-                                out.println("<li>");
-                                out.println(" <a href='printBarcode.htm?altercode=" + target + "' class='btn btn-danger btn-lg' role='button' aria-disabled='true'><h3>PRINT LABEL</h3></a>");
-                                out.println("</li>");
-                                out.println("<li>");
-                                out.println(" <a href='printBarcode.htm?altercode=" + target + "' class='btn btn-danger btn-lg' role='button' aria-disabled='true'><h3>PRINT LABEL</h3></a>");
-                                out.println("</li>");
-                                out.println("</ul>");
-
+                                out.println("<hr>");
+                                out.println(" <a href='printBarcode.htm?altercode=" + target + "' class='btn btn-danger btn-lg' role='button' aria-disabled='true'><h3>PRINT  LABEL</h3></a>");
+                                //  out.println("<hr>");
+                                // out.println(" <a href='printQRcode.htm?altercode=" + target + "' class='btn btn-danger btn-lg' role='button' aria-disabled='true' style='background-color: #d69f93'><h3>PRINT EAN<br>BARCODE LABEL</h3></a>");
                                 out.println("<hr>");
 
                                 out.println("<form action='printSmallLabels.htm' method='POST' target='_blank'>");
