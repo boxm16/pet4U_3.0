@@ -92,14 +92,14 @@
                                     if (altercodeContainer.isMainBarcode()) {
                                         color = "red";
                                     }
-                                     if (altercodeContainer.isPackageBarcode()) {
+                                    if (altercodeContainer.isPackageBarcode()) {
                                         color = "green";
                                     }
 
                                     if (altercodeContainer.getAltercode().equals(item.getCode())) {
                                         color = "brown";
                                     }
-                                   
+
                                     if (altercodeContainer.getStatus().equals("eshop")
                                             || altercodeContainer.getStatus().equals("eshop-on")
                                             || altercodeContainer.getStatus().equals("eshop-barf")
@@ -149,9 +149,10 @@
                                 out.println(" <a href='getItemForNotForEndo.htm?altercode=" + item.getCode() + "' class='btn btn-info btn-lg' role='button' aria-disabled='true'><h3>Mark As 'Not For Endo'</h3></a>");
                                 out.println("<hr>");
                                 out.println("<hr>");
-                                out.println(" <a href='printBarcode.htm?altercode=" + target + "' class='btn btn-danger btn-lg' role='button' aria-disabled='true'><h3>PRINT BARCODE LABEL</h3></a>");
-                              //  out.println("<hr>");
-                               // out.println(" <a href='printQRcode.htm?altercode=" + target + "' class='btn btn-danger btn-lg' role='button' aria-disabled='true' style='background-color: #d69f93'><h3>PRINT EAN<br>BARCODE LABEL</h3></a>");
+                                out.println(" <a href='printBarcode.htm?altercode=" + target + "' class='btn btn-danger btn-lg' role='button' aria-disabled='true'><h3>PRINT LABEL</h3></a>");
+                                out.println(" <a href='printBarcode.htm?altercode=" + target + "' class='btn btn-danger btn-lg' role='button' aria-disabled='true'><h3>PRINT LABEL</h3></a>");
+                                //  out.println("<hr>");
+                                // out.println(" <a href='printQRcode.htm?altercode=" + target + "' class='btn btn-danger btn-lg' role='button' aria-disabled='true' style='background-color: #d69f93'><h3>PRINT EAN<br>BARCODE LABEL</h3></a>");
                                 out.println("<hr>");
 
                                 out.println("<form action='printSmallLabels.htm' method='POST' target='_blank'>");
