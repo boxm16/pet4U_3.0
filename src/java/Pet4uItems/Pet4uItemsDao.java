@@ -82,7 +82,7 @@ public class Pet4uItemsDao {
             ResultSet resultSet = statement.executeQuery("select * from WH1  ORDER BY EXPR1;");
 
             while (resultSet.next()) {
-                if (resultSet.getString("DISABLED") == null) {
+                if (resultSet.getString("DISABLED").equals("1")) {
                     continue;
                 }
 
