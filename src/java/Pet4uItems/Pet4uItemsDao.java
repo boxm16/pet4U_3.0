@@ -82,8 +82,12 @@ public class Pet4uItemsDao {
             ResultSet resultSet = statement.executeQuery("select * from WH1  ORDER BY EXPR1;");
 
             while (resultSet.next()) {
-                if (resultSet.getString("DISABLED").equals("1")) {
-                    continue;
+                String disabled = resultSet.getString("DISABLED");
+                if (disabled == null) {
+                } else {
+                    if (disabled.equals("1")) {
+                        continue;
+                    }
                 }
                 //diklida asfalias
                 if (resultSet.getString("QTYBALANCE") == null) {
