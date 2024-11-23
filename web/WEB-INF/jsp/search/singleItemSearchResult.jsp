@@ -92,13 +92,14 @@
                                     if (altercodeContainer.isMainBarcode()) {
                                         color = "red";
                                     }
+                                     if (altercodeContainer.isPackageBarcode()) {
+                                        color = "green";
+                                    }
 
                                     if (altercodeContainer.getAltercode().equals(item.getCode())) {
                                         color = "brown";
                                     }
-                                    if (altercodeContainer.isPackageBarcode()) {
-                                        color = "green";
-                                    }
+                                   
                                     if (altercodeContainer.getStatus().equals("eshop")
                                             || altercodeContainer.getStatus().equals("eshop-on")
                                             || altercodeContainer.getStatus().equals("eshop-barf")
