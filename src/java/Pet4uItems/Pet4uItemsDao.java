@@ -85,7 +85,7 @@ public class Pet4uItemsDao {
                 if (resultSet.getString("DISABLED").equals("1")) {
                     continue;
                 }
-
+                //diklida asfalias
                 if (resultSet.getString("QTYBALANCE") == null) {
                     continue;
                 }
