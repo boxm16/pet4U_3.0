@@ -286,7 +286,7 @@ public class Pet4uItemsDao {
             System.out.println("Starting INSERTION: ....");
 
             for (Map.Entry< String, Item> itemEntry : pet4uAllItems.entrySet()) {
-                LocalDate nowDate = LocalDate.now();
+                LocalDate nowDate = LocalDate.now().minusDays(1);
 
                 incertionPreparedStatement.setString(1, itemEntry.getValue().getCode());
                 incertionPreparedStatement.setString(2, nowDate.toString());
@@ -668,7 +668,7 @@ public class Pet4uItemsDao {
             System.out.println("Starting INSERTION: ....");
 
             for (Map.Entry< String, Item> itemEntry : pet4uAllItems.entrySet()) {
-                LocalDate nowDate = LocalDate.now();
+                LocalDate nowDate = LocalDate.now().minusDays(1);
 
                 incertionPreparedStatement.setString(1, itemEntry.getValue().getCode());
                 incertionPreparedStatement.setString(2, nowDate.toString());
