@@ -22,7 +22,7 @@ public class CamelotSearchDao {
     private DatabaseConnectionFactory databaseConnectionFactory;
 
     public Item getItemByAltercode(String altercode) {
-        DatabaseConnectionFactory databaseConnectionFactory=new DatabaseConnectionFactory();
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
         Connection connection = databaseConnectionFactory.getCamelotMicrosoftSQLConnection();
         Item item = null;
         try {
@@ -63,6 +63,25 @@ public class CamelotSearchDao {
                 } else {
                     altercodeContainer.setStatus(resultSet.getString("CODEDESCRIPTION").trim());
                 }
+                if (resultSet.getString("MAIN_BARCODE") == null) {
+                    //do nothing
+                } else {
+                    if (resultSet.getString("MAIN_BARCODE").equals(resultSet.getString("ALTERNATECODE"))) {
+                        altercodeContainer.setMainBarcode(true);
+                        //  item.setMainBarcode(resultSet.getString("ALTERNATECODE"));// HERE ALTERNATECODE AND MAIN_CODE IS THE SAME
+                        item.setMainBarcode(resultSet.getString("ALTERNATECODE"));//
+                    } else {
+                        altercodeContainer.setMainBarcode(false);
+                    }
+                }
+
+                if (resultSet.getShort("IS_PACK_BC") == 0) {
+                    //do nothing
+                } else {
+                    altercodeContainer.setPackageBarcode(true);
+                    altercodeContainer.setItemsInPackage(resultSet.getDouble("PACK_QTY"));
+                }
+
                 if (item != null) {//It should never be, i mean, if there is an altercode, there is an item. But, just in any case
                     item.addAltercodeContainer(altercodeContainer);
                 }
@@ -268,7 +287,5 @@ public class CamelotSearchDao {
         }
         return stringBuilder;
     }
-
-  
 
 }
