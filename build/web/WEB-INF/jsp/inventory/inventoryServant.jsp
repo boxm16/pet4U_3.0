@@ -72,12 +72,12 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>
+                                <td style='background-color: lightblue;'>
                                     <form action='saveItemInventory.htm' method="POST">
 
                                         <center>    <input type='text' readonly name='systemStock' style='font-size:30px; background-color: lightcoral' value='${item.quantity}'></center>
                                         <hr>
-                                        <center>     Real Stock</center> 
+                                        <center>   <h3>  Real Stock</h3></center> 
                                         <input type='number' name='realStock' style='font-size:30px'>
                                         <hr>
                                         <input name='altercode' hidden value='${altercode}'>
