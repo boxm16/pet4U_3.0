@@ -308,11 +308,11 @@
                                         out.println("N/A");
                                         out.println("</td>");
                                     } else {
-                                         Double stock=0.0000;
+                                        Double stock = 0.0000;
                                         String quantity = currentItem.getQuantity();
                                         if (quantity == null || quantity.isEmpty()) {
                                         } else {
-                                             stock = Double.parseDouble(quantity);
+                                            stock = Double.parseDouble(quantity);
                                         }
 
                                         out.println("<td>");
@@ -331,7 +331,12 @@
                                         if (previousItem == null) {
                                             out.println("-");
                                         } else {
-                                            out.println(stock - Double.parseDouble(previousItem.getQuantity()));
+                                            String prItQ = previousItem.getQuantity();
+                                            if (prItQ == null || prItQ.isEmpty()) {
+                                                out.println("-");
+                                            } else {
+                                                out.println(stock - Double.parseDouble(prItQ));
+                                            }
                                         }
                                         out.println("</td>");
 
