@@ -272,8 +272,7 @@
                         <th>Date Stamp</th>
                         <th>State</th>
                         <th>Quantity</th>
-                            <%
-                                 LinkedHashMap<LocalDate, ItemSnapshot> camelotItemSnapshots = (LinkedHashMap) request.getAttribute("camelotLast100DaysSnapshots");
+                            <%                                LinkedHashMap<LocalDate, ItemSnapshot> camelotItemSnapshots = (LinkedHashMap) request.getAttribute("camelotLast100DaysSnapshots");
                                 List<LocalDate> camelotKeys = new ArrayList<>(camelotItemSnapshots.keySet());
                                 for (int k = 0; k < camelotKeys.size() - 1; k++) {
                                     LocalDate currentDate = camelotKeys.get(k);
@@ -309,13 +308,16 @@
                                         out.println("N/A");
                                         out.println("</td>");
                                     } else {
-                                        Double stock = Double.parseDouble(currentItem.getQuantity());
+                                         Double stock=0.0000;
+                                        String quantity = currentItem.getQuantity();
+                                        if (quantity == null || quantity.isEmpty()) {
+                                        } else {
+                                             stock = Double.parseDouble(quantity);
+                                        }
 
                                         out.println("<td>");
                                         out.println(currentItem.getState());
                                         out.println("</td>");
-                                        
-                                      
 
                                         if (currentItem.getQuantity().equals("0") || currentItem.getQuantity().equals("0.000000")) {
                                             out.println("<td style='background-color: #F7B2F7'>");
@@ -336,7 +338,7 @@
                                     }
                                     out.println("</tr>");
                                 }
-                                
+
                                 /*
                                 ArrayList<ItemSnapshot> camelotItemSnapshots = (ArrayList) request.getAttribute("camelotItemSnapshots");
 
@@ -425,7 +427,7 @@
                                         camelotStockBefore = camelotStock;
                                     }
                                 }
-*/
+                                 */
                             %>
                     </table>
                 </div>

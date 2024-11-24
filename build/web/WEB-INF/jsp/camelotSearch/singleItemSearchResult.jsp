@@ -104,9 +104,10 @@
                         <hr>
                         <a href="camelotStockPositions.htm?itemCode=${item.getCode()}" class="btn btn-success btn-lg" role="button" aria-disabled="true"><h3>ΘΕΣΕΙΣ ΣΤΟΚ</h3></a>
                         <hr>
-                        <a href='printCamelotBarcode.htm?altercode=${target}' class='btn btn-danger btn-lg' role='button' aria-disabled='true'><h3>PRINT BARCODE LABEL</h3></a>
-                        <hr>
+
                         <a href='goForCamelotReplenishment.htm?altercode=${item.getCode()}' class='btn btn-danger btn-lg' role='button' aria-disabled='true' style='background-color: #f955d4'><h3>ΚΑΝΕ ΑΝΑΠΛΗΡΩΣΗ</h3></a>
+                        <hr> 
+                        <a href='printCamelotBarcode.htm?altercode=${target}' class='btn btn-danger btn-lg' role='button' aria-disabled='true'><h3>PRINT BARCODE LABEL</h3></a>
                         <hr>
                         <%
                             String userName = (String) session.getAttribute("userName");
