@@ -104,11 +104,11 @@ public class TESTosteronController {
         return "testosteron/deletedCamelotNotesBatch";
     }
 
-   //-------------------------------------
+    //-------------------------------------
     @RequestMapping(value = "printOut")
     public String printOut(ModelMap modelMap) {
 
-       /* 
+        /* 
         PrintService[] printServices = PrintServiceLookup.lookupPrintServices(null, null);
         System.out.println("Number of print services: " + printServices.length);
         DocPrintJob job = null;
@@ -142,6 +142,11 @@ public class TESTosteronController {
         pwd.printSomething(printName);
         return "testosteron/trc";
     }
-    
+
+    @RequestMapping(value = "showShadowCodes")
+    public String showShadowCodes(ModelMap modelMap) {
+       
+        return "testosteron/testResult";
+    }
 
 }
