@@ -146,7 +146,7 @@ public class TESTosteronController {
     @RequestMapping(value = "showShadowCodes")
     public String showShadowCodes(ModelMap modelMap) {
        
-        return "testosteron/testResult";
+        return "testosteron/shadowCodes";
     }
 
 }
