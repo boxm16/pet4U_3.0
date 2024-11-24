@@ -85,7 +85,7 @@
                                         <input type='text' name='note'>
                                         <hr>
 
-                                        <input class='btn btn-primary' type='submit' value='SAVE ITEM INVENTORY'>
+                                        <input style="font-size:20px"class='btn btn-primary' type='submit' value='SAVE ITEM INVENTORY'>
 
                                     </form>
                                 </td>
