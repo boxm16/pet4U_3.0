@@ -57,7 +57,7 @@
                                         ArrayList<AltercodeContainer> altercodes = item.getAltercodes();
                                         for (AltercodeContainer altercode : altercodes) {
                                             if (altercode.getStatus().equals("eshop")) {
-                                                out.println("<br><a href='https://www.pet4u.gr/search-products-el.html?subcats=Y&status=A&match=all&pshort=N&pfull=N&pname=Y&pkeywords=N&pcode_from_q=Y&wg_go_direct=Y&search_performed=Y&q=" + altercode.getAltercode() + "' target='_blank'>" + altercode.getAltercode() + "</a><br>");
+                                                out.println("<a href='https://www.pet4u.gr/search-products-el.html?subcats=Y&status=A&match=all&pshort=N&pfull=N&pname=Y&pkeywords=N&pcode_from_q=Y&wg_go_direct=Y&search_performed=Y&q=" + altercode.getAltercode() + "' target='_blank'>" + altercode.getAltercode() + "</a><br>");
                                             } else {
                                                 out.println(altercode.getAltercode());
                                                 out.println("<br>");
@@ -85,7 +85,7 @@
                                         <input type='text' name='note'>
                                         <hr>
 
-                                        <input style="font-size:20px"class='btn btn-primary' type='submit' value='SAVE ITEM INVENTORY'>
+                                        <input style="font-size:30px" class='btn btn-primary' type='submit' value='SAVE ITEM INVENTORY'>
 
                                     </form>
                                 </td>
