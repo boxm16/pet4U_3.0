@@ -52,7 +52,7 @@ public class CamelotSearchDao {
                     }
                     item.setPosition(position_1 + position_2);
 
-                    item.setQuantity(resultSet.getString("QTYBALANCE").trim());
+                    item.setQuantity(resultSet.getString("QTYBALANCE"));
 
                     index++;
                 }
