@@ -75,17 +75,23 @@
                             out.println("<td colspan='2' style='font-size: 30px;'>");
                             ArrayList<AltercodeContainer> altercodes = item.getAltercodes();
                             for (AltercodeContainer altercodeContainer : altercodes) {
-                                if (altercodeContainer.getStatus().equals("eshop")
-                                        || altercodeContainer.getStatus().equals("eshop-on")
-                                        || altercodeContainer.getStatus().equals("eshop-barf")
-                                        || altercodeContainer.getStatus().equals("eshop-pro")) {
-
-                                    out.println("<a href='https://www.pet4u.gr/search-products-el.html?subcats=Y&status=A&match=all&pshort=N&pfull=N&pname=Y&pkeywords=N&pcode_from_q=Y&wg_go_direct=Y&search_performed=Y&q=" + altercodeContainer.getAltercode() + "' target='_blank'>" + "<strong>" + altercodeContainer.getAltercode() + "</strong>" + "</a>");
-                                    out.println("<br>");
-                                } else {
-                                    out.println("<strong>" + altercodeContainer.getAltercode() + "</strong>");
-                                    out.println("<br>");
+                                String color = "";
+                                if (altercodeContainer.isMainBarcode()) {
+                                    color = "red";
                                 }
+                                if (altercodeContainer.isPackageBarcode()) {
+                                    color = "green";
+                                }
+
+                                if (altercodeContainer.getAltercode().equals(item.getCode())) {
+                                    color = "brown";
+                                }
+                                if (altercodeContainer.getStatus().isEmpty()) {
+                                    out.println("<strong style='color:" + color + "'>" + altercodeContainer.getAltercode() + "</strong>");
+                                } else {
+                                    out.println("<strong style='color:" + color + "'>" + altercodeContainer.getAltercode() + " : " + altercodeContainer.getStatus() + "</strong>");
+                                }
+                                out.println("<br>");
                             }
                             out.println("</td>");
                             out.println("</tr>");
