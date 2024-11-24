@@ -35,6 +35,12 @@
                     <a href="showAllDeletedCamelotNotesBatches.htm" class="btn btn-secondary" style='background-color: yellow' role="button"><h1>Show Deleted Camelot Notes</h1></a>
                     <hr>
 
+                    <!--  <a href="camelotStockPositonsTesting.htm" class="btn btn-secondary" style='background-color: yellow' role="button"><h1>Camelot Stock Positions Testing</h1></a>  -->
+                    <hr>
+                    <a href="showShadowCodes.htm" class="btn btn-secondary" style='background-color: green' role="button"><h1>Show Shadow Codes</h1></a>
+                    <hr>
+
+
                 </div>
                 <div class=" col-sm-4">
 

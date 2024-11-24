@@ -115,6 +115,9 @@
                         <hr> 
                         <a href='printCamelotBarcode.htm?altercode=${target}' class='btn btn-danger btn-lg' role='button' aria-disabled='true'><h3>PRINT BARCODE LABEL</h3></a>
                         <hr>
+                        <hr> 
+                        <a href='printCamelotMainBarcode.htm?altercode=${target}' class='btn btn-info btn-lg' role='button' aria-disabled='true'><h3>FOR TRIAL ONLY</h3></a>
+                        <hr>
                         <%
                             String userName = (String) session.getAttribute("userName");
                             if (userName != null) {
