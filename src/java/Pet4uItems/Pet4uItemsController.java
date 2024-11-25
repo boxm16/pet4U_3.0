@@ -421,7 +421,7 @@ public class Pet4uItemsController {
         hashMap.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L);
         try {
             //invoking the user-defined method that creates the QR code
-            generateQRcode(altercode, path, charset, hashMap, 200, 200);//increase or decrease height and width accodingly
+            generateQRcode(mainBarcode, path, charset, hashMap, 200, 200);//increase or decrease height and width accodingly
 //prints if the QR code is generated
         } catch (WriterException ex) {
             Logger.getLogger(Pet4uItemsController.class.getName()).log(Level.SEVERE, null, ex);
