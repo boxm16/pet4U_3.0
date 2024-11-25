@@ -38,7 +38,7 @@ public class CamelotReplenishmentController {
             replenishment.setPosition(item.getPosition());
             modelMap.addAttribute("replenishment", replenishment);
             modelMap.addAttribute("saveType", "insertCamelotReplenishment.htm");
-            return "camelotReplenishment/replenishmentSettingsServant";
+            return "camelotReplenishment/camelotReplenishmentSettingsServant";
         } else {
             modelMap.addAttribute("replenishment", replenishment);
             replenishment.setCode(item.getCode());
@@ -49,7 +49,7 @@ public class CamelotReplenishmentController {
             replenishment.setPosition(item.getPosition());
             modelMap.addAttribute("replenishment", replenishment);
             modelMap.addAttribute("saveType", "updateCamelotReplenishment.htm");
-            return "camelotReplenishment/replenishmentServant";
+            return "camelotReplenishment/camelotReplenishmentServant";
         }
     }
 
@@ -70,7 +70,7 @@ public class CamelotReplenishmentController {
         }
         model.addAttribute("result", result);
         model.addAttribute("resultColor", resultColor);
-        return "camelotReplenishment/replenishmentSavingResult";
+        return "camelotReplenishment/camelotReplenishmentSavingResult";
 
     }
 
@@ -88,7 +88,7 @@ public class CamelotReplenishmentController {
         }
         model.addAttribute("result", result);
         model.addAttribute("resultColor", resultColor);
-        return "camelotReplenishment/replenishmentSavingResult";
+        return "camelotReplenishment/camelotReplenishmentSavingResult";
 
     }
 
@@ -112,7 +112,7 @@ public class CamelotReplenishmentController {
         }
         model.addAttribute("replenishments", replenishments);
         model.addAttribute("sortedByPositionReplenishment", sortedByPositionReplenishment);
-        return "camelotReplenishment/shelvesReplenishment";
+        return "camelotReplenishment/camelotShelvesReplenishment";
 
     }
 
@@ -139,7 +139,7 @@ public class CamelotReplenishmentController {
         }
         model.addAttribute("replenishments", replenishments);
         model.addAttribute("sortedByPositionReplenishment", sortedByPositionReplenishment);
-        return "camelotReplenishment/shelvesReplenishmentDashboard";
+        return "camelotReplenishment/camelotShelvesReplenishmentDashboard";
 
     }
     private StringBuilder buildStringFromArrayList(ArrayList<String> arrayList) {
