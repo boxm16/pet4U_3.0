@@ -54,6 +54,7 @@
                             double stockNow = Double.parseDouble(replenishment.getQuantity());
 
                             int stockOnShelfNow = replenishment.getReplenishmentQuantity()
+                                    * replenishment.getItemsInReplenishmentUnit()
                                     - replenishment.getSailsAfterReplenishment()
                                     - replenishment.getEndoSailsAfterReplenishment();
 
@@ -173,6 +174,7 @@
                             double stockNow = Double.parseDouble(replenishment.getQuantity());
 
                             int stockOnShelfNow = replenishment.getReplenishmentQuantity()
+                                    * replenishment.getItemsInReplenishmentUnit()
                                     - replenishment.getSailsAfterReplenishment()
                                     - replenishment.getEndoSailsAfterReplenishment();;
 
@@ -270,6 +272,7 @@
 
                             CamelotReplenishment replenishment = entrySet.getValue();
                             int stockOnShelfNow = replenishment.getReplenishmentQuantity()
+                                    * replenishment.getItemsInReplenishmentUnit()
                                     - replenishment.getSailsAfterReplenishment()
                                     - replenishment.getEndoSailsAfterReplenishment();;
                             if (stockOnShelfNow < replenishment.getMinimalShelfStock() * 2) {
@@ -353,6 +356,7 @@
 
                             CamelotReplenishment replenishment = entrySet.getValue();
                             int stockOnShelfNow = replenishment.getReplenishmentQuantity()
+                                    * replenishment.getItemsInReplenishmentUnit()
                                     - replenishment.getSailsAfterReplenishment()
                                     - replenishment.getEndoSailsAfterReplenishment();
                             if (stockOnShelfNow < replenishment.getMinimalShelfStock() * 2) {
