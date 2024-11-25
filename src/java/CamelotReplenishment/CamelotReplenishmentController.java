@@ -141,11 +141,11 @@ public class CamelotReplenishmentController {
     }
 
     @RequestMapping(value = "goForEditingCamelotReplenishment", method = RequestMethod.GET)
-    public String goForEditingCamelotReplenishment(@RequestParam(name = "altercode") String altercode, ModelMap model) {
+    public String goForEditingCamelotReplenishment(@RequestParam(name = "itemCode") String itemCode, ModelMap model) {
         CamelotReplenishmentDao camelotReplenishmentDao = new CamelotReplenishmentDao();
-        Item item = camelotReplenishmentDao.getItemForReplenishment(altercode);
+        Item item = camelotReplenishmentDao.getItemForReplenishment(itemCode);
 
-        CamelotReplenishment replenishment = camelotReplenishmentDao.getItemReplenishment(item.getCode());
+        CamelotReplenishment replenishment = camelotReplenishmentDao.getItemReplenishment(itemCode);
 
         if (replenishment == null) {
             replenishment = new CamelotReplenishment();
