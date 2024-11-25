@@ -61,7 +61,7 @@
                     out.println("<tr>");
 
                     out.println("<td>");
-                    out.println("<a href='itemAnalysis.htm?code=" + replenishment.getCode() + "' target='_blank'>" + replenishment.getCode() + "</a>");
+                    out.println(replenishment.getCode());
                     out.println("</td>");
 
                     out.println("<td>");
