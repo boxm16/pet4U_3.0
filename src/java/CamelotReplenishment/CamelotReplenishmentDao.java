@@ -20,13 +20,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class CamelotReplenishmentDao {
-    
-     private LocalDateTime oldestReplenishmentDateTime;
-     
+
+    private LocalDateTime oldestReplenishmentDateTime;
 
     public Item getItemForReplenishment(String altercode) {
-        
-        
 
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
         Connection connection = databaseConnectionFactory.getCamelotMicrosoftSQLConnection();
@@ -167,7 +164,7 @@ public class CamelotReplenishmentDao {
         return "Camelot Replenishment Updated Successfully";
     }
 
-  LinkedHashMap<String, CamelotReplenishment> getAllReplenishments() {
+    LinkedHashMap<String, CamelotReplenishment> getAllReplenishments() {
         oldestReplenishmentDateTime = LocalDateTime.now();
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
         Connection connection = databaseConnectionFactory.getMySQLConnection();
@@ -182,6 +179,8 @@ public class CamelotReplenishmentDao {
                 String itemCode = resultSet.getString("item_code");
                 item.setCode(itemCode);
                 item.setReplenishmentQuantity(resultSet.getInt("replenishment_quantity"));
+                item.setItemsInReplenishmentUnit(resultSet.getInt("items_int_replenishment_unit"));
+
                 item.setMinimalShelfStock(resultSet.getInt("minimal_stock"));
                 String dateTimeString = resultSet.getString("referal_date_time");
                 DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -204,7 +203,7 @@ public class CamelotReplenishmentDao {
     }
 
     LinkedHashMap<String, CamelotReplenishment> addCamelotBasicData(LinkedHashMap<String, CamelotReplenishment> replenishments, StringBuilder inPartForSqlQuery) {
-    StringBuilder query = new StringBuilder("SELECT * FROM WH1 WHERE  ALTERNATECODE IN ")
+        StringBuilder query = new StringBuilder("SELECT * FROM WH1 WHERE  ALTERNATECODE IN ")
                 .append(inPartForSqlQuery).append(";");
         //   System.out.println(query);
         ResultSet resultSet;
@@ -246,7 +245,8 @@ public class CamelotReplenishmentDao {
         } catch (SQLException ex) {
             Logger.getLogger(CamelotReplenishmentDao.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return replenishments;}
+        return replenishments;
+    }
 
     LinkedHashMap<String, CamelotReplenishment> addSailsData(LinkedHashMap<String, CamelotReplenishment> replenishments, StringBuilder inPartForSqlQueryByReferralAltercodes) {
         return replenishments;

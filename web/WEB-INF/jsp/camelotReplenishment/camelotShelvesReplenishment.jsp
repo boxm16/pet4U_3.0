@@ -78,7 +78,7 @@
                             out.println("Code");
                             out.println("</td>");
                             out.println("<td>");
-                            out.println("<strong>" + replenishment.getItemsInReplenishmentUnit() + "</strong>");
+                            out.println("<strong>" + replenishment.getCode() + "</strong>");
                             out.println("</td>");
                             out.println("</tr>");
 
