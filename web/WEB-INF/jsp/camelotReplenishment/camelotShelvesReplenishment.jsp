@@ -123,6 +123,7 @@
                             out.println("<strong>R.Q-" + replenishment.getReplenishmentQuantity()
                                     + ": S-" + replenishment.getSailsAfterReplenishment()
                                     + ": E.S-" + replenishment.getEndoSailsAfterReplenishment()
+                                    + ": S.S.N-" + stockOnShelfNow
                                     + ": M.S.S-" + replenishment.getMinimalShelfStock()
                                     + "</strong>");
                             out.println("</td>");
