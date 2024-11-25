@@ -211,7 +211,7 @@ public class CamelotReplenishmentDao {
 
         try {
             DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
-            Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
+            Connection connection = databaseConnectionFactory.getCamelotMicrosoftSQLConnection();
             Statement statement = connection.createStatement();
 
             resultSet = statement.executeQuery(query.toString());
