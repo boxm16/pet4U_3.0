@@ -76,8 +76,6 @@
                                         <center>    <h3 style="background-color:#f955d4">MINIMAL STOCK: </h3>    </center> 
                                         <input type="number" name="minimalShelfStock"  value="${replenishment.minimalShelfStock}" style="font-size:30px" >
 
-                                        <center>    <h3 style="background-color:#f955d4">ΠΟΣΟΤΗΤΑ ΑΝΑΠΛΗΡΩΣΗΣ: </h3>    </center> 
-
                                         <input name='itemCode' hidden value='${replenishment.code}'>
                                         Make notes - 500 char. max.
                                         <input type='text' name='note'>
