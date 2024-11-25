@@ -40,7 +40,7 @@ public class CamelotReplenishmentController {
             modelMap.addAttribute("saveType", "insertCamelotReplenishment.htm");
             return "camelotReplenishment/camelotReplenishmentSettingsServant";
         } else {
-            modelMap.addAttribute("replenishment", replenishment);
+
             replenishment.setCode(item.getCode());
 
             replenishment.setDescription(item.getDescription());
@@ -147,20 +147,12 @@ public class CamelotReplenishmentController {
 
         CamelotReplenishment replenishment = camelotReplenishmentDao.getItemReplenishment(itemCode);
 
-        if (replenishment == null) {
-            replenishment = new CamelotReplenishment();
-            replenishment.setCode(item.getCode());
-            replenishment.setReplenishmentQuantity(0);
-
-            replenishment.setCode(item.getCode());
-            replenishment.setDescription(item.getDescription());
-            replenishment.setAltercodes(item.getAltercodes());
-            replenishment.setQuantity(item.getQuantity());
-            replenishment.setPosition(item.getPosition());
-            model.addAttribute("replenishment", replenishment);
-            model.addAttribute("saveType", "editCamelotReplenishment.htm");
-
-        }
+        replenishment.setCode(item.getCode());
+        replenishment.setDescription(item.getDescription());
+        replenishment.setAltercodes(item.getAltercodes());
+        replenishment.setQuantity(item.getQuantity());
+        replenishment.setPosition(item.getPosition());
+        model.addAttribute("replenishment", replenishment);
         return "camelotReplenishment/editCamelotReplenishment";
 
     }
