@@ -52,7 +52,7 @@
 
                             double stockNow = Double.parseDouble(replenishment.getQuantity());
 
-                            int stockOnShelfNow = replenishment.getReplenishmentQuantity() - replenishment.getSailsAfterReplenishment();
+                            int stockOnShelfNow = replenishment.getReplenishmentQuantity() - replenishment.getSailsAfterReplenishment()-replenishment.getEndoSailsAfterReplenishment();
 
                             if (stockNow == 0 || stockNow == stockOnShelfNow) {
                                 continue;
@@ -168,7 +168,9 @@
 
                             double stockNow = Double.parseDouble(replenishment.getQuantity());
 
-                            int stockOnShelfNow = replenishment.getReplenishmentQuantity() - replenishment.getSailsAfterReplenishment();
+                            int stockOnShelfNow = replenishment.getReplenishmentQuantity()
+                                    - replenishment.getSailsAfterReplenishment()
+                                    -replenishment.getEndoSailsAfterReplenishment();
 
                             if (stockNow == 0 || stockNow == stockOnShelfNow) {
                                 continue;
@@ -263,7 +265,9 @@
                             String alarmColor = "";
 
                             Replenishment replenishment = entrySet.getValue();
-                            int stockOnShelfNow = replenishment.getReplenishmentQuantity() - replenishment.getSailsAfterReplenishment();
+                            int stockOnShelfNow = replenishment.getReplenishmentQuantity() 
+                                    - replenishment.getSailsAfterReplenishment()
+                                    - replenishment.getEndoSailsAfterReplenishment();
                             if (stockOnShelfNow < replenishment.getMinimalShelfStock() * 2) {
                                 alarmColor = "yellow";
                             }
@@ -344,7 +348,9 @@
                             String alarmColor = "";
 
                             Replenishment replenishment = entrySet.getValue();
-                            int stockOnShelfNow = replenishment.getReplenishmentQuantity() - replenishment.getSailsAfterReplenishment();
+                            int stockOnShelfNow = replenishment.getReplenishmentQuantity()
+                                    - replenishment.getSailsAfterReplenishment()
+                                    - replenishment.getEndoSailsAfterReplenishment();
                             if (stockOnShelfNow < replenishment.getMinimalShelfStock() * 2) {
                                 alarmColor = "yellow";
                             }
