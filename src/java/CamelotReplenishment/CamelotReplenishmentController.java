@@ -139,28 +139,29 @@ public class CamelotReplenishmentController {
         return "camelotReplenishment/camelotShelvesReplenishmentDashboard";
 
     }
-    
-     @RequestMapping(value = "goForEditingCamelotReplenishment", method = RequestMethod.GET)
-    public String goForEditingCamelotReplenishment(ModelMap model) {
-        CamelotReplenishmentDao camelptReplenishmentDao = new CamelotReplenishmentDao();
-        LinkedHashMap<String, CamelotReplenishment> replenishments = camelptReplenishmentDao.getAllReplenishments();
 
-        ArrayList referalAltercodes = new ArrayList(replenishments.keySet());
-        StringBuilder inPartForSqlQueryByReferralAltercodes = buildStringFromArrayList(referalAltercodes);
-        replenishments = camelptReplenishmentDao.addCamelotBasicData(replenishments, inPartForSqlQueryByReferralAltercodes);
-        replenishments = camelptReplenishmentDao.addSailsData(replenishments, inPartForSqlQueryByReferralAltercodes);
-        replenishments = camelptReplenishmentDao.addVarPcData(replenishments, inPartForSqlQueryByReferralAltercodes);
-        TreeMap<String, CamelotReplenishment> sortedByPositionReplenishment = new TreeMap();
-        for (Map.Entry<String, CamelotReplenishment> replenishmentsEntry : replenishments.entrySet()) {
-            CamelotReplenishment replenishment = replenishmentsEntry.getValue();
-            String position = replenishment.getPosition();
-            //  System.out.println("P:" + position);
-            // System.out.println("R:" + replenishment);
-            sortedByPositionReplenishment.put(position, replenishment);
+    @RequestMapping(value = "goForEditingCamelotReplenishment", method = RequestMethod.GET)
+    public String goForEditingCamelotReplenishment(@RequestParam(name = "altercode") String altercode, ModelMap model) {
+        CamelotReplenishmentDao camelotReplenishmentDao = new CamelotReplenishmentDao();
+        Item item = camelotReplenishmentDao.getItemForReplenishment(altercode);
+
+        CamelotReplenishment replenishment = camelotReplenishmentDao.getItemReplenishment(item.getCode());
+
+        if (replenishment == null) {
+            replenishment = new CamelotReplenishment();
+            replenishment.setCode(item.getCode());
+            replenishment.setReplenishmentQuantity(0);
+
+            replenishment.setCode(item.getCode());
+            replenishment.setDescription(item.getDescription());
+            replenishment.setAltercodes(item.getAltercodes());
+            replenishment.setQuantity(item.getQuantity());
+            replenishment.setPosition(item.getPosition());
+            model.addAttribute("replenishment", replenishment);
+            model.addAttribute("saveType", "editCamelotReplenishment.htm");
+
         }
-        model.addAttribute("replenishments", replenishments);
-        model.addAttribute("sortedByPositionReplenishment", sortedByPositionReplenishment);
-        return "camelotReplenishment/camelotShelvesReplenishmentDashboard";
+        return "camelotReplenishment/editCamelotReplenishment";
 
     }
 
