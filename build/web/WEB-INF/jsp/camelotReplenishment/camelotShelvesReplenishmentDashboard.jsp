@@ -1,6 +1,7 @@
 
 
 
+<%@page import="CamelotReplenishment.CamelotReplenishment"%>
 <%@page import="java.util.TreeMap"%>
 <%@page import="Replenishment.Replenishment"%>
 <%@page import="CamelotItemsOfOurInterest_V_3_1.CamelotItemOfInterest"%>
@@ -54,9 +55,9 @@
             </thead>
 
             <%
-                TreeMap<String, Replenishment> replenishments = (TreeMap) request.getAttribute("sortedByPositionReplenishment");
-                for (Map.Entry<String, Replenishment> entrySet : replenishments.entrySet()) {
-                    Replenishment replenishment = entrySet.getValue();
+                TreeMap<String, CamelotReplenishment> replenishments = (TreeMap) request.getAttribute("sortedByPositionReplenishment");
+                for (Map.Entry<String, CamelotReplenishment> entrySet : replenishments.entrySet()) {
+                    CamelotReplenishment replenishment = entrySet.getValue();
                     out.println("<tr>");
 
                     out.println("<td>");
