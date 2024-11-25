@@ -116,10 +116,7 @@ public class CamelotReplenishmentController {
 
     }
 
-    
-    
-    
-     @RequestMapping(value = "camelotShelvesReplenishmentDashboard", method = RequestMethod.GET)
+    @RequestMapping(value = "camelotShelvesReplenishmentDashboard", method = RequestMethod.GET)
     public String camelotShelvesReplenishmentDashboard(ModelMap model) {
         CamelotReplenishmentDao camelptReplenishmentDao = new CamelotReplenishmentDao();
         LinkedHashMap<String, CamelotReplenishment> replenishments = camelptReplenishmentDao.getAllReplenishments();
@@ -133,8 +130,8 @@ public class CamelotReplenishmentController {
         for (Map.Entry<String, CamelotReplenishment> replenishmentsEntry : replenishments.entrySet()) {
             CamelotReplenishment replenishment = replenishmentsEntry.getValue();
             String position = replenishment.getPosition();
-            System.out.println("P:" + position);
-            System.out.println("R:" + replenishment);
+            //  System.out.println("P:" + position);
+            // System.out.println("R:" + replenishment);
             sortedByPositionReplenishment.put(position, replenishment);
         }
         model.addAttribute("replenishments", replenishments);
@@ -142,6 +139,7 @@ public class CamelotReplenishmentController {
         return "camelotReplenishment/camelotShelvesReplenishmentDashboard";
 
     }
+
     private StringBuilder buildStringFromArrayList(ArrayList<String> arrayList) {
 
         StringBuilder stringBuilder = new StringBuilder("(");
@@ -163,7 +161,5 @@ public class CamelotReplenishmentController {
         }
         return stringBuilder;
     }
-    
-    
-    
+
 }

@@ -46,7 +46,7 @@
             <th>Referral DateTime</th>
             <th>Replenishment Quantity</th>
             <th>Sails After Referral DateTime</th>
-            <th>Endo Sails After Referral DateTime</th>
+            <th>ΒΑΡ-PC Sails After Referral DateTime</th>
             <th>Minimal Shelf Stock</th>
             <th>Stock</th>
             <th>Note</th>
