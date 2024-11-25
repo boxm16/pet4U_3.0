@@ -106,8 +106,8 @@ public class CamelotReplenishmentController {
         for (Map.Entry<String, CamelotReplenishment> replenishmentsEntry : replenishments.entrySet()) {
             CamelotReplenishment replenishment = replenishmentsEntry.getValue();
             String position = replenishment.getPosition();
-            System.out.println("P:" + position);
-            System.out.println("R:" + replenishment);
+            //     System.out.println("P:" + position);
+            //    System.out.println("R:" + replenishment);
             sortedByPositionReplenishment.put(position, replenishment);
         }
         model.addAttribute("replenishments", replenishments);
