@@ -116,6 +116,32 @@ public class CamelotReplenishmentController {
 
     }
 
+    
+    
+    
+     @RequestMapping(value = "camelotShelvesReplenishmentDashboard", method = RequestMethod.GET)
+    public String camelotShelvesReplenishmentDashboard(ModelMap model) {
+        CamelotReplenishmentDao camelptReplenishmentDao = new CamelotReplenishmentDao();
+        LinkedHashMap<String, CamelotReplenishment> replenishments = camelptReplenishmentDao.getAllReplenishments();
+
+        ArrayList referalAltercodes = new ArrayList(replenishments.keySet());
+        StringBuilder inPartForSqlQueryByReferralAltercodes = buildStringFromArrayList(referalAltercodes);
+        replenishments = camelptReplenishmentDao.addCamelotBasicData(replenishments, inPartForSqlQueryByReferralAltercodes);
+        replenishments = camelptReplenishmentDao.addSailsData(replenishments, inPartForSqlQueryByReferralAltercodes);
+        replenishments = camelptReplenishmentDao.addVarPcData(replenishments, inPartForSqlQueryByReferralAltercodes);
+        TreeMap<String, CamelotReplenishment> sortedByPositionReplenishment = new TreeMap();
+        for (Map.Entry<String, CamelotReplenishment> replenishmentsEntry : replenishments.entrySet()) {
+            CamelotReplenishment replenishment = replenishmentsEntry.getValue();
+            String position = replenishment.getPosition();
+            System.out.println("P:" + position);
+            System.out.println("R:" + replenishment);
+            sortedByPositionReplenishment.put(position, replenishment);
+        }
+        model.addAttribute("replenishments", replenishments);
+        model.addAttribute("sortedByPositionReplenishment", sortedByPositionReplenishment);
+        return "camelotReplenishment/shelvesReplenishmentDashboard";
+
+    }
     private StringBuilder buildStringFromArrayList(ArrayList<String> arrayList) {
 
         StringBuilder stringBuilder = new StringBuilder("(");

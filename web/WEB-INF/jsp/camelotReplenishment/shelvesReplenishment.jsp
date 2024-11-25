@@ -403,7 +403,7 @@
                     %>
                 </table>
                 <hr> <hr> <hr>
-                <a href="shelvesReplenishmentDashboard.htm" class="btn btn-success btn-lg" role="button" aria-disabled="true"><h3>Shelves Replenishment Dashboard</h3></a>
+                <a href="camelotShelvesReplenishmentDashboard.htm" class="btn btn-success btn-lg" role="button" aria-disabled="true"><h3>Shelves Replenishment Dashboard</h3></a>
                 <hr>
 
 
