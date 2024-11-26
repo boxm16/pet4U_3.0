@@ -421,6 +421,10 @@
                             out.println(replenishment.getNote());
                             out.println("</td>");
 
+                            out.println("<td colspan='2'>");
+                            out.println("<a href='goForEditingCamelotReplenishment.htm?itemCode=" + replenishment.getCode() + "' target='_blank'>Edit</a>");
+                            out.println("</td>");
+
                             out.println("</tr>");
                         }
 
