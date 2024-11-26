@@ -276,22 +276,23 @@ public class CamelotSalesDao {
     }
 
     public LinkedHashMap<String, Double> getLast30DaysSales(String itemCode) {
-        LocalDate date = LocalDate.now();
-        LocalDate firstDate = date.minusDays(30);
-        LocalDate lastDate = date.minusDays(1);
 
         LinkedHashMap<String, Double> daysSales = new LinkedHashMap<>();
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+        Connection connection = databaseConnectionFactory.getCamelotMicrosoftSQLConnection();
+
+        LocalDate date = LocalDate.now();
+        LocalDate firstDate = date.minusDays(31);
+        LocalDate lastDate = date.minusDays(1);
 
         for (int x = 30; x > 0; x--) {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            date = date.minusDays(1);
+
             String formattedString = date.format(formatter) + " 00:00:00.0";
             //   System.out.println(formattedString);
             daysSales.put(formattedString, 0.0);
+            date = date.minusDays(1);
         }
-
-        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
-        Connection connection = databaseConnectionFactory.getCamelotMicrosoftSQLConnection();
 
         try {
             Statement statement = connection.createStatement();
