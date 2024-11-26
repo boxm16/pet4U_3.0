@@ -92,7 +92,7 @@ public class ReplenishmentController {
     }
 
     @RequestMapping(value = "shelvesReplenishment", method = RequestMethod.GET)
-    public String shelvesReplenishmentSV(ModelMap model) {
+    public String shelvesReplenishment(ModelMap model) {
         ReplenishmentDao replenishmentDao = new ReplenishmentDao();
         LinkedHashMap<String, Replenishment> replenishments = replenishmentDao.getAllReplenishments();
 
