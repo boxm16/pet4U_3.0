@@ -308,7 +308,10 @@
                             out.println("</td>");
 
                             out.println("<td>");
-                            out.println(replenishment.getReplenishmentQuantity());
+                            out.println(replenishment.getReplenishmentQuantity()
+                                    + "X" + replenishment.getItemsInReplenishmentUnit()
+                                    + "=" + replenishment.getReplenishmentQuantity()
+                                    * replenishment.getItemsInReplenishmentUnit());
                             out.println("</td>");
 
                             out.println("<td>");
@@ -396,7 +399,10 @@
                             out.println("</td>");
 
                             out.println("<td>");
-                            out.println(replenishment.getSailsAfterReplenishment());
+                            out.println(replenishment.getReplenishmentQuantity()
+                                    + "X" + replenishment.getItemsInReplenishmentUnit()
+                                    + "=" + replenishment.getReplenishmentQuantity()
+                                    * replenishment.getItemsInReplenishmentUnit());
                             out.println("</td>");
 
                             out.println("<td>");
