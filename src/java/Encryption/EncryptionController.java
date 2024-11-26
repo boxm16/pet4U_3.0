@@ -1,5 +1,6 @@
 package Encryption;
 
+import java.time.LocalDateTime;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
@@ -33,6 +34,7 @@ public class EncryptionController {
 
     @RequestMapping(value = "encryptedIndexMe", method = RequestMethod.GET)
     public String encryptedIndexMe(HttpSession session) {
+        System.out.println("User Me Identified : " + LocalDateTime.now());
         session.setAttribute("user", "identified");
         session.setAttribute("userName", "me");
         return "adminIndex";
@@ -40,6 +42,7 @@ public class EncryptionController {
 
     @RequestMapping(value = "encryptedIndexLefteris", method = RequestMethod.GET)
     public String encryptedIndexLefteris(HttpSession session) {
+        System.out.println("User Lefteris Identified : " + LocalDateTime.now());
         session.setAttribute("user", "identified");
         session.setAttribute("userName", "Lefteris");
         return "redirect:index.htm";
@@ -47,14 +50,15 @@ public class EncryptionController {
 
     @RequestMapping(value = "encryptedIndexVasilis", method = RequestMethod.GET)
     public String encryptedIndexVasilis(HttpSession session) {
+        System.out.println("User Vasilis Identified : " + LocalDateTime.now());
         session.setAttribute("user", "identified");
         session.setAttribute("userName", "Vasilis");
-        return "redirect:index.htm";
+        return "vasilisIndex";
     }
 
     @RequestMapping(value = "encryptedIndexStavros", method = RequestMethod.GET)
     public String encryptedIndexStavros(HttpSession session) {
-        System.out.println("SHEM<OVIDA IS VINC");
+        System.out.println("User Stavros Identified : " + LocalDateTime.now());
         session.setAttribute("user", "identified");
         session.setAttribute("userName", "Stavros");
         return "redirect:index.htm";
