@@ -283,7 +283,7 @@ public class CamelotSalesDao {
 
         LocalDate date = LocalDate.now();
         LocalDate firstDate = date.minusDays(31);
-        LocalDate lastDate = date.minusDays(1);
+        LocalDate lastDate = date.minusDays(0);
 
         for (int x = 30; x > 0; x--) {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -298,7 +298,7 @@ public class CamelotSalesDao {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM [fotiou].[dbo].[WH_SALES] WHERE ITEMCODE='" + itemCode + "' "
                     + " AND ENTRYDATE >= '" + firstDate + "' "
-                    + "AND ENTRYDATE <= '" + date + "'  ORDER BY ENTRYDATE DESC;");
+                    + "AND ENTRYDATE <= '" + lastDate + "'  ORDER BY ENTRYDATE DESC;");
 
             while (resultSet.next()) {
                 String day = resultSet.getString("ENTRYDATE").trim();
