@@ -140,6 +140,12 @@
                             out.println("<strong>" + replenishment.getNote() + "</strong>");
                             out.println("</td>");
                             out.println("</tr>");
+                            
+                            out.println("<tr>");
+                            out.println("<td colspan='2'>");
+                            out.println("<a href='goForEditingCamelotReplenishment.htm?itemCode=" + replenishment.getCode() + "' target='_blank'>Edit</a>");
+                            out.println("</td>");
+                            out.println("</tr>");
 
                             out.println("</tbody>");
                             out.println("</table>");
@@ -419,10 +425,6 @@
 
                             out.println("<td>");
                             out.println(replenishment.getNote());
-                            out.println("</td>");
-
-                            out.println("<td colspan='2'>");
-                            out.println("<a href='goForEditingCamelotReplenishment.htm?itemCode=" + replenishment.getCode() + "' target='_blank'>Edit</a>");
                             out.println("</td>");
 
                             out.println("</tr>");
