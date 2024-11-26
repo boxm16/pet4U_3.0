@@ -314,4 +314,29 @@ public class CamelotReplenishmentDao {
         return replenishments;
     }
 
+    String editReplenishment(String itemCode, String replenishmentUnit, String itemsInReplenishmentUnit, String minimalShelfStock, String note) {
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+        Connection connection = databaseConnectionFactory.getMySQLConnection();
+
+        try {
+            PreparedStatement updateStatement = connection.prepareStatement("UPDATE camelot_shelves_replenishment  SET replenishment_unit=?, items_int_replenishment_unit=?, minimal_stock=? WHERE item_code=?");
+
+            updateStatement.setString(1, replenishmentUnit);
+            updateStatement.setString(2, itemsInReplenishmentUnit);
+            updateStatement.setString(3, minimalShelfStock);
+            updateStatement.setString(4, itemCode);
+            updateStatement.executeUpdate();
+            updateStatement.close();
+
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(CamelotReplenishmentDao.class.getName()).log(Level.SEVERE, null, ex);
+
+            return ex.getMessage();
+        }
+
+        return "Replenishment Edited Successfully";
+    }
+
 }

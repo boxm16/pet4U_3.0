@@ -59,7 +59,7 @@
                             <tr>
                                 <td>
 
-                                    <form action="${saveType}" method="POST">
+                                    <form action="editCamelotReplenishment.htm" method="POST">
 
                                         <center>    <input type='text' readonly name='systemStock' style='font-size:30px; background-color: lightgreen' value='${replenishment.quantity}'></center>
                                         <hr>

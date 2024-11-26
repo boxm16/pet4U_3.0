@@ -157,6 +157,26 @@ public class CamelotReplenishmentController {
 
     }
 
+    @RequestMapping(value = "editCamelotReplenishment", method = RequestMethod.POST)
+    public String editCamelotReplenishment(@RequestParam(name = "itemCode") String itemCode,
+            @RequestParam(name = "replenishmentUnit") String replenishmentUnit,
+            @RequestParam(name = "itemsInReplenishmentUnit") String itemsInReplenishmentUnit,
+            @RequestParam(name = "minimalShelfStock") String minimalShelfStock,
+            @RequestParam(name = "note") String note,
+            ModelMap model) {
+        CamelotReplenishmentDao replenishmentDao = new CamelotReplenishmentDao();
+        String result = replenishmentDao.editReplenishment(itemCode, replenishmentUnit, itemsInReplenishmentUnit, minimalShelfStock, note);
+        String resultColor = "";
+        if (!result.equals("Replenishment Edited Successfully")) {
+            result = "ΚΑΤΙ ΠΗΓΕ ΣΤΡΑΒΑ. <br>" + result;
+            resultColor = "red";
+        }
+        model.addAttribute("result", result);
+        model.addAttribute("resultColor", resultColor);
+        return "camelotReplenishment/camelotReplenishmentSavingResult";
+
+    }
+
     private StringBuilder buildStringFromArrayList(ArrayList<String> arrayList) {
 
         StringBuilder stringBuilder = new StringBuilder("(");
