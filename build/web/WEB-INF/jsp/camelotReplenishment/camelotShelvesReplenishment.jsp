@@ -203,7 +203,7 @@
 
                             out.println("<tr style='background-color: " + alarmColor + "'>");
                             out.println("<td>");
-                            out.println("<a href='itemAnalysis.htm?code=" + replenishment.getCode() + "' target='_blank'>" + replenishment.getCode() + "</a>");
+                            out.println("<a href='camelotItemAnalysis.htm?code=" + replenishment.getCode() + "' target='_blank'>" + replenishment.getCode() + "</a>");
                             out.println("</td>");
 
                             out.println("<td>");
