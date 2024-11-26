@@ -273,7 +273,7 @@ public class CamelotReplenishmentDao {
                 if (replenishments.containsKey(itemCode)) {
                     CamelotReplenishment replenishment = replenishments.get(itemCode);
                     LocalDateTime referralDateTime = replenishment.getDateTime();
-                    String saleDateTimeStampString = resultSet.getString("DATE_TIME");
+                    String saleDateTimeStampString = resultSet.getString("ENTRYDATE");
                     DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
                     DateTimeFormatter formatter3 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SS");
                     DateTimeFormatter formatter4 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S");
