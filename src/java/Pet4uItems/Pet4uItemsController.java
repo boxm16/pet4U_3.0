@@ -438,7 +438,13 @@ public class Pet4uItemsController {
         barcodePrinter.setLabelsCount(1);
 
         barcodePrinter.setCode(item.getCode());
-        barcodePrinter.setBarcode(mainBarcode.substring(altercode.length() - 6));
+      
+        if (mainBarcode.length() >= 6) {
+            barcodePrinter.setBarcode(mainBarcode.substring(mainBarcode.length() - 6));
+        } else {
+            barcodePrinter.setBarcode(mainBarcode);
+        }
+        
         barcodePrinter.setDescription(item.getDescription());
         String position = item.getPosition().substring(2);
         barcodePrinter.setPosition(position);

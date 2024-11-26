@@ -1177,7 +1177,7 @@ public class CamelotSearchController {
         barcodePrinter.setCode(item.getCode());
         //  barcodePrinter.setBarcode(altercode.substring(altercode.length() - 6));
         if (mainBarcode.length() >= 6) {
-            barcodePrinter.setBarcode(mainBarcode.substring(altercode.length() - 6));
+            barcodePrinter.setBarcode(mainBarcode.substring(mainBarcode.length() - 6));
         } else {
             barcodePrinter.setBarcode(mainBarcode);
         }
