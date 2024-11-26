@@ -122,6 +122,8 @@
 
                             out.println("<td colspan='2'>");
                             out.println("<strong>R.Q-" + replenishment.getReplenishmentQuantity()
+                                    + ": I.I.R.U-" + replenishment.getItemsInReplenishmentUnit()
+                                    + ": R.I-" + replenishment.getReplenishmentQuantity() * replenishment.getItemsInReplenishmentUnit()
                                     + ": S-" + replenishment.getSailsAfterReplenishment()
                                     + ": E.S-" + replenishment.getEndoSailsAfterReplenishment()
                                     + ": S.S.N-" + stockOnShelfNow
@@ -219,7 +221,10 @@
                             out.println("</td>");
 
                             out.println("<td>");
-                            out.println(replenishment.getReplenishmentQuantity());
+                            out.println(replenishment.getReplenishmentQuantity()
+                                    + "X" + replenishment.getItemsInReplenishmentUnit()
+                                    + "=" + replenishment.getReplenishmentQuantity()
+                                    * replenishment.getItemsInReplenishmentUnit());
                             out.println("</td>");
 
                             out.println("<td>");
