@@ -117,7 +117,7 @@ public class TESTosteronDao {
         }
         return items;
     }
-    
+
     public LinkedHashMap<String, Item> getAllActiveItems() {
         LinkedHashMap<String, Item> items = new LinkedHashMap<>();
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
@@ -126,12 +126,18 @@ public class TESTosteronDao {
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("select * from WH1  ORDER BY EXPR1;");
+            int disabledNUll = 0;
+            int disabled1 = 0;
+            int disabledUnKnow = 0;
 
             while (resultSet.next()) {
                 String disabled = resultSet.getString("DISABLED");
                 if (disabled == null) {
+                    disabledNUll++;
                 } else {
+                    disabledUnKnow++;
                     if (disabled.equals("1")) {
+                        disabled1++;
                         continue;
                     }
                 }
@@ -169,6 +175,10 @@ public class TESTosteronDao {
                 items.get(code).addAltercodeContainer(altercodeContainer);
 
             }
+            System.out.println("disabledNUll:" + disabledNUll);
+            System.out.println("disabledUnKnow:" + disabledUnKnow);
+            System.out.println("disabled1:" + disabled1);
+
             resultSet.close();
             statement.close();
             connection.close();
