@@ -154,6 +154,9 @@ public class TESTosteronController {
             for (AltercodeContainer altercodeContainer : altercodes) {
                 String altercode = altercodeContainer.getAltercode();
                 if (altercode.contains("-")) {
+                    if (altercode.equals(item.getCode())) {
+                        continue;
+                    }
                     System.out.println(item.getCode() + "   " + item.getDescription() + "   " + altercode);
                 }
             }
