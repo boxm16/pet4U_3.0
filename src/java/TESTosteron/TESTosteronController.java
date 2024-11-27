@@ -1,5 +1,6 @@
 package TESTosteron;
 
+import BasicModel.AltercodeContainer;
 import BasicModel.Item;
 import CamelotItemsOfInterest.CamelotDao;
 import Inventory.InventoryItem;
@@ -145,8 +146,18 @@ public class TESTosteronController {
 
     @RequestMapping(value = "showShadowCodes")
     public String showShadowCodes(ModelMap modelMap) {
-       TESTosteronDao dao=new TESTosteronDao();
+        TESTosteronDao dao = new TESTosteronDao();
         LinkedHashMap<String, Item> allActiveItems = dao.getAllActiveItems();
+        for (Map.Entry<String, Item> allActiveItemsEntry : allActiveItems.entrySet()) {
+            Item item = allActiveItemsEntry.getValue();
+            ArrayList<AltercodeContainer> altercodes = item.getAltercodes();
+            for (AltercodeContainer altercodeContainer : altercodes) {
+                String altercode = altercodeContainer.getAltercode();
+                if (altercode.contains("-")) {
+                    System.out.println(item.getCode() + "   " + item.getDescription() + "   " + altercode);
+                }
+            }
+        }
         return "testosteron/shadowCodes";
     }
 
