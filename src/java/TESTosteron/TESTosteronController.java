@@ -145,7 +145,8 @@ public class TESTosteronController {
 
     @RequestMapping(value = "showShadowCodes")
     public String showShadowCodes(ModelMap modelMap) {
-       
+       TESTosteronDao dao=new TESTosteronDao();
+        LinkedHashMap<String, Item> allActiveItems = dao.getAllActiveItems();
         return "testosteron/shadowCodes";
     }
 
