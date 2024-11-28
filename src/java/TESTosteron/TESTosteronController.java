@@ -156,13 +156,14 @@ public class TESTosteronController {
                 String altercode = altercodeContainer.getAltercode();
                 if (altercode.contains("-")) {
                     char firstChar = altercode.charAt(0);
-                    if (firstChar == '-') {
-                        System.out.println(item.getCode() + "   " + item.getDescription() + "   " + altercode);
-
-                    }
                     if (altercode.equals(item.getCode())) {
                         continue;
                     }
+                    if (firstChar == '_') {
+                        System.out.println(item.getCode() + "   " + item.getDescription() + "   " + altercode);
+
+                    }
+
                 }
             }
         }
