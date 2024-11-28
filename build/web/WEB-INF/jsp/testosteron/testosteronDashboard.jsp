@@ -39,6 +39,11 @@
                     <hr>
                     <a href="showShadowCodes.htm" class="btn btn-secondary" style='background-color: green' role="button"><h1>Show Shadow Codes</h1></a>
                     <hr>
+                    
+                    
+                      <hr>
+                    <a href="loadRoyalData.htm" class="btn btn-secondary" style='background-color: green' role="button"><h1>Load Excel File</h1></a>
+                    <hr>
 
 
                 </div>
