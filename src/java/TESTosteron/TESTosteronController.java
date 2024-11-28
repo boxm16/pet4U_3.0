@@ -154,7 +154,7 @@ public class TESTosteronController {
             for (AltercodeContainer altercodeContainer : altercodes) {
                 String altercode = altercodeContainer.getAltercode();
                 if (altercode.contains("-")) {
-                    char firstChar = altercode.charAt(0);
+                    char firstChar = altercode.charAt(altercode.length()-1);
                     if (firstChar == '-') {
                         System.out.println(item.getCode() + "   " + item.getDescription() + "   " + altercode);
 
