@@ -155,13 +155,19 @@ public class TESTosteronController {
             for (AltercodeContainer altercodeContainer : altercodes) {
                 String altercode = altercodeContainer.getAltercode();
                 if (altercode.contains("-")) {
-                    char firstChar = altercode.charAt(0);
                     if (altercode.equals(item.getCode())) {
                         continue;
                     }
-                    if (firstChar == '_') {
-                        System.out.println(item.getCode() + "   " + item.getDescription() + "   " + altercode);
+                    char firstChar = altercode.charAt(0);
 
+                    if (firstChar == '-') {
+                        System.out.println(item.getCode() + "   " + item.getDescription() + "   " + altercode);
+                        String repfactoredAltercode = altercode.replaceAll("-", "");
+                        Item shadowItem = pet4UItemsRowByRow.get(repfactoredAltercode);
+                        System.out.println("     Item:" + item.getCode() + " " + item.getDescription());
+                        System.out.println("Shad Item:" + shadowItem.getCode() + " " + shadowItem.getDescription());
+
+                        System.out.println("----------------------------------------");
                     }
 
                 }
