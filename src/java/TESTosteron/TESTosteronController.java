@@ -159,16 +159,16 @@ public class TESTosteronController {
                         continue;
                     }
                     char firstChar = altercode.charAt(0);
-
-                    if (firstChar == '-') {
-                        System.out.println(item.getCode() + "   " + item.getDescription() + "   " + altercode);
+                    char lastChar = altercode.charAt(altercode.length() - 1);
+                    if (firstChar == '-' || lastChar == '-') {
+                        //    System.out.println(item.getCode() + "   " + item.getDescription() + "   " + altercode);
                         String repfactoredAltercode = altercode.replaceAll("-", "");
                         Item shadowItem = pet4UItemsRowByRow.get(repfactoredAltercode);
                         System.out.println("     Item:" + item.getCode() + " " + item.getDescription());
                         if (shadowItem == null) {
                             System.out.println("No Shadow Item");
                         } else {
-                            System.out.println("Shad Item:" + shadowItem.getCode() + " " + shadowItem.getDescription());
+                            System.out.println("Shadow Item:" + shadowItem.getCode() + " " + shadowItem.getDescription());
                         }
                         System.out.println("----------------------------------------");
                     }
