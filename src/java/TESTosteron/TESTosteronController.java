@@ -148,13 +148,14 @@ public class TESTosteronController {
     public String showShadowCodes(ModelMap modelMap) {
         TESTosteronDao dao = new TESTosteronDao();
         LinkedHashMap<String, Item> allActiveItems = dao.getAllActiveItems();
+        LinkedHashMap<String, Item> pet4UItemsRowByRow = dao.getPet4UItemsRowByRow();
         for (Map.Entry<String, Item> allActiveItemsEntry : allActiveItems.entrySet()) {
             Item item = allActiveItemsEntry.getValue();
             ArrayList<AltercodeContainer> altercodes = item.getAltercodes();
             for (AltercodeContainer altercodeContainer : altercodes) {
                 String altercode = altercodeContainer.getAltercode();
                 if (altercode.contains("-")) {
-                    char firstChar = altercode.charAt(altercode.length()-1);
+                    char firstChar = altercode.charAt(0);
                     if (firstChar == '-') {
                         System.out.println(item.getCode() + "   " + item.getDescription() + "   " + altercode);
 
