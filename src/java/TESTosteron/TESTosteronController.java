@@ -165,8 +165,11 @@ public class TESTosteronController {
                         String repfactoredAltercode = altercode.replaceAll("-", "");
                         Item shadowItem = pet4UItemsRowByRow.get(repfactoredAltercode);
                         System.out.println("     Item:" + item.getCode() + " " + item.getDescription());
-                        System.out.println("Shad Item:" + shadowItem.getCode() + " " + shadowItem.getDescription());
-
+                        if (shadowItem == null) {
+                            System.out.println("No Shadow Item");
+                        } else {
+                            System.out.println("Shad Item:" + shadowItem.getCode() + " " + shadowItem.getDescription());
+                        }
                         System.out.println("----------------------------------------");
                     }
 
