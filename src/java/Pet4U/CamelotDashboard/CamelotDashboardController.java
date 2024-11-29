@@ -5,12 +5,10 @@
  */
 package Pet4U.CamelotDashboard;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-/**
- *
- * @author Michail Sitmalidis
- */
+@Controller
 public class CamelotDashboardController {
 
     @RequestMapping(value = "camelotDashboard")
