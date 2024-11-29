@@ -5,10 +5,16 @@
  */
 package Pet4U.Pet4uIndex;
 
-/**
- *
- * @author Michail Sitmalidis
- */
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
 public class Pet4uIndexController {
-    
+
+    @RequestMapping(value = "pet4uDashboard")
+    public String pet4uDashboard() {
+
+        return "/pet4u/pet4uIndex";
+    }
+
 }
