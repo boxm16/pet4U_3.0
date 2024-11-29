@@ -13,7 +13,7 @@ public class CamelotDashboardController {
 
     @RequestMapping(value = "camelotDashboard")
     public String camelotDashboard() {
-        System.out.println("dddd");
+      
         return "/camelot/camelotDashboard";
     }
 
