@@ -31,7 +31,7 @@
                 <hr><hr>
 
                 <hr>
-                <a href="pet4uDashboard.htm" class="btn btn-outline" role="button" style='background-color: lightgreenl ; color: green;'><h1 style="font-weight bold">Pet4u<br>Dashboard</h1></a>
+                <a href="pet4uDashboard.htm" class="btn btn-outline" role="button" style='background-color: lightgreen ; color: green;'><h1 style="font-weight bold">Pet4u<br>Dashboard</h1></a>
                 <hr><hr>
                 <a href="camelotDashboard.htm" class="btn btn-outline" role="button" style='color: #762276;'><h1>Camelot Dashboard</h1></a>
                 <hr><hr>
