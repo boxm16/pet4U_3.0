@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Pet4U.Camelot;
+package Pet4U.CamelotDashboard;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 
