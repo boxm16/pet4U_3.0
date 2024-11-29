@@ -31,9 +31,9 @@
                 <hr><hr>
 
                 <hr>
-                <a href="pet4uDashboard.htm" class="btn btn-outline" role="button" style='background-color: baf2ba ; color: green;'><h1 style="font-size: 40px; font-weight :bold">Pet4u<br>Dashboard</h1></a>
+                <a href="pet4uDashboard.htm" class="btn btn-outline" role="button" style='background-color:  #baf2ba ; color: green;'><h1 style="font-size: 40px; font-weight :bold">Pet4u<br>Dashboard</h1></a>
                 <hr><hr>
-                <a href="camelotDashboard.htm" class="btn btn-outline" role="button" style='background-color: #dbb4c9 ; color: #baf2ba;'><h1 style="font-size: 40px; font-weight : bold">Camelot<br>Dashboard</h1></a>
+                <a href="camelotDashboard.htm" class="btn btn-outline" role="button" style='background-color: #dbb4c9 ; color: #762276;'><h1 style="font-size: 40px; font-weight : bold">Camelot<br>Dashboard</h1></a>
                 <hr><hr>
                 <hr><hr>
 
