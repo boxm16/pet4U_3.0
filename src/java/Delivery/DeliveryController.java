@@ -386,4 +386,89 @@ public class DeliveryController {
         return "delivery/scanningerΧ";
     }
 
+    //ASTRON
+    @RequestMapping(value = "loadAstronData")
+    public String loadAstronData(ModelMap modelMap) {
+        Basement basement = new Basement();
+        String basementDirectory = basement.getBasementDirectory();
+        DeliveryInvoice deliveryInvoice = createAstronDeliveryInvoiceFromExcelFile(basementDirectory + "/ASTRON/deliveryExport.xlsx");
+        modelMap.addAttribute("deliveryInvoice", deliveryInvoice);
+
+        String applicationHostName = basement.getApplicationHostName();
+        if (applicationHostName.equals("LAPTOP")) {
+            System.out.println("CANT GET DATABASE DATA , you are on your laptop");
+        } else {
+            DeliveryDao deliveryDao = new DeliveryDao();
+            ArrayList<DeliveryItem> pet4UItemsRowByRow = deliveryDao.getPet4UItemsRowByRow();
+
+            modelMap.addAttribute("pet4UItemsRowByRow", pet4UItemsRowByRow);
+
+        }
+        String saveButton = "<button class=\"btn-primary\" onclick=\"requestRouter('saveCheckUp.htm')\">Save Delivery Checking</button>";
+        modelMap.addAttribute("saveButton", saveButton);
+        return "delivery/deliveryInvoiceChecking";
+    }
+
+    public DeliveryInvoice createAstronDeliveryInvoiceFromExcelFile(String filePath) {
+        System.out.println("STARTING READING ASTRON DELIVERY EXCEL FILE");
+        ExcelReader excelReader = new ExcelReader();
+        HashMap<String, String> cellsFromExcelFile = excelReader.getCellsFromExcelFile(filePath);
+        DeliveryInvoice deliveryInvoice = convertExcelDataToAstronItems(cellsFromExcelFile);
+        System.out.println("READING ROYAL ASTRON EXCEL FILE COMPLETED");
+        return deliveryInvoice;
+    }
+
+    private DeliveryInvoice convertExcelDataToAstronItems(HashMap<String, String> data) {
+        DeliveryInvoice deliveryInvoice = new DeliveryInvoice();
+        LinkedHashMap<String, DeliveryItem> items = new LinkedHashMap();
+        int rowIndex = 2;
+        while (!data.isEmpty()) {
+
+            String invoiceNumberLocationInTheRow = new StringBuilder("D").append(String.valueOf(rowIndex)).toString();
+            String invoiceNumberString = data.remove(invoiceNumberLocationInTheRow);//at the same time reading and removing the cell from hash Map
+
+            String itemCodeLocationInTheRow = new StringBuilder("F").append(String.valueOf(rowIndex)).toString();
+            String itemCodeString = data.remove(itemCodeLocationInTheRow);//at the same time reading and removing the cell from hash Map
+
+            String itemDescriptionLocationInTheRow = new StringBuilder("H").append(String.valueOf(rowIndex)).toString();
+            String itemDescriptionString = data.remove(itemDescriptionLocationInTheRow);//at the same time reading and removing the cell from hash Map
+
+            String quantityLocationInTheRow = new StringBuilder("M").append(String.valueOf(rowIndex)).toString();
+            String quantityString = data.remove(quantityLocationInTheRow);//at the same time reading and removing the cell from hash Map
+
+            if (itemCodeString == null) {//in theory this means that you reached the end of rows with data
+                break;
+            }
+
+            if (items.containsKey(itemCodeString)) {
+                String errorMessage = "Error: one code is 2 times in the list";
+                deliveryInvoice.setErrorMessages(deliveryInvoice.getErrorMessages() + ":::" + errorMessage);
+            } else {
+                DeliveryItem deliveryItem = new DeliveryItem();
+                deliveryItem.setCode(itemCodeString);
+                if (rowIndex == 2) {
+                    deliveryInvoice.setNumber(invoiceNumberString);
+
+                }
+
+                /*
+
+                AltercodeWrapper altercodeWrapper = new AltercodeWrapper();
+                altercodeWrapper.setAltercode(altercodeString);
+                altercodeWrapper.setStatus(altercodeStatusString);
+                item.addAltercode(altercodeWrapper); */
+                deliveryItem.setDescription(itemDescriptionString);
+                // item.setPosition(itemPositionString);
+                deliveryItem.setQuantity(quantityString);
+                deliveryItem.setDeliveredQuantity("0");
+                // item.setState(itemStateString);
+                items.put(itemCodeString, deliveryItem);
+            }
+            rowIndex++;
+        }
+        deliveryInvoice.setItems(items);
+
+        return deliveryInvoice;
+    }
+
 }
