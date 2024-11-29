@@ -28,12 +28,11 @@
                 <a href="searchDashboard.htm" class="btn btn-primary" role="button" style='background-color: green;'><h1>Find Pet4u Items</h1></a>
                 <hr><hr>
                 <a href="camelotSearchDashboard.htm" class="btn btn-primary" role="button" style='background-color: #762276;'><h1>Find Camelot Items</h1></a>
-                <hr><hr>
-
                 <hr>
-                <a href="pet4uDashboard.htm" class="btn btn-outline" role="button" style='background-color:  #baf2ba ; color: green;'><h1 style="font-size: 60px; font-weight :bold">Pet4u<br>Dashboard</h1></a>
+                <hr>
+                <a href="pet4uDashboard.htm" class="btn btn-outline" role="button" style='background-color:  #baf2ba ; color: green;'><h1 style="font-size: 50px; font-weight :bold">Pet4u<br>Dashboard</h1></a>
                 <hr><hr>
-                <a href="camelotDashboard.htm" class="btn btn-outline" role="button" style='background-color: #dbb4c9 ; color: #762276;'><h1 style="font-size: 60px; font-weight : bold">Camelot<br>Dashboard</h1></a>
+                <a href="camelotDashboard.htm" class="btn btn-outline" role="button" style='background-color: #dbb4c9 ; color: #762276;'><h1 style="font-size: 50px; font-weight : bold">Camelot<br>Dashboard</h1></a>
                 <hr><hr>
                 <hr><hr>
 
