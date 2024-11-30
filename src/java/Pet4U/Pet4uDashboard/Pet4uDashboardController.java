@@ -30,11 +30,12 @@ public class Pet4uDashboardController {
     @RequestMapping(value = "pet4uAuthorization", method = RequestMethod.POST)
     public String pet4uAuthorization(HttpSession session, @RequestParam(name = "password") String password) {
         if (password.equals("per4ito")
-                || password.equals("PER4ITO")
-                || password.equals("ΠΕΡ4ΙΤΟ")
-                || password.equals("περ4ιτο")) {
+                || password.equals("mixelo")
+                || password.equals("MIXELO")
+                || password.equals("μιχελο")
+                || password.equals("ΜΙΧΕΛΟ")) {
             session.setAttribute("user", "identified");
-            session.setAttribute("userName", "me");
+            session.setAttribute("userName", "mixail");
             return "/pet4u/pet4uDashboard";
         } else if (password.equals("bilobi")) {
             session.setAttribute("user", "identified");
