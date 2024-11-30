@@ -30,10 +30,6 @@
                 <a href="camelotSearchDashboard.htm" class="btn btn-primary" role="button" style='background-color: #762276;'><h1>Find Camelot Items</h1></a>
                 <hr>
                 <hr>
-                <a href="pet4uDashboard.htm" class="btn btn-outline" role="button" style='background-color:  #baf2ba ; color: green;'><h1 style="font-size: 50px; font-weight :bold">Pet4u<br>Dashboard</h1></a>
-                <hr><hr>
-                <a href="camelotDashboard.htm" class="btn btn-outline" role="button" style='background-color: #dbb4c9 ; color: #762276;'><h1 style="font-size: 50px; font-weight : bold">Camelot<br>Dashboard</h1></a>
-                <hr><hr>
                 <hr><hr>
 
                 <a href="endoParalaves.htm" class="btn btn-primary" role="button" style='background-color: #0C3CDD'><h1>ΕΝΔΟ ΠΑΡΑΛΑΒΕΣ</h1></a>
@@ -61,6 +57,8 @@
                 <hr>
 
                 <h1><a href="pet4uItemsWithPosition.htm">Show Items By Position </a></h1>
+                <hr>
+                <a href="camelotDashboard.htm" class="btn btn-outline" role="button" style='background-color: #dbb4c9 ; color: #762276;'><h1 style="font-size: 50px; font-weight : bold">Camelot<br>Dashboard</h1></a>
                 <hr>
                 <a href="adminIndex.htm"><h1>Admin Index</h1></a>
 
