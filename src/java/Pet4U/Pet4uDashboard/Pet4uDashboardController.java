@@ -8,8 +8,6 @@ package Pet4U.Pet4uDashboard;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class Pet4uDashboardController {
@@ -18,16 +16,18 @@ public class Pet4uDashboardController {
     public String pet4uDashboard(HttpSession session) {
 
         String userName = (String) session.getAttribute("userName");
-
-        if (userName.equals("me") || userName.equals("vasilis")) {
+        if (userName == null) {
+            return "/pet4u/authorization";
+        } else if (userName.equals("me") || userName.equals("vasilis")) {
             return "/pet4u/pet4uDashboard";
         } else {
             return "/pet4u/authorization";
         }
     }
+}
 
-    @RequestMapping(value = "pet4uAuthorization", method = RequestMethod.POST)
-    public String pet4uAuthorization(HttpSession session, @RequestParam(name = "password") String password) {
+@RequestMapping(value = "pet4uAuthorization", method = RequestMethod.POST)
+        public String pet4uAuthorization(HttpSession session, @RequestParam(name = "password") String password) {
         if (password.equals("per4ito")
                 || password.equals("PER4ITO")
                 || password.equals("ΠΕΡ4ΙΤΟ")
