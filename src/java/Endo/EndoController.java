@@ -4,10 +4,22 @@ import BasicModel.Item;
 import Delivery.DeliveryInvoice;
 import Delivery.DeliveryItem;
 import Pet4uItems.Pet4uItemsDao;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.krysalis.barcode4j.impl.code128.Code128Bean;
+import org.krysalis.barcode4j.impl.code128.Code128Constants;
+import org.krysalis.barcode4j.output.bitmap.BitmapCanvasProvider;
+import org.krysalis.barcode4j.tools.UnitConv;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -384,14 +396,62 @@ public class EndoController {
         LinkedHashMap<String, DeliveryItem> pet4UItemsRowByRow = endoDao.getPet4UItemsRowByRow();
         LinkedHashMap<String, DeliveryItem> sentItems = endoDao.getSentItems(endoIdsArray, pet4UItemsRowByRow);
 
-        DeliveryInvoice deliveryInvoice = new DeliveryInvoice();
-        deliveryInvoice.setItems(sentItems);
+        int index = 0;
+        for (Map.Entry<String, DeliveryItem> sentItemsEntrySet : sentItems.entrySet()) {
+            Item item = sentItemsEntrySet.getValue();
+            String mainBarcode = item.getMainBarcode();
+            if (mainBarcode == null) {
+                System.out.println("mainBarcode Null");
+                modelMap.addAttribute("message", "Can't print this label. mainBarcode is NULL. Ask for help");
 
-        modelMap.addAttribute("deliveryInvoice", deliveryInvoice);
+            }
+            OutputStream out = null;
+            try {
 
-        ArrayList<Item> listValues = new ArrayList<Item>(pet4UItemsRowByRow.values());
-        modelMap.addAttribute("pet4UItemsRowByRow", listValues);
+                Code128Bean barcode128Bean = new Code128Bean();
+                barcode128Bean.setCodeset(Code128Constants.CODESET_B);
+                final int dpi = 100;
+                //Configure the barcode generator
+                //adjust barcode width here
+                barcode128Bean.setModuleWidth(UnitConv.in2mm(5.0f / dpi));
+                barcode128Bean.doQuietZone(false);
+                barcode128Bean.setBarHeight(8);
+                //bean.setVerticalQuietZone(3);
+                barcode128Bean.setQuietZone(0);
 
+                //Open output file
+                File outputFile = new File("C:/Pet4U_3.0/barcodification/barcodification" + index + ".png");
+                out = new FileOutputStream(outputFile);
+                try {
+                    BitmapCanvasProvider canvasProvider = new BitmapCanvasProvider(
+                            out, "image/x-png", dpi, BufferedImage.TYPE_BYTE_BINARY, false, 0);
+
+                    barcode128Bean.generateBarcode(canvasProvider, mainBarcode);
+
+                    try {
+                        canvasProvider.finish();
+                    } catch (IOException ex) {
+                        Logger.getLogger(EndoController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } finally {
+                    try {
+                        out.close();
+                    } catch (IOException ex) {
+                        Logger.getLogger(EndoController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+
+                // model.addAttribute("code", code);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(EndoController.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                try {
+                    out.close();
+                } catch (IOException ex) {
+                    Logger.getLogger(EndoController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
         return "endo/endosChecking";
 
     }
