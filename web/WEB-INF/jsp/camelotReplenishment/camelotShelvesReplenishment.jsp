@@ -143,10 +143,9 @@
                             
                             out.println("<tr>");
                             out.println("<td colspan='2'>");
-                            out.println("<a href='goForEditingCamelotReplenishment.htm?itemCode=" + replenishment.getCode() + "' target='_blank'>Edit</a>");
+                            out.println("<a href='goForEditingCamelotReplenishment.htm?itemCode=" + replenishment.getCode() + "' target='_blank' class='btn btn-danger btn-sm' role='button' aria-disabled='true'>Edit</a>");
                             out.println("</td>");
                             out.println("</tr>");
-
                             out.println("</tbody>");
                             out.println("</table>");
                             out.println("<div STYLE=\"background-color:lightblue; height:10px; width:100%;\"></div>");
