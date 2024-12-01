@@ -396,11 +396,11 @@ public class EndoController {
         EndoDao endoDao = new EndoDao();
         LinkedHashMap<String, DeliveryItem> pet4UItemsRowByRow = endoDao.getPet4UItemsRowByRow();
         LinkedHashMap<String, DeliveryItem> sentItems = endoDao.getSentItems(endoIdsArray, pet4UItemsRowByRow);
-
+       
         int index = 0;
         for (Map.Entry<String, DeliveryItem> sentItemsEntrySet : sentItems.entrySet()) {
             Item item = sentItemsEntrySet.getValue();
-            String mainBarcode = item.getMainBarcode();
+            String mainBarcode = item.getCode();
             if (mainBarcode == null) {
                 System.out.println("mainBarcode Null");
                 modelMap.addAttribute("message", "Can't print this label. mainBarcode is NULL. Ask for help");
