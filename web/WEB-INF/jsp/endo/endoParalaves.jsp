@@ -295,7 +295,7 @@
                 <td>
                     <input style="background-color:lightgreen; font-size:40px" type="button" value="ΕΛΕΓΧΟΣ" onclick="requestRouter('endosChecking.htm')">
 
-                    --------
+                    ------------------
 
 
                     <input style="background-color:red; font-size:40px" type="button" value="TRIAL ONLY" onclick="requestRouter('endosBarcodification.htm')">

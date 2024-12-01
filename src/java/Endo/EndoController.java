@@ -376,4 +376,24 @@ public class EndoController {
         return "redirect:endoParalaves.htm";
     }
 
+    @RequestMapping(value = "endosBarcodification", method = RequestMethod.POST)
+    public String endosBarcodification(@RequestParam(name = "endoIds") String endoIds, ModelMap modelMap) {
+        this.endoIdsArray = createItemsIdsArray(endoIds);
+
+        EndoDao endoDao = new EndoDao();
+        LinkedHashMap<String, DeliveryItem> pet4UItemsRowByRow = endoDao.getPet4UItemsRowByRow();
+        LinkedHashMap<String, DeliveryItem> sentItems = endoDao.getSentItems(endoIdsArray, pet4UItemsRowByRow);
+
+        DeliveryInvoice deliveryInvoice = new DeliveryInvoice();
+        deliveryInvoice.setItems(sentItems);
+
+        modelMap.addAttribute("deliveryInvoice", deliveryInvoice);
+
+        ArrayList<Item> listValues = new ArrayList<Item>(pet4UItemsRowByRow.values());
+        modelMap.addAttribute("pet4UItemsRowByRow", listValues);
+
+        return "endo/endosChecking";
+
+    }
+
 }
