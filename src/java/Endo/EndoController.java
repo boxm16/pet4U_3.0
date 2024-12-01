@@ -16,6 +16,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.krysalis.barcode4j.HumanReadablePlacement;
 import org.krysalis.barcode4j.impl.code128.Code128Bean;
 import org.krysalis.barcode4j.impl.code128.Code128Constants;
 import org.krysalis.barcode4j.output.bitmap.BitmapCanvasProvider;
@@ -418,6 +419,7 @@ public class EndoController {
                 barcode128Bean.setBarHeight(8);
                 //bean.setVerticalQuietZone(3);
                 barcode128Bean.setQuietZone(0);
+                barcode128Bean.setMsgPosition(HumanReadablePlacement.HRP_NONE);
 
                 //Open output file
                 File outputFile = new File("C:/Pet4U_3.0/barcodification/barcodification" + index + ".png");
