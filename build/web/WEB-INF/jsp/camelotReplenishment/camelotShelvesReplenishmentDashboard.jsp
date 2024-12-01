@@ -46,7 +46,8 @@
             <th>Περιγραφή</th>
             <th>Μονάδα Αναπλήρωσης</th>
             <th>Τεμάχια Σε  <br> Μονάδα Αναπλήρωσης</th>
-            <th>Replenishment Quantity</th>
+            <th>Ποσοτητα Αναπλληρωσης<br>Σε Μονάδα Αναπλήρωσης</th>
+            <th>Ποσοτητα Αναπλληρωσης<br>Σε Τεμάχια</th>
             <th>Referral DateTime</th>
             <th>Sails After<br>Referral DateTime</th>
             <th>ΒΑΡ-PC Sails After<br>Referral DateTime</th>
@@ -84,6 +85,9 @@
 
                     out.println("<td>");
                     out.println(replenishment.getReplenishmentQuantity());
+                    out.println("</td>");
+                    out.println("<td>");
+                    out.println(replenishment.getReplenishmentQuantity() * replenishment.getItemsInReplenishmentUnit());
                     out.println("</td>");
 
                     out.println("<td>");

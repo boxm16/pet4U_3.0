@@ -178,6 +178,7 @@ public class CamelotReplenishmentDao {
                 CamelotReplenishment item = new CamelotReplenishment();
                 String itemCode = resultSet.getString("item_code");
                 item.setCode(itemCode);
+                item.setReplenishmentUnit(resultSet.getString("replenishment_unit"));
                 item.setReplenishmentQuantity(resultSet.getInt("replenishment_quantity"));
                 item.setItemsInReplenishmentUnit(resultSet.getInt("items_int_replenishment_unit"));
 
