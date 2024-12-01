@@ -454,7 +454,7 @@ public class EndoController {
                 }
             }
         }
-        return "endo/endosChecking";
+        return "endo/barcodification";
 
     }
 
