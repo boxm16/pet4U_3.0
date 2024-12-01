@@ -453,6 +453,7 @@ public class EndoController {
                     Logger.getLogger(EndoController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
+            index++;
         }
         return "endo/endoBarcodification";
 
