@@ -42,12 +42,14 @@
             <thead>
 
             <th>Item<br>Code</th>
-            <th>Position</th>
-            <th>Description</th>
-            <th>Referral DateTime</th>
+            <th>Θέση</th>
+            <th>Περιγραφή</th>
+            <th>Μονάδα Αναπλήρωσης</th>
+            <th>Τεμάχια Σε  <br> Μονάδα Αναπλήρωσης</th>
             <th>Replenishment Quantity</th>
-            <th>Sails After Referral DateTime</th>
-            <th>ΒΑΡ-PC Sails After Referral DateTime</th>
+            <th>Referral DateTime</th>
+            <th>Sails After<br>Referral DateTime</th>
+            <th>ΒΑΡ-PC Sails After<br>Referral DateTime</th>
             <th>Minimal Shelf Stock</th>
             <th>Stock</th>
             <th>Note</th>
@@ -73,11 +75,19 @@
                     out.println("</td>");
 
                     out.println("<td>");
-                    out.println(replenishment.getDateTime());
+                    out.println(replenishment.getReplenishmentUnit());
+                    out.println("</td>");
+
+                    out.println("<td>");
+                    out.println(replenishment.getItemsInReplenishmentUnit());
                     out.println("</td>");
 
                     out.println("<td>");
                     out.println(replenishment.getReplenishmentQuantity());
+                    out.println("</td>");
+
+                    out.println("<td>");
+                    out.println(replenishment.getDateTime());
                     out.println("</td>");
 
                     out.println("<td>");
