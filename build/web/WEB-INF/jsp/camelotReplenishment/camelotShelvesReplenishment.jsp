@@ -143,7 +143,7 @@
                             
                             out.println("<tr>");
                             out.println("<td colspan='2'>");
-                            out.println("<center><a href='goForEditingCamelotReplenishment.htm?itemCode=" + replenishment.getCode() + "' target='_blank' class='btn btn-danger btn-sm' role='button' aria-disabled='true' ><h4>Edit<h4></a></center>");
+                            out.println("<center><a href='goForEditingCamelotReplenishment.htm?itemCode=" + replenishment.getCode() + "' target='_blank' class='btn btn-danger btn-sm'><h4>Edit<h4></a></center>");
                             out.println("</td>");
                             out.println("</tr>");
                             out.println("</tbody>");
