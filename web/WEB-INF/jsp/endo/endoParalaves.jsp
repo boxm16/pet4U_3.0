@@ -131,9 +131,9 @@
                             out.println("</td>");
                         } else {
                             out.println("<td  colspan='5'  style='background-color: red'>");
-                         //   out.println("<center><a href='checkSuggestedBinder.htm' class='btn btn-danger' style='font-size:30px' target='_blank'>SOMETHING WRONG. SEE WHY</a></center>");
+                            //   out.println("<center><a href='checkSuggestedBinder.htm' class='btn btn-danger' style='font-size:30px' target='_blank'>SOMETHING WRONG. SEE WHY</a></center>");
                             out.println("SOMETHING WRONG. ΠΑΤΑ ΣΥΓΚΡΗΣΗ ΝΑ ΔΕΙΣ");
-                           
+
                             out.println("</td>");
                         }
                         out.println("</tr>");
@@ -143,15 +143,13 @@
                         out.println("<center>NO SUGGESTION FOR CHECKING AND BINDING</center>");
                         out.println("</td>");
                         out.println("</tr>");
-                        
-                             out.println("<tr>");
+
+                        out.println("<tr>");
                         out.println("<td colspan='5' >");
                         out.println("<center> <a href='endoParalaves.htm' class='btn btn-primary' style='background-color: green' role='button'><h1>ΑΝΑΝΕΩΣΗ ΣΕΛΙΔΑΣ</h1></a></center>");
                         out.println("</td>");
                         out.println("</tr>");
-                        
-                       
-                        
+
                     }
                 %>
             </tbody>
@@ -296,6 +294,13 @@
             <tr>
                 <td>
                     <input style="background-color:lightgreen; font-size:40px" type="button" value="ΕΛΕΓΧΟΣ" onclick="requestRouter('endosChecking.htm')">
+                </td>
+                <td>
+                    --------
+                </td>
+
+                <td>
+                    <input style="background-color:red; font-size:40px" type="button" value="TRIAL ONLY" onclick="requestRouter('endosBarcodification.htm')">
                 </td>
                 <td colspan="2">
             <center>
