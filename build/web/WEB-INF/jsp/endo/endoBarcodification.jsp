@@ -14,7 +14,7 @@
     <body>
         <h1>Hello World!</h1>
         <%
-            out.println("<img src='barcodification/barcodification0.png' />");
+            out.println("<img src='C:/Pet4U_3.0/barcodification/barcodification0.png' />");
         %>
     </body>
 </html>
