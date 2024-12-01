@@ -416,7 +416,7 @@ public class EndoController {
                 //adjust barcode width here
                 barcode128Bean.setModuleWidth(UnitConv.in2mm(5.0f / dpi));
                 barcode128Bean.doQuietZone(false);
-                barcode128Bean.setBarHeight(8);
+                barcode128Bean.setBarHeight(15);
                 //bean.setVerticalQuietZone(3);
                 barcode128Bean.setQuietZone(0);
                 barcode128Bean.setMsgPosition(HumanReadablePlacement.HRP_NONE);
