@@ -1,9 +1,4 @@
-<%-- 
-    Document   : endoBarcodification
-    Created on : Dec 1, 2024, 11:53:56 PM
-    Author     : Michail Sitmalidis
---%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -13,8 +8,8 @@
     </head>
     <body>
         <h1>Hello World!</h1>
-        <img src="${pageContext.request.contextPath}/pngs/barcodification0.png" />
+        <img src="<c:url value="/PNGs/barcodification0.png" />" alt="TestDisplay"/>
 
 
-    </body>
+</body>
 </html>
