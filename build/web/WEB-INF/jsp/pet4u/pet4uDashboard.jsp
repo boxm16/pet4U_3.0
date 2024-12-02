@@ -37,6 +37,9 @@
                 <hr>
                 <a href="camelotOrderAlertSV.htm" class="btn btn-primary" style='background-color: #762276' role="button"><h1>CAMELOT ORDER ALERT</h1></a>
                 <hr> 
+                <a href="notesDisplay.htm" class="btn btn-primary" role="button" style='background-color: #2DEE0F'><h1>Pet4U Notes</h1></a>
+                <hr>
+                <a href="notesDisplayCardMode.htm"><h1>Pet4U Notes: Card Mode</h1></a>
                 <hr> 
                 <a href="shelvesReplenishment.htm" class="btn btn-primary" style='background-color: #f955d4' role="button"><h1>Αναπλήρωση Ραφιών</h1></a>
                 <hr>
