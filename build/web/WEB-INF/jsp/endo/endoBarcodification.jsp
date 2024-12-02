@@ -13,9 +13,8 @@
     </head>
     <body>
         <h1>Hello World!</h1>
-        <img src="C:/Pet4U_3.0/barcodification/barcodification0.png" alt="Girl in a jacket" width="500" height="600">
-              
-        <img src="C:/Pet4U_3.0/barcodification/barcodification0.png" />
-      
+        <img src="${pageContext.request.contextPath}/barcodification0.png" />
+
+
     </body>
 </html>
