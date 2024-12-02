@@ -7,9 +7,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
-        <img src="<c:url value="/PNGs/barcodification0.png" />" alt="TestDisplay"/>
-
-
+        <h1>Hello World!</h1> 
 </body>
 </html>
