@@ -13,7 +13,7 @@
     </head>
     <body>
         <h1>Hello World!</h1>
-        <img src="Pet4U_Uploads/barcodification0.png" />
+        <img src="${pageContext.request.contextPath}/Pet4U_Uploads/barcodification0.png" />
 
 
     </body>
