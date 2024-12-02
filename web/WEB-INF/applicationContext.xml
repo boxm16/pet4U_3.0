@@ -22,4 +22,4 @@
     <!-- ADD PERSISTENCE SUPPORT HERE (jpa, hibernate, etc) -->
   
 </beans>
-  <mvc:resources mapping="/PNGs/*" location="/PNGs/" />
+
