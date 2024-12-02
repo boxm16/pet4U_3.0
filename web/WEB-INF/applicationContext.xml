@@ -20,5 +20,5 @@
     p:password="${jdbc.password}" /-->
 
     <!-- ADD PERSISTENCE SUPPORT HERE (jpa, hibernate, etc) -->
-
+    <mvc:resources mapping="/PNGs/*" location="/PNGs/" />
 </beans>
