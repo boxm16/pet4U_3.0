@@ -396,7 +396,7 @@ public class EndoController {
         EndoDao endoDao = new EndoDao();
         LinkedHashMap<String, DeliveryItem> pet4UItemsRowByRow = endoDao.getPet4UItemsRowByRow();
         LinkedHashMap<String, DeliveryItem> sentItems = endoDao.getSentItems(endoIdsArray, pet4UItemsRowByRow);
-       
+
         int index = 0;
         for (Map.Entry<String, DeliveryItem> sentItemsEntrySet : sentItems.entrySet()) {
             Item item = sentItemsEntrySet.getValue();
@@ -454,7 +454,20 @@ public class EndoController {
                 }
             }
             index++;
+
         }
+
+        //-------------
+        //String printName = "\\\\eshoplaptop\\ZDesigner GC420t (EPL) (Αντιγραφή 1)";
+        // BarcodePrinter barcodePrinter = new BarcodePrinter();
+        String printName = "ZDesigner GC420t (EPL)";
+        BarcodificationPrinter barcodePrinter = new BarcodificationPrinter();
+//---------------
+
+        int labelsCount = Integer.parseInt("1");
+        barcodePrinter.setLabelsCount(labelsCount);
+
+        barcodePrinter.printSomething(printName);
         return "endo/endoBarcodification";
 
     }
