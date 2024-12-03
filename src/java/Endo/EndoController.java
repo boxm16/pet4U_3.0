@@ -460,7 +460,7 @@ public class EndoController {
         //-------------
         //String printName = "\\\\eshoplaptop\\ZDesigner GC420t (EPL) (Αντιγραφή 1)";
         // BarcodePrinter barcodePrinter = new BarcodePrinter();
-        String printName = "ZDesigner GC420t (EPL)";
+        String printName = "HP LaserJet Pro MFP M127-M128 PCLmS";
         BarcodificationPrinter barcodePrinter = new BarcodificationPrinter();
 //---------------
 
