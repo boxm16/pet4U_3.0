@@ -52,9 +52,9 @@
 
                             double stockNow = Double.parseDouble(replenishment.getQuantity());
 
-                            int stockOnShelfNow = replenishment.getReplenishmentQuantity() - replenishment.getSailsAfterReplenishment()-replenishment.getEndoSailsAfterReplenishment();
+                            int stockOnShelfNow = replenishment.getReplenishmentQuantity() - replenishment.getSailsAfterReplenishment() - replenishment.getEndoSailsAfterReplenishment();
 
-                            if (stockNow == 0 || stockNow == stockOnShelfNow) {
+                            if (replenishment.getReplenishmentQuantity() == 0 || stockNow == 0 || stockNow == stockOnShelfNow) {
                                 continue;
                             }
 
@@ -170,7 +170,7 @@
 
                             int stockOnShelfNow = replenishment.getReplenishmentQuantity()
                                     - replenishment.getSailsAfterReplenishment()
-                                    -replenishment.getEndoSailsAfterReplenishment();
+                                    - replenishment.getEndoSailsAfterReplenishment();
 
                             if (stockNow == 0 || stockNow == stockOnShelfNow) {
                                 continue;
@@ -265,7 +265,7 @@
                             String alarmColor = "";
 
                             Replenishment replenishment = entrySet.getValue();
-                            int stockOnShelfNow = replenishment.getReplenishmentQuantity() 
+                            int stockOnShelfNow = replenishment.getReplenishmentQuantity()
                                     - replenishment.getSailsAfterReplenishment()
                                     - replenishment.getEndoSailsAfterReplenishment();
                             if (stockOnShelfNow < replenishment.getMinimalShelfStock() * 2) {

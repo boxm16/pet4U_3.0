@@ -116,13 +116,13 @@
         </table>
         <hr>
 
-        <button onclick="window.print()">Print this page</button>
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal">
             DELETE ALL NOTES
         </button>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+
+        <button onclick="window.print()">RINT THIS PAGE</button>
 
 
 
