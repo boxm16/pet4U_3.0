@@ -152,7 +152,7 @@
                                 out.println("<tbody>");
                                 out.println("<tr>");
                                 out.println("<td>");
-                                out.println(" <a href='printBarcode.htm?altercode=" + target + "' class='btn btn-danger btn-lg' role='button' aria-disabled='true'><h3>PRINT (wys)<br> LABEL</h3></a>");
+                                out.println(" <a href='printBarcode.htm?altercode=" + target + "' class='btn btn-danger btn-lg' role='button' aria-disabled='true'><h3>PRINT <br>(wys)<br> LABEL</h3></a>");
                                 out.println("</td>");
                                 out.println("<td>");
                                 out.println("___");
