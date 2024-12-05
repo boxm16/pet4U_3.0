@@ -168,6 +168,79 @@ public class CamelotSearchController {
         return "camelotSearch/camelotNotesDisplay";
     }
 
+    //--THIS IS COPY OF ABOVE METHOD< BUT FOR PRINTING-------------------------
+    @RequestMapping(value = "printCamelotNotes")
+    public String printCamelotNotes(ModelMap model) {
+
+        NotesDao notesDao = new NotesDao();
+        ArrayList<InventoryItem> notes = notesDao.getAllCamelotNotes();
+
+        LinkedHashMap<String, LinkedHashMap<Integer, String>> allStockPositions = notesDao.getAllStockPositions();
+
+        CamelotItemsOfInterestDao camelotItemsOfInterestDao = new CamelotItemsOfInterestDao();
+        LinkedHashMap<String, Item> camelotItems = camelotItemsOfInterestDao.getCamelotItemsRowByRow();
+
+        TreeMap<String, InventoryItem> sortedNotes = new TreeMap();
+        int x = 0;
+        for (InventoryItem inventoryItem : notes) {
+            //     System.out.println("ITETM:" + inventoryItem.getCode());
+            String altercode = inventoryItem.getCode();
+            Item camelotItem = camelotItems.get(altercode);
+            if (camelotItem == null) {
+                System.out.println("CamelotItem with altercode " + altercode + "  not present in the lists from microsoft db");
+                camelotItem.setCode(altercode);
+
+                inventoryItem.setCode(altercode);
+                inventoryItem.setDescription("No Data Available");
+                inventoryItem.setPosition("No Data Available");
+                inventoryItem.setQuantity("No Data Available");
+            } else {
+                inventoryItem.setCode(camelotItem.getCode());
+                inventoryItem.setDescription(camelotItem.getDescription());
+                inventoryItem.setPosition(camelotItem.getPosition());
+                inventoryItem.setQuantity(camelotItem.getQuantity());
+            }
+            //---------
+            LinkedHashMap<Integer, String> itemStockPositions = allStockPositions.get(camelotItem.getCode());
+
+            if (itemStockPositions == null) {
+                System.out.println("CamelotItem with altercode " + altercode + "  does note have stock positions");
+                itemStockPositions = new LinkedHashMap<>();
+                itemStockPositions.put(x, "ΔΕΝ ΥΠΑΡΧΟΥΝ ΘΕΣΕΙΣ ΣΤΟΚ <br> ΓΙΑ ΑΥΤΟΝ ΤΟΝ ΚΩΔΙΚΟ");
+
+            }
+            inventoryItem.setStockPositions(itemStockPositions);
+
+            Entry<Integer, String> mapEntry = itemStockPositions.entrySet().iterator().next();
+            String firstStockPosition = mapEntry.getValue();
+            System.out.println("First Stock Position: " + firstStockPosition);
+            if (sortedNotes.containsKey(firstStockPosition)) {
+                System.out.println("Sorted Notes contain position : " + firstStockPosition);
+                firstStockPosition = firstStockPosition + ":" + x;
+                System.out.println("Creating fake position : " + firstStockPosition);
+                sortedNotes.put(firstStockPosition, inventoryItem);
+            } else {
+                sortedNotes.put(firstStockPosition, inventoryItem);
+            }
+            x++;
+        }
+
+        ArrayList<InventoryItem> sortedNotesArrayList = new ArrayList<InventoryItem>(sortedNotes.values());
+        model.addAttribute("notes", sortedNotesArrayList);
+
+        //String printName = "\\\\eshoplaptop\\ZDesigner GC420t (EPL) (Αντιγραφή 1)";
+        // BarcodePrinter barcodePrinter = new BarcodePrinter();
+        //String printName = "HP LaserJet Pro MFP M127-M128 PCLmS";
+        String printName = "HPF907E5 (HP LaserJet Pro M428f-M429f)";
+        CamelotNotesPrinter camelotNotesPinter = new CamelotNotesPrinter();
+        //---------------
+        camelotNotesPinter.setSortedNotesArrayList(sortedNotesArrayList);
+        camelotNotesPinter.printSomething(printName);
+
+        return "camelotSearch/camelotNotesDisplay";
+    }
+
+    //--------------------------------------------------------------------------
     @RequestMapping(value = "camelotNotesCardMode")
     public String camelotNotesCardMode(ModelMap model) {
 

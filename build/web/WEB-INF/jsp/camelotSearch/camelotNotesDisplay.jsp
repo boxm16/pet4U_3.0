@@ -122,7 +122,9 @@
         </button>
         &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 
-        <button onclick="window.print()">RINT THIS PAGE</button>
+        <button onclick="window.print()">PRINT THIS PAGE</button>
+        <hr>
+        <a href='printCamelotNotes.htm' class='btn btn-danger btn-lg' role='button' aria-disabled='true'><h3>FOR TRIAL ONLY</h3></a>
 
 
 

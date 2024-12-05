@@ -96,7 +96,7 @@ public class NotesController {
 
     @RequestMapping(value = "deleteNote", method = RequestMethod.GET)
     public String deleteNote(@RequestParam(name = "id") String id, ModelMap model, HttpSession session) {
-        
+
         String userName = (String) session.getAttribute("userName");
 
         if (userName == null) {
@@ -107,7 +107,7 @@ public class NotesController {
             model.addAttribute("message", "You are not authorized for this action. Don`t do this again.");
             return "errorPage";
         }
-        
+
         NotesDao notesDao = new NotesDao();
         notesDao.deleteNote(id);
         return "redirect:notesDisplay.htm";
