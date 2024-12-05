@@ -4,20 +4,16 @@ import Inventory.InventoryItem;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
 import java.awt.print.PageFormat;
 import java.awt.print.Paper;
 import java.awt.print.Printable;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.imageio.ImageIO;
 import javax.print.PrintService;
 
 public class CamelotNotesPrinter implements Printable {
@@ -48,43 +44,35 @@ public class CamelotNotesPrinter implements Printable {
             Graphics2D g2d = (Graphics2D) g;
             g2d.translate(pf.getImageableX(), pf.getImageableY());
             /* Now we perform our rendering */
-            try {
-                int x = 10;                                        //print start at 100 on x axies
-                int y = 2;
+
+            int h = 10;                                        //print start at 100 on x axies
 
 //print start at 10 on y axies
-                int imagewidth = 100;
-                int imageheight = 30;
-
-                BufferedImage read = ImageIO.read(new File("C:/Pet4U_3.0/barcode.png"));
-                g2d.drawImage(read, x, y, imagewidth, imageheight, null);         //draw image
-
-                //draw image
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
             for (InventoryItem note : this.sortedNotesArrayList) {
 
-                g.setFont(new Font("Roman", Font.BOLD, 15));
-                g.drawString(note.getCode(), 10, 45);
-
-                g.setFont(new Font("Roman", Font.BOLD, 15));
-                g.drawString(note.getPosition(), 165, 15);
-
                 g.setFont(new Font("Roman", Font.BOLD, 10));
-                g.drawString(note.getDescription(), 10, 55);
+                g.drawString(note.getCode(), 10, h);
 
-                g.setFont(new Font("Roman", Font.BOLD, 53));
-                g.drawString(note.getNote(), 5, 100);
+                g.setFont(new Font("Roman", Font.PLAIN, 8));
+                g.drawString(note.getPosition(), 50, h);
+
+                g.setFont(new Font("Roman", Font.PLAIN, 8));
+                g.drawString(note.getDescription(), 100, h);
+
+                g.setFont(new Font("Roman", Font.PLAIN, 8));
+                g.drawString(note.getNote(), 320, h);
 
                 LinkedHashMap<Integer, String> stockPositions = note.getStockPositions();
                 if (stockPositions == null) {
                 } else {
                     for (Map.Entry<Integer, String> stockPositionsEntry : stockPositions.entrySet()) {
-                        g.setFont(new Font("Roman", Font.BOLD, 53));
-                        g.drawString(stockPositionsEntry.getValue(), 5, 100);
+                        g.setFont(new Font("Roman", Font.PLAIN, 8));
+                        g.drawString(stockPositionsEntry.getValue(), 450, h);
+                        h = h + 10;
                     }
+                    g.drawLine(0, h, 550, h);
                 }
+                h = h + 10;
 
             }
 

@@ -228,10 +228,9 @@ public class CamelotSearchController {
         ArrayList<InventoryItem> sortedNotesArrayList = new ArrayList<InventoryItem>(sortedNotes.values());
         model.addAttribute("notes", sortedNotesArrayList);
 
-        //String printName = "\\\\eshoplaptop\\ZDesigner GC420t (EPL) (Αντιγραφή 1)";
-        // BarcodePrinter barcodePrinter = new BarcodePrinter();
-        //String printName = "HP LaserJet Pro MFP M127-M128 PCLmS";
-        String printName = "HPF907E5 (HP LaserJet Pro M428f-M429f)";
+        String printName = "HP LaserJet Pro MFP M127-M128 PCLmS";
+        // this is the printer we want
+        //String printName = "HPF907E5 (HP LaserJet Pro M428f-M429f)";
         CamelotNotesPrinter camelotNotesPinter = new CamelotNotesPrinter();
         //---------------
         camelotNotesPinter.setSortedNotesArrayList(sortedNotesArrayList);
