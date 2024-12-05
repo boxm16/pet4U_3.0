@@ -39,6 +39,12 @@
 
                     <center>
 
+
+                        <a href="printCamelotNotes.htm" class="btn btn-primary btn-lg" role="button">PRINT</a>
+
+                        <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#exampleModal">
+                            DELETE ALL NOTES
+                        </button>
                         <%
                             ArrayList<InventoryItem> items = (ArrayList) request.getAttribute("notes");
 
@@ -92,7 +98,7 @@
                                             out.println("<br>");
                                         }
                                     }
-                                    
+
                                     out.println("</td>");
                                     out.println("</tr>");
 
@@ -110,11 +116,6 @@
                         %>
 
                         <hr><hr>
-
-                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                            DELETE ALL NOTES
-                        </button>
 
                         <!-- Modal -->
                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

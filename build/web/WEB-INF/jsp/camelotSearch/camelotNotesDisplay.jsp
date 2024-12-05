@@ -126,9 +126,7 @@
         <hr>
 
 
-        <!-- Button trigger modal 
-        <a href='printCamelotNotes.htm' class='btn btn-danger btn-lg' role='button' aria-disabled='true'><h3>FOR TRIAL ONLY</h3></a>
-        -->
+      
 
 
         <!-- Modal -->
