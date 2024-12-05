@@ -43,22 +43,8 @@
                 <hr> 
                 <a href="shelvesReplenishment.htm" class="btn btn-primary" style='background-color: #f955d4' role="button"><h1>Αναπλήρωση Ραφιών</h1></a>
                 <hr>
-
-                <a href="camelotShelvesReplenishment.htm" class="btn btn-primary" style='background-color: #ab48aa' role="button"><h1>Αναπλήρωση Camelot</h1></a>
-                <hr>
-
                 <a href="deliveryDashboard_X.htm" class="btn btn-primary" style='background-color: red' role="button"><h1>Delivery Dashboard</h1></a>
-                <hr> <hr> <hr>
-                <a href="camelotNotesDisplay.htm" class="btn btn-primary" role="button" style='background-color: #B48199'><h1>Camelot Notes</h1></a>
                 <hr>
-                <a href="camelotNotesCardMode.htm"><h1>Camelot Notes:Card Mode</h1></a>
-
-
-                <a href="camelotStockPositionsDisplay.htm"><h1>Camelot Stock Positions By Position </h1></a>
-                <hr>
-                <a href="camelotStockPositionsByItemCodeDisplay.htm"><h1>Camelot Stock Positions By Item Code </h1></a>
-                <hr>
-
                 <h1><a href="pet4uItemsWithPosition.htm">Show Items By Position </a></h1>
                 <hr>
                 <a href="camelotDashboard.htm" class="btn btn-outline" role="button" style='background-color: #dbb4c9 ; color: #762276;'><h1 style="font-size: 50px; font-weight : bold">Camelot<br>Dashboard</h1></a>
