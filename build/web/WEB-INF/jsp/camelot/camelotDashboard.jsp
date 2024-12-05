@@ -34,8 +34,9 @@
                 <hr>
                 <a href="camelotNotesDisplay.htm" class="btn btn-primary" role="button" style='background-color: #B48199'><h1>Camelot Notes</h1></a>
                 <hr>
-                <a href="camelotNotesCardMode.htm"><h1>Camelot Notes:Card Mode</h1></a>
-                <hr>
+
+                <a href="camelotNotesCardMode.htm" class="btn btn-primary" role="button" style='background-color: #B48199'><h1>Camelot Notes:Card Mode</h1></a>
+                &nbsp;&nbsp;&nbsp;&nbsp;
                 <a href="camelotStockPositionsDisplay.htm"><h1>Camelot Stock Positions By Position </h1></a>
                 <hr>
                 <a href="camelotStockPositionsByItemCodeDisplay.htm"><h1>Camelot Stock Positions By Item Code </h1></a>

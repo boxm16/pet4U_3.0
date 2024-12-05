@@ -236,7 +236,7 @@ public class CamelotSearchController {
         camelotNotesPinter.setSortedNotesArrayList(sortedNotesArrayList);
         camelotNotesPinter.printSomething(printName);
 
-        return "camelotSearch/camelotNotesDisplay";
+        return "camelotSearch/camelotNotesCardMode";
     }
 
     //--------------------------------------------------------------------------

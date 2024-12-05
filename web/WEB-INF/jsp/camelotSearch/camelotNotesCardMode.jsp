@@ -45,6 +45,7 @@
                         <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#exampleModal">
                             DELETE ALL NOTES
                         </button>
+                        <hr>
                         <%
                             ArrayList<InventoryItem> items = (ArrayList) request.getAttribute("notes");
 
