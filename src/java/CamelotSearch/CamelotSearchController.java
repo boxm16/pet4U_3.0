@@ -58,6 +58,9 @@ public class CamelotSearchController {
         Item item = camelotSearchDao.getItemByAltercode(altercode);
         modelMap.addAttribute("target", altercode);
         modelMap.addAttribute("item", item);
+        if (item == null) {
+            return "camelotSearch/searchErrorPage";
+        }
         return "camelotSearch/singleItemSearchResult";
     }
 
