@@ -31,11 +31,9 @@
                 <hr>
                 <a href="camelotShelvesReplenishment.htm" class="btn btn-primary" style='background-color: #ab48aa' role="button"><h1>Αναπλήρωση Camelot</h1></a>
                 <hr>
+                <a href="camelotNotesCardMode.htm" class="btn btn-primary" role="button" style='background-color: #3166df'><h1>Camelot Notes<br>Card Mode</h1></a>
                 <hr>
                 <a href="camelotNotesDisplay.htm" class="btn btn-primary" role="button" style='background-color: #B48199'><h1>Camelot Notes</h1></a>
-                &nbsp;&nbsp;&nbsp;&nbsp;
-
-                <a href="camelotNotesCardMode.htm" class="btn btn-primary" role="button" style='background-color: #3166df'><h1>Camelot Notes:Card Mode</h1></a>
                 <hr>
                 <a href="camelotStockPositionsDisplay.htm"><h1>Camelot Stock Positions By Position </h1></a>
                 <hr>
