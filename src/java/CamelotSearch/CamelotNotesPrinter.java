@@ -36,8 +36,8 @@ public class CamelotNotesPrinter implements Printable {
 
     @Override
     public int print(Graphics g, PageFormat pf, int page) throws PrinterException {
-
-        if (page < 1) {
+        int pageIndex = 1;
+        if (page < pageIndex) {
             /* User (0,0) is typically outside the imageable area, so we must
         * translate by the X and Y values in the PageFormat to avoid clipping
              */
@@ -45,37 +45,75 @@ public class CamelotNotesPrinter implements Printable {
             g2d.translate(pf.getImageableX(), pf.getImageableY());
             /* Now we perform our rendering */
 
-            int h = 10;                                        //print start at 100 on x axies
+            int h = 20;                                        //print start at 100 on x axies
+            g.setFont(new Font("Roman", Font.BOLD, 12));
+            g.drawString("Κωδικός", 0, h);
 
-//print start at 10 on y axies
+            g.setFont(new Font("Roman", Font.BOLD, 12));
+            g.drawString("Θέση", 70, h);
+
+            g.setFont(new Font("Roman", Font.BOLD, 12));
+            g.drawString("Περιγραφή ", 120, h);
+
+            g.setFont(new Font("Roman", Font.BOLD, 12));
+            g.drawString("Παρατήρηση ", 355, h);
+
+            g.setFont(new Font("Roman", Font.BOLD, 12));
+            g.drawString("Θέσεις ", 500, h);
+            h = h + 10;
+            g.drawString("Στοκ ", 500, h);
+            h += 2;
+            g.drawLine(0, h, 550, h);
+            h += 1;
+            g.drawLine(0, h, 550, h);
+            h = h + 15;
             for (InventoryItem note : this.sortedNotesArrayList) {
 
                 g.setFont(new Font("Roman", Font.BOLD, 10));
-                g.drawString(note.getCode(), 10, h);
+                String code = note.getCode();
+                if (code.length() > 10) {
+                    code = code.substring(0, 10) + ">";;
+                }
+                g.drawString(code, 0, h);
 
-                g.setFont(new Font("Roman", Font.PLAIN, 8));
-                g.drawString(note.getPosition(), 50, h);
+                g.setFont(new Font("Roman", Font.PLAIN, 12));
+                g.drawString(note.getPosition(), 70, h);
 
-                g.setFont(new Font("Roman", Font.PLAIN, 8));
-                g.drawString(note.getDescription(), 100, h);
+                String description = note.getDescription();
+                if (description.length() > 30) {
+                    description = description.substring(0, 30) + ">";
+                }
+                g.setFont(new Font("Roman", Font.PLAIN, 12));
+                g.drawString(description, 120, h);
 
-                g.setFont(new Font("Roman", Font.PLAIN, 8));
-                g.drawString(note.getNote(), 320, h);
+                g.setFont(new Font("Roman", Font.PLAIN, 12));
+                g.drawString(note.getNote(), 355, h);
 
                 LinkedHashMap<Integer, String> stockPositions = note.getStockPositions();
                 if (stockPositions == null) {
                 } else {
+                    int stockPositionIndex = 0;
                     for (Map.Entry<Integer, String> stockPositionsEntry : stockPositions.entrySet()) {
-                        g.setFont(new Font("Roman", Font.PLAIN, 8));
-                        g.drawString(stockPositionsEntry.getValue(), 450, h);
-                        h = h + 10;
+                        g.setFont(new Font("Roman", Font.PLAIN, 10));
+                        g.drawString(stockPositionsEntry.getValue(), 500, h);
+
+                        stockPositionIndex++;
+                        if (stockPositionIndex == stockPositions.size()) {
+                            h = h + 3;
+                            g.drawLine(0, h, 550, h);
+                        } else {
+                            h = h + 12;
+                        }
                     }
-                    g.drawLine(0, h, 550, h);
+
                 }
-                h = h + 10;
-
+                h = h + 12;
+                //-- delete after
+                g.drawString("h= " + h, 450, h);
+//--
+                //    pageIndex = 2;
             }
-
+            //  pageIndex = 1;
             return PAGE_EXISTS;
         }
 
@@ -98,7 +136,7 @@ public class CamelotNotesPrinter implements Printable {
             Paper copy = pf.getPaper();
             copy.setSize(pf.getWidth(), pf.getHeight());
             double cmPx300 = 300.0 / 2.54;
-            copy.setImageableArea(0, 0, 7.0 * cmPx300, 3.0 * cmPx300);
+            copy.setImageableArea(0, 0, 7.0 * cmPx300, 50.0 * cmPx300);
             pf.setPaper(copy);
 
             job.setPrintable(this, pf);
