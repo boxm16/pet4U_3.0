@@ -130,18 +130,21 @@ public class Pet4uItemsController {
                     String c_position = "C-" + camelotItem.getPosition();
                     if (!camelotItem.getPosition().isEmpty()) {
                         if (pet4uItem.getPosition().contains("C-") || pet4uItem.getPosition().isEmpty()) {
-                            Double q = Double.parseDouble(camelotItem.getQuantity());
-                            if (q > 0) {
-                                if (!pet4uItem.getPosition().equals(c_position)) {
+                            String quantity = camelotItem.getQuantity();
+                            if (quantity != null) {
+                                Double q = Double.parseDouble(quantity);
+                                if (q > 0) {
+                                    if (!pet4uItem.getPosition().equals(c_position)) {
 
-                                    ArrayList<String> diff = new ArrayList<>();
-                                    diff.add(pet4uItem.getCode());
-                                    diff.add(pet4uItem.getDescription());
-                                    diff.add(pet4uItem.getPosition());
-                                    diff.add(c_position);
-                                    diff.add(camelotItem.getQuantity());
-                                    differences.add(diff);
-                                    break;
+                                        ArrayList<String> diff = new ArrayList<>();
+                                        diff.add(pet4uItem.getCode());
+                                        diff.add(pet4uItem.getDescription());
+                                        diff.add(pet4uItem.getPosition());
+                                        diff.add(c_position);
+                                        diff.add(camelotItem.getQuantity());
+                                        differences.add(diff);
+                                        break;
+                                    }
                                 }
                             }
                         }
@@ -438,13 +441,13 @@ public class Pet4uItemsController {
         barcodePrinter.setLabelsCount(1);
 
         barcodePrinter.setCode(item.getCode());
-      
+
         if (mainBarcode.length() >= 6) {
             barcodePrinter.setBarcode(mainBarcode.substring(mainBarcode.length() - 6));
         } else {
             barcodePrinter.setBarcode(mainBarcode);
         }
-        
+
         barcodePrinter.setDescription(item.getDescription());
         String position = item.getPosition().substring(2);
         barcodePrinter.setPosition(position);
