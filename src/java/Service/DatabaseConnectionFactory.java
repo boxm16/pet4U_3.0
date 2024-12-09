@@ -48,8 +48,8 @@ public class DatabaseConnectionFactory {
         }
         return connection;
     }
-    
-     public Connection getCamelotMicrosoftSQLConnection() {
+
+    public Connection getCamelotMicrosoftSQLConnection() {
         Basement basement = new Basement();
         Connection connection = null;
         String dbName;
@@ -86,7 +86,7 @@ public class DatabaseConnectionFactory {
         }
         return connection;
     }
-     //-------------------------MySQL---------------------------
+    //-------------------------MySQL---------------------------
 
     public Connection getMySQLInitialConnection() {
         //this connection is only for creating schema
@@ -126,6 +126,29 @@ public class DatabaseConnectionFactory {
                 password = "athina2004";
             } else {
                 password = "per4ito";
+            }
+
+            Class.forName(driver);
+            connection = DriverManager.getConnection(url, username, password);
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(DatabaseConnectionFactory.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return connection;
+    }
+
+    public Connection getMySQLApiBridgeConnection() {
+        //this is regular connection 
+        Basement basement = new Basement();
+        Connection connection = null;
+        try {
+            String driver = "com.mysql.cj.jdbc.Driver";
+            String url = "jdbc:mysql://localhost:3306/api_bridge?useSSL=false";
+            String username = "api_bridge_user_1";
+            String password;
+            if (basement.getApplicationHostName().equals("LAPTOP")) {
+                password = "athina2004";
+            } else {
+                password = "api_bridge_user_1";
             }
 
             Class.forName(driver);

@@ -613,8 +613,8 @@ public class Pet4uItemsController {
             @RequestParam(name = "newPositionId") String newPositionId,
             ModelMap model) {
         Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
-        System.out.println("itemId: " + itemId);
-        System.out.println("newPositionId: " + newPositionId);
+        String result = pet4uItemsDao.changeItemPosition(itemId, newPositionId);
+        System.out.println(result);
         return "index";
     }
 

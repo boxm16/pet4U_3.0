@@ -727,4 +727,25 @@ public class Pet4uItemsDao {
         }
         return allPosition;
     }
+
+    String changeItemPosition(String itemId, String newPositionId) {
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+        Connection connection = databaseConnectionFactory.getMySQLApiBridgeConnection();
+
+        try {
+
+            PreparedStatement itemInsertStatement = connection.prepareStatement("INSERT INTO pet4u_items_position_changing (item_id, new_position_id) VALUES (?,?)");
+
+            itemInsertStatement.setString(1, itemId);
+            itemInsertStatement.setString(2, newPositionId);
+
+            itemInsertStatement.execute();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Pet4uItemsDao.class.getName()).log(Level.SEVERE, null, ex);
+            return ex.getMessage();
+        }
+        return "New Position Set Successfully";
+
+    }
 }
