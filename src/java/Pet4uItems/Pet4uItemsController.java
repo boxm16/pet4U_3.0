@@ -600,8 +600,10 @@ public class Pet4uItemsController {
     //--------------------------00000000000000000-=====================
     @RequestMapping(value = "goForPositionChanign")
     public String goForPositionChanign(@RequestParam(name = "id") String id, ModelMap model) {
-
+        Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
+        LinkedHashMap<Long, String> allPositions = pet4uItemsDao.getAllPosition();
         model.addAttribute("id", id);
+        model.addAttribute("allPositions", allPositions);
         return "/pet4uItems/positionChanignServant";
     }
 }

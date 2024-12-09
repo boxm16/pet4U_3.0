@@ -14,5 +14,6 @@
     <body>
         <h1>Hello World!</h1>
         ${id}
+        ${allPositions}
     </body>
 </html>

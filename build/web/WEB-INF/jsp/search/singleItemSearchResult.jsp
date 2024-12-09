@@ -60,7 +60,7 @@
                                 out.println("<td style='width:70px;'>");
                                 out.println("Θεση");
                                 out.println("</td>");
-                                out.println("<td style='font-size: 30px;' ondblclick=redirect(" + item.getId()+ ")>");
+                                out.println("<td style='font-size: 30px;' ondblclick=redirect(" + item.getItemId() + ")>");
                                 out.println("<strong>" + item.getPosition() + "</strong>");
                                 out.println("</td>");
                                 out.println("</tr>");
@@ -195,7 +195,7 @@
         <script>
 
             function  redirect(id) {
-                window.location.href = "goForPositionChanign.htm?id="+id;
+                window.location.href = "goForPositionChanign.htm?id=" + id;
             }
         </script>
 

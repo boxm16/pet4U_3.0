@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Item {
 
-    private long id;
+    private long itemId;
     private String code;
     private String description;
     private ArrayList<AltercodeContainer> altercodes;
@@ -18,16 +18,14 @@ public class Item {
         altercodes = new ArrayList();
     }
 
-    public long getId() {
-        return id;
+    public long getItemId() {
+        return itemId;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setItemId(long itemId) {
+        this.itemId = itemId;
     }
 
-    
-    
     public String getCode() {
         return code;
     }
