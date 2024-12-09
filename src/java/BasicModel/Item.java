@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Item {
 
+    private long id;
     private String code;
     private String description;
     private ArrayList<AltercodeContainer> altercodes;
@@ -17,6 +18,16 @@ public class Item {
         altercodes = new ArrayList();
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    
+    
     public String getCode() {
         return code;
     }
@@ -140,7 +151,5 @@ public class Item {
     public void setMainBarcode(String mainBarcode) {
         this.mainBarcode = mainBarcode;
     }
-    
-    
 
 }

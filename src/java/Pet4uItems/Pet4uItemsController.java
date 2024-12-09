@@ -455,7 +455,8 @@ public class Pet4uItemsController {
         barcodePrinter.printSomething(printName);
 
         return "index";
-    }//------------------------------
+    }
+//------------------------------
 
     @RequestMapping(value = "printQRcode")
     public String printQRcode(@RequestParam(name = "altercode") String altercode, ModelMap model) {
@@ -596,4 +597,11 @@ public class Pet4uItemsController {
         pet4uItemsDao.insertPet4uItemsSnapshotFullVersion(pet4uAllItems);
     }
 
+    //--------------------------00000000000000000-=====================
+    @RequestMapping(value = "goForPositionChanign")
+    public String goForPositionChanign(@RequestParam(name = "id") String id, ModelMap model) {
+
+        model.addAttribute("id", id);
+        return "/pet4uItems/positionChanignServant";
+    }
 }
