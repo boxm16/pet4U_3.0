@@ -23,13 +23,13 @@
                             <c:forEach items="${allPositions}" var="position" varStatus="status">
                                 <tr>
                                     <td style="width: 200px"> 
-                                        ${allPositions.value}
+                                        ${position.value}
                                     </td>
                                     <td style="width: 50px">  
                                 <center>  
                                     <form action="changePet4uItemPosition.htm"  method="POST">
                                         <input hidden name="itemId" value="${itemId}">
-                                        <input hidden name="position" value=" ${allPositions.value}">
+                                        <input hidden name="position" value=" ${position.value}">
                                         <button type="submit" class="btn btn-primary">
                                             Set Position
                                         </button>
