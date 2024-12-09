@@ -60,7 +60,7 @@
                                 out.println("<td style='width:70px;'>");
                                 out.println("Θεση");
                                 out.println("</td>");
-                                out.println("<td style='font-size: 30px;' ondblclick='location=this.href' href='http://www.google.com'>");
+                                out.println("<td style='font-size: 30px;' ondblclick=redirect(" + item.getCode() + ")>");
                                 out.println("<strong>" + item.getPosition() + "</strong>");
                                 out.println("</td>");
                                 out.println("</tr>");
@@ -192,7 +192,12 @@
             </div>
 
         </div>
+        <script>
 
+            function  redirect() {
+                window.location.href = "http://www.w3schools.com";
+            }
+        </script>
 
     </body>
 </html>
