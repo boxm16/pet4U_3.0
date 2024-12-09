@@ -194,8 +194,8 @@
         </div>
         <script>
 
-            function  redirect(id) {
-                window.location.href = "goForPositionChanign.htm?id=" + id;
+            function  redirect(itemId) {
+                window.location.href = "goForPositionChanign.htm?itemId=" + itemId;
             }
         </script>
 
