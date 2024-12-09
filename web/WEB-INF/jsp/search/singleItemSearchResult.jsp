@@ -60,7 +60,7 @@
                                 out.println("<td style='width:70px;'>");
                                 out.println("Θεση");
                                 out.println("</td>");
-                                out.println("<td style='font-size: 30px;'>");
+                                out.println("<td style='font-size: 30px;' ondblclick='location=this.href' href='http://www.google.com'>");
                                 out.println("<strong>" + item.getPosition() + "</strong>");
                                 out.println("</td>");
                                 out.println("</tr>");
@@ -170,7 +170,7 @@
                                 out.println("<h1>  <input type='number'  name='labelsQuantity' value='1'></h1>");
                                 out.println("<button type='submit' class='btn btn-success'> <h1>Print Small Labels</h1></button>");
                                 out.println("</form>");
-                               
+
                                 String userName = (String) session.getAttribute("userName");
                                 if (userName != null) {
                                     if (userName.equals("me") || userName.equals("Vasilis") || userName.equals("super")) {
