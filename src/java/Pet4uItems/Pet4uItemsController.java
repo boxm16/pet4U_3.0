@@ -37,6 +37,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -606,4 +607,15 @@ public class Pet4uItemsController {
         model.addAttribute("allPositions", allPositions);
         return "/pet4uItems/positionChanignServant";
     }
+
+    @RequestMapping(value = "changePet4uItemPosition", method = RequestMethod.POST)
+    public String changePet4uItemPosition(@RequestParam(name = "itemId") String itemId,
+            @RequestParam(name = "newPositionId") String newPositionId,
+            ModelMap model) {
+        Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
+        System.out.println("itemId: " + itemId);
+        System.out.println("newPositionId: " + newPositionId);
+        return "index";
+    }
+
 }

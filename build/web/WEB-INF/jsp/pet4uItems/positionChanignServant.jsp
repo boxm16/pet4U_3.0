@@ -29,7 +29,8 @@
                                 <center>  
                                     <form action="changePet4uItemPosition.htm"  method="POST">
                                         <input hidden name="itemId" value="${itemId}">
-                                        <input hidden name="position" value=" ${position.value}">
+                                        <input hidden name="newPositionId" value=" ${position.value}">
+                                        <input hidden name="positionName" value=" ${position.value}">
                                         <button type="submit" class="btn btn-primary">
                                             Set Position
                                         </button>
