@@ -600,7 +600,7 @@ public class Pet4uItemsController {
 
     //--------------------------00000000000000000-=====================
     @RequestMapping(value = "goForPositionChanign")
-    public String goForPositionChanign(@RequestParam(name = "itemId") String id, ModelMap model) {
+    public String goForPositionChanign(@RequestParam(name = "itemId") String itemId, ModelMap model) {
         Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
         LinkedHashMap<Long, String> allPositions = pet4uItemsDao.getAllPosition();
         model.addAttribute("itemId", itemId);
