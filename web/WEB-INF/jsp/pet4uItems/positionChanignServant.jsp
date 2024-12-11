@@ -64,7 +64,7 @@
                 }
             }
 
-            funtcion markAsFullyLoaded(){
+            function markAsFullyLoaded(){
                 alert("Page is loaded");
             }
         </script>
