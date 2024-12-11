@@ -28,6 +28,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.http.HttpSession;
 import org.krysalis.barcode4j.HumanReadablePlacement;
 import org.krysalis.barcode4j.impl.code128.Code128Bean;
 import org.krysalis.barcode4j.impl.code128.Code128Constants;
@@ -612,10 +613,28 @@ public class Pet4uItemsController {
     public String changePet4uItemPosition(@RequestParam(name = "itemId") String itemId,
             @RequestParam(name = "newPositionId") String newPositionId,
             ModelMap model) {
-        Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
-        String result = pet4uItemsDao.changeItemPosition(itemId, newPositionId);
-        System.out.println(result);
-        return "index";
+        model.addAttribute("itemId", itemId);
+        model.addAttribute("newPositionId", newPositionId);
+        return "/pet4uItems/confirmationPage";
+    }
+
+    @RequestMapping(value = "changePet4uItemPositionConfirmed", method = RequestMethod.POST)
+    public String changePet4uItemPositionConfirmed(@RequestParam(name = "itemId") String itemId,
+            @RequestParam(name = "newPositionId") String newPositionId,
+            ModelMap model, HttpSession session) {
+
+        String userName = (String) session.getAttribute("userName");
+        if (userName.equals("me")) {
+
+            Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
+            String result = pet4uItemsDao.changeItemPosition(itemId, newPositionId);
+           // String result = pet4uItemsDao.updateItemPosition(itemId, newPositionId);
+            System.out.println(result);
+            return "index";
+        } else {
+            System.out.println("Somebody trying to breach encryption");
+            return "index";
+        }
     }
 
 }
