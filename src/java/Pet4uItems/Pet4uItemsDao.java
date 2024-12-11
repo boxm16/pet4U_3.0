@@ -748,4 +748,26 @@ public class Pet4uItemsDao {
         return "New Position Set Successfully";
 
     }
+
+    String updateItemPosition(String itemId, String newPositionId) {
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+        Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
+
+        try {
+
+            PreparedStatement updateStatement = connection.prepareStatement("UPDATE [petworld].[EliteUser].[INI]  SET IF1ID =?  WHERE ID=?");
+            updateStatement.setString(1, newPositionId);
+            updateStatement.setString(2, itemId);
+           
+            updateStatement.executeUpdate();
+            updateStatement.close();
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Pet4uItemsDao.class.getName()).log(Level.SEVERE, null, ex);
+            return ex.getMessage();
+        }
+        return "New Position Set Successfully";
+
+    }
 }
