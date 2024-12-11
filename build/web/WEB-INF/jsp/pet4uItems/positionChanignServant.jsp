@@ -11,7 +11,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
     </head>
-    <body>
+    <body onload="markAsFullyLoaded()">
         <div class="container">
             <div class="row">
                 <div class="col-md-auto">
@@ -62,6 +62,10 @@
                         }
                     }
                 }
+            }
+
+            funtcion markAsFullyLoaded(){
+                alert("Page is loaded");
             }
         </script>
 
