@@ -16,7 +16,7 @@
             <div class="row">
                 <div class="col-md-auto">
                     <center>
-                        <h2>Change  Position</h2>
+                        <h2 id="title" style="background-color:red">Change  Position</h2>
 
                         <h3> <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Find Position" title="Type in a name">  </h3>
                         <table id="myTable" class="table table-bordered" style="width:700px; font-size:25px" >
@@ -64,9 +64,11 @@
                 }
             }
 
-            function markAsFullyLoaded(){
-                alert("Page is loaded");
+            function markAsFullyLoaded() {
+                let title = document.getElementById("title");
+                title.style.color = "green";
             }
+
         </script>
 
     </body>
