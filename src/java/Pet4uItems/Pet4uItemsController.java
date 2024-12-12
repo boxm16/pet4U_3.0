@@ -627,8 +627,8 @@ public class Pet4uItemsController {
         if (userName.equals("me")) {
 
             Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
-            String result = pet4uItemsDao.changeItemPosition(itemId, newPositionId);
-           // String result = pet4uItemsDao.updateItemPosition(itemId, newPositionId);
+           // String result = pet4uItemsDao.changeItemPosition(itemId, newPositionId);
+            String result = pet4uItemsDao.updateItemPosition(itemId, newPositionId);
             System.out.println(result);
             return "index";
         } else {

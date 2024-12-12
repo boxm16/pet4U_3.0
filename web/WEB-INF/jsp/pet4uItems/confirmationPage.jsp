@@ -37,9 +37,9 @@
                         Item Id:${itemId}
                         New Position Id:${newPositionId}
                         <hr>
-                        <form action="changePet4uItemPositionConfirmed.htm" method="GET" >
+                        <form action="changePet4uItemPositionConfirmed.htm" method="POST" >
                             <input hidden name="itemId" value="${itemId}">
-                            <input hidden name="itemId" value="${newPositionId}">
+                            <input hidden name="newPositionId" value="${newPositionId}">
                             <br>
                             <input class="btn btn-primary btn-lg btn-block"  type="submit" value="Submit">
                         </form>
