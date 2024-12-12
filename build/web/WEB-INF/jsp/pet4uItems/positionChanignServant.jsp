@@ -66,7 +66,7 @@
 
             function markAsFullyLoaded() {
                 let title = document.getElementById("title");
-                title.style.color = "green";
+                title.style.backgroundColor = "green";
             }
 
         </script>
