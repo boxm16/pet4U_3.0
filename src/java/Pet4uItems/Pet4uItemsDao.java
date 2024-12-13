@@ -705,7 +705,7 @@ public class Pet4uItemsDao {
         }
     }
 
-    LinkedHashMap<Long, String> getAllPosition() {
+    LinkedHashMap<Long, String> getAllPosition(ArrayList<String> notActivePositions) {
         LinkedHashMap<String, Item> items = new LinkedHashMap<>();
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
         Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
@@ -715,8 +715,12 @@ public class Pet4uItemsDao {
             ResultSet resultSet = statement.executeQuery("select * from [petworld].[EliteUser].[IR1]  ORDER BY NAME;");
 
             while (resultSet.next()) {
-                long id = resultSet.getLong("ID");
                 String position = resultSet.getString("NAME");
+                if (notActivePositions.contains(position)) {
+                    continue;
+                }
+                long id = resultSet.getLong("ID");
+
                 allPosition.put(id, position);
             }
             resultSet.close();
@@ -758,7 +762,7 @@ public class Pet4uItemsDao {
             PreparedStatement updateStatement = connection.prepareStatement("UPDATE [petworld].[EliteUser].[INI]  SET IF1ID =?  WHERE ID=?");
             updateStatement.setString(1, newPositionId);
             updateStatement.setString(2, itemId);
-           
+
             updateStatement.executeUpdate();
             updateStatement.close();
             connection.close();

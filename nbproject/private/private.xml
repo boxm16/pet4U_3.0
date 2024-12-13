@@ -3,15 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Michail%20Sitmalidis/Pet4U_3.0/src/java/Encryption/EncryptionController.java</file>
+            <file>file:/C:/Users/Michail%20Sitmalidis/Pet4U_3.0/src/java/Pet4uItems/Pet4uItemsDao.java</file>
             <file>file:/C:/Users/Michail%20Sitmalidis/Pet4U_3.0/src/java/Pet4uItems/Pet4uItemsController.java</file>
-            <file>file:/C:/Users/Michail%20Sitmalidis/Pet4U_3.0/src/java/CamelotSearch/CamelotBarcodePrinter.java</file>
-            <file>file:/C:/Users/Michail%20Sitmalidis/Pet4U_3.0/src/java/CamelotSearch/CamelotSearchController.java</file>
-            <file>file:/C:/Users/Michail%20Sitmalidis/Pet4U_3.0/web/WEB-INF/jsp/adminIndex.jsp</file>
-            <file>file:/C:/Users/Michail%20Sitmalidis/Pet4U_3.0/src/java/BasicModel/AltercodeContainer.java</file>
-            <file>file:/C:/Users/Michail%20Sitmalidis/Pet4U_3.0/web/WEB-INF/jsp/search/singleItemSearchResult.jsp</file>
-            <file>file:/C:/Users/Michail%20Sitmalidis/Pet4U_3.0/web/WEB-INF/jsp/index.jsp</file>
-            <file>file:/C:/Users/Michail%20Sitmalidis/Pet4U_3.0/src/java/Search/SearchDao.java</file>
+            <file>file:/C:/Users/Michail%20Sitmalidis/Pet4U_3.0/web/WEB-INF/jsp/pet4uItems/confirmationPage.jsp</file>
+            <file>file:/C:/Users/Michail%20Sitmalidis/Pet4U_3.0/web/WEB-INF/jsp/pet4uItems/positionChanignServant.jsp</file>
         </group>
     </open-files>
 </project-private>

@@ -602,8 +602,11 @@ public class Pet4uItemsController {
     //--------------------------00000000000000000-=====================
     @RequestMapping(value = "goForPositionChanign")
     public String goForPositionChanign(@RequestParam(name = "itemId") String itemId, ModelMap model) {
+        Pet4uItems_NotActivePositions pet4uItems_NotActivePositions = new Pet4uItems_NotActivePositions();
+        ArrayList<String> notActivePositions = pet4uItems_NotActivePositions.getNotActivePositions();
+
         Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
-        LinkedHashMap<Long, String> allPositions = pet4uItemsDao.getAllPosition();
+        LinkedHashMap<Long, String> allPositions = pet4uItemsDao.getAllPosition(notActivePositions);
         model.addAttribute("itemId", itemId);
         model.addAttribute("allPositions", allPositions);
         return "/pet4uItems/positionChanignServant";
@@ -627,7 +630,7 @@ public class Pet4uItemsController {
         if (userName.equals("me")) {
 
             Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
-           // String result = pet4uItemsDao.changeItemPosition(itemId, newPositionId);
+            // String result = pet4uItemsDao.changeItemPosition(itemId, newPositionId);
             String result = pet4uItemsDao.updateItemPosition(itemId, newPositionId);
             System.out.println(result);
             return "index";
