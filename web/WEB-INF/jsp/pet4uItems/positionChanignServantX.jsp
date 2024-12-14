@@ -10,8 +10,20 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+
     </head>
     <body>
         <h1>Hello World!</h1>
+
+        <form action="changePet4uItemPosition.htm"  method="POST">
+            <input hidden name="itemId" value="${itemId}">
+            <input type="text" name="row" value="">
+            <input type="number" name="blockNumber" value="">
+            <input type="number" name="subBlock" value="">
+            <input type="number" name="positionNumber" value="">
+            <button type="submit" class="btn btn-primary">
+                Set Position
+            </button>
+        </form>
     </body>
 </html>
