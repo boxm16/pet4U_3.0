@@ -3683,6 +3683,8 @@ public class Pet4uItems_NotActivePositions {
         this.notActivePositions.add("05Μ-30-123");
         this.notActivePositions.add("05Μ-30-124");
         this.notActivePositions.add("05Μ-30-125");
+        
+        //---------------------------B-------------------------
     }
 
 }

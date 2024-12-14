@@ -195,7 +195,7 @@
         <script>
 
             function  redirect(itemId) {
-                window.location.href = "goForPositionChanign.htm?itemId=" + itemId;
+                window.location.href = "goForPositionChanignX.htm?itemId=" + itemId;
             }
         </script>
 

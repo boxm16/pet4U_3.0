@@ -600,6 +600,12 @@ public class Pet4uItemsController {
     }
 
     //--------------------------00000000000000000-=====================
+    @RequestMapping(value = "goForPositionChanignX")
+    public String goForPositionChanignX(@RequestParam(name = "itemId") String itemId, ModelMap model) {
+
+        return "/pet4uItems/positionChanignServantX";
+    }
+
     @RequestMapping(value = "goForPositionChanign")
     public String goForPositionChanign(@RequestParam(name = "itemId") String itemId, ModelMap model) {
         Pet4uItems_NotActivePositions pet4uItems_NotActivePositions = new Pet4uItems_NotActivePositions();

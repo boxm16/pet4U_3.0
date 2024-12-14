@@ -34,7 +34,7 @@
     <center>
         <h1>Camelot Items With Position Difference</h1>
         <hr>
-        <h1><a href="synchronizeAllPositions.htm">Synchronize All Items Positions</a></h1>
+        <!--    <h1><a href="synchronizeAllPositions.htm">Synchronize All Items Positions</a></h1> -->
         <table>
             <thead>
                 <tr>
@@ -95,7 +95,7 @@
                         out.println("</td>");
 
                         out.println("<td>");
-                        out.println("<a href='synchronizePositions.htm?code=" + item.get(0) + "' a>SYNCHRONIZE</a>");
+                     //   out.println("<a href='synchronizePositions.htm?code=" + item.get(0) + "' a>SYNCHRONIZE</a>");
                         out.println("</td>");
 
                         out.println("</tr>");
