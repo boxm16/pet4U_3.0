@@ -606,6 +606,21 @@ public class Pet4uItemsController {
         return "/pet4uItems/positionChanignServantX";
     }
 
+    @RequestMapping(value = "changePet4uItemPositionX", method = RequestMethod.POST)
+    public String changePet4uItemPositionX(@RequestParam(name = "itemId") String itemId,
+            @RequestParam(name = "blockNumber") String blockNumber,
+            @RequestParam(name = "positionNumber") String positionNumber,
+            ModelMap model) {
+
+        Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
+        LinkedHashMap<Long, String> allPositions = pet4uItemsDao.getAllPosition();
+
+        model.addAttribute("itemId", itemId);
+        model.addAttribute("newPositionId", newPositionId);
+        return "/pet4uItems/confirmationPage";
+    }
+    //- - - - - - - - - - 
+
     @RequestMapping(value = "goForPositionChanign")
     public String goForPositionChanign(@RequestParam(name = "itemId") String itemId, ModelMap model) {
         Pet4uItems_NotActivePositions pet4uItems_NotActivePositions = new Pet4uItems_NotActivePositions();
@@ -613,6 +628,7 @@ public class Pet4uItemsController {
 
         Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
         LinkedHashMap<Long, String> allPositions = pet4uItemsDao.getAllPosition(notActivePositions);
+
         model.addAttribute("itemId", itemId);
         model.addAttribute("allPositions", allPositions);
         return "/pet4uItems/positionChanignServant";

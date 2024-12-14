@@ -5,7 +5,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Replenishment Servant</title>
+        <title>Position Changing Servant X</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -41,13 +41,15 @@
                             <tr>
                                 <td>
 
-                                    <form action="changePet4uItemPosition.htm"  method="POST">
+                                    <form action="changePet4uItemPositionX.htm"  method="POST">
                                         <input hidden name="itemId" value="${itemId}">
-                                        <input type="text" name="row" value="">
-                                        <input type="number" name="blockNumber" value="">
-                                        <input type="number" name="subBlock" value="">
-                                        <input type="number" name="positionNumber" value="">
-                                        <br> <button type="submit" class="btn btn-primary">
+                                      Row  <input type="text" name="row" value="">
+                                        <hr>
+                                     Block Number   <input type="number" name="blockNumber" value="">
+                                        <hr>
+                                     Position Number   <input type="number" name="positionNumber" value="">
+                                        <hr>
+                                        <button type="submit" class="btn btn-primary">
                                             Set Position
                                         </button>
                                     </form>

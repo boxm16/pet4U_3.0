@@ -705,6 +705,29 @@ public class Pet4uItemsDao {
         }
     }
 
+    //----------------------POSITION CHANGING------------------------------------
+    LinkedHashMap<Long, String> getAllPosition() {
+        LinkedHashMap<String, Item> items = new LinkedHashMap<>();
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+        Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
+        LinkedHashMap<Long, String> allPosition = new LinkedHashMap();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("select * from [petworld].[EliteUser].[IR1]  ORDER BY NAME;");
+            while (resultSet.next()) {
+                String position = resultSet.getString("NAME");
+                long id = resultSet.getLong("ID");
+                allPosition.put(id, position);
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Pet4uItemsDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return allPosition;
+    }
+
     LinkedHashMap<Long, String> getAllPosition(ArrayList<String> notActivePositions) {
         LinkedHashMap<String, Item> items = new LinkedHashMap<>();
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
@@ -774,4 +797,5 @@ public class Pet4uItemsDao {
         return "New Position Set Successfully";
 
     }
+
 }
