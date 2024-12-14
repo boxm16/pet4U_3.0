@@ -617,11 +617,11 @@ public class Pet4uItemsController {
             blockNumber = "0" + blockNumber;
         }
         String newPosition = row + "-" + blockNumber + "-" + positionNumber;
+        System.out.println("newPosition:" + newPosition);
         Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
         LinkedHashMap<String, Long> allPositions = pet4uItemsDao.getAllPosition();
         long newPositionId = allPositions.get(newPosition);
 
-        System.out.println("newPosition:" + newPosition);
         model.addAttribute("itemId", itemId);
         model.addAttribute("newPosition", newPosition);
         model.addAttribute("newPositionId", newPositionId);
