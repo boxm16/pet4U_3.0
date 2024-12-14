@@ -611,12 +611,12 @@ public class Pet4uItemsController {
             @RequestParam(name = "blockNumber") String blockNumber,
             @RequestParam(name = "positionNumber") String positionNumber,
             ModelMap model) {
-
+        String newPosition = blockNumber + "-" + positionNumber;
         Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
         LinkedHashMap<Long, String> allPositions = pet4uItemsDao.getAllPosition();
-
+        System.out.println("newPosition:"+newPosition);
         model.addAttribute("itemId", itemId);
-        model.addAttribute("newPositionId", newPositionId);
+        model.addAttribute("newPositionId", newPosition);
         return "/pet4uItems/confirmationPage";
     }
     //- - - - - - - - - - 
