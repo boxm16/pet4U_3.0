@@ -15,6 +15,9 @@
             input[type="text"] {
                 font-size: 30px;
             }
+            input[type="number"] {
+                font-size: 30px;
+            }
 
             table, th, td {
                 border: 1px solid ;
@@ -44,7 +47,7 @@
                                         <input type="number" name="blockNumber" value="">
                                         <input type="number" name="subBlock" value="">
                                         <input type="number" name="positionNumber" value="">
-                                        <button type="submit" class="btn btn-primary">
+                                        <br> <button type="submit" class="btn btn-primary">
                                             Set Position
                                         </button>
                                     </form>
