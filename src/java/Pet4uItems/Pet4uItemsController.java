@@ -625,6 +625,9 @@ public class Pet4uItemsController {
         System.out.println("newPosition:" + newPosition);
         Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
         LinkedHashMap<String, Long> allPositions = pet4uItemsDao.getAllPosition();
+        if (allPositions.get(newPosition) == null) {
+            return "redirect:goForPositionChanign.htm?itemId=" + itemId;
+        }
         Long newPositionId = allPositions.get(newPosition);
 
         model.addAttribute("itemId", itemId);
