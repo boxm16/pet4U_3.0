@@ -35,7 +35,7 @@
                         <hr>
                         <h3>Confirm Position Changing
                             Item Id: ${itemId}<br>
-                            New Position: ${newPositionId}<br>
+                            New Position: ${newPosition}<br>
                             New Position Id: ${newPositionId}<br>
                         </h3>
                         <hr>

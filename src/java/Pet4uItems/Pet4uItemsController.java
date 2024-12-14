@@ -616,11 +616,16 @@ public class Pet4uItemsController {
         if (blockNumber.length() == 1) {
             blockNumber = "0" + blockNumber;
         }
-        String newPosition = row + "-" + blockNumber + "-" + positionNumber;
+        String newPosition = "";
+        if (blockNumber.isEmpty() && positionNumber.isEmpty()) {
+            newPosition = row;
+        } else {
+            newPosition = row + "-" + blockNumber + "-" + positionNumber;
+        }
         System.out.println("newPosition:" + newPosition);
         Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
         LinkedHashMap<String, Long> allPositions = pet4uItemsDao.getAllPosition();
-        long newPositionId = allPositions.get(newPosition);
+        Long newPositionId = allPositions.get(newPosition);
 
         model.addAttribute("itemId", itemId);
         model.addAttribute("newPosition", newPosition);
