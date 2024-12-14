@@ -33,9 +33,11 @@
                         <h3>Confirmation Page</h3>
                         <h3><a href='index.htm'>INDEX</a></h3>
                         <hr>
-                        <h5>Confirm Position Changing</h5>
-                        Item Id:${itemId}
-                        New Position Id:${newPositionId}
+                        <h3>Confirm Position Changing
+                            Item Id: ${itemId}<br>
+                            New Position: ${newPositionId}<br>
+                            New Position Id: ${newPositionId}<br>
+                        </h3>
                         <hr>
                         <form action="changePet4uItemPositionConfirmed.htm" method="POST" >
                             <input hidden name="itemId" value="${itemId}">

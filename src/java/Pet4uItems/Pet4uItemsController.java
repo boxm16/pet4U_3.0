@@ -618,10 +618,13 @@ public class Pet4uItemsController {
         }
         String newPosition = row + "-" + blockNumber + "-" + positionNumber;
         Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
-        LinkedHashMap<Long, String> allPositions = pet4uItemsDao.getAllPosition();
+        LinkedHashMap<String, Long> allPositions = pet4uItemsDao.getAllPosition();
+        long newPositionId = allPositions.get(newPosition);
+
         System.out.println("newPosition:" + newPosition);
         model.addAttribute("itemId", itemId);
-        model.addAttribute("newPositionId", newPosition);
+        model.addAttribute("newPosition", newPosition);
+        model.addAttribute("newPositionId", newPositionId);
         return "/pet4uItems/confirmationPage";
     }
     //- - - - - - - - - - 
