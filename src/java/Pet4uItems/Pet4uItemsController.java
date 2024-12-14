@@ -608,13 +608,18 @@ public class Pet4uItemsController {
 
     @RequestMapping(value = "changePet4uItemPositionX", method = RequestMethod.POST)
     public String changePet4uItemPositionX(@RequestParam(name = "itemId") String itemId,
+            @RequestParam(name = "row") String row,
             @RequestParam(name = "blockNumber") String blockNumber,
             @RequestParam(name = "positionNumber") String positionNumber,
             ModelMap model) {
-        String newPosition = blockNumber + "-" + positionNumber;
+        row = row.toUpperCase();
+        if (blockNumber.length() == 1) {
+            blockNumber = "0" + blockNumber;
+        }
+        String newPosition = row + "-" + blockNumber + "-" + positionNumber;
         Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
         LinkedHashMap<Long, String> allPositions = pet4uItemsDao.getAllPosition();
-        System.out.println("newPosition:"+newPosition);
+        System.out.println("newPosition:" + newPosition);
         model.addAttribute("itemId", itemId);
         model.addAttribute("newPositionId", newPosition);
         return "/pet4uItems/confirmationPage";
