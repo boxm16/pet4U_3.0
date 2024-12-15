@@ -1,4 +1,3 @@
-
 package Delivery;
 
 import java.time.LocalDate;
@@ -47,7 +46,10 @@ public class DeliveryController_V_3_1 {
         }
 
         DeliveryInvoice deliveryInvoice = dao.getDeliveryInvoice(invoiceId);
-
+        String supplier = deliveryInvoice.getSupplier();
+        if (supplier.equals("000013-ΑΣΤΡΟΝ ΧΗΜΙΚΑ ΑΕ")) {
+            System.out.println("ASTRON HERE");
+        }
         DeliveryDao deliveryDao = new DeliveryDao();
         ArrayList<DeliveryItem> pet4UItemsRowByRow = deliveryDao.getPet4UItemsRowByRow();
 
