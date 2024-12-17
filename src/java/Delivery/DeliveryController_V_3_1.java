@@ -1,5 +1,6 @@
 package Delivery;
 
+import BasicModel.Item;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -46,10 +47,7 @@ public class DeliveryController_V_3_1 {
         }
 
         DeliveryInvoice deliveryInvoice = dao.getDeliveryInvoice(invoiceId);
-        String supplier = deliveryInvoice.getSupplier();
-        if (supplier.equals("000013-ΑΣΤΡΟΝ ΧΗΜΙΚΑ ΑΕ")) {
-            System.out.println("ASTRON HERE");
-        }
+
         DeliveryDao deliveryDao = new DeliveryDao();
         ArrayList<DeliveryItem> pet4UItemsRowByRow = deliveryDao.getPet4UItemsRowByRow();
 
@@ -58,6 +56,11 @@ public class DeliveryController_V_3_1 {
 
         String saveButton = "<button class=\"btn-primary\" onclick=\"requestRouter('saveCheckUp.htm')\"><H1>Save Delivery Checking</H1></button>";
         modelMap.addAttribute("saveButton", saveButton);
+        String supplier = deliveryInvoice.getSupplier();
+        if (supplier.equals("000013-ΑΣΤΡΟΝ ΧΗΜΙΚΑ ΑΕ")) {
+            LinkedHashMap<String, Item> allActiveIems = dao.getAllActiveItems();
+        }
+
         return "delivery/deliveryInvoiceChecking";
     }
 

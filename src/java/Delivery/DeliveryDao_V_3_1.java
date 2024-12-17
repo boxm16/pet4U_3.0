@@ -1,5 +1,7 @@
 package Delivery;
 
+import BasicModel.AltercodeContainer;
+import BasicModel.Item;
 import Service.DatabaseConnectionFactory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -297,6 +299,60 @@ public class DeliveryDao_V_3_1 {
         }
 
         return "Delivery Checking with id" + invoiceId + "deleted";
+    }
+
+    LinkedHashMap<String, Item> getAllActiveItems() {
+        LinkedHashMap<String, Item> items = new LinkedHashMap<>();
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+        Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
+
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("select * from WH1 WHERE DISABLED !=1 ORDER BY EXPR1;");
+
+            while (resultSet.next()) {
+
+                //diklida asfalias
+                if (resultSet.getString("QTYBALANCE") == null) {
+                    continue;
+                }
+
+                String code = resultSet.getString("ABBREVIATION").trim();
+                Item item = null;
+                if (!items.containsKey(code)) {
+                    item = new Item();
+                    item.setCode(resultSet.getString("ABBREVIATION").trim());
+                    item.setDescription(resultSet.getString("NAME").trim());
+                    String position = "";
+                    if (resultSet.getString("EXPR1") != null) {
+                        position = resultSet.getString("EXPR1").trim();
+                    }
+                    item.setPosition(position);
+                    item.setQuantity(resultSet.getString("QTYBALANCE"));
+                    String state = "";
+                    if (resultSet.getString("EXPR2") != null) {
+                        state = resultSet.getString("EXPR2").trim();
+                    }
+                    item.setState(state);
+                    items.put(code, item);
+                }
+                AltercodeContainer altercodeContainer = new AltercodeContainer();
+                altercodeContainer.setAltercode(resultSet.getString("ALTERNATECODE").trim());
+                if (resultSet.getString("CODEDESCRIPTION") == null) {
+                    altercodeContainer.setStatus("");
+                } else {
+                    altercodeContainer.setStatus(resultSet.getString("CODEDESCRIPTION").trim());
+                }
+                items.get(code).addAltercodeContainer(altercodeContainer);
+
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(DeliveryDao_V_3_1.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return items;
     }
 
 }
