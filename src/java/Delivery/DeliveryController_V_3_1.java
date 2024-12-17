@@ -81,38 +81,36 @@ public class DeliveryController_V_3_1 {
                     if (altercode.equals(item.getCode())) {
                         continue;
                     }
+                    String shadowCode = item.getCode();
                     char firstChar = altercode.charAt(0);
                     char lastChar = altercode.charAt(altercode.length() - 1);
                     if (firstChar == '-' || lastChar == '-') {
                         //    System.out.println(item.getCode() + "   " + item.getDescription() + "   " + altercode);
+
                         String repfactoredAltercode = altercode.replaceAll("-", "");
-                        Item shadowItem = pet4UItemsRowByRow.get(repfactoredAltercode);
+                        Item mainItem = pet4UItemsRowByRow.get(repfactoredAltercode);
                         System.out.println("     Item:" + item.getCode() + " " + item.getDescription());
-                        if (shadowItem == null) {
-                            System.out.println("No Shadow Item");
+                        if (mainItem == null) {
+
                         } else {
-                            System.out.println("Shadow Item:" + shadowItem.getCode() + " " + shadowItem.getDescription());
-                            if (shadowCodes.containsKey(item.getCode())) {
+                            System.out.println("Shadow Item Code:" + shadowCode + " " + item.getDescription());
 
-                                System.out.println("Another Shadow Code For Already Existing");
-                            } else {
+                            shadowCodes.put(mainItem.getCode(), shadowCode);
+                            System.out.println("New Shadow Code Added");
 
-                                shadowCodes.put(item.getCode(), shadowItem.getCode());
-                                System.out.println("New Shadow Code Added");
-
-                            }
                         }
-                        System.out.println("----------------------------------------");
                     }
-
+                    System.out.println("----------------------------------------");
                 }
+
             }
         }
-        return shadowCodes;
     }
+    return shadowCodes ;
+}
 
-    @RequestMapping(value = "saveCheckUp", method = RequestMethod.POST)
-    public String saveCheckUp(@RequestParam(name = "sentItems") String sentItemsData,
+@RequestMapping(value = "saveCheckUp", method = RequestMethod.POST)
+        public String saveCheckUp(@RequestParam(name = "sentItems") String sentItemsData,
             @RequestParam(name = "deliveredItems") String deliveredItemsData,
             @RequestParam(name = "invoiceNumber") String invoiceNumber,
             @RequestParam(name = "invoiceId") String invoiceId,
@@ -163,7 +161,7 @@ public class DeliveryController_V_3_1 {
     }
 
     @RequestMapping(value = "loadCheckedRoyalDataFromDatabaseByInvoiceId")
-    public String loadCheckedRoyalDataFromDatabaseByInvoiceId(@RequestParam(name = "invoiceId") String invoiceId,
+        public String loadCheckedRoyalDataFromDatabaseByInvoiceId(@RequestParam(name = "invoiceId") String invoiceId,
             ModelMap modelMap) {
         DeliveryDao_V_3_1 dao = new DeliveryDao_V_3_1();
         DeliveryInvoice deliveryInvoice = dao.getDeliveryInvoiceByInvoiceId(invoiceId);
@@ -191,7 +189,7 @@ public class DeliveryController_V_3_1 {
     }
 
     @RequestMapping(value = "rewriteDeliveryChecking", method = RequestMethod.POST)
-    public String rewriteDeliveryChecking(@RequestParam(name = "sentItems") String sentItemsData,
+        public String rewriteDeliveryChecking(@RequestParam(name = "sentItems") String sentItemsData,
             @RequestParam(name = "deliveredItems") String deliveredItemsData,
             @RequestParam(name = "invoiceNumber") String invoiceNumber,
             @RequestParam(name = "invoiceId") String invoiceId,
@@ -218,7 +216,7 @@ public class DeliveryController_V_3_1 {
     }
 
     @RequestMapping(value = "deliveryInvoiceJointLoad")
-    public String deliveryInvoiceJointLoad(@RequestParam(name = "invoiceId") String invoiceId,
+        public String deliveryInvoiceJointLoad(@RequestParam(name = "invoiceId") String invoiceId,
             ModelMap modelMap) {
 
         DeliveryDao deliveryDao = new DeliveryDao();
