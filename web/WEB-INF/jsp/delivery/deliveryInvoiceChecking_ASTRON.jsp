@@ -88,11 +88,11 @@
 
                         out.println("</td>");
                         out.println("<td style='padding-left: 5px; padding-left: 5px;'>");
-                        String ourCode = shadowCodes.get(item.getCode());
-                        if (ourCode == null) {
+                        String shadowCode = shadowCodes.get(item.getCode());
+                        if (shadowCode == null) {
                             out.println("-");
                         } else {
-                            out.println(ourCode);
+                            out.println(shadowCode);
                         }
 
                         out.println("</td>");
