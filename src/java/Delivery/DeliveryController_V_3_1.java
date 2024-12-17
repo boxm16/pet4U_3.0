@@ -82,6 +82,7 @@ public class DeliveryController_V_3_1 {
                         continue;
                     }
                     String shadowCode = item.getCode();
+                    System.out.println("SC: " + item.getDescription());
                     char firstChar = altercode.charAt(0);
                     char lastChar = altercode.charAt(altercode.length() - 1);
                     if (firstChar == '-' || lastChar == '-') {
@@ -99,18 +100,19 @@ public class DeliveryController_V_3_1 {
                             System.out.println("New Shadow Code Added");
 
                         }
+                        System.out.println("----------------------------------------");
                     }
-                    System.out.println("----------------------------------------");
+
                 }
 
             }
         }
-    
-    return shadowCodes ;
-}
 
-@RequestMapping(value = "saveCheckUp", method = RequestMethod.POST)
-        public String saveCheckUp(@RequestParam(name = "sentItems") String sentItemsData,
+        return shadowCodes;
+    }
+
+    @RequestMapping(value = "saveCheckUp", method = RequestMethod.POST)
+    public String saveCheckUp(@RequestParam(name = "sentItems") String sentItemsData,
             @RequestParam(name = "deliveredItems") String deliveredItemsData,
             @RequestParam(name = "invoiceNumber") String invoiceNumber,
             @RequestParam(name = "invoiceId") String invoiceId,
@@ -161,7 +163,7 @@ public class DeliveryController_V_3_1 {
     }
 
     @RequestMapping(value = "loadCheckedRoyalDataFromDatabaseByInvoiceId")
-        public String loadCheckedRoyalDataFromDatabaseByInvoiceId(@RequestParam(name = "invoiceId") String invoiceId,
+    public String loadCheckedRoyalDataFromDatabaseByInvoiceId(@RequestParam(name = "invoiceId") String invoiceId,
             ModelMap modelMap) {
         DeliveryDao_V_3_1 dao = new DeliveryDao_V_3_1();
         DeliveryInvoice deliveryInvoice = dao.getDeliveryInvoiceByInvoiceId(invoiceId);
@@ -189,7 +191,7 @@ public class DeliveryController_V_3_1 {
     }
 
     @RequestMapping(value = "rewriteDeliveryChecking", method = RequestMethod.POST)
-        public String rewriteDeliveryChecking(@RequestParam(name = "sentItems") String sentItemsData,
+    public String rewriteDeliveryChecking(@RequestParam(name = "sentItems") String sentItemsData,
             @RequestParam(name = "deliveredItems") String deliveredItemsData,
             @RequestParam(name = "invoiceNumber") String invoiceNumber,
             @RequestParam(name = "invoiceId") String invoiceId,
@@ -216,7 +218,7 @@ public class DeliveryController_V_3_1 {
     }
 
     @RequestMapping(value = "deliveryInvoiceJointLoad")
-        public String deliveryInvoiceJointLoad(@RequestParam(name = "invoiceId") String invoiceId,
+    public String deliveryInvoiceJointLoad(@RequestParam(name = "invoiceId") String invoiceId,
             ModelMap modelMap) {
 
         DeliveryDao deliveryDao = new DeliveryDao();
