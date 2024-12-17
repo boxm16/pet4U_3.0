@@ -83,12 +83,18 @@
                         out.println(x);
                         out.println("</td>");
                         out.println("<td style='padding-left: 5px; padding-left: 5px;'>");
-                        out.println(shadowCodes.get(item.getCode()).get(0));
+                        out.println(item.getCode());
                         out.println("</td>");
                         
                         out.println("</td>");
                         out.println("<td style='padding-left: 5px; padding-left: 5px;'>");
-                        out.println(item.getCode());
+                        ArrayList<String> al = shadowCodes.get(item.getCode());
+                        if (al == null) {
+                            out.println();
+                        } else {
+                            out.println(al.get(0));
+                        }
+                        
                         out.println("</td>");
                         
                         out.println("<td>");
