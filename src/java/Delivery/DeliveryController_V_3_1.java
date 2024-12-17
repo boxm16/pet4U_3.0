@@ -1,5 +1,6 @@
 package Delivery;
 
+import BasicModel.AltercodeContainer;
 import BasicModel.Item;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -59,9 +60,51 @@ public class DeliveryController_V_3_1 {
         String supplier = deliveryInvoice.getSupplier();
         if (supplier.equals("000013-ΑΣΤΡΟΝ ΧΗΜΙΚΑ ΑΕ")) {
             LinkedHashMap<String, Item> allActiveIems = dao.getAllActiveItems();
+            LinkedHashMap<String, Item> itemsRowByRow = dao.getPet4UItemsRowByRow();
+            LinkedHashMap<String, ArrayList<String>> shadowCodes = getShadowCodes(allActiveIems, itemsRowByRow);
         }
 
         return "delivery/deliveryInvoiceChecking";
+    }
+
+    public LinkedHashMap<String, ArrayList<String>> getShadowCodes(LinkedHashMap<String, Item> allActiveItems, LinkedHashMap<String, Item> pet4UItemsRowByRow) {
+        LinkedHashMap<String, ArrayList<String>> shadowCodes = new LinkedHashMap<>();
+        for (Map.Entry<String, Item> allActiveItemsEntry : allActiveItems.entrySet()) {
+            Item item = allActiveItemsEntry.getValue();
+            ArrayList<AltercodeContainer> altercodes = item.getAltercodes();
+            for (AltercodeContainer altercodeContainer : altercodes) {
+                String altercode = altercodeContainer.getAltercode();
+                if (altercode.contains("-")) {
+                    if (altercode.equals(item.getCode())) {
+                        continue;
+                    }
+                    char firstChar = altercode.charAt(0);
+                    char lastChar = altercode.charAt(altercode.length() - 1);
+                    if (firstChar == '-' || lastChar == '-') {
+                        //    System.out.println(item.getCode() + "   " + item.getDescription() + "   " + altercode);
+                        String repfactoredAltercode = altercode.replaceAll("-", "");
+                        Item shadowItem = pet4UItemsRowByRow.get(repfactoredAltercode);
+                        System.out.println("     Item:" + item.getCode() + " " + item.getDescription());
+                        if (shadowItem == null) {
+                            System.out.println("No Shadow Item");
+                        } else {
+                            System.out.println("Shadow Item:" + shadowItem.getCode() + " " + shadowItem.getDescription());
+                            if (shadowCodes.containsKey(shadowItem.getCode())) {
+                                System.out.println("Another Shadow Code For Already Existing");
+                            } else {
+                                ArrayList al = new ArrayList();
+                                al.add(shadowItem.getCode());
+                                shadowCodes.put(repfactoredAltercode, al);
+                                System.out.println("New Shadow Code Added");
+                            }
+                        }
+                        System.out.println("----------------------------------------");
+                    }
+
+                }
+            }
+        }
+        return shadowCodes;
     }
 
     @RequestMapping(value = "saveCheckUp", method = RequestMethod.POST)
