@@ -3,6 +3,7 @@
     Created on : Jun 25, 2023, 6:30:28 PM
     Author     : Michail Sitmalidis
 --%>
+<%@page import="java.util.ArrayList"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page import="java.util.LinkedHashMap"%>
 <%@page import="java.util.Map"%>
@@ -61,6 +62,7 @@
                 <tr>
                     <th>A/A</th>
                     <th>Code</th>
+                    <th>Shadow Code</th>
                     <th>Description</th>
                     <th>Sent</th>
                     <th>Delivered</th>
@@ -69,36 +71,42 @@
             </thead>
             <tbody id="tableBody">
                 <%
+                    LinkedHashMap<String, ArrayList<String>> shadowCodes = (LinkedHashMap) request.getAttribute("shadowCodes");
                     int x = 1;
                     DeliveryInvoice deliveryInvoice = (DeliveryInvoice) request.getAttribute("deliveryInvoice");
                     LinkedHashMap<String, DeliveryItem> items = deliveryInvoice.getItems();
                     for (Map.Entry<String, DeliveryItem> deliveryItemEntry : items.entrySet()) {
                         DeliveryItem item = deliveryItemEntry.getValue();
-
+                        
                         out.println("<tr>");
                         out.println("<td>");
                         out.println(x);
                         out.println("</td>");
                         out.println("<td style='padding-left: 5px; padding-left: 5px;'>");
+                        out.println(shadowCodes.get(item.getCode()).get(0));
+                        out.println("</td>");
+                        
+                        out.println("</td>");
+                        out.println("<td style='padding-left: 5px; padding-left: 5px;'>");
                         out.println(item.getCode());
                         out.println("</td>");
-
+                        
                         out.println("<td>");
                         out.println(item.getDescription());
                         out.println("</td>");
-
+                        
                         out.println("<td>");
                         out.println("<input  class='sent' type='number' id='" + item.getCode() + "_sent' value='" + item.getQuantity() + "' readonly width='10px'>");
                         out.println("</td>");
-
+                        
                         out.println("<td>");
                         out.println("<input class='delivered' type='number' id='" + item.getCode() + "_delivered' value='" + item.getDeliveredQuantity() + "'>");
                         out.println("</td>");
-
+                        
                         out.println("<td>");
                         out.println("<dev id='" + item.getCode() + "_colorDisplay'>____</dev>");
                         out.println("</td>");
-
+                        
                         out.println("</tr>");
                         x++;
                     }
@@ -124,7 +132,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
     <script type="text/javascript">
-
+                                
                                 class Item {
                                     constructor(altercode, code, description) {
                                         this.altercode = altercode;
@@ -132,7 +140,7 @@
                                         this.description = description;
                                     }
                                 }
-
+                                
                                 var items = new Array();
         <c:forEach items="${pet4UItemsRowByRow}" var="item">
                                 var altercode = "${item.altercode}";
@@ -141,10 +149,10 @@
                                 var item = new Item(altercode, code, description);
                                 items[altercode] = item;
         </c:forEach>
-
-
-
-
+                                
+                                
+                                
+                                
                                 function check(event, input) {
                                     if (event.keyCode === 13) {
                                         var altercode = input.value;
@@ -152,7 +160,7 @@
                                         var item = items[altercode];
                                         if (item == null) {
                                             let unknownBarcodeX = document.getElementById(altercode + "_sent");
-
+                                            
                                             if (unknownBarcodeX == null) {
                                                 document.getElementById("descriptionDisplay").innerHTML = altercode + " : Unkown Barcode: " + altercode;
                                                 addRow(altercode, "Unkown Barcode: " + altercode);
@@ -167,22 +175,22 @@
                                             console.log(code);
                                             var description = item.description;
                                             document.getElementById("descriptionDisplay").innerHTML = altercode + " : " + description;
-
-
+                                            
+                                            
                                             let sent = document.getElementById(code + "_sent");
                                             if (sent == null) {
                                                 addRow(item.code, item.description);
                                             } else {
                                                 sent = sent.value * 1;
                                             }
-
+                                            
                                             let delivered = document.getElementById(code + "_delivered").value * 1;
                                             delivered++;
-
+                                            
                                             document.getElementById(code + "_delivered").value = delivered;
-
+                                            
                                             let colorDisplay = document.getElementById(code + "_colorDisplay");
-
+                                            
                                             let diff = sent - delivered;
                                             if (diff > 0) {
                                                 colorDisplay.style.backgroundColor = 'red';
@@ -194,19 +202,19 @@
                                                 colorDisplay.style.backgroundColor = 'green';
                                             }
                                         }
-
+                                        
                                         input.value = "";
-
+                                        
                                     }
                                 }
-
+                                
                                 function addRow(code, description) {
                                     // Get the table body element in which you want to add row
                                     let table = document.getElementById("tableBody");
-
+                                    
                                     // Create row element
                                     let row = document.createElement("tr")
-
+                                    
                                     // Create cells
                                     let c1 = document.createElement("td")
                                     let c2 = document.createElement("td")
@@ -221,8 +229,8 @@
                                     c4.innerHTML = "<input class='sent' type='number' id='" + code + "_sent' value='0' readonly width='10px'>";
                                     c5.innerHTML = "<input class='delivered' type='number' id='" + code + "_delivered' value='0'>";
                                     c6.innerHTML = "<dev id='" + code + "_colorDisplay'>____</dev>";
-
-
+                                    
+                                    
                                     // Append cells to row
                                     row.appendChild(c1);
                                     row.appendChild(c2);
@@ -230,46 +238,46 @@
                                     row.appendChild(c4);
                                     row.appendChild(c5);
                                     row.appendChild(c6);
-
-
+                                    
+                                    
                                     // Append row to table body
                                     table.appendChild(row)
                                 }
-
+                                
                                 //---------------------------------
                                 //--------------------------------
                                 //---------------------------------
                                 function requestRouter(requestTarget) {
                                     form.action = requestTarget;
-
+                                    
                                     let sent = collectSentData();
                                     sentItems.value = sent;
-
+                                    
                                     let delivered = collectDeliveredData();
                                     deliveredItems.value = delivered;
-
-
+                                    
+                                    
                                     // console.log(data);
                                     form.submit();
                                 }
-
+                                
                                 function collectSentData() {
                                     var returnValue = "";
                                     var sentItems = document.querySelectorAll(".sent");
-
+                                    
                                     for (x = 0; x < sentItems.length; x++) {
-
+                                        
                                         returnValue += sentItems[x].id + ":" + sentItems[x].value + ",";
                                     }
                                     return returnValue;
                                 }
-
+                                
                                 function collectDeliveredData() {
                                     var returnValue = "";
                                     var deliveredItems = document.querySelectorAll(".delivered");
-
+                                    
                                     for (x = 0; x < deliveredItems.length; x++) {
-
+                                        
                                         returnValue += deliveredItems[x].id + ":" + deliveredItems[x].value + ",";
                                     }
                                     return returnValue;
