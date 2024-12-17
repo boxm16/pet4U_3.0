@@ -60,9 +60,9 @@ public class DeliveryController_V_3_1 {
         if (supplier.equals("000013-ΑΣΤΡΟΝ ΧΗΜΙΚΑ ΑΕ")) {
             LinkedHashMap<String, Item> allActiveIems = dao.getAllActiveItems();
             LinkedHashMap<String, Item> itemsRowByRow = dao.getPet4UItemsRowByRow();
-            LinkedHashMap<String, ArrayList<String>> shadowCodes = getShadowCodes(allActiveIems, itemsRowByRow);
+            LinkedHashMap<String, String> shadowCodes = getShadowCodes(allActiveIems, itemsRowByRow);
             modelMap.addAttribute("shadowCodes", shadowCodes);
-             saveButton = "<button class=\"btn-primary\" \"><H1>Save Delivery Checking-NOT WORKING FOR ASTRON</H1></button>";
+            saveButton = "<button class=\"btn-primary\" \"><H1>Save Delivery Checking-NOT WORKING FOR ASTRON</H1></button>";
 
             return "delivery/deliveryInvoiceChecking_ASTRON";
         }
@@ -70,8 +70,8 @@ public class DeliveryController_V_3_1 {
         return "delivery/deliveryInvoiceChecking";
     }
 
-    public LinkedHashMap<String, ArrayList<String>> getShadowCodes(LinkedHashMap<String, Item> allActiveItems, LinkedHashMap<String, Item> pet4UItemsRowByRow) {
-        LinkedHashMap<String, ArrayList<String>> shadowCodes = new LinkedHashMap<>();
+    public LinkedHashMap<String, String> getShadowCodes(LinkedHashMap<String, Item> allActiveItems, LinkedHashMap<String, Item> pet4UItemsRowByRow) {
+        LinkedHashMap<String, String> shadowCodes = new LinkedHashMap<>();
         for (Map.Entry<String, Item> allActiveItemsEntry : allActiveItems.entrySet()) {
             Item item = allActiveItemsEntry.getValue();
             ArrayList<AltercodeContainer> altercodes = item.getAltercodes();
@@ -93,13 +93,11 @@ public class DeliveryController_V_3_1 {
                         } else {
                             System.out.println("Shadow Item:" + shadowItem.getCode() + " " + shadowItem.getDescription());
                             if (shadowCodes.containsKey(shadowItem.getCode())) {
-                                ArrayList<String> al = shadowCodes.get(shadowItem.getCode());
-                                al.add(shadowItem.getCode());
+
                                 System.out.println("Another Shadow Code For Already Existing");
                             } else {
-                                ArrayList al = new ArrayList();
-                                al.add(shadowItem.getCode());
-                                shadowCodes.put(item.getCode(), al);
+
+                                shadowCodes.put(shadowItem.getCode(), item.getCode());
                                 System.out.println("New Shadow Code Added");
 
                             }

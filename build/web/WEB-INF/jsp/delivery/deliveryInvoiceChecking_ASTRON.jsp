@@ -61,8 +61,8 @@
 
                 <tr>
                     <th>A/A</th>
-                    <th>Code</th>
-                    <th>Shadow Code</th>
+                    <th>Supplier Code</th>
+                    <th>Our Code</th>
                     <th>Description</th>
                     <th>Sent</th>
                     <th>Delivered</th>
@@ -71,7 +71,7 @@
             </thead>
             <tbody id="tableBody">
                 <%
-                    LinkedHashMap<String, ArrayList<String>> shadowCodes = (LinkedHashMap) request.getAttribute("shadowCodes");
+                    LinkedHashMap<String, String> shadowCodes = (LinkedHashMap) request.getAttribute("shadowCodes");
                     int x = 1;
                     DeliveryInvoice deliveryInvoice = (DeliveryInvoice) request.getAttribute("deliveryInvoice");
                     LinkedHashMap<String, DeliveryItem> items = deliveryInvoice.getItems();
@@ -88,11 +88,11 @@
                         
                         out.println("</td>");
                         out.println("<td style='padding-left: 5px; padding-left: 5px;'>");
-                        ArrayList<String> al = shadowCodes.get(item.getCode());
+                     String al = shadowCodes.get(item.getCode());
                         if (al == null) {
-                            out.println();
+                            out.println("-");
                         } else {
-                            out.println(al.get(0));
+                            out.println(al);
                         }
                         
                         out.println("</td>");
