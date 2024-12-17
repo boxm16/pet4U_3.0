@@ -54,18 +54,19 @@ public class DeliveryController_V_3_1 {
 
         modelMap.addAttribute("pet4UItemsRowByRow", pet4UItemsRowByRow);
         modelMap.addAttribute("deliveryInvoice", deliveryInvoice);
-
         String saveButton = "<button class=\"btn-primary\" onclick=\"requestRouter('saveCheckUp.htm')\"><H1>Save Delivery Checking</H1></button>";
-        modelMap.addAttribute("saveButton", saveButton);
+
         String supplier = deliveryInvoice.getSupplier();
         if (supplier.equals("000013-ΑΣΤΡΟΝ ΧΗΜΙΚΑ ΑΕ")) {
             LinkedHashMap<String, Item> allActiveIems = dao.getAllActiveItems();
             LinkedHashMap<String, Item> itemsRowByRow = dao.getPet4UItemsRowByRow();
             LinkedHashMap<String, ArrayList<String>> shadowCodes = getShadowCodes(allActiveIems, itemsRowByRow);
             modelMap.addAttribute("shadowCodes", shadowCodes);
+             saveButton = "<button class=\"btn-primary\" \"><H1>Save Delivery Checking-NOT WORKING FOR ASTRON</H1></button>";
+
             return "delivery/deliveryInvoiceChecking_ASTRON";
         }
-
+        modelMap.addAttribute("saveButton", saveButton);
         return "delivery/deliveryInvoiceChecking";
     }
 
