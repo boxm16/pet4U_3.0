@@ -308,10 +308,16 @@ public class DeliveryDao_V_3_1 {
 
         try {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("select * from WH1 WHERE DISABLED !=1 ORDER BY EXPR1;");
+            ResultSet resultSet = statement.executeQuery("select * from WH1  ORDER BY EXPR1;");
 
             while (resultSet.next()) {
-
+                String disabled = resultSet.getString("DISABLED");
+                if (disabled == null) {
+                } else {
+                    if (disabled.equals("1")) {
+                        continue;
+                    }
+                }
                 //diklida asfalias
                 if (resultSet.getString("QTYBALANCE") == null) {
                     continue;
