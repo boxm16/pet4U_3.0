@@ -92,12 +92,12 @@ public class DeliveryController_V_3_1 {
                             System.out.println("No Shadow Item");
                         } else {
                             System.out.println("Shadow Item:" + shadowItem.getCode() + " " + shadowItem.getDescription());
-                            if (shadowCodes.containsKey(shadowItem.getCode())) {
+                            if (shadowCodes.containsKey(item.getCode())) {
 
                                 System.out.println("Another Shadow Code For Already Existing");
                             } else {
 
-                                shadowCodes.put(shadowItem.getCode(), item.getCode());
+                                shadowCodes.put(item.getCode(), shadowItem.getCode());
                                 System.out.println("New Shadow Code Added");
 
                             }
