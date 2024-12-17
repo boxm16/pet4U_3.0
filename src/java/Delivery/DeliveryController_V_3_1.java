@@ -90,10 +90,11 @@ public class DeliveryController_V_3_1 {
 
                         String repfactoredAltercode = altercode.replaceAll("-", "");
                         Item mainItem = pet4UItemsRowByRow.get(repfactoredAltercode);
-                        System.out.println("Main Item:" + mainItem.getCode() + " " + mainItem.getDescription());
                         if (mainItem == null) {
 
                         } else {
+                            System.out.println("Main Item:" + mainItem.getCode() + " " + mainItem.getDescription());
+
                             System.out.println("Shadow Item Code:" + shadowCode + " " + item.getDescription());
 
                             shadowCodes.put(mainItem.getCode(), shadowCode);
