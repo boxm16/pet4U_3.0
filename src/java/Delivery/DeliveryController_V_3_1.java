@@ -82,7 +82,7 @@ public class DeliveryController_V_3_1 {
                         continue;
                     }
                     String shadowCode = item.getCode();
-                    System.out.println("SC: " + item.getDescription());
+                    System.out.println("Altercode" + altercode + " : Code " + item.getCode() + ": Description " + item.getDescription());
                     char firstChar = altercode.charAt(0);
                     char lastChar = altercode.charAt(altercode.length() - 1);
                     if (firstChar == '-' || lastChar == '-') {
@@ -90,7 +90,7 @@ public class DeliveryController_V_3_1 {
 
                         String repfactoredAltercode = altercode.replaceAll("-", "");
                         Item mainItem = pet4UItemsRowByRow.get(repfactoredAltercode);
-                        System.out.println("     Item:" + item.getCode() + " " + item.getDescription());
+                        System.out.println("Main Item:" + mainItem.getCode() + " " + mainItem.getDescription());
                         if (mainItem == null) {
 
                         } else {
