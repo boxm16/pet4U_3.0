@@ -62,6 +62,8 @@ public class DeliveryController_V_3_1 {
             LinkedHashMap<String, Item> allActiveIems = dao.getAllActiveItems();
             LinkedHashMap<String, Item> itemsRowByRow = dao.getPet4UItemsRowByRow();
             LinkedHashMap<String, ArrayList<String>> shadowCodes = getShadowCodes(allActiveIems, itemsRowByRow);
+            modelMap.addAttribute("shadowCodes", shadowCodes);
+            return "delivery/deliveryInvoiceChecking_ASTRON";
         }
 
         return "delivery/deliveryInvoiceChecking";
@@ -96,7 +98,7 @@ public class DeliveryController_V_3_1 {
                                 al.add(shadowItem.getCode());
                                 shadowCodes.put(repfactoredAltercode, al);
                                 System.out.println("New Shadow Code Added");
-                                
+
                             }
                         }
                         System.out.println("----------------------------------------");
