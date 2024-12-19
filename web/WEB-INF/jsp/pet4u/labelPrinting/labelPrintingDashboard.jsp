@@ -34,13 +34,15 @@
                         <h1 style='color: red; font-weight:  bold'>Προσοχη, ετικέτα εκτυπώνετε άμεσα μετα από σκανάρισμα</h1>
 
                         <hr>
-                       
-                          <form action="printSmallLabelsInARow.htm" method="GET" >
-                                <input type="text" class="form-control input-lg" name='altercodeMask' value="%">
-                                <br>
-                                <input class="btn btn-primary btn-lg btn-block"  type="submit" value="Submit">
-                            </form>
-                     </center>
+
+                        <form action="printSmallLabelsInARow.htm" method="GET" >
+                            <input type="text" class="form-control input-lg" name='altercode'>
+                            <br>
+                            <input class="btn btn-primary btn-lg btn-block"  type="submit" value="Submit">
+                            <br>  <br>  <br>  <br>  <br>  <br>
+                        </form>
+                        <br>  <br>  <br>  <br>  <br>  <br>
+                    </center>
                 </div>
                 <div class=" col-sm-4">
 
