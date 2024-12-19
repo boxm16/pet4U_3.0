@@ -30,7 +30,9 @@
                 </div>
                 <div class=" col-sm-4">
                     <center>
-                        <h2>Εκτύπωση Μικρής Ετικέτας Θέσης</h2>
+                        <a href="index.htm" ><h1>Index</h1></a>
+                        <hr>
+                        <h1>Εκτύπωση Μικρής Ετικέτας Θέσης</h1>
                         <h1 style='color: red; font-weight:  bold'>Προσοχη, ετικέτα εκτυπώνετε άμεσα μετα από σκανάρισμα</h1>
 
                         <hr>
