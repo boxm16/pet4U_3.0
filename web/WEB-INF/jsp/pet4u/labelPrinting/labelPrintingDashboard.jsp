@@ -30,7 +30,7 @@
                 </div>
                 <div class=" col-sm-4">
                     <center>
-                        <a href="index.htm" ><h1>Index</h1></a>
+                        <a href="pet4uDashboard.htm" ><h1>Pet4u Dashboard</h1></a>
                         <hr>
                         <h1>Εκτύπωση Μικρής Ετικέτας Θέσης</h1>
                         <h1 style='color: red; font-weight:  bold'>Προσοχη, ετικέτα εκτυπώνετε άμεσα μετα από σκανάρισμα</h1>
