@@ -25,6 +25,7 @@ public class Pet4uLabelPrintingController {
         SearchDao searchDao = new SearchDao();
         Item item = searchDao.getItemByAltercode(altercode);
 
+        System.out.println("Item:" + item.getCode());
         return "pet4u/labelPrinting/labelPrintingDashboard";
     }
 }

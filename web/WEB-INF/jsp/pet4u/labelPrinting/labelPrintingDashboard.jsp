@@ -36,7 +36,7 @@
                         <hr>
 
                         <form action="printSmallLabelsInARow.htm" method="GET" >
-                            <input type="text" class="form-control input-lg" name='altercode'>
+                            <input type="text" class="form-control input-lg" name='altercode' autofocus>
                             <br>
                             <input class="btn btn-primary btn-lg btn-block"  type="submit" value="PRINT">
                             <br>  <br>  <br>  <br>  <br>  <br>
