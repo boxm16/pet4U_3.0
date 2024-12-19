@@ -45,7 +45,7 @@
                 <hr>
                 <a href="deliveryDashboard_X.htm" class="btn btn-primary" style='background-color: red' role="button"><h1>Delivery Dashboard</h1></a>
                 <hr>
-                <a href="labelPrintInRow.htm" class="btn btn-primary" style='background-color: #29ece9' role="button"><h1>Σερί εκτύπωση ετικέτας θέσης</h1></a>
+                <a href="labelPrintingDashboard.htm" class="btn btn-primary" style='background-color: #29ece9' role="button"><h1>Label Printing Dashboard</h1></a>
                 <hr>
                 <a href="inventoryDashboard.htm" class="btn btn-primary" role="button" style='background-color: #999900'><h1>Inventory Dashboard</h1></a>
                 <hr>
