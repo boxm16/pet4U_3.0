@@ -15,6 +15,6 @@ public class Pet4uLabelPrintingController {
     public String labelPrintingDashboard() {
         
 
-        return "labelPrinting/labelPrintingDashboard";
+        return "pet4u/labelPrinting/labelPrintingDashboard";
     }
 }
