@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class Pet4uLabelPrintingController {
 
-    @RequestMapping(value = "labelPrintDashboard")
-    public String labelPrintDashboard() {
+    @RequestMapping(value = "labelPrintingDashboard")
+    public String labelPrintingDashboard() {
         
 
         return "labelPrinting/labelPrintingDashboard";
