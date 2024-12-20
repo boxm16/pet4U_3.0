@@ -13,6 +13,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -218,4 +219,24 @@ public class TESTosteronDao {
         }
         return items;
     }
+
+    ArrayList<String> getAllSapHanaDatabases() {
+    DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+        Connection connection = databaseConnectionFactory.getSapHanaConnection();
+        if (connection != null) {
+          try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("DATABASE_NAME;");
+
+            while (resultSet.next()) {
+                System.out.println(resultSet.getString(""));
+
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(TESTosteronDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
 }
