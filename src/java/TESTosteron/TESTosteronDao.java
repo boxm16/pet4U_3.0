@@ -178,8 +178,7 @@ public class TESTosteronDao {
         }
         return items;
     }
-    
-    
+
     public LinkedHashMap<String, Item> getPet4UItemsRowByRow() {
         LinkedHashMap<String, Item> items = new LinkedHashMap<>();
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
@@ -221,22 +220,24 @@ public class TESTosteronDao {
     }
 
     ArrayList<String> getAllSapHanaDatabases() {
-    DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
         Connection connection = databaseConnectionFactory.getSapHanaConnection();
         if (connection != null) {
-          try {
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("DATABASE_NAME");
+            try {
+                Statement statement = connection.createStatement();
+                ResultSet resultSet = statement.executeQuery("DATABASE_NAME");
 
-            while (resultSet.next()) {
-                System.out.println(resultSet.getString(""));
+                while (resultSet.next()) {
+                    System.out.println(resultSet.getString(""));
 
+                }
+                resultSet.close();
+                statement.close();
+                connection.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(TESTosteronDao.class.getName()).log(Level.SEVERE, null, ex);
             }
-            resultSet.close();
-            statement.close();
-            connection.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(TESTosteronDao.class.getName()).log(Level.SEVERE, null, ex);
+
         }
-        }
-}
+        return new ArrayList<>();
+    }
