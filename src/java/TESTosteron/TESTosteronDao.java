@@ -226,7 +226,7 @@ public class TESTosteronDao {
         if (connection != null) {
           try {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("DATABASE_NAME;");
+            ResultSet resultSet = statement.executeQuery("DATABASE_NAME");
 
             while (resultSet.next()) {
                 System.out.println(resultSet.getString(""));
