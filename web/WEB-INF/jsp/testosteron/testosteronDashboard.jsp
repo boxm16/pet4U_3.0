@@ -39,10 +39,15 @@
                     <hr>
                     <a href="showShadowCodes.htm" class="btn btn-secondary" style='background-color: green' role="button"><h1>Show Shadow Codes</h1></a>
                     <hr>
-                    
-                    
-                      <hr>
+
+
+                    <hr>
                     <a href="loadAstronData.htm" class="btn btn-secondary" style='background-color: green' role="button"><h1>Load Astron Excel File</h1></a>
+                    <hr>
+                    <hr>   <hr>
+                    <hr>   <hr>
+                    <hr>
+                    <a href="testSapHanaDB.htm" class="btn btn-secondary" style='background-color: green' role="button"><h1>TEST SAP HANA</h1></a>
                     <hr>
 
 

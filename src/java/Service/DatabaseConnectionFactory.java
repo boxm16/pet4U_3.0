@@ -158,5 +158,29 @@ public class DatabaseConnectionFactory {
         }
         return connection;
     }
+    
+    
+    public Connection getSapHanaConnection() {
+        //this is regular connection 
+        Basement basement = new Basement();
+        Connection connection = null;
+        try {
+            String driver = "com.sap.db.jdbc.Driver";
+            String url = "jdbc:sap://pluto:30015/?encrypt=true&validateCertificate=false";
+            String username = "PET4U";
+            String password;
+            if (basement.getApplicationHostName().equals("LAPTOP")) {
+                password = "athina2004";
+            } else {
+                password = "SAPB1Admin";
+            }
+
+            Class.forName(driver);
+            connection = DriverManager.getConnection(url, username, password);
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(DatabaseConnectionFactory.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return connection;
+    }
 
 }

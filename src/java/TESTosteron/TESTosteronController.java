@@ -6,6 +6,8 @@ import CamelotItemsOfInterest.CamelotDao;
 import Inventory.InventoryItem;
 import Notes.NotesDao;
 import Pet4uItems.Pet4uItemsDao;
+import Service.DatabaseConnectionFactory;
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -177,6 +179,16 @@ public class TESTosteronController {
             }
         }
         return "testosteron/shadowCodes";
+    }
+
+    @RequestMapping(value = "testSapHanaDB")
+    public String testSapHanaDB(ModelMap modelMap) {
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+        Connection sapHanaConnection = databaseConnectionFactory.getSapHanaConnection();
+        if (sapHanaConnection != null) {
+            System.out.println("Japa");
+        }
+        return "testosteron/testosteronDashboard";
     }
 
 }
