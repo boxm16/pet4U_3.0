@@ -225,10 +225,10 @@ public class TESTosteronDao {
         if (connection != null) {
             try {
                 Statement statement = connection.createStatement();
-                ResultSet resultSet = statement.executeQuery("select * from M_DATABASE");
+                ResultSet resultSet = statement.executeQuery("SELECT * FROM SYS.M_TABLES");
 
                 while (resultSet.next()) {
-                    System.out.println(resultSet.getString("DATABASE_NAME"));
+                    System.out.println(resultSet.getString("TABLE_NAME"));
 
                 }
                 resultSet.close();
