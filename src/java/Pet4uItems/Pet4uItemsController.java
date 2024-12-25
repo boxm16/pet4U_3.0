@@ -604,7 +604,7 @@ public class Pet4uItemsController {
     public String goForPositionChanignX(@RequestParam(name = "itemId") String itemId,
             ModelMap model, HttpSession session) {
         String userName = (String) session.getAttribute("userName");
-        if (!userName.equals("me")) {
+        if (userName != null || !userName.equals("me")) {
             System.out.println("Somebody trying to breach encryption");
             return "index";
         }
