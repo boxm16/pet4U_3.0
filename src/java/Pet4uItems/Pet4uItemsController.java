@@ -601,7 +601,14 @@ public class Pet4uItemsController {
 
     //--------------------------00000000000000000-=====================
     @RequestMapping(value = "goForPositionChanignX")
-    public String goForPositionChanignX(@RequestParam(name = "itemId") String itemId, ModelMap model) {
+    public String goForPositionChanignX(@RequestParam(name = "itemId") String itemId,
+            ModelMap model, HttpSession session) {
+        String userName = (String) session.getAttribute("userName");
+        if (!userName.equals("me")) {
+            System.out.println("Somebody trying to breach encryption");
+            return "index";
+        }
+
         model.addAttribute("itemId", itemId);
         return "/pet4uItems/positionChanignServantX";
     }
