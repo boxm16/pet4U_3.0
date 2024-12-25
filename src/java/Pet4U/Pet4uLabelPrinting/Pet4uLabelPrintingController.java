@@ -103,8 +103,18 @@ public class Pet4uLabelPrintingController {
         int labelsCount = 1;
         smallLabelPrinter.setLabelsCount(labelsCount);
 
-        smallLabelPrinter.setCode(item.getCode());
-        smallLabelPrinter.setBarcode(altercode.substring(altercode.length() - 6));
+        if (altercode.length() > 6) {
+            altercode = altercode.substring(altercode.length() - 6);
+        }
+        String mainBarcode = item.getMainBarcode();
+        if (mainBarcode == null) {
+            mainBarcode = "";
+        }
+        if (mainBarcode.length() > 6) {
+            mainBarcode = mainBarcode.substring(mainBarcode.length() - 6);
+        }
+        smallLabelPrinter.setCode(altercode);
+        smallLabelPrinter.setBarcode(mainBarcode);
 
         String position = item.getPosition().substring(2);
         smallLabelPrinter.setPosition(position);
