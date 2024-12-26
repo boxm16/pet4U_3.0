@@ -208,7 +208,8 @@ public class Pet4uItemsController {
 
     public void updateItemsState() {
         Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
-        LinkedHashMap<String, Item> pet4uAllItems = pet4uItemsDao.getAllActiveItems();
+        LinkedHashMap<String, Item> pet4uAllItems = pet4uItemsDao.getAllItems_NullVersion();
+        // LinkedHashMap<String, Item> pet4uAllItems = pet4uItemsDao.getAllActiveItems();
         pet4uItemsDao.insertPet4uItemsSnapshot(pet4uAllItems);
     }
 
@@ -595,7 +596,7 @@ public class Pet4uItemsController {
     //-----------------------------+++++++++++++++++++++++++++++++++++++++++----------------
     public void updateItemsStateFullVersion() {
         Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
-        LinkedHashMap<String, Item> pet4uAllItems = pet4uItemsDao.getAllActiveItems();
+        LinkedHashMap<String, Item> pet4uAllItems = pet4uItemsDao.getAllItems_NullVersion();
         pet4uItemsDao.insertPet4uItemsSnapshotFullVersion(pet4uAllItems);
     }
 
