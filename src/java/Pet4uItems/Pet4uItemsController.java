@@ -206,7 +206,7 @@ public class Pet4uItemsController {
         return "/pet4uItems/pet4uAllItemsWithLessThanThreeStock";
     }
 
-    public void updateItemsState() {
+    public void updateItemsState() { 
         Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
         LinkedHashMap<String, Item> pet4uAllItems = pet4uItemsDao.getAllItems_NullVersion();
         // LinkedHashMap<String, Item> pet4uAllItems = pet4uItemsDao.getAllActiveItems();
