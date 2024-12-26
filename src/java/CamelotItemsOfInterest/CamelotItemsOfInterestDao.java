@@ -473,7 +473,7 @@ public class CamelotItemsOfInterestDao {
         //  LocalDate firstDate = date.minusDays(30);
         //  LocalDate lastDate = date.minusDays(1);
         LocalDate endDate = LocalDate.now();
-        for (int x = 30; x > 0; x--) {//CHANGED FOR 30 DAYS, INSTEAD OF 100
+        for (int x = 100; x > 0; x--) {
 
             last100DaysSnapshots.put(endDate, null);
             endDate = endDate.minusDays(1);
