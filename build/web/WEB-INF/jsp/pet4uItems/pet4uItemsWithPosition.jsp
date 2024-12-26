@@ -42,7 +42,7 @@
             <th>Description</th>
             <th>State</th>
             <th>Stock</th>
-           
+
 
             <tbody>
                 <%
@@ -57,7 +57,7 @@
                         out.println("</td>");
 
                         out.println("<td>");
-                        out.println("<a href='itemAnalysis.htm?code=" + item.getCode() + "' target='_blank'>"+item.getCode()+"</a>");
+                        out.println("<a href='itemAnalysis.htm?code=" + item.getCode() + "' target='_blank'>" + item.getCode() + "</a>");
                         out.println("</td>");
 
                         out.println("<td>");
@@ -68,11 +68,15 @@
                         out.println(item.getState());
                         out.println("</td>");
 
-                        out.println("<td>");
+                        if (item.getQuantity().equals("0")
+                                || item.getQuantity().equals("0.0")
+                                || item.getQuantity().equals("0.000000")) {
+                            out.println("<td style='background-color: #F7B2F7'>");
+                        } else {
+                            out.println("<td>");
+                        }
                         out.println(item.getQuantity());
                         out.println("</td>");
-
-                     
 
                         out.println("</tr>");
                     }
