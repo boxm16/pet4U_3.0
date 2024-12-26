@@ -67,14 +67,18 @@
                         out.println("<td>");
                         out.println(item.getState());
                         out.println("</td>");
-
-                        if (item.getQuantity().equals("0")
-                                || item.getQuantity().equals("0.0")
-                                || item.getQuantity().equals("0.000000")) {
-                            out.println("<td style='background-color: #F7B2F7'>");
-                        } else {
+                        if (item.getQuantity() == null) {
                             out.println("<td>");
+                        } else {
+                            if (item.getQuantity().equals("0")
+                                    || item.getQuantity().equals("0.0")
+                                    || item.getQuantity().equals("0.000000")) {
+                                out.println("<td style='background-color: #F7B2F7'>");
+                            } else {
+                                out.println("<td>");
+                            }
                         }
+
                         out.println(item.getQuantity());
                         out.println("</td>");
 
