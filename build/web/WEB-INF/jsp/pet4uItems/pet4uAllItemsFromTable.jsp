@@ -42,7 +42,7 @@
             <th>Code</th>
             <th>Description</th>
             <th>State</th>
-            <th>Stock</th>
+
 
 
             <tbody>
@@ -76,10 +76,6 @@
 
                         out.println("<td>");
                         out.println(item.getState());
-                        out.println("</td>");
-
-                        out.println("<td>");
-                        out.println(item.getQuantity());
                         out.println("</td>");
 
                         out.println("</tr>");

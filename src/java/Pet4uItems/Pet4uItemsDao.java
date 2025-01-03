@@ -34,7 +34,7 @@ public class Pet4uItemsDao {
             ResultSet resultSet = statement.executeQuery("SELECT [petworld].[EliteUser].[INI].[ID] AS ID, ABBREVIATION, [petworld].[EliteUser].[INI].[NAME] AS NAME, DISABLED, [petworld].[EliteUser].[IR1].[NAME] AS POSITION "
                     + "FROM [petworld].[EliteUser].[INI]  "
                     + "LEFT JOIN [petworld].[EliteUser].[IR1] "
-                    + "ON  [petworld].[EliteUser].[INI].[IF1ID]=[petworld].[EliteUser].[IR1].[ID] ORDER BY ID;");
+                    + "ON  [petworld].[EliteUser].[INI].[IF1ID]=[petworld].[EliteUser].[IR1].[ID] ORDER BY POSITION;");
 
             while (resultSet.next()) {
                 String code = resultSet.getString("ABBREVIATION").trim();
