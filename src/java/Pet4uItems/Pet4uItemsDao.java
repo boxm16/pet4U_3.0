@@ -44,6 +44,8 @@ public class Pet4uItemsDao {
                 String position = "";
                 if (resultSet.getString("POSITION") != null) {
                     position = resultSet.getString("POSITION").trim();
+                } else {
+                    position = "null";
                 }
                 item.setPosition(position);
                 item.setQuantity("0");
