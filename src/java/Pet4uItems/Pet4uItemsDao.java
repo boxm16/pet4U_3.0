@@ -33,7 +33,7 @@ public class Pet4uItemsDao {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT [petworld].[EliteUser].[INI].[ID] AS ID, ABBREVIATION, [petworld].[EliteUser].[INI].[NAME] AS NAME, DISABLED, [petworld].[EliteUser].[IR1].[NAME] AS POSITION "
                     + "FROM [petworld].[EliteUser].[INI]  "
-                    + "INNER JOIN [petworld].[EliteUser].[IR1] "
+                    + "LEFT JOIN [petworld].[EliteUser].[IR1] "
                     + "ON  [petworld].[EliteUser].[INI].[IF1ID]=[petworld].[EliteUser].[IR1].[ID] ORDER BY ID;");
 
             while (resultSet.next()) {
