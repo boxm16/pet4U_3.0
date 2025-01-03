@@ -31,10 +31,18 @@ public class Pet4uItemsDao {
 
         try {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT [petworld].[EliteUser].[INI].[ID] AS ID, ABBREVIATION, [petworld].[EliteUser].[INI].[NAME] AS NAME, DISABLED, [petworld].[EliteUser].[IR1].[NAME] AS POSITION "
+            ResultSet resultSet = statement.executeQuery("SELECT [petworld].[EliteUser].[INI].[ID] AS ID, "
+                    + " ABBREVIATION, "
+                    + "[petworld].[EliteUser].[INI].[NAME] AS NAME, "
+                    + "DISABLED, "
+                    + "[petworld].[EliteUser].[IR2].[NAME] AS STATE, "
+                    + "[petworld].[EliteUser].[IR1].[NAME] AS POSITION "
                     + "FROM [petworld].[EliteUser].[INI]  "
                     + "LEFT JOIN [petworld].[EliteUser].[IR1] "
-                    + "ON  [petworld].[EliteUser].[INI].[IF1ID]=[petworld].[EliteUser].[IR1].[ID] ORDER BY POSITION;");
+                    + "ON  [petworld].[EliteUser].[INI].[IF1ID]=[petworld].[EliteUser].[IR1].[ID]"
+                    + "LEFT JOIN [petworld].[EliteUser].[IR2] "
+                    + "ON  [petworld].[EliteUser].[INI].[IF2ID]=[petworld].[EliteUser].[IR2].[ID]"
+                    + " ORDER BY POSITION;");
 
             while (resultSet.next()) {
                 String code = resultSet.getString("ABBREVIATION").trim();
@@ -43,7 +51,7 @@ public class Pet4uItemsDao {
                 item.setDescription(resultSet.getString("NAME").trim());
                 item.setPosition(resultSet.getString("POSITION"));
                 item.setQuantity(resultSet.getString("ID"));
-                String state = "";
+                String state = resultSet.getString("STATE");
                 // if (resultSet.getString("EXPR2") != null) {
                 //   state = resultSet.getString("EXPR2").trim();
                 //}
