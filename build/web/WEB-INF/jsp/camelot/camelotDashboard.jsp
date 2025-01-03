@@ -39,6 +39,8 @@
                 <hr>
                 <a href="camelotStockPositionsByItemCodeDisplay.htm"><h1>Camelot Stock Positions By Item Code </h1></a>
                 <hr>
+                <a href='camelotAllItems.htm'> <h1>Camelot: All Items</h1></a>
+                <hr>
                 <a href="index.htm"><h1>Index</h1></a>
 
             </center>

@@ -167,6 +167,15 @@ public class Pet4uItemsController {
         return "/pet4uItems/weightItems";
     }
 
+    @RequestMapping(value = "pet4uAllItemsFromTable")
+    public String pet4uAllItemsFromTable(ModelMap modelMap) {
+
+        LinkedHashMap<String, Item> pet4uAllItems = pet4uItemsDao.getAllItemsFromTable();
+
+        modelMap.addAttribute("pet4uAllItems", pet4uAllItems);
+        return "/pet4uItems/pet4uAllItemsFromTable";
+    }
+
     @RequestMapping(value = "pet4uAllItems")
     public String pet4uAllItems(ModelMap modelMap) {
 
@@ -206,7 +215,7 @@ public class Pet4uItemsController {
         return "/pet4uItems/pet4uAllItemsWithLessThanThreeStock";
     }
 
-    public void updateItemsState() { 
+    public void updateItemsState() {
         Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
         LinkedHashMap<String, Item> pet4uAllItems = pet4uItemsDao.getAllItems_NullVersion();
         // LinkedHashMap<String, Item> pet4uAllItems = pet4uItemsDao.getAllActiveItems();

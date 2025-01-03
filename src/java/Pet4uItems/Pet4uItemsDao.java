@@ -24,6 +24,46 @@ import org.springframework.stereotype.Repository;
 
 public class Pet4uItemsDao {
 
+    LinkedHashMap<String, Item> getAllItemsFromTable() {
+        LinkedHashMap<String, Item> items = new LinkedHashMap<>();
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+        Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
+
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT ID, ABBREVIATION, NAME, DISABLED, [petworld].[EliteUser].[IR1].[NAME] AS POSITION "
+                    + "FROM [petworld].[EliteUser].[INI]  "
+                    + "INNER JOIN [petworld].[EliteUser].[IR1] "
+                    + "ON  [petworld].[EliteUser].[INI].[IF1ID]=[petworld].[EliteUser].[IR1].[ID] ORDER BY POSITION;");
+
+            while (resultSet.next()) {
+                String code = resultSet.getString("ABBREVIATION").trim();
+                Item item = new Item();
+                item.setCode(resultSet.getString("ABBREVIATION").trim());
+                item.setDescription(resultSet.getString("NAME").trim());
+                String position = "";
+                if (resultSet.getString("POSITION") != null) {
+                    position = resultSet.getString("POSITION").trim();
+                }
+                item.setPosition(position);
+                item.setQuantity("0");
+                String state = "";
+                // if (resultSet.getString("EXPR2") != null) {
+                //   state = resultSet.getString("EXPR2").trim();
+                //}
+                item.setState("-");
+                items.put(code, item);
+            }
+
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Pet4uItemsDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return items;
+    }
+
     public LinkedHashMap<String, Item> getAllItems() {
         LinkedHashMap<String, Item> items = new LinkedHashMap<>();
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
