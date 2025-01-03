@@ -55,7 +55,7 @@ public class Pet4uItemsDao {
                 // if (resultSet.getString("EXPR2") != null) {
                 //   state = resultSet.getString("EXPR2").trim();
                 //}
-                item.setState("-");
+                item.setState(state);
                 items.put(code, item);
             }
 
