@@ -170,9 +170,9 @@ public class Pet4uItemsController {
     @RequestMapping(value = "pet4uAllItemsFromTable")
     public String pet4uAllItemsFromTable(ModelMap modelMap) {
 
-        LinkedHashMap<String, Item> pet4uAllItems = pet4uItemsDao.getAllItemsFromTable();
+        LinkedHashMap<String, Item> pet4uAllItemsFromTable = pet4uItemsDao.getAllItemsFromTable();
 
-        modelMap.addAttribute("pet4uAllItems", pet4uAllItems);
+        modelMap.addAttribute("pet4uAllItemsFromTable", pet4uAllItemsFromTable);
         return "/pet4uItems/pet4uAllItemsFromTable";
     }
 

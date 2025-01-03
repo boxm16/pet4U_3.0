@@ -37,6 +37,7 @@
 
         <table>
             <th>Α/Α</th>
+            <th>ID</th>
             <th>Position</th>
             <th>Code</th>
             <th>Description</th>
@@ -47,7 +48,7 @@
             <tbody>
                 <%
                     int index = 1;
-                    LinkedHashMap<String, Item> items = (LinkedHashMap) request.getAttribute("pet4uAllItems");
+                    LinkedHashMap<String, Item> items = (LinkedHashMap) request.getAttribute("pet4uAllItemsFromTable");
                     for (Map.Entry<String, Item> entrySet : items.entrySet()) {
                         Item item = entrySet.getValue();
 
@@ -55,6 +56,10 @@
 
                         out.println("<td>");
                         out.println(index);
+                        out.println("</td>");
+
+                        out.println("<td>");
+                        out.println(item.getQuantity());
                         out.println("</td>");
 
                         out.println("<td>");
@@ -78,7 +83,7 @@
                         out.println("</td>");
 
                         out.println("</tr>");
-                        
+
                         index++;
                     }
                 %>
