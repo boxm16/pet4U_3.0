@@ -358,6 +358,7 @@ public class Pet4uItemsDao {
                         state = resultSet.getString("EXPR2").trim();
                     }
                     item.setState(state);
+                    item.setDisabled(resultSet.getBoolean("DISABLED"));
                     items.put(code, item);
                 }
                 AltercodeContainer altercodeContainer = new AltercodeContainer();
