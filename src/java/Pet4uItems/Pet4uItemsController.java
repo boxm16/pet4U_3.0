@@ -192,7 +192,8 @@ public class Pet4uItemsController {
         LinkedHashMap<String, Item> pet4uAllItemsFromView = pet4uItemsDao.getAllItems_NullVersion();
 
         modelMap.addAttribute("pet4uAllItemsFromTable", pet4uAllItemsFromTable);
-        return "/pet4uItems/pet4uAllItemsFromTable";
+        modelMap.addAttribute("pet4uAllItemsFromView", pet4uAllItemsFromView);
+        return "/pet4uItems/pet4uAllItemsFromTableAndViewComparison";
     }
 
     @RequestMapping(value = "pet4uAllItemsOneLine")
