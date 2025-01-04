@@ -54,7 +54,7 @@
 
                     for (Map.Entry<String, Item> entrySet : items.entrySet()) {
                         String code = entrySet.getKey();
-                        if (!itemsFromView.containsKey(code)) {
+                        if (itemsFromView.containsKey(code)) {
                             continue;
                         }
                         Item item = entrySet.getValue();
