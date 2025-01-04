@@ -42,6 +42,7 @@
             <th>Description</th>
             <th>State</th>
             <th>Stock</th>
+            <th>Disabled</th>
 
 
             <tbody>
@@ -84,6 +85,15 @@
                         }
 
                         out.println(item.getQuantity());
+                        out.println("</td>");
+
+                        if (item.isDisabled()) {
+                            out.println("<td style='background-color: red'>");
+                        } else {
+                            out.println("<td>");
+                        }
+
+                        out.println(item.isDisabled());
                         out.println("</td>");
 
                         out.println("</tr>");
