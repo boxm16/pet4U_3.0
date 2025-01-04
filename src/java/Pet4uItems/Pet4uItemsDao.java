@@ -50,13 +50,14 @@ public class Pet4uItemsDao {
                 item.setCode(resultSet.getString("ABBREVIATION").trim());
                 item.setDescription(resultSet.getString("NAME").trim());
                 item.setPosition(resultSet.getString("POSITION"));
-                item.setQuantity(resultSet.getString("ID"));
-                String state = resultSet.getString("STATE");
-                // if (resultSet.getString("EXPR2") != null) {
-                //   state = resultSet.getString("EXPR2").trim();
-                //}
-                item.setState(state);
+                item.setItemId(resultSet.getLong("ID"));
+                item.setState(resultSet.getString("STATE"));
+
+                if (items.containsKey(code)) {
+                    System.out.println("DOUBLE CODES HERE:  " + code);
+                }
                 items.put(code, item);
+
             }
 
             resultSet.close();
