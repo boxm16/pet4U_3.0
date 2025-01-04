@@ -13,6 +13,7 @@ public class Item {
     private String state;
     private String supplier;
     private String mainBarcode;
+    private boolean disabled;
 
     public Item() {
         altercodes = new ArrayList();
@@ -149,5 +150,15 @@ public class Item {
     public void setMainBarcode(String mainBarcode) {
         this.mainBarcode = mainBarcode;
     }
+
+    public boolean isDisabled() {
+        return disabled;
+    }
+
+    public void setDisabled(boolean disabled) {
+        this.disabled = disabled;
+    }
+    
+    
 
 }

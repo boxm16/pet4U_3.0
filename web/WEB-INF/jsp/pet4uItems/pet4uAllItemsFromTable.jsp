@@ -42,6 +42,7 @@
             <th>Code</th>
             <th>Description</th>
             <th>State</th>
+            <th>Disabled</th>
 
 
 
@@ -59,7 +60,7 @@
                         out.println("</td>");
 
                         out.println("<td>");
-                        out.println(item.getQuantity());
+                        out.println(item.getItemId());
                         out.println("</td>");
 
                         out.println("<td>");
@@ -76,6 +77,10 @@
 
                         out.println("<td>");
                         out.println(item.getState());
+                        out.println("</td>");
+
+                        out.println("<td>");
+                        out.println(item.isDisabled());
                         out.println("</td>");
 
                         out.println("</tr>");
