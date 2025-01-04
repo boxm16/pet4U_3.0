@@ -185,6 +185,16 @@ public class Pet4uItemsController {
         return "/pet4uItems/pet4uAllItems";
     }
 
+    @RequestMapping(value = "pet4uAllItemsFromTableAndViewComparison")
+    public String pet4uAllItemsFromTableAndViewComparison(ModelMap modelMap) {
+
+        LinkedHashMap<String, Item> pet4uAllItemsFromTable = pet4uItemsDao.getAllItemsFromTable();
+        LinkedHashMap<String, Item> pet4uAllItemsFromView = pet4uItemsDao.getAllItems_NullVersion();
+
+        modelMap.addAttribute("pet4uAllItemsFromTable", pet4uAllItemsFromTable);
+        return "/pet4uItems/pet4uAllItemsFromTable";
+    }
+
     @RequestMapping(value = "pet4uAllItemsOneLine")
     public String pet4uAllItemsOneLine(ModelMap modelMap) {
 
