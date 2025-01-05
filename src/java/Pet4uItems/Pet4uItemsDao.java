@@ -900,4 +900,24 @@ public class Pet4uItemsDao {
 
     }
 
+    String deleteItemPosition(String itemId) {
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+        Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
+
+        try {
+
+            PreparedStatement updateStatement = connection.prepareStatement("UPDATE [petworld].[EliteUser].[INI]  SET IF1ID = NULL  WHERE ID=?");
+            updateStatement.setString(1, itemId);
+
+            updateStatement.executeUpdate();
+            updateStatement.close();
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Pet4uItemsDao.class.getName()).log(Level.SEVERE, null, ex);
+            return ex.getMessage();
+        }
+        return "Position DELETED Successfully";
+    }
+
 }
