@@ -631,7 +631,19 @@ public class Pet4uItemsController {
         }
 
         model.addAttribute("itemId", itemId);
-        return "/pet4uItems/positionDeletingServant";
+        return "/pet4uItems/positionDeletionConfirmationPage";
+    }
+
+    @RequestMapping(value = "deletePet4uItemPositionConfirmed")
+    public String deletePet4uItemPositionConfirmed(@RequestParam(name = "itemId") String itemId,
+            ModelMap model, HttpSession session) {
+        String userName = (String) session.getAttribute("userName");
+        if (userName == null || !userName.equals("me")) {
+            System.out.println("Somebody trying to breach encryption");
+            return "index";
+        }
+        model.addAttribute("itemId", itemId);
+        return "index";
     }
 
     @RequestMapping(value = "goForPositionChanignX")

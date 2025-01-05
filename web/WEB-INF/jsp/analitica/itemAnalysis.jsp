@@ -63,7 +63,7 @@
                     <h5><a href="index.htm">INDEX</a></h5>
                     <h5>Pet4U Item Analysis</h5>
 
-                    <table style='font-size: 20px;'> 
+                    <table style='font-size: 25px;'> 
                         <tr><td>Code</td><td>${item.code}</td></tr>
                         <tr><td>Description</td><td>${item.description}</td></tr>
                         <tr>
