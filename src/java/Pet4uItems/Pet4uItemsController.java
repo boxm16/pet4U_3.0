@@ -639,13 +639,17 @@ public class Pet4uItemsController {
             ModelMap model, HttpSession session) {
         String userName = (String) session.getAttribute("userName");
         if (userName == null || !userName.equals("me")) {
-            Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
-            // String result = pet4uItemsDao.changeItemPosition(itemId, newPositionId);
-            String result = pet4uItemsDao.deleteItemPosition(itemId);
-            System.out.println(result);
+            System.out.println("Somebody trying to breach encryption");
             return "index";
+        } else {
+            if (userName.equals("me")) {//second lock
+                Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
+                // String result = pet4uItemsDao.changeItemPosition(itemId, newPositionId);
+                String result = pet4uItemsDao.deleteItemPosition(itemId);
+                System.out.println(result);
+                return "index";
+            }
         }
-        model.addAttribute("itemId", itemId);
         return "index";
     }
 
