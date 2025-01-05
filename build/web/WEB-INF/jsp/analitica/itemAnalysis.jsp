@@ -63,12 +63,12 @@
                     <h5><a href="index.htm">INDEX</a></h5>
                     <h5>Pet4U Item Analysis</h5>
 
-                    <table> 
+                    <table style='font-size: 20px;'> 
                         <tr><td>Code</td><td>${item.code}</td></tr>
                         <tr><td>Description</td><td>${item.description}</td></tr>
                         <tr>
                             <td>Position</td>
-                            <td style='font-size: 30px;' ondblclick= 'redirect(${item.itemId})'>${item.position}</td>
+                            <td  ondblclick= 'redirect(${item.itemId})'>${item.position}</td>
                         </tr>
                         <tr><td>State</td><td>${item.state}</td></tr>
                         <tr><td>Stock</td><td>${item.quantity}</td></tr>
