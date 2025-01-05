@@ -68,7 +68,7 @@
                         <tr><td>Description</td><td>${item.description}</td></tr>
                         <tr>
                             <td>Position</td>
-                            <td style='font-size: 30px;' ondblclick= 'redirect(${item.id})'>${item.position}</td>
+                            <td style='font-size: 30px;' ondblclick= 'redirect(${item.itemId})'>${item.position}</td>
                         </tr>
                         <tr><td>State</td><td>${item.state}</td></tr>
                         <tr><td>Stock</td><td>${item.quantity}</td></tr>
