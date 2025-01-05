@@ -66,7 +66,10 @@
                     <table> 
                         <tr><td>Code</td><td>${item.code}</td></tr>
                         <tr><td>Description</td><td>${item.description}</td></tr>
-                        <tr><td>Position</td><td>${item.position}</td></tr>
+                        <tr>
+                            <td>Position</td>
+                            <td style='font-size: 30px;' ondblclick= 'redirect(${item.id})'>${item.position}</td>
+                        </tr>
                         <tr><td>State</td><td>${item.state}</td></tr>
                         <tr><td>Stock</td><td>${item.quantity}</td></tr>
                         <%
@@ -894,6 +897,11 @@
 
 
         </div>
+        <script>
 
+            function  redirect(itemId) {
+                window.location.href = "goForPositionDeleting.htm?itemId=" + itemId;
+            }
+        </script>
     </body>
 </html>

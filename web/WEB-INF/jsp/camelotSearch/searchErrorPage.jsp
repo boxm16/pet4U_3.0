@@ -18,7 +18,7 @@
                 </div>
                 <div class=" col-sm-4">
                     <center>
-                        <h3 style='color:red'>Target Altercode: ${target}); </h3>
+                        <h3 style='color:red'>Target Altercode: ${target}; </h3>
                         <hr>
                         <br> <h3 style='color:red'>Item with that altercode<br>could not be found. </h3>
                         <hr>
