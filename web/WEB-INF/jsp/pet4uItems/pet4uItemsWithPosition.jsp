@@ -98,15 +98,18 @@
                             status = "green";
                         } else {
                             camelotStock = camelotItem.getQuantity();
-                            if (camelotStock.equals("0")
+                            if (camelotStock == null) {
+                                camelotStock = "NULL";
+                            } else if (camelotStock.equals("0")
                                     || camelotStock.equals("0.0")
                                     || camelotStock.equals("0.000000")) {
                                 status = "#F7B2F7";
                             }
-                            if (camelotItem.isDisabled()) {
-                                status = "red";
-                            }
                         }
+                        if (camelotItem.isDisabled()) {
+                            status = "red";
+                        }
+
                         out.println("<td style='background-color: " + status + "'>");
                         out.println(camelotStock);
                         out.println("</td>");
