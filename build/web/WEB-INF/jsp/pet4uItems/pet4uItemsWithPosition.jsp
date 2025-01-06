@@ -97,13 +97,12 @@
                         }
                         out.println(item.isDisabled());
                         out.println("</td>");
-                        
 
                         Item camelotItem = camelotItems.get(item.getCode());
                         String camelotStock = "0.000000";
                         String status = "inherited";
                         if (camelotItem == null) {
-                            camelotStock = "N/C/I";
+                            camelotStock = "Not Cam. Item";
                             status = "green";
                         } else {
                             camelotStock = camelotItem.getQuantity();
