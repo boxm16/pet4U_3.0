@@ -212,8 +212,10 @@ public class Pet4uItemsController {
     public String pet4uItemsWithPosition(ModelMap modelMap) {
 
         LinkedHashMap<String, Item> items = pet4uItemsDao.getAllItemsWithPosition();
+        LinkedHashMap<String, Item> camelotItemsRowByRow = camelotItemsOfInterestDao.getCamelotItemsRowByRow();
 
         modelMap.addAttribute("items", items);
+        modelMap.addAttribute("camelotItems", camelotItemsRowByRow);
         return "/pet4uItems/pet4uItemsWithPosition";
     }
 

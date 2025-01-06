@@ -422,6 +422,7 @@ public class CamelotItemsOfInterestDao {
                 }
                 item.setPosition(position_1 + position_2);
                 item.setQuantity(resultSet.getString("QTYBALANCE"));
+                item.setDisabled(resultSet.getBoolean("DISABLED"));
                 items.put(altercode, item);
 
             }

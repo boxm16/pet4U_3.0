@@ -42,6 +42,7 @@
             <th>Description</th>
             <th>State</th>
             <th>Stock</th>
+            <th>Camelot Stock</th>
             <th>Disabled</th>
 
 
@@ -49,6 +50,8 @@
                 <%
                     int index = 1;
                     LinkedHashMap<String, Item> items = (LinkedHashMap) request.getAttribute("items");
+                    LinkedHashMap<String, Item> camelotItems = (LinkedHashMap) request.getAttribute("camelotItems");
+
                     for (Map.Entry<String, Item> entrySet : items.entrySet()) {
                         Item item = entrySet.getValue();
 
@@ -72,6 +75,7 @@
                         out.println("<td>");
                         out.println(item.getState());
                         out.println("</td>");
+
                         if (item.getQuantity() == null) {
                             out.println("<td>");
                         } else {
@@ -83,8 +87,28 @@
                                 out.println("<td>");
                             }
                         }
-
                         out.println(item.getQuantity());
+                        out.println("</td>");
+
+                        Item camelotItem = camelotItems.get(item.getCode());
+                        String camelotStock = "0.000000";
+                        String status = "inherited";
+                        if (camelotItem == null) {
+                            camelotStock = "N/C/I";
+                            status = "green";
+                        } else {
+                            camelotStock = camelotItem.getQuantity();
+                            if (camelotStock.equals("0")
+                                    || camelotStock.equals("0.0")
+                                    || camelotStock.equals("0.000000")) {
+                                status = "#F7B2F7";
+                            }
+                            if (camelotItem.isDisabled()) {
+                                status = "red";
+                            }
+                        }
+                        out.println("<td style='background-color: " + status + "'>");
+                        out.println(camelotStock);
                         out.println("</td>");
 
                         if (item.isDisabled()) {
