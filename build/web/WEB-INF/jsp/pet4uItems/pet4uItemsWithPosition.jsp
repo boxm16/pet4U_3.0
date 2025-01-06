@@ -107,7 +107,7 @@
                         String camelotStock = "0.000000";
                         String status = "inherited";
                         if (camelotItem == null) {
-                            camelotStock = "Not Cam. Item";
+                            camelotStock = "Can`t Identify As Camelot Item";
                             status = "green";
                         } else {
                             camelotStock = camelotItem.getQuantity();
