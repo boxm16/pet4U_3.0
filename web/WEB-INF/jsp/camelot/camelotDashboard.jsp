@@ -35,13 +35,14 @@
                 <hr>
                 <a href="camelotNotesDisplay.htm" class="btn btn-primary" role="button" style='background-color: #B48199'><h1>Camelot Notes</h1></a>
                 <hr>
-                <a href="camelotStockPositionsDisplay.htm"><h1>Camelot Stock Positions By Position </h1></a>
+                <h2>Camelot Stock Positions</h2>
+                <a href="camelotStockPositionsDisplay.htm" class="btn btn-primary" role="button" style='background-color: #93ec29'><h1> By Position</h1></a>
+                <a href="camelotStockPositionsByItemCodeDisplay.htm" class="btn btn-primary" role="button" style='background-color: #29ec55'><h1>By Item Code</h1></a>
+
                 <hr>
-                <a href="camelotStockPositionsByItemCodeDisplay.htm"><h1>Camelot Stock Positions By Item Code </h1></a>
-                <hr>
-                Camelot: All Items
-                Σημαντική επισήμανση. Εδώ είναι όλοι οι κωδικοί ΠΟΥ ΜΟΥ ΕΡΧΟΝΤΑΙ ΜΕΣΩ VIEW. Που είναι περίπου 1/3 από ΟΛΟΥΣ τους κωδικούς. Οι υπόλοιπου 2/3 κατά 99.99…%  είναι  πλέον άχρηστοι(ανενεργοί). Αλλά που και που μέσα σε αυτούς τους «άχρηστους» μπορεί να  υπάρχει και ακόμα κάποιος «ζωντανός» κωδικός. Όμως δε ζαλίζω πολύ τον Βασίλη για αυτό γιατί έχω στη σειρά και άλλα πολύ ποιο σημαντικά πράγματα να του ζητήσω, οπότε το αφήνω έτσι. (του ζήτησα πολλές φορές να μου έρχονται ΟΛΑ,  αλλά για κάποιο λόγο δυσκολεύετε)
-                <a href='camelotAllItems.htm'> <h1>Camelot: All Items</h1></a>3633-18
+                <h2>Camelot: All Items</h2>
+                ΣΗΜΑΝΤΙΚΗ ΕΠΙΣΗΜΑΝΣΗ. Εδώ είναι όλοι οι κωδικοί ΠΟΥ ΜΟΥ ΕΡΧΟΝΤΑΙ ΜΕΣΩ VIEW. Που είναι περίπου 1/3 από ΟΛΟΥΣ τους κωδικούς. Οι υπόλοιπου 2/3 κατά 99.99…%  είναι  πλέον άχρηστοι(ανενεργοί). Αλλά που και που μέσα σε αυτούς τους «άχρηστους» μπορεί να  υπάρχει και ακόμα κάποιος «ζωντανός» κωδικός. Όμως δε ζαλίζω πολύ τον Βασίλη για αυτό γιατί έχω στη σειρά και άλλα πολύ ποιο σημαντικά πράγματα να του ζητήσω, οπότε το αφήνω έτσι. (του ζήτησα πολλές φορές να μου έρχονται ΟΛΑ,  αλλά για κάποιο λόγο δυσκολεύετε)
+                <a href='camelotAllItems.htm'> <h1>Camelot: All Items</h1></a>
                 <hr>
                 <a href="index.htm"><h1>Index</h1></a>
 
