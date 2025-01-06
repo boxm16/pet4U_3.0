@@ -39,7 +39,7 @@
         <h1><a href="pet4uItemsLessThanThree.htm">Show Items With Less Than 3 Stock</a></h1>
 
         <table>
-
+            <th>A/A</th>
             <th>Position</th>
             <th>Altercode</th>
             <th>Description</th>
@@ -49,11 +49,16 @@
 
             <tbody>
                 <%
+                    int index = 1;
                     LinkedHashMap<String, Item> items = (LinkedHashMap) request.getAttribute("pet4uAllItems");
                     for (Map.Entry<String, Item> entrySet : items.entrySet()) {
                         Item item = entrySet.getValue();
 
                         out.println("<tr>");
+
+                        out.println("<td>");
+                        out.println(index);
+                        out.println("</td>");
 
                         out.println("<td>");
                         out.println(item.getPosition());
@@ -93,6 +98,7 @@
                         out.println("</td>");
 
                         out.println("</tr>");
+                        index++;
                     }
                 %>
             </tbody>
