@@ -48,10 +48,8 @@
                             <thead>
 
                             <th>Position</th>
-
+                            <th>Check</th>
                             <th>Item Code</th>
-
-                            <th>Checked</th>
 
 
                             </thead>
