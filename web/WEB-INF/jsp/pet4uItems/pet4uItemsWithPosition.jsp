@@ -42,8 +42,8 @@
             <th>Description</th>
             <th>State</th>
             <th>Stock</th>
-            <th>Camelot Stock</th>
             <th>Disabled</th>
+            <th>Camelot Data</th>
 
 
             <tbody>
@@ -90,6 +90,15 @@
                         out.println(item.getQuantity());
                         out.println("</td>");
 
+                        if (item.isDisabled()) {
+                            out.println("<td style='background-color: red'>");
+                        } else {
+                            out.println("<td>");
+                        }
+                        out.println(item.isDisabled());
+                        out.println("</td>");
+                        
+
                         Item camelotItem = camelotItems.get(item.getCode());
                         String camelotStock = "0.000000";
                         String status = "inherited";
@@ -113,15 +122,6 @@
 
                         out.println("<td style='background-color: " + status + "'>");
                         out.println(camelotStock);
-                        out.println("</td>");
-
-                        if (item.isDisabled()) {
-                            out.println("<td style='background-color: red'>");
-                        } else {
-                            out.println("<td>");
-                        }
-
-                        out.println(item.isDisabled());
                         out.println("</td>");
 
                         out.println("</tr>");
