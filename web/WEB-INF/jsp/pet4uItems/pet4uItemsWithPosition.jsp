@@ -98,7 +98,12 @@
                         out.println(item.isDisabled());
                         out.println("</td>");
 
-                        Item camelotItem = camelotItems.get(item.getCode());
+                        String camelotCode = item.getCode();
+                        if (camelotCode.contains("-WE")) {
+                            camelotCode = camelotCode.replace("-WE", "");
+                        }
+
+                        Item camelotItem = camelotItems.get(camelotCode);
                         String camelotStock = "0.000000";
                         String status = "inherited";
                         if (camelotItem == null) {
