@@ -20,4 +20,11 @@ public class CamelotController {
         return "camelot/camelotAllItems";
     }
 
+    @RequestMapping(value = "camelotAllItemsWithPosition")
+    public String camelotAllItemsWithPosition(ModelMap modelMap) {
+        LinkedHashMap<String, Item> camelotAllItems = camelotDao.getCamelotItems();
+        modelMap.addAttribute("camelotAllItems", camelotAllItems);
+        return "camelot/camelotAllItemsWithPosition";
+    }
+
 }

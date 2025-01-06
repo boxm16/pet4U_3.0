@@ -40,7 +40,7 @@
                     <center>
 
 
-                        <a href="printCamelotNotes.htm" class="btn btn-primary btn-lg" role="button">PRINT</a>
+                        <!--  <a href="printCamelotNotes.htm" class="btn btn-primary btn-lg" role="button">PRINT</a> -->
 
                         <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#exampleModal">
                             DELETE ALL NOTES

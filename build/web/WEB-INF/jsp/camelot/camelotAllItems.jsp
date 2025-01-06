@@ -35,6 +35,7 @@
             <th>A/A</th>
             <th>Item Code</th>
             <th>Description</th>
+            <th>Position</th>
             <th>Stock</th>
             <th>Disabled</th>
             <tbody>

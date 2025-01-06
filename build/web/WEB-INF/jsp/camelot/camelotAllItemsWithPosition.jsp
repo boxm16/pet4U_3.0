@@ -14,7 +14,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Camelot: All Items</title>
+        <title>Camelot: All Items With Position</title>
         <style>
             table, th, td {
                 border: 1px solid ;
@@ -44,7 +44,9 @@
                     int index = 1;
                     for (Map.Entry<String, Item> entrySet : items.entrySet()) {
                         Item item = entrySet.getValue();
-
+                        if (item.getPosition() == null || item.getPosition().isEmpty()) {
+                            continue;
+                        }
                         out.println("<tr>");
 
                         out.println("<td>");
