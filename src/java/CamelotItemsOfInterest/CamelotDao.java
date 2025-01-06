@@ -45,6 +45,7 @@ public class CamelotDao {
                     }
                     item.setPosition(position_1 + position_2);
                     item.setQuantity(resultSet.getString("QTYBALANCE"));
+                    item.setDisabled(resultSet.getBoolean("DISABLED"));
                     items.put(code, item);
                 }
                 AltercodeContainer altercodeContainer = new AltercodeContainer();

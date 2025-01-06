@@ -32,10 +32,15 @@
     </head>
     <body>
         <table>
+            <th>A/A</th>
+            <th>Item Code</th>
+            <th>Description</th>
+            <th>Stock</th>
+            <th>Disabled</th>
             <tbody>
                 <%
                     LinkedHashMap<String, Item> items = (LinkedHashMap) request.getAttribute("camelotAllItems");
-                    int index = 0;
+                    int index = 1;
                     for (Map.Entry<String, Item> entrySet : items.entrySet()) {
                         Item item = entrySet.getValue();
 
@@ -46,7 +51,7 @@
                         out.println("</td>");
 
                         out.println("<td>");
-                        out.println(" <a href='itemAnalysis.htm?code=" + item.getCode() + "' target='_blank' ><h5>"+item.getCode()+"</h5></a>");
+                        out.println(item.getCode());
                         out.println("</td>");
 
                         out.println("<td>");
@@ -57,10 +62,28 @@
                         out.println(item.getPosition());
                         out.println("</td>");
 
-                        out.println("<td>");
+                        if (item.getQuantity() == null) {
+                            out.println("<td>");
+                        } else {
+                            if (item.getQuantity().equals("0")
+                                    || item.getQuantity().equals("0.0")
+                                    || item.getQuantity().equals("0.000000")) {
+                                out.println("<td style='background-color: #F7B2F7'>");
+                            } else {
+                                out.println("<td>");
+                            }
+                        }
                         out.println(item.getQuantity());
                         out.println("</td>");
 
+                        if (item.isDisabled()) {
+                            out.println("<td style='background-color: red'>");
+                        } else {
+                            out.println("<td>");
+                        }
+
+                        out.println(item.isDisabled());
+                        out.println("</td>");
                         out.println("</tr>");
                         index++;
                     }
