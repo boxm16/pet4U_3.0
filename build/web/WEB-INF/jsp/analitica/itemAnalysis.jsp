@@ -742,7 +742,11 @@
                                         out.println("N/A");
                                         out.println("</td>");
                                     } else {
-                                        Double stock = Double.parseDouble(currentItem.getQuantity());
+                                        String currentItemQuantit = currentItem.getQuantity();
+                                        if (currentItemQuantit == null || currentItemQuantit.isEmpty()) {
+                                            currentItemQuantit = "0.0";
+                                        }
+                                        Double stock = Double.parseDouble(currentItemQuantit);
 
                                         out.println("<td>");
                                         out.println(currentItem.getState());
