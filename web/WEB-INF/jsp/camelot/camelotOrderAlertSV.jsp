@@ -34,7 +34,7 @@
         <h1><a href="index.htm">INDEX</a></h1>
         <h1>Camelot: Items Of Our Interest: Orders Alert</h1>
         <hr>
-        <h1 style="background-color: red"></h1><hr>
+        <h1 style="background-color: red">Billy, Δεν πρόλαβα να δω αν έχουν ακόμα κονσέρβες δώρο για everclean. Το κουτί τώρα έχουν παιδιά μπροστά ,στα "ταμεία". Δες πόσα είναι και αν είναι λίγα, βάλε από 10 τεμάχια. Αυτοί είναι οι κωδικοί που δίνουμε τώρα σαν δώρο για 6λιτρο everclean .6828001 - θέση 14Ι-05-203, 6828002- θεση 14Ι-05-201 και 6828003 θέση - 14Ι-05-205. Αν κάτι σε μπερδεύει, πάρε με τηλέφωνο. </h1><hr>
         <table>
             <thead>
             <th>Position</th>
