@@ -111,6 +111,12 @@
                             out.println("<a  href = 'camelotItemAnalysis.htm?code=" + item.getCode() + "' target='_blank'>Camelot Analysis </a>");
                             out.println("</td>");
                             out.println("</tr>");
+
+                            out.println("<tr>");
+                            out.println("<td colspan='2' >");
+                            out.println("<a  href = 'getItemForNote.htm?code=" + item.getCode() + "' target='_blank'>Make Note</a>");
+                            out.println("</td>");
+                            out.println("</tr>");
                         %>
                     </table>
                     <hr>
