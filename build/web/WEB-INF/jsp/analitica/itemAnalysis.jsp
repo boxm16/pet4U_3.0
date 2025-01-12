@@ -114,7 +114,7 @@
 
                             out.println("<tr>");
                             out.println("<td colspan='2' >");
-                            out.println("<a  href = 'getItemForNote.htm?code=" + item.getCode() + "' target='_blank'>Make Note</a>");
+                            out.println("<a  href = 'getItemForNote.htm?altercode=" + item.getCode() + "' target='_blank'>Make Note</a>");
                             out.println("</td>");
                             out.println("</tr>");
                         %>
