@@ -50,6 +50,10 @@
                     <a href="testSapHanaDB.htm" class="btn btn-secondary" style='background-color: green' role="button"><h1>TEST SAP HANA</h1></a>
                     <hr>
 
+                    <hr>
+                    <a href="getItemsFromSapHanaDB.htm" class="btn btn-secondary" style='background-color: blue' role="button"><h1>Get Items From SAP HANA</h1></a>
+                    <hr>
+
 
                 </div>
                 <div class=" col-sm-4">

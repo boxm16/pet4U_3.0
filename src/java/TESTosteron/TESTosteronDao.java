@@ -241,4 +241,44 @@ public class TESTosteronDao {
         }
         return new ArrayList<>();
     }
+
+    LinkedHashMap<String, Item> getItemsFromSapHanaDB() {
+        LinkedHashMap<String, Item> items = new LinkedHashMap<>();
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+        Connection connection = databaseConnectionFactory.getSapHanaConnection();
+
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("select * from BYT_V_ITEMDETAILS  ORDER BY PickLocation;");
+
+            while (resultSet.next()) {
+                String code = resultSet.getString("ItemCode");
+                Item item = null;
+                if (!items.containsKey(code)) {
+                    item = new Item();
+                    item.setCode(resultSet.getString("ItemCode"));
+                    item.setDescription(resultSet.getString("ItemName"));
+                    String position = "";
+                    if (resultSet.getString("PickLocation") != null) {
+                        position = resultSet.getString("PickLocation");
+                    }
+                    item.setPosition(position);
+                    item.setQuantity(resultSet.getString("Stock"));
+
+                    items.put(code, item);
+                }
+                AltercodeContainer altercodeContainer = new AltercodeContainer();
+                altercodeContainer.setAltercode(resultSet.getString("MainBarcode").trim());
+
+                items.get(code).addAltercodeContainer(altercodeContainer);
+
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(TESTosteronDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return items;
+    }
 }

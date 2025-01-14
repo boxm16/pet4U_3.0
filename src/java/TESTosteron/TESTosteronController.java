@@ -183,7 +183,15 @@ public class TESTosteronController {
     public String testSapHanaDB(ModelMap modelMap) {
         TESTosteronDao tESTosteronDao = new TESTosteronDao();
         ArrayList<String> allSapHanaDatabases = tESTosteronDao.getAllSapHanaDatabases();
-        
+
+        return "testosteron/testosteronDashboard";
+    }
+
+    @RequestMapping(value = "getItemsFromSapHanaDB")
+    public String getItemsFromSapHanaDB(ModelMap modelMap) {
+        TESTosteronDao tESTosteronDao = new TESTosteronDao();
+        LinkedHashMap<String, Item> AllItems = tESTosteronDao.getItemsFromSapHanaDB();
+
         return "testosteron/testosteronDashboard";
     }
 
