@@ -190,8 +190,8 @@ public class TESTosteronController {
     @RequestMapping(value = "getItemsFromSapHanaDB")
     public String getItemsFromSapHanaDB(ModelMap modelMap) {
         TESTosteronDao tESTosteronDao = new TESTosteronDao();
-        LinkedHashMap<String, Item> AllItems = tESTosteronDao.getItemsFromSapHanaDB();
-
+        LinkedHashMap<String, Item> allItems = tESTosteronDao.getItemsFromSapHanaDB();
+        modelMap.addAttribute("allItems", allItems);
         return "testosteron/testosteronDashboard";
     }
 
