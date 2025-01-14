@@ -249,7 +249,7 @@ public class TESTosteronDao {
 
         try {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("select * from PETCAMELOT_UAT2.BYT_V_BARCODEDETAILS  ORDER BY PickLocation;");
+            ResultSet resultSet = statement.executeQuery("select * from PETCAMELOT_UAT2.BYT_V_ITEMDETAILS  ORDER BY PickLocation;");
 
             while (resultSet.next()) {
                 String code = resultSet.getString("ItemCode");
