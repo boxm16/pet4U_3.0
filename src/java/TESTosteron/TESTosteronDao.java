@@ -268,7 +268,7 @@ public class TESTosteronDao {
                     items.put(code, item);
                 }
                 AltercodeContainer altercodeContainer = new AltercodeContainer();
-                altercodeContainer.setAltercode(resultSet.getString("MainBarcode").trim());
+                altercodeContainer.setAltercode(resultSet.getString("MainBarcode"));
 
                 items.get(code).addAltercodeContainer(altercodeContainer);
 
