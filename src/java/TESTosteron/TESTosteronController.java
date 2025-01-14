@@ -192,7 +192,7 @@ public class TESTosteronController {
         TESTosteronDao tESTosteronDao = new TESTosteronDao();
         LinkedHashMap<String, Item> allItems = tESTosteronDao.getItemsFromSapHanaDB();
         modelMap.addAttribute("allItems", allItems);
-        return "testosteron/itemsFormSapHana";
+        return "testosteron/itemsFromSapHana";
     }
 
 }
