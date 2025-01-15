@@ -34,7 +34,7 @@
         <h1><a href="index.htm">INDEX</a></h1>
         <h1>Camelot: Items Of Our Interest: Orders Alert</h1>
         <hr>
-        <h1 style="background-color: red">Billy, Sam`s Field θα φέρει τροφές, πολλες, θα κάνει λέει 2 δρομολόγια. Δε θυμάμαι ακριβώς πόσες παλέτες μου είπε, πάντως πάνω από 10. Αλλο. Τη Τρίτη Νεστλε θα φέρει κονσέρβες, πολλες. 'Αδεις παλέτες που έχουμε εκεί, περισσότερες, μάλλον, θα χρειαστούμε. </h1><hr>
+        <h1 style="background-color: red">BillyΚουτια της ROYAL και τετραγωνα και μακροστενα θελει ο κυριος Γιωργος. Μη τα παρει κανεις. </h1><hr>
         <table>
             <thead>
             <th>Position</th>
