@@ -99,6 +99,17 @@
                                     for (Map.Entry<LocalDate, Integer> entrySet : counut2024.entrySet()) {
                                         LocalDate date = entrySet.getKey();
                                         DayOfWeek dayOfWeek = date.getDayOfWeek();
+                                        if (days == fixDays) {
+                                            out.println("<tr style='background-color: green ;'>");
+                                            out.println("<td>");
+                                            out.println("Days: " + fixDays);
+                                            out.println("</td>");
+
+                                            out.println("<td>");
+                                            out.println("Orders: " + total24);
+                                            out.println("</td>");
+
+                                        }
                                         total24 = total24 + entrySet.getValue();
 
                                         if (dayOfWeek == DayOfWeek.SATURDAY) {
@@ -115,18 +126,6 @@
                                         out.println("<td>");
                                         out.println(entrySet.getValue());
                                         out.println("</td>");
-
-                                        if (days == fixDays) {
-                                            out.println("<tr style='background-color: green ;'>");
-                                            out.println("<td>");
-                                            out.println("Days: " + fixDays);
-                                            out.println("</td>");
-
-                                            out.println("<td>");
-                                            out.println("Orders: " + total24);
-                                            out.println("</td>");
-
-                                        }
 
                                         out.println("</tr>");
 
@@ -154,6 +153,18 @@
                                     for (Map.Entry<LocalDate, Integer> entrySet : counut2023.entrySet()) {
                                         LocalDate date2023 = entrySet.getKey();
                                         DayOfWeek dayOfWeek = date2023.getDayOfWeek();
+
+                                        if (days == fixDays) {
+                                            out.println("<tr style='background-color: green ;'>");
+                                            out.println("<td>");
+                                            out.println("Days: " + fixDays);
+                                            out.println("</td>");
+
+                                            out.println("<td>");
+                                            out.println("Orders: " + total23);
+                                            out.println("</td>");
+
+                                        }
                                         total23 = total23 + entrySet.getValue();
 
                                         if (dayOfWeek == DayOfWeek.SATURDAY) {
@@ -171,18 +182,6 @@
                                         out.println("<td>");
                                         out.println(entrySet.getValue());
                                         out.println("</td>");
-
-                                        if (days == fixDays) {
-                                            out.println("<tr style='background-color: green ;'>");
-                                            out.println("<td>");
-                                            out.println("Days: " + fixDays);
-                                            out.println("</td>");
-
-                                            out.println("<td>");
-                                            out.println("Orders: " + total23);
-                                            out.println("</td>");
-
-                                        }
 
                                         out.println("</tr>");
 
