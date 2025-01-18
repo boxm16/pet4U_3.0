@@ -36,6 +36,7 @@
                     <!--  <th>M.U.<br> UNIT</th> -->
                     <!--     <th>COEF.</th>-->
                     <th>State </th>
+                    <th>Stock </th>
                     <th>Eshop <br> Sales </th>
                     <th>Shop <br>Supply </th>
                     <th>Total<br> Sales </th>
@@ -77,6 +78,10 @@
 
                         out.println("<td>");
                         out.println(entrySet.getValue().getState());
+                        out.println("</td>");
+
+                        out.println("<td>");
+                        out.println(entrySet.getValue().getQuantity());
                         out.println("</td>");
 
                         EksagogesB eksagoges = entrySet.getValue().getEksagogesForLastMonths(6);
