@@ -81,7 +81,7 @@
                         out.println("</td>");
 
                         out.println("<td>");
-                        out.println(entrySet.getValue().getQuantity());
+                        out.println(entrySet.getValue().getQunatityAsPieces());
                         out.println("</td>");
 
                         EksagogesB eksagoges = entrySet.getValue().getEksagogesForLastMonths(6);
