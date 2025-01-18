@@ -318,8 +318,10 @@ public class OrderController {
     public String ordersQuantityComparingAnalysis(ModelMap modelMap) {
         TreeMap<LocalDate, Integer> ordersQuantityByDate2023 = orderDao.countOrdersByDate2023();
         TreeMap<LocalDate, Integer> ordersQuantityByDate2024 = orderDao.countOrdersByDate2024();
+        TreeMap<LocalDate, Integer> ordersQuantityByDate2025 = orderDao.countOrdersByDate2025();
         modelMap.addAttribute("2023", ordersQuantityByDate2023);
         modelMap.addAttribute("2024", ordersQuantityByDate2024);
+        modelMap.addAttribute("2025", ordersQuantityByDate2025);
         return "/order/orderQuantityComparison";
     }
 
@@ -488,5 +490,4 @@ public class OrderController {
         return "/order/positioning";
     }
 
-    
 }

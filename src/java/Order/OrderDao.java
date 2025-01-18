@@ -607,6 +607,53 @@ public class OrderDao {
         return ordersByDate2024;
     }
 
+    TreeMap<LocalDate, Integer> countOrdersByDate2025() {
+        TreeMap<LocalDate, Integer> ordersByDate2025 = new TreeMap<>();
+
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+        Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
+
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT DISTINCT DOCID , DATE_TIME "
+                    + "  FROM [petworld].[dbo].[WH_SALES_DOCS] WHERE  "
+                    + " DATE_TIME >=  '2025-01-01 00:00:00.000 ' AND DATE_TIME <= '2025-12-31 23:59:59.999' order by DOCID  ;");
+
+            while (resultSet.next()) {
+
+                String creationDateTimeStampString = resultSet.getString("DATE_TIME");
+                DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
+                DateTimeFormatter formatter3 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SS");
+                DateTimeFormatter formatter4 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S");
+
+                LocalDateTime creationDateTime;
+                if (creationDateTimeStampString.length() == 23) {
+                    creationDateTime = LocalDateTime.parse(creationDateTimeStampString, formatter2);
+                } else if (creationDateTimeStampString.length() == 22) {
+                    creationDateTime = LocalDateTime.parse(creationDateTimeStampString, formatter3);
+                } else {
+                    creationDateTime = LocalDateTime.parse(creationDateTimeStampString, formatter4);
+                }
+
+                if (!ordersByDate2025.containsKey(creationDateTime.toLocalDate())) {
+                    ordersByDate2025.put(creationDateTime.toLocalDate(), 1);
+                } else {
+                    Integer c = ordersByDate2025.get(creationDateTime.toLocalDate());
+                    c++;
+                    ordersByDate2025.put(creationDateTime.toLocalDate(), c);
+                }
+            }
+
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(OrderDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return ordersByDate2025;
+    }
+
     LinkedHashMap<Integer, Order> getOrdersOfDate(String date) {
         System.out.println("DATE: " + date);
         LinkedHashMap<String, Item> pet4UItemsRowByRow = getPet4UItemsRowByRow();
