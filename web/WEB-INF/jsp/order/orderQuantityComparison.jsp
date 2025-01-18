@@ -100,17 +100,6 @@
                                         LocalDate date = entrySet.getKey();
                                         DayOfWeek dayOfWeek = date.getDayOfWeek();
                                         total24 = total24 + entrySet.getValue();
-                                        if (days == fixDays) {
-                                            out.println("<tr style='background-color: green ;'>");
-                                            out.println("<td>");
-                                            out.println("Days: " + fixDays);
-                                            out.println("</td>");
-
-                                            out.println("<td>");
-                                            out.println("Orders: " + total24);
-                                            out.println("</td>");
-
-                                        }
 
                                         if (dayOfWeek == DayOfWeek.SATURDAY) {
                                             out.println("<tr style='background-color: #F79A81 ;'>");
@@ -127,7 +116,20 @@
                                         out.println(entrySet.getValue());
                                         out.println("</td>");
 
+                                        if (days == fixDays) {
+                                            out.println("<tr style='background-color: green ;'>");
+                                            out.println("<td>");
+                                            out.println("Days: " + fixDays);
+                                            out.println("</td>");
+
+                                            out.println("<td>");
+                                            out.println("Orders: " + total24);
+                                            out.println("</td>");
+
+                                        }
+
                                         out.println("</tr>");
+
                                         days++;
 
                                     }
@@ -153,17 +155,6 @@
                                         LocalDate date2023 = entrySet.getKey();
                                         DayOfWeek dayOfWeek = date2023.getDayOfWeek();
                                         total23 = total23 + entrySet.getValue();
-                                        if (days == fixDays) {
-                                            out.println("<tr style='background-color: green ;'>");
-                                            out.println("<td>");
-                                            out.println("Days: " + fixDays);
-                                            out.println("</td>");
-
-                                            out.println("<td>");
-                                            out.println("Orders: " + total23);
-                                            out.println("</td>");
-
-                                        }
 
                                         if (dayOfWeek == DayOfWeek.SATURDAY) {
                                             out.println("<tr style='background-color: #F79A81 ;'>");
@@ -180,6 +171,18 @@
                                         out.println("<td>");
                                         out.println(entrySet.getValue());
                                         out.println("</td>");
+
+                                        if (days == fixDays) {
+                                            out.println("<tr style='background-color: green ;'>");
+                                            out.println("<td>");
+                                            out.println("Days: " + fixDays);
+                                            out.println("</td>");
+
+                                            out.println("<td>");
+                                            out.println("Orders: " + total23);
+                                            out.println("</td>");
+
+                                        }
 
                                         out.println("</tr>");
 
