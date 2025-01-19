@@ -71,6 +71,10 @@
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
+                    <file>${file.reference.fontbox-2.0.29.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library dirs="200">
                     <file>${file.reference.pdfbox-2.0.29.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
