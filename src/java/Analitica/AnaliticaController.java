@@ -41,7 +41,7 @@ public class AnaliticaController {
             return "errorPage";
         }
 
-        if (userName.equals("me") || userName.equals("Vasilis")) {
+        if (userName.equals("me") || userName.equals("vasilis")) {
 
             SearchDao searchDao = new SearchDao();
             Item item = searchDao.getItemByAltercode(code);
