@@ -6,10 +6,15 @@ import CamelotItemsOfInterest.CamelotDao;
 import Inventory.InventoryItem;
 import Notes.NotesDao;
 import Pet4uItems.Pet4uItemsDao;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -197,6 +202,35 @@ public class TESTosteronController {
 
     @RequestMapping(value = "createPdfFile")
     public String createPdfFile(ModelMap modelMap) {
+        try (PDDocument document = new PDDocument()) {
+            // Add a blank page
+            PDPage page = new PDPage();
+            document.addPage(page);
+
+            // Prepare content stream to write on the page
+            try (PDPageContentStream contentStream = new PDPageContentStream(document, page)) {
+                // Set font and font size
+                contentStream.setFont(PDType1Font.HELVETICA_BOLD, 16);
+
+                // Begin writing text
+                contentStream.beginText();
+                contentStream.newLineAtOffset(100, 700); // Position the text on the page
+                contentStream.showText("Hello, PDFBox!"); // Write text
+                contentStream.endText();
+
+                // Optionally, draw a line
+                contentStream.moveTo(100, 690);
+                contentStream.lineTo(300, 690);
+                contentStream.stroke();
+            }
+
+            // Save the PDF to a file
+            document.save("C:/Pet4U_3.0/example.pdf");
+            System.out.println("PDF created successfully!");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         System.out.println("GOOD");
         return "index";
     }
