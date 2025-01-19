@@ -6,6 +6,7 @@ import CamelotItemsOfInterest.CamelotDao;
 import Inventory.InventoryItem;
 import Notes.NotesDao;
 import Pet4uItems.Pet4uItemsDao;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -14,7 +15,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
-import org.apache.pdfbox.pdmodel.font.PDType1Font;
+import org.apache.pdfbox.pdmodel.font.PDType0Font;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -202,24 +203,26 @@ public class TESTosteronController {
 
     @RequestMapping(value = "createPdfFile")
     public String createPdfFile(ModelMap modelMap) {
+        String fontPath = "C:/Pet4U_3.0/PDF_FONTS/DejaVuSans.ttf";
         try (PDDocument document = new PDDocument()) {
             // Add a blank page
             PDPage page = new PDPage();
             document.addPage(page);
 
+            PDType0Font unicodeFont = PDType0Font.load(document, new File(fontPath));
             // Prepare content stream to write on the page
             try (PDPageContentStream contentStream = new PDPageContentStream(document, page)) {
                 // Set font and font size
-                contentStream.setFont(PDType1Font.TIMES_ROMAN, 16);
+                contentStream.setFont(unicodeFont, 12);
 
                 // Begin writing text
                 contentStream.beginText();
                 contentStream.newLineAtOffset(100, 700); // Position the text on the page
-                contentStream.showText("aasasfasC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/Phttps://mail.yahoo.com/d/folders/1https://mail.yahoo.com/d/folders/1https://mail.yahoo.com/d/folders/1 επειδή έχετε ζητήσει να ειδοποιείστε μέσω ηλεκτρονικού ταχυδρομείου για τις κινήσεις των λογαριασμών ή πιστωτικών καρτών σας. Εάν δεν επιθυμείτε να λαμβάνετε πλέον αυτή την ενημέρωση, απενεργοποιείστε την εντολή σας από την ενότητα «Ειδοποιήσεις» της υπηρεσίας e-Banking.\n" +
-"\n" +
-"Μην απαντάτε σε αυτό το μήνυμα. Για οτιδήποτε χρειαστείτε καλέστε την υπηρεσία Europhone Banking στο 210 9555000 εάν καλείτε από κινητό ή από το εξωτερικό.\n" +
-"\n" +
-"Τέλος,  η Eurobank δεν θα σας ζητήσει με κανέναν τρόπο και για κανένα λόγο να αποκαλύψετε προσωπικά σας στοιχεία, όπως στοιχεία λογαριασμών και καρτών, κωδικούς ATM και κωδικούς εισόδου στις υπηρεσίες e-Banking, m-Banking ή EuroPhone Banking. Αγνοείστε οποιοδήποτε μήνυμα σας καλεί να αποκαλύψετε προσωπικά σας στοιχεία και ενημερώστε μας άμεσα καλώντας την υπηρεσία Europhone Banking.et4U_3.0/C:/Pet4U_3.0/!"); // Write text
+                contentStream.showText("aasasfasC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/PC:/PetcontentStream4U_3.0/C:/Pet4U_3.0/C:/Phttps://mail.yahoo.com/d/folders/1https://mail.yahoo.com/d/folders/1https://mail.yahoo.com/d/folders/1 επειδή έχετε ζητήσει να ειδοποιείστε μέσω ηλεκτρονικού ταχυδρομείου για τις κινήσεις των λογαριασμών ή πιστωτικών καρτών σας. Εάν δεν επιθυμείτε να λαμβάνετε πλέον αυτή την ενημέρωση, απενεργοποιείστε την εντολή σας από την ενότητα «Ειδοποιήσεις» της υπηρεσίας e-Banking.\n"
+                        + "\n"
+                        + "Μην απαντάτε σε αυτό το μήνυμα. Για οτιδήποτε χρειαστείτε καλέστε την υπηρεσία Europhone Banking στο 210 9555000 εάν καλείτε από κινητό ή από το εξωτερικό.\n"
+                        + "\n"
+                        + "Τέλος,  η Eurobank δεν θα σας ζητήσει με κανέναν τρόπο και για κανένα λόγο να αποκαλύψετε προσωπικά σας στοιχεία, όπως στοιχεία λογαριασμών και καρτών, κωδικούς ATM και κωδικούς εισόδου στις υπηρεσίες e-Banking, m-Banking ή EuroPhone Banking. Αγνοείστε οποιοδήποτε μήνυμα σας καλεί να αποκαλύψετε προσωπικά σας στοιχεία και ενημερώστε μας άμεσα καλώντας την υπηρεσία Europhone Banking.et4U_3.0/C:/Pet4U_3.0/!"); // Write text
                 contentStream.endText();
 
                 // Optionally, draw a line
