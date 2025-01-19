@@ -414,9 +414,12 @@
 
 
     </div> -->
-            <hr> <hr> <hr>
-            <a href="shelvesReplenishmentDashboard.htm" class="btn btn-success btn-lg" role="button" aria-disabled="true"><h3>Shelves Replenishment Dashboard</h3></a>
-            <hr>
+            <div> <center>
+                    <hr> <hr> <hr>
+                    <a href="shelvesReplenishmentDashboard.htm" class="btn btn-success btn-lg" role="button" aria-disabled="true"><h3>Shelves Replenishment Dashboard</h3></a>
+                    <hr>
+                </center>
+            </div> 
         </div>
     </body>
 </html>
