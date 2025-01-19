@@ -53,7 +53,8 @@ public class EndoControllerX {
                     || endoParalavisId.equals("381889")
                     || endoParalavisId.equals("383428")
                     || endoParalavisId.equals("383703")
-                    || endoParalavisId.equals("388760")) {
+                    || endoParalavisId.equals("388760")
+                    || endoParalavisId.equals("402796")) {
                 endoParalavissIterator.remove();
 
             }
@@ -661,8 +662,6 @@ public class EndoControllerX {
             @RequestParam(name = "label") String label,
             ModelMap model) {
 
-
-       
         String userName = (String) session.getAttribute("userName");
         if (userName == null) {
             model.addAttribute("message", "You are not authorized for this page");
@@ -672,7 +671,7 @@ public class EndoControllerX {
             model.addAttribute("message", "You are not authorized for this page");
             return "errorPage";
         }
-         
+
         EndoPackaging endoPackaging = new EndoPackaging();
         endoPackaging.setItemCode(itemCode);
         endoPackaging.setItem(Integer.parseInt(item));
@@ -741,8 +740,5 @@ public class EndoControllerX {
         model.addAttribute("endoPackaging", endoPackaging);
         return "endo/editEndoPackaging";
     }
-    
-    
-    
-    
+
 }
