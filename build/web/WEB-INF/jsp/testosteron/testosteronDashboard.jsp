@@ -55,6 +55,10 @@
                     <hr>
 
 
+                    <hr>
+                    <a href="createPdfFile.htm" class="btn btn-secondary" style='background-color: burlywood' role="button"><h1>Create Pdf file</h1></a>
+                    <hr>
+
                 </div>
                 <div class=" col-sm-4">
 

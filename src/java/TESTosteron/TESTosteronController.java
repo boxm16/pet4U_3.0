@@ -195,4 +195,10 @@ public class TESTosteronController {
         return "testosteron/itemsFromSapHana";
     }
 
+    @RequestMapping(value = "createPdfFile")
+    public String createPdfFile(ModelMap modelMap) {
+        System.out.println("GOOD");
+        return "index";
+    }
+
 }
