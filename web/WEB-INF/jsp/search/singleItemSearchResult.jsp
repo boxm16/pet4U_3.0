@@ -173,7 +173,7 @@
 
                                 String userName = (String) session.getAttribute("userName");
                                 if (userName != null) {
-                                    if (userName.equals("me") || userName.equals("Vasilis") || userName.equals("super")) {
+                                    if (userName.equals("me") || userName.equals("vasilis") || userName.equals("super")) {
                                         out.println("<hr>");
                                         out.println("<hr>");
                                         out.println("<hr>");
