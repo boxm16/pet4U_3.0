@@ -47,7 +47,7 @@
         <a href="endoApostoles.htm"><h3>Endo ΑΠΟΣΤΟΛΕΣ</h3></a>
         <hr>
 
-        <h2>ΔΕΣΜΕΥΜΕΝΑ ΔΕΛΤΙΑ ΑΠΟΣΤΟΛΗΣ ΠΡΟΣ ΜΑΓΑΖΙΑ (ΑΠΟ 14/11/2024 ΚΑΙ ΜΕΤΑ)</h2>
+        <h2>ΔΕΣΜΕΥΜΕΝΑ ΔΕΛΤΙΑ ΑΠΟΣΤΟΛΗΣ ΠΡΟΣ ΜΑΓΑΖΙΑ (ΑΠΟ 14/12/2024 ΚΑΙ ΜΕΤΑ)</h2>
         <hr>
         <%
             boolean isChanged = (boolean) request.getAttribute("isChanged");
