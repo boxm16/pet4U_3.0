@@ -154,7 +154,65 @@
                                     out.println("</tr>");
 
                                 }
+                            %>
+                    </table>
+                    <hr>
+                    <center><h3>Daily Sales</h3></center>
+                    <table>
 
+                        <th>Date</th>
+                        <th>E-Shop Sales</th>
+                        <th>Ενδοδιακ.</th>
+                            <%
+                                LinkedHashMap< LocalDate, DailySale> dailySalesA = (LinkedHashMap) request.getAttribute("dailySales");
+
+                                double allDaysSalesA = 0;
+                                int workingDays = 0;
+                                String preSoldAlarm = "inherit";
+                                for (Map.Entry<LocalDate, DailySale> daysSalesEntry : dailySalesA.entrySet()) {
+                                    LocalDate date = daysSalesEntry.getKey();
+                                    if (date.getDayOfWeek().toString().equals("SUNDAY")) {
+                                        // do nothing;
+                                    } else {
+                                        allDaysSalesA = allDaysSalesA + daysSalesEntry.getValue().getSoldQuantiy();
+                                        workingDays++;
+                                    }
+                                    if (daysSalesEntry.getValue().getPresoldQuantiy() > 0) {
+                                        preSoldAlarm = "red";
+                                    }
+                                }
+
+                                out.println("<tr>");
+                                out.println("<td>");
+                                out.println("Working Days");
+                                out.println("</td>");
+                                out.println("<td>");
+                                out.println(workingDays);
+                                out.println("</td>");
+
+                                out.println("</tr>");
+
+                                out.println("<tr style='background-color: #A6E2D0'>");
+                                out.println("<td>");
+                                out.println("Total Sales <br> For 24 <br>Working Days");
+                                out.println("</td>");
+
+                                out.println("<td>");
+                                out.println(allDaysSalesA);
+                                out.println("</td>");
+
+                                out.println("</tr>");
+
+                                out.println("<tr>");
+                                out.println("<td>");
+                                out.println("Average Sales <br> For One Day");
+                                out.println("</td>");
+
+                                out.println("<td>");
+                                out.println(allDaysSalesA / workingDays);
+                                out.println("</td>");
+
+                                out.println("</tr>");
                             %>
                     </table>
                 </div>
