@@ -180,7 +180,7 @@
                                     if (daysSalesEntry.getValue().getPresoldQuantiy() > 0) {
                                         preSoldAlarm = "red";
                                     }
-                                    if (workingDays > 24) {
+                                    if (workingDays == 24) {
                                         break;
                                     }
                                 }
