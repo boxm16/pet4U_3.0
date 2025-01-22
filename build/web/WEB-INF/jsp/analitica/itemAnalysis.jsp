@@ -157,7 +157,7 @@
                             %>
                     </table>
                     <hr>
-                    <center><h3>Daily Sales</h3></center>
+                    <center><h3>Last 24 Working Days Sales</h3></center>
                     <table>
 
                         <th>Date</th>
@@ -175,6 +175,7 @@
                                         // do nothing;
                                     } else {
                                         allDaysSalesA = allDaysSalesA + daysSalesEntry.getValue().getSoldQuantiy();
+
                                         workingDays++;
                                     }
                                     if (daysSalesEntry.getValue().getPresoldQuantiy() > 0) {
@@ -200,8 +201,19 @@
                                 out.println("Total Sales <br> For 24 <br>Working Days");
                                 out.println("</td>");
 
-                                out.println("<td>");
+                                out.println("<td style='background-color: " + preSoldAlarm + "'>");
                                 out.println(allDaysSalesA);
+                                out.println("</td>");
+
+                                out.println("</tr>");
+
+                                out.println("<tr>");
+                                out.println("<td>");
+                                out.println("Average Sales <br> For One Week");
+                                out.println("</td>");
+
+                                out.println("<td>");
+                                out.println(allDaysSalesA / 4);
                                 out.println("</td>");
 
                                 out.println("</tr>");
