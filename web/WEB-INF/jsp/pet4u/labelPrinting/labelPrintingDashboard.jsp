@@ -45,6 +45,9 @@
                         </form>
                         <br>  <br> 
                         <hr>
+                        <h1>Εκτύπωση  Ετικέτας Με Κωδικό Προϊόντος</h1>
+                        <h1 style='color: red; font-weight:  bold'>Προσοχη, ετικέτα εκτυπώνετε άμεσα μετα από σκανάρισμα</h1>
+
                         <form action="printItemCodeLabel.htm" method="GET" >
                             <input type="text" class="form-control input-lg" name='altercode' ${piclAutofocus}>
                             <br>
