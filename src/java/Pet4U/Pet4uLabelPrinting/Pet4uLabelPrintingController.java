@@ -29,8 +29,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class Pet4uLabelPrintingController {
 
     @RequestMapping(value = "labelPrintingDashboard")
-    public String labelPrintingDashboard() {
-
+    public String labelPrintingDashboard(ModelMap model) {
+        model.addAttribute("psliarlAutofocus", "autofocus");
+        model.addAttribute("piclAutofocus", "");
         return "pet4u/labelPrinting/labelPrintingDashboard";
     }
 
@@ -120,6 +121,10 @@ public class Pet4uLabelPrintingController {
         smallLabelPrinter.setPosition(position);
 
         smallLabelPrinter.printSomething(printName);
+
+        model.addAttribute("psliarlAutofocus", "autofocus");
+        model.addAttribute("piclAutofocus", "");
+
         return "pet4u/labelPrinting/labelPrintingDashboard";
     }
 }

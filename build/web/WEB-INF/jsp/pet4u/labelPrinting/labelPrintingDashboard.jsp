@@ -38,12 +38,19 @@
                         <hr>
 
                         <form action="printSmallLabelsInARow.htm" method="GET" >
-                            <input type="text" class="form-control input-lg" name='altercode' autofocus>
+                            <input type="text" class="form-control input-lg" name='altercode' ${psliarlAutofocus}>
                             <br>
                             <input class="btn btn-primary btn-lg btn-block"  type="submit" value="PRINT">
                             <br>  <br>  <br>  <br>  <br>  <br>
                         </form>
-                        <br>  <br>  <br>  <br>  <br>  <br>
+                        <br>  <br> 
+                        <hr>
+                        <form action="printItemCodeLabel.htm" method="GET" >
+                            <input type="text" class="form-control input-lg" name='altercode' ${piclAutofocus}>
+                            <br>
+                            <input class="btn btn-primary btn-lg btn-block"  type="submit" value="PRINT">
+                            <br>  <br>  <br>  <br>  <br>  <br>
+                        </form>
                     </center>
                 </div>
                 <div class=" col-sm-4">
