@@ -46,8 +46,9 @@
         <a href="index.htm"><h3>INDEX</h3></a>
         <a href="endoApostoles.htm"><h3>Endo ΑΠΟΣΤΟΛΕΣ</h3></a>
         <hr>
+        <a href="lockBindedOrders.htm" class="btn btn-primary" role="button" style='background-color: brown;'><h1>Lock Binded Orders</h1></a>
 
-        <h2>ΔΕΣΜΕΥΜΕΝΑ ΔΕΛΤΙΑ ΑΠΟΣΤΟΛΗΣ ΠΡΟΣ ΜΑΓΑΖΙΑ (ΑΠΟ 14/12/2024 ΚΑΙ ΜΕΤΑ)</h2>
+        <h2>ΔΕΣΜΕΥΜΕΝΑ ΔΕΛΤΙΑ ΑΠΟΣΤΟΛΗΣ ΠΡΟΣ ΜΑΓΑΖΙΑ (ΑΠΟ ${date} ΚΑΙ ΜΕΤΑ)</h2>
         <hr>
         <%
             boolean isChanged = (boolean) request.getAttribute("isChanged");

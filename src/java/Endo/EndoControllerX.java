@@ -509,6 +509,7 @@ public class EndoControllerX {
         }
         modelMap.addAttribute("isChanged", someEndoIsChanged);
         modelMap.addAttribute("bindedOutgoindDeltioApostolis", bindedOutgoindDeltioApostolis);
+        modelMap.addAttribute("date", date);
         return "endo/allBindedEndoOrders";
     }
 
