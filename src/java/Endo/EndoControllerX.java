@@ -450,14 +450,14 @@ public class EndoControllerX {
 
     @RequestMapping(value = "showBindedOrders", method = RequestMethod.GET)
     public String showBindedOrders(ModelMap modelMap) {
-
+        String date = "2024-12-14";
         EndoDaoX endoDaoX = new EndoDaoX();
         boolean someEndoIsChanged = false;
         LinkedHashMap<String, String> allBindedOrders = endoDaoX.getAllBindedOrdersTitles();
 
-        LinkedHashMap<String, EndoApostolis> outgoingDeltioApostolisTitles = endoDaoX.getOutgoingDeltioApostolisTitles("2024-12-14");
+        LinkedHashMap<String, EndoApostolis> outgoingDeltioApostolisTitles = endoDaoX.getOutgoingDeltioApostolisTitles(date);
 
-        ArrayList<String> lockedOutgoingDeltiaApostolis = endoDaoX.getAllLockedOutgoingDeltiaApostolisIds();
+        ArrayList<String> lockedOutgoingDeltiaApostolis = endoDaoX.getAllLockedOutgoingDeltiaApostolisIds(date);
 
         ArrayList<String> changedOutgoingDeltiaApostolis = endoDaoX.getAllChangedOutgoingDeltiaApostolisIds(lockedOutgoingDeltiaApostolis);
 
@@ -482,14 +482,14 @@ public class EndoControllerX {
 
     @RequestMapping(value = "showAllBindedOrders", method = RequestMethod.GET)
     public String showAllBindedOrders(ModelMap modelMap) {
-
+        String date = "2024-01-01";
         EndoDaoX endoDaoX = new EndoDaoX();
         boolean someEndoIsChanged = false;
         LinkedHashMap<String, String> allBindedOrders = endoDaoX.getAllBindedOrdersTitles();
 
-        LinkedHashMap<String, EndoApostolis> outgoingDeltioApostolisTitles = endoDaoX.getOutgoingDeltioApostolisTitles("2024-01-01");
+        LinkedHashMap<String, EndoApostolis> outgoingDeltioApostolisTitles = endoDaoX.getOutgoingDeltioApostolisTitles(date);
 
-        ArrayList<String> lockedOutgoingDeltiaApostolis = endoDaoX.getAllLockedOutgoingDeltiaApostolisIds();
+        ArrayList<String> lockedOutgoingDeltiaApostolis = endoDaoX.getAllLockedOutgoingDeltiaApostolisIds(date);
 
         ArrayList<String> changedOutgoingDeltiaApostolis = endoDaoX.getAllChangedOutgoingDeltiaApostolisIds(lockedOutgoingDeltiaApostolis);
 

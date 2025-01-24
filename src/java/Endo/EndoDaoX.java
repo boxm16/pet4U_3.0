@@ -851,9 +851,9 @@ public class EndoDaoX {
         return true;
     }
 
-    ArrayList<String> getAllLockedOutgoingDeltiaApostolisIds() {
+    ArrayList<String> getAllLockedOutgoingDeltiaApostolisIds(String date) {
         ArrayList<String> allLockedOutgoingDeltiaApostolisIds = new ArrayList<>();
-        String query = "SELECT id FROM endo_locker_title ;";
+        String query = "SELECT id FROM endo_locker_title WHERE date >= '" + date + "'";
 
         try {
             Connection connection = this.databaseConnectionFactory.getMySQLConnection();
