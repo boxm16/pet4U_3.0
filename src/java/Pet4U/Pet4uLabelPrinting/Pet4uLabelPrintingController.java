@@ -236,7 +236,11 @@ public class Pet4uLabelPrintingController {
             itemCode = itemCode.substring(0, 5) + "/" + itemCode.substring(itemCode.length() - 3);
         }
         barcodePrinter.setPosition(itemCode);
-        String position = item.getPosition().substring(2);
+        String position = "";
+        if (item.getPosition() == null) {
+        } else {
+            position = item.getPosition();
+        }
         barcodePrinter.setCode(position);
 
         barcodePrinter.printSomething(printName);
