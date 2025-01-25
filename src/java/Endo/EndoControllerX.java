@@ -575,6 +575,27 @@ public class EndoControllerX {
         return "redirect:showBindedOrders.htm";
     }
 
+    @RequestMapping(value = "lockBindedOrders", method = RequestMethod.GET)
+    public String lockBindedOrders(ModelMap modelMap) {
+        String date = "2024-12-14";
+        EndoDaoX endoDaoX = new EndoDaoX();
+
+        LinkedHashMap<String, EndoApostolis> outgoingDeltioApostolisTitles = endoDaoX.getOutgoingDeltioApostolisTitles(date);
+
+        ArrayList<String> lockedOutgoingDeltiaApostolis = endoDaoX.getAllLockedOutgoingDeltiaApostolisIds(date);
+
+        for (Map.Entry<String, EndoApostolis> outgoingDeltioApostolisTitlesEntry : outgoingDeltioApostolisTitles.entrySet()) {
+            if (lockedOutgoingDeltiaApostolis.contains(outgoingDeltioApostolisTitlesEntry.getKey())) {
+                //do nothing
+            } else {
+
+                EndoApostolis endoApostolisVaribobis = endoDaoX.getEndoApostolisVaribobis(outgoingDeltioApostolisTitlesEntry.getValue().getId());
+                String result = endoDaoX.copyEndoApostolis(endoApostolisVaribobis);
+            }
+        }
+        return "redirect:showBindedOrders.htm";
+    }
+
     @RequestMapping(value = "deleteEndoOrder", method = RequestMethod.GET)
     public String deleteEndoOrder(@RequestParam(name = "id") String outgoingEndoId,
             ModelMap modelMap) {
