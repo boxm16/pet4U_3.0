@@ -48,7 +48,7 @@
 
                         out.println("<td>");
                         out.println(item.getCode());
-                        /*
+
                         ArrayList<AltercodeContainer> altercodes = item.getAltercodes();
                         for (AltercodeContainer altercodeContainer : altercodes) {
                             if (altercodeContainer.getStatus().equals("eshop")
@@ -63,7 +63,7 @@
                                 out.println("<br>");
                             }
                         }
-                         */
+
                         out.println("</td>");
 
                         out.println("<td>");
