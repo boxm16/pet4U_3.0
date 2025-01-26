@@ -249,7 +249,7 @@ public class TESTosteronDao {
 
         try {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("select * from PETCAMELOT_UAT2.BYT_V_ITEMDETAILS ORDER BY \"PickLocation\";");
+            ResultSet resultSet = statement.executeQuery("SELECT  ItemCode, ItemName,  FROM \"PETCAMELOT_UAT2\".\"BYT_V_ITEMDETAILS\" JOIN \"PETCAMELOT_UAT2\".\"BYT_V_BARCODEDETAILS\" ON PETCAMELOT_UAT2.BYT_V_ITEMDETAILS.\"ItemCode\" = PETCAMELOT_UAT2.BYT_V_BARCODEDETAILS.\"ItemCode\" order by BYT_V_ITEMDETAILS.\"ItemCode\"; ");
 
             while (resultSet.next()) {
                 String code = resultSet.getString("ItemCode");
@@ -268,7 +268,13 @@ public class TESTosteronDao {
                     items.put(code, item);
                 }
                 AltercodeContainer altercodeContainer = new AltercodeContainer();
-                altercodeContainer.setAltercode(resultSet.getString("MainBarcode"));
+                altercodeContainer.setAltercode(resultSet.getString("ALTERNATECODE").trim());
+                if (resultSet.getString("CODEDESCRIPTION") == null) {
+                    altercodeContainer.setStatus("");
+                } else {
+                    altercodeContainer.setStatus(resultSet.getString("CODEDESCRIPTION").trim());
+                }
+                items.get(code).addAltercodeContainer(altercodeContainer);
 
                 items.get(code).addAltercodeContainer(altercodeContainer);
 
