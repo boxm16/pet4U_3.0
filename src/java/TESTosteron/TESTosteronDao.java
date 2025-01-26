@@ -249,7 +249,12 @@ public class TESTosteronDao {
 
         try {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT  ItemCode, ItemName,  FROM PETCAMELOT_UAT2.BYT_V_ITEMDETAILS JOIN PETCAMELOT_UAT2.BYT_V_BARCODEDETAILS ON PETCAMELOT_UAT2.BYT_V_ITEMDETAILS.\"ItemCode\" = PETCAMELOT_UAT2.BYT_V_BARCODEDETAILS.\"ItemCode\" order by BYT_V_ITEMDETAILS.\"ItemCode\"; ");
+            ResultSet resultSet = statement.executeQuery("SELECT BYT_V_ITEMDETAILS.ItemCode as ItemCode,"
+                    + "BYT_V_ITEMDETAILS.ItemName AS ItemName,"
+                    + "BYT_V_ITEMDETAILS.PickLocation AS PickLocation,"
+                    + "BYT_V_ITEMDETAILS.Stock as Stock,"
+                    + " BYT_V_BARCODEDETAILS.BarCode as ALTERNATECODE,"
+                    + "BYT_V_BARCODEDETAILS.UnitOfMeasurement as CODEDESCRIPTION  FROM PETCAMELOT_UAT2.BYT_V_ITEMDETAILS JOIN PETCAMELOT_UAT2.BYT_V_BARCODEDETAILS ON PETCAMELOT_UAT2.BYT_V_ITEMDETAILS.\"ItemCode\" = PETCAMELOT_UAT2.BYT_V_BARCODEDETAILS.\"ItemCode\" order by BYT_V_ITEMDETAILS.\"ItemCode\"; ");
 
             while (resultSet.next()) {
                 String code = resultSet.getString("ItemCode");
