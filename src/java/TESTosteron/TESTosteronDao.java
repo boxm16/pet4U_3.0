@@ -249,7 +249,7 @@ public class TESTosteronDao {
 
         try {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT BYT_V_ITEMDETAILS.ItemCode as ItemCode,"
+            ResultSet resultSet = statement.executeQuery("SELECT BYT_V_ITEMDETAILS.'ItemCode' as ItemCode,"
                     + "BYT_V_ITEMDETAILS.ItemName AS ItemName, "
                     + "BYT_V_ITEMDETAILS.PickLocation AS PickLocation, "
                     + "BYT_V_ITEMDETAILS.Stock as Stock, "
