@@ -764,4 +764,10 @@ public class EndoControllerX {
         return "endo/editEndoPackaging";
     }
 
+    @RequestMapping(value = "endoDeliveryChecking", method = RequestMethod.GET)
+    public String endoDelivery(ModelMap modelMap) {
+
+        return "endo/endoDeliveryChecking";
+    }
+
 }
