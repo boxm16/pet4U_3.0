@@ -166,17 +166,9 @@
                                             }
 
                                             let colorDisplay = document.getElementById(altercode + "@colorDisplay");
+                                            colorDisplay.style.backgroundColor = 'yellow';
 
-                                            let diff = sent - delivered;
-                                            if (diff > 0) {
-                                                colorDisplay.style.backgroundColor = 'red';
-                                            }
-                                            if (diff < 0) {
-                                                colorDisplay.style.backgroundColor = 'yellow';
-                                            }
-                                            if (diff === 0) {
-                                                colorDisplay.style.backgroundColor = 'green';
-                                            }
+
                                         } else {
                                             var code = item.code;
                                             console.log(code);
