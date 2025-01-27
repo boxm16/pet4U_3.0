@@ -786,12 +786,12 @@ public class EndoDao {
 
     ArrayList<Endo> getEndosOfItem(String itemCode, String startDate, String endDate) {
         ArrayList<Endo> endos = new ArrayList<>();
-           startDate = startDate + " 00:00:00.000";
+        startDate = startDate + " 00:00:00.000";
         endDate = endDate + " 23:59:59.999";
 
         String query = "SELECT  [DOCID], [DOCNUMBER],  [DOCDATE], [FROM_WH], [ABBREVIATION], [QUANTITY], [PRICEBC] FROM [petworld].[dbo].[WH_ENDA]"
                 + " WHERE [ABBREVIATION]='" + itemCode + "' AND DATE_TIME >= '" + startDate + "' AND DATE_TIME <='" + endDate + "' ORDER BY DOCID;";
-       
+
         ResultSet resultSet;
 
         try {
@@ -831,6 +831,48 @@ public class EndoDao {
         }
 
         return endos;
+    }
+
+    String saveEndoDeliveryChecking(String endoDeliveryId, ArrayList<DeliveryItem> deliveryItems) {
+
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            Connection connection = databaseConnectionFactory.getMySQLConnection();
+
+            connection.setAutoCommit(false);
+            PreparedStatement deliveredItemsInPreparedStatement = connection.prepareStatement("INSERT INTO endo_delivery (id, item_code, sent,delivered) VALUES (?,?,?,?);");
+
+            System.out.println("Starting INSERTION: ....");
+
+            for (DeliveryItem deliveryItem : deliveryItems) {
+
+                deliveredItemsInPreparedStatement.setString(1, endoDeliveryId);
+                deliveredItemsInPreparedStatement.setString(2, deliveryItem.getCode());
+                deliveredItemsInPreparedStatement.setString(3, deliveryItem.getSentQuantity());
+                deliveredItemsInPreparedStatement.setString(4, deliveryItem.getDeliveredQuantity());
+
+                deliveredItemsInPreparedStatement.addBatch();
+
+            }
+
+            //Executing the batch
+            deliveredItemsInPreparedStatement.executeBatch();
+
+            System.out.println(" Batch Insertion: DONE");
+
+            //Saving the changes
+            connection.commit();
+            //  deleteTripPeriodPreparedStatement.close();
+            // deleteTripVoucherPreparedStatement.close();
+
+            deliveredItemsInPreparedStatement.close();
+            connection.close();
+            return "";
+        } catch (SQLException ex) {
+            Logger.getLogger(EndoDao.class.getName()).log(Level.SEVERE, null, ex);
+
+            return ex.getMessage();
+        }
     }
 
 }
