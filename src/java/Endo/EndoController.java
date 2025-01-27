@@ -310,6 +310,26 @@ public class EndoController {
 
     }
 
+    @RequestMapping(value = "endoDeliveryChecking", method = RequestMethod.POST)
+    public String endoDeliveryChecking(@RequestParam(name = "endoIds") String endoIds, ModelMap modelMap) {
+        this.endoIdsArray = createItemsIdsArray(endoIds);
+
+        EndoDao endoDao = new EndoDao();
+        LinkedHashMap<String, DeliveryItem> pet4UItemsRowByRow = endoDao.getPet4UItemsRowByRow();
+        LinkedHashMap<String, DeliveryItem> sentItems = endoDao.getSentItems(endoIdsArray, pet4UItemsRowByRow);
+
+        DeliveryInvoice deliveryInvoice = new DeliveryInvoice();
+        deliveryInvoice.setItems(sentItems);
+
+        modelMap.addAttribute("deliveryInvoice", deliveryInvoice);
+
+        ArrayList<Item> listValues = new ArrayList<Item>(pet4UItemsRowByRow.values());
+        modelMap.addAttribute("pet4UItemsRowByRow", listValues);
+
+        return "endo/endoDeliveryChecking";
+
+    }
+
     @RequestMapping(value = "showbindedEndos", method = RequestMethod.GET)
     public String showbindedEndos(@RequestParam(name = "binderId") String binderId, ModelMap modelMap) {
         EndoDao endoDao = new EndoDao();
