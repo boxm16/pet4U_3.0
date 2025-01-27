@@ -1286,12 +1286,13 @@ public class TechManDao {
     String createEndoDeliveryDatabaseTable() {
 
         String query = "CREATE TABLE endo_delivery("
-                + "delivery_id  VARCHAR(30) NOT NULL , "
+                + "id  VARCHAR(30) NOT NULL , "
                 + "item_code  VARCHAR (50) , "
                 + "sent VARCHAR (30) NOT NULL, "
                 + "delivered VARCHAR (30) NOT NULL) "
                 + "ENGINE = InnoDB "
                 + "DEFAULT CHARACTER SET = utf8;";
+        
 
         try {
             Connection connection = this.databaseConnectionFactory.getMySQLConnection();
