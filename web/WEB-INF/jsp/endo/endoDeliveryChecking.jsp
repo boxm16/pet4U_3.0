@@ -155,11 +155,11 @@
                                             if (unknownBarcodeSent == null) {
                                                 document.getElementById("descriptionDisplay").innerHTML = altercode + " : NKNOWN ALTERCODE : " + altercode;
                                                 addRow(altercode, "UNKNOWN ALTERCODE " + altercode);
-                                            } else {
-                                                let v = unknownBarcodeDelivered.value;
-                                                v++;
-                                                unknownBarcodeDelivered.value = v;
                                             }
+                                            let v = unknownBarcodeDelivered.value;
+                                            v++;
+                                            unknownBarcodeDelivered.value = v;
+
                                         } else {
                                             var code = item.code;
                                             console.log(code);
