@@ -19,8 +19,8 @@ public class TechManController {
 
     @RequestMapping(value = "techMan")
     public String techMan() {
-        //   return "techMan/techManDashboard";
-        return "index";
+        return "techMan/techManDashboard";
+        //   return "index";
     }
 
     //-----------------------------------------------------------------------
@@ -560,6 +560,24 @@ public class TechManController {
 
         camelotShelvesReplenishmentDatabaseTableResult = camelotShelvesReplenishmentDatabaseTableResult + "<br>";
         modelMap.addAttribute("camelotShelvesReplenishmentDatabaseTableResult", camelotShelvesReplenishmentDatabaseTableResult);
+        return "techMan/techManDashboard";
+    }
+
+    //-----------------
+    @RequestMapping(value = "/createEndoDeliveryDatabaseTable", method = RequestMethod.GET)
+    public String createEndoDeliveryDatabaseTable(ModelMap modelMap) {
+        String endoDeliveryDatabaseTableResult = techManDao.createEndoDeliveryDatabaseTable();
+
+        endoDeliveryDatabaseTableResult = endoDeliveryDatabaseTableResult + "<br>";
+        modelMap.addAttribute("endoDeliveryDatabaseTableResult", endoDeliveryDatabaseTableResult);
+        return "techMan/techManDashboard";
+    }
+
+    @RequestMapping(value = "/deleteEndoDeliveryDatabaseTable", method = RequestMethod.GET)
+    public String deleteEndoDeliveryDatabaseTable(ModelMap modelMap) {
+        String endoDeliveryDatabaseTableResult = techManDao.deleteEndoDeliveryDatabaseTable();
+        endoDeliveryDatabaseTableResult = endoDeliveryDatabaseTableResult + "<br>";
+        modelMap.addAttribute("endoDeliveryDatabaseTableResult", endoDeliveryDatabaseTableResult);
         return "techMan/techManDashboard";
     }
 

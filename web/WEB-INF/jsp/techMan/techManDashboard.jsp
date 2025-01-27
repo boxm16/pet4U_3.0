@@ -193,6 +193,15 @@
         <a href='createCamelotShelvesReplenishmentDatabaseTable.htm'><h1>Create Camelot Shelves Replenishment Database Table</h1> </a>
         <a href='deleteCamelotShelvesReplenishmentDatabaseTable.htm'><h1>Delete Camelot Shelves Replenishment Database Table</h1> </a>
         <hr>
+        <hr><hr>
+
+        <h1> ${endoDeliveryDatabaseTableResult} </h1>
+        <a href='createEndoDeliveryDatabaseTable.htm'><h1>Create Endo Delivery  Database Table</h1> </a>
+        <a href='deleteEndoDeliveryDatabaseTable.htm'><h1>Delete Endo Delivery  Database Table</h1> </a>
+        <hr>
+
+
+
 
 
 

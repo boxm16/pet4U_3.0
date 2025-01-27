@@ -1283,4 +1283,43 @@ public class TechManDao {
         }
     }
 
+    String createEndoDeliveryDatabaseTable() {
+
+        String query = "CREATE TABLE endo_delivery("
+                + "delivery_id  VARCHAR(30) NOT NULL , "
+                + "item_code  VARCHAR (50) , "
+                + "sent VARCHAR (30) NOT NULL, "
+                + "delivered VARCHAR (30) NOT NULL) "
+                + "ENGINE = InnoDB "
+                + "DEFAULT CHARACTER SET = utf8;";
+
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+            statement.close();
+            connection.close();
+            return "Table 'endo_delivery' created succesfully";
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return "Table 'endo_delivery' could not be created:" + ex;
+        }
+    }
+
+    String deleteEndoDeliveryDatabaseTable() {
+        String query = "DROP TABLE endo_delivery";
+
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+            statement.close();
+            connection.close();
+            return "Table 'endo_delivery' deleted succesfully";
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return "Table 'endo_delivery' could not be deleted:" + ex;
+        }
+    }
+
 }
