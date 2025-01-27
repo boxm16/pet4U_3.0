@@ -336,6 +336,8 @@ public class EndoController {
     @RequestMapping(value = "saveEndoDeliveryChecking", method = RequestMethod.POST)
     public String saveCheckUp(@RequestParam(name = "sentItems") String sentItemsData,
             @RequestParam(name = "deliveredItems") String deliveredItemsData) {
+        System.out.println(sentItemsData);
+        System.out.println(deliveredItemsData);
         DeliveryInvoice deliveryInvoice = new DeliveryInvoice();
         String endoDeliveryId = LocalDateTime.now().toString();
         deliveryInvoice.setInvoiceId(endoDeliveryId);
