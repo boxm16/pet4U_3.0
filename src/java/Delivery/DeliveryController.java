@@ -404,7 +404,7 @@ public class DeliveryController {
             modelMap.addAttribute("pet4UItemsRowByRow", pet4UItemsRowByRow);
 
         }
-        String saveButton = "<button class=\"btn-primary\" onclick=\"requestRouter('saveCheckUp.htm')\">Save Delivery Checking</button>";
+        String saveButton = "<button class=\"btn-primary\" onclick=\"requestRouter('saveEndoDeliveryChecking.htm')\">Save Endo Delivery Checking</button>";
         modelMap.addAttribute("saveButton", saveButton);
         return "delivery/deliveryInvoiceChecking";
     }

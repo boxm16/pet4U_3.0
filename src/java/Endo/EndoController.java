@@ -326,6 +326,8 @@ public class EndoController {
         ArrayList<Item> listValues = new ArrayList<Item>(pet4UItemsRowByRow.values());
         modelMap.addAttribute("pet4UItemsRowByRow", listValues);
 
+        String saveButton = "<button class=\"btn-primary\" onclick=\"requestRouter('saveCheckUp.htm')\"><H1>Save Delivery Checking</H1></button>";
+        modelMap.addAttribute("saveButton", saveButton);
         return "endo/endoDeliveryChecking";
 
     }
