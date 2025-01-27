@@ -155,8 +155,11 @@
                                             if (unknownBarcodeSent == null) {
                                                 document.getElementById("descriptionDisplay").innerHTML = altercode + " : NKNOWN ALTERCODE : " + altercode;
                                                 addRow(altercode, "UNKNOWN ALTERCODE " + altercode);
-                                            } else {
+                                                let unknownBarcodeDelivered = document.getElementById(altercode + "@delivered");
                                                 let v = unknownBarcodeDelivered.value;
+                                                v++;
+                                                unknownBarcodeDelivered.value = v;
+                                            } else {
                                                 v++;
                                                 unknownBarcodeDelivered.value = v;
                                             }
