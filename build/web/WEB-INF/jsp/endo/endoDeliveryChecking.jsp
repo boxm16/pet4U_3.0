@@ -160,6 +160,7 @@
                                                 v++;
                                                 unknownBarcodeDelivered.value = v;
                                             } else {
+                                                let v = unknownBarcodeDelivered.value;
                                                 v++;
                                                 unknownBarcodeDelivered.value = v;
                                             }
