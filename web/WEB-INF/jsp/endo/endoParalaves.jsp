@@ -297,8 +297,8 @@
 
                     ---------
                     <input style="background-color:red; font-size:40px" type="button" value="TRIAL ONLY E_Del" onclick="requestRouter('endoDelivery.htm')">
-                    ---------
-                    <input style="background-color:red; font-size:40px" type="button" value="TRIAL ONLY E_Bar" onclick="requestRouter('endosBarcodification.htm')">
+
+                    <!--   <input style="background-color:red; font-size:40px" type="button" value="TRIAL ONLY E_Bar" onclick="requestRouter('endosBarcodification.htm')"> -->
                 </td>
                 <td colspan="2">
             <center>
