@@ -217,7 +217,7 @@
                                     c2.innerText = code;
                                     c3.innerText = description;
                                     c4.innerHTML = "<input class='sent' type='number' id='" + code + "@sent' value='0' readonly width='10px'>";
-                                    c5.innerHTML = "<input class='delivered' type='number' id='" + code + "@delivered' value='1'>";
+                                    c5.innerHTML = "<input class='delivered' type='number' id='" + code + "@delivered' value='0'>";
                                     c6.innerHTML = "<dev id='" + code + "@colorDisplay'>____</dev>";
 
 
