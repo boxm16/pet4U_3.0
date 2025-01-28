@@ -1591,7 +1591,7 @@
                             <%                                   //---------------T ----------
                                 out.println("<tr>");
 
-                                posi = "16Τ-03";
+                                posi = "05Τ-03";
                                 if (itemBlockPosition.equals(posi)) {
                                     out.println("<td style='width:90px; background-color: red;'>");
                                 } else {
@@ -1612,7 +1612,7 @@
 
                                 out.println("<tr>");
 
-                                posi = "16Τ-02";
+                                posi = "05Τ-02";
                                 if (itemBlockPosition.equals(posi)) {
                                     out.println("<td style='width:90px; background-color: red;'>");
                                 } else {
@@ -1633,7 +1633,7 @@
 
                                 out.println("<tr>");
 
-                                posi = "16Τ-01";
+                                posi = "05Τ-01";
                                 if (itemBlockPosition.equals(posi)) {
                                     out.println("<td style='width:90px; background-color: red;'>");
                                 } else {
@@ -1666,187 +1666,187 @@
                                 <tr>
 
                                     <%                                        out.println("<td  style='width:30px; font-size: 25px; background-color: lightgreen;'>");
-                                        if (positionsTraffic.get("ΤΧ-17") == null) {
+                                        if (positionsTraffic.get("05ΤΧ-17") == null) {
                                             out.println(0);
                                         } else {
 
-                                            out.println("<a  href = 'getAllDocsForItemBetweenTwoDatesWithThisBlockPosition.htm?blockPosition=ΤΧ-17&itemCode=" + itemCode + "&startDate=" + startDate + "&endDate=" + endDate + "' target='_blank'>" + positionsTraffic.get("ΤΧ-17") + "</a>");
+                                            out.println("<a  href = 'getAllDocsForItemBetweenTwoDatesWithThisBlockPosition.htm?blockPosition=05ΤΧ-17&itemCode=" + itemCode + "&startDate=" + startDate + "&endDate=" + endDate + "' target='_blank'>" + positionsTraffic.get("05ΤΧ-17") + "</a>");
                                             out.println();
 
                                         }
                                         out.println("</td>");
 
                                         out.println("<td  style='width:30px; font-size: 25px; background-color: lightgreen;'>");
-                                        if (positionsTraffic.get("ΤΧ-16") == null) {
+                                        if (positionsTraffic.get("05ΤΧ-16") == null) {
                                             out.println(0);
                                         } else {
 
-                                            out.println("<a  href = 'getAllDocsForItemBetweenTwoDatesWithThisBlockPosition.htm?blockPosition=ΤΧ-16&itemCode=" + itemCode + "&startDate=" + startDate + "&endDate=" + endDate + "' target='_blank'>" + positionsTraffic.get("ΤΧ-16") + "</a>");
+                                            out.println("<a  href = 'getAllDocsForItemBetweenTwoDatesWithThisBlockPosition.htm?blockPosition=05ΤΧ-16&itemCode=" + itemCode + "&startDate=" + startDate + "&endDate=" + endDate + "' target='_blank'>" + positionsTraffic.get("05ΤΧ-16") + "</a>");
                                             out.println();
 
                                         }
                                         out.println("</td>");
 
                                         out.println("<td  style='width:30px; font-size: 25px; background-color: lightgreen;'>");
-                                        if (positionsTraffic.get("ΤΧ-15") == null) {
+                                        if (positionsTraffic.get("05ΤΧ-15") == null) {
                                             out.println(0);
                                         } else {
 
-                                            out.println("<a  href = 'getAllDocsForItemBetweenTwoDatesWithThisBlockPosition.htm?blockPosition=ΤΧ-15&itemCode=" + itemCode + "&startDate=" + startDate + "&endDate=" + endDate + "' target='_blank'>" + positionsTraffic.get("ΤΧ-15") + "</a>");
+                                            out.println("<a  href = 'getAllDocsForItemBetweenTwoDatesWithThisBlockPosition.htm?blockPosition=05ΤΧ-15&itemCode=" + itemCode + "&startDate=" + startDate + "&endDate=" + endDate + "' target='_blank'>" + positionsTraffic.get("05ΤΧ-15") + "</a>");
                                             out.println();
 
                                         }
                                         out.println("</td>");
 
                                         out.println("<td  style='width:30px; font-size: 25px; background-color: lightgreen;'>");
-                                        if (positionsTraffic.get("ΤΧ-14") == null) {
+                                        if (positionsTraffic.get("05ΤΧ-14") == null) {
                                             out.println(0);
                                         } else {
 
-                                            out.println("<a  href = 'getAllDocsForItemBetweenTwoDatesWithThisBlockPosition.htm?blockPosition=ΤΧ-14&itemCode=" + itemCode + "&startDate=" + startDate + "&endDate=" + endDate + "' target='_blank'>" + positionsTraffic.get("ΤΧ-14") + "</a>");
+                                            out.println("<a  href = 'getAllDocsForItemBetweenTwoDatesWithThisBlockPosition.htm?blockPosition=05ΤΧ-14&itemCode=" + itemCode + "&startDate=" + startDate + "&endDate=" + endDate + "' target='_blank'>" + positionsTraffic.get("05ΤΧ-14") + "</a>");
                                             out.println();
 
                                         }
                                         out.println("</td>");
 
                                         out.println("<td  style='width:30px; font-size: 25px; background-color: lightgreen;'>");
-                                        if (positionsTraffic.get("ΤΧ-13") == null) {
+                                        if (positionsTraffic.get("05ΤΧ-13") == null) {
                                             out.println(0);
                                         } else {
 
-                                            out.println("<a  href = 'getAllDocsForItemBetweenTwoDatesWithThisBlockPosition.htm?blockPosition=ΤΧ-13&itemCode=" + itemCode + "&startDate=" + startDate + "&endDate=" + endDate + "' target='_blank'>" + positionsTraffic.get("ΤΧ-13") + "</a>");
+                                            out.println("<a  href = 'getAllDocsForItemBetweenTwoDatesWithThisBlockPosition.htm?blockPosition=05ΤΧ-13&itemCode=" + itemCode + "&startDate=" + startDate + "&endDate=" + endDate + "' target='_blank'>" + positionsTraffic.get("05ΤΧ-13") + "</a>");
                                             out.println();
 
                                         }
                                         out.println("</td>");
 
                                         out.println("<td  style='width:30px; font-size: 25px; background-color: lightgreen;'>");
-                                        if (positionsTraffic.get("ΤΧ-12") == null) {
+                                        if (positionsTraffic.get("05ΤΧ-12") == null) {
                                             out.println(0);
                                         } else {
 
-                                            out.println("<a  href = 'getAllDocsForItemBetweenTwoDatesWithThisBlockPosition.htm?blockPosition=ΤΧ-12&itemCode=" + itemCode + "&startDate=" + startDate + "&endDate=" + endDate + "' target='_blank'>" + positionsTraffic.get("ΤΧ-12") + "</a>");
+                                            out.println("<a  href = 'getAllDocsForItemBetweenTwoDatesWithThisBlockPosition.htm?blockPosition=05ΤΧ-12&itemCode=" + itemCode + "&startDate=" + startDate + "&endDate=" + endDate + "' target='_blank'>" + positionsTraffic.get("05ΤΧ-12") + "</a>");
                                             out.println();
 
                                         }
                                         out.println("</td>");
 
                                         out.println("<td  style='width:30px; font-size: 25px; background-color: lightgreen;'>");
-                                        if (positionsTraffic.get("ΤΧ-11") == null) {
+                                        if (positionsTraffic.get("05ΤΧ-11") == null) {
                                             out.println(0);
                                         } else {
 
-                                            out.println("<a  href = 'getAllDocsForItemBetweenTwoDatesWithThisBlockPosition.htm?blockPosition=ΤΧ-11&itemCode=" + itemCode + "&startDate=" + startDate + "&endDate=" + endDate + "' target='_blank'>" + positionsTraffic.get("ΤΧ-11") + "</a>");
+                                            out.println("<a  href = 'getAllDocsForItemBetweenTwoDatesWithThisBlockPosition.htm?blockPosition=05ΤΧ-11&itemCode=" + itemCode + "&startDate=" + startDate + "&endDate=" + endDate + "' target='_blank'>" + positionsTraffic.get("05ΤΧ-11") + "</a>");
                                             out.println();
 
                                         }
                                         out.println("</td>");
 
                                         out.println("<td  style='width:30px; font-size: 25px; background-color: lightgreen;'>");
-                                        if (positionsTraffic.get("ΤΧ-10") == null) {
+                                        if (positionsTraffic.get("05ΤΧ-10") == null) {
                                             out.println(0);
                                         } else {
 
-                                            out.println("<a  href = 'getAllDocsForItemBetweenTwoDatesWithThisBlockPosition.htm?blockPosition=ΤΧ-10&itemCode=" + itemCode + "&startDate=" + startDate + "&endDate=" + endDate + "' target='_blank'>" + positionsTraffic.get("ΤΧ-10") + "</a>");
+                                            out.println("<a  href = 'getAllDocsForItemBetweenTwoDatesWithThisBlockPosition.htm?blockPosition=05ΤΧ-10&itemCode=" + itemCode + "&startDate=" + startDate + "&endDate=" + endDate + "' target='_blank'>" + positionsTraffic.get("05ΤΧ-10") + "</a>");
                                             out.println();
 
                                         }
                                         out.println("</td>");
 
                                         out.println("<td  style='width:30px; font-size: 25px; background-color: lightgreen;'>");
-                                        if (positionsTraffic.get("ΤΧ-09") == null) {
+                                        if (positionsTraffic.get("05ΤΧ-09") == null) {
                                             out.println(0);
                                         } else {
 
-                                            out.println("<a  href = 'getAllDocsForItemBetweenTwoDatesWithThisBlockPosition.htm?blockPosition=ΤΧ-09&itemCode=" + itemCode + "&startDate=" + startDate + "&endDate=" + endDate + "' target='_blank'>" + positionsTraffic.get("ΤΧ-09") + "</a>");
+                                            out.println("<a  href = 'getAllDocsForItemBetweenTwoDatesWithThisBlockPosition.htm?blockPosition=05ΤΧ-09&itemCode=" + itemCode + "&startDate=" + startDate + "&endDate=" + endDate + "' target='_blank'>" + positionsTraffic.get("05ΤΧ-09") + "</a>");
                                             out.println();
 
                                         }
                                         out.println("</td>");
 
                                         out.println("<td  style='width:30px; font-size: 25px; background-color: lightgreen;'>");
-                                        if (positionsTraffic.get("ΤΧ-08") == null) {
+                                        if (positionsTraffic.get("05ΤΧ-08") == null) {
                                             out.println(0);
                                         } else {
 
-                                            out.println("<a  href = 'getAllDocsForItemBetweenTwoDatesWithThisBlockPosition.htm?blockPosition=ΤΧ-08&itemCode=" + itemCode + "&startDate=" + startDate + "&endDate=" + endDate + "' target='_blank'>" + positionsTraffic.get("ΤΧ-08") + "</a>");
+                                            out.println("<a  href = 'getAllDocsForItemBetweenTwoDatesWithThisBlockPosition.htm?blockPosition=05ΤΧ-08&itemCode=" + itemCode + "&startDate=" + startDate + "&endDate=" + endDate + "' target='_blank'>" + positionsTraffic.get("05ΤΧ-08") + "</a>");
                                             out.println();
 
                                         }
                                         out.println("</td>");
 
                                         out.println("<td  style='width:30px; font-size: 25px; background-color: lightgreen;'>");
-                                        if (positionsTraffic.get("ΤΧ-07") == null) {
+                                        if (positionsTraffic.get("05ΤΧ-07") == null) {
                                             out.println(0);
                                         } else {
 
-                                            out.println("<a  href = 'getAllDocsForItemBetweenTwoDatesWithThisBlockPosition.htm?blockPosition=ΤΧ-07&itemCode=" + itemCode + "&startDate=" + startDate + "&endDate=" + endDate + "' target='_blank'>" + positionsTraffic.get("ΤΧ-07") + "</a>");
+                                            out.println("<a  href = 'getAllDocsForItemBetweenTwoDatesWithThisBlockPosition.htm?blockPosition=05ΤΧ-07&itemCode=" + itemCode + "&startDate=" + startDate + "&endDate=" + endDate + "' target='_blank'>" + positionsTraffic.get("05ΤΧ-07") + "</a>");
                                             out.println();
 
                                         }
                                         out.println("</td>");
 
                                         out.println("<td  style='width:30px; font-size: 25px; background-color: lightgreen;'>");
-                                        if (positionsTraffic.get("ΤΧ-06") == null) {
+                                        if (positionsTraffic.get("05ΤΧ-06") == null) {
                                             out.println(0);
                                         } else {
 
-                                            out.println("<a  href = 'getAllDocsForItemBetweenTwoDatesWithThisBlockPosition.htm?blockPosition=ΤΧ-06&itemCode=" + itemCode + "&startDate=" + startDate + "&endDate=" + endDate + "' target='_blank'>" + positionsTraffic.get("ΤΧ-06") + "</a>");
+                                            out.println("<a  href = 'getAllDocsForItemBetweenTwoDatesWithThisBlockPosition.htm?blockPosition=05ΤΧ-06&itemCode=" + itemCode + "&startDate=" + startDate + "&endDate=" + endDate + "' target='_blank'>" + positionsTraffic.get("05ΤΧ-06") + "</a>");
                                             out.println();
 
                                         }
                                         out.println("</td>");
 
                                         out.println("<td  style='width:30px; font-size: 25px; background-color: lightgreen;'>");
-                                        if (positionsTraffic.get("ΤΧ-05") == null) {
+                                        if (positionsTraffic.get("05ΤΧ-05") == null) {
                                             out.println(0);
                                         } else {
 
-                                            out.println("<a  href = 'getAllDocsForItemBetweenTwoDatesWithThisBlockPosition.htm?blockPosition=ΤΧ-05&itemCode=" + itemCode + "&startDate=" + startDate + "&endDate=" + endDate + "' target='_blank'>" + positionsTraffic.get("ΤΧ-05") + "</a>");
+                                            out.println("<a  href = 'getAllDocsForItemBetweenTwoDatesWithThisBlockPosition.htm?blockPosition=05ΤΧ-05&itemCode=" + itemCode + "&startDate=" + startDate + "&endDate=" + endDate + "' target='_blank'>" + positionsTraffic.get("05ΤΧ-05") + "</a>");
                                             out.println();
 
                                         }
                                         out.println("</td>");
 
                                         out.println("<td  style='width:30px; font-size: 25px; background-color: lightgreen;'>");
-                                        if (positionsTraffic.get("ΤΧ-04") == null) {
+                                        if (positionsTraffic.get("05ΤΧ-04") == null) {
                                             out.println(0);
                                         } else {
 
-                                            out.println("<a  href = 'getAllDocsForItemBetweenTwoDatesWithThisBlockPosition.htm?blockPosition=ΤΧ-04&itemCode=" + itemCode + "&startDate=" + startDate + "&endDate=" + endDate + "' target='_blank'>" + positionsTraffic.get("ΤΧ-04") + "</a>");
+                                            out.println("<a  href = 'getAllDocsForItemBetweenTwoDatesWithThisBlockPosition.htm?blockPosition=05ΤΧ-04&itemCode=" + itemCode + "&startDate=" + startDate + "&endDate=" + endDate + "' target='_blank'>" + positionsTraffic.get("05ΤΧ-04") + "</a>");
                                             out.println();
 
                                         }
                                         out.println("</td>");
 
                                         out.println("<td  style='width:30px; font-size: 25px; background-color: lightgreen;'>");
-                                        if (positionsTraffic.get("ΤΧ-03") == null) {
+                                        if (positionsTraffic.get("05ΤΧ-03") == null) {
                                             out.println(0);
                                         } else {
 
-                                            out.println("<a  href = 'getAllDocsForItemBetweenTwoDatesWithThisBlockPosition.htm?blockPosition=ΤΧ-03&itemCode=" + itemCode + "&startDate=" + startDate + "&endDate=" + endDate + "' target='_blank'>" + positionsTraffic.get("ΤΧ-03") + "</a>");
+                                            out.println("<a  href = 'getAllDocsForItemBetweenTwoDatesWithThisBlockPosition.htm?blockPosition=05ΤΧ-03&itemCode=" + itemCode + "&startDate=" + startDate + "&endDate=" + endDate + "' target='_blank'>" + positionsTraffic.get("05ΤΧ-03") + "</a>");
                                             out.println();
 
                                         }
                                         out.println("</td>");
 
                                         out.println("<td  style='width:30px; font-size: 25px; background-color: lightgreen;'>");
-                                        if (positionsTraffic.get("ΤΧ-02") == null) {
+                                        if (positionsTraffic.get("05ΤΧ-02") == null) {
                                             out.println(0);
                                         } else {
 
-                                            out.println("<a  href = 'getAllDocsForItemBetweenTwoDatesWithThisBlockPosition.htm?blockPosition=ΤΧ-02&itemCode=" + itemCode + "&startDate=" + startDate + "&endDate=" + endDate + "' target='_blank'>" + positionsTraffic.get("ΤΧ-02") + "</a>");
+                                            out.println("<a  href = 'getAllDocsForItemBetweenTwoDatesWithThisBlockPosition.htm?blockPosition=05ΤΧ-02&itemCode=" + itemCode + "&startDate=" + startDate + "&endDate=" + endDate + "' target='_blank'>" + positionsTraffic.get("05ΤΧ-02") + "</a>");
                                             out.println();
 
                                         }
                                         out.println("</td>");
 
                                         out.println("<td  style='width:30px; font-size: 25px; background-color: lightgreen;'>");
-                                        if (positionsTraffic.get("ΤΧ-01") == null) {
+                                        if (positionsTraffic.get("05ΤΧ-01") == null) {
                                             out.println(0);
                                         } else {
 
-                                            out.println("<a  href = 'getAllDocsForItemBetweenTwoDatesWithThisBlockPosition.htm?blockPosition=ΤΧ-01&itemCode=" + itemCode + "&startDate=" + startDate + "&endDate=" + endDate + "' target='_blank'>" + positionsTraffic.get("ΤΧ-01") + "</a>");
+                                            out.println("<a  href = 'getAllDocsForItemBetweenTwoDatesWithThisBlockPosition.htm?blockPosition=05ΤΧ-01&itemCode=" + itemCode + "&startDate=" + startDate + "&endDate=" + endDate + "' target='_blank'>" + positionsTraffic.get("05ΤΧ-01") + "</a>");
                                             out.println();
 
                                         }
