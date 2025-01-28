@@ -373,6 +373,7 @@ public class EndoDao {
                     deliveredItem.setDescription(description);
                     deliveredItem.setCode(itemCode);
                     deliveredItem.setSentQuantity(String.valueOf(quantity));
+                    deliveredItem.setDeliveredQuantity("0");
                     sentItems.put(itemCode, deliveredItem);
                 }
 
