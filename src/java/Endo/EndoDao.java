@@ -841,11 +841,12 @@ public class EndoDao {
             Connection connection = databaseConnectionFactory.getMySQLConnection();
 
             connection.setAutoCommit(false);
-            PreparedStatement deliveredItemsInPreparedStatement = connection.prepareStatement("INSERT INTO endo_delivery (id, item_code, sent,delivered) VALUES (?,?,?,?);");
+            PreparedStatement deliveredItemsInPreparedStatement = connection.prepareStatement("INSERT INTO endo_delivery (id, item_code, sent, delivered) VALUES (?,?,?,?);");
 
             System.out.println("Starting INSERTION: ....");
 
             for (DeliveryItem deliveryItem : deliveryItems) {
+                System.out.println("ItemCode:"+deliveryItem.getCode());
 
                 deliveredItemsInPreparedStatement.setString(1, endoDeliveryId);
                 deliveredItemsInPreparedStatement.setString(2, deliveryItem.getCode());

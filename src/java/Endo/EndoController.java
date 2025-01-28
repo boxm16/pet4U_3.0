@@ -356,7 +356,7 @@ public class EndoController {
 
         EndoDao endoDao = new EndoDao();
         String result = endoDao.saveEndoDeliveryChecking(endoDeliveryId, deliveryItems);
-        return "redirect:endoDashboard.htm";
+        return "redirect:endoParalaves.htm";
     }
 
     private LinkedHashMap<String, String> decodeDeliveredItemsData(String data) {
