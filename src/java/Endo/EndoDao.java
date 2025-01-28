@@ -846,7 +846,7 @@ public class EndoDao {
             System.out.println("Starting INSERTION: ....");
 
             for (DeliveryItem deliveryItem : deliveryItems) {
-                System.out.println("ItemCode:" + deliveryItem.getCode() + "-" + "ItemCode:" + deliveryItem.getSentQuantity());
+                System.out.println("ItemCode:" + deliveryItem.getCode() + "-"  + deliveryItem.getSentQuantity());
 
                 deliveredItemsInPreparedStatement.setString(1, endoDeliveryId);
                 deliveredItemsInPreparedStatement.setString(2, deliveryItem.getCode());

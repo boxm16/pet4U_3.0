@@ -374,7 +374,7 @@ public class EndoController {
             String[] item_code_and_quantity = it.split(":");
             String codePart = item_code_and_quantity[0];
             String quantity = item_code_and_quantity[1];
-            String[] code_text = codePart.split("_");
+            String[] code_text = codePart.split("@");
             String code = code_text[0];
             decodedData.put(code, quantity);
         }
