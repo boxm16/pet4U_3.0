@@ -108,6 +108,9 @@
         <hr>
         ${saveButton}
         <form id="form" action="#" method="POST">
+            <input hidden type="text"  name="invoiceId" value="${deliveryInvoice.invoiceId}">
+            <input hidden type="text"  name="supplier" value="${deliveryInvoice.supplier}">
+            <input hidden type="text"  name="invoiceNumber" value="${deliveryInvoice.number}">
             <input hidden type="text" id="deliveredItems" name="deliveredItems">
             <input hidden type="text" id="sentItems" name="sentItems">
         </form>
@@ -122,144 +125,152 @@
 
     <script type="text/javascript">
 
-        class Item {
-            constructor(altercode, code, description) {
-                this.altercode = altercode;                                         this.code = code;
-                this.description = description;
-            }
-        }
+                                class Item {
+                                    constructor(altercode, code, description) {
+                                        this.altercode = altercode;
+                                        this.code = code;
+                                        this.description = description;
+                                    }
+                                }
 
-        var items = new Array();
+                                var items = new Array();
         <c:forEach items="${pet4UItemsRowByRow}" var="item">
-            var altercode = "${item.altercode}";
-                var code = "${item.code}";
-                    var description = "${item.description}";
-                        var item = new Item(altercode, code, description);
-                        items[altercode] = item;
+                                var altercode = "${item.altercode}";
+                                var code = "${item.code}";
+                                var description = "${item.description}";
+                                var item = new Item(altercode, code, description);
+                                items[altercode] = item;
         </c:forEach>
 
 
 
 
-            function check(event, input) {
-                if (event.keyCode === 13) {
-                    var altercode = input.value;
-                    console.log("altercode:" + altercode);
-                    var item = items[altercode];
-                        if (item == null) {                                             let unknownBarcodeX = document.getElementById(altercode + "_sent");
-                            if (unknownBarcodeX == null) {                                                 document.getElementById("descriptionDisplay").innerHTML = altercode + " : Unkown Barcode: " + altercode;                                                 addRow(altercode, "Unkown Barcode: " + altercode);
-                        } else {
-                            let unknownBarcodeD = document.getElementById(altercode + "_delivered");
-                            let v = unknownBarcodeD.value;
-                            v++;
-                            unknownBarcodeD.value = v;
-                        }
-                    } else {
-                        var code = item.code;                                             console.log(code);
-                        var description = item.description;
-                        document.getElementById("descriptionDisplay").innerHTML = altercode + " : " + description;
+                                function check(event, input) {
+                                    if (event.keyCode === 13) {
+                                        var altercode = input.value;
+                                        console.log("altercode:" + altercode);
+                                        var item = items[altercode];
+                                        if (item == null) {
+                                            let unknownBarcodeX = document.getElementById(altercode + "_sent");
+                                            if (unknownBarcodeX == null) {
+                                                document.getElementById("descriptionDisplay").innerHTML = altercode + " : Unkown Barcode: " + altercode;
+                                                addRow(altercode, "Unkown Barcode: " + altercode);
+                                            } else {
+                                                let unknownBarcodeD = document.getElementById(altercode + "_delivered");
+                                                let v = unknownBarcodeD.value;
+                                                v++;
+                                                unknownBarcodeD.value = v;
+                                            }
+                                        } else {
+                                            var code = item.code;
+                                            console.log(code);
+                                            var description = item.description;
+                                            document.getElementById("descriptionDisplay").innerHTML = altercode + " : " + description;
 
 
-                        let sent = document.getElementById(code + "_sent");
-                            if (sent == null) {                                                 addRow(item.code, item.description);
-                        } else {
-                            sent = sent.value * 1;
-                        }
+                                            let sent = document.getElementById(code + "_sent");
+                                            if (sent == null) {
+                                                addRow(item.code, item.description);
+                                            } else {
+                                                sent = sent.value * 1;
+                                            }
 
-                        let delivered = document.getElementById(code + "_delivered").value * 1;
-                        delivered++;
+                                            let delivered = document.getElementById(code + "_delivered").value * 1;
+                                            delivered++;
 
-                        document.getElementById(code + "_delivered").value = delivered; 
-                        let colorDisplay = document.getElementById(code + "_colorDisplay");
+                                            document.getElementById(code + "_delivered").value = delivered;
+                                            let colorDisplay = document.getElementById(code + "_colorDisplay");
 
-                        let diff = sent - delivered;                                             if (diff > 0) {
-                            colorDisplay.style.backgroundColor = 'red';
-                        }
-                        if (diff < 0) {
-                            colorDisplay.style.backgroundColor = 'yellow';
-                        }
-                        if (diff === 0) {
-                        colorDisplay.style.backgroundColor = 'green';                                             }
-                    }
+                                            let diff = sent - delivered;
+                                            if (diff > 0) {
+                                                colorDisplay.style.backgroundColor = 'red';
+                                            }
+                                            if (diff < 0) {
+                                                colorDisplay.style.backgroundColor = 'yellow';
+                                            }
+                                            if (diff === 0) {
+                                                colorDisplay.style.backgroundColor = 'green';
+                                            }
+                                        }
 
-                    input.value = "";
+                                        input.value = "";
 
-                }
-            }
+                                    }
+                                }
 
-            function addRow(code, description) {
-                // Get the table body element in which you want to add row
-                let table = document.getElementById("tableBody");
+                                function addRow(code, description) {
+                                    // Get the table body element in which you want to add row
+                                    let table = document.getElementById("tableBody");
 
-                // Create row element
-                let row = document.createElement("tr")
+                                    // Create row element
+                                    let row = document.createElement("tr")
 
-                // Create cells
-                let c1 = document.createElement("td")
-                let c2 = document.createElement("td")
-                let c3 = document.createElement("td")
-                let c4 = document.createElement("td")
-                let c5 = document.createElement("td")
-                let c6 = document.createElement("td")
-                // Insert data to cells
-                c1.innerText = "----";
-                c2.innerText = code;
-                c3.innerText = description;
-                c4.innerHTML = "<input class='sent' type='number' id='" + code + "_sent' value='0' readonly width='10px'>";
-                c5.innerHTML = "<input class='delivered' type='number' id='" + code + "_delivered' value='0'>";
-                c6.innerHTML = "<dev id='" + code + "_colorDisplay'>____</dev>";
-
-
-                // Append cells to row
-                row.appendChild(c1);
-                row.appendChild(c2);
-                row.appendChild(c3);
-                row.appendChild(c4);
-                row.appendChild(c5);
-                row.appendChild(c6);
+                                    // Create cells
+                                    let c1 = document.createElement("td")
+                                    let c2 = document.createElement("td")
+                                    let c3 = document.createElement("td")
+                                    let c4 = document.createElement("td")
+                                    let c5 = document.createElement("td")
+                                    let c6 = document.createElement("td")
+                                    // Insert data to cells
+                                    c1.innerText = "----";
+                                    c2.innerText = code;
+                                    c3.innerText = description;
+                                    c4.innerHTML = "<input class='sent' type='number' id='" + code + "_sent' value='0' readonly width='10px'>";
+                                    c5.innerHTML = "<input class='delivered' type='number' id='" + code + "_delivered' value='0'>";
+                                    c6.innerHTML = "<dev id='" + code + "_colorDisplay'>____</dev>";
 
 
-                // Append row to table body
-                table.appendChild(row)
-            }
+                                    // Append cells to row
+                                    row.appendChild(c1);
+                                    row.appendChild(c2);
+                                    row.appendChild(c3);
+                                    row.appendChild(c4);
+                                    row.appendChild(c5);
+                                    row.appendChild(c6);
 
-            //---------------------------------
-            //--------------------------------
-            //---------------------------------
-            function requestRouter(requestTarget) {
-                form.action = requestTarget;
 
-                let sent = collectSentData();
-                sentItems.value = sent;
+                                    // Append row to table body
+                                    table.appendChild(row)
+                                }
 
-                let delivered = collectDeliveredData();
-                deliveredItems.value = delivered; 
+                                //---------------------------------
+                                //--------------------------------
+                                //---------------------------------
+                                function requestRouter(requestTarget) {
+                                    form.action = requestTarget;
 
-                // console.log(data);
-                form.submit();
-            }
+                                    let sent = collectSentData();
+                                    sentItems.value = sent;
 
-            function collectSentData() {
-                var returnValue = "";
-                var sentItems = document.querySelectorAll(".sent");
+                                    let delivered = collectDeliveredData();
+                                    deliveredItems.value = delivered;
 
-                for (x = 0; x < sentItems.length; x++) {
+                                    // console.log(data);
+                                    form.submit();
+                                }
 
-                    returnValue += sentItems[x].id + ":" + sentItems[x].value + ",";
-                }
-                return returnValue;
-            }
+                                function collectSentData() {
+                                    var returnValue = "";
+                                    var sentItems = document.querySelectorAll(".sent");
 
-            function collectDeliveredData() {
-                var returnValue = "";
-                var deliveredItems = document.querySelectorAll(".delivered");
+                                    for (x = 0; x < sentItems.length; x++) {
 
-                for (x = 0; x < deliveredItems.length; x++) {
+                                        returnValue += sentItems[x].id + ":" + sentItems[x].value + ",";
+                                    }
+                                    return returnValue;
+                                }
 
-                    returnValue += deliveredItems[x].id + ":" + deliveredItems[x].value + ",";
-                }
-                return returnValue;
-            }
+                                function collectDeliveredData() {
+                                    var returnValue = "";
+                                    var deliveredItems = document.querySelectorAll(".delivered");
+
+                                    for (x = 0; x < deliveredItems.length; x++) {
+
+                                        returnValue += deliveredItems[x].id + ":" + deliveredItems[x].value + ",";
+                                    }
+                                    return returnValue;
+                                }
     </script>
 </body>
 </html>
