@@ -5,6 +5,7 @@
 --%>
 
 
+<%@page import="Delivery.DeliveryInvoice"%>
 <%@page import="Endo.EndoBinder"%>
 <%@page import="Endo.EndoParalavis"%>
 <%@page import="Endo.EndoApostolis"%>
@@ -159,30 +160,16 @@
 
 
                             <%
-                                LinkedHashMap<String, EndoParalavis> receivingEndos = (LinkedHashMap) request.getAttribute("receivingEndos");
-
-                                for (Map.Entry<String, EndoParalavis> entrySet : receivingEndos.entrySet()) {
+                                    DeliveryInvoice deliveryInvoice = (DeliveryInvoice) request.getAttribute("endoDelivery");
 
                                     out.println("<tr>");
 
                                     out.println("<td>");
-                                    if (receivingEndos.size() == 1) {
-                                        out.println("<input type='checkbox' checked class='receivingEndoId' id='" + entrySet.getValue().getId() + "' style='width:28px;height:28px'>");
-                                    } else {
-                                        out.println("<input type='checkbox' class='receivingEndoId' id='" + entrySet.getValue().getId() + "' style='width:28px;height:28px'>");
-                                    }
+                                    out.println("<input type='checkbox' checked class='receivingEndoId' id='" + deliveryInvoice.getId() + "' style='width:28px;height:28px'>");
                                     out.println("</td>");
 
                                     out.println("<td>");
-                                    out.println("<a href='showDeltioParalavis.htm?id=" + entrySet.getValue().getId() + "' target='_blank'>" + entrySet.getValue().getId() + "</a>");
-                                    out.println("</td>");
-
-                                    out.println("<td>");
-                                    out.println(entrySet.getValue().getDateString());
-                                    out.println("</td>");
-
-                                    out.println("<td >");
-                                    out.println(entrySet.getValue().getNumber());
+                                    out.println("<a href='showEndoDelivery.htm?id=" + deliveryInvoice.getId() + "' target='_blank'>" + deliveryInvoice.getId() + "</a>");
                                     out.println("</td>");
 
                                     out.println("</tr>");
