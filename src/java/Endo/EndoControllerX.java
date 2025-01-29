@@ -765,5 +765,75 @@ public class EndoControllerX {
     }
 
     
+    
+    
+    //______________________________ΕΝΔΟ ΠΑΡΑΛΑΒΕΣ Β________________________
+    @RequestMapping(value = "endoParalaves_B", method = RequestMethod.GET)
+    public String endoParalaves_B(ModelMap modelMap) {
+        EndoDaoX endoDaoX = new EndoDaoX();
+        LinkedHashMap<String, EndoBinder> allEndoBinders = endoDaoX.getAllEndoBinders();
+
+        LinkedHashMap<String, EndoApostolis> endoApostoliss = endoDaoX.getLastIncomingEndoApostoliss(10);
+        LinkedHashMap<String, EndoParalavis> endoParalaviss = endoDaoX.getLastEndoParalaviss(10);
+
+        Iterator<Entry<String, EndoParalavis>> endoParalavissIterator = endoParalaviss.entrySet().iterator();
+
+        while (endoParalavissIterator.hasNext()) {
+            Entry<String, EndoParalavis> endoParalavisEntry = endoParalavissIterator.next();
+            String endoParalavisId = endoParalavisEntry.getKey();
+            if (endoParalavisId.equals("359761")
+                    || endoParalavisId.equals("360140")
+                    || endoParalavisId.equals("362926")
+                    || endoParalavisId.equals("362480")
+                    || endoParalavisId.equals("371898")
+                    || endoParalavisId.equals("381889")
+                    || endoParalavisId.equals("383428")
+                    || endoParalavisId.equals("383703")
+                    || endoParalavisId.equals("388760")
+                    || endoParalavisId.equals("402796")) {
+                endoParalavissIterator.remove();
+
+            }
+
+            if (allEndoBinders.containsKey(endoParalavisId)) {
+                endoParalavissIterator.remove();
+                EndoBinder endoBinder = allEndoBinders.get(endoParalavisId);
+                LinkedHashMap<String, EndoApostolis> enAps = endoBinder.getEndoApostoliss();
+                for (Map.Entry<String, EndoApostolis> enApEntry : enAps.entrySet()) {
+                    if (endoApostoliss.containsKey(enApEntry.getKey())) {
+                        endoApostoliss.remove(enApEntry.getKey());
+                    }
+                }
+            }
+        }
+
+        modelMap.addAttribute("incomingEndos", endoApostoliss);
+        modelMap.addAttribute("receivingEndos", endoParalaviss);
+
+        //-----------------------------------------
+        if (endoParalaviss.size() == 1) {
+            this.proEndoBinder = new EndoBinder();
+
+            Map.Entry<String, EndoParalavis> entry = endoParalaviss.entrySet().stream().findFirst().get();
+
+            EndoParalavis endoParalavis = entry.getValue();
+            this.proEndoBinder.setEndoParalavis(endoParalavis);
+
+            for (Map.Entry<String, EndoApostolis> endoApostolissEntry : endoApostoliss.entrySet()) {
+                if (endoParalavis.getThreeLastDigitsArrayList().contains(endoApostolissEntry.getValue().getShortNumber())) {
+
+                    if (endoParalavis.getDateString().equals(endoApostolissEntry.getValue().getDateString())) {
+                        this.proEndoBinder.addEndoApostolis(endoApostolissEntry.getValue().getId(), endoApostolissEntry.getValue());
+                    }
+                }
+            }
+            this.proEndoBinder = endoDaoX.fillEndoBinder(this.proEndoBinder);
+            this.proEndoBinder.checkTotals();
+            modelMap.addAttribute("proEndoBinder", this.proEndoBinder);
+        }
+
+        return "endo/endoParalaves_B";
+    }
+    
 
 }
