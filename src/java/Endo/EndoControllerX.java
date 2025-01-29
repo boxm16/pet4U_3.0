@@ -764,9 +764,6 @@ public class EndoControllerX {
         return "endo/editEndoPackaging";
     }
 
-    
-    
-    
     //______________________________ΕΝΔΟ ΠΑΡΑΛΑΒΕΣ Β________________________
     @RequestMapping(value = "endoParalaves_B", method = RequestMethod.GET)
     public String endoParalaves_B(ModelMap modelMap) {
@@ -811,29 +808,7 @@ public class EndoControllerX {
         modelMap.addAttribute("receivingEndos", endoParalaviss);
 
         //-----------------------------------------
-        if (endoParalaviss.size() == 1) {
-            this.proEndoBinder = new EndoBinder();
-
-            Map.Entry<String, EndoParalavis> entry = endoParalaviss.entrySet().stream().findFirst().get();
-
-            EndoParalavis endoParalavis = entry.getValue();
-            this.proEndoBinder.setEndoParalavis(endoParalavis);
-
-            for (Map.Entry<String, EndoApostolis> endoApostolissEntry : endoApostoliss.entrySet()) {
-                if (endoParalavis.getThreeLastDigitsArrayList().contains(endoApostolissEntry.getValue().getShortNumber())) {
-
-                    if (endoParalavis.getDateString().equals(endoApostolissEntry.getValue().getDateString())) {
-                        this.proEndoBinder.addEndoApostolis(endoApostolissEntry.getValue().getId(), endoApostolissEntry.getValue());
-                    }
-                }
-            }
-            this.proEndoBinder = endoDaoX.fillEndoBinder(this.proEndoBinder);
-            this.proEndoBinder.checkTotals();
-            modelMap.addAttribute("proEndoBinder", this.proEndoBinder);
-        }
-
         return "endo/endoParalaves_B";
     }
-    
 
 }
