@@ -118,23 +118,7 @@
                                     out.println("</td>");
 
                                     out.println("<td>");
-                                    String shortNumber = entrySet.getValue().getShortNumber();
-
-                                    LinkedHashMap<String, EndoParalavis> receivingEndos = (LinkedHashMap) request.getAttribute("receivingEndos");
-                                    if (receivingEndos.size() == 1) {
-                                        Map.Entry<String, EndoParalavis> receivingEndoEntry = receivingEndos.entrySet()
-                                                .stream()
-                                                .findFirst()
-                                                .get();
-
-                                        if (receivingEndoEntry.getValue().getThreeLastDigitsArrayList().contains(shortNumber)) {
-                                            out.println("<input type='checkbox' checked class='endoId' id='" + entrySet.getValue().getId() + "' style='width:28px;height:28px' >");
-                                        } else {
-                                            out.println("<input type='checkbox' class='endoId' id='" + entrySet.getValue().getId() + "' style='width:28px;height:28px' >");
-                                        }
-                                    } else {
-                                        out.println("<input type='checkbox' class='endoId' id='" + entrySet.getValue().getId() + "' style='width:28px;height:28px' >");
-                                    }
+                                    out.println("<input type='checkbox' class='endoId' id='" + entrySet.getValue().getId() + "' style='width:28px;height:28px' >");
                                     out.println("</td>");
 
                                     out.println("</tr>");
@@ -160,20 +144,20 @@
 
 
                             <%
-                                    DeliveryInvoice deliveryInvoice = (DeliveryInvoice) request.getAttribute("endoDelivery");
+                                DeliveryInvoice deliveryInvoice = (DeliveryInvoice) request.getAttribute("endoDelivery");
 
-                                    out.println("<tr>");
+                                out.println("<tr>");
 
-                                    out.println("<td>");
-                                    out.println("<input type='checkbox' checked class='receivingEndoId' id='" + deliveryInvoice.getId() + "' style='width:28px;height:28px'>");
-                                    out.println("</td>");
+                                out.println("<td>");
+                                out.println("<input type='checkbox' checked class='receivingEndoId' id='" + deliveryInvoice.getId() + "' style='width:28px;height:28px'>");
+                                out.println("</td>");
 
-                                    out.println("<td>");
-                                    out.println("<a href='showEndoDelivery.htm?id=" + deliveryInvoice.getId() + "' target='_blank'>" + deliveryInvoice.getId() + "</a>");
-                                    out.println("</td>");
+                                out.println("<td>");
+                                out.println("<a href='showEndoDelivery.htm?id=" + deliveryInvoice.getId() + "' target='_blank'>" + deliveryInvoice.getId() + "</a>");
+                                out.println("</td>");
 
-                                    out.println("</tr>");
-                                
+                                out.println("</tr>");
+
 
                             %> 
 
