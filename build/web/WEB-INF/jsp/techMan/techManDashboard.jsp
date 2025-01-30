@@ -196,8 +196,8 @@
         <hr><hr>
 
         <h1> ${endoDeliveryDatabaseTableResult} </h1>
-        <a href='createEndoDeliveryDatabaseTable.htm'><h1>Create Endo Delivery  Database Table</h1> </a>
-        <a href='deleteEndoDeliveryDatabaseTable.htm'><h1>Delete Endo Delivery  Database Table</h1> </a>
+        <a href='createEndoDeliveryDatabaseTables.htm'><h1>Create Endo Delivery  Database Tables</h1> </a>
+        <a href='deleteEndoDeliveryDatabaseTables.htm'><h1>Delete Endo Delivery  Database Tables</h1> </a>
         <hr>
 
 

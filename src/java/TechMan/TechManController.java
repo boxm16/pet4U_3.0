@@ -564,19 +564,20 @@ public class TechManController {
     }
 
     //-----------------
-    @RequestMapping(value = "/createEndoDeliveryDatabaseTable", method = RequestMethod.GET)
-    public String createEndoDeliveryDatabaseTable(ModelMap modelMap) {
+    @RequestMapping(value = "/createEndoDeliveryDatabaseTables", method = RequestMethod.GET)
+    public String createEndoDeliveryDatabaseTables(ModelMap modelMap) {
         String endoDeliveryDatabaseTableResult = techManDao.createEndoDeliveryDatabaseTable();
-
-        endoDeliveryDatabaseTableResult = endoDeliveryDatabaseTableResult + "<br>";
+        String endoDeliveryBindingDatabaseTableResult = techManDao.createEndoDeliveryBindingDatabaseTable();
+        endoDeliveryDatabaseTableResult = endoDeliveryDatabaseTableResult + "<br>" + endoDeliveryBindingDatabaseTableResult + "<br>";
         modelMap.addAttribute("endoDeliveryDatabaseTableResult", endoDeliveryDatabaseTableResult);
         return "techMan/techManDashboard";
     }
 
-    @RequestMapping(value = "/deleteEndoDeliveryDatabaseTable1", method = RequestMethod.GET)
-    public String deleteEndoDeliveryDatabaseTable(ModelMap modelMap) {
+    @RequestMapping(value = "/deleteEndoDeliveryDatabaseTables", method = RequestMethod.GET)
+    public String deleteEndoDeliveryDatabaseTables(ModelMap modelMap) {
         String endoDeliveryDatabaseTableResult = techManDao.deleteEndoDeliveryDatabaseTable();
-        endoDeliveryDatabaseTableResult = endoDeliveryDatabaseTableResult + "<br>";
+        String endoDeliveryBindingDatabaseTableResult = techManDao.deleteEndoDeliveryBindingDatabaseTable();
+        endoDeliveryDatabaseTableResult = endoDeliveryDatabaseTableResult + "<br>" + endoDeliveryBindingDatabaseTableResult + "<br>";
         modelMap.addAttribute("endoDeliveryDatabaseTableResult", endoDeliveryDatabaseTableResult);
         return "techMan/techManDashboard";
     }

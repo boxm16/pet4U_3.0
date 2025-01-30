@@ -1292,7 +1292,6 @@ public class TechManDao {
                 + "delivered VARCHAR (30) NOT NULL) "
                 + "ENGINE = InnoDB "
                 + "DEFAULT CHARACTER SET = utf8;";
-        
 
         try {
             Connection connection = this.databaseConnectionFactory.getMySQLConnection();
@@ -1320,6 +1319,42 @@ public class TechManDao {
         } catch (SQLException ex) {
             Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
             return "Table 'endo_delivery' could not be deleted:" + ex;
+        }
+    }
+
+    String createEndoDeliveryBindingDatabaseTable() {
+        String query = "CREATE TABLE endo_delivery_binding("
+                + "endo_delivery_id  VARCHAR(30) NOT NULL , "
+                + "bindend_endo_apostolis_id INT (6) NOT NULL) "
+                + "ENGINE = InnoDB "
+                + "DEFAULT CHARACTER SET = utf8;";
+
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+            statement.close();
+            connection.close();
+            return "Table 'endo_delivery_binding' created succesfully";
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return "Table 'endo_delivery_binding' could not be created:" + ex;
+        }
+    }
+
+    String deleteEndoDeliveryBindingDatabaseTable() {
+        String query = "DROP TABLE endo_delivery_binding";
+
+        try {
+            Connection connection = this.databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+            statement.close();
+            connection.close();
+            return "Table 'endo_delivery_binding' deleted succesfully";
+        } catch (SQLException ex) {
+            Logger.getLogger(TechManDao.class.getName()).log(Level.SEVERE, null, ex);
+            return "Table 'endo_delivery_binding' could not be deleted:" + ex;
         }
     }
 
