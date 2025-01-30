@@ -187,7 +187,7 @@
             form.target = "_blank";
             form.action = requestTarget;
             endoIdsInput.value = collectSellectedCheckBoxes();
-            receivingEndoIdsInput.value = collectSellectedReceivingCheckBoxes();
+          
             console.log(form.action);
             form.submit();
         }
