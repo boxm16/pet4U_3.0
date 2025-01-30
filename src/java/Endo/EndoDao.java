@@ -860,7 +860,7 @@ public class EndoDao {
             //Executing the batch
             deliveredItemsInPreparedStatement.executeBatch();
 
-            PreparedStatement bindingPreparedStatement = connection.prepareStatement("INSERT INTO endo_delivery_binding (endo_delivery_id, bindend_endo_apostolis_id) VALUES (?,?);");
+            PreparedStatement bindingPreparedStatement = connection.prepareStatement("INSERT INTO endo_delivery_binding (endo_delivery_id, binded_endo_apostolis_id) VALUES (?,?);");
 
             for (String endiIds : endoIdsArray) {
 
