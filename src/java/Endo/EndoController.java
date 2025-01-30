@@ -385,6 +385,11 @@ public class EndoController {
                 itemsEntry.getValue().setSentQuantity("0");
             }
         }
+        if (sentItems.size() > 0) {
+            for (Map.Entry<String, DeliveryItem> sentItemsEntry : sentItems.entrySet()) {
+                items.put(sentItemsEntry.getKey(), sentItemsEntry.getValue());
+            }
+        }
 
         modelMap.addAttribute("deliveryInvoice", lastEndoDelivery);
 
