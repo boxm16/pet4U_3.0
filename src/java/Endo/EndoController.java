@@ -377,6 +377,7 @@ public class EndoController {
         LinkedHashMap<String, DeliveryItem> items = lastEndoDelivery.getItems();
 
         for (Map.Entry<String, DeliveryItem> itemsEntry : items.entrySet()) {
+            itemsEntry.getValue().setDescription(pet4UItemsRowByRow.get(itemsEntry.getKey()).getDescription());
             if (sentItems.containsKey(itemsEntry.getKey())) {
                 itemsEntry.getValue().setSentQuantity(sentItems.get(itemsEntry.getKey()).getSentQuantity());
                 sentItems.remove(itemsEntry.getKey());
