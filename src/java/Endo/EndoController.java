@@ -381,6 +381,8 @@ public class EndoController {
             if (sentItems.containsKey(itemsEntry.getKey())) {
                 itemsEntry.getValue().setSentQuantity(sentItems.get(itemsEntry.getKey()).getSentQuantity());
                 sentItems.remove(itemsEntry.getKey());
+            } else {
+                itemsEntry.getValue().setSentQuantity("0");
             }
         }
 
