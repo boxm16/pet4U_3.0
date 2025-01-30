@@ -1325,7 +1325,7 @@ public class TechManDao {
     String createEndoDeliveryBindingDatabaseTable() {
         String query = "CREATE TABLE endo_delivery_binding("
                 + "endo_delivery_id  VARCHAR(30) NOT NULL , "
-                + "bindend_endo_apostolis_id INT (6) NOT NULL) "
+                + "binded_endo_apostolis_id INT (6) NOT NULL) "
                 + "ENGINE = InnoDB "
                 + "DEFAULT CHARACTER SET = utf8;";
 

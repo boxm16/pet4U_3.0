@@ -19,8 +19,8 @@ public class TechManController {
 
     @RequestMapping(value = "techMan")
     public String techMan() {
-        //    return "techMan/techManDashboard";
-        return "index";
+         return "techMan/techManDashboard";
+       //    return "index";
     }
 
     //-----------------------------------------------------------------------
@@ -573,7 +573,7 @@ public class TechManController {
         return "techMan/techManDashboard";
     }
 
-    @RequestMapping(value = "/deleteEndoDeliveryDatabaseTables1", method = RequestMethod.GET)
+    @RequestMapping(value = "/deleteEndoDeliveryDatabaseTables", method = RequestMethod.GET)
     public String deleteEndoDeliveryDatabaseTables(ModelMap modelMap) {
         String endoDeliveryDatabaseTableResult = techManDao.deleteEndoDeliveryDatabaseTable();
         String endoDeliveryBindingDatabaseTableResult = techManDao.deleteEndoDeliveryBindingDatabaseTable();
