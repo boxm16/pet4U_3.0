@@ -834,19 +834,19 @@ public class EndoDao {
         return endos;
     }
 
-    String saveEndoDeliveryChecking(String endoDeliveryId, ArrayList<DeliveryItem> deliveryItems) {
-
+    String saveEndoDeliveryChecking(String endoDeliveryId, ArrayList<DeliveryItem> deliveryItems, ArrayList<String> endoIdsArray) {
         try {
             DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
             Connection connection = databaseConnectionFactory.getMySQLConnection();
 
             connection.setAutoCommit(false);
-            PreparedStatement deliveredItemsInPreparedStatement = connection.prepareStatement("INSERT INTO endo_delivery (id, item_code, sent, delivered) VALUES (?,?,?,?);");
 
             System.out.println("Starting INSERTION: ....");
 
+            PreparedStatement deliveredItemsInPreparedStatement = connection.prepareStatement("INSERT INTO endo_delivery (id, item_code, sent, delivered) VALUES (?,?,?,?);");
+
             for (DeliveryItem deliveryItem : deliveryItems) {
-                System.out.println("ItemCode:" + deliveryItem.getCode() + "-"  + deliveryItem.getSentQuantity());
+                System.out.println("ItemCode:" + deliveryItem.getCode() + "-" + deliveryItem.getSentQuantity());
 
                 deliveredItemsInPreparedStatement.setString(1, endoDeliveryId);
                 deliveredItemsInPreparedStatement.setString(2, deliveryItem.getCode());
@@ -860,15 +860,28 @@ public class EndoDao {
             //Executing the batch
             deliveredItemsInPreparedStatement.executeBatch();
 
-            System.out.println(" Batch Insertion: DONE");
+            PreparedStatement bindingPreparedStatement = connection.prepareStatement("INSERT INTO endo_delivery_binding (endo_delivery_id, binded_endo_apostolis_id) VALUES (?,?);");
+
+            for (String endiIds : endoIdsArray) {
+
+                bindingPreparedStatement.setString(1, endoDeliveryId);
+                bindingPreparedStatement.setString(2, endiIds);
+
+                bindingPreparedStatement.addBatch();
+
+            }
+
+            //Executing the batch
+            bindingPreparedStatement.executeBatch();
 
             //Saving the changes
             connection.commit();
+
             //  deleteTripPeriodPreparedStatement.close();
             // deleteTripVoucherPreparedStatement.close();
-
             deliveredItemsInPreparedStatement.close();
             connection.close();
+            System.out.println(" Batch Insertion: DONE");
             return "";
         } catch (SQLException ex) {
             Logger.getLogger(EndoDao.class.getName()).log(Level.SEVERE, null, ex);

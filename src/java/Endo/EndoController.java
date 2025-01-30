@@ -355,8 +355,9 @@ public class EndoController {
         }
 
         EndoDao endoDao = new EndoDao();
-        String result = endoDao.saveEndoDeliveryChecking(endoDeliveryId, deliveryItems);
-        System.out.println("Saved Endos Paralavis: " + this.endoIdsArray);
+        String result = endoDao.saveEndoDeliveryChecking(endoDeliveryId, deliveryItems, this.endoIdsArray);
+
+        System.out.println("Saved Endos Paralavis: ");
         return "redirect:endoParalaves_B.htm";
     }
 
