@@ -149,10 +149,6 @@
                                 out.println("<tr>");
 
                                 out.println("<td>");
-                                out.println("<input type='checkbox' checked class='receivingEndoId' id='" + deliveryInvoice.getId() + "' style='width:28px;height:28px'>");
-                                out.println("</td>");
-
-                                out.println("<td>");
                                 out.println("<a href='showEndoDelivery.htm?id=" + deliveryInvoice.getId() + "' target='_blank'>" + deliveryInvoice.getId() + "</a>");
                                 out.println("</td>");
 
@@ -179,8 +175,7 @@
 
         <hr>
         <form id="form" action="#" method="POST">
-            <input hidden type="text" id="endoIdsInput" name="endoDeliveryId">
-            <input hidden type="text" id="receivingEndoIdsInput" name="receivingEndoIds">
+            <input hidden type="text" id="endoIdsInput" name="endoIds">
         </form>
         <hr> <br> <hr> <br>   <hr>  <br>  <hr>
         <a href='seeLastEndoBinders.htm'><h1>SEE LAST ENDO BINDERS</h1></a>

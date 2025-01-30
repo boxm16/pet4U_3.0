@@ -362,11 +362,10 @@ public class EndoController {
     }
 
     @RequestMapping(value = "endoDeliveryJointLoad", method = RequestMethod.POST)
-    public String endoDeliveryJointLoad(@RequestParam(name = "endoDeliveryId") String endoDeliveryId,
-            @RequestParam(name = "receivingEndoIds") String receivingEndoIds,
+    public String endoDeliveryJointLoad(@RequestParam(name = "endoIds") String endoIds,
             ModelMap modelMap) {
 
-        this.endoIdsArray = createItemsIdsArray(receivingEndoIds);
+        this.endoIdsArray = createItemsIdsArray(endoIds);
 
         EndoDao endoDao = new EndoDao();
         LinkedHashMap<String, DeliveryItem> pet4UItemsRowByRow = endoDao.getPet4UItemsRowByRow();
