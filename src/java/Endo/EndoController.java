@@ -361,6 +361,37 @@ public class EndoController {
         return "redirect:endoParalaves_B.htm";
     }
 
+    @RequestMapping(value = "endoDeliveryJointLoad", method = RequestMethod.POST)
+    public String endoDeliveryJointLoad(@RequestParam(name = "endoDeliveryId") String endoDeliveryId,
+            @RequestParam(name = "receivingEndoIds") String receivingEndoIds,
+            ModelMap modelMap) {
+
+        this.endoIdsArray = createItemsIdsArray(receivingEndoIds);
+
+        EndoDao endoDao = new EndoDao();
+        LinkedHashMap<String, DeliveryItem> pet4UItemsRowByRow = endoDao.getPet4UItemsRowByRow();
+
+        DeliveryInvoice lastEndoDelivery = endoDao.getLastEndoDelivery();
+
+        LinkedHashMap<String, DeliveryItem> sentItems = endoDao.getSentItems(endoIdsArray, pet4UItemsRowByRow);
+
+        LinkedHashMap<String, DeliveryItem> items = lastEndoDelivery.getItems();
+
+        for (Map.Entry<String, DeliveryItem> itemsEntry : items.entrySet()) {
+            if (sentItems.containsKey(itemsEntry.getKey())) {
+                itemsEntry.getValue().setSentQuantity(sentItems.get(itemsEntry.getKey()).getSentQuantity());
+                sentItems.remove(itemsEntry.getKey());
+            }
+        }
+
+        modelMap.addAttribute("deliveryInvoice", lastEndoDelivery);
+
+        ArrayList<Item> listValues = new ArrayList<Item>(pet4UItemsRowByRow.values());
+        modelMap.addAttribute("pet4UItemsRowByRow", listValues);
+        return "endo/endoParalaves_B";
+
+    }
+
     private LinkedHashMap<String, String> decodeDeliveredItemsData(String data) {
         LinkedHashMap<String, String> decodedData = new LinkedHashMap<>();
         //trimming and cleaning input

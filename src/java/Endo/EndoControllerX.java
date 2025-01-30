@@ -772,7 +772,9 @@ public class EndoControllerX {
 
         LinkedHashMap<String, EndoApostolis> endoApostoliss = endoDaoX.getLastIncomingEndoApostoliss(10);
         LinkedHashMap<String, EndoParalavis> endoParalaviss = endoDaoX.getLastEndoParalaviss(10);
-        DeliveryInvoice endoDelivery = endoDaoX.getLastEndoDelivery();
+       
+        EndoDao endoDao = new EndoDao();
+        DeliveryInvoice endoDelivery = endoDao.getLastEndoDelivery();
         Iterator<Entry<String, EndoParalavis>> endoParalavissIterator = endoParalaviss.entrySet().iterator();
 
         while (endoParalavissIterator.hasNext()) {

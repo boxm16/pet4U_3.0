@@ -167,16 +167,11 @@
             </tr>
             <tr>
                 <td>
-                    <input style="background-color:lightgreen; font-size:40px" type="button" value="ΕΛΕΓΧΟΣ" onclick="requestRouter('endosChecking.htm')">
-
                     ---------
-                    <input style="background-color:red; font-size:40px" type="button" value="TRIAL ONLY E_Del" onclick="requestRouter('endoDeliveryChecking.htm')">
-
-                    <!--   <input style="background-color:red; font-size:40px" type="button" value="TRIAL ONLY E_Bar" onclick="requestRouter('endosBarcodification.htm')"> -->
                 </td>
                 <td colspan="2">
             <center>
-                <input style="background-color:lightblue; font-size:40px" type="button" value="ΣΥΓΚΡΙΣΗ" onclick="requestRouter('compareEndos.htm')">
+                <input style="background-color: blueviolet; font-size:40px" type="button" value="Joint Load" onclick="requestRouter('endoDeliveryJointLoad.htm')">
             </center>
             </td>
             </tr>
@@ -184,7 +179,7 @@
 
         <hr>
         <form id="form" action="#" method="POST">
-            <input hidden type="text" id="endoIdsInput" name="endoIds">
+            <input hidden type="text" id="endoIdsInput" name="endoDeliveryId">
             <input hidden type="text" id="receivingEndoIdsInput" name="receivingEndoIds">
         </form>
         <hr> <br> <hr> <br>   <hr>  <br>  <hr>
@@ -194,11 +189,7 @@
 
         ////--------------------
         function requestRouter(requestTarget) {
-            if (requestTarget == "compareEndos.htm" || requestTarget == "endosChecking.htm") {
-                form.target = "_blank";
-            } else {
-
-            }
+            form.target = "_blank";
             form.action = requestTarget;
             endoIdsInput.value = collectSellectedCheckBoxes();
             receivingEndoIdsInput.value = collectSellectedReceivingCheckBoxes();

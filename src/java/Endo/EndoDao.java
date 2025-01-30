@@ -6,6 +6,7 @@
 package Endo;
 
 import BasicModel.Item;
+import Delivery.DeliveryInvoice;
 import Delivery.DeliveryItem;
 import Search.SearchDao;
 import Service.DatabaseConnectionFactory;
@@ -888,6 +889,45 @@ public class EndoDao {
 
             return ex.getMessage();
         }
+    }
+    
+    public DeliveryInvoice getLastEndoDelivery() {
+        DeliveryInvoice deliveryInvoice = new DeliveryInvoice();
+
+        String sql = "SELECT * FROM pet4u_db.endo_delivery "
+                + "WHERE id = (SELECT MAX(id) FROM pet4u_db.endo_delivery);";
+        ResultSet resultSet;
+
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            Connection connection = databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+
+            resultSet = statement.executeQuery(sql);
+            int x = 0;
+            LinkedHashMap<String, DeliveryItem> deliveryItems = new LinkedHashMap<>();
+            while (resultSet.next()) {
+                if (x == 0) {
+                    deliveryInvoice.setId(resultSet.getString("id"));
+                }
+                DeliveryItem deliveryItem = new DeliveryItem();
+                deliveryItem.setCode(resultSet.getString("item_code"));
+                deliveryItem.setQuantity(resultSet.getString("sent"));
+                deliveryItem.setDeliveredQuantity(resultSet.getString("delivered"));
+                deliveryItems.put(resultSet.getString("item_code"), deliveryItem);
+                x++;
+
+            }
+            deliveryInvoice.setItems(deliveryItems);
+            resultSet.close();
+            statement.close();
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EndoDaoX.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return deliveryInvoice;
     }
 
 }
