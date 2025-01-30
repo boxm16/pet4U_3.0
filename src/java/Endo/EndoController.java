@@ -334,7 +334,7 @@ public class EndoController {
     }
 
     @RequestMapping(value = "saveEndoDeliveryChecking", method = RequestMethod.POST)
-    public String saveCheckUp(@RequestParam(name = "sentItems") String sentItemsData,
+    public String saveEndoDeliveryChecking(@RequestParam(name = "sentItems") String sentItemsData,
             @RequestParam(name = "deliveredItems") String deliveredItemsData) {
         System.out.println(sentItemsData);
         System.out.println(deliveredItemsData);
@@ -356,10 +356,9 @@ public class EndoController {
 
         EndoDao endoDao = new EndoDao();
         String result = endoDao.saveEndoDeliveryChecking(endoDeliveryId, deliveryItems);
+        System.out.println("Saved Endos Paralavis: " + this.endoIdsArray);
         return "redirect:endoParalaves_B.htm";
     }
-    
-    
 
     private LinkedHashMap<String, String> decodeDeliveredItemsData(String data) {
         LinkedHashMap<String, String> decodedData = new LinkedHashMap<>();
