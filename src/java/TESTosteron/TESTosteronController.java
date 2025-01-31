@@ -6,9 +6,19 @@ import CamelotItemsOfInterest.CamelotDao;
 import Inventory.InventoryItem;
 import Notes.NotesDao;
 import Pet4uItems.Pet4uItemsDao;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -195,6 +205,71 @@ public class TESTosteronController {
         return "testosteron/itemsFromSapHana";
     }
 
-    
+    @RequestMapping(value = "cccSApHANA")
+    public String cccSApHANA(ModelMap modelMap) {
+
+        // Set up the URL and the PATCH request
+        URL url = null;
+        try {
+            url = new URL("https://192.168.0.183:50000/b1s/v2/sml.svc/ItemBins");
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(TESTosteronController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        HttpURLConnection connection = null;
+        try {
+            connection = (HttpURLConnection) url.openConnection();
+        } catch (IOException ex) {
+            Logger.getLogger(TESTosteronController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        try {
+            // Set HTTP method to PATCH
+            connection.setRequestMethod("PATCH");
+        } catch (ProtocolException ex) {
+            Logger.getLogger(TESTosteronController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        // Set headers
+        connection.setRequestProperty("Content-Type", "application/json");
+        connection.setRequestProperty("Authorization", "Basic c2Nhbm5lcjEvMTIzNA=="); // Replace with your actual base64 encoded credentials
+
+        // Enable input/output streams for sending and receiving data
+        connection.setDoOutput(true);
+
+        // Create the JSON body for the PATCH request
+        String jsonInputString = "{\"ItemCode\": \"1271\", \"WarehouseCode\": \"WH1\", \"PickLocation\": \"A01\", \"NewBinLocation\": \"A01\"}";
+
+        // Write the JSON data to the request body
+        try (OutputStream os = connection.getOutputStream()) {
+            byte[] input = jsonInputString.getBytes("utf-8");
+            os.write(input, 0, input.length);
+        } catch (IOException ex) {
+            Logger.getLogger(TESTosteronController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        // Get the response code and handle the response
+        int responseCode = 0;
+        try {
+            responseCode = connection.getResponseCode();
+        } catch (IOException ex) {
+            Logger.getLogger(TESTosteronController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        System.out.println("Response Code: " + responseCode);
+
+        // Read and print the response from the server
+        try (BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream(), "utf-8"))) {
+            String inputLine;
+            StringBuffer response = new StringBuffer();
+
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+            System.out.println("Response: " + response.toString());
+        } catch (IOException ex) {
+            Logger.getLogger(TESTosteronController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return "testosteron/itemsFromSapHana";
+    }
 
 }
