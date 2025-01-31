@@ -224,7 +224,7 @@ public class TESTosteronController {
 
             // Set the required headers
             connection.setRequestProperty("Content-Type", "application/json");
-            connection.setRequestProperty("Authorization", "Basic c2Nhbm5lcjEvMTIzNA==");  // Base64 encoded username:password
+            connection.setRequestProperty("Authorization", "Basic c2Nhbm5lcjE6MTIzNA==");  // Base64 encoded username:password
 
             // Create the JSON body for the PATCH request
             String jsonInputString = "{\"ItemCode\": \"1271\", \"WarehouseCode\": \"WH1\", \"PickLocation\": \"A17\", \"NewPickLocation\": \"A02\"}";
