@@ -237,7 +237,7 @@ public class TESTosteronController {
         connection.setDoOutput(true);
 
         // Create the JSON body for the PATCH request
-        String jsonInputString = "{\"ItemCode\": \"1271\", \"WarehouseCode\": \"WH1\", \"PickLocation\": \"A01\", \"NewBinLocation\": \"A01\"}";
+        String jsonInputString = "{\"ItemCode\": \"1271\", \"WarehouseCode\": \"WH1\", \"PickLocation\": \"A01\", \"NewPickLocation\": \"A01\"}";
 
         // Write the JSON data to the request body
         try (OutputStream os = connection.getOutputStream()) {
@@ -269,7 +269,7 @@ public class TESTosteronController {
             Logger.getLogger(TESTosteronController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        return "testosteron/itemsFromSapHana";
+        return "index";
     }
 
 }
