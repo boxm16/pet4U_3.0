@@ -214,7 +214,10 @@ public class TESTosteronController {
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
             // Set HTTP method to PATCH (this is the workaround)
-            connection.setRequestMethod("PATCH");
+            connection.setRequestMethod("POST");
+
+            // Set custom header to tell the server it's a PATCH
+            connection.setRequestProperty("X-HTTP-Method-Override", "PATCH");
 
             // Enable input/output streams for sending and receiving data
             connection.setDoOutput(true);
