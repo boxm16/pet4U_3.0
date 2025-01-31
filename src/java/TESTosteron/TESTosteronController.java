@@ -10,9 +10,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -208,68 +207,57 @@ public class TESTosteronController {
     @RequestMapping(value = "cccSApHANA")
     public String cccSApHANA(ModelMap modelMap) {
 
-        // Set up the URL and the PATCH request
-        URL url = null;
         try {
-            url = new URL("https://192.168.0.183:50000/b1s/v2/sml.svc/ItemBins");
-        } catch (MalformedURLException ex) {
-            Logger.getLogger(TESTosteronController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        HttpURLConnection connection = null;
-        try {
-            connection = (HttpURLConnection) url.openConnection();
-        } catch (IOException ex) {
-            Logger.getLogger(TESTosteronController.class.getName()).log(Level.SEVERE, null, ex);
-        }
 
-        try {
-            // Set HTTP method to PATCH
+            // Set up the URL and the PATCH request
+            URL url = new URL("https://192.168.0.183:50000/b1s/v2/sml.svc/ItemBins");
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
+            // Set HTTP method to PATCH (this is the workaround)
             connection.setRequestMethod("PATCH");
-        } catch (ProtocolException ex) {
-            Logger.getLogger(TESTosteronController.class.getName()).log(Level.SEVERE, null, ex);
-        }
 
-        // Set headers
-        connection.setRequestProperty("Content-Type", "application/json");
-        connection.setRequestProperty("Authorization", "Basic c2Nhbm5lcjEvMTIzNA=="); // Replace with your actual base64 encoded credentials
+            // Enable input/output streams for sending and receiving data
+            connection.setDoOutput(true);
 
-        // Enable input/output streams for sending and receiving data
-        connection.setDoOutput(true);
+            // Set the required headers
+            connection.setRequestProperty("Content-Type", "application/json");
+            connection.setRequestProperty("Authorization", "Basic c2Nhbm5lcjEvMTIzNA==");  // Base64 encoded username:password
 
-        // Create the JSON body for the PATCH request
-        String jsonInputString = "{\"ItemCode\": \"1271\", \"WarehouseCode\": \"WH1\", \"PickLocation\": \"A01\", \"NewPickLocation\": \"A01\"}";
+            // Create the JSON body for the PATCH request
+            String jsonInputString = "{\"ItemCode\": \"1271\", \"WarehouseCode\": \"WH1\", \"PickLocation\": \"A17\", \"NewPickLocation\": \"A02\"}";
 
-        // Write the JSON data to the request body
-        try (OutputStream os = connection.getOutputStream()) {
-            byte[] input = jsonInputString.getBytes("utf-8");
-            os.write(input, 0, input.length);
-        } catch (IOException ex) {
-            Logger.getLogger(TESTosteronController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        // Get the response code and handle the response
-        int responseCode = 0;
-        try {
-            responseCode = connection.getResponseCode();
-        } catch (IOException ex) {
-            Logger.getLogger(TESTosteronController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        System.out.println("Response Code: " + responseCode);
-
-        // Read and print the response from the server
-        try (BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream(), "utf-8"))) {
-            String inputLine;
-            StringBuffer response = new StringBuffer();
-
-            while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
+            // Write the JSON data to the request body
+            try (OutputStream os = connection.getOutputStream()) {
+                byte[] input = jsonInputString.getBytes("utf-8");
+                os.write(input, 0, input.length);
             }
-            System.out.println("Response: " + response.toString());
+
+            // Get the response code and handle the response
+            int responseCode = connection.getResponseCode();
+            System.out.println("Response Code: " + responseCode);
+
+            // Read and print the response from the server
+            try (BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream(), "utf-8"))) {
+                String inputLine;
+                StringBuffer response = new StringBuffer();
+
+                try {
+                    while ((inputLine = in.readLine()) != null) {
+                        response.append(inputLine);
+                    }
+                } catch (IOException ex) {
+                    Logger.getLogger(TESTosteronController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                System.out.println("Response: " + response.toString());
+            } catch (UnsupportedEncodingException ex) {
+                Logger.getLogger(TESTosteronController.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(TESTosteronController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
         } catch (IOException ex) {
             Logger.getLogger(TESTosteronController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         return "index";
     }
-
 }
