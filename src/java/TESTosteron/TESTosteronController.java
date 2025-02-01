@@ -266,9 +266,9 @@ public class TESTosteronController {
 
     @RequestMapping(value = "cccSApHANA1")
     public String cccSApHANA1(ModelMap modelMap) {
-        try {
+        try {  
             // API URL (replace with your actual SAP B1 API endpoint)
-            URL url = new URL("https://your-sap-server.com/b1s/v2/Items('1234')");
+            URL url = new URL("https://192.168.0.183:50000/b1s/v2/sml.svc/Items('1234')");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
             // Workaround: HttpURLConnection doesn't support PATCH, so override it
