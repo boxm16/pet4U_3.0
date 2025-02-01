@@ -275,20 +275,25 @@ public class TESTosteronController {
     public String cccSApHANA1(ModelMap modelMap) {
 
         try {
-            // Step 1: Authenticate and get session ID
-            String sessionId = getSessionId("scanner1", "1234", "PETCAMELOT_UAT2");
-            if (sessionId == null) {
-                System.out.println("❌  XXXLogin failed. Check credentials or CompanyDB.");
-                // return "index";
-            }
+            // 🔹 Credentials
+            String username = "scanner1";
+            String password = "1234";
+            String companyDB = "PETCAMELOT_UAT2";
 
-            // Step 2: Update Pick Location using session ID
+            // 🔹 Encode credentials for Basic Authentication
+            String auth = username + ":" + password;
+            String encodedAuth = Base64.getEncoder().encodeToString(auth.getBytes(StandardCharsets.UTF_8));
+            String authHeaderValue = "Basic " + encodedAuth;
+
+            // 🔹 API URL (Direct Call)
             String itemCode = "1271";  // Item Code to update
             String newPickLocation = "A27";  // New Pick Location
             String apiUrl = "https://192.168.0.183:50000/b1s/v2/Items('" + itemCode + "')";
 
+            // 🔹 JSON Body
             String jsonBody = "{ \"U_PickLocation\": \"" + newPickLocation + "\" }";
 
+            // 🔹 Create HTTP Connection
             HttpURLConnection conn = (HttpURLConnection) new URL(apiUrl).openConnection();
             applySSLBypass(conn); // Ignore SSL for local network
 
@@ -296,19 +301,20 @@ public class TESTosteronController {
             conn.setRequestProperty("X-HTTP-Method-Override", "PATCH"); // Trick server into treating this as PATCH
 
             conn.setRequestProperty("Content-Type", "application/json");
-            conn.setRequestProperty("Cookie", "B1SESSION=" + null); // Use session ID for authentication
+            conn.setRequestProperty("Authorization", authHeaderValue); // 🔥 Direct Credentials
+            conn.setRequestProperty("B1S-CompanyDB", companyDB); // SAP Business One DB
             conn.setDoOutput(true);
 
-            // Write JSON data
+            // 🔹 Write JSON data
             try (OutputStream os = conn.getOutputStream()) {
                 os.write(jsonBody.getBytes(StandardCharsets.UTF_8));
             }
 
-            // Get response code
+            // 🔹 Get Response
             int responseCode = conn.getResponseCode();
             System.out.println("✅ Response Code: " + responseCode);
 
-            // Read response (if any)
+            // 🔹 Read Response (if any)
             try (BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
                 String line;
                 while ((line = reader.readLine()) != null) {
