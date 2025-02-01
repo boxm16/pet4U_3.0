@@ -13,7 +13,9 @@ import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -266,37 +268,52 @@ public class TESTosteronController {
 
     @RequestMapping(value = "cccSApHANA1")
     public String cccSApHANA1(ModelMap modelMap) {
-        try {  
-            // API URL (replace with your actual SAP B1 API endpoint)
-            URL url = new URL("https://192.168.0.183:50000/b1s/v2/sml.svc/Items('1234')");
+        try {
+            // Item Code to update (replace this with the actual item code)
+            String itemCode = "1271";
+
+            // New Pick Location (replace with the actual location)
+            String newPickLocation = "A07";
+
+            // API URL (SAP Business One Service Layer)
+            String apiUrl = "https://192.168.0.183:50000/b1s/v2/Items('" + itemCode + "')";
+
+            // Prepare JSON body
+            String jsonBody = "{ \"U_PickLocation\": \"" + newPickLocation + "\" }";
+
+            // Open connection
+            URL url = new URL(apiUrl);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
-            // Workaround: HttpURLConnection doesn't support PATCH, so override it
-            conn.setRequestMethod("POST");
-            conn.setRequestProperty("X-HTTP-Method-Override", "PATCH");
+            // Set request method to PATCH
+            conn.setRequestMethod("PATCH");
 
             // Set headers
             conn.setRequestProperty("Content-Type", "application/json");
-            conn.setRequestProperty("Authorization", "Basic dXNlcjEyMzpwYXNzd29yZDQ1Ng=="); // Replace with your encoded username:password
+            conn.setRequestProperty("Authorization", "Basic " + encodeCredentials("your_username", "your_password"));
             conn.setDoOutput(true);
-
-            // JSON body (update pick location)
-            String jsonBody = "{ \"U_PickLocation\": \"A1-B2\" }";
 
             // Write JSON data to request body
             try (OutputStream os = conn.getOutputStream()) {
-                byte[] input = jsonBody.getBytes("utf-8");
+                byte[] input = jsonBody.getBytes(StandardCharsets.UTF_8);
                 os.write(input, 0, input.length);
             }
 
-            // Check response
+            // Get response code
             int responseCode = conn.getResponseCode();
             System.out.println("Response Code: " + responseCode);
 
+            // Close connection
+            conn.disconnect();
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return "index";
+    }
+
+    // Encode username & password to Base64 for Basic Authentication
+    private static String encodeCredentials(String username, String password) {
+        String credentials = username + ":" + password;
+        return Base64.getEncoder().encodeToString(credentials.getBytes(StandardCharsets.UTF_8));
     }
 }
