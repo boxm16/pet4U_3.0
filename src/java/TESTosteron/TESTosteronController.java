@@ -217,13 +217,9 @@ public class TESTosteronController {
         try {
 
             // Set up the URL and the PATCH request
-            URL url = new URL("https://192.168.0.183:50000/b1s/v2/ItemBins");
+            URL url = new URL("https://192.168.0.183:50000/b1s/v2/sml.svc/ItemBins");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            try {
-                applySSLBypass(connection);
-            } catch (Exception ex) {
-                Logger.getLogger(TESTosteronController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            applySSLBypass(connection);
             // Set HTTP method to PATCH (this is the workaround)
             connection.setRequestMethod("POST");
 
@@ -283,7 +279,7 @@ public class TESTosteronController {
             String sessionId = getSessionId("scanner1", "1234", "PETCAMELOT_UAT2");
             if (sessionId == null) {
                 System.out.println("❌ Login failed. Check credentials or CompanyDB.");
-                return "index";
+               // return "index";
             }
 
             // Step 2: Update Pick Location using session ID
@@ -298,7 +294,7 @@ public class TESTosteronController {
 
             conn.setRequestMethod("PATCH");
             conn.setRequestProperty("Content-Type", "application/json");
-            conn.setRequestProperty("Cookie", "B1SESSION=" + sessionId); // Use session ID for authentication
+            conn.setRequestProperty("Cookie", "B1SESSION=" + null); // Use session ID for authentication
             conn.setDoOutput(true);
 
             // Write JSON data
@@ -394,50 +390,7 @@ public class TESTosteronController {
     @RequestMapping(value = "itemFromSAPApit")
     public String itemFromSAPApit(ModelMap modelMap) {
 
-        try {
-            // Step 1: Authenticate and get session ID
-            String sessionId = getSessionId("B1i", "", "SAPHdsdsdsdANA");
-            if (sessionId == null) {
-                System.out.println("❌ Login failed. Check credentials or CompanyDB.");
-                return "index";
-            }
-
-            // Step 2: Update Pick Location using session ID
-            String itemCode = "1271";  // Item Code to update
-            String newPickLocation = "A27";  // New Pick Location
-            String apiUrl = "https://192.168.0.183:50000/b1s/v2/Items('" + itemCode + "')";
-
-            String jsonBody = "{ \"U_PickLocation\": \"" + newPickLocation + "\" }";
-
-            HttpURLConnection conn = (HttpURLConnection) new URL(apiUrl).openConnection();
-            applySSLBypass(conn); // Ignore SSL for local network
-
-            conn.setRequestMethod("PATCH");
-            conn.setRequestProperty("Content-Type", "application/json");
-            conn.setRequestProperty("Cookie", "B1SESSION=" + sessionId); // Use session ID for authentication
-            conn.setDoOutput(true);
-
-            // Write JSON data
-            try (OutputStream os = conn.getOutputStream()) {
-                os.write(jsonBody.getBytes(StandardCharsets.UTF_8));
-            }
-
-            // Get response code
-            int responseCode = conn.getResponseCode();
-            System.out.println("✅ Response Code: " + responseCode);
-
-            // Read response (if any)
-            try (BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    System.out.println(line);
-                }
-            }
-
-            conn.disconnect();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+       
         return "testosteron/itemFromSapApi";
     }
 }
