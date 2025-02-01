@@ -318,7 +318,10 @@ public class TESTosteronController {
 
             // Set headers
             conn.setRequestProperty("Content-Type", "application/json");
-            conn.setRequestProperty("Authorization", "Basic " + encodeCredentials("scanner1", "1234"));
+
+         //   conn.setRequestProperty("Authorization", "Basic " + encodeCredentials("scanner1", "1234"));
+            conn.setRequestProperty("Authorization", "Basic c2Nhbm5lcjE6MTIzNA==");  // Base64 encoded username:password
+
             conn.setDoOutput(true);
 
             // Write JSON data to request body
