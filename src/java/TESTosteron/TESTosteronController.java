@@ -278,7 +278,7 @@ public class TESTosteronController {
             String itemCode = "1271";
 
             // New Pick Location (replace with the actual location)
-            String newPickLocation = "A07";
+            String newPickLocation = "A27";
 
             // API URL (SAP Business One Service Layer)
             String apiUrl = "https://192.168.0.183:50000/b1s/v2/Items('" + itemCode + "')";
@@ -318,7 +318,7 @@ public class TESTosteronController {
 
             // Set headers
             conn.setRequestProperty("Content-Type", "application/json");
-            conn.setRequestProperty("Authorization", "Basic " + encodeCredentials("your_username", "your_password"));
+            conn.setRequestProperty("Authorization", "Basic " + encodeCredentials("scanner1", "1234"));
             conn.setDoOutput(true);
 
             // Write JSON data to request body
