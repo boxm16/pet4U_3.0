@@ -277,7 +277,7 @@ public class TESTosteronController {
 
         try {
             // Step 1: Authenticate and get session ID
-            String sessionId = getSessionId("scanner1", "1234", "YourDB");
+            String sessionId = getSessionId("scanner1", "1234", "SAPHANA");
             if (sessionId == null) {
                 System.out.println("❌ Login failed. Check credentials or CompanyDB.");
                 return "index";
@@ -324,8 +324,9 @@ public class TESTosteronController {
 
     private static String getSessionId(String username, String password, String companyDB) {
         try {
+           
             String loginUrl = "https://192.168.0.183:50000/b1s/v2/Login";
-            String loginPayload = "{ \"UserName\": \"" + username + "\", \"Password\": \"" + password + "\", \"SAPHANA\": \"" + companyDB + "\" }";
+            String loginPayload = "{ \"UserName\": \"" + username + "\", \"Password\": \"" + password + "\", \"CompanyDB\": \"" + companyDB + "\" }";
 
             HttpURLConnection conn = (HttpURLConnection) new URL(loginUrl).openConnection();
             applySSLBypass(conn);
