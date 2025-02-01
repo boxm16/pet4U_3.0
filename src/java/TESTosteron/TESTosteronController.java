@@ -219,7 +219,11 @@ public class TESTosteronController {
             // Set up the URL and the PATCH request
             URL url = new URL("https://192.168.0.183:50000/b1s/v2/sml.svc/ItemBins");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-
+            try {
+                applySSLBypass(connection);
+            } catch (Exception ex) {
+                Logger.getLogger(TESTosteronController.class.getName()).log(Level.SEVERE, null, ex);
+            }
             // Set HTTP method to PATCH (this is the workaround)
             connection.setRequestMethod("POST");
 
@@ -341,8 +345,7 @@ public class TESTosteronController {
 
             int responseCode = conn.getResponseCode();
             if (responseCode == 200) {
-                
-                
+
                 // Parse JSON response
                 try (BufferedReader errorReader = new BufferedReader(new InputStreamReader(conn.getErrorStream()))) {
                     StringBuilder errorResponse = new StringBuilder();
