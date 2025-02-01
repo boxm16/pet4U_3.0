@@ -319,7 +319,7 @@ public class TESTosteronController {
             // Set headers
             conn.setRequestProperty("Content-Type", "application/json");
           
-            conn.setRequestProperty("Authorization", "Basic " + encodeCredentials("PET4U", "SAPB1Admin"));
+            conn.setRequestProperty("Authorization", "Basic " + encodeCredentials("scanner1", "1234"));
             
             conn.setDoOutput(true);
 
