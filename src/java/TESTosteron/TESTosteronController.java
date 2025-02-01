@@ -277,7 +277,7 @@ public class TESTosteronController {
 
         try {
             // Step 1: Authenticate and get session ID
-            String sessionId = getSessionId("B1i", "", "SAPHdsdsdsdANA");
+            String sessionId = getSessionId("", "", "PETCAMELOT_UAT2");
             if (sessionId == null) {
                 System.out.println("❌ Login failed. Check credentials or CompanyDB.");
                 return "index";
@@ -381,5 +381,59 @@ public class TESTosteronController {
     private static String encodeCredentials(String username, String password) {
         String credentials = username + ":" + password;
         return Base64.getEncoder().encodeToString(credentials.getBytes(StandardCharsets.UTF_8));
+    }
+    
+    
+    
+    //+++++
+    
+    @RequestMapping(value = "itemFromSAPApit")
+    public String itemFromSAPApit(ModelMap modelMap) {
+
+        try {
+            // Step 1: Authenticate and get session ID
+            String sessionId = getSessionId("B1i", "", "SAPHdsdsdsdANA");
+            if (sessionId == null) {
+                System.out.println("❌ Login failed. Check credentials or CompanyDB.");
+                return "index";
+            }
+
+            // Step 2: Update Pick Location using session ID
+            String itemCode = "1271";  // Item Code to update
+            String newPickLocation = "A27";  // New Pick Location
+            String apiUrl = "https://192.168.0.183:50000/b1s/v2/Items('" + itemCode + "')";
+
+            String jsonBody = "{ \"U_PickLocation\": \"" + newPickLocation + "\" }";
+
+            HttpURLConnection conn = (HttpURLConnection) new URL(apiUrl).openConnection();
+            applySSLBypass(conn); // Ignore SSL for local network
+
+            conn.setRequestMethod("PATCH");
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setRequestProperty("Cookie", "B1SESSION=" + sessionId); // Use session ID for authentication
+            conn.setDoOutput(true);
+
+            // Write JSON data
+            try (OutputStream os = conn.getOutputStream()) {
+                os.write(jsonBody.getBytes(StandardCharsets.UTF_8));
+            }
+
+            // Get response code
+            int responseCode = conn.getResponseCode();
+            System.out.println("✅ Response Code: " + responseCode);
+
+            // Read response (if any)
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    System.out.println(line);
+                }
+            }
+
+            conn.disconnect();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "testosteron/itemFromSapApi";
     }
 }
