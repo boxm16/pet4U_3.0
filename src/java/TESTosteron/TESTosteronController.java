@@ -26,7 +26,6 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 import javax.servlet.http.HttpSession;
-import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -277,7 +276,7 @@ public class TESTosteronController {
 
         try {
             // Step 1: Authenticate and get session ID
-            String sessionId = getSessionId("", "", "PETCAMELOT_UAT2");
+            String sessionId = getSessionId("scanner1", "1234", "PETCAMELOT_UAT2");
             if (sessionId == null) {
                 System.out.println("❌ Login failed. Check credentials or CompanyDB.");
                 return "index";
@@ -324,7 +323,7 @@ public class TESTosteronController {
 
     private static String getSessionId(String username, String password, String companyDB) {
         try {
-           
+
             String loginUrl = "https://192.168.0.183:50000/b1s/v2/Login";
             String loginPayload = "{ \"UserName\": \"" + username + "\", \"Password\": \"" + password + "\", \"CompanyDB\": \"" + companyDB + "\" }";
 
@@ -343,10 +342,13 @@ public class TESTosteronController {
             int responseCode = conn.getResponseCode();
             if (responseCode == 200) {
                 // Parse JSON response
-                try (BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
-                    String response = reader.readLine();
-                    JSONObject jsonResponse = new JSONObject(response);
-                    return jsonResponse.getString("SessionId");
+                try (BufferedReader errorReader = new BufferedReader(new InputStreamReader(conn.getErrorStream()))) {
+                    StringBuilder errorResponse = new StringBuilder();
+                    String errorLine;
+                    while ((errorLine = errorReader.readLine()) != null) {
+                        errorResponse.append(errorLine);
+                    }
+                    System.out.println("🚨 API ERROR RESPONSE: " + errorResponse.toString());
                 }
             } else {
                 System.out.println("❌ Login failed with response code: " + responseCode);
@@ -382,11 +384,8 @@ public class TESTosteronController {
         String credentials = username + ":" + password;
         return Base64.getEncoder().encodeToString(credentials.getBytes(StandardCharsets.UTF_8));
     }
-    
-    
-    
+
     //+++++
-    
     @RequestMapping(value = "itemFromSAPApit")
     public String itemFromSAPApit(ModelMap modelMap) {
 
