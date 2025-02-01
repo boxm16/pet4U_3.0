@@ -292,7 +292,9 @@ public class TESTosteronController {
             HttpURLConnection conn = (HttpURLConnection) new URL(apiUrl).openConnection();
             applySSLBypass(conn); // Ignore SSL for local network
 
-            conn.setRequestMethod("PATCH");
+            conn.setRequestMethod("POST"); // Override to POST
+            conn.setRequestProperty("X-HTTP-Method-Override", "PATCH"); // Trick server into treating this as PATCH
+
             conn.setRequestProperty("Content-Type", "application/json");
             conn.setRequestProperty("Cookie", "B1SESSION=" + null); // Use session ID for authentication
             conn.setDoOutput(true);
