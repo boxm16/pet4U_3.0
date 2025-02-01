@@ -217,7 +217,7 @@ public class TESTosteronController {
         try {
 
             // Set up the URL and the PATCH request
-            URL url = new URL("https://192.168.0.183:50000/b1s/v2/sml.svc/ItemBins");
+            URL url = new URL("https://192.168.0.183:50000/b1s/v2/ItemBins");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             try {
                 applySSLBypass(connection);
