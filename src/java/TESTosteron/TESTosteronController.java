@@ -234,7 +234,7 @@ public class TESTosteronController {
             connection.setRequestProperty("Authorization", "Basic c2Nhbm5lcjE6MTIzNA==");  // Base64 encoded username:password
 
             // Create the JSON body for the PATCH request
-            String jsonInputString = "{\"ItemCode\": \"1271\", \"WarehouseCode\": \"WH1\", \"PickLocation\": \"A17\", \"NewPickLocation\": \"A02\"}";
+            String jsonInputString = "{\"ItemCode\": \"1271\", \"WarehouseCode\": \"PETCAMELOT_UAT2\", \"PickLocation\": \"A17\", \"NewPickLocation\": \"A02\"}";
 
             // Write the JSON data to the request body
             try (OutputStream os = connection.getOutputStream()) {
@@ -341,6 +341,8 @@ public class TESTosteronController {
 
             int responseCode = conn.getResponseCode();
             if (responseCode == 200) {
+                
+                
                 // Parse JSON response
                 try (BufferedReader errorReader = new BufferedReader(new InputStreamReader(conn.getErrorStream()))) {
                     StringBuilder errorResponse = new StringBuilder();
