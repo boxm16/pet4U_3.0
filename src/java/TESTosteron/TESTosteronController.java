@@ -263,4 +263,40 @@ public class TESTosteronController {
         }
         return "index";
     }
+
+    @RequestMapping(value = "cccSApHANA1")
+    public String cccSApHANA1(ModelMap modelMap) {
+        try {
+            // API URL (replace with your actual SAP B1 API endpoint)
+            URL url = new URL("https://your-sap-server.com/b1s/v2/Items('1234')");
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+            // Workaround: HttpURLConnection doesn't support PATCH, so override it
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty("X-HTTP-Method-Override", "PATCH");
+
+            // Set headers
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setRequestProperty("Authorization", "Basic dXNlcjEyMzpwYXNzd29yZDQ1Ng=="); // Replace with your encoded username:password
+            conn.setDoOutput(true);
+
+            // JSON body (update pick location)
+            String jsonBody = "{ \"U_PickLocation\": \"A1-B2\" }";
+
+            // Write JSON data to request body
+            try (OutputStream os = conn.getOutputStream()) {
+                byte[] input = jsonBody.getBytes("utf-8");
+                os.write(input, 0, input.length);
+            }
+
+            // Check response
+            int responseCode = conn.getResponseCode();
+            System.out.println("Response Code: " + responseCode);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return "index";
+    }
 }
