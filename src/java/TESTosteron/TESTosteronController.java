@@ -277,7 +277,7 @@ public class TESTosteronController {
 
         try {
             // Step 1: Authenticate and get session ID
-            String sessionId = getSessionId("scanner1", "1234", "SAPHANA");
+            String sessionId = getSessionId("scanner1", "1234", "HDB");
             if (sessionId == null) {
                 System.out.println("❌ Login failed. Check credentials or CompanyDB.");
                 return "index";
