@@ -219,7 +219,7 @@ public class TESTosteronController {
             // Set up the URL and the PATCH request
             URL url = new URL("https://192.168.0.183:50000/b1s/v2/sml.svc/ItemBins");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            applySSLBypass(connection);
+
             // Set HTTP method to PATCH (this is the workaround)
             connection.setRequestMethod("POST");
 
@@ -278,8 +278,8 @@ public class TESTosteronController {
             // Step 1: Authenticate and get session ID
             String sessionId = getSessionId("scanner1", "1234", "PETCAMELOT_UAT2");
             if (sessionId == null) {
-                System.out.println("❌ Login failed. Check credentials or CompanyDB.");
-               // return "index";
+                System.out.println("❌  XXXLogin failed. Check credentials or CompanyDB.");
+                // return "index";
             }
 
             // Step 2: Update Pick Location using session ID
@@ -343,14 +343,14 @@ public class TESTosteronController {
             if (responseCode == 200) {
 
                 // Parse JSON response
-                try (BufferedReader errorReader = new BufferedReader(new InputStreamReader(conn.getErrorStream()))) {
+                /*  try (BufferedReader errorReader = new BufferedReader(new InputStreamReader(conn.getErrorStream()))) {
                     StringBuilder errorResponse = new StringBuilder();
                     String errorLine;
                     while ((errorLine = errorReader.readLine()) != null) {
                         errorResponse.append(errorLine);
                     }
                     System.out.println("🚨 API ERROR RESPONSE: " + errorResponse.toString());
-                }
+                }*/
             } else {
                 System.out.println("❌ Login failed with response code: " + responseCode);
             }
@@ -390,7 +390,6 @@ public class TESTosteronController {
     @RequestMapping(value = "itemFromSAPApit")
     public String itemFromSAPApit(ModelMap modelMap) {
 
-       
         return "testosteron/itemFromSapApi";
     }
 }
