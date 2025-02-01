@@ -285,8 +285,9 @@ public class TESTosteronController {
             URL url = new URL(apiUrl);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
-            // Set request method to PATCH
-            conn.setRequestMethod("PATCH");
+            // Set request method to PATCH by workaround
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty("X-HTTP-Method-Override", "PATCH");
 
             // Set headers
             conn.setRequestProperty("Content-Type", "application/json");
