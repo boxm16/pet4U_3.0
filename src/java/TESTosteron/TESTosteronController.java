@@ -26,6 +26,7 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 import javax.servlet.http.HttpSession;
+import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -273,72 +274,106 @@ public class TESTosteronController {
 
     @RequestMapping(value = "cccSApHANA1")
     public String cccSApHANA1(ModelMap modelMap) {
+
         try {
-            // Item Code to update (replace this with the actual item code)
-            String itemCode = "1271";
-
-            // New Pick Location (replace with the actual location)
-            String newPickLocation = "A27";
-
-            // API URL (SAP Business One Service Layer)
-            String apiUrl = "https://192.168.0.183:50000/b1s/v2/Items('" + itemCode + "')";
-
-            // Prepare JSON body
-            String jsonBody = "{ \"U_PickLocation\": \"" + newPickLocation + "\" }";
-
-            // Open connection
-            URL url = new URL(apiUrl);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-
-            if (apiUrl.contains("192.168.0.183")) {
-                // Create a custom SSLSocketFactory that ignores SSL errors
-                SSLContext sslContext = SSLContext.getInstance("TLS");
-                sslContext.init(null, new TrustManager[]{new X509TrustManager() {
-                    public void checkClientTrusted(X509Certificate[] certs, String authType) {
-                    }
-
-                    public void checkServerTrusted(X509Certificate[] certs, String authType) {
-                    }
-
-                    public X509Certificate[] getAcceptedIssuers() {
-                        return null;
-                    }
-                }}, new java.security.SecureRandom());
-
-                // Set custom SSLSocketFactory
-                ((HttpsURLConnection) conn).setSSLSocketFactory(sslContext.getSocketFactory());
-
-                // Custom HostnameVerifier: Accepts only for "192.168.0.183"
-                ((HttpsURLConnection) conn).setHostnameVerifier((hostname, session) -> hostname.equals("192.168.0.183"));
+            // Step 1: Authenticate and get session ID
+            String sessionId = getSessionId("scanner1", "1234", "YourDB");
+            if (sessionId == null) {
+                System.out.println("❌ Login failed. Check credentials or CompanyDB.");
+                return "index";
             }
 
-            // Set request method to PATCH by workaround
-            conn.setRequestMethod("POST");
-            conn.setRequestProperty("X-HTTP-Method-Override", "PATCH");
+            // Step 2: Update Pick Location using session ID
+            String itemCode = "1271";  // Item Code to update
+            String newPickLocation = "A27";  // New Pick Location
+            String apiUrl = "https://192.168.0.183:50000/b1s/v2/Items('" + itemCode + "')";
 
-            // Set headers
+            String jsonBody = "{ \"U_PickLocation\": \"" + newPickLocation + "\" }";
+
+            HttpURLConnection conn = (HttpURLConnection) new URL(apiUrl).openConnection();
+            applySSLBypass(conn); // Ignore SSL for local network
+
+            conn.setRequestMethod("PATCH");
             conn.setRequestProperty("Content-Type", "application/json");
-          
-            conn.setRequestProperty("Authorization", "Basic " + encodeCredentials("scanner1", "1234"));
-            
+            conn.setRequestProperty("Cookie", "B1SESSION=" + sessionId); // Use session ID for authentication
             conn.setDoOutput(true);
 
-            // Write JSON data to request body
+            // Write JSON data
             try (OutputStream os = conn.getOutputStream()) {
-                byte[] input = jsonBody.getBytes(StandardCharsets.UTF_8);
-                os.write(input, 0, input.length);
+                os.write(jsonBody.getBytes(StandardCharsets.UTF_8));
             }
 
             // Get response code
             int responseCode = conn.getResponseCode();
-            System.out.println("Response Code: " + responseCode);
+            System.out.println("✅ Response Code: " + responseCode);
 
-            // Close connection
+            // Read response (if any)
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    System.out.println(line);
+                }
+            }
+
             conn.disconnect();
         } catch (Exception e) {
             e.printStackTrace();
         }
         return "index";
+    }
+
+    private static String getSessionId(String username, String password, String companyDB) {
+        try {
+            String loginUrl = "https://192.168.0.183:50000/b1s/v2/Login";
+            String loginPayload = "{ \"UserName\": \"" + username + "\", \"Password\": \"" + password + "\", \"SAPHANA\": \"" + companyDB + "\" }";
+
+            HttpURLConnection conn = (HttpURLConnection) new URL(loginUrl).openConnection();
+            applySSLBypass(conn);
+
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setDoOutput(true);
+
+            // Write login JSON payload
+            try (OutputStream os = conn.getOutputStream()) {
+                os.write(loginPayload.getBytes(StandardCharsets.UTF_8));
+            }
+
+            int responseCode = conn.getResponseCode();
+            if (responseCode == 200) {
+                // Parse JSON response
+                try (BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
+                    String response = reader.readLine();
+                    JSONObject jsonResponse = new JSONObject(response);
+                    return jsonResponse.getString("SessionId");
+                }
+            } else {
+                System.out.println("❌ Login failed with response code: " + responseCode);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null; // Login failed
+    }
+
+    private static void applySSLBypass(HttpURLConnection conn) throws Exception {
+        if (conn instanceof HttpsURLConnection) {
+            SSLContext sslContext = SSLContext.getInstance("TLS");
+            sslContext.init(null, new TrustManager[]{new X509TrustManager() {
+                public void checkClientTrusted(X509Certificate[] certs, String authType) {
+                }
+
+                public void checkServerTrusted(X509Certificate[] certs, String authType) {
+                }
+
+                public X509Certificate[] getAcceptedIssuers() {
+                    return null;
+                }
+            }}, new java.security.SecureRandom());
+
+            ((HttpsURLConnection) conn).setSSLSocketFactory(sslContext.getSocketFactory());
+            ((HttpsURLConnection) conn).setHostnameVerifier((hostname, session) -> hostname.equals("192.168.0.183"));
+        }
     }
 
     // Encode username & password to Base64 for Basic Authentication
