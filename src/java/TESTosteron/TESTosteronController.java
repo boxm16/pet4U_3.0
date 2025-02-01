@@ -281,7 +281,7 @@ public class TESTosteronController {
             String newPickLocation = "A27";
 
             // API URL (SAP Business One Service Layer)
-            String apiUrl = "https://192.168.0.183:50000/b1s/v2/Items('" + itemCode + "')";
+            String apiUrl = "https://192.168.0.183:50000/b1s/v2/BinLocations('" + itemCode + "')";
 
             // Prepare JSON body
             String jsonBody = "{ \"U_PickLocation\": \"" + newPickLocation + "\" }";
