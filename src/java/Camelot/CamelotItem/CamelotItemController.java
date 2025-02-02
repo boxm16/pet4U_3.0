@@ -39,7 +39,7 @@ public class CamelotItemController {
         }
         ArrayList<String> camelotPickingPositions = camelotItemDao.getCamelotPickingPositions();
         if (!camelotPickingPositions.contains(pickingPositionName)) {
-            System.out.println("????WTF: "+pickingPositionName);    
+            System.out.println("????WTF:"+pickingPositionName);    
             model.addAttribute("itemCode", itemCode);
             model.addAttribute("camelotPickingPositions", camelotPickingPositions);
             return "/camelot/camelotItem/camelotItemPositionChangingServant_Β";
