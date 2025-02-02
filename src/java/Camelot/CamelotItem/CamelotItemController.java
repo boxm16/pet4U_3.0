@@ -51,7 +51,20 @@ public class CamelotItemController {
     public String changeCamelotItemPosition(@RequestParam(name = "itemCode") String itemCode,
             @RequestParam(name = "pickingPositionName") String pickingPositionName,
             ModelMap model, HttpSession session) {
-        System.out.println("HERE");
+        String userName = (String) session.getAttribute("userName");
+        if (userName == null || !userName.equals("me")) {
+            System.out.println("Somebody trying to breach encryption");
+            return "index";
+        }
+
+        CamelotItemPositionChangingSapApiClient changer = new CamelotItemPositionChangingSapApiClient();
+        String result = changer.change(itemCode, pickingPositionName);
+        if (result.equals("DONE")) {
+            return "redirect:getCamelotItemFromSapHanaView.htm?altercode=" + itemCode;
+        } else {
+            model.addAttribute("message", result);
+            return "erroPage";
+        }
         return "index";
     }
 

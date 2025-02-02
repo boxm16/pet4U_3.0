@@ -21,13 +21,13 @@ public class CamelotItemPositionChangingSapApiClient {
     private final String PASSWORD = "1234";
     private final String COMPANY_DB = "PETCAMELOT_UAT2";
 
-    public void change(String itemCode, String position) {
+    public String change(String itemCode, String position) {
         try {
             // Step 1: Login and get session token
             String sessionId = loginToSAP();
             if (sessionId == null) {
                 System.out.println(" Login failed. Exiting.");
-                return;
+                return "Login failed. Exiting.";
             }
 
             // Step 2: Use session token to update item pick location
@@ -38,7 +38,9 @@ public class CamelotItemPositionChangingSapApiClient {
 
         } catch (Exception e) {
             e.printStackTrace();
+            return e.getMessage();
         }
+        return "DONE";
     }
 
     // 🔹 Step 1: Login and get session token
