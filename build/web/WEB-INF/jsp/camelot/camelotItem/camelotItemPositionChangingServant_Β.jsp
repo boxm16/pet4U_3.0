@@ -27,9 +27,9 @@
                                     </td>
                                     <td style="width: 50px">  
                                 <center>  
-                                    <form action="ccccccccccc.htm"  method="POST">
+                                    <form action="confirmCamelotItemPositionChanging.htm"  method="POST">
                                         <input hidden name="itemCode" value="${itemCode}">
-                                        <input hidden name="positionName" value=" ${position}">
+                                        <input hidden name="pickingPositionName" value=" ${position}">
                                         <button type="submit" class="btn btn-primary">
                                             Set Position
                                         </button>
