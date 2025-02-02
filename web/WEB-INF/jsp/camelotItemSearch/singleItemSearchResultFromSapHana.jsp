@@ -39,9 +39,10 @@
                                 out.println("<hr><br>Item with that altercode<br>could not be found. ");
                                 out.println("<hr><br>Try again  </h3>");
                             } else {
-                                out.println("<table class='table' style='background-color: #D052DB'>");
+                                out.println("<h1 style='background-color: red'>WARNING. NOT ACTUAL DATA</h1>");
+                                out.println("<table class='table' style='background-color: #35dfd0'>");
                                 out.println("<tbody>");
-                                out.println("<tr style='background-color:lightblue'>");
+                                out.println("<tr style='background-color:#35dfd0'>");
                                 out.println("<td style='width:70px;'>");
                                 out.println("Πε/φη");
                                 out.println("</td>");
@@ -50,7 +51,7 @@
                                 out.println("</td>");
                                 out.println("</tr>");
 
-                                out.println("<tr style='background-color:lightgreen'>>");
+                                out.println("<tr style='background-color: #35dfd0'>>");
                                 out.println("<td style='width:70px;'>");
                                 out.println("Θεση");
                                 out.println("</td>");
