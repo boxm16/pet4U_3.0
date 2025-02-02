@@ -69,6 +69,7 @@
     <context:component-scan base-package="InputOutput"/>
     <context:component-scan base-package="CamelotReplenishment"/>
     <context:component-scan base-package="Pet4U"/>
+    <context:component-scan base-package="Camelot"/>
     <!--
     Most controllers will use the ControllerClassNameHandlerMapping above, but
     for the index controller we are using ParameterizableViewController, so we must

@@ -124,6 +124,9 @@
                         <hr>
                         -->
                         <a href='printCamelotMainBarcode.htm?altercode=${target}' class='btn btn-danger btn-lg' role='button' aria-disabled='true'><h3>PRINT BARCODE LABEL</h3></a>
+
+                        <hr>
+                        <a href="getCamelotItemFromSapHanaView.htm?itemCode=${item.getCode()}" class="btn btn-success btn-lg" role="button" aria-disabled="true" style='background-color: #f955d4'><h3>Get Data From <br> SAP DB (TRIAL)</h3></a>
                         <hr>
                         <hr> 
 

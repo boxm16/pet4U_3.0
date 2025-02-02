@@ -26,7 +26,7 @@ public class SAPApiClient {
             // Step 1: Login and get session token
             String sessionId = loginToSAP();
             if (sessionId == null) {
-                System.out.println("❌ Login failed. Exiting.");
+                System.out.println(" Login failed. Exiting.");
                 return;
             }
 
@@ -61,15 +61,15 @@ public class SAPApiClient {
         sendRequestBody(conn, loginPayload);
 
         int responseCode = conn.getResponseCode();
-        System.out.println("🔑 Login Response Code: " + responseCode);
+        System.out.println("? Login Response Code: " + responseCode);
 
         if (responseCode == 200) {
             JSONObject jsonResponse = getJsonResponse(conn);
             String sessionId = jsonResponse.getString("SessionId");
-            System.out.println("✅ Logged in. Session ID: " + sessionId);
+            System.out.println(" Logged in. Session ID: " + sessionId);
             return sessionId;
         } else {
-            System.out.println("❌ Login failed. Response: " + getErrorResponse(conn));
+            System.out.println("Login failed. Response: " + getErrorResponse(conn));
             return null;
         }
     }
@@ -87,14 +87,14 @@ public class SAPApiClient {
         sendRequestBody(conn, jsonBody);
 
         int responseCode = conn.getResponseCode();
-        System.out.println("📦 Update Response Code: " + responseCode);
+        System.out.println("? Update Response Code: " + responseCode);
 
         if (responseCode == 200) {
-            System.out.println("✅ Item updated successfully: " + getJsonResponse(conn));
+            System.out.println(" Item updated successfully: " + getJsonResponse(conn));
         } else if (responseCode == 401) {
-            System.out.println("🔑 Session expired! Please re-login.");
+            System.out.println(" Session expired! Please re-login.");
         } else {
-            System.out.println("❌ Update failed. Response: " + getErrorResponse(conn));
+            System.out.println(" Update failed. Response: " + getErrorResponse(conn));
         }
     }
 
@@ -106,12 +106,12 @@ public class SAPApiClient {
         conn.setRequestProperty("Cookie", "B1SESSION=" + sessionId);
 
         int responseCode = conn.getResponseCode();
-        System.out.println("🚪 Logout Response Code: " + responseCode);
+        System.out.println(" Logout Response Code: " + responseCode);
 
         if (responseCode == 204) {
-            System.out.println("✅ Logged out successfully.");
+            System.out.println(" Logged out successfully.");
         } else {
-            System.out.println("❌ Logout failed. Response: " + getErrorResponse(conn));
+            System.out.println(" Logout failed. Response: " + getErrorResponse(conn));
         }
     }
 
