@@ -938,7 +938,7 @@ public class EndoDao {
         try {
             Statement statement = connection.createStatement();
 
-            ResultSet resultSet = statement.executeQuery("SELECT  ABBRECIATION, ALTERNATECODE, CODEDESCRIPTION, IS_PACK_BC, PACK_QTY  FROM WH1;");
+            ResultSet resultSet = statement.executeQuery("SELECT   ALTERNATECODE, CODEDESCRIPTION, IS_PACK_BC, PACK_QTY  FROM WH1;");
 
             while (resultSet.next()) {
                 String altercode = resultSet.getString("ALTERNATECODE").trim();
