@@ -32,10 +32,10 @@ public class CamelotItemSearchDao {
             ResultSet resultSet = null;
 
             resultSet = statement.executeQuery("SELECT * "
-                    + "FROM \"PETCAMELOT_UAT2\".\"BYT_V_ITEMDETAILS\" t1 "
-                    + "JOIN \"PETCAMELOT_UAT2\".\"BYT_V_BARCODEDETAILS\" t2 ON t1.\"ItemCode\" = t2.\"ItemCode\" "
+                    + "FROM \"PETCAMELOT_UAT2\".\"BYT_V_BARCODEDETAILS\" t1 "
+                    + "JOIN \"PETCAMELOT_UAT2\".\"BYT_V_ITEMDETAILS\" t2 ON t1.\"ItemCode\" = t2.\"ItemCode\" "
                     + "WHERE t2.\"ItemCode\" = ("
-                    + "    SELECT \"ItemCode\" FROM \"PETCAMELOT_UAT2\".\"BYT_V_BARCODEDETAILS\" WHERE \"BarCode\" = '" + altercode + "'"
+                    + "    SELECT \"ItemCode\" FROM \"PETCAMELOT_UAT2\".\"BYT_V_ITEMDETAILS\" WHERE \"BarCode\" = '" + altercode + "'"
                     + ");");
             int index = 0;
             while (resultSet.next()) {
