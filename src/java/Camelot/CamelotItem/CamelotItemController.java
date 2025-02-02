@@ -14,8 +14,21 @@ public class CamelotItemController {
     @Autowired
     CamelotItemDao camelotItemDao;
 
-    @RequestMapping(value = "goForCamelotPositionChanign")
-    public String goForCamelotPositionChanign(@RequestParam(name = "itemCode") String itemCode,
+    @RequestMapping(value = "goForCamelotPositionChanign_Α")
+    public String goForCamelotPositionChanign_Α(@RequestParam(name = "itemCode") String itemCode,
+            ModelMap model, HttpSession session) {
+        String userName = (String) session.getAttribute("userName");
+        if (userName == null || !userName.equals("me")) {
+            System.out.println("Somebody trying to breach encryption");
+            return "index";
+        }
+        model.addAttribute("itemCode", itemCode);
+
+        return "/camelot/camelotItem/goForCamelotPositionChanign_Α";
+    }
+
+    @RequestMapping(value = "goForCamelotPositionChanign_Β")
+    public String goForCamelotPositionChanign_Β(@RequestParam(name = "itemCode") String itemCode,
             ModelMap model, HttpSession session) {
         String userName = (String) session.getAttribute("userName");
         if (userName == null || !userName.equals("me")) {
@@ -25,6 +38,6 @@ public class CamelotItemController {
         ArrayList<String> camelotPickingPositions = camelotItemDao.getCamelotPickingPositions();
         model.addAttribute("itemCode", itemCode);
         model.addAttribute("camelotPickingPositions", camelotPickingPositions);
-        return "/camelot/camelotItem/camelotItemPositionChangingServant";
+        return "/camelot/camelotItem/goForCamelotPositionChanign_Β";
     }
 }
