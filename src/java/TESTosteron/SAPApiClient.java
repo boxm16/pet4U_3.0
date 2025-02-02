@@ -31,7 +31,7 @@ public class SAPApiClient {
             }
 
             // Step 2: Use session token to update item pick location
-            updateItem(sessionId, "1271", "Λ8-209");
+            updateItem(sessionId, "1271", "Λ8-201");
 
             // Step 3: Logout to end session (optional)
             logoutFromSAP(sessionId);
