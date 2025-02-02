@@ -168,7 +168,12 @@
                                         var altercode = input.value;
                                         console.log("altercode:" + altercode);
                                         var item = items[altercode];
+                                        var altercodeContainer = altercodeContainers[altercode];
+
                                         if (item == null) {
+                                            if (altercodeContainer != null) {
+                                                console.log("Something Wrong, Item is null, but barocede is not" + altercode);
+                                            }
                                             let unknownBarcodeSent = document.getElementById(altercode + "@sent");
                                             let unknownBarcodeDelivered = document.getElementById(altercode + "@delivered");
 
@@ -196,15 +201,28 @@
                                             document.getElementById("descriptionDisplay").innerHTML = altercode + " : " + description;
 
 
+                                            //----------
+                                            if (altercodeContainer == null) {
+                                                console.log("Something Wrong, while Item is not null, barcode is null" + altercode);
+                                            }
+                                            //-------------
+
                                             let sent = document.getElementById(code + "@sent");
                                             if (sent == null) {
                                                 addRow(item.code, item.description);
                                             } else {
-                                                sent = sent.value * 1;
+                                                sent = sent.value * 1;// here
                                             }
 
                                             let delivered = document.getElementById(code + "@delivered").value * 1;
-                                            delivered++;
+                                            if (altercodeContainer.packageBarcode) {
+                                                altercodeContainer.itemsInPackage * 1;
+                                                delivered += altercodeContainer.itemsInPackage * 1;
+                                            } else {
+                                                delivered++;
+                                            }
+
+
 
                                             document.getElementById(code + "@delivered").value = delivered;
 
