@@ -44,6 +44,14 @@
                                 out.println("<tbody>");
                                 out.println("<tr style='background-color:#35dfd0'>");
                                 out.println("<td style='width:70px;'>");
+                                out.println("Κωδικός");
+                                out.println("</td>");
+                                out.println("<td style='font-size: 40px;'>");
+                                out.println("<strong>" + item.getCode() + "</strong>");
+                                out.println("</td>");
+                                out.println("</tr>");
+                                out.println("<tr style='background-color:#35dfd0'>");
+                                out.println("<td style='width:70px;'>");
                                 out.println("Πε/φη");
                                 out.println("</td>");
                                 out.println("<td style='font-size: 20px;'>");
@@ -56,7 +64,7 @@
                                 out.println("Θεση");
                                 out.println("</td>");
 
-                                out.println("<td style='font-size: 30px;' ondblclick=redirect(" + item.getCode()+ ")>");
+                                out.println("<td style='font-size: 30px;' ondblclick=redirect(" + item.getCode() + ")>");
                                 out.println("<strong>" + item.getPosition() + "</strong>");
                                 out.println("</td>");
                                 out.println("</tr>");
