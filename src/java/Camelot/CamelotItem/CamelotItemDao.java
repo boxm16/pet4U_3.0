@@ -28,10 +28,10 @@ public class CamelotItemDao {
 
         try {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT Name FROM \"PETCAMELOT_UAT2\".\"BYT_V_PICKLOCATIONDETAILS\" ORDER BY \"PETCAMELOT_UAT2\".\"BYT_V_PICKLOCATIONDETAILS\".\"NAME\" ;");
+            ResultSet resultSet = statement.executeQuery("SELECT 'Name' FROM \"PETCAMELOT_UAT2\".\"BYT_V_PICKLOCATIONDETAILS\" ORDER BY \"PETCAMELOT_UAT2\".\"BYT_V_PICKLOCATIONDETAILS\".\"NAME\" ;");
 
             while (resultSet.next()) {
-                String position = resultSet.getString("NAME");
+                String position = resultSet.getString("Name");
                 camelotPickingPositions.add(position);
             }
             resultSet.close();
