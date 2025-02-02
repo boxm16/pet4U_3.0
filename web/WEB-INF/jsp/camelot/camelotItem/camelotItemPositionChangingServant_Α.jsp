@@ -44,8 +44,12 @@
                                     <form action="cccccccs.htm"  method="POST">
                                         <input hidden name="itemCode" value="${itemCode}">
                                         <h1> Enter Exact Position Name  </h1>
+                                        <hr>
                                         <input type="text" name="pickingPositionName" value="">
-
+                                        <hr>
+                                        <button type="submit" class="btn btn-primary">
+                                            <h1>  Set  Position</h1>
+                                        </button>
                                     </form>
                                 </td>
                             </tr>
