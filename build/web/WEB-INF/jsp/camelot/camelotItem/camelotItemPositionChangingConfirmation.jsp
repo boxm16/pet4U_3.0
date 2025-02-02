@@ -33,11 +33,13 @@
                         <h3>Camelot Item Position Changing Confirmation Page</h3>
                         <h3><a href='index.htm'>INDEX</a></h3>
                         <hr>
-                        <h3>Confirm Position Changing
+                        <h3>Confirm Position Changing  </h3>
+                        <h1>
                             Item Code ${itemCode}<br>
-                            New Position: ${pickingPositionName}<br>
+                            New Position: ${pickingPositionName}
+                        </h1>
 
-                        </h3>
+
                         <hr>
                         <form action="changeCamelotItemPosition.htm" method="POST" >
                             <input hidden name="itemId" value="${itemCode}">
