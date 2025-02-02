@@ -91,7 +91,7 @@ public class CamelotItemPositionChangingSapApiClient {
         int responseCode = conn.getResponseCode();
         System.out.println("? Update Response Code: " + responseCode);
 
-        if (responseCode == 200) {
+        if (responseCode == 200||responseCode == 204) {
             System.out.println(" Item updated successfully: " + getJsonResponse(conn));
         } else if (responseCode == 401) {
             System.out.println(" Session expired! Please re-login.");
