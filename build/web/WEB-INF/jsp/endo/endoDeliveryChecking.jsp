@@ -166,7 +166,7 @@
 
                                 function check(event, input) {
                                     if (event.keyCode === 13) {
-                                        var altercode = input.value;
+                                        var altercode = input.value.trim();
                                         console.log("altercode:" + altercode);
                                         var item = items[altercode];
                                         var altercodeContainer = altercodeContainers[altercode];
