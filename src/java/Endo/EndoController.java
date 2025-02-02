@@ -328,8 +328,9 @@ public class EndoController {
         ArrayList<Item> listValues = new ArrayList<Item>(pet4UItemsRowByRow.values());
         modelMap.addAttribute("pet4UItemsRowByRow", listValues);
 
-        LinkedHashMap<String, AltercodeContainer> pet4UAllAltercodeContainers = endoDao.getAllAltercodeContainers();
-
+        ArrayList<AltercodeContainer> pet4UAllAltercodeContainers = endoDao.getAllAltercodeContainers();
+        modelMap.addAttribute("pet4UAllAltercodeContainers", pet4UAllAltercodeContainers);
+        
         String saveButton = "<button class=\"btn-primary\" onclick=\"requestRouter('saveEndoDeliveryChecking.htm')\"><H1>Save  ENDO Delivery Checking</H1></button>";
         modelMap.addAttribute("saveButton", saveButton);
         return "endo/endoDeliveryChecking";

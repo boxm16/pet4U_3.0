@@ -931,8 +931,8 @@ public class EndoDao {
         return deliveryInvoice;
     }
 
-    LinkedHashMap<String, AltercodeContainer> getAllAltercodeContainers() {
-        LinkedHashMap<String, AltercodeContainer> allAltercodeContainers = new LinkedHashMap();
+    ArrayList<AltercodeContainer> getAllAltercodeContainers() {
+        ArrayList<AltercodeContainer> allAltercodeContainers = new ArrayList<>();
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
         Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
         try {
@@ -965,7 +965,7 @@ public class EndoDao {
                     altercodeContainer.setPackageBarcode(true);
                     altercodeContainer.setItemsInPackage(resultSet.getDouble("PACK_QTY"));
                 }
-                allAltercodeContainers.put(altercode, altercodeContainer);
+                allAltercodeContainers.add(altercodeContainer);
             }
             resultSet.close();
             statement.close();
@@ -976,5 +976,4 @@ public class EndoDao {
         return allAltercodeContainers;
     }
 
-    
 }
