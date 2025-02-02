@@ -47,11 +47,11 @@
                                         <hr>
                                         <input type="text" name="pickingPositionName" value="">
                                         <hr>
-                                        <h1>      
-                                            <button type="submit" class="btn btn-primary">
-                                                Set  Position
-                                            </button>
-                                        </h1>
+
+                                        <button type="submit" class="btn btn-primary" style='font-size:40px'>
+                                            Set  Position 
+                                        </button>
+
                                     </form>
                                 </td>
                             </tr>
