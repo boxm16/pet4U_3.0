@@ -43,11 +43,9 @@ public class CamelotItemSearchDao {
                     item = new Item();
                     item.setCode(resultSet.getString("ItemCode"));
                     item.setDescription(resultSet.getString("ItemName"));
-
+                    item.setPosition(resultSet.getString("PickLocation"));
+                    item.setQuantity(resultSet.getString("Stock"));
                 }
-                item.setPosition(resultSet.getString("PickLocation"));
-
-                item.setQuantity(resultSet.getString("Stock"));
 
                 index++;
             }
