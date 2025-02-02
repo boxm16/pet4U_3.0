@@ -92,7 +92,7 @@ public class CamelotItemPositionChangingSapApiClient {
         System.out.println("? Update Response Code: " + responseCode);
 
         if (responseCode == 200||responseCode == 204) {
-            System.out.println(" Item updated successfully: " + getJsonResponse(conn));
+            System.out.println(" Item updated successfully");
         } else if (responseCode == 401) {
             System.out.println(" Session expired! Please re-login.");
         } else {
@@ -142,6 +142,7 @@ public class CamelotItemPositionChangingSapApiClient {
 
     // 🔹 Utility: Read JSON Response
     private JSONObject getJsonResponse(HttpURLConnection conn) throws IOException {
+      
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream(), StandardCharsets.UTF_8))) {
             StringBuilder response = new StringBuilder();
             String line;
