@@ -24,7 +24,7 @@ public class CamelotItemController {
         }
         model.addAttribute("itemCode", itemCode);
 
-        return "/camelot/camelotItem/goForCamelotPositionChanging_Α";
+        return "/camelot/camelotItem/camelotItemPositionChangingServant_Α";
     }
 
     @RequestMapping(value = "goForCamelotPositionChanging_B")
@@ -38,6 +38,6 @@ public class CamelotItemController {
         ArrayList<String> camelotPickingPositions = camelotItemDao.getCamelotPickingPositions();
         model.addAttribute("itemCode", itemCode);
         model.addAttribute("camelotPickingPositions", camelotPickingPositions);
-        return "/camelot/camelotItem/goForCamelotPositionChanging_B";
+        return "/camelot/camelotItem/camelotItemPositionChangingServant_B";
     }
 }

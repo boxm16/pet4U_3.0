@@ -128,7 +128,7 @@
         <script>
 
             function  redirect(itemCode) {
-                window.location.href = "goForCamelotPositionChanign_A.htm?itemCode=" + itemCode;
+                window.location.href = "goForCamelotPositionChanging_Α.htm?itemCode=" + itemCode;
             }
         </script>
 
