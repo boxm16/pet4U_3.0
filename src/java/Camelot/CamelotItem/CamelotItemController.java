@@ -38,7 +38,7 @@ public class CamelotItemController {
             return "index";
         }
         ArrayList<String> camelotPickingPositions = camelotItemDao.getCamelotPickingPositions();
-        if (!camelotPickingPositions.contains(pickingPositionName)) {
+        if (!camelotPickingPositions.contains(pickingPositionName.trim())) {
             System.out.println("????WTF:"+pickingPositionName);    
             model.addAttribute("itemCode", itemCode);
             model.addAttribute("camelotPickingPositions", camelotPickingPositions);
