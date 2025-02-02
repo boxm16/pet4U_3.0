@@ -219,7 +219,7 @@
 
 
                                             if (altercodeContainer.packageBarcode ==true) {
-                                                console.log("SSB" + altercodeContainer.packageBarcode + ":" + altercodeContainer.itemsInPackage * 1)
+                                                console.log("SSB" + altercodeContainer.packageBarcode + ":" + altercodeContainer.itemsInPackage * 1);
                                                 delivered += altercodeContainer.itemsInPackage * 1;
                                             } else {
                                                 delivered++;
