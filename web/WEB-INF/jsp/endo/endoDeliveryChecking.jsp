@@ -159,8 +159,8 @@
                                 var packageBarcode = "${altercodeContainer.packageBarcode}";
                                 var itemsInPackage = "${altercodeContainer.itemsInPackage}";
                                 var altercodeContainer = new AltercodeContainer(altercodeBarcode, packageBarcode, itemsInPackage);
-                                console.log("altercodeBarcode" + altercodeBarcode);
-
+                            
+                                altercodeContainers[altercodeBarcode] = altercodeContainer;
         </c:forEach>
 
 
