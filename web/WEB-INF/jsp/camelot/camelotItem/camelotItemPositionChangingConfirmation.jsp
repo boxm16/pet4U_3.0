@@ -45,7 +45,7 @@
                             <input hidden name="itemId" value="${itemCode}">
                             <input hidden name="newPositionId" value="${pickingPositionName}">
                             <br>
-                            <input class="btn btn-primary btn-lg btn-block"  type="submit" value="Submit">
+                            <input class="btn btn-primary btn-lg btn-block" style='font-size:40px'  type="submit" value="Submit">
                         </form>
                     </center>
                             <hr><br><hr>
