@@ -159,7 +159,7 @@
                                 var packageBarcode = "${altercodeContainer.packageBarcode}";
                                 var itemsInPackage = "${altercodeContainer.itemsInPackage}";
                                 var altercodeContainer = new AltercodeContainer(altercodeBarcode, packageBarcode, itemsInPackage);
-                            
+
                                 altercodeContainers[altercodeBarcode] = altercodeContainer;
         </c:forEach>
 
@@ -220,13 +220,11 @@
 
                                             let delivered = document.getElementById(code + "@delivered").value * 1;
                                             if (altercodeContainer.packageBarcode) {
-                                                altercodeContainer.itemsInPackage * 1;
+
                                                 delivered += altercodeContainer.itemsInPackage * 1;
                                             } else {
                                                 delivered++;
                                             }
-
-
 
                                             document.getElementById(code + "@delivered").value = delivered;
 
