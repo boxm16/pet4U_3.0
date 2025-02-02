@@ -26,7 +26,7 @@ public class CamelotItemSearchController {
         if (item == null) {
             return "camelotItemSearch/searchErrorPage";
         }
-        return "camelotItemSearch/singleItemSearchResult";
+        return "camelotItemSearch/singleItemSearchResultFromSapHana";
     }
  
 }
