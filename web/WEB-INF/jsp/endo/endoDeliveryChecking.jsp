@@ -131,6 +131,15 @@
                                     }
                                 }
 
+                                class AltercodeContainer {
+                                    constructor(altercode, packageBarcode, itemsInPackage) {
+                                        this.altercode = altercode;
+                                        this.packageBarcode = packageBarcode;
+                                        this.itemsInPackage = itemsInPackage;
+                                    }
+                                }
+
+
                                 var items = new Array();
         <c:forEach items="${pet4UItemsRowByRow}" var="item">
                                 var altercode = "${item.altercode}";
@@ -142,20 +151,15 @@
 
 
 
-                                class AltercodeContainer {
-                                    constructor(altercode, packageBarcode, itemsInPackage) {
-                                        this.altercode = altercode;
-                                        this.packageBarcode = packageBarcode;
-                                        this.itemsInPackage = itemsInPackage;
-                                    }
-                                }
 
                                 var altercodeContainers = new Array();
         <c:forEach items="${pet4UAllAltercodeContainers}" var="altercodeContainer">
+
                                 var altercodeBarcode = "${altercodeContainer.altercode}";
                                 var packageBarcode = "${altercodeContainer.packageBarcode}";
                                 var itemsInPackage = "${altercodeContainer.itemsInPackage}";
                                 var altercodeContainer = new AltercodeContainer(altercodeBarcode, packageBarcode, itemsInPackage);
+                                console.log("altercodeBarcode" + altercodeBarcode);
                                 altercodeContainers[altercodeBarcode] = altercodeContainer;
         </c:forEach>
 
