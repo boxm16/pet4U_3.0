@@ -91,7 +91,7 @@ public class CamelotItemPositionChangingSapApiClient {
         int responseCode = conn.getResponseCode();
         System.out.println("? Update Response Code: " + responseCode);
 
-        if (responseCode == 200||responseCode == 204) {
+        if (responseCode == 200 || responseCode == 204) {
             System.out.println(" Item updated successfully");
         } else if (responseCode == 401) {
             System.out.println(" Session expired! Please re-login.");
@@ -105,6 +105,13 @@ public class CamelotItemPositionChangingSapApiClient {
         String logoutUrl = BASE_URL + "/Logout";
 
         HttpURLConnection conn = createConnection(logoutUrl, "POST");
+
+        try {
+            applySSLBypass(conn);
+        } catch (Exception ex) {
+            Logger.getLogger(CamelotItemPositionChangingSapApiClient.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         conn.setRequestProperty("Cookie", "B1SESSION=" + sessionId);
 
         int responseCode = conn.getResponseCode();
@@ -142,7 +149,7 @@ public class CamelotItemPositionChangingSapApiClient {
 
     // 🔹 Utility: Read JSON Response
     private JSONObject getJsonResponse(HttpURLConnection conn) throws IOException {
-      
+
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream(), StandardCharsets.UTF_8))) {
             StringBuilder response = new StringBuilder();
             String line;
