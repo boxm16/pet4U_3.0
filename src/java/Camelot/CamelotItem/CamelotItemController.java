@@ -40,7 +40,7 @@ public class CamelotItemController {
         if (!camelotPickingPositions.contains(pickingPositionName)) {
             model.addAttribute("itemCode", itemCode);
             model.addAttribute("camelotPickingPositions", camelotPickingPositions);
-            return "/camelot/camelotItem/camelotItemPositionChangingServant_B";
+            return "/camelot/camelotItem/camelotItemPositionChangingServant_Β";
         }
         model.addAttribute("itemCode", itemCode);
         model.addAttribute("pickingPositionName", pickingPositionName);
