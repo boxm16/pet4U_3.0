@@ -329,6 +329,7 @@ public class EndoController {
         modelMap.addAttribute("pet4UItemsRowByRow", listValues);
 
         ArrayList<AltercodeContainer> pet4UAllAltercodeContainers = endoDao.getAllAltercodeContainers();
+        System.out.println(pet4UAllAltercodeContainers.size());
         modelMap.addAttribute("pet4UAllAltercodeContainers", pet4UAllAltercodeContainers);
         
         String saveButton = "<button class=\"btn-primary\" onclick=\"requestRouter('saveEndoDeliveryChecking.htm')\"><H1>Save  ENDO Delivery Checking</H1></button>";
