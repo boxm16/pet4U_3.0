@@ -48,6 +48,7 @@
                             <input class="btn btn-primary btn-lg btn-block"  type="submit" value="Submit">
                         </form>
                     </center>
+                            <hr><br><hr>
                 </div>
 
                 <div class=" col-sm-4">
