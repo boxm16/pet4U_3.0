@@ -47,7 +47,15 @@ public class CamelotItemController {
         return "/camelot/camelotItem/camelotItemPositionChangingConfirmation";
     }
 
-    //you may delete this method
+    @RequestMapping(value = "changeCamelotItemPosition")
+    public String changeCamelotItemPosition(@RequestParam(name = "itemCode") String itemCode,
+            @RequestParam(name = "pickingPositionName") String pickingPositionName,
+            ModelMap model, HttpSession session) {
+        System.out.println("HERE");
+        return "index";
+    }
+
+    //you may delete this method, it is unneccessary anymore
     @RequestMapping(value = "goForCamelotPositionChanging_B")
     public String goForCamelotPositionChanging_B(@RequestParam(name = "itemCode") String itemCode,
             ModelMap model, HttpSession session) {
