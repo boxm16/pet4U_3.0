@@ -34,7 +34,7 @@ public class CamelotItemPositionChangingSapApiClient {
             updateItem(sessionId, itemCode, position);
 
             // Step 3: Logout to end session (optional)
-            logoutFromSAP(sessionId);
+          //  logoutFromSAP(sessionId);
 
         } catch (Exception e) {
             e.printStackTrace();
