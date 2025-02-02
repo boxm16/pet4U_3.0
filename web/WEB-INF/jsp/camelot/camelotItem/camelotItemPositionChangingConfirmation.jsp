@@ -43,7 +43,7 @@
                         <hr>
                         <form action="changeCamelotItemPosition.htm" method="POST" >
                             <input hidden name="itemCode" value="${itemCode}">
-                            <input hidden name="newPositionId" value="${pickingPositionName}">
+                            <input hidden name="pickingPositionName" value="${pickingPositionName}">
                             <br>
                             <input class="btn btn-primary btn-lg btn-block" style='font-size:40px'  type="submit" value="Submit">
                         </form>

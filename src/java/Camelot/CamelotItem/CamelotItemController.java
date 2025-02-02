@@ -65,7 +65,7 @@ public class CamelotItemController {
             model.addAttribute("message", result);
             return "erroPage";
         }
-        return "index";
+
     }
 
     //you may delete this method, it is unneccessary anymore
