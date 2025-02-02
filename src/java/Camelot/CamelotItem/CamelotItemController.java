@@ -15,7 +15,7 @@ public class CamelotItemController {
     CamelotItemDao camelotItemDao;
 
     @RequestMapping(value = "goForCamelotPositionChanign")
-    public String goForCamelotPositionChanign(@RequestParam(name = "itemId") String itemId,
+    public String goForCamelotPositionChanign(@RequestParam(name = "itemCode") String itemCode,
             ModelMap model, HttpSession session) {
         String userName = (String) session.getAttribute("userName");
         if (userName == null || !userName.equals("me")) {
@@ -23,7 +23,7 @@ public class CamelotItemController {
             return "index";
         }
         ArrayList<String> camelotPickingPositions = camelotItemDao.getCamelotPickingPositions();
-        model.addAttribute("itemId", itemId);
+        model.addAttribute("itemCode", itemCode);
         model.addAttribute("camelotPickingPositions", camelotPickingPositions);
         return "/camelot/camelotItem/camelotItemPositionChangingServant";
     }

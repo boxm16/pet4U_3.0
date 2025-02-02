@@ -700,7 +700,7 @@ public class Pet4uItemsController {
     //- - - - - - - - - - 
 
     @RequestMapping(value = "goForPositionChanign")
-    public String goForPositionChanign(@RequestParam(name = "itemCode") String itemId, ModelMap model) {
+    public String goForPositionChanign(@RequestParam(name = "itemId") String itemId, ModelMap model) {
         Pet4uItems_NotActivePositions pet4uItems_NotActivePositions = new Pet4uItems_NotActivePositions();
         ArrayList<String> notActivePositions = pet4uItems_NotActivePositions.getNotActivePositions();
 
