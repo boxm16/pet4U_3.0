@@ -48,35 +48,36 @@ public class CamelotItemSearchDao {
                 }
 
                 index++;
-            }
-            AltercodeContainer altercodeContainer = new AltercodeContainer();
-            altercodeContainer.setAltercode(resultSet.getString("BarCode"));
-            if (resultSet.getString("UnitOfMeasurement") == null) {
-                altercodeContainer.setStatus("");
-            } else {
-                altercodeContainer.setStatus(resultSet.getString("UnitOfMeasurement").trim());
-            }
-            if (resultSet.getString("MainBarcode") == null) {
-                //do nothing
-            } else {
-                if (resultSet.getString("MainBarcode").equals(resultSet.getString("BarCode"))) {
-                    altercodeContainer.setMainBarcode(true);
-                    //  item.setMainBarcode(resultSet.getString("ALTERNATECODE"));// HERE ALTERNATECODE AND MAIN_CODE IS THE SAME
-                    item.setMainBarcode(resultSet.getString("BarCode"));//
+
+                AltercodeContainer altercodeContainer = new AltercodeContainer();
+                altercodeContainer.setAltercode(resultSet.getString("BarCode"));
+                if (resultSet.getString("UnitOfMeasurement") == null) {
+                    altercodeContainer.setStatus("");
                 } else {
-                    altercodeContainer.setMainBarcode(false);
+                    altercodeContainer.setStatus(resultSet.getString("UnitOfMeasurement").trim());
                 }
-            }
+                if (resultSet.getString("MainBarcode") == null) {
+                    //do nothing
+                } else {
+                    if (resultSet.getString("MainBarcode").equals(resultSet.getString("BarCode"))) {
+                        altercodeContainer.setMainBarcode(true);
+                        //  item.setMainBarcode(resultSet.getString("ALTERNATECODE"));// HERE ALTERNATECODE AND MAIN_CODE IS THE SAME
+                        item.setMainBarcode(resultSet.getString("BarCode"));//
+                    } else {
+                        altercodeContainer.setMainBarcode(false);
+                    }
+                }
 
-            if (resultSet.getShort("IS_PACK_BC") == 0) {
-                //do nothing
-            } else {
-                altercodeContainer.setPackageBarcode(true);
-                altercodeContainer.setItemsInPackage(resultSet.getDouble("PACK_QTY"));
-            }
+                if (resultSet.getShort("IS_PACK_BC") == 0) {
+                    //do nothing
+                } else {
+                    altercodeContainer.setPackageBarcode(true);
+                    altercodeContainer.setItemsInPackage(resultSet.getDouble("PACK_QTY"));
+                }
 
-            if (item != null) {//It should never be, i mean, if there is an altercode, there is an item. But, just in any case
-                item.addAltercodeContainer(altercodeContainer);
+                if (item != null) {//It should never be, i mean, if there is an altercode, there is an item. But, just in any case
+                    item.addAltercodeContainer(altercodeContainer);
+                }
             }
 
             resultSet.close();
