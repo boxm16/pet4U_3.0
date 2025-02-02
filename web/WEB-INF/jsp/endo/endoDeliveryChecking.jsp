@@ -216,10 +216,9 @@
                                             }
 
                                             let delivered = document.getElementById(code + "@delivered").value * 1;
-
-
-                                            if (altercodeContainer.packageBarcode ==true) {
-                                                console.log("SSB" + altercodeContainer.packageBarcode + ":" + altercodeContainer.itemsInPackage * 1);
+                                            console.log("SS" + altercodeContainer.packageBarcode);
+                                            if (altercodeContainer.packageBarcode == true) {
+                                                console.log("BB" + altercodeContainer.packageBarcode + ":" + altercodeContainer.itemsInPackage * 1);
                                                 delivered += altercodeContainer.itemsInPackage * 1;
                                             } else {
                                                 delivered++;
