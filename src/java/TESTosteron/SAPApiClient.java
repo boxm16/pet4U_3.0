@@ -79,7 +79,10 @@ public class SAPApiClient {
         String apiUrl = BASE_URL + "/Items('" + itemCode + "')";
         String jsonBody = "{ \"U_PickLocation\": \"" + newPickLocation + "\" }";
 
-        HttpURLConnection conn = createConnection(apiUrl, "PATCH");
+        HttpURLConnection conn = createConnection(apiUrl, "POST");
+
+        conn.setRequestProperty("X-HTTP-Method-Override", "PATCH"); // Trick server into treating this as PATCH
+
         conn.setRequestProperty("Cookie", "B1SESSION=" + sessionId);
         sendRequestBody(conn, jsonBody);
 

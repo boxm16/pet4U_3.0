@@ -14,17 +14,12 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -277,65 +272,6 @@ public class TESTosteronController {
         SAPApiClient sapac = new SAPApiClient();
         sapac.push();
         return "index";
-    }
-
-    private static String getSessionId(String username, String password, String companyDB) {
-        try {
-
-            String loginUrl = "https://192.168.0.183:50000/b1s/v2/Login";
-            String loginPayload = "{ \"UserName\": \"" + username + "\", \"Password\": \"" + password + "\", \"CompanyDB\": \"" + companyDB + "\" }";
-
-            HttpURLConnection conn = (HttpURLConnection) new URL(loginUrl).openConnection();
-            applySSLBypass(conn);
-
-            conn.setRequestMethod("POST");
-            conn.setRequestProperty("Content-Type", "application/json");
-            conn.setDoOutput(true);
-
-            // Write login JSON payload
-            try (OutputStream os = conn.getOutputStream()) {
-                os.write(loginPayload.getBytes(StandardCharsets.UTF_8));
-            }
-
-            int responseCode = conn.getResponseCode();
-            if (responseCode == 200) {
-
-                // Parse JSON response
-                /*  try (BufferedReader errorReader = new BufferedReader(new InputStreamReader(conn.getErrorStream()))) {
-                    StringBuilder errorResponse = new StringBuilder();
-                    String errorLine;
-                    while ((errorLine = errorReader.readLine()) != null) {
-                        errorResponse.append(errorLine);
-                    }
-                    System.out.println("🚨 API ERROR RESPONSE: " + errorResponse.toString());
-                }*/
-            } else {
-                System.out.println("❌ Login failed with response code: " + responseCode);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null; // Login failed
-    }
-
-    private static void applySSLBypass(HttpURLConnection conn) throws Exception {
-        if (conn instanceof HttpsURLConnection) {
-            SSLContext sslContext = SSLContext.getInstance("TLS");
-            sslContext.init(null, new TrustManager[]{new X509TrustManager() {
-                public void checkClientTrusted(X509Certificate[] certs, String authType) {
-                }
-
-                public void checkServerTrusted(X509Certificate[] certs, String authType) {
-                }
-
-                public X509Certificate[] getAcceptedIssuers() {
-                    return null;
-                }
-            }}, new java.security.SecureRandom());
-
-            ((HttpsURLConnection) conn).setSSLSocketFactory(sslContext.getSocketFactory());
-            ((HttpsURLConnection) conn).setHostnameVerifier((hostname, session) -> hostname.equals("192.168.0.183"));
-        }
     }
 
     // Encode username & password to Base64 for Basic Authentication
