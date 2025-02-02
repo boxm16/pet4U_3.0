@@ -28,5 +28,5 @@ public class CamelotItemSearchController {
         }
         return "camelotItemSearch/singleItemSearchResult";
     }
-
+ 
 }
