@@ -5,6 +5,7 @@
  */
 package Endo;
 
+import BasicModel.AltercodeContainer;
 import BasicModel.Item;
 import Delivery.DeliveryInvoice;
 import Delivery.DeliveryItem;
@@ -890,7 +891,7 @@ public class EndoDao {
             return ex.getMessage();
         }
     }
-    
+
     public DeliveryInvoice getLastEndoDelivery() {
         DeliveryInvoice deliveryInvoice = new DeliveryInvoice();
 
@@ -928,6 +929,51 @@ public class EndoDao {
         }
 
         return deliveryInvoice;
+    }
+
+    LinkedHashMap<String, AltercodeContainer> getAllAltercodeContainers() {
+        LinkedHashMap<String, AltercodeContainer> allAltercodeContainers = new LinkedHashMap();
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+        Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
+        try {
+            Statement statement = connection.createStatement();
+
+            ResultSet resultSet = statement.executeQuery("SELECT  ABBRECIATION, ALTERNATECODE, CODEDESCRIPTION, IS_PACK_BC, PACK_QTY  FROM WH1;");
+
+            while (resultSet.next()) {
+                String altercode = resultSet.getString("ALTERNATECODE").trim();
+                AltercodeContainer altercodeContainer = new AltercodeContainer();
+                altercodeContainer.setAltercode(altercode);
+                if (resultSet.getString("CODEDESCRIPTION") == null) {
+                    altercodeContainer.setStatus("");
+                } else {
+                    altercodeContainer.setStatus(resultSet.getString("CODEDESCRIPTION").trim());
+                }
+                if (resultSet.getString("MAIN_BARCODE") == null) {
+                    //do nothing
+                } else {
+                    if (resultSet.getString("MAIN_BARCODE").equals(resultSet.getString("ALTERNATECODE"))) {
+                        altercodeContainer.setMainBarcode(true);
+                    } else {
+                        altercodeContainer.setMainBarcode(false);
+                    }
+                }
+
+                if (resultSet.getShort("IS_PACK_BC") == 0) {
+                    //do nothing
+                } else {
+                    altercodeContainer.setPackageBarcode(true);
+                    altercodeContainer.setItemsInPackage(resultSet.getDouble("PACK_QTY"));
+                }
+                allAltercodeContainers.put(altercode, altercodeContainer);
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(EndoDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return allAltercodeContainers;
     }
 
 }
