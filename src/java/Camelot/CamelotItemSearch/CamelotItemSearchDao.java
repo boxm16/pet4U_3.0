@@ -68,12 +68,7 @@ public class CamelotItemSearchDao {
                     }
                 }
 
-                if (resultSet.getShort("IS_PACK_BC") == 0) {
-                    //do nothing
-                } else {
-                    altercodeContainer.setPackageBarcode(true);
-                    altercodeContainer.setItemsInPackage(resultSet.getDouble("PACK_QTY"));
-                }
+               
 
                 if (item != null) {//It should never be, i mean, if there is an altercode, there is an item. But, just in any case
                     item.addAltercodeContainer(altercodeContainer);
