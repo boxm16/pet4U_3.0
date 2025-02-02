@@ -274,58 +274,8 @@ public class TESTosteronController {
     @RequestMapping(value = "cccSApHANA1")
     public String cccSApHANA1(ModelMap modelMap) {
 
-        try {
-            // 🔹 Credentials
-            String username = "scanner1";
-            String password = "1234";
-            String companyDB = "PETCAMELOT_UAT2";
-
-            // 🔹 Encode credentials for Basic Authentication
-            String auth = username + ":" + password;
-            String encodedAuth = Base64.getEncoder().encodeToString(auth.getBytes(StandardCharsets.UTF_8));
-            String authHeaderValue = "Basic " + encodedAuth;
-
-            // 🔹 API URL (Direct Call)
-            String itemCode = "1271";  // Item Code to update
-            String newPickLocation = "A27";  // New Pick Location
-            String apiUrl = "https://192.168.0.183:50000/b1s/v2/Items('" + itemCode + "')";
-
-            // 🔹 JSON Body
-            String jsonBody = "{ \"U_PickLocation\": \"" + newPickLocation + "\" }";
-
-            // 🔹 Create HTTP Connection
-            HttpURLConnection conn = (HttpURLConnection) new URL(apiUrl).openConnection();
-            applySSLBypass(conn); // Ignore SSL for local network
-
-            conn.setRequestMethod("POST"); // Override to POST
-            conn.setRequestProperty("X-HTTP-Method-Override", "PATCH"); // Trick server into treating this as PATCH
-
-            conn.setRequestProperty("Content-Type", "application/json");
-            conn.setRequestProperty("Authorization", authHeaderValue); // 🔥 Direct Credentials
-            conn.setRequestProperty("CompanyDB", companyDB); // SAP Business One DB
-            conn.setDoOutput(true);
-
-            // 🔹 Write JSON data
-            try (OutputStream os = conn.getOutputStream()) {
-                os.write(jsonBody.getBytes(StandardCharsets.UTF_8));
-            }
-
-            // 🔹 Get Response
-            int responseCode = conn.getResponseCode();
-            System.out.println("✅ Response Code: " + responseCode);
-
-            // 🔹 Read Response (if any)
-            try (BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    System.out.println(line);
-                }
-            }
-
-            conn.disconnect();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        SAPApiClient sapac = new SAPApiClient();
+        sapac.push();
         return "index";
     }
 
