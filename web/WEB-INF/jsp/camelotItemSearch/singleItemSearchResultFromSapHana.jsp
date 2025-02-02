@@ -88,7 +88,7 @@
                                 out.println("</tr>");
 
                                 out.println("<tr style='background-color:#F1F1F1'>");
-                                out.println("<td colspan='2' style='font-size: 30px;'>");
+                                out.println("<td colspan='2' style='font-size: 20px;'>");
                                 ArrayList<AltercodeContainer> altercodes = item.getAltercodes();
                                 for (AltercodeContainer altercodeContainer : altercodes) {
                                     String color = "";
