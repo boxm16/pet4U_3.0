@@ -35,7 +35,7 @@ public class CamelotItemSearchDao {
                     + "FROM \"PETCAMELOT_UAT2\".\"BYT_V_BARCODEDETAILS\" t1 "
                     + "JOIN \"PETCAMELOT_UAT2\".\"BYT_V_ITEMDETAILS\" t2 ON t1.\"ItemCode\" = t2.\"ItemCode\" "
                     + "WHERE t1.\"ItemCode\" = ("
-                    + "    SELECT \"ItemCode\" FROM \"PETCAMELOT_UAT2\".\"BYT_V_ITEMDETAILS\" WHERE \"BarCode\" = '" + altercode + "'"
+                    + "    SELECT \"ItemCode\" FROM \"PETCAMELOT_UAT2\".\"BYT_V_BARCODEDETAILS\" WHERE \"BarCode\" = '" + altercode + "' LIMIT 1"
                     + ");");
             int index = 0;
             while (resultSet.next()) {
