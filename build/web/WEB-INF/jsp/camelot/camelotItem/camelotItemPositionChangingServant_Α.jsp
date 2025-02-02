@@ -37,7 +37,7 @@
                 <div class=" col-sm-4">
                     <h1>Set New Position <br>For Camelot Item</h1>
                     <center>
-                        <table>
+                        <table style='background-color: #D052DB'>
                             <tr>
                                 <td>
 
