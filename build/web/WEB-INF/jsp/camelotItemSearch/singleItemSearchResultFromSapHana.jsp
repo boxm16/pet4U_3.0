@@ -113,33 +113,6 @@
                             }
                         %>
                         <hr>
-                        <a href="getCamelotItemForNote.htm?altercode=${item.getCode()}" class="btn btn-warning btn-lg" role="button" aria-disabled="true"><h3>Make Note</h3></a>
-                        <hr>
-                        <a href="camelotStockPositions.htm?itemCode=${item.getCode()}" class="btn btn-success btn-lg" role="button" aria-disabled="true"><h3>ΘΕΣΕΙΣ ΣΤΟΚ</h3></a>
-                        <hr>
-
-                        <a href='goForCamelotReplenishment.htm?altercode=${item.getCode()}' class='btn btn-danger btn-lg' role='button' aria-disabled='true' style='background-color: #f955d4'><h3>ΚΑΝΕ ΑΝΑΠΛΗΡΩΣΗ</h3></a>
-                        <hr> 
-                      <!--  <a href='printCamelotBarcode.htm?altercode=${target}' class='btn btn-danger btn-lg' role='button' aria-disabled='true'><h3>PRINT BARCODE LABEL</h3></a>
-                        <hr>
-                        -->
-                        <a href='printCamelotMainBarcode.htm?altercode=${target}' class='btn btn-danger btn-lg' role='button' aria-disabled='true'><h3>PRINT BARCODE LABEL</h3></a>
-
-                        <hr>
-                        <a href="getCamelotItemFromSapHanaView.htm?altercode=${item.getCode()}" class="btn btn-success btn-lg" role="button" aria-disabled="true" style='background-color: #35dfd0'><h3>Get Data From <br> SAP HANA DB (TRIAL)</h3></a>
-                        <hr>
-                        <hr> 
-
-                        <%
-                            String userName = (String) session.getAttribute("userName");
-                            if (userName != null) {
-                                if (userName.equals("me") || userName.equals("super")) {
-                                    out.println("<a  href = 'camelotItemAnalysis.htm?code=" + item.getCode() + "'  class ='btn btn-info btn-lg' role='button' aria-disabled='true'><h3>Show Item Analysis</h3></a>");
-                                }
-                            }
-
-                        %>
-                        <hr>
                         <a href="camelotSearchDashboard.htm"><h3>New Search</h3></a>
                         <hr>
                         <a href="index.htm"><h3>INDEX</h3></a>
