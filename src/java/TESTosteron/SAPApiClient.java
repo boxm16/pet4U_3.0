@@ -126,6 +126,13 @@ public class SAPApiClient {
 
     // 🔹 Utility: Send JSON Request Body
     private void sendRequestBody(HttpURLConnection conn, String jsonBody) throws IOException {
+
+        try {
+            applySSLBypass(conn);
+        } catch (Exception ex) {
+            Logger.getLogger(SAPApiClient.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         try (OutputStream os = conn.getOutputStream()) {
             os.write(jsonBody.getBytes(StandardCharsets.UTF_8));
         }
