@@ -29,8 +29,7 @@
                                 <center>  
                                     <form action="ccccccccccc.htm"  method="POST">
                                         <input hidden name="itemCode" value="${itemCode}">
-                                        <input hidden name="newPositionId" value=" ${position.key}">
-                                        <input hidden name="positionName" value=" ${position.value}">
+                                        <input hidden name="positionName" value=" ${position}">
                                         <button type="submit" class="btn btn-primary">
                                             Set Position
                                         </button>
