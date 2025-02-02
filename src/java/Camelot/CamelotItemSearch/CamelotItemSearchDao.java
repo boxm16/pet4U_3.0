@@ -31,7 +31,7 @@ public class CamelotItemSearchDao {
             Statement statement = connection.createStatement();
             ResultSet resultSet = null;
 
-            resultSet = statement.executeQuery("SELECT ItemCode, ItemName, Stock, InvntryUom, MainBarcode, PickLocation,BarCode, UnitOfMeasurement "
+            resultSet = statement.executeQuery("SELECT 'ItemCode', 'ItemName', Stock, InvntryUom, MainBarcode, PickLocation,BarCode, UnitOfMeasurement "
                     + "FROM \"PETCAMELOT_UAT2\".\"BYT_V_ITEMDETAILS\" t1 "
                     + "JOIN \"PETCAMELOT_UAT2\".\"BYT_V_BARCODEDETAILS\" t2 ON t1.\"ItemCode\" = t2.\"ItemCode\" "
                     + "WHERE t2.\"ItemCode\" = ("
