@@ -19,6 +19,6 @@ public class CamelotItemController {
         }
 
         model.addAttribute("itemId", itemId);
-        return "/camelot/camelotItem/camelotItemPositionChanignServant";
+        return "/camelot/camelotItem/camelotItemPositionChangignServant";
     }
 }
