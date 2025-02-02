@@ -46,7 +46,7 @@
                                 out.println("<td style='width:70px;'>");
                                 out.println("Κωδικός");
                                 out.println("</td>");
-                                out.println("<td style='font-size: 40px;'>");
+                                out.println("<td style='font-size: 30px;'>");
                                 out.println("<strong>" + item.getCode() + "</strong>");
                                 out.println("</td>");
                                 out.println("</tr>");
