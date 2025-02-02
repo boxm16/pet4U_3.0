@@ -34,7 +34,7 @@ public class CamelotItemSearchDao {
             resultSet = statement.executeQuery("SELECT ItemCode, ItemName, Stock, InvntryUom, MainBarcode, PickLocation,BarCode, UnitOfMeasurement "
                     + "FROM \"PETCAMELOT_UAT2\".\"BYT_V_ITEMDETAILS\" t1 "
                     + "JOIN \"PETCAMELOT_UAT2\".\"BYT_V_BARCODEDETAILS\" t2 ON t1.\"ItemCode\" = t2.\"ItemCode\" "
-                    + "WHERE t2.itemCode = ("
+                    + "WHERE t2.\"itemCode\" = ("
                     + "    SELECT ItemCode FROM \"PETCAMELOT_UAT2\".\"BYT_V_BARCODEDETAILS\" WHERE BarCode = '" + altercode + "'"
                     + ");");
             int index = 0;
