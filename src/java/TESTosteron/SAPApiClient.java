@@ -4,17 +4,24 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.security.cert.X509Certificate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 import org.json.JSONObject;
 
 public class SAPApiClient {
 
     // 🔹 SAP Business One API credentials
-    private  final String BASE_URL = "https://192.168.0.183:50000/b1s/v2";
-    private  final String USERNAME = "scanner1";
-    private  final String PASSWORD = "1234";
-    private  final String COMPANY_DB = "PETCAMELOT_UAT2";
+    private final String BASE_URL = "https://192.168.0.183:50000/b1s/v2";
+    private final String USERNAME = "scanner1";
+    private final String PASSWORD = "1234";
+    private final String COMPANY_DB = "PETCAMELOT_UAT2";
 
-    public  void push() {
+    public void push() {
         try {
             // Step 1: Login and get session token
             String sessionId = loginToSAP();
@@ -35,14 +42,22 @@ public class SAPApiClient {
     }
 
     // 🔹 Step 1: Login and get session token
-    private  String loginToSAP() throws IOException {
+    private String loginToSAP() throws IOException {
+
         String loginUrl = BASE_URL + "/Login";
         String loginPayload = String.format(
-            "{ \"UserName\": \"%s\", \"Password\": \"%s\", \"CompanyDB\": \"%s\" }",
-            USERNAME, PASSWORD, COMPANY_DB
+                "{ \"UserName\": \"%s\", \"Password\": \"%s\", \"CompanyDB\": \"%s\" }",
+                USERNAME, PASSWORD, COMPANY_DB
         );
 
         HttpURLConnection conn = createConnection(loginUrl, "POST");
+
+        try {
+            applySSLBypass(conn);
+        } catch (Exception ex) {
+            Logger.getLogger(SAPApiClient.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         sendRequestBody(conn, loginPayload);
 
         int responseCode = conn.getResponseCode();
@@ -60,7 +75,7 @@ public class SAPApiClient {
     }
 
     // 🔹 Step 2: Update Item Pick Location using session
-    private  void updateItem(String sessionId, String itemCode, String newPickLocation) throws IOException {
+    private void updateItem(String sessionId, String itemCode, String newPickLocation) throws IOException {
         String apiUrl = BASE_URL + "/Items('" + itemCode + "')";
         String jsonBody = "{ \"U_PickLocation\": \"" + newPickLocation + "\" }";
 
@@ -81,7 +96,7 @@ public class SAPApiClient {
     }
 
     // 🔹 Step 3: Logout (optional)
-    private  void logoutFromSAP(String sessionId) throws IOException {
+    private void logoutFromSAP(String sessionId) throws IOException {
         String logoutUrl = BASE_URL + "/Logout";
 
         HttpURLConnection conn = createConnection(logoutUrl, "POST");
@@ -98,7 +113,7 @@ public class SAPApiClient {
     }
 
     // 🔹 Utility: Create HTTP Connection
-    private  HttpURLConnection createConnection(String url, String method) throws IOException {
+    private HttpURLConnection createConnection(String url, String method) throws IOException {
         HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
         conn.setRequestMethod(method);
         conn.setRequestProperty("Content-Type", "application/json");
@@ -107,14 +122,14 @@ public class SAPApiClient {
     }
 
     // 🔹 Utility: Send JSON Request Body
-    private  void sendRequestBody(HttpURLConnection conn, String jsonBody) throws IOException {
+    private void sendRequestBody(HttpURLConnection conn, String jsonBody) throws IOException {
         try (OutputStream os = conn.getOutputStream()) {
             os.write(jsonBody.getBytes(StandardCharsets.UTF_8));
         }
     }
 
     // 🔹 Utility: Read JSON Response
-    private  JSONObject getJsonResponse(HttpURLConnection conn) throws IOException {
+    private JSONObject getJsonResponse(HttpURLConnection conn) throws IOException {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream(), StandardCharsets.UTF_8))) {
             StringBuilder response = new StringBuilder();
             String line;
@@ -126,7 +141,7 @@ public class SAPApiClient {
     }
 
     // 🔹 Utility: Read Error Response
-    private  String getErrorResponse(HttpURLConnection conn) throws IOException {
+    private String getErrorResponse(HttpURLConnection conn) throws IOException {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getErrorStream(), StandardCharsets.UTF_8))) {
             StringBuilder response = new StringBuilder();
             String line;
@@ -136,4 +151,25 @@ public class SAPApiClient {
             return response.toString();
         }
     }
+
+    private void applySSLBypass(HttpURLConnection conn) throws Exception {
+        if (conn instanceof HttpsURLConnection) {
+            SSLContext sslContext = SSLContext.getInstance("TLS");
+            sslContext.init(null, new TrustManager[]{new X509TrustManager() {
+                public void checkClientTrusted(X509Certificate[] certs, String authType) {
+                }
+
+                public void checkServerTrusted(X509Certificate[] certs, String authType) {
+                }
+
+                public X509Certificate[] getAcceptedIssuers() {
+                    return null;
+                }
+            }}, new java.security.SecureRandom());
+
+            ((HttpsURLConnection) conn).setSSLSocketFactory(sslContext.getSocketFactory());
+            ((HttpsURLConnection) conn).setHostnameVerifier((hostname, session) -> hostname.equals("192.168.0.183"));
+        }
+    }
+
 }
