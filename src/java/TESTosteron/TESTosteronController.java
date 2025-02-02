@@ -302,7 +302,7 @@ public class TESTosteronController {
 
             conn.setRequestProperty("Content-Type", "application/json");
             conn.setRequestProperty("Authorization", authHeaderValue); // 🔥 Direct Credentials
-            conn.setRequestProperty("B1S-CompanyDB", companyDB); // SAP Business One DB
+            conn.setRequestProperty("CompanyDB", companyDB); // SAP Business One DB
             conn.setDoOutput(true);
 
             // 🔹 Write JSON data
