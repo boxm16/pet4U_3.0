@@ -27,6 +27,27 @@ public class CamelotItemController {
         return "/camelot/camelotItem/camelotItemPositionChangingServant_Α";
     }
 
+    @RequestMapping(value = "confirmCamelotItemPositionChanging")
+    public String goForCamelotPositionChanging_Α(@RequestParam(name = "itemCode") String itemCode,
+            @RequestParam(name = "pickingPositionName") String pickingPositionName,
+            ModelMap model, HttpSession session) {
+        String userName = (String) session.getAttribute("userName");
+        if (userName == null || !userName.equals("me")) {
+            System.out.println("Somebody trying to breach encryption");
+            return "index";
+        }
+        ArrayList<String> camelotPickingPositions = camelotItemDao.getCamelotPickingPositions();
+        if (!camelotPickingPositions.contains(pickingPositionName)) {
+            model.addAttribute("itemCode", itemCode);
+            model.addAttribute("camelotPickingPositions", camelotPickingPositions);
+            return "/camelot/camelotItem/camelotItemPositionChangingServant_B";
+        }
+        model.addAttribute("itemCode", itemCode);
+        model.addAttribute("pickingPositionName", pickingPositionName);
+        return "/camelot/camelotItem/camelotItemPositionChangingConfirmation";
+    }
+
+    //you may delete this method
     @RequestMapping(value = "goForCamelotPositionChanging_B")
     public String goForCamelotPositionChanging_B(@RequestParam(name = "itemCode") String itemCode,
             ModelMap model, HttpSession session) {
@@ -40,4 +61,6 @@ public class CamelotItemController {
         model.addAttribute("camelotPickingPositions", camelotPickingPositions);
         return "/camelot/camelotItem/camelotItemPositionChangingServant_B";
     }
+    //-----------------
+
 }

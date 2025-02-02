@@ -41,21 +41,23 @@
                             <tr>
                                 <td>
 
-                                    <form action="cccccccs.htm"  method="POST">
+                                    <form action="confirmCamelotItemPositionChanging.htm"  method="POST">
                                         <input hidden name="itemCode" value="${itemCode}">
                                         <h1> Enter Exact Position Name  </h1>
                                         <hr>
                                         <input type="text" name="pickingPositionName" value="">
                                         <hr>
-                                        <button type="submit" class="btn btn-primary">
-                                            <h1>  Set  Position</h1>
-                                        </button>
+                                        <h1>      
+                                            <button type="submit" class="btn btn-primary">
+                                                Set  Position
+                                            </button>
+                                        </h1>
                                     </form>
                                 </td>
                             </tr>
                         </table>
                         <hr>
-                        <a href='index.htm'>Index</a>
+                        <a href='index.htm'><h3>Index</h3></a>
                     </center>
                 </div>
                 <div class=" col-sm-4">
