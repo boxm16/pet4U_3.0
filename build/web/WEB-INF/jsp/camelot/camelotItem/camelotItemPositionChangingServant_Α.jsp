@@ -35,7 +35,7 @@
                 <div class=" col-sm-4">
                 </div>
                 <div class=" col-sm-4">
-                    <h1>Set New Position <br>For Camelot Item</h1>
+                    <center>  <h1>Set New Position <br>For Camelot Item</h1></center>
                     <center>
                         <table style='background-color: #D052DB'>
                             <tr>
@@ -43,7 +43,8 @@
 
                                     <form action="cccccccs.htm"  method="POST">
                                         <input hidden name="itemCode" value="${itemCode}">
-                                        Enter Exact Position Name  <input type="text" name="pickingPositionName" value="">
+                                        <h1> Enter Exact Position Name  </h1>
+                                        <input type="text" name="pickingPositionName" value="">
 
                                     </form>
                                 </td>
