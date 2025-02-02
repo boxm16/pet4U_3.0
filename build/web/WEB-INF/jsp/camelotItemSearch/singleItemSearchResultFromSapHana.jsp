@@ -56,7 +56,7 @@
                                 out.println("Θεση");
                                 out.println("</td>");
 
-                                out.println("<td style='font-size: 30px;' ondblclick=redirect(" + item.getItemId() + ")>");
+                                out.println("<td style='font-size: 30px;' ondblclick=redirect(" + item.getCode()+ ")>");
                                 out.println("<strong>" + item.getPosition() + "</strong>");
                                 out.println("</td>");
                                 out.println("</tr>");
@@ -127,8 +127,8 @@
         </div>
         <script>
 
-            function  redirect(itemId) {
-                window.location.href = "goForCamelotPositionChanign.htm?itemId=" + itemId;
+            function  redirect(itemCode) {
+                window.location.href = "goForCamelotPositionChanign.htm?itemCode=" + itemCode;
             }
         </script>
 
