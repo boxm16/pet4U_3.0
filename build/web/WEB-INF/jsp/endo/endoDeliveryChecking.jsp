@@ -62,6 +62,7 @@
                     <th>Sent</th>
                     <th>Delivered</th>
                     <th>Alert</th>
+                    <th>Remove</th>
                 </tr>
             </thead>
             <tbody id="tableBody">
@@ -262,6 +263,7 @@
                                     let c4 = document.createElement("td")
                                     let c5 = document.createElement("td")
                                     let c6 = document.createElement("td")
+                                    let c7 = document.createElement("td")
                                     // Insert data to cells
                                     c1.innerText = "----";
                                     c2.innerText = code;
@@ -269,6 +271,7 @@
                                     c4.innerHTML = "<input class='sent' type='number' id='" + code + "@sent' value='0' readonly width='10px'>";
                                     c5.innerHTML = "<input class='delivered' type='number' id='" + code + "@delivered' value='0'>";
                                     c6.innerHTML = "<dev id='" + code + "@colorDisplay'>____</dev>";
+                                    c7.innerHTML = "<button onclick=\"removeRow(this)\">Remove</button>";
 
 
                                     // Append cells to row
@@ -278,6 +281,7 @@
                                     row.appendChild(c4);
                                     row.appendChild(c5);
                                     row.appendChild(c6);
+                                    row.appendChild(c7);
 
 
                                     // Append row to table body
