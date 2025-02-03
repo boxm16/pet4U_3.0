@@ -340,7 +340,6 @@
 
                                     for (x = 0; x < deliveredItems.length; x++) {
                                         let deliveredItem = deliveredItems[x];
-                                        console.log(deliveredItem);
                                         const deliveredItemArrayed = deliveredItem.id.split("@");
                                         let itemtemCode = deliveredItemArrayed[0];
 
