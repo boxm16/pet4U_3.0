@@ -344,18 +344,18 @@
                                         const deliveredItemArrayed = deliveredItem.id.split("@");
                                         let itemtemCode = deliveredItemArrayed[0];
 
-                                        let sent = document.getElementById(itemtemCode + "_sent");
+                                        let sent = document.getElementById(itemtemCode + "@sent");
                                         if (sent == null) {
                                             addRow(item.code, item.description);
                                         } else {
                                             sent = sent.value * 1;
                                         }
 
-                                        let delivered = document.getElementById(itemtemCode + "_delivered").value * 1;
+                                        let delivered = document.getElementById(itemtemCode + "@delivered").value * 1;
 
 
 
-                                        let colorDisplay = document.getElementById(itemtemCode + "_colorDisplay");
+                                        let colorDisplay = document.getElementById(itemtemCode + "@colorDisplay");
 
                                         let diff = sent - delivered;
                                         if (diff > 0) {
