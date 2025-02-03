@@ -38,16 +38,12 @@
     </head>
     <body>
     <center>
-        <h1>Endo Delivery Checking</h1>
         <h1>ΕΛΕΓΧΟΣ ΠΑΡΑΛΑΒΗΣ ΕΝΔΟΔΙΑΚΙΝΙΣΗΣ</h1>
-        <h3>Delivery Invoice Number:${deliveryInvoice.getNumber()} </h3>
         <hr>
-
-
         <table>
             <thead>
                 <tr>
-                    <th colspan="6">
+                    <th colspan="7">
                         <h3>  
                             <center> <input type="text" onkeypress="check(event, this)"></center>
                             <center> <p id="descriptionDisplay"></center>
