@@ -99,6 +99,10 @@
                         out.println("<dev id='" + item.getCode() + "@colorDisplay'>____</dev>");
                         out.println("</td>");
 
+                        out.println("<td>");
+                        out.println("<button onclick=\"removeRow(this)\">Remove</button>");
+                        out.println("</td>");
+
                         out.println("</tr>");
                         x++;
                     }
@@ -317,6 +321,13 @@
                                         returnValue += deliveredItems[x].id + ":" + deliveredItems[x].value + ",";
                                     }
                                     return returnValue;
+                                }
+
+
+                                function removeRow(button) {
+                                    // Get the parent row of the clicked button and remove it
+                                    let row = button.parentNode.parentNode;
+                                    row.parentNode.removeChild(row);
                                 }
     </script>
 </body>
