@@ -407,7 +407,7 @@ public class EndoController {
 
     }
 
-    @RequestMapping(value = "showEndoDelivery", method = RequestMethod.GET)
+    @RequestMapping(value = "showEndoDelivery", method = RequestMethod.POST)
     public String showEndoDelivery(@RequestParam(name = "id") String endoDeliveryId,
             ModelMap modelMap) {
         EndoDao endoDao = new EndoDao();
@@ -415,10 +415,17 @@ public class EndoController {
 
         DeliveryInvoice lastEndoDelivery = endoDao.getLastEndoDelivery();
 
+      
+        LinkedHashMap<String, DeliveryItem> items = lastEndoDelivery.getItems();
+
+        for (Map.Entry<String, DeliveryItem> itemsEntry : items.entrySet()) {
+            itemsEntry.getValue().setDescription(pet4UItemsRowByRow.get(itemsEntry.getKey()).getDescription());
+           
+        }
+        
+
         modelMap.addAttribute("deliveryInvoice", lastEndoDelivery);
 
-        ArrayList<Item> listValues = new ArrayList<Item>(pet4UItemsRowByRow.values());
-        modelMap.addAttribute("pet4UItemsRowByRow", listValues);
 
         // String saveButton = "<button class=\"btn-primary\" onclick=\"requestRouter('updateEndoDeliveryChecking.htm')\"><H1>UPDATE  ENDO Delivery Checking</H1></button>";
         modelMap.addAttribute("saveButton", "");
