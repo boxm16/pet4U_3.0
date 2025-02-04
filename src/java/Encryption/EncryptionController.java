@@ -23,7 +23,7 @@ public class EncryptionController {
             return "adminIndex";
         } else if (password.equals("bilobi")) {
             session.setAttribute("user", "identified");
-            session.setAttribute("userName", "vasilis");
+            session.setAttribute("userName", "Vasilis");
             return "vasilisIndex";
         } else {
             session.setAttribute("user", "unidentified");
@@ -72,7 +72,7 @@ public class EncryptionController {
         if (userName == null) {
             return "authorization";
         }
-        if (userName.equals("vasilis")) {
+        if (userName.equals("Vasilis")) {
             return "vasilisIndex";
         }
         if (userName.equals("me")) {

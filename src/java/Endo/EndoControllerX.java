@@ -765,6 +765,7 @@ public class EndoControllerX {
     }
 
     //______________________________ΕΝΔΟ ΠΑΡΑΛΑΒΕΣ Β________________________
+ 
     @RequestMapping(value = "endoParalaves_B", method = RequestMethod.GET)
     public String endoParalaves_B(ModelMap modelMap) {
         EndoDaoX endoDaoX = new EndoDaoX();
@@ -772,7 +773,7 @@ public class EndoControllerX {
 
         LinkedHashMap<String, EndoApostolis> endoApostoliss = endoDaoX.getLastIncomingEndoApostoliss(10);
         LinkedHashMap<String, EndoParalavis> endoParalaviss = endoDaoX.getLastEndoParalaviss(10);
-       
+
         EndoDao endoDao = new EndoDao();
         DeliveryInvoice endoDelivery = endoDao.getLastEndoDelivery();
         Iterator<Entry<String, EndoParalavis>> endoParalavissIterator = endoParalaviss.entrySet().iterator();
@@ -809,8 +810,12 @@ public class EndoControllerX {
         modelMap.addAttribute("incomingEndos", endoApostoliss);
         modelMap.addAttribute("endoDelivery", endoDelivery);
 
-        //-----------------------------------------
         return "endo/endoParalaves_B";
     }
 
+    
+    
+    //-----------------------------------------
+    
+    
 }
