@@ -407,7 +407,7 @@ public class EndoController {
 
     }
 
-    @RequestMapping(value = "showEndoDelivery", method = RequestMethod.POST)
+    @RequestMapping(value = "showEndoDelivery", method = RequestMethod.GET)
     public String showEndoDelivery(@RequestParam(name = "id") String endoDeliveryId,
             ModelMap modelMap) {
         EndoDao endoDao = new EndoDao();
