@@ -407,6 +407,35 @@ public class EndoController {
 
     }
 
+    //this method is the same as above, SAVE, if i need to change it in future
+    @RequestMapping(value = "updateEndoDeliveryChecking", method = RequestMethod.POST)
+    public String updateEndoDeliveryChecking(@RequestParam(name = "sentItems") String sentItemsData,
+            @RequestParam(name = "deliveredItems") String deliveredItemsData) {
+        System.out.println(sentItemsData);
+        System.out.println(deliveredItemsData);
+        DeliveryInvoice deliveryInvoice = new DeliveryInvoice();
+        String endoDeliveryId = LocalDateTime.now().toString();
+        deliveryInvoice.setInvoiceId(endoDeliveryId);
+
+        LinkedHashMap<String, String> deliveredItems = decodeDeliveredItemsData(deliveredItemsData);
+        LinkedHashMap<String, String> sentItems = decodeDeliveredItemsData(sentItemsData);
+
+        ArrayList<DeliveryItem> deliveryItems = new ArrayList<>();
+        for (Map.Entry<String, String> deliveredItemsEntry : deliveredItems.entrySet()) {
+            DeliveryItem deliveryItem = new DeliveryItem();
+            deliveryItem.setCode(deliveredItemsEntry.getKey());
+            deliveryItem.setDeliveredQuantity(deliveredItemsEntry.getValue());
+            deliveryItem.setSentQuantity(sentItems.get(deliveredItemsEntry.getKey()));
+            deliveryItems.add(deliveryItem);
+        }
+
+        EndoDao endoDao = new EndoDao();
+        String result = endoDao.saveEndoDeliveryChecking(endoDeliveryId, deliveryItems, this.endoIdsArray);
+
+        System.out.println("Saved Endos Paralavis: ");
+        return "redirect:endoParalaves_B.htm";
+    }
+
     @RequestMapping(value = "showEndoDelivery", method = RequestMethod.GET)
     public String showEndoDelivery(@RequestParam(name = "id") String endoDeliveryId,
             ModelMap modelMap) {
@@ -415,17 +444,14 @@ public class EndoController {
 
         DeliveryInvoice lastEndoDelivery = endoDao.getLastEndoDelivery();
 
-      
         LinkedHashMap<String, DeliveryItem> items = lastEndoDelivery.getItems();
 
         for (Map.Entry<String, DeliveryItem> itemsEntry : items.entrySet()) {
             itemsEntry.getValue().setDescription(pet4UItemsRowByRow.get(itemsEntry.getKey()).getDescription());
-           
+
         }
-        
 
         modelMap.addAttribute("deliveryInvoice", lastEndoDelivery);
-
 
         // String saveButton = "<button class=\"btn-primary\" onclick=\"requestRouter('updateEndoDeliveryChecking.htm')\"><H1>UPDATE  ENDO Delivery Checking</H1></button>";
         modelMap.addAttribute("saveButton", "");
