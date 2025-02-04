@@ -913,7 +913,7 @@ public class EndoDao {
                 }
                 DeliveryItem deliveryItem = new DeliveryItem();
                 deliveryItem.setCode(resultSet.getString("item_code"));
-                deliveryItem.setQuantity(resultSet.getString("sent"));
+                deliveryItem.setSentQuantity(resultSet.getString("sent"));
                 deliveryItem.setDeliveredQuantity(resultSet.getString("delivered"));
                 deliveryItems.put(resultSet.getString("item_code"), deliveryItem);
                 x++;
