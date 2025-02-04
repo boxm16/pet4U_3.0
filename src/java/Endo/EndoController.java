@@ -331,7 +331,7 @@ public class EndoController {
         ArrayList<AltercodeContainer> pet4UAllAltercodeContainers = endoDao.getAllAltercodeContainers();
         System.out.println(pet4UAllAltercodeContainers.size());
         modelMap.addAttribute("pet4UAllAltercodeContainers", pet4UAllAltercodeContainers);
-        
+
         String saveButton = "<button class=\"btn-primary\" onclick=\"requestRouter('saveEndoDeliveryChecking.htm')\"><H1>Save  ENDO Delivery Checking</H1></button>";
         modelMap.addAttribute("saveButton", saveButton);
         return "endo/endoDeliveryChecking";
@@ -403,6 +403,25 @@ public class EndoController {
 
         String saveButton = "<button class=\"btn-primary\" onclick=\"requestRouter('updateEndoDeliveryChecking.htm')\"><H1>UPDATE  ENDO Delivery Checking</H1></button>";
         modelMap.addAttribute("saveButton", saveButton);
+        return "endo/endoDeliveryChecking";
+
+    }
+
+    @RequestMapping(value = "showEndoDelivery", method = RequestMethod.POST)
+    public String showEndoDelivery(@RequestParam(name = "id") String endoDeliveryId,
+            ModelMap modelMap) {
+        EndoDao endoDao = new EndoDao();
+        LinkedHashMap<String, DeliveryItem> pet4UItemsRowByRow = endoDao.getPet4UItemsRowByRow();
+
+        DeliveryInvoice lastEndoDelivery = endoDao.getLastEndoDelivery();
+
+        modelMap.addAttribute("deliveryInvoice", lastEndoDelivery);
+
+        ArrayList<Item> listValues = new ArrayList<Item>(pet4UItemsRowByRow.values());
+        modelMap.addAttribute("pet4UItemsRowByRow", listValues);
+
+        // String saveButton = "<button class=\"btn-primary\" onclick=\"requestRouter('updateEndoDeliveryChecking.htm')\"><H1>UPDATE  ENDO Delivery Checking</H1></button>";
+        modelMap.addAttribute("saveButton", "");
         return "endo/endoDeliveryChecking";
 
     }
