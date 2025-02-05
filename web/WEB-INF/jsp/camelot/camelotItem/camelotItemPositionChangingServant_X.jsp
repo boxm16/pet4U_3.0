@@ -46,7 +46,7 @@
                                 <center>  
                                     <form action="confirmCamelotItemPositionChangingX.htm"  method="POST">
                                         <input hidden name="itemId" value="${itemId}">
-                                        <input hidden name="pickingPositionIdXA" value="">
+                                        <input hidden id= "pickingPositionIdXA" name="pickingPositionIdXA" value="">
                                         <input hidden name="pickingPositionIdXB" value="${positionXB.key}">
                                         <button type="submit" class="btn btn-primary">
                                             Set Position
@@ -64,6 +64,11 @@
         <script>
 
 
+            function setPickingPositionIdXA() {
+                let dropdown = document.getElementById("comboBox");
+                let pickingPositionIdXA = document.getElementById("pickingPositionIdXA");
+                pickingPositionIdXA.value = dropdown.value; // Set hidden field value to selected dropdown value
+            }
 
             function myFunction() {
                 var input, filter, table, tr, td, i, txtValue;
@@ -85,13 +90,6 @@
             }
 
 
-            function setPickingPositionIdXA() {
-                let dropdown = document.getElementById("comboBox");
-                let pickingPositionIdXA = document.getElementById("pickingPositionIdXA");
-
-                console.log("Selected Value:", dropdown.value); // Debugging
-                pickingPositionIdXA.value = dropdown.value; // Set hidden field value to selected dropdown value
-            }
             function markAsFullyLoaded() {
                 let title = document.getElementById("title");
                 title.style.backgroundColor = "green";
