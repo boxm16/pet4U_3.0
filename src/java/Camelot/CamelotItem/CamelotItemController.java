@@ -104,4 +104,18 @@ public class CamelotItemController {
 
         return "/camelot/camelotItem/camelotItemPositionChangingServant_X";
     }
+
+    @RequestMapping(value = "confirmCamelotItemPositionChangingX")
+    public String confirmCamelotItemPositionChangingX(@RequestParam(name = "itemId") String itemCode,
+            @RequestParam(name = "pickingPositionIdXA") String pickingPositionIdXA,
+            @RequestParam(name = "pickingPositionIdXB") String pickingPositionIdXB,
+            ModelMap model, HttpSession session) {
+        String userName = (String) session.getAttribute("userName");
+        if (userName == null || (!userName.equals("me") && !userName.equals("Lefteris"))) {
+            System.out.println("Somebody trying to breach encryption");
+            return "index";
+        }
+        System.out.println("POSITION: "+pickingPositionIdXA+pickingPositionIdXB);
+        return "/camelot/camelotItem/camelotItemPositionChangingServant_X";
+    }
 }

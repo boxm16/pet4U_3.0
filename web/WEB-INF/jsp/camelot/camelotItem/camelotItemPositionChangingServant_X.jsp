@@ -19,7 +19,7 @@
                     <center>
                         <h2 id="title" style="background-color:red">Change  Position</h2>
 
-                        <select id="comboBox" name="comboBox" style='font-size: 40px;'>
+                        <select id="comboBox" name="comboBox" style='font-size: 40px;' onchange="setPickingPositionIdXA()">
                             <%
                                 LinkedHashMap<Integer, String> items = (LinkedHashMap<Integer, String>) request.getAttribute("camelotPickingPositionsXA");
                                 if (items != null) {
@@ -45,7 +45,8 @@
                                 <center>  
                                     <form action="confirmCamelotItemPositionChangingX.htm"  method="POST">
                                         <input hidden name="itemId" value="${itemId}">
-                                        <input hidden name="pickingPositionId" value="${positionXB.key}">
+                                        <input hidden name="pickingPositionIdXA" value="">
+                                        <input hidden name="pickingPositionIdXB" value="${positionXB.key}">
                                         <button type="submit" class="btn btn-primary">
                                             Set Position
                                         </button>
@@ -60,6 +61,13 @@
             </div>
         </div>
         <script>
+
+            function setPickingPositionIdXA() {
+                let dropdown = document.getElementById("comboBox");
+                let pickingPositionIdXA = document.getElementById("pickingPositionIdXA");
+                pickingPositionIdXA.value = dropdown.value; // Set hidden field value to selected dropdown value
+            }
+
             function myFunction() {
                 var input, filter, table, tr, td, i, txtValue;
                 input = document.getElementById("myInput");
