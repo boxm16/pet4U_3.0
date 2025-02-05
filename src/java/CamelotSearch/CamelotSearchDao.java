@@ -39,6 +39,7 @@ public class CamelotSearchDao {
             while (resultSet.next()) {
                 if (index == 0) {
                     item = new Item();
+                      item.setItemId(resultSet.getLong("ITEM_ID"));
                     item.setCode(resultSet.getString("ABBREVIATION").trim());
                     item.setDescription(resultSet.getString("NAME").trim());
 
