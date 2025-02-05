@@ -1,3 +1,4 @@
+<%@page import="java.util.Map"%>
 <%@page import="java.util.LinkedHashMap"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
@@ -21,11 +22,11 @@
 
                         <select id="comboBox" name="comboBox" style='font-size: 40px;' onchange="setPickingPositionIdXA()">
                             <%
-                                LinkedHashMap<Integer, String> items = (LinkedHashMap<Integer, String>) request.getAttribute("camelotPickingPositionsXA");
-                                if (items != null) {
-                                    for (Integer key : items.keySet()) {
+                                LinkedHashMap<Integer, String> positionsXA = (LinkedHashMap<Integer, String>) request.getAttribute("camelotPickingPositionsXA");
+                                if (positionsXA != null) {
+                                    for (Map.Entry<Integer,String> positionsXAEntrySet : positionsXA.entrySet()) {
                             %>
-                            <option value="<%= key%>"><%= items.get(key)%></option>
+                            <option value="<%= positionsXAEntrySet.getKey() %>"><%= positionsXAEntrySet.getValue() %></option>
                             <%
                                     }
                                 }
