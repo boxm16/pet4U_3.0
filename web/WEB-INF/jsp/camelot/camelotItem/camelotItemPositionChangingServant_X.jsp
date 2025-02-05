@@ -24,9 +24,9 @@
                             <%
                                 LinkedHashMap<Integer, String> positionsXA = (LinkedHashMap<Integer, String>) request.getAttribute("camelotPickingPositionsXA");
                                 if (positionsXA != null) {
-                                    for (Map.Entry<Integer,String> positionsXAEntrySet : positionsXA.entrySet()) {
+                                    for (Map.Entry<Integer, String> positionsXAEntrySet : positionsXA.entrySet()) {
                             %>
-                            <option value="<%= positionsXAEntrySet.getKey() %>"><%= positionsXAEntrySet.getValue() %></option>
+                            <option value="<%= positionsXAEntrySet.getKey()%>"><%= positionsXAEntrySet.getValue()%></option>
                             <%
                                     }
                                 }
@@ -63,11 +63,7 @@
         </div>
         <script>
 
-            function setPickingPositionIdXA() {
-                let dropdown = document.getElementById("comboBox");
-                let pickingPositionIdXA = document.getElementById("pickingPositionIdXA");
-                pickingPositionIdXA.value = dropdown.value; // Set hidden field value to selected dropdown value
-            }
+
 
             function myFunction() {
                 var input, filter, table, tr, td, i, txtValue;
@@ -88,6 +84,14 @@
                 }
             }
 
+
+            function setPickingPositionIdXA() {
+                let dropdown = document.getElementById("comboBox");
+                let pickingPositionIdXA = document.getElementById("pickingPositionIdXA");
+
+                console.log("Selected Value:", dropdown.value); // Debugging
+                pickingPositionIdXA.value = dropdown.value; // Set hidden field value to selected dropdown value
+            }
             function markAsFullyLoaded() {
                 let title = document.getElementById("title");
                 title.style.backgroundColor = "green";
