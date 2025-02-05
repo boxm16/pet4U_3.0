@@ -1,6 +1,7 @@
 package Camelot.CamelotItem;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -85,6 +86,22 @@ public class CamelotItemController {
         model.addAttribute("camelotPickingPositions", camelotPickingPositions);
         return "/camelot/camelotItem/camelotItemPositionChangingServant_B";
     }
-    //-----------------
+    //-----------------OLD CAMELOT POSITION CHANGINH---------------------
 
+    @RequestMapping(value = "goForCamelotPositionChanging_X")
+    public String goForCamelotPositionChanging_X(@RequestParam(name = "itemCode") String itemCode,
+            ModelMap model, HttpSession session) {
+        String userName = (String) session.getAttribute("userName");
+        if (userName == null || (!userName.equals("me") && !userName.equals("Lefteris"))) {
+            System.out.println("Somebody trying to breach encryption");
+            return "index";
+        }
+        LinkedHashMap<Integer, String> camelotPickingPositionsXA = camelotItemDao.getCamelotPickingPositionsXA();
+        LinkedHashMap<Integer, String> camelotPickingPositionsXB = camelotItemDao.getCamelotPickingPositionsXB();
+        model.addAttribute("itemCode", itemCode);
+        model.addAttribute("camelotPickingPositionsXA", camelotPickingPositionsXA);
+        model.addAttribute("camelotPickingPositionsXB", camelotPickingPositionsXB);
+
+        return "/camelot/camelotItem/camelotItemPositionChangingServant_X";
+    }
 }

@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,50 @@ public class CamelotItemDao {
             Logger.getLogger(CamelotItemDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return camelotPickingPositions;
+    }
+
+    LinkedHashMap<Integer, String> getCamelotPickingPositionsXA() {
+        LinkedHashMap<Integer, String> camelotPickingPositionsXA = new LinkedHashMap<>();
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+        Connection connection = databaseConnectionFactory.getCamelotMicrosoftSQLConnection();
+
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("select * from [fotiou].[EliteUser].[IR1]  ORDER BY NAME;");
+            while (resultSet.next()) {
+                String position = resultSet.getString("NAME");
+                int id = resultSet.getInt("ID");
+                camelotPickingPositionsXA.put(id, position);
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(CamelotItemDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return camelotPickingPositionsXA;
+    }
+
+    LinkedHashMap<Integer, String> getCamelotPickingPositionsXB() {
+        LinkedHashMap<Integer, String> camelotPickingPositionsXB = new LinkedHashMap<>();
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+        Connection connection = databaseConnectionFactory.getCamelotMicrosoftSQLConnection();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("select * from [fotiou].[EliteUser].[IR2]  ORDER BY NAME;");
+            while (resultSet.next()) {
+                String position = resultSet.getString("NAME");
+                int id = resultSet.getInt("ID");
+                camelotPickingPositionsXB.put(id, position);
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(CamelotItemDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return camelotPickingPositionsXB;
     }
 
 }
