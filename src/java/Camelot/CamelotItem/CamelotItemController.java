@@ -89,7 +89,7 @@ public class CamelotItemController {
     //-----------------OLD CAMELOT POSITION CHANGINH---------------------
 
     @RequestMapping(value = "goForCamelotPositionChanging_X")
-    public String goForCamelotPositionChanging_X(@RequestParam(name = "itemCode") String itemCode,
+    public String goForCamelotPositionChanging_X(@RequestParam(name = "itemId") String itemCode,
             ModelMap model, HttpSession session) {
         String userName = (String) session.getAttribute("userName");
         if (userName == null || (!userName.equals("me") && !userName.equals("Lefteris"))) {
