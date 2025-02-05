@@ -115,7 +115,7 @@ public class CamelotItemController {
             System.out.println("Somebody trying to breach encryption");
             return "index";
         }
-        System.out.println("POSITION: "+pickingPositionIdXA+pickingPositionIdXB);
+        System.out.println("POSITION: "+pickingPositionIdXA+":"+pickingPositionIdXB);
         return "/camelot/camelotItem/camelotItemPositionChangingServant_X";
     }
 }
