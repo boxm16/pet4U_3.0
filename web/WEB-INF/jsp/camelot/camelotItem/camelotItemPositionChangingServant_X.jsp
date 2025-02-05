@@ -1,3 +1,4 @@
+<%@page import="java.util.LinkedHashMap"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -18,7 +19,22 @@
                     <center>
                         <h2 id="title" style="background-color:red">Change  Position</h2>
 
+                        <select id="comboBox" name="comboBox">
+                            <%
+                                LinkedHashMap<String, String> items = (LinkedHashMap<String, String>) request.getAttribute("camelotPickingPositionsXA");
+                                if (items != null) {
+                                    for (String key : items.keySet()) {
+                            %>
+                            <option value="<%= key%>"><%= items.get(key)%></option>
+                            <%
+                                    }
+                                }
+                            %>
+                        </select>
                         <h3> <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Find Position" title="Type in a name">  </h3>
+
+
+
                         <table id="myTable" class="table table-bordered" style="width:700px; font-size:25px" >
                             <c:forEach items="${camelotPickingPositionsXB}" var="positionXB" varStatus="status">
                                 <tr>
