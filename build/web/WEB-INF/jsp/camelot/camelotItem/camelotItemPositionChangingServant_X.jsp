@@ -29,7 +29,7 @@
                                 <center>  
                                     <form action="confirmCamelotItemPositionChangingX.htm"  method="POST">
                                         <input hidden name="itemId" value="${itemId}">
-                                        <input hidden name="pickingPositionName" value="${positionXB}">
+                                        <input hidden name="pickingPositionId" value="${positionXB.key}">
                                         <button type="submit" class="btn btn-primary">
                                             Set Position
                                         </button>
