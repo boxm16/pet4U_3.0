@@ -23,7 +23,7 @@
                             <c:forEach items="${camelotPickingPositionsXB}" var="positionXB" varStatus="status">
                                 <tr>
                                     <td style="width: 200px"> 
-                                        ${positionXB}
+                                        ${positionXB.value}
                                     </td>
                                     <td style="width: 50px">  
                                 <center>  
