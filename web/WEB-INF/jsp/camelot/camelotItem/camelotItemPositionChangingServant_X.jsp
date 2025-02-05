@@ -21,9 +21,9 @@
 
                         <select id="comboBox" name="comboBox">
                             <%
-                                LinkedHashMap<String, String> items = (LinkedHashMap<String, String>) request.getAttribute("camelotPickingPositionsXA");
+                                LinkedHashMap<Integer, String> items = (LinkedHashMap<Integer, String>) request.getAttribute("camelotPickingPositionsXA");
                                 if (items != null) {
-                                    for (String key : items.keySet()) {
+                                    for (Integer key : items.keySet()) {
                             %>
                             <option value="<%= key%>"><%= items.get(key)%></option>
                             <%
