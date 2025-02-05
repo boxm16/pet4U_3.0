@@ -19,7 +19,7 @@
                     <center>
                         <h2 id="title" style="background-color:red">Change  Position</h2>
 
-                        <select id="comboBox" name="comboBox">
+                        <select id="comboBox" name="comboBox" style='font-size: 40px;'>
                             <%
                                 LinkedHashMap<Integer, String> items = (LinkedHashMap<Integer, String>) request.getAttribute("camelotPickingPositionsXA");
                                 if (items != null) {
