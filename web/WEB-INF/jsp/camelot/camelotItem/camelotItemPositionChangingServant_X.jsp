@@ -46,7 +46,7 @@
                                 <center>  
                                     <form action="confirmCamelotItemPositionChangingX.htm"  method="POST">
                                         <input hidden name="itemId" value="${itemId}">
-                                        <input hidden id= "pickingPositionIdXA" name="pickingPositionIdXA" value="">
+                                        <input hidden class= "pickingPositionIdXA" name="pickingPositionIdXA" value="">
                                         <input hidden name="pickingPositionIdXB" value="${positionXB.key}">
                                         <button type="submit" class="btn btn-primary">
                                             Set Position
@@ -66,7 +66,7 @@
 
             function setPickingPositionIdXA() {
                 let dropdown = document.getElementById("comboBox");
-                let pickingPositionIdXA = document.getElementById("pickingPositionIdXA");
+                let pickingPositionIdXA = document.getElementByClassName("pickingPositionIdXA");
                 pickingPositionIdXA.value = dropdown.value; // Set hidden field value to selected dropdown value
             }
 
