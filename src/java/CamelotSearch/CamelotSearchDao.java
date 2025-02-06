@@ -39,7 +39,7 @@ public class CamelotSearchDao {
             while (resultSet.next()) {
                 if (index == 0) {
                     item = new Item();
-                      item.setItemId(resultSet.getLong("ITEM_ID"));
+                    item.setItemId(resultSet.getLong("ITEM_ID"));
                     item.setCode(resultSet.getString("ABBREVIATION").trim());
                     item.setDescription(resultSet.getString("NAME").trim());
 
@@ -287,6 +287,81 @@ public class CamelotSearchDao {
             x++;
         }
         return stringBuilder;
+    }
+
+    Item getItemByItemId(String itemId) {
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+        Connection connection = databaseConnectionFactory.getCamelotMicrosoftSQLConnection();
+        Item item = null;
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = null;
+//maybe thre is some join, or other clause for things like this, but i dnt know yet, no time for search
+            resultSet = statement.executeQuery("select ABBREVIATION from WH1 WHERE ITEM_ID=" + itemId + ";");
+            String code = "";
+            while (resultSet.next()) {
+                code = resultSet.getString("ABBREVIATION");
+            }
+            resultSet = statement.executeQuery("select * from WH1 WHERE ABBREVIATION='" + code + "';");
+            int index = 0;
+            while (resultSet.next()) {
+                if (index == 0) {
+                    item = new Item();
+                    item.setItemId(resultSet.getLong("ITEM_ID"));
+                    item.setCode(resultSet.getString("ABBREVIATION").trim());
+                    item.setDescription(resultSet.getString("NAME").trim());
+
+                    String position_1 = "";
+                    String position_2 = "";
+                    if (resultSet.getString("EXPR1") != null) {
+                        position_1 = resultSet.getString("EXPR1").trim();
+                    }
+                    if (resultSet.getString("EXPR2") != null) {
+                        position_2 = resultSet.getString("EXPR2").trim();
+                    }
+                    item.setPosition(position_1 + position_2);
+
+                    item.setQuantity(resultSet.getString("QTYBALANCE"));
+
+                    index++;
+                }
+                AltercodeContainer altercodeContainer = new AltercodeContainer();
+                altercodeContainer.setAltercode(resultSet.getString("ALTERNATECODE").trim());
+                if (resultSet.getString("CODEDESCRIPTION") == null) {
+                    altercodeContainer.setStatus("");
+                } else {
+                    altercodeContainer.setStatus(resultSet.getString("CODEDESCRIPTION").trim());
+                }
+                if (resultSet.getString("MAIN_BARCODE") == null) {
+                    //do nothing
+                } else {
+                    if (resultSet.getString("MAIN_BARCODE").equals(resultSet.getString("ALTERNATECODE"))) {
+                        altercodeContainer.setMainBarcode(true);
+                        //  item.setMainBarcode(resultSet.getString("ALTERNATECODE"));// HERE ALTERNATECODE AND MAIN_CODE IS THE SAME
+                        item.setMainBarcode(resultSet.getString("ALTERNATECODE"));//
+                    } else {
+                        altercodeContainer.setMainBarcode(false);
+                    }
+                }
+
+                if (resultSet.getShort("IS_PACK_BC") == 0) {
+                    //do nothing
+                } else {
+                    altercodeContainer.setPackageBarcode(true);
+                    altercodeContainer.setItemsInPackage(resultSet.getDouble("PACK_QTY"));
+                }
+
+                if (item != null) {//It should never be, i mean, if there is an altercode, there is an item. But, just in any case
+                    item.addAltercodeContainer(altercodeContainer);
+                }
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(SearchDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return item;
     }
 
 }

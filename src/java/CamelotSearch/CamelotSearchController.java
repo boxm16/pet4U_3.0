@@ -64,6 +64,17 @@ public class CamelotSearchController {
         return "camelotSearch/singleItemSearchResult";
     }
 
+    @RequestMapping(value = "findCamelotItemByItemId")
+    public String findCamelotItemById(@RequestParam(name = "itemId") String itemId, ModelMap modelMap) {
+        Item item = camelotSearchDao.getItemByItemId(itemId);
+        modelMap.addAttribute("target", itemId);
+        modelMap.addAttribute("item", item);
+        if (item == null) {
+            return "camelotSearch/searchErrorPage";
+        }
+        return "camelotSearch/singleItemSearchResult";
+    }
+
     @RequestMapping(value = "findCamelotItemsByAltercodeMask")
     public String findCamelotItemsByAltercodeMask(@RequestParam(name = "altercodeMask") String altercodeMask, ModelMap modelMap) {
         LinkedHashMap<String, Item> items = camelotSearchDao.getItemsByAltercodeMask(altercodeMask);

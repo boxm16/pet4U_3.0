@@ -89,7 +89,7 @@ public class CamelotItemController {
     //-----------------OLD CAMELOT POSITION CHANGINH---------------------
 
     @RequestMapping(value = "goForCamelotPositionChanging_X")
-    public String goForCamelotPositionChanging_X(@RequestParam(name = "itemCode") String itemCode,
+    public String goForCamelotPositionChanging_X(@RequestParam(name = "itemId") String itemId,
             ModelMap model, HttpSession session) {
         String userName = (String) session.getAttribute("userName");
         if (userName == null || (!userName.equals("me") && !userName.equals("Lefteris"))) {
@@ -98,7 +98,7 @@ public class CamelotItemController {
         }
         LinkedHashMap<Integer, String> camelotPickingPositionsXA = camelotItemDao.getCamelotPickingPositionsXA();
         LinkedHashMap<Integer, String> camelotPickingPositionsXB = camelotItemDao.getCamelotPickingPositionsXB();
-        model.addAttribute("itemCode", itemCode);
+        model.addAttribute("itemId", itemId);
         model.addAttribute("camelotPickingPositionsXA", camelotPickingPositionsXA);
         model.addAttribute("camelotPickingPositionsXB", camelotPickingPositionsXB);
 
@@ -106,7 +106,7 @@ public class CamelotItemController {
     }
 
     @RequestMapping(value = "confirmCamelotItemPositionChangingX")
-    public String confirmCamelotItemPositionChangingX(@RequestParam(name = "itemId") String itemCode,
+    public String confirmCamelotItemPositionChangingX(@RequestParam(name = "itemId") String itemId,
             @RequestParam(name = "pickingPositionIdXA") String pickingPositionIdXA,
             @RequestParam(name = "pickingPositionIdXB") String pickingPositionIdXB,
             ModelMap model, HttpSession session) {
@@ -118,11 +118,11 @@ public class CamelotItemController {
         model.addAttribute("pickingPositionIdXA", pickingPositionIdXA);
         model.addAttribute("pickingPositionIdXB", pickingPositionIdXB);
 
-        System.out.println("ItemCode: "+itemCode+". POSITION: " + pickingPositionIdXA + ":" + pickingPositionIdXB);
+        System.out.println("itemId: "+itemId+". POSITION: " + pickingPositionIdXA + ":" + pickingPositionIdXB);
       
         String result = "DONE";
         if (result.equals("DONE")) {
-            return "redirect:findCamelotItemByAltercode.htm?altercode=" + itemCode;
+            return "redirect:findCamelotItemByItemId.htm?itemId=" + itemId;
         } else {
             model.addAttribute("message", result);
             return "erroPage";
