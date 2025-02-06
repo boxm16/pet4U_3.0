@@ -115,7 +115,18 @@ public class CamelotItemController {
             System.out.println("Somebody trying to breach encryption");
             return "index";
         }
-        System.out.println("POSITION: "+pickingPositionIdXA+":"+pickingPositionIdXB);
-        return "/camelot/camelotItem/camelotItemPositionChangingServant_X";
+        model.addAttribute("pickingPositionIdXA", pickingPositionIdXA);
+        model.addAttribute("pickingPositionIdXB", pickingPositionIdXB);
+
+        System.out.println("POSITION: " + pickingPositionIdXA + ":" + pickingPositionIdXB);
+      
+        String result = "DONE";
+        if (result.equals("DONE")) {
+            return "redirect:getCamelotItemByAltercode.htm?altercode=" + itemCode;
+        } else {
+            model.addAttribute("message", result);
+            return "erroPage";
+        }
+
     }
 }
