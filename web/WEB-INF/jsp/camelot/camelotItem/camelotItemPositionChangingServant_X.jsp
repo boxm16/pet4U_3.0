@@ -66,9 +66,7 @@
 
             function setPickingPositionIdXA() {
                 let dropdown = document.getElementById("comboBox");
-                let pickingPositionIdXA = document.getElementsByClassName("");
-               // pickingPositionIdXA.value = dropdown.value; // Set hidden field value to selected dropdown value
-
+       
                 let inputs = document.getElementsByClassName("pickingPositionIdXA");
 
                 for (let i = 0; i < inputs.length; i++) {
