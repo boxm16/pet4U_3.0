@@ -153,7 +153,7 @@
         </div>
         <script>
 
-            function  redirect(itemCode) {
+            function  redirect(itemId) {
                 window.location.href = "goForCamelotPositionChanging_X.htm?itemId=" + itemId;
             }
         </script>
