@@ -122,7 +122,7 @@ public class CamelotItemController {
       
         String result = "DONE";
         if (result.equals("DONE")) {
-            return "redirect:getCamelotItemByAltercode.htm?altercode=" + itemCode;
+            return "redirect:findCamelotItemByAltercode.htm?altercode=" + itemCode;
         } else {
             model.addAttribute("message", result);
             return "erroPage";
