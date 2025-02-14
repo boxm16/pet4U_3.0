@@ -118,9 +118,10 @@ public class CamelotItemController {
         model.addAttribute("pickingPositionIdXA", pickingPositionIdXA);
         model.addAttribute("pickingPositionIdXB", pickingPositionIdXB);
 
-        System.out.println("itemId: "+itemId+". POSITION: " + pickingPositionIdXA + ":" + pickingPositionIdXB);
-      
-        String result = "DONE";
+        System.out.println("itemId: " + itemId + ". POSITION: " + pickingPositionIdXA + ":" + pickingPositionIdXB);
+
+        String result = camelotItemDao.updateCamelotItemPosition(itemId, pickingPositionIdXA, pickingPositionIdXB);
+
         if (result.equals("DONE")) {
             return "redirect:findCamelotItemByItemId.htm?itemId=" + itemId;
         } else {
