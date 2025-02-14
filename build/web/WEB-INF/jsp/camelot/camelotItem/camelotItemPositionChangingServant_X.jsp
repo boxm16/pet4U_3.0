@@ -26,7 +26,7 @@
                             <%
                                 ArrayList<String> camelotItemsPositions = (ArrayList<String>) request.getAttribute("camelotItemPositions");
                                 String positionXName = camelotItemsPositions.get(0);
-                                int positionXId;
+                                int positionXId=0;
                                 String positionY = camelotItemsPositions.get(1);
                                 LinkedHashMap<Integer, String> positionsXA = (LinkedHashMap<Integer, String>) request.getAttribute("camelotPickingPositionsXA");
                                 if (positionsXA != null) {
@@ -58,7 +58,7 @@
                                 <center>  
                                     <form action="confirmCamelotItemPositionChangingX.htm"  method="POST">
                                         <input hidden name="itemId" value="${itemId}">
-                                        <input hidden class= "pickingPositionIdXA" name="pickingPositionIdXA" value="${positionXId}">
+                                        <input hidden class= "pickingPositionIdXA" name="pickingPositionIdXA" value="<%= positionXId%>">
                                         <input hidden name="pickingPositionIdXB" value="${positionXB.key}">
                                         <button type="submit" class="btn btn-primary">
                                             Set Position
