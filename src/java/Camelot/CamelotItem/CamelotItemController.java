@@ -96,9 +96,12 @@ public class CamelotItemController {
             System.out.println("Somebody trying to breach encryption");
             return "index";
         }
+        ArrayList<String> camelotItemPositions = camelotItemDao.getCamelotItemPositions(itemId);
         LinkedHashMap<Integer, String> camelotPickingPositionsXA = camelotItemDao.getCamelotPickingPositionsXA();
         LinkedHashMap<Integer, String> camelotPickingPositionsXB = camelotItemDao.getCamelotPickingPositionsXB();
         model.addAttribute("itemId", itemId);
+
+        model.addAttribute("camelotItemPositions", camelotItemPositions);
         model.addAttribute("camelotPickingPositionsXA", camelotPickingPositionsXA);
         model.addAttribute("camelotPickingPositionsXB", camelotPickingPositionsXB);
 

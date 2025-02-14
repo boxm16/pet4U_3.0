@@ -1,3 +1,5 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.LinkedHashMap"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
@@ -20,13 +22,19 @@
                     <center>
                         <h2 id="title" style="background-color:red">Change  Position</h2>
 
-                        <select id="comboBox" name="comboBox" style='font-size: 40px;' onchange="setPickingPositionIdXA()">
+                        <select id="comboBox" name="comboBox" style='font-size: 40px;' >
                             <%
+                                ArrayList<String> camelotItemsPositions = (ArrayList<String>) request.getAttribute("camelotItemPositions");
+                                String positionXName = camelotItemsPositions.get(0);
+                                int positionXId;
+                                String positionY = camelotItemsPositions.get(1);
                                 LinkedHashMap<Integer, String> positionsXA = (LinkedHashMap<Integer, String>) request.getAttribute("camelotPickingPositionsXA");
                                 if (positionsXA != null) {
                                     for (Map.Entry<Integer, String> positionsXAEntrySet : positionsXA.entrySet()) {
                             %>
-                            <option value="<%= positionsXAEntrySet.getKey()%>"><%= positionsXAEntrySet.getValue()%></option>
+                            <option value="<%= positionsXAEntrySet.getKey()%>" <%= positionsXAEntrySet.getValue().equals(positionXName) ? "selected" : ""%> >
+                                <%= positionXName%>
+                            </option>
                             <%
                                     }
                                 }
@@ -64,17 +72,17 @@
         <script>
 
 
-            function setPickingPositionIdXA() {
+          
+
+            function myFunction() {
                 let dropdown = document.getElementById("comboBox");
-       
+
                 let inputs = document.getElementsByClassName("pickingPositionIdXA");
 
                 for (let i = 0; i < inputs.length; i++) {
                     inputs[i].value = dropdown.value;
                 }
-            }
-
-            function myFunction() {
+                //---------------------------------
                 var input, filter, table, tr, td, i, txtValue;
                 input = document.getElementById("myInput");
                 filter = input.value.toUpperCase();

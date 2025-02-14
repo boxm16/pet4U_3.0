@@ -158,4 +158,37 @@ public class CamelotItemDao {
         }
     }
 
+    ArrayList<String> getCamelotItemPositions(String itemId) {
+        ArrayList<String> camelotItemPositions = new ArrayList<>();
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+        Connection connection = databaseConnectionFactory.getCamelotMicrosoftSQLConnection();
+
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = null;
+
+            resultSet = statement.executeQuery("select EXPR1, EXPR2 from WH1 WHERE ITEM_ID='" + itemId + "';");
+
+            while (resultSet.next()) {
+
+                String position_1 = "";
+                String position_2 = "";
+                if (resultSet.getString("EXPR1") != null) {
+                    position_1 = resultSet.getString("EXPR1").trim();
+                }
+                if (resultSet.getString("EXPR2") != null) {
+                    position_2 = resultSet.getString("EXPR2").trim();
+                }
+                camelotItemPositions.add(position_1);
+                camelotItemPositions.add(position_2);
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(CamelotItemDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return camelotItemPositions;
+    }
+
 }
