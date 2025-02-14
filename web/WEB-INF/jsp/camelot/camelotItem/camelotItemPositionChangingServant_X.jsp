@@ -22,7 +22,7 @@
                     <center>
                         <h2 id="title" style="background-color:red">Change  Position</h2>
 
-                        <select id="comboBox" name="comboBox" style='font-size: 40px;' >
+                        <select id="comboBox" name="comboBox" style='font-size: 40px;' onchange="setPickingPositionIdXA()">
                             <%
                                 ArrayList<String> camelotItemsPositions = (ArrayList<String>) request.getAttribute("camelotItemPositions");
                                 String positionXName = camelotItemsPositions.get(0);
@@ -32,7 +32,11 @@
                                 if (positionsXA != null) {
                                     for (Map.Entry<Integer, String> positionsXAEntrySet : positionsXA.entrySet()) {
                             %>
-                            <option value="<%= positionsXAEntrySet.getKey()%>" <%= positionsXAEntrySet.getValue().equals(positionXName) ? "selected" : ""%> >
+                            <option value="<%= positionsXAEntrySet.getKey()%>" 
+                                    <% if (positionsXAEntrySet.getValue().equals(positionXName)) {
+                                            positionXId = positionsXAEntrySet.getKey();%> 
+                                    selected 
+                                    <% }%>>
                                 <%= positionsXAEntrySet.getValue()%>
                             </option>
                             <%
@@ -54,7 +58,7 @@
                                 <center>  
                                     <form action="confirmCamelotItemPositionChangingX.htm"  method="POST">
                                         <input hidden name="itemId" value="${itemId}">
-                                        <input hidden class= "pickingPositionIdXA" name="pickingPositionIdXA" value="">
+                                        <input hidden class= "pickingPositionIdXA" name="pickingPositionIdXA" value="${positionXId}">
                                         <input hidden name="pickingPositionIdXB" value="${positionXB.key}">
                                         <button type="submit" class="btn btn-primary">
                                             Set Position
@@ -72,9 +76,7 @@
         <script>
 
 
-          
-
-            function myFunction() {
+            function setPickingPositionIdXA() {
                 let dropdown = document.getElementById("comboBox");
 
                 let inputs = document.getElementsByClassName("pickingPositionIdXA");
@@ -82,7 +84,9 @@
                 for (let i = 0; i < inputs.length; i++) {
                     inputs[i].value = dropdown.value;
                 }
-                //---------------------------------
+            }
+
+            function myFunction() {
                 var input, filter, table, tr, td, i, txtValue;
                 input = document.getElementById("myInput");
                 filter = input.value.toUpperCase();
