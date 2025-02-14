@@ -108,7 +108,7 @@ public class CamelotItemDao {
             // 3. Prepare the first update statement
             String sqlXA = "UPDATE [fotiou].[EliteUser].[INI] SET IF1ID = ? WHERE ID = ?";
             updateStatementXA = connection.prepareStatement(sqlXA);
-            updateStatementXA.setString(1, newPositionIdXB);
+            updateStatementXA.setString(1, newPositionIdXA);
             updateStatementXA.setString(2, itemId);
 
             // 4. Prepare the second update statement
