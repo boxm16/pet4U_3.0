@@ -33,7 +33,7 @@
                                     for (Map.Entry<Integer, String> positionsXAEntrySet : positionsXA.entrySet()) {
                             %>
                             <option value="<%= positionsXAEntrySet.getKey()%>" <%= positionsXAEntrySet.getValue().equals(positionXName) ? "selected" : ""%> >
-                                <%= positionXName%>
+                                <%= positionsXAEntrySet.getValue()%>
                             </option>
                             <%
                                     }
