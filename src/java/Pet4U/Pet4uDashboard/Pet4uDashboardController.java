@@ -20,7 +20,7 @@ public class Pet4uDashboardController {
         String userName = (String) session.getAttribute("userName");
         if (userName == null) {
             return "/pet4u/pet4uAuthorization";
-        } else if (userName.equals("me") ||userName.equals("mixail") || userName.equals("vasilis")) {
+        } else if (userName.equals("me") || userName.equals("mixail") || userName.equals("vasilis") || userName.equals("general")) {
             return "/pet4u/pet4uDashboard";
         } else {
             return "/pet4u/pet4uAuthorization";
@@ -40,6 +40,10 @@ public class Pet4uDashboardController {
         } else if (password.equals("bilobi")) {
             session.setAttribute("user", "identified");
             session.setAttribute("userName", "vasilis");
+            return "/pet4u/pet4uDashboard";
+        } else if (password.equals("1111")) {
+            session.setAttribute("user", "identified");
+            session.setAttribute("userName", "general");
             return "/pet4u/pet4uDashboard";
         } else {
             session.setAttribute("user", "unidentified");
