@@ -86,7 +86,7 @@ public class CamelotDeliveryInvoiceCreationSapApiClient {
     private void createDeliveryInvoice(String sessionId) throws IOException {
         String apiUrl = BASE_URL + "/Invoices";
         String jsonBody = "{"
-                + "\"CardCode\": \"ΠΡΟ-000122\","
+                + "\"CardCode\": \"ΠΕΛ-000765\","
                
                 + "\"U_Picker\": \"1\","
                 + "\"U_PickerName\": \"ΑΓΓΕΛΑΚΟΠΟΥΛΟΣ ΕΛΕΥΘΕΡΙΟΣ\","
