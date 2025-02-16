@@ -13,6 +13,8 @@ public class CamelotDeliveryController {
 
     @RequestMapping(value = "camelotDeliveryInvoiceCreation")
     public String camelotDelivery() {
+        CamelotDeliveryInvoiceCreationSapApiClient client=new CamelotDeliveryInvoiceCreationSapApiClient();
+        client.create();
 
         return "/camelot/camelotDelivery/camelotDeliveryInvoiceCreationResult";
     }
