@@ -87,7 +87,7 @@ public class CamelotDeliveryInvoiceCreationSapApiClient {
         String apiUrl = BASE_URL + "/Invoices";
         String jsonBody = "{"
                 + "\"CardCode\": \"ΠΡΟ-000122\","
-                + "\"TaxDate\": \"2024-02-16\","
+                + "\"TaxDate\": \"23 Ιαν 2025, 12:00:00.0 π.μ.\","
                 + "\"U_Picker\": \"1\","
                 + "\"U_PickerName\": \"John Doe\","
                 + "\"U_ClosingName\": \"1\","
