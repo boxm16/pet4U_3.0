@@ -101,7 +101,7 @@ public class CamelotDeliveryInvoiceCreationSapApiClient {
                 + "        \"ItemCode\": \"1271\","
                 + "        \"Quantity\": 5,"
                 + "        \"Price\": 6.2,"
-                + "        \"BaseType\": 17,"
+                + "        \"BaseType\": 15,"
                 + "        \"BaseEntry\": 0,"
                 + "        \"BaseLine\": 1"
                 + "    }"
