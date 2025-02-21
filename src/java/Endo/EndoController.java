@@ -382,7 +382,13 @@ public class EndoController {
         LinkedHashMap<String, DeliveryItem> items = lastEndoDelivery.getItems();
 
         for (Map.Entry<String, DeliveryItem> itemsEntry : items.entrySet()) {
-            itemsEntry.getValue().setDescription(pet4UItemsRowByRow.get(itemsEntry.getKey()).getDescription());
+            Item i = pet4UItemsRowByRow.get(itemsEntry.getKey());
+            if (i == null) {
+                itemsEntry.getValue().setDescription("NO DATA FOR THIS ITEM CODE");
+            } else {
+                itemsEntry.getValue().setDescription(i.getDescription());
+            }
+
             if (sentItems.containsKey(itemsEntry.getKey())) {
                 itemsEntry.getValue().setSentQuantity(sentItems.get(itemsEntry.getKey()).getSentQuantity());
                 sentItems.remove(itemsEntry.getKey());
