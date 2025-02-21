@@ -3,12 +3,6 @@
     Created on : Jun 25, 2023, 6:30:28 PM
     Author     : Michail Sitmalidis
 --%>
-<%@page import="java.time.LocalDate"%>
-<%@page import="Endo.EndoPackaging"%>
-<%@page import="BasicModel.Item"%>
-<%@page import="Endo.EndoApostolis"%>
-<%@page import="Endo.EndoOrderItem"%>
-<%@page import="Endo.EndoOrder"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page import="java.util.LinkedHashMap"%>
 <%@page import="java.util.Map"%>
@@ -20,7 +14,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Endo Order Checking/Joint Load</title>
+        <title>ENDO  Checking/Joint Load</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
         <style>
@@ -39,159 +33,74 @@
                 position: sticky;
                 top: 0px;
             }
-            #packagesCount    {
-                width: 3.5em;
-                font-size: 40px;
-                font-weight: bold;
-                background: lightgreen;
-            }
-            #labelsCount    {
-                width: 3.5em;
-                font-size: 40px;
-                font-weight: bold;
-                background: lightgreen;
-            }
-
 
         </style>
     </head>
     <body onload="rechechAll()">
     <center>
+        <h1>ΕΛΕΓΧΟΣ ΠΑΡΑΛΑΒΗΣ ΕΝΔΟΔΙΑΚΙΝΙΣΗΣ /Joint Load</h1>
+        <hr>
+        <button onclick="rechechAll()" class="btn-lg btn-warning">ReCheck All Items </button>
 
-        <h1>Endo Order Checking/Joint Load</h1>
-
-        <table>
-            <tr>
-                <th style=" font-size: 20px;">ΚΑΤΑΣΤΗΜΑ</th>
-                <th style=" font-size: 20px;">Order Date</th>
-                <th style=" font-size: 20px;">Delivery Date</th>
-            </tr>
-            <tr >
-                <td style=" font-size: 30px;">${endoApostolis.receiver}</td>
-                <td style=" font-size: 30px;">${endoOrder.dateString}</td>
-                <td style="font-size: 30px;background-color:${dateCheckColor}">${endoApostolis.dateString}</td>
-            </tr>
-        </table>
         <hr>
         <table>
-            <thead> 
+            <thead>
+                <tr>
+                    <th colspan="7">
+                        <h3>  
+                            <center> <input type="text" onkeypress="check(event, this)"></center>
+                            <center> <p id="descriptionDisplay"></center>
+                        </h3>
+                    </th>
+                </tr>
+
                 <tr>
                     <th>A/A</th>
-                    <th>Ordered<br>Altercode</th>
                     <th>Code</th>
                     <th>Description</th>
-                    <th>Ordered</th>
-                    <th>Invoiced</th>
+                    <th>Sent</th>
+                    <th>Delivered</th>
                     <th>Alert</th>
+                    <th>Remove</th>
                 </tr>
             </thead>
             <tbody id="tableBody">
                 <%
+
+                    DeliveryInvoice deliveryInvoice = (DeliveryInvoice) request.getAttribute("deliveryInvoice");
+                    LinkedHashMap<String, DeliveryItem> items = deliveryInvoice.getItems();
+
                     int x = 1;
-                    int y = 0;
-                    EndoApostolis endoApostolis = (EndoApostolis) request.getAttribute("endoApostolis");
-
-                    LinkedHashMap<String, Item> invoicedItems = endoApostolis.getItems();
-
-                    EndoOrder endoOrder = (EndoOrder) request.getAttribute("endoOrder");
-                    LinkedHashMap<String, EndoOrderItem> orderedItems = endoOrder.getOrderedItems();
-                    LinkedHashMap<String, EndoPackaging> allEndoPackaging = (LinkedHashMap) request.getAttribute("allEndoPackaging");
-                    for (Map.Entry<String, EndoOrderItem> orderedItemEntry : orderedItems.entrySet()) {
-                        EndoOrderItem orderedItem = orderedItemEntry.getValue();
-                        Item invoicedItem = invoicedItems.remove(orderedItemEntry.getKey());
-
-                        String rowColor = "inherited";
-                        if (invoicedItem != null) {
-                            EndoPackaging endoPackaging = allEndoPackaging.get(invoicedItem.getCode());
-                            if (endoPackaging != null) {
-                                double q = Double.valueOf(invoicedItem.getQuantity());
-                                int qi = (int) q;
-
-                                rowColor = "#C2F2D7";
-                                y = y + (qi / endoPackaging.getItem() * endoPackaging.getLabel());
-                            }
-                        }
-
-                        out.println("<tr style='background-color:" + rowColor + "'>");
-                        out.println("<td>");
-                        out.println(x);
-                        out.println("</td>");
-
-                        out.println("<td>");
-                        out.println(orderedItem.getOrderedAltercode());
-                        out.println("</td>");
-
-                        out.println("<td style='padding-left: 5px; padding-left: 5px;'>");
-                        out.println("<a href='findItemByAltercode.htm?altercode=" + orderedItem.getCode() + "' target='_blank'>" + orderedItem.getCode() + "</a>");
-                        out.println("</td>");
-
-                        out.println("<td>");
-                        out.println(orderedItem.getDescription());
-                        out.println("</td>");
-
-                        out.println("<td>");
-                        out.println("<input  class='ordered' type='number' id='" + orderedItem.getCode() + "@ordered' value='" + orderedItem.getOrderedQuantity() + "' readonly width='10px'>");
-                        out.println("</td>");
-
-                        out.println("<td>");
-                        if (invoicedItem == null) {
-
-                            out.println("<input class='invoiced' type='number' id='" + orderedItem.getCode() + "@invoiced' value='0.0'>");
-                        } else {
-                            out.println("<input class='invoiced' type='number' id='" + invoicedItem.getCode() + "@invoiced' value='" + invoicedItem.getQuantity() + "'>");
-                        }
-                        out.println("</td>");
-
-                        out.println("<td>");
-                        out.println("<dev id='" + orderedItem.getCode() + "@colorDisplay'>____</dev>");
-                        out.println("</td>");
-
-                        out.println("</tr>");
-                        x++;
-                    }
-
-                    for (Map.Entry<String, Item> invoicedItemsEntry : invoicedItems.entrySet()) {
-                        Item invoicedItem = invoicedItemsEntry.getValue();
-
-                        String rowColor = "inherited";
-                        if (invoicedItem != null) {
-                            EndoPackaging endoPackaging = allEndoPackaging.get(invoicedItem.getCode());
-                            if (endoPackaging != null) {
-                                double q = Double.valueOf(invoicedItem.getQuantity());
-                                int qi = (int) q;
-
-                                rowColor = "#C2F2D7";
-                                y = y + (qi / endoPackaging.getItem() * endoPackaging.getLabel());
-                            }
-                        }
+                    for (Map.Entry<String, DeliveryItem> deliveryItemEntry : items.entrySet()) {
+                        DeliveryItem item = deliveryItemEntry.getValue();
 
                         out.println("<tr>");
                         out.println("<td>");
                         out.println(x);
                         out.println("</td>");
 
+                        out.println("<td>");
+                        out.println("<a href='itemAnalysis.htm?code=" + item.getCode() + "' target='_blank'>" + item.getCode() + "</a>");
+                        out.println("</td>");
+
                         out.println("<td style='padding-left: 5px; padding-left: 5px;'>");
-                        out.println("-------");
-                        out.println("</td>");
-
-                        out.println("<td style='padding-left: 5px; padding-left: 5px;'>");
-                        out.println("<a href='itemAnalysis.htm?code=" + invoicedItem.getCode() + "' target='_blank'>" + invoicedItem.getCode() + "</a>");
+                        out.println("<a href='showDeltiaApostolisOfItem.htm?itemCode=" + item.getCode() + "' target='_blank'>" + item.getDescription() + "</a>");
                         out.println("</td>");
 
                         out.println("<td>");
-                        out.println(invoicedItem.getDescription());
+                        out.println("<input  class='sent' type='number' id='" + item.getCode() + "@sent' value='" + item.getSentQuantity() + "' readonly width='10px'>");
                         out.println("</td>");
 
                         out.println("<td>");
-                        out.println("<input  class='ordered' type='number' id='" + invoicedItem.getCode() + "@ordered' value='0.0' readonly width='10px'>");
+                        out.println("<input class='delivered' type='number' id='" + item.getCode() + "@delivered' value='" + item.getDeliveredQuantity() + "'>");
                         out.println("</td>");
 
                         out.println("<td>");
-                        out.println("<input class='invoiced' type='number' id='" + invoicedItem.getCode() + "@invoiced' value='" + invoicedItem.getQuantity() + "'>");
+                        out.println("<dev id='" + item.getCode() + "@colorDisplay'>____</dev>");
                         out.println("</td>");
 
                         out.println("<td>");
-                        out.println("<dev id='" + invoicedItem.getCode() + "@colorDisplay'>____</dev>");
+                        out.println("<button onclick=\"removeRow(this)\">Remove</button>");
                         out.println("</td>");
 
                         out.println("</tr>");
@@ -201,82 +110,265 @@
             </tbody>
         </table>
         <hr>
+        ${saveButton}
+        <form id="form" action="#" method="POST">
+            <input hidden type="text"  name="invoiceNumber" value="${deliveryInvoice.getNumber()}">
+            <input hidden type="text" id="deliveredItems" name="deliveredItems">
+            <input hidden type="text" id="sentItems" name="sentItems">
+        </form>
 
-        <h3 style='background-color: #C2F2D7'> ΜΟΝΟΚΟΜΜΑΤΑ(τσουβάλια, κλουβιά, catsan): <%   out.println(y);%></h3>
-        <input hidden id="monokommata"  value="<%   out.println(y);%>" >
-        <h3> ΔΕΜΑΤΑ(κουτιά)   <input  type="number" id="packagesCount" name="packagesCount" value="0"  onkeyup="sumUp()" onchange="sumUp()">
-            ΣΥΝΟΛΟ ΕΤΙΚΕΤΩΝ   <input  type="number" id="labelsCount" name="labelsCount" <%  out.println("value='" + y + "'");%> > </h3>
-        <br>
-        <button id="printerButton" style='font-size: 40px; width:250px;' class="btn btn-warning" onclick="printLabels()"> PRINT LABELS</button>
 
-
-        <div id='printingResponseDisplay'></div>
-        <hr>
-        <h1>  <a href="bindOrderWithEndo.htm?orderId=${endoOrder.id}&outgoingEndoId=${endoApostolis.id}">SAVE (BIND) ENDO ORDER AND ENDO APOSTOLIS</a></h1>
-
-        <hr> <hr> <hr> <hr> <hr> <hr> <hr> <hr> <hr> <hr> <hr> <hr> <hr> <hr> <hr>
     </center>
-
-
-    <!-- jQuery CDN -  -->
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-    <!-- Popper.JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-    <!-- Bootstrap JS -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-    <!-- jQuery Custom Scroller CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
     <script type="text/javascript">
-            function rechechAll() {
-                var orderedItems = document.querySelectorAll(".ordered");
-                for (x = 0; x < orderedItems.length; x++) {
-                    let orderedItem = orderedItems[x];
-                    //  console.log(orderedItem);
-                    const orderedItemArrayed = orderedItem.id.split("@");
-                    let itemtemCode = orderedItemArrayed[0];
-                    //   console.log("Item Code : " + itemtemCode);
-                    let invoiced = document.getElementById(itemtemCode + "@invoiced");
-                    if (invoiced == null) {
-                        console.log("WHOPA");
-                    } else {
-                        invoiced = invoiced.value * 1;
-                    }
 
-                    let ordered = document.getElementById(itemtemCode + "@ordered").value * 1;
-                    let colorDisplay = document.getElementById(itemtemCode + "@colorDisplay");
-                    let diff = invoiced - ordered;
-                    if (diff > 0) {
-                        colorDisplay.style.backgroundColor = 'red';
-                    }
-                    if (diff < 0) {
-                        colorDisplay.style.backgroundColor = 'yellow';
-                    }
-                    if (diff === 0) {
-                        colorDisplay.style.backgroundColor = 'green';
-                    }
-                }
-            }
+                                class Item {
+                                    constructor(altercode, code, description) {
+                                        this.altercode = altercode;
+                                        this.code = code;
+                                        this.description = description;
+                                    }
+                                }
 
-            packagesCount.addEventListener(`focus`, () => packagesCount.select());
-            labelsCount.addEventListener(`focus`, () => labelsCount.select());
+                                class AltercodeContainer {
+                                    constructor(altercode, packageBarcode, itemsInPackage) {
+                                        this.altercode = altercode;
+                                        this.packageBarcode = packageBarcode;
+                                        this.itemsInPackage = itemsInPackage;
+                                    }
+                                }
 
 
-            document.getElementById("packagesCount")
-                    .addEventListener("keyup", function (event) {
-                        event.preventDefault();
-                        if (event.keyCode === 13) {
-                            document.getElementById("printerButton").focus();
-                        }
-                    });
-            document.getElementById("labelsCount")
-                    .addEventListener("keyup", function (event) {
-                        event.preventDefault();
-                        if (event.keyCode === 13) {
-                            document.getElementById("printerButton").focus();
-                        }
-                    });
+                                var items = new Array();
+        <c:forEach items="${pet4UItemsRowByRow}" var="item">
+                                var altercode = "${item.altercode}";
+                                var code = "${item.code}";
+                                var description = "${item.description}";
+                                var item = new Item(altercode, code, description);
+                                items[altercode] = item;
+        </c:forEach>
 
+
+
+
+                                var altercodeContainers = new Array();
+        <c:forEach items="${pet4UAllAltercodeContainers}" var="altercodeContainer">
+
+                                var altercodeBarcode = "${altercodeContainer.altercode}";
+                                var packageBarcode = "${altercodeContainer.packageBarcode}";
+                                var itemsInPackage = "${altercodeContainer.itemsInPackage}";
+                                var altercodeContainer = new AltercodeContainer(altercodeBarcode, packageBarcode, itemsInPackage);
+
+                                altercodeContainers[altercodeBarcode] = altercodeContainer;
+        </c:forEach>
+
+
+                                function check(event, input) {
+                                    if (event.keyCode === 13) {
+                                        var altercode = input.value.trim();
+                                        console.log("altercode:" + altercode);
+                                        var item = items[altercode];
+                                        var altercodeContainer = altercodeContainers[altercode];
+
+                                        if (item == null) {
+                                            if (altercodeContainer != null) {
+                                                console.log("Something Wrong, Item is null, but barocede is not" + altercode);
+                                            }
+                                            let unknownBarcodeSent = document.getElementById(altercode + "@sent");
+                                            let unknownBarcodeDelivered = document.getElementById(altercode + "@delivered");
+
+                                            if (unknownBarcodeSent == null) {
+                                                document.getElementById("descriptionDisplay").innerHTML = altercode + " : NKNOWN ALTERCODE : " + altercode;
+                                                addRow(altercode, "UNKNOWN ALTERCODE " + altercode);
+                                                let unknownBarcodeDelivered = document.getElementById(altercode + "@delivered");
+                                                let v = unknownBarcodeDelivered.value;
+                                                v++;
+                                                unknownBarcodeDelivered.value = v;
+                                            } else {
+                                                let v = unknownBarcodeDelivered.value;
+                                                v++;
+                                                unknownBarcodeDelivered.value = v;
+                                            }
+
+                                            let colorDisplay = document.getElementById(altercode + "@colorDisplay");
+                                            colorDisplay.style.backgroundColor = 'yellow';
+
+
+                                        } else {
+                                            var code = item.code;
+                                            console.log(code);
+                                            var description = item.description;
+                                            document.getElementById("descriptionDisplay").innerHTML = altercode + " : " + description;
+
+
+                                            //----------
+                                            if (altercodeContainer == null) {
+                                                console.log("Something Wrong, while Item is not null, barcode is null" + altercode);
+                                            }
+                                            //-------------
+
+                                            let sent = document.getElementById(code + "@sent");
+                                            if (sent == null) {
+                                                addRow(item.code, item.description);
+                                            } else {
+                                                sent = sent.value * 1;// here
+                                            }
+
+                                            let delivered = document.getElementById(code + "@delivered").value * 1;
+
+                                            if (altercodeContainer.packageBarcode == "true") {
+                                                delivered += altercodeContainer.itemsInPackage * 1;
+                                            } else {
+                                                delivered++;
+                                            }
+
+                                            document.getElementById(code + "@delivered").value = delivered;
+
+                                            let colorDisplay = document.getElementById(code + "@colorDisplay");
+
+                                            let diff = sent - delivered;
+                                            if (diff > 0) {
+                                                colorDisplay.style.backgroundColor = 'red';
+                                            }
+                                            if (diff < 0) {
+                                                colorDisplay.style.backgroundColor = 'yellow';
+                                            }
+                                            if (diff === 0) {
+                                                colorDisplay.style.backgroundColor = 'green';
+                                            }
+                                        }
+
+                                        input.value = "";
+
+                                    }
+                                }
+
+                                function addRow(code, description) {
+                                    // Get the table body element in which you want to add row
+                                    let table = document.getElementById("tableBody");
+
+                                    // Create row element
+                                    let row = document.createElement("tr")
+
+                                    // Create cells
+                                    let c1 = document.createElement("td")
+                                    let c2 = document.createElement("td")
+                                    let c3 = document.createElement("td")
+                                    let c4 = document.createElement("td")
+                                    let c5 = document.createElement("td")
+                                    let c6 = document.createElement("td")
+                                    let c7 = document.createElement("td")
+                                    // Insert data to cells
+                                    c1.innerText = "----";
+                                    c2.innerText = code;
+                                    c3.innerText = description;
+                                    c4.innerHTML = "<input class='sent' type='number' id='" + code + "@sent' value='0' readonly width='10px'>";
+                                    c5.innerHTML = "<input class='delivered' type='number' id='" + code + "@delivered' value='0'>";
+                                    c6.innerHTML = "<dev id='" + code + "@colorDisplay'>____</dev>";
+                                    c7.innerHTML = "<button onclick=\"removeRow(this)\">Remove</button>";
+
+
+                                    // Append cells to row
+                                    row.appendChild(c1);
+                                    row.appendChild(c2);
+                                    row.appendChild(c3);
+                                    row.appendChild(c4);
+                                    row.appendChild(c5);
+                                    row.appendChild(c6);
+                                    row.appendChild(c7);
+
+
+                                    // Append row to table body
+                                    table.appendChild(row)
+                                }
+
+                                //---------------------------------
+                                //--------------------------------
+                                //---------------------------------
+                                function requestRouter(requestTarget) {
+                                    form.action = requestTarget;
+
+                                    let sent = collectSentData();
+                                    sentItems.value = sent;
+
+                                    let delivered = collectDeliveredData();
+                                    deliveredItems.value = delivered;
+
+
+                                    // console.log(data);
+                                    form.submit();
+                                }
+
+                                function collectSentData() {
+                                    var returnValue = "";
+                                    var sentItems = document.querySelectorAll(".sent");
+
+                                    for (x = 0; x < sentItems.length; x++) {
+
+                                        returnValue += sentItems[x].id + ":" + sentItems[x].value + ",";
+                                    }
+                                    return returnValue;
+                                }
+
+                                function collectDeliveredData() {
+                                    var returnValue = "";
+                                    var deliveredItems = document.querySelectorAll(".delivered");
+
+                                    for (x = 0; x < deliveredItems.length; x++) {
+
+                                        returnValue += deliveredItems[x].id + ":" + deliveredItems[x].value + ",";
+                                    }
+                                    return returnValue;
+                                }
+
+
+                                function removeRow(button) {
+                                    // Get the parent row of the clicked button and remove it
+                                    let row = button.parentNode.parentNode;
+                                    row.parentNode.removeChild(row);
+                                }
+
+
+                                //---------------------------------
+                                function rechechAll() {
+                                    var deliveredItems = document.querySelectorAll(".delivered");
+
+                                    for (x = 0; x < deliveredItems.length; x++) {
+                                        let deliveredItem = deliveredItems[x];
+                                        const deliveredItemArrayed = deliveredItem.id.split("@");
+                                        let itemtemCode = deliveredItemArrayed[0];
+
+                                        let sent = document.getElementById(itemtemCode + "@sent");
+                                        if (sent == null) {
+                                            addRow(item.code, item.description);
+                                        } else {
+                                            sent = sent.value * 1;
+                                        }
+
+                                        let delivered = document.getElementById(itemtemCode + "@delivered").value * 1;
+
+
+
+                                        let colorDisplay = document.getElementById(itemtemCode + "@colorDisplay");
+
+                                        let diff = sent - delivered;
+                                        if (diff > 0) {
+                                            colorDisplay.style.backgroundColor = 'red';
+                                        }
+                                        if (diff < 0) {
+                                            colorDisplay.style.backgroundColor = 'yellow';
+                                        }
+                                        if (diff === 0) {
+                                            colorDisplay.style.backgroundColor = 'green';
+                                        }
+                                    }
+                                }
     </script>
+
 </body>
 </html>
