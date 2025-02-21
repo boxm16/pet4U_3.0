@@ -232,9 +232,7 @@
 
             packagesCount.addEventListener(`focus`, () => packagesCount.select());
             labelsCount.addEventListener(`focus`, () => labelsCount.select());
-            document.addEventListener("DOMContentLoaded", function () {
-                rechechAll();
-            });
+           
 
             document.getElementById("packagesCount")
                     .addEventListener("keyup", function (event) {
