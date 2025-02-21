@@ -228,28 +228,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
 
     <script type="text/javascript">
-
-
-            packagesCount.addEventListener(`focus`, () => packagesCount.select());
-            labelsCount.addEventListener(`focus`, () => labelsCount.select());
-           
-
-            document.getElementById("packagesCount")
-                    .addEventListener("keyup", function (event) {
-                        event.preventDefault();
-                        if (event.keyCode === 13) {
-                            document.getElementById("printerButton").focus();
-                        }
-                    });
-            document.getElementById("labelsCount")
-                    .addEventListener("keyup", function (event) {
-                        event.preventDefault();
-                        if (event.keyCode === 13) {
-                            document.getElementById("printerButton").focus();
-                        }
-                    });
-
-
             function rechechAll() {
                 var orderedItems = document.querySelectorAll(".ordered");
                 for (x = 0; x < orderedItems.length; x++) {
@@ -280,32 +258,25 @@
                 }
             }
 
-            //----------------------- PRINTING AJAX------------
+            packagesCount.addEventListener(`focus`, () => packagesCount.select());
+            labelsCount.addEventListener(`focus`, () => labelsCount.select());
 
 
-            function sumUp() {
-                labelsCount.value = monokommata.value * 1 + packagesCount.value * 1;
-            }
+            document.getElementById("packagesCount")
+                    .addEventListener("keyup", function (event) {
+                        event.preventDefault();
+                        if (event.keyCode === 13) {
+                            document.getElementById("printerButton").focus();
+                        }
+                    });
+            document.getElementById("labelsCount")
+                    .addEventListener("keyup", function (event) {
+                        event.preventDefault();
+                        if (event.keyCode === 13) {
+                            document.getElementById("printerButton").focus();
+                        }
+                    });
 
-            function printLabels() {
-
-                ajax(labelsCount.value, "${endoApostolis.receiver}");
-            }
-
-
-
-            function ajax(labelsCount, storeName) {
-                $("#printingResponseDisplay").html("Printig......");
-                $.ajax({
-                    url: 'printLabel.htm?labelsCount=' + labelsCount + '&storeName=' + storeName,
-                    //  contentType: "application/x-www-form-urlencoded;charset=UTF-8",
-
-                    success: function (status) {
-                        $("#printingResponseDisplay").html(status);
-                        console.log(status)
-                    }
-                });
-            }
     </script>
 </body>
 </html>
