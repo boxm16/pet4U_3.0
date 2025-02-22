@@ -806,7 +806,7 @@ public class EndoControllerX {
                 }
             }
         }
-
+   ArrayList<String> lastEndoDeliveryInvoiceBindedsEndoApostolisIds = endoDao.getLastEndoDeliveryInvoiceBindedsEndoApostolisIds(endoDelivery.getId());
         modelMap.addAttribute("incomingEndos", endoApostoliss);
         modelMap.addAttribute("endoDelivery", endoDelivery);
 

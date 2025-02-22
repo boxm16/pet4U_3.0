@@ -400,10 +400,10 @@ public class Pet4uItemsController {
 
             Code128Bean barcode128Bean = new Code128Bean();
             barcode128Bean.setCodeset(Code128Constants.CODESET_B);
-            final int dpi = 100;
+            final int dpi = 100;////// try 300
             //Configure the barcode generator
             //adjust barcode width here
-            barcode128Bean.setModuleWidth(UnitConv.in2mm(5.0f / dpi));
+            barcode128Bean.setModuleWidth(UnitConv.in2mm(5.0f / dpi));///try just 0.4 without any f and / dpi
             barcode128Bean.doQuietZone(false);
             barcode128Bean.setBarHeight(8);
             //bean.setVerticalQuietZone(3);

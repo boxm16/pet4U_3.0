@@ -976,4 +976,35 @@ public class EndoDao {
         return allAltercodeContainers;
     }
 
+    ArrayList<String> getLastEndoDeliveryInvoiceBindedsEndoApostolisIds(String id) {
+
+        ArrayList<String> lastEndoDeliveryInvoiceBindedsEndoApostolisIds = new ArrayList<>();
+
+        String sql = "SELECT * FROM pet4u_db.endo_delivery_binding "
+                + "WHERE endo_delivery_id = 'id';";
+        ResultSet resultSet;
+
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            Connection connection = databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+
+            resultSet = statement.executeQuery(sql);
+
+            while (resultSet.next()) {
+                String binded_endo_apositlis_id = resultSet.getString("binded_endo_apositlis_id");
+
+                lastEndoDeliveryInvoiceBindedsEndoApostolisIds.add(binded_endo_apositlis_id);
+            }
+
+            resultSet.close();
+            statement.close();
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EndoDaoX.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return lastEndoDeliveryInvoiceBindedsEndoApostolisIds;
+    }
 }
