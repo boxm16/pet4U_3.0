@@ -995,6 +995,8 @@ public class EndoDao {
                 String binded_endo_apositlis_id = resultSet.getString("binded_endo_apositlis_id");
 
                 lastEndoDeliveryInvoiceBindedsEndoApostolisIds.add(binded_endo_apositlis_id);
+
+                System.out.println("binded_endo_apositlis_ID: " + binded_endo_apositlis_id);
             }
 
             resultSet.close();
