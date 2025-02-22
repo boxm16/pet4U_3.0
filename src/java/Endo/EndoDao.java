@@ -981,7 +981,7 @@ public class EndoDao {
         ArrayList<String> lastEndoDeliveryInvoiceBindedsEndoApostolisIds = new ArrayList<>();
 
         String sql = "SELECT * FROM pet4u_db.endo_delivery_binding "
-                + "WHERE endo_delivery_id = 'id';";
+                + "WHERE endo_delivery_id = '"+id+"';";
         ResultSet resultSet;
 
         try {
