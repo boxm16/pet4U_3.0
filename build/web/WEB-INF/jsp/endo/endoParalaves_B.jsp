@@ -77,7 +77,9 @@
                             </tr>
 
 
-                            <%                                LinkedHashMap<String, EndoApostolis> incomingEndos = (LinkedHashMap) request.getAttribute("incomingEndos");
+                            <%
+                                ArrayList<String> lastEndoDeliveryInvoiceBindedsEndoApostolisIds = (ArrayList) request.getAttribute("lastEndoDeliveryInvoiceBindedsEndoApostolisIds");
+                                LinkedHashMap<String, EndoApostolis> incomingEndos = (LinkedHashMap) request.getAttribute("incomingEndos");
                                 for (Map.Entry<String, EndoApostolis> entrySet : incomingEndos.entrySet()) {
 
                                     out.println("<tr>");
@@ -117,8 +119,15 @@
                                     out.println(entrySet.getValue().getNumber());
                                     out.println("</td>");
 
+                                    String id = entrySet.getValue().getId();
                                     out.println("<td>");
-                                    out.println("<input type='checkbox' class='endoId' id='" + entrySet.getValue().getId() + "' style='width:28px;height:28px' >");
+                                    if (lastEndoDeliveryInvoiceBindedsEndoApostolisIds.contains(id)) {
+
+                                        out.println("<input type='checkbox' class='endoId' id='" + id + "' style='width:28px;height:28px' checked >");
+                                    } else {
+                                        out.println("<input type='checkbox' class='endoId' id='" + id + "' style='width:28px;height:28px' >");
+
+                                    }
                                     out.println("</td>");
 
                                     out.println("</tr>");
@@ -187,7 +196,7 @@
             form.target = "_blank";
             form.action = requestTarget;
             endoIdsInput.value = collectSellectedCheckBoxes();
-          
+
             console.log(form.action);
             form.submit();
         }
