@@ -983,6 +983,7 @@ public class EndoDao {
         String sql = "SELECT * FROM pet4u_db.endo_delivery_binding "
                 + "WHERE endo_delivery_id = \""+id+"\";";
         ResultSet resultSet;
+        System.out.println("SE "+sql);
 
         try {
             DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
