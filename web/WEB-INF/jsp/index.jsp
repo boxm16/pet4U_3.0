@@ -34,7 +34,7 @@
                 <hr><hr>
                 <a href="camelotDashboard.htm" class="btn btn-outline" role="button" style='background-color: #dbb4c9 ; color: #762276;'><h1 style="font-size: 50px; font-weight : bold">Camelot<br>Dashboard</h1></a>
                 <hr><hr>
-                <a href="autherization.htm" class="btn btn-outline" role="button" style='background-color: #26766f ; '><h1 style="font-size: 50px; font-weight : bold">Log In</h1></a>
+                <a href="authorization.htm" class="btn btn-outline" role="button" style='background-color: #f2f218 ; '><h1 style="font-size: 50px; font-weight : bold">Authorization</h1></a>
                 <hr><hr>
             </center>
         </div>
