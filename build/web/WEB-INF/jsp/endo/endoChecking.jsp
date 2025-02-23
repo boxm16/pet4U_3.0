@@ -140,6 +140,7 @@
                 console.log("altercode:" + altercode);
                 var item = items[altercode];
                 if (item == null) {
+                    playBeep();
                     let unknownBarcodeX = document.getElementById(altercode + "@sent");
 
                     if (unknownBarcodeX == null) {
@@ -159,6 +160,7 @@
 
                     let sent = document.getElementById(code + "@sent");
                     if (sent == null) {
+                        playBeep();
                         addRow(item.code, item.description);
                     } else {
                         sent = sent.value * 1;
@@ -297,6 +299,25 @@
                     colorDisplay.style.backgroundColor = 'green';
                 }
             }
+        }
+
+        //----------------------------
+        function playBeep() {
+            let audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            let oscillator = audioCtx.createOscillator();
+            let gainNode = audioCtx.createGain();
+
+            oscillator.type = "sine";  // You can use 'square' for a harsher sound
+            oscillator.frequency.setValueAtTime(1000, audioCtx.currentTime); // 1000 Hz = Beep sound
+            gainNode.gain.setValueAtTime(1, audioCtx.currentTime);
+
+            oscillator.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+
+            oscillator.start();
+            setTimeout(() => {
+                oscillator.stop();
+            }, 500); // Beep duration: 500ms
         }
     </script>
 </body>
