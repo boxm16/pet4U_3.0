@@ -993,7 +993,7 @@ public class EndoDao {
             resultSet = statement.executeQuery(sql);
 
             while (resultSet.next()) {
-                String binded_endo_apositlis_id = resultSet.getString("binded_endo_apositlis_id");
+                String binded_endo_apositlis_id = resultSet.getString("binded_endo_apostolis_id");
 
                 lastEndoDeliveryInvoiceBindedsEndoApostolisIds.add(binded_endo_apositlis_id);
 
