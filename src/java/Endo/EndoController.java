@@ -333,10 +333,8 @@ public class EndoController {
         modelMap.addAttribute("pet4UAllAltercodeContainers", pet4UAllAltercodeContainers);
 
         String saveButton = "<button class=\"btn-primary\" onclick=\"requestRouter('saveEndoDeliveryChecking.htm')\"><H1>Save  ENDO Delivery Checking</H1></button>";
-        String uploadButton = "<button class=\"btn-danger\" onclick=\"requestRouter('saveAndUploadEndoDeliveryChecking.htm')\"><H1>Save  AND UPLOAD ENDO Delivery Checking</H1></button>";
-
         modelMap.addAttribute("saveButton", saveButton);
-        modelMap.addAttribute("uploadButton", uploadButton);
+
         return "endo/endoDeliveryChecking";
 
     }
@@ -415,10 +413,9 @@ public class EndoController {
         modelMap.addAttribute("pet4UAllAltercodeContainers", pet4UAllAltercodeContainers);
 
         String saveButton = "<button class=\"btn-primary\" onclick=\"requestRouter('updateEndoDeliveryChecking.htm')\"><H1>UPDATE  ENDO Delivery Checking</H1></button>";
-        String uploadButton = "<button class=\"btn-danger\" onclick=\"saveAndUploadInvoices()\"><H1>Save  AND UPLOAD ENDO Delivery Checking</H1></button>";
 
         modelMap.addAttribute("saveButton", saveButton);
-        modelMap.addAttribute("uploadButton", uploadButton);
+
         return "endo/endoDeliveryJointLoad";
 
     }
