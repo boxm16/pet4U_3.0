@@ -111,6 +111,8 @@
         </table>
         <hr>
         ${saveButton}
+        <hr><hr><br><br><hr><hr>
+        ${uploadButton}
         <form id="form" action="#" method="POST">
             <input hidden type="text"  name="invoiceNumber" value="${deliveryInvoice.getNumber()}">
             <input hidden type="text" id="deliveredItems" name="deliveredItems">
