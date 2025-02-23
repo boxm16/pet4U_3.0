@@ -335,8 +335,8 @@ public class EndoController {
         String saveButton = "<button class=\"btn-primary\" onclick=\"requestRouter('saveEndoDeliveryChecking.htm')\"><H1>Save  ENDO Delivery Checking</H1></button>";
         modelMap.addAttribute("saveButton", saveButton);
 
-        // return "endo/endoDeliveryChecking";
-        return "endo/endoDeliveryCheckingAI";
+        return "endo/endoDeliveryChecking";
+        // return "endo/endoDeliveryCheckingAI";
 
     }
 
