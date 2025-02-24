@@ -417,7 +417,7 @@ public class Pet4uItemsController {
             // Force Thicker Bars Using Graphics2D
             BufferedImage barcodeImage = canvasProvider.getBufferedImage();
             Graphics2D g2d = barcodeImage.createGraphics();
-            g2d.setStroke(new BasicStroke(4)); // 🔹 Thicker lines without resizing
+            g2d.setStroke(new BasicStroke(5)); // 🔹 Thicker lines without resizing
             g2d.drawImage(barcodeImage, 0, 0, null);
             g2d.dispose();
 
