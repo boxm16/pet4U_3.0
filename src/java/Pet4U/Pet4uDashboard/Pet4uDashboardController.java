@@ -39,7 +39,7 @@ public class Pet4uDashboardController {
             return "/pet4u/pet4uDashboard";
         } else if (password.equals("bilobi")) {
             session.setAttribute("user", "identified");
-            session.setAttribute("userName", "vasilis");
+            session.setAttribute("userName", "Vasilis");
             return "/pet4u/pet4uDashboard";
         } else if (password.equals("1111")) {
             session.setAttribute("user", "identified");
