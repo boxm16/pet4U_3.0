@@ -403,8 +403,8 @@ public class Pet4uItemsController {
 
             final int dpi = 600; // 🔹 Force High Resolution to Improve Line Rendering
 
-            barcode128Bean.setModuleWidth(1.2); // Still needed for basic scaling
-            barcode128Bean.setBarHeight(8); // Taller bars = better scanning
+            barcode128Bean.setModuleWidth(0.8); // Still needed for basic scaling
+            barcode128Bean.setBarHeight(20); // Taller bars = better scanning
             barcode128Bean.doQuietZone(true);
             barcode128Bean.setQuietZone(10);
 
@@ -417,7 +417,7 @@ public class Pet4uItemsController {
             // Force Thicker Bars Using Graphics2D
             BufferedImage barcodeImage = canvasProvider.getBufferedImage();
             Graphics2D g2d = barcodeImage.createGraphics();
-            g2d.setStroke(new BasicStroke(5)); // 🔹 Thicker lines without resizing
+            g2d.setStroke(new BasicStroke(2)); // 🔹 Thicker lines without resizing
             g2d.drawImage(barcodeImage, 0, 0, null);
             g2d.dispose();
 
