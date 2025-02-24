@@ -403,8 +403,8 @@ public class Pet4uItemsController {
 
             final int dpi = 600; // 🔹 Force High Resolution to Improve Line Rendering
 
-            barcode128Bean.setModuleWidth(0.4); // Still needed for basic scaling
-            barcode128Bean.setBarHeight(20); // Taller bars = better scanning
+            barcode128Bean.setModuleWidth(1.2); // Still needed for basic scaling
+            barcode128Bean.setBarHeight(8); // Taller bars = better scanning
             barcode128Bean.doQuietZone(true);
             barcode128Bean.setQuietZone(10);
 
