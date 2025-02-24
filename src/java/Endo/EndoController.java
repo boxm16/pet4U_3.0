@@ -336,7 +336,7 @@ public class EndoController {
         modelMap.addAttribute("saveButton", saveButton);
 
         return "endo/endoDeliveryChecking";
-        // return "endo/endoDeliveryCheckingAI";
+        
 
     }
 

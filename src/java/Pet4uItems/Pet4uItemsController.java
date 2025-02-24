@@ -15,6 +15,8 @@ import com.google.zxing.WriterException;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
+import java.awt.BasicStroke;
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -28,6 +30,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpSession;
 import org.krysalis.barcode4j.HumanReadablePlacement;
 import org.krysalis.barcode4j.impl.code128.Code128Bean;
@@ -378,6 +381,57 @@ public class Pet4uItemsController {
         return "index";
     }
 
+    //------------//------------//-----------
+    @RequestMapping(value = "printMainBarcodeX")
+    public String printMainBarcodeX(@RequestParam(name = "altercode") String altercode, ModelMap model) {
+        System.out.println("Printing Item(Main Barcode) With Altercode: " + altercode);
+        SearchDao searchDao = new SearchDao();
+        Item item = searchDao.getItemByAltercode(altercode);
+
+        if (item == null || item.getMainBarcode() == null) {
+            System.out.println("Item or MainBarcode is NULL");
+            model.addAttribute("message", "Can't print this label. Item is NULL. Ask for help");
+            return "errorPage";
+        }
+
+        String mainBarcode = item.getMainBarcode();
+        File outputFile = new File("C:/Pet4U_3.0/barcode.png");
+
+        try (OutputStream out = new FileOutputStream(outputFile)) {
+            Code128Bean barcode128Bean = new Code128Bean();
+            barcode128Bean.setCodeset(Code128Constants.CODESET_B);
+
+            final int dpi = 600; // 🔹 Force High Resolution to Improve Line Rendering
+
+            barcode128Bean.setModuleWidth(0.4); // Still needed for basic scaling
+            barcode128Bean.setBarHeight(20); // Taller bars = better scanning
+            barcode128Bean.doQuietZone(true);
+            barcode128Bean.setQuietZone(10);
+
+            // Generate barcode
+            BitmapCanvasProvider canvasProvider = new BitmapCanvasProvider(
+                    dpi, BufferedImage.TYPE_BYTE_BINARY, false, 0);
+            barcode128Bean.generateBarcode(canvasProvider, mainBarcode);
+            canvasProvider.finish();
+
+            // Force Thicker Bars Using Graphics2D
+            BufferedImage barcodeImage = canvasProvider.getBufferedImage();
+            Graphics2D g2d = barcodeImage.createGraphics();
+            g2d.setStroke(new BasicStroke(2)); // 🔹 Thicker lines without resizing
+            g2d.drawImage(barcodeImage, 0, 0, null);
+            g2d.dispose();
+
+            // Save the modified barcode
+            ImageIO.write(barcodeImage, "png", outputFile);
+
+        } catch (IOException ex) {
+            Logger.getLogger(Pet4uItemsController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return "index";
+    }
+
+    //------------//------------//-----------
     @RequestMapping(value = "printMainBarcode")
     public String printMainBarcode(@RequestParam(name = "altercode") String altercode, ModelMap model) {
         System.out.println("Printing Item(Main Barcode)  With Altercode :" + altercode);
