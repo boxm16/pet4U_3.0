@@ -24,7 +24,7 @@ public class EncryptionController {
         } else if (password.equals("mixelo") || password.equals("1111")) {
             session.setAttribute("user", "identified");
             session.setAttribute("userName", "me");
-            return "pet4uDashboard";
+            return "/pet4u/pet4uDashboard";
         } else if (password.equals("bilobi")) {
             session.setAttribute("user", "identified");
             session.setAttribute("userName", "Vasilis");
@@ -32,7 +32,7 @@ public class EncryptionController {
         } else if (password.equals("pela")) {
             session.setAttribute("user", "identified");
             session.setAttribute("userName", "Pelagia");
-            return "camelotDashboard";
+            return "/camelot/camelotDashboard";
         } else {
             session.setAttribute("user", "unidentified");
             session.setAttribute("userName", "unidentified");
