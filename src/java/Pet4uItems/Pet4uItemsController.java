@@ -12,6 +12,7 @@ import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
+import com.google.zxing.client.j2se.MatrixToImageConfig;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
@@ -23,6 +24,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -534,6 +537,106 @@ public class Pet4uItemsController {
         barcodePrinter.printSomething(printName);
 
         return "index";
+    }
+
+    //------------//------------//-----------
+    @RequestMapping(value = "printMainBarcodeΥ")
+    public String printMainBarcodeΥ(@RequestParam(name = "altercode") String altercode, ModelMap model) {
+        System.out.println("Printing Item(Main Barcode)  With Altercode :" + altercode);
+        SearchDao searchDao = new SearchDao();
+        Item item = searchDao.getItemByAltercode(altercode);
+
+        if (item == null) {
+            System.out.println("Item Null");
+            model.addAttribute("message", "Can't print this label. Item is NULL. Ask for help");
+            return "errorPage";
+        }
+        String mainBarcode = item.getMainBarcode();
+        if (mainBarcode == null) {
+            System.out.println("mainBarcode Null");
+            model.addAttribute("message", "Can't print this label. mainBarcode is NULL. Ask for help");
+            return "errorPage";
+        }
+        try {
+            String barcodeText = mainBarcode;
+            int width = 250;
+            int height = 100;
+
+            BarcodeFormat barcodeFormat = BarcodeFormat.CODE_128;
+
+            Map<EncodeHintType, Object> hints = new HashMap<>();
+            hints.put(EncodeHintType.MARGIN, 5);
+
+            BitMatrix bitMatrix = new MultiFormatWriter().encode(barcodeText, barcodeFormat, width, height, hints);
+            BitMatrix scaledMatrix = scaleBitMatrix(bitMatrix, 2);
+           // MatrixToImageConfig config = new MatrixToImageConfig(0xFF000000, 0xFFFFFFFF);
+
+            Path outputPath = Paths.get("C:/Pet4U_3.0/barcode.png");
+            MatrixToImageWriter.writeToPath(scaledMatrix, "PNG", outputPath, new MatrixToImageConfig(0xFF000000, 0xFFFFFFFF));
+
+            System.out.println(" Barcode saved successfully at: " + outputPath.toAbsolutePath());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        //+++++++++++++++++++++++
+        String path = "C:/Pet4U_3.0/qrCode.png";
+        String charset = "UTF-8";
+        Map<EncodeHintType, ErrorCorrectionLevel> hashMap = new HashMap<EncodeHintType, ErrorCorrectionLevel>();
+//generates QR code with Low level(L) error correction capability
+        hashMap.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L);
+        try {
+            //invoking the user-defined method that creates the QR code
+            generateQRcode(mainBarcode, path, charset, hashMap, 200, 200);//increase or decrease height and width accodingly
+//prints if the QR code is generated
+        } catch (WriterException ex) {
+            Logger.getLogger(Pet4uItemsController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Pet4uItemsController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+//-------------
+        String printName = "\\\\eshoplaptop\\ZDesigner GC420t (EPL) (Αντιγραφή 1)";
+        BarcodePrinter barcodePrinter = new BarcodePrinter();
+        // String printName = "ZDesigner GC420t (EPL)";
+        // BarcodePrinter2 barcodePrinter = new BarcodePrinter2();
+//---------------
+        barcodePrinter.setLabelsCount(1);
+
+        barcodePrinter.setCode(item.getCode());
+
+        if (mainBarcode.length() >= 6) {
+            barcodePrinter.setBarcode(mainBarcode.substring(mainBarcode.length() - 6));
+        } else {
+            barcodePrinter.setBarcode(mainBarcode);
+        }
+
+        barcodePrinter.setDescription(item.getDescription());
+        String position = item.getPosition().substring(2);
+        barcodePrinter.setPosition(position);
+
+        barcodePrinter.printSomething(printName);
+
+        return "index";
+    }
+    // 🔹 This method manually stretches barcode bars without changing image size
+
+    private static BitMatrix scaleBitMatrix(BitMatrix matrix, int scale) {
+        int originalWidth = matrix.getWidth();
+        int originalHeight = matrix.getHeight();
+        int newWidth = originalWidth * scale; // Stretch the width
+        int newHeight = originalHeight;
+
+        BitMatrix newMatrix = new BitMatrix(newWidth, newHeight);
+        for (int x = 0; x < originalWidth; x++) {
+            for (int y = 0; y < originalHeight; y++) {
+                if (matrix.get(x, y)) {
+                    for (int i = 0; i < scale; i++) {
+                        newMatrix.set(x * scale + i, y); // Stretching the bar width
+                    }
+                }
+            }
+        }
+        return newMatrix;
     }
 //------------------------------
 
