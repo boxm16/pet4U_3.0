@@ -87,4 +87,10 @@ public class EncryptionController {
         session.setAttribute("userName", null);
         return "index";
     }
+
+    @RequestMapping(value = "goForAuthorization", method = RequestMethod.GET)
+    public String goForAuthorization() {
+
+        return "authorization";
+    }
 }
