@@ -92,7 +92,7 @@ public class CamelotItemController {
     public String goForCamelotPositionChanging_X(@RequestParam(name = "itemId") String itemId,
             ModelMap model, HttpSession session) {
         String userName = (String) session.getAttribute("userName");
-        if (userName == null || (!userName.equals("me") && !userName.equals("Lefteris"))) {
+        if (userName == null || (!userName.equals("me") && !userName.equals("Lefteris") && !userName.equals("Pelagia"))) {
             System.out.println("Somebody trying to breach encryption");
             return "index";
         }
