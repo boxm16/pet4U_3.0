@@ -24,11 +24,15 @@ public class EncryptionController {
         } else if (password.equals("mixelo") || password.equals("1111")) {
             session.setAttribute("user", "identified");
             session.setAttribute("userName", "me");
-            return "pet4uDashboar";
+            return "pet4uDashboard";
         } else if (password.equals("bilobi")) {
             session.setAttribute("user", "identified");
             session.setAttribute("userName", "Vasilis");
             return "vasilisIndex";
+        } else if (password.equals("pela")) {
+            session.setAttribute("user", "identified");
+            session.setAttribute("userName", "Pelagia");
+            return "camelotDashboard";
         } else {
             session.setAttribute("user", "unidentified");
             session.setAttribute("userName", "unidentified");
