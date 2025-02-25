@@ -21,6 +21,10 @@ public class EncryptionController {
             session.setAttribute("user", "identified");
             session.setAttribute("userName", "me");
             return "adminIndex";
+        } else if (password.equals("mixelo") || password.equals("1111")) {
+            session.setAttribute("user", "identified");
+            session.setAttribute("userName", "me");
+            return "pet4uDashboar";
         } else if (password.equals("bilobi")) {
             session.setAttribute("user", "identified");
             session.setAttribute("userName", "Vasilis");
