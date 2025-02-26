@@ -24,17 +24,17 @@
                 margin: 0;
                 width: 100%;
                 height: 100%; /* Ensure the container takes full height */
-                display: flex;
-                align-items: center; /* Center content vertically */
-                justify-content: center; /* Center content horizontally */
                 background-color: #35B62F; /* Match the container background */
             }
 
-            /* Adjust row height and center content */
+            /* Adjust row height and align content to the top */
             .row {
                 width: 100%;
                 margin: 0;
                 padding: 20px; /* Add some padding around the columns */
+                display: flex;
+                flex-wrap: wrap; /* Allow columns to wrap if needed */
+                align-items: flex-start; /* Align columns to the top */
             }
 
             /* Adjust column height */
@@ -56,8 +56,7 @@
     <body>
         <div class="container-fluid">
             <div class="row">
-                <center> <a href="pet4uDashboard.htm" ><h1>Pet4u Dashboard</h1></a></center>
-
+                <center> <a href="pet4uDashboard.htm"><h1>Pet4u Dashboard</h1></a></center>
                 <hr>
                 <div class="col-sm-3" style="background-color: #b9b984">
                     <h1>Εκτύπωση Μικρής Ετικέτας Θέσης</h1>
@@ -89,7 +88,6 @@
                         <input class="btn btn-primary btn-lg btn-block" type="submit" value="PRINT">
                     </form>
                 </div>
-
             </div>
         </div>
     </body>
