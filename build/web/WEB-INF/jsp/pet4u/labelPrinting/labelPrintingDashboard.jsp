@@ -58,6 +58,9 @@
             <div class="row">
                 <center> <a href="pet4uDashboard.htm"><h1>Pet4u Dashboard</h1></a></center>
                 <hr>
+            </div>
+            <div class="row">
+
                 <div class="col-sm-3" style="background-color: #b9b984">
                     <h1>Εκτύπωση Μικρής Ετικέτας Θέσης</h1>
                     <h5 style='color: red; font-weight: bold'>Προσοχη, ετικέτα εκτυπώνετε άμεσα μετα από σκανάρισμα</h5>
