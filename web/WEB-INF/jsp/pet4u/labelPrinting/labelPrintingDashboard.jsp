@@ -28,7 +28,7 @@
                 <center> <a href="pet4uDashboard.htm" ><h1>Pet4u Dashboard</h1></a></center>
                 <div class=" col-sm-3">
                     <h1>Εκτύπωση Μικρής Ετικέτας Θέσης</h1>
-                    <h1 style='color: red; font-weight:  bold'>Προσοχη, ετικέτα εκτυπώνετε άμεσα μετα από σκανάρισμα</h1>
+                    <h5 style='color: red; font-weight:  bold'>Προσοχη, ετικέτα εκτυπώνετε άμεσα μετα από σκανάρισμα</h5>
                     <hr>
                     <form action="printSmallLabelsInARow.htm" method="GET" >
                         <input type="text" class="form-control input-lg" name='altercode' ${psliarlAutofocus}>
@@ -40,8 +40,8 @@
                 <div class=" col-sm-3">
                     <center>
                         <h1>Εκτύπωση  Ετικέτας Με Κωδικό Προϊόντος</h1>
-                        <h1 style='color: red; font-weight:  bold'>Προσοχη, ετικέτα εκτυπώνετε άμεσα μετα από σκανάρισμα</h1>
-
+                        <h5 style='color: red; font-weight:  bold'>Προσοχη, ετικέτα εκτυπώνετε άμεσα μετα από σκανάρισμα</h5>
+                        <hr>
                         <form action="printItemCodeLabel.htm" method="GET" >
                             <input type="text" class="form-control input-lg" name='altercode' ${piclAutofocus}>
                             <br>
@@ -52,8 +52,7 @@
                 </div>
                 <div class=" col-sm-3">
                     <h1>Εκτύπωση Κειμένου</h1>
-                    <h1 style='color: red; font-weight:  bold'>Προσοχη, ετικέτα εκτυπώνετε άμεσα μετα από σκανάρισμα</h1>
-                    <h1 style='color: blue; font-weight:  bold'>Γράψε κείμενο (7 γράμματα max)</h1>
+                    <h5 style='color: blue; font-weight:  bold'>Γράψε κείμενο (7 γράμματα max) και πάτησε Enter</h5>
 
                     <hr>
 
