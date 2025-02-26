@@ -89,9 +89,7 @@
                         <input class="btn btn-primary btn-lg btn-block" type="submit" value="PRINT">
                     </form>
                 </div>
-                <div class="col-sm-3" style="background-color: whitesmoke">
 
-                </div>
             </div>
         </div>
     </body>
