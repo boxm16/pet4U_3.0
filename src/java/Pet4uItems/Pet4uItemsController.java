@@ -18,14 +18,13 @@ import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import java.awt.BasicStroke;
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -559,22 +558,29 @@ public class Pet4uItemsController {
         }
         try {
             String barcodeText = mainBarcode;
-            int width = 250;
-            int height = 100;
+            int width = 250; //-+-+400
+            int height = 100; //-+-+150
 
             BarcodeFormat barcodeFormat = BarcodeFormat.CODE_128;
 
             Map<EncodeHintType, Object> hints = new HashMap<>();
-            hints.put(EncodeHintType.MARGIN, 5);
+            hints.put(EncodeHintType.MARGIN, 5);//-+-+2 or 1
 
+            // ✅ Generate high-res barcode
             BitMatrix bitMatrix = new MultiFormatWriter().encode(barcodeText, barcodeFormat, width, height, hints);
-            BitMatrix scaledMatrix = scaleBitMatrix(bitMatrix, 2);
 
-            Path outputPath = Paths.get("C:/Pet4U_3.0/barcode.png");
-            MatrixToImageWriter.writeToPath(scaledMatrix, "PNG", outputPath, new MatrixToImageConfig(0xFF000000, 0xFFFFFFFF));
+            // ✅ Convert BitMatrix to Image
+            BufferedImage barcodeImage = MatrixToImageWriter.toBufferedImage(bitMatrix, new MatrixToImageConfig(0xFF000000, 0xFFFFFFFF));
 
-            System.out.println(" Barcode saved successfully at: " + outputPath.toAbsolutePath());
-        } catch (Exception e) {
+            // ✅ Scale the barcode to make bars thicker
+            BufferedImage scaledImage = scaleBarcodeImage(barcodeImage, 2.0);  // 2x thicker bars-- go for more if you want more
+
+            // ✅ Save the scaled barcode
+            File outputFile = new File("C:/Pet4U_3.0/barcode.png");
+            ImageIO.write(scaledImage, "png", outputFile);  // ✅ Now correctly saving the scaled image
+
+              System.out.println("✅ Barcode saved successfully at: " + outputFile.getAbsolutePath());
+       } catch (Exception e) {
             e.printStackTrace();
         }
         //+++++++++++++++++++++++
@@ -617,25 +623,20 @@ public class Pet4uItemsController {
 
         return "index";
     }
-    // 🔹 This method manually stretches barcode bars without changing image size
+    // ✅ This method manually stretches the barcode image to make bars thicker
+    private static BufferedImage scaleBarcodeImage(BufferedImage originalImage, double scaleFactor) {
+        int newWidth = (int) (originalImage.getWidth() * scaleFactor);
+        int newHeight = originalImage.getHeight();
 
-    private static BitMatrix scaleBitMatrix(BitMatrix matrix, int scale) {
-        int originalWidth = matrix.getWidth();
-        int originalHeight = matrix.getHeight();
-        int newWidth = originalWidth * scale; // Stretch the width
-        int newHeight = originalHeight;
+        BufferedImage resizedImage = new BufferedImage(newWidth, newHeight, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2d = resizedImage.createGraphics();
 
-        BitMatrix newMatrix = new BitMatrix(newWidth, newHeight);
-        for (int x = 0; x < originalWidth; x++) {
-            for (int y = 0; y < originalHeight; y++) {
-                if (matrix.get(x, y)) {
-                    for (int i = 0; i < scale; i++) {
-                        newMatrix.set(x * scale + i, y); // Stretching the bar width
-                    }
-                }
-            }
-        }
-        return newMatrix;
+        // ✅ Use high-quality scaling
+        g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR);
+        g2d.drawImage(originalImage, 0, 0, newWidth, newHeight, null);
+        g2d.dispose();
+
+        return resizedImage;
     }
 //------------------------------
 
