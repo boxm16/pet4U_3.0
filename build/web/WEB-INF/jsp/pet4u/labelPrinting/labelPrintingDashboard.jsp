@@ -56,8 +56,10 @@
     <body>
         <div class="container-fluid">
             <div class="row">
-                <center> <a href="pet4uDashboard.htm"><h1>Pet4u Dashboard</h1></a></center>
-                <hr>
+                <div class="col-sm-12" >
+                    <center> <a href="pet4uDashboard.htm"><h1>Pet4u Dashboard</h1></a></center>
+                    <hr>
+                </div>
             </div>
             <div class="row">
 
