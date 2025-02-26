@@ -26,7 +26,7 @@
         <div class="container" style="background-color: #35B62F">
             <div class="row">
                 <center> <a href="pet4uDashboard.htm" ><h1>Pet4u Dashboard</h1></a></center>
-                <div class=" col-sm-2">
+                <div class=" col-sm-3">
                     <h1>Εκτύπωση Μικρής Ετικέτας Θέσης</h1>
                     <h1 style='color: red; font-weight:  bold'>Προσοχη, ετικέτα εκτυπώνετε άμεσα μετα από σκανάρισμα</h1>
                     <hr>
@@ -37,7 +37,7 @@
 
                     </form>
                 </div>
-                <div class=" col-sm-2">
+                <div class=" col-sm-3">
                     <center>
 
                         <hr>
@@ -55,7 +55,7 @@
                         </form>
                     </center>
                 </div>
-                <div class=" col-sm-2">
+                <div class=" col-sm-3">
                     <h1>Εκτύπωση Κειμένου</h1>
                     <h1 style='color: red; font-weight:  bold'>Προσοχη, ετικέτα εκτυπώνετε άμεσα μετα από σκανάρισμα</h1>
                     <h1 style='color: blue; font-weight:  bold'>Γράψε κείμενο (7 γράμματα max)</h1>
@@ -69,18 +69,10 @@
 
                     </form>
                 </div>
-                <div class=" col-sm-2">
+                <div class=" col-sm-3">
 
                 </div>
-                <div class=" col-sm-2">
 
-                </div>
-                <div class=" col-sm-2">
-
-                </div>
-                <div class=" col-sm-2">
-
-                </div>
 
             </div>
         </div>
