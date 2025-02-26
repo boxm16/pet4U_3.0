@@ -25,24 +25,24 @@
     <center>
         <div class="container" style="background-color: #35B62F">
             <div class="row">
-                <div class=" col-sm-4">
+                <div class=" col-sm-1">
+                    <h1>Εκτύπωση Μικρής Ετικέτας Θέσης</h1>
+                    <h1 style='color: red; font-weight:  bold'>Προσοχη, ετικέτα εκτυπώνετε άμεσα μετα από σκανάρισμα</h1>
 
+                    <hr>
+
+                    <form action="printSmallLabelsInARow.htm" method="GET" >
+                        <input type="text" class="form-control input-lg" name='altercode' ${psliarlAutofocus}>
+                        <br>
+                        <input class="btn btn-primary btn-lg btn-block"  type="submit" value="PRINT">
+                        <br>  <br>  <br>  <br>  <br>  <br>
+                    </form>
                 </div>
-                <div class=" col-sm-4">
+                <div class=" col-sm-1">
                     <center>
                         <a href="pet4uDashboard.htm" ><h1>Pet4u Dashboard</h1></a>
                         <hr>
-                        <h1>Εκτύπωση Μικρής Ετικέτας Θέσης</h1>
-                        <h1 style='color: red; font-weight:  bold'>Προσοχη, ετικέτα εκτυπώνετε άμεσα μετα από σκανάρισμα</h1>
 
-                        <hr>
-
-                        <form action="printSmallLabelsInARow.htm" method="GET" >
-                            <input type="text" class="form-control input-lg" name='altercode' ${psliarlAutofocus}>
-                            <br>
-                            <input class="btn btn-primary btn-lg btn-block"  type="submit" value="PRINT">
-                            <br>  <br>  <br>  <br>  <br>  <br>
-                        </form>
                         <br>  <br> 
                         <hr>
                         <h1>Εκτύπωση  Ετικέτας Με Κωδικό Προϊόντος</h1>
@@ -57,7 +57,18 @@
                     </center>
                 </div>
                 <div class=" col-sm-4">
+                    <h1>Εκτύπωση Κειμένου</h1>
+                    <h1 style='color: red; font-weight:  bold'>Προσοχη, ετικέτα εκτυπώνετε άμεσα μετα από σκανάρισμα</h1>
+                    <h1 style='color: blue; font-weight:  bold'>Γράψε κείμενο (7 γράμματα max)</h1>
 
+                    <hr>
+
+                    <form action="printText.htm" method="GET" >
+                        <input type="text" class="form-control input-lg" name='altercode' ${ptAutofocus}>
+                        <br>
+                        <input class="btn btn-primary btn-lg btn-block"  type="submit" value="PRINT">
+                        <br>  <br>  <br>  <br>  <br>  <br>
+                    </form>
                 </div>
             </div>
         </div>
