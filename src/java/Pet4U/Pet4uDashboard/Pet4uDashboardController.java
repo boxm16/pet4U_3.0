@@ -20,7 +20,7 @@ public class Pet4uDashboardController {
         String userName = (String) session.getAttribute("userName");
         if (userName == null) {
             return "/pet4u/pet4uAuthorization";
-        } else if (userName.equals("me") || userName.equals("mixail") || userName.equals("vasilis") || userName.equals("general")) {
+        } else if (userName.equals("me") || userName.equals("mixail") || userName.equals("Vasilis") || userName.equals("general")) {
             return "/pet4u/pet4uDashboard";
         } else {
             return "/pet4u/pet4uAuthorization";

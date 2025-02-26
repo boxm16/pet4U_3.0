@@ -569,7 +569,6 @@ public class Pet4uItemsController {
 
             BitMatrix bitMatrix = new MultiFormatWriter().encode(barcodeText, barcodeFormat, width, height, hints);
             BitMatrix scaledMatrix = scaleBitMatrix(bitMatrix, 2);
-           // MatrixToImageConfig config = new MatrixToImageConfig(0xFF000000, 0xFFFFFFFF);
 
             Path outputPath = Paths.get("C:/Pet4U_3.0/barcode.png");
             MatrixToImageWriter.writeToPath(scaledMatrix, "PNG", outputPath, new MatrixToImageConfig(0xFF000000, 0xFFFFFFFF));
