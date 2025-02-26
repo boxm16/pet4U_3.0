@@ -26,7 +26,7 @@
         <div class="container" style="background-color: #35B62F">
             <div class="row">
                 <center> <a href="pet4uDashboard.htm" ><h1>Pet4u Dashboard</h1></a></center>
-                <div class=" col-sm-3">
+                <div class=" col-sm-3" style="background-color: #b9b984">
                     <h1>Εκτύπωση Μικρής Ετικέτας Θέσης</h1>
                     <h5 style='color: red; font-weight:  bold'>Προσοχη, ετικέτα εκτυπώνετε άμεσα μετα από σκανάρισμα</h5>
                     <hr>
@@ -37,7 +37,7 @@
 
                     </form>
                 </div>
-                <div class=" col-sm-3">
+                <div class=" col-sm-3" style="background-color: #39a0bf">
                     <center>
                         <h1>Εκτύπωση  Ετικέτας Με Κωδικό Προϊόντος</h1>
                         <h5 style='color: red; font-weight:  bold'>Προσοχη, ετικέτα εκτυπώνετε άμεσα μετα από σκανάρισμα</h5>
@@ -50,7 +50,7 @@
                         </form>
                     </center>
                 </div>
-                <div class=" col-sm-3">
+                  <div class=" col-sm-3" style="background-color: #98d83a">
                     <h1>Εκτύπωση Κειμένου</h1>
                     <h5 style='color: blue; font-weight:  bold'>Γράψε κείμενο (7 γράμματα max) και πάτησε Enter</h5>
 
