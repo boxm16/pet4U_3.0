@@ -11,65 +11,79 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Label Print In Row Dashboard</title>
         <style>
-            input[type="text"]
-            {
-                font-size:30px;
+            /* Reset default margin and padding */
+            html, body {
+                margin: 0;
+                padding: 0;
+                height: 100%; /* Ensure the body takes full height */
+            }
+
+            /* Make the container fluid to span the full width */
+            .container-fluid {
+                padding: 0;
+                margin: 0;
+                width: 100%;
+                height: 100%; /* Ensure the container takes full height */
+            }
+
+            input[type="text"] {
+                font-size: 30px;
+            }
+
+            /* Ensure rows and columns take full height */
+            .row, .col-sm-3 {
+                height: 100%;
+            }
+
+            /* Add background color to the body for testing */
+            body {
+                background-color: #35B62F; /* Match the container background */
             }
         </style>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
     </head>
     <body>
-    <center>
-        <div class="container" style="background-color: #35B62F">
+        <div class="container-fluid">
             <div class="row">
-                <center> <a href="pet4uDashboard.htm" ><h1>Pet4u Dashboard</h1></a></center>
-                <div class=" col-sm-3" style="background-color: #b9b984">
+                <center>
+                    <a href="pet4uDashboard.htm"><h1>Pet4u Dashboard</h1></a>
+                </center>
+                <div class="col-sm-3" style="background-color: #b9b984">
                     <h1>Εκτύπωση Μικρής Ετικέτας Θέσης</h1>
-                    <h5 style='color: red; font-weight:  bold'>Προσοχη, ετικέτα εκτυπώνετε άμεσα μετα από σκανάρισμα</h5>
+                    <h5 style='color: red; font-weight: bold'>Προσοχη, ετικέτα εκτυπώνετε άμεσα μετα από σκανάρισμα</h5>
                     <hr>
-                    <form action="printSmallLabelsInARow.htm" method="GET" >
+                    <form action="printSmallLabelsInARow.htm" method="GET">
                         <input type="text" class="form-control input-lg" name='altercode' ${psliarlAutofocus}>
                         <br>
-                        <input class="btn btn-primary btn-lg btn-block"  type="submit" value="PRINT">
-
+                        <input class="btn btn-primary btn-lg btn-block" type="submit" value="PRINT">
                     </form>
                 </div>
-                <div class=" col-sm-3" style="background-color: #39a0bf">
+                <div class="col-sm-3" style="background-color: #39a0bf">
                     <center>
-                        <h1>Εκτύπωση  Ετικέτας Με Κωδικό Προϊόντος</h1>
-                        <h5 style='color: red; font-weight:  bold'>Προσοχη, ετικέτα εκτυπώνετε άμεσα μετα από σκανάρισμα</h5>
+                        <h1>Εκτύπωση Ετικέτας Με Κωδικό Προϊόντος</h1>
+                        <h5 style='color: red; font-weight: bold'>Προσοχη, ετικέτα εκτυπώνετε άμεσα μετα από σκανάρισμα</h5>
                         <hr>
-                        <form action="printItemCodeLabel.htm" method="GET" >
+                        <form action="printItemCodeLabel.htm" method="GET">
                             <input type="text" class="form-control input-lg" name='altercode' ${piclAutofocus}>
                             <br>
-                            <input class="btn btn-primary btn-lg btn-block"  type="submit" value="PRINT">
-
+                            <input class="btn btn-primary btn-lg btn-block" type="submit" value="PRINT">
                         </form>
                     </center>
                 </div>
-                  <div class=" col-sm-3" style="background-color: #98d83a">
+                <div class="col-sm-3" style="background-color: #98d83a">
                     <h1>Εκτύπωση Κειμένου</h1>
-                    <h5 style='color: blue; font-weight:  bold'>Γράψε κείμενο (7 γράμματα max) και πάτησε Enter</h5>
-
+                    <h5 style='color: blue; font-weight: bold'>Γράψε κείμενο (7 γράμματα max) και πάτησε Enter</h5>
                     <hr>
-
-                    <form action="printText.htm" method="GET" >
+                    <form action="printText.htm" method="GET">
                         <input type="text" class="form-control input-lg" name='altercode' ${ptAutofocus}>
                         <br>
-                        <input class="btn btn-primary btn-lg btn-block"  type="submit" value="PRINT">
-
+                        <input class="btn btn-primary btn-lg btn-block" type="submit" value="PRINT">
                     </form>
                 </div>
-                <div class=" col-sm-3">
-
-                </div>
-
-
+                <div class="col-sm-3"></div>
             </div>
         </div>
-    </center>
-</body>
+    </body>
 </html>
