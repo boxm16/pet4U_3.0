@@ -25,7 +25,8 @@
     <center>
         <div class="container" style="background-color: #35B62F">
             <div class="row">
-                <div class=" col-sm-12">
+                <center> <a href="pet4uDashboard.htm" ><h1>Pet4u Dashboard</h1></a></center>
+                <div class=" col-sm-1">
                     <h1>Εκτύπωση Μικρής Ετικέτας Θέσης</h1>
                     <h1 style='color: red; font-weight:  bold'>Προσοχη, ετικέτα εκτυπώνετε άμεσα μετα από σκανάρισμα</h1>
                     <hr>
@@ -36,9 +37,9 @@
 
                     </form>
                 </div>
-                <div class=" col-sm-12">
+                <div class=" col-sm-1">
                     <center>
-                        <a href="pet4uDashboard.htm" ><h1>Pet4u Dashboard</h1></a>
+
                         <hr>
 
                         <br>  <br> 
@@ -54,7 +55,7 @@
                         </form>
                     </center>
                 </div>
-                <div class=" col-sm-12">
+                <div class=" col-sm-1">
                     <h1>Εκτύπωση Κειμένου</h1>
                     <h1 style='color: red; font-weight:  bold'>Προσοχη, ετικέτα εκτυπώνετε άμεσα μετα από σκανάρισμα</h1>
                     <h1 style='color: blue; font-weight:  bold'>Γράψε κείμενο (7 γράμματα max)</h1>
@@ -67,6 +68,33 @@
                         <input class="btn btn-primary btn-lg btn-block"  type="submit" value="PRINT">
 
                     </form>
+                </div>
+                <div class=" col-sm-1">
+
+                </div>
+                <div class=" col-sm-1">
+
+                </div>
+                <div class=" col-sm-1">
+
+                </div>
+                <div class=" col-sm-1">
+
+                </div>
+                <div class=" col-sm-1">
+
+                </div>
+                <div class=" col-sm-1">
+
+                </div>
+                <div class=" col-sm-1">
+
+                </div>
+                <div class=" col-sm-1">
+
+                </div>
+                <div class=" col-sm-1">
+
                 </div>
             </div>
         </div>
