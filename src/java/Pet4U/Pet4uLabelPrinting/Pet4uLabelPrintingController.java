@@ -22,6 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import org.krysalis.barcode4j.HumanReadablePlacement;
 import org.krysalis.barcode4j.impl.code128.Code128Bean;
 import org.krysalis.barcode4j.impl.code128.Code128Constants;
@@ -242,6 +243,39 @@ public class Pet4uLabelPrintingController {
             position = item.getPosition();
         }
         barcodePrinter.setCode(position);
+
+        barcodePrinter.printSomething(printName);
+
+        model.addAttribute("psliarlAutofocus", "");
+        model.addAttribute("piclAutofocus", "autofocus");
+
+        return "pet4u/labelPrinting/labelPrintingDashboard";
+    }
+
+    @RequestMapping(value = "printText")
+    public String printText(@RequestParam(name = "altercode") String altercode, ModelMap model) {
+        try {
+            int width = 400, height = 200;  // Adjust size as needed
+            BufferedImage blankImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+            File outputFileBarcode = new File("C:/Pet4U_3.0/barcode.png");
+            ImageIO.write(blankImage, "png", outputFileBarcode);
+            File outputFileQR = new File("C:/Pet4U_3.0/qrCode.png");
+            ImageIO.write(blankImage, "png", outputFileQR);
+        } catch (IOException e) {
+            Logger.getLogger(Pet4uItemsController.class.getName()).log(Level.SEVERE, null, e);
+        }
+//-------------
+        String printName = "\\\\eshoplaptop\\ZDesigner GC420t (EPL) (Αντιγραφή 1)";
+        ItemCodeLablePrinter barcodePrinter = new ItemCodeLablePrinter();
+        // String printName = "ZDesigner GC420t (EPL)";
+        // BarcodePrinter2 barcodePrinter = new BarcodePrinter2();
+//---------------
+        barcodePrinter.setLabelsCount(1);
+
+        barcodePrinter.setCode("");
+        barcodePrinter.setDescription("");
+        barcodePrinter.setBarcode("");
+        barcodePrinter.setPosition(altercode);
 
         barcodePrinter.printSomething(printName);
 
