@@ -545,7 +545,7 @@ public class Pet4uItemsController {
     }
 
     //------------//------------//-----------
-    @RequestMapping(value = "printMainBarcodeΥ")
+    @RequestMapping(value = "printMainBarcodeY")
     public String printMainBarcodeΥ(@RequestParam(name = "altercode") String altercode, ModelMap model) {
         System.out.println("Printing Item(Main Barcode)  With Altercode :" + altercode);
         SearchDao searchDao = new SearchDao();
