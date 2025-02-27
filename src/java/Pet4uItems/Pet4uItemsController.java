@@ -567,16 +567,16 @@ public class Pet4uItemsController {
             int width = 400; //
             int height = 200; //
             BarcodeFormat barcodeFormat;
-            if (barcodeText.length() == 13) {
-                barcodeFormat = BarcodeFormat.EAN_13;  // ✅ Use EAN-13 for 13-digit barcodes
-            } else if (barcodeText.length() == 8) {
-                barcodeFormat = BarcodeFormat.EAN_8;  // ✅ Use EAN-8 for 8-digit barcodes
+            if (mainBarcode.length() == 13 && mainBarcode.matches("\\d+")) {
+                barcodeFormat = BarcodeFormat.EAN_13;  // EAN-13 for 13-digit numeric barcodes
+            } else if (mainBarcode.length() == 8 && mainBarcode.matches("\\d+")) {
+                barcodeFormat = BarcodeFormat.EAN_8;   // EAN-8 for 8-digit numeric barcodes
             } else {
-                barcodeFormat = BarcodeFormat.CODE_128;  // ✅ Use EAN-8 for 8-digit barcodes
+                barcodeFormat = BarcodeFormat.CODE_128; // CODE-128 for alphanumeric or other lengths
             }
 
             Map<EncodeHintType, Object> hints = new HashMap<>();
-            hints.put(EncodeHintType.MARGIN, 5);//-+-+2 or 1
+            hints.put(EncodeHintType.MARGIN, 0);//-+-+2 or 1
 
             // ✅ Generate high-res barcode
             BitMatrix bitMatrix = new MultiFormatWriter().encode(barcodeText, barcodeFormat, width, height, hints);
@@ -631,7 +631,7 @@ public class Pet4uItemsController {
         String position = item.getPosition().substring(2);
         barcodePrinter.setPosition(position);
 
-        //barcodePrinter.printSomething(printName);
+        barcodePrinter.printSomething(printName);
         return "index";
     }
 
