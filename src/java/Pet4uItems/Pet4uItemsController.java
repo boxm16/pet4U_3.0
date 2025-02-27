@@ -456,12 +456,18 @@ public class Pet4uItemsController {
 
             Code128Bean barcode128Bean = new Code128Bean();
             barcode128Bean.setCodeset(Code128Constants.CODESET_B);
+
+            /*if (mainBarcode.matches("\\d+")) { 
+            barcode128Bean.setCodeset(Code128Constants.CODESET_C);
+        } else {
+            barcode128Bean.setCodeset(Code128Constants.CODESET_B);
+        }*/
             final int dpi = 100;////// try 300
             //Configure the barcode generator
             //adjust barcode width here
-            barcode128Bean.setModuleWidth(UnitConv.in2mm(5.0f / dpi));///try just 0.4 without any f and / dpi
+            barcode128Bean.setModuleWidth(UnitConv.in2mm(5.0f / dpi));//0.6 
             barcode128Bean.doQuietZone(false);
-            barcode128Bean.setBarHeight(8);
+            barcode128Bean.setBarHeight(8);//20
             //bean.setVerticalQuietZone(3);
             barcode128Bean.setQuietZone(0);
             barcode128Bean.setMsgPosition(HumanReadablePlacement.HRP_NONE);
@@ -573,14 +579,14 @@ public class Pet4uItemsController {
             BufferedImage barcodeImage = MatrixToImageWriter.toBufferedImage(bitMatrix, new MatrixToImageConfig(0xFF000000, 0xFFFFFFFF));
 
             // ✅ Scale the barcode to make bars thicker
-            BufferedImage scaledImage = scaleBarcodeImage(barcodeImage, 2.0);  // 2x thicker bars-- go for more if you want more
+            BufferedImage scaledImage = scaleBarcodeImage(barcodeImage, 2.0);  // 2x thicker bars-- go for more if you want
 
             // ✅ Save the scaled barcode
             File outputFile = new File("C:/Pet4U_3.0/barcode.png");
             ImageIO.write(scaledImage, "png", outputFile);  // ✅ Now correctly saving the scaled image
 
-              System.out.println("✅ Barcode saved successfully at: " + outputFile.getAbsolutePath());
-       } catch (Exception e) {
+            System.out.println("✅ Barcode saved successfully at: " + outputFile.getAbsolutePath());
+        } catch (Exception e) {
             e.printStackTrace();
         }
         //+++++++++++++++++++++++
@@ -623,6 +629,7 @@ public class Pet4uItemsController {
 
         return "index";
     }
+
     // ✅ This method manually stretches the barcode image to make bars thicker
     private static BufferedImage scaleBarcodeImage(BufferedImage originalImage, double scaleFactor) {
         int newWidth = (int) (originalImage.getWidth() * scaleFactor);

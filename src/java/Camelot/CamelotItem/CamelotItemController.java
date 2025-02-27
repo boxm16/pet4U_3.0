@@ -114,7 +114,7 @@ public class CamelotItemController {
             @RequestParam(name = "pickingPositionIdXB") String pickingPositionIdXB,
             ModelMap model, HttpSession session) {
         String userName = (String) session.getAttribute("userName");
-        if (userName == null || (!userName.equals("me") && !userName.equals("Lefteris"))) {
+        if (userName == null || (!userName.equals("me") && !userName.equals("Lefteris") && !userName.equals("Pelagia"))) {
             System.out.println("Somebody trying to breach encryption");
             return "index";
         }
