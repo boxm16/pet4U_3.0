@@ -386,7 +386,7 @@ public class Pet4uItemsController {
     //------------//------------//-----------
     @RequestMapping(value = "printMainBarcodeX")
     public String printMainBarcodeX(@RequestParam(name = "altercode") String altercode, ModelMap model) {
-        System.out.println("Printing Item(Main Barcode) With Altercode: " + altercode);
+        System.out.println("Printing Item(Main Barcode) X With Altercode: " + altercode);
         SearchDao searchDao = new SearchDao();
         Item item = searchDao.getItemByAltercode(altercode);
 
@@ -436,7 +436,7 @@ public class Pet4uItemsController {
     //------------//------------//-----------
     @RequestMapping(value = "printMainBarcode")
     public String printMainBarcode(@RequestParam(name = "altercode") String altercode, ModelMap model) {
-        System.out.println("Printing Item(Main Barcode)  With Altercode :" + altercode);
+        System.out.println("Printing Item(Main Barcode)   With Altercode :" + altercode);
         SearchDao searchDao = new SearchDao();
         Item item = searchDao.getItemByAltercode(altercode);
 
@@ -539,15 +539,14 @@ public class Pet4uItemsController {
         String position = item.getPosition().substring(2);
         barcodePrinter.setPosition(position);
 
-        barcodePrinter.printSomething(printName);
-
+        // barcodePrinter.printSomething(printName);
         return "index";
     }
 
     //------------//------------//-----------
     @RequestMapping(value = "printMainBarcodeΥ")
     public String printMainBarcodeΥ(@RequestParam(name = "altercode") String altercode, ModelMap model) {
-        System.out.println("Printing Item(Main Barcode)  With Altercode :" + altercode);
+        System.out.println("Printing Item(Main Barcode) Y With Altercode :" + altercode);
         SearchDao searchDao = new SearchDao();
         Item item = searchDao.getItemByAltercode(altercode);
 
