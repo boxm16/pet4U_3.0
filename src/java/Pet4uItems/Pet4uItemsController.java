@@ -386,7 +386,7 @@ public class Pet4uItemsController {
     //------------//------------//-----------
     @RequestMapping(value = "printMainBarcodeX")
     public String printMainBarcodeX(@RequestParam(name = "altercode") String altercode, ModelMap model) {
-        System.out.println("Printing Item(Main Barcode) X With Altercode: " + altercode);
+        System.out.println("Printing Item(Main Barcode) With Altercode: " + altercode);
         SearchDao searchDao = new SearchDao();
         Item item = searchDao.getItemByAltercode(altercode);
 
@@ -436,7 +436,7 @@ public class Pet4uItemsController {
     //------------//------------//-----------
     @RequestMapping(value = "printMainBarcode")
     public String printMainBarcode(@RequestParam(name = "altercode") String altercode, ModelMap model) {
-        System.out.println("Printing Item(Main Barcode)   With Altercode :" + altercode);
+        System.out.println("Printing Item(Main Barcode)  With Altercode :" + altercode);
         SearchDao searchDao = new SearchDao();
         Item item = searchDao.getItemByAltercode(altercode);
 
@@ -465,7 +465,7 @@ public class Pet4uItemsController {
             final int dpi = 100;////// try 300
             //Configure the barcode generator
             //adjust barcode width here
-            barcode128Bean.setModuleWidth(UnitConv.in2mm(5.0f / dpi));//0.6 
+            barcode128Bean.setModuleWidth(UnitConv.in2mm(5.0f / dpi));//0.6
             barcode128Bean.doQuietZone(false);
             barcode128Bean.setBarHeight(8);//20
             //bean.setVerticalQuietZone(3);
@@ -539,14 +539,15 @@ public class Pet4uItemsController {
         String position = item.getPosition().substring(2);
         barcodePrinter.setPosition(position);
 
-        // barcodePrinter.printSomething(printName);
+        barcodePrinter.printSomething(printName);
+
         return "index";
     }
 
     //------------//------------//-----------
     @RequestMapping(value = "printMainBarcodeΥ")
     public String printMainBarcodeΥ(@RequestParam(name = "altercode") String altercode, ModelMap model) {
-        System.out.println("Printing Item(Main Barcode) Y With Altercode :" + altercode);
+        System.out.println("Printing Item(Main Barcode)  With Altercode :" + altercode);
         SearchDao searchDao = new SearchDao();
         Item item = searchDao.getItemByAltercode(altercode);
 
@@ -563,10 +564,16 @@ public class Pet4uItemsController {
         }
         try {
             String barcodeText = mainBarcode;
-            int width = 250; //-+-+400
-            int height = 100; //-+-+150
-
-            BarcodeFormat barcodeFormat = BarcodeFormat.CODE_128;
+            int width = 400; //
+            int height = 200; //
+            BarcodeFormat barcodeFormat;
+            if (barcodeText.length() == 13) {
+                barcodeFormat = BarcodeFormat.EAN_13;  // ✅ Use EAN-13 for 13-digit barcodes
+            } else if (barcodeText.length() == 8) {
+                barcodeFormat = BarcodeFormat.EAN_8;  // ✅ Use EAN-8 for 8-digit barcodes
+            } else {
+                barcodeFormat = BarcodeFormat.CODE_128;  // ✅ Use EAN-8 for 8-digit barcodes
+            }
 
             Map<EncodeHintType, Object> hints = new HashMap<>();
             hints.put(EncodeHintType.MARGIN, 5);//-+-+2 or 1
@@ -624,8 +631,7 @@ public class Pet4uItemsController {
         String position = item.getPosition().substring(2);
         barcodePrinter.setPosition(position);
 
-        barcodePrinter.printSomething(printName);
-
+        //barcodePrinter.printSomething(printName);
         return "index";
     }
 

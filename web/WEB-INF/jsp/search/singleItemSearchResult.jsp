@@ -160,7 +160,7 @@
                                 out.println("</td>");
 
                                 out.println("<td>");
-                                out.println(" <a href='printMainBarcode.htm?altercode=" + target + "' class='btn btn-danger btn-lg' role='button' aria-disabled='true' style='background-color: #d67965'><h3>PRINT<br>MAIN<br>BARCODE</h3></a>");
+                                out.println(" <a href='printMainBarcodeY.htm?altercode=" + target + "' class='btn btn-danger btn-lg' role='button' aria-disabled='true' style='background-color: #d67965'><h3>PRINT<br>MAIN<br>BARCODE</h3></a>");
                                 out.println("</td>");
                                 out.println("</tr>");
                                 out.println("</tbody>");
