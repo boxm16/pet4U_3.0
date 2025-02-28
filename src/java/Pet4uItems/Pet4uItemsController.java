@@ -828,7 +828,7 @@ public class Pet4uItemsController {
     public String goForPositionChanignX(@RequestParam(name = "itemId") String itemId,
             ModelMap model, HttpSession session) {
         String userName = (String) session.getAttribute("userName");
-        if (userName == null || !userName.equals("me")) {
+        if (userName == null || (!userName.equals("me") && !userName.equals("Vasilis"))) {
             System.out.println("Somebody trying to breach encryption");
             return "index";
         }
@@ -896,7 +896,7 @@ public class Pet4uItemsController {
             ModelMap model, HttpSession session) {
 
         String userName = (String) session.getAttribute("userName");
-        if (userName.equals("me")) {
+        if (userName.equals("me") || userName.equals("Vasilis")) {
 
             Pet4uItemsDao pet4uItemsDao = new Pet4uItemsDao();
             // String result = pet4uItemsDao.changeItemPosition(itemId, newPositionId);
