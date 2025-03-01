@@ -550,7 +550,12 @@ public class Pet4uItemsController {
         System.out.println("Printing Item(Main Barcode)  With Altercode :" + altercode);
         SearchDao searchDao = new SearchDao();
         Item item = searchDao.getItemByAltercode(altercode);
-
+        //-------------
+        String printName = "\\\\eshoplaptop\\ZDesigner GC420t (EPL) (Αντιγραφή 1)";
+        BarcodePrinter barcodePrinter = new BarcodePrinter();
+        // String printName = "ZDesigner GC420t (EPL)";
+        // BarcodePrinter2 barcodePrinter = new BarcodePrinter2();
+//---------------
         if (item == null) {
             System.out.println("Item Null");
             model.addAttribute("message", "Can't print this label. Item is NULL. Ask for help");
@@ -587,8 +592,10 @@ public class Pet4uItemsController {
             // ✅ Scale the barcode to make bars thicker
             BufferedImage scaledImage = scaleBarcodeImage(barcodeImage, 2.0);  // 2x thicker bars-- go for more if you want
 
+            barcodePrinter.setRead(scaledImage);
+
             // ✅ Save the scaled barcode
-            File outputFile = new File("C:/Pet4U_3.0/barcode.png");
+            File outputFile = new File("C:/Pet4U_3.0/barcode.png");//wil not this anymore to print, i hope
             ImageIO.write(scaledImage, "png", outputFile);  // ✅ Now correctly saving the scaled image
 
             System.out.println("✅ Barcode saved successfully at: " + outputFile.getAbsolutePath());
@@ -611,12 +618,6 @@ public class Pet4uItemsController {
             Logger.getLogger(Pet4uItemsController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-//-------------
-        String printName = "\\\\eshoplaptop\\ZDesigner GC420t (EPL) (Αντιγραφή 1)";
-        BarcodePrinter barcodePrinter = new BarcodePrinter();
-        // String printName = "ZDesigner GC420t (EPL)";
-        // BarcodePrinter2 barcodePrinter = new BarcodePrinter2();
-//---------------
         barcodePrinter.setLabelsCount(1);
 
         barcodePrinter.setCode(item.getCode());

@@ -23,6 +23,15 @@ public class BarcodePrinter implements Printable {
     private String barcode;
     private String description;
     private String position;
+    private BufferedImage read;
+
+    public BufferedImage getRead() {
+        return read;
+    }
+
+    public void setRead(BufferedImage read) {
+        this.read = read;
+    }
 
     public void setLabelsCount(int labelsCount) {
         this.labelsCount = labelsCount;
@@ -76,8 +85,8 @@ public class BarcodePrinter implements Printable {
                 int imageheight = 30;
                 int imagewidthQR = 60;
                 int imageheightQR = 60;
-                BufferedImage read = ImageIO.read(new File("C:/Pet4U_3.0/barcode.png"));
-                g2d.drawImage(read, x, y, imagewidth, imageheight, null);         //draw image
+               // this.read = ImageIO.read(new File("C:/Pet4U_3.0/barcode.png"));
+                g2d.drawImage(this.read, x, y, imagewidth, imageheight, null);         //draw image
 
                 BufferedImage readQR = ImageIO.read(new File("C:/Pet4U_3.0/qrCode.png"));
                 g2d.drawImage(readQR, xQR, yQR, imagewidthQR, imageheightQR, null);         //draw image
