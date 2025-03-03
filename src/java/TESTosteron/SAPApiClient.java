@@ -65,7 +65,7 @@ public class SAPApiClient {
 
         if (responseCode == 200) {
             JSONObject jsonResponse = getJsonResponse(conn);
-            System.out.println(jsonResponse);
+            //    System.out.println(jsonResponse);
             String sessionId = jsonResponse.getString("SessionId");
             System.out.println(" Logged in. Session ID: " + sessionId);
             return sessionId;
@@ -117,7 +117,7 @@ public class SAPApiClient {
     }
 
     // 🔹 Utility: Create HTTP Connection
-    private HttpURLConnection createConnection(String url, String method) throws IOException {
+    public HttpURLConnection createConnection(String url, String method) throws IOException {
         HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
         conn.setRequestMethod(method);
         conn.setRequestProperty("Content-Type", "application/json");
@@ -126,7 +126,7 @@ public class SAPApiClient {
     }
 
     // 🔹 Utility: Send JSON Request Body
-    private void sendRequestBody(HttpURLConnection conn, String jsonBody) throws IOException {
+    public void sendRequestBody(HttpURLConnection conn, String jsonBody) throws IOException {
 
         try {
             applySSLBypass(conn);
@@ -140,7 +140,7 @@ public class SAPApiClient {
     }
 
     // 🔹 Utility: Read JSON Response
-    private JSONObject getJsonResponse(HttpURLConnection conn) throws IOException {
+    public JSONObject getJsonResponse(HttpURLConnection conn) throws IOException {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream(), StandardCharsets.UTF_8))) {
             StringBuilder response = new StringBuilder();
             String line;
@@ -152,7 +152,7 @@ public class SAPApiClient {
     }
 
     // 🔹 Utility: Read Error Response
-    private String getErrorResponse(HttpURLConnection conn) throws IOException {
+    public String getErrorResponse(HttpURLConnection conn) throws IOException {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getErrorStream(), StandardCharsets.UTF_8))) {
             StringBuilder response = new StringBuilder();
             String line;
