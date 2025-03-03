@@ -65,6 +65,7 @@ public class SAPApiClient {
 
         if (responseCode == 200) {
             JSONObject jsonResponse = getJsonResponse(conn);
+            System.out.println(jsonResponse);
             String sessionId = jsonResponse.getString("SessionId");
             System.out.println(" Logged in. Session ID: " + sessionId);
             return sessionId;
