@@ -18,7 +18,6 @@ import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import java.awt.BasicStroke;
 import java.awt.Graphics2D;
-import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -581,7 +580,9 @@ public class Pet4uItemsController {
             }
 
             Map<EncodeHintType, Object> hints = new HashMap<>();
-            hints.put(EncodeHintType.MARGIN, 0);//-+-+2 or 1
+            hints.put(EncodeHintType.MARGIN, 1);//-+-+2 or 1
+            hints.put(EncodeHintType.CHARACTER_SET, "UTF-8");
+            hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L); // ✅ Ensures reliable scanning
 
             // ✅ Generate high-res barcode
             BitMatrix bitMatrix = new MultiFormatWriter().encode(barcodeText, barcodeFormat, width, height, hints);
@@ -590,15 +591,13 @@ public class Pet4uItemsController {
             BufferedImage barcodeImage = MatrixToImageWriter.toBufferedImage(bitMatrix, new MatrixToImageConfig(0xFF000000, 0xFFFFFFFF));
 
             // ✅ Scale the barcode to make bars thicker
-            BufferedImage scaledImage = scaleBarcodeImage(barcodeImage, 2.0);  // 2x thicker bars-- go for more if you want
-
-            barcodePrinter.setRead(scaledImage);
+            //   BufferedImage scaledImage = scaleBarcodeImage(barcodeImage, 2.0);  // 2x thicker bars-- go for more if you want
+            barcodePrinter.setRead(barcodeImage);
 
             // ✅ Save the scaled barcode
-            File outputFile = new File("C:/Pet4U_3.0/barcode.png");//wil not this anymore to print, i hope
-            ImageIO.write(scaledImage, "png", outputFile);  // ✅ Now correctly saving the scaled image
-
-            System.out.println("✅ Barcode saved successfully at: " + outputFile.getAbsolutePath());
+            // File outputFile = new File("C:/Pet4U_3.0/barcode.png");//wil not this anymore to print, i hope
+            // ImageIO.write(scaledImage, "png", outputFile);  // ✅ Now correctly saving the scaled image
+            //  System.out.println("✅ Barcode saved successfully at: " + outputFile.getAbsolutePath());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -636,23 +635,7 @@ public class Pet4uItemsController {
         return "index";
     }
 
-    // ✅ This method manually stretches the barcode image to make bars thicker
-    private static BufferedImage scaleBarcodeImage(BufferedImage originalImage, double scaleFactor) {
-        int newWidth = (int) (originalImage.getWidth() * scaleFactor);
-        int newHeight = originalImage.getHeight();
-
-        BufferedImage resizedImage = new BufferedImage(newWidth, newHeight, BufferedImage.TYPE_INT_ARGB);
-        Graphics2D g2d = resizedImage.createGraphics();
-
-        // ✅ Use high-quality scaling
-        g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR);
-        g2d.drawImage(originalImage, 0, 0, newWidth, newHeight, null);
-        g2d.dispose();
-
-        return resizedImage;
-    }
 //------------------------------
-
     @RequestMapping(value = "printQRcode")
     public String printQRcode(@RequestParam(name = "altercode") String altercode, ModelMap model) {
         try {

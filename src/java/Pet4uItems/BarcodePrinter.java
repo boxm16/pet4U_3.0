@@ -73,6 +73,7 @@ public class BarcodePrinter implements Printable {
              */
             Graphics2D g2d = (Graphics2D) g;
             g2d.translate(pf.getImageableX(), pf.getImageableY());
+            g2d.scale(300.0 / 72.0, 300.0 / 72.0);  // ✅ Sets DPI to 300 (Fixes distortion)// try 600 instead of 300
             /* Now we perform our rendering */
             try {
                 int x = 10;                                        //print start at 100 on x axies
@@ -85,7 +86,7 @@ public class BarcodePrinter implements Printable {
                 int imageheight = 30;
                 int imagewidthQR = 60;
                 int imageheightQR = 60;
-               // this.read = ImageIO.read(new File("C:/Pet4U_3.0/barcode.png"));
+                // this.read = ImageIO.read(new File("C:/Pet4U_3.0/barcode.png"));
                 g2d.drawImage(this.read, x, y, imagewidth, imageheight, null);         //draw image
 
                 BufferedImage readQR = ImageIO.read(new File("C:/Pet4U_3.0/qrCode.png"));
