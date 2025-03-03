@@ -54,7 +54,7 @@ public class SapController {
         int responseCode = conn.getResponseCode();
         System.out.println(" Response Code: " + responseCode);
 
-        if (responseCode == 200) {
+        if (responseCode == 200 || responseCode == 201) {
             System.out.println(" Response : " + sapApiClient.getJsonResponse(conn));
         } else if (responseCode == 401) {
             System.out.println(" Session expired! Please re-login.");
