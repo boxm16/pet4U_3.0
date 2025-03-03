@@ -42,7 +42,7 @@ public class SAPApiClient {
     }
 
     // 🔹 Step 1: Login and get session token
-    private String loginToSAP() throws IOException {
+    public String loginToSAP() throws IOException {
 
         String loginUrl = BASE_URL + "/Login";
         String loginPayload = String.format(
