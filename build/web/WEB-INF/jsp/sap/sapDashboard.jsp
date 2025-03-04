@@ -13,11 +13,13 @@
     </head>
     <body>
         <h1>Hello To Sap!</h1>
+        ${message}
         <hr>   <hr>
         <a href="sapLogin.htm"><h1>Sap Login</h1></a>
         <hr>
         <a href="createSupplier.htm"><h1>Create Supplier</h1></a>
         <hr>
         <a href="createItem.htm"><h1>Create Item</h1></a>
+        
     </body>
 </html>

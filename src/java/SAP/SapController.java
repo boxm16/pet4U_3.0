@@ -6,6 +6,7 @@ import java.net.HttpURLConnection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -65,7 +66,7 @@ public class SapController {
     }
 
     @RequestMapping(value = "createItem")
-    private String createItem() throws IOException {
+    private String createItem(ModelMap modelMap) throws IOException {
         // Define the API endpoint for creating items
         String apiUrl = BASE_URL + "/Items";
 
@@ -106,7 +107,7 @@ public class SapController {
         } else {
             System.out.println("Error Response: " + sapApiClient.getErrorResponse(conn));
         }
-
+        modelMap.addAttribute("message", sapApiClient.getErrorResponse(conn));
         // Return the view name (assuming this is part of a Spring MVC controller)
         return "/sap/sapDashboard";
     }
