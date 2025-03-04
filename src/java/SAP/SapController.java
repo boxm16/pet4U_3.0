@@ -80,6 +80,8 @@ public class SapController {
                 + "\"InventoryItem\": \"tYES\", "
                 + "\"SalesItem\": \"tYES\", "
                 + "\"PurchaseItem\": \"tYES\""
+                + "\"U_ItemType\": \"Accessory\""
+      
                 + "}";
 
         // Initialize SAP API client and log in to get the session token
