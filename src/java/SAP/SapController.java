@@ -99,15 +99,17 @@ public class SapController {
         int responseCode = conn.getResponseCode();
         System.out.println("Response Code: " + responseCode);
 
-        // Handle the response
+        String message = "";
+// Handle the response
         if (responseCode == 200 || responseCode == 201) {
             System.out.println("Response: " + sapApiClient.getJsonResponse(conn));
         } else if (responseCode == 401) {
             System.out.println("Session expired! Please re-login.");
         } else {
-            System.out.println("Error Response: " + sapApiClient.getErrorResponse(conn));
+            message = sapApiClient.getErrorResponse(conn);
+            System.out.println("Error Response: " + message);
         }
-        modelMap.addAttribute("message", sapApiClient.getErrorResponse(conn));
+        modelMap.addAttribute("message", message);
         // Return the view name (assuming this is part of a Spring MVC controller)
         return "/sap/sapDashboard";
     }
