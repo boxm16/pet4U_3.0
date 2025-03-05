@@ -79,8 +79,8 @@ public class SapController {
                 + "\"PurchaseUnit\": \"PCS\", "
                 + "\"InventoryItem\": \"tYES\", "
                 + "\"SalesItem\": \"tYES\", "
-                + "\"PurchaseItem\": \"tYES\", "
-                + "\"U_ItemType\": \"ΑΝΤΙΣΗΠΤΙΚΑ\""
+                + "\"PurchaseItem\": \"tYES\" "
+              //  + "\"U_ItemType\": \"ΑΝΤΙΣΗΠΤΙΚΑ\""
       
                 + "}";
 
