@@ -80,7 +80,7 @@ public class SapController {
                 + "\"InventoryItem\": \"tYES\", "
                 + "\"SalesItem\": \"tYES\", "
                 + "\"PurchaseItem\": \"tYES\""
-                + "\"U_ItemType\": \"Accessory\""
+                + "\"U_ItemType\": \"ΑΝΤΙΣΗΠΤΙΚΑ\""
       
                 + "}";
 
