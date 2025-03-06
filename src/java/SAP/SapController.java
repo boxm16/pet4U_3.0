@@ -73,14 +73,14 @@ public class SapController {
         // JSON body for creating an item
         String jsonBody = "{"
                 + "\"ItemCode\": \"1003-121P\", "
-                + "\"ItemName\": \"KΟΚΚΑΛΟ ΚΟΜΠΟΣ-6.35cm-10gr/10pcs (NEW)\", "
+                + "\"ItemName\": \"ΚΟΚΚΑΛΟ ΚΟΜΠΟΣ-6.35cm-10gr/10pcs (NEW)\", "
                 + "\"ItemsGroupCode\": 110, "
                 + "\"SalesUnit\": \"ΣΥΣΚΕΥΑΣΙΑ\", "
                 + "\"PurchaseUnit\": \"ΤΕΜΑΧΙΑ\", "
-                + "\"InventoryItem\": \"tYES\", "
-                + "\"SalesItem\": \"tYES\", "
-                + "\"PurchaseItem\": \"tYES\", "
-                + "\"VatLiable\": \"tYES\", "
+                + "\"InventoryItem\": true, "
+                + "\"SalesItem\": true, "
+                + "\"PurchaseItem\": true, "
+                + "\"VatLiable\": true, "
                 + "\"SalesVATGroup\": \"Φ7000-24\", "
                 + "\"PurchaseVATGroup\": \"Φ2000-24\", "
                 + "\"ItemPrices\": ["
@@ -107,8 +107,9 @@ public class SapController {
                 + "  {"
                 + "    \"BPCode\": \"ΠΡΟ-000076\""
                 + "  }"
-                + "]"
-                + "}";
+                + "],"
+                + "\"U_TrofAccessories\": \"SomeValue\""
+                + "}"; 
 
         // Initialize SAP API client and log in to get the session token
         SAPApiClient sapApiClient = new SAPApiClient();
