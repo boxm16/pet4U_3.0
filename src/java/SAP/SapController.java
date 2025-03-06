@@ -72,7 +72,7 @@ public class SapController {
 
         // JSON body for creating an item
         String jsonBody = "{"
-                + "\"ItemCode\": \"1003-1P-NEW\", "
+                + "\"ItemCode\": \"1003-121P\", "
                 + "\"ItemName\": \"KΟΚΚΑΛΟ ΚΟΜΠΟΣ-6.35cm-10gr/10pcs (NEW)\", "
                 + "\"ItemsGroupCode\": 110, "
                 + "\"SalesUnit\": \"ΣΥΣΚΕΥΑΣΙΑ\", "
