@@ -81,6 +81,7 @@ public class SapController {
                 + "\"SalesItem\": \"tYES\", "
                 + "\"PurchaseItem\": \"tYES\", "
                 + "\"U_ItemsGroups\" : \"104\""
+                + "\"U_Category3\" : \"10\""
                 + "}";
 
         // Initialize SAP API client and log in to get the session token
