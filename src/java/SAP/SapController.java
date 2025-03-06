@@ -71,16 +71,16 @@ public class SapController {
         String apiUrl = BASE_URL + "/Items";
 
         // JSON body for creating an item
-        String jsonBody = "{"
+       String jsonBody = "{"
                 + "\"ItemCode\": \"1003-121P\", "
                 + "\"ItemName\": \"ΚΟΚΚΑΛΟ ΚΟΜΠΟΣ-6.35cm-10gr/10pcs (NEW)\", "
                 + "\"ItemsGroupCode\": 110, "
                 + "\"SalesUnit\": \"ΣΥΣΚΕΥΑΣΙΑ\", "
                 + "\"PurchaseUnit\": \"ΤΕΜΑΧΙΑ\", "
-                + "\"InventoryItem\": true, "
-                + "\"SalesItem\": true, "
-                + "\"PurchaseItem\": true, "
-                + "\"VatLiable\": true, "
+                + "\"InventoryItem\": \"tYES\", "
+                + "\"SalesItem\": \"tYES\", "
+                + "\"PurchaseItem\": \"tYES\", "
+                + "\"VatLiable\": \"tYES\", "
                 + "\"SalesVATGroup\": \"Φ7000-24\", "
                 + "\"PurchaseVATGroup\": \"Φ2000-24\", "
                 + "\"ItemPrices\": ["
@@ -109,7 +109,7 @@ public class SapController {
                 + "  }"
                 + "],"
                 + "\"U_TrofAccessories\": \"Accessory\""
-                + "}"; 
+                + "}";  
 
         // Initialize SAP API client and log in to get the session token
         SAPApiClient sapApiClient = new SAPApiClient();
