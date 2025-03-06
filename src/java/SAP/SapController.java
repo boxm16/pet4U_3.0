@@ -108,7 +108,7 @@ public class SapController {
                 + "    \"BPCode\": \"ΠΡΟ-000076\""
                 + "  }"
                 + "],"
-                + "\"U_TrofAccessories\": \"SomeValue\""
+                + "\"U_TrofAccessories\": \"Accessory\""
                 + "}"; 
 
         // Initialize SAP API client and log in to get the session token
