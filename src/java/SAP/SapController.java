@@ -89,17 +89,19 @@ public class SapController {
                     + "\"VatLiable\": \"tYES\", "
                     + "\"SalesVATGroup\": \"Φ7000-24\", "
                     + "\"PurchaseVATGroup\": \"Φ2000-24\", "
-                    + "\"Properties7\": \"tYES\", " // Existing field
-                    + "\"ItemUnitOfMeasurementCollection\": [" // Add UoM details here
+                    + "\"Properties7\" : \"tYES\"," // This is for Αξεσουαρ, if i want food i choose Properties5 tYES
+                    // + "\"BarCode\": \"1003-12222P\", " // Add ONE BarCode here OR ......
+
+                    + "\"ItemUnitOfMeasurementCollection\": [" // Here you define UnitOfMeasurementEntry, and
                     + "  {"
                     + "    \"UoMEntry\": 1, " // UoMEntry for "Piece"
-                 
-                    + "    \"UoMQuantity\": 1.0" // Alternate quantity (1 piece)
+                    + "    \"BaseUoM\": \"tYES\", " // Mark as base unit of measure
+                    + "    \"AltQty\": 1.0" // Alternate quantity (1 piece)
                     + "  },"
                     + "  {"
                     + "    \"UoMEntry\": 2, " // UoMEntry for "Box"
-                   
-                    + "    \"UoMQuantity\": 10.0" // Alternate quantity (10 pieces per box)
+                    + "    \"BaseUoM\": \"tNO\", " // Not the base unit of measure
+                    + "    \"AltQty\": 10.0" // Alternate quantity (10 pieces per box)
                     + "  }"
                     + "],"
                     + "\"ItemBarCodeCollection\": [" // Add barcodes here
