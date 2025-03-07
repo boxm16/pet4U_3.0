@@ -89,10 +89,8 @@ public class SapController {
                     + "\"VatLiable\": \"tYES\", "
                     + "\"SalesVATGroup\": \"Φ7000-24\", "
                     + "\"PurchaseVATGroup\": \"Φ2000-24\", "
-                    + "\"Properties7\" : \"tYES\"," // This is for Αξεσουαρ, if i want food i choose Properties5 tYES
-                    // + "\"BarCode\": \"1003-12222P\", " // Add ONE BarCode here OR ......
-
-                    + "\"ItemUnitOfMeasurementCollection\": [" // Here you define UnitOfMeasurementEntry
+                    + "\"Properties7\": \"tYES\", " // Existing field
+                    + "\"ItemUnitOfMeasurementCollection\": [" // Add UoM details here
                     + "  {"
                     + "    \"UoMEntry\": 1, " // UoMEntry for "Piece"
                     + "    \"BaseUoM\": \"tYES\", " // Mark as base unit of measure
