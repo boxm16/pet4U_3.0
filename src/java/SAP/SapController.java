@@ -78,7 +78,7 @@ public class SapController {
 
             // JSON body for creating an item
             String jsonBody = "{"
-                    + "\"ItemCode\": \"1003-12222P\", "
+                    + "\"ItemCode\": \"F171909\", "
                     + "\"ItemName\": \"ΚΟΚΚΑΛΟ ΚΟΜΠΟΣ-6.35cm-10gr/10pcs (NEW)\", "
                     + "\"ItemsGroupCode\": 110, "
                     + "\"SalesUnit\": \"ΣΥΣΚΕΥΑΣΙΑ\", "
@@ -89,8 +89,18 @@ public class SapController {
                     + "\"VatLiable\": \"tYES\", "
                     + "\"SalesVATGroup\": \"Φ7000-24\", "
                     + "\"PurchaseVATGroup\": \"Φ2000-24\", "
-                    + "\"Properties7\" : \"tYES\"," // This is for Αξεσουαρ
-                    + "\"BarCode\": \"1003-12222P\", " // Add BarCode here
+                    + "\"Properties7\" : \"tYES\"," // This is for Αξεσουαρ, if i want food i choose Properties5 tYES
+                    // + "\"BarCode\": \"1003-12222P\", " // Add ONE BarCode here
+                    + "\"ItemBarCodeCollection\": [" // Add MULTIPLE barcodes here
+                    + "  {"
+                    + "    \"Barcode\": \"8595602504060\", " // First barcode
+                    + "    \"UoMEntry\": 1" // Unit of measure entry (optional)
+                    + "  },"
+                    + "  {"
+                    + "    \"Barcode\": \"8595602553600\", " // Second barcode
+                    + "    \"UoMEntry\": 2" // Unit of measure entry (optional)
+                    + "  }"
+                    + "],"
                     + "\"ItemPrices\": ["
                     + "  {"
                     + "    \"PriceList\": 1, "
