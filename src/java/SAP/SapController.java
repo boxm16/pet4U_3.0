@@ -94,12 +94,12 @@ public class SapController {
                     + "  {"
                     + "    \"UoMEntry\": 1, " // UoMEntry for "Piece"
                     + "    \"BaseUoM\": \"tYES\", " // Mark as base unit of measure
-                    + "    \"AlternativeQuantity\": 1.0" // Alternate quantity (1 piece)
+                    + "    \"AltQty\": 1.0" // Alternate quantity (1 piece)
                     + "  },"
                     + "  {"
                     + "    \"UoMEntry\": 2, " // UoMEntry for "Box"
                     + "    \"BaseUoM\": \"tNO\", " // Not the base unit of measure
-                    + "    \"AlternativeQuantity\": 10.0" // Alternate quantity (10 pieces per box)
+                    + "    \"AltQty\": 10.0" // Alternate quantity (10 pieces per box)
                     + "  }"
                     + "],"
                     + "\"ItemBarCodeCollection\": [" // Add barcodes here
