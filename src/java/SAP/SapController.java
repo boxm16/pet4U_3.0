@@ -90,15 +90,28 @@ public class SapController {
                     + "\"SalesVATGroup\": \"Φ7000-24\", "
                     + "\"PurchaseVATGroup\": \"Φ2000-24\", "
                     + "\"Properties7\" : \"tYES\"," // This is for Αξεσουαρ, if i want food i choose Properties5 tYES
-                    // + "\"BarCode\": \"1003-12222P\", " // Add ONE BarCode here
-                    + "\"ItemBarCodeCollection\": [" // Add MULTIPLE barcodes here
+                    // + "\"BarCode\": \"1003-12222P\", " // Add ONE BarCode here OR ......
+
+                    + "\"ItemUnitOfMeasurementCollection\": [" // Here you define UnitOfMeasurementEntry
                     + "  {"
-                    + "    \"Barcode\": \"8595602504060\", " // First barcode
-                    + "    \"UoMEntry\": 1" // Unit of measure entry (optional)
+                    + "    \"UoMEntry\": 1, " // UoMEntry for "Piece"
+                    + "    \"BaseUoM\": \"tYES\", " // Mark as base unit of measure
+                    + "    \"AltQty\": 1.0" // Alternate quantity (1 piece)
                     + "  },"
                     + "  {"
-                    + "    \"Barcode\": \"8595602553600\", " // Second barcode
-                    + "    \"UoMEntry\": 2" // Unit of measure entry (optional)
+                    + "    \"UoMEntry\": 2, " // UoMEntry for "Box"
+                    + "    \"BaseUoM\": \"tNO\", " // Not the base unit of measure
+                    + "    \"AltQty\": 10.0" // Alternate quantity (10 pieces per box)
+                    + "  }"
+                    + "],"
+                    + "\"ItemBarCodeCollection\": [" // Add barcodes here
+                    + "  {"
+                    + "    \"Barcode\": \"1234567890123\", " // Barcode for 1 Piece
+                    + "    \"UoMEntry\": 1" // UoMEntry for "Piece"
+                    + "  },"
+                    + "  {"
+                    + "    \"Barcode\": \"9876543210987\", " // Barcode for 1 Box
+                    + "    \"UoMEntry\": 2" // UoMEntry for "Box"
                     + "  }"
                     + "],"
                     + "\"ItemPrices\": ["
