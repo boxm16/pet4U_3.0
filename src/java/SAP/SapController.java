@@ -94,7 +94,7 @@ public class SapController {
                     + "  {"
                     + "    \"UoMEntry\": 1, " // UoMEntry for "Piece"
                     + "    \"BaseUoM\": \"1\", " // Mark as base unit of measure
-                    + "    \"AlternativeQuantity\": 1.0" // Alternate quantity (1 piece)
+                    + "    \"UoMQuantity\": 1.0" // Alternate quantity (1 piece)
                     + "  },"
                     + "  {"
                     + "    \"UoMEntry\": 2, " // UoMEntry for "Box"
