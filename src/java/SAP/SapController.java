@@ -89,7 +89,7 @@ public class SapController {
                 + "\"VatLiable\": \"tYES\", "
                 + "\"SalesVATGroup\": \"Φ7000-24\", "
                 + "\"PurchaseVATGroup\": \"Φ2000-24\", "
-                + "\"U_Category\": \"Τροφή\", "  // Add U_ItemsGroups here
+                + "\"U_Category1\": \"Τροφή\", "  // Add U_ItemsGroups here
                 + "\"ItemPrices\": ["
                 + "  {"
                 + "    \"PriceList\": 1, "
