@@ -230,7 +230,7 @@ public class SapController {
             String jsonBody = updatedItem.toString();
 
             // 4. Send update request using MERGE
-            HttpURLConnection conn = sapApiClient.createConnection(apiUrl, "MERGE");
+            HttpURLConnection conn = sapApiClient.createConnection(apiUrl, "POST");
             conn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
             sapApiClient.sendRequestBody(conn, jsonBody);
 
