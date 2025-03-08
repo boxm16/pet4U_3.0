@@ -209,11 +209,6 @@ public class SapController {
 
             // 1. Retrieve the existing item data
             HttpURLConnection getConn = sapApiClient.createConnection(apiUrl, "GET");
-            try {
-                sapApiClient.applySSLBypass(getConn);
-            } catch (Exception ex) {
-                Logger.getLogger(SapController.class.getName()).log(Level.SEVERE, null, ex);
-            }
             JSONObject existingData = sapApiClient.getJsonResponse(getConn);
 
             JSONObject itemJson = new JSONObject(existingData);
