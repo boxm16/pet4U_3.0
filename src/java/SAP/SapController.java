@@ -275,6 +275,7 @@ public class SapController {
             // 1. Retrieve existing item data
             HttpURLConnection getConn = sapApiClient.createConnection(apiUrl, "GET");
             getConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
+
             try {
                 sapApiClient.applySSLBypass(getConn);
             } catch (Exception ex) {
@@ -303,7 +304,13 @@ public class SapController {
             if (!uomExists) {
                 JSONObject newUoM = new JSONObject();
                 newUoM.put("UoMEntry", 2);  // Create UoM Entry 2
-                newUoM.put("BaseQuantity", 10); // Example: 1 package = 10 units
+                newUoM.put("UoMType", "iutInventory"); // Assuming it’s an inventory UoM
+                newUoM.put("DefaultBarcode", JSONObject.NULL); // No default barcode
+                newUoM.put("DefaultPackage", JSONObject.NULL);
+                newUoM.put("VolumeUnit", 4); // Example volume unit
+                newUoM.put("Weight1", 0.0);
+                newUoM.put("Weight1Unit", JSONObject.NULL);
+                newUoM.put("ItemUoMPackageCollection", new JSONArray()); // Empty package collection
 
                 uomList.put(newUoM);
 
@@ -340,6 +347,7 @@ public class SapController {
 
             HttpURLConnection updateConn = sapApiClient.createConnection(apiUrl, "POST");
             updateConn.setRequestProperty("X-HTTP-Method-Override", "PATCH"); // Trick server into treating this as PATCH
+
             updateConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
             sapApiClient.sendRequestBody(updateConn, jsonBody);
 
