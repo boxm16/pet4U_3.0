@@ -312,6 +312,7 @@ public class SapController {
                 updateUomPayload.put("UoMGroupEntry", uomGroupEntry); // Ensure correct UoMGroupEntry
 
                 HttpURLConnection updateUomConn = sapApiClient.createConnection(apiUrl, "PATCH");
+                updateUomConn.setRequestProperty("X-HTTP-Method-Override", "PATCH"); // Trick server into treating this as PATCH
                 updateUomConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
                 sapApiClient.sendRequestBody(updateUomConn, updateUomPayload.toString());
 
@@ -338,7 +339,8 @@ public class SapController {
             updatedItem.put("ItemBarCodeCollection", barcodesArray);
             String jsonBody = updatedItem.toString();
 
-            HttpURLConnection updateConn = sapApiClient.createConnection(apiUrl, "PATCH");
+            HttpURLConnection updateConn = sapApiClient.createConnection(apiUrl, "POST");
+            updateConn.setRequestProperty("X-HTTP-Method-Override", "PATCH"); // Trick server into treating this as PATCH
             updateConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
             sapApiClient.sendRequestBody(updateConn, jsonBody);
 
