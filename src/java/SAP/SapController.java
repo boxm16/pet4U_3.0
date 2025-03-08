@@ -78,7 +78,7 @@ public class SapController {
 
             // JSON body for creating an item
             String jsonBody = "{"
-                    + "\"ItemCode\": \"1003-12223P\", "
+                    + "\"ItemCode\": \"1003-12224P\", "
                     + "\"ItemName\": \"ΚΟΚΚΑΛΟ ΚΟΜΠΟΣ-6.35cm-10gr/10pcs (NEW)\", "
                     + "\"ItemsGroupCode\": 110, "
                     + "\"SalesUnit\": \"ΣΥΣΚΕΥΑΣΙΑ\", "
@@ -89,8 +89,8 @@ public class SapController {
                     + "\"VatLiable\": \"tYES\", "
                     + "\"SalesVATGroup\": \"Φ7000-24\", "
                     + "\"PurchaseVATGroup\": \"Φ2000-24\", "
-                    + "\"Properties7\" : \"tYES\"," // This is for Αξεσουαρ, if i want food i choose Properties5 tYES
-                    + "\"BarCode\": \"1003-12223P\", " // Add BarCode here
+                    + "\"Properties8\" : \"tYES\"," // This is for Αξεσουαρ, if i want food i choose Properties8 tYES
+                    + "\"BarCode\": \"1003-12224P\", " // Add BarCode here
                     + "\"ItemPrices\": ["
                     + "  {"
                     + "    \"PriceList\": 1, "
