@@ -175,7 +175,7 @@ public class SapController {
             String sessionToken = sapApiClient.loginToSAP();
             HttpURLConnection conn = sapApiClient.createConnection(apiUrl, "POST");
 
-            conn.setRequestProperty("X-HTTP-Method-Override", "PATCH"); // Trick server into treating this as PATCH
+            conn.setRequestProperty("X-HTTP-Method-Override", "MERGE"); // Trick server into treating this as PATCH
 
             conn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
             sapApiClient.sendRequestBody(conn, jsonBody);
