@@ -144,7 +144,7 @@ public class SapController {
             } else if (responseCode == 401) {
                 System.out.println("Session expired! Please re-login.");
             } else {
-                message = sapApiClient.getErrorResponse(conn);
+                message += sapApiClient.getErrorResponse(conn);
                 System.out.println("Error Response: " + message);
             }
             modelMap.addAttribute("message", message);
@@ -252,7 +252,7 @@ public class SapController {
             } else if (responseCode == 401) {
                 System.out.println("Session expired! Please re-login.");
             } else {
-                message = sapApiClient.getErrorResponse(conn);
+                message += sapApiClient.getErrorResponse(conn);
                 System.out.println("Error Response: " + message);
             }
             modelMap.addAttribute("message", message);
@@ -301,6 +301,7 @@ public class SapController {
             }
 
             // 3. If UoMEntry 2 does not exist, create and assign it
+            String message = "";
             if (!uomExists) {
                 JSONObject newUoM = new JSONObject();
                 newUoM.put("UoMEntry", 2);  // Create UoM Entry 2
@@ -322,10 +323,17 @@ public class SapController {
                 updateUomConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
                 sapApiClient.sendRequestBody(updateUomConn, uomUpdate.toString());
                 int responseCode = updateUomConn.getResponseCode();
-                System.out.println("Response Code: " + responseCode);
-                if (responseCode != 200) {
-                    System.out.println("Failed to assign UoM. Error: " + sapApiClient.getErrorResponse(updateUomConn));
-                    return "/sap/sapDashboard";
+
+                if (responseCode == 204) {
+                    System.out.println("Empty Response");
+
+                } else if (responseCode == 200 || responseCode == 201) {
+                    System.out.println("Response: " + sapApiClient.getJsonResponse(updateUomConn));
+                } else if (responseCode == 401) {
+                    System.out.println("Session expired! Please re-login.");
+                } else {
+                    message += sapApiClient.getErrorResponse(updateUomConn);
+                    System.out.println("Error Response: " + message);
                 }
             }
 
@@ -353,8 +361,18 @@ public class SapController {
             sapApiClient.sendRequestBody(updateConn, jsonBody);
 
             int responseCode = updateConn.getResponseCode();
-            String message = (responseCode == 200 || responseCode == 201) ? "Barcode added successfully" : sapApiClient.getErrorResponse(updateConn);
 
+            if (responseCode == 204) {
+                System.out.println("Empty Response");
+
+            } else if (responseCode == 200 || responseCode == 201) {
+                System.out.println("Response: " + sapApiClient.getJsonResponse(updateConn));
+            } else if (responseCode == 401) {
+                System.out.println("Session expired! Please re-login.");
+            } else {
+                message += sapApiClient.getErrorResponse(updateConn);
+                System.out.println("Error Response: " + message);
+            }
             System.out.println("Response Code: " + responseCode);
             modelMap.addAttribute("message", message);
 
