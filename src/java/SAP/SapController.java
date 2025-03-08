@@ -275,7 +275,6 @@ public class SapController {
             // 1. Retrieve existing item data
             HttpURLConnection getConn = sapApiClient.createConnection(apiUrl, "GET");
             getConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
-
             try {
                 sapApiClient.applySSLBypass(getConn);
             } catch (Exception ex) {
@@ -284,9 +283,9 @@ public class SapController {
 
             JSONObject itemJson = sapApiClient.getJsonResponse(getConn);
 
-            // 2. Check if UoMEntry 2 is already assigned
+            // 2. Check if UoMEntry 2 exists in ItemUnitOfMeasurementCollection
             boolean uomExists = false;
-            JSONArray uomList = itemJson.optJSONArray("ItemUnitOfMeasurementCollection"); // Check if the item has UoMs
+            JSONArray uomList = itemJson.optJSONArray("ItemUnitOfMeasurementCollection");
 
             if (uomList != null) {
                 for (int i = 0; i < uomList.length(); i++) {
@@ -296,23 +295,25 @@ public class SapController {
                         break;
                     }
                 }
+            } else {
+                uomList = new JSONArray();
             }
 
-            // 3. If UoMEntry 2 is missing, assign it to the item
+            // 3. If UoMEntry 2 does not exist, create and assign it
             if (!uomExists) {
-                JSONObject uomAssignment = new JSONObject();
-                JSONArray updatedUoMList = (uomList != null) ? new JSONArray(uomList.toString()) : new JSONArray();
-
                 JSONObject newUoM = new JSONObject();
-                newUoM.put("UoMEntry", 2); // Assign UoMEntry 2
-                updatedUoMList.put(newUoM);
+                newUoM.put("UoMEntry", 2);  // Create UoM Entry 2
+                newUoM.put("BaseQuantity", 10); // Example: 1 package = 10 units
 
-                uomAssignment.put("ItemUnitOfMeasurementCollection", updatedUoMList);
+                uomList.put(newUoM);
+
+                JSONObject uomUpdate = new JSONObject();
+                uomUpdate.put("ItemUnitOfMeasurementCollection", uomList);
 
                 HttpURLConnection updateUomConn = sapApiClient.createConnection(apiUrl, "POST");
                 updateUomConn.setRequestProperty("X-HTTP-Method-Override", "PATCH"); // Trick server into treating this as PATCH
                 updateUomConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
-                sapApiClient.sendRequestBody(updateUomConn, uomAssignment.toString());
+                sapApiClient.sendRequestBody(updateUomConn, uomUpdate.toString());
 
                 if (updateUomConn.getResponseCode() != 200) {
                     System.out.println("Failed to assign UoM. Error: " + sapApiClient.getErrorResponse(updateUomConn));
@@ -320,7 +321,7 @@ public class SapController {
                 }
             }
 
-            // 4. Now proceed to add barcode
+            // 4. Now proceed to add barcode for UoMEntry 2
             JSONArray barcodesArray = itemJson.optJSONArray("ItemBarCodeCollection");
 
             JSONObject newBarcode = new JSONObject();
