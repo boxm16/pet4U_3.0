@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -154,8 +156,8 @@ public class SapController {
         return "/sap/sapDashboard";
     }
 
-    @RequestMapping(value = "addBarcode")
-    public String addBarcode(ModelMap modelMap) {
+    @RequestMapping(value = "addMainBarcode")
+    public String addMainBarcode(ModelMap modelMap) {
         try {
             String itemCode = "1271";
             String apiUrl = BASE_URL + "/Items('" + itemCode + "')";
@@ -177,7 +179,9 @@ public class SapController {
 
             String message = "";
 // Handle the response
-            if (responseCode == 200 || responseCode == 201 || responseCode == 204) {
+            if (responseCode == 204) {
+                System.out.println("Empty Response");
+            } else if (responseCode == 200 || responseCode == 201 || responseCode == 204) {
                 System.out.println("Response: " + sapApiClient.getJsonResponse(conn));
             } else if (responseCode == 401) {
                 System.out.println("Session expired! Please re-login.");
@@ -187,6 +191,62 @@ public class SapController {
             }
             modelMap.addAttribute("message", message);
 // Return the view name (assuming this is part of a Spring MVC controller)
+
+        } catch (IOException ex) {
+            Logger.getLogger(SapController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "/sap/sapDashboard";
+    }
+
+    @RequestMapping(value = "addBarcode")
+    public String addBarcode(ModelMap modelMap) {
+        try {
+            String itemCode = "1271";
+            String apiUrl = BASE_URL + "/Items('" + itemCode + "')?$select=BarCodes"; // Ensure BarCodes are retrieved
+
+            SAPApiClient sapApiClient = new SAPApiClient();
+            String sessionToken = sapApiClient.loginToSAP();
+
+            // 1. Retrieve the existing item data
+            HttpURLConnection getConn = sapApiClient.createConnection(apiUrl, "GET");
+            JSONObject existingData = sapApiClient.getJsonResponse(getConn);
+            JSONObject itemJson = new JSONObject(existingData);
+            JSONArray barcodesArray = itemJson.optJSONArray("BarCodes");
+
+            // 2. Add a new barcode for the BOX (10 items inside)
+            JSONObject newBarcode = new JSONObject();
+            newBarcode.put("Barcode", "0000000000000004"); // New barcode for the box
+            newBarcode.put("UoMEntry", 2); // Set the Unit of Measure Entry for Box (You must find the correct UoMEntry ID)
+            newBarcode.put("FreeText", "Box of 10 items");
+
+            if (barcodesArray == null) {
+                barcodesArray = new JSONArray();
+            }
+            barcodesArray.put(newBarcode);
+
+            // 3. Create the updated JSON payload
+            JSONObject updatedItem = new JSONObject();
+            updatedItem.put("BarCodes", barcodesArray);
+            String jsonBody = updatedItem.toString();
+
+            // 4. Send update request using MERGE
+            HttpURLConnection conn = sapApiClient.createConnection(apiUrl, "MERGE");
+            conn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
+            sapApiClient.sendRequestBody(conn, jsonBody);
+
+            int responseCode = conn.getResponseCode();
+            System.out.println("Response Code: " + responseCode);
+
+            String message = "";
+            if (responseCode == 200 || responseCode == 201) {
+                System.out.println("Response: " + sapApiClient.getJsonResponse(conn));
+            } else if (responseCode == 401) {
+                System.out.println("Session expired! Please re-login.");
+            } else {
+                message = sapApiClient.getErrorResponse(conn);
+                System.out.println("Error Response: " + message);
+            }
+            modelMap.addAttribute("message", message);
 
         } catch (IOException ex) {
             Logger.getLogger(SapController.class.getName()).log(Level.SEVERE, null, ex);
