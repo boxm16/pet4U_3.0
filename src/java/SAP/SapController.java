@@ -158,7 +158,7 @@ public class SapController {
     public String addBarcode(ModelMap modelMap) {
         try {
             String itemCode = "1271";
-            String apiUrl = BASE_URL + "/Items('" + itemCode + "')";
+            String apiUrl = BASE_URL + "/Items('" + itemCode + "')?$select=BarCodes";
             // JSON body for creating an item
 
             String jsonBody = "{"
