@@ -141,11 +141,6 @@ public class SAPApiClient {
 
     // 🔹 Utility: Read JSON Response
     public JSONObject getJsonResponse(HttpURLConnection conn) throws IOException {
-        try {
-            applySSLBypass(conn);
-        } catch (Exception ex) {
-            Logger.getLogger(SAPApiClient.class.getName()).log(Level.SEVERE, null, ex);
-        }
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream(), StandardCharsets.UTF_8))) {
             StringBuilder response = new StringBuilder();
             String line;
@@ -168,7 +163,7 @@ public class SAPApiClient {
         }
     }
 
-    private void applySSLBypass(HttpURLConnection conn) throws Exception {
+    public void applySSLBypass(HttpURLConnection conn) throws Exception {
         if (conn instanceof HttpsURLConnection) {
             SSLContext sslContext = SSLContext.getInstance("TLS");
             sslContext.init(null, new TrustManager[]{new X509TrustManager() {
