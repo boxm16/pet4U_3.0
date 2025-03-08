@@ -272,7 +272,7 @@ public class SapController {
             SAPApiClient sapApiClient = new SAPApiClient();
             String sessionToken = sapApiClient.loginToSAP();
 
-            // 1. Retrieve the existing item data
+            // 1. Retrieve existing item data
             HttpURLConnection getConn = sapApiClient.createConnection(apiUrl, "GET");
             getConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
 
@@ -284,50 +284,38 @@ public class SapController {
 
             JSONObject itemJson = sapApiClient.getJsonResponse(getConn);
 
-            int uomGroupEntry = itemJson.optInt("UoMGroupEntry", -1);
+            // 2. Check if UoMEntry 2 is already assigned
             boolean uomExists = false;
+            JSONArray uomList = itemJson.optJSONArray("ItemUoMs"); // Check if the item has UoMs
 
-            // 2. Check if UoMEntry 2 exists in the assigned UoMGroup
-            if (uomGroupEntry != -1) {
-                String uomGroupUrl = BASE_URL + "/UoMGroups(" + uomGroupEntry + ")";
-                HttpURLConnection uomConn = sapApiClient.createConnection(uomGroupUrl, "GET");
-                uomConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
-                JSONObject uomGroupData = sapApiClient.getJsonResponse(uomConn);
-                JSONArray uomList = uomGroupData.optJSONArray("UoMGroupDefinitionCollection");
-
-                if (uomList != null) {
-                    for (int i = 0; i < uomList.length(); i++) {
-                        JSONObject uom = uomList.getJSONObject(i);
-                        if (uom.optInt("AlternateUoM", -1) == 2) {
-                            uomExists = true;
-                            break;
-                        }
+            if (uomList != null) {
+                for (int i = 0; i < uomList.length(); i++) {
+                    JSONObject uom = uomList.getJSONObject(i);
+                    if (uom.optInt("UoMEntry", -1) == 2) {
+                        uomExists = true;
+                        break;
                     }
                 }
             }
 
-            // 3. If UoMEntry 2 is not part of the item's UoM group, update the UoM Group
+            // 3. If UoMEntry 2 is missing, assign it to the item
             if (!uomExists) {
-                String uomGroupUrl = BASE_URL + "/UoMGroups(" + uomGroupEntry + ")";
-                HttpURLConnection uomUpdateConn = sapApiClient.createConnection(uomGroupUrl, "POST");
-                uomUpdateConn.setRequestProperty("X-HTTP-Method-Override", "PATCH"); // Trick server into treating this as PATCH
+                JSONObject uomAssignment = new JSONObject();
+                JSONArray updatedUoMList = (uomList != null) ? new JSONArray(uomList.toString()) : new JSONArray();
 
-                uomUpdateConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
+                JSONObject newUoM = new JSONObject();
+                newUoM.put("UoMEntry", 2); // Assign UoMEntry 2
+                updatedUoMList.put(newUoM);
 
-                // Add UoMEntry 2 to the UoM Group Definition
-                JSONArray uomGroupArray = new JSONArray();
-                if (uomGroupEntry != -1) {
-                    JSONObject newUomEntry = new JSONObject();
-                    newUomEntry.put("AlternateUoM", 2); // Add UoMEntry 2
-                    uomGroupArray.put(newUomEntry);
-                }
+                uomAssignment.put("ItemUoMs", updatedUoMList);
 
-                JSONObject updateUomGroup = new JSONObject();
-                updateUomGroup.put("UoMGroupDefinitionCollection", uomGroupArray);
-                sapApiClient.sendRequestBody(uomUpdateConn, updateUomGroup.toString());
+                HttpURLConnection updateUomConn = sapApiClient.createConnection(apiUrl, "PATCH");
+                updateUomConn.setRequestProperty("X-HTTP-Method-Override", "PATCH"); // Trick server into treating this as PATCH
+                updateUomConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
+                sapApiClient.sendRequestBody(updateUomConn, uomAssignment.toString());
 
-                if (uomUpdateConn.getResponseCode() != 200) {
-                    System.out.println("Failed to update UoM Group. Error: " + sapApiClient.getErrorResponse(uomUpdateConn));
+                if (updateUomConn.getResponseCode() != 200) {
+                    System.out.println("Failed to assign UoM. Error: " + sapApiClient.getErrorResponse(updateUomConn));
                     return "/sap/sapDashboard";
                 }
             }
@@ -349,9 +337,8 @@ public class SapController {
             updatedItem.put("ItemBarCodeCollection", barcodesArray);
             String jsonBody = updatedItem.toString();
 
-            HttpURLConnection updateConn = sapApiClient.createConnection(apiUrl, "POST");
+            HttpURLConnection updateConn = sapApiClient.createConnection(apiUrl, "PATCH");
             updateConn.setRequestProperty("X-HTTP-Method-Override", "PATCH"); // Trick server into treating this as PATCH
-
             updateConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
             sapApiClient.sendRequestBody(updateConn, jsonBody);
 
