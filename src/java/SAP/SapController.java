@@ -158,7 +158,7 @@ public class SapController {
     public String addBarcode(ModelMap modelMap) {
         try {
             // Define the API endpoint for creating items
-            String apiUrl = BASE_URL + "/Items";
+            String apiUrl = BASE_URL + "/Items('1271')";
 
             // JSON body for creating an item
             String jsonBody = "{"
