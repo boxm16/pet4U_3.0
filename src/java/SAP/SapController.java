@@ -163,13 +163,9 @@ public class SapController {
             String apiUrl = BASE_URL + "/Items('" + itemCode + "')";
             // JSON body for creating an item
             String jsonBody = "{"
-                    + "\"BarCodes\": ["
-                    + "  {"
+                   
                     + "    \"Barcode\": \"1234567890123\","
-                    + "    \"UoMEntry\": 1," // Unit of Measure Entry (e.g., 1 for default)
-                    + "    \"FreeText\": \"\"" // Optional: Add any free text if needed
-                    + "  }"
-                    + "]"
+                    
                     + "}";
             SAPApiClient sapApiClient = new SAPApiClient();
             String sessionToken = sapApiClient.loginToSAP();
