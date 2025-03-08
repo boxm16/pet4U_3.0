@@ -311,7 +311,7 @@ public class SapController {
                 JSONObject updateUomPayload = new JSONObject();
                 updateUomPayload.put("UoMGroupEntry", uomGroupEntry); // Ensure correct UoMGroupEntry
 
-                HttpURLConnection updateUomConn = sapApiClient.createConnection(apiUrl, "PATCH");
+                HttpURLConnection updateUomConn = sapApiClient.createConnection(apiUrl, "POST");
                 updateUomConn.setRequestProperty("X-HTTP-Method-Override", "PATCH"); // Trick server into treating this as PATCH
                 updateUomConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
                 sapApiClient.sendRequestBody(updateUomConn, updateUomPayload.toString());
