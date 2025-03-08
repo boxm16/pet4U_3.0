@@ -164,7 +164,7 @@ public class SapController {
             String jsonBody = "{"
                     + "\"BarCodes\": ["
                     + "  {"
-                    + "    \"Barcode\": \"0000000000000002\","
+                    + "    \"BarCode\": \"0000000000000002\","
                     + "    \"UoMEntry\": 1,"
                     + "    \"FreeText\": \"\""
                     + "  }"
