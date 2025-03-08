@@ -160,12 +160,21 @@ public class SapController {
             String itemCode = "1271";
             String apiUrl = BASE_URL + "/Items('" + itemCode + "')";
             // JSON body for creating an item
-            String jsonBody = "{ \"Barcode\": \"0000000000000002\"}";
+
+            String jsonBody = "{"
+                    + "\"BarCodes\": ["
+                    + "  {"
+                    + "    \"Barcode\": \"0000000000000002\","
+                    + "    \"UoMEntry\": 1,"
+                    + "    \"FreeText\": \"\""
+                    + "  }"
+                    + "]"
+                    + "}";
             SAPApiClient sapApiClient = new SAPApiClient();
             String sessionToken = sapApiClient.loginToSAP();
             HttpURLConnection conn = sapApiClient.createConnection(apiUrl, "POST");
 
-            conn.setRequestProperty("X-HTTP-Method-Override", "PATCH"); // Trick server into treating this as PATCH
+            conn.setRequestProperty("X-HTTP-Method-Override", "MERGE"); // Trick server into treating this as PATCH
 
             conn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
             sapApiClient.sendRequestBody(conn, jsonBody);
