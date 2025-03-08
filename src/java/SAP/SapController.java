@@ -177,7 +177,7 @@ public class SapController {
 
             String message = "";
 // Handle the response
-            if (responseCode == 200 || responseCode == 201) {
+            if (responseCode == 200 || responseCode == 201 || responseCode == 204) {
                 System.out.println("Response: " + sapApiClient.getJsonResponse(conn));
             } else if (responseCode == 401) {
                 System.out.println("Session expired! Please re-login.");
