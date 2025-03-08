@@ -218,7 +218,7 @@ public class SapController {
             JSONObject existingData = sapApiClient.getJsonResponse(getConn);
 
             JSONObject itemJson = new JSONObject(existingData);
-            JSONArray barcodesArray = itemJson.optJSONArray("BarCodes");
+            JSONArray barcodesArray = itemJson.optJSONArray("ItemBarCodeCollection");
 
             // 2. Add a new barcode for the BOX (10 items inside)
             JSONObject newBarcode = new JSONObject();
