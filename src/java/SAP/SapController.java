@@ -160,7 +160,7 @@ public class SapController {
             String itemCode = "1271";
             String apiUrl = BASE_URL + "/Items('" + itemCode + "')";
             // JSON body for creating an item
-            String jsonBody = "{ \"Barcode\": \"1234567890123\"}";
+            String jsonBody = "{ \"Barcode\": \"0000000000000002\"}";
             SAPApiClient sapApiClient = new SAPApiClient();
             String sessionToken = sapApiClient.loginToSAP();
             HttpURLConnection conn = sapApiClient.createConnection(apiUrl, "POST");
