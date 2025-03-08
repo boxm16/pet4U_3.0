@@ -158,23 +158,15 @@ public class SapController {
     public String addBarcode(ModelMap modelMap) {
         try {
             String itemCode = "1271";
-            String apiUrl = BASE_URL + "/Items('" + itemCode + "')?$select=BarCodes";
+            String apiUrl = BASE_URL + "/Items('" + itemCode + "')";
             // JSON body for creating an item
 
-            String jsonBody = "{"
-                    + "\"BarCodes\": ["
-                    + "  {"
-                    + "    \"BarCode\": \"0000000000000002\","
-                    + "    \"UoMEntry\": 1,"
-                    + "    \"FreeText\": \"\""
-                    + "  }"
-                    + "]"
-                    + "}";
+            String jsonBody = "{ \"BarCode\": \"0000000000000002\"}";
             SAPApiClient sapApiClient = new SAPApiClient();
             String sessionToken = sapApiClient.loginToSAP();
             HttpURLConnection conn = sapApiClient.createConnection(apiUrl, "POST");
 
-            conn.setRequestProperty("X-HTTP-Method-Override", "MERGE"); // Trick server into treating this as PATCH
+            conn.setRequestProperty("X-HTTP-Method-Override", "PATCH"); // Trick server into treating this as PATCH
 
             conn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
             sapApiClient.sendRequestBody(conn, jsonBody);
