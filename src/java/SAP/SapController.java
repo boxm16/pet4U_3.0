@@ -154,8 +154,8 @@ public class SapController {
         return "/sap/sapDashboard";
     }
 
-    @RequestMapping(value = "addBarcode")
-    public String addBarcode(ModelMap modelMap) {
+    @RequestMapping(value = "addBarcode1")
+    public String addBarcode1(ModelMap modelMap) {
         try {
             // Define the API endpoint for creating items
             String apiUrl = BASE_URL + "/Items('1271')";
@@ -208,7 +208,7 @@ public class SapController {
     }
 
     @RequestMapping(value = "addBarcode")
-    private String addBarcode1(ModelMap modelMap) {
+    private String addBarcode(ModelMap modelMap) {
         try {
             String itemCode = "1271";
             String apiUrl = BASE_URL + "/Items('" + itemCode + "')";
