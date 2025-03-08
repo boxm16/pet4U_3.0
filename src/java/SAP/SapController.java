@@ -233,7 +233,7 @@ public class SapController {
 
             // 3. Create the updated JSON payload
             JSONObject updatedItem = new JSONObject();
-            updatedItem.put("BarCodes", barcodesArray);
+            updatedItem.put("ItemBarCodeCollection", barcodesArray);
             String jsonBody = updatedItem.toString();
 
             // 4. Send update request using MERGE
