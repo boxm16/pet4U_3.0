@@ -321,7 +321,7 @@ public class SapController {
                 updateUomConn.setRequestProperty("X-HTTP-Method-Override", "PATCH"); // Trick server into treating this as PATCH
                 updateUomConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
                 sapApiClient.sendRequestBody(updateUomConn, uomUpdate.toString());
-                int responseCode = conn.getResponseCode();
+                int responseCode = updateUomConn.getResponseCode();
                 System.out.println("Response Code: " + responseCode);
                 if (responseCode != 200) {
                     System.out.println("Failed to assign UoM. Error: " + sapApiClient.getErrorResponse(updateUomConn));
