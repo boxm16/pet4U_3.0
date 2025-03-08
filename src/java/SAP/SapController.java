@@ -89,7 +89,7 @@ public class SapController {
                     + "\"VatLiable\": \"tYES\", "
                     + "\"SalesVATGroup\": \"Φ7000-24\", "
                     + "\"PurchaseVATGroup\": \"Φ2000-24\", "
-                    + "\"Properties4\" : \"tYES\"," // This is for Αξεσουαρ, if i want food i choose Properties5 tYES
+                    + "\"Properties7\" : \"tYES\"," // This is for Αξεσουαρ, if i want food i choose Properties5 tYES
                     + "\"BarCode\": \"1003-12223P\", " // Add BarCode here
                     + "\"ItemPrices\": ["
                     + "  {"
