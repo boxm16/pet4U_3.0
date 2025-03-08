@@ -37,7 +37,7 @@ public class SapController {
     }
 
     @RequestMapping(value = "createSupplier")
-    private String createSupplier() {
+    public String createSupplier() {
         try {
             String apiUrl = BASE_URL + "/BusinessPartners";
             String jsonBody = "{\"CardCode\": \"c1\", "
@@ -71,7 +71,7 @@ public class SapController {
     }
 
     @RequestMapping(value = "createItem")
-    private String createItem(ModelMap modelMap) {
+    public String createItem(ModelMap modelMap) {
         try {
             // Define the API endpoint for creating items
             String apiUrl = BASE_URL + "/Items";
@@ -89,7 +89,7 @@ public class SapController {
                     + "\"VatLiable\": \"tYES\", "
                     + "\"SalesVATGroup\": \"Φ7000-24\", "
                     + "\"PurchaseVATGroup\": \"Φ2000-24\", "
-                    + "\"Properties8\" : \"tYES\"," // This is for Αξεσουαρ, if i want food i choose Properties8 tYES
+                    + "\"Properties8\" : \"tYES\"," //  for Αξεσουαρ -Properties7 tYES, if i want food i choose Properties8 tYES
                     + "\"BarCode\": \"1003-12224P\", " // Add BarCode here
                     + "\"ItemPrices\": ["
                     + "  {"
@@ -114,6 +114,59 @@ public class SapController {
                     + "\"ItemPreferredVendors\": ["
                     + "  {"
                     + "    \"BPCode\": \"ΠΡΟ-000076\""
+                    + "  }"
+                    + "]"
+                    + "}";
+
+            // Initialize SAP API client and log in to get the session token
+            SAPApiClient sapApiClient = new SAPApiClient();
+            String sessionToken = sapApiClient.loginToSAP();
+
+            // Create the HTTP connection for the POST request
+            HttpURLConnection conn = sapApiClient.createConnection(apiUrl, "POST");
+
+            // Set the session token in the request header
+            conn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
+
+            // Send the JSON body in the request
+            sapApiClient.sendRequestBody(conn, jsonBody);
+
+            // Get the response code from the server
+            int responseCode = conn.getResponseCode();
+            System.out.println("Response Code: " + responseCode);
+
+            String message = "";
+// Handle the response
+            if (responseCode == 200 || responseCode == 201) {
+                System.out.println("Response: " + sapApiClient.getJsonResponse(conn));
+            } else if (responseCode == 401) {
+                System.out.println("Session expired! Please re-login.");
+            } else {
+                message = sapApiClient.getErrorResponse(conn);
+                System.out.println("Error Response: " + message);
+            }
+            modelMap.addAttribute("message", message);
+// Return the view name (assuming this is part of a Spring MVC controller)
+
+        } catch (IOException ex) {
+            Logger.getLogger(SapController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "/sap/sapDashboard";
+    }
+
+    @RequestMapping(value = "addBarcode")
+    public String addBarcode(ModelMap modelMap) {
+        try {
+            // Define the API endpoint for creating items
+            String apiUrl = BASE_URL + "/Items";
+
+            // JSON body for creating an item
+            String jsonBody = "{"
+                    + "\"BarCodes\": ["
+                    + "  {"
+                    + "    \"Barcode\": \"1234567890123\","
+                    + "    \"UoMEntry\": 1," // Unit of Measure Entry (e.g., 1 for default)
+                    + "    \"FreeText\": \"\"" // Optional: Add any free text if needed
                     + "  }"
                     + "]"
                     + "}";

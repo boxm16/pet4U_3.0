@@ -20,6 +20,8 @@
         <a href="createSupplier.htm"><h1>Create Supplier</h1></a>
         <hr>
         <a href="createItem.htm"><h1>Create Item</h1></a>
+        <hr>
+        <a href="addBarcode.htm"><h1>Add Barcode</h1></a>
         
     </body>
 </html>
