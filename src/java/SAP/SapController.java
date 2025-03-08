@@ -141,6 +141,24 @@ public class SapController {
                     + "]"
                     + "}";
 
+            String jsonBody1 = "{"
+                    + "\"ItemCode\": \"F171909\", "
+                    + "\"ItemName\": \"ΚΟΚΚΑΛΟ ΚΟΜΠΟΣ-6.35cm-10gr/10pcs (NEW)\", "
+                    + "\"ItemsGroupCode\": 110, "
+                    + "\"InventoryItem\": \"tYES\", "
+                    + "\"SalesItem\": \"tYES\", "
+                    + "\"PurchaseItem\": \"tYES\", "
+                    + "\"Properties7\" : \"tYES\"," // This is for Αξεσουαρ, if i want food i choose Properties5 tYES
+
+                    + "\"ItemUnitOfMeasurementCollection\": [" // Minimal UoM details
+                    + "  {"
+                    + "    \"UoMEntry\": 1, " // UoMEntry for "Piece"
+                    + "    \"BaseUoM\": \"tYES\", " // Mark as base unit of measure
+                    + "    \"AltQty\": 1.0" // Alternate quantity (1 piece)
+                    + "  }"
+                    + "]"
+                    + "}";
+
             // Initialize SAP API client and log in to get the session token
             SAPApiClient sapApiClient = new SAPApiClient();
             String sessionToken = sapApiClient.loginToSAP();
@@ -152,7 +170,7 @@ public class SapController {
             conn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
 
             // Send the JSON body in the request
-            sapApiClient.sendRequestBody(conn, jsonBody);
+            sapApiClient.sendRequestBody(conn, jsonBody1);
 
             // Get the response code from the server
             int responseCode = conn.getResponseCode();
