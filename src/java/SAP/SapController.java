@@ -207,4 +207,51 @@ public class SapController {
         return "/sap/sapDashboard";
     }
 
+    @RequestMapping(value = "addBarcode")
+    private String addBarcode1(ModelMap modelMap) {
+        try {
+            String itemCode = "1271";
+            String apiUrl = BASE_URL + "/Items('" + itemCode + "')";
+            // JSON body for creating an item
+            String jsonBody = "{"
+                    + "\"BarCodes\": ["
+                    + "  {"
+                    + "    \"Barcode\": \"1234567890123\","
+                    + "    \"UoMEntry\": 1," // Unit of Measure Entry (e.g., 1 for default)
+                    + "    \"FreeText\": \"\"" // Optional: Add any free text if needed
+                    + "  }"
+                    + "]"
+                    + "}";
+            SAPApiClient sapApiClient = new SAPApiClient();
+            String sessionToken = sapApiClient.loginToSAP();
+            HttpURLConnection conn = sapApiClient.createConnection(apiUrl, "POST");
+
+            conn.setRequestProperty("X-HTTP-Method-Override", "PATCH"); // Trick server into treating this as PATCH
+
+            conn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
+            sapApiClient.sendRequestBody(conn, jsonBody);
+
+            // Get the response code from the server
+            int responseCode = conn.getResponseCode();
+            System.out.println("Response Code: " + responseCode);
+
+            String message = "";
+// Handle the response
+            if (responseCode == 200 || responseCode == 201) {
+                System.out.println("Response: " + sapApiClient.getJsonResponse(conn));
+            } else if (responseCode == 401) {
+                System.out.println("Session expired! Please re-login.");
+            } else {
+                message = sapApiClient.getErrorResponse(conn);
+                System.out.println("Error Response: " + message);
+            }
+            modelMap.addAttribute("message", message);
+// Return the view name (assuming this is part of a Spring MVC controller)
+
+        } catch (IOException ex) {
+            Logger.getLogger(SapController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "/sap/sapDashboard";
+    }
+
 }
