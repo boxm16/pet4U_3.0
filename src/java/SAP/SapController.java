@@ -286,7 +286,7 @@ public class SapController {
 
             // 2. Check if UoMEntry 2 is already assigned
             boolean uomExists = false;
-            JSONArray uomList = itemJson.optJSONArray("ItemUoMs"); // Check if the item has UoMs
+            JSONArray uomList = itemJson.optJSONArray("ItemUoMPackageCollection"); // Check if the item has UoMs
 
             if (uomList != null) {
                 for (int i = 0; i < uomList.length(); i++) {
@@ -307,7 +307,7 @@ public class SapController {
                 newUoM.put("UoMEntry", 2); // Assign UoMEntry 2
                 updatedUoMList.put(newUoM);
 
-                uomAssignment.put("ItemUoMs", updatedUoMList);
+                uomAssignment.put("ItemUoMPackageCollection", updatedUoMList);
 
                 HttpURLConnection updateUomConn = sapApiClient.createConnection(apiUrl, "POST");
                 updateUomConn.setRequestProperty("X-HTTP-Method-Override", "PATCH"); // Trick server into treating this as PATCH
