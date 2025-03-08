@@ -77,69 +77,67 @@ public class SapController {
             String apiUrl = BASE_URL + "/Items";
 
             // JSON body for creating an item
-            String jsonBody = "{"
-                    + "\"ItemCode\": \"F171909\", "
-                    + "\"ItemName\": \"ΚΟΚΚΑΛΟ ΚΟΜΠΟΣ-6.35cm-10gr/10pcs (NEW)\", "
-                    + "\"ItemsGroupCode\": 110, "
-                    + "\"SalesUnit\": \"ΣΥΣΚΕΥΑΣΙΑ\", "
-                    + "\"PurchaseUnit\": \"ΤΕΜΑΧΙΑ\", "
-                    + "\"InventoryItem\": \"tYES\", "
-                    + "\"SalesItem\": \"tYES\", "
-                    + "\"PurchaseItem\": \"tYES\", "
-                    + "\"VatLiable\": \"tYES\", "
-                    + "\"SalesVATGroup\": \"Φ7000-24\", "
-                    + "\"PurchaseVATGroup\": \"Φ2000-24\", "
-                    + "\"Properties7\" : \"tYES\"," // This is for Αξεσουαρ, if i want food i choose Properties5 tYES
-                    // + "\"BarCode\": \"1003-12222P\", " // Add ONE BarCode here OR ......
-
-                    + "\"ItemUnitOfMeasurementCollection\": [" // Here you define UnitOfMeasurementEntry, and
-                    + "  {"
-                    + "    \"UoMEntry\": 1, " // UoMEntry for "Piece"
-                    + "    \"BaseUoM\": \"tYES\", " // Mark as base unit of measure
-                    + "    \"AltQty\": \"1.0\"" // Alternate quantity (1 piece)
-                    + "  },"
-                    + "  {"
-                    + "    \"UoMEntry\": 2, " // UoMEntry for "Box"
-                    + "    \"BaseUoM\": \"tNO\", " // Not the base unit of measure
-                    + "    \"AltQty\": \"10.0\"" // Alternate quantity (10 pieces per box)
-                    + "  }"
-                    + "],"
-                    + "\"ItemBarCodeCollection\": [" // Add barcodes here
-                    + "  {"
-                    + "    \"Barcode\": \"1234567890123\", " // Barcode for 1 Piece
-                    + "    \"UoMEntry\": 1" // UoMEntry for "Piece"
-                    + "  },"
-                    + "  {"
-                    + "    \"Barcode\": \"9876543210987\", " // Barcode for 1 Box
-                    + "    \"UoMEntry\": 2" // UoMEntry for "Box"
-                    + "  }"
-                    + "],"
-                    + "\"ItemPrices\": ["
-                    + "  {"
-                    + "    \"PriceList\": 1, "
-                    + "    \"Price\": 1.3, "
-                    + "    \"Currency\": \"EUR\""
-                    + "  },"
-                    + "  {"
-                    + "    \"PriceList\": 2, "
-                    + "    \"Price\": 2.32, "
-                    + "    \"Currency\": \"EUR\""
-                    + "  }"
-                    + "],"
-                    + "\"ItemWarehouseInfoCollection\": ["
-                    + "  {"
-                    + "    \"WarehouseCode\": \"AX-BAR\", "
-                    + "    \"MinimalStock\": 0.0, "
-                    + "    \"MaximalStock\": 0.0, "
-                    + "    \"MinimalOrder\": 0.0"
-                    + "  }"
-                    + "],"
-                    + "\"ItemPreferredVendors\": ["
-                    + "  {"
-                    + "    \"BPCode\": \"ΠΡΟ-000076\""
-                    + "  }"
-                    + "]"
-                    + "}";
+           String jsonBody = "{"
+                + "\"ItemCode\": \"F171909\", "
+                + "\"ItemName\": \"ΚΟΚΚΑΛΟ ΚΟΜΠΟΣ-6.35cm-10gr/10pcs (NEW)\", "
+                + "\"ItemsGroupCode\": 110, "
+                + "\"SalesUnit\": \"ΣΥΣΚΕΥΑΣΙΑ\", "
+                + "\"PurchaseUnit\": \"ΤΕΜΑΧΙΑ\", "
+                + "\"InventoryItem\": \"tYES\", "
+                + "\"SalesItem\": \"tYES\", "
+                + "\"PurchaseItem\": \"tYES\", "
+                + "\"VatLiable\": \"tYES\", "
+                + "\"SalesVATGroup\": \"Φ7000-24\", "
+                + "\"PurchaseVATGroup\": \"Φ2000-24\", "
+                + "\"Properties7\": \"tYES\", "  // Existing field
+                + "\"ItemUnitOfMeasurementCollection\": ["  // Add UoM details here
+                + "  {"
+                + "    \"UoMEntry\": 1, "  // UoMEntry for "Piece"
+                + "    \"BaseUoM\": \"tYES\", "  // Mark as base unit of measure
+                + "    \"AltQty\": 1.0"  // Alternate quantity (1 piece)
+                + "  },"
+                + "  {"
+                + "    \"UoMEntry\": 2, "  // UoMEntry for "Box"
+                + "    \"BaseUoM\": \"tNO\", "  // Not the base unit of measure
+                + "    \"AltQty\": 10.0"  // Alternate quantity (10 pieces per box)
+                + "  }"
+                + "],"
+                + "\"ItemBarCodeCollection\": ["  // Add barcodes here
+                + "  {"
+                + "    \"Barcode\": \"1234567890123\", "  // Barcode for 1 Piece
+                + "    \"UoMEntry\": 1"  // UoMEntry for "Piece"
+                + "  },"
+                + "  {"
+                + "    \"Barcode\": \"9876543210987\", "  // Barcode for 1 Box
+                + "    \"UoMEntry\": 2"  // UoMEntry for "Box"
+                + "  }"
+                + "],"
+                + "\"ItemPrices\": ["
+                + "  {"
+                + "    \"PriceList\": 1, "
+                + "    \"Price\": 1.3, "
+                + "    \"Currency\": \"EUR\""
+                + "  },"
+                + "  {"
+                + "    \"PriceList\": 2, "
+                + "    \"Price\": 2.32, "
+                + "    \"Currency\": \"EUR\""
+                + "  }"
+                + "],"
+                + "\"ItemWarehouseInfoCollection\": ["
+                + "  {"
+                + "    \"WarehouseCode\": \"AX-BAR\", "
+                + "    \"MinimalStock\": 0.0, "
+                + "    \"MaximalStock\": 0.0, "
+                + "    \"MinimalOrder\": 0.0"
+                + "  }"
+                + "],"
+                + "\"ItemPreferredVendors\": ["
+                + "  {"
+                + "    \"BPCode\": \"ΠΡΟ-000076\""
+                + "  }"
+                + "]"
+                + "}";
 
             String jsonBody1 = "{"
                     + "\"ItemCode\": \"F171909\", "
@@ -170,7 +168,7 @@ public class SapController {
             conn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
 
             // Send the JSON body in the request
-            sapApiClient.sendRequestBody(conn, jsonBody1);
+            sapApiClient.sendRequestBody(conn, jsonBody);
 
             // Get the response code from the server
             int responseCode = conn.getResponseCode();
