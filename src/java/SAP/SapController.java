@@ -177,6 +177,7 @@ public class SapController {
 
             // Create the HTTP connection for the POST request
             HttpURLConnection conn = sapApiClient.createConnection(apiUrl, "POST");
+            conn.setRequestProperty("X-HTTP-Method-Override", "PATCH"); // Trick server into treating this as PATCH
 
             // Set the session token in the request header
             conn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
