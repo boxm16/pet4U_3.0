@@ -210,7 +210,11 @@ public class SapController {
             // 1. Retrieve the existing item data
             HttpURLConnection getConn = sapApiClient.createConnection(apiUrl, "GET");
             getConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
-            
+            try {
+                sapApiClient.applySSLBypass(getConn);
+            } catch (Exception ex) {
+                Logger.getLogger(SAPApiClient.class.getName()).log(Level.SEVERE, null, ex);
+            }
             JSONObject existingData = sapApiClient.getJsonResponse(getConn);
 
             JSONObject itemJson = new JSONObject(existingData);
