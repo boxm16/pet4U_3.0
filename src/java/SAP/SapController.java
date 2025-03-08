@@ -198,8 +198,8 @@ public class SapController {
         return "/sap/sapDashboard";
     }
 
-    @RequestMapping(value = "addBarcode")
-    public String addBarcode(ModelMap modelMap) {
+    @RequestMapping(value = "addBarcode1")
+    public String addBarcode1(ModelMap modelMap) {
         try {
             String itemCode = "1271";
             String apiUrl = BASE_URL + "/Items('" + itemCode + "')"; // Ensure BarCodes are retrieved
@@ -255,6 +255,97 @@ public class SapController {
                 message = sapApiClient.getErrorResponse(conn);
                 System.out.println("Error Response: " + message);
             }
+            modelMap.addAttribute("message", message);
+
+        } catch (IOException ex) {
+            Logger.getLogger(SapController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "/sap/sapDashboard";
+    }
+
+    @RequestMapping(value = "addBarcode")
+    public String addBarcode(ModelMap modelMap) {
+        try {
+            String itemCode = "1271";
+            String apiUrl = BASE_URL + "/Items('" + itemCode + "')";
+
+            SAPApiClient sapApiClient = new SAPApiClient();
+            String sessionToken = sapApiClient.loginToSAP();
+
+            // 1. Retrieve the existing item data
+            HttpURLConnection getConn = sapApiClient.createConnection(apiUrl, "GET");
+            getConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
+            try {
+                sapApiClient.applySSLBypass(getConn);
+            } catch (Exception ex) {
+                Logger.getLogger(SAPApiClient.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            JSONObject existingData = sapApiClient.getJsonResponse(getConn);
+            JSONObject itemJson = new JSONObject(existingData);
+
+            int uomGroupEntry = itemJson.optInt("UoMGroupEntry", -1);
+            boolean uomExists = false;
+
+            // 2. Check if UoMEntry 2 exists for the item
+            if (uomGroupEntry != -1) {
+                String uomGroupUrl = BASE_URL + "/UoMGroups(" + uomGroupEntry + ")";
+                HttpURLConnection uomConn = sapApiClient.createConnection(uomGroupUrl, "GET");
+                uomConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
+                JSONObject uomGroupData = sapApiClient.getJsonResponse(uomConn);
+                JSONArray uomList = uomGroupData.optJSONArray("UoMGroupDefinitionCollection");
+
+                if (uomList != null) {
+                    for (int i = 0; i < uomList.length(); i++) {
+                        JSONObject uom = uomList.getJSONObject(i);
+                        if (uom.optInt("AlternateUoM", -1) == 2) {
+                            uomExists = true;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            // 3. If UoM 2 is not assigned, update the item with correct UoMGroupEntry
+            if (!uomExists) {
+                JSONObject updateUomPayload = new JSONObject();
+                updateUomPayload.put("UoMGroupEntry", uomGroupEntry); // Ensure correct UoMGroupEntry
+
+                HttpURLConnection updateUomConn = sapApiClient.createConnection(apiUrl, "PATCH");
+                updateUomConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
+                sapApiClient.sendRequestBody(updateUomConn, updateUomPayload.toString());
+
+                if (updateUomConn.getResponseCode() != 200) {
+                    System.out.println("Failed to update UoM. Error: " + sapApiClient.getErrorResponse(updateUomConn));
+                    return "/sap/sapDashboard";
+                }
+            }
+
+            // 4. Now proceed to add barcode
+            JSONArray barcodesArray = itemJson.optJSONArray("ItemBarCodeCollection");
+
+            JSONObject newBarcode = new JSONObject();
+            newBarcode.put("Barcode", "0000000000000004");
+            newBarcode.put("UoMEntry", 2);
+            newBarcode.put("FreeText", "Box of 10 items");
+
+            if (barcodesArray == null) {
+                barcodesArray = new JSONArray();
+            }
+            barcodesArray.put(newBarcode);
+
+            JSONObject updatedItem = new JSONObject();
+            updatedItem.put("ItemBarCodeCollection", barcodesArray);
+            String jsonBody = updatedItem.toString();
+
+            HttpURLConnection updateConn = sapApiClient.createConnection(apiUrl, "PATCH");
+            updateConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
+            sapApiClient.sendRequestBody(updateConn, jsonBody);
+
+            int responseCode = updateConn.getResponseCode();
+            String message = (responseCode == 200 || responseCode == 201) ? "Barcode added successfully" : sapApiClient.getErrorResponse(updateConn);
+
+            System.out.println("Response Code: " + responseCode);
             modelMap.addAttribute("message", message);
 
         } catch (IOException ex) {
