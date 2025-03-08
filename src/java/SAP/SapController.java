@@ -202,7 +202,7 @@ public class SapController {
     public String addBarcode(ModelMap modelMap) {
         try {
             String itemCode = "1271";
-            String apiUrl = BASE_URL + "/Items('" + itemCode + "')?$select=BarCodes"; // Ensure BarCodes are retrieved
+            String apiUrl = BASE_URL + "/Items('" + itemCode + "')"; // Ensure BarCodes are retrieved
 
             SAPApiClient sapApiClient = new SAPApiClient();
             String sessionToken = sapApiClient.loginToSAP();
