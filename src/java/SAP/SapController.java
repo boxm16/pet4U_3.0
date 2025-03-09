@@ -263,8 +263,8 @@ public class SapController {
         return "/sap/sapDashboard";
     }
 
-    @RequestMapping(value = "addBarcode")
-    public String addBarcode(ModelMap modelMap) {
+    @RequestMapping(value = "assignUoM5AndAddBarcode")
+    public String assignUoM5AndAddBarcode(ModelMap modelMap) {
         try {
             String itemCode = "1271";
             String apiUrl = BASE_URL + "/Items('" + itemCode + "')";
@@ -272,9 +272,10 @@ public class SapController {
             SAPApiClient sapApiClient = new SAPApiClient();
             String sessionToken = sapApiClient.loginToSAP();
 
-            // 1. Retrieve existing item data
+            // Retrieve existing item data
             HttpURLConnection getConn = sapApiClient.createConnection(apiUrl, "GET");
             getConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
+
             try {
                 sapApiClient.applySSLBypass(getConn);
             } catch (Exception ex) {
@@ -283,14 +284,12 @@ public class SapController {
 
             JSONObject itemJson = sapApiClient.getJsonResponse(getConn);
 
-            // 2. Check if UoMEntry 2 exists in ItemUnitOfMeasurementCollection
+            // Check if UoMEntry 5 exists
             boolean uomExists = false;
             JSONArray uomList = itemJson.optJSONArray("ItemUnitOfMeasurementCollection");
-
             if (uomList != null) {
                 for (int i = 0; i < uomList.length(); i++) {
-                    JSONObject uom = uomList.getJSONObject(i);
-                    if (uom.optInt("UoMEntry", -1) == 5) {
+                    if (uomList.getJSONObject(i).optInt("UoMEntry", -1) == 5) {
                         uomExists = true;
                         break;
                     }
@@ -299,80 +298,44 @@ public class SapController {
                 uomList = new JSONArray();
             }
 
-            // 3. If UoMEntry 2 does not exist, create and assign it
-            String message = "";
+            // Assign UoM5 if not exists
             if (!uomExists) {
-                // Create UoMGroup if needed
                 JSONObject uomGroupJson = new JSONObject();
-                uomGroupJson.put("UoMEntry", 5);  // Create UoM Entry 2
-             
+                uomGroupJson.put("UoMEntry", 5);
                 uomGroupJson.put("UoMType", "iutInventory");
-              
-
                 uomList.put(uomGroupJson);
 
-                // Add UoM Group to Item Unit of Measurement
                 JSONObject uomUpdate = new JSONObject();
                 uomUpdate.put("ItemUnitOfMeasurementCollection", uomList);
 
                 HttpURLConnection updateUomConn = sapApiClient.createConnection(apiUrl, "POST");
-                updateUomConn.setRequestProperty("X-HTTP-Method-Override", "PATCH"); // Trick server into treating this as PATCH
-
+                updateUomConn.setRequestProperty("X-HTTP-Method-Override", "PATCH");
                 updateUomConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
                 sapApiClient.sendRequestBody(updateUomConn, uomUpdate.toString());
-
-                int responseCode = updateUomConn.getResponseCode();
-
-                if (responseCode == 204) {
-                    System.out.println("Empty Response");
-                } else if (responseCode == 200 || responseCode == 201) {
-                    System.out.println("Response: " + sapApiClient.getJsonResponse(updateUomConn));
-                } else if (responseCode == 401) {
-                    System.out.println("Session expired! Please re-login.");
-                } else {
-                    message += sapApiClient.getErrorResponse(updateUomConn);
-                    System.out.println("Error Response: " + message);
-                }
             }
 
-            // 4. Now proceed to add barcode for UoMEntry 2
+            // Add barcode for UoM5
             JSONArray barcodesArray = itemJson.optJSONArray("ItemBarCodeCollection");
-
-            JSONObject newBarcode = new JSONObject();
-            newBarcode.put("Barcode", "0000000000000004");
-            newBarcode.put("UoMEntry", 5);
-            newBarcode.put("FreeText", "Box of 10 items");
-
             if (barcodesArray == null) {
                 barcodesArray = new JSONArray();
             }
+
+            JSONObject newBarcode = new JSONObject();
+            newBarcode.put("Barcode", "0000000000000005");
+            newBarcode.put("UoMEntry", 5);
+            newBarcode.put("FreeText", "UoM5 Barcode");
             barcodesArray.put(newBarcode);
 
             JSONObject updatedItem = new JSONObject();
             updatedItem.put("ItemBarCodeCollection", barcodesArray);
-            String jsonBody = updatedItem.toString();
 
             HttpURLConnection updateConn = sapApiClient.createConnection(apiUrl, "POST");
-            updateConn.setRequestProperty("X-HTTP-Method-Override", "PATCH"); // Trick server into treating this as PATCH
-
+            updateConn.setRequestProperty("X-HTTP-Method-Override", "PATCH");
             updateConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
-            sapApiClient.sendRequestBody(updateConn, jsonBody);
+            sapApiClient.sendRequestBody(updateConn, updatedItem.toString());
 
             int responseCode = updateConn.getResponseCode();
-
-            if (responseCode == 204) {
-                System.out.println("Empty Response");
-            } else if (responseCode == 200 || responseCode == 201) {
-                System.out.println("Response: " + sapApiClient.getJsonResponse(updateConn));
-            } else if (responseCode == 401) {
-                System.out.println("Session expired! Please re-login.");
-            } else {
-                message += sapApiClient.getErrorResponse(updateConn);
-                System.out.println("Error Response: " + message);
-            }
-            System.out.println("Response Code: " + responseCode);
-            modelMap.addAttribute("message", message);
-
+            modelMap.addAttribute("message", "Response Code: " + responseCode);
         } catch (IOException ex) {
             Logger.getLogger(SapController.class.getName()).log(Level.SEVERE, null, ex);
         }
