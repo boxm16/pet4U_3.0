@@ -263,8 +263,8 @@ public class SapController {
         return "/sap/sapDashboard";
     }
 
-    @RequestMapping(value = "assignUoM5AndAddBarcode")
-    public String assignUoM5AndAddBarcode(ModelMap modelMap) {
+    @RequestMapping(value = "addBarcode")
+    public String addBarcode(ModelMap modelMap) {
         try {
             String itemCode = "1271";
             String apiUrl = BASE_URL + "/Items('" + itemCode + "')";
