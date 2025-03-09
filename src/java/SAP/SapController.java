@@ -290,7 +290,7 @@ public class SapController {
             if (uomList != null) {
                 for (int i = 0; i < uomList.length(); i++) {
                     JSONObject uom = uomList.getJSONObject(i);
-                    if (uom.optInt("UoMEntry", -1) == 2) {
+                    if (uom.optInt("UoMEntry", -1) == 5) {
                         uomExists = true;
                         break;
                     }
