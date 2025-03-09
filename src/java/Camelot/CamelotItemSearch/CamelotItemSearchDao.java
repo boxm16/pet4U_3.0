@@ -12,7 +12,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -83,8 +83,8 @@ public class CamelotItemSearchDao {
         return item;
     }
 
-    HashMap<String, Item> getAllItems() {
-        HashMap<String, Item> items = new HashMap();
+    LinkedHashMap<String, Item> getAllItems() {
+        LinkedHashMap<String, Item> items = new LinkedHashMap();
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
         Connection connection = databaseConnectionFactory.getSapHanaConnection();
         Item item = null;
