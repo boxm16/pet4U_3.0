@@ -308,8 +308,8 @@ public class SapController {
                 JSONObject uomUpdate = new JSONObject();
                 uomUpdate.put("ItemUnitOfMeasurementCollection", uomList);
 
-                HttpURLConnection updateUomConn = sapApiClient.createConnection(apiUrl, "POST");
-                updateUomConn.setRequestProperty("X-HTTP-Method-Override", "MERGE");
+                HttpURLConnection updateUomConn = sapApiClient.createConnection(apiUrl, "PUT");
+             //   updateUomConn.setRequestProperty("X-HTTP-Method-Override", "MERGE");
                 updateUomConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
                 sapApiClient.sendRequestBody(updateUomConn, uomUpdate.toString());
                 String message = "";
@@ -342,8 +342,8 @@ public class SapController {
             JSONObject updatedItem = new JSONObject();
             updatedItem.put("ItemBarCodeCollection", barcodesArray);
 
-            HttpURLConnection updateConn = sapApiClient.createConnection(apiUrl, "POST");
-            updateConn.setRequestProperty("X-HTTP-Method-Override", "PATCH");
+            HttpURLConnection updateConn = sapApiClient.createConnection(apiUrl, "PUT");
+            //updateConn.setRequestProperty("X-HTTP-Method-Override", "PATCH");
             updateConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
             sapApiClient.sendRequestBody(updateConn, updatedItem.toString());
 
