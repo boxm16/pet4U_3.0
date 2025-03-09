@@ -312,6 +312,16 @@ public class SapController {
                 updateUomConn.setRequestProperty("X-HTTP-Method-Override", "PATCH");
                 updateUomConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
                 sapApiClient.sendRequestBody(updateUomConn, uomUpdate.toString());
+                String message = "";
+                int responseCode = updateUomConn.getResponseCode();
+                if (responseCode == 200 || responseCode == 201) {
+                    System.out.println("Response: " + sapApiClient.getJsonResponse(updateUomConn));
+                } else if (responseCode == 401) {
+                    System.out.println("Session expired! Please re-login.");
+                } else {
+                    message += sapApiClient.getErrorResponse(updateUomConn);
+                    System.out.println("Error Response: " + message);
+                }
             }
 
             // Add barcode for UoM5
@@ -334,8 +344,16 @@ public class SapController {
             updateConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
             sapApiClient.sendRequestBody(updateConn, updatedItem.toString());
 
+            String message = "";
             int responseCode = updateConn.getResponseCode();
-            modelMap.addAttribute("message", "Response Code: " + responseCode);
+            if (responseCode == 200 || responseCode == 201) {
+                System.out.println("Response: " + sapApiClient.getJsonResponse(updateConn));
+            } else if (responseCode == 401) {
+                System.out.println("Session expired! Please re-login.");
+            } else {
+                message += sapApiClient.getErrorResponse(updateConn);
+                System.out.println("Error Response: " + message);
+            }
         } catch (IOException ex) {
             Logger.getLogger(SapController.class.getName()).log(Level.SEVERE, null, ex);
         }
