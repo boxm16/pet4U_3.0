@@ -264,7 +264,7 @@ public class SapController {
     }
 
     @RequestMapping(value = "addBarcode")
-    @RequestMapping(value = "addUoM")
+
     public String addUoM(ModelMap modelMap) {
         try {
             String itemCode = "1271";
