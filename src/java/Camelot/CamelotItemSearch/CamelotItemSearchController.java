@@ -36,6 +36,6 @@ public class CamelotItemSearchController {
 
         modelMap.addAttribute("items", items);
 
-        return "camelotItemSearch/singleItemSearchResultFromSapHana";
+        return "sap/allItems";
     }
 }
