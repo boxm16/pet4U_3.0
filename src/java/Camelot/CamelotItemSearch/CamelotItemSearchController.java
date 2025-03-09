@@ -6,6 +6,7 @@
 package Camelot.CamelotItemSearch;
 
 import BasicModel.Item;
+import java.util.HashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -28,5 +29,13 @@ public class CamelotItemSearchController {
         }
         return "camelotItemSearch/singleItemSearchResultFromSapHana";
     }
- 
+
+    @RequestMapping(value = "getAllCamelotItemsFromSapHanaView")
+    public String getAllCamelotItemsFromSapHanaView(ModelMap modelMap) {
+        HashMap<String, Item> items = camelotItemSearchDao.getAllItems();
+
+        modelMap.addAttribute("item", items);
+
+        return "camelotItemSearch/singleItemSearchResultFromSapHana";
+    }
 }

@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,8 +69,6 @@ public class CamelotItemSearchDao {
                     }
                 }
 
-               
-
                 if (item != null) {//It should never be, i mean, if there is an altercode, there is an item. But, just in any case
                     item.addAltercodeContainer(altercodeContainer);
                 }
@@ -82,6 +81,66 @@ public class CamelotItemSearchDao {
             Logger.getLogger(CamelotItemSearchDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return item;
+    }
+
+    HashMap<String, Item> getAllItems() {
+        HashMap<String, Item> items = new HashMap();
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+        Connection connection = databaseConnectionFactory.getSapHanaConnection();
+        Item item = null;
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = null;
+
+            resultSet = statement.executeQuery("SELECT * "
+                    + "FROM \"PETCAMELOT_UAT2\".\"BYT_V_BARCODEDETAILS\" t1 "
+                    + "JOIN \"PETCAMELOT_UAT2\".\"BYT_V_ITEMDETAILS\" t2 ON t1.\"ItemCode\" = t2.\"ItemCode\" "
+                    + "WHERE t1.\"ItemCode\" = ("
+                    + "    SELECT \"ItemCode\" FROM \"PETCAMELOT_UAT2\".\"BYT_V_BARCODEDETAILS\" "
+                    + ");");
+
+            while (resultSet.next()) {
+                String itemCode = resultSet.getString("ItemCode");
+                if (!items.containsKey(itemCode)) {
+                    item = new Item();
+                    item.setCode(itemCode);
+                    item.setDescription(resultSet.getString("ItemName"));
+                    item.setPosition(resultSet.getString("PickLocation"));
+                    item.setQuantity(resultSet.getString("Stock"));
+                    items.put(itemCode, item);
+                }
+                item = items.get(itemCode);
+                AltercodeContainer altercodeContainer = new AltercodeContainer();
+                altercodeContainer.setAltercode(resultSet.getString("BarCode"));
+                if (resultSet.getString("UnitOfMeasurement") == null) {
+                    altercodeContainer.setStatus("");
+                } else {
+                    altercodeContainer.setStatus(resultSet.getString("UnitOfMeasurement").trim());
+                }
+                if (resultSet.getString("MainBarcode") == null) {
+                    //do nothing
+                } else {
+                    if (resultSet.getString("MainBarcode").equals(resultSet.getString("BarCode"))) {
+                        altercodeContainer.setMainBarcode(true);
+                        //  item.setMainBarcode(resultSet.getString("ALTERNATECODE"));// HERE ALTERNATECODE AND MAIN_CODE IS THE SAME
+                        item.setMainBarcode(resultSet.getString("BarCode"));//
+                    } else {
+                        altercodeContainer.setMainBarcode(false);
+                    }
+                }
+
+                if (item != null) {//It should never be, i mean, if there is an altercode, there is an item. But, just in any case
+                    item.addAltercodeContainer(altercodeContainer);
+                }
+            }
+
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(CamelotItemSearchDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return items;
     }
 
 }

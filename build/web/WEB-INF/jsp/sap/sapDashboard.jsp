@@ -22,6 +22,8 @@
         <a href="createItem.htm"><h1>Create Item</h1></a>
         <hr>
         <a href="addBarcode.htm"><h1>Add Barcode</h1></a>
-        
+        <hr>
+        <a href="getAllCamelotItemsFromSapHanaView.htm" target="_blank"><h1>Get All Camelot Items</h1></a>
+
     </body>
 </html>
