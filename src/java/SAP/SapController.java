@@ -309,7 +309,7 @@ public class SapController {
                 uomUpdate.put("ItemUnitOfMeasurementCollection", uomList);
 
                 HttpURLConnection updateUomConn = sapApiClient.createConnection(apiUrl, "POST");
-                updateUomConn.setRequestProperty("X-HTTP-Method-Override", "PATCH");
+                updateUomConn.setRequestProperty("X-HTTP-Method-Override", "MERGE");
                 updateUomConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
                 sapApiClient.sendRequestBody(updateUomConn, uomUpdate.toString());
                 String message = "";
