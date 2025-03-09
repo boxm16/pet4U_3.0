@@ -275,7 +275,6 @@ public class SapController {
             // 1. Retrieve existing item data
             HttpURLConnection getConn = sapApiClient.createConnection(apiUrl, "GET");
             getConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
-
             try {
                 sapApiClient.applySSLBypass(getConn);
             } catch (Exception ex) {
@@ -303,30 +302,32 @@ public class SapController {
             // 3. If UoMEntry 2 does not exist, create and assign it
             String message = "";
             if (!uomExists) {
-                JSONObject newUoM = new JSONObject();
-                newUoM.put("UoMEntry", 2);  // Create UoM Entry 2
-                newUoM.put("UoMType", "iutInventory"); // Assuming it’s an inventory UoM
-                newUoM.put("DefaultBarcode", JSONObject.NULL); // No default barcode
-                newUoM.put("DefaultPackage", JSONObject.NULL);
-                newUoM.put("VolumeUnit", 4); // Example volume unit
-                newUoM.put("Weight1", 0.0);
-                newUoM.put("Weight1Unit", JSONObject.NULL);
-                newUoM.put("ItemUoMPackageCollection", new JSONArray()); // Empty package collection
+                // Create UoMGroup if needed
+                JSONObject uomGroupJson = new JSONObject();
+                uomGroupJson.put("UoMEntry", 2);  // Create UoM Entry 2
+                uomGroupJson.put("UoMType", "iutInventory"); // Assuming it's an inventory UoM
+                uomGroupJson.put("DefaultBarcode", JSONObject.NULL);
+                uomGroupJson.put("DefaultPackage", JSONObject.NULL);
+                uomGroupJson.put("VolumeUnit", 4);  // Volume Unit Example
+                uomGroupJson.put("Weight1", 0.0);   // Weight Example
+                uomGroupJson.put("ItemUoMPackageCollection", new JSONArray()); // Empty package collection
 
-                uomList.put(newUoM);
+                uomList.put(uomGroupJson);
 
+                // Add UoM Group to Item Unit of Measurement
                 JSONObject uomUpdate = new JSONObject();
                 uomUpdate.put("ItemUnitOfMeasurementCollection", uomList);
 
                 HttpURLConnection updateUomConn = sapApiClient.createConnection(apiUrl, "POST");
                 updateUomConn.setRequestProperty("X-HTTP-Method-Override", "PATCH"); // Trick server into treating this as PATCH
+
                 updateUomConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
                 sapApiClient.sendRequestBody(updateUomConn, uomUpdate.toString());
+
                 int responseCode = updateUomConn.getResponseCode();
 
                 if (responseCode == 204) {
                     System.out.println("Empty Response");
-
                 } else if (responseCode == 200 || responseCode == 201) {
                     System.out.println("Response: " + sapApiClient.getJsonResponse(updateUomConn));
                 } else if (responseCode == 401) {
@@ -364,7 +365,6 @@ public class SapController {
 
             if (responseCode == 204) {
                 System.out.println("Empty Response");
-
             } else if (responseCode == 200 || responseCode == 201) {
                 System.out.println("Response: " + sapApiClient.getJsonResponse(updateConn));
             } else if (responseCode == 401) {
