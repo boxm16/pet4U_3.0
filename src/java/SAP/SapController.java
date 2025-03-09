@@ -264,7 +264,7 @@ public class SapController {
     }
 
     @RequestMapping(value = "addBarcode")
-
+    @RequestMapping(value = "addUoM")
     public String addUoM(ModelMap modelMap) {
         try {
             String itemCode = "1271";
@@ -273,59 +273,78 @@ public class SapController {
             SAPApiClient sapApiClient = new SAPApiClient();
             String sessionToken = sapApiClient.loginToSAP();
 
-            // Retrieve existing item data
+            // Step 1: Retrieve the full item data, including the UoM collection.
             HttpURLConnection getConn = sapApiClient.createConnection(apiUrl, "GET");
             getConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
-
             try {
                 sapApiClient.applySSLBypass(getConn);
             } catch (Exception ex) {
                 Logger.getLogger(SapController.class.getName()).log(Level.SEVERE, null, ex);
             }
-
             JSONObject itemJson = sapApiClient.getJsonResponse(getConn);
 
-            // Check if UoMEntry 5 exists
-            boolean uomExists = false;
-            JSONArray uomList = itemJson.optJSONArray("ItemUnitOfMeasurementCollection");
-            if (uomList != null) {
-                for (int i = 0; i < uomList.length(); i++) {
-                    if (uomList.getJSONObject(i).optInt("UoMEntry", -1) == 5) {
-                        uomExists = true;
-                        break;
-                    }
-                }
-            } else {
-                uomList = new JSONArray();
+            // Retrieve the existing UoM collection.
+            JSONArray existingUoMList = itemJson.optJSONArray("ItemUnitOfMeasurementCollection");
+            if (existingUoMList == null) {
+                existingUoMList = new JSONArray();
             }
 
-            // Assign UoMEntry 5 if it doesn't exist
-            if (!uomExists) {
-                JSONObject newUoM = new JSONObject();
-                newUoM.put("UoMType", "iutInventory");
-                newUoM.put("UoMEntry", 5);
-                uomList.put(newUoM);
+            // Step 2: Build a new full collection by copying the existing entries.
+            JSONArray fullUoMList = new JSONArray();
+            for (int i = 0; i < existingUoMList.length(); i++) {
+                JSONObject uomEntry = existingUoMList.getJSONObject(i);
+                fullUoMList.put(uomEntry);
+            }
 
-                JSONObject updatedUomData = new JSONObject();
-                updatedUomData.put("ItemUnitOfMeasurementCollection", uomList);
-
-                HttpURLConnection updateUomConn = sapApiClient.createConnection(apiUrl, "POST");
-                updateUomConn.setRequestProperty("X-HTTP-Method-Override", "PATCH");
-                updateUomConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
-                sapApiClient.sendRequestBody(updateUomConn, updatedUomData.toString());
-
-                int responseCode = updateUomConn.getResponseCode();
-                if (responseCode == 204 || responseCode == 200) {
-                    modelMap.addAttribute("message", "UoMEntry 5 successfully assigned.");
-                    System.out.println("UoMEntry 5 successfully assigned.");
-                } else {
-                    String errorMessage = sapApiClient.getErrorResponse(updateUomConn);
-                    modelMap.addAttribute("message", "Failed to assign UoMEntry 5: " + errorMessage);
-                    System.out.println("Failed to assign UoMEntry 5: " + errorMessage);
+            // Check if UoMEntry 5 is already present.
+            boolean uom5Exists = false;
+            for (int i = 0; i < fullUoMList.length(); i++) {
+                if (fullUoMList.getJSONObject(i).optInt("UoMEntry", -1) == 5) {
+                    uom5Exists = true;
+                    break;
                 }
-            } else {
+            }
+
+            if (uom5Exists) {
                 modelMap.addAttribute("message", "UoMEntry 5 already exists for the item.");
                 System.out.println("UoMEntry 5 already exists for the item.");
+                return "/sap/sapDashboard";
+            }
+
+            // Step 3: Append a new UoM entry to the collection.
+            JSONObject newUoM = new JSONObject();
+            newUoM.put("UoMType", "iutInventory");  // Use the appropriate type
+            newUoM.put("UoMEntry", 5);
+            // Optionally include any extra required fields here:
+            // e.g., newUoM.put("DefaultBarcode", 0);
+            fullUoMList.put(newUoM);
+
+            // Step 4: Construct the payload with the full UoM collection.
+            JSONObject updatedPayload = new JSONObject();
+            updatedPayload.put("ItemUnitOfMeasurementCollection", fullUoMList);
+
+            // Step 5: Create a PATCH request to update the item.
+            HttpURLConnection patchConn = sapApiClient.createConnection(apiUrl, "POST");
+            patchConn.setRequestProperty("X-HTTP-Method-Override", "PATCH");
+            patchConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
+
+            // Use the ETag from the GET response for optimistic concurrency, if available.
+            String etag = itemJson.optString("@odata.etag");
+            if (etag != null && !etag.isEmpty()) {
+                patchConn.setRequestProperty("If-Match", etag);
+            }
+
+            // Send the full updated payload.
+            sapApiClient.sendRequestBody(patchConn, updatedPayload.toString());
+            int responseCode = patchConn.getResponseCode();
+
+            if (responseCode == 200 || responseCode == 204) {
+                modelMap.addAttribute("message", "Successfully updated the UoM collection with UoMEntry 5.");
+                System.out.println("Successfully updated the UoM collection with UoMEntry 5.");
+            } else {
+                String errorMessage = sapApiClient.getErrorResponse(patchConn);
+                modelMap.addAttribute("message", "Failed to update UoM collection: " + errorMessage);
+                System.out.println("Failed to update UoM collection: " + errorMessage);
             }
         } catch (IOException ex) {
             Logger.getLogger(SapController.class.getName()).log(Level.SEVERE, null, ex);
