@@ -304,13 +304,9 @@ public class SapController {
             if (!uomExists) {
                 // Create UoMGroup if needed
                 JSONObject uomGroupJson = new JSONObject();
-                uomGroupJson.put("UoMEntry", 2);  // Create UoM Entry 2
-                uomGroupJson.put("UoMType", "iutInventory"); // Assuming it's an inventory UoM
-                uomGroupJson.put("DefaultBarcode", JSONObject.NULL);
-                uomGroupJson.put("DefaultPackage", JSONObject.NULL);
-                uomGroupJson.put("VolumeUnit", 4);  // Volume Unit Example
-                uomGroupJson.put("Weight1", 0.0);   // Weight Example
-                uomGroupJson.put("ItemUoMPackageCollection", new JSONArray()); // Empty package collection
+                uomGroupJson.put("UoMEntry", 5);  // Create UoM Entry 2
+                uomGroupJson.put("UoMCode", "ΧΤ"); // Assuming it's an inventory UoM
+                uomGroupJson.put("BaseUoM", "tNO");
 
                 uomList.put(uomGroupJson);
 
