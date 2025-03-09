@@ -305,7 +305,7 @@ public class SapController {
                 // Create UoMGroup if needed
                 JSONObject uomGroupJson = new JSONObject();
                 uomGroupJson.put("UoMEntry", 5);  // Create UoM Entry 2
-                uomGroupJson.put("UoMCode", "ΧΤ"); // Assuming it's an inventory UoM
+             
                 uomGroupJson.put("UoMType", "iutInventory");
               
 
