@@ -264,7 +264,8 @@ public class SapController {
     }
 
     @RequestMapping(value = "addBarcode")
-    public String addBarcode(ModelMap modelMap) {
+
+    public String addUoM(ModelMap modelMap) {
         try {
             String itemCode = "1271";
             String apiUrl = BASE_URL + "/Items('" + itemCode + "')";
@@ -298,70 +299,37 @@ public class SapController {
                 uomList = new JSONArray();
             }
 
-            // Assign UoM5 if not exists
+            // Assign UoMEntry 5 if it doesn't exist
             if (!uomExists) {
-                JSONObject uomGroupJson = new JSONObject();
-                uomGroupJson.put("UoMEntry", 5);
-                uomGroupJson.put("UoMType", "iutInventory");
-                uomList.put(uomGroupJson);
+                JSONObject newUoM = new JSONObject();
+                newUoM.put("UoMType", "iutInventory");
+                newUoM.put("UoMEntry", 5);
+                uomList.put(newUoM);
 
-                JSONObject uomUpdate = new JSONObject();
-                uomUpdate.put("ItemUnitOfMeasurementCollection", uomList);
+                JSONObject updatedUomData = new JSONObject();
+                updatedUomData.put("ItemUnitOfMeasurementCollection", uomList);
 
                 HttpURLConnection updateUomConn = sapApiClient.createConnection(apiUrl, "POST");
                 updateUomConn.setRequestProperty("X-HTTP-Method-Override", "PATCH");
                 updateUomConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
-                sapApiClient.sendRequestBody(updateUomConn, uomUpdate.toString());
-                String message = "";
+                sapApiClient.sendRequestBody(updateUomConn, updatedUomData.toString());
+
                 int responseCode = updateUomConn.getResponseCode();
-                if (responseCode == 204) {
-                    System.out.println("Empty Response");
-                } else if (responseCode == 200 || responseCode == 201 || responseCode == 204) {
-                    System.out.println("Response: " + sapApiClient.getJsonResponse(updateUomConn));
-                } else if (responseCode == 401) {
-                    System.out.println("Session expired! Please re-login.");
+                if (responseCode == 204 || responseCode == 200) {
+                    modelMap.addAttribute("message", "UoMEntry 5 successfully assigned.");
+                    System.out.println("UoMEntry 5 successfully assigned.");
                 } else {
-                    message = sapApiClient.getErrorResponse(updateUomConn);
-                    System.out.println("Error Response: " + message);
+                    String errorMessage = sapApiClient.getErrorResponse(updateUomConn);
+                    modelMap.addAttribute("message", "Failed to assign UoMEntry 5: " + errorMessage);
+                    System.out.println("Failed to assign UoMEntry 5: " + errorMessage);
                 }
-                modelMap.addAttribute("message", message);
-            }
-
-            // Add barcode for UoM5
-            JSONArray barcodesArray = itemJson.optJSONArray("ItemBarCodeCollection");
-            if (barcodesArray == null) {
-                barcodesArray = new JSONArray();
-            }
-
-            JSONObject newBarcode = new JSONObject();
-            newBarcode.put("Barcode", "0000000000000005");
-            newBarcode.put("UoMEntry", 5);
-            newBarcode.put("FreeText", "UoM5 Barcode");
-            barcodesArray.put(newBarcode);
-
-            JSONObject updatedItem = new JSONObject();
-            updatedItem.put("ItemBarCodeCollection", barcodesArray);
-
-            HttpURLConnection updateConn = sapApiClient.createConnection(apiUrl, "POST");
-            updateConn.setRequestProperty("X-HTTP-Method-Override", "PATCH");
-            updateConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
-            sapApiClient.sendRequestBody(updateConn, updatedItem.toString());
-
-            String message = "";
-            int responseCode = updateConn.getResponseCode();
-            if (responseCode == 204) {
-                System.out.println("Empty Response");
-            } else if (responseCode == 200 || responseCode == 201 || responseCode == 204) {
-                System.out.println("Response: " + sapApiClient.getJsonResponse(updateConn));
-            } else if (responseCode == 401) {
-                System.out.println("Session expired! Please re-login.");
             } else {
-                message = sapApiClient.getErrorResponse(updateConn);
-                System.out.println("Error Response: " + message);
+                modelMap.addAttribute("message", "UoMEntry 5 already exists for the item.");
+                System.out.println("UoMEntry 5 already exists for the item.");
             }
-            modelMap.addAttribute("message", message);
         } catch (IOException ex) {
             Logger.getLogger(SapController.class.getName()).log(Level.SEVERE, null, ex);
+            modelMap.addAttribute("message", "An error occurred: " + ex.getMessage());
         }
         return "/sap/sapDashboard";
     }
