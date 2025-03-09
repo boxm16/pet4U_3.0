@@ -34,7 +34,7 @@ public class CamelotItemSearchController {
     public String getAllCamelotItemsFromSapHanaView(ModelMap modelMap) {
         HashMap<String, Item> items = camelotItemSearchDao.getAllItems();
 
-        modelMap.addAttribute("item", items);
+        modelMap.addAttribute("items", items);
 
         return "camelotItemSearch/singleItemSearchResultFromSapHana";
     }
