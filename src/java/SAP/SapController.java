@@ -339,7 +339,7 @@ public class SapController {
 
             JSONObject newBarcode = new JSONObject();
             newBarcode.put("Barcode", "0000000000000004");
-            newBarcode.put("UoMEntry", 2);
+            newBarcode.put("UoMEntry", 5);
             newBarcode.put("FreeText", "Box of 10 items");
 
             if (barcodesArray == null) {
