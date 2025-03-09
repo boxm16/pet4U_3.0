@@ -314,14 +314,17 @@ public class SapController {
                 sapApiClient.sendRequestBody(updateUomConn, uomUpdate.toString());
                 String message = "";
                 int responseCode = updateUomConn.getResponseCode();
-                if (responseCode == 200 || responseCode == 201) {
+                if (responseCode == 204) {
+                    System.out.println("Empty Response");
+                } else if (responseCode == 200 || responseCode == 201 || responseCode == 204) {
                     System.out.println("Response: " + sapApiClient.getJsonResponse(updateUomConn));
                 } else if (responseCode == 401) {
                     System.out.println("Session expired! Please re-login.");
                 } else {
-                    message += sapApiClient.getErrorResponse(updateUomConn);
+                    message = sapApiClient.getErrorResponse(updateUomConn);
                     System.out.println("Error Response: " + message);
                 }
+                modelMap.addAttribute("message", message);
             }
 
             // Add barcode for UoM5
@@ -346,14 +349,17 @@ public class SapController {
 
             String message = "";
             int responseCode = updateConn.getResponseCode();
-            if (responseCode == 200 || responseCode == 201) {
+            if (responseCode == 204) {
+                System.out.println("Empty Response");
+            } else if (responseCode == 200 || responseCode == 201 || responseCode == 204) {
                 System.out.println("Response: " + sapApiClient.getJsonResponse(updateConn));
             } else if (responseCode == 401) {
                 System.out.println("Session expired! Please re-login.");
             } else {
-                message += sapApiClient.getErrorResponse(updateConn);
+                message = sapApiClient.getErrorResponse(updateConn);
                 System.out.println("Error Response: " + message);
             }
+            modelMap.addAttribute("message", message);
         } catch (IOException ex) {
             Logger.getLogger(SapController.class.getName()).log(Level.SEVERE, null, ex);
         }
