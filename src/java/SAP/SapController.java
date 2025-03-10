@@ -337,6 +337,9 @@ public String addUoM(ModelMap modelMap) {
         newUoM.put("Weight2Unit", JSONObject.NULL);
         newUoM.put("ItemUoMPackageCollection", new JSONArray());
         
+        System.out.println("Final Payload: " + newUoM.toString(4)); // Pretty print for debugging
+
+        
         // Append the new UoM entry (UoMEntry 5) to our full collection.
         fullUoMList.put(newUoM);
         
