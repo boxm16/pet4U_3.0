@@ -64,7 +64,7 @@
                         ArrayList<AltercodeContainer> altercodes = item.getAltercodes();
                         for (AltercodeContainer altercodeContainer : altercodes) {
 
-                            out.println(altercodeContainer.getAltercode() + "</strong>");
+                            out.println(altercodeContainer.getAltercode() +":"+altercodeContainer.getStatus()+ "</strong>");
                             out.println("<br>");
                         }
 
