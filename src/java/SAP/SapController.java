@@ -276,11 +276,6 @@ public class SapController {
             // Step 1: Retrieve the full item data (including UoM collection)
             HttpURLConnection getConn = sapApiClient.createConnection(apiUrl, "GET");
             getConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
-            try {
-                sapApiClient.applySSLBypass(getConn);
-            } catch (Exception ex) {
-                Logger.getLogger(SapController.class.getName()).log(Level.SEVERE, null, ex);
-            }
             JSONObject itemJson = sapApiClient.getJsonResponse(getConn);
 
             // Retrieve existing UoM collection; initialize if missing.
@@ -295,7 +290,7 @@ public class SapController {
                 fullUoMList.put(existingUoMList.getJSONObject(i));
             }
 
-            // Check if UoMEntry 5 exists.
+            // Check if UoMEntry 5 already exists.
             boolean uom5Exists = false;
             for (int i = 0; i < fullUoMList.length(); i++) {
                 if (fullUoMList.getJSONObject(i).optInt("UoMEntry", -1) == 5) {
@@ -306,70 +301,54 @@ public class SapController {
 
             if (uom5Exists) {
                 modelMap.addAttribute("message", "UoMEntry 5 already exists for the item.");
-                System.out.println("UoMEntry 5 already exists for the item.");
                 return "/sap/sapDashboard";
             }
 
-            // Step 3: Build the new UoM object for UoMEntry 5 using your provided sample details.
-            JSONObject newUoM = new JSONObject();
-            newUoM.put("UoMType", "iutInventory");
-            newUoM.put("UoMEntry", 5);
-            newUoM.put("DefaultBarcode", 2805);
-            newUoM.put("DefaultPackage", JSONObject.NULL);  // Use JSONObject.NULL for null values
-            newUoM.put("Length1", 0.0);
-            newUoM.put("Length1Unit", JSONObject.NULL);
-            newUoM.put("Length2", 0.0);
-            newUoM.put("Length2Unit", JSONObject.NULL);
-            newUoM.put("Width1", 0.0);
-            newUoM.put("Width1Unit", JSONObject.NULL);
-            newUoM.put("Width2", 0.0);
-            newUoM.put("Width2Unit", JSONObject.NULL);
-            newUoM.put("Height1", 0.0);
-            newUoM.put("Height1Unit", JSONObject.NULL);
-            newUoM.put("Height2", 0.0);
-            newUoM.put("Height2Unit", JSONObject.NULL);
-            newUoM.put("Volume", 0.0);
-            newUoM.put("VolumeUnit", 4);
-            newUoM.put("Weight1", 0.0);
-            newUoM.put("Weight1Unit", JSONObject.NULL);
-            newUoM.put("Weight2", 0.0);
-            newUoM.put("Weight2Unit", JSONObject.NULL);
-            newUoM.put("ItemUoMPackageCollection", new JSONArray());
+            // Step 3: Build the new UoM objects for UoMEntry 5 with the correct structure.
+            JSONObject uomInventory = new JSONObject();
+            uomInventory.put("UoMType", "iutInventory");
+            uomInventory.put("UoMEntry", 5);
+            uomInventory.put("DefaultBarcode", 2805);
+            uomInventory.put("VolumeUnit", 4);
+            uomInventory.put("ItemUoMPackageCollection", new JSONArray());
 
-            System.out.println("Final Payload: " + newUoM.toString(4)); // Pretty print for debugging
+            JSONObject uomPurchasing = new JSONObject(uomInventory.toString());
+            uomPurchasing.put("UoMType", "iutPurchasing");
 
-            // Append the new UoM entry (UoMEntry 5) to our full collection.
-            fullUoMList.put(newUoM);
+            JSONObject uomSales = new JSONObject(uomInventory.toString());
+            uomSales.put("UoMType", "iutSales");
 
-            // Step 4: Construct the complete payload with the full item data
+            // Append the new UoM entries to our full collection.
+            fullUoMList.put(uomInventory);
+            fullUoMList.put(uomPurchasing);
+            fullUoMList.put(uomSales);
+
+            // Step 4: Construct the complete payload with the full UoM collection.
             JSONObject updatedPayload = new JSONObject(itemJson.toString()); // Clone the full item JSON
             updatedPayload.put("ItemUnitOfMeasurementCollection", fullUoMList); // Replace only the UoM part
 
-// Step 5: Create a PATCH request to update the item.
+            // Step 5: Create a PATCH request to update the item.
             HttpURLConnection patchConn = sapApiClient.createConnection(apiUrl, "POST");
             patchConn.setRequestProperty("X-HTTP-Method-Override", "PATCH");
             patchConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
 
-// Use ETag for optimistic concurrency; retrieve it from the GET response.
+            // Use ETag for optimistic concurrency; retrieve it from the GET response.
             String etag = itemJson.optString("@odata.etag");
             if (etag != null && !etag.isEmpty()) {
                 patchConn.setRequestProperty("If-Match", etag);
             }
 
-// Send the complete updated payload.
+            // Send the complete updated payload.
             sapApiClient.sendRequestBody(patchConn, updatedPayload.toString());
             int responseCode = patchConn.getResponseCode();
 
             if (responseCode == 200 || responseCode == 204) {
                 modelMap.addAttribute("message", "Successfully updated the UoM collection with UoMEntry 5.");
-                System.out.println("Successfully updated the UoM collection with UoMEntry 5.");
             } else {
                 String errorMessage = sapApiClient.getErrorResponse(patchConn);
                 modelMap.addAttribute("message", "Failed to update UoM collection: " + errorMessage);
-                System.out.println("Failed to update UoM collection: " + errorMessage);
             }
         } catch (IOException ex) {
-            Logger.getLogger(SapController.class.getName()).log(Level.SEVERE, null, ex);
             modelMap.addAttribute("message", "An error occurred: " + ex.getMessage());
         }
         return "/sap/sapDashboard";
