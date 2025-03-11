@@ -36,6 +36,7 @@
 
         <table>
             <th>A/A</th>
+            <th>Item Code</th>
             <th>Position</th>
             <th>Altercode</th>
             <th>Description</th>
@@ -57,6 +58,10 @@
                         out.println("</td>");
 
                         out.println("<td>");
+                        out.println(item.getCode());
+                        out.println("</td>");
+
+                        out.println("<td>");
                         out.println(item.getPosition());
                         out.println("</td>");
 
@@ -64,7 +69,7 @@
                         ArrayList<AltercodeContainer> altercodes = item.getAltercodes();
                         for (AltercodeContainer altercodeContainer : altercodes) {
 
-                            out.println(altercodeContainer.getAltercode() +":"+altercodeContainer.getStatus()+ "</strong>");
+                            out.println(altercodeContainer.getAltercode() + ":" + altercodeContainer.getStatus() + "</strong>");
                             out.println("<br>");
                         }
 
