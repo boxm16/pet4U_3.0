@@ -198,8 +198,8 @@ public class SapController {
         return "/sap/sapDashboard";
     }
 
-    @RequestMapping(value = "addBarcode1")
-    public String addBarcode1(ModelMap modelMap) {
+    @RequestMapping(value = "addBarcode")
+    public String addBarcode(ModelMap modelMap) {
         try {
             String itemCode = "1271";
             String apiUrl = BASE_URL + "/Items('" + itemCode + "')"; // Ensure BarCodes are retrieved
@@ -263,14 +263,13 @@ public class SapController {
         return "/sap/sapDashboard";
     }
 
-    @RequestMapping(value = "addBarcode")
-
-    public String addBarcode(ModelMap modelMap) {
+    @RequestMapping(value = "addBarcode1")
+    public String addBarcode1(ModelMap modelMap) {
         String sapLogin = sapLogin();
-        SAPApiClientX sapacx=new SAPApiClientX();
-        
+        SAPApiClientX sapacx = new SAPApiClientX();
+
         sapacx.push();
-      
+
         return "/sap/sapDashboard";
     }
 
