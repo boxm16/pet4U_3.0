@@ -451,7 +451,7 @@ public class SapController {
     public String getApiCallResponse(ModelMap modelMap) {
         try {
             String itemCode = "1271";  // The item to which we add barcodes
-            String apiUrl = BASE_URL + "/Items('" + itemCode + "')";
+            String apiUrl = BASE_URL + "/UnitOfMeasurementGroups(13)";
 
             SAPApiClient sapApiClient = new SAPApiClient();
             String sessionToken = sapApiClient.loginToSAP();
@@ -469,13 +469,13 @@ public class SapController {
             JSONObject existingData = sapApiClient.getJsonResponse(getConn);
 
             System.out.println("Existing Item Data: " + existingData.toString(2)); // Pretty print JSON
-            modelMap.addAttribute("response", existingData.toString(2));
+            // modelMap.addAttribute("response", existingData.toString(2));
         } catch (IOException ex) {
             Logger.getLogger(SapController.class.getName()).log(Level.SEVERE, null, ex);
             modelMap.addAttribute("message", "An error occurred: " + ex.getMessage());
         }
 
-        return "/sap/sapApiCallResponse";
+        return "/sap/sapDashboard";
     }
 
 }
