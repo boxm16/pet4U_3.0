@@ -475,7 +475,7 @@ public class SapController {
             modelMap.addAttribute("message", "An error occurred: " + ex.getMessage());
         }
 
-        return "/sap/sapDashboard";
+        return "/sap/sapApiCallResponse";
     }
 
 }
