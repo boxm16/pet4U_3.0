@@ -31,7 +31,10 @@ public class SAPApiClientX {
     public void assignUoM2ToItem(String itemCode) throws Exception {
         URL url = new URL(BASE_URL + "/Items('" + itemCode + "')");
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-        conn.setRequestMethod("PATCH");
+
+        conn.setRequestMethod("POST");  // First set to POST
+        conn.setRequestProperty("X-HTTP-Method-Override", "PATCH");  // Trick server
+
         conn.setRequestProperty("Content-Type", "application/json");
         conn.setRequestProperty("Cookie", "B1SESSION=" + SESSION_ID);
         conn.setDoOutput(true);
@@ -76,10 +79,10 @@ public class SAPApiClientX {
     public static void addBarcodeToItem(String itemCode) throws Exception {
         URL url = new URL(BASE_URL + "/Items('" + itemCode + "')");
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-        conn.setRequestMethod("POST");
         
-         conn.setRequestProperty("X-HTTP-Method-Override", "PATCH"); // Trick server into treating this as PATCH
-
+        conn.setRequestMethod("POST");  // First set to POST
+        conn.setRequestProperty("X-HTTP-Method-Override", "PATCH");  // Trick server
+        
         conn.setRequestProperty("Content-Type", "application/json");
         conn.setRequestProperty("Cookie", "B1SESSION=" + SESSION_ID);
         conn.setDoOutput(true);
