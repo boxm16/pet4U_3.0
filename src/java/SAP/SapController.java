@@ -325,7 +325,7 @@ public class SapController {
 
             for (int i = 0; i < uomEntries.length(); i++) {
                 JSONObject uom = uomEntries.getJSONObject(i);
-                int uomEntry = uom.optInt("AlternativeUoM");
+                int uomEntry = uom.optInt("AlternateUoM");
                 updatedUoMEntries.put(uom); // Retain existing UoMs
 
                 if (uomEntry == 2) {
@@ -347,7 +347,7 @@ public class SapController {
             if (!hasBaseUoM) {
                 JSONObject baseUoM = new JSONObject();
                 baseUoM.put("BaseUoM", 1);
-                baseUoM.put("AlternativeUoM", 1);
+                baseUoM.put("AlternateUoM", 1);
                 baseUoM.put("BaseQuantity", 1);
                 baseUoM.put("AlternateQuantity", 1);
                 updatedUoMEntries.put(baseUoM);
@@ -355,14 +355,14 @@ public class SapController {
 
             if (!hasUoM2) {
                 JSONObject uom2 = new JSONObject();
-                uom2.put("AlternativeUoM", 2);
+                uom2.put("AlternateUoM", 2);
                 uom2.put("BaseQuantity", 1);
                 uom2.put("AlternateQuantity", 1);
                 updatedUoMEntries.put(uom2);
             }
             if (!hasUoM3) {
                 JSONObject uom3 = new JSONObject();
-                uom3.put("AlternativeUoM", 3);
+                uom3.put("AlternateUoM", 3);
                 uom3.put("BaseQuantity", 1);
                 uom3.put("AlternateQuantity", 1);
                 updatedUoMEntries.put(uom3);
