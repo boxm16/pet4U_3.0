@@ -3,7 +3,12 @@ package SAP;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.security.cert.X509Certificate;
 import java.util.Scanner;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -31,6 +36,8 @@ public class SAPApiClientX {
     public void assignUoM2ToItem(String itemCode) throws Exception {
         URL url = new URL(BASE_URL + "/Items('" + itemCode + "')");
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+        applySSLBypass(conn);
 
         conn.setRequestMethod("POST");  // First set to POST
         conn.setRequestProperty("X-HTTP-Method-Override", "PATCH");  // Trick server
@@ -76,13 +83,14 @@ public class SAPApiClientX {
     }
 
     // Function to add Barcode to Item
-    public static void addBarcodeToItem(String itemCode) throws Exception {
+    public void addBarcodeToItem(String itemCode) throws Exception {
         URL url = new URL(BASE_URL + "/Items('" + itemCode + "')");
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-        
+        applySSLBypass(conn);
+
         conn.setRequestMethod("POST");  // First set to POST
         conn.setRequestProperty("X-HTTP-Method-Override", "PATCH");  // Trick server
-        
+
         conn.setRequestProperty("Content-Type", "application/json");
         conn.setRequestProperty("Cookie", "B1SESSION=" + SESSION_ID);
         conn.setDoOutput(true);
@@ -114,6 +122,26 @@ public class SAPApiClientX {
             String errorResponse = scanner.useDelimiter("\\A").next();
             scanner.close();
             System.out.println("❌ Error in Barcode Addition: " + errorResponse);
+        }
+    }
+
+    public void applySSLBypass(HttpURLConnection conn) throws Exception {
+        if (conn instanceof HttpsURLConnection) {
+            SSLContext sslContext = SSLContext.getInstance("TLS");
+            sslContext.init(null, new TrustManager[]{new X509TrustManager() {
+                public void checkClientTrusted(X509Certificate[] certs, String authType) {
+                }
+
+                public void checkServerTrusted(X509Certificate[] certs, String authType) {
+                }
+
+                public X509Certificate[] getAcceptedIssuers() {
+                    return null;
+                }
+            }}, new java.security.SecureRandom());
+
+            ((HttpsURLConnection) conn).setSSLSocketFactory(sslContext.getSocketFactory());
+            ((HttpsURLConnection) conn).setHostnameVerifier((hostname, session) -> hostname.equals("192.168.0.183"));
         }
     }
 }
