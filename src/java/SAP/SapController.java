@@ -307,9 +307,14 @@ public class SapController {
                 modelMap.addAttribute("message", "UoM Group Entry is missing!");
                 return "/sap/sapDashboard";
             }
+            String ugpCode = existingData.optString("UgpCode");
+            if (ugpCode.isEmpty()) {
+                modelMap.addAttribute("message", "UgpCode not found in UoM Group!");
+                return "/sap/sapDashboard";
+            }
 
             // 3. Retrieve the UoM Group details
-            String uomGroupUrl = BASE_URL + "/UnitOfMeasurementGroups(" + uomGroupEntry + ")";
+            String uomGroupUrl = BASE_URL + "/UnitOfMeasurementGroups(" + ugpCode + ")";
             HttpURLConnection uomConn = sapApiClient.createConnection(uomGroupUrl, "GET");
             uomConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
             try {
@@ -319,6 +324,11 @@ public class SapController {
             }
 
             JSONObject uomGroupData = sapApiClient.getJsonResponse(uomConn);
+            String ugpCode = uomGroupData.optString("UgpCode");
+            if (ugpCode.isEmpty()) {
+                modelMap.addAttribute("message", "UgpCode not found in UoM Group!");
+                return "/sap/sapDashboard";
+            }
             JSONArray uomEntries = uomGroupData.optJSONArray("UoMGroupDefinitionCollection");
 
             // 4. Add missing UoMs (UoMEntry = 2, 3)
@@ -366,7 +376,7 @@ public class SapController {
             updatedUoMGroup.put("BaseUoM", existingData.optInt("BaseUoM"));  // Preserve BaseUoM
             updatedUoMGroup.put("UgpCode", existingData.optString("UgpCode"));      // Keep the same Code
             updatedUoMGroup.put("Name", existingData.optString("Name"));
-            
+
             // 5. Send PATCH request to update UoM Group
             HttpURLConnection updateUomConn = sapApiClient.createConnection(uomGroupUrl, "POST");
             updateUomConn.setRequestProperty("X-HTTP-Method-Override", "PATCH"); // Trick server into treating this as PATCH
