@@ -468,7 +468,7 @@ public class SapController {
 
             JSONObject existingData = sapApiClient.getJsonResponse(getConn);
 
-            //   System.out.println("Existing Item Data: " + existingData.toString(2)); // Pretty print JSON
+            System.out.println("Existing Item Data: " + existingData.toString(2)); // Pretty print JSON
             modelMap.addAttribute("response", existingData.toString(2));
         } catch (IOException ex) {
             Logger.getLogger(SapController.class.getName()).log(Level.SEVERE, null, ex);
