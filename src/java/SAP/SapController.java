@@ -238,6 +238,8 @@ public class SapController {
 
             // 4. Send MERGE request (PATCH not supported, so we use MERGE)
             HttpURLConnection conn = sapApiClient.createConnection(apiUrl, "PATCH");
+            conn.setRequestProperty("X-HTTP-Method-Override", "PATCH"); // Trick server into treating this as PATCH
+
             conn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
             conn.setRequestProperty("Content-Type", "application/json");
             conn.setRequestProperty("Accept", "application/json");
