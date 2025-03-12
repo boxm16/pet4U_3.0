@@ -266,7 +266,9 @@ public class SapController {
     @RequestMapping(value = "addBarcode")
 
     public String addBarcode(ModelMap modelMap) {
-        SAPApiClientX sapacx=new SAPApiClientX();
+        String sapLogin = sapLogin();
+        SAPApiClientX sapacx=new SAPApiClientX(sapLogin);
+        
         sapacx.push();
       
         return "/sap/sapDashboard";
