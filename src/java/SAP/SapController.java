@@ -250,7 +250,10 @@ public class SapController {
             System.out.println("Response Code: " + responseCode);
 
             String message = "";
-            if (responseCode == 200 || responseCode == 201) {
+            if (responseCode == 204) {
+                System.out.println("Response: Empy Response");
+                message = "Barcode added successfully!";
+            } else if (responseCode == 200 || responseCode == 201) {
                 System.out.println("Response: " + sapApiClient.getJsonResponse(conn));
                 message = "Barcode added successfully!";
             } else {
