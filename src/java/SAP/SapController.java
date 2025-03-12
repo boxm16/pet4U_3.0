@@ -474,7 +474,7 @@ public class SapController {
             Logger.getLogger(SapController.class.getName()).log(Level.SEVERE, null, ex);
             modelMap.addAttribute("message", "An error occurred: " + ex.getMessage());
         }
-
+        modelMap.addAttribute("response", response);
         return "/sap/sapDashboard";
     }
 
