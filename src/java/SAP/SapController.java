@@ -305,7 +305,7 @@ public class SapController {
             int uomGroupEntry = existingData.optInt("UoMGroupEntry");
 
             // 3. Retrieve the UoMs in the UoM Group
-            String uomGroupUrl = BASE_URL + "/UnitOfMeasurementGroups('" + uomGroupEntry + "')";
+            String uomGroupUrl = BASE_URL + "/UnitOfMeasurementGroups(" + uomGroupEntry + ")";
             HttpURLConnection uomConn = sapApiClient.createConnection(uomGroupUrl, "GET");
             uomConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
 
