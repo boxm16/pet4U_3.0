@@ -398,7 +398,9 @@ public class SapController {
             JSONObject updatedUoMData = new JSONObject();
             updatedUoMData.put("ItemUnitOfMeasurementCollection", itemUoMCollection);
 
-            HttpURLConnection updateItemConn = sapApiClient.createConnection(apiUrl, "PATCH");
+            HttpURLConnection updateItemConn = sapApiClient.createConnection(apiUrl, "POST");
+            updateItemConn.setRequestProperty("X-HTTP-Method-Override", "PATCH"); // Trick server into treating this as PATCH
+
             updateItemConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
             updateItemConn.setRequestProperty("Content-Type", "application/json");
 
@@ -441,7 +443,9 @@ public class SapController {
             JSONObject updatedItem = new JSONObject();
             updatedItem.put("ItemBarCodeCollection", barcodesArray);
 
-            HttpURLConnection barcodeConn = sapApiClient.createConnection(apiUrl, "PATCH");
+            HttpURLConnection barcodeConn = sapApiClient.createConnection(apiUrl, "POST");
+            barcodeConn.setRequestProperty("X-HTTP-Method-Override", "PATCH"); // Trick server into treating this as PATCH
+
             barcodeConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
             barcodeConn.setRequestProperty("Content-Type", "application/json");
 
