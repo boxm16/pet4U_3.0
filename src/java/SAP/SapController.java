@@ -447,4 +447,35 @@ public class SapController {
         return "/sap/sapDashboard";
     }
 
+    @RequestMapping(value = "getApiCallResponse")
+    public String getApiCallResponse(ModelMap modelMap) {
+        try {
+            String itemCode = "1271";  // The item to which we add barcodes
+            String apiUrl = BASE_URL + "/Items('" + itemCode + "')";
+
+            SAPApiClient sapApiClient = new SAPApiClient();
+            String sessionToken = sapApiClient.loginToSAP();
+
+            // 1. Retrieve the existing item data
+            HttpURLConnection getConn = sapApiClient.createConnection(apiUrl, "GET");
+            getConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
+
+            try {
+                sapApiClient.applySSLBypass(getConn);
+            } catch (Exception ex) {
+                Logger.getLogger(SapController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            JSONObject existingData = sapApiClient.getJsonResponse(getConn);
+
+            System.out.println("Existing Item Data: " + existingData.toString(2)); // Pretty print JSON
+
+        } catch (IOException ex) {
+            Logger.getLogger(SapController.class.getName()).log(Level.SEVERE, null, ex);
+            modelMap.addAttribute("message", "An error occurred: " + ex.getMessage());
+        }
+
+        return "/sap/sapDashboard";
+    }
+
 }
