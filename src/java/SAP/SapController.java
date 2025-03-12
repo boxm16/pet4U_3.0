@@ -267,7 +267,7 @@ public class SapController {
 
     public String addBarcode(ModelMap modelMap) {
         String sapLogin = sapLogin();
-        SAPApiClientX sapacx=new SAPApiClientX(sapLogin);
+        SAPApiClientX sapacx=new SAPApiClientX();
         
         sapacx.push();
       

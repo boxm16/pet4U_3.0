@@ -1,10 +1,17 @@
 package SAP;
 
+import TESTosteron.SAPApiClient;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.security.cert.X509Certificate;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
@@ -16,14 +23,15 @@ public class SAPApiClientX {
 
     private static final String BASE_URL = "https://192.168.0.183:50000/b1s/v2";
     private static final String ITEM_CODE = "1271";
-    private String SESSION_ID = "your-session-id"; // Replace with actual session ID
-
-    public SAPApiClientX(String session_id) {
-        this.SESSION_ID = session_id;
-    }
+    private String SESSION_ID = "your-session-id"; // Replace with actual session ID // 🔹 SAP Business One API credentials
+    private final String USERNAME = "scanner1";
+    private final String PASSWORD = "1234";
+    private final String COMPANY_DB = "PETCAMELOT_UAT2";
 
     public void push() {
         try {
+            
+            String SESSION_ID = loginToSAP();
             // Step 1: Assign UoM2 to the Item
             assignUoM2ToItem(ITEM_CODE);
 
@@ -34,6 +42,85 @@ public class SAPApiClientX {
             e.printStackTrace();
         }
 
+    }
+
+    public String loginToSAP() throws IOException {
+
+        String loginUrl = BASE_URL + "/Login";
+        String loginPayload = String.format(
+                "{ \"UserName\": \"%s\", \"Password\": \"%s\", \"CompanyDB\": \"%s\" }",
+                USERNAME, PASSWORD, COMPANY_DB
+        );
+
+        HttpURLConnection conn = createConnection(loginUrl, "POST");
+
+        try {
+            applySSLBypass(conn);
+        } catch (Exception ex) {
+            Logger.getLogger(SAPApiClientX.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        sendRequestBody(conn, loginPayload);
+
+        int responseCode = conn.getResponseCode();
+        System.out.println("? Login Response Code: " + responseCode);
+
+        if (responseCode == 200) {
+            JSONObject jsonResponse = getJsonResponse(conn);
+            //    System.out.println(jsonResponse);
+            String sessionId = jsonResponse.getString("SessionId");
+            System.out.println(" Logged in. Session ID: " + sessionId);
+            return sessionId;
+        } else {
+            System.out.println("Login failed. Response: " + getErrorResponse(conn));
+            return null;
+        }
+    }
+    // 🔹 Utility: Create HTTP Connection
+
+    public HttpURLConnection createConnection(String url, String method) throws IOException {
+        HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
+        conn.setRequestMethod(method);
+        conn.setRequestProperty("Content-Type", "application/json");
+        conn.setDoOutput(true);
+        return conn;
+    }
+
+    public void sendRequestBody(HttpURLConnection conn, String jsonBody) throws IOException {
+
+        try {
+            applySSLBypass(conn);
+        } catch (Exception ex) {
+            Logger.getLogger(SAPApiClient.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        try (OutputStream os = conn.getOutputStream()) {
+            os.write(jsonBody.getBytes(StandardCharsets.UTF_8));
+        }
+    }
+
+    // 🔹 Utility: Read Error Response
+    public String getErrorResponse(HttpURLConnection conn) throws IOException {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getErrorStream(), StandardCharsets.UTF_8))) {
+            StringBuilder response = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                response.append(line);
+            }
+            return response.toString();
+        }
+    }
+
+    public JSONObject getJsonResponse(HttpURLConnection conn) throws IOException {
+
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream(), StandardCharsets.UTF_8))) {
+            StringBuilder response = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                response.append(line);
+            }
+            return new JSONObject(response.toString());
+        }
     }
 
     // Function to assign UoM2 to Item
