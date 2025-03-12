@@ -336,7 +336,7 @@ public class SapController {
             }
 
             // 5. Ensure UoM 2 and UoM 3 are assigned to the item
-            JSONArray itemUoMCollection = existingData.optJSONArray("ItemUoMCollection");
+            JSONArray itemUoMCollection = existingData.optJSONArray("ItemUnitOfMeasurementCollection");
             if (itemUoMCollection == null) {
                 itemUoMCollection = new JSONArray();
             }
@@ -355,7 +355,7 @@ public class SapController {
 
             // 6. Update the item with new UoM assignments
             JSONObject updatedUoMData = new JSONObject();
-            updatedUoMData.put("ItemUoMCollection", itemUoMCollection);
+            updatedUoMData.put("ItemUnitOfMeasurementCollection", itemUoMCollection);
 
             HttpURLConnection updateConn = sapApiClient.createConnection(apiUrl, "POST");
             try {
