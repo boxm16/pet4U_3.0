@@ -344,6 +344,14 @@ public class SapController {
                     break;
                 }
             }
+            if (!hasBaseUoM) {
+                JSONObject baseUoM = new JSONObject();
+                baseUoM.put("BaseUoM", 1);
+                baseUoM.put("AlternateUoM", 1);
+                baseUoM.put("BaseQuantity", 1);
+                baseUoM.put("AlternateQuantity", 1);
+                updatedUoMEntries.put(baseUoM);
+            }
 
             if (!hasUoM2) {
                 JSONObject uom2 = new JSONObject();
