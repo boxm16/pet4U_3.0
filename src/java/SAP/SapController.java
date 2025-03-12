@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -202,45 +201,26 @@ public class SapController {
     public String addBarcode(ModelMap modelMap) {
         try {
             String itemCode = "1271";
-            String apiUrl = BASE_URL + "/Items('" + itemCode + "')"; // Ensure BarCodes are retrieved
+            String apiUrl = BASE_URL + "/ItemBarCodeCollection"; // Directly add barcode
 
             SAPApiClient sapApiClient = new SAPApiClient();
             String sessionToken = sapApiClient.loginToSAP();
 
-            // 1. Retrieve the existing item data
-            HttpURLConnection getConn = sapApiClient.createConnection(apiUrl, "GET");
-            getConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
-            try {
-                sapApiClient.applySSLBypass(getConn);
-            } catch (Exception ex) {
-                Logger.getLogger(SAPApiClient.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            JSONObject existingData = sapApiClient.getJsonResponse(getConn);
-
-            JSONObject itemJson = new JSONObject(existingData);
-            JSONArray barcodesArray = itemJson.optJSONArray("ItemBarCodeCollection");
-
-            // 2. Add a new barcode for the BOX (10 items inside)
+            // 1. Create the JSON request body
             JSONObject newBarcode = new JSONObject();
-            newBarcode.put("Barcode", "0000000000000004"); // New barcode for the box
-            newBarcode.put("UoMEntry", 2); // Set the Unit of Measure Entry for Box (You must find the correct UoMEntry ID)
+            newBarcode.put("ItemCode", itemCode);
+            newBarcode.put("Barcode", "0000000000000004"); // New barcode
+            newBarcode.put("UoMEntry", 1); // Unit of Measure Entry
             newBarcode.put("FreeText", "Box of 10 items");
 
-            if (barcodesArray == null) {
-                barcodesArray = new JSONArray();
-            }
-            barcodesArray.put(newBarcode);
+            String jsonBody = newBarcode.toString();
 
-            // 3. Create the updated JSON payload
-            JSONObject updatedItem = new JSONObject();
-            updatedItem.put("ItemBarCodeCollection", barcodesArray);
-            String jsonBody = updatedItem.toString();
-
-            // 4. Send update request using MERGE
+            // 2. Send POST request
             HttpURLConnection conn = sapApiClient.createConnection(apiUrl, "POST");
-            conn.setRequestProperty("X-HTTP-Method-Override", "PATCH"); // Trick server into treating this as PATCH
-
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setRequestProperty("Accept", "application/json");
             conn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
+
             sapApiClient.sendRequestBody(conn, jsonBody);
 
             int responseCode = conn.getResponseCode();
@@ -249,17 +229,21 @@ public class SapController {
             String message = "";
             if (responseCode == 200 || responseCode == 201) {
                 System.out.println("Response: " + sapApiClient.getJsonResponse(conn));
+                message = "Barcode added successfully!";
             } else if (responseCode == 401) {
-                System.out.println("Session expired! Please re-login.");
+                message = "Session expired! Please re-login.";
+                System.out.println(message);
             } else {
-                message += sapApiClient.getErrorResponse(conn);
+                message = sapApiClient.getErrorResponse(conn);
                 System.out.println("Error Response: " + message);
             }
+
             modelMap.addAttribute("message", message);
 
         } catch (IOException ex) {
             Logger.getLogger(SapController.class.getName()).log(Level.SEVERE, null, ex);
         }
+
         return "/sap/sapDashboard";
     }
 
