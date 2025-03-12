@@ -349,7 +349,7 @@ public class SapController {
                 baseUoM.put("BaseUoM", 1);
                 baseUoM.put("AlternativeUoM", 1);
                 baseUoM.put("BaseQuantity", 1);
-                baseUoM.put("AlternativeQuantity", 1);
+                baseUoM.put("AlternateQuantity", 1);
                 updatedUoMEntries.put(baseUoM);
             }
 
@@ -357,14 +357,14 @@ public class SapController {
                 JSONObject uom2 = new JSONObject();
                 uom2.put("AlternativeUoM", 2);
                 uom2.put("BaseQuantity", 1);
-                uom2.put("AlternativeQuantity", 1);
+                uom2.put("AlternateQuantity", 1);
                 updatedUoMEntries.put(uom2);
             }
             if (!hasUoM3) {
                 JSONObject uom3 = new JSONObject();
                 uom3.put("AlternativeUoM", 3);
                 uom3.put("BaseQuantity", 1);
-                uom3.put("AlternativeQuantity", 1);
+                uom3.put("AlternateQuantity", 1);
                 updatedUoMEntries.put(uom3);
             }
 
