@@ -16,7 +16,11 @@ public class SAPApiClientX {
 
     private static final String BASE_URL = "https://192.168.0.183:50000/b1s/v2";
     private static final String ITEM_CODE = "1271";
-    private static final String SESSION_ID = "your-session-id"; // Replace with actual session ID
+    private String SESSION_ID = "your-session-id"; // Replace with actual session ID
+
+    public SAPApiClientX(String session_id) {
+        this.SESSION_ID = session_id;
+    }
 
     public void push() {
         try {
