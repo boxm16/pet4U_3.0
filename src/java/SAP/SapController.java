@@ -366,7 +366,7 @@ public class SapController {
             updatedUoMGroup.put("BaseUoM", existingData.optInt("BaseUoM"));  // Preserve BaseUoM
             updatedUoMGroup.put("Code", existingData.optString("Code"));      // Keep the same Code
             updatedUoMGroup.put("Name", existingData.optString("Name"));
-            updatedUoMGroup.put("UgpCode", existingData.optString("Code")); // ✅ Explicitly adding UgpCode
+            
             // 5. Send PATCH request to update UoM Group
             HttpURLConnection updateUomConn = sapApiClient.createConnection(uomGroupUrl, "POST");
             updateUomConn.setRequestProperty("X-HTTP-Method-Override", "PATCH"); // Trick server into treating this as PATCH
