@@ -265,92 +265,10 @@ public class SapController {
 
     @RequestMapping(value = "addBarcode")
 
-    public String addUoM(ModelMap modelMap) {
-        try {
-            String itemCode = "1271";
-            String apiUrl = BASE_URL + "/Items('" + itemCode + "')";
-
-            SAPApiClient sapApiClient = new SAPApiClient();
-            String sessionToken = sapApiClient.loginToSAP();
-
-            // Step 1: Retrieve the full item data (including UoM collection)
-            HttpURLConnection getConn = sapApiClient.createConnection(apiUrl, "GET");
-            getConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
-            JSONObject itemJson = sapApiClient.getJsonResponse(getConn);
-
-            // Retrieve existing UoM collection; initialize if missing.
-            JSONArray existingUoMList = itemJson.optJSONArray("ItemUnitOfMeasurementCollection");
-            if (existingUoMList == null) {
-                existingUoMList = new JSONArray();
-            }
-
-            // Step 2: Build a full collection payload by copying existing entries.
-            JSONArray fullUoMList = new JSONArray();
-            for (int i = 0; i < existingUoMList.length(); i++) {
-                fullUoMList.put(existingUoMList.getJSONObject(i));
-            }
-
-            // Check if UoMEntry 5 already exists.
-            boolean uom5Exists = false;
-            for (int i = 0; i < fullUoMList.length(); i++) {
-                if (fullUoMList.getJSONObject(i).optInt("UoMEntry", -1) == 5) {
-                    uom5Exists = true;
-                    break;
-                }
-            }
-
-            if (uom5Exists) {
-                modelMap.addAttribute("message", "UoMEntry 5 already exists for the item.");
-                return "/sap/sapDashboard";
-            }
-
-            // Step 3: Build the new UoM objects for UoMEntry 5 with the correct structure.
-            JSONObject uomInventory = new JSONObject();
-            uomInventory.put("UoMType", "iutInventory");
-            uomInventory.put("UoMEntry", 5);
-            uomInventory.put("DefaultBarcode", 2805);
-            uomInventory.put("VolumeUnit", 4);
-            uomInventory.put("ItemUoMPackageCollection", new JSONArray());
-
-            JSONObject uomPurchasing = new JSONObject(uomInventory.toString());
-            uomPurchasing.put("UoMType", "iutPurchasing");
-
-            JSONObject uomSales = new JSONObject(uomInventory.toString());
-            uomSales.put("UoMType", "iutSales");
-
-            // Append the new UoM entries to our full collection.
-            fullUoMList.put(uomInventory);
-            fullUoMList.put(uomPurchasing);
-            fullUoMList.put(uomSales);
-
-            // Step 4: Construct the complete payload with the full UoM collection.
-            JSONObject updatedPayload = new JSONObject(itemJson.toString()); // Clone the full item JSON
-            updatedPayload.put("ItemUnitOfMeasurementCollection", fullUoMList); // Replace only the UoM part
-
-            // Step 5: Create a PATCH request to update the item.
-            HttpURLConnection patchConn = sapApiClient.createConnection(apiUrl, "POST");
-            patchConn.setRequestProperty("X-HTTP-Method-Override", "PATCH");
-            patchConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
-
-            // Use ETag for optimistic concurrency; retrieve it from the GET response.
-            String etag = itemJson.optString("@odata.etag");
-            if (etag != null && !etag.isEmpty()) {
-                patchConn.setRequestProperty("If-Match", etag);
-            }
-
-            // Send the complete updated payload.
-            sapApiClient.sendRequestBody(patchConn, updatedPayload.toString());
-            int responseCode = patchConn.getResponseCode();
-
-            if (responseCode == 200 || responseCode == 204) {
-                modelMap.addAttribute("message", "Successfully updated the UoM collection with UoMEntry 5.");
-            } else {
-                String errorMessage = sapApiClient.getErrorResponse(patchConn);
-                modelMap.addAttribute("message", "Failed to update UoM collection: " + errorMessage);
-            }
-        } catch (IOException ex) {
-            modelMap.addAttribute("message", "An error occurred: " + ex.getMessage());
-        }
+    public String addBarcode(ModelMap modelMap) {
+        SAPApiClientX sapacx=new SAPApiClientX();
+        sapacx.push();
+      
         return "/sap/sapDashboard";
     }
 
