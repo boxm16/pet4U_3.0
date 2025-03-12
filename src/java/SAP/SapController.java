@@ -309,6 +309,12 @@ public class SapController {
             HttpURLConnection uomConn = sapApiClient.createConnection(uomGroupUrl, "GET");
             uomConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
 
+            try {
+                sapApiClient.applySSLBypass(uomConn);
+            } catch (Exception ex) {
+                Logger.getLogger(SapController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
             JSONObject uomGroupData = sapApiClient.getJsonResponse(uomConn);
             JSONArray uomEntries = uomGroupData.optJSONArray("UoMGroupDefinitionCollection");
 
@@ -350,7 +356,14 @@ public class SapController {
             updatedUoMData.put("ItemUoMCollection", itemUoMCollection);
 
             HttpURLConnection updateConn = sapApiClient.createConnection(apiUrl, "POST");
-            updateConn.setRequestProperty("X-HTTP-Method-Override", "PATCH");
+            try {
+                sapApiClient.applySSLBypass(updateConn);
+            } catch (Exception ex) {
+                Logger.getLogger(SapController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            updateConn.setRequestProperty("X-HTTP-Method-Override", "POST");
+            updateConn.setRequestProperty("X-HTTP-Method-Override", "PATCH"); // Trick server into treating this as PATCH
+
             updateConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
             updateConn.setRequestProperty("Content-Type", "application/json");
 
@@ -365,6 +378,13 @@ public class SapController {
             // 7. Retrieve the updated item data (to confirm UoM assignment)
             getConn = sapApiClient.createConnection(apiUrl, "GET");
             getConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
+
+            try {
+                sapApiClient.applySSLBypass(getConn);
+            } catch (Exception ex) {
+                Logger.getLogger(SapController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
             existingData = sapApiClient.getJsonResponse(getConn);
 
             // 8. Get the existing barcodes and add new ones
@@ -398,6 +418,12 @@ public class SapController {
             barcodeConn.setRequestProperty("X-HTTP-Method-Override", "PATCH");
             barcodeConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
             barcodeConn.setRequestProperty("Content-Type", "application/json");
+
+            try {
+                sapApiClient.applySSLBypass(barcodeConn);
+            } catch (Exception ex) {
+                Logger.getLogger(SapController.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
             sapApiClient.sendRequestBody(barcodeConn, updatedItem.toString());
 
