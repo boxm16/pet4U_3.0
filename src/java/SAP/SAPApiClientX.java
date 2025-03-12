@@ -31,7 +31,7 @@ public class SAPApiClientX {
     public void push() {
         try {
             
-            String SESSION_ID = loginToSAP();
+            this.SESSION_ID = loginToSAP();
             // Step 1: Assign UoM2 to the Item
             assignUoM2ToItem(ITEM_CODE);
 
