@@ -301,6 +301,8 @@ public class SapController {
 
             JSONObject existingData = sapApiClient.getJsonResponse(getConn);
 
+            System.out.println("Existing Item Data: " + existingData.toString(2)); // Pretty print JSON
+
             // 2. Get the UoM Group of the item
             int uomGroupEntry = existingData.optInt("UoMGroupEntry");
 
