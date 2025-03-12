@@ -344,13 +344,20 @@ public class SapController {
                 uom2.put("AlternateUoM", 2);
                 uom2.put("BaseQuantity", 1);
                 uom2.put("AlternateQuantity", 1);
+                uom2.put("WeightFactor", 0);  // Keep same as existing entry
+                uom2.put("Active", "tYES");   // Required field
+                uom2.put("UdfFactor", -1);    // Required field
                 updatedUoMEntries.put(uom2);
             }
+
             if (!hasUoM3) {
                 JSONObject uom3 = new JSONObject();
                 uom3.put("AlternateUoM", 3);
                 uom3.put("BaseQuantity", 1);
                 uom3.put("AlternateQuantity", 1);
+                uom3.put("WeightFactor", 0);
+                uom3.put("Active", "tYES");
+                uom3.put("UdfFactor", -1);
                 updatedUoMEntries.put(uom3);
             }
 
@@ -359,7 +366,7 @@ public class SapController {
 
             // 5. Send PATCH request to update UoM Group
             HttpURLConnection updateUomConn = sapApiClient.createConnection(uomGroupUrl, "POST");
-             updateUomConn.setRequestProperty("X-HTTP-Method-Override", "PATCH"); // Trick server into treating this as PATCH
+            updateUomConn.setRequestProperty("X-HTTP-Method-Override", "PATCH"); // Trick server into treating this as PATCH
 
             updateUomConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
             updateUomConn.setRequestProperty("Content-Type", "application/json");
