@@ -77,6 +77,9 @@ public class SAPApiClientX {
         URL url = new URL(BASE_URL + "/Items('" + itemCode + "')");
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("PATCH");
+        
+         conn.setRequestProperty("X-HTTP-Method-Override", "PATCH"); // Trick server into treating this as PATCH
+
         conn.setRequestProperty("Content-Type", "application/json");
         conn.setRequestProperty("Cookie", "B1SESSION=" + SESSION_ID);
         conn.setDoOutput(true);
