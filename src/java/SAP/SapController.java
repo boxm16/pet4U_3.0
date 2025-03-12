@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -200,26 +201,46 @@ public class SapController {
     @RequestMapping(value = "addBarcode")
     public String addBarcode(ModelMap modelMap) {
         try {
-            String itemCode = "1271";
-            String apiUrl = BASE_URL + "/ItemBarCodeCollection"; // Directly add barcode
+            String itemCode = "1271";  // The item to which we add a barcode
+            String apiUrl = BASE_URL + "/Items('" + itemCode + "')"; // ✅ Correct endpoint
 
             SAPApiClient sapApiClient = new SAPApiClient();
             String sessionToken = sapApiClient.loginToSAP();
 
-            // 1. Create the JSON request body
+            // 1. Retrieve the existing item data
+            HttpURLConnection getConn = sapApiClient.createConnection(apiUrl, "GET");
+            getConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
+            try {
+                sapApiClient.applySSLBypass(getConn);
+            } catch (Exception ex) {
+                Logger.getLogger(SapController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            JSONObject existingData = sapApiClient.getJsonResponse(getConn);
+
+            // 2. Get the existing barcodes and add a new one
+            JSONArray barcodesArray = existingData.optJSONArray("ItemBarCodeCollection");
+            if (barcodesArray == null) {
+                barcodesArray = new JSONArray();
+            }
+
             JSONObject newBarcode = new JSONObject();
-            newBarcode.put("ItemCode", itemCode);
             newBarcode.put("Barcode", "0000000000000004"); // New barcode
-            newBarcode.put("UoMEntry", 1); // Unit of Measure Entry
+            newBarcode.put("UoMEntry", 2); // Unit of Measure Entry
             newBarcode.put("FreeText", "Box of 10 items");
 
-            String jsonBody = newBarcode.toString();
+            barcodesArray.put(newBarcode);  // Append new barcode to the array
 
-            // 2. Send POST request
-            HttpURLConnection conn = sapApiClient.createConnection(apiUrl, "POST");
+            // 3. Create the updated JSON payload
+            JSONObject updatedItem = new JSONObject();
+            updatedItem.put("ItemBarCodeCollection", barcodesArray);
+            String jsonBody = updatedItem.toString();
+
+            // 4. Send MERGE request (PATCH not supported, so we use MERGE)
+            HttpURLConnection conn = sapApiClient.createConnection(apiUrl, "PATCH");
+            conn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
             conn.setRequestProperty("Content-Type", "application/json");
             conn.setRequestProperty("Accept", "application/json");
-            conn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
 
             sapApiClient.sendRequestBody(conn, jsonBody);
 
@@ -230,9 +251,6 @@ public class SapController {
             if (responseCode == 200 || responseCode == 201) {
                 System.out.println("Response: " + sapApiClient.getJsonResponse(conn));
                 message = "Barcode added successfully!";
-            } else if (responseCode == 401) {
-                message = "Session expired! Please re-login.";
-                System.out.println(message);
             } else {
                 message = sapApiClient.getErrorResponse(conn);
                 System.out.println("Error Response: " + message);
