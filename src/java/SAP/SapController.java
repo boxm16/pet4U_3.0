@@ -227,7 +227,7 @@ public class SapController {
 
             JSONObject newBarcode = new JSONObject();
             newBarcode.put("Barcode", "0000000000000008"); // New barcode
-            newBarcode.put("UoMEntry", 3); // Unit of Measure Entry
+            newBarcode.put("UoMEntry", 4); // Unit of Measure Entry
             newBarcode.put("FreeText", "TEMAXIA11");//FreeText -dont know what it does
 
             barcodesArray.put(newBarcode);  // Append new barcode to the array
