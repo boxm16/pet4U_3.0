@@ -23,11 +23,19 @@
         <hr>
         <a href="addBarcode.htm"><h1>Add Barcode</h1></a>
         <hr>
-        <a href="addBarcodeWithUoM.htm"><h1>Add Barcode With UoM</h1></a>
+        <a href="addBarcodeWithUoM1.htm"><h1>Add Barcode With UoM</h1></a>
         <hr>
         <a href="getAllCamelotItemsFromSapHanaView.htm" target="_blank"><h1>Get All Camelot Items</h1></a>
         <hr>
         <a href="getApiCallResponse.htm" target="_blank"><h1>Get Api Call Response</h1></a>
 
+        
+        
+        
+        <form action="getApiCallResponse.htm" method="GET">
+            <input type="text" name="apiText">
+            <button type="submit">SUBMIT</button>
+            
+        </form>
     </body>
 </html>
