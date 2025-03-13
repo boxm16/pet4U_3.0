@@ -369,7 +369,7 @@ public class SapController {
             updatedUoMGroup.put("Name", uomGroupData.optString("Name", "Default Name"));
             // 5. Send PATCH request to update UoM Group
             HttpURLConnection updateUomConn = sapApiClient.createConnection(uomGroupUrl, "POST");
-            updateUomConn.setRequestProperty("X-HTTP-Method-Override", "PATCH"); // Trick server into treating this as PATCH
+            updateUomConn.setRequestProperty("X-HTTP-Method-Override", "PUT"); // Trick server into treating this as PATCH
 
             updateUomConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
             updateUomConn.setRequestProperty("Content-Type", "application/json");
@@ -409,7 +409,7 @@ public class SapController {
             updatedItem.put("ItemBarCodeCollection", barcodesArray);
 
             HttpURLConnection barcodeConn = sapApiClient.createConnection(apiUrl, "POST");
-            barcodeConn.setRequestProperty("X-HTTP-Method-Override", "PATCH"); // Trick server into treating this as PATCH
+            barcodeConn.setRequestProperty("X-HTTP-Method-Override", "PUT"); // Trick server into treating this as PATCH
 
             barcodeConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
             barcodeConn.setRequestProperty("Content-Type", "application/json");
