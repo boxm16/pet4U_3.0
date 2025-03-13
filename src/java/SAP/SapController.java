@@ -433,7 +433,7 @@ public class SapController {
     public String getApiCallResponse(ModelMap modelMap) {
         try {
             String itemCode = "1271";  // The item to which we add barcodes
-            String apiUrl = BASE_URL + "/UnitOfMeasurementGroups(13)?$select=UgpCode,BaseUoM,Name,UoMGroupDefinitionCollection";
+            String apiUrl = BASE_URL + "/UoMGroupDefinitionCollection";
 
             SAPApiClient sapApiClient = new SAPApiClient();
             String sessionToken = sapApiClient.loginToSAP();
