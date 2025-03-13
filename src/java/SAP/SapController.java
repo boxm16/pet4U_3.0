@@ -364,7 +364,8 @@ public class SapController {
             JSONObject updatedUoMGroup = new JSONObject();
             updatedUoMGroup.put("UoMGroupDefinitionCollection", updatedUoMEntries);
             updatedUoMGroup.put("BaseUoM", existingData.optInt("BaseUoM"));  // Preserve BaseUoM
-            updatedUoMGroup.put("Code", existingData.optString("Code"));      // Keep the same Code
+            // updatedUoMGroup.put("Code", existingData.optString("Code"));      // Keep the same Code
+            updatedUoMGroup.put("Code", uomGroupData.optString("Code"));
             updatedUoMGroup.put("Name", existingData.optString("Name"));
             // 5. Send PATCH request to update UoM Group
             HttpURLConnection updateUomConn = sapApiClient.createConnection(uomGroupUrl, "POST");
@@ -430,7 +431,7 @@ public class SapController {
     public String getApiCallResponse(ModelMap modelMap) {
         try {
             String itemCode = "1271";  // The item to which we add barcodes
-           String apiUrl = BASE_URL + "/UnitOfMeasurementGroups(13)?$select=UgpCode,BaseUoM,Name,UoMGroupDefinitionCollection";
+            String apiUrl = BASE_URL + "/UnitOfMeasurementGroups(13)?$select=UgpCode,BaseUoM,Name,UoMGroupDefinitionCollection";
 
             SAPApiClient sapApiClient = new SAPApiClient();
             String sessionToken = sapApiClient.loginToSAP();
