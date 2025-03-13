@@ -471,7 +471,7 @@ public class SapController {
             JSONArray uomEntries = uomGroupData.optJSONArray("UoMGroupDefinitionCollection");
 
             // 4. Add missing UoMs (UoMEntry = 2, 3)
-            boolean hasUoM2 = false, hasUoM3 = false;
+            boolean hasUoM2 = false;
             JSONArray updatedUoMEntries = new JSONArray();
 
             for (int i = 0; i < uomEntries.length(); i++) {
@@ -482,9 +482,7 @@ public class SapController {
                 if (uomEntry == 2) {
                     hasUoM2 = true;
                 }
-                if (uomEntry == 3) {
-                    hasUoM3 = true;
-                }
+                
             }
 
             // Add missing UoMs without modifying BaseUoM
@@ -499,16 +497,7 @@ public class SapController {
                 updatedUoMEntries.put(uom2);
             }
 
-            if (!hasUoM3) {
-                JSONObject uom3 = new JSONObject();
-                uom3.put("AlternateUoM", 3);
-                uom3.put("BaseQuantity", 1);
-                uom3.put("AlternateQuantity", 1);
-                uom3.put("WeightFactor", 0);
-                uom3.put("Active", "tYES");
-                uom3.put("UdfFactor", -1);
-                updatedUoMEntries.put(uom3);
-            }
+           
 
             JSONObject updatedUoMGroup = new JSONObject();
             updatedUoMGroup.put("UoMGroupDefinitionCollection", updatedUoMEntries);
