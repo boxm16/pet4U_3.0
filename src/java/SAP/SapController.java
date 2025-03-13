@@ -307,14 +307,9 @@ public class SapController {
                 modelMap.addAttribute("message", "UoM Group Entry is missing!");
                 return "/sap/sapDashboard";
             }
-            String ugpCode = existingData.optString("UgpCode");
-            if (ugpCode.isEmpty()) {
-                modelMap.addAttribute("message", "UgpCode not found in UoM Group!");
-                return "/sap/sapDashboard";
-            }
 
             // 3. Retrieve the UoM Group details
-            String uomGroupUrl = BASE_URL + "/UnitOfMeasurementGroups(" + ugpCode + ")";
+            String uomGroupUrl = BASE_URL + "/UnitOfMeasurementGroups(" + uomGroupEntry + ")";
             HttpURLConnection uomConn = sapApiClient.createConnection(uomGroupUrl, "GET");
             uomConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
             try {
@@ -435,7 +430,7 @@ public class SapController {
     public String getApiCallResponse(ModelMap modelMap) {
         try {
             String itemCode = "1271";  // The item to which we add barcodes
-            String apiUrl = BASE_URL + "/UnitOfMeasurementGroups(13)";
+           String apiUrl = BASE_URL + "/UnitOfMeasurementGroups(13)?$select=UgpCode,BaseUoM,Name,UoMGroupDefinitionCollection";
 
             SAPApiClient sapApiClient = new SAPApiClient();
             String sessionToken = sapApiClient.loginToSAP();
