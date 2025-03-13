@@ -29,13 +29,13 @@
         <hr>
         <a href="getApiCallResponse.htm" target="_blank"><h1>Get Api Call Response</h1></a>
 
-        
-        
-        
-        <form action="getApiCallResponse.htm" method="GET">
-            <input type="text" name="apiText">
+
+
+
+        <form action="getApiCallResponseGET.htm" method="GET">
+            <input type="text" name="apiText" style="width: 300px; font-size: 40px;">
             <button type="submit">SUBMIT</button>
-            
+
         </form>
     </body>
 </html>

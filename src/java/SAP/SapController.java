@@ -10,6 +10,7 @@ import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class SapController {
@@ -546,6 +547,37 @@ public class SapController {
         try {
             String itemCode = "1271";  // The item to which we add barcodes
             String apiUrl = BASE_URL + "/UnitOfMeasurementGroups";
+
+            SAPApiClient sapApiClient = new SAPApiClient();
+            String sessionToken = sapApiClient.loginToSAP();
+
+            // 1. Retrieve the existing item data
+            HttpURLConnection getConn = sapApiClient.createConnection(apiUrl, "GET");
+            getConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
+
+            try {
+                sapApiClient.applySSLBypass(getConn);
+            } catch (Exception ex) {
+                Logger.getLogger(SapController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            JSONObject existingData = sapApiClient.getJsonResponse(getConn);
+
+            System.out.println("RESPONSE: " + existingData.toString(2)); // Pretty print JSON
+            // modelMap.addAttribute("response", existingData.toString(2));
+        } catch (IOException ex) {
+            Logger.getLogger(SapController.class.getName()).log(Level.SEVERE, null, ex);
+            modelMap.addAttribute("message", "An error occurred: " + ex.getMessage());
+        }
+
+        return "/sap/sapDashboard";
+    }
+
+    @RequestMapping(value = "getApiCallResponseGET")
+    public String getApiCallResponse(@RequestParam(name = "apiText") String apiText, ModelMap modelMap) {
+        try {
+            String itemCode = "1271";  // The item to which we add barcodes
+            String apiUrl = BASE_URL + "/" + apiText;
 
             SAPApiClient sapApiClient = new SAPApiClient();
             String sessionToken = sapApiClient.loginToSAP();
