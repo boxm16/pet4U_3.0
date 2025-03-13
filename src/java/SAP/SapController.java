@@ -554,4 +554,68 @@ public class SapController {
         return "/sap/sapDashboard";
     }
 
+    @RequestMapping(value = "createUoMGroup")
+    public String createUoMGroup(ModelMap modelMap) {
+        try {
+            String apiUrl = BASE_URL + "/UnitOfMeasurementGroups";
+
+            SAPApiClient sapApiClient = new SAPApiClient();
+            String sessionToken = sapApiClient.loginToSAP();
+
+            // 1. Prepare the JSON payload
+            JSONObject uomGroup = new JSONObject();
+            uomGroup.put("Code", "ΤΕΜ2ΠΑΛ120");
+            uomGroup.put("Name", "ΤΕΜΑΧΙΑ ΣΕ ΠΑΛΕΤΑ 120");
+            uomGroup.put("BaseUoM", 1); // Base UoM: Piece (UoMEntry = 1)
+
+            JSONArray uomDefinitions = new JSONArray();
+
+            // Add base UoM (Piece)
+            JSONObject baseUoM = new JSONObject();
+            baseUoM.put("AlternateUoM", 1); // Piece
+            baseUoM.put("BaseQuantity", 1); // 1 Piece = 1 Piece
+            baseUoM.put("AlternateQuantity", 1);
+            baseUoM.put("WeightFactor", 0);
+            baseUoM.put("Active", "tYES");
+            baseUoM.put("UdfFactor", -1);
+            uomDefinitions.put(baseUoM);
+
+            // Add Pallet UoM
+            JSONObject palletUoM = new JSONObject();
+            palletUoM.put("AlternateUoM", 9); // Pallet
+            palletUoM.put("BaseQuantity", 120); // 1 Pallet = 120 Pieces
+            palletUoM.put("AlternateQuantity", 1);
+            palletUoM.put("WeightFactor", 0);
+            palletUoM.put("Active", "tYES");
+            palletUoM.put("UdfFactor", -1);
+            uomDefinitions.put(palletUoM);
+
+            uomGroup.put("UoMGroupDefinitionCollection", uomDefinitions);
+
+            // 2. Send the POST request
+            HttpURLConnection postConn = sapApiClient.createConnection(apiUrl, "POST");
+
+            postConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
+            postConn.setRequestProperty("Content-Type", "application/json");
+            sapApiClient.sendRequestBody(postConn, uomGroup.toString());
+
+            // 3. Check the response
+            int responseCode = postConn.getResponseCode();
+            if (responseCode == 201) { // 201 = Created
+                System.out.println("UoM Group created successfully!");
+                modelMap.addAttribute("message", "UoM Group created successfully!");
+            } else {
+                String errorResponse = sapApiClient.getErrorResponse(postConn);
+                System.err.println("Failed to create UoM Group: " + errorResponse);
+                modelMap.addAttribute("message", "Failed to create UoM Group: " + errorResponse);
+            }
+
+        } catch (IOException ex) {
+            Logger.getLogger(SapController.class.getName()).log(Level.SEVERE, null, ex);
+            modelMap.addAttribute("message", "An error occurred: " + ex.getMessage());
+        }
+
+        return "/sap/sapDashboard";
+    }
+
 }

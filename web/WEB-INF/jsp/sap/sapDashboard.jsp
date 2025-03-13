@@ -25,9 +25,11 @@
         <hr>
         <a href="addBarcodeWithUoM1.htm"><h1>Add Barcode With UoM</h1></a>
         <hr>
-         <a href="addPalletBarcode.htm"><h1>Add  Pallet Barcode</h1></a>
+        <a href="addPalletBarcode.htm"><h1>Add  Pallet Barcode</h1></a>
         <hr>
-        
+
+
+
         <a href="getAllCamelotItemsFromSapHanaView.htm" target="_blank"><h1>Get All Camelot Items</h1></a>
         <hr>
         <a href="getApiCallResponse.htm" target="_blank"><h1>Get Api Call Response</h1></a>
@@ -40,5 +42,10 @@
             <button type="submit" style="font-size: 40px;">SUBMIT</button>
 
         </form>
+
+        <hr><hr><hr>
+
+        <a href="createUoMGroup.htm"><h1>Create UoM Group</h1></a>
+        <hr><hr><hr><hr>
     </body>
 </html>
