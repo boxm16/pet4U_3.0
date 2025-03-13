@@ -225,8 +225,8 @@ public class SapController {
             }
 
             JSONObject newBarcode = new JSONObject();
-            newBarcode.put("Barcode", "0000000000000005"); // New barcode
-            newBarcode.put("UoMEntry", 1); // Unit of Measure Entry
+            newBarcode.put("Barcode", "0000000000000009"); // New barcode
+            newBarcode.put("UoMEntry", 2); // Unit of Measure Entry
             newBarcode.put("FreeText", "TEMAXIA11");//FreeText -dont know what it does
 
             barcodesArray.put(newBarcode);  // Append new barcode to the array
@@ -266,16 +266,6 @@ public class SapController {
         } catch (IOException ex) {
             Logger.getLogger(SapController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        return "/sap/sapDashboard";
-    }
-
-    @RequestMapping(value = "addBarcode1")
-    public String addBarcode1(ModelMap modelMap) {
-        String sapLogin = sapLogin();
-        SAPApiClientX sapacx = new SAPApiClientX();
-
-        sapacx.push();
 
         return "/sap/sapDashboard";
     }
@@ -482,7 +472,7 @@ public class SapController {
                 if (uomEntry == 2) {
                     hasUoM2 = true;
                 }
-                
+
             }
 
             // Add missing UoMs without modifying BaseUoM
@@ -496,8 +486,6 @@ public class SapController {
                 uom2.put("UdfFactor", -1);    // Required field
                 updatedUoMEntries.put(uom2);
             }
-
-           
 
             JSONObject updatedUoMGroup = new JSONObject();
             updatedUoMGroup.put("UoMGroupDefinitionCollection", updatedUoMEntries);
