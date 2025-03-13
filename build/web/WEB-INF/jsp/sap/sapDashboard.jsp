@@ -25,6 +25,9 @@
         <hr>
         <a href="addBarcodeWithUoM1.htm"><h1>Add Barcode With UoM</h1></a>
         <hr>
+         <a href="addPalletBarcode.htm"><h1>Add  Pallet Barcode</h1></a>
+        <hr>
+        
         <a href="getAllCamelotItemsFromSapHanaView.htm" target="_blank"><h1>Get All Camelot Items</h1></a>
         <hr>
         <a href="getApiCallResponse.htm" target="_blank"><h1>Get Api Call Response</h1></a>
@@ -33,8 +36,8 @@
 
 
         <form action="getApiCallResponseGET.htm" method="GET">
-            <input type="text" name="apiText" style="width: 300px; font-size: 40px;">
-            <button type="submit">SUBMIT</button>
+            <input type="text" name="apiText" style="width: 700px; font-size: 40px;">
+            <button type="submit" style="font-size: 40px;">SUBMIT</button>
 
         </form>
     </body>
