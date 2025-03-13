@@ -373,6 +373,9 @@ public class SapController {
 
             updateUomConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
             updateUomConn.setRequestProperty("Content-Type", "application/json");
+
+            System.out.println("Updated UoM Group JSON: " + updatedUoMGroup.toString(2));
+
             sapApiClient.sendRequestBody(updateUomConn, updatedUoMGroup.toString());
 
             int updateUomResponse = updateUomConn.getResponseCode();
