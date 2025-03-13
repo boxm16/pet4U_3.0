@@ -363,10 +363,9 @@ public class SapController {
 
             JSONObject updatedUoMGroup = new JSONObject();
             updatedUoMGroup.put("UoMGroupDefinitionCollection", updatedUoMEntries);
-            updatedUoMGroup.put("BaseUoM", existingData.optInt("BaseUoM"));  // Preserve BaseUoM
-            // updatedUoMGroup.put("Code", existingData.optString("Code"));      // Keep the same Code
+            updatedUoMGroup.put("BaseUoM", uomGroupData.optInt("BaseUoM", 1));  // Default to 1 if missing // updatedUoMGroup.put("Code", existingData.optString("Code"));      // Keep the same Code
             updatedUoMGroup.put("Code", uomGroupData.optString("Code", "DefaultUoMCode"));
-          //  updatedUoMGroup.put("UgpEntry", uomGroupData.optInt("UgpEntry"));
+            //  updatedUoMGroup.put("UgpEntry", uomGroupData.optInt("UgpEntry"));
             updatedUoMGroup.put("Name", uomGroupData.optString("Name", "Default Name"));
             // 5. Send PATCH request to update UoM Group
             HttpURLConnection updateUomConn = sapApiClient.createConnection(uomGroupUrl, "POST");
