@@ -778,6 +778,8 @@ public class SapController {
             String correctCode = "ΤΕΜ2ΠΑΛ120"; // Replace with the correct Code
             updatedUoMGroup.put("Code", correctCode); // Override the Code field}
         }
+        updatedUoMGroup.put("Name", "ΤΕΜΑΧΙΑ ΣΕ ΠΑΛΕΤΑ 120"); // Mandatory field
+        updatedUoMGroup.put("BaseUoM", 1); // Mandatory field (UoMEntry of the base UoM)
         try {
             sapApiClient.applySSLBypass(patchConn);
         } catch (Exception ex) {
