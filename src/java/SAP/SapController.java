@@ -655,4 +655,46 @@ public class SapController {
         return "/sap/sapDashboard";
     }
 
+    @RequestMapping(value = "assignUoMGroupToItem")
+    public String assignUoMGroupToItem(ModelMap modelMap) {
+        try {
+            String itemCode = "1271"; // Replace with the item code
+            int uomGroupAbsEntry = 51; // Replace with the AbsEntry of the UoM Group
+            String apiUrl = BASE_URL + "/Items('" + itemCode + "')";
+
+            SAPApiClient sapApiClient = new SAPApiClient();
+            String sessionToken = sapApiClient.loginToSAP();
+
+            // 1. Prepare the JSON payload
+            JSONObject itemUpdate = new JSONObject();
+            itemUpdate.put("UoMGroupEntry", uomGroupAbsEntry);
+
+            // 2. Send the PATCH request
+            HttpURLConnection patchConn = sapApiClient.createConnection(apiUrl, "POST");
+            patchConn.setRequestProperty("X-HTTP-Method-Override", "PATCH"); // Trick server into treating this as PATCH
+
+            patchConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
+            patchConn.setRequestProperty("Content-Type", "application/json");
+          
+            sapApiClient.sendRequestBody(patchConn, itemUpdate.toString());
+
+            // 3. Check the response
+            int responseCode = patchConn.getResponseCode();
+            if (responseCode == 204) { // 204 = No Content (successful update)
+                System.out.println("UoM Group assigned to item successfully!");
+                modelMap.addAttribute("message", "UoM Group assigned to item successfully!");
+            } else {
+                String errorResponse = sapApiClient.getErrorResponse(patchConn);
+                System.err.println("Failed to assign UoM Group to item: " + errorResponse);
+                modelMap.addAttribute("message", "Failed to assign UoM Group to item: " + errorResponse);
+            }
+
+        } catch (IOException ex) {
+            Logger.getLogger(SapController.class.getName()).log(Level.SEVERE, null, ex);
+            modelMap.addAttribute("message", "An error occurred: " + ex.getMessage());
+        }
+
+        return "/sap/sapDashboard";
+    }
+
 }
