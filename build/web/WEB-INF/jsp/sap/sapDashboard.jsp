@@ -22,8 +22,11 @@
         <a href="createItem.htm"><h1>Create Item</h1></a>
         <hr>
         <a href="addBarcode.htm"><h1>Add Barcode</h1></a>
-
-
+        <hr>
+        <a href="addBarcodeWithUoM1.htm"><h1>Add Barcode With UoM</h1></a>
+        <hr>
+        <a href="addPalletBarcode.htm"><h1>Add  Pallet Barcode</h1></a>
+        <hr>
 
 
 
