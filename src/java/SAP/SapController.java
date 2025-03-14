@@ -728,6 +728,11 @@ public class SapController {
         HttpURLConnection getConn = sapApiClient.createConnection(apiUrl, "GET");
         getConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
 
+        try {
+            sapApiClient.applySSLBypass(getConn);
+        } catch (Exception ex) {
+            Logger.getLogger(SapController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         int responseCode = getConn.getResponseCode();
         if (responseCode == 200) {
             // Read the response body
@@ -767,6 +772,11 @@ public class SapController {
         patchConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
         patchConn.setRequestProperty("Content-Type", "application/json");
 
+        try {
+            sapApiClient.applySSLBypass(patchConn);
+        } catch (Exception ex) {
+            Logger.getLogger(SapController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         // Send the request body
         patchConn.setDoOutput(true);
         try (OutputStream outputStream = patchConn.getOutputStream()) {
@@ -805,6 +815,11 @@ public class SapController {
         patchConn.setRequestProperty("Content-Type", "application/json");
 
         // Send the request body
+        try {
+            sapApiClient.applySSLBypass(patchConn);
+        } catch (Exception ex) {
+            Logger.getLogger(SapController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         patchConn.setDoOutput(true);
         try (OutputStream outputStream = patchConn.getOutputStream()) {
             outputStream.write(itemUpdate.toString().getBytes());
