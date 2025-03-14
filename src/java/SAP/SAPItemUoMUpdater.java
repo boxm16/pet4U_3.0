@@ -41,6 +41,7 @@ public class SAPItemUoMUpdater {
             System.err.println("Failed to retrieve item data for item code: " + itemCode);
             return;
         }
+        String purchaseVATGroup = itemJson.getString("PurchaseVATGroup");
 
         // 2. Add UoM 9 entries to ItemUnitOfMeasurementCollection
         JSONArray uomCollection = itemJson.getJSONArray("ItemUnitOfMeasurementCollection");
@@ -57,7 +58,7 @@ public class SAPItemUoMUpdater {
         itemJson.put("ItemUnitOfMeasurementCollection", uomCollection);
 
         // 3. PATCH the item with the updated ItemUnitOfMeasurementCollection
-        boolean success = patchItem(itemCode, itemJson, b1SessionId);
+        boolean success = patchItem(itemCode, itemJson, b1SessionId, purchaseVATGroup);
         if (success) {
             System.out.println("Successfully added UoM " + uomEntry + " to item " + itemCode);
         } else {
@@ -125,11 +126,11 @@ public class SAPItemUoMUpdater {
         return newUomEntry;
     }
 
-    private static boolean patchItem(String itemCode, JSONObject itemJson, String b1SessionId) throws IOException {
+    private static boolean patchItem(String itemCode, JSONObject itemJson, String b1SessionId, String purchaseVATGroup) throws IOException {
         String apiUrl = BASE_URL + "/Items('" + itemCode + "')";
         JSONObject patchPayload = new JSONObject();
         patchPayload.put("ItemUnitOfMeasurementCollection", itemJson.getJSONArray("ItemUnitOfMeasurementCollection"));
-
+        patchPayload.put("PurchaseVATGroup", purchaseVATGroup);
         SAPApiClient sapApiClient = new SAPApiClient();
 
         HttpURLConnection conn = sapApiClient.createConnection(apiUrl, "POST");
