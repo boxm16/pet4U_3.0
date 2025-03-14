@@ -772,11 +772,11 @@ public class SapController {
         patchConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
         patchConn.setRequestProperty("Content-Type", "application/json");
 
-        if (!updatedUoMGroup.has("Code")) {
-            updatedUoMGroup.put("Code", "ΤΕΜ2ΠΑΛ120"); // Replace with the actual Code
+        if (!updatedUoMGroup.has("UgpCode")) {
+            updatedUoMGroup.put("UgpCode", "ΤΕΜ2ΠΑΛ120"); // Replace with the actual Code
         } else {
             String correctCode = "ΤΕΜ2ΠΑΛ120"; // Replace with the correct Code
-            updatedUoMGroup.put("Code", correctCode); // Override the Code field}
+            updatedUoMGroup.put("UgpCode", correctCode); // Override the Code field}
         }
         updatedUoMGroup.put("Name", "ΤΕΜΑΧΙΑ ΣΕ ΠΑΛΕΤΑ 120"); // Mandatory field
         updatedUoMGroup.put("BaseUoM", 1); // Mandatory field (UoMEntry of the base UoM)
