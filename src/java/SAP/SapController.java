@@ -229,7 +229,7 @@ public class SapController {
             }
 
             JSONObject newBarcode = new JSONObject();
-            newBarcode.put("Barcode", "011000000120"); // New barcode
+            newBarcode.put("Barcode", "000000001120"); // New barcode
             newBarcode.put("UoMEntry", 1); // Unit of Measure Entry
             newBarcode.put("FreeText", "TEMAXIA");//FreeText -dont know what it does
 
