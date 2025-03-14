@@ -656,10 +656,10 @@ public class SapController {
     }
 
     @RequestMapping(value = "assignUoMGroupToItem")
-    public String assignUoMGroupToItem(ModelMap modelMap) {
+    public String reassignUoMGroupToItem(ModelMap modelMap) {
         try {
             String itemCode = "1271"; // Replace with the item code
-            int uomGroupAbsEntry = 51; // Replace with the AbsEntry of the UoM Group
+            int newUoMGroupAbsEntry = 51; // AbsEntry of the new UoM Group
             String apiUrl = BASE_URL + "/Items('" + itemCode + "')";
 
             SAPApiClient sapApiClient = new SAPApiClient();
@@ -667,7 +667,7 @@ public class SapController {
 
             // 1. Prepare the JSON payload
             JSONObject itemUpdate = new JSONObject();
-            itemUpdate.put("UoMGroupEntry", uomGroupAbsEntry);
+            itemUpdate.put("UoMGroupEntry", newUoMGroupAbsEntry);
 
             // 2. Send the PATCH request
             HttpURLConnection patchConn = sapApiClient.createConnection(apiUrl, "POST");
@@ -675,18 +675,17 @@ public class SapController {
 
             patchConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
             patchConn.setRequestProperty("Content-Type", "application/json");
-          
             sapApiClient.sendRequestBody(patchConn, itemUpdate.toString());
 
             // 3. Check the response
             int responseCode = patchConn.getResponseCode();
             if (responseCode == 204) { // 204 = No Content (successful update)
-                System.out.println("UoM Group assigned to item successfully!");
-                modelMap.addAttribute("message", "UoM Group assigned to item successfully!");
+                System.out.println("Item reassigned to UoM Group " + newUoMGroupAbsEntry + " successfully!");
+                modelMap.addAttribute("message", "Item reassigned to UoM Group " + newUoMGroupAbsEntry + " successfully!");
             } else {
                 String errorResponse = sapApiClient.getErrorResponse(patchConn);
-                System.err.println("Failed to assign UoM Group to item: " + errorResponse);
-                modelMap.addAttribute("message", "Failed to assign UoM Group to item: " + errorResponse);
+                System.err.println("Failed to reassign item to UoM Group: " + errorResponse);
+                modelMap.addAttribute("message", "Failed to reassign item to UoM Group: " + errorResponse);
             }
 
         } catch (IOException ex) {
