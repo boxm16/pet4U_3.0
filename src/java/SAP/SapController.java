@@ -774,8 +774,10 @@ public class SapController {
 
         if (!updatedUoMGroup.has("Code")) {
             updatedUoMGroup.put("Code", "ΤΕΜ2ΠΑΛ120"); // Replace with the actual Code
+        } else {
+            String correctCode = "ΤΕΜ2ΠΑΛ120"; // Replace with the correct Code
+            updatedUoMGroup.put("Code", correctCode); // Override the Code field}
         }
-
         try {
             sapApiClient.applySSLBypass(patchConn);
         } catch (Exception ex) {
@@ -804,8 +806,8 @@ public class SapController {
             return false;
         }
     }
+    // Helper method to reassign an item to a new UoM Group
 
-// Helper method to reassign an item to a new UoM Group
     private boolean reassignItemToUoMGroup(String itemCode, int newUoMGroupAbsEntry, String sessionToken, SAPApiClient sapApiClient) throws IOException {
         String apiUrl = BASE_URL + "/Items('" + itemCode + "')";
 
