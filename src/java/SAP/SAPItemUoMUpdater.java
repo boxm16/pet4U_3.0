@@ -1,11 +1,13 @@
 package SAP;
 
+import TESTosteron.SAPApiClient;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
-import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -66,11 +68,17 @@ public class SAPItemUoMUpdater {
     private static JSONObject getItem(String itemCode, String b1SessionId) throws IOException {
         String apiUrl = BASE_URL + "/Items('" + itemCode + "')";
 
-        URL url = new URL(apiUrl);
-        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-        conn.setRequestMethod("GET");
+        SAPApiClient sapApiClient = new SAPApiClient();
+
+        HttpURLConnection conn = sapApiClient.createConnection(apiUrl, "GET");
         conn.setRequestProperty("Cookie", "B1SESSION=" + b1SessionId);
         conn.setRequestProperty("Content-Type", "application/json"); // Necessary for some SAP B1 versions
+
+        try {
+            sapApiClient.applySSLBypass(conn);
+        } catch (Exception ex) {
+            Logger.getLogger(SapController.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         int responseCode = conn.getResponseCode();
         if (responseCode == HttpURLConnection.HTTP_OK) {
@@ -120,9 +128,9 @@ public class SAPItemUoMUpdater {
     private static boolean patchItem(String itemCode, JSONObject itemJson, String b1SessionId) throws IOException {
         String apiUrl = BASE_URL + "/Items('" + itemCode + "')";
 
-        URL url = new URL(apiUrl);
-        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-        conn.setRequestMethod("POST");  // Use POST with X-HTTP-Method-Override
+        SAPApiClient sapApiClient = new SAPApiClient();
+
+        HttpURLConnection conn = sapApiClient.createConnection(apiUrl, "POST");
         conn.setRequestProperty("X-HTTP-Method-Override", "PATCH"); //Important!
         conn.setRequestProperty("Cookie", "B1SESSION=" + b1SessionId);
         conn.setRequestProperty("Content-Type", "application/json");
@@ -132,7 +140,11 @@ public class SAPItemUoMUpdater {
             byte[] input = itemJson.toString().getBytes("utf-8");
             os.write(input, 0, input.length);
         }
-
+        try {
+            sapApiClient.applySSLBypass(conn);
+        } catch (Exception ex) {
+            Logger.getLogger(SapController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         int responseCode = conn.getResponseCode();
         if (responseCode == HttpURLConnection.HTTP_NO_CONTENT) {  // 204 No Content is success for PATCH
             return true;
