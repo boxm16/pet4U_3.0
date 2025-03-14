@@ -682,7 +682,7 @@ public class SapController {
         try {
             String itemCode = "1271"; // Replace with the item code
             int originalUoMGroupAbsEntry = 13; // AbsEntry of the original UoM Group
-            int newUoMGroupAbsEntry = 52; // AbsEntry of the new UoM Group
+            int newUoMGroupAbsEntry = 55; // AbsEntry of the new UoM Group
 
             SAPApiClient sapApiClient = new SAPApiClient();
             String sessionToken = sapApiClient.loginToSAP();
