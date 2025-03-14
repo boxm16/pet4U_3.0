@@ -49,5 +49,8 @@
         <hr><hr><hr><hr>
         <a href="deleteUoMGroup.htm"><h1>Delete UoM Group</h1></a>
         <hr><hr><hr><hr>
+        <a href="assignUoMGroupToItem.htm"><h1>Assign UoM Group To Item</h1></a>
+        <hr><hr><hr><hr>
+
     </body>
 </html>
