@@ -203,7 +203,7 @@ public class SapController {
     }
 
     @RequestMapping(value = "addBarcode")
-    public String addBarcode(ModelMap modelMap) { //this method works, it adds barcode, but only for UoM 1
+    public String addBarcode(ModelMap modelMap) { //this method works
         try {
             String itemCode = "1271";  // The item to which we add a barcode
             String apiUrl = BASE_URL + "/Items('" + itemCode + "')"; // ✅ Correct endpoint
@@ -231,7 +231,7 @@ public class SapController {
             JSONObject newBarcode = new JSONObject();
             newBarcode.put("Barcode", "0000000000000007"); // New barcode
             newBarcode.put("UoMEntry", 4); // Unit of Measure Entry
-            newBarcode.put("FreeText", "TEMAXIA11");//FreeText -dont know what it does
+            newBarcode.put("FreeText", "TEMAXIA");//FreeText -dont know what it does
 
             barcodesArray.put(newBarcode);  // Append new barcode to the array
 
@@ -583,6 +583,24 @@ public class SapController {
             baseUoM.put("UdfFactor", -1);
             uomDefinitions.put(baseUoM);
 
+            JSONObject alternateUoM_2 = new JSONObject();
+            alternateUoM_2.put("AlternateUoM", 2); // Piece
+            alternateUoM_2.put("BaseQuantity", 1); // 1 Piece = 1 Piece
+            alternateUoM_2.put("AlternateQuantity", 1);
+            alternateUoM_2.put("WeightFactor", 0);
+            alternateUoM_2.put("Active", "tYES");
+            alternateUoM_2.put("UdfFactor", -1);
+            uomDefinitions.put(alternateUoM_2);
+
+            JSONObject alternateUoM_3 = new JSONObject();
+            alternateUoM_3.put("AlternateUoM", 3); // Piece
+            alternateUoM_3.put("BaseQuantity", 1); // 1 Piece = 1 Piece
+            alternateUoM_3.put("AlternateQuantity", 1);
+            alternateUoM_3.put("WeightFactor", 0);
+            alternateUoM_3.put("Active", "tYES");
+            alternateUoM_3.put("UdfFactor", -1);
+            uomDefinitions.put(alternateUoM_3);
+
             // Add Pallet UoM
             JSONObject palletUoM = new JSONObject();
             palletUoM.put("AlternateUoM", 9); // Pallet
@@ -624,7 +642,7 @@ public class SapController {
     @RequestMapping(value = "deleteUoMGroup")
     public String deleteUoMGroup(ModelMap modelMap) {
         try {
-            int uomGroupAbsEntry = 51; // Replace with the AbsEntry of the UoM Group to delete
+            int uomGroupAbsEntry = 52; // Replace with the AbsEntry of the UoM Group to delete
             String apiUrl = BASE_URL + "/UnitOfMeasurementGroups(" + uomGroupAbsEntry + ")";
 
             SAPApiClient sapApiClient = new SAPApiClient();
