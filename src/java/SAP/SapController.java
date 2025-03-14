@@ -632,6 +632,11 @@ public class SapController {
             deleteConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
 
             // 2. Check the response
+            try {
+                sapApiClient.applySSLBypass(deleteConn);
+            } catch (Exception ex) {
+                Logger.getLogger(SapController.class.getName()).log(Level.SEVERE, null, ex);
+            }
             int responseCode = deleteConn.getResponseCode();
             if (responseCode == 204) { // 204 = No Content (successful deletion)
                 System.out.println("UoM Group deleted successfully!");
