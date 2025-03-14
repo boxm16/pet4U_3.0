@@ -618,4 +618,36 @@ public class SapController {
         return "/sap/sapDashboard";
     }
 
+    @RequestMapping(value = "deleteUoMGroup")
+    public String deleteUoMGroup(ModelMap modelMap) {
+        try {
+            int uomGroupAbsEntry = 51; // Replace with the AbsEntry of the UoM Group to delete
+            String apiUrl = BASE_URL + "/UnitOfMeasurementGroups(" + uomGroupAbsEntry + ")";
+
+            SAPApiClient sapApiClient = new SAPApiClient();
+            String sessionToken = sapApiClient.loginToSAP();
+
+            // 1. Send the DELETE request
+            HttpURLConnection deleteConn = sapApiClient.createConnection(apiUrl, "DELETE");
+            deleteConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
+
+            // 2. Check the response
+            int responseCode = deleteConn.getResponseCode();
+            if (responseCode == 204) { // 204 = No Content (successful deletion)
+                System.out.println("UoM Group deleted successfully!");
+                modelMap.addAttribute("message", "UoM Group deleted successfully!");
+            } else {
+                String errorResponse = sapApiClient.getErrorResponse(deleteConn);
+                System.err.println("Failed to delete UoM Group: " + errorResponse);
+                modelMap.addAttribute("message", "Failed to delete UoM Group: " + errorResponse);
+            }
+
+        } catch (IOException ex) {
+            Logger.getLogger(SapController.class.getName()).log(Level.SEVERE, null, ex);
+            modelMap.addAttribute("message", "An error occurred: " + ex.getMessage());
+        }
+
+        return "/sap/sapDashboard";
+    }
+
 }
