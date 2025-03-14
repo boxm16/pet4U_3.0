@@ -1,7 +1,10 @@
 package SAP;
 
 import TESTosteron.SAPApiClient;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -656,36 +659,59 @@ public class SapController {
     }
 
     @RequestMapping(value = "assignUoMGroupToItem")
-    public String reassignUoMGroupToItem(ModelMap modelMap) {
+
+    public String assignUoMGroupToItem(ModelMap modelMap) {
         try {
             String itemCode = "1271"; // Replace with the item code
+            int originalUoMGroupAbsEntry = 13; // AbsEntry of the original UoM Group
             int newUoMGroupAbsEntry = 51; // AbsEntry of the new UoM Group
-            String apiUrl = BASE_URL + "/Items('" + itemCode + "')";
 
             SAPApiClient sapApiClient = new SAPApiClient();
             String sessionToken = sapApiClient.loginToSAP();
 
-            // 1. Prepare the JSON payload
-            JSONObject itemUpdate = new JSONObject();
-            itemUpdate.put("UoMGroupEntry", newUoMGroupAbsEntry);
+            // Step 1: Retrieve the original UoM Group details
+            JSONObject originalUoMGroup = getUoMGroupDetails(originalUoMGroupAbsEntry, sessionToken, sapApiClient);
+            if (originalUoMGroup == null) {
+                modelMap.addAttribute("message", "Failed to retrieve original UoM Group details.");
+                return "/sap/sapDashboard";
+            }
 
-            // 2. Send the PATCH request
-            HttpURLConnection patchConn = sapApiClient.createConnection(apiUrl, "POST");
-            patchConn.setRequestProperty("X-HTTP-Method-Override", "PATCH"); // Trick server into treating this as PATCH
+            // Step 2: Retrieve the new UoM Group details
+            JSONObject newUoMGroup = getUoMGroupDetails(newUoMGroupAbsEntry, sessionToken, sapApiClient);
+            if (newUoMGroup == null) {
+                modelMap.addAttribute("message", "Failed to retrieve new UoM Group details.");
+                return "/sap/sapDashboard";
+            }
 
-            patchConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
-            patchConn.setRequestProperty("Content-Type", "application/json");
-            sapApiClient.sendRequestBody(patchConn, itemUpdate.toString());
+            // Step 3: Compare UoM definitions and update the new UoM Group if necessary
+            JSONArray originalDefinitions = originalUoMGroup.getJSONArray("UoMGroupDefinitionCollection");
+            JSONArray newDefinitions = newUoMGroup.getJSONArray("UoMGroupDefinitionCollection");
 
-            // 3. Check the response
-            int responseCode = patchConn.getResponseCode();
-            if (responseCode == 204) { // 204 = No Content (successful update)
-                System.out.println("Item reassigned to UoM Group " + newUoMGroupAbsEntry + " successfully!");
+            boolean needsUpdate = false;
+            for (int i = 0; i < originalDefinitions.length(); i++) {
+                JSONObject originalDefinition = originalDefinitions.getJSONObject(i);
+                if (!containsDefinition(newDefinitions, originalDefinition)) {
+                    newDefinitions.put(originalDefinition); // Add missing definition
+                    needsUpdate = true;
+                }
+            }
+
+            if (needsUpdate) {
+                // Update the new UoM Group with the missing definitions
+                newUoMGroup.put("UoMGroupDefinitionCollection", newDefinitions);
+                boolean updateSuccess = updateUoMGroup(newUoMGroupAbsEntry, newUoMGroup, sessionToken, sapApiClient);
+                if (!updateSuccess) {
+                    modelMap.addAttribute("message", "Failed to update new UoM Group with missing definitions.");
+                    return "/sap/sapDashboard";
+                }
+            }
+
+            // Step 4: Reassign the item to the new UoM Group
+            boolean reassignSuccess = reassignItemToUoMGroup(itemCode, newUoMGroupAbsEntry, sessionToken, sapApiClient);
+            if (reassignSuccess) {
                 modelMap.addAttribute("message", "Item reassigned to UoM Group " + newUoMGroupAbsEntry + " successfully!");
             } else {
-                String errorResponse = sapApiClient.getErrorResponse(patchConn);
-                System.err.println("Failed to reassign item to UoM Group: " + errorResponse);
-                modelMap.addAttribute("message", "Failed to reassign item to UoM Group: " + errorResponse);
+                modelMap.addAttribute("message", "Failed to reassign item to UoM Group.");
             }
 
         } catch (IOException ex) {
@@ -696,4 +722,109 @@ public class SapController {
         return "/sap/sapDashboard";
     }
 
+// Helper method to retrieve UoM Group details
+    private JSONObject getUoMGroupDetails(int uomGroupAbsEntry, String sessionToken, SAPApiClient sapApiClient) throws IOException {
+        String apiUrl = BASE_URL + "/UnitOfMeasurementGroups(" + uomGroupAbsEntry + ")";
+        HttpURLConnection getConn = sapApiClient.createConnection(apiUrl, "GET");
+        getConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
+
+        int responseCode = getConn.getResponseCode();
+        if (responseCode == 200) {
+            // Read the response body
+            StringBuilder response = new StringBuilder();
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(getConn.getInputStream()))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    response.append(line);
+                }
+            }
+            return new JSONObject(response.toString());
+        } else {
+            System.err.println("Failed to retrieve UoM Group details. Response code: " + responseCode);
+            return null;
+        }
+    }
+
+// Helper method to check if a UoM definition exists in a collection
+    private boolean containsDefinition(JSONArray definitions, JSONObject targetDefinition) {
+        for (int i = 0; i < definitions.length(); i++) {
+            JSONObject definition = definitions.getJSONObject(i);
+            if (definition.getInt("AlternateUoM") == targetDefinition.getInt("AlternateUoM")
+                    && definition.getInt("BaseQuantity") == targetDefinition.getInt("BaseQuantity")
+                    && definition.getInt("AlternateQuantity") == targetDefinition.getInt("AlternateQuantity")) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+// Helper method to update a UoM Group
+    private boolean updateUoMGroup(int uomGroupAbsEntry, JSONObject updatedUoMGroup, String sessionToken, SAPApiClient sapApiClient) throws IOException {
+        String apiUrl = BASE_URL + "/UnitOfMeasurementGroups(" + uomGroupAbsEntry + ")";
+        HttpURLConnection patchConn = sapApiClient.createConnection(apiUrl, "POST");
+        patchConn.setRequestProperty("X-HTTP-Method-Override", "PATCH"); // Trick server into treating this as PATCH
+
+        patchConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
+        patchConn.setRequestProperty("Content-Type", "application/json");
+
+        // Send the request body
+        patchConn.setDoOutput(true);
+        try (OutputStream outputStream = patchConn.getOutputStream()) {
+            outputStream.write(updatedUoMGroup.toString().getBytes());
+        }
+
+        int responseCode = patchConn.getResponseCode();
+        if (responseCode == 204) {
+            System.out.println("UoM Group updated successfully!");
+            return true;
+        } else {
+            // Read the error response
+            StringBuilder errorResponse = new StringBuilder();
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(patchConn.getErrorStream()))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    errorResponse.append(line);
+                }
+            }
+            System.err.println("Failed to update UoM Group: " + errorResponse.toString());
+            return false;
+        }
+    }
+
+// Helper method to reassign an item to a new UoM Group
+    private boolean reassignItemToUoMGroup(String itemCode, int newUoMGroupAbsEntry, String sessionToken, SAPApiClient sapApiClient) throws IOException {
+        String apiUrl = BASE_URL + "/Items('" + itemCode + "')";
+
+        JSONObject itemUpdate = new JSONObject();
+        itemUpdate.put("UoMGroupEntry", newUoMGroupAbsEntry);
+
+        HttpURLConnection patchConn = sapApiClient.createConnection(apiUrl, "POST");
+        patchConn.setRequestProperty("X-HTTP-Method-Override", "PATCH"); // Trick server into treating this as PATCH
+
+        patchConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
+        patchConn.setRequestProperty("Content-Type", "application/json");
+
+        // Send the request body
+        patchConn.setDoOutput(true);
+        try (OutputStream outputStream = patchConn.getOutputStream()) {
+            outputStream.write(itemUpdate.toString().getBytes());
+        }
+
+        int responseCode = patchConn.getResponseCode();
+        if (responseCode == 204) {
+            System.out.println("Item reassigned to UoM Group " + newUoMGroupAbsEntry + " successfully!");
+            return true;
+        } else {
+            // Read the error response
+            StringBuilder errorResponse = new StringBuilder();
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(patchConn.getErrorStream()))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    errorResponse.append(line);
+                }
+            }
+            System.err.println("Failed to reassign item to UoM Group: " + errorResponse.toString());
+            return false;
+        }
+    }
 }
