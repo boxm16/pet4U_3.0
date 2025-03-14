@@ -745,7 +745,7 @@ public class SapController {
             }
             return new JSONObject(response.toString());
         } else {
-            System.err.println("Failed to retrieve UoM Group details. Response code: " + responseCode);
+            System.err.println("Failed to retrieve UoM Group details. Response code: " + responseCode +" : "+getConn.getResponseMessage());
             return null;
         }
     }
