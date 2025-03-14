@@ -127,6 +127,8 @@ public class SAPItemUoMUpdater {
 
     private static boolean patchItem(String itemCode, JSONObject itemJson, String b1SessionId) throws IOException {
         String apiUrl = BASE_URL + "/Items('" + itemCode + "')";
+        JSONObject patchPayload = new JSONObject();
+        patchPayload.put("ItemUnitOfMeasurementCollection", itemJson.getJSONArray("ItemUnitOfMeasurementCollection"));
 
         SAPApiClient sapApiClient = new SAPApiClient();
 
@@ -135,16 +137,17 @@ public class SAPItemUoMUpdater {
         conn.setRequestProperty("Cookie", "B1SESSION=" + b1SessionId);
         conn.setRequestProperty("Content-Type", "application/json");
         conn.setDoOutput(true);
-
-        try (OutputStream os = conn.getOutputStream()) {
-            byte[] input = itemJson.toString().getBytes("utf-8");
-            os.write(input, 0, input.length);
-        }
         try {
             sapApiClient.applySSLBypass(conn);
         } catch (Exception ex) {
             Logger.getLogger(SapController.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+        try (OutputStream os = conn.getOutputStream()) {
+            byte[] input = itemJson.toString().getBytes("utf-8");
+            os.write(input, 0, input.length);
+        }
+
         int responseCode = conn.getResponseCode();
         if (responseCode == HttpURLConnection.HTTP_NO_CONTENT) {  // 204 No Content is success for PATCH
             return true;
