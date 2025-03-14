@@ -868,4 +868,19 @@ public class SapController {
             return false;
         }
     }
+
+    @RequestMapping(value = "assignUoM9")
+    public String assignUoM9() {
+        try {
+            SAPApiClient sapApiClient = new SAPApiClient();
+            String sessionToken = sapApiClient.loginToSAP();
+            SAPItemUoMUpdater s = new SAPItemUoMUpdater(sessionToken, "1271");
+            s.update();
+
+        } catch (IOException ex) {
+            Logger.getLogger(SapController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "/sap/sapDashboard";
+
+    }
 }
