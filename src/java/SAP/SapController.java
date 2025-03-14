@@ -745,7 +745,7 @@ public class SapController {
             }
             return new JSONObject(response.toString());
         } else {
-            System.err.println("Failed to retrieve UoM Group details. Response code: " + responseCode +" : "+getConn.getResponseMessage());
+            System.err.println("Failed to retrieve UoM Group details. Response code: " + responseCode + " : " + getConn.getResponseMessage());
             return null;
         }
     }
@@ -771,6 +771,10 @@ public class SapController {
 
         patchConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
         patchConn.setRequestProperty("Content-Type", "application/json");
+
+        if (!updatedUoMGroup.has("Code")) {
+            updatedUoMGroup.put("Code", "ΤΕΜ2ΠΑΛ120"); // Replace with the actual Code
+        }
 
         try {
             sapApiClient.applySSLBypass(patchConn);
