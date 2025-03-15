@@ -930,6 +930,11 @@ public class SapController {
             conn.setRequestProperty("Content-Type", "application/json");
             conn.setRequestProperty("Accept", "application/json");
 
+            try {
+                sapApiClient.applySSLBypass(conn);
+            } catch (Exception ex) {
+                Logger.getLogger(SapController.class.getName()).log(Level.SEVERE, null, ex);
+            }
             sapApiClient.sendRequestBody(conn, jsonBody);
 
             int responseCode = conn.getResponseCode();
