@@ -277,7 +277,7 @@ public class SapController {
     @RequestMapping(value = "addBarcodeWithUoM")
     public String addBarcodeWithUoM(ModelMap modelMap) {
         try {
-            String itemCode = "1271";  // The item to which we add barcodes
+            String itemCode = "1272";  // The item to which we add barcodes
             String apiUrl = BASE_URL + "/Items('" + itemCode + "')";
 
             SAPApiClient sapApiClient = new SAPApiClient();

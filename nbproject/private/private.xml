@@ -3,11 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Michail%20Sitmalidis/Pet4U_3.0/src/java/Camelot/CamelotItem/CamelotItemDao.java</file>
-            <file>file:/C:/Users/Michail%20Sitmalidis/Pet4U_3.0/src/java/Pet4uItems/Pet4uItemsDao.java</file>
-            <file>file:/C:/Users/Michail%20Sitmalidis/Pet4U_3.0/src/java/Endo/EndoDaoX.java</file>
-            <file>file:/C:/Users/Michail%20Sitmalidis/Pet4U_3.0/src/java/Endo/EndoDao.java</file>
-            <file>file:/C:/Users/Michail%20Sitmalidis/Pet4U_3.0/src/java/Camelot/CamelotItem/CamelotItemController.java</file>
+            <file>file:/C:/Users/Michail%20Sitmalidis/Pet4U_3.0/src/java/SAP/SapController.java</file>
+            <file>file:/C:/Users/Michail%20Sitmalidis/Pet4U_3.0/web/WEB-INF/jsp/sap/sapDashboard.jsp</file>
+            <file>file:/C:/Users/Michail%20Sitmalidis/Pet4U_3.0/src/java/SAP/SAPItemUoMUpdater.java</file>
+            <file>file:/C:/Users/Michail%20Sitmalidis/Pet4U_3.0/src/java/TESTosteron/TESTosteronController.java</file>
+            <file>file:/C:/Users/Michail%20Sitmalidis/Pet4U_3.0/src/java/SAP/SAPApiClientX.java</file>
         </group>
     </open-files>
 </project-private>
