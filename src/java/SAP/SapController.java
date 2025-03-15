@@ -884,34 +884,17 @@ public class SapController {
     }
 
     /////-----------------------------------
-    @RequestMapping(value = "assignUoMAndAddBarcode")
-    public String assignUoMAndAddBarcode(ModelMap modelMap) {
+    @RequestMapping(value = "assignUoMToItem")
+    public String assignUoMToItem(ModelMap modelMap) {
         try {
-            String itemCode = "1271";  // The item to which we assign UoM and add a barcode
-            String apiUrlForItem = BASE_URL + "/Items('" + itemCode + "')"; // Endpoint for item data
-            String apiUrlForUoM = BASE_URL + "/ItemUnitOfMeasurements"; // Endpoint for UoM assignments
+            String itemCode = "1271"; // The item to which we assign the UoM
+            String apiUrl = BASE_URL + "/Items('" + itemCode + "')"; // ✅ Correct endpoint
 
             SAPApiClient sapApiClient = new SAPApiClient();
             String sessionToken = sapApiClient.loginToSAP();
 
-            // 1. Assign UoM to the item
-            JSONObject newUoMAssignment = new JSONObject();
-            newUoMAssignment.put("ItemCode", itemCode);
-            newUoMAssignment.put("UoMEntry", 9); // Unit of Measure Entry
-            newUoMAssignment.put("BaseQuantity", 120); // Example base quantity
-
-            HttpURLConnection connForUoM = sapApiClient.createConnection(apiUrlForUoM, "POST");
-            connForUoM.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
-            connForUoM.setRequestProperty("Content-Type", "application/json");
-            connForUoM.setRequestProperty("Accept", "application/json");
-
-            sapApiClient.sendRequestBody(connForUoM, newUoMAssignment.toString());
-
-            int responseCodeForUoM = connForUoM.getResponseCode();
-            System.out.println("Response Code for UoM Assignment: " + responseCodeForUoM);
-
-            // 2. Add a barcode for the assigned UoM
-            HttpURLConnection getConn = sapApiClient.createConnection(apiUrlForItem, "GET");
+            // 1. Retrieve the existing item data
+            HttpURLConnection getConn = sapApiClient.createConnection(apiUrl, "GET");
             getConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
             try {
                 sapApiClient.applySSLBypass(getConn);
@@ -921,40 +904,47 @@ public class SapController {
 
             JSONObject existingData = sapApiClient.getJsonResponse(getConn);
 
-            JSONArray barcodesArray = existingData.optJSONArray("ItemBarCodeCollection");
-            if (barcodesArray == null) {
-                barcodesArray = new JSONArray();
+            // 2. Get the existing UoM collection and add a new UoM
+            JSONArray uomArray = existingData.optJSONArray("ItemUnitOfMeasurementCollection");
+            if (uomArray == null) {
+                uomArray = new JSONArray();
             }
 
-            JSONObject newBarcode = new JSONObject();
-            newBarcode.put("Barcode", "000000000120"); // New barcode
-            newBarcode.put("UoMEntry", 9); // Unit of Measure Entry
-            newBarcode.put("FreeText", "120 Temax"); // FreeText
+            // 3. Create the new UoM entry
+            JSONObject newUoM = new JSONObject();
+            newUoM.put("UoMEntry", 9); // Unit of Measure Entry (e.g., 9 for "Case")
+            newUoM.put("BaseQty", 120); // Base quantity (e.g., 1 Case = 120 Each)
+            newUoM.put("AlternateUoM", "CS"); // Alternate Unit of Measure (e.g., "CS" for Case)
 
-            barcodesArray.put(newBarcode);  // Append new barcode to the array
+            uomArray.put(newUoM); // Append new UoM to the array
 
+            // 4. Create the updated JSON payload
             JSONObject updatedItem = new JSONObject();
-            updatedItem.put("ItemBarCodeCollection", barcodesArray);
+            updatedItem.put("ItemUnitOfMeasurementCollection", uomArray);
             String jsonBody = updatedItem.toString();
 
-            HttpURLConnection connForBarcode = sapApiClient.createConnection(apiUrlForItem, "POST");
-            connForBarcode.setRequestProperty("X-HTTP-Method-Override", "PATCH"); // Trick server into treating this as PATCH
-            connForBarcode.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
-            connForBarcode.setRequestProperty("Content-Type", "application/json");
-            connForBarcode.setRequestProperty("Accept", "application/json");
+            // 5. Send MERGE request (PATCH not supported, so we use MERGE)
+            HttpURLConnection conn = sapApiClient.createConnection(apiUrl, "POST");
+            conn.setRequestProperty("X-HTTP-Method-Override", "PATCH"); // Trick server into treating this as PATCH
+            conn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setRequestProperty("Accept", "application/json");
 
-            sapApiClient.sendRequestBody(connForBarcode, jsonBody);
+            sapApiClient.sendRequestBody(conn, jsonBody);
 
-            int responseCodeForBarcode = connForBarcode.getResponseCode();
-            System.out.println("Response Code for Barcode Addition: " + responseCodeForBarcode);
+            int responseCode = conn.getResponseCode();
+            System.out.println("Response Code: " + responseCode);
 
             String message = "";
-            if (responseCodeForBarcode == 204) {
-                message = "Barcode added successfully!";
-            } else if (responseCodeForBarcode == 200 || responseCodeForBarcode == 201) {
-                message = "Barcode added successfully!";
+            if (responseCode == 204) {
+                System.out.println("Response: Empty Response");
+                message = "UoM assigned successfully!";
+            } else if (responseCode == 200 || responseCode == 201) {
+                System.out.println("Response: " + sapApiClient.getJsonResponse(conn));
+                message = "UoM assigned successfully!";
             } else {
-                message = sapApiClient.getErrorResponse(connForBarcode);
+                message = sapApiClient.getErrorResponse(conn);
+                System.out.println("Error Response: " + message);
             }
 
             modelMap.addAttribute("message", message);
