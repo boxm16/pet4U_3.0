@@ -919,12 +919,12 @@ public class SapController {
             newUoM.put("Volume", 0); // Volume (if applicable)
             newUoM.put("VolumeUnit", 4); // Volume unit (e.g., 4 for liters)
             newUoM.put("Width1", 0); // Width in the primary unit
-            newUoM.put("Width1Unit", null); // Width unit (if applicable)
+            newUoM.put("Width1Unit", JSONObject.NULL); // Width unit (if applicable)
             newUoM.put("Height1", 0); // Height in the primary unit
-            newUoM.put("Height1Unit", null); // Height unit (if applicable)
+            newUoM.put("Height1Unit", JSONObject.NULL); // Height unit (if applicable)
             newUoM.put("Length1", 0); // Length in the primary unit
-            newUoM.put("Length1Unit", null); // Length unit (if applicable)
-            newUoM.put("DefaultBarcode", null); // Default barcode (if applicable)
+            newUoM.put("Length1Unit", JSONObject.NULL); // Length unit (if applicable)
+            newUoM.put("DefaultBarcode", JSONObject.NULL); // Default barcode (if applicable)
             newUoM.put("ItemUoMPackageCollection", new JSONArray()); // Empty package collection
 
             uomArray.put(newUoM); // Append new UoM to the array
