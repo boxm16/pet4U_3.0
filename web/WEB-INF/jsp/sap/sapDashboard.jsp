@@ -53,6 +53,10 @@
         <hr><hr><hr><hr>
         <a href="assignUoM9.htm"><h1>Assign UoM_9 To Item</h1></a>
         <hr><hr><hr><hr>
+        <a href="assignUoMAndAddBarcode.htm"><h1>Assign UoM_9 To Item AND THEN BARCODE</h1></a>
+        <hr><hr><hr><hr>
+
+
 
     </body>
 </html>

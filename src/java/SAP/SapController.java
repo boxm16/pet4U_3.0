@@ -881,6 +881,88 @@ public class SapController {
             Logger.getLogger(SapController.class.getName()).log(Level.SEVERE, null, ex);
         }
         return "/sap/sapDashboard";
+    }
 
+    /////-----------------------------------
+    @RequestMapping(value = "assignUoMAndAddBarcode")
+    public String assignUoMAndAddBarcode(ModelMap modelMap) {
+        try {
+            String itemCode = "1271";  // The item to which we assign UoM and add a barcode
+            String apiUrlForItem = BASE_URL + "/Items('" + itemCode + "')"; // Endpoint for item data
+            String apiUrlForUoM = BASE_URL + "/ItemUnitOfMeasurements"; // Endpoint for UoM assignments
+
+            SAPApiClient sapApiClient = new SAPApiClient();
+            String sessionToken = sapApiClient.loginToSAP();
+
+            // 1. Assign UoM to the item
+            JSONObject newUoMAssignment = new JSONObject();
+            newUoMAssignment.put("ItemCode", itemCode);
+            newUoMAssignment.put("UoMEntry", 9); // Unit of Measure Entry
+            newUoMAssignment.put("BaseQuantity", 120); // Example base quantity
+
+            HttpURLConnection connForUoM = sapApiClient.createConnection(apiUrlForUoM, "POST");
+            connForUoM.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
+            connForUoM.setRequestProperty("Content-Type", "application/json");
+            connForUoM.setRequestProperty("Accept", "application/json");
+
+            sapApiClient.sendRequestBody(connForUoM, newUoMAssignment.toString());
+
+            int responseCodeForUoM = connForUoM.getResponseCode();
+            System.out.println("Response Code for UoM Assignment: " + responseCodeForUoM);
+
+            // 2. Add a barcode for the assigned UoM
+            HttpURLConnection getConn = sapApiClient.createConnection(apiUrlForItem, "GET");
+            getConn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
+            try {
+                sapApiClient.applySSLBypass(getConn);
+            } catch (Exception ex) {
+                Logger.getLogger(SapController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            JSONObject existingData = sapApiClient.getJsonResponse(getConn);
+
+            JSONArray barcodesArray = existingData.optJSONArray("ItemBarCodeCollection");
+            if (barcodesArray == null) {
+                barcodesArray = new JSONArray();
+            }
+
+            JSONObject newBarcode = new JSONObject();
+            newBarcode.put("Barcode", "000000000120"); // New barcode
+            newBarcode.put("UoMEntry", 9); // Unit of Measure Entry
+            newBarcode.put("FreeText", "120 Temax"); // FreeText
+
+            barcodesArray.put(newBarcode);  // Append new barcode to the array
+
+            JSONObject updatedItem = new JSONObject();
+            updatedItem.put("ItemBarCodeCollection", barcodesArray);
+            String jsonBody = updatedItem.toString();
+
+            HttpURLConnection connForBarcode = sapApiClient.createConnection(apiUrlForItem, "POST");
+            connForBarcode.setRequestProperty("X-HTTP-Method-Override", "PATCH"); // Trick server into treating this as PATCH
+            connForBarcode.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
+            connForBarcode.setRequestProperty("Content-Type", "application/json");
+            connForBarcode.setRequestProperty("Accept", "application/json");
+
+            sapApiClient.sendRequestBody(connForBarcode, jsonBody);
+
+            int responseCodeForBarcode = connForBarcode.getResponseCode();
+            System.out.println("Response Code for Barcode Addition: " + responseCodeForBarcode);
+
+            String message = "";
+            if (responseCodeForBarcode == 204) {
+                message = "Barcode added successfully!";
+            } else if (responseCodeForBarcode == 200 || responseCodeForBarcode == 201) {
+                message = "Barcode added successfully!";
+            } else {
+                message = sapApiClient.getErrorResponse(connForBarcode);
+            }
+
+            modelMap.addAttribute("message", message);
+
+        } catch (IOException ex) {
+            Logger.getLogger(SapController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return "/sap/sapDashboard";
     }
 }
