@@ -904,7 +904,7 @@ public class SapController {
 
             JSONObject existingData = sapApiClient.getJsonResponse(getConn);
 
-            // 2. Get the existing UoM collection and add a new UoM
+            // 2. Get the existing UoM collection
             JSONArray uomArray = existingData.optJSONArray("ItemUnitOfMeasurementCollection");
             if (uomArray == null) {
                 uomArray = new JSONArray();
@@ -912,9 +912,20 @@ public class SapController {
 
             // 3. Create the new UoM entry
             JSONObject newUoM = new JSONObject();
-            newUoM.put("UoMEntry", 9); // Unit of Measure Entry (e.g., 9)
-            newUoM.put("BaseQuantity", 120); // Base quantity (e.g., 1 Case = 120 Each)
-            newUoM.put("AlternateUoM", 1); // Alternate Unit of Measure 
+            newUoM.put("UoMEntry", 9); // Unit of Measure Entry (e.g., 9 for "Case")
+            newUoM.put("UoMType", "iutSales"); // UoM Type (e.g., "iutSales" for Sales)
+            newUoM.put("Weight1", 10); // Weight in the primary unit
+            newUoM.put("Weight1Unit", 7); // Weight unit (e.g., 7 for kilograms)
+            newUoM.put("Volume", 0); // Volume (if applicable)
+            newUoM.put("VolumeUnit", 4); // Volume unit (e.g., 4 for liters)
+            newUoM.put("Width1", 0); // Width in the primary unit
+            newUoM.put("Width1Unit", "null"); // Width unit (if applicable)
+            newUoM.put("Height1", 0); // Height in the primary unit
+            newUoM.put("Height1Unit", "null"); // Height unit (if applicable)
+            newUoM.put("Length1", 0); // Length in the primary unit
+            newUoM.put("Length1Unit", "null"); // Length unit (if applicable)
+            newUoM.put("DefaultBarcode", "null"); // Default barcode (if applicable)
+            newUoM.put("ItemUoMPackageCollection", new JSONArray()); // Empty package collection
 
             uomArray.put(newUoM); // Append new UoM to the array
 
@@ -930,11 +941,6 @@ public class SapController {
             conn.setRequestProperty("Content-Type", "application/json");
             conn.setRequestProperty("Accept", "application/json");
 
-            try {
-                sapApiClient.applySSLBypass(conn);
-            } catch (Exception ex) {
-                Logger.getLogger(SapController.class.getName()).log(Level.SEVERE, null, ex);
-            }
             sapApiClient.sendRequestBody(conn, jsonBody);
 
             int responseCode = conn.getResponseCode();
