@@ -205,7 +205,7 @@ public class SapController {
     @RequestMapping(value = "addBarcode")
     public String addBarcode(ModelMap modelMap) { //this method works
         try {
-            String itemCode = "1274";  // The item to which we add a barcode
+            String itemCode = "1271";  // The item to which we add a barcode
             String apiUrl = BASE_URL + "/Items('" + itemCode + "')"; // ✅ Correct endpoint
 
             SAPApiClient sapApiClient = new SAPApiClient();
@@ -229,9 +229,9 @@ public class SapController {
             }
 
             JSONObject newBarcode = new JSONObject();
-            newBarcode.put("Barcode", "000000000017"); // New barcode
-            newBarcode.put("UoMEntry", 1); // Unit of Measure Entry
-            newBarcode.put("FreeText", "TEMAXIA11");//FreeText -dont know what it does
+            newBarcode.put("Barcode", "000000000120"); // New barcode
+            newBarcode.put("UoMEntry", 9); // Unit of Measure Entry
+            newBarcode.put("FreeText", "120 Temax");//FreeText -dont know what it does
 
             barcodesArray.put(newBarcode);  // Append new barcode to the array
 
