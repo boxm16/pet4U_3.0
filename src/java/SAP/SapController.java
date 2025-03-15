@@ -912,9 +912,9 @@ public class SapController {
 
             // 3. Create the new UoM entry
             JSONObject newUoM = new JSONObject();
-            newUoM.put("UoMEntry", 9); // Unit of Measure Entry (e.g., 9 for "Case")
-            newUoM.put("BaseQty", 120); // Base quantity (e.g., 1 Case = 120 Each)
-            newUoM.put("AlternateUoM", "CS"); // Alternate Unit of Measure (e.g., "CS" for Case)
+            newUoM.put("UoMEntry", 9); // Unit of Measure Entry (e.g., 9)
+            newUoM.put("BaseQuantity", 120); // Base quantity (e.g., 1 Case = 120 Each)
+            newUoM.put("AlternateUoM", 1); // Alternate Unit of Measure 
 
             uomArray.put(newUoM); // Append new UoM to the array
 
