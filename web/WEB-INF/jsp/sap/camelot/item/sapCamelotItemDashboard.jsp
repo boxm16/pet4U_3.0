@@ -18,8 +18,8 @@
 
         <ul>
             <c:forEach items="${item.altercodes}" var="altercode">
-                <li>${altercode}</li>
-            </c:forEach>
+                <li>${altercode.altercode} : ${altercode.status} </li>
+                </c:forEach>
         </ul>
 
     </body>
