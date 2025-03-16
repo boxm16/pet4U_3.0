@@ -11,11 +11,6 @@
             Item Name : ${item.code} <br>
             Item Description : ${item.description} <br>  
         </h1>
-
-        <c:if test="${empty altercodes}">
-            <p>No altercodes found.</p>
-        </c:if>
-
         <ul>
             <c:forEach items="${item.altercodes}" var="altercode">
                 <li>${altercode.altercode} : ${altercode.status} </li>

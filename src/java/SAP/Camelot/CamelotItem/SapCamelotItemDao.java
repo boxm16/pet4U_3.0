@@ -33,13 +33,16 @@ public class SapCamelotItemDao {
                     + " OBCD.\"BcdCode\",   "
                     + " OUOM.\"UomEntry\",  "
                     + " OUOM.\"UomCode\", "
-                    + " OUOM.\"UomName\"    "
+                    + " OUOM.\"UomName\", "
+                    + " UGP1.\"BaseQty\" "
                     + "  FROM "
                     + " PETCAMELOT_UAT2.\"OITM\" "
                     + "  JOIN "
                     + " PETCAMELOT_UAT2.OBCD ON PETCAMELOT_UAT2.OITM.\"ItemCode\" = PETCAMELOT_UAT2.OBCD.\"ItemCode\"  "
                     + "  LEFT JOIN "
                     + " PETCAMELOT_UAT2.OUOM ON OBCD.\"UomEntry\" = PETCAMELOT_UAT2.OUOM.\"UomEntry\"  "
+                    + " LEFT JOIN "
+                    + " PETCAMELOT_UAT2.UGP1 ON OUOM.\"UomEntry\" = PETCAMELOT_UAT2.UGP1.\"UomEntry\" "
                     + "  WHERE \n"
                     + " PETCAMELOT_UAT2.OITM.\"ItemCode\" = '" + itemCode + "';";
 
