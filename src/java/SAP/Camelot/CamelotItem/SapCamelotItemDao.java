@@ -28,13 +28,14 @@ public class SapCamelotItemDao {
             Statement statement = connection.createStatement();
             ResultSet resultSet = null;
             String query = "SELECT  OITM.\"ItemCode\",  "
-                    + " OITM.\"ItemName\", OITM.\"CodeBars\",  "
-                    + " OITM.\"U_PickLocation\", "
-                    + " OBCD.\"BcdCode\",   "
-                    + " OUOM.\"UomEntry\",  "
-                    + " OUOM.\"UomCode\", "
-                    + " OUOM.\"UomName\", "
-                    + " UGP1.\"BaseQty\" " // Προσθήκη της στήλης BaseQty από τον πίνακα UGP1
+                    + " PETCAMELOT_UAT2.OITM.\"ItemName\", "
+                    + " PETCAMELOT_UAT2.OITM.\"CodeBars\",  "
+                    + " PETCAMELOT_UAT2.OITM.\"U_PickLocation\", "
+                    + " PETCAMELOT_UAT2.OBCD.\"BcdCode\",   "
+                    + " PETCAMELOT_UAT2.OUOM.\"UomEntry\",  "
+                    + " PETCAMELOT_UAT2.OUOM.\"UomCode\", "
+                    + " PETCAMELOT_UAT2.OUOM.\"UomName\", "
+                    + " PETCAMELOT_UAT2.UGP1.\"BaseQty\" " // Προσθήκη της στήλης BaseQty από τον πίνακα UGP1
                     + "  FROM "
                     + " PETCAMELOT_UAT2.\"OITM\" "
                     + "  JOIN "
