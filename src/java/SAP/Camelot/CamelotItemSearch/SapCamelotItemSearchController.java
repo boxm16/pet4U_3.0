@@ -26,6 +26,6 @@ public class SapCamelotItemSearchController {
         Item item = itemDao.getItemByAltercode(altercode);
         modelMap.addAttribute("target", altercode);
         modelMap.addAttribute("item", item);
-        return "sap/search/sapCamelotSingleItemSearchResult";
+        return "sap/camelot/search/sapCamelotSingleItemSearchResult";
     }
 }
