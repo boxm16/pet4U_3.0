@@ -33,7 +33,7 @@
                         <h1>Camelot Item Search SAP</h1>
                         <h1><a href='sapIndex.htm'>INDEX</a></h1>
                         <hr>
-                        <h3>Find Multiple Camelot Items Using <strong>ALTERCODE MASK</strong></h3>
+                        <h3>Find Single Camelot Items Using <strong>ALTERCODE</strong></h3>
                         <h4>Use % as wildcard</h4>
                         <h1>
                             <form action="findCamelotItemByAltercodeFromSapHanaTable.htm" method="GET" >

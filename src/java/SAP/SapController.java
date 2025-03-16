@@ -25,7 +25,7 @@ public class SapController {
     private final String COMPANY_DB = "PETCAMELOT_UAT2";
 
     @RequestMapping(value = "sapIndex")
-    public String sapDashboard() {
+    public String sapIndex() {
 
         return "/sap/sapIndex";
     }
