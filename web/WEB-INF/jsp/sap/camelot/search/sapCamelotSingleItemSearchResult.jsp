@@ -123,9 +123,9 @@
                             }
                         %>
                         <hr>
-                        <a href="camelotSearchDashboard.htm"><h3>New Search</h3></a>
+                        <a href="sapCamelotSearchDashboard.htm"><h3>New Search</h3></a>
                         <hr>
-                        <a href="index.htm"><h3>INDEX</h3></a>
+                        <a href="index.htm"><h3>SAP INDEX</h3></a>
                     </center>
                 </div>
                 <div class=" col-sm-4">
