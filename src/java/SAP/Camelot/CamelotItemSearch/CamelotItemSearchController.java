@@ -15,7 +15,7 @@ public class CamelotItemSearchController {
     @RequestMapping(value = "sapCamelotSearchDashboard")
     public String sapCamelotSearchDashboard() {
 
-        return "sap/search/searchDashboard";
+        return "sap/search/sapCamelotSearchDashboard";
     }
 
     @RequestMapping(value = "findCamelotItemByAltercodeFromSapHanaTable")
@@ -24,6 +24,6 @@ public class CamelotItemSearchController {
         Item item = itemDao.getItemByAltercode(altercode);
         modelMap.addAttribute("target", altercode);
         modelMap.addAttribute("item", item);
-        return "sap/search/singleItemSearchResult";
+        return "sap/search/sapCamelotSingleItemSearchResult";
     }
 }
