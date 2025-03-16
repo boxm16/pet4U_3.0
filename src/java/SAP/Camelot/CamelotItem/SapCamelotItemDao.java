@@ -28,11 +28,11 @@ public class SapCamelotItemDao {
             Statement statement = connection.createStatement();
             ResultSet resultSet = null;
             String query = "SELECT  OITM.\"ItemCode\",  OITM.\"ItemName\", OITM.\"CodeBars\",  OITM.\"U_PickLocation\", OBCD.\"BcdCode\",   OUOM.\"UomEntry\",  OUOM.\"UomCode\"       \n"
-                    + "  FROM \n"
-                    + "  OITM                -- Item Master Table\\n\"\n"
-                    + "  JOIN \n"
+                    + "  FROM "
+                    + "  OITM "
+                    + "  JOIN "
                     + "  OBCD ON OITM.\"ItemCode\" = OBCD.\"ItemCode\"  -- Barcodes Table\\n\n"
-                    + "  LEFT JOIN \n"
+                    + "  LEFT JOIN "
                     + "  OUOM ON OBCD.\"UomEntry\" = OUOM.\"UomEntry\"  -- Units of Measure Table\\n\n"
                     + "  WHERE \n"
                     + "  OITM.\"ItemCode\" = '1271';";
