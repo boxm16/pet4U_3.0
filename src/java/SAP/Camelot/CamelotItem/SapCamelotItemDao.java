@@ -40,9 +40,9 @@ public class SapCamelotItemDao {
                     + "  JOIN "
                     + " PETCAMELOT_UAT2.OBCD ON PETCAMELOT_UAT2.OITM.\"ItemCode\" = PETCAMELOT_UAT2.OBCD.\"ItemCode\"  -- Barcodes Table"
                     + "  LEFT JOIN "
-                    + " PETCAMELOT_UAT2.OUOM ON OBCD.\"UomEntry\" = PETCAMELOT_UAT2.OUOM.\"UomEntry\"  -- Units of Measure Table"
+                    + " PETCAMELOT_UAT2.OUOM ON PETCAMELOT_UAT2.OITM.OBCD.\"UomEntry\" = PETCAMELOT_UAT2.OUOM.\"UomEntry\"  -- Units of Measure Table"
                     + "  LEFT JOIN "
-                    + " PETCAMELOT_UAT2.UGP1 ON OUOM.\"UomEntry\" = PETCAMELOT_UAT2.UGP1.\"UomEntry\" "
+                    + " PETCAMELOT_UAT2.UGP1 ON PETCAMELOT_UAT2.OITM.OUOM.\"UomEntry\" = PETCAMELOT_UAT2.UGP1.\"UomEntry\" "
                     + "  WHERE "
                     + " PETCAMELOT_UAT2.OITM.\"ItemCode\" = '" + itemCode + "';";
 
