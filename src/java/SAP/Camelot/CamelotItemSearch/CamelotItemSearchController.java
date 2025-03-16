@@ -12,6 +12,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 public class CamelotItemSearchController {
 
+    @RequestMapping(value = "sapCamelotSearchDashboard")
+    public String sapCamelotSearchDashboard() {
+
+        return "sap/search/searchDashboard";
+    }
+
     @RequestMapping(value = "findCamelotItemByAltercodeFromSapHanaTable")
     public String findCamelotItemByAltercodeFromSapHanaTable(@RequestParam(name = "altercode") String altercode, ModelMap modelMap) {
         CamelotItemSearchDao itemDao = new CamelotItemSearchDao();
