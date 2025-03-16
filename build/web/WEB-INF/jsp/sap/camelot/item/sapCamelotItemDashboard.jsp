@@ -1,19 +1,18 @@
-<%-- 
-    Document   : sapCamelotItemDashboard
-    Created on : Mar 16, 2025, 8:32:47 PM
-    Author     : Michail Sitmalidis
---%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>ForEach Example</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
-        Item Code : ${item.code}
-        Item Description  : ${item.description}
+        <h2>Item Dashboard</h2>
+        Item Name : ${item.code} <br>
+        Item Description : ${item.description} <br>
+        <ul>
+            <c:forEach items="${altercodes}" var="AltercodeContainer">
+                <li>${AltercodeContainer.altercode}</li>
+                </c:forEach>
+        </ul>
     </body>
 </html>
