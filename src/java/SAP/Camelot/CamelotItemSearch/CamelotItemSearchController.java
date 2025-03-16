@@ -15,7 +15,7 @@ public class CamelotItemSearchController {
     @RequestMapping(value = "sapCamelotSearchDashboard")
     public String sapCamelotSearchDashboard() {
 
-        return "sap/search/sapCamelotSearchDashboard";
+        return "sap/camelot/search/sapCamelotSearchDashboard";
     }
 
     @RequestMapping(value = "findCamelotItemByAltercodeFromSapHanaTable")
