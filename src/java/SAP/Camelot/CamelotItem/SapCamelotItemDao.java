@@ -37,13 +37,13 @@ public class SapCamelotItemDao {
                     + "    OUOM.\"UomEntry\",        -- Unit of Measure\n"
                     + "    OUOM.\"UomCode\",        -- Unit of Measure\n"
                     + "    OUOM.\"UomName\"        -- Unit of Measure\n"
-                    + "FROM "
+                    + " FROM "
                     + "    OITM                -- Item Master Table\n"
-                    + "JOIN "
+                    + " JOIN "
                     + "    OBCD ON OITM.\"ItemCode\" = OBCD.\"ItemCode\"  -- Barcodes Table\n"
-                    + "LEFT JOIN "
+                    + " LEFT JOIN "
                     + "    OUOM ON OBCD.\"UomEntry\" = OUOM.\"UomEntry\"  -- Units of Measure Table\n"
-                    + "WHERE "
+                    + " WHERE "
                     + "    OITM.\"ItemCode\" = '1271';");
             int index = 0;
             while (resultSet.next()) {
