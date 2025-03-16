@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class SapCamelotItemController {
-     @RequestMapping(value = "goForCamelotItemMasterDataDashboard")
-    public String goForCamelotItemMasterDataDashboard(@RequestParam(name = "altercode") String altercode, ModelMap modelMap) {
+     @RequestMapping(value = "goForCamelotItemDashboard")
+    public String goForCamelotItemDashboard(@RequestParam(name = "altercode") String altercode, ModelMap modelMap) {
        
         modelMap.addAttribute("target", altercode);
 
