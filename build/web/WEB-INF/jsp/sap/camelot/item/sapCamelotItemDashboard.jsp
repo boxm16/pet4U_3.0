@@ -17,13 +17,10 @@
         </c:if>
 
         <ul>
-            <c:forEach items="${altercodes}" var="altercode">
+            <c:forEach items="${item.altercodes}" var="altercode">
                 <li>${altercode}</li>
             </c:forEach>
         </ul>
 
-        <!-- Debugging -->
-        <p>Item: ${item != null ? item : "Item is null"}</p>
-        <p>Altercodes: ${altercodes != null ? altercodes : "Altercodes is null"}</p>
     </body>
 </html>
