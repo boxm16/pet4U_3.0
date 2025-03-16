@@ -55,7 +55,11 @@
                 <hr>
                 <a href="camelotDashboard.htm" class="btn btn-outline" role="button" style='background-color: #dbb4c9 ; color: #762276;'><h1 style="font-size: 50px; font-weight : bold">Camelot<br>Dashboard</h1></a>
                 <hr>
+
+                <a href="sapIndex.htm" class="btn btn-outline" role="button" style='background-color: #3a6fd8 ; '><h2 style="font-size: 50px; font-weight : bold">SAP INDEX</h2></a>
+                <hr><hr>
                 <a href="adminIndex.htm"><h1>Admin Index</h1></a>
+                <hr><hr>
 
             </center>
         </div>

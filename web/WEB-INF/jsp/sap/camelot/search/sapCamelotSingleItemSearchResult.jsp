@@ -46,7 +46,8 @@
                                 out.println("<td style='width:70px;'>");
                                 out.println("Κωδικός");
                                 out.println("</td>");
-                                out.println("<td style='font-size: 30px;'>");
+
+                                out.println("<td style='font-size: 30px;' ondblclick=itemMasterData(" + item.getCode() + ")>");
                                 out.println("<strong>" + item.getCode() + "</strong>");
                                 out.println("</td>");
                                 out.println("</tr>");
@@ -64,7 +65,7 @@
                                 out.println("Θεση");
                                 out.println("</td>");
 
-                                out.println("<td style='font-size: 30px;' ondblclick=redirect(" + item.getCode() + ")>");
+                                out.println("<td style='font-size: 30px; background-color:green' ondblclick=redirect(" + item.getCode() + ")>");
                                 out.println("<strong>" + item.getPosition() + "</strong>");
                                 out.println("</td>");
                                 out.println("</tr>");
@@ -137,6 +138,9 @@
 
             function  redirect(itemCode) {
                 window.location.href = "goForCamelotPositionChanging_Α.htm?itemCode=" + itemCode;
+            }
+            function  itemMasterData(itemCode) {
+                window.location.href = "goForCamelotItemMasterDataDashboard.htm?itemCode=" + itemCode;
             }
         </script>
 
