@@ -27,7 +27,7 @@ public class SapCamelotItemDao {
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = null;
-            String query = "SELECT  OITM.\"ItemCode\",  "
+            String query = "SELECT DISTINCT OITM.\"ItemCode\",  "
                     + " OITM.\"ItemName\", OITM.\"CodeBars\",  "
                     + " OITM.\"U_PickLocation\", "
                     + " OBCD.\"BcdCode\",   "
@@ -41,7 +41,7 @@ public class SapCamelotItemDao {
                     + " PETCAMELOT_UAT2.OBCD ON PETCAMELOT_UAT2.OITM.\"ItemCode\" = PETCAMELOT_UAT2.OBCD.\"ItemCode\"  "
                     + "  LEFT JOIN "
                     + " PETCAMELOT_UAT2.OUOM ON OBCD.\"UomEntry\" = PETCAMELOT_UAT2.OUOM.\"UomEntry\"  "
-                    + " LEFT JOIN "
+                    + "  JOIN "
                     + " PETCAMELOT_UAT2.UGP1 ON OUOM.\"UomEntry\" = PETCAMELOT_UAT2.UGP1.\"UomEntry\" "
                     + "  WHERE \n"
                     + " PETCAMELOT_UAT2.OITM.\"ItemCode\" = '" + itemCode + "';";
