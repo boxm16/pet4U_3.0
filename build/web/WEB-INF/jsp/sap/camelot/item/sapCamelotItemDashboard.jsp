@@ -6,13 +6,15 @@
         <title>ForEach Example</title>
     </head>
     <body>
-        <h2>Item Dashboard</h2>
-        Item Name : ${item.code} <br>
-        Item Description : ${item.description} <br>
+        <h1>Item Dashboard
+            Item Name : ${item.code} <br>
+            Item Description : ${item.description} <br>  
+        </h1>
         <ul>
             <c:forEach items="${altercodes}" var="AltercodeContainer">
-                <li>${AltercodeContainer.altercode}</li>
+                <li>--</li>
                 </c:forEach>
         </ul>
+
     </body>
 </html>
