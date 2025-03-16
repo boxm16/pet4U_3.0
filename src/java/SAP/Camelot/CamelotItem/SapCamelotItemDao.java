@@ -42,8 +42,8 @@ public class SapCamelotItemDao {
                     + "  LEFT JOIN "
                     + " PETCAMELOT_UAT2.OUOM ON OBCD.\"UomEntry\" = PETCAMELOT_UAT2.OUOM.\"UomEntry\"  -- Units of Measure Table"
                     + "  LEFT JOIN "
-                    + " PETCAMELOT_UAT2.UGP1 ON OUOM.\"UomEntry\" = UGP1.\"UomEntry\" "
-                    + "  WHERE \n"
+                    + " PETCAMELOT_UAT2.UGP1 ON OUOM.\"UomEntry\" = PETCAMELOT_UAT2.UGP1.\"UomEntry\" "
+                    + "  WHERE "
                     + " PETCAMELOT_UAT2.OITM.\"ItemCode\" = '" + itemCode + "';";
 
             resultSet = statement.executeQuery(query);
