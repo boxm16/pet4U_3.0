@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class CamelotItemSearchController {
+public class SapCamelotItemSearchController {
 
     @RequestMapping(value = "sapCamelotSearchDashboard")
     public String sapCamelotSearchDashboard() {
@@ -22,7 +22,7 @@ public class CamelotItemSearchController {
 
     @RequestMapping(value = "findCamelotItemByAltercodeFromSapHanaTable")
     public String findCamelotItemByAltercodeFromSapHanaTable(@RequestParam(name = "altercode") String altercode, ModelMap modelMap) {
-        CamelotItemSearchDao itemDao = new CamelotItemSearchDao();
+        SapCamelotItemSearchDao itemDao = new SapCamelotItemSearchDao();
         Item item = itemDao.getItemByAltercode(altercode);
         modelMap.addAttribute("target", altercode);
         modelMap.addAttribute("item", item);

@@ -19,7 +19,7 @@ import java.util.logging.Logger;
  *
  * @author Michail Sitmalidis
  */
-public class CamelotItemSearchDao {
+public class SapCamelotItemSearchDao {
 
     Item getItemByAltercode(String altercode) {
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
@@ -75,7 +75,7 @@ public class CamelotItemSearchDao {
             statement.close();
             connection.close();
         } catch (SQLException ex) {
-            Logger.getLogger(CamelotItemSearchDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SapCamelotItemSearchDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return item;
     }
