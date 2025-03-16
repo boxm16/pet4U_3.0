@@ -20,8 +20,8 @@ public class SapCamelotItemSearchController {
         return "sap/camelot/search/sapCamelotSearchDashboard";
     }
 
-    @RequestMapping(value = "findCamelotItemByAltercodeFromSapHanaTable")
-    public String findCamelotItemByAltercodeFromSapHanaTable(@RequestParam(name = "altercode") String altercode, ModelMap modelMap) {
+    @RequestMapping(value = "findCamelotItemByAltercodeFromSapView")
+    public String findCamelotItemByAltercodeFromSapView(@RequestParam(name = "altercode") String altercode, ModelMap modelMap) {
         SapCamelotItemSearchDao itemDao = new SapCamelotItemSearchDao();
         Item item = itemDao.getItemByAltercode(altercode);
         modelMap.addAttribute("target", altercode);

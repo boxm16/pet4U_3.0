@@ -36,7 +36,7 @@
                         <h3>Find Single Camelot Items Using <strong>ALTERCODE</strong></h3>
                         <h4>Use % as wildcard</h4>
                         <h1>
-                            <form action="findCamelotItemByAltercodeFromSapHanaTable.htm" method="GET" >
+                            <form action="findCamelotItemByAltercodeFromSapAPI.htm" method="GET" >
                                 <input type="text" class="form-control input-lg" name='altercode'>
                                 <br>
                                 <input class="btn btn-success btn-lg btn-block"  type="submit" value="Submit">
