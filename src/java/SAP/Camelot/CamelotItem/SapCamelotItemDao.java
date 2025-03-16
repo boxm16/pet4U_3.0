@@ -27,23 +27,17 @@ public class SapCamelotItemDao {
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = null;
-
-            resultSet = statement.executeQuery("SELECT "
-                    + "  OITM.\"ItemCode\" ,     "
-                    + "  OITM.\"ItemName\",     "
-                    + "  OITM.\"CodeBars\",     "
-                    + "  OITM.\"U_PickLocation\",     "
-                    + "  OBCD.\"BcdCode\",       "
-                    + "  OUOM.\"UomEntry\", "
-                    + "  OUOM.\"UomCode\"        -- Unit of Measure"
-                    + "  FROM "
-                    + "  OITM                -- Item Master Table"
-                    + "  JOIN "
-                    + "  OBCD ON OITM.\"ItemCode\" = OBCD.\"ItemCode\"  -- Barcodes Table"
-                    + "  LEFT JOIN "
-                    + "  OUOM ON OBCD.\"UomEntry\" = OUOM.\"UomEntry\"  -- Units of Measure Table"
-                    + "  WHERE "
-                    + "  OITM.\"ItemCode\" = '1271';");
+            String query = "SELECT  OITM.\"ItemCode\",  OITM.\"ItemName\", OITM.\"CodeBars\",  OITM.\"U_PickLocation\", OBCD.\"BcdCode\",   OUOM.\"UomEntry\",  OUOM.\"UomCode\"       \n"
+                    + "  FROM \n"
+                    + "  OITM                -- Item Master Table\\n\"\n"
+                    + "  JOIN \n"
+                    + "  OBCD ON OITM.\"ItemCode\" = OBCD.\"ItemCode\"  -- Barcodes Table\\n\n"
+                    + "  LEFT JOIN \n"
+                    + "  OUOM ON OBCD.\"UomEntry\" = OUOM.\"UomEntry\"  -- Units of Measure Table\\n\n"
+                    + "  WHERE \n"
+                    + "  OITM.\"ItemCode\" = '1271';";
+            System.out.println(query);
+            resultSet = statement.executeQuery(query);
             int index = 0;
             while (resultSet.next()) {
                 if (index == 0) {
