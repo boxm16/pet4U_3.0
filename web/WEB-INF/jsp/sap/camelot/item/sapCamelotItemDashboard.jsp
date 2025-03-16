@@ -13,5 +13,7 @@
     </head>
     <body>
         <h1>Hello World!</h1>
+        Item Code : ${item.code}
+        Item Description  : ${item.description}
     </body>
 </html>
