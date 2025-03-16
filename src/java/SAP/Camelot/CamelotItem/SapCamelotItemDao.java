@@ -27,16 +27,22 @@ public class SapCamelotItemDao {
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = null;
-            String query = "SELECT  OITM.\"ItemCode\",  OITM.\"ItemName\", OITM.\"CodeBars\",  OITM.\"U_PickLocation\", OBCD.\"BcdCode\",   OUOM.\"UomEntry\",  OUOM.\"UomCode\", OUOM.\"UomName\"    \n"
+            String query = "SELECT  OITM.\"ItemCode\",  "
+                    + " OITM.\"ItemName\", OITM.\"CodeBars\",  "
+                    + " OITM.\"U_PickLocation\", "
+                    + " OBCD.\"BcdCode\",   "
+                    + " OUOM.\"UomEntry\",  "
+                    + " OUOM.\"UomCode\", "
+                    + " OUOM.\"UomName\"    "
                     + "  FROM "
-                    + "  PETCAMELOT_UAT2.\"OITM\" "
+                    + " PETCAMELOT_UAT2.\"OITM\" "
                     + "  JOIN "
-                    + "  PETCAMELOT_UAT2.OBCD ON PETCAMELOT_UAT2.OITM.\"ItemCode\" = PETCAMELOT_UAT2.OBCD.\"ItemCode\"  -- Barcodes Table\\n\n"
+                    + " PETCAMELOT_UAT2.OBCD ON PETCAMELOT_UAT2.OITM.\"ItemCode\" = PETCAMELOT_UAT2.OBCD.\"ItemCode\"  -- Barcodes Table\\n\n"
                     + "  LEFT JOIN "
-                    + "  PETCAMELOT_UAT2.OUOM ON OBCD.\"UomEntry\" = PETCAMELOT_UAT2.OUOM.\"UomEntry\"  -- Units of Measure Table\\n\n"
+                    + " PETCAMELOT_UAT2.OUOM ON OBCD.\"UomEntry\" = PETCAMELOT_UAT2.OUOM.\"UomEntry\"  -- Units of Measure Table\\n\n"
                     + "  WHERE \n"
-                    + "  PETCAMELOT_UAT2.OITM.\"ItemCode\" = '1271';";
-            System.out.println(query);
+                    + " PETCAMELOT_UAT2.OITM.\"ItemCode\" = '" + itemCode + "';";
+
             resultSet = statement.executeQuery(query);
             int index = 0;
             while (resultSet.next()) {
