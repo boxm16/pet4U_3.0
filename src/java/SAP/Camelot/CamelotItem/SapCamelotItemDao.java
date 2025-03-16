@@ -28,23 +28,20 @@ public class SapCamelotItemDao {
             Statement statement = connection.createStatement();
             ResultSet resultSet = null;
             String query = "SELECT  OITM.\"ItemCode\",  "
-                    + " PETCAMELOT_UAT2.OITM.\"ItemName\", "
-                    + " PETCAMELOT_UAT2.OITM.\"CodeBars\",  "
-                    + " PETCAMELOT_UAT2.OITM.\"U_PickLocation\", "
-                    + " PETCAMELOT_UAT2.OBCD.\"BcdCode\",   "
-                    + " PETCAMELOT_UAT2.OUOM.\"UomEntry\",  "
-                    + " PETCAMELOT_UAT2.OUOM.\"UomCode\", "
-                    + " PETCAMELOT_UAT2.OUOM.\"UomName\", "
-                    + " PETCAMELOT_UAT2.UGP1.\"BaseQty\" " // Προσθήκη της στήλης BaseQty από τον πίνακα UGP1
+                    + " OITM.\"ItemName\", OITM.\"CodeBars\",  "
+                    + " OITM.\"U_PickLocation\", "
+                    + " OBCD.\"BcdCode\",   "
+                    + " OUOM.\"UomEntry\",  "
+                    + " OUOM.\"UomCode\", "
+                    + " OUOM.\"UomName\", "
+                    + " UGP1.\"BaseQty\" " // Προσθήκη της στήλης BaseQty από τον πίνακα UGP1
                     + "  FROM "
                     + " PETCAMELOT_UAT2.\"OITM\" "
                     + "  JOIN "
                     + " PETCAMELOT_UAT2.OBCD ON PETCAMELOT_UAT2.OITM.\"ItemCode\" = PETCAMELOT_UAT2.OBCD.\"ItemCode\"  -- Barcodes Table"
                     + "  LEFT JOIN "
-                    + " PETCAMELOT_UAT2.OUOM ON PETCAMELOT_UAT2.OITM.OBCD.\"UomEntry\" = PETCAMELOT_UAT2.OUOM.\"UomEntry\"  -- Units of Measure Table"
-                    + "  LEFT JOIN "
-                    + " PETCAMELOT_UAT2.UGP1 ON PETCAMELOT_UAT2.OITM.OUOM.\"UomEntry\" = PETCAMELOT_UAT2.UGP1.\"UomEntry\" "
-                    + "  WHERE "
+                    + " PETCAMELOT_UAT2.OUOM ON OBCD.\"UomEntry\" = PETCAMELOT_UAT2.OUOM.\"UomEntry\"  -- Units of Measure Table"
+                    + "  WHERE \n"
                     + " PETCAMELOT_UAT2.OITM.\"ItemCode\" = '" + itemCode + "';";
 
             resultSet = statement.executeQuery(query);
@@ -62,7 +59,6 @@ public class SapCamelotItemDao {
 
                 AltercodeContainer altercodeContainer = new AltercodeContainer();
                 altercodeContainer.setAltercode(resultSet.getString("BcdCode"));
-                altercodeContainer.setItemsInPackage(resultSet.getDouble("BaseQty"));
                 if (resultSet.getString("UomName") == null) {
                     altercodeContainer.setStatus("");
                 } else {
