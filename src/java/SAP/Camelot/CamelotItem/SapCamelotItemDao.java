@@ -28,23 +28,22 @@ public class SapCamelotItemDao {
             Statement statement = connection.createStatement();
             ResultSet resultSet = null;
 
-            resultSet = statement.executeQuery("SELECT \n"
-                    + "    OITM.\"ItemCode\",      -- Item Code\n"
-                    + "    OITM.\"ItemName\",      -- Item Name\n"
-                    + "    OITM.\"CodeBars\",      -- Item Name\n"
-                    + "    OITM.\"U_PickLocation\",      -- Item Name\n"
-                    + "    OBCD.\"BcdCode\",       -- Barcode\n"
-                    + "    OUOM.\"UomEntry\",        -- Unit of Measure\n"
-                    + "    OUOM.\"UomCode\",        -- Unit of Measure\n"
-                    + "    OUOM.\"UomName\"        -- Unit of Measure\n"
-                    + " FROM "
-                    + "    OITM                -- Item Master Table\n"
-                    + " JOIN "
-                    + "    OBCD ON OITM.\"ItemCode\" = OBCD.\"ItemCode\"  -- Barcodes Table\n"
-                    + " LEFT JOIN "
-                    + "    OUOM ON OBCD.\"UomEntry\" = OUOM.\"UomEntry\"  -- Units of Measure Table\n"
-                    + " WHERE "
-                    + "    OITM.\"ItemCode\" = '1271';");
+            resultSet = statement.executeQuery("SELECT "
+                    + "  OITM.\"ItemCode\" ,     "
+                    + "  OITM.\"ItemName\",     "
+                    + "  OITM.\"CodeBars\",     "
+                    + "  OITM.\"U_PickLocation\",     "
+                    + "  OBCD.\"BcdCode\",       "
+                    + "  OUOM.\"UomEntry\", "
+                    + "  OUOM.\"UomCode\"        -- Unit of Measure"
+                    + "  FROM "
+                    + "  OITM                -- Item Master Table"
+                    + "  JOIN "
+                    + "  OBCD ON OITM.\"ItemCode\" = OBCD.\"ItemCode\"  -- Barcodes Table"
+                    + "  LEFT JOIN "
+                    + "  OUOM ON OBCD.\"UomEntry\" = OUOM.\"UomEntry\"  -- Units of Measure Table"
+                    + "  WHERE "
+                    + "  OITM.\"ItemCode\" = '1271';");
             int index = 0;
             while (resultSet.next()) {
                 if (index == 0) {
