@@ -27,7 +27,7 @@ public class SapCamelotItemDao {
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = null;
-            String query = "SELECT  OITM.\"ItemCode\",  OITM.\"ItemName\", OITM.\"CodeBars\",  OITM.\"U_PickLocation\", OBCD.\"BcdCode\",   OUOM.\"UomEntry\",  OUOM.\"UomCode\"       \n"
+            String query = "SELECT  OITM.\"ItemCode\",  OITM.\"ItemName\", OITM.\"CodeBars\",  OITM.\"U_PickLocation\", OBCD.\"BcdCode\",   OUOM.\"UomEntry\",  OUOM.\"UomCode\", OUOM.\"UomName\"    \n"
                     + "  FROM "
                     + "  PETCAMELOT_UAT2.\"OITM\" "
                     + "  JOIN "
