@@ -60,10 +60,10 @@ public class SapCamelotItemDao {
                 if (resultSet.getString("CodeBars") == null) {
                     //do nothing
                 } else {
-                    if (resultSet.getString("CodeBars").equals(resultSet.getString("BarCode"))) {
+                    if (resultSet.getString("CodeBars").equals(resultSet.getString("BcdCode"))) {
                         altercodeContainer.setMainBarcode(true);
                         //  item.setMainBarcode(resultSet.getString("ALTERNATECODE"));// HERE ALTERNATECODE AND MAIN_CODE IS THE SAME
-                        item.setMainBarcode(resultSet.getString("BarCode"));//
+                        item.setMainBarcode(resultSet.getString("BcdCode"));//
                     } else {
                         altercodeContainer.setMainBarcode(false);
                     }
