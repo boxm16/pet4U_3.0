@@ -24,6 +24,12 @@ public class SapController {
     private final String PASSWORD = "1234";
     private final String COMPANY_DB = "PETCAMELOT_UAT2";
 
+    @RequestMapping(value = "sapIndex")
+    public String sapDashboard() {
+
+        return "/sap/sapIndex";
+    }
+
     @RequestMapping(value = "sapDashboard")
     public String sapDashboard() {
 
