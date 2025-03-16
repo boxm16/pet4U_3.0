@@ -27,15 +27,7 @@ public class SapCamelotItemDao {
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = null;
-            String query = "SELECT  OITM.\"ItemCode\",  OITM.\"ItemName\", OITM.\"CodeBars\",  OITM.\"U_PickLocation\", OBCD.\"BcdCode\",   OUOM.\"UomEntry\",  OUOM.\"UomCode\"       \n"
-                    + "  FROM "
-                    + "  OITM "
-                    + "  JOIN "
-                    + "  OBCD ON OITM.\"ItemCode\" = OBCD.\"ItemCode\"  -- Barcodes Table\\n\n"
-                    + "  LEFT JOIN "
-                    + "  OUOM ON OBCD.\"UomEntry\" = OUOM.\"UomEntry\"  -- Units of Measure Table\\n\n"
-                    + "  WHERE \n"
-                    + "  OITM.\"ItemCode\" = '1271';";
+            String query = "SELECT * FROM OITM;";
             System.out.println(query);
             resultSet = statement.executeQuery(query);
             int index = 0;
