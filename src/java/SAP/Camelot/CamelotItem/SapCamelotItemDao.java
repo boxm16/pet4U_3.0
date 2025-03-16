@@ -63,7 +63,7 @@ public class SapCamelotItemDao {
                 } else {
                     altercodeContainer.setStatus(resultSet.getString("UomName").trim());
                 }
-                if (resultSet.getString("CodeBars") == null) {
+                if (resultSet.getString("BcdCode") == null) {
                     //do nothing
                 } else {
                     if (resultSet.getString("CodeBars").equals(resultSet.getString("BcdCode"))) {
