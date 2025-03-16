@@ -33,13 +33,16 @@ public class SapCamelotItemDao {
                     + " OBCD.\"BcdCode\",   "
                     + " OUOM.\"UomEntry\",  "
                     + " OUOM.\"UomCode\", "
-                    + " OUOM.\"UomName\"    "
+                    + " OUOM.\"UomName\", "
+                    + " UGP1.\"BaseQty\" " // Προσθήκη της στήλης BaseQty από τον πίνακα UGP1
                     + "  FROM "
                     + " PETCAMELOT_UAT2.\"OITM\" "
                     + "  JOIN "
-                    + " PETCAMELOT_UAT2.OBCD ON PETCAMELOT_UAT2.OITM.\"ItemCode\" = PETCAMELOT_UAT2.OBCD.\"ItemCode\"  -- Barcodes Table\\n\n"
+                    + " PETCAMELOT_UAT2.OBCD ON PETCAMELOT_UAT2.OITM.\"ItemCode\" = PETCAMELOT_UAT2.OBCD.\"ItemCode\"  -- Barcodes Table"
                     + "  LEFT JOIN "
-                    + " PETCAMELOT_UAT2.OUOM ON OBCD.\"UomEntry\" = PETCAMELOT_UAT2.OUOM.\"UomEntry\"  -- Units of Measure Table\\n\n"
+                    + " PETCAMELOT_UAT2.OUOM ON OBCD.\"UomEntry\" = PETCAMELOT_UAT2.OUOM.\"UomEntry\"  -- Units of Measure Table"
+                    + "  LEFT JOIN "
+                    + " PETCAMELOT_UAT2.UGP1 ON OUOM.\"UomEntry\" = UGP1.\"UomEntry\" "
                     + "  WHERE \n"
                     + " PETCAMELOT_UAT2.OITM.\"ItemCode\" = '" + itemCode + "';";
 
@@ -58,6 +61,7 @@ public class SapCamelotItemDao {
 
                 AltercodeContainer altercodeContainer = new AltercodeContainer();
                 altercodeContainer.setAltercode(resultSet.getString("BcdCode"));
+                altercodeContainer.setItemsInPackage(resultSet.getDouble("BaseQty"));
                 if (resultSet.getString("UomName") == null) {
                     altercodeContainer.setStatus("");
                 } else {
