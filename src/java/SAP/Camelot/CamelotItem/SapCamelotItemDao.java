@@ -36,7 +36,7 @@ public class SapCamelotItemDao {
                     + "    OBCD.\"BcdCode\",       -- Barcode\n"
                     + "    OUOM.\"UomEntry\",        -- Unit of Measure\n"
                     + "    OUOM.\"UomCode\",        -- Unit of Measure\n"
-                    + "    OUOM.\"UomName\",        -- Unit of Measure\n"
+                    + "    OUOM.\"UomName\"        -- Unit of Measure\n"
                     + "FROM "
                     + "    OITM                -- Item Master Table\n"
                     + "JOIN "
