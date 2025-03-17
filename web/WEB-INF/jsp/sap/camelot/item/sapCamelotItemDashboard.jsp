@@ -32,10 +32,11 @@
                         <td>${altercodeContainer.altercodeName}</td>
                         <td>${unitOfMeasurement.value.baseQuantity}</td>
                     </tr>
-                    <tr>
-                        <td>-----</td>
-                    </tr>
+
                 </c:forEach>
+                <tr>
+                    <td>-----</td>
+                </tr>
             </c:forEach>
         </table>
 
