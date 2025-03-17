@@ -16,6 +16,23 @@
         </h1>
 
 
+
+        <table border="1">
+            <tr>
+                <th>Alternate Code</th>
+                <th>Status</th>
+                <th>Items in Package</th>
+            </tr>
+            <c:forEach items="${item.unitOfMeasurementGroup.unitOfMeasurements}" var="unitOfMeasurement">
+                <tr>
+                    <td>${unitOfMeasurement}</td>
+                    <td>${unitOfMeasurement}</td>
+                    <td>${unitOfMeasurement}</td>
+                </tr>
+            </c:forEach>
+        </table>
+
+
         <table border="1">
             <tr>
                 <th>Alternate Code</th>
@@ -31,11 +48,7 @@
             </c:forEach>
         </table>
 
-        <ul>
-            <c:forEach items="${item.altercodes}" var="altercode">
-                <li>${altercode.altercode} : ${altercode.status} : ${altercode.itemsInPackage}</li>
-                </c:forEach>
-        </ul>
+
 
     </body>
 </html>
