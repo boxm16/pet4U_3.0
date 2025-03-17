@@ -24,11 +24,13 @@
                 <th>Items in Package</th>
             </tr>
             <c:forEach items="${item.unitOfMeasurementGroup.unitOfMeasurements}" var="unitOfMeasurement">
-                <tr>
-                    <td>${unitOfMeasurement}</td>
-                    <td>${unitOfMeasurement}</td>
-                    <td>${unitOfMeasurement}</td>
-                </tr>
+                <c:forEach items="${unitOfMeasurement.altercodeContainers}" var="altercodeContainer">
+                    <tr>
+                        <td>${altercodeContainer.altercode}</td>
+                        <td>${altercodeContainer.altercodeName}</td>
+                        <td>${unitOfMeasurement.baseQuantity}</td>
+                    </tr>
+                </c:forEach>
             </c:forEach>
         </table>
 
