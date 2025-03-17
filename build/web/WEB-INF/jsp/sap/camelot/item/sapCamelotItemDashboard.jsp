@@ -13,7 +13,7 @@
         </h1>
         <ul>
             <c:forEach items="${item.altercodes}" var="altercode">
-                <li>${altercode.altercode} : ${altercode.status} </li>
+                <li>${altercode.altercode} : ${altercode.status} : ${altercode.itemsInPackage}</li>
                 </c:forEach>
         </ul>
 
