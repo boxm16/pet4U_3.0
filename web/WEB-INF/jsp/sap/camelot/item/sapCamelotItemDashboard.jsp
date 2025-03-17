@@ -28,7 +28,7 @@
                     <tr>
                         <td>${altercodeContainer.altercode}</td>
                         <td>${altercodeContainer.altercodeName}</td>
-                        <td>${unitOfMeasurement.baseQuantity}</td>
+                        <td>${unitOfMeasurement.value.baseQuantity}</td>
                     </tr>
                 </c:forEach>
             </c:forEach>
