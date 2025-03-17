@@ -27,7 +27,7 @@
             <c:forEach items="${item.unitOfMeasurementGroup.unitOfMeasurements}" var="unitOfMeasurement">
                 <c:forEach items="${unitOfMeasurement.value.altercodeContainers}" var="altercodeContainer">
                     <tr>
-                         <td>${unitOfMeasurement.value.name}</td>
+                         <td>${unitOfMeasurement.value.uomName}</td>
                         <td>${altercodeContainer.altercode}</td>
                         <td>${altercodeContainer.altercodeName}</td>
                         <td>${unitOfMeasurement.value.baseQuantity}</td>
