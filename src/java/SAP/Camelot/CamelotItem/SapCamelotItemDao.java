@@ -60,6 +60,7 @@ public class SapCamelotItemDao {
 
                 AltercodeContainer altercodeContainer = new AltercodeContainer();
                 altercodeContainer.setAltercode(resultSet.getString("BcdCode"));
+                altercodeContainer.setItemsInPackage(resultSet.getDouble("BaseQty"));
                 if (resultSet.getString("UomName") == null) {
                     altercodeContainer.setStatus("");
                 } else {
