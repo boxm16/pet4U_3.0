@@ -7,7 +7,9 @@ package SAP.Camelot.CamelotItem;
 
 import BasicModel.AltercodeContainer;
 import BasicModel.Item;
+import SAP.SapBasicModel.SapAltercodeContainer;
 import SAP.SapBasicModel.SapItem;
+import SAP.SapBasicModel.SapUnitOfMeasurement;
 import Service.DatabaseConnectionFactory;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -106,6 +108,7 @@ public class SapCamelotItemDao {
                     + " OITM.\"CodeBars\", "
                     + " OITM.\"U_PickLocation\", "
                     + " OBCD.\"BcdCode\", "
+                    + " OBCD.\"BcdName\", "
                     + " OUOM.\"UomEntry\", "
                     + " OUOM.\"UomCode\", "
                     + " OUOM.\"UomName\", "
@@ -138,6 +141,20 @@ public class SapCamelotItemDao {
                 }
 
                 index++;
+
+                String unitOfMeasurementCode = resultSet.getString("UomCode");
+                if (!item.getUnitOfMeasurementGroup().getUnitOfMeasurements().containsKey(unitOfMeasurementCode)) {
+                    SapUnitOfMeasurement unitOfMeasurement = new SapUnitOfMeasurement();
+                    unitOfMeasurement.setUomName(resultSet.getString("UomName"));
+                    item.getUnitOfMeasurementGroup().getUnitOfMeasurements().put(unitOfMeasurementCode, unitOfMeasurement);
+                }
+                SapUnitOfMeasurement unitOfMeasurement = item.getUnitOfMeasurementGroup().getUnitOfMeasurements().get(unitOfMeasurementCode);
+
+                SapAltercodeContainer sapAltercodeContainer = new SapAltercodeContainer();
+                sapAltercodeContainer.setAltercode(resultSet.getString("BcdCode"));
+                sapAltercodeContainer.setAltercodeName(resultSet.getString("BcdName"));
+
+                unitOfMeasurement.getAltercodeContainers().add(sapAltercodeContainer);
 
                 AltercodeContainer altercodeContainer = new AltercodeContainer();
                 altercodeContainer.setAltercode(resultSet.getString("BcdCode"));

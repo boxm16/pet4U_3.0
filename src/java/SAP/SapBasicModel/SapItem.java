@@ -6,6 +6,10 @@ public class SapItem extends Item {
 
     private SapUnitOfMeasurementGroup unitOfMeasurementGroup;
 
+    public SapItem() {
+        this.unitOfMeasurementGroup = new SapUnitOfMeasurementGroup();
+    }
+
     public SapUnitOfMeasurementGroup getUnitOfMeasurementGroup() {
         return unitOfMeasurementGroup;
     }

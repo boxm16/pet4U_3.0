@@ -13,6 +13,7 @@ public class SapUnitOfMeasurement {
     private String UomCode;
     private String UomName;
     private ArrayList<SapAltercodeContainer> altercodeContainers;
+    private double BaseQuantity;
 
     public SapUnitOfMeasurement() {
         this.altercodeContainers = new ArrayList<>();
@@ -49,5 +50,14 @@ public class SapUnitOfMeasurement {
     public void setAltercodeContainers(ArrayList<SapAltercodeContainer> altercodeContainers) {
         this.altercodeContainers = altercodeContainers;
     }
+
+    public double getBaseQuantity() {
+        return BaseQuantity;
+    }
+
+    public void setBaseQuantity(double BaseQuantity) {
+        this.BaseQuantity = BaseQuantity;
+    }
+    
 
 }
