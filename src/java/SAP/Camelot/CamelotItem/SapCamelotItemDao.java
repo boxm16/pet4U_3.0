@@ -148,6 +148,7 @@ public class SapCamelotItemDao {
                 String unitOfMeasurementCode = resultSet.getString("UomCode");
                 if (!item.getUnitOfMeasurementGroup().getUnitOfMeasurements().containsKey(unitOfMeasurementCode)) {
                     SapUnitOfMeasurement unitOfMeasurement = new SapUnitOfMeasurement();
+                    unitOfMeasurement.setUomName(resultSet.getString("UomEntry"));
                     unitOfMeasurement.setUomName(resultSet.getString("UomName"));
                     unitOfMeasurement.setBaseQuantity(resultSet.getDouble("BaseQty"));
                     item.getUnitOfMeasurementGroup().getUnitOfMeasurements().put(unitOfMeasurementCode, unitOfMeasurement);
