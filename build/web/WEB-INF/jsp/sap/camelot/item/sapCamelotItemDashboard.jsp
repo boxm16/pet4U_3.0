@@ -19,6 +19,7 @@
 
         <table border="1">
             <tr>
+                <th>UoM Entry</th>
                 <th>UoM Name</th>
                 <th>Altercode</th>
                 <th>Text</th>
@@ -27,6 +28,7 @@
             <c:forEach items="${item.unitOfMeasurementGroup.unitOfMeasurements}" var="unitOfMeasurement">
                 <c:forEach items="${unitOfMeasurement.value.altercodeContainers}" var="altercodeContainer">
                     <tr>
+                        <td>${unitOfMeasurement.value.uomEntry}</td>
                         <td>${unitOfMeasurement.value.uomName}</td>
                         <td>${altercodeContainer.altercode}</td>
                         <td>${altercodeContainer.altercodeName}</td>
