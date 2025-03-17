@@ -9,7 +9,8 @@
         <hr> 
         <h1>
             Item Code : ${item.code} <br>
-            Item Description : ${item.description} <br>  
+            Item Description : ${item.description} <br> 
+            Item Unit Of Measurement Group : ${item.unitOfMeasurementGroup.ugpName} <br>  
         </h1>
         <ul>
             <c:forEach items="${item.altercodes}" var="altercode">

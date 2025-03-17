@@ -137,6 +137,7 @@ public class SapCamelotItemDao {
                     item.setCode(resultSet.getString("ItemCode"));
                     item.setDescription(resultSet.getString("ItemName"));
                     item.setPosition(resultSet.getString("U_PickLocation"));
+                    item.getUnitOfMeasurementGroup().setUgpName(resultSet.getString("UgpName"));
 
                 }
 
