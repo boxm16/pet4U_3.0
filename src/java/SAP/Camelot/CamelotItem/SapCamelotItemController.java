@@ -5,7 +5,7 @@
  */
 package SAP.Camelot.CamelotItem;
 
-import BasicModel.Item;
+import SAP.SapBasicModel.SapItem;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +18,8 @@ public class SapCamelotItemController {
     public String goForCamelotItemDashboard(@RequestParam(name = "itemCode") String itemCode, ModelMap modelMap) {
 
         SapCamelotItemDao itemDao = new SapCamelotItemDao();
-        Item item = itemDao.getItemByItemCode(itemCode);
+        //  Item item = itemDao.getItemByItemCode(itemCode);
+        SapItem item = itemDao.getSapItemByItemCode(itemCode);
         modelMap.addAttribute("target", itemCode);
         modelMap.addAttribute("item", item);
 

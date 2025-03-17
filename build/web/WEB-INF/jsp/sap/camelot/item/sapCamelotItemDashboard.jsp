@@ -8,7 +8,7 @@
         <h1>Sap Camelot Item Dashboard</h1>
         <hr> 
         <h1>
-            Item Name : ${item.code} <br>
+            Item Code : ${item.code} <br>
             Item Description : ${item.description} <br>  
         </h1>
         <ul>
