@@ -19,7 +19,7 @@
 
         <table border="1">
             <tr>
-                 <th>UoM Name</th>
+                <th>UoM Name</th>
                 <th>Altercode</th>
                 <th>Text</th>
                 <th>Items in Package</th>
@@ -27,22 +27,25 @@
             <c:forEach items="${item.unitOfMeasurementGroup.unitOfMeasurements}" var="unitOfMeasurement">
                 <c:forEach items="${unitOfMeasurement.value.altercodeContainers}" var="altercodeContainer">
                     <tr>
-                         <td>${unitOfMeasurement.value.uomName}</td>
+                        <td>${unitOfMeasurement.value.uomName}</td>
                         <td>${altercodeContainer.altercode}</td>
                         <td>${altercodeContainer.altercodeName}</td>
                         <td>${unitOfMeasurement.value.baseQuantity}</td>
+                    </tr>
+                    <tr>
+                        <td>-----</td>
                     </tr>
                 </c:forEach>
             </c:forEach>
         </table>
 
-        
-        
-        
-        
-        
-        
-        
+
+
+
+
+
+
+
 
         <table border="1">
             <tr>
