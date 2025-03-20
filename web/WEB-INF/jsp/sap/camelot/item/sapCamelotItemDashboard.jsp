@@ -62,7 +62,7 @@
                         <td>${entry.value.ugpCode}</td> <!-- Property of SapUnitOfMeasurementGroup -->
                         <td>${entry.value.ugpName}</td> <!-- Property of SapUnitOfMeasurementGroup -->
                         <td>
-                            <table>
+                            <table border="1">
                                 <c:forEach var="unit" items="${entry.value.unitOfMeasurements}">
                                     <tr>
                                         <td>${unit.value.uomEntry}</td> 
