@@ -206,9 +206,9 @@ public class SapCamelotItemDao {
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = null;
-            String query = "SELECT * FROM  OUGP "
-                    + "INNER JOIN  UGP1 "
-                    + "ON  OUGP.\"UgpEntry\" = UGP1.\"UgpEntry\" ;";
+            String query = "SELECT * FROM  PETCAMELOT_UAT2.OUGP "
+                    + "INNER JOIN  PETCAMELOT_UAT2.UGP1 "
+                    + "ON  PETCAMELOT_UAT2.OUGP.\"UgpEntry\" = PETCAMELOT_UAT2.UGP1.\"UgpEntry\" ;";
             
             resultSet = statement.executeQuery(query);
             
