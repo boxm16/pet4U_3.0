@@ -230,6 +230,7 @@ public class SapCamelotItemDao {
                 unitOfMeasurement.setUomCode(resultSet.getString("UomCode"));
                 unitOfMeasurement.setUomName(resultSet.getString("UomName"));
                 unitOfMeasurement.setBaseQuantity(resultSet.getDouble("BaseQty"));
+                unitOfMeasurementGroup.getUnitOfMeasurements().put(resultSet.getString("UomCode"), unitOfMeasurement);
             }
 
             resultSet.close();
