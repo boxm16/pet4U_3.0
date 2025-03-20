@@ -224,9 +224,9 @@ public class SapCamelotItemDao {
                 SapUnitOfMeasurementGroup unitOfMeasurementGroup = allUnitOfMeasurementGroups.get(ugpEntry);
                 
                 SapUnitOfMeasurement unitOfMeasurement = new SapUnitOfMeasurement();
-                unitOfMeasurement.setUomEntry(resultSet.getShort("uomEntry"));
-                unitOfMeasurement.setUomCode(resultSet.getString("uomCode"));
-                unitOfMeasurement.setUomName(resultSet.getString("uomName"));
+                unitOfMeasurement.setUomEntry(resultSet.getShort("UomEntry"));
+                unitOfMeasurement.setUomCode(resultSet.getString("UomCode"));
+                unitOfMeasurement.setUomName(resultSet.getString("UomName"));
                 unitOfMeasurement.setBaseQuantity(resultSet.getDouble("BaseQty"));
             }
             
