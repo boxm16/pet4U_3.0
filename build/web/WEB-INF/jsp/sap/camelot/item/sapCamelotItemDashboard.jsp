@@ -43,5 +43,36 @@
             </c:forEach>
         </table>
 
+        <hr>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Unit of Measurement Group Key</th>
+                    <th>Unit of Measurement Group</th>
+                    <th>Description</th>
+                    <th>Units</th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach var="entry" items="${allUnitOfMeasurementGroups}">
+                    <tr>
+                        <td>${entry.key}</td> <!-- Key of the LinkedHashMap (Short type) -->
+                        <td>${entry.value.ugpCode}</td> <!-- Property of SapUnitOfMeasurementGroup -->
+                        <td>${entry.value.ugpName}</td> <!-- Property of SapUnitOfMeasurementGroup -->
+                        <td>
+                            <c:forEach var="unit" items="${entry.value.unitOfMeasurements}">
+                            <td>${entry.key}</td> <!-- Key of the LinkedHashMap (Short type) -->
+
+                            <td>${unitOfMeasurement.uomCode}</td> <!-- Key of the LinkedHashMap (Short type) -->
+                            <td>${unitOfMeasurement.uomName}</td> <!-- Property of SapUnitOfMeasurementGroup -->
+
+                    <br>
+                </c:forEach>
+                </td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
+
     </body>
 </html>
