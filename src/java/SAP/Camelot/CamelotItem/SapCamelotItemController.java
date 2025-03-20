@@ -6,6 +6,8 @@
 package SAP.Camelot.CamelotItem;
 
 import SAP.SapBasicModel.SapItem;
+import SAP.SapBasicModel.SapUnitOfMeasurementGroup;
+import java.util.LinkedHashMap;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,9 +22,18 @@ public class SapCamelotItemController {
         SapCamelotItemDao itemDao = new SapCamelotItemDao();
         //  Item item = itemDao.getItemByItemCode(itemCode);
         SapItem item = itemDao.getSapItemByItemCode(itemCode);
+        LinkedHashMap<Short, SapUnitOfMeasurementGroup> allUnitOfMeasurementGroups = getAllUnitOfMeasurementGroups();
+        modelMap.addAttribute("allUnitOfMeasurementGroups", allUnitOfMeasurementGroups);
         modelMap.addAttribute("target", itemCode);
         modelMap.addAttribute("item", item);
 
         return "sap/camelot/item/sapCamelotItemDashboard";
     }
+
+    private LinkedHashMap<Short, SapUnitOfMeasurementGroup> getAllUnitOfMeasurementGroups() {
+        SapCamelotItemDao itemDao = new SapCamelotItemDao();
+        LinkedHashMap<Short, SapUnitOfMeasurementGroup> allUnitOfMeasurementGroups = itemDao.getAllUnitOfMeasurementGroups();
+        return allUnitOfMeasurementGroups;
+    }
+
 }
