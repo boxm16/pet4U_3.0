@@ -50,7 +50,7 @@
                     <th>Ugp Entry</th>
                     <th>Ugp Code</th>
                     <th>Ugp Name </th>
-                     <th>Unit Of Measurement </th>
+                    <th>Unit Of Measurement </th>
 
                 </tr>
             </thead>
@@ -67,6 +67,9 @@
                                         <th>Uom Entry</th>
                                         <th>Uom Code</th>
                                         <th>Uom Name</th>
+                                    </tr>
+                                    <tr>
+
                                         <td>${unitOfMeasurementEntry.value.uomEntry}</td> 
                                         <td>${unitOfMeasurementEntry.value.uomCode}</td> 
                                         <td>${unitOfMeasurementEntry.value.uomName}</td> 
