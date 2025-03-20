@@ -66,8 +66,8 @@
                                 <c:forEach var="unit" items="${entry.value.unitOfMeasurements}">
                                     <tr>
                                         <td>${unit.value.uomEntry}</td> 
-                                        <td>${unitOfMeasurement.value.uomCode}</td> 
-                                        <td>${unitOfMeasurement.value.uomName}</td> 
+                                        <td>${unit.value.uomCode}</td> 
+                                        <td>${unit.value.uomName}</td> 
                                     </tr>
                                 </c:forEach>
                             </table>
