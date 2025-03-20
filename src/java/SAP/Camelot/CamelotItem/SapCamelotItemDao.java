@@ -23,9 +23,9 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class SapCamelotItemDao {
-    
+
     Item getItemByItemCode(String itemCode) {
-        
+
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
         Connection connection = databaseConnectionFactory.getSapHanaConnection();
         Item item = null;
@@ -49,7 +49,7 @@ public class SapCamelotItemDao {
                     + "  LEFT JOIN "
                     + " PETCAMELOT_UAT2.UGP1 ON OUOM.\"UomEntry\" = UGP1.\"UomEntry\" AND UGP1.\"UgpEntry\" = OITM.\"UgpEntry\" " + "  WHERE \n"
                     + " PETCAMELOT_UAT2.OITM.\"ItemCode\" = '" + itemCode + "';";
-            
+
             resultSet = statement.executeQuery(query);
             int index = 0;
             while (resultSet.next()) {
@@ -58,11 +58,11 @@ public class SapCamelotItemDao {
                     item.setCode(resultSet.getString("ItemCode"));
                     item.setDescription(resultSet.getString("ItemName"));
                     item.setPosition(resultSet.getString("U_PickLocation"));
-                    
+
                 }
-                
+
                 index++;
-                
+
                 AltercodeContainer altercodeContainer = new AltercodeContainer();
                 altercodeContainer.setAltercode(resultSet.getString("BcdCode"));
                 altercodeContainer.setItemsInPackage(resultSet.getDouble("BaseQty"));
@@ -82,12 +82,12 @@ public class SapCamelotItemDao {
                         altercodeContainer.setMainBarcode(false);
                     }
                 }
-                
+
                 if (item != null) {//It should never be, i mean, if there is an altercode, there is an item. But, just in any case
                     item.addAltercodeContainer(altercodeContainer);
                 }
             }
-            
+
             resultSet.close();
             statement.close();
             connection.close();
@@ -96,7 +96,7 @@ public class SapCamelotItemDao {
         }
         return item;
     }
-    
+
     SapItem getSapItemByItemCode(String itemCode) {
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
         Connection connection = databaseConnectionFactory.getSapHanaConnection();
@@ -130,7 +130,7 @@ public class SapCamelotItemDao {
                     + " PETCAMELOT_UAT2.OUGP ON OITM.\"UgpEntry\" = OUGP.\"UgpEntry\" " // Join condition for OUGP
                     + " WHERE "
                     + " PETCAMELOT_UAT2.OITM.\"ItemCode\" = '" + itemCode + "';";
-            
+
             resultSet = statement.executeQuery(query);
             int index = 0;
             while (resultSet.next()) {
@@ -142,11 +142,11 @@ public class SapCamelotItemDao {
                     item.getUnitOfMeasurementGroup().setUgpEntry(resultSet.getInt("UgpEntry"));
                     item.getUnitOfMeasurementGroup().setUgpCode(resultSet.getString("UgpCode"));
                     item.getUnitOfMeasurementGroup().setUgpName(resultSet.getString("UgpName"));
-                    
+
                 }
-                
+
                 index++;
-                
+
                 String unitOfMeasurementCode = resultSet.getString("UomCode");
                 if (!item.getUnitOfMeasurementGroup().getUnitOfMeasurements().containsKey(unitOfMeasurementCode)) {
                     SapUnitOfMeasurement unitOfMeasurement = new SapUnitOfMeasurement();
@@ -154,16 +154,16 @@ public class SapCamelotItemDao {
                     unitOfMeasurement.setUomName(resultSet.getString("UomName"));
                     unitOfMeasurement.setBaseQuantity(resultSet.getDouble("BaseQty"));
                     item.getUnitOfMeasurementGroup().getUnitOfMeasurements().put(unitOfMeasurementCode, unitOfMeasurement);
-                    
+
                 }
                 SapUnitOfMeasurement unitOfMeasurement = item.getUnitOfMeasurementGroup().getUnitOfMeasurements().get(unitOfMeasurementCode);
-                
+
                 SapAltercodeContainer sapAltercodeContainer = new SapAltercodeContainer();
                 sapAltercodeContainer.setAltercode(resultSet.getString("BcdCode"));
                 sapAltercodeContainer.setAltercodeName(resultSet.getString("BcdName"));
-                
+
                 unitOfMeasurement.getAltercodeContainers().add(sapAltercodeContainer);
-                
+
                 AltercodeContainer altercodeContainer = new AltercodeContainer();
                 altercodeContainer.setAltercode(resultSet.getString("BcdCode"));
                 altercodeContainer.setItemsInPackage(resultSet.getDouble("BaseQty"));
@@ -183,12 +183,12 @@ public class SapCamelotItemDao {
                         altercodeContainer.setMainBarcode(false);
                     }
                 }
-                
+
                 if (item != null) {//It should never be, i mean, if there is an altercode, there is an item. But, just in any case
                     item.addAltercodeContainer(altercodeContainer);
                 }
             }
-            
+
             resultSet.close();
             statement.close();
             connection.close();
@@ -197,21 +197,23 @@ public class SapCamelotItemDao {
         }
         return item;
     }
-    
+
     LinkedHashMap<Short, SapUnitOfMeasurementGroup> getAllUnitOfMeasurementGroups() {
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
         Connection connection = databaseConnectionFactory.getSapHanaConnection();
         LinkedHashMap<Short, SapUnitOfMeasurementGroup> allUnitOfMeasurementGroups = new LinkedHashMap<>();
-        
+
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = null;
             String query = "SELECT * FROM  PETCAMELOT_UAT2.OUGP "
                     + "INNER JOIN  PETCAMELOT_UAT2.UGP1 "
-                    + "ON  PETCAMELOT_UAT2.OUGP.\"UgpEntry\" = PETCAMELOT_UAT2.UGP1.\"UgpEntry\" ;";
-            
+                    + "ON  PETCAMELOT_UAT2.OUGP.\"UgpEntry\" = PETCAMELOT_UAT2.UGP1.\"UgpEntry\" "
+                    + "INNER JOIN  PETCAMELOT_UAT2.OUOM  "
+                    + "ON  PETCAMELOT_UAT2.UGP1.\"UomEntry\" = PETCAMELOT_UAT2.OUOM.\"UomEntry\" ; ";
+
             resultSet = statement.executeQuery(query);
-            
+
             while (resultSet.next()) {
                 short ugpEntry = resultSet.getShort("UgpEntry");
                 if (!allUnitOfMeasurementGroups.containsKey(ugpEntry)) {
@@ -222,14 +224,14 @@ public class SapCamelotItemDao {
                     allUnitOfMeasurementGroups.put(ugpEntry, unitOfMeasurementGroup);
                 }
                 SapUnitOfMeasurementGroup unitOfMeasurementGroup = allUnitOfMeasurementGroups.get(ugpEntry);
-                
+
                 SapUnitOfMeasurement unitOfMeasurement = new SapUnitOfMeasurement();
                 unitOfMeasurement.setUomEntry(resultSet.getShort("UomEntry"));
                 unitOfMeasurement.setUomCode(resultSet.getString("UomCode"));
                 unitOfMeasurement.setUomName(resultSet.getString("UomName"));
                 unitOfMeasurement.setBaseQuantity(resultSet.getDouble("BaseQty"));
             }
-            
+
             resultSet.close();
             statement.close();
             connection.close();
@@ -238,5 +240,5 @@ public class SapCamelotItemDao {
         }
         return allUnitOfMeasurementGroups;
     }
-    
+
 }
