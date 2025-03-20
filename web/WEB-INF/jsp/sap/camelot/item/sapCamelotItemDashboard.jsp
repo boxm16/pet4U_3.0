@@ -47,10 +47,12 @@
         <table border="1">
             <thead>
                 <tr>
-                    <th>Unit of Measurement Group Key</th>
-                    <th>Unit of Measurement Group</th>
-                    <th>Description</th>
-                    <th>Units</th>
+                    <th>Ugp Entry</th>
+                    <th>Ugp Code</th>
+                    <th>Ugp Name </th>
+                    <th>Uom Entry</th>
+                    <th>Uom Code</th>
+                    <th>Uom Name</th>
                 </tr>
             </thead>
             <tbody>
@@ -63,9 +65,9 @@
                             <table>
                                 <c:forEach var="unit" items="${entry.value.unitOfMeasurements}">
                                     <tr>
-                                        <td>${unit.value.uomEntry}</td> <!-- Key of the LinkedHashMap (Short type) -->
-                                        <td>${unitOfMeasurement.value.uomCode}</td> <!-- Key of the LinkedHashMap (Short type) -->
-                                        <td>${unitOfMeasurement.value.uomName}</td> <!-- Property of SapUnitOfMeasurementGroup -->
+                                        <td>${unit.value.uomEntry}</td> 
+                                        <td>${unitOfMeasurement.value.uomCode}</td> 
+                                        <td>${unitOfMeasurement.value.uomName}</td> 
                                     </tr>
                                 </c:forEach>
                             </table>
