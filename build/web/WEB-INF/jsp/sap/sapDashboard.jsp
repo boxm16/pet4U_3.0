@@ -55,6 +55,10 @@
         <hr><hr><hr><hr>
         <a href="assignUoMToItem.htm"><h1>Assign UoM To Item ---------------</h1></a>
         <hr><hr><hr><hr>
+        
+           <hr><hr><hr><hr>
+        <a href="createPurchaseOrder.htm"><h1>CREATE PURCHASE ORDER</h1></a>
+        <hr><hr><hr><hr>
 
 
 
