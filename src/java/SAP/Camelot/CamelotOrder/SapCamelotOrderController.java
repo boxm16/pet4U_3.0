@@ -36,7 +36,7 @@ public class SapCamelotOrderController {
 
             // JSON Payload for Purchase Order
             JSONObject payload = new JSONObject();
-            payload.put("CardCode", "S00001"); // Supplier Code (changed from customer code)
+            payload.put("CardCode", "c1"); // Supplier Code (changed from customer code)
             payload.put("DocDate", "2023-10-01"); // Document Date
             payload.put("DocDueDate", "2023-10-10"); // Due Date
 
