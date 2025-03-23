@@ -65,15 +65,15 @@
 
             /* Custom styles for the dropdown list */
             .form-select-lg {
-                font-size: 2.25rem; /* Increase font size */
-                padding: 0.5rem 1rem; /* Increase padding */
-                height: calc(3.5em + 1rem); /* Increase height */
-                border-radius: 0.5rem; /* Rounded corners */
-                border: 2px solid #007bff; /* Blue border */
-                background-color: #f8f9fa; /* Light gray background */
-                transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+                font-size: 2.25rem;
+                padding: 0.5rem 1rem;
+                height: 3.5em;
+                border-radius: 0.5rem;
+                border: 2px solid #007bff;
+                background-color: #f8f9fa;
+                /* Remove or simplify transitions if they cause delays */
+                transition: none;
             }
-
             /* Hover effect for dropdown */
             .form-select-lg:hover {
                 border-color: #0056b3; /* Darker blue on hover */
