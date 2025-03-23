@@ -36,13 +36,13 @@ public class SapCamelotApiConnector {
 
         try {
 
-            String loginUrl = BASE_URL + "/Login";
+            String endPoint = "/Login";
             String loginPayload = String.format(
                     "{ \"UserName\": \"%s\", \"Password\": \"%s\", \"CompanyDB\": \"%s\" }",
                     USERNAME, PASSWORD, COMPANY_DB
             );
 
-            HttpURLConnection conn = createConnection(loginUrl, "POST");
+            HttpURLConnection conn = createConnection(endPoint, "POST");
 
             try {
                 applySSLBypass(conn);
