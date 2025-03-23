@@ -62,7 +62,7 @@
                         out.println("<td>");
                         ArrayList<AltercodeContainer> altercodes = item.getAltercodes();
                         for (AltercodeContainer altercodeContainer : altercodes) {
-                            out.println(altercodeContainer.getAltercode() + "</strong>");
+                            out.println(altercodeContainer.getAltercode());
                             out.println("<br>");
                         }
                         out.println("</td>");

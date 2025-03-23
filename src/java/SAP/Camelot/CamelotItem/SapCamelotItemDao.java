@@ -285,8 +285,6 @@ public class SapCamelotItemDao {
                 }
                 items.get(code).addAltercodeContainer(altercodeContainer);
 
-                items.get(code).addAltercodeContainer(altercodeContainer);
-
             }
             resultSet.close();
             statement.close();
