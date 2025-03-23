@@ -58,7 +58,7 @@ public class SapCamelotItemController {
     public String createNewSapCamelotItem(@ModelAttribute("item") SapItem item, ModelMap modelMap) {
 
         System.out.println("Created Item: " + item);
-
+        System.out.println("Item Code: " + item.getCode());
         modelMap.addAttribute("item", item);
 
         return "redirect:goForCamelotItemsDashboard.htm";
