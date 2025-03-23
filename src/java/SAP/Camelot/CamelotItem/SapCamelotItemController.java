@@ -20,11 +20,8 @@ public class SapCamelotItemController {
     public String goForCamelotItemsDashboard(ModelMap modelMap) {
 
         SapCamelotItemDao itemDao = new SapCamelotItemDao();
-        //  Item item = itemDao.getItemByItemCode(itemCode);
-
-        LinkedHashMap<Short, SapUnitOfMeasurementGroup> allUnitOfMeasurementGroups = getAllUnitOfMeasurementGroups();
-        modelMap.addAttribute("allUnitOfMeasurementGroups", allUnitOfMeasurementGroups);
-
+        LinkedHashMap<String, SapItem> items = itemDao.getAllItemsFromView();
+        modelMap.addAttribute("items", items);
         return "sap/camelot/item/sapCamelotItemsDashboard";
     }
 

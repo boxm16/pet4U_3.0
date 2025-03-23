@@ -242,4 +242,59 @@ public class SapCamelotItemDao {
         return allUnitOfMeasurementGroups;
     }
 
+    LinkedHashMap<String, SapItem> getAllItemsFromView() {
+        LinkedHashMap<String, SapItem> items = new LinkedHashMap<>();
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+        Connection connection = databaseConnectionFactory.getSapHanaConnection();
+
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT BYT_V_ITEMDETAILS.\"ItemCode\" as ItemCode,"
+                    + "BYT_V_ITEMDETAILS.\"ItemName\" AS ItemName, "
+                    + "BYT_V_ITEMDETAILS.\"PickLocation\" AS PickLocation, "
+                    + "BYT_V_ITEMDETAILS.\"Stock\" as Stock, "
+                    + "BYT_V_BARCODEDETAILS.\"BarCode\" as ALTERNATECODE, "
+                    + "BYT_V_BARCODEDETAILS.\"UnitOfMeasurement\" as CODEDESCRIPTION "
+                    + " FROM PETCAMELOT_UAT2.BYT_V_ITEMDETAILS "
+                    + "JOIN PETCAMELOT_UAT2.BYT_V_BARCODEDETAILS "
+                    + "ON PETCAMELOT_UAT2.BYT_V_ITEMDETAILS.\"ItemCode\" = PETCAMELOT_UAT2.BYT_V_BARCODEDETAILS.\"ItemCode\" "
+                    + "ORDER BY BYT_V_ITEMDETAILS.\"ItemCode\"; ");
+
+            while (resultSet.next()) {
+                String code = resultSet.getString("ItemCode");
+                SapItem item = null;
+                if (!items.containsKey(code)) {
+                    item = new SapItem();
+                    item.setCode(resultSet.getString("ItemCode"));
+                    item.setDescription(resultSet.getString("ItemName"));
+                    String position = "";
+                    if (resultSet.getString("PickLocation") != null) {
+                        position = resultSet.getString("PickLocation");
+                    }
+                    item.setPosition(position);
+                    item.setQuantity(resultSet.getString("Stock"));
+
+                    items.put(code, item);
+                }
+                AltercodeContainer altercodeContainer = new AltercodeContainer();
+                altercodeContainer.setAltercode(resultSet.getString("ALTERNATECODE").trim());
+                if (resultSet.getString("CODEDESCRIPTION") == null) {
+                    altercodeContainer.setStatus("");
+                } else {
+                    altercodeContainer.setStatus(resultSet.getString("CODEDESCRIPTION").trim());
+                }
+                items.get(code).addAltercodeContainer(altercodeContainer);
+
+                items.get(code).addAltercodeContainer(altercodeContainer);
+
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(SapCamelotItemDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return items;
+    }
+
 }
