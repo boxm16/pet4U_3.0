@@ -98,7 +98,7 @@ public class SapCamelotItemController {
             if (responseCode == 201) {
                 JSONObject jsonResponse = sapCamelotApiConnector.getJsonResponse(conn);
                 System.out.println("✅ Item Created Successfully!");
-                //   System.out.println("Item Details: " + jsonResponse.toString());
+                  System.out.println("Item Details: " + jsonResponse.toString());
                 redirectAttributes.addFlashAttribute("message", "Item Created Successfully.");
             } else {
                 String errorResponse = sapCamelotApiConnector.getErrorResponse(conn);

@@ -46,8 +46,8 @@
 
             /* Custom styles for radio buttons */
             .form-check-input {
-                transform: scale(1.5); /* Increase size of radio buttons */
-                margin-right: 10px; /* Add spacing between radio button and label */
+                transform: scale(2); /* Increase size of radio buttons (2x) */
+                margin-right: 15px; /* Add spacing between radio button and label */
             }
 
             /* Custom styles for the submit button */
