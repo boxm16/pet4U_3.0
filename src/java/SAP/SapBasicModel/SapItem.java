@@ -6,8 +6,7 @@ public class SapItem extends Item {
 
     private SapUnitOfMeasurementGroup unitOfMeasurementGroup;
     private Integer itemsGroupCode;
-    private boolean food;
-    private boolean accessory;
+    private String itemType;
 
     public SapItem() {
         this.unitOfMeasurementGroup = new SapUnitOfMeasurementGroup(); // Initialize here
@@ -29,20 +28,12 @@ public class SapItem extends Item {
         this.itemsGroupCode = itemsGroupCode;
     }
 
-    public boolean isFood() {
-        return food;
+    public String getItemType() {
+        return itemType;
     }
 
-    public void setFood(boolean food) {
-        this.food = food;
-    }
-
-    public boolean isAccessory() {
-        return accessory;
-    }
-
-    public void setAccessory(boolean accessory) {
-        this.accessory = accessory;
+    public void setItemType(String itemType) {
+        this.itemType = itemType;
     }
 
 }

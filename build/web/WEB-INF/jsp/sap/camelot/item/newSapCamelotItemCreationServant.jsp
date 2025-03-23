@@ -95,16 +95,18 @@
                     </div>
                 </div>
 
-                <!-- Radio Buttons for Food and Accessory -->
+                <!-- Radio Buttons for Item Type -->
                 <div class="mb-3">
                     <label class="form-label form-label-lg">Item Type</label>
                     <div class="radio-group">
                         <div class="form-check">
-                            <form:radiobutton path="food" value="true" id="food" class="form-check-input" />
+                            <!-- Use the same path for both radio buttons -->
+                            <form:radiobutton path="itemType" value="food" id="food" class="form-check-input" />
                             <label for="food" class="form-check-label">Food</label>
                         </div>
                         <div class="form-check">
-                            <form:radiobutton path="accessory" value="true" id="accessory" class="form-check-input" />
+                            <!-- Use the same path for both radio buttons -->
+                            <form:radiobutton path="itemType" value="accessory" id="accessory" class="form-check-input" />
                             <label for="accessory" class="form-check-label">Accessory</label>
                         </div>
                     </div>

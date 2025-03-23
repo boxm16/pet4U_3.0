@@ -81,10 +81,10 @@ public class SapCamelotItemController {
             payload.put("ItemName", item.getDescription()); // Item Name (mandatory)
             payload.put("ItemsGroupCode", item.getItemsGroupCode()); // Item Group Code (mandatory)
             payload.put("InventoryItem", "tYES"); // Inventory Item (mandatory)
-            if (item.isAccessory()) {//It is mandatory an item to be food or accessory
+            if (item.getItemType().equals("food")) {//It is mandatory an item to be food or accessory
                 payload.put("Properties7", "tYES");
-            } else if (item.isFood()) {
-                payload.put("Properties8", "tYES"); // Inventory Item (mandatory)
+            } else if (item.getItemType().equals("accessory")) {
+                payload.put("Properties8", "tYES"); 
             } else {
                 System.out.println("❌ Error Creating Item:Properties7 or Properties8 is not selected");
                 redirectAttributes.addFlashAttribute("message", "Error Creating Item:Properties7 or Properties8 is not selected");
