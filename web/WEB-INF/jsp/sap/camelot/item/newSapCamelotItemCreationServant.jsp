@@ -18,6 +18,14 @@
                 font-size:2.25rem; /* Increase label font size */
                 font-weight: bold; /* Optional: Make labels bold */
             }
+            .radio-group .form-check-input {
+                transform: scale(1.5); /* Increase size by 1.5x */
+                margin-right: 10px; /* Add some spacing between the radio button and label */
+            }
+
+            .radio-group .form-check-label {
+                font-size: 1.25rem; /* Increase label font size */
+            }
         </style>
     </head>
     <body>
@@ -25,6 +33,7 @@
             <h1 class="text-center mb-4">Create New Camelot Item</h1>
             <h1>   ${message} </h1>
             <form:form action="createNewSapCamelotItem.htm" method="POST" modelAttribute="item" class="needs-validation">
+                <h1>  Mandatory Fields</h1>
                 <!-- Item Code -->
                 <div class="mb-3">
                     <label for="code" class="form-label form-label-lg">Item Code</label>
@@ -38,12 +47,6 @@
                 <div class="mb-3">
                     <label for="description" class="form-label form-label-lg">Description</label>
                     <form:input path="description" class="form-control form-control-lg" id="description" required="true" />
-                </div>
-
-                <!-- Main Barcode -->
-                <div class="mb-3">
-                    <label for="mainBarcode" class="form-label form-label-lg">Main Barcode</label>
-                    <form:input path="mainBarcode" class="form-control form-control-lg" id="mainBarcode" />
                 </div>
 
                 <!-- Items Group Dropdown -->
@@ -72,6 +75,14 @@
                             <label for="accessory" class="form-check-label">Accessory</label>
                         </div>
                     </div>
+                </div>
+
+                <hr>
+                <h1>   Optional Fields </h1>
+                <!-- Main Barcode -->
+                <div class="mb-3">
+                    <label for="mainBarcode" class="form-label form-label-lg">Main Barcode</label>
+                    <form:input path="mainBarcode" class="form-control form-control-lg" id="mainBarcode" />
                 </div>
 
                 <!-- Submit Button -->
