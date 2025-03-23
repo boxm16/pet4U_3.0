@@ -98,7 +98,7 @@
                 <!-- Row for Code and Description -->
                 <div class="row mb-3">
                     <!-- Item Code -->
-                    <div class="col-md-6"> <!-- Adjust the column size as needed -->
+                    <div class="col-md-4"> <!-- Adjust the column size as needed -->
                         <label for="code" class="form-label form-label-lg">Item Code</label>
                         <form:input path="code" class="form-control form-control-lg" id="code" required="true" />
                         <div class="invalid-feedback" style="font-size: 1.1rem;">
@@ -107,7 +107,7 @@
                     </div>
 
                     <!-- Items Group Dropdown -->
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <label for="itemsGroupCode" class="form-label form-label-lg">Items Group</label>
                         <form:select path="itemsGroupCode" class="form-select form-select-lg" id="itemsGroupCode" required="true">
                             <form:option value="" label="-- Select Items Group --" disabled="true" /> <!-- Disable the default option -->
@@ -119,7 +119,7 @@
                     </div>
 
                     <!-- Radio Buttons for Item Type -->
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <label class="form-label form-label-lg">Item Type</label>
                         <div class="radio-group">
                             <div class="form-check">
