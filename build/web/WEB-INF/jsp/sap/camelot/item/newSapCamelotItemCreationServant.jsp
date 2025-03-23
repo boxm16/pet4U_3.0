@@ -48,6 +48,12 @@
             .form-check-input {
                 transform: scale(2); /* Increase size of radio buttons (2x) */
                 margin-right: 15px; /* Add spacing between radio button and label */
+                margin-bottom: 30px;   /* Add spacing between radio buttons */
+            }
+            /* Custom styles for radio button labels */
+            .form-check-label {
+                font-size: 2rem; /* Increase label font size */
+                margin-left: 10px; /* Add spacing between radio button and label */
             }
 
             /* Custom styles for the submit button */
