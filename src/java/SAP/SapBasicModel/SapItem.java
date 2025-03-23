@@ -5,7 +5,7 @@ import BasicModel.Item;
 public class SapItem extends Item {
 
     private SapUnitOfMeasurementGroup unitOfMeasurementGroup;
-    private int itemsGroupCode;
+    private Integer itemsGroupCode;
 
     public SapItem() {
         this.unitOfMeasurementGroup = new SapUnitOfMeasurementGroup();
