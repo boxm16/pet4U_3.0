@@ -63,17 +63,7 @@
                 border-radius: 0.5rem; /* Rounded corners for the button */
             }
 
-            /* Custom styles for the dropdown list */
-            .form-select-lg {
-                font-size: 2.25rem;
-                padding: 0.5rem 1rem;
-                height: 3.5em;
-                border-radius: 0.5rem;
-                border: 2px solid #007bff;
-                background-color: #f8f9fa;
-                /* Remove or simplify transitions if they cause delays */
-                transition: none;
-            }
+
             /* Hover effect for dropdown */
             .form-select-lg:hover {
                 border-color: #0056b3; /* Darker blue on hover */
@@ -90,7 +80,7 @@
     </head>
     <body>
         <div class="container mt-5">
-            <h1 class="text-center mb-4">Create New Camelot Item</h1>
+            <h1 class="text-center mb-5">Create New Camelot Item</h1>
             <h1>${message}</h1>
             <form:form action="createNewSapCamelotItem.htm" method="POST" modelAttribute="item" class="needs-validation">
                 <h1>Mandatory Fields</h1>
@@ -98,16 +88,13 @@
                 <!-- Row for Code and Description -->
                 <div class="row mb-3">
                     <!-- Item Code -->
-                    <div class="col-md-4"> <!-- Adjust the column size as needed -->
+                    <div class="col-md-5"> <!-- Adjust the column size as needed -->
                         <label for="code" class="form-label form-label-lg">Item Code</label>
                         <form:input path="code" class="form-control form-control-lg" id="code" required="true" />
-                        <div class="invalid-feedback" style="font-size: 1.1rem;">
-                            Please provide an item code.
-                        </div>
                     </div>
 
                     <!-- Items Group Dropdown -->
-                    <div class="col-md-4">
+                    <div class="col-md-2">
                         <label for="itemsGroupCode" class="form-label form-label-lg">Items Group</label>
                         <form:select path="itemsGroupCode" class="form-select form-select-lg" id="itemsGroupCode" required="true">
                             <form:option value="" label="-- Select Items Group --" disabled="true" /> <!-- Disable the default option -->
