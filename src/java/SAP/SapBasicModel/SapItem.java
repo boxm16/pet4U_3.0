@@ -9,6 +9,10 @@ public class SapItem extends Item {
     private boolean food;
     private boolean accessory;
 
+    public SapItem() {
+        this.unitOfMeasurementGroup = new SapUnitOfMeasurementGroup(); // Initialize here
+    }
+
     public SapUnitOfMeasurementGroup getUnitOfMeasurementGroup() {
         return unitOfMeasurementGroup;
     }
