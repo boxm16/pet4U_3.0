@@ -10,7 +10,9 @@ import SAP.SapBasicModel.SapUnitOfMeasurementGroup;
 import java.util.LinkedHashMap;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -45,18 +47,22 @@ public class SapCamelotItemController {
         return allUnitOfMeasurementGroups;
     }
 
-    @RequestMapping(value = "createNewCamelotItem")
-    public String createNewCamelotItem(@RequestParam(name = "itemCode") String itemCode, ModelMap modelMap) {
-
-        SapCamelotItemDao itemDao = new SapCamelotItemDao();
-        //  Item item = itemDao.getItemByItemCode(itemCode);
-        SapItem item = itemDao.getSapItemByItemCode(itemCode);
-        LinkedHashMap<Short, SapUnitOfMeasurementGroup> allUnitOfMeasurementGroups = getAllUnitOfMeasurementGroups();
-        modelMap.addAttribute("allUnitOfMeasurementGroups", allUnitOfMeasurementGroups);
-        modelMap.addAttribute("target", itemCode);
+    @RequestMapping(value = "goForCreationNewSapCamelotItem")
+    public String goForCreationNewCamelotItem(ModelMap modelMap) {
+        SapItem item = new SapItem();
         modelMap.addAttribute("item", item);
-
-        return "sap/camelot/item/sapCamelotItemDashboard";
+        return "sap/camelot/item/newSapCamelotItemCreationServant";
     }
 
+    @RequestMapping(value = "createNewSapCamelotItem", method = RequestMethod.POST)
+    public String createNewCamelotItem(@ModelAttribute("item") SapItem item, ModelMap modelMap) {
+   
+        System.out.println("Created Item: " + item);
+
+    
+        modelMap.addAttribute("item", item);
+
+        
+        return "redirect:goForCamelotItemsDashboard.htm"; 
+    }
 }

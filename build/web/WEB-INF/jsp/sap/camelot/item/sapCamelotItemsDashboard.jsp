@@ -14,7 +14,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Pet4U: All Items</title>
+        <title>Camelot: All Items</title>
         <style>
             table, th, td {
                 border: 1px solid ;
@@ -32,6 +32,9 @@
     </head>
     <body>
     <center>
+        <h1><a href="index.htm">INDEX</a></h1>
+        <hr>
+        <h1><a href="goForCreationNewSapCamelotItem.htm">Create New Item</a></h1>
         <h1><a href="index.htm">INDEX</a></h1>
 
         <table>
