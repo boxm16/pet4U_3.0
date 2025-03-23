@@ -55,14 +55,12 @@ public class SapCamelotItemController {
     }
 
     @RequestMapping(value = "createNewSapCamelotItem", method = RequestMethod.POST)
-    public String createNewCamelotItem(@ModelAttribute("item") SapItem item, ModelMap modelMap) {
-   
+    public String createNewSapCamelotItem(@ModelAttribute("item") SapItem item, ModelMap modelMap) {
+
         System.out.println("Created Item: " + item);
 
-    
         modelMap.addAttribute("item", item);
 
-        
-        return "redirect:goForCamelotItemsDashboard.htm"; 
+        return "redirect:goForCamelotItemsDashboard.htm";
     }
 }

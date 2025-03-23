@@ -9,7 +9,7 @@
     <body>
         <div class="container mt-5">
             <h1 class="text-center mb-4">Create New Camelot Item</h1>
-            <form:form action="createNewSapCamelotItem" method="POST" modelAttribute="item" class="needs-validation" >
+            <form:form action="createNewSapCamelotItem.htm" method="POST" modelAttribute="item" class="needs-validation" >
                 <div class="mb-3">
                     <label for="code" class="form-label">Item Code</label>
                     <form:input path="code" class="form-control" id="code" required="true" />
