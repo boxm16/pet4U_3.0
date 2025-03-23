@@ -295,4 +295,26 @@ public class SapCamelotItemDao {
         return items;
     }
 
+    LinkedHashMap<Integer, String> getAllItemsGroups() {
+        LinkedHashMap<Integer, String> itemsGroups = new LinkedHashMap<>();
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+        Connection connection = databaseConnectionFactory.getSapHanaConnection();
+
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT PETCAMELOT_UAT2.OITB.\"ItmsGrpCod\" as ItemsGroupCode, "
+                    + " PETCAMELOT_UAT2.OUGP.\"ItmsGrpNam\" as ItemsGroupName "
+                    + " FROM PETCAMELOT_UAT2.OITB  ; ");
+            while (resultSet.next()) {
+                itemsGroups.put(resultSet.getInt("ItemsGroupCode"), resultSet.getString("ItemsGroupName"));
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(SapCamelotItemDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return itemsGroups;
+    }
+
 }

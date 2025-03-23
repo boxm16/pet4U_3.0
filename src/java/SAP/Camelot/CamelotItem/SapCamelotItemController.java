@@ -57,6 +57,10 @@ public class SapCamelotItemController {
     public String goForCreationNewCamelotItem(ModelMap modelMap) {
         SapItem item = new SapItem();
         modelMap.addAttribute("item", item);
+
+        SapCamelotItemDao sapCamelotItemDao = new SapCamelotItemDao();
+        LinkedHashMap<Integer, String> itemGroups = sapCamelotItemDao.getAllItemsGroups();
+        modelMap.addAttribute("itemGroups", itemGroups);
         return "sap/camelot/item/newSapCamelotItemCreationServant";
     }
 

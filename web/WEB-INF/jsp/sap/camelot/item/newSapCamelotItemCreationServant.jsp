@@ -33,7 +33,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="description" class="form-label form-label-lg">Description</label>
-                    <form:input path="description" class="form-control form-control-lg" id="description" />
+                    <form:input path="description" class="form-control form-control-lg" id="description" required="true" />
                 </div>
                 <div class="mb-3">
                     <label for="mainBarcode" class="form-label form-label-lg">Main Barcode</label>
