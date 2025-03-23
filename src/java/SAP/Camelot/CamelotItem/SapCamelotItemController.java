@@ -16,6 +16,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class SapCamelotItemController {
 
+    @RequestMapping(value = "goForCamelotItemsDashboard")
+    public String goForCamelotItemsDashboard(ModelMap modelMap) {
+
+        SapCamelotItemDao itemDao = new SapCamelotItemDao();
+        //  Item item = itemDao.getItemByItemCode(itemCode);
+
+        LinkedHashMap<Short, SapUnitOfMeasurementGroup> allUnitOfMeasurementGroups = getAllUnitOfMeasurementGroups();
+        modelMap.addAttribute("allUnitOfMeasurementGroups", allUnitOfMeasurementGroups);
+
+        return "sap/camelot/item/sapCamelotItemsDashboard";
+    }
+
     @RequestMapping(value = "goForCamelotItemDashboard")
     public String goForCamelotItemDashboard(@RequestParam(name = "itemCode") String itemCode, ModelMap modelMap) {
 
@@ -34,6 +46,20 @@ public class SapCamelotItemController {
         SapCamelotItemDao itemDao = new SapCamelotItemDao();
         LinkedHashMap<Short, SapUnitOfMeasurementGroup> allUnitOfMeasurementGroups = itemDao.getAllUnitOfMeasurementGroups();
         return allUnitOfMeasurementGroups;
+    }
+
+    @RequestMapping(value = "createNewCamelotItem")
+    public String createNewCamelotItem(@RequestParam(name = "itemCode") String itemCode, ModelMap modelMap) {
+
+        SapCamelotItemDao itemDao = new SapCamelotItemDao();
+        //  Item item = itemDao.getItemByItemCode(itemCode);
+        SapItem item = itemDao.getSapItemByItemCode(itemCode);
+        LinkedHashMap<Short, SapUnitOfMeasurementGroup> allUnitOfMeasurementGroups = getAllUnitOfMeasurementGroups();
+        modelMap.addAttribute("allUnitOfMeasurementGroups", allUnitOfMeasurementGroups);
+        modelMap.addAttribute("target", itemCode);
+        modelMap.addAttribute("item", item);
+
+        return "sap/camelot/item/sapCamelotItemDashboard";
     }
 
 }
