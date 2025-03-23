@@ -24,6 +24,7 @@
         <div class="container mt-5">
             <h1 class="text-center mb-4">Create New Camelot Item</h1>
             <form:form action="createNewSapCamelotItem.htm" method="POST" modelAttribute="item" class="needs-validation">
+                <!-- Item Code -->
                 <div class="mb-3">
                     <label for="code" class="form-label form-label-lg">Item Code</label>
                     <form:input path="code" class="form-control form-control-lg" id="code" required="true" />
@@ -31,18 +32,23 @@
                         Please provide an item code.
                     </div>
                 </div>
+
+                <!-- Description -->
                 <div class="mb-3">
                     <label for="description" class="form-label form-label-lg">Description</label>
                     <form:input path="description" class="form-control form-control-lg" id="description" required="true" />
                 </div>
+
+                <!-- Main Barcode -->
                 <div class="mb-3">
                     <label for="mainBarcode" class="form-label form-label-lg">Main Barcode</label>
                     <form:input path="mainBarcode" class="form-control form-control-lg" id="mainBarcode" />
                 </div>
 
+                <!-- Items Group Dropdown -->
                 <div class="mb-3">
-                    <label for="itemsGroup" class="form-label form-label-lg">Items Group</label>
-                    <form:select path="itemsGroup" class="form-control form-control-lg" id="itemsGroup" required="true">
+                    <label for="itemsGroupCode" class="form-label form-label-lg">Items Group</label>
+                    <form:select path="itemsGroupCode" class="form-control form-control-lg" id="itemsGroupCode" required="true">
                         <form:option value="" label="-- Select Items Group --" />
                         <form:options items="${itemGroups}" />
                     </form:select>
@@ -51,6 +57,7 @@
                     </div>
                 </div>
 
+                <!-- Submit Button -->
                 <button type="submit" class="btn btn-primary btn-lg">Create Item</button>
             </form:form>
         </div>
