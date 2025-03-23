@@ -96,7 +96,8 @@
                                 <!-- Use the same path for both radio buttons -->
                                 <form:radiobutton path="itemType" value="food" id="food" class="form-check-input" />
                                 <label for="food" class="form-check-label">Food</label>
-
+                            </div>
+                            <div class="form-check">
                                 <!-- Use the same path for both radio buttons -->
                                 <form:radiobutton path="itemType" value="accessory" id="accessory" class="form-check-input" />
                                 <label for="accessory" class="form-check-label">Accessory</label>
