@@ -36,10 +36,12 @@
 
         <table>
             <th>A/A</th>
+            <th>Item Code </th>
             <th>Position</th>
             <th>Altercode</th>
             <th>Description</th>
             <th>Stock</th>
+            <th>Edit</th>
 
 
             <tbody>
@@ -53,6 +55,10 @@
 
                         out.println("<td>");
                         out.println(index);
+                        out.println("</td>");
+
+                        out.println("<td>");
+                        out.println(item.getCode());
                         out.println("</td>");
 
                         out.println("<td>");
@@ -73,6 +79,10 @@
 
                         out.println("<td>");
                         out.println(item.getQuantity());
+                        out.println("</td>");
+
+                        out.println("<td>");
+                        out.println("<a href='goForCamelotItemDashboard.htm?code=" + item.getCode() + "' target='_blank'>Show  Snapshots</a>");
                         out.println("</td>");
 
                         out.println("</tr>");

@@ -94,7 +94,7 @@
                         out.println("</td>");
 
                         out.println("<td>");
-                        out.println("<a href='pet4uItemSnapshots.htm?code=" + item.getCode() + "' target='_blank'>Show  Snapshots</a>");
+                        out.println("<a href='pet4uItemSnapshots.htm?itemCode=" + item.getCode() + "' target='_blank'>Item Dashboard</a>");
                         out.println("</td>");
 
                         out.println("</tr>");
