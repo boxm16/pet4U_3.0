@@ -49,7 +49,7 @@
                 <div class="mb-3">
                     <label for="itemsGroupCode" class="form-label form-label-lg">Items Group</label>
                     <form:select path="itemsGroupCode" class="form-control form-control-lg" id="itemsGroupCode" required="true">
-                        <form:option value="" label="-- Select Items Group --" />
+                        <form:option value="" label="-- Select Items Group --" disabled="true" /> <!-- Disable the default option -->
                         <form:options items="${itemGroups}" />
                     </form:select>
                     <div class="invalid-feedback" style="font-size: 1.1rem;">
