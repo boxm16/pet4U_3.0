@@ -9,7 +9,7 @@
     <body>
         <div class="container mt-5">
             <h1 class="text-center mb-4">Create New Camelot Item</h1>
-            <form:form action="createNewSapCamelotItem" method="POST" modelAttribute="item" class="needs-validation" novalidate>
+            <form:form action="createNewSapCamelotItem" method="POST" modelAttribute="item" class="needs-validation" >
                 <div class="mb-3">
                     <label for="code" class="form-label">Item Code</label>
                     <form:input path="code" class="form-control" id="code" required="true" />
@@ -33,27 +33,6 @@
         <!-- Bootstrap JS and dependencies -->
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-        <script>
-            // Example starter JavaScript for disabling form submissions if there are invalid fields
-            (function () {
-                'use strict'
 
-                // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                var forms = document.querySelectorAll('.needs-validation')
-
-                // Loop over them and prevent submission
-                Array.prototype.slice.call(forms)
-                        .forEach(function (form) {
-                            form.addEventListener('submit', function (event) {
-                                if (!form.checkValidity()) {
-                                    event.preventDefault()
-                                    event.stopPropagation()
-                                }
-
-                                form.classList.add('was-validated')
-                            }, false)
-                        })
-            })()
-        </script>
     </body>
 </html>
