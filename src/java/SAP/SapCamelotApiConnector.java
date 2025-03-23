@@ -77,9 +77,8 @@ public class SapCamelotApiConnector {
         conn.setRequestMethod(method);
         conn.setRequestProperty("Cookie", "B1SESSION=" + SESSION_ID);
         conn.setRequestProperty("Content-Type", "application/json");
-        conn.setDoOutput(true);
-
-        String cookies = conn.getHeaderField("Set-Cookie");
+        
+          String cookies = conn.getHeaderField("Set-Cookie");
         System.out.println("Cookies: " + cookies);
 
         String customHeader = conn.getHeaderField("X-Custom-Header");
@@ -87,6 +86,10 @@ public class SapCamelotApiConnector {
 
         String sessionData = conn.getHeaderField("X-Session-Data");
         System.out.println("Session Data: " + sessionData);
+        
+        conn.setDoOutput(true);
+
+      
         return conn;
     }
 
