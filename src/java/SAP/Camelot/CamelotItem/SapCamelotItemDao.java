@@ -120,7 +120,7 @@ public class SapCamelotItemDao {
                     + " OUGP.\"UgpName\" " // Added OUGP.UgpName
                     + " FROM "
                     + " PETCAMELOT_UAT2.\"OITM\" "
-                    + " JOIN "
+                    + " LEFT JOIN " // Changed to LEFT JOIN
                     + " PETCAMELOT_UAT2.OBCD ON PETCAMELOT_UAT2.OITM.\"ItemCode\" = PETCAMELOT_UAT2.OBCD.\"ItemCode\" "
                     + " LEFT JOIN "
                     + " PETCAMELOT_UAT2.OUOM ON OBCD.\"UomEntry\" = PETCAMELOT_UAT2.OUOM.\"UomEntry\" "

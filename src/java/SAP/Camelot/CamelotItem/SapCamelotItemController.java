@@ -66,7 +66,7 @@ public class SapCamelotItemController {
     }
 
     @RequestMapping(value = "createNewSapCamelotItem", method = RequestMethod.POST)
-    public String createNewSapCamelotItem(@ModelAttribute("item") SapItem item, RedirectAttributes  redirectAttributes) {
+    public String createNewSapCamelotItem(@ModelAttribute("item") SapItem item, RedirectAttributes redirectAttributes) {
 
         try {
             SapCamelotApiConnector sapCamelotApiConnector = new SapCamelotApiConnector();
@@ -88,7 +88,6 @@ public class SapCamelotItemController {
             } else {
                 System.out.println("❌ Error Creating Item:Properties7 or Properties8 is not selected");
                 redirectAttributes.addFlashAttribute("message", "Error Creating Item:Properties7 or Properties8 is not selected");
-
                 return "redirect:newSapCamelotItemCreationServant.htm";
             }
             // Send the request
@@ -99,17 +98,19 @@ public class SapCamelotItemController {
             if (responseCode == 201) {
                 JSONObject jsonResponse = sapCamelotApiConnector.getJsonResponse(conn);
                 System.out.println("✅ Item Created Successfully!");
-                System.out.println("Item Details: " + jsonResponse.toString());
-                redirectAttributes.addFlashAttribute("message", "Item Created Successfully. Item Details: " + jsonResponse.toString());
+                //   System.out.println("Item Details: " + jsonResponse.toString());
+                redirectAttributes.addFlashAttribute("message", "Item Created Successfully.");
             } else {
                 String errorResponse = sapCamelotApiConnector.getErrorResponse(conn);
                 System.out.println("❌ Error Creating Item: " + errorResponse);
                 redirectAttributes.addFlashAttribute("message", "Error Creating Item: " + errorResponse);
+                return "redirect:newSapCamelotItemCreationServant.htm";
             }
 
         } catch (IOException ex) {
             Logger.getLogger(SapCamelotItemController.class.getName()).log(Level.SEVERE, null, ex);
             redirectAttributes.addFlashAttribute("message", "An error occurred: " + ex.getMessage());
+            return "redirect:newSapCamelotItemCreationServant.htm";
         } catch (Exception ex) {
             // Log the exception and continue
             Logger.getLogger(SapCamelotItemController.class.getName()).log(Level.SEVERE, "Exception occurred, but item was created successfully.", ex);
