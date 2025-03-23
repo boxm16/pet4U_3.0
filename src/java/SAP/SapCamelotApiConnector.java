@@ -68,8 +68,8 @@ public class SapCamelotApiConnector {
     }
     // 🔹 Utility: Create HTTP Connection
 
-    public HttpURLConnection createConnection(String url, String method) throws IOException {
-        HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
+    public HttpURLConnection createConnection(String endPoint, String method) throws IOException {
+        HttpURLConnection conn = (HttpURLConnection) new URL(BASE_URL + endPoint).openConnection();
         conn.setRequestMethod(method);
         conn.setRequestProperty("Content-Type", "application/json");
         conn.setDoOutput(true);

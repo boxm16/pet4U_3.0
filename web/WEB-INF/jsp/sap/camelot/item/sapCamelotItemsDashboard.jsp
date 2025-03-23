@@ -36,6 +36,7 @@
         <hr>
         <h1><a href="goForCreationNewSapCamelotItem.htm">Create New Item</a></h1>
         <hr>
+        ${message}
 
         <table>
             <th>A/A</th>

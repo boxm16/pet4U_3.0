@@ -7,7 +7,13 @@ package SAP.Camelot.CamelotItem;
 
 import SAP.SapBasicModel.SapItem;
 import SAP.SapBasicModel.SapUnitOfMeasurementGroup;
+import SAP.SapCamelotApiConnector;
+import java.io.IOException;
+import java.net.HttpURLConnection;
 import java.util.LinkedHashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -57,9 +63,40 @@ public class SapCamelotItemController {
     @RequestMapping(value = "createNewSapCamelotItem", method = RequestMethod.POST)
     public String createNewSapCamelotItem(@ModelAttribute("item") SapItem item, ModelMap modelMap) {
 
-        System.out.println("Created Item: " + item);
-        System.out.println("Item Code: " + item.getCode());
-        modelMap.addAttribute("item", item);
+        try {
+            SapCamelotApiConnector sapApiClient = new SapCamelotApiConnector();
+            String endPoint = "/Items"; // Endpoint for creating items
+            String requestMethod = "POST";
+
+            HttpURLConnection conn = sapApiClient.createConnection(endPoint, requestMethod);
+
+            // Minimal JSON Payload for Item Creation
+            JSONObject payload = new JSONObject();
+            payload.put("ItemCode", "ITEM-001"); // Unique Item Code (mandatory)
+            payload.put("ItemName", "New Product"); // Item Name (mandatory)
+            payload.put("ItemsGroupCode", 100); // Item Group Code (mandatory)
+            payload.put("InventoryItem", "tYES"); // Inventory Item (mandatory)
+
+            // Send the request
+            sapApiClient.sendRequestBody(conn, payload.toString());
+
+            // Check the response
+            int responseCode = conn.getResponseCode();
+            if (responseCode == 201) {
+                JSONObject jsonResponse = sapApiClient.getJsonResponse(conn);
+                System.out.println("✅ Item Created Successfully!");
+                System.out.println("Item Details: " + jsonResponse.toString());
+                modelMap.addAttribute("message", "Item Created Successfully. Item Details: " + jsonResponse.toString());
+            } else {
+                String errorResponse = sapApiClient.getErrorResponse(conn);
+                System.out.println("❌ Error Creating Item: " + errorResponse);
+                modelMap.addAttribute("message", "Error Creating Item: " + errorResponse);
+            }
+
+        } catch (IOException ex) {
+            Logger.getLogger(SapCamelotItemController.class.getName()).log(Level.SEVERE, null, ex);
+            modelMap.addAttribute("message", "An error occurred: " + ex.getMessage());
+        }
 
         return "redirect:goForCamelotItemsDashboard.htm";
     }
