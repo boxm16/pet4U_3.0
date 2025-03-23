@@ -19,15 +19,19 @@ import org.json.JSONObject;
 public class SapCamelotApiConnector {
 
     private static final String BASE_URL = "https://192.168.0.183:50000/b1s/v2";
-    private String SESSION_ID = null; // Initialize as null
+    private static String SESSION_ID = null; // Initialize as null
     private final String USERNAME = "scanner1";
     private final String PASSWORD = "1234";
     private final String COMPANY_DB = "PETCAMELOT_UAT2";
 
+    public SapCamelotApiConnector() {
+        this.login();
+    }
+
     public String login() {
-        if (this.SESSION_ID != null && !this.SESSION_ID.isEmpty()) {
-            System.out.println("Already Logged in. Session ID: " + this.SESSION_ID);
-            return this.SESSION_ID;
+        if (SESSION_ID != null && !SESSION_ID.isEmpty()) {
+            System.out.println("Already Logged in. Session ID: " + SESSION_ID);
+            return SESSION_ID;
         }
 
         try {
@@ -54,9 +58,9 @@ public class SapCamelotApiConnector {
             if (responseCode == 200) {
                 JSONObject jsonResponse = getJsonResponse(conn);
                 //    System.out.println(jsonResponse);
-                this.SESSION_ID = jsonResponse.getString("SessionId");
-                System.out.println(" Logged in. Session ID: " + this.SESSION_ID);
-                return this.SESSION_ID;
+                SESSION_ID = jsonResponse.getString("SessionId");
+                System.out.println(" Logged in. Session ID: " + SESSION_ID);
+                return SESSION_ID;
             } else {
                 System.out.println("Login failed. Response: " + getErrorResponse(conn));
                 return null;
@@ -64,15 +68,14 @@ public class SapCamelotApiConnector {
         } catch (IOException ex) {
             Logger.getLogger(SapCamelotApiConnector.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return this.SESSION_ID;
+        return SESSION_ID;
     }
     // 🔹 Utility: Create HTTP Connection
 
     public HttpURLConnection createConnection(String endPoint, String method) throws IOException {
-        this.login();
         HttpURLConnection conn = (HttpURLConnection) new URL(BASE_URL + endPoint).openConnection();
         conn.setRequestMethod(method);
-        conn.setRequestProperty("Cookie", "B1SESSION=" + this.SESSION_ID);
+        conn.setRequestProperty("Cookie", "B1SESSION=" + SESSION_ID);
         conn.setRequestProperty("Content-Type", "application/json");
         conn.setDoOutput(true);
         return conn;

@@ -64,11 +64,11 @@ public class SapCamelotItemController {
     public String createNewSapCamelotItem(@ModelAttribute("item") SapItem item, ModelMap modelMap) {
 
         try {
-            SapCamelotApiConnector sapApiClient = new SapCamelotApiConnector();
+            SapCamelotApiConnector sapCamelotApiConnector = new SapCamelotApiConnector();
             String endPoint = "/Items"; // Endpoint for creating items
             String requestMethod = "POST";
 
-            HttpURLConnection conn = sapApiClient.createConnection(endPoint, requestMethod);
+            HttpURLConnection conn = sapCamelotApiConnector.createConnection(endPoint, requestMethod);
 
             // Minimal JSON Payload for Item Creation
             JSONObject payload = new JSONObject();
@@ -78,17 +78,17 @@ public class SapCamelotItemController {
             payload.put("InventoryItem", "tYES"); // Inventory Item (mandatory)
 
             // Send the request
-            sapApiClient.sendRequestBody(conn, payload.toString());
+            sapCamelotApiConnector.sendRequestBody(conn, payload.toString());
 
             // Check the response
             int responseCode = conn.getResponseCode();
             if (responseCode == 201) {
-                JSONObject jsonResponse = sapApiClient.getJsonResponse(conn);
+                JSONObject jsonResponse = sapCamelotApiConnector.getJsonResponse(conn);
                 System.out.println("✅ Item Created Successfully!");
                 System.out.println("Item Details: " + jsonResponse.toString());
                 modelMap.addAttribute("message", "Item Created Successfully. Item Details: " + jsonResponse.toString());
             } else {
-                String errorResponse = sapApiClient.getErrorResponse(conn);
+                String errorResponse = sapCamelotApiConnector.getErrorResponse(conn);
                 System.out.println("❌ Error Creating Item: " + errorResponse);
                 modelMap.addAttribute("message", "Error Creating Item: " + errorResponse);
             }
