@@ -40,6 +40,17 @@
                     <form:input path="mainBarcode" class="form-control form-control-lg" id="mainBarcode" />
                 </div>
 
+                <div class="mb-3">
+                    <label for="itemsGroup" class="form-label form-label-lg">Items Group</label>
+                    <form:select path="itemsGroup" class="form-control form-control-lg" id="itemsGroup" required="true">
+                        <form:option value="" label="-- Select Items Group --" />
+                        <form:options items="${itemGroups}" />
+                    </form:select>
+                    <div class="invalid-feedback" style="font-size: 1.1rem;">
+                        Please select an items group.
+                    </div>
+                </div>
+
                 <button type="submit" class="btn btn-primary btn-lg">Create Item</button>
             </form:form>
         </div>
