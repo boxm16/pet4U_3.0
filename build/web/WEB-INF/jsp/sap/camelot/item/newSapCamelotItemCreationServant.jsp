@@ -5,22 +5,56 @@
         <title>Create New Camelot Item</title>
         <!-- Bootstrap CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-        <!-- Custom CSS for larger fonts -->
+        <!-- Custom CSS for larger fonts and distinctive input fields -->
         <style>
+            /* Custom styles for input fields */
             .form-control-lg {
                 height: calc(2.5em + 1rem + 2px); /* Increase height */
                 padding: 0.5rem 1rem; /* Increase padding */
                 font-size: 2.25rem; /* Increase font size */
                 line-height: 1.5; /* Adjust line height */
-                border-radius: 0.3rem; /* Slightly larger border radius */
+                border-radius: 0.5rem; /* Slightly larger border radius */
+                border: 2px solid #007bff; /* Blue border */
+                background-color: #f8f9fa; /* Light gray background */
+                transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
             }
-            .form-label-lg {
-                font-size: 2.25rem; /* Increase label font size */
-                font-weight: bold; /* Optional: Make labels bold */
+
+            /* Hover effect for input fields */
+            .form-control-lg:hover {
+                border-color: #0056b3; /* Darker blue on hover */
+                box-shadow: 0 0 8px rgba(0, 123, 255, 0.5); /* Glow effect on hover */
             }
+
+            /* Focus effect for input fields */
+            .form-control-lg:focus {
+                border-color: #0056b3; /* Darker blue on focus */
+                box-shadow: 0 0 12px rgba(0, 123, 255, 0.75); /* Stronger glow on focus */
+                background-color: #ffffff; /* White background on focus */
+            }
+
             /* Custom width for the "code" input */
             #code {
                 width: 200px; /* Adjust this value as needed */
+            }
+
+            /* Custom styles for labels */
+            .form-label-lg {
+                font-size: 2.25rem; /* Increase label font size */
+                font-weight: bold; /* Make labels bold */
+                color: #343a40; /* Dark gray color for labels */
+            }
+
+            /* Custom styles for radio buttons */
+            .form-check-input {
+                transform: scale(1.5); /* Increase size of radio buttons */
+                margin-right: 10px; /* Add spacing between radio button and label */
+            }
+
+            /* Custom styles for the submit button */
+            .btn-primary {
+                font-size: 2rem; /* Increase button font size */
+                padding: 0.75rem 1.5rem; /* Increase button padding */
+                border-radius: 0.5rem; /* Rounded corners for the button */
             }
         </style>
     </head>
