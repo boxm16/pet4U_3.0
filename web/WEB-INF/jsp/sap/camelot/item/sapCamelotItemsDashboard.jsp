@@ -1,66 +1,86 @@
+<%-- 
+    Document   : camelot
+    Created on : Mar 1, 2023, 10:29:43 PM
+    Author     : Michail Sitmalidis
+--%>
+
+<%@page import="java.util.LinkedHashMap"%>
+<%@page import="java.util.Map"%>
 <%@page import="BasicModel.AltercodeContainer"%>
-<%@page import="SAP.SapBasicModel.SapItem"%>
-<%@ page import="java.util.Map, java.util.LinkedHashMap, your.package.name.SapItem, your.package.name.AltercodeContainer" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@page import="java.util.ArrayList"%>
+<%@page import="BasicModel.Item"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
-<head>
-    <title>Display Items</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-    <div class="container mt-5">
-        <h1 class="text-center mb-4">Item List</h1>
-        <table class="table table-bordered table-striped">
-            <thead class="thead-dark">
-                <tr>
-                    <th>Item Code</th>
-                    <th>Item Name</th>
-                    <th>Pick Location</th>
-                    <th>Stock</th>
-                    <th>Alternate Codes</th>
-                </tr>
-            </thead>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Pet4U: All Items</title>
+        <style>
+            table, th, td {
+                border: 1px solid ;
+                border-collapse: collapse;
+            }
+            td {
+                font-size: 20px;
+            }
+            th{
+                font-size: 30px;
+                font-weight: bold;
+            }
+
+        </style>
+    </head>
+    <body>
+    <center>
+        <h1><a href="index.htm">INDEX</a></h1>
+
+        <table>
+            <th>A/A</th>
+            <th>Position</th>
+            <th>Altercode</th>
+            <th>Description</th>
+            <th>Stock</th>
+
+
             <tbody>
                 <%
-                    LinkedHashMap<String, SapItem> items = (LinkedHashMap<String, SapItem>) request.getAttribute("items");
-                    if (items != null) {
-                        for (Map.Entry<String, SapItem> entry : items.entrySet()) {
-                            SapItem item = entry.getValue();
-                %>
-                <tr>
-                    <td><%= item.getCode() %></td>
-                    <td><%= item.getDescription() %></td>
-                    <td><%= item.getPosition() %></td>
-                    <td><%= item.getQuantity() %></td>
-                    <td>
-                        <ul>
-                            <%
-                                for (AltercodeContainer altercode : item.getAltercodes()) {
-                            %>
-                            <li><%= altercode.getAltercode() %> - <%= altercode.getStatus() %></li>
-                            <%
-                                }
-                            %>
-                        </ul>
-                    </td>
-                </tr>
-                <%
+                    int index = 1;
+                    LinkedHashMap<String, Item> items = (LinkedHashMap) request.getAttribute("items");
+                    for (Map.Entry<String, Item> entrySet : items.entrySet()) {
+                        Item item = entrySet.getValue();
+
+                        out.println("<tr>");
+
+                        out.println("<td>");
+                        out.println(index);
+                        out.println("</td>");
+
+                        out.println("<td>");
+                        out.println(item.getPosition());
+                        out.println("</td>");
+
+                        out.println("<td>");
+                        ArrayList<AltercodeContainer> altercodes = item.getAltercodes();
+                        for (AltercodeContainer altercodeContainer : altercodes) {
+                            out.println(altercodeContainer.getAltercode() + "</strong>");
+                            out.println("<br>");
                         }
-                    } else {
-                %>
-                <tr>
-                    <td colspan="5" class="text-center">No items found</td>
-                </tr>
-                <%
+                        out.println("</td>");
+
+                        out.println("<td>");
+                        out.println(item.getDescription());
+                        out.println("</td>");
+
+                        out.println("<td>");
+                        out.println(item.getQuantity());
+                        out.println("</td>");
+
+                        out.println("</tr>");
+                        index++;
                     }
                 %>
             </tbody>
         </table>
-    </div>
-
-    <!-- Bootstrap JS and dependencies -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    </center>
 </body>
 </html>
