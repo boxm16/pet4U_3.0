@@ -67,7 +67,7 @@
             .form-select-lg {
                 font-size: 2.25rem; /* Increase font size */
                 padding: 0.5rem 1rem; /* Increase padding */
-                height: calc(3.5em + 1rem + 2px); /* Increase height */
+                height: calc(3.5em + 1rem); /* Increase height */
                 border-radius: 0.5rem; /* Rounded corners */
                 border: 2px solid #007bff; /* Blue border */
                 background-color: #f8f9fa; /* Light gray background */
