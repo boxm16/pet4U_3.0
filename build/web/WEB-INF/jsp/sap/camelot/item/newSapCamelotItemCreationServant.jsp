@@ -10,12 +10,12 @@
             .form-control-lg {
                 height: calc(2.5em + 1rem + 2px); /* Increase height */
                 padding: 0.5rem 1rem; /* Increase padding */
-                font-size: 1.25rem; /* Increase font size */
+                font-size: 2.25rem; /* Increase font size */
                 line-height: 1.5; /* Adjust line height */
                 border-radius: 0.3rem; /* Slightly larger border radius */
             }
             .form-label-lg {
-                font-size: 1.25rem; /* Increase label font size */
+                font-size:2.25rem; /* Increase label font size */
                 font-weight: bold; /* Optional: Make labels bold */
             }
         </style>
