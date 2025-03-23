@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class SapCamelotItemController {
@@ -65,7 +66,7 @@ public class SapCamelotItemController {
     }
 
     @RequestMapping(value = "createNewSapCamelotItem", method = RequestMethod.POST)
-    public String createNewSapCamelotItem(@ModelAttribute("item") SapItem item, ModelMap modelMap) {
+    public String createNewSapCamelotItem(@ModelAttribute("item") SapItem item, RedirectAttributes  redirectAttributes) {
 
         try {
             SapCamelotApiConnector sapCamelotApiConnector = new SapCamelotApiConnector();
@@ -86,7 +87,7 @@ public class SapCamelotItemController {
                 payload.put("Properties8", "tYES"); // Inventory Item (mandatory)
             } else {
                 System.out.println("❌ Error Creating Item:Properties7 or Properties8 is not selected");
-                modelMap.addAttribute("message", "Error Creating Item:Properties7 or Properties8 is not selected");
+                redirectAttributes.addFlashAttribute("message", "Error Creating Item:Properties7 or Properties8 is not selected");
 
                 return "redirect:newSapCamelotItemCreationServant.htm";
             }
@@ -99,16 +100,20 @@ public class SapCamelotItemController {
                 JSONObject jsonResponse = sapCamelotApiConnector.getJsonResponse(conn);
                 System.out.println("✅ Item Created Successfully!");
                 System.out.println("Item Details: " + jsonResponse.toString());
-                modelMap.addAttribute("message", "Item Created Successfully. Item Details: " + jsonResponse.toString());
+                redirectAttributes.addFlashAttribute("message", "Item Created Successfully. Item Details: " + jsonResponse.toString());
             } else {
                 String errorResponse = sapCamelotApiConnector.getErrorResponse(conn);
                 System.out.println("❌ Error Creating Item: " + errorResponse);
-                modelMap.addAttribute("message", "Error Creating Item: " + errorResponse);
+                redirectAttributes.addFlashAttribute("message", "Error Creating Item: " + errorResponse);
             }
 
         } catch (IOException ex) {
             Logger.getLogger(SapCamelotItemController.class.getName()).log(Level.SEVERE, null, ex);
-            modelMap.addAttribute("message", "An error occurred: " + ex.getMessage());
+            redirectAttributes.addFlashAttribute("message", "An error occurred: " + ex.getMessage());
+        } catch (Exception ex) {
+            // Log the exception and continue
+            Logger.getLogger(SapCamelotItemController.class.getName()).log(Level.SEVERE, "Exception occurred, but item was created successfully.", ex);
+            redirectAttributes.addFlashAttribute("message", "Item Created Successfully, but an error occurred while processing the response.");
         }
 
         return "redirect:goForCamelotItemsDashboard.htm";
