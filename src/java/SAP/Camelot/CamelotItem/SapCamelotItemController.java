@@ -53,8 +53,8 @@ public class SapCamelotItemController {
         return allUnitOfMeasurementGroups;
     }
 
-    @RequestMapping(value = "goForCreationNewSapCamelotItem")
-    public String goForCreationNewCamelotItem(ModelMap modelMap) {
+    @RequestMapping(value = "newSapCamelotItemCreationServant")
+    public String newSapCamelotItemCreationServant(ModelMap modelMap) {
         SapItem item = new SapItem();
         modelMap.addAttribute("item", item);
 
@@ -80,7 +80,16 @@ public class SapCamelotItemController {
             payload.put("ItemName", item.getDescription()); // Item Name (mandatory)
             payload.put("ItemsGroupCode", item.getItemsGroupCode()); // Item Group Code (mandatory)
             payload.put("InventoryItem", "tYES"); // Inventory Item (mandatory)
+            if (item.isAccessory()) {//It is mandatory an item to be food or accessory
+                payload.put("Properties7", "tYES");
+            } else if (item.isFood()) {
+                payload.put("Properties8", "tYES"); // Inventory Item (mandatory)
+            } else {
+                System.out.println("❌ Error Creating Item:Properties7 or Properties8 is not selected");
+                modelMap.addAttribute("message", "Error Creating Item:Properties7 or Properties8 is not selected");
 
+                return "redirect:newSapCamelotItemCreationServant.htm";
+            }
             // Send the request
             sapCamelotApiConnector.sendRequestBody(conn, payload.toString());
 

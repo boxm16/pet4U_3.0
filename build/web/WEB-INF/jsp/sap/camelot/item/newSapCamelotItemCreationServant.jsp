@@ -23,6 +23,7 @@
     <body>
         <div class="container mt-5">
             <h1 class="text-center mb-4">Create New Camelot Item</h1>
+            <h1>   ${message} </h1>
             <form:form action="createNewSapCamelotItem.htm" method="POST" modelAttribute="item" class="needs-validation">
                 <!-- Item Code -->
                 <div class="mb-3">
@@ -54,6 +55,22 @@
                     </form:select>
                     <div class="invalid-feedback" style="font-size: 1.1rem;">
                         Please select an items group.
+                    </div>
+                </div>
+
+
+                <!-- Radio Buttons for Food and Accessory -->
+                <div class="mb-3">
+                    <label class="form-label form-label-lg">Item Type</label>
+                    <div class="radio-group">
+                        <div class="form-check">
+                            <form:radiobutton path="food" value="true" id="food" class="form-check-input" />
+                            <label for="food" class="form-check-label">Food</label>
+                        </div>
+                        <div class="form-check">
+                            <form:radiobutton path="accessory" value="true" id="accessory" class="form-check-input" />
+                            <label for="accessory" class="form-check-label">Accessory</label>
+                        </div>
                     </div>
                 </div>
 

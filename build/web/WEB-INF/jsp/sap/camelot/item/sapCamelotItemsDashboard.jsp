@@ -34,7 +34,7 @@
     <center>
         <h1><a href="index.htm">INDEX</a></h1>
         <hr>
-        <h1><a href="goForCreationNewSapCamelotItem.htm">Create New Item</a></h1>
+        <h1><a href="newSapCamelotItemCreationServant.htm">Create New Item</a></h1>
         <hr>
         ${message}
 
