@@ -76,9 +76,9 @@ public class SapCamelotItemController {
 
             // Minimal JSON Payload for Item Creation
             JSONObject payload = new JSONObject();
-            payload.put("ItemCode", "ITEM-001"); // Unique Item Code (mandatory)
-            payload.put("ItemName", "New Product"); // Item Name (mandatory)
-            payload.put("ItemsGroupCode", 100); // Item Group Code (mandatory)
+            payload.put("ItemCode", item.getCode()); // Unique Item Code (mandatory)
+            payload.put("ItemName", item.getDescription()); // Item Name (mandatory)
+            payload.put("ItemsGroupCode", item.getItemsGroupCode()); // Item Group Code (mandatory)
             payload.put("InventoryItem", "tYES"); // Inventory Item (mandatory)
 
             // Send the request
