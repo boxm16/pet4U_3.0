@@ -15,38 +15,38 @@
                 border-radius: 0.3rem; /* Slightly larger border radius */
             }
             .form-label-lg {
-                font-size:2.25rem; /* Increase label font size */
+                font-size: 2.25rem; /* Increase label font size */
                 font-weight: bold; /* Optional: Make labels bold */
             }
-            .radio-group .form-check-input {
-                transform: scale(1.5); /* Increase size by 1.5x */
-                margin-right: 10px; /* Add some spacing between the radio button and label */
-            }
-
-            .radio-group .form-check-label {
-                font-size: 1.25rem; /* Increase label font size */
+            /* Custom width for the "code" input */
+            #code {
+                width: 200px; /* Adjust this value as needed */
             }
         </style>
     </head>
     <body>
         <div class="container mt-5">
             <h1 class="text-center mb-4">Create New Camelot Item</h1>
-            <h1>   ${message} </h1>
+            <h1>${message}</h1>
             <form:form action="createNewSapCamelotItem.htm" method="POST" modelAttribute="item" class="needs-validation">
-                <h1>  Mandatory Fields</h1>
-                <!-- Item Code -->
-                <div class="mb-3">
-                    <label for="code" class="form-label form-label-lg">Item Code</label>
-                    <form:input path="code" class="form-control form-control-lg" id="code" required="true" />
-                    <div class="invalid-feedback" style="font-size: 1.1rem;">
-                        Please provide an item code.
-                    </div>
-                </div>
+                <h1>Mandatory Fields</h1>
 
-                <!-- Description -->
-                <div class="mb-3">
-                    <label for="description" class="form-label form-label-lg">Description</label>
-                    <form:input path="description" class="form-control form-control-lg" id="description" required="true" />
+                <!-- Row for Code and Description -->
+                <div class="row mb-3">
+                    <!-- Item Code -->
+                    <div class="col-md-3"> <!-- Adjust the column size as needed -->
+                        <label for="code" class="form-label form-label-lg">Item Code</label>
+                        <form:input path="code" class="form-control form-control-lg" id="code" required="true" />
+                        <div class="invalid-feedback" style="font-size: 1.1rem;">
+                            Please provide an item code.
+                        </div>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="col-md-9"> <!-- Adjust the column size as needed -->
+                        <label for="description" class="form-label form-label-lg">Description</label>
+                        <form:input path="description" class="form-control form-control-lg" id="description" required="true" />
+                    </div>
                 </div>
 
                 <!-- Items Group Dropdown -->
@@ -60,7 +60,6 @@
                         Please select an items group.
                     </div>
                 </div>
-
 
                 <!-- Radio Buttons for Food and Accessory -->
                 <div class="mb-3">
@@ -78,7 +77,7 @@
                 </div>
 
                 <hr>
-                <h1>   Optional Fields </h1>
+                <h1>Optional Fields</h1>
                 <!-- Main Barcode -->
                 <div class="mb-3">
                     <label for="mainBarcode" class="form-label form-label-lg">Main Barcode</label>
