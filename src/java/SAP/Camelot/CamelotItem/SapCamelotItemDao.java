@@ -303,7 +303,7 @@ public class SapCamelotItemDao {
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT PETCAMELOT_UAT2.OITB.\"ItmsGrpCod\" as ItemsGroupCode, "
-                    + " PETCAMELOT_UAT2.OUGP.\"ItmsGrpNam\" as ItemsGroupName "
+                    + " PETCAMELOT_UAT2.OITB.\"ItmsGrpNam\" as ItemsGroupName "
                     + " FROM PETCAMELOT_UAT2.OITB  ; ");
             while (resultSet.next()) {
                 itemsGroups.put(resultSet.getInt("ItemsGroupCode"), resultSet.getString("ItemsGroupName"));
