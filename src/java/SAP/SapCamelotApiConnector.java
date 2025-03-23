@@ -69,8 +69,10 @@ public class SapCamelotApiConnector {
     // 🔹 Utility: Create HTTP Connection
 
     public HttpURLConnection createConnection(String endPoint, String method) throws IOException {
+        this.login();
         HttpURLConnection conn = (HttpURLConnection) new URL(BASE_URL + endPoint).openConnection();
         conn.setRequestMethod(method);
+        conn.setRequestProperty("Cookie", "B1SESSION=" + this.SESSION_ID);
         conn.setRequestProperty("Content-Type", "application/json");
         conn.setDoOutput(true);
         return conn;
