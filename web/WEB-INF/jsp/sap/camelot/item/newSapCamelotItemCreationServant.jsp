@@ -62,6 +62,30 @@
                 padding: 0.75rem 1.5rem; /* Increase button padding */
                 border-radius: 0.5rem; /* Rounded corners for the button */
             }
+
+            /* Custom styles for the dropdown list */
+            .form-select-lg {
+                font-size: 2.25rem; /* Increase font size */
+                padding: 0.5rem 1rem; /* Increase padding */
+                height: calc(3.5em + 1rem + 2px); /* Increase height */
+                border-radius: 0.5rem; /* Rounded corners */
+                border: 2px solid #007bff; /* Blue border */
+                background-color: #f8f9fa; /* Light gray background */
+                transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+            }
+
+            /* Hover effect for dropdown */
+            .form-select-lg:hover {
+                border-color: #0056b3; /* Darker blue on hover */
+                box-shadow: 0 0 8px rgba(0, 123, 255, 0.5); /* Glow effect on hover */
+            }
+
+            /* Focus effect for dropdown */
+            .form-select-lg:focus {
+                border-color: #0056b3; /* Darker blue on focus */
+                box-shadow: 0 0 12px rgba(0, 123, 255, 0.75); /* Stronger glow on focus */
+                background-color: #ffffff; /* White background on focus */
+            }
         </style>
     </head>
     <body>
