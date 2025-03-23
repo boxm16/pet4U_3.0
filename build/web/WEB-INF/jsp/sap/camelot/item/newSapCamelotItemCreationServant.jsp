@@ -34,7 +34,7 @@
 
             /* Custom width for the "code" input */
             #code {
-                width: 200px; /* Adjust this value as needed */
+                width: 400px; /* Adjust this value as needed */
             }
 
             /* Custom styles for labels */
@@ -85,7 +85,7 @@
                     <!-- Items Group Dropdown -->
                     <div class="col-md-3">
                         <label for="itemsGroupCode" class="form-label form-label-lg">Items Group</label>
-                        <form:select path="itemsGroupCode" class="form-control form-control-lg" id="itemsGroupCode" required="true">
+                        <form:select path="itemsGroupCode" class="form-select form-select-lg" id="itemsGroupCode" required="true">
                             <form:option value="" label="-- Select Items Group --" disabled="true" /> <!-- Disable the default option -->
                             <form:options items="${itemGroups}" />
                         </form:select>
@@ -110,16 +110,13 @@
                             </div>
                         </div>
                     </div>
-
-
                 </div>
+
                 <!-- Description -->
                 <div class="mb-3">
                     <label for="description" class="form-label form-label-lg">Description</label>
                     <form:input path="description" class="form-control form-control-lg" id="description" required="true" />
                 </div>
-
-
 
                 <hr>
                 <h1>Optional Fields</h1>
