@@ -7,10 +7,6 @@ public class SapItem extends Item {
     private SapUnitOfMeasurementGroup unitOfMeasurementGroup;
     private Integer itemsGroupCode;
 
-    public SapItem() {
-        this.unitOfMeasurementGroup = new SapUnitOfMeasurementGroup();
-    }
-
     public SapUnitOfMeasurementGroup getUnitOfMeasurementGroup() {
         return unitOfMeasurementGroup;
     }
@@ -19,13 +15,12 @@ public class SapItem extends Item {
         this.unitOfMeasurementGroup = unitOfMeasurementGroup;
     }
 
-    public int getItemsGroupCode() {
+    public Integer getItemsGroupCode() {
         return itemsGroupCode;
     }
 
-    public void setItemsGroupCode(int itemsGroupCode) {
+    public void setItemsGroupCode(Integer itemsGroupCode) {
         this.itemsGroupCode = itemsGroupCode;
     }
-    
 
 }
