@@ -11,7 +11,7 @@
             Item Code : ${item.code} <br>
             Item Description : ${item.description} <br> 
             <br> 
-            Item Unit Of Measurement Entry - Code : ${item.unitOfMeasurementGroup.ugpEntry} <br> 
+            Item Unit Of Measurement Group - Entry : ${item.unitOfMeasurementGroup.ugpEntry} <br> 
             Item Unit Of Measurement Group - Code : ${item.unitOfMeasurementGroup.ugpCode} <br> 
             Item Unit Of Measurement Group - Name: ${item.unitOfMeasurementGroup.ugpName} <br>  
         </h1>
@@ -21,6 +21,7 @@
         <table border="1">
             <tr>
                 <th>UoM Entry</th>
+                <th>UoM Code</th>
                 <th>UoM Name</th>
                 <th>Altercode</th>
                 <th>Text</th>
@@ -30,6 +31,7 @@
                 <c:forEach items="${unitOfMeasurement.value.altercodeContainers}" var="altercodeContainer">
                     <tr>
                         <td>${unitOfMeasurement.value.uomEntry}</td>
+                        <td>${unitOfMeasurement.value.uomCode}</td>
                         <td>${unitOfMeasurement.value.uomName}</td>
                         <td>${altercodeContainer.altercode}</td>
                         <td>${altercodeContainer.altercodeName}</td>
