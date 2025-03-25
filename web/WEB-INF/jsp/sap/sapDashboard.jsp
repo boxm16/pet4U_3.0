@@ -62,7 +62,7 @@
 
 
         <hr><hr><hr><hr><hr><hr><hr><hr>
-        <a href="goForCamelotItemsDashboard.htm"><h1>Go For Camelot Items Dashboard</h1></a>
+        <a href="camelotItemsDashboard.htm"><h1>Go For Camelot Items Dashboard</h1></a>
         <hr><hr><hr><hr>
 
 

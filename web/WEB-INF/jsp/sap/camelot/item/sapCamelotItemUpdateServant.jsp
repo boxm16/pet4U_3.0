@@ -125,8 +125,7 @@
 
                 <!-- Submit Button -->
                 <button type="submit" class="btn btn-primary btn-lg">Update Item</button>
-                <a href="goForCamelotItemsDashboard.htm" class="btn btn-secondary btn-lg ms-3">Cancel</a>
-            </form:form>
+             </form:form>
         </div>
 
         <!-- Bootstrap JS and dependencies -->
