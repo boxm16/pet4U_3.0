@@ -34,8 +34,8 @@ public class SapCamelotItemController {
         return "sap/camelot/item/sapCamelotItemsDashboard";
     }
 
-    @RequestMapping(value = "goForCamelotItemDashboard")
-    public String goForCamelotItemDashboard(@RequestParam(name = "itemCode") String itemCode, ModelMap modelMap) {
+    @RequestMapping(value = "camelotItemDashboard")
+    public String camelotItemDashboard(@RequestParam(name = "itemCode") String itemCode, ModelMap modelMap) {
 
         SapCamelotItemDao itemDao = new SapCamelotItemDao();
         //  Item item = itemDao.getItemByItemCode(itemCode);

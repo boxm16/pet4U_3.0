@@ -139,7 +139,7 @@ public class SapCamelotItemDao {
                     item.setCode(resultSet.getString("ItemCode"));
                     item.setDescription(resultSet.getString("ItemName"));
                     item.setPosition(resultSet.getString("U_PickLocation"));
-                     
+
                     item.getUnitOfMeasurementGroup().setUgpEntry(resultSet.getInt("UgpEntry"));
                     item.getUnitOfMeasurementGroup().setUgpCode(resultSet.getString("UgpCode"));
                     item.getUnitOfMeasurementGroup().setUgpName(resultSet.getString("UgpName"));
@@ -152,6 +152,7 @@ public class SapCamelotItemDao {
                 if (!item.getUnitOfMeasurementGroup().getUnitOfMeasurements().containsKey(unitOfMeasurementCode)) {
                     SapUnitOfMeasurement unitOfMeasurement = new SapUnitOfMeasurement();
                     unitOfMeasurement.setUomEntry(resultSet.getInt("UomEntry"));
+                    unitOfMeasurement.setUomCode(resultSet.getString("UomCode"));
                     unitOfMeasurement.setUomName(resultSet.getString("UomName"));
                     unitOfMeasurement.setBaseQuantity(resultSet.getDouble("BaseQty"));
                     item.getUnitOfMeasurementGroup().getUnitOfMeasurements().put(unitOfMeasurementCode, unitOfMeasurement);

@@ -86,7 +86,7 @@
                         out.println("</td>");
 
                         out.println("<td>");
-                        out.println("<a href='goForCamelotItemDashboard.htm?itemCode=" + item.getCode() + "' target='_blank'>Item Dashboard</a>");
+                        out.println("<a href='camelotItemDashboard.htm?itemCode=" + item.getCode() + "' target='_blank'>Item Dashboard</a>");
                         out.println("</td>");
 
                         out.println("</tr>");
