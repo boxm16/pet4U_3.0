@@ -122,7 +122,7 @@ public class SapCamelotItemController {
         SapCamelotItemDao itemDao = new SapCamelotItemDao();
         //  Item item = itemDao.getItemByItemCode(itemCode);
         SapItem item = itemDao.getSapItemByItemCode(itemCode);
-        modelMap.addAttribute("itemGroups", item);
+        modelMap.addAttribute("item", item);
         return "sap/camelot/item/sapCamelotItemUpdateServant";
     }
 
