@@ -26,8 +26,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 public class SapCamelotItemController {
 
-    @RequestMapping(value = "goForCamelotItemsDashboard")
-    public String goForCamelotItemsDashboard(ModelMap modelMap) {
+    @RequestMapping(value = "camelotItemsDashboard")
+    public String camelotItemsDashboard(ModelMap modelMap) {
 
         SapCamelotItemDao itemDao = new SapCamelotItemDao();
         LinkedHashMap<String, SapItem> items = itemDao.getAllItemsFromView();
@@ -115,7 +115,82 @@ public class SapCamelotItemController {
             redirectAttributes.addFlashAttribute("message", "Item Created Successfully, but an error occurred while processing the response.");
         }
 
-        return "redirect:goForCamelotItemsDashboard.htm";
+        return "redirect:camelotItemsDashboard.htm";
+    }
+
+    @RequestMapping(value = "sapCamelotItemUpdateServant", method = RequestMethod.GET)
+    public String sapCamelotItemUpdateServant(@ModelAttribute("itemCode") String itemCode, ModelMap modelMap) {
+        SapCamelotItemDao itemDao = new SapCamelotItemDao();
+        //  Item item = itemDao.getItemByItemCode(itemCode);
+        SapItem item = itemDao.getSapItemByItemCode(itemCode);
+        modelMap.addAttribute("itemGroups", item);
+        return "sapCamelotItemUpdateServant";
+    }
+
+    @RequestMapping(value = "updateSapCamelotItem", method = RequestMethod.POST)
+    public String updateSapCamelotItem(@ModelAttribute("item") SapItem item, RedirectAttributes redirectAttributes) {
+
+        try {
+            SapCamelotApiConnector sapCamelotApiConnector = new SapCamelotApiConnector();
+            String endPoint = "/Items('" + item.getCode() + "')"; // Endpoint for specific item
+            String requestMethod = "PATCH"; // or "PUT" depending on SAP API requirements
+
+            HttpURLConnection conn = sapCamelotApiConnector.createConnection(endPoint, requestMethod);
+
+            // JSON Payload for Item Update
+            JSONObject payload = new JSONObject();
+
+            // Only include fields that need to be updated
+            if (item.getDescription() != null) {
+                payload.put("ItemName", item.getDescription());
+            }
+
+            if (item.getItemsGroupCode() != null) {
+                payload.put("ItemsGroupCode", item.getItemsGroupCode());
+            }
+
+            // Update item type if needed
+            if (item.getItemType() != null) {
+                // First clear existing values if needed (depends on SAP API behavior)
+                payload.put("Properties7", "tNO");
+                payload.put("Properties8", "tNO");
+
+                if (item.getItemType().equals("food")) {
+                    payload.put("Properties7", "tYES");
+                } else if (item.getItemType().equals("accessory")) {
+                    payload.put("Properties8", "tYES");
+                } else {
+                    System.out.println("❌ Error Updating Item: Invalid item type");
+                    redirectAttributes.addFlashAttribute("message", "Error Updating Item: Invalid item type");
+                    return "redirect:editSapCamelotItem.htm?itemCode=" + item.getCode();
+                }
+            }
+
+            // Send the request
+            sapCamelotApiConnector.sendRequestBody(conn, payload.toString());
+
+            // Check the response
+            int responseCode = conn.getResponseCode();
+            if (responseCode == 200 || responseCode == 204) { // Typically 200 for PUT, 204 for PATCH
+                System.out.println("✅ Item Updated Successfully!");
+                redirectAttributes.addFlashAttribute("message", "Item Updated Successfully.");
+            } else {
+                String errorResponse = sapCamelotApiConnector.getErrorResponse(conn);
+                System.out.println("❌ Error Updating Item: " + errorResponse);
+                redirectAttributes.addFlashAttribute("message", "Error Updating Item: " + errorResponse);
+                return "redirect:editSapCamelotItem.htm?itemCode=" + item.getCode();
+            }
+
+        } catch (IOException ex) {
+            Logger.getLogger(SapCamelotItemController.class.getName()).log(Level.SEVERE, null, ex);
+            redirectAttributes.addFlashAttribute("message", "An error occurred: " + ex.getMessage());
+            return "redirect:editSapCamelotItem.htm?itemCode=" + item.getCode();
+        } catch (Exception ex) {
+            Logger.getLogger(SapCamelotItemController.class.getName()).log(Level.SEVERE, "Exception occurred during item update.", ex);
+            redirectAttributes.addFlashAttribute("message", "Item may have been updated, but an error occurred while processing the response.");
+        }
+
+        return "redirect:camelotItemsDashboard.htm";
     }
 
 }

@@ -8,6 +8,7 @@
         <h1>Sap Camelot Item Dashboard</h1>
         <hr> 
         <h1>
+
             Item Code : ${item.code} <br>
             Item Description : ${item.description} <br> 
             <br> 
@@ -86,6 +87,8 @@
                 </c:forEach>
             </tbody>
         </table>
+        <hr>
+        <a href="updateSapCamelotItemCode.htm?itemCode=${item.getCode}"><h1>Edit Item</h1></a>
 
     </body>
 </html>
