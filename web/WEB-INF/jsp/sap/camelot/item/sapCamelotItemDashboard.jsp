@@ -88,7 +88,7 @@
             </tbody>
         </table>
         <hr>
-        <a href="sapCamelotItemUpdateServant.htm?itemCode=${item.getCode}"><h1>Edit Item</h1></a>
+        <a href="sapCamelotItemUpdateServant.htm?itemCode=${item.code}"><h1>Edit Item</h1></a>
 
     </body>
 </html>
