@@ -124,7 +124,7 @@ public class SapCamelotItemController {
         //  Item item = itemDao.getItemByItemCode(itemCode);
         SapItem item = itemDao.getSapItemByItemCode(itemCode);
         modelMap.addAttribute("itemGroups", item);
-        return "sapCamelotItemUpdateServant";
+        return "sap/camelot/item/sapCamelotItemUpdateServant";
     }
 
     @RequestMapping(value = "updateSapCamelotItem", method = RequestMethod.POST)
