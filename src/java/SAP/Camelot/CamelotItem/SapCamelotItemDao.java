@@ -115,21 +115,18 @@ public class SapCamelotItemDao {
                     + " OUOM.\"UomCode\", "
                     + " OUOM.\"UomName\", "
                     + " UGP1.\"BaseQty\", "
-                    + " OUGP.\"UgpEntry\", " // Added OUGP.UgpEntry
-                    + " OUGP.\"UgpCode\", " // Added OUGP.UgpCode
-                    + " OUGP.\"UgpName\" " // Added OUGP.UgpName
-                    + " FROM "
+                    + " OUGP.\"UgpEntry\", "
+                    + " OUGP.\"UgpCode\", "
+                    + " OUGP.\"UgpName\" "
+                    + "FROM "
                     + " PETCAMELOT_UAT2.\"OITM\" "
-                    + " LEFT JOIN " // Changed to LEFT JOIN
-                    + " PETCAMELOT_UAT2.OBCD ON PETCAMELOT_UAT2.OITM.\"ItemCode\" = PETCAMELOT_UAT2.OBCD.\"ItemCode\" "
-                    + " LEFT JOIN "
-                    + " PETCAMELOT_UAT2.OUOM ON OBCD.\"UomEntry\" = PETCAMELOT_UAT2.OUOM.\"UomEntry\" "
-                    + " LEFT JOIN "
-                    + " PETCAMELOT_UAT2.UGP1 ON OUOM.\"UomEntry\" = UGP1.\"UomEntry\" AND UGP1.\"UgpEntry\" = OITM.\"UgpEntry\" "
-                    + " LEFT JOIN " // Added LEFT JOIN for OUGP
-                    + " PETCAMELOT_UAT2.OUGP ON OITM.\"UgpEntry\" = OUGP.\"UgpEntry\" " // Join condition for OUGP
-                    + " WHERE "
-                    + " PETCAMELOT_UAT2.OITM.\"ItemCode\" = '" + itemCode + "';";
+                    + " LEFT JOIN PETCAMELOT_UAT2.UGP1 ON OITM.\"UgpEntry\" = UGP1.\"UgpEntry\" "
+                    + " LEFT JOIN PETCAMELOT_UAT2.OUOM ON UGP1.\"UomEntry\" = OUOM.\"UomEntry\" "
+                    + " LEFT JOIN PETCAMELOT_UAT2.OBCD ON OITM.\"ItemCode\" = OBCD.\"ItemCode\" "
+                    + "     AND OUOM.\"UomEntry\" = OBCD.\"UomEntry\" "
+                    + " LEFT JOIN PETCAMELOT_UAT2.OUGP ON OITM.\"UgpEntry\" = OUGP.\"UgpEntry\" "
+                    + "WHERE "
+                    + " OITM.\"ItemCode\" = '" + itemCode + "';";
 
             resultSet = statement.executeQuery(query);
             int index = 0;
