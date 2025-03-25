@@ -319,4 +319,40 @@ public class SapCamelotItemDao {
         return itemsGroups;
     }
 
+    public LinkedHashMap<Short, SapUnitOfMeasurement> getAllUnitsOfMeasurement() {
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+        Connection connection = databaseConnectionFactory.getSapHanaConnection();
+        LinkedHashMap<Short, SapUnitOfMeasurement> allUnitsOfMeasurement = new LinkedHashMap<>();
+
+        try {
+            Statement statement = connection.createStatement();
+            String query = "SELECT * FROM PETCAMELOT_UAT2.OUOM";
+            ResultSet resultSet = statement.executeQuery(query);
+
+            while (resultSet.next()) {
+                short uomEntry = resultSet.getShort("UomEntry");
+
+                if (!allUnitsOfMeasurement.containsKey(uomEntry)) {
+                    SapUnitOfMeasurement unitOfMeasurement = new SapUnitOfMeasurement();
+                    unitOfMeasurement.setUomEntry(uomEntry);
+                    unitOfMeasurement.setUomCode(resultSet.getString("UomCode"));
+                    unitOfMeasurement.setUomName(resultSet.getString("UomName"));
+                    unitOfMeasurement.setBaseQuantity(resultSet.getDouble("BaseQty"));
+                    unitOfMeasurement.setLocked(resultSet.getString("Locked").equals("Y"));
+                    unitOfMeasurement.setDataSource(resultSet.getString("DataSource"));
+
+                    // Add any additional OUOM fields you need
+                    allUnitsOfMeasurement.put(uomEntry, unitOfMeasurement);
+                }
+            }
+
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(SapCamelotItemDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return allUnitsOfMeasurement;
+    }
+
 }

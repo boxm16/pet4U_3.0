@@ -6,6 +6,7 @@
 package SAP.Camelot.CamelotItem;
 
 import SAP.SapBasicModel.SapItem;
+import SAP.SapBasicModel.SapUnitOfMeasurement;
 import SAP.SapBasicModel.SapUnitOfMeasurementGroup;
 import SAP.SapCamelotApiConnector;
 import java.io.IOException;
@@ -36,22 +37,19 @@ public class SapCamelotItemController {
 
     @RequestMapping(value = "camelotItemDashboard")
     public String camelotItemDashboard(@RequestParam(name = "itemCode") String itemCode, ModelMap modelMap) {
-
+        modelMap.addAttribute("target", itemCode);
         SapCamelotItemDao itemDao = new SapCamelotItemDao();
         //  Item item = itemDao.getItemByItemCode(itemCode);
         SapItem item = itemDao.getSapItemByItemCode(itemCode);
-        LinkedHashMap<Short, SapUnitOfMeasurementGroup> allUnitOfMeasurementGroups = getAllUnitOfMeasurementGroups();
-        modelMap.addAttribute("allUnitOfMeasurementGroups", allUnitOfMeasurementGroups);
-        modelMap.addAttribute("target", itemCode);
         modelMap.addAttribute("item", item);
 
-        return "sap/camelot/item/sapCamelotItemDashboard";
-    }
-
-    private LinkedHashMap<Short, SapUnitOfMeasurementGroup> getAllUnitOfMeasurementGroups() {
-        SapCamelotItemDao itemDao = new SapCamelotItemDao();
         LinkedHashMap<Short, SapUnitOfMeasurementGroup> allUnitOfMeasurementGroups = itemDao.getAllUnitOfMeasurementGroups();
-        return allUnitOfMeasurementGroups;
+        modelMap.addAttribute("allUnitOfMeasurementGroups", allUnitOfMeasurementGroups);
+
+        LinkedHashMap<Short, SapUnitOfMeasurement> allUnitsOfMeasurement = itemDao.getAllUnitsOfMeasurement();
+        modelMap.addAttribute("allUnitsOfMeasurement", allUnitsOfMeasurement);
+
+        return "sap/camelot/item/sapCamelotItemDashboard";
     }
 
     @RequestMapping(value = "newSapCamelotItemCreationServant")
@@ -84,7 +82,7 @@ public class SapCamelotItemController {
             if (item.getItemType().equals("food")) {//It is mandatory an item to be food or accessory
                 payload.put("Properties7", "tYES");
             } else if (item.getItemType().equals("accessory")) {
-                payload.put("Properties8", "tYES"); 
+                payload.put("Properties8", "tYES");
             } else {
                 System.out.println("❌ Error Creating Item:Properties7 or Properties8 is not selected");
                 redirectAttributes.addFlashAttribute("message", "Error Creating Item:Properties7 or Properties8 is not selected");
@@ -98,7 +96,7 @@ public class SapCamelotItemController {
             if (responseCode == 201) {
                 JSONObject jsonResponse = sapCamelotApiConnector.getJsonResponse(conn);
                 System.out.println("✅ Item Created Successfully!");
-                  System.out.println("Item Details: " + jsonResponse.toString());
+                System.out.println("Item Details: " + jsonResponse.toString());
                 redirectAttributes.addFlashAttribute("message", "Item Created Successfully.");
             } else {
                 String errorResponse = sapCamelotApiConnector.getErrorResponse(conn);
@@ -119,4 +117,5 @@ public class SapCamelotItemController {
 
         return "redirect:goForCamelotItemsDashboard.htm";
     }
+
 }

@@ -14,6 +14,8 @@ public class SapUnitOfMeasurement {
     private String UomName;
     private ArrayList<SapAltercodeContainer> altercodeContainers;
     private double BaseQuantity;
+    private boolean locked;
+    private String dataSource;
 
     public SapUnitOfMeasurement() {
         this.altercodeContainers = new ArrayList<>();
@@ -58,6 +60,23 @@ public class SapUnitOfMeasurement {
     public void setBaseQuantity(double BaseQuantity) {
         this.BaseQuantity = BaseQuantity;
     }
+
+    public boolean isLocked() {
+        return locked;
+    }
+
+    public void setLocked(boolean locked) {
+        this.locked = locked;
+    }
+
+    public String getDataSource() {
+        return dataSource;
+    }
+
+    public void setDataSource(String dataSource) {
+        this.dataSource = dataSource;
+    }
+    
     
 
 }
