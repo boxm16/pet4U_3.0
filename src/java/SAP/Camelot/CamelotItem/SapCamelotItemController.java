@@ -6,7 +6,7 @@
 package SAP.Camelot.CamelotItem;
 
 import SAP.SapBasicModel.SapItem;
-import SAP.SapBasicModel.SapUnitOfMeasurement;
+import SAP.SapBasicModel.SapUnitOfMeasurementGroup;
 import SAP.SapCamelotApiConnector;
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -42,11 +42,11 @@ public class SapCamelotItemController {
         SapItem item = itemDao.getSapItemByItemCode(itemCode);
         modelMap.addAttribute("item", item);
 
-       // LinkedHashMap<Short, SapUnitOfMeasurementGroup> allUnitOfMeasurementGroups = itemDao.getAllUnitOfMeasurementGroups();
-      //  modelMap.addAttribute("allUnitOfMeasurementGroups", allUnitOfMeasurementGroups);
+        LinkedHashMap<Short, SapUnitOfMeasurementGroup> allUnitOfMeasurementGroups = itemDao.getAllUnitOfMeasurementGroups();
+        modelMap.addAttribute("allUnitOfMeasurementGroups", allUnitOfMeasurementGroups);
 
-        LinkedHashMap<Short, SapUnitOfMeasurement> allUnitsOfMeasurement = itemDao.getAllUnitsOfMeasurement();
-        modelMap.addAttribute("allUnitsOfMeasurement", allUnitsOfMeasurement);
+      //  LinkedHashMap<Short, SapUnitOfMeasurement> allUnitsOfMeasurement = itemDao.getAllUnitsOfMeasurement();
+        //modelMap.addAttribute("allUnitsOfMeasurement", allUnitsOfMeasurement);
 
         return "sap/camelot/item/sapCamelotItemDashboard";
     }
