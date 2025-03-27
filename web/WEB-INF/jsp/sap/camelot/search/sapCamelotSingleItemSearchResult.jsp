@@ -140,7 +140,7 @@
                 window.location.href = "goForCamelotPositionChanging_Α.htm?itemCode=" + itemCode;
             }
             function  itemMasterData(itemCode) {
-                window.location.href = "goForCamelotItemDashboard.htm?itemCode=" + itemCode;
+                window.location.href = "camelotItemDashboard.htm?itemCode=" + itemCode;
             }
         </script>
 
