@@ -850,6 +850,7 @@ public class EndoControllerX {
         while (iterator2.hasNext()) {
             Entry<String, EndoParalavis> entry = iterator2.next();
             String endoParlavisNumber = entry.getValue().getNumber();
+            
             // Process remaining items...
         }
 
