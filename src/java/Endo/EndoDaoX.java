@@ -104,10 +104,13 @@ public class EndoDaoX {
                 String date = resultSet.getString("DOCDATE");
                 String[] splittedDate = date.split(" ");
                 date = splittedDate[0];
-                String number = resultSet.getString("DOCNUMBER");
 
                 String sender = resultSet.getString("FROM_WH");
+                String storeCode = getStoreCode(sender);
+                String number = storeCode + "-" + resultSet.getString("DOCNUMBER");
+
                 sender = translateStoreName(sender);
+
                 EndoApostolis endoApostolis = new EndoApostolis();
                 endoApostolis.setId(id);
                 endoApostolis.setDateString(date);
@@ -298,6 +301,55 @@ public class EndoDaoX {
                 break;
         }
         return translatedName;
+    }
+
+    private String getStoreCode(String name) {
+        String storeCode = name;
+        switch (name) {
+            case "ΑΧ-ΜΕΝ":
+                storeCode = "03";
+                break;
+            case "ΑΧ-ΙΩΝ":
+                storeCode = "24";
+                break;
+            case "ΑΧ-ΚΑΛ":
+                storeCode = "04";
+                break;
+            case "ΑΧ-ΚΟΥ":
+                storeCode = "11";
+                break;
+            case "ΑΧ-ΠΤΡ":
+                storeCode = "31";
+                break;
+            case "ΑΧ-ΧΑΛ":
+                storeCode = "01";
+                break;
+            case "ΑΧ-ΠΕΡ":
+                storeCode = "29";
+                break;
+            case "ΑΧ-ΑΡΓ":
+                storeCode = "26";
+                break;
+            case "ΑΧ-ΠΦΑ":
+                storeCode = "33";
+                break;
+            case "ΑΧ-ΑΛΙ":
+                storeCode = "05";
+                break;
+            case "ΑΧ-ΑΓΠ":
+                storeCode = "06";
+                break;
+            case "ΑΧ-ΧΛΡ":
+                storeCode = "22";
+                break;
+            case "ΑΧ-ΔΑΦ":
+                storeCode = "07";
+                break;
+            case "ΑΧ-ΜΙΧ":
+                storeCode = "12";
+                break;
+        }
+        return storeCode;
     }
 
     private StringBuilder buildStringFromArrayList(ArrayList<String> arrayList) {
@@ -1214,7 +1266,5 @@ public class EndoDaoX {
 
         return "Endo Packaging EDITED SUCCESSFULLY.";
     }
-
-    
 
 }

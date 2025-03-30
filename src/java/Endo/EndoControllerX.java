@@ -807,4 +807,52 @@ public class EndoControllerX {
     }
 
     //-----------------------------------------
+    @RequestMapping(value = "bindEndoParalaves", method = RequestMethod.GET)
+    public String bindEndoParalaves(ModelMap modelMap) {
+        EndoDaoX endoDaoX = new EndoDaoX();
+        LinkedHashMap<String, EndoBinder> allEndoBinders = endoDaoX.getAllEndoBinders();
+
+        LinkedHashMap<String, EndoApostolis> endoApostoliss = endoDaoX.getLastIncomingEndoApostoliss(10);
+        LinkedHashMap<String, EndoParalavis> endoParalaviss = endoDaoX.getLastEndoParalaviss(10);
+
+        Iterator<Entry<String, EndoParalavis>> endoParalavissIterator = endoParalaviss.entrySet().iterator();
+
+        while (endoParalavissIterator.hasNext()) {
+            Entry<String, EndoParalavis> endoParalavisEntry = endoParalavissIterator.next();
+            String endoParalavisId = endoParalavisEntry.getKey();
+            if (endoParalavisId.equals("359761")
+                    || endoParalavisId.equals("360140")
+                    || endoParalavisId.equals("362926")
+                    || endoParalavisId.equals("362480")
+                    || endoParalavisId.equals("371898")
+                    || endoParalavisId.equals("381889")
+                    || endoParalavisId.equals("383428")
+                    || endoParalavisId.equals("383703")
+                    || endoParalavisId.equals("388760")
+                    || endoParalavisId.equals("402796")) {
+                endoParalavissIterator.remove();
+
+            }
+
+            if (allEndoBinders.containsKey(endoParalavisId)) {
+                endoParalavissIterator.remove();
+                EndoBinder endoBinder = allEndoBinders.get(endoParalavisId);
+                LinkedHashMap<String, EndoApostolis> enAps = endoBinder.getEndoApostoliss();
+                for (Map.Entry<String, EndoApostolis> enApEntry : enAps.entrySet()) {
+                    if (endoApostoliss.containsKey(enApEntry.getKey())) {
+                        endoApostoliss.remove(enApEntry.getKey());
+                    }
+                }
+            }
+        }
+
+        Iterator<Entry<String, EndoParalavis>> iterator2 = endoParalaviss.entrySet().iterator();
+        while (iterator2.hasNext()) {
+            Entry<String, EndoParalavis> entry = iterator2.next();
+            String endoParlavisNumber = entry.getValue().getNumber();
+            // Process remaining items...
+        }
+
+        return "redirect:endoParalaves.htm";
+    }
 }
