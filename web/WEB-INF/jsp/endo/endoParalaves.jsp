@@ -298,7 +298,7 @@
                     -----------------
                     <a href="bindEndoParalaves.htm" style="text-decoration: none;">
                         <input 
-                            style="background-color:lightgreen; font-size:40px" 
+                            style="background-color:lightsalmon; font-size:40px" 
                             type="button" 
                             value="Bind All">
                     </a>
