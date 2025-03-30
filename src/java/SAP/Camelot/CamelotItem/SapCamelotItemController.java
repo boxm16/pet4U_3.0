@@ -150,6 +150,16 @@ public class SapCamelotItemController {
                 payload.put("ItemsGroupCode", item.getItemsGroupCode());
             }
 
+            // Add main barcode update
+            if (item.getMainBarcode() != null && !item.getMainBarcode().isEmpty()) {
+                // Depending on SAP API, this might be "CodeBars" or another field name
+                payload.put("CodeBars", item.getMainBarcode());
+
+                // If you need to update in a different way (like through Barcodes entity)
+                // You might need a separate API call to the barcodes endpoint
+                // For example: /Items('itemCode')/Barcodes
+            }
+
             // Update item type if needed
             if (item.getItemType() != null) {
                 // First clear existing values if needed (depends on SAP API behavior)
