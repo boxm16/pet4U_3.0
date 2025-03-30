@@ -66,7 +66,7 @@
     <body>
         <div class="container mt-5">
             <h1 class="text-center mb-5">Update Camelot Item</h1>
-            <h1>${message}</h1>
+            <h1 style='background-color:${alertColor}'>${message}</h1>
             <form:form action="updateSapCamelotItem.htm" method="POST" modelAttribute="item" class="needs-validation">
                 <h1>Item Information</h1>
 

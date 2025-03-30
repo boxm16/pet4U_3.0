@@ -162,6 +162,7 @@ public class SapCamelotItemController {
                     payload.put("Properties8", "tYES");
                 } else {
                     System.out.println("❌ Error Updating Item: Invalid item type");
+                    redirectAttributes.addFlashAttribute("alertColor", "red");
                     redirectAttributes.addFlashAttribute("message", "Error Updating Item: Invalid item type");
                     return "redirect:editSapCamelotItem.htm?itemCode=" + item.getCode();
                 }
@@ -174,24 +175,28 @@ public class SapCamelotItemController {
             int responseCode = conn.getResponseCode();
             if (responseCode == 200 || responseCode == 204) { // Typically 200 for PUT, 204 for PATCH
                 System.out.println("✅ Item Updated Successfully!");
+                redirectAttributes.addFlashAttribute("alertColor", "green");
                 redirectAttributes.addFlashAttribute("message", "Item Updated Successfully.");
             } else {
                 String errorResponse = sapCamelotApiConnector.getErrorResponse(conn);
                 System.out.println("❌ Error Updating Item: " + errorResponse);
+                redirectAttributes.addFlashAttribute("alertColor", "red");
                 redirectAttributes.addFlashAttribute("message", "Error Updating Item: " + errorResponse);
                 return "redirect:editSapCamelotItem.htm?itemCode=" + item.getCode();
             }
 
         } catch (IOException ex) {
             Logger.getLogger(SapCamelotItemController.class.getName()).log(Level.SEVERE, null, ex);
+            redirectAttributes.addFlashAttribute("alertColor", "red");
             redirectAttributes.addFlashAttribute("message", "An error occurred: " + ex.getMessage());
             return "redirect:editSapCamelotItem.htm?itemCode=" + item.getCode();
         } catch (Exception ex) {
             Logger.getLogger(SapCamelotItemController.class.getName()).log(Level.SEVERE, "Exception occurred during item update.", ex);
+            redirectAttributes.addFlashAttribute("alertColor", "red");
             redirectAttributes.addFlashAttribute("message", "Item may have been updated, but an error occurred while processing the response.");
         }
 
-        return "redirect:camelotItemsDashboard.htm";
+        return "redirect:editSapCamelotItem.htm?itemCode=" + item.getCode();
     }
 
 }
