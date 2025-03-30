@@ -45,9 +45,8 @@ public class SapCamelotItemController {
         LinkedHashMap<Short, SapUnitOfMeasurementGroup> allUnitOfMeasurementGroups = itemDao.getAllUnitOfMeasurementGroups();
         modelMap.addAttribute("allUnitOfMeasurementGroups", allUnitOfMeasurementGroups);
 
-      //  LinkedHashMap<Short, SapUnitOfMeasurement> allUnitsOfMeasurement = itemDao.getAllUnitsOfMeasurement();
+        //  LinkedHashMap<Short, SapUnitOfMeasurement> allUnitsOfMeasurement = itemDao.getAllUnitsOfMeasurement();
         //modelMap.addAttribute("allUnitsOfMeasurement", allUnitsOfMeasurement);
-
         return "sap/camelot/item/sapCamelotItemDashboard";
     }
 
@@ -123,6 +122,9 @@ public class SapCamelotItemController {
         //  Item item = itemDao.getItemByItemCode(itemCode);
         SapItem item = itemDao.getSapItemByItemCode(itemCode);
         modelMap.addAttribute("item", item);
+
+        LinkedHashMap<Integer, String> itemGroups = itemDao.getAllItemsGroups();
+        modelMap.addAttribute("itemGroups", itemGroups);
         return "sap/camelot/item/sapCamelotItemUpdateServant";
     }
 

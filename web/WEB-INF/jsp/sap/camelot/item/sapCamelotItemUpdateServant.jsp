@@ -70,7 +70,7 @@
             <form:form action="updateSapCamelotItem.htm" method="POST" modelAttribute="item" class="needs-validation">
                 <!-- Hidden field for item code -->
                 <form:hidden path="code" />
-                
+
                 <h1>Item Information</h1>
 
                 <!-- Row for Code and Description -->
@@ -93,20 +93,6 @@
                         </div>
                     </div>
 
-                    <!-- Radio Buttons for Item Type -->
-                    <div class="col-md-4">
-                        <label class="form-label form-label-lg">Item Type</label>
-                        <div class="radio-group">
-                            <div class="form-check">
-                                <form:radiobutton path="itemType" value="food" id="food" class="form-check-input" />
-                                <label for="food" class="form-check-label">Food</label>
-                            </div>
-                            <div class="form-check">
-                                <form:radiobutton path="itemType" value="accessory" id="accessory" class="form-check-input" />
-                                <label for="accessory" class="form-check-label">Accessory</label>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
                 <!-- Description -->
@@ -125,7 +111,7 @@
 
                 <!-- Submit Button -->
                 <button type="submit" class="btn btn-primary btn-lg">Update Item</button>
-             </form:form>
+            </form:form>
         </div>
 
         <!-- Bootstrap JS and dependencies -->
