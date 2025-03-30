@@ -29,15 +29,22 @@ public class SapCamelotItemSearchDao {
             String query = "SELECT * FROM \"PETCAMELOT_UAT2\".\"BYT_V_BARCODEDETAILS\" t1 "
                     + "JOIN \"PETCAMELOT_UAT2\".\"BYT_V_ITEMDETAILS\" t2 "
                     + "ON t1.\"ItemCode\" = t2.\"ItemCode\" "
-                    + "WHERE EXISTS ("
-                    + "    SELECT 1 FROM \"PETCAMELOT_UAT2\".\"BYT_V_BARCODEDETAILS\" "
-                    + "    WHERE \"ItemCode\" = t1.\"ItemCode\" AND \"BarCode\" = ? "
-                    + ") OR t1.\"ItemCode\" = ?";
+                    + "WHERE t1.\"BarCode\" = ?";
 
             PreparedStatement statement = connection.prepareStatement(query);
-            statement.setString(1, altercode);  // For barcode search
-            statement.setString(2, altercode);  // For direct item code search
+            statement.setString(1, altercode);
             ResultSet resultSet = statement.executeQuery();
+
+// If no barcode match found, try by item code
+            if (!resultSet.next()) {
+                query = "SELECT * FROM \"PETCAMELOT_UAT2\".\"BYT_V_BARCODEDETAILS\" t1 "
+                        + "JOIN \"PETCAMELOT_UAT2\".\"BYT_V_ITEMDETAILS\" t2 "
+                        + "ON t1.\"ItemCode\" = t2.\"ItemCode\" "
+                        + "WHERE t1.\"ItemCode\" = ?";
+                statement = connection.prepareStatement(query);
+                statement.setString(1, altercode);
+                resultSet = statement.executeQuery();
+            }
             /*
             Statement statement = connection.createStatement();
             ResultSet resultSet = null;
