@@ -109,6 +109,7 @@ public class SapCamelotItemDao {
                     + " OITM.\"ItemName\", "
                     + " OITM.\"CodeBars\", "
                     + " OITM.\"U_PickLocation\", "
+                    + " OITM.\"ItmsGrpCod\", " // Added item group code
                     + " OBCD.\"BcdCode\", "
                     + " OBCD.\"BcdName\", "
                     + " OUOM.\"UomEntry\", "
@@ -136,6 +137,7 @@ public class SapCamelotItemDao {
                     item.setCode(resultSet.getString("ItemCode"));
                     item.setDescription(resultSet.getString("ItemName"));
                     item.setPosition(resultSet.getString("U_PickLocation"));
+                    item.setItemsGroupCode(resultSet.getInt("ItmsGrpCod")); // Set item group code
 
                     item.getUnitOfMeasurementGroup().setUgpEntry(resultSet.getInt("UgpEntry"));
                     item.getUnitOfMeasurementGroup().setUgpCode(resultSet.getString("UgpCode"));
