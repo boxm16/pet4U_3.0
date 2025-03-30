@@ -9,9 +9,9 @@ import BasicModel.AltercodeContainer;
 import BasicModel.Item;
 import Service.DatabaseConnectionFactory;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -26,6 +26,19 @@ public class SapCamelotItemSearchDao {
         Connection connection = databaseConnectionFactory.getSapHanaConnection();
         Item item = null;
         try {
+            String query = "SELECT * FROM \"PETCAMELOT_UAT2\".\"BYT_V_BARCODEDETAILS\" t1 "
+                    + "JOIN \"PETCAMELOT_UAT2\".\"BYT_V_ITEMDETAILS\" t2 "
+                    + "ON t1.\"ItemCode\" = t2.\"ItemCode\" "
+                    + "WHERE EXISTS ("
+                    + "    SELECT 1 FROM \"PETCAMELOT_UAT2\".\"BYT_V_BARCODEDETAILS\" "
+                    + "    WHERE \"ItemCode\" = t1.\"ItemCode\" AND \"BarCode\" = ? "
+                    + ") OR t1.\"ItemCode\" = ?";
+
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, altercode);  // For barcode search
+            statement.setString(2, altercode);  // For direct item code search
+            ResultSet resultSet = statement.executeQuery();
+            /*
             Statement statement = connection.createStatement();
             ResultSet resultSet = null;
 
@@ -35,6 +48,7 @@ public class SapCamelotItemSearchDao {
                     + "WHERE t1.\"ItemCode\" = ("
                     + "    SELECT \"ItemCode\" FROM \"PETCAMELOT_UAT2\".\"BYT_V_BARCODEDETAILS\" WHERE \"BarCode\" = '" + altercode + "' LIMIT 1"
                     + ");");
+             */
             int index = 0;
             while (resultSet.next()) {
                 if (index == 0) {
