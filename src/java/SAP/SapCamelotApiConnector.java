@@ -77,9 +77,12 @@ public class SapCamelotApiConnector {
 
     public HttpURLConnection createConnection(String endPoint, String method) throws IOException {
         HttpURLConnection conn = (HttpURLConnection) new URL(BASE_URL + endPoint).openConnection();
-        conn.setRequestMethod(method);
+
         if (method.equals("PATCH")) {
+            conn.setRequestMethod("POST");
             conn.setRequestProperty("X-HTTP-Method-Override", "PATCH"); //Important!
+        } else {
+            conn.setRequestMethod(method);
         }
         conn.setRequestProperty("Cookie", "B1SESSION=" + SESSION_ID);
         conn.setRequestProperty("Content-Type", "application/json");
