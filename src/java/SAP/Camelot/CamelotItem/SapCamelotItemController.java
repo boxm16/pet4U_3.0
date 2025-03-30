@@ -182,21 +182,21 @@ public class SapCamelotItemController {
                 System.out.println("❌ Error Updating Item: " + errorResponse);
                 redirectAttributes.addFlashAttribute("alertColor", "red");
                 redirectAttributes.addFlashAttribute("message", "Error Updating Item: " + errorResponse);
-                return "redirect:editSapCamelotItem.htm?itemCode=" + item.getCode();
+                return "redirect:sapCamelotItemUpdateServant.htm?itemCode=" + item.getCode();
             }
 
         } catch (IOException ex) {
             Logger.getLogger(SapCamelotItemController.class.getName()).log(Level.SEVERE, null, ex);
             redirectAttributes.addFlashAttribute("alertColor", "red");
             redirectAttributes.addFlashAttribute("message", "An error occurred: " + ex.getMessage());
-            return "redirect:editSapCamelotItem.htm?itemCode=" + item.getCode();
+            return "redirect:sapCamelotItemUpdateServant.htm?itemCode=" + item.getCode();
         } catch (Exception ex) {
             Logger.getLogger(SapCamelotItemController.class.getName()).log(Level.SEVERE, "Exception occurred during item update.", ex);
             redirectAttributes.addFlashAttribute("alertColor", "red");
             redirectAttributes.addFlashAttribute("message", "Item may have been updated, but an error occurred while processing the response.");
         }
 
-        return "redirect:editSapCamelotItem.htm?itemCode=" + item.getCode();
+        return "redirect:sapCamelotItemUpdateServant.htm?itemCode=" + item.getCode();
     }
 
 }
