@@ -295,9 +295,8 @@
                 <td>
                     <input style="background-color:lightgreen; font-size:40px" type="button" value="ΕΛΕΓΧΟΣ" onclick="requestRouter('endosChecking.htm')">
 
-                    ---------
-                    <input style="background-color:lightsalmon; font-size:40px" type="button" value="Bind All" onclick="requestRouter('bindEndoParalaves.htm')"> -->
-
+                    -----------------
+                    <a href="bindEndoParalaves.htm"><h3>Bind All</h3></a>
                     <!--   <input style="background-color:red; font-size:40px" type="button" value="TRIAL ONLY E_Del" onclick="requestRouter('endoDeliveryChecking.htm')"> -->
 
                     <!--   <input style="background-color:red; font-size:40px" type="button" value="TRIAL ONLY E_Bar" onclick="requestRouter('endosBarcodification.htm')"> -->
