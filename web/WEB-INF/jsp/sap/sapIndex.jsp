@@ -28,7 +28,10 @@
                 <a href="---.htm" class="btn btn-primary" role="button" style='background-color: green;'><h1>-------</h1></a>
                 <hr><hr>
                 <a href="sapCamelotSearchDashboard.htm" class="btn btn-primary" role="button" style='background-color: #762276;'><h2>Find Camelot Items</h2></a>
-                <hr>
+                <hr><hr><hr><hr>
+                <a href="camelotItemsDashboard.htm"><h1>Go For Camelot Items Dashboard</h1></a>
+                <hr><hr><hr><hr>
+
 
             </center>
         </div>
