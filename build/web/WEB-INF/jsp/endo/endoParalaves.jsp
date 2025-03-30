@@ -239,7 +239,15 @@
                         </tbody>
                     </table>
                 </td>
-                <td>--------------</td>
+                <td>--------------
+                    <br> 
+                    <a href="bindEndoParalaves.htm" style="text-decoration: none;">
+                        <input 
+                            style="background-color:lightsalmon; font-size:40px" 
+                            type="button" 
+                            value="Bind All">
+                    </a>
+                </td>
                 <td>
 
                     <table>
@@ -295,13 +303,8 @@
                 <td>
                     <input style="background-color:lightgreen; font-size:40px" type="button" value="ΕΛΕΓΧΟΣ" onclick="requestRouter('endosChecking.htm')">
 
-                    -----------------
-                    <a href="bindEndoParalaves.htm" style="text-decoration: none;">
-                        <input 
-                            style="background-color:lightsalmon; font-size:40px" 
-                            type="button" 
-                            value="Bind All">
-                    </a>
+
+
 
                     <!--   <input style="background-color:red; font-size:40px" type="button" value="TRIAL ONLY E_Del" onclick="requestRouter('endoDeliveryChecking.htm')"> -->
 
