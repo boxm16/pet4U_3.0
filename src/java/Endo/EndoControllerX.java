@@ -443,7 +443,7 @@ public class EndoControllerX {
 
     @RequestMapping(value = "showBindedOrders", method = RequestMethod.GET)
     public String showBindedOrders(ModelMap modelMap) {
-        String date = "2024-12-14";
+        String date = "2024-03-30";
         EndoDaoX endoDaoX = new EndoDaoX();
         boolean someEndoIsChanged = false;
         LinkedHashMap<String, String> allBindedOrders = endoDaoX.getAllBindedOrdersTitles();
@@ -570,7 +570,7 @@ public class EndoControllerX {
 
     @RequestMapping(value = "lockBindedOrders", method = RequestMethod.GET)
     public String lockBindedOrders(ModelMap modelMap) {
-        String date = "2024-12-14";
+        String date = "2025-03-30";
         EndoDaoX endoDaoX = new EndoDaoX();
 
         LinkedHashMap<String, EndoApostolis> outgoingDeltioApostolisTitles = endoDaoX.getOutgoingDeltioApostolisTitles(date);
