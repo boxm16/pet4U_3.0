@@ -164,7 +164,7 @@ public class SapCamelotItemController {
                     System.out.println("❌ Error Updating Item: Invalid item type");
                     redirectAttributes.addFlashAttribute("alertColor", "red");
                     redirectAttributes.addFlashAttribute("message", "Error Updating Item: Invalid item type");
-                    return "redirect:editSapCamelotItem.htm?itemCode=" + item.getCode();
+                    return "redirect:sapCamelotItemUpdateServant.htm?itemCode=" + item.getCode();
                 }
             }
 
