@@ -326,7 +326,7 @@
         <hr> <br> <hr> <br>   <hr>  <br>  <hr>
         <a href='seeLastEndoBinders.htm'><h1>SEE LAST ENDO BINDERS</h1></a>
         <br>  <hr>
-        <a href='endoParalaves_B.htm'><h1>Endo ΠΑΡΑΛΑΒΕΣ_Β</h1></a>
+        <!--  <a href='endoParalaves_B.htm'><h1>Endo ΠΑΡΑΛΑΒΕΣ_Β</h1></a>  -->
     </center>
     <script>
 
