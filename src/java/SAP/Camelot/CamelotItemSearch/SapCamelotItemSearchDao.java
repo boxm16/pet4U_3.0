@@ -21,83 +21,97 @@ import java.util.logging.Logger;
  */
 public class SapCamelotItemSearchDao {
 
-    Item getItemByAltercode(String altercode) {
+    public Item getItemByAltercode(String altercode) {
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
         Connection connection = databaseConnectionFactory.getSapHanaConnection();
         Item item = null;
+
         try {
-            String query = "SELECT * FROM \"PETCAMELOT_UAT2\".\"BYT_V_BARCODEDETAILS\" t1 "
-                    + "JOIN \"PETCAMELOT_UAT2\".\"BYT_V_ITEMDETAILS\" t2 "
-                    + "ON t1.\"ItemCode\" = t2.\"ItemCode\" "
-                    + "WHERE t1.\"BarCode\" = ?";
+            // First try to find by barcode
+            item = getItemByBarcode(connection, altercode);
 
-            PreparedStatement statement = connection.prepareStatement(query);
-            statement.setString(1, altercode);
-            ResultSet resultSet = statement.executeQuery();
-
-// If no barcode match found, try by item code
-            if (!resultSet.next()) {
-                query = "SELECT * FROM \"PETCAMELOT_UAT2\".\"BYT_V_BARCODEDETAILS\" t1 "
-                        + "JOIN \"PETCAMELOT_UAT2\".\"BYT_V_ITEMDETAILS\" t2 "
-                        + "ON t1.\"ItemCode\" = t2.\"ItemCode\" "
-                        + "WHERE t1.\"ItemCode\" = ?";
-                statement = connection.prepareStatement(query);
-                statement.setString(1, altercode);
-                resultSet = statement.executeQuery();
-            }
-            /*
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = null;
-
-            resultSet = statement.executeQuery("SELECT * "
-                    + "FROM \"PETCAMELOT_UAT2\".\"BYT_V_BARCODEDETAILS\" t1 "
-                    + "JOIN \"PETCAMELOT_UAT2\".\"BYT_V_ITEMDETAILS\" t2 ON t1.\"ItemCode\" = t2.\"ItemCode\" "
-                    + "WHERE t1.\"ItemCode\" = ("
-                    + "    SELECT \"ItemCode\" FROM \"PETCAMELOT_UAT2\".\"BYT_V_BARCODEDETAILS\" WHERE \"BarCode\" = '" + altercode + "' LIMIT 1"
-                    + ");");
-             */
-            int index = 0;
-            while (resultSet.next()) {
-                if (index == 0) {
-                    item = new Item();
-                    item.setCode(resultSet.getString("ItemCode"));
-                    item.setDescription(resultSet.getString("ItemName"));
-                    item.setPosition(resultSet.getString("PickLocation"));
-                    item.setQuantity(resultSet.getString("Stock"));
-                }
-
-                index++;
-
-                AltercodeContainer altercodeContainer = new AltercodeContainer();
-                altercodeContainer.setAltercode(resultSet.getString("BarCode"));
-                if (resultSet.getString("UnitOfMeasurement") == null) {
-                    altercodeContainer.setStatus("");
-                } else {
-                    altercodeContainer.setStatus(resultSet.getString("UnitOfMeasurement").trim());
-                }
-                if (resultSet.getString("MainBarcode") == null) {
-                    //do nothing
-                } else {
-                    if (resultSet.getString("MainBarcode").equals(resultSet.getString("BarCode"))) {
-                        altercodeContainer.setMainBarcode(true);
-                        //  item.setMainBarcode(resultSet.getString("ALTERNATECODE"));// HERE ALTERNATECODE AND MAIN_CODE IS THE SAME
-                        item.setMainBarcode(resultSet.getString("BarCode"));//
-                    } else {
-                        altercodeContainer.setMainBarcode(false);
-                    }
-                }
-
-                if (item != null) {//It should never be, i mean, if there is an altercode, there is an item. But, just in any case
-                    item.addAltercodeContainer(altercodeContainer);
-                }
+            // If not found by barcode, try by item code
+            if (item == null) {
+                item = getItemByItemCode(connection, altercode);
             }
 
-            resultSet.close();
-            statement.close();
-            connection.close();
         } catch (SQLException ex) {
             Logger.getLogger(SapCamelotItemSearchDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(SapCamelotItemSearchDao.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
+        return item;
+    }
+
+    private Item getItemByBarcode(Connection connection, String barcode) throws SQLException {
+        String query = "SELECT t1.*, t2.* "
+                + "FROM \"PETCAMELOT_UAT2\".\"BYT_V_BARCODEDETAILS\" t1 "
+                + "JOIN \"PETCAMELOT_UAT2\".\"BYT_V_ITEMDETAILS\" t2 "
+                + "ON t1.\"ItemCode\" = t2.\"ItemCode\" "
+                + "WHERE t1.\"BarCode\" = ?";
+
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setString(1, barcode);
+        ResultSet resultSet = statement.executeQuery();
+
+        return processResultSet(resultSet);
+    }
+
+    private Item getItemByItemCode(Connection connection, String itemCode) throws SQLException {
+        String query = "SELECT t1.*, t2.* "
+                + "FROM \"PETCAMELOT_UAT2\".\"BYT_V_BARCODEDETAILS\" t1 "
+                + "JOIN \"PETCAMELOT_UAT2\".\"BYT_V_ITEMDETAILS\" t2 "
+                + "ON t1.\"ItemCode\" = t2.\"ItemCode\" "
+                + "WHERE t1.\"ItemCode\" = ?";
+
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setString(1, itemCode);
+        ResultSet resultSet = statement.executeQuery();
+
+        return processResultSet(resultSet);
+    }
+
+    private Item processResultSet(ResultSet resultSet) throws SQLException {
+        Item item = null;
+        int index = 0;
+
+        while (resultSet.next()) {
+            if (index == 0) {
+                item = new Item();
+                item.setCode(resultSet.getString("ItemCode"));
+                item.setDescription(resultSet.getString("ItemName"));
+                item.setPosition(resultSet.getString("PickLocation"));
+                item.setQuantity(resultSet.getString("Stock"));
+            }
+
+            AltercodeContainer altercodeContainer = new AltercodeContainer();
+            altercodeContainer.setAltercode(resultSet.getString("BarCode"));
+
+            String uom = resultSet.getString("UnitOfMeasurement");
+            altercodeContainer.setStatus(uom == null ? "" : uom.trim());
+
+            String mainBarcode = resultSet.getString("MainBarcode");
+            if (mainBarcode != null && mainBarcode.equals(resultSet.getString("BarCode"))) {
+                altercodeContainer.setMainBarcode(true);
+                item.setMainBarcode(resultSet.getString("BarCode"));
+            } else {
+                altercodeContainer.setMainBarcode(false);
+            }
+
+            if (item != null) {
+                item.addAltercodeContainer(altercodeContainer);
+            }
+
+            index++;
+        }
+
+        resultSet.close();
         return item;
     }
 
