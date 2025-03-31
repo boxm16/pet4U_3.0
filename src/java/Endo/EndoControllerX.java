@@ -833,7 +833,6 @@ public class EndoControllerX {
                 endoParalavissIterator.remove();
 
             }
-
             if (allEndoBinders.containsKey(endoParalavisId)) {
                 endoParalavissIterator.remove();
                 EndoBinder endoBinder = allEndoBinders.get(endoParalavisId);
@@ -846,14 +845,21 @@ public class EndoControllerX {
             }
         }
 
+        LinkedHashMap<String, EndoApostolis> ea = new LinkedHashMap<String, EndoApostolis>();
+        for (Map.Entry<String, EndoApostolis> endoApostolissEntry : endoApostoliss.entrySet()) {
+            String number = endoApostolissEntry.getValue().getNumber();
+            ea.put(number, endoApostolissEntry.getValue());
+        }
+
         Iterator<Entry<String, EndoParalavis>> iterator2 = endoParalaviss.entrySet().iterator();
         while (iterator2.hasNext()) {
             Entry<String, EndoParalavis> entry = iterator2.next();
             String endoParlavisNumber = entry.getValue().getNumber();
-            if (endoApostoliss.containsKey(endoParlavisNumber)) {
+            System.out.println("");
+            if (ea.containsKey(endoParlavisNumber)) {
                 EndoBinder endoBinder = new EndoBinder();
                 endoBinder.setEndoParalavis(entry.getValue());
-                endoBinder.addEndoApostolis(endoParlavisNumber, endoApostoliss.get(endoParlavisNumber));
+                endoBinder.addEndoApostolis(endoParlavisNumber, ea.get(endoParlavisNumber));
                 endoDaoX.saveBinder(endoBinder);
             }
         }
