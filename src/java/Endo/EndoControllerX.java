@@ -855,11 +855,11 @@ public class EndoControllerX {
         while (iterator2.hasNext()) {
             Entry<String, EndoParalavis> entry = iterator2.next();
             String endoParlavisNumber = entry.getValue().getNumber();
-            System.out.println("");
+
             if (ea.containsKey(endoParlavisNumber)) {
                 EndoBinder endoBinder = new EndoBinder();
                 endoBinder.setEndoParalavis(entry.getValue());
-                endoBinder.addEndoApostolis(endoParlavisNumber, ea.get(endoParlavisNumber));
+                endoBinder.addEndoApostolis(ea.get(endoParlavisNumber).getId(), ea.get(endoParlavisNumber));
                 endoDaoX.saveBinder(endoBinder);
             }
         }
