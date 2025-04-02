@@ -19,7 +19,7 @@ public class CamelotServiceDao {
         try {
             Statement statement = connection.createStatement();
             // SAP HANA SQL to get max ID and increment
-            String query = "SELECT COALESCE(MAX(UgpEntry), 0) + 1 FROM \"UOGP\"";
+            String query = "SELECT COALESCE(MAX(UgpEntry), 0) + 1 FROM PETCAMELOT_UAT2.UOGP";
 
             ResultSet resultSet = statement.executeQuery(query);
 
