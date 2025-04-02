@@ -60,14 +60,14 @@
         <div class="container mt-5">
             <h1 class="text-center mb-5">Create New Unit of Measurement Group</h1>
 
-            <form:form action="camelotUnitOfMeasurementGroupCreationServant" method="POST" modelAttribute="uomGroup" class="needs-validation">
+            <form:form action="creationCamelotUnitOfMeasurementGroup" method="POST" modelAttribute="uomGroup" class="needs-validation">
                 <h1>Basic Information</h1>
 
                 <!-- Row for UgpEntry and UgpCode -->
                 <div class="row mb-3">
                     <!-- UgpEntry -->
                     <div class="col-md-6">
-                        <label for="ugpEntry" class="form-label form-label-lg">Group Entry ID</label>
+                        <label for="ugpEntry" class="form-label form-label-lg">Group Entry</label>
                         <form:input path="ugpEntry" type="number" class="form-control form-control-lg" 
                                     id="ugpEntry" required="true" readonly="true" 
                                     style="background-color: #e9ecef; cursor: not-allowed;"/>
