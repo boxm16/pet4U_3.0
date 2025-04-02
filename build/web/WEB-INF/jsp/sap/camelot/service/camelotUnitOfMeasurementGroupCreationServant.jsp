@@ -60,7 +60,7 @@
         <div class="container mt-5">
             <h1 class="text-center mb-5">Create New Unit of Measurement Group</h1>
 
-            <form:form action="creationCamelotUnitOfMeasurementGroup" method="POST" modelAttribute="uomGroup" class="needs-validation">
+            <form:form action="creationCamelotUnitOfMeasurementGroup.htm" method="POST" modelAttribute="uomGroup" class="needs-validation">
                 <h1>Basic Information</h1>
 
                 <!-- Row for UgpEntry and UgpCode -->
