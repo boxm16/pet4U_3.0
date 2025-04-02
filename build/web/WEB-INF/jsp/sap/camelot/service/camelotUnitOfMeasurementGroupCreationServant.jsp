@@ -68,7 +68,9 @@
                     <!-- UgpEntry -->
                     <div class="col-md-6">
                         <label for="ugpEntry" class="form-label form-label-lg">Group Entry ID</label>
-                        <form:input path="ugpEntry" type="number" class="form-control form-control-lg" id="ugpEntry" required="true" />
+                        <form:input path="ugpEntry" type="number" class="form-control form-control-lg" 
+                                    id="ugpEntry" required="true" readonly="true" 
+                                    style="background-color: #e9ecef; cursor: not-allowed;"/>
                     </div>
 
                     <!-- UgpCode -->
