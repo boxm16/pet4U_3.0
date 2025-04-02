@@ -7,10 +7,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class CamelotServiceController {
-
+    
     @RequestMapping(value = "camelotUnitOfMeasurementGroupCreationServant")
     public String camelotUnitOfMeasurementGroupCreationServant(ModelMap modelMap) {
+        
         SapUnitOfMeasurementGroup uomGroup = new SapUnitOfMeasurementGroup();
+        CamelotServiceDao camelotServiceDao = new CamelotServiceDao();
+        short uomGroupId = camelotServiceDao.getNextUomGroupId();
+        uomGroup.setUgpEntry(uomGroupId);
         modelMap.addAttribute("uomGroup", uomGroup);
         return "sap/camelot/service/camelotUnitOfMeasurementGroupCreationServant";
     }
