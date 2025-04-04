@@ -141,9 +141,10 @@
 
                 <!-- Add UoM Group Button and Dropdown -->
                 <!-- Add this form wrapper around your elements -->
-                <form method="POST" action="updateItemUom.htm">
+                <form method="POST" action="assignUomGroupToItem.htm">
                     <!-- Hidden field for itemCode -->
                     <input type="hidden" name="itemCode" value="${item.code}">
+                    <input type="hidden" name="originalUgpEntry" value="${item.unitOfMeasurementGroup.ugpEntry}">
 
                     <div class="row">
                         <div class="col-md-8">

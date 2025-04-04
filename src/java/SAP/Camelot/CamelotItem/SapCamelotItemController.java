@@ -8,7 +8,9 @@ package SAP.Camelot.CamelotItem;
 import SAP.SapBasicModel.SapItem;
 import SAP.SapBasicModel.SapUnitOfMeasurementGroup;
 import SAP.SapCamelotApiConnector;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.util.LinkedHashMap;
 import java.util.logging.Level;
@@ -128,7 +130,7 @@ public class SapCamelotItemController {
 
         LinkedHashMap<Short, SapUnitOfMeasurementGroup> allUnitOfMeasurementGroups = itemDao.getAllUnitOfMeasurementGroups();
         modelMap.addAttribute("allUnitOfMeasurementGroups", allUnitOfMeasurementGroups);
-        
+
         return "sap/camelot/item/sapCamelotItemUpdateServant";
     }
 
@@ -213,4 +215,90 @@ public class SapCamelotItemController {
         return "redirect:sapCamelotItemUpdateServant.htm?itemCode=" + item.getCode();
     }
 
+    @RequestMapping(value = "assignUomGroupToItem", method = RequestMethod.POST)
+    public String assignUomGroupToItem(@ModelAttribute("itemCode") String itemCode, @ModelAttribute("originalUgpEntry") String originalUgpEntry, @ModelAttribute("ugpEntry") String ugpEntry, RedirectAttributes redirectAttributes) {
+
+        try {
+            JSONObject originalUoMGroup = getUoMGroupDetails(originalUgpEntry);
+            if (originalUoMGroup == null) {
+                redirectAttributes.addAttribute("message", "Failed to retrieve original UoM Group details.");
+                return "/sap/sapDashboard";
+            }
+
+            // Step 2: Retrieve the new UoM Group details
+            JSONObject newUoMGroup = getUoMGroupDetails(ugpEntry);
+            if (newUoMGroup == null) {
+                redirectAttributes.addAttribute("message", "Failed to retrieve new UoM Group details.");
+                return "/sap/sapDashboard";
+            }
+            System.out.println("MEXRI EDO GOOD");
+            SapCamelotApiConnector sapCamelotApiConnector = new SapCamelotApiConnector();
+            String endPoint = "/Items('" + itemCode + "')"; // Endpoint for specific item
+            String requestMethod = "PATCH"; // or "PUT" depending on SAP API requirements
+
+            HttpURLConnection conn = sapCamelotApiConnector.createConnection(endPoint, requestMethod);
+
+            // JSON Payload for Item Update
+            JSONObject payload = new JSONObject();
+
+            // Send the request
+            sapCamelotApiConnector.sendRequestBody(conn, payload.toString());
+
+            // Check the response
+            int responseCode = conn.getResponseCode();
+            if (responseCode == 200 || responseCode == 204) { // Typically 200 for PUT, 204 for PATCH
+                System.out.println("✅ Item Updated Successfully!");
+                redirectAttributes.addFlashAttribute("alertColor", "green");
+                redirectAttributes.addFlashAttribute("message", "Item Updated Successfully.");
+            } else {
+                String errorResponse = sapCamelotApiConnector.getErrorResponse(conn);
+                System.out.println("❌ Error Updating Item: " + errorResponse);
+                redirectAttributes.addFlashAttribute("alertColor", "red");
+                redirectAttributes.addFlashAttribute("message", "Error Updating Item: " + errorResponse);
+                return "redirect:sapCamelotItemUpdateServant.htm?itemCode=" + itemCode;
+            }
+
+        } catch (IOException ex) {
+            Logger.getLogger(SapCamelotItemController.class.getName()).log(Level.SEVERE, null, ex);
+            redirectAttributes.addFlashAttribute("alertColor", "red");
+            redirectAttributes.addFlashAttribute("message", "An error occurred: " + ex.getMessage());
+            return "redirect:sapCamelotItemUpdateServant.htm?itemCode=" + itemCode;
+        } catch (Exception ex) {
+            Logger.getLogger(SapCamelotItemController.class.getName()).log(Level.SEVERE, "Exception occurred during item update.", ex);
+            redirectAttributes.addFlashAttribute("alertColor", "red");
+            redirectAttributes.addFlashAttribute("message", "Item may have been updated, but an error occurred while processing the response.");
+        }
+
+        return "redirect:sapCamelotItemUpdateServant.htm?itemCode=" + itemCode;
+    }
+
+    // Helper method to retrieve UoM Group details
+    private JSONObject getUoMGroupDetails(String uomGroupAbsEntry) throws IOException {
+        String endPoint = "/UnitOfMeasurementGroups(" + uomGroupAbsEntry + ")";
+        String requestMethod = "GET";
+
+        SapCamelotApiConnector sapCamelotApiConnector = new SapCamelotApiConnector();
+        HttpURLConnection getConn = sapCamelotApiConnector.createConnection(endPoint, requestMethod);
+
+        try {
+            sapCamelotApiConnector.applySSLBypass(getConn);
+        } catch (Exception ex) {
+            Logger.getLogger(SapCamelotItemController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        int responseCode = getConn.getResponseCode();
+        if (responseCode == 200) {
+            // Read the response body
+            StringBuilder response = new StringBuilder();
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(getConn.getInputStream()))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    response.append(line);
+                }
+            }
+            return new JSONObject(response.toString());
+        } else {
+            System.err.println("Failed to retrieve UoM Group details. Response code: " + responseCode + " : " + getConn.getResponseMessage());
+            return null;
+        }
+    }
 }
