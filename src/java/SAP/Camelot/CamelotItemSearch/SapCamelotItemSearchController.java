@@ -28,4 +28,13 @@ public class SapCamelotItemSearchController {
         modelMap.addAttribute("item", item);
         return "sap/camelot/search/sapCamelotSingleItemSearchResult";
     }
+
+    @RequestMapping(value = "findCamelotItemByItemCodeFromSapDB")
+    public String findCamelotItemByItemCodeFromSapDB(@RequestParam(name = "itemCode") String itemCode, ModelMap modelMap) {
+        SapCamelotItemSearchDao itemDao = new SapCamelotItemSearchDao();
+        Item item = itemDao.getItemByItemCodeFromDB(itemCode);
+        modelMap.addAttribute("target", itemCode);
+        modelMap.addAttribute("item", item);
+        return "sap/camelot/search/sapCamelotSingleItemSearchResult";
+    }
 }

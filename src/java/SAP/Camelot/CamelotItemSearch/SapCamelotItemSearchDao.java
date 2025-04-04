@@ -115,4 +115,42 @@ public class SapCamelotItemSearchDao {
         return item;
     }
 
+    Item getItemByItemCodeFromDB(String itemCode) {
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+        Connection connection = databaseConnectionFactory.getSapHanaConnection();
+        Item item = null;
+
+        try {
+            // Query to fetch item details by ItemCode from tables
+            String query = "SELECT t1.\"ItemCode\", t1.\"ItemName\",  t1.\"CodeBars\",  "
+                    + "FROM \"PETCAMELOT_UAT2\".\"OITM\" t1 " // Items master table
+                    + "WHERE t1.\"ItemCode\" = ?";
+
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, itemCode);
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                if (item == null) {  // Create item only once for the first record
+                    item = new Item();
+                    item.setCode(resultSet.getString("ItemCode"));
+                    item.setDescription(resultSet.getString("ItemName"));
+                    item.setMainBarcode(resultSet.getString("CodeBars"));
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(SapCamelotItemSearchDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(SapCamelotItemSearchDao.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+        return item;
+    }
+
 }

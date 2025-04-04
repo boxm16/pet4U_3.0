@@ -1,10 +1,12 @@
 package SAP.Camelot.CamelotService;
 
+import SAP.SapBasicModel.SapUnitOfMeasurement;
 import Service.DatabaseConnectionFactory;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.LinkedHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.stereotype.Repository;
@@ -41,6 +43,10 @@ public class CamelotServiceDao {
             }
         }
         return id;
+    }
+
+    LinkedHashMap<String, SapUnitOfMeasurement> getAllUnitsOfMeasurement() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

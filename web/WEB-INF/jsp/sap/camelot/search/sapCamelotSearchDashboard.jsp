@@ -33,8 +33,7 @@
                         <h1>Camelot Item Search SAP</h1>
                         <h1><a href='sapIndex.htm'>INDEX</a></h1>
                         <hr>
-                        <h3>Find Single Camelot Items Using <strong>ALTERCODE</strong></h3>
-                        <h4>Use % as wildcard</h4>
+                        <h5>Find Single Item By <strong>Exact Altercode/Barcode FROM SAP VIEW</strong></h5>
                         <h1>
                             <form action="findCamelotItemByAltercodeFromSapView.htm" method="GET" >
                                 <input type="text" class="form-control input-lg" name='altercode'>
@@ -42,6 +41,21 @@
                                 <input class="btn btn-success btn-lg btn-block"  type="submit" value="Submit">
                             </form>
                         </h1>
+                        <hr>
+                        <div STYLE="background-color:#000000; height:10px; width:100%;"></div>
+
+
+                        <h5>Find Single Item By <strong>EXACT ITEM CODE FROM SAP DATABASE</strong></h5>
+                        <h1>
+                            <form action="findCamelotItemByItemCodeFromSapDB.htm" method="GET" >
+                                <input type="text" class="form-control input-lg" name='itemCode'>
+                                <br>
+                                <input class="btn btn-success btn-lg btn-block"  type="submit" value="Submit">
+                            </form>
+                        </h1>
+
+                        <div STYLE="background-color:#000000; height:10px; width:100%;"></div>
+
                     </center>
                 </div>
                 <div class=" col-sm-4">
