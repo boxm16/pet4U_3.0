@@ -122,7 +122,7 @@ public class SapCamelotItemSearchDao {
 
         try {
             // Query to fetch item details by ItemCode from tables
-            String query = "SELECT t1.\"ItemCode\", t1.\"ItemName\",  t1.\"CodeBars\",  "
+            String query = "SELECT t1.\"ItemCode\", t1.\"ItemName\",  t1.\"CodeBars\"   "
                     + "FROM \"PETCAMELOT_UAT2\".\"OITM\" t1 " // Items master table
                     + "WHERE t1.\"ItemCode\" = ?";
 
