@@ -144,7 +144,7 @@
                     <div class="col-md-8">
                         <select class="form-select form-select-lg" id="uomGroupSelect">
                             <option value="">-- Select UoM Group --</option>
-                            <c:forEach items="${unitOfMeasurementGroups}" var="groupEntry">
+                            <c:forEach items="${allUnitOfMeasurementGroups}" var="groupEntry">
                                 <option value="${groupEntry.value.ugpEntry}" 
                                         data-code="${groupEntry.value.ugpCode}" 
                                         data-name="${groupEntry.value.ugpName}">
