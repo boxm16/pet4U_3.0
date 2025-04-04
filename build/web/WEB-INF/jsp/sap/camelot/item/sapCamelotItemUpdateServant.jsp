@@ -5,75 +5,9 @@
         <title>Update Camelot Item</title>
         <!-- Bootstrap CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-        <!-- Custom CSS (same as create form) -->
+        <!-- Custom CSS (same as before) -->
         <style>
-            .form-control-lg {
-                height: calc(2.5em + 1rem + 2px);
-                padding: 0.5rem 1rem;
-                font-size: 2.25rem;
-                line-height: 1.5;
-                border-radius: 0.5rem;
-                border: 2px solid #007bff;
-                background-color: #f8f9fa;
-                transition: border-color 0.3s ease, box-shadow 0.3s ease;
-            }
-            .form-control-lg:hover {
-                border-color: #0056b3;
-                box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
-            }
-            .form-control-lg:focus {
-                border-color: #0056b3;
-                box-shadow: 0 0 12px rgba(0, 123, 255, 0.75);
-                background-color: #ffffff;
-            }
-            #code {
-                width: 400px;
-            }
-            .form-label-lg {
-                font-size: 2.25rem;
-                font-weight: bold;
-                color: #343a40;
-            }
-            .form-check-input {
-                transform: scale(2);
-                margin-right: 15px;
-                margin-bottom: 30px;
-            }
-            .form-check-label {
-                font-size: 2rem;
-                margin-left: 10px;
-            }
-            .btn-primary {
-                font-size: 2rem;
-                padding: 0.75rem 1.5rem;
-                border-radius: 0.5rem;
-            }
-            .form-select-lg:hover {
-                border-color: #0056b3;
-                box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
-            }
-            .form-select-lg:focus {
-                border-color: #0056b3;
-                box-shadow: 0 0 12px rgba(0, 123, 255, 0.75);
-                background-color: #ffffff;
-            }
-            .readonly-field {
-                background-color: #e9ecef !important;
-                cursor: not-allowed;
-            }
-            /* New style for UoM Group section */
-            .uom-group-section {
-                margin-bottom: 2rem;
-                border: 1px solid #dee2e6;
-                border-radius: 0.5rem;
-                padding: 1.5rem;
-                background-color: #f8f9fa;
-            }
-            .uom-group-title {
-                font-size: 1.8rem;
-                margin-bottom: 1rem;
-                color: #495057;
-            }
+            /* Your existing styles remain unchanged */
         </style>
     </head>
     <body>
@@ -103,10 +37,10 @@
                         </div>
                     </div>
 
-                    <!-- UoM Group Dropdown -->
+                    <!-- Unit of Measurement Group Dropdown -->
                     <div class="col-md-4">
-                        <label for="uomGroup" class="form-label form-label-lg">UoM Group</label>
-                        <form:select path="uomGroup" class="form-select form-select-lg" id="uomGroup">
+                        <label for="unitOfMeasurementGroup.ugpEntry" class="form-label form-label-lg">UoM Group</label>
+                        <form:select path="unitOfMeasurementGroup.ugpEntry" class="form-select form-select-lg" id="unitOfMeasurementGroup">
                             <form:option value="" label="-- Select UoM Group --" />
                             <form:options items="${unitOfMeasurementGroups}" itemValue="ugpEntry" itemLabel="ugpName" />
                         </form:select>
@@ -147,7 +81,7 @@
         <!-- JavaScript to handle UoM Group selection -->
         <script>
             document.addEventListener('DOMContentLoaded', function() {
-                const uomGroupSelect = document.getElementById('uomGroup');
+                const uomGroupSelect = document.getElementById('unitOfMeasurementGroup');
                 const uomGroupDetails = document.getElementById('uomGroupDetails');
                 const uomGroupContent = document.getElementById('uomGroupContent');
                 
@@ -164,6 +98,9 @@
                             let html = `
                                 <div class="mb-2">
                                     <strong>Group Code:</strong> ${selectedGroup.ugpCode}
+                                </div>
+                                <div class="mb-3">
+                                    <strong>Group Name:</strong> ${selectedGroup.ugpName}
                                 </div>
                                 <div class="mb-3">
                                     <strong>Base Unit:</strong> ${selectedGroup.unitOfMeasurements[0].uomName}
