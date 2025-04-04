@@ -4,7 +4,7 @@ import org.apache.commons.collections4.map.LinkedMap;
 
 public class SapUnitOfMeasurementGroup {
 
-    private Integer UgpEntry;
+    private int UgpEntry;
     private String UgpCode;
     private String UgpName;
     private LinkedMap<String, SapUnitOfMeasurement> unitOfMeasurements;
