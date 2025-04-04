@@ -149,12 +149,7 @@
                                 onclick="addUomGroup()">Add UoM Group</button>
                     </div>
                 </div>
-
-                <!-- Hidden fields for form submission -->
-                <form:hidden path="unitOfMeasurementGroup.ugpEntry" id="uomGroupEntry"/>
-                <form:hidden path="unitOfMeasurementGroup.ugpCode" id="uomGroupCode"/>
-                <form:hidden path="unitOfMeasurementGroup.ugpName" id="uomGroupName"/>
-            </div>
+  </div>
         </div>
 
         <!-- Bootstrap JS and dependencies -->
