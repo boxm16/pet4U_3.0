@@ -77,23 +77,23 @@
         <!-- Bootstrap JS and dependencies -->
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-        
+
         <!-- JavaScript to handle UoM Group selection -->
         <script>
-            document.addEventListener('DOMContentLoaded', function() {
+            document.addEventListener('DOMContentLoaded', function () {
                 const uomGroupSelect = document.getElementById('unitOfMeasurementGroup');
                 const uomGroupDetails = document.getElementById('uomGroupDetails');
                 const uomGroupContent = document.getElementById('uomGroupContent');
-                
+
                 // Get the UoM groups data passed from the controller
                 const uomGroupsData = ${unitOfMeasurementGroupsJson};
-                
-                uomGroupSelect.addEventListener('change', function() {
+
+                uomGroupSelect.addEventListener('change', function () {
                     const selectedUgpEntry = this.value;
-                    
+
                     if (selectedUgpEntry) {
                         const selectedGroup = uomGroupsData.find(group => group.ugpEntry == selectedUgpEntry);
-                        
+
                         if (selectedGroup) {
                             let html = `
                                 <div class="mb-2">
@@ -107,7 +107,7 @@
                                 </div>
                                 <h4>Available Units:</h4>
                                 <ul class="list-group">`;
-                            
+
                             selectedGroup.unitOfMeasurements.forEach(uom => {
                                 html += `
                                     <li class="list-group-item">
@@ -115,7 +115,7 @@
                                         Base Quantity = ${uom.baseQuantity}
                                     </li>`;
                             });
-                            
+
                             html += `</ul>`;
                             uomGroupContent.innerHTML = html;
                             uomGroupDetails.style.display = 'block';
@@ -124,7 +124,7 @@
                         uomGroupDetails.style.display = 'none';
                     }
                 });
-                
+
                 // Trigger change event if there's a pre-selected value
                 if (uomGroupSelect.value) {
                     uomGroupSelect.dispatchEvent(new Event('change'));
