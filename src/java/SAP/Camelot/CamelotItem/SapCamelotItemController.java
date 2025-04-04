@@ -11,6 +11,7 @@ import SAP.SapCamelotApiConnector;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.util.LinkedHashMap;
+import java.util.StringJoiner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.json.JSONObject;
@@ -125,6 +126,18 @@ public class SapCamelotItemController {
 
         LinkedHashMap<Integer, String> itemGroups = itemDao.getAllItemsGroups();
         modelMap.addAttribute("itemGroups", itemGroups);
+
+        LinkedHashMap<Short, SapUnitOfMeasurementGroup> allUnitOfMeasurementGroups = itemDao.getAllUnitOfMeasurementGroups();
+
+        StringJoiner jsonArray = new StringJoiner(",", "[", "]");
+        allUnitOfMeasurementGroups.values().forEach(group -> {
+            StringJoiner jsonObject = new StringJoiner(",", "{", "}");
+            jsonObject.add("\"ugpEntry\":" + group.getUgpEntry());
+            jsonObject.add("\"ugpName\":\"" + group.getUgpName() + "\"");
+            // Add other fields
+            jsonArray.add(jsonObject.toString());
+        });
+        modelMap.addAttribute("unitOfMeasurementGroupsJson", jsonArray.toString());
         return "sap/camelot/item/sapCamelotItemUpdateServant";
     }
 
