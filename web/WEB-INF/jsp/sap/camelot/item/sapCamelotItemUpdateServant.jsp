@@ -140,24 +140,33 @@
 
 
                 <!-- Add UoM Group Button and Dropdown -->
-                <div class="row">
-                    <div class="col-md-8">
-                        <select class="form-select form-select-lg" id="uomGroupSelect">
-                            <option value="">-- Select UoM Group --</option>
-                            <c:forEach items="${allUnitOfMeasurementGroups}" var="groupEntry">
-                                <option value="${groupEntry.value.ugpEntry}" 
-                                        data-code="${groupEntry.value.ugpCode}" 
-                                        data-name="${groupEntry.value.ugpName}">
-                                    ${groupEntry.value.ugpName} (${groupEntry.value.ugpCode})
-                                </option>
-                            </c:forEach>
-                        </select>
+                <!-- Add this form wrapper around your elements -->
+                <form method="POST" action="updateItemUom.htm">
+                    <!-- Hidden field for itemCode -->
+                    <input type="hidden" name="itemCode" value="${item.code}">
+
+                    <div class="row">
+                        <div class="col-md-8">
+                            <select name="ugpEntry" class="form-select form-select-lg">
+                                <option value="">-- Select UoM Group --</option>
+                                <c:forEach items="${allUnitOfMeasurementGroups}" var="groupEntry">
+                                    <option value="${groupEntry.value.ugpEntry}"
+                                            <c:if test="${not empty item.unitOfMeasurementGroup && item.unitOfMeasurementGroup.ugpEntry == groupEntry.value.ugpEntry}">
+                                                selected
+                                            </c:if>
+                                            >
+                                        ${groupEntry.value.ugpName} (${groupEntry.value.ugpCode})
+                                    </option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <button type="submit" class="btn btn-success btn-lg">
+                                Update UoM Group
+                            </button>
+                        </div>
                     </div>
-                    <div class="col-md-4">
-                        <button type="button" class="btn btn-success btn-lg" 
-                                onclick="addUomGroup()">Add UoM Group</button>
-                    </div>
-                </div>
+                </form>
             </div>
         </div>
 
