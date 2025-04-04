@@ -106,6 +106,51 @@
                     <form:input path="mainBarcode" class="form-control form-control-lg" id="mainBarcode" />
                 </div>
 
+                <!-- UoM Group Section -->
+                <div class="mb-4">
+                    <h2>Unit of Measurement Group</h2>
+
+                    <!-- Current UoM Group Display -->
+                    <div class="card mb-3" id="currentUomGroupCard" 
+                         style="${empty item.unitOfMeasurementGroup.ugpEntry ? 'display:none;' : ''}">
+                        <div class="card-body">
+                            <h5 class="card-title">Current UoM Group</h5>
+                            <p class="card-text" id="currentUomGroupText">
+                            <c:if test="${not empty item.unitOfMeasurementGroup.ugpEntry}">
+                                ${item.unitOfMeasurementGroup.ugpName} (${item.unitOfMeasurementGroup.ugpCode})
+                            </c:if>
+                            </p>
+                            <button type="button" class="btn btn-danger btn-sm" 
+                                    onclick="removeUomGroup()">Remove</button>
+                        </div>
+                    </div>
+
+                    <!-- Add UoM Group Button and Dropdown -->
+                    <div class="row">
+                        <div class="col-md-8">
+                            <select class="form-select form-select-lg" id="uomGroupSelect">
+                                <option value="">-- Select UoM Group --</option>
+                                <c:forEach items="${unitOfMeasurementGroups}" var="group">
+                                    <option value="${group.ugpEntry}" 
+                                            data-code="${group.ugpCode}" 
+                                            data-name="${group.ugpName}">
+                                        ${group.ugpName} (${group.ugpCode})
+                                    </option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-success btn-lg" 
+                                    onclick="addUomGroup()">Add UoM Group</button>
+                        </div>
+                    </div>
+
+                    <!-- Hidden fields for form submission -->
+                    <form:hidden path="unitOfMeasurementGroup.ugpEntry" id="uomGroupEntry"/>
+                    <form:hidden path="unitOfMeasurementGroup.ugpCode" id="uomGroupCode"/>
+                    <form:hidden path="unitOfMeasurementGroup.ugpName" id="uomGroupName"/>
+                </div>
+
                 <!-- Submit Button -->
                 <button type="submit" class="btn btn-primary btn-lg">Update Item</button>
             </form:form>
