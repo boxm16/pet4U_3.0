@@ -130,65 +130,47 @@
                     </div>
                 </div>
 
-                <!-- Add UoM Group Button and Dropdown -->
-                <div class="row">
-                    <div class="col-md-8">
-                        <select class="form-select form-select-lg" id="uomGroupSelect">
-                            <option value="">-- Select UoM Group --</option>
-                            <c:forEach items="${unitOfMeasurementGroups}" var="entrySet">
-                                <option value="${entrySet.key}" 
-                                        data-code="${entrySet.value.ugpCode}" 
-                                        data-name="${entrySet.value.ugpName}">
-                                    ${entrySet.value.ugpName} (${entrySet.value.ugpCode})
-                                </option>
-                            </c:forEach>
-                        </select>
-                    </div>
-                    <table border="1">
-                        <thead>
-                            <tr>
-                                <th>Ugp Entry</th>
-                                <th>Ugp Code</th>
-                                <th>Ugp Name </th>
-                                <th>Unit Of Measurement </th>
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>Ugp Entry</th>
+                            <th>Ugp Code</th>
+                            <th>Ugp Name </th>
+                            <th>Unit Of Measurement </th>
 
-                            </tr>
-                        </thead>
-                        <tbody>
-                        <c:forEach var="entry1" items="${unitOfMeasurementGroups}">
-                            <tr>
-                                <td>${entry1.key}</td> <!-- Key of the LinkedHashMap (Short type) -->
-                                <td>${entry1.value.ugpCode}</td> <!-- Property of SapUnitOfMeasurementGroup -->
-                                <td>${entry1.value.ugpName}</td> <!-- Property of SapUnitOfMeasurementGroup -->
-                                <td>
-                                    <table border="1">
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <c:forEach var="entry" items="${allUnitOfMeasurementGroups}">
+                        <tr>
+                            <td>${entry.key}</td> <!-- Key of the LinkedHashMap (Short type) -->
+                            <td>${entry.value.ugpCode}</td> <!-- Property of SapUnitOfMeasurementGroup -->
+                            <td>${entry.value.ugpName}</td> <!-- Property of SapUnitOfMeasurementGroup -->
+                            <td>
+                                <table border="1">
+                                    <tr>
+                                        <th>Uom Entry</th>
+                                        <th>Uom Code</th>
+                                        <th>Uom Name</th>
+                                        <th>Basic Quantity</th>
+                                    </tr>
+                                    <c:forEach var="unitOfMeasurementEntry" items="${entry.value.unitOfMeasurements}">
+
                                         <tr>
-                                            <th>Uom Entry</th>
-                                            <th>Uom Code</th>
-                                            <th>Uom Name</th>
-                                            <th>Basic Quantity</th>
+
+                                            <td>${unitOfMeasurementEntry.value.uomEntry}</td> 
+                                            <td>${unitOfMeasurementEntry.value.uomCode}</td> 
+                                            <td>${unitOfMeasurementEntry.value.uomName}</td> 
+                                            <td>${unitOfMeasurementEntry.value.baseQuantity}</td>
                                         </tr>
-                                        <c:forEach var="unitOfMeasurementEntry" items="${entry1.value.unitOfMeasurements}">
+                                    </c:forEach>
+                                </table>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
 
-                                            <tr>
-
-                                                <td>${unitOfMeasurementEntry.value.uomEntry}</td> 
-                                                <td>${unitOfMeasurementEntry.value.uomCode}</td> 
-                                                <td>${unitOfMeasurementEntry.value.uomName}</td> 
-                                                <td>${unitOfMeasurementEntry.value.baseQuantity}</td>
-                                            </tr>
-                                        </c:forEach>
-                                    </table>
-                                </td>
-                            </tr>
-                        </c:forEach>
-                        </tbody>
-                    </table>
-                    <div class="col-md-4">
-                        <button type="button" class="btn btn-success btn-lg" 
-                                onclick="addUomGroup()">Add UoM Group</button>
-                    </div>
-                </div>
             </div>
         </div>
 
