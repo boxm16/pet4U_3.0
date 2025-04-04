@@ -115,7 +115,7 @@
             <hr>
             <!-- UoM Group Section -->
             <div class="mb-4">
-                <h2>Unit of Measurement Group</h2>
+                <h2>Current Unit of Measurement Group</h2>
 
                 <!-- Current UoM Group Display -->
                 <div class="card mb-3" id="currentUomGroupCard" 
@@ -123,9 +123,9 @@
                     <div class="card-body">
                         <h5 class="card-title">Current UoM Group</h5>
                         <p class="card-text" id="currentUomGroupText">
-                        <c:if test="${not empty item.unitOfMeasurementGroup.ugpEntry}">
-                            ${item.unitOfMeasurementGroup.ugpName} (${item.unitOfMeasurementGroup.ugpCode})
-                        </c:if>
+                            <c:if test="${not empty item.unitOfMeasurementGroup.ugpEntry}">
+                                ${item.unitOfMeasurementGroup.ugpName} (${item.unitOfMeasurementGroup.ugpCode})
+                            </c:if>
                         </p>
 
                     </div>
@@ -134,46 +134,31 @@
 
 
             </div>
-            <table border="1">
-                <thead>
-                    <tr>
-                        <th>Ugp Entry</th>
-                        <th>Ugp Code</th>
-                        <th>Ugp Name </th>
-                        <th>Unit Of Measurement </th>
+            <!-- UoM Group Section -->
+            <div class="mb-4">
+                <h2>All Unit of Measurement Groups</h2>
 
-                    </tr>
-                </thead>
-                <tbody>
-                <c:forEach var="entry" items="${allUnitOfMeasurementGroups}">
-                    <tr>
-                        <td>${entry.key}</td> <!-- Key of the LinkedHashMap (Short type) -->
-                        <td>${entry.value.ugpCode}</td> <!-- Property of SapUnitOfMeasurementGroup -->
-                        <td>${entry.value.ugpName}</td> <!-- Property of SapUnitOfMeasurementGroup -->
-                        <td>
-                            <table border="1">
-                                <tr>
-                                    <th>Uom Entry</th>
-                                    <th>Uom Code</th>
-                                    <th>Uom Name</th>
-                                    <th>Basic Quantity</th>
-                                </tr>
-                                <c:forEach var="unitOfMeasurementEntry" items="${entry.value.unitOfMeasurements}">
 
-                                    <tr>
-
-                                        <td>${unitOfMeasurementEntry.value.uomEntry}</td> 
-                                        <td>${unitOfMeasurementEntry.value.uomCode}</td> 
-                                        <td>${unitOfMeasurementEntry.value.uomName}</td> 
-                                        <td>${unitOfMeasurementEntry.value.baseQuantity}</td>
-                                    </tr>
-                                </c:forEach>
-                            </table>
-                        </td>
-                    </tr>
-                </c:forEach>
-                </tbody>
-            </table>
+                <!-- Add UoM Group Button and Dropdown -->
+                <div class="row">
+                    <div class="col-md-8">
+                        <select class="form-select form-select-lg" id="uomGroupSelect">
+                            <option value="">-- Select UoM Group --</option>
+                            <c:forEach items="${unitOfMeasurementGroups}" var="groupEntry">
+                                <option value="${groupEntry.value.ugpEntry}" 
+                                        data-code="${groupEntry.value.ugpCode}" 
+                                        data-name="${groupEntry.value.ugpName}">
+                                    ${groupEntry.value.ugpName} (${groupEntry.value.ugpCode})
+                                </option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <button type="button" class="btn btn-success btn-lg" 
+                                onclick="addUomGroup()">Add UoM Group</button>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- Bootstrap JS and dependencies -->
