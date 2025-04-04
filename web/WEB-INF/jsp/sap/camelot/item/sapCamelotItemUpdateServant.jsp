@@ -135,11 +135,11 @@
                     <div class="col-md-8">
                         <select class="form-select form-select-lg" id="uomGroupSelect">
                             <option value="">-- Select UoM Group --</option>
-                            <c:forEach items="${unitOfMeasurementGroups}" var="group">
-                                <option value="${group.ugpEntry}" 
-                                        data-code="${group.ugpCode}" 
-                                        data-name="${group.ugpName}">
-                                    ${group.ugpName} (${group.ugpCode})
+                            <c:forEach items="${unitOfMeasurementGroups}" var="entrySet">
+                                <option value="${entrySet.key}" 
+                                        data-code="${entrySet.value.ugpCode}" 
+                                        data-name="${entrySet.value.ugpName}">
+                                    ${entrySet.value.ugpName} (${entrySet.value.ugpCode})
                                 </option>
                             </c:forEach>
                         </select>
@@ -149,7 +149,7 @@
                                 onclick="addUomGroup()">Add UoM Group</button>
                     </div>
                 </div>
-  </div>
+            </div>
         </div>
 
         <!-- Bootstrap JS and dependencies -->
