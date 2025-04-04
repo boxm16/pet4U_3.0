@@ -126,8 +126,9 @@ public class SapCamelotItemController {
         LinkedHashMap<Integer, String> itemGroups = itemDao.getAllItemsGroups();
         modelMap.addAttribute("itemGroups", itemGroups);
 
-        LinkedHashMap<Short, SapUnitOfMeasurementGroup> allUnitOfMeasurementGroups = itemDao.getAllUnitOfMeasurementGroups();
-        modelMap.addAttribute("unitOfMeasurementGroups", allUnitOfMeasurementGroups);
+        LinkedHashMap<Short, SapUnitOfMeasurementGroup> unitOfMeasurementGroups = itemDao.getAllUnitOfMeasurementGroups();
+        modelMap.addAttribute("unitOfMeasurementGroups", unitOfMeasurementGroups);
+        System.out.println("S:"+unitOfMeasurementGroups.size());
         return "sap/camelot/item/sapCamelotItemUpdateServant";
     }
 
