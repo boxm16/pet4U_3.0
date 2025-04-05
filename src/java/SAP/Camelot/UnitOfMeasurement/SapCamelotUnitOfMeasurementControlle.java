@@ -5,9 +5,12 @@ import SAP.SapBasicModel.SapUnitOfMeasurementGroup;
 import java.util.LinkedHashMap;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class SapCamelotUnitOfMeasurementControlle {
@@ -32,5 +35,14 @@ public class SapCamelotUnitOfMeasurementControlle {
         modelMap.addAttribute("unitOfMeasurementGroup", unitOfMeasurementGroup);
 
         return "sap/camelot/unitOfMeasurement/camelotUnitOfMeasurementGroupEditServant";
+    }
+
+    @PostMapping("/updateUnitOfMeasurementGroup")
+    public String updateUnitOfMeasurementGroup(
+            @ModelAttribute("unitOfMeasurementGroup") SapUnitOfMeasurementGroup uomGroup,
+            RedirectAttributes redirectAttributes) {
+        System.out.println("****" + uomGroup.getUgpCode());
+        System.out.println("****" + uomGroup.getUgpName());
+        return "redirect:camelotUnitOfMeasurementGroupEditServant.htm?ugpEntry" + uomGroup.getUgpCode();
     }
 }
