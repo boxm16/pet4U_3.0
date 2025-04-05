@@ -38,7 +38,6 @@ public class SapCamelotUnitOfMeasurementDao {
                     unitOfMeasurement.setUomEntry(uomEntry);
                     unitOfMeasurement.setUomCode(resultSet.getString("UomCode"));
                     unitOfMeasurement.setUomName(resultSet.getString("UomName"));
-                    unitOfMeasurement.setBaseQuantity(resultSet.getDouble("BaseQty"));
                     unitOfMeasurement.setLocked(resultSet.getString("Locked").equals("Y"));
                     unitOfMeasurement.setDataSource(resultSet.getString("DataSource"));
 
@@ -55,8 +54,8 @@ public class SapCamelotUnitOfMeasurementDao {
         }
         return allUnitsOfMeasurement;
     }
-    
-   public LinkedHashMap<Short, SapUnitOfMeasurementGroup> getAllUnitOfMeasurementGroups() {
+
+    public LinkedHashMap<Short, SapUnitOfMeasurementGroup> getAllUnitOfMeasurementGroups() {
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
         Connection connection = databaseConnectionFactory.getSapHanaConnection();
         LinkedHashMap<Short, SapUnitOfMeasurementGroup> allUnitOfMeasurementGroups = new LinkedHashMap<>();
@@ -100,5 +99,4 @@ public class SapCamelotUnitOfMeasurementDao {
         return allUnitOfMeasurementGroups;
     }
 
-    
 }

@@ -1,6 +1,7 @@
 package SAP.Camelot.UnitOfMeasurement;
 
 import SAP.SapBasicModel.SapUnitOfMeasurement;
+import SAP.SapBasicModel.SapUnitOfMeasurementGroup;
 import java.util.LinkedHashMap;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -13,8 +14,9 @@ public class SapCamelotUnitOfMeasurementControlle {
     public String camelotUnitOfMeasurementDashboard(ModelMap modelMap) {
         SapCamelotUnitOfMeasurementDao sapCamelotUnitOfMeasurementDao = new SapCamelotUnitOfMeasurementDao();
         LinkedHashMap<Short, SapUnitOfMeasurement> allUnitsOfMeasurement = sapCamelotUnitOfMeasurementDao.getAllUnitsOfMeasurement();
-       
-        
+        modelMap.addAttribute("allUnitsOfMeasurement", allUnitsOfMeasurement);
+        LinkedHashMap<Short, SapUnitOfMeasurementGroup> allUnitOfMeasurementGroups = sapCamelotUnitOfMeasurementDao.getAllUnitOfMeasurementGroups();
+        modelMap.addAttribute("allUnitOfMeasurementGroups", allUnitOfMeasurementGroups);
         return "sap/camelot/unitOfMeasurement/camelotUnitOfMeasurementDashboard";
     }
 }
