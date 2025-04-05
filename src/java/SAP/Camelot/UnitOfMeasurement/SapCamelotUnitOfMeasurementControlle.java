@@ -80,14 +80,14 @@ public class SapCamelotUnitOfMeasurementControlle {
                 System.out.println("❌ Error Updating UoM Group: " + errorResponse);
                 redirectAttributes.addFlashAttribute("alertColor", "red");
                 redirectAttributes.addFlashAttribute("message", "Error Updating UoM Group: " + errorResponse);
-                return "redirect:editUnitOfMeasurementGroup.htm?ugpEntry=" + group.getUgpEntry();
+                return "redirect:camelotUnitOfMeasurementGroupEditServant.htm?ugpEntry=" + group.getUgpEntry();
             }
 
         } catch (IOException ex) {
             Logger.getLogger(SapCamelotUnitOfMeasurementControlle.class.getName()).log(Level.SEVERE, null, ex);
             redirectAttributes.addFlashAttribute("alertColor", "red");
             redirectAttributes.addFlashAttribute("message", "An error occurred: " + ex.getMessage());
-            return "redirect:editUnitOfMeasurementGroup.htm?ugpEntry=" + group.getUgpEntry();
+            return "redirect:camelotUnitOfMeasurementGroupEditServant.htm?ugpEntry=" + group.getUgpEntry();
         } catch (Exception ex) {
             Logger.getLogger(SapCamelotUnitOfMeasurementControlle.class.getName()).log(Level.SEVERE,
                     "Exception occurred during UoM Group update.", ex);
@@ -95,6 +95,6 @@ public class SapCamelotUnitOfMeasurementControlle {
             redirectAttributes.addFlashAttribute("message",
                     "UoM Group may have been updated, but an error occurred while processing the response.");
         }
-        return "redirect:listUnitOfMeasurementGroups.htm";
+        return "redirect:camelotUnitOfMeasurementGroupEditServant.htm?ugpEntry=" + group.getUgpEntry();
     }
 }
