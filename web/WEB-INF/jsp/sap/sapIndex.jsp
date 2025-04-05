@@ -29,7 +29,9 @@
                 <hr><hr>
                 <a href="sapCamelotSearchDashboard.htm" class="btn btn-primary" role="button" style='background-color: #762276;'><h2>Find Camelot Items</h2></a>
                 <hr><hr><hr><hr>
-                <a href="camelotItemsDashboard.htm"><h1>Go For Camelot Items Dashboard</h1></a>
+                <a href="camelotItemsDashboard.htm"><h1>Camelot Items Dashboard</h1></a>
+                <hr><hr><hr><hr>
+                <a href="camelotUnitOfMeasurementDashboard.htm"><h1>Unit Of Measurement Dashboard</h1></a>
                 <hr><hr><hr><hr>
 
 
