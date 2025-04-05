@@ -6,12 +6,24 @@ import java.util.LinkedHashMap;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class SapCamelotUnitOfMeasurementControlle {
 
-    @RequestMapping(value = "camelotUnitOfMeasurementDashboard")
-    public String camelotUnitOfMeasurementDashboard(ModelMap modelMap) {
+    @RequestMapping(value = "camelotUnitOfMeasurementDashboard",  method = RequestMethod.GET)
+    public String camelotUnitOfMeasurementDashboard(@RequestParam("groupCode") String groupCode, ModelMap modelMap) {
+        SapCamelotUnitOfMeasurementDao sapCamelotUnitOfMeasurementDao = new SapCamelotUnitOfMeasurementDao();
+        LinkedHashMap<Short, SapUnitOfMeasurement> allUnitsOfMeasurement = sapCamelotUnitOfMeasurementDao.getAllUnitsOfMeasurement();
+        modelMap.addAttribute("allUnitsOfMeasurement", allUnitsOfMeasurement);
+        LinkedHashMap<Short, SapUnitOfMeasurementGroup> allUnitOfMeasurementGroups = sapCamelotUnitOfMeasurementDao.getAllUnitOfMeasurementGroups();
+        modelMap.addAttribute("allUnitOfMeasurementGroups", allUnitOfMeasurementGroups);
+        return "sap/camelot/unitOfMeasurement/camelotUnitOfMeasurementDashboard";
+    }
+    
+     @RequestMapping(value = "camelotUnitOfMeasurementGroupEditServant")
+    public String camelotUnitOfMeasurementGroupEditServant(ModelMap modelMap) {
         SapCamelotUnitOfMeasurementDao sapCamelotUnitOfMeasurementDao = new SapCamelotUnitOfMeasurementDao();
         LinkedHashMap<Short, SapUnitOfMeasurement> allUnitsOfMeasurement = sapCamelotUnitOfMeasurementDao.getAllUnitsOfMeasurement();
         modelMap.addAttribute("allUnitsOfMeasurement", allUnitsOfMeasurement);

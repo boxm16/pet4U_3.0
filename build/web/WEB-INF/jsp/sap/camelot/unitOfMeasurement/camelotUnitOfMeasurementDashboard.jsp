@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
         <style>
             body {
-                font-size: 1.05rem; /* Increased base font size */
+                font-size: 1.2rem; /* Increased base font size */
             }
             .card {
                 margin-bottom: 30px;
@@ -84,6 +84,7 @@
                                     <thead class="table-light">
                                         <tr>
                                             <th>#</th>
+                                            <th>UOM Entry</th>
                                             <th>UOM Code</th>
                                             <th>UOM Name</th>
                                         </tr>
@@ -92,6 +93,7 @@
                                         <c:forEach var="unitOfMeasurementEntry" items="${allUnitsOfMeasurement}" varStatus="loop">
                                             <tr>
                                                 <td>${loop.index + 1}</td>
+                                                <td>${unitOfMeasurementEntry.value.uomEntry}</td>
                                                 <td>${unitOfMeasurementEntry.value.uomCode}</td>
                                                 <td>${unitOfMeasurementEntry.value.uomName}</td>
                                             </tr>
@@ -118,6 +120,7 @@
                                     <thead class="table-light">
                                         <tr>
                                             <th>#</th>
+                                            <th>UGP Entry</th>
                                             <th>UGP Code</th>
                                             <th>UGP Name</th>
                                             <th>Unit of Measurements</th>
@@ -128,6 +131,7 @@
                                         <c:forEach var="entry" items="${allUnitOfMeasurementGroups}" varStatus="loop">
                                             <tr class="group-row">
                                                 <td class="group-header">${loop.index + 1}</td>
+                                                <td class="group-header">${entry.value.ugpEntry}</td>
                                                 <td class="group-header">${entry.value.ugpCode}</td>
                                                 <td class="group-header">${entry.value.ugpName}</td>
                                                 <td class="p-0">
@@ -155,10 +159,10 @@
                                                     </div>
                                                 </td>
                                                 <td class="group-header text-center">
-                                                    <a href="/settings/unit-group/${entry.key}" 
+                                                    <a href="/camelotUnitOfMeasurementGroupEditServant.htm?ugpEntry${entry.key}" 
                                                        class="btn btn-sm btn-outline-primary settings-btn"
                                                        title="Group Settings">
-                                                        <i class="fas fa-cog"></i> Settings
+                                                        <i class="fas fa-cog"></i> Edit
                                                     </a>
                                                 </td>
                                             </tr>
