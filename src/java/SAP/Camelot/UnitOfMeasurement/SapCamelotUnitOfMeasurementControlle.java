@@ -28,8 +28,8 @@ public class SapCamelotUnitOfMeasurementControlle {
         LinkedHashMap<Short, SapUnitOfMeasurement> allUnitsOfMeasurement = sapCamelotUnitOfMeasurementDao.getAllUnitsOfMeasurement();
         modelMap.addAttribute("allUnitsOfMeasurement", allUnitsOfMeasurement);
 
-        SapUnitOfMeasurementGroup uitOfMeasurementGroup = sapCamelotUnitOfMeasurementDao.getUnitOfMeasurementGroup(ugpEntry);
-        modelMap.addAttribute("uitOfMeasurementGroup", uitOfMeasurementGroup);
+        SapUnitOfMeasurementGroup unitOfMeasurementGroup = sapCamelotUnitOfMeasurementDao.getUnitOfMeasurementGroup(ugpEntry);
+        modelMap.addAttribute("unitOfMeasurementGroup", unitOfMeasurementGroup);
 
         return "sap/camelot/unitOfMeasurement/camelotUnitOfMeasurementGroupEditServant";
     }

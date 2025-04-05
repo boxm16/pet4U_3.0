@@ -162,7 +162,7 @@
                                 <label for="newUomEntry" class="form-label form-label-lg">Select Unit to Add</label>
                                 <select name="newUomEntry" class="form-select form-select-lg" id="newUomEntry">
                                     <option value="">-- Select Unit of Measurement --</option>
-                                    <c:forEach items="${availableUnitsOfMeasurement}" var="uom">
+                                    <c:forEach items="${allUnitsOfMeasurement}" var="uom">
                                         <option value="${uom.value.uomEntry}">
                                             ${uom.value.uomName} (${uom.value.uomCode})
                                         </option>
