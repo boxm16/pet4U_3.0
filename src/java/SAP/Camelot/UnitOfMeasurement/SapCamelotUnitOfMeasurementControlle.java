@@ -23,7 +23,7 @@ public class SapCamelotUnitOfMeasurementControlle {
     }
 
     @RequestMapping(value = "camelotUnitOfMeasurementGroupEditServant", method = RequestMethod.GET)
-    public String camelotUnitOfMeasurementGroupEditServant(@RequestParam("groupCode") String groupCode, ModelMap modelMap) {
+    public String camelotUnitOfMeasurementGroupEditServant(@RequestParam("ugpEntry") String ugpEntry, ModelMap modelMap) {
 
         return "sap/camelot/unitOfMeasurement/camelotUnitOfMeasurementGroupEditServant";
     }
