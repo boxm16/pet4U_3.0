@@ -57,14 +57,9 @@ public class SapCamelotUnitOfMeasurementControlle {
             // JSON Payload for UoM Group Update
             JSONObject payload = new JSONObject();
 
-            // Only include fields that need to be updated
-            if (group.getUgpCode() != null && !group.getUgpCode().isEmpty()) {
-                payload.put("UgpCode", group.getUgpCode());
-            }
-
-            if (group.getUgpName() != null && !group.getUgpName().isEmpty()) {
-                payload.put("UgpName", group.getUgpName());
-            }
+            // SAP typically expects these exact field names
+            payload.put("Code", group.getUgpCode());  // Note: Might be "UgpCode" or "Code"
+            payload.put("Name", group.getUgpName());   // Note: Might be "UgpName" or "Name"
 
             // Send the request
             sapCamelotApiConnector.sendRequestBody(conn, payload.toString());
