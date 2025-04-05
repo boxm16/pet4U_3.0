@@ -83,12 +83,7 @@
                 <i class="fas fa-layer-group me-2"></i>Edit Unit of Measurement Group
             </h1>
 
-            <!-- Status Message -->
-            <c:if test="${not empty message}">
-                <div class="alert alert-${alertColor} text-center" style="font-size: 1.5rem;">
-                    ${message}
-                </div>
-            </c:if>
+            <center> <h1 style='background-color:${alertColor}'>${message}</h1></center>
 
             <!-- Main Form -->
             <form:form action="updateUnitOfMeasurementGroup.htm" method="POST" modelAttribute="unitOfMeasurementGroup" class="needs-validation">

@@ -68,25 +68,25 @@ public class SapCamelotUnitOfMeasurementControlle {
             int responseCode = conn.getResponseCode();
             if (responseCode == 200 || responseCode == 204) {
                 System.out.println("✅ UoM Group Updated Successfully!");
-                redirectAttributes.addFlashAttribute("alertColor", "success");
+                redirectAttributes.addFlashAttribute("alertColor", "green");
                 redirectAttributes.addFlashAttribute("message", "UoM Group Updated Successfully.");
             } else {
                 String errorResponse = sapCamelotApiConnector.getErrorResponse(conn);
                 System.out.println("❌ Error Updating UoM Group: " + errorResponse);
-                redirectAttributes.addFlashAttribute("alertColor", "danger");
+                redirectAttributes.addFlashAttribute("alertColor", "red");
                 redirectAttributes.addFlashAttribute("message", "Error Updating UoM Group: " + errorResponse);
                 return "redirect:camelotUnitOfMeasurementGroupEditServant.htm?ugpEntry=" + group.getUgpEntry();
             }
 
         } catch (IOException ex) {
             Logger.getLogger(SapCamelotUnitOfMeasurementControlle.class.getName()).log(Level.SEVERE, null, ex);
-            redirectAttributes.addFlashAttribute("alertColor", "danger");
+            redirectAttributes.addFlashAttribute("alertColor", "red");
             redirectAttributes.addFlashAttribute("message", "An error occurred: " + ex.getMessage());
             return "redirect:camelotUnitOfMeasurementGroupEditServant.htm?ugpEntry=" + group.getUgpEntry();
         } catch (Exception ex) {
             Logger.getLogger(SapCamelotUnitOfMeasurementControlle.class.getName()).log(Level.SEVERE,
                     "Exception occurred during UoM Group update.", ex);
-            redirectAttributes.addFlashAttribute("alertColor", "danger");
+            redirectAttributes.addFlashAttribute("alertColor", "red");
             redirectAttributes.addFlashAttribute("message",
                     "UoM Group may have been updated, but an error occurred while processing the response.");
         }
