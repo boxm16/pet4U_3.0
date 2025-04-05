@@ -5,6 +5,7 @@
  */
 package SAP.Camelot.CamelotItem;
 
+import SAP.Camelot.UnitOfMeasurement.SapCamelotUnitOfMeasurementDao;
 import SAP.SapBasicModel.SapItem;
 import SAP.SapBasicModel.SapUnitOfMeasurementGroup;
 import SAP.SapCamelotApiConnector;
@@ -42,7 +43,8 @@ public class SapCamelotItemController {
         SapItem item = itemDao.getSapItemByItemCode(itemCode);
         modelMap.addAttribute("item", item);
 
-        LinkedHashMap<Short, SapUnitOfMeasurementGroup> allUnitOfMeasurementGroups = itemDao.getAllUnitOfMeasurementGroups();
+        SapCamelotUnitOfMeasurementDao sapCamelotUnitOfMeasurementDao=new SapCamelotUnitOfMeasurementDao();
+        LinkedHashMap<Short, SapUnitOfMeasurementGroup> allUnitOfMeasurementGroups = sapCamelotUnitOfMeasurementDao.getAllUnitOfMeasurementGroups();
         modelMap.addAttribute("allUnitOfMeasurementGroups", allUnitOfMeasurementGroups);
 
         //  LinkedHashMap<Short, SapUnitOfMeasurement> allUnitsOfMeasurement = itemDao.getAllUnitsOfMeasurement();
@@ -126,7 +128,8 @@ public class SapCamelotItemController {
         LinkedHashMap<Integer, String> itemGroups = itemDao.getAllItemsGroups();
         modelMap.addAttribute("itemGroups", itemGroups);
 
-        LinkedHashMap<Short, SapUnitOfMeasurementGroup> allUnitOfMeasurementGroups = itemDao.getAllUnitOfMeasurementGroups();
+       SapCamelotUnitOfMeasurementDao sapCamelotUnitOfMeasurementDao=new SapCamelotUnitOfMeasurementDao();
+        LinkedHashMap<Short, SapUnitOfMeasurementGroup> allUnitOfMeasurementGroups = sapCamelotUnitOfMeasurementDao.getAllUnitOfMeasurementGroups();
         modelMap.addAttribute("allUnitOfMeasurementGroups", allUnitOfMeasurementGroups);
 
         return "sap/camelot/item/sapCamelotItemUpdateServant";
