@@ -82,18 +82,18 @@
             <h1 class="text-center mb-5">
                 <i class="fas fa-layer-group me-2"></i>Edit Unit of Measurement Group
             </h1>
-            
+
             <!-- Status Message -->
             <c:if test="${not empty message}">
                 <div class="alert alert-${alertColor} text-center" style="font-size: 1.5rem;">
                     ${message}
                 </div>
             </c:if>
-            
+
             <!-- Main Form -->
             <form:form action="updateUnitOfMeasurementGroup.htm" method="POST" modelAttribute="unitOfMeasurementGroup" class="needs-validation">
                 <input type="hidden" name="ugpEntry" value="${unitOfMeasurementGroup.ugpEntry}">
-                
+
                 <div class="card mb-4">
                     <div class="card-header">Group Information</div>
                     <div class="card-body">
@@ -111,73 +111,7 @@
                         </div>
                     </div>
                 </div>
-                
-                <!-- Unit of Measurements Section -->
-                <div class="card mb-4">
-                    <div class="card-header d-flex justify-content-between align-items-center">
-                        <span>Unit of Measurements in this Group</span>
-                        <span class="badge bg-primary">${unitOfMeasurementGroup.unitOfMeasurements.size()} units</span>
-                    </div>
-                    <div class="card-body p-0">
-                        <div class="table-responsive">
-                            <table class="table table-bordered mb-0">
-                                <thead class="table-light">
-                                    <tr>
-                                        <th>#</th>
-                                        <th>UOM Code</th>
-                                        <th>UOM Name</th>
-                                        <th>Base Quantity</th>
-                                        <th class="action-col">Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <c:forEach var="uomEntry" items="${unitOfMeasurementGroup.unitOfMeasurements}" varStatus="loop">
-                                        <tr>
-                                            <td>${loop.index + 1}</td>
-                                            <td>${uomEntry.value.uomCode}</td>
-                                            <td>${uomEntry.value.uomName}</td>
-                                            <td>${uomEntry.value.baseQuantity}</td>
-                                            <td class="text-center">
-                                                <a href="removeUomFromGroup.htm?ugpEntry=${unitOfMeasurementGroup.ugpEntry}&uomEntry=${uomEntry.value.uomEntry}" 
-                                                   class="btn btn-sm btn-outline-danger"
-                                                   title="Remove from Group"
-                                                   onclick="return confirm('Are you sure you want to remove this unit from the group?');">
-                                                    <i class="fas fa-trash-alt"></i> Remove
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    </c:forEach>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Add Unit to Group Section -->
-                <div class="card mb-4">
-                    <div class="card-header">Add Unit to Group</div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-8">
-                                <label for="newUomEntry" class="form-label form-label-lg">Select Unit to Add</label>
-                                <select name="newUomEntry" class="form-select form-select-lg" id="newUomEntry">
-                                    <option value="">-- Select Unit of Measurement --</option>
-                                    <c:forEach items="${allUnitsOfMeasurement}" var="uom">
-                                        <option value="${uom.value.uomEntry}">
-                                            ${uom.value.uomName} (${uom.value.uomCode})
-                                        </option>
-                                    </c:forEach>
-                                </select>
-                            </div>
-                            <div class="col-md-4 d-flex align-items-end">
-                                <button type="submit" name="action" value="addUom" class="btn btn-primary btn-lg w-100">
-                                    <i class="fas fa-plus"></i> Add Unit
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
+
                 <!-- Form Actions -->
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                     <a href="listUnitOfMeasurementGroups.htm" class="btn btn-secondary btn-lg me-md-2">
@@ -188,28 +122,95 @@
                     </button>
                 </div>
             </form:form>
+
+            <!-- Unit of Measurements Section -->
+            <div class="card mb-4">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <span>Unit of Measurements in this Group</span>
+                    <span class="badge bg-primary">${unitOfMeasurementGroup.unitOfMeasurements.size()} units</span>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-bordered mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>#</th>
+                                    <th>UOM Code</th>
+                                    <th>UOM Name</th>
+                                    <th>Base Quantity</th>
+                                    <th class="action-col">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <c:forEach var="uomEntry" items="${unitOfMeasurementGroup.unitOfMeasurements}" varStatus="loop">
+                                    <tr>
+                                        <td>${loop.index + 1}</td>
+                                        <td>${uomEntry.value.uomCode}</td>
+                                        <td>${uomEntry.value.uomName}</td>
+                                        <td>${uomEntry.value.baseQuantity}</td>
+                                        <td class="text-center">
+                                            <a href="removeUomFromGroup.htm?ugpEntry=${unitOfMeasurementGroup.ugpEntry}&uomEntry=${uomEntry.value.uomEntry}" 
+                                               class="btn btn-sm btn-outline-danger"
+                                               title="Remove from Group"
+                                               onclick="return confirm('Are you sure you want to remove this unit from the group?');">
+                                                <i class="fas fa-trash-alt"></i> Remove
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add Unit to Group Section -->
+            <div class="card mb-4">
+                <div class="card-header">Add Unit to Group</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <label for="newUomEntry" class="form-label form-label-lg">Select Unit to Add</label>
+                            <select name="newUomEntry" class="form-select form-select-lg" id="newUomEntry">
+                                <option value="">-- Select Unit of Measurement --</option>
+                                <c:forEach items="${allUnitsOfMeasurement}" var="uom">
+                                    <option value="${uom.value.uomEntry}">
+                                        ${uom.value.uomName} (${uom.value.uomCode})
+                                    </option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                        <div class="col-md-4 d-flex align-items-end">
+                            <button type="submit" name="action" value="addUom" class="btn btn-primary btn-lg w-100">
+                                <i class="fas fa-plus"></i> Add Unit
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
         <!-- Bootstrap JS and dependencies -->
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-        
+
         <script>
-            // Enable Bootstrap form validation
-            (function() {
-                'use strict';
-                const forms = document.querySelectorAll('.needs-validation');
-                
-                Array.from(forms).forEach(form => {
-                    form.addEventListener('submit', event => {
-                        if (!form.checkValidity()) {
-                            event.preventDefault();
-                            event.stopPropagation();
-                        }
-                        form.classList.add('was-validated');
-                    }, false);
-                });
-            })();
+                                                   // Enable Bootstrap form validation
+                                                   (function () {
+                                                       'use strict';
+                                                       const forms = document.querySelectorAll('.needs-validation');
+
+                                                       Array.from(forms).forEach(form => {
+                                                           form.addEventListener('submit', event => {
+                                                               if (!form.checkValidity()) {
+                                                                   event.preventDefault();
+                                                                   event.stopPropagation();
+                                                               }
+                                                               form.classList.add('was-validated');
+                                                           }, false);
+                                                       });
+                                                   })();
         </script>
     </body>
 </html>
