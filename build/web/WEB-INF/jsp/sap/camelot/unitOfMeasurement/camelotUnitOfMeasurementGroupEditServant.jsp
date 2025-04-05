@@ -116,7 +116,7 @@
                 <div class="card mb-4">
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <span>Unit of Measurements in this Group</span>
-                        <span class="badge bg-primary">${group.unitOfMeasurements.size()} units</span>
+                        <span class="badge bg-primary">${unitOfMeasurementGroup.unitOfMeasurements.size()} units</span>
                     </div>
                     <div class="card-body p-0">
                         <div class="table-responsive">
@@ -131,14 +131,14 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <c:forEach var="uomEntry" items="${group.unitOfMeasurements}" varStatus="loop">
+                                    <c:forEach var="uomEntry" items="${unitOfMeasurementGroup.unitOfMeasurements}" varStatus="loop">
                                         <tr>
                                             <td>${loop.index + 1}</td>
                                             <td>${uomEntry.value.uomCode}</td>
                                             <td>${uomEntry.value.uomName}</td>
                                             <td>${uomEntry.value.baseQuantity}</td>
                                             <td class="text-center">
-                                                <a href="removeUomFromGroup.htm?ugpEntry=${group.ugpEntry}&uomEntry=${uomEntry.value.uomEntry}" 
+                                                <a href="removeUomFromGroup.htm?ugpEntry=${unitOfMeasurementGroup.ugpEntry}&uomEntry=${uomEntry.value.uomEntry}" 
                                                    class="btn btn-sm btn-outline-danger"
                                                    title="Remove from Group"
                                                    onclick="return confirm('Are you sure you want to remove this unit from the group?');">
