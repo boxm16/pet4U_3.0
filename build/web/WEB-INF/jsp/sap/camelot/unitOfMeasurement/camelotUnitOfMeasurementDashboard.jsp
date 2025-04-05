@@ -11,6 +11,9 @@
         <!-- Font Awesome for icons -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
         <style>
+            body {
+                font-size: 1.05rem; /* Increased base font size */
+            }
             .card {
                 margin-bottom: 30px;
                 box-shadow: 0 4px 8px rgba(0,0,0,0.1);
@@ -18,13 +21,18 @@
             .card-header {
                 background-color: #f8f9fa;
                 font-weight: 600;
+                font-size: 1.1rem; /* Larger card headers */
             }
             .table-responsive {
                 margin-bottom: 0;
             }
+            .table {
+                font-size: 1rem; /* Slightly larger table text */
+            }
             .inner-table {
                 margin-bottom: 0;
                 background-color: #f8f9fa;
+                font-size: 0.95rem; /* Slightly smaller for nested tables */
             }
             .inner-table thead th {
                 background-color: #e9ecef;
@@ -34,6 +42,7 @@
                 margin-bottom: 20px;
                 padding-bottom: 10px;
                 border-bottom: 1px solid #eee;
+                font-size: 1.8rem; /* Larger main heading */
             }
             .group-row {
                 border-left: 4px solid #0d6efd;
@@ -41,6 +50,13 @@
             .group-header {
                 background-color: #e7f1ff !important;
                 font-weight: 600;
+            }
+            .settings-btn {
+                font-size: 0.9rem;
+                padding: 0.25rem 0.5rem;
+            }
+            .action-col {
+                width: 120px; /* Fixed width for action column */
             }
         </style>
     </head>
@@ -53,7 +69,7 @@
                     </h2>
                 </div>
             </div>
-            
+
             <!-- Units of Measurement Card -->
             <div class="row">
                 <div class="col-12">
@@ -70,7 +86,6 @@
                                             <th>#</th>
                                             <th>UOM Code</th>
                                             <th>UOM Name</th>
-                                            <th>Base Quantity</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -79,7 +94,6 @@
                                                 <td>${loop.index + 1}</td>
                                                 <td>${unitOfMeasurementEntry.value.uomCode}</td>
                                                 <td>${unitOfMeasurementEntry.value.uomName}</td>
-                                                <td>${unitOfMeasurementEntry.value.baseQuantity}</td>
                                             </tr>
                                         </c:forEach>
                                     </tbody>
@@ -89,7 +103,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Unit of Measurement Groups Card -->
             <div class="row">
                 <div class="col-12">
@@ -107,6 +121,7 @@
                                             <th>UGP Code</th>
                                             <th>UGP Name</th>
                                             <th>Unit of Measurements</th>
+                                            <th class="action-col">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -138,6 +153,13 @@
                                                             </tbody>
                                                         </table>
                                                     </div>
+                                                </td>
+                                                <td class="group-header text-center">
+                                                    <a href="/settings/unit-group/${entry.key}" 
+                                                       class="btn btn-sm btn-outline-primary settings-btn"
+                                                       title="Group Settings">
+                                                        <i class="fas fa-cog"></i> Settings
+                                                    </a>
                                                 </td>
                                             </tr>
                                         </c:forEach>
