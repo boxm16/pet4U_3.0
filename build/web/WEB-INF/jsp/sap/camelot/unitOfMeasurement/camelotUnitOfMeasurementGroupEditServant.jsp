@@ -92,7 +92,7 @@
             
             <!-- Main Form -->
             <form:form action="updateUnitOfMeasurementGroup.htm" method="POST" modelAttribute="group" class="needs-validation">
-                <input type="hidden" name="ugpEntry" value="${group.ugpEntry}">
+                <input type="hidden" name="ugpEntry" value="${unitOfMeasurementGroup.ugpEntry}">
                 
                 <div class="card mb-4">
                     <div class="card-header">Group Information</div>
