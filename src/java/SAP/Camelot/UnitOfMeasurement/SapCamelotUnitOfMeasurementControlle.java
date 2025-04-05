@@ -24,11 +24,7 @@ public class SapCamelotUnitOfMeasurementControlle {
 
     @RequestMapping(value = "camelotUnitOfMeasurementGroupEditServant", method = RequestMethod.GET)
     public String camelotUnitOfMeasurementGroupEditServant(@RequestParam("groupCode") String groupCode, ModelMap modelMap) {
-        SapCamelotUnitOfMeasurementDao sapCamelotUnitOfMeasurementDao = new SapCamelotUnitOfMeasurementDao();
-        LinkedHashMap<Short, SapUnitOfMeasurement> allUnitsOfMeasurement = sapCamelotUnitOfMeasurementDao.getAllUnitsOfMeasurement();
-        modelMap.addAttribute("allUnitsOfMeasurement", allUnitsOfMeasurement);
-        LinkedHashMap<Short, SapUnitOfMeasurementGroup> allUnitOfMeasurementGroups = sapCamelotUnitOfMeasurementDao.getAllUnitOfMeasurementGroups();
-        modelMap.addAttribute("allUnitOfMeasurementGroups", allUnitOfMeasurementGroups);
-        return "sap/camelot/unitOfMeasurement/camelotUnitOfMeasurementDashboard";
+
+        return "sap/camelot/unitOfMeasurement/camelotUnitOfMeasurementGroupEditServant";
     }
 }
