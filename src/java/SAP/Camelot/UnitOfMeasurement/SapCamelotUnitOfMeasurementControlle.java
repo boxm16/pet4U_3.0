@@ -49,7 +49,7 @@ public class SapCamelotUnitOfMeasurementControlle {
 
         try {
             SapCamelotApiConnector sapCamelotApiConnector = new SapCamelotApiConnector();
-            String endPoint = "/UnitOfMeasurementGroups('" + group.getUgpEntry() + "')";
+            String endPoint = "/UnitOfMeasurementGroups(" + group.getUgpEntry() + ")";
             String requestMethod = "PATCH"; // or "PUT" depending on SAP API requirements
 
             HttpURLConnection conn = sapCamelotApiConnector.createConnection(endPoint, requestMethod);
