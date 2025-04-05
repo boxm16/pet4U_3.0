@@ -43,6 +43,6 @@ public class SapCamelotUnitOfMeasurementControlle {
             RedirectAttributes redirectAttributes) {
         System.out.println("****" + uomGroup.getUgpCode());
         System.out.println("****" + uomGroup.getUgpName());
-        return "redirect:camelotUnitOfMeasurementGroupEditServant.htm?ugpEntry" + uomGroup.getUgpCode();
+        return "redirect:camelotUnitOfMeasurementGroupEditServant.htm?ugpEntry" + uomGroup.getUgpEntry();
     }
 }
