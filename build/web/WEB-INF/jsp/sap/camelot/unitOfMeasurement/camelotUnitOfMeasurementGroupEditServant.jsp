@@ -91,7 +91,7 @@
             </c:if>
             
             <!-- Main Form -->
-            <form:form action="updateUnitOfMeasurementGroup.htm" method="POST" modelAttribute="group" class="needs-validation">
+            <form:form action="updateUnitOfMeasurementGroup.htm" method="POST" modelAttribute="unitOfMeasurementGroup" class="needs-validation">
                 <input type="hidden" name="ugpEntry" value="${unitOfMeasurementGroup.ugpEntry}">
                 
                 <div class="card mb-4">
