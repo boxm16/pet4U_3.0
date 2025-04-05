@@ -24,6 +24,7 @@
             }
             .inner-table {
                 margin-bottom: 0;
+                background-color: #f8f9fa;
             }
             .inner-table thead th {
                 background-color: #e9ecef;
@@ -33,6 +34,13 @@
                 margin-bottom: 20px;
                 padding-bottom: 10px;
                 border-bottom: 1px solid #eee;
+            }
+            .group-row {
+                border-left: 4px solid #0d6efd;
+            }
+            .group-header {
+                background-color: #e7f1ff !important;
+                font-weight: 600;
             }
         </style>
     </head>
@@ -90,47 +98,51 @@
                             <span><i class="fas fa-layer-group me-2"></i>Unit of Measurement Groups</span>
                             <span class="badge bg-primary">${allUnitOfMeasurementGroups.size()} groups</span>
                         </div>
-                        <div class="card-body">
-                            <div class="accordion" id="ugpAccordion">
-                                <c:forEach var="entry" items="${allUnitOfMeasurementGroups}" varStatus="loop">
-                                    <div class="accordion-item">
-                                        <h2 class="accordion-header" id="heading${loop.index}">
-                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" 
-                                                    data-bs-target="#collapse${loop.index}" aria-expanded="false" 
-                                                    aria-controls="collapse${loop.index}">
-                                                <span class="me-3 fw-bold">${entry.value.ugpCode}</span>
-                                                <span class="text-muted">${entry.value.ugpName}</span>
-                                            </button>
-                                        </h2>
-                                        <div id="collapse${loop.index}" class="accordion-collapse collapse" 
-                                             aria-labelledby="heading${loop.index}" data-bs-parent="#ugpAccordion">
-                                            <div class="accordion-body p-0">
-                                                <div class="table-responsive">
-                                                    <table class="table inner-table table-sm table-bordered mb-0">
-                                                        <thead class="table-light">
-                                                            <tr>
-                                                                <th>#</th>
-                                                                <th>UOM Code</th>
-                                                                <th>UOM Name</th>
-                                                                <th>Base Quantity</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <c:forEach var="unitOfMeasurementEntry" items="${entry.value.unitOfMeasurements}" varStatus="innerLoop">
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="table table-bordered mb-0">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>#</th>
+                                            <th>UGP Code</th>
+                                            <th>UGP Name</th>
+                                            <th>Unit of Measurements</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <c:forEach var="entry" items="${allUnitOfMeasurementGroups}" varStatus="loop">
+                                            <tr class="group-row">
+                                                <td class="group-header">${loop.index + 1}</td>
+                                                <td class="group-header">${entry.value.ugpCode}</td>
+                                                <td class="group-header">${entry.value.ugpName}</td>
+                                                <td class="p-0">
+                                                    <div class="table-responsive">
+                                                        <table class="table inner-table table-sm mb-0">
+                                                            <thead>
                                                                 <tr>
-                                                                    <td>${innerLoop.index + 1}</td>
-                                                                    <td>${unitOfMeasurementEntry.value.uomCode}</td>
-                                                                    <td>${unitOfMeasurementEntry.value.uomName}</td>
-                                                                    <td>${unitOfMeasurementEntry.value.baseQuantity}</td>
+                                                                    <th>#</th>
+                                                                    <th>UOM Code</th>
+                                                                    <th>UOM Name</th>
+                                                                    <th>Base Quantity</th>
                                                                 </tr>
-                                                            </c:forEach>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </c:forEach>
+                                                            </thead>
+                                                            <tbody>
+                                                                <c:forEach var="unitOfMeasurementEntry" items="${entry.value.unitOfMeasurements}" varStatus="innerLoop">
+                                                                    <tr>
+                                                                        <td>${innerLoop.index + 1}</td>
+                                                                        <td>${unitOfMeasurementEntry.value.uomCode}</td>
+                                                                        <td>${unitOfMeasurementEntry.value.uomName}</td>
+                                                                        <td>${unitOfMeasurementEntry.value.baseQuantity}</td>
+                                                                    </tr>
+                                                                </c:forEach>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
