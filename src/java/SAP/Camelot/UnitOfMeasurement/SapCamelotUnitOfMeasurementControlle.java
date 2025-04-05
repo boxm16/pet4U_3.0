@@ -10,6 +10,6 @@ public class SapCamelotUnitOfMeasurementControlle {
     @RequestMapping(value = "camelotUnitOfMeasurementDashboard")
     public String camelotUnitOfMeasurementDashboard(ModelMap modelMap) {
 
-        return "sap/camelot/unitOfMeasurement/camelotUnitOfMeasurementDashboar";
+        return "sap/camelot/unitOfMeasurement/camelotUnitOfMeasurementDashboard";
     }
 }
