@@ -24,6 +24,12 @@ public class SapCamelotUnitOfMeasurementControlle {
 
     @RequestMapping(value = "camelotUnitOfMeasurementGroupEditServant", method = RequestMethod.GET)
     public String camelotUnitOfMeasurementGroupEditServant(@RequestParam("ugpEntry") String ugpEntry, ModelMap modelMap) {
+        SapCamelotUnitOfMeasurementDao sapCamelotUnitOfMeasurementDao = new SapCamelotUnitOfMeasurementDao();
+        LinkedHashMap<Short, SapUnitOfMeasurement> allUnitsOfMeasurement = sapCamelotUnitOfMeasurementDao.getAllUnitsOfMeasurement();
+        modelMap.addAttribute("allUnitsOfMeasurement", allUnitsOfMeasurement);
+
+        SapUnitOfMeasurementGroup uitOfMeasurementGroup = sapCamelotUnitOfMeasurementDao.getUnitOfMeasurementGroup(ugpEntry);
+        modelMap.addAttribute("uitOfMeasurementGroup", uitOfMeasurementGroup);
 
         return "sap/camelot/unitOfMeasurement/camelotUnitOfMeasurementGroupEditServant";
     }

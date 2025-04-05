@@ -9,6 +9,7 @@ import SAP.SapBasicModel.SapUnitOfMeasurement;
 import SAP.SapBasicModel.SapUnitOfMeasurementGroup;
 import Service.DatabaseConnectionFactory;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -97,6 +98,59 @@ public class SapCamelotUnitOfMeasurementDao {
             Logger.getLogger(SapCamelotUnitOfMeasurementDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return allUnitOfMeasurementGroups;
+    }
+
+    public SapUnitOfMeasurementGroup getUnitOfMeasurementGroup(String ugpEntry) {
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+        Connection connection = databaseConnectionFactory.getSapHanaConnection();
+        SapUnitOfMeasurementGroup unitOfMeasurementGroup = null;
+
+        try {
+            // Using prepared statement to prevent SQL injection
+            String query = "SELECT * FROM PETCAMELOT_UAT2.OUGP "
+                    + "INNER JOIN PETCAMELOT_UAT2.UGP1 "
+                    + "ON PETCAMELOT_UAT2.OUGP.\"UgpEntry\" = PETCAMELOT_UAT2.UGP1.\"UgpEntry\" "
+                    + "INNER JOIN PETCAMELOT_UAT2.OUOM "
+                    + "ON PETCAMELOT_UAT2.UGP1.\"UomEntry\" = PETCAMELOT_UAT2.OUOM.\"UomEntry\" "
+                    + "WHERE PETCAMELOT_UAT2.OUGP.\"UgpEntry\" = ?";
+
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setShort(1, Short.parseShort(ugpEntry)); // Convert String to short
+
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                if (unitOfMeasurementGroup == null) {
+                    unitOfMeasurementGroup = new SapUnitOfMeasurementGroup();
+                    unitOfMeasurementGroup.setUgpEntry(resultSet.getShort("UgpEntry"));
+                    unitOfMeasurementGroup.setUgpCode(resultSet.getString("UgpCode"));
+                    unitOfMeasurementGroup.setUgpName(resultSet.getString("UgpName"));
+                }
+
+                SapUnitOfMeasurement unitOfMeasurement = new SapUnitOfMeasurement();
+                unitOfMeasurement.setUomEntry(resultSet.getShort("UomEntry"));
+                unitOfMeasurement.setUomCode(resultSet.getString("UomCode"));
+                unitOfMeasurement.setUomName(resultSet.getString("UomName"));
+                unitOfMeasurement.setBaseQuantity(resultSet.getDouble("BaseQty"));
+
+                unitOfMeasurementGroup.getUnitOfMeasurements().put(
+                        resultSet.getString("UomCode"),
+                        unitOfMeasurement
+                );
+            }
+
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(SapCamelotUnitOfMeasurementDao.class.getName())
+                    .log(Level.SEVERE, "Error retrieving unit of measurement group", ex);
+        } catch (NumberFormatException ex) {
+            Logger.getLogger(SapCamelotUnitOfMeasurementDao.class.getName())
+                    .log(Level.SEVERE, "Invalid UgpEntry format: " + ugpEntry, ex);
+        }
+
+        return unitOfMeasurementGroup;
     }
 
 }
