@@ -159,7 +159,7 @@
                                                     </div>
                                                 </td>
                                                 <td class="group-header text-center">
-                                                    <a href="/camelotUnitOfMeasurementGroupEditServant.htm?ugpEntry${entry.key}" 
+                                                    <a href="camelotUnitOfMeasurementGroupEditServant.htm?ugpEntry=${entry.key}" 
                                                        class="btn btn-sm btn-outline-primary settings-btn"
                                                        title="Group Settings">
                                                         <i class="fas fa-cog"></i> Edit
