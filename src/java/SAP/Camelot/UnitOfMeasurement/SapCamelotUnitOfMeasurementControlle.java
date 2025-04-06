@@ -102,43 +102,41 @@ public class SapCamelotUnitOfMeasurementControlle {
         try {
             SapCamelotApiConnector sapCamelotApiConnector = new SapCamelotApiConnector();
 
-            // SAP OData endpoint for adding UoM to Group
-            String endPoint = "/UnitOfMeasurementGroups(" + ugpEntry + ")";
+            // Endpoint may vary; some APIs use /UoMGroups(ugpEntry)/Children, or a navigation property
+            String endPoint = "/UnitOfMeasurementGroups(" + ugpEntry + ")/UoMGroupDefinitionCollection";
             String requestMethod = "POST";
 
             HttpURLConnection conn = sapCamelotApiConnector.createConnection(endPoint, requestMethod);
 
-            // JSON Payload for adding UoM to Group
+            // Prepare payload to add UoM to the group
             JSONObject payload = new JSONObject();
-            payload.put("UoMEntry", uomEntry);  // The UoM to add to the group
-            payload.put("UoMGroupEntry", ugpEntry);  // The target group
+            payload.put("AlternateUoM", uomEntry); // Assuming field is named like this
+            payload.put("BaseQuantity", 1);        // Required fields depend on your SAP backend model
+            payload.put("AlternateQuantity", 1);   // Adjust these values as needed
+            payload.put("BaseUoM", ugpEntry);      // Sometimes this is needed as well
 
-            // Send the request
+            // Send request
             sapCamelotApiConnector.sendRequestBody(conn, payload.toString());
 
-            // Check the response
             int responseCode = conn.getResponseCode();
-            if (responseCode == 201) {  // 201 Created is typical for successful POST
-                System.out.println("✅ UoM Added to Group Successfully!");
+            if (responseCode == 201 || responseCode == 204) {
                 redirectAttributes.addFlashAttribute("alertColor", "green");
-                redirectAttributes.addFlashAttribute("message", "UoM Added to Group Successfully.");
+                redirectAttributes.addFlashAttribute("message", "UoM added to group successfully.");
             } else {
                 String errorResponse = sapCamelotApiConnector.getErrorResponse(conn);
-                System.out.println("❌ Error Adding UoM to Group: " + errorResponse);
                 redirectAttributes.addFlashAttribute("alertColor", "red");
-                redirectAttributes.addFlashAttribute("message", "Error Adding UoM to Group: " + errorResponse);
+                redirectAttributes.addFlashAttribute("message", "Error adding UoM: " + errorResponse);
             }
 
         } catch (IOException ex) {
             Logger.getLogger(SapCamelotUnitOfMeasurementControlle.class.getName()).log(Level.SEVERE, null, ex);
             redirectAttributes.addFlashAttribute("alertColor", "red");
-            redirectAttributes.addFlashAttribute("message", "An error occurred: " + ex.getMessage());
+            redirectAttributes.addFlashAttribute("message", "IOException: " + ex.getMessage());
         } catch (Exception ex) {
             Logger.getLogger(SapCamelotUnitOfMeasurementControlle.class.getName()).log(Level.SEVERE,
-                    "Exception occurred while adding UoM to Group.", ex);
+                    "Exception occurred while adding UoM.", ex);
             redirectAttributes.addFlashAttribute("alertColor", "red");
-            redirectAttributes.addFlashAttribute("message",
-                    "UoM may have been added, but an error occurred while processing the response.");
+            redirectAttributes.addFlashAttribute("message", "Unexpected error occurred: " + ex.getMessage());
         }
 
         return "redirect:camelotUnitOfMeasurementGroupEditServant.htm?ugpEntry=" + ugpEntry;
