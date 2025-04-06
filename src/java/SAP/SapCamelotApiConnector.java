@@ -118,6 +118,12 @@ public class SapCamelotApiConnector {
 
     public JSONObject getJsonResponse(HttpURLConnection conn) throws IOException {
 
+        try {
+            applySSLBypass(conn);
+        } catch (Exception ex) {
+            Logger.getLogger(SapCamelotApiConnector.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream(), StandardCharsets.UTF_8))) {
             StringBuilder response = new StringBuilder();
             String line;
@@ -154,6 +160,5 @@ public class SapCamelotApiConnector {
             System.out.println(key + ": " + String.join(", ", values));
         });
     }
-    
-    
+
 }
