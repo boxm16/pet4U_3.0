@@ -101,41 +101,42 @@ public class SapCamelotUnitOfMeasurementControlle {
             RedirectAttributes redirectAttributes) {
 
         try {
-            // Initialize the connector
+            // Step 1: Create the connector object to communicate with the SAP system
             SapCamelotApiConnector sapCamelotApiConnector = new SapCamelotApiConnector();
 
-            // Step 1: GET the existing UoM group data
+            // Step 2: GET the existing UoM group data to retrieve the current UoM definitions
             String getEndpoint = "/UnitOfMeasurementGroups(" + ugpEntry + ")";
             HttpURLConnection getConn = sapCamelotApiConnector.createConnection(getEndpoint, "GET");
             JSONObject groupData = sapCamelotApiConnector.getJsonResponse(getConn);
 
-            // Get the existing UoM definitions
+            // Extract existing UoM definitions collection
             JSONArray existingLines = groupData.getJSONArray("UoMGroupDefinitionCollection");
 
-            // Step 2: Create a new UoM entry
+            // Step 3: Create a new UoM line to be added to the collection
             JSONObject newLine = new JSONObject();
-            newLine.put("AlternateUoM", uomEntry);         // New UoM entry ID
+            newLine.put("AlternateUoM", uomEntry);         // New UoM entry ID (e.g., 1, 2, etc.)
             newLine.put("AlternateQuantity", 1);           // Set alternate quantity
             newLine.put("BaseQuantity", 1);                // Set base quantity
-            newLine.put("Active", "tYES");                 // Mark as active
+            newLine.put("Active", "tYES");                 // Mark as active (if applicable)
 
-            // Step 3: Add the new UoM line to the existing collection
+            // Add the new UoM entry to the existing collection
             existingLines.put(newLine);
 
-            // Step 4: Prepare the PATCH request to update the group
+            // Step 4: Prepare the PATCH payload with the updated collection
             JSONObject patchPayload = new JSONObject();
-            patchPayload.put("UoMGroupDefinitionCollection", existingLines); // Send the updated collection
+            patchPayload.put("UoMGroupDefinitionCollection", existingLines); // Include the updated collection
 
-            // Send PATCH request to update the UoM group
+            // Step 5: Perform the PATCH request to update the UoM group
             HttpURLConnection patchConn = sapCamelotApiConnector.createConnection(getEndpoint, "PATCH");
             sapCamelotApiConnector.sendRequestBody(patchConn, patchPayload.toString());
 
             int responseCode = patchConn.getResponseCode();
             if (responseCode == 200 || responseCode == 204) {
+                // Success: Update was successful
                 redirectAttributes.addFlashAttribute("alertColor", "green");
                 redirectAttributes.addFlashAttribute("message", "UoM added to group successfully.");
             } else {
-                // Get the error response for troubleshooting
+                // Error handling: Get the response body for further analysis
                 String errorResponse = sapCamelotApiConnector.getErrorResponse(patchConn);
                 redirectAttributes.addFlashAttribute("alertColor", "red");
                 redirectAttributes.addFlashAttribute("message", "Error adding UoM: " + errorResponse);
@@ -147,6 +148,7 @@ public class SapCamelotUnitOfMeasurementControlle {
             redirectAttributes.addFlashAttribute("message", "An error occurred: " + ex.getMessage());
         }
 
+        // Redirect back to the UoM Group edit page with a success or error message
         return "redirect:camelotUnitOfMeasurementGroupEditServant.htm?ugpEntry=" + ugpEntry;
     }
 
