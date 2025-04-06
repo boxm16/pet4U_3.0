@@ -109,7 +109,7 @@
 
                 <!-- Form Actions -->
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <a href="listUnitOfMeasurementGroups.htm" class="btn btn-secondary btn-lg me-md-2">
+                    <a href="camelotUnitOfMeasurementDashboard.htm" class="btn btn-secondary btn-lg me-md-2">
                         <i class="fas fa-arrow-left"></i> Back to List
                     </a>
                     <button type="submit" name="action" value="update" class="btn btn-primary btn-lg">
