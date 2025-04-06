@@ -97,7 +97,7 @@ public class SapCamelotUnitOfMeasurementControlle {
     public String addUomToGroup(
             @RequestParam("unitOfMeasurementGroupEntry") Integer ugpEntry,
             @RequestParam("newUomEntry") Integer uomEntry,
-            @RequestParam("baseQty") Integer baseQty,
+          
             RedirectAttributes redirectAttributes) {
 
         try {
@@ -111,7 +111,7 @@ public class SapCamelotUnitOfMeasurementControlle {
             JSONObject payload = new JSONObject();
             payload.put("AlternateUoM", uomEntry);
             payload.put("AlternateQuantity", 1);
-            payload.put("BaseQuantity", baseQty);
+            payload.put("BaseQuantity", 1);
             payload.put("Active", "tYES");
 
             sapCamelotApiConnector.sendRequestBody(conn, payload.toString());
