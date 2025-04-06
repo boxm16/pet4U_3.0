@@ -95,7 +95,7 @@ public class SapCamelotUnitOfMeasurementControlle {
 
     @RequestMapping(value = "addUomToGroup", method = RequestMethod.POST)
     public String addUomToGroup(@ModelAttribute("unitOfMeasurementGroupEntry") String unitOfMeasurementGroupEntry,
-            @ModelAttribute("newUomEntry") SapUnitOfMeasurementGroup newUomEntry,
+            @ModelAttribute("newUomEntry") String newUomEntry,
             RedirectAttributes redirectAttributes) {
         System.out.println("newUomEntry: " + newUomEntry);
 
