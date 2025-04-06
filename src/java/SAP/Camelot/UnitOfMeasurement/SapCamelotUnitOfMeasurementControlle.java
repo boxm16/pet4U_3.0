@@ -8,6 +8,7 @@ import java.net.HttpURLConnection;
 import java.util.LinkedHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -97,31 +98,41 @@ public class SapCamelotUnitOfMeasurementControlle {
     public String addUomToGroup(
             @RequestParam("unitOfMeasurementGroupEntry") Integer ugpEntry,
             @RequestParam("newUomEntry") Integer uomEntry,
-          
             RedirectAttributes redirectAttributes) {
 
         try {
             SapCamelotApiConnector sapCamelotApiConnector = new SapCamelotApiConnector();
 
-            String endPoint = "/UnitOfMeasurementGroups(" + ugpEntry + ")/UoMGroupDefinitionCollection";
-            String requestMethod = "POST";
+            // Step 1: GET existing group
+            String getEndpoint = "/UnitOfMeasurementGroups(" + ugpEntry + ")";
+            HttpURLConnection getConn = sapCamelotApiConnector.createConnection(getEndpoint, "GET");
+            JSONObject groupData = sapCamelotApiConnector.getJsonResponse(getConn);
 
-            HttpURLConnection conn = sapCamelotApiConnector.createConnection(endPoint, requestMethod);
+         
+            JSONArray existingLines = groupData.getJSONArray("UoMGroupDefinitionCollection");
 
-            JSONObject payload = new JSONObject();
-            payload.put("AlternateUoM", uomEntry);
-            payload.put("AlternateQuantity", 1);
-            payload.put("BaseQuantity", 1);
-            payload.put("Active", "tYES");
+            // Step 2: Add the new UoM line
+            JSONObject newLine = new JSONObject();
+            newLine.put("AlternateUoM", uomEntry);
+            newLine.put("AlternateQuantity", 1);
+            newLine.put("BaseQuantity", 1);
+            newLine.put("Active", "tYES");
 
-            sapCamelotApiConnector.sendRequestBody(conn, payload.toString());
+            existingLines.put(newLine); // add to array
 
-            int responseCode = conn.getResponseCode();
-            if (responseCode == 201 || responseCode == 204) {
+            // Step 3: PATCH full collection
+            JSONObject patchPayload = new JSONObject();
+            patchPayload.put("UoMGroupDefinitionCollection", existingLines);
+
+            HttpURLConnection patchConn = sapCamelotApiConnector.createConnection(getEndpoint, "PATCH");
+            sapCamelotApiConnector.sendRequestBody(patchConn, patchPayload.toString());
+
+            int responseCode = patchConn.getResponseCode();
+            if (responseCode == 200 || responseCode == 204) {
                 redirectAttributes.addFlashAttribute("alertColor", "green");
                 redirectAttributes.addFlashAttribute("message", "UoM added to group successfully.");
             } else {
-                String errorResponse = sapCamelotApiConnector.getErrorResponse(conn);
+                String errorResponse = sapCamelotApiConnector.getErrorResponse(patchConn);
                 redirectAttributes.addFlashAttribute("alertColor", "red");
                 redirectAttributes.addFlashAttribute("message", "Error adding UoM: " + errorResponse);
             }
