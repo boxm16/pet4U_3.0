@@ -94,11 +94,11 @@ public class SapCamelotUnitOfMeasurementControlle {
     }
 
     @RequestMapping(value = "addUomToGroup", method = RequestMethod.POST)
-    public String addUomToGroup(@ModelAttribute("unitOfMeasurementGroupEntry") SapUnitOfMeasurementGroup group,
+    public String addUomToGroup(@ModelAttribute("unitOfMeasurementGroupEntry") String unitOfMeasurementGroupEntry,
             @ModelAttribute("newUomEntry") SapUnitOfMeasurementGroup newUomEntry,
             RedirectAttributes redirectAttributes) {
         System.out.println("newUomEntry: " + newUomEntry);
 
-        return "redirect:camelotUnitOfMeasurementGroupEditServant.htm?ugpEntry=" + group.getUgpEntry();
+        return "redirect:camelotUnitOfMeasurementGroupEditServant.htm?ugpEntry=" + unitOfMeasurementGroupEntry;
     }
 }
