@@ -163,24 +163,29 @@
             <div class="card mb-4">
                 <div class="card-header">Add Unit to Group</div>
                 <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-8">
-                            <label for="newUomEntry" class="form-label form-label-lg">Select Unit to Add</label>
-                            <select name="newUomEntry" class="form-select form-select-lg" id="newUomEntry">
-                                <option value="">-- Select Unit of Measurement --</option>
-                                <c:forEach items="${allUnitsOfMeasurement}" var="uom">
-                                    <option value="${uom.value.uomEntry}">
-                                        ${uom.value.uomName} (${uom.value.uomCode})
-                                    </option>
-                                </c:forEach>
-                            </select>
+                    <form action="addUomToGroup.htm" method="POST">
+                        <!-- Include hidden field for group ID if needed -->
+                        <input type="hidden" name="unitOfMeasurementGroupEntry" value="${unitOfMeasurementGroup.ugpEntry}">
+
+                        <div class="row">
+                            <div class="col-md-8">
+                                <label for="newUomEntry" class="form-label form-label-lg">Select Unit to Add</label>
+                                <select name="newUomEntry" class="form-select form-select-lg" id="newUomEntry" required>
+                                    <option value="">-- Select Unit of Measurement --</option>
+                                    <c:forEach items="${allUnitsOfMeasurement}" var="uom">
+                                        <option value="${uom.value.uomEntry}">
+                                            ${uom.value.uomName} (${uom.value.uomCode})
+                                        </option>
+                                    </c:forEach>
+                                </select>
+                            </div>
+                            <div class="col-md-4 d-flex align-items-end">
+                                <button type="submit" class="btn btn-primary btn-lg w-100">
+                                    <i class="fas fa-plus"></i> Add Unit
+                                </button>
+                            </div>
                         </div>
-                        <div class="col-md-4 d-flex align-items-end">
-                            <button type="submit" name="action" value="addUom" class="btn btn-primary btn-lg w-100">
-                                <i class="fas fa-plus"></i> Add Unit
-                            </button>
-                        </div>
-                    </div>
+                    </form>
                 </div>
             </div>
 
