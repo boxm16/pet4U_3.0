@@ -97,24 +97,23 @@ public class SapCamelotUnitOfMeasurementControlle {
     public String addUomToGroup(
             @RequestParam("unitOfMeasurementGroupEntry") Integer ugpEntry,
             @RequestParam("newUomEntry") Integer uomEntry,
+            @RequestParam("baseQty") Integer baseQty,
             RedirectAttributes redirectAttributes) {
 
         try {
             SapCamelotApiConnector sapCamelotApiConnector = new SapCamelotApiConnector();
 
-            // Endpoint may vary; some APIs use /UoMGroups(ugpEntry)/Children, or a navigation property
-            String endPoint = "/UnitOfMeasurementGroupLines";
+            String endPoint = "/UnitOfMeasurementGroups(" + ugpEntry + ")/UoMGroupDefinitionCollection";
             String requestMethod = "POST";
 
             HttpURLConnection conn = sapCamelotApiConnector.createConnection(endPoint, requestMethod);
 
-            // Prepare payload to add UoM to the group
             JSONObject payload = new JSONObject();
-            payload.put("UgpEntry", ugpEntry);        // Group you're adding to
-            payload.put("UomEntry", uomEntry);        // New UoM being added
-            payload.put("BaseQuantity", 1);           // Or any logic you want
-            payload.put("AltQuantity", 1);            // May be required too
-            // Send request
+            payload.put("AlternateUoM", uomEntry);
+            payload.put("AlternateQuantity", 1);
+            payload.put("BaseQuantity", baseQty);
+            payload.put("Active", "tYES");
+
             sapCamelotApiConnector.sendRequestBody(conn, payload.toString());
 
             int responseCode = conn.getResponseCode();
@@ -127,17 +126,13 @@ public class SapCamelotUnitOfMeasurementControlle {
                 redirectAttributes.addFlashAttribute("message", "Error adding UoM: " + errorResponse);
             }
 
-        } catch (IOException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(SapCamelotUnitOfMeasurementControlle.class.getName()).log(Level.SEVERE, null, ex);
             redirectAttributes.addFlashAttribute("alertColor", "red");
-            redirectAttributes.addFlashAttribute("message", "IOException: " + ex.getMessage());
-        } catch (Exception ex) {
-            Logger.getLogger(SapCamelotUnitOfMeasurementControlle.class.getName()).log(Level.SEVERE,
-                    "Exception occurred while adding UoM.", ex);
-            redirectAttributes.addFlashAttribute("alertColor", "red");
-            redirectAttributes.addFlashAttribute("message", "Unexpected error occurred: " + ex.getMessage());
+            redirectAttributes.addFlashAttribute("message", "An error occurred: " + ex.getMessage());
         }
 
         return "redirect:camelotUnitOfMeasurementGroupEditServant.htm?ugpEntry=" + ugpEntry;
     }
+
 }
