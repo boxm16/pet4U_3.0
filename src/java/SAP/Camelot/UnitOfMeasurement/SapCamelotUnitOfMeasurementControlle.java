@@ -104,7 +104,7 @@ public class SapCamelotUnitOfMeasurementControlle {
 
             // Endpoint may vary; some APIs use /UoMGroups(ugpEntry)/Children, or a navigation property
             String endPoint = "/UnitOfMeasurementGroups(" + ugpEntry + ")/UoMGroupDefinitionCollection";
-            String requestMethod = "POST";
+            String requestMethod = "PATCH";
 
             HttpURLConnection conn = sapCamelotApiConnector.createConnection(endPoint, requestMethod);
 
