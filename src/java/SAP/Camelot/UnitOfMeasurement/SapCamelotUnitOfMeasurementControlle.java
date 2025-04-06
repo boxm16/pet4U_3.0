@@ -103,18 +103,17 @@ public class SapCamelotUnitOfMeasurementControlle {
             SapCamelotApiConnector sapCamelotApiConnector = new SapCamelotApiConnector();
 
             // Endpoint may vary; some APIs use /UoMGroups(ugpEntry)/Children, or a navigation property
-            String endPoint = "/UnitOfMeasurementGroups(" + ugpEntry + ")";
-            String requestMethod = "PATCH";
+            String endPoint = "/UnitOfMeasurementGroups";
+            String requestMethod = "POST";
 
             HttpURLConnection conn = sapCamelotApiConnector.createConnection(endPoint, requestMethod);
 
             // Prepare payload to add UoM to the group
             JSONObject payload = new JSONObject();
-            payload.put("AlternateUoM", uomEntry); // Assuming field is named like this
-            payload.put("BaseQuantity", 1);        // Required fields depend on your SAP backend model
-            payload.put("AlternateQuantity", 1);   // Adjust these values as needed
-            payload.put("BaseUoM", ugpEntry);      // Sometimes this is needed as well
-
+            payload.put("UgpEntry", ugpEntry);        // Group you're adding to
+            payload.put("UomEntry", uomEntry);        // New UoM being added
+            payload.put("BaseQuantity", 1);           // Or any logic you want
+            payload.put("AltQuantity", 1);            // May be required too
             // Send request
             sapCamelotApiConnector.sendRequestBody(conn, payload.toString());
 
