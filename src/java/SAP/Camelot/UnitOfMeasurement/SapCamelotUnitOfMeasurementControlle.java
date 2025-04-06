@@ -108,9 +108,8 @@ public class SapCamelotUnitOfMeasurementControlle {
             HttpURLConnection getConn = sapCamelotApiConnector.createConnection(getEndpoint, "GET");
             JSONObject groupData = sapCamelotApiConnector.getJsonResponse(getConn);
 
-         
             JSONArray existingLines = groupData.getJSONArray("UoMGroupDefinitionCollection");
-
+            System.out.println("mexri edo good");
             // Step 2: Add the new UoM line
             JSONObject newLine = new JSONObject();
             newLine.put("AlternateUoM", uomEntry);
