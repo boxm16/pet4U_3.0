@@ -103,7 +103,7 @@ public class SapCamelotUnitOfMeasurementControlle {
             SapCamelotApiConnector sapCamelotApiConnector = new SapCamelotApiConnector();
 
             // SAP OData endpoint for adding UoM to Group
-            String endPoint = "/UnitOfMeasurementGroups(" + ugpEntry + ")/UnitOfMeasurementGroupItems";
+            String endPoint = "/UnitOfMeasurementGroups(" + ugpEntry + ")";
             String requestMethod = "POST";
 
             HttpURLConnection conn = sapCamelotApiConnector.createConnection(endPoint, requestMethod);
