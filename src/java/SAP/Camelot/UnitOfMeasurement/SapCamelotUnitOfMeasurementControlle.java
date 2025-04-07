@@ -104,31 +104,36 @@ public class SapCamelotUnitOfMeasurementControlle {
             SapCamelotApiConnector connector = new SapCamelotApiConnector();
 
             // 1. GET existing group
+            // 1. GET existing group
             String endpoint = "/UnitOfMeasurementGroups(" + ugpEntry + ")";
             HttpURLConnection getConn = connector.createConnection(endpoint, "GET");
 
             JSONObject groupData = connector.getJsonResponse(getConn);
             JSONArray existingLines = groupData.getJSONArray("UoMGroupDefinitionCollection");
 
-            // 2. Prepare new line (with ALL required fields)
+// 2. Add new UoM entry
             JSONObject newLine = new JSONObject();
             newLine.put("AlternateUoM", uomEntry);
             newLine.put("AlternateQuantity", 1);
             newLine.put("BaseQuantity", 1);
-            newLine.put("WeightFactor", 0);      // Required
-            newLine.put("UdfFactor", -1);        // Required
+            newLine.put("WeightFactor", 0);
+            newLine.put("UdfFactor", -1);
             newLine.put("Active", "tYES");
-            existingLines.put(newLine);
 
-            // 3. PATCH with full wrapper object
-            JSONObject patchPayload = new JSONObject();
-            patchPayload.put("UoMGroupDefinitionCollection", existingLines);
+// 3. Rebuild updated line array to include new entry
+            JSONArray updatedLines = new JSONArray();
+            for (int i = 0; i < existingLines.length(); i++) {
+                JSONObject line = existingLines.getJSONObject(i);
+                updatedLines.put(line); // retain original metadata like LineNumber if present
+            }
+            updatedLines.put(newLine);
 
-            System.out.println("PATCH Payload: " + patchPayload.toString(2));
+// 4. Put updated lines back into group data
+            groupData.put("UoMGroupDefinitionCollection", updatedLines);
 
+// 5. Send PATCH with full group object
             HttpURLConnection patchConn = connector.createConnection(endpoint, "PATCH");
-
-            connector.sendRequestBody(patchConn, patchPayload.toString());
+            connector.sendRequestBody(patchConn, groupData.toString());
 
             int responseCode = patchConn.getResponseCode();
             if (responseCode == 200 || responseCode == 204) {
