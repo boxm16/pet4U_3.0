@@ -344,6 +344,6 @@ public class SapCamelotUnitOfMeasurementControlle {
             redirectAttributes.addFlashAttribute("message",
                     "UoM Group may have been assigned, but an error occurred while processing the response.");
         }
-        return "redirect:sapCamelotItemUpdateServant.htm"; // Adjust redirect as needed
+        return "redirect:sapCamelotItemUpdateServant.htm?itemCode=" + itemCode; // Adjust redirect as needed
     }
 }
