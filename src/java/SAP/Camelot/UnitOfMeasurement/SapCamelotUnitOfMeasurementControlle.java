@@ -232,4 +232,70 @@ public class SapCamelotUnitOfMeasurementControlle {
         return "redirect:camelotUnitOfMeasurementGroupEditServant.htm?ugpEntry=" + ugpEntry;
     }
 
+    @RequestMapping(value = "updateBaseQuantity", method = RequestMethod.POST)
+    public String updateBaseQuantity(
+            @RequestParam("unitOfMeasurementGroupEntry") Integer ugpEntry,
+            @RequestParam("uomEntry") Integer uomEntry,
+            @RequestParam("baseQuantity") Double baseQuantity,
+            RedirectAttributes redirectAttributes) {
+
+        try {
+            SapCamelotApiConnector connector = new SapCamelotApiConnector();
+
+            // 1. GET existing group
+            String endpoint = "/UnitOfMeasurementGroups(" + ugpEntry + ")";
+            HttpURLConnection getConn = connector.createConnection(endpoint, "GET");
+            JSONObject groupData = connector.getJsonResponse(getConn);
+            JSONArray existingLines = groupData.getJSONArray("UoMGroupDefinitionCollection");
+
+            // 2. Find and update the specific UoM entry
+            boolean found = false;
+            for (int i = 0; i < existingLines.length(); i++) {
+                JSONObject line = existingLines.getJSONObject(i);
+                if (line.getInt("AlternateUoM") == uomEntry) {
+                    line.put("BaseQuantity", baseQuantity);
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found) {
+                redirectAttributes.addFlashAttribute("alertColor", "red");
+                redirectAttributes.addFlashAttribute("message", "UoM entry not found in group");
+                return "redirect:camelotUnitOfMeasurementGroupEditServant.htm?ugpEntry=" + ugpEntry;
+            }
+
+            // 3. Put updated lines back into group data
+            groupData.put("UoMGroupDefinitionCollection", existingLines);
+
+            // 4. Send PUT with updated group object
+            HttpURLConnection putConn = connector.createConnection(endpoint, "PUT");
+            connector.sendRequestBody(putConn, groupData.toString());
+
+            int responseCode = putConn.getResponseCode();
+            if (responseCode == 200 || responseCode == 204) {
+                System.out.println("✅ Base Quantity Updated Successfully!");
+                redirectAttributes.addFlashAttribute("alertColor", "green");
+                redirectAttributes.addFlashAttribute("message", "Base Quantity Updated Successfully.");
+            } else {
+                String errorResponse = connector.getErrorResponse(putConn);
+                System.out.println("❌ Error Updating Base Quantity: " + errorResponse);
+                redirectAttributes.addFlashAttribute("alertColor", "red");
+                redirectAttributes.addFlashAttribute("message", "Error Updating Base Quantity: " + errorResponse);
+            }
+
+        } catch (IOException ex) {
+            Logger.getLogger(SapCamelotUnitOfMeasurementControlle.class.getName()).log(Level.SEVERE, null, ex);
+            redirectAttributes.addFlashAttribute("alertColor", "red");
+            redirectAttributes.addFlashAttribute("message", "An error occurred: " + ex.getMessage());
+        } catch (Exception ex) {
+            Logger.getLogger(SapCamelotUnitOfMeasurementControlle.class.getName()).log(Level.SEVERE,
+                    "Exception occurred during Base Quantity update.", ex);
+            redirectAttributes.addFlashAttribute("alertColor", "red");
+            redirectAttributes.addFlashAttribute("message",
+                    "Base Quantity may have been updated, but an error occurred while processing the response.");
+        }
+        return "redirect:camelotUnitOfMeasurementGroupEditServant.htm?ugpEntry=" + ugpEntry;
+    }
+
 }
