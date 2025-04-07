@@ -356,35 +356,25 @@ public class SapCamelotUnitOfMeasurementControlle {
         SapCamelotApiConnector connector = new SapCamelotApiConnector();
 
         try {
+            // 1. Prepare endpoint and payload
             String endpoint = "/Items('" + URLEncoder.encode(itemCode, StandardCharsets.UTF_8.toString()) + "')";
 
-            // 1. Get the full item (for safety check)
-            JSONObject fullItem = connector.getJsonResponse(
-                    connector.createConnection(endpoint, "GET"));
-
-            // 2. Create minimal PATCH payload
             JSONObject updatePayload = new JSONObject();
             updatePayload.put("UoMGroupEntry", ugpEntry);
+            updatePayload.put("@odata.type", "SAPB1.Items"); // SAP B1 type annotation
 
-            // Add critical fields that might be required
-            updatePayload.put("ItemCode", fullItem.getString("ItemCode"));
-            updatePayload.put("ItemName", fullItem.getString("ItemName"));
-
-            // 3. Execute PATCH with required headers
+            // 2. Execute PATCH request
             HttpURLConnection patchConn = connector.createConnection(endpoint, "PATCH");
             patchConn.setRequestProperty("Content-Type", "application/json");
-            patchConn.setRequestProperty("If-Match", "*"); // Important for concurrent updates
-
             connector.sendRequestBody(patchConn, updatePayload.toString());
 
-            // 4. Verify success
-            int responseCode = patchConn.getResponseCode();
-            if (responseCode == 200 || responseCode == 204) {
+            // 3. Handle response
+            if (patchConn.getResponseCode() == 200 || patchConn.getResponseCode() == 204) {
                 redirectAttributes.addFlashAttribute("alertColor", "green");
-                redirectAttributes.addFlashAttribute("message", "UoM group updated successfully");
+                redirectAttributes.addFlashAttribute("message", "UoM Group successfully assigned");
             } else {
                 String errorResponse = connector.getErrorResponse(patchConn);
-                throw new Exception("Update failed: " + errorResponse);
+                throw new Exception("Assignment failed: " + errorResponse);
             }
 
         } catch (Exception ex) {
