@@ -350,7 +350,7 @@ public class SapCamelotUnitOfMeasurementControlle {
     @RequestMapping(value = "assignUomGroupToItem", method = RequestMethod.POST)
     public String assignUomGroupToItem(
             @RequestParam("itemCode") String itemCode,
-            @RequestParam("ugpEntry") Integer uomGroupEntry,
+            @RequestParam("ugpEntry") Integer ugpEntry,
             RedirectAttributes redirectAttributes) {
 
         SapCamelotApiConnector connector = new SapCamelotApiConnector();
@@ -364,11 +364,10 @@ public class SapCamelotUnitOfMeasurementControlle {
 
             // 2. Create update payload with ALL original fields + new UoM group
             JSONObject updatePayload = new JSONObject(fullItem.toString()); // Clone original
-            updatePayload.put("UoMGroupEntry", uomGroupEntry); // Only change this field
+            updatePayload.put("UoMGroupEntry", ugpEntry); // Only change this field
 
             // 3. Execute PUT request (not PATCH) to ensure full replacement
             HttpURLConnection putConn = connector.createConnection(endpoint, "PUT");
-            putConn.setRequestProperty("Content-Type", "application/json");
             connector.sendRequestBody(putConn, updatePayload.toString());
 
             // 4. Verify via status code
