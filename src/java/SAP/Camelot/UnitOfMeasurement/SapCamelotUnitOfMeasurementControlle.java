@@ -348,7 +348,7 @@ public class SapCamelotUnitOfMeasurementControlle {
         return "redirect:sapCamelotItemUpdateServant.htm?itemCode=" + itemCode; // Adjust redirect as needed
     }
 
-    @RequestMapping(value = "safeAssignUomGroupToItem", method = RequestMethod.POST)
+    @RequestMapping(value = "assignUomGroupToItem", method = RequestMethod.POST)
     public String safeAssignUomGroupToItem(
             @RequestParam("itemCode") String itemCode,
             @RequestParam("ugpEntry") Integer ugpEntry,
