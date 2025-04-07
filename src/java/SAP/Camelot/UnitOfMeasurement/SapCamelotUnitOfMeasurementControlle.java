@@ -132,7 +132,7 @@ public class SapCamelotUnitOfMeasurementControlle {
             groupData.put("UoMGroupDefinitionCollection", updatedLines);
 
 // 5. Send PATCH with full group object
-            HttpURLConnection patchConn = connector.createConnection(endpoint, "PATCH");
+            HttpURLConnection patchConn = connector.createConnection(endpoint, "PUT");
             connector.sendRequestBody(patchConn, groupData.toString());
 
             int responseCode = patchConn.getResponseCode();
