@@ -115,8 +115,8 @@ public class SapCamelotUnitOfMeasurementControlle {
             newLine.put("AlternateUoM", uomEntry);
             newLine.put("AlternateQuantity", 1);
             newLine.put("BaseQuantity", 1);
-            newLine.put("WeightFactor", 0);
-            newLine.put("UdfFactor", -1);
+            newLine.put("WeightFactor", 0);      // Required
+            newLine.put("UdfFactor", -1);        // Required
             newLine.put("Active", "tYES");
             existingLines.put(newLine);
 
