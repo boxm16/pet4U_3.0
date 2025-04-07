@@ -358,24 +358,33 @@ public class SapCamelotUnitOfMeasurementControlle {
         try {
             String endpoint = "/Items('" + URLEncoder.encode(itemCode, StandardCharsets.UTF_8.toString()) + "')";
 
-            // 1. FIRST GET THE FULL ITEM (for backup)
+            // 1. Get the full item (for safety check)
             JSONObject fullItem = connector.getJsonResponse(
                     connector.createConnection(endpoint, "GET"));
 
-            // 2. Create update payload with ALL original fields + new UoM group
-            JSONObject updatePayload = new JSONObject(fullItem.toString()); // Clone original
-            updatePayload.put("UoMGroupEntry", ugpEntry); // Only change this field
+            // 2. Create minimal PATCH payload
+            JSONObject updatePayload = new JSONObject();
+            updatePayload.put("UoMGroupEntry", ugpEntry);
 
-            // 3. Execute PUT request (not PATCH) to ensure full replacement
-            HttpURLConnection putConn = connector.createConnection(endpoint, "PUT");
-            connector.sendRequestBody(putConn, updatePayload.toString());
+            // Add critical fields that might be required
+            updatePayload.put("ItemCode", fullItem.getString("ItemCode"));
+            updatePayload.put("ItemName", fullItem.getString("ItemName"));
 
-            // 4. Verify via status code
-            if (putConn.getResponseCode() == 200 || putConn.getResponseCode() == 204) {
+            // 3. Execute PATCH with required headers
+            HttpURLConnection patchConn = connector.createConnection(endpoint, "PATCH");
+            patchConn.setRequestProperty("Content-Type", "application/json");
+            patchConn.setRequestProperty("If-Match", "*"); // Important for concurrent updates
+
+            connector.sendRequestBody(patchConn, updatePayload.toString());
+
+            // 4. Verify success
+            int responseCode = patchConn.getResponseCode();
+            if (responseCode == 200 || responseCode == 204) {
                 redirectAttributes.addFlashAttribute("alertColor", "green");
-                redirectAttributes.addFlashAttribute("message", "UoM group updated with all data preserved");
+                redirectAttributes.addFlashAttribute("message", "UoM group updated successfully");
             } else {
-                throw new Exception("Update failed with status: " + putConn.getResponseCode());
+                String errorResponse = connector.getErrorResponse(patchConn);
+                throw new Exception("Update failed: " + errorResponse);
             }
 
         } catch (Exception ex) {
@@ -384,6 +393,6 @@ public class SapCamelotUnitOfMeasurementControlle {
             Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
         }
 
-        return "redirect:sapCamelotItemUpdateServant.htm?itemCode=" + itemCode; // Adjust redirect as needed
+        return "redirect:sapCamelotItemUpdateServant.htm?itemCode=" + itemCode;
     }
 }
