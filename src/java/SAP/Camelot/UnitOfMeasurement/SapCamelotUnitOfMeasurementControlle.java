@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -347,8 +348,8 @@ public class SapCamelotUnitOfMeasurementControlle {
         return "redirect:sapCamelotItemUpdateServant.htm?itemCode=" + itemCode; // Adjust redirect as needed
     }
 
-    @RequestMapping(value = "assignUomGroupToItem", method = RequestMethod.POST)
-    public String assignUomGroupToItem(
+    @RequestMapping(value = "safeAssignUomGroupToItem", method = RequestMethod.POST)
+    public String safeAssignUomGroupToItem(
             @RequestParam("itemCode") String itemCode,
             @RequestParam("ugpEntry") Integer ugpEntry,
             RedirectAttributes redirectAttributes) {
@@ -356,25 +357,45 @@ public class SapCamelotUnitOfMeasurementControlle {
         SapCamelotApiConnector connector = new SapCamelotApiConnector();
 
         try {
-            // 1. Prepare endpoint and payload
+            // 1. Get the complete current item data
             String endpoint = "/Items('" + URLEncoder.encode(itemCode, StandardCharsets.UTF_8.toString()) + "')";
+            HttpURLConnection getConn = connector.createConnection(endpoint, "GET");
+            JSONObject itemData = connector.getJsonResponse(getConn);
 
+            // 2. Create a new payload with ALL original data
             JSONObject updatePayload = new JSONObject();
+
+            // Copy all existing fields to preserve them
+            Iterator<String> keys = itemData.keys();
+            while (keys.hasNext()) {
+                String key = keys.next();
+                updatePayload.put(key, itemData.get(key));
+            }
+
+            // 3. Update ONLY the UoMGroupEntry field
             updatePayload.put("UoMGroupEntry", ugpEntry);
-            updatePayload.put("@odata.type", "SAPB1.Items"); // SAP B1 type annotation
 
-            // 2. Execute PATCH request
-            HttpURLConnection patchConn = connector.createConnection(endpoint, "PATCH");
-            patchConn.setRequestProperty("Content-Type", "application/json");
-            connector.sendRequestBody(patchConn, updatePayload.toString());
+            // 4. Send PUT request (not PATCH) to ensure complete update
+            HttpURLConnection putConn = connector.createConnection(endpoint, "PUT");
+            putConn.setRequestProperty("Content-Type", "application/json");
+            connector.sendRequestBody(putConn, updatePayload.toString());
 
-            // 3. Handle response
-            if (patchConn.getResponseCode() == 200 || patchConn.getResponseCode() == 204) {
-                redirectAttributes.addFlashAttribute("alertColor", "green");
-                redirectAttributes.addFlashAttribute("message", "UoM Group successfully assigned");
+            // 5. Verify success
+            int responseCode = putConn.getResponseCode();
+            if (responseCode == 200 || responseCode == 204) {
+                // Double-check barcode was preserved
+                JSONObject updatedItem = connector.getJsonResponse(
+                        connector.createConnection(endpoint, "GET"));
+
+                if (updatedItem.has("Barcode") && !updatedItem.isNull("Barcode")) {
+                    redirectAttributes.addFlashAttribute("alertColor", "green");
+                    redirectAttributes.addFlashAttribute("message", "UoM Group assigned successfully (Barcode preserved)");
+                } else {
+                    throw new Exception("Barcode was lost during update");
+                }
             } else {
-                String errorResponse = connector.getErrorResponse(patchConn);
-                throw new Exception("Assignment failed: " + errorResponse);
+                String errorResponse = connector.getErrorResponse(putConn);
+                throw new Exception("Update failed: " + errorResponse);
             }
 
         } catch (Exception ex) {
