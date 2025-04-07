@@ -4,7 +4,6 @@ import SAP.SapBasicModel.SapUnitOfMeasurement;
 import SAP.SapBasicModel.SapUnitOfMeasurementGroup;
 import SAP.SapCamelotApiConnector;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
@@ -12,7 +11,6 @@ import java.util.LinkedHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -302,87 +300,90 @@ public class SapCamelotUnitOfMeasurementControlle {
         return "redirect:camelotUnitOfMeasurementGroupEditServant.htm?ugpEntry=" + ugpEntry;
     }
 
-    @RequestMapping(value = "assignUomGroupToItem", method = RequestMethod.POST)
-    public String safeAssignUomGroupToItem(
+    @RequestMapping(value = "assignUomGroupToItem1", method = RequestMethod.POST)
+    public String assignUomGroupToItem1(
             @RequestParam("itemCode") String itemCode,
             @RequestParam("ugpEntry") Integer ugpEntry,
             RedirectAttributes redirectAttributes) {
 
         try {
-
-            // Initialize API connector
             SapCamelotApiConnector connector = new SapCamelotApiConnector();
-            String encodedItemCode = URLEncoder.encode(itemCode, StandardCharsets.UTF_8.toString());
-            String endpoint = "/Items('" + encodedItemCode + "')";
 
-            try {
-                // 1. First GET the complete item snapshot (for backup)
-                JSONObject originalItem = connector.getJsonResponse(
-                        connector.createConnection(endpoint + "?$select=*", "GET"));
+            // 1. GET the existing item data
+            String endpoint = "/Items('" + URLEncoder.encode(itemCode, StandardCharsets.UTF_8.toString()) + "')";
+            HttpURLConnection getConn = connector.createConnection(endpoint, "GET");
+            JSONObject itemData = connector.getJsonResponse(getConn);
 
-                // 2. Create minimal update payload with ONLY the field we want to change
-                JSONObject updatePayload = new JSONObject();
-                updatePayload.put("UoMGroupEntry", ugpEntry);
+            // 2. Update the UoM group reference
+            itemData.put("UoMGroupEntry", ugpEntry);
 
-                // 3. Execute safe PATCH request
-                HttpURLConnection patchConn = connector.createConnection(endpoint, "PATCH");
-                connector.sendRequestBody(patchConn, updatePayload.toString());
+            // 3. Send PATCH with updated item data
+            HttpURLConnection patchConn = connector.createConnection(endpoint, "PATCH");
+            connector.sendRequestBody(patchConn, itemData.toString());
 
-                // 4. Verify the update didn't affect other fields
-                JSONObject updatedItem = connector.getJsonResponse(
-                        connector.createConnection(endpoint + "?$select=UoMGroupEntry,Barcode,Prices", "GET"));
-
-                // 5. Validation checks
-                if (!validateUpdateSuccess(originalItem, updatedItem, ugpEntry)) {
-                    // Restore original data if validation fails
-                    HttpURLConnection restoreConn = connector.createConnection(endpoint, "PUT");
-                    connector.sendRequestBody(restoreConn, originalItem.toString());
-
-                    throw new Exception("Field validation failed - rolled back changes");
-                }
-
+            int responseCode = patchConn.getResponseCode();
+            if (responseCode == 200 || responseCode == 204) {
+                System.out.println("✅ UoM Group assigned to item successfully!");
                 redirectAttributes.addFlashAttribute("alertColor", "green");
-                redirectAttributes.addFlashAttribute("message", "UoM group updated safely");
-
-            } catch (Exception ex) {
-                Logger.getLogger(SapCamelotUnitOfMeasurementControlle.class.getName()).log(Level.SEVERE, null, ex);
+                redirectAttributes.addFlashAttribute("message", "UoM Group assigned to item successfully.");
+            } else {
+                String errorResponse = connector.getErrorResponse(patchConn);
+                System.out.println("❌ Error assigning UoM Group to item: " + errorResponse);
                 redirectAttributes.addFlashAttribute("alertColor", "red");
-                redirectAttributes.addFlashAttribute("message", "Safe update failed: " + ex.getMessage());
+                redirectAttributes.addFlashAttribute("message", "Error assigning UoM Group to item: " + errorResponse);
             }
 
-        } catch (UnsupportedEncodingException ex) {
+        } catch (IOException ex) {
             Logger.getLogger(SapCamelotUnitOfMeasurementControlle.class.getName()).log(Level.SEVERE, null, ex);
+            redirectAttributes.addFlashAttribute("alertColor", "red");
+            redirectAttributes.addFlashAttribute("message", "An error occurred: " + ex.getMessage());
+        } catch (Exception ex) {
+            Logger.getLogger(SapCamelotUnitOfMeasurementControlle.class.getName()).log(Level.SEVERE,
+                    "Exception occurred during UoM Group assignment.", ex);
+            redirectAttributes.addFlashAttribute("alertColor", "red");
+            redirectAttributes.addFlashAttribute("message",
+                    "UoM Group may have been assigned, but an error occurred while processing the response.");
         }
-        return "redirect:sapCamelotItemUpdateServant.htm?itemCode=" + itemCode;
+        return "redirect:sapCamelotItemUpdateServant.htm?itemCode=" + itemCode; // Adjust redirect as needed
     }
 
-    /**
-     * Validates that only the UoMGroupEntry was modified
-     */
-    private boolean validateUpdateSuccess(JSONObject original, JSONObject updated, int expectedUoMGroup) {
+    @RequestMapping(value = "assignUomGroupToItem", method = RequestMethod.POST)
+    public String assignUomGroupToItem(
+            @RequestParam("itemCode") String itemCode,
+            @RequestParam("ugpEntry") Integer uomGroupEntry,
+            RedirectAttributes redirectAttributes) {
+
+        SapCamelotApiConnector connector = new SapCamelotApiConnector();
+        String endpoint = "/Items('" + itemCode.replace("'", "''") + "')";
+
         try {
-            // 1. Check the target field was updated correctly
-            if (updated.getInt("UoMGroupEntry") != expectedUoMGroup) {
-                return false;
+            // 1. FIRST GET THE FULL ITEM (for backup)
+            JSONObject fullItem = connector.getJsonResponse(
+                    connector.createConnection(endpoint, "GET"));
+
+            // 2. Create update payload with ALL original fields + new UoM group
+            JSONObject updatePayload = new JSONObject(fullItem.toString()); // Clone original
+            updatePayload.put("UoMGroupEntry", uomGroupEntry); // Only change this field
+
+            // 3. Execute PUT request (not PATCH) to ensure full replacement
+            HttpURLConnection putConn = connector.createConnection(endpoint, "PUT");
+            putConn.setRequestProperty("Content-Type", "application/json");
+            connector.sendRequestBody(putConn, updatePayload.toString());
+
+            // 4. Verify via status code
+            if (putConn.getResponseCode() == 200 || putConn.getResponseCode() == 204) {
+                redirectAttributes.addFlashAttribute("alertColor", "green");
+                redirectAttributes.addFlashAttribute("message", "UoM group updated with all data preserved");
+            } else {
+                throw new Exception("Update failed with status: " + putConn.getResponseCode());
             }
 
-            // 2. Verify critical fields remain unchanged
-            String[] criticalFields = {"Barcode", "ItemName", "Prices", "InventoryUoM"};
-            for (String field : criticalFields) {
-                if (original.has(field) && !original.get(field).equals(updated.opt(field))) {
-                    return false;
-                }
-            }
-
-            // 3. Additional checks for numeric fields with tolerance
-            if (Math.abs(original.optDouble("Price", 0) - updated.optDouble("Price", 0)) > 0.01) {
-                return false;
-            }
-
-            return true;
-
-        } catch (JSONException e) {
-            return false;
+        } catch (Exception ex) {
+            redirectAttributes.addFlashAttribute("alertColor", "red");
+            redirectAttributes.addFlashAttribute("message", "Error: " + ex.getMessage());
+            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
         }
+
+        return "redirect:sapCamelotItemUpdateServant.htm?itemCode=" + itemCode; // Adjust redirect as needed
     }
 }
