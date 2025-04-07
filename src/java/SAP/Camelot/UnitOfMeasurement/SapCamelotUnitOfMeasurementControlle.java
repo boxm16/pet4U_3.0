@@ -354,9 +354,10 @@ public class SapCamelotUnitOfMeasurementControlle {
             RedirectAttributes redirectAttributes) {
 
         SapCamelotApiConnector connector = new SapCamelotApiConnector();
-        String endpoint = "/Items('" + itemCode.replace("'", "''") + "')";
 
         try {
+            String endpoint = "/Items('" + URLEncoder.encode(itemCode, StandardCharsets.UTF_8.toString()) + "')";
+
             // 1. FIRST GET THE FULL ITEM (for backup)
             JSONObject fullItem = connector.getJsonResponse(
                     connector.createConnection(endpoint, "GET"));
