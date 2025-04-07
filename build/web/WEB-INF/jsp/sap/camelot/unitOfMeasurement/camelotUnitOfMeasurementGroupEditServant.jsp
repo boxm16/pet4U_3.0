@@ -142,7 +142,24 @@
                                         <td>${loop.index + 1}</td>
                                         <td>${uomEntry.value.uomCode}</td>
                                         <td>${uomEntry.value.uomName}</td>
-                                        <td>${uomEntry.value.baseQuantity}</td>
+                                        <td>
+                                            <form action="updateBaseQuantity.htm" method="post" style="display:inline;">
+                                                <input type="hidden" name="unitOfMeasurementGroupEntry" value="${unitOfMeasurementGroup.ugpEntry}" />
+                                                <input type="hidden" name="uomEntry" value="${uomEntry.value.uomEntry}" />
+                                                <div class="input-group input-group-sm">
+                                                    <input type="number" 
+                                                           class="form-control form-control-sm" 
+                                                           name="baseQuantity" 
+                                                           value="${uomEntry.value.baseQuantity}" 
+                                                           step="0.0001" 
+                                                           min="0"
+                                                           required>
+                                                    <button type="submit" class="btn btn-sm btn-outline-primary" title="Update Quantity">
+                                                        <i class="fas fa-save"></i>
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </td>
                                         <td class="text-center">
                                             <form action="removeUomFromGroup.htm" method="post" style="display:inline;" 
                                                   onsubmit="return confirm('Are you sure you want to remove this unit from the group?');">
@@ -152,7 +169,6 @@
                                                     <i class="fas fa-trash-alt"></i> Remove
                                                 </button>
                                             </form>
-
                                         </td>
                                     </tr>
                                 </c:forEach>
@@ -199,21 +215,21 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 
         <script>
-          // Enable Bootstrap form validation
-          (function () {
-              'use strict';
-              const forms = document.querySelectorAll('.needs-validation');
+                              // Enable Bootstrap form validation
+                              (function () {
+                                  'use strict';
+                                  const forms = document.querySelectorAll('.needs-validation');
 
-              Array.from(forms).forEach(form => {
-                  form.addEventListener('submit', event => {
-                      if (!form.checkValidity()) {
-                          event.preventDefault();
-                          event.stopPropagation();
-                      }
-                      form.classList.add('was-validated');
-                  }, false);
-              });
-          })();
+                                  Array.from(forms).forEach(form => {
+                                      form.addEventListener('submit', event => {
+                                          if (!form.checkValidity()) {
+                                              event.preventDefault();
+                                              event.stopPropagation();
+                                          }
+                                          form.classList.add('was-validated');
+                                      }, false);
+                                  });
+                              })();
         </script>
     </body>
 </html>
