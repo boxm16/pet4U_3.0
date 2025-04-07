@@ -303,7 +303,7 @@ public class SapCamelotUnitOfMeasurementControlle {
     @RequestMapping(value = "assignUomGroupToItem", method = RequestMethod.POST)
     public String assignUomGroupToItem(
             @RequestParam("itemCode") String itemCode,
-            @RequestParam("uomGroupEntry") Integer uomGroupEntry,
+            @RequestParam("ugpEntry") Integer ugpEntry,
             RedirectAttributes redirectAttributes) {
 
         try {
@@ -315,7 +315,7 @@ public class SapCamelotUnitOfMeasurementControlle {
             JSONObject itemData = connector.getJsonResponse(getConn);
 
             // 2. Update the UoM group reference
-            itemData.put("UoMGroupEntry", uomGroupEntry);
+            itemData.put("UoMGroupEntry", ugpEntry);
 
             // 3. Send PATCH with updated item data
             HttpURLConnection patchConn = connector.createConnection(endpoint, "PATCH");
