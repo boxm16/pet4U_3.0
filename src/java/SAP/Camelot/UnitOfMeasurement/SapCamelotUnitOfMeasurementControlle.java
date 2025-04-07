@@ -305,7 +305,7 @@ public class SapCamelotUnitOfMeasurementControlle {
     @RequestMapping(value = "assignUomGroupToItem", method = RequestMethod.POST)
     public String safeAssignUomGroupToItem(
             @RequestParam("itemCode") String itemCode,
-            @RequestParam("uomGroupEntry") Integer uomGroupEntry,
+            @RequestParam("ugpEntry") Integer ugpEntry,
             RedirectAttributes redirectAttributes) {
 
         try {
@@ -322,7 +322,7 @@ public class SapCamelotUnitOfMeasurementControlle {
 
                 // 2. Create minimal update payload with ONLY the field we want to change
                 JSONObject updatePayload = new JSONObject();
-                updatePayload.put("UoMGroupEntry", uomGroupEntry);
+                updatePayload.put("UoMGroupEntry", ugpEntry);
 
                 // 3. Execute safe PATCH request
                 HttpURLConnection patchConn = connector.createConnection(endpoint, "PATCH");
@@ -333,7 +333,7 @@ public class SapCamelotUnitOfMeasurementControlle {
                         connector.createConnection(endpoint + "?$select=UoMGroupEntry,Barcode,Prices", "GET"));
 
                 // 5. Validation checks
-                if (!validateUpdateSuccess(originalItem, updatedItem, uomGroupEntry)) {
+                if (!validateUpdateSuccess(originalItem, updatedItem, ugpEntry)) {
                     // Restore original data if validation fails
                     HttpURLConnection restoreConn = connector.createConnection(endpoint, "PUT");
                     connector.sendRequestBody(restoreConn, originalItem.toString());
