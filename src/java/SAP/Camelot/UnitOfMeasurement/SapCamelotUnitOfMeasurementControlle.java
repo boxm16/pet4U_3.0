@@ -124,6 +124,8 @@ public class SapCamelotUnitOfMeasurementControlle {
             JSONObject patchPayload = new JSONObject();
             patchPayload.put("UoMGroupDefinitionCollection", existingLines);
 
+            System.out.println("PATCH Payload: " + patchPayload.toString(2));
+
             HttpURLConnection patchConn = connector.createConnection(endpoint, "PATCH");
 
             connector.sendRequestBody(patchConn, patchPayload.toString());
