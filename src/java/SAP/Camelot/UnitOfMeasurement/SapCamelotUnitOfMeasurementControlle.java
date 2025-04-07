@@ -163,4 +163,73 @@ public class SapCamelotUnitOfMeasurementControlle {
         return "redirect:camelotUnitOfMeasurementGroupEditServant.htm?ugpEntry=" + ugpEntry;
     }
 
+    @RequestMapping(value = "removeUomFromGroup", method = RequestMethod.POST)
+    public String removeUomFromGroup(
+            @RequestParam("unitOfMeasurementGroupEntry") Integer ugpEntry,
+            @RequestParam("uomEntryToRemove") Integer uomEntryToRemove,
+            RedirectAttributes redirectAttributes) {
+
+        try {
+            SapCamelotApiConnector connector = new SapCamelotApiConnector();
+
+            // 1. GET the full UoM Group
+            String endpoint = "/UnitOfMeasurementGroups(" + ugpEntry + ")";
+            HttpURLConnection getConn = connector.createConnection(endpoint, "GET");
+
+            JSONObject groupData = connector.getJsonResponse(getConn);
+            JSONArray existingLines = groupData.getJSONArray("UoMGroupDefinitionCollection");
+
+            // 2. Rebuild UoMGroupDefinitionCollection without the target UoM
+            JSONArray updatedLines = new JSONArray();
+            boolean uomFound = false;
+
+            for (int i = 0; i < existingLines.length(); i++) {
+                JSONObject line = existingLines.getJSONObject(i);
+                int existingUomEntry = line.getInt("AlternateUoM");
+
+                if (existingUomEntry != uomEntryToRemove) {
+                    updatedLines.put(line);
+                } else {
+                    uomFound = true;
+                }
+            }
+
+            if (!uomFound) {
+                redirectAttributes.addFlashAttribute("alertColor", "yellow");
+                redirectAttributes.addFlashAttribute("message", "UoM not found in group — nothing was removed.");
+                return "redirect:camelotUnitOfMeasurementGroupEditServant.htm?ugpEntry=" + ugpEntry;
+            }
+
+            // 3. Update the group with the modified list
+            groupData.put("UoMGroupDefinitionCollection", updatedLines);
+
+            HttpURLConnection putConn = connector.createConnection(endpoint, "PUT");
+            connector.sendRequestBody(putConn, groupData.toString());
+
+            int responseCode = putConn.getResponseCode();
+            if (responseCode == 200 || responseCode == 204) {
+                System.out.println("✅ UoM removed from group successfully!");
+                redirectAttributes.addFlashAttribute("alertColor", "green");
+                redirectAttributes.addFlashAttribute("message", "UoM removed from group successfully.");
+            } else {
+                String errorResponse = connector.getErrorResponse(putConn);
+                System.out.println("❌ Error removing UoM: " + errorResponse);
+                redirectAttributes.addFlashAttribute("alertColor", "red");
+                redirectAttributes.addFlashAttribute("message", "Error removing UoM: " + errorResponse);
+            }
+
+        } catch (IOException ex) {
+            Logger.getLogger(SapCamelotUnitOfMeasurementControlle.class.getName()).log(Level.SEVERE, null, ex);
+            redirectAttributes.addFlashAttribute("alertColor", "red");
+            redirectAttributes.addFlashAttribute("message", "An I/O error occurred: " + ex.getMessage());
+        } catch (Exception ex) {
+            Logger.getLogger(SapCamelotUnitOfMeasurementControlle.class.getName()).log(Level.SEVERE,
+                    "Exception occurred while removing UoM.", ex);
+            redirectAttributes.addFlashAttribute("alertColor", "red");
+            redirectAttributes.addFlashAttribute("message", "An unexpected error occurred while removing UoM.");
+        }
+
+        return "redirect:camelotUnitOfMeasurementGroupEditServant.htm?ugpEntry=" + ugpEntry;
+    }
+
 }

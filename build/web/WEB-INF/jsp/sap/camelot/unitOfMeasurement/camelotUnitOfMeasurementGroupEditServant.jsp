@@ -144,12 +144,15 @@
                                         <td>${uomEntry.value.uomName}</td>
                                         <td>${uomEntry.value.baseQuantity}</td>
                                         <td class="text-center">
-                                            <a href="removeUomFromGroup.htm?ugpEntry=${unitOfMeasurementGroup.ugpEntry}&uomEntry=${uomEntry.value.uomEntry}" 
-                                               class="btn btn-sm btn-outline-danger"
-                                               title="Remove from Group"
-                                               onclick="return confirm('Are you sure you want to remove this unit from the group?');">
-                                                <i class="fas fa-trash-alt"></i> Remove
-                                            </a>
+                                            <form action="removeUomFromGroup.htm" method="post" style="display:inline;" 
+                                                  onsubmit="return confirm('Are you sure you want to remove this unit from the group?');">
+                                                <input type="hidden" name="unitOfMeasurementGroupEntry" value="${unitOfMeasurementGroup.ugpEntry}" />
+                                                <input type="hidden" name="uomEntryToRemove" value="${uomEntry.value.uomEntry}" />
+                                                <button type="submit" class="btn btn-sm btn-outline-danger" title="Remove from Group">
+                                                    <i class="fas fa-trash-alt"></i> Remove
+                                                </button>
+                                            </form>
+
                                         </td>
                                     </tr>
                                 </c:forEach>
@@ -196,21 +199,21 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 
         <script>
-                                                   // Enable Bootstrap form validation
-                                                   (function () {
-                                                       'use strict';
-                                                       const forms = document.querySelectorAll('.needs-validation');
+          // Enable Bootstrap form validation
+          (function () {
+              'use strict';
+              const forms = document.querySelectorAll('.needs-validation');
 
-                                                       Array.from(forms).forEach(form => {
-                                                           form.addEventListener('submit', event => {
-                                                               if (!form.checkValidity()) {
-                                                                   event.preventDefault();
-                                                                   event.stopPropagation();
-                                                               }
-                                                               form.classList.add('was-validated');
-                                                           }, false);
-                                                       });
-                                                   })();
+              Array.from(forms).forEach(form => {
+                  form.addEventListener('submit', event => {
+                      if (!form.checkValidity()) {
+                          event.preventDefault();
+                          event.stopPropagation();
+                      }
+                      form.classList.add('was-validated');
+                  }, false);
+              });
+          })();
         </script>
     </body>
 </html>
