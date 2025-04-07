@@ -5,6 +5,8 @@ import SAP.SapBasicModel.SapUnitOfMeasurementGroup;
 import SAP.SapCamelotApiConnector;
 import java.io.IOException;
 import java.net.HttpURLConnection;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.LinkedHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -298,4 +300,50 @@ public class SapCamelotUnitOfMeasurementControlle {
         return "redirect:camelotUnitOfMeasurementGroupEditServant.htm?ugpEntry=" + ugpEntry;
     }
 
+    @RequestMapping(value = "assignUomGroupToItem", method = RequestMethod.POST)
+    public String assignUomGroupToItem(
+            @RequestParam("itemCode") String itemCode,
+            @RequestParam("uomGroupEntry") Integer uomGroupEntry,
+            RedirectAttributes redirectAttributes) {
+
+        try {
+            SapCamelotApiConnector connector = new SapCamelotApiConnector();
+
+            // 1. GET the existing item data
+            String endpoint = "/Items('" + URLEncoder.encode(itemCode, StandardCharsets.UTF_8.toString()) + "')";
+            HttpURLConnection getConn = connector.createConnection(endpoint, "GET");
+            JSONObject itemData = connector.getJsonResponse(getConn);
+
+            // 2. Update the UoM group reference
+            itemData.put("UoMGroupEntry", uomGroupEntry);
+
+            // 3. Send PATCH with updated item data
+            HttpURLConnection patchConn = connector.createConnection(endpoint, "PATCH");
+            connector.sendRequestBody(patchConn, itemData.toString());
+
+            int responseCode = patchConn.getResponseCode();
+            if (responseCode == 200 || responseCode == 204) {
+                System.out.println("✅ UoM Group assigned to item successfully!");
+                redirectAttributes.addFlashAttribute("alertColor", "green");
+                redirectAttributes.addFlashAttribute("message", "UoM Group assigned to item successfully.");
+            } else {
+                String errorResponse = connector.getErrorResponse(patchConn);
+                System.out.println("❌ Error assigning UoM Group to item: " + errorResponse);
+                redirectAttributes.addFlashAttribute("alertColor", "red");
+                redirectAttributes.addFlashAttribute("message", "Error assigning UoM Group to item: " + errorResponse);
+            }
+
+        } catch (IOException ex) {
+            Logger.getLogger(SapCamelotUnitOfMeasurementControlle.class.getName()).log(Level.SEVERE, null, ex);
+            redirectAttributes.addFlashAttribute("alertColor", "red");
+            redirectAttributes.addFlashAttribute("message", "An error occurred: " + ex.getMessage());
+        } catch (Exception ex) {
+            Logger.getLogger(SapCamelotUnitOfMeasurementControlle.class.getName()).log(Level.SEVERE,
+                    "Exception occurred during UoM Group assignment.", ex);
+            redirectAttributes.addFlashAttribute("alertColor", "red");
+            redirectAttributes.addFlashAttribute("message",
+                    "UoM Group may have been assigned, but an error occurred while processing the response.");
+        }
+        return "redirect:sapCamelotItemUpdateServant.htm"; // Adjust redirect as needed
+    }
 }
