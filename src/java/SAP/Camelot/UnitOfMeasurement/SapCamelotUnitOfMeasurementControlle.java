@@ -103,62 +103,56 @@ public class SapCamelotUnitOfMeasurementControlle {
         try {
             SapCamelotApiConnector connector = new SapCamelotApiConnector();
 
-            // 1. Get existing group (SIMPLIFIED endpoint)
-            String getEndpoint = "/UnitOfMeasurementGroups(" + ugpEntry + ")";
-            HttpURLConnection getConn = connector.createConnection(getEndpoint, "GET");
-
-            // Add these REQUIRED SAP headers
-            getConn.setRequestProperty("Prefer", "odata.include-annotations=*");
-            getConn.setRequestProperty("Accept", "application/json");
-
-            // Debug request
-            System.out.println("GET Request to: " + getConn.getURL());
-            System.out.println("Headers: " + getConn.getRequestProperties());
+            // 1. GET existing group
+            String endpoint = "/UnitOfMeasurementGroups(" + ugpEntry + ")";
+            HttpURLConnection getConn = connector.createConnection(endpoint, "GET");
 
             JSONObject groupData = connector.getJsonResponse(getConn);
-            System.out.println("Response Data: " + groupData.toString(2));
+            JSONArray existingLines = groupData.getJSONArray("UoMGroupDefinitionCollection");
 
-            // 2. Prepare new line (with SAP-required fields)
+            // 2. Prepare new line (with ALL required fields)
             JSONObject newLine = new JSONObject();
-            newLine.put("UoMEntry", uomEntry); // Try alternate field name
             newLine.put("AlternateUoM", uomEntry);
-            newLine.put("BaseQuantity", 1.0);
-            newLine.put("AlternateQuantity", 1.0);
+            newLine.put("AlternateQuantity", 1);
+            newLine.put("BaseQuantity", 1);
+            newLine.put("WeightFactor", 0);
+            newLine.put("UdfFactor", -1);
             newLine.put("Active", "tYES");
+            existingLines.put(newLine);
 
-            // 3. Update collection
-            JSONArray items = groupData.optJSONArray("Items") != null
-                    ? groupData.getJSONArray("Items")
-                    : new JSONArray();
-            items.put(newLine);
-
-            // 4. Prepare PATCH with minimal required fields
+            // 3. PATCH with full wrapper object
             JSONObject patchPayload = new JSONObject();
-            patchPayload.put("Items", items);
+            patchPayload.put("UoMGroupDefinitionCollection", existingLines);
 
-            // 5. Send PATCH with SAP-required headers
-            HttpURLConnection patchConn = connector.createConnection(getEndpoint, "PATCH");
-            patchConn.setRequestProperty("Content-Type", "application/json");
-            patchConn.setRequestProperty("If-Match", "*");
+            HttpURLConnection patchConn = connector.createConnection(endpoint, "PATCH");
 
             connector.sendRequestBody(patchConn, patchPayload.toString());
 
-            // Handle response
-            if (patchConn.getResponseCode() == 204) {
+            int responseCode = patchConn.getResponseCode();
+            if (responseCode == 200 || responseCode == 204) {
+                System.out.println("✅ UoM Group Updated Successfully!");
                 redirectAttributes.addFlashAttribute("alertColor", "green");
-                redirectAttributes.addFlashAttribute("message", "UoM added successfully");
+                redirectAttributes.addFlashAttribute("message", "UoM Group Updated Successfully.");
             } else {
-                String error = connector.getErrorResponse(patchConn);
+                String errorResponse = connector.getErrorResponse(patchConn);
+                System.out.println("❌ Error Updating UoM Group: " + errorResponse);
                 redirectAttributes.addFlashAttribute("alertColor", "red");
-                redirectAttributes.addFlashAttribute("message", "SAP Error: " + error);
+                redirectAttributes.addFlashAttribute("message", "Error Updating UoM Group: " + errorResponse);
+                return "redirect:camelotUnitOfMeasurementGroupEditServant.htm?ugpEntry=" + ugpEntry;
             }
 
-        } catch (Exception ex) {
+        } catch (IOException ex) {
+            Logger.getLogger(SapCamelotUnitOfMeasurementControlle.class.getName()).log(Level.SEVERE, null, ex);
             redirectAttributes.addFlashAttribute("alertColor", "red");
-            redirectAttributes.addFlashAttribute("message", "Error: " + ex.getMessage());
-            ex.printStackTrace();
+            redirectAttributes.addFlashAttribute("message", "An error occurred: " + ex.getMessage());
+            return "redirect:camelotUnitOfMeasurementGroupEditServant.htm?ugpEntry=" + ugpEntry;
+        } catch (Exception ex) {
+            Logger.getLogger(SapCamelotUnitOfMeasurementControlle.class.getName()).log(Level.SEVERE,
+                    "Exception occurred during UoM Group update.", ex);
+            redirectAttributes.addFlashAttribute("alertColor", "red");
+            redirectAttributes.addFlashAttribute("message",
+                    "UoM Group may have been updated, but an error occurred while processing the response.");
         }
-
         return "redirect:camelotUnitOfMeasurementGroupEditServant.htm?ugpEntry=" + ugpEntry;
     }
 
