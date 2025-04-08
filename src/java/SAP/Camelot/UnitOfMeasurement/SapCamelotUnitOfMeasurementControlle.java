@@ -362,7 +362,7 @@ public class SapCamelotUnitOfMeasurementControlle {
             JSONObject itemData = connector.getJsonResponse(getConn);
 
             // 2. Unassign UoM Group
-            itemData.put("UoMGroupEntry", JSONObject.NULL);
+            itemData.put("UoMGroupEntry", -1);
 
             // 3. Send full updated item as PATCH
             HttpURLConnection patchConn = connector.createConnection(endpoint, "PATCH");
