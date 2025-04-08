@@ -348,4 +348,54 @@ public class SapCamelotUnitOfMeasurementControlle {
         return "redirect:sapCamelotItemUpdateServant.htm?itemCode=" + itemCode; // Adjust redirect as needed
     }
 
+    @RequestMapping(value = "unassignUomGroupFromItem", method = RequestMethod.POST)
+    public String unassignUomGroupFromItem(
+            @RequestParam("itemCode") String itemCode,
+            RedirectAttributes redirectAttributes) {
+
+        try {
+            SapCamelotApiConnector connector = new SapCamelotApiConnector();
+            String endpoint = "/Items('" + URLEncoder.encode(itemCode, StandardCharsets.UTF_8.toString()) + "')";
+
+            // 1. GET the existing item data (to preserve all fields)
+            HttpURLConnection getConn = connector.createConnection(endpoint, "GET");
+            JSONObject itemData = connector.getJsonResponse(getConn);
+
+            // 2. Log current UoM Group for debugging
+            System.out.println("[DEBUG] Current UoMGroupEntry: " + itemData.opt("UoMGroupEntry"));
+
+            // 3. Create a minimal PATCH payload to ONLY unassign UoM Group
+            JSONObject patchData = new JSONObject();
+            patchData.put("UoMGroupEntry", JSONObject.NULL); // Remove UoM Group reference
+
+            // 4. Send PATCH request (only modifies UoMGroupEntry)
+            HttpURLConnection patchConn = connector.createConnection(endpoint, "PATCH");
+            connector.sendRequestBody(patchConn, patchData.toString());
+
+            // 5. Handle response
+            int responseCode = patchConn.getResponseCode();
+            if (responseCode == 200 || responseCode == 204) {
+                System.out.println("✅ UoM Group unassigned successfully!");
+                redirectAttributes.addFlashAttribute("alertColor", "green");
+                redirectAttributes.addFlashAttribute("message", "UoM Group unassigned successfully.");
+            } else {
+                String errorResponse = connector.getErrorResponse(patchConn);
+                System.out.println("❌ Error unassigning UoM Group: " + errorResponse);
+                redirectAttributes.addFlashAttribute("alertColor", "red");
+                redirectAttributes.addFlashAttribute("message", "Error: " + errorResponse);
+            }
+
+        } catch (IOException ex) {
+            Logger.getLogger(SapCamelotUnitOfMeasurementControlle.class.getName()).log(Level.SEVERE, null, ex);
+            redirectAttributes.addFlashAttribute("alertColor", "red");
+            redirectAttributes.addFlashAttribute("message", "IO Error: " + ex.getMessage());
+        } catch (Exception ex) {
+            Logger.getLogger(SapCamelotUnitOfMeasurementControlle.class.getName()).log(Level.SEVERE,
+                    "Exception during UoM Group unassignment", ex);
+            redirectAttributes.addFlashAttribute("alertColor", "red");
+            redirectAttributes.addFlashAttribute("message", "UoM Group may have been unassigned, but verify the item.");
+        }
+        return "redirect:sapCamelotItemUpdateServant.htm?itemCode=" + itemCode;
+    }
+
 }
