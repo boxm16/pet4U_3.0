@@ -648,7 +648,7 @@ public class SapController {
     @RequestMapping(value = "deleteUoMGroup")
     public String deleteUoMGroup(ModelMap modelMap) {
         try {
-            int uomGroupAbsEntry = 52; // Replace with the AbsEntry of the UoM Group to delete
+            int uomGroupAbsEntry = 55; // Replace with the AbsEntry of the UoM Group to delete
             String apiUrl = BASE_URL + "/UnitOfMeasurementGroups(" + uomGroupAbsEntry + ")";
 
             SAPApiClient sapApiClient = new SAPApiClient();
