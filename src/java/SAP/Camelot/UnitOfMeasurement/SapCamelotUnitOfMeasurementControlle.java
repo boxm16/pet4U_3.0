@@ -349,52 +349,49 @@ public class SapCamelotUnitOfMeasurementControlle {
     }
 
     @RequestMapping(value = "unassignUomGroupFromItem", method = RequestMethod.POST)
-public String unassignUomGroupFromItem(
-        @RequestParam("itemCode") String itemCode,
-        RedirectAttributes redirectAttributes) {
+    public String unassignUomGroupFromItem(
+            @RequestParam("itemCode") String itemCode,
+            RedirectAttributes redirectAttributes) {
 
-    try {
-        SapCamelotApiConnector connector = new SapCamelotApiConnector();
-        String endpoint = "/Items('" + URLEncoder.encode(itemCode, StandardCharsets.UTF_8.toString()) + "')";
+        try {
+            SapCamelotApiConnector connector = new SapCamelotApiConnector();
+            String endpoint = "/Items('" + URLEncoder.encode(itemCode, StandardCharsets.UTF_8.toString()) + "')";
 
-        // 1. Create minimal PATCH payload to unassign UoM Group
-        JSONObject patchData = new JSONObject();
-        patchData.put("UoMGroupEntry", JSONObject.NULL); // Remove UoM Group reference
+            // 1. GET existing item data
+            HttpURLConnection getConn = connector.createConnection(endpoint, "GET");
+            JSONObject itemData = connector.getJsonResponse(getConn);
 
-        // 2. Send PATCH request (only modifies UoMGroupEntry)
-        HttpURLConnection patchConn = connector.createConnection(endpoint, "PATCH");
-        connector.sendRequestBody(patchConn, patchData.toString());
+            // 2. Unassign UoM Group
+            itemData.put("UoMGroupEntry", JSONObject.NULL);
 
-        // 3. Handle response
-        int responseCode = patchConn.getResponseCode();
-        if (responseCode == 200 || responseCode == 204) {
-            redirectAttributes.addFlashAttribute("alertColor", "green");
-            redirectAttributes.addFlashAttribute("message", "UoM Group unassigned successfully");
-        } else {
-            String errorResponse = connector.getErrorResponse(patchConn);
+            // 3. Send full updated item as PATCH
+            HttpURLConnection patchConn = connector.createConnection(endpoint, "PATCH");
+            connector.sendRequestBody(patchConn, itemData.toString());
+
+            // 4. Handle response
+            int responseCode = patchConn.getResponseCode();
+            if (responseCode == 200 || responseCode == 204) {
+                redirectAttributes.addFlashAttribute("alertColor", "green");
+                redirectAttributes.addFlashAttribute("message", "✅ UoM Group unassigned successfully");
+            } else {
+                String errorResponse = connector.getErrorResponse(patchConn);
+                redirectAttributes.addFlashAttribute("alertColor", "red");
+                redirectAttributes.addFlashAttribute("message", "❌ Failed to unassign UoM Group: " + errorResponse);
+                System.err.println("API Error Response: " + errorResponse);
+            }
+
+        } catch (IOException ex) {
+            Logger.getLogger(SapCamelotUnitOfMeasurementControlle.class.getName()).log(Level.SEVERE, null, ex);
             redirectAttributes.addFlashAttribute("alertColor", "red");
-            redirectAttributes.addFlashAttribute("message", 
-                "Failed to unassign UoM Group: " + errorResponse);
-            
-            // Log detailed error for debugging
-            System.err.println("API Error Response: " + errorResponse);
-            System.err.println("Request Endpoint: " + endpoint);
-            System.err.println("Request Payload: " + patchData.toString());
+            redirectAttributes.addFlashAttribute("message", "Network error during unassignment: " + ex.getMessage());
+        } catch (Exception ex) {
+            Logger.getLogger(SapCamelotUnitOfMeasurementControlle.class.getName()).log(Level.SEVERE,
+                    "Unexpected error during UoM Group unassignment", ex);
+            redirectAttributes.addFlashAttribute("alertColor", "red");
+            redirectAttributes.addFlashAttribute("message", "System error during unassignment. Please check logs.");
         }
 
-    } catch (IOException ex) {
-        Logger.getLogger(SapCamelotUnitOfMeasurementControlle.class.getName()).log(Level.SEVERE, null, ex);
-        redirectAttributes.addFlashAttribute("alertColor", "red");
-        redirectAttributes.addFlashAttribute("message", 
-            "Network error during unassignment: " + ex.getMessage());
-    } catch (Exception ex) {
-        Logger.getLogger(SapCamelotUnitOfMeasurementControlle.class.getName()).log(Level.SEVERE,
-                "Unexpected error during UoM Group unassignment", ex);
-        redirectAttributes.addFlashAttribute("alertColor", "red");
-        redirectAttributes.addFlashAttribute("message",
-            "System error during unassignment. Please check logs.");
+        return "redirect:sapCamelotItemUpdateServant.htm?itemCode=" + itemCode;
     }
-    return "redirect:sapCamelotItemUpdateServant.htm?itemCode=" + itemCode;
-}
 
 }
