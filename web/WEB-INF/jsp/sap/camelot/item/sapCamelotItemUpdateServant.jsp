@@ -6,6 +6,8 @@
         <title>Update Camelot Item</title>
         <!-- Bootstrap CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Font Awesome for icons -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
         <!-- Custom CSS (same as create form) -->
         <style>
             .form-control-lg {
@@ -62,6 +64,15 @@
                 background-color: #e9ecef !important;
                 cursor: not-allowed;
             }
+            .uom-group-actions {
+                margin-top: 1rem;
+                display: flex;
+                gap: 1rem;
+            }
+            .no-uom-group {
+                font-style: italic;
+                color: #6c757d;
+            }
         </style>
     </head>
     <body>
@@ -107,12 +118,11 @@
                     <form:input path="mainBarcode" class="form-control form-control-lg" id="mainBarcode" />
                 </div>
 
-
-
                 <!-- Submit Button -->
                 <button type="submit" class="btn btn-primary btn-lg">Update Item</button>
             </form:form>
             <hr>
+            
             <!-- UoM Group Section -->
             <div class="mb-4">
                 <h2>Current Unit of Measurement Group</h2>
@@ -127,20 +137,30 @@
                                 ${item.unitOfMeasurementGroup.ugpName} (${item.unitOfMeasurementGroup.ugpCode})
                             </c:if>
                         </p>
-
+                        
+                        <!-- Unassign UoM Group Button -->
+                        <form method="POST" action="unassignUomGroupFromItem.htm" class="uom-group-actions">
+                            <input type="hidden" name="itemCode" value="${item.code}">
+                            <button type="submit" class="btn btn-danger btn-lg" 
+                                    onclick="return confirm('Are you sure you want to remove this UoM Group from the item?')">
+                                <i class="fas fa-unlink me-2"></i>Remove UoM Group
+                            </button>
+                        </form>
                     </div>
                 </div>
-
-
-
+                
+                <!-- Message when no UoM Group is assigned -->
+                <div id="noUomGroupMessage" class="no-uom-group" 
+                     style="${not empty item.unitOfMeasurementGroup.ugpEntry ? 'display:none;' : ''}">
+                    No UoM Group currently assigned to this item.
+                </div>
             </div>
+            
             <!-- UoM Group Section -->
             <div class="mb-4">
-                <h2>All Unit of Measurement Groups</h2>
-
+                <h2>Assign New Unit of Measurement Group</h2>
 
                 <!-- Add UoM Group Button and Dropdown -->
-                <!-- Add this form wrapper around your elements -->
                 <form method="POST" action="assignUomGroupToItem.htm">
                     <!-- Hidden field for itemCode -->
                     <input type="hidden" name="itemCode" value="${item.code}">
@@ -163,7 +183,7 @@
                         </div>
                         <div class="col-md-4">
                             <button type="submit" class="btn btn-success btn-lg">
-                                Update UoM Group
+                                <i class="fas fa-link me-2"></i>Assign UoM Group
                             </button>
                         </div>
                     </div>
@@ -174,5 +194,13 @@
         <!-- Bootstrap JS and dependencies -->
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+        
+        <script>
+            // Show/hide UoM Group sections based on assignment
+            function toggleUomGroupDisplay(hasGroup) {
+                document.getElementById('currentUomGroupCard').style.display = hasGroup ? 'block' : 'none';
+                document.getElementById('noUomGroupMessage').style.display = hasGroup ? 'none' : 'block';
+            }
+        </script>
     </body>
 </html>

@@ -75,11 +75,6 @@
                 background-color: #e9ecef !important;
                 cursor: not-allowed;
             }
-            .unassign-section {
-                border-top: 2px dashed #dc3545;
-                padding-top: 1.5rem;
-                margin-top: 1.5rem;
-            }
         </style>
     </head>
     <body>
@@ -107,26 +102,6 @@
                                 <label for="ugpName" class="form-label form-label-lg">Group Name</label>
                                 <form:input path="ugpName" class="form-control form-control-lg" id="ugpName" required="true" />
                                 <div class="invalid-feedback">Please provide a group name.</div>
-                            </div>
-                        </div>
-                        
-                        <!-- Unassign UoM Group Section -->
-                        <div class="unassign-section">
-                            <div class="alert alert-warning">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div>
-                                        <i class="fas fa-exclamation-triangle me-2"></i>
-                                        <strong>Unassign Group from Items</strong>
-                                        <p class="mb-0 mt-1">This will remove this UoM Group from all items currently using it</p>
-                                    </div>
-                                    <form action="unassignUomGroupFromAllItems.htm" method="post" 
-                                          onsubmit="return confirm('WARNING: This will remove this UoM Group from ALL items using it. Continue?');">
-                                        <input type="hidden" name="ugpEntry" value="${unitOfMeasurementGroup.ugpEntry}" />
-                                        <button type="submit" class="btn btn-danger btn-lg">
-                                            <i class="fas fa-unlink me-2"></i>Unassign from All Items
-                                        </button>
-                                    </form>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -240,30 +215,21 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 
         <script>
-            // Enable Bootstrap form validation
-            (function () {
-                'use strict';
-                const forms = document.querySelectorAll('.needs-validation');
+                              // Enable Bootstrap form validation
+                              (function () {
+                                  'use strict';
+                                  const forms = document.querySelectorAll('.needs-validation');
 
-                Array.from(forms).forEach(form => {
-                    form.addEventListener('submit', event => {
-                        if (!form.checkValidity()) {
-                            event.preventDefault();
-                            event.stopPropagation();
-                        }
-                        form.classList.add('was-validated');
-                    }, false);
-                });
-            })();
-            
-            // Additional confirmation for unassign action
-            document.querySelectorAll('[data-unassign-confirm]').forEach(button => {
-                button.addEventListener('click', (e) => {
-                    if (!confirm('This will affect ALL items using this group. Continue?')) {
-                        e.preventDefault();
-                    }
-                });
-            });
+                                  Array.from(forms).forEach(form => {
+                                      form.addEventListener('submit', event => {
+                                          if (!form.checkValidity()) {
+                                              event.preventDefault();
+                                              event.stopPropagation();
+                                          }
+                                          form.classList.add('was-validated');
+                                      }, false);
+                                  });
+                              })();
         </script>
     </body>
 </html>
