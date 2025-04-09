@@ -8,7 +8,7 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
         <!-- Font Awesome for icons -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-        <!-- Custom CSS (same as create form) -->
+        <!-- Custom CSS -->
         <style>
             .form-control-lg {
                 height: calc(2.5em + 1rem + 2px);
@@ -73,6 +73,26 @@
                 font-style: italic;
                 color: #6c757d;
             }
+            .uom-table {
+                width: 100%;
+                margin: 20px 0;
+                border-collapse: collapse;
+            }
+            .uom-table th, .uom-table td {
+                padding: 12px;
+                border: 1px solid #dee2e6;
+                text-align: left;
+            }
+            .uom-table th {
+                background-color: #f8f9fa;
+            }
+            .pallet-row {
+                background-color: #e8f5e9;
+            }
+            .base-quantity-input {
+                width: 100px;
+                display: inline-block;
+            }
         </style>
     </head>
     <body>
@@ -101,7 +121,6 @@
                             Please select an items group.
                         </div>
                     </div>
-
                 </div>
 
                 <!-- Description -->
@@ -138,6 +157,50 @@
                             </c:if>
                         </p>
                         
+                        <!-- UoM Table with Base Quantities -->
+                        <table class="uom-table">
+                            <thead>
+                                <tr>
+                                    <th>UoM Code</th>
+                                    <th>UoM Name</th>
+                                    <th>Base Quantity</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <c:forEach items="${item.unitOfMeasurementGroup.unitOfMeasurements}" var="uom">
+                                    <tr class="${uom.value.baseQuantity == 120 ? 'pallet-row' : ''}">
+                                        <td>${uom.value.uomCode}</td>
+                                        <td>${uom.value.uomName}</td>
+                                        <td>
+                                            <form method="POST" action="updateUomBaseQuantity.htm" class="d-inline">
+                                                <input type="hidden" name="itemCode" value="${item.code}">
+                                                <input type="hidden" name="uomEntry" value="${uom.value.uomEntry}">
+                                                <input type="number" name="baseQuantity" 
+                                                       value="${uom.value.baseQuantity}" 
+                                                       class="form-control base-quantity-input" 
+                                                       min="1" step="1" required>
+                                                <button type="submit" class="btn btn-sm btn-primary">
+                                                    <i class="fas fa-save"></i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                        <td>
+                                            <c:if test="${uom.value.baseQuantity == 120}">
+                                                <form method="POST" action="processPalletScan.htm" class="d-inline">
+                                                    <input type="hidden" name="itemCode" value="${item.code}">
+                                                    <input type="hidden" name="uomEntry" value="${uom.value.uomEntry}">
+                                                    <button type="submit" class="btn btn-success">
+                                                        <i class="fas fa-barcode"></i> Process Pallet Scan (+120)
+                                                    </button>
+                                                </form>
+                                            </c:if>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                            </tbody>
+                        </table>
+                        
                         <!-- Unassign UoM Group Button -->
                         <form method="POST" action="unassignUomGroupFromItem.htm" class="uom-group-actions">
                             <input type="hidden" name="itemCode" value="${item.code}">
@@ -156,7 +219,7 @@
                 </div>
             </div>
             
-            <!-- UoM Group Section -->
+            <!-- UoM Group Assignment Section -->
             <div class="mb-4">
                 <h2>Assign New Unit of Measurement Group</h2>
 
@@ -201,6 +264,16 @@
                 document.getElementById('currentUomGroupCard').style.display = hasGroup ? 'block' : 'none';
                 document.getElementById('noUomGroupMessage').style.display = hasGroup ? 'none' : 'block';
             }
+            
+            // Validate base quantity inputs
+            document.querySelectorAll('.base-quantity-input').forEach(input => {
+                input.addEventListener('change', function() {
+                    if (this.value < 1) {
+                        alert('Base quantity must be at least 1');
+                        this.value = 1;
+                    }
+                });
+            });
         </script>
     </body>
 </html>
