@@ -428,10 +428,19 @@ public class SapCamelotUnitOfMeasurementControlle {
             HttpURLConnection getConn = connector.createConnection(endpoint, "GET");
             JSONObject itemData = connector.getJsonResponse(getConn);
 
-            // 2. Set new UoMGroupEntry (leave all other fields untouched)
+            // ✅ Explicitly preserve BarCodes array (because it often disappears otherwise)
+            JSONArray preservedBarcodes = itemData.optJSONArray("BarCodes");
+            if (preservedBarcodes != null) {
+                itemData.put("BarCodes", preservedBarcodes);
+            }
+
+            // 🛡️ (Optional) Preserve other subcollections here, if needed:
+            // JSONArray preservedPrices = itemData.optJSONArray("ItemPrices");
+            // itemData.put("ItemPrices", preservedPrices);
+            // 2. Update UoMGroupEntry
             itemData.put("UoMGroupEntry", ugpEntry);
 
-            // 3. PATCH full item back as-is (don’t remove anything!)
+            // 3. PATCH full object (including preserved sub-data)
             HttpURLConnection patchConn = connector.createConnection(endpoint, "PATCH");
             connector.sendRequestBody(patchConn, itemData.toString());
 
