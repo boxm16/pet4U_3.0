@@ -193,7 +193,7 @@
                                             </div>
                                             
                                             <!-- Add new barcode form -->
-                                            <form method="POST" action="addUomBarcode.htm" class="mt-2">
+                                            <form method="POST" action="addUomBarcode.htm" class="mt-2" >
                                                 <input type="hidden" name="itemCode" value="${item.code}" />
                                                 <input type="hidden" name="uomEntry" value="${uom.value.uomEntry}" />
                                                 <div class="input-group">
