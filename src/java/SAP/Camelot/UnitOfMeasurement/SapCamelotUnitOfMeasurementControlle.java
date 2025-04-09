@@ -423,21 +423,22 @@ public class SapCamelotUnitOfMeasurementControlle {
 
         try {
             SapCamelotApiConnector connector = new SapCamelotApiConnector();
-            String endpoint = "/Items('" + URLEncoder.encode(itemCode, StandardCharsets.UTF_8.toString()) + "')";
 
-            // 1. FIRST get the current barcode information
-            JSONObject originalBarcode = getCurrentBarcode(connector, itemCode);
+            // 1. FIRST get all current barcodes
+            JSONArray originalBarcodes = getAllBarcodes(connector, itemCode);
 
-            // 2. Update ONLY the UoM group (no other fields)
+            // 2. Update ONLY the UoM group
             updateUoMGroupOnly(connector, itemCode, ugpEntry);
 
-            // 3. Verify and restore barcode if needed
-            if (originalBarcode != null && !verifyBarcodeExists(connector, itemCode)) {
-                restoreBarcode(connector, itemCode, originalBarcode);
+            // 3. Verify and restore barcodes if needed
+            if (originalBarcodes != null && originalBarcodes.length() > 0) {
+                if (!verifyBarcodesExist(connector, itemCode, originalBarcodes)) {
+                    restoreAllBarcodes(connector, itemCode, originalBarcodes);
+                }
             }
 
             redirectAttributes.addFlashAttribute("alertColor", "green");
-            redirectAttributes.addFlashAttribute("message", "✅ UoM Group assigned successfully with barcode preserved.");
+            redirectAttributes.addFlashAttribute("message", "✅ UoM Group assigned successfully with barcodes preserved.");
 
         } catch (Exception ex) {
             Logger.getLogger(SapCamelotUnitOfMeasurementControlle.class.getName()).log(Level.SEVERE, null, ex);
@@ -448,16 +449,13 @@ public class SapCamelotUnitOfMeasurementControlle {
         return "redirect:sapCamelotItemUpdateServant.htm?itemCode=" + itemCode;
     }
 
-    private JSONObject getCurrentBarcode(SapCamelotApiConnector connector, String itemCode) throws Exception {
+    private JSONArray getAllBarcodes(SapCamelotApiConnector connector, String itemCode) throws Exception {
         String endpoint = "/Items('" + URLEncoder.encode(itemCode, StandardCharsets.UTF_8.toString()) + "')?$select=ItemBarCodeCollection";
         HttpURLConnection conn = connector.createConnection(endpoint, "GET");
         JSONObject response = connector.getJsonResponse(conn);
 
         if (response.has("ItemBarCodeCollection")) {
-            JSONArray barcodes = response.getJSONArray("ItemBarCodeCollection");
-            if (barcodes.length() > 0) {
-                return barcodes.getJSONObject(0); // Return first barcode
-            }
+            return response.getJSONArray("ItemBarCodeCollection");
         }
         return null;
     }
@@ -476,19 +474,35 @@ public class SapCamelotUnitOfMeasurementControlle {
         }
     }
 
-    private boolean verifyBarcodeExists(SapCamelotApiConnector connector, String itemCode) throws Exception {
-        JSONObject barcode = getCurrentBarcode(connector, itemCode);
-        return barcode != null;
+    private boolean verifyBarcodesExist(SapCamelotApiConnector connector, String itemCode, JSONArray originalBarcodes) throws Exception {
+        JSONArray currentBarcodes = getAllBarcodes(connector, itemCode);
+        return currentBarcodes != null && currentBarcodes.length() >= originalBarcodes.length();
     }
 
-    private void restoreBarcode(SapCamelotApiConnector connector, String itemCode, JSONObject originalBarcode) throws Exception {
-        String endpoint = "/Items('" + URLEncoder.encode(itemCode, StandardCharsets.UTF_8.toString()) + "')/ItemBarCodeCollection";
+    private void restoreAllBarcodes(SapCamelotApiConnector connector, String itemCode, JSONArray barcodes) throws Exception {
+        // First delete any existing barcodes (if needed)
+        try {
+            String deleteEndpoint = "/Items('" + URLEncoder.encode(itemCode, StandardCharsets.UTF_8.toString()) + "')/ItemBarCodeCollection";
+            HttpURLConnection deleteConn = connector.createConnection(deleteEndpoint, "DELETE");
+            deleteConn.setRequestProperty("B1S-ClearCollectionsOnPatch", "true");
+            deleteConn.connect();
+            // We don't care if this fails - we'll try to add them anyway
+        } catch (Exception e) {
+            Logger.getLogger(SapCamelotUnitOfMeasurementControlle.class.getName()).log(Level.WARNING, "Could not clear barcodes", e);
+        }
 
-        HttpURLConnection conn = connector.createConnection(endpoint, "POST");
-        connector.sendRequestBody(conn, originalBarcode.toString());
+        // Then add all original barcodes back
+        for (int i = 0; i < barcodes.length(); i++) {
+            JSONObject barcode = barcodes.getJSONObject(i);
+            String addEndpoint = "/Items('" + URLEncoder.encode(itemCode, StandardCharsets.UTF_8.toString()) + "')/ItemBarCodeCollection";
 
-        if (conn.getResponseCode() != 201) {
-            throw new RuntimeException("Failed to restore barcode: " + connector.getErrorResponse(conn));
+            HttpURLConnection addConn = connector.createConnection(addEndpoint, "POST");
+            addConn.setRequestProperty("Content-Type", "application/json");
+            connector.sendRequestBody(addConn, barcode.toString());
+
+            if (addConn.getResponseCode() != 201) {
+                throw new RuntimeException("Failed to restore barcode: " + connector.getErrorResponse(addConn));
+            }
         }
     }
 
