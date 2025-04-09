@@ -30,7 +30,7 @@ public class CamelotServiceController {
         short uomGroupId = camelotServiceDao.getNextUomGroupId();
         uomGroup.setUgpEntry(uomGroupId);
         modelMap.addAttribute("uomGroup", uomGroup);
-        return "sap/camelot/service/camelotUnitOfMeasurementGroupCreationServant";
+        return "sap/camelot/unitOfMeasurement/camelotUnitOfMeasurementGroupCreationServant";
     }
 
     @RequestMapping(value = "creationCamelotUnitOfMeasurementGroup", method = RequestMethod.POST)
