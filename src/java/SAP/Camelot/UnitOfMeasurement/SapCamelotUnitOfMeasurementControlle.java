@@ -432,7 +432,7 @@ public class SapCamelotUnitOfMeasurementControlle {
             updateUoMGroupOnly(connector, itemCode, ugpEntry);
 
             // 3. Verify and restore barcode if needed
-            if (!verifyBarcodeExists(connector, itemCode)) {
+            if (originalBarcode != null && !verifyBarcodeExists(connector, itemCode)) {
                 restoreBarcode(connector, itemCode, originalBarcode);
             }
 
@@ -448,19 +448,20 @@ public class SapCamelotUnitOfMeasurementControlle {
         return "redirect:sapCamelotItemUpdateServant.htm?itemCode=" + itemCode;
     }
 
-// Helper method to get current barcode
     private JSONObject getCurrentBarcode(SapCamelotApiConnector connector, String itemCode) throws Exception {
-        String endpoint = "/Items('" + URLEncoder.encode(itemCode, StandardCharsets.UTF_8.toString()) + "')/ItemBarCodeCollection";
+        String endpoint = "/Items('" + URLEncoder.encode(itemCode, StandardCharsets.UTF_8.toString()) + "')?$select=ItemBarCodeCollection";
         HttpURLConnection conn = connector.createConnection(endpoint, "GET");
-        JSONArray barcodes = connector.getJsonResponse(conn).getJSONArray("value");
+        JSONObject response = connector.getJsonResponse(conn);
 
-        if (barcodes.length() > 0) {
-            return barcodes.getJSONObject(0); // Return first barcode
+        if (response.has("ItemBarCodeCollection")) {
+            JSONArray barcodes = response.getJSONArray("ItemBarCodeCollection");
+            if (barcodes.length() > 0) {
+                return barcodes.getJSONObject(0); // Return first barcode
+            }
         }
         return null;
     }
 
-// Helper method to update ONLY UoM group
     private void updateUoMGroupOnly(SapCamelotApiConnector connector, String itemCode, Integer ugpEntry) throws Exception {
         String endpoint = "/Items('" + URLEncoder.encode(itemCode, StandardCharsets.UTF_8.toString()) + "')";
 
@@ -468,7 +469,6 @@ public class SapCamelotUnitOfMeasurementControlle {
         payload.put("UoMGroupEntry", ugpEntry);
 
         HttpURLConnection conn = connector.createConnection(endpoint, "PATCH");
-        // NO special headers - let SAP handle as minimal update
         connector.sendRequestBody(conn, payload.toString());
 
         if (conn.getResponseCode() != 200 && conn.getResponseCode() != 204) {
@@ -476,12 +476,12 @@ public class SapCamelotUnitOfMeasurementControlle {
         }
     }
 
-// Helper method to restore barcode if needed
-    private void restoreBarcode(SapCamelotApiConnector connector, String itemCode, JSONObject originalBarcode) throws Exception {
-        if (originalBarcode == null) {
-            return;
-        }
+    private boolean verifyBarcodeExists(SapCamelotApiConnector connector, String itemCode) throws Exception {
+        JSONObject barcode = getCurrentBarcode(connector, itemCode);
+        return barcode != null;
+    }
 
+    private void restoreBarcode(SapCamelotApiConnector connector, String itemCode, JSONObject originalBarcode) throws Exception {
         String endpoint = "/Items('" + URLEncoder.encode(itemCode, StandardCharsets.UTF_8.toString()) + "')/ItemBarCodeCollection";
 
         HttpURLConnection conn = connector.createConnection(endpoint, "POST");
@@ -490,14 +490,6 @@ public class SapCamelotUnitOfMeasurementControlle {
         if (conn.getResponseCode() != 201) {
             throw new RuntimeException("Failed to restore barcode: " + connector.getErrorResponse(conn));
         }
-    }
-
-    private boolean verifyBarcodeExists(SapCamelotApiConnector connector, String itemCode) throws Exception {
-        String endpoint = "/Items('" + URLEncoder.encode(itemCode, StandardCharsets.UTF_8.toString()) + "')?$select=ItemBarCodeCollection";
-        HttpURLConnection conn = connector.createConnection(endpoint, "GET");
-        JSONObject response = connector.getJsonResponse(conn);
-        return response.has("ItemBarCodeCollection")
-                && response.getJSONArray("ItemBarCodeCollection").length() > 0;
     }
 
     ///---------------------------------------------------
