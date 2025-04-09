@@ -539,45 +539,94 @@ public class SapCamelotUnitOfMeasurementControlle {
     }
 
     //------uom Barcode handling-----------
-    // Handle barcode addition to UoM
-    @RequestMapping(value = "addUomBarcode", method = RequestMethod.POST)
-    public String addUomBarcode(
-            @RequestParam String itemCode,
-            @RequestParam Integer uomEntry,
-            @RequestParam String barcode,
+    @RequestMapping(value = "addBarcodeToUom", method = RequestMethod.POST)
+    public String addBarcodeToUom(
+            @RequestParam("unitOfMeasurementGroupEntry") Integer ugpEntry,
+            @RequestParam("uomEntry") Integer uomEntry,
+            @RequestParam("barcode") String barcode,
             RedirectAttributes redirectAttributes) {
 
-        // Your implementation to add barcode to UoM
-        // ...
-        redirectAttributes.addFlashAttribute("message", "Barcode added successfully");
-        return "redirect:sapCamelotItemUpdateServant.htm?itemCode=" + itemCode;
-    }
+        try {
+            SapCamelotApiConnector connector = new SapCamelotApiConnector();
 
-// Handle barcode removal from UoM
-    @RequestMapping(value = "removeUomBarcode", method = RequestMethod.POST)
-    public String removeUomBarcode(
-            @RequestParam String itemCode,
-            @RequestParam Integer uomEntry,
-            @RequestParam String barcode,
-            RedirectAttributes redirectAttributes) {
+            // 1. GET existing group
+            String endpoint = "/UnitOfMeasurementGroups(" + ugpEntry + ")";
+            HttpURLConnection getConn = connector.createConnection(endpoint, "GET");
+            JSONObject groupData = connector.getJsonResponse(getConn);
+            JSONArray existingLines = groupData.getJSONArray("UoMGroupDefinitionCollection");
 
-        // Your implementation to remove barcode from UoM
-        // ...
-        redirectAttributes.addFlashAttribute("message", "Barcode removed successfully");
-        return "redirect:sapCamelotItemUpdateServant.htm?itemCode=" + itemCode;
-    }
+            // 2. Find the specific UoM entry and add barcode
+            boolean found = false;
+            for (int i = 0; i < existingLines.length(); i++) {
+                JSONObject line = existingLines.getJSONObject(i);
+                if (line.getInt("AlternateUoM") == uomEntry) {
+                    // Get existing barcodes or create new array if none exist
+                    JSONArray barcodes;
+                    if (line.has("Barcodes") && !line.isNull("Barcodes")) {
+                        barcodes = line.getJSONArray("Barcodes");
+                    } else {
+                        barcodes = new JSONArray();
+                    }
 
-// Handle pallet scan processing
-    @RequestMapping(value = "processPalletScan", method = RequestMethod.POST)
-    public String processPalletScan(
-            @RequestParam String itemCode,
-            @RequestParam Integer uomEntry,
-            RedirectAttributes redirectAttributes) {
+                    // Add new barcode if it doesn't already exist
+                    boolean barcodeExists = false;
+                    for (int j = 0; j < barcodes.length(); j++) {
+                        if (barcodes.getString(j).equals(barcode)) {
+                            barcodeExists = true;
+                            break;
+                        }
+                    }
 
-        // Your implementation to add 120 pieces
-        // ...
-        redirectAttributes.addFlashAttribute("message", "Pallet scan processed (+120)");
-        return "redirect:sapCamelotItemUpdateServant.htm?itemCode=" + itemCode;
+                    if (!barcodeExists) {
+                        barcodes.put(barcode);
+                        line.put("Barcodes", barcodes);
+                        found = true;
+                    } else {
+                        redirectAttributes.addFlashAttribute("alertColor", "orange");
+                        redirectAttributes.addFlashAttribute("message", "Barcode already exists for this UOM");
+                        return "redirect:camelotUnitOfMeasurementGroupEditServant.htm?ugpEntry=" + ugpEntry;
+                    }
+                    break;
+                }
+            }
+
+            if (!found) {
+                redirectAttributes.addFlashAttribute("alertColor", "red");
+                redirectAttributes.addFlashAttribute("message", "UoM entry not found in group");
+                return "redirect:camelotUnitOfMeasurementGroupEditServant.htm?ugpEntry=" + ugpEntry;
+            }
+
+            // 3. Put updated lines back into group data
+            groupData.put("UoMGroupDefinitionCollection", existingLines);
+
+            // 4. Send PUT with updated group object
+            HttpURLConnection putConn = connector.createConnection(endpoint, "PUT");
+            connector.sendRequestBody(putConn, groupData.toString());
+
+            int responseCode = putConn.getResponseCode();
+            if (responseCode == 200 || responseCode == 204) {
+                System.out.println("✅ Barcode Added Successfully!");
+                redirectAttributes.addFlashAttribute("alertColor", "green");
+                redirectAttributes.addFlashAttribute("message", "Barcode Added Successfully.");
+            } else {
+                String errorResponse = connector.getErrorResponse(putConn);
+                System.out.println("❌ Error Adding Barcode: " + errorResponse);
+                redirectAttributes.addFlashAttribute("alertColor", "red");
+                redirectAttributes.addFlashAttribute("message", "Error Adding Barcode: " + errorResponse);
+            }
+
+        } catch (IOException ex) {
+            Logger.getLogger(SapCamelotUnitOfMeasurementControlle.class.getName()).log(Level.SEVERE, null, ex);
+            redirectAttributes.addFlashAttribute("alertColor", "red");
+            redirectAttributes.addFlashAttribute("message", "An error occurred: " + ex.getMessage());
+        } catch (Exception ex) {
+            Logger.getLogger(SapCamelotUnitOfMeasurementControlle.class.getName()).log(Level.SEVERE,
+                    "Exception occurred during Barcode addition.", ex);
+            redirectAttributes.addFlashAttribute("alertColor", "red");
+            redirectAttributes.addFlashAttribute("message",
+                    "Barcode may have been added, but an error occurred while processing the response.");
+        }
+        return "redirect:camelotUnitOfMeasurementGroupEditServant.htm?ugpEntry=" + ugpEntry;
     }
 
 }
