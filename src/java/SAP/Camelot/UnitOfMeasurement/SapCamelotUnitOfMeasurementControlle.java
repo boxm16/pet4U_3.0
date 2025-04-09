@@ -33,6 +33,71 @@ public class SapCamelotUnitOfMeasurementControlle {
         return "sap/camelot/unitOfMeasurement/camelotUnitOfMeasurementDashboard";
     }
 
+    @RequestMapping(value = "camelotUnitOfMeasurementGroupCreationServant")
+    public String camelotUnitOfMeasurementGroupCreationServant(ModelMap modelMap) {
+
+        SapUnitOfMeasurementGroup uomGroup = new SapUnitOfMeasurementGroup();
+        SapCamelotUnitOfMeasurementDao dao = new SapCamelotUnitOfMeasurementDao();
+        short uomGroupId = dao.getNextUomGroupId();
+        uomGroup.setUgpEntry(uomGroupId);
+        modelMap.addAttribute("uomGroup", uomGroup);
+        return "sap/camelot/unitOfMeasurement/camelotUnitOfMeasurementGroupCreationServant";
+    }
+
+    @RequestMapping(value = "creationCamelotUnitOfMeasurementGroup", method = RequestMethod.POST)
+    public String creationCamelotUnitOfMeasurementGroup(@ModelAttribute("uomGroup") SapUnitOfMeasurementGroup uomGroup,
+            RedirectAttributes redirectAttributes) {
+        try {
+            SapCamelotApiConnector sapCamelotApiConnector = new SapCamelotApiConnector();
+            String endPoint = "/UnitOfMeasurementGroups";
+            String requestMethod = "POST";
+
+            HttpURLConnection conn = sapCamelotApiConnector.createConnection(endPoint, requestMethod);
+
+            // Build JSON payload from the uomGroup object
+            JSONObject payload = new JSONObject();
+            payload.put("Code", uomGroup.getUgpCode());
+            payload.put("Name", uomGroup.getUgpName());
+            payload.put("BaseUoM", 1); // Assuming Piece is always base UoM (UoMEntry = 1)
+
+            JSONArray uomDefinitions = new JSONArray();
+
+            JSONObject baseUoM = new JSONObject();
+            baseUoM.put("AlternateUoM", 1);
+            baseUoM.put("BaseQuantity", 1);
+            baseUoM.put("AlternateQuantity", 1);
+            baseUoM.put("Active", "tYES");
+            uomDefinitions.put(baseUoM);
+
+            payload.put("UoMGroupDefinitionCollection", uomDefinitions);
+
+            // Send request
+            sapCamelotApiConnector.sendRequestBody(conn, payload.toString());
+
+            // Handle response
+            int responseCode = conn.getResponseCode();
+            if (responseCode == 201) {
+                JSONObject jsonResponse = sapCamelotApiConnector.getJsonResponse(conn);
+                redirectAttributes.addFlashAttribute("message", "UoM Group created successfully!");
+                System.out.println("UoM Group created: " + jsonResponse.toString());
+            } else {
+                String errorResponse = sapCamelotApiConnector.getErrorResponse(conn);
+                redirectAttributes.addFlashAttribute("message", "Error creating UoM Group: " + errorResponse);
+                return "redirect:camelotUnitOfMeasurementGroupCreationServant.htm";
+            }
+
+        } catch (IOException ex) {
+            Logger.getLogger(SapCamelotUnitOfMeasurementControlle.class.getName()).log(Level.SEVERE, null, ex);
+            redirectAttributes.addFlashAttribute("message", "An error occurred: " + ex.getMessage());
+            return "redirect:camelotUnitOfMeasurementGroupCreationServant.htm";
+        } catch (Exception ex) {
+            Logger.getLogger(SapCamelotUnitOfMeasurementControlle.class.getName()).log(Level.SEVERE, "Exception occurred", ex);
+            redirectAttributes.addFlashAttribute("message", "UoM Group created but with potential issues");
+        }
+
+        return "redirect:sapDashboard.htm";
+    }
+
     @RequestMapping(value = "camelotUnitOfMeasurementGroupEditServant", method = RequestMethod.GET)
     public String camelotUnitOfMeasurementGroupEditServant(@RequestParam("ugpEntry") String ugpEntry, ModelMap modelMap) {
         SapCamelotUnitOfMeasurementDao sapCamelotUnitOfMeasurementDao = new SapCamelotUnitOfMeasurementDao();
@@ -299,9 +364,10 @@ public class SapCamelotUnitOfMeasurementControlle {
         }
         return "redirect:camelotUnitOfMeasurementGroupEditServant.htm?ugpEntry=" + ugpEntry;
     }
+ ///---------------------------------------------------
 
-    @RequestMapping(value = "assignUomGroupToItem", method = RequestMethod.POST)
-    public String assignUomGroupToItem1(
+    @RequestMapping(value = "assignUomGroupToItemX", method = RequestMethod.POST)
+    public String assignUomGroupToItemX(
             @RequestParam("itemCode") String itemCode,
             @RequestParam("ugpEntry") Integer ugpEntry,
             RedirectAttributes redirectAttributes) {
@@ -348,6 +414,63 @@ public class SapCamelotUnitOfMeasurementControlle {
         return "redirect:sapCamelotItemUpdateServant.htm?itemCode=" + itemCode; // Adjust redirect as needed
     }
 
+    @RequestMapping(value = "assignUomGroupToItem", method = RequestMethod.POST)
+    public String assignUomGroupToItem(
+            @RequestParam("itemCode") String itemCode,
+            @RequestParam("ugpEntry") Integer ugpEntry,
+            RedirectAttributes redirectAttributes) {
+
+        try {
+            SapCamelotApiConnector connector = new SapCamelotApiConnector();
+            String endpoint = "/Items('" + URLEncoder.encode(itemCode, StandardCharsets.UTF_8.toString()) + "')";
+
+            // 1. GET the current item
+            HttpURLConnection getConn = connector.createConnection(endpoint, "GET");
+            JSONObject itemData = connector.getJsonResponse(getConn);
+
+            // 2. Build a safe PATCH payload — only UoMGroupEntry and mandatory fields
+            JSONObject patchData = new JSONObject();
+            patchData.put("UoMGroupEntry", ugpEntry);
+
+            // Include required fields to avoid OData validation errors
+            patchData.put("ItemCode", itemData.get("ItemCode"));
+            patchData.put("ItemName", itemData.get("ItemName"));
+            patchData.put("ItemType", itemData.get("ItemType"));
+            patchData.put("InventoryItem", itemData.get("InventoryItem"));
+            patchData.put("SalesItem", itemData.get("SalesItem"));
+            patchData.put("PurchaseItem", itemData.get("PurchaseItem"));
+
+            // 3. PATCH only the minimal data
+            HttpURLConnection patchConn = connector.createConnection(endpoint, "PATCH");
+            connector.sendRequestBody(patchConn, patchData.toString());
+
+            // 4. Handle response
+            int responseCode = patchConn.getResponseCode();
+            if (responseCode == 200 || responseCode == 204) {
+                redirectAttributes.addFlashAttribute("alertColor", "green");
+                redirectAttributes.addFlashAttribute("message", "✅ UoM Group assigned successfully.");
+            } else {
+                String errorResponse = connector.getErrorResponse(patchConn);
+                redirectAttributes.addFlashAttribute("alertColor", "red");
+                redirectAttributes.addFlashAttribute("message", "❌ Failed to assign UoM Group: " + errorResponse);
+                System.err.println("PATCH Error Response: " + errorResponse);
+            }
+
+        } catch (IOException ex) {
+            Logger.getLogger(SapCamelotUnitOfMeasurementControlle.class.getName()).log(Level.SEVERE, null, ex);
+            redirectAttributes.addFlashAttribute("alertColor", "red");
+            redirectAttributes.addFlashAttribute("message", "Network error: " + ex.getMessage());
+        } catch (Exception ex) {
+            Logger.getLogger(SapCamelotUnitOfMeasurementControlle.class.getName()).log(Level.SEVERE,
+                    "Error assigning UoM Group", ex);
+            redirectAttributes.addFlashAttribute("alertColor", "red");
+            redirectAttributes.addFlashAttribute("message", "System error during assignment. Please check logs.");
+        }
+
+        return "redirect:sapCamelotItemUpdateServant.htm?itemCode=" + itemCode;
+    }
+
+    ///---------------------------------------------------
     @RequestMapping(value = "unassignUomGroupFromItem", method = RequestMethod.POST)
     public String unassignUomGroupFromItem(
             @RequestParam("itemCode") String itemCode,
