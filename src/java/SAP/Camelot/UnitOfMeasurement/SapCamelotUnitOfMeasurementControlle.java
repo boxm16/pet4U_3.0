@@ -557,7 +557,7 @@ public class SapCamelotUnitOfMeasurementControlle {
             if (!itemData.has("UnitOfMeasurementGroup")) {
                 redirectAttributes.addFlashAttribute("alertColor", "red");
                 redirectAttributes.addFlashAttribute("message", "Item doesn't have a UoM group assigned");
-                return "redirect:updateSapCamelotItem.htm?code=" + itemCode;
+                return "redirect:sapCamelotItemUpdateServant.htm?code=" + itemCode;
             }
 
             int ugpEntry = itemData.getJSONObject("UnitOfMeasurementGroup").getInt("UgpEntry");
@@ -586,7 +586,7 @@ public class SapCamelotUnitOfMeasurementControlle {
                         if (barcodes.getString(j).equals(barcode)) {
                             redirectAttributes.addFlashAttribute("alertColor", "orange");
                             redirectAttributes.addFlashAttribute("message", "Barcode already exists for this UOM");
-                            return "redirect:updateSapCamelotItem.htm?code=" + itemCode;
+                            return "redirect:sapCamelotItemUpdateServant.htm?code=" + itemCode;
                         }
                     }
 
@@ -601,7 +601,7 @@ public class SapCamelotUnitOfMeasurementControlle {
             if (!found) {
                 redirectAttributes.addFlashAttribute("alertColor", "red");
                 redirectAttributes.addFlashAttribute("message", "UoM entry not found in group");
-                return "redirect:updateSapCamelotItem.htm?code=" + itemCode;
+                return "redirect:sapCamelotItemUpdateServant.htm?code=" + itemCode;
             }
 
             // 5. Update the group data
@@ -633,7 +633,7 @@ public class SapCamelotUnitOfMeasurementControlle {
                     "Barcode may have been added, but an error occurred while processing the response.");
         }
 
-        return "redirect:updateSapCamelotItem.htm?code=" + itemCode;
+        return "redirect:sapCamelotItemUpdateServant.htm?code=" + itemCode;
     }
 
 }
