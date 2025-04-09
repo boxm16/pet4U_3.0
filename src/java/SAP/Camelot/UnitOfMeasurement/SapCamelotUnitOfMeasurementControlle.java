@@ -424,22 +424,24 @@ public class SapCamelotUnitOfMeasurementControlle {
             SapCamelotApiConnector connector = new SapCamelotApiConnector();
             String endpoint = "/Items('" + URLEncoder.encode(itemCode, StandardCharsets.UTF_8.toString()) + "')";
 
-            // 1. Create a JSON object with only the fields you want to update
-            JSONObject updateData = new JSONObject();
-            updateData.put("UoMGroupEntry", ugpEntry);
+            // 1. GET full item data
+            HttpURLConnection getConn = connector.createConnection(endpoint, "GET");
+            JSONObject itemData = connector.getJsonResponse(getConn);
 
-            // 2. PATCH the updateData with the header set to false
-            HttpURLConnection patchConn = connector.createConnection(endpoint, "PATCH");
-            patchConn.setRequestProperty("B1S-ReplaceCollectionsOnPatch", "false");
-            connector.sendRequestBody(patchConn, updateData.toString());
+            // 2. Update UoMGroupEntry
+            itemData.put("UoMGroupEntry", ugpEntry);
 
-            int responseCode = patchConn.getResponseCode();
+            // 3. PUT full item data back
+            HttpURLConnection putConn = connector.createConnection(endpoint, "PUT");
+            connector.sendRequestBody(putConn, itemData.toString());
+
+            int responseCode = putConn.getResponseCode();
             if (responseCode == 200 || responseCode == 204) {
                 redirectAttributes.addFlashAttribute("alertColor", "green");
                 redirectAttributes.addFlashAttribute("message", "✅ UoM Group assigned successfully.");
             } else {
-                String errorResponse = connector.getErrorResponse(patchConn);
-                System.err.println("❌ PATCH Error: " + errorResponse);
+                String errorResponse = connector.getErrorResponse(putConn);
+                System.err.println("❌ PUT Error: " + errorResponse);
                 redirectAttributes.addFlashAttribute("alertColor", "red");
                 redirectAttributes.addFlashAttribute("message", "❌ Failed to assign UoM Group: " + errorResponse);
             }
