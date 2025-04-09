@@ -424,30 +424,17 @@ public class SapCamelotUnitOfMeasurementControlle {
             SapCamelotApiConnector connector = new SapCamelotApiConnector();
             String endpoint = "/Items('" + URLEncoder.encode(itemCode, StandardCharsets.UTF_8.toString()) + "')";
 
-            // 1. GET full existing item data
+            // 1. GET full item data
             HttpURLConnection getConn = connector.createConnection(endpoint, "GET");
             JSONObject itemData = connector.getJsonResponse(getConn);
 
-            // 2. Update only the UoMGroupEntry
+            // 2. Set new UoMGroupEntry (leave all other fields untouched)
             itemData.put("UoMGroupEntry", ugpEntry);
 
-            // 3. 🧼 Clean up non-patchable or read-only fields (e.g., subcollections)
-            itemData.remove("ItemPrices");
-            itemData.remove("BarCodes");
-            itemData.remove("DocumentLines");
-            itemData.remove("Attachments2"); // if exists
-            itemData.remove("WarehouseInfoCollection");
-            itemData.remove("ItemWarehouseInfoCollection");
-            itemData.remove("ItemPreferredVendors");
-            itemData.remove("UoMGroups");
-            itemData.remove("UoMGroupCollection");
-            itemData.remove("InventoryOpeningBalances"); // etc.
-
-            // 4. Send full cleaned object with PATCH
+            // 3. PATCH full item back as-is (don’t remove anything!)
             HttpURLConnection patchConn = connector.createConnection(endpoint, "PATCH");
             connector.sendRequestBody(patchConn, itemData.toString());
 
-            // 5. Handle response
             int responseCode = patchConn.getResponseCode();
             if (responseCode == 200 || responseCode == 204) {
                 redirectAttributes.addFlashAttribute("alertColor", "green");
