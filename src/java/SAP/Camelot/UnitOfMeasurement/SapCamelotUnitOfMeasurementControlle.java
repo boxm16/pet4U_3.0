@@ -424,25 +424,20 @@ public class SapCamelotUnitOfMeasurementControlle {
         try {
             SapCamelotApiConnector connector = new SapCamelotApiConnector();
 
-            // 1. Get complete item data with barcodes
-            JSONObject fullItemData = getCompleteItemData(connector, itemCode);
-            JSONArray originalBarcodes = fullItemData.getJSONArray("ItemBarCodeCollection");
+            // 1. Get current item data with barcodes
+            JSONObject currentItem = getItemWithBarcodes(connector, itemCode);
+            JSONArray originalBarcodes = currentItem.getJSONArray("ItemBarCodeCollection");
 
-            // 2. First update - UoM group only (with empty barcode collection)
-            JSONObject uomUpdate = new JSONObject();
-            uomUpdate.put("UoMGroupEntry", ugpEntry);
-            uomUpdate.put("ItemBarCodeCollection", new JSONArray()); // Empty collection
+            // 2. Create update payload with UoM group AND barcodes
+            JSONObject updatePayload = new JSONObject();
+            updatePayload.put("UoMGroupEntry", ugpEntry);
+            updatePayload.put("ItemBarCodeCollection", originalBarcodes);
 
-            updateItem(connector, itemCode, uomUpdate);
-
-            // 3. Second update - restore original barcodes
-            JSONObject barcodeUpdate = new JSONObject();
-            barcodeUpdate.put("ItemBarCodeCollection", originalBarcodes);
-
-            updateItem(connector, itemCode, barcodeUpdate);
+            // 3. Single update with both UoM group and barcodes
+            updateItemWithRetry(connector, itemCode, updatePayload);
 
             redirectAttributes.addFlashAttribute("alertColor", "green");
-            redirectAttributes.addFlashAttribute("message", "✅ UoM Group updated successfully with barcodes preserved");
+            redirectAttributes.addFlashAttribute("message", "✅ UoM Group assigned successfully with barcodes preserved");
 
         } catch (Exception ex) {
             Logger.getLogger(SapCamelotUnitOfMeasurementControlle.class.getName()).log(Level.SEVERE, null, ex);
@@ -453,24 +448,41 @@ public class SapCamelotUnitOfMeasurementControlle {
         return "redirect:sapCamelotItemUpdateServant.htm?itemCode=" + itemCode;
     }
 
-    private JSONObject getCompleteItemData(SapCamelotApiConnector connector, String itemCode) throws Exception {
+    private JSONObject getItemWithBarcodes(SapCamelotApiConnector connector, String itemCode) throws Exception {
         String endpoint = "/Items('" + URLEncoder.encode(itemCode, StandardCharsets.UTF_8.toString()) + "')?$select=ItemBarCodeCollection,UoMGroupEntry";
         HttpURLConnection conn = connector.createConnection(endpoint, "GET");
-        return connector.getJsonResponse(conn);
+        JSONObject response = connector.getJsonResponse(conn);
+
+        if (!response.has("ItemBarCodeCollection")) {
+            response.put("ItemBarCodeCollection", new JSONArray());
+        }
+        return response;
     }
 
-    private void updateItem(SapCamelotApiConnector connector, String itemCode, JSONObject payload) throws Exception {
+    private void updateItemWithRetry(SapCamelotApiConnector connector, String itemCode, JSONObject payload) throws Exception {
         String endpoint = "/Items('" + URLEncoder.encode(itemCode, StandardCharsets.UTF_8.toString()) + "')";
-        HttpURLConnection conn = connector.createConnection(endpoint, "PATCH");
 
-        // These headers are crucial
-        conn.setRequestProperty("B1S-ReplaceCollectionsOnPatch", "true");
-        conn.setRequestProperty("Content-Type", "application/json");
+        // First try with collection replacement
+        try {
+            HttpURLConnection conn = connector.createConnection(endpoint, "PATCH");
+            conn.setRequestProperty("B1S-ReplaceCollectionsOnPatch", "true");
+            conn.setRequestProperty("Content-Type", "application/json");
+            connector.sendRequestBody(conn, payload.toString());
 
-        connector.sendRequestBody(conn, payload.toString());
+            if (conn.getResponseCode() == 200 || conn.getResponseCode() == 204) {
+                return; // Success
+            }
+        } catch (Exception e) {
+            Logger.getLogger(SapCamelotUnitOfMeasurementControlle.class.getName()).log(Level.WARNING, "First update attempt failed", e);
+        }
 
-        if (conn.getResponseCode() != 200 && conn.getResponseCode() != 204) {
-            throw new RuntimeException("Update failed: " + connector.getErrorResponse(conn));
+        // Fallback - try without collection replacement
+        HttpURLConnection fallbackConn = connector.createConnection(endpoint, "PATCH");
+        fallbackConn.setRequestProperty("Content-Type", "application/json");
+        connector.sendRequestBody(fallbackConn, payload.toString());
+
+        if (fallbackConn.getResponseCode() != 200 && fallbackConn.getResponseCode() != 204) {
+            throw new RuntimeException("Update failed: " + connector.getErrorResponse(fallbackConn));
         }
     }
 
