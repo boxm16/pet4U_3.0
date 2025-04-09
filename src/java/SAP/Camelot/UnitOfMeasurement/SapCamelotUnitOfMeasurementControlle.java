@@ -424,21 +424,23 @@ public class SapCamelotUnitOfMeasurementControlle {
             SapCamelotApiConnector connector = new SapCamelotApiConnector();
             String endpoint = "/Items('" + URLEncoder.encode(itemCode, StandardCharsets.UTF_8.toString()) + "')";
 
-            // 1. GET full item data
+            // 1. GET full item data to preserve existing values
             HttpURLConnection getConn = connector.createConnection(endpoint, "GET");
             JSONObject itemData = connector.getJsonResponse(getConn);
 
-            // 🔍 Add this line to log what you're actually getting
-            System.out.println("🔎 GET response for item: " + itemCode);
-            System.out.println(itemData.toString(2)); // Pretty-print for visibility
+            // Create minimal PATCH payload with only what we want to change
+            JSONObject patchPayload = new JSONObject();
+            patchPayload.put("UoMGroupEntry", ugpEntry);
 
-            // 2. Set new UoMGroupEntry (leave all other fields untouched)
-            itemData.put("UoMGroupEntry", ugpEntry);
+            // Explicitly include the barcode collection to preserve it
+            if (itemData.has("ItemBarCodeCollection")) {
+                patchPayload.put("ItemBarCodeCollection", itemData.getJSONArray("ItemBarCodeCollection"));
+            }
 
-            // 3. PATCH full item back as-is
+            // 2. PATCH with minimal payload
             HttpURLConnection patchConn = connector.createConnection(endpoint, "PATCH");
-            patchConn.setRequestProperty("B1S-ReplaceCollectionsOnPatch", "false"); // optional, but try it
-            connector.sendRequestBody(patchConn, itemData.toString());
+            patchConn.setRequestProperty("B1S-ReplaceCollectionsOnPatch", "false");
+            connector.sendRequestBody(patchConn, patchPayload.toString());
 
             int responseCode = patchConn.getResponseCode();
             if (responseCode == 200 || responseCode == 204) {
