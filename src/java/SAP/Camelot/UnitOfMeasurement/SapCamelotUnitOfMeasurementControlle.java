@@ -424,25 +424,14 @@ public class SapCamelotUnitOfMeasurementControlle {
             SapCamelotApiConnector connector = new SapCamelotApiConnector();
             String endpoint = "/Items('" + URLEncoder.encode(itemCode, StandardCharsets.UTF_8.toString()) + "')";
 
-            // 1. GET full item data
-            HttpURLConnection getConn = connector.createConnection(endpoint, "GET");
-            JSONObject itemData = connector.getJsonResponse(getConn);
+            // 1. Create a JSON object with only the fields you want to update
+            JSONObject updateData = new JSONObject();
+            updateData.put("UoMGroupEntry", ugpEntry);
 
-            // ✅ Explicitly preserve BarCodes array (because it often disappears otherwise)
-            JSONArray preservedBarcodes = itemData.optJSONArray("BarCodes");
-            if (preservedBarcodes != null) {
-                itemData.put("BarCodes", preservedBarcodes);
-            }
-
-            // 🛡️ (Optional) Preserve other subcollections here, if needed:
-            // JSONArray preservedPrices = itemData.optJSONArray("ItemPrices");
-            // itemData.put("ItemPrices", preservedPrices);
-            // 2. Update UoMGroupEntry
-            itemData.put("UoMGroupEntry", ugpEntry);
-
-            // 3. PATCH full object (including preserved sub-data)
+            // 2. PATCH the updateData with the header set to false
             HttpURLConnection patchConn = connector.createConnection(endpoint, "PATCH");
-            connector.sendRequestBody(patchConn, itemData.toString());
+            patchConn.setRequestProperty("B1S-ReplaceCollectionsOnPatch", "false");
+            connector.sendRequestBody(patchConn, updateData.toString());
 
             int responseCode = patchConn.getResponseCode();
             if (responseCode == 200 || responseCode == 204) {
