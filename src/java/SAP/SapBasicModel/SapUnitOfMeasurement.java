@@ -17,8 +17,11 @@ public class SapUnitOfMeasurement {
     private boolean locked;
     private String dataSource;
 
+    private ArrayList<String> barcodes;
+
     public SapUnitOfMeasurement() {
         this.altercodeContainers = new ArrayList<>();
+        this.barcodes = new ArrayList<>();
     }
 
     public int getUomEntry() {
@@ -76,7 +79,13 @@ public class SapUnitOfMeasurement {
     public void setDataSource(String dataSource) {
         this.dataSource = dataSource;
     }
-    
-    
+
+    public ArrayList<String> getBarcodes() {
+        return barcodes;
+    }
+
+    public void setBarcodes(ArrayList<String> barcodes) {
+        this.barcodes = barcodes;
+    }
 
 }
