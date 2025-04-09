@@ -37,29 +37,6 @@
                 font-weight: bold;
                 color: #343a40;
             }
-            .form-check-input {
-                transform: scale(2);
-                margin-right: 15px;
-                margin-bottom: 30px;
-            }
-            .form-check-label {
-                font-size: 2rem;
-                margin-left: 10px;
-            }
-            .btn-primary {
-                font-size: 2rem;
-                padding: 0.75rem 1.5rem;
-                border-radius: 0.5rem;
-            }
-            .form-select-lg:hover {
-                border-color: #0056b3;
-                box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
-            }
-            .form-select-lg:focus {
-                border-color: #0056b3;
-                box-shadow: 0 0 12px rgba(0, 123, 255, 0.75);
-                background-color: #ffffff;
-            }
             .readonly-field {
                 background-color: #e9ecef !important;
                 cursor: not-allowed;
@@ -91,7 +68,26 @@
             }
             .base-quantity-input {
                 width: 100px;
+            }
+            .barcode-input {
+                width: 200px;
                 display: inline-block;
+                margin-right: 10px;
+            }
+            .barcode-badge {
+                display: inline-block;
+                background-color: #e2f0fd;
+                color: #004085;
+                padding: 5px 10px;
+                border-radius: 20px;
+                margin-right: 5px;
+                margin-bottom: 5px;
+            }
+            .barcode-remove-btn {
+                color: #dc3545;
+                background: none;
+                border: none;
+                padding: 0 5px;
             }
         </style>
     </head>
@@ -157,14 +153,14 @@
                             </c:if>
                         </p>
                         
-                        <!-- UoM Table with Base Quantities -->
+                        <!-- UoM Table with Base Quantities and Barcodes -->
                         <table class="uom-table">
                             <thead>
                                 <tr>
                                     <th>UoM Code</th>
                                     <th>UoM Name</th>
                                     <th>Base Quantity</th>
-                                    <th>Actions</th>
+                                    <th>Barcodes</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -173,28 +169,41 @@
                                         <td>${uom.value.uomCode}</td>
                                         <td>${uom.value.uomName}</td>
                                         <td>
-                                            <form method="POST" action="updateUomBaseQuantity.htm" class="d-inline">
-                                                <input type="hidden" name="itemCode" value="${item.code}" />
-                                                <input type="hidden" name="uomEntry" value="${uom.value.uomEntry}" />
-                                                <input type="number" name="baseQuantity" 
-                                                       value="${uom.value.baseQuantity}" 
-                                                       class="form-control base-quantity-input" 
-                                                       min="1" step="1" required />
-                                                <button type="submit" class="btn btn-sm btn-primary">
-                                                    <i class="fas fa-save"></i>
-                                                </button>
-                                            </form>
+                                            <input type="number" name="baseQuantity" 
+                                                   value="${uom.value.baseQuantity}" 
+                                                   class="form-control base-quantity-input" 
+                                                   min="1" step="1" readonly />
                                         </td>
                                         <td>
-                                            <c:if test="${uom.value.baseQuantity == 120}">
-                                                <form method="POST" action="processPalletScan.htm" class="d-inline">
-                                                    <input type="hidden" name="itemCode" value="${item.code}" />
-                                                    <input type="hidden" name="uomEntry" value="${uom.value.uomEntry}" />
-                                                    <button type="submit" class="btn btn-success">
-                                                        <i class="fas fa-barcode"></i> Process Pallet Scan (+120)
+                                            <!-- Display existing barcodes -->
+                                            <div class="mb-2">
+                                                <c:forEach items="${uom.value.barcodes}" var="barcode">
+                                                    <span class="barcode-badge">
+                                                        ${barcode.value}
+                                                        <form method="POST" action="removeUomBarcode.htm" class="d-inline">
+                                                            <input type="hidden" name="itemCode" value="${item.code}" />
+                                                            <input type="hidden" name="uomEntry" value="${uom.value.uomEntry}" />
+                                                            <input type="hidden" name="barcode" value="${barcode.value}" />
+                                                            <button type="submit" class="barcode-remove-btn">
+                                                                <i class="fas fa-times"></i>
+                                                            </button>
+                                                        </form>
+                                                    </span>
+                                                </c:forEach>
+                                            </div>
+                                            
+                                            <!-- Add new barcode form -->
+                                            <form method="POST" action="addUomBarcode.htm" class="mt-2">
+                                                <input type="hidden" name="itemCode" value="${item.code}" />
+                                                <input type="hidden" name="uomEntry" value="${uom.value.uomEntry}" />
+                                                <div class="input-group">
+                                                    <input type="text" name="barcode" class="form-control barcode-input" 
+                                                           placeholder="New barcode" required />
+                                                    <button type="submit" class="btn btn-primary">
+                                                        <i class="fas fa-plus"></i> Add Barcode
                                                     </button>
-                                                </form>
-                                            </c:if>
+                                                </div>
+                                            </form>
                                         </td>
                                     </tr>
                                 </c:forEach>
@@ -260,16 +269,6 @@
                 document.getElementById('currentUomGroupCard').style.display = hasGroup ? 'block' : 'none';
                 document.getElementById('noUomGroupMessage').style.display = hasGroup ? 'none' : 'block';
             }
-            
-            // Validate base quantity inputs
-            document.querySelectorAll('.base-quantity-input').forEach(input => {
-                input.addEventListener('change', function() {
-                    if (this.value < 1) {
-                        alert('Base quantity must be at least 1');
-                        this.value = 1;
-                    }
-                });
-            });
         </script>
     </body>
 </html>
