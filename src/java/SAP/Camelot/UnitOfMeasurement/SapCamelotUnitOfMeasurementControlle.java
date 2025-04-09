@@ -364,7 +364,7 @@ public class SapCamelotUnitOfMeasurementControlle {
         }
         return "redirect:camelotUnitOfMeasurementGroupEditServant.htm?ugpEntry=" + ugpEntry;
     }
- ///---------------------------------------------------
+    ///---------------------------------------------------
 
     @RequestMapping(value = "assignUomGroupToItemX", method = RequestMethod.POST)
     public String assignUomGroupToItemX(
@@ -424,36 +424,39 @@ public class SapCamelotUnitOfMeasurementControlle {
             SapCamelotApiConnector connector = new SapCamelotApiConnector();
             String endpoint = "/Items('" + URLEncoder.encode(itemCode, StandardCharsets.UTF_8.toString()) + "')";
 
-            // 1. GET the current item
+            // 1. GET full existing item data
             HttpURLConnection getConn = connector.createConnection(endpoint, "GET");
             JSONObject itemData = connector.getJsonResponse(getConn);
 
-            // 2. Build a safe PATCH payload — only UoMGroupEntry and mandatory fields
-            JSONObject patchData = new JSONObject();
-            patchData.put("UoMGroupEntry", ugpEntry);
+            // 2. Update only the UoMGroupEntry
+            itemData.put("UoMGroupEntry", ugpEntry);
 
-            // Include required fields to avoid OData validation errors
-            patchData.put("ItemCode", itemData.get("ItemCode"));
-            patchData.put("ItemName", itemData.get("ItemName"));
-            patchData.put("ItemType", itemData.get("ItemType"));
-            patchData.put("InventoryItem", itemData.get("InventoryItem"));
-            patchData.put("SalesItem", itemData.get("SalesItem"));
-            patchData.put("PurchaseItem", itemData.get("PurchaseItem"));
+            // 3. 🧼 Clean up non-patchable or read-only fields (e.g., subcollections)
+            itemData.remove("ItemPrices");
+            itemData.remove("BarCodes");
+            itemData.remove("DocumentLines");
+            itemData.remove("Attachments2"); // if exists
+            itemData.remove("WarehouseInfoCollection");
+            itemData.remove("ItemWarehouseInfoCollection");
+            itemData.remove("ItemPreferredVendors");
+            itemData.remove("UoMGroups");
+            itemData.remove("UoMGroupCollection");
+            itemData.remove("InventoryOpeningBalances"); // etc.
 
-            // 3. PATCH only the minimal data
+            // 4. Send full cleaned object with PATCH
             HttpURLConnection patchConn = connector.createConnection(endpoint, "PATCH");
-            connector.sendRequestBody(patchConn, patchData.toString());
+            connector.sendRequestBody(patchConn, itemData.toString());
 
-            // 4. Handle response
+            // 5. Handle response
             int responseCode = patchConn.getResponseCode();
             if (responseCode == 200 || responseCode == 204) {
                 redirectAttributes.addFlashAttribute("alertColor", "green");
                 redirectAttributes.addFlashAttribute("message", "✅ UoM Group assigned successfully.");
             } else {
                 String errorResponse = connector.getErrorResponse(patchConn);
+                System.err.println("❌ PATCH Error: " + errorResponse);
                 redirectAttributes.addFlashAttribute("alertColor", "red");
                 redirectAttributes.addFlashAttribute("message", "❌ Failed to assign UoM Group: " + errorResponse);
-                System.err.println("PATCH Error Response: " + errorResponse);
             }
 
         } catch (IOException ex) {
@@ -462,7 +465,7 @@ public class SapCamelotUnitOfMeasurementControlle {
             redirectAttributes.addFlashAttribute("message", "Network error: " + ex.getMessage());
         } catch (Exception ex) {
             Logger.getLogger(SapCamelotUnitOfMeasurementControlle.class.getName()).log(Level.SEVERE,
-                    "Error assigning UoM Group", ex);
+                    "Exception during UoM Group assignment", ex);
             redirectAttributes.addFlashAttribute("alertColor", "red");
             redirectAttributes.addFlashAttribute("message", "System error during assignment. Please check logs.");
         }
