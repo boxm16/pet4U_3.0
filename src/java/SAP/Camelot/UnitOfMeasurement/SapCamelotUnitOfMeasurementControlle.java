@@ -538,4 +538,46 @@ public class SapCamelotUnitOfMeasurementControlle {
         return "redirect:sapCamelotItemUpdateServant.htm?itemCode=" + itemCode;
     }
 
+    //------uom Barcode handling-----------
+    // Handle barcode addition to UoM
+    @RequestMapping(value = "addUomBarcode", method = RequestMethod.POST)
+    public String addUomBarcode(
+            @RequestParam String itemCode,
+            @RequestParam Integer uomEntry,
+            @RequestParam String barcode,
+            RedirectAttributes redirectAttributes) {
+
+        // Your implementation to add barcode to UoM
+        // ...
+        redirectAttributes.addFlashAttribute("message", "Barcode added successfully");
+        return "redirect:sapCamelotItemUpdateServant.htm?itemCode=" + itemCode;
+    }
+
+// Handle barcode removal from UoM
+    @RequestMapping(value = "removeUomBarcode", method = RequestMethod.POST)
+    public String removeUomBarcode(
+            @RequestParam String itemCode,
+            @RequestParam Integer uomEntry,
+            @RequestParam String barcode,
+            RedirectAttributes redirectAttributes) {
+
+        // Your implementation to remove barcode from UoM
+        // ...
+        redirectAttributes.addFlashAttribute("message", "Barcode removed successfully");
+        return "redirect:sapCamelotItemUpdateServant.htm?itemCode=" + itemCode;
+    }
+
+// Handle pallet scan processing
+    @RequestMapping(value = "processPalletScan", method = RequestMethod.POST)
+    public String processPalletScan(
+            @RequestParam String itemCode,
+            @RequestParam Integer uomEntry,
+            RedirectAttributes redirectAttributes) {
+
+        // Your implementation to add 120 pieces
+        // ...
+        redirectAttributes.addFlashAttribute("message", "Pallet scan processed (+120)");
+        return "redirect:sapCamelotItemUpdateServant.htm?itemCode=" + itemCode;
+    }
+
 }
