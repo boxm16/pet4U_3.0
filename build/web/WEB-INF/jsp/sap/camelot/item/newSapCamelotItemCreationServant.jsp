@@ -130,12 +130,7 @@
                 </div>
 
                 <hr>
-                <h1>Optional Fields</h1>
-                <!-- Main Barcode -->
-                <div class="mb-3">
-                    <label for="mainBarcode" class="form-label form-label-lg">Main Barcode</label>
-                    <form:input path="mainBarcode" class="form-control form-control-lg" id="mainBarcode" />
-                </div>
+               
 
                 <!-- Submit Button -->
                 <button type="submit" class="btn btn-primary btn-lg">Create Item</button>
