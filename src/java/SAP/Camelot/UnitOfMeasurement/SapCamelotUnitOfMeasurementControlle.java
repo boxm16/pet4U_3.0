@@ -424,24 +424,23 @@ public class SapCamelotUnitOfMeasurementControlle {
             SapCamelotApiConnector connector = new SapCamelotApiConnector();
             String endpoint = "/Items('" + URLEncoder.encode(itemCode, StandardCharsets.UTF_8.toString()) + "')";
 
-            // 1. GET full item data
-            HttpURLConnection getConn = connector.createConnection(endpoint, "GET");
-            JSONObject itemData = connector.getJsonResponse(getConn);
+            // Prepare minimal payload
+            JSONObject patchData = new JSONObject();
+            patchData.put("UoMGroupEntry", ugpEntry);
 
-            // 2. Update UoMGroupEntry
-            itemData.put("UoMGroupEntry", ugpEntry);
+            // Create PATCH connection with special header
+            HttpURLConnection patchConn = connector.createConnection(endpoint, "PATCH");
+            patchConn.setRequestProperty("B1S-ReplaceCollectionsOnPatch", "false");
 
-            // 3. PUT full item data back
-            HttpURLConnection putConn = connector.createConnection(endpoint, "PUT");
-            connector.sendRequestBody(putConn, itemData.toString());
+            connector.sendRequestBody(patchConn, patchData.toString());
 
-            int responseCode = putConn.getResponseCode();
+            int responseCode = patchConn.getResponseCode();
             if (responseCode == 200 || responseCode == 204) {
                 redirectAttributes.addFlashAttribute("alertColor", "green");
                 redirectAttributes.addFlashAttribute("message", "✅ UoM Group assigned successfully.");
             } else {
-                String errorResponse = connector.getErrorResponse(putConn);
-                System.err.println("❌ PUT Error: " + errorResponse);
+                String errorResponse = connector.getErrorResponse(patchConn);
+                System.err.println("❌ PATCH Error: " + errorResponse);
                 redirectAttributes.addFlashAttribute("alertColor", "red");
                 redirectAttributes.addFlashAttribute("message", "❌ Failed to assign UoM Group: " + errorResponse);
             }
