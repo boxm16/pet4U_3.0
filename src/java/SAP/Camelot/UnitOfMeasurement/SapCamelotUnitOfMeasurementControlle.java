@@ -424,47 +424,64 @@ public class SapCamelotUnitOfMeasurementControlle {
             SapCamelotApiConnector connector = new SapCamelotApiConnector();
             String endpoint = "/Items('" + URLEncoder.encode(itemCode, StandardCharsets.UTF_8.toString()) + "')";
 
-            // 1. GET full item data to preserve existing values
-            HttpURLConnection getConn = connector.createConnection(endpoint, "GET");
-            JSONObject itemData = connector.getJsonResponse(getConn);
-
-            // Create minimal PATCH payload with only what we want to change
+            // Option 1: Minimal PATCH with just UoMGroupEntry (preferred)
             JSONObject patchPayload = new JSONObject();
             patchPayload.put("UoMGroupEntry", ugpEntry);
 
-            // Explicitly include the barcode collection to preserve it
-            if (itemData.has("ItemBarCodeCollection")) {
-                patchPayload.put("ItemBarCodeCollection", itemData.getJSONArray("ItemBarCodeCollection"));
-            }
-
-            // 2. PATCH with minimal payload
             HttpURLConnection patchConn = connector.createConnection(endpoint, "PATCH");
-            patchConn.setRequestProperty("B1S-ReplaceCollectionsOnPatch", "false");
+            // DON'T set ReplaceCollections header - let SAP handle it as merge
             connector.sendRequestBody(patchConn, patchPayload.toString());
 
             int responseCode = patchConn.getResponseCode();
+
             if (responseCode == 200 || responseCode == 204) {
+                // Verify barcode still exists
+                if (!verifyBarcodeExists(connector, itemCode)) {
+                    restoreBarcode(connector, itemCode);
+                }
+
                 redirectAttributes.addFlashAttribute("alertColor", "green");
                 redirectAttributes.addFlashAttribute("message", "✅ UoM Group assigned successfully.");
             } else {
                 String errorResponse = connector.getErrorResponse(patchConn);
-                System.err.println("❌ PATCH Error: " + errorResponse);
                 redirectAttributes.addFlashAttribute("alertColor", "red");
                 redirectAttributes.addFlashAttribute("message", "❌ Failed to assign UoM Group: " + errorResponse);
             }
 
-        } catch (IOException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(SapCamelotUnitOfMeasurementControlle.class.getName()).log(Level.SEVERE, null, ex);
             redirectAttributes.addFlashAttribute("alertColor", "red");
-            redirectAttributes.addFlashAttribute("message", "Network error: " + ex.getMessage());
-        } catch (Exception ex) {
-            Logger.getLogger(SapCamelotUnitOfMeasurementControlle.class.getName()).log(Level.SEVERE,
-                    "Exception during UoM Group assignment", ex);
-            redirectAttributes.addFlashAttribute("alertColor", "red");
-            redirectAttributes.addFlashAttribute("message", "System error during assignment. Please check logs.");
+            redirectAttributes.addFlashAttribute("message", "Error: " + ex.getMessage());
         }
 
         return "redirect:sapCamelotItemUpdateServant.htm?itemCode=" + itemCode;
+    }
+
+    private boolean verifyBarcodeExists(SapCamelotApiConnector connector, String itemCode) throws Exception {
+        String endpoint = "/Items('" + URLEncoder.encode(itemCode, StandardCharsets.UTF_8.toString()) + "')?$select=ItemBarCodeCollection";
+        HttpURLConnection conn = connector.createConnection(endpoint, "GET");
+        JSONObject response = connector.getJsonResponse(conn);
+        return response.has("ItemBarCodeCollection")
+                && response.getJSONArray("ItemBarCodeCollection").length() > 0;
+    }
+
+    private void restoreBarcode(SapCamelotApiConnector connector, String itemCode) throws Exception {
+        // First get the original barcode
+        String endpoint = "/Items('" + URLEncoder.encode(itemCode, StandardCharsets.UTF_8.toString()) + "')";
+        HttpURLConnection getConn = connector.createConnection(endpoint, "GET");
+        JSONObject itemData = connector.getJsonResponse(getConn);
+
+        if (itemData.has("ItemBarCodeCollection")) {
+            JSONArray barcodes = itemData.getJSONArray("ItemBarCodeCollection");
+            if (barcodes.length() > 0) {
+                // Create payload just for barcode restoration
+                JSONObject patchPayload = new JSONObject();
+                patchPayload.put("ItemBarCodeCollection", barcodes);
+
+                HttpURLConnection patchConn = connector.createConnection(endpoint, "PATCH");
+                connector.sendRequestBody(patchConn, patchPayload.toString());
+            }
+        }
     }
 
     ///---------------------------------------------------
