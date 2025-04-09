@@ -539,7 +539,7 @@ public class SapCamelotUnitOfMeasurementControlle {
     }
 
     //------uom Barcode handling-----------
-    @RequestMapping(value = "addUomBarcode", method = RequestMethod.GET)
+    @RequestMapping(value = "addUomBarcode", method = RequestMethod.POST)
     public String addUomBarcode(
             @RequestParam("itemCode") String itemCode,
             @RequestParam("uomEntry") Integer uomEntry,
