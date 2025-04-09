@@ -424,15 +424,21 @@ public class SapCamelotUnitOfMeasurementControlle {
             SapCamelotApiConnector connector = new SapCamelotApiConnector();
             String endpoint = "/Items('" + URLEncoder.encode(itemCode, StandardCharsets.UTF_8.toString()) + "')";
 
-            // Prepare minimal payload
-            JSONObject patchData = new JSONObject();
-            patchData.put("UoMGroupEntry", ugpEntry);
+            // 1. GET full item data
+            HttpURLConnection getConn = connector.createConnection(endpoint, "GET");
+            JSONObject itemData = connector.getJsonResponse(getConn);
 
-            // Create PATCH connection with special header
+            // 🔍 Add this line to log what you're actually getting
+            System.out.println("🔎 GET response for item: " + itemCode);
+            System.out.println(itemData.toString(2)); // Pretty-print for visibility
+
+            // 2. Set new UoMGroupEntry (leave all other fields untouched)
+            itemData.put("UoMGroupEntry", ugpEntry);
+
+            // 3. PATCH full item back as-is
             HttpURLConnection patchConn = connector.createConnection(endpoint, "PATCH");
-            patchConn.setRequestProperty("B1S-ReplaceCollectionsOnPatch", "false");
-
-            connector.sendRequestBody(patchConn, patchData.toString());
+            patchConn.setRequestProperty("B1S-ReplaceCollectionsOnPatch", "false"); // optional, but try it
+            connector.sendRequestBody(patchConn, itemData.toString());
 
             int responseCode = patchConn.getResponseCode();
             if (responseCode == 200 || responseCode == 204) {
