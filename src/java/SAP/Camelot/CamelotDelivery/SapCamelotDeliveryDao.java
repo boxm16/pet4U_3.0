@@ -36,16 +36,13 @@ public class SapCamelotDeliveryDao {
                 + dbSchema + ".OPOR.\"CardCode\", "
                 + dbSchema + ".OPOR.\"CardName\", "
                 + dbSchema + ".OPOR.\"DocDate\", "
-                + dbSchema + ".POR1.\"ItemCode\", "
-                + dbSchema + ".POR1.\"Dscription\", "
-                + dbSchema + ".POR1.\"Quantity\", "
-                + dbSchema + ".POR1.\"Price\", "
+                + dbSchema + ".OPOR.\"DocStatus\", " // Added DocStatus field
                 + dbSchema + ".POR1.\"WhsCode\" "
                 + "FROM  "
-                + dbSchema + " OPOR   "
+                + dbSchema + ".OPOR   "
                 + "JOIN  "
-                + dbSchema + " POR1 ON "
-                + dbSchema + " OPOR.\"DocEntry\" = " + dbSchema + ".POR1.\"DocEntry\"; ";
+                + dbSchema + ".POR1 ON "
+                + dbSchema + ".OPOR.\"DocEntry\" = " + dbSchema + ".POR1.\"DocEntry\"";
         System.out.println("Query: " + query);
 
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
