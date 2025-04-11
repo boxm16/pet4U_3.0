@@ -55,7 +55,7 @@
                                         <label for="invoice_${invoice.invoiceId}"></label>
                                     </td>
                                     <td>
-                                        <button class="invoice-btn" 
+                                        <button type="button"
                                                 onclick="window.location.href = 'sapCamelotDeliveryInvoiceChecking?invoiceId=${invoice.invoiceId}'">
                                             ${invoice.invoiceId}
                                         </button>
