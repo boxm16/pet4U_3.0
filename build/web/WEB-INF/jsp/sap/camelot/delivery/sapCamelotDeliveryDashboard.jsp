@@ -8,13 +8,21 @@
             th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
             th { background-color: #f2f2f2; }
             .supplier-header { background-color: #e6e6e6; margin-top: 20px; }
-            .invoice-link { 
-                color: #0066cc; 
-                text-decoration: none; 
+            .invoice-btn {
+                background-color: #4CAF50;
+                border: none;
+                color: white;
+                padding: 6px 12px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 14px;
+                margin: 2px 1px;
                 cursor: pointer;
+                border-radius: 4px;
             }
-            .invoice-link:hover {
-                text-decoration: underline;
+            .invoice-btn:hover {
+                background-color: #45a049;
             }
         </style>
     </head>
@@ -22,9 +30,7 @@
         <h1>Due Purchase Orders by Supplier</h1>
 
         <c:if test="${not empty duePurchaseOrders}">
-            <form id="invoiceForm" action="sapCamelotDeliveryInvoiceChecking.htm" method="POST">
-                <input type="hidden" id="selectedInvoice" name="invoiceId" value="">
-
+            <form id="invoiceForm" method="post">
                 <c:forEach var="entry" items="${duePurchaseOrders}">
                     <div class="supplier-header">
                         <h2>${entry.key}</h2>
@@ -33,7 +39,8 @@
                     <table>
                         <thead>
                             <tr>
-                                <th>Invoice Number</th>
+                                <th>Select</th>
+                                <th>Document Id</th>
                                 <th>Document Date</th>
                             </tr>
                         </thead>
@@ -41,11 +48,17 @@
                             <c:forEach var="invoice" items="${entry.value}">
                                 <tr>
                                     <td>
-                                        <a class="invoice-link" 
-                                           onclick="document.getElementById('selectedInvoice').value = '${invoice.invoiceId}';
-                                                   document.getElementById('invoiceForm').submit();">
+                                        <input type="checkbox" 
+                                               name="selectedInvoices" 
+                                               value="${invoice.invoiceId}" 
+                                               id="invoice_${invoice.invoiceId}">
+                                        <label for="invoice_${invoice.invoiceId}"></label>
+                                    </td>
+                                    <td>
+                                        <button class="invoice-btn" 
+                                                onclick="window.location.href = 'sapCamelotDeliveryInvoiceChecking?invoiceId=${invoice.invoiceId}'">
                                             ${invoice.invoiceId}
-                                        </a>
+                                        </button>
                                     </td>
                                     <td>${invoice.insertionDate}</td>
                                 </tr>
@@ -59,13 +72,5 @@
         <c:if test="${empty duePurchaseOrders}">
             <p>No due purchase orders found.</p>
         </c:if>
-
-        <script>
-            // Alternative JavaScript function if you prefer
-            function submitInvoice(invoiceId) {
-                document.getElementById('selectedInvoice').value = invoiceId;
-                document.getElementById('invoiceForm').submit();
-            }
-        </script>
     </body>
 </html>
