@@ -6,12 +6,20 @@
 package SAP.Camelot.CamelotDelivery;
 
 import Delivery.DeliveryDao;
-import Delivery.DeliveryDao_V_3_1;
 import Delivery.DeliveryInvoice;
 import Delivery.DeliveryItem;
+import SAP.SapCamelotApiConnector;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +30,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class SapCamelotDeliveryController {
 
     @RequestMapping(value = "camelotDeliveryDashboard")
-    public String camelotItemsDashboard(ModelMap modelMap) {
+    public String camelotDeliveryDashboard(ModelMap modelMap) {
         SapCamelotDeliveryDao sampSapCamelotDeliveryDao = new SapCamelotDeliveryDao();
         LinkedHashMap<String, ArrayList<DeliveryInvoice>> duePurchaseOrders = sampSapCamelotDeliveryDao.getDuePurchaseOrders();
 
@@ -48,31 +56,81 @@ public class SapCamelotDeliveryController {
     }
 
     @RequestMapping(value = "saveSapCamelotDeliveryCheckUp", method = RequestMethod.POST)
-    public String saveSapCamelotDeliveryCheckUp(@RequestParam(name = "sentItems") String sentItemsData,
+    public String saveSapCamelotDeliveryCheckUp(
+            @RequestParam(name = "sentItems") String sentItemsData,
             @RequestParam(name = "deliveredItems") String deliveredItemsData,
             @RequestParam(name = "invoiceNumber") String invoiceNumber,
             @RequestParam(name = "invoiceId") String invoiceId,
-            @RequestParam(name = "supplier") String supplier) {
-        DeliveryInvoice deliveryInvoice = new DeliveryInvoice();
-        deliveryInvoice.setInvoiceId(invoiceId);
-        deliveryInvoice.setSupplier(supplier);
-        deliveryInvoice.setNumber(invoiceNumber);
+            @RequestParam(name = "supplier") String supplier,
+            ModelMap modelMap) {
 
-        LinkedHashMap<String, String> deliveredItems = decodeDeliveredItemsData(deliveredItemsData);
-        LinkedHashMap<String, String> sentItems = decodeDeliveredItemsData(sentItemsData);
+        try {
+            // 1. Prepare the delivery invoice object
+            DeliveryInvoice deliveryInvoice = new DeliveryInvoice();
+            deliveryInvoice.setInvoiceId(invoiceId);
+            deliveryInvoice.setSupplier(supplier);
+            deliveryInvoice.setNumber(invoiceNumber);
 
-        ArrayList<DeliveryItem> deliveryItems = new ArrayList<>();
-        for (Map.Entry<String, String> deliveredItemsEntry : deliveredItems.entrySet()) {
-            DeliveryItem deliveryItem = new DeliveryItem();
-            deliveryItem.setCode(deliveredItemsEntry.getKey());
-            deliveryItem.setDeliveredQuantity(deliveredItemsEntry.getValue());
-            deliveryItem.setSentQuantity(sentItems.get(deliveredItemsEntry.getKey()));
-            deliveryItems.add(deliveryItem);
+            // 2. Parse the items data
+            LinkedHashMap<String, String> deliveredItems = decodeDeliveredItemsData(deliveredItemsData);
+            LinkedHashMap<String, String> sentItems = decodeDeliveredItemsData(sentItemsData);
+
+            // 3. Connect to SAP API
+            SapCamelotApiConnector sapCamelotApiConnector = new SapCamelotApiConnector();
+            String endPoint = "/InventoryGenEntries"; // Endpoint for creating items
+            String requestMethod = "POST";
+
+            HttpURLConnection conn = sapCamelotApiConnector.createConnection(endPoint, requestMethod);
+            // 4. Prepare JSON payload for SAP
+            JSONObject payload = new JSONObject();
+            payload.put("Comments", "Delivery checkup for invoice " + invoiceNumber);
+            payload.put("DocDate", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+
+            JSONArray documentLines = new JSONArray();
+
+            for (Map.Entry<String, String> entry : deliveredItems.entrySet()) {
+                JSONObject line = new JSONObject();
+                line.put("ItemCode", entry.getKey());
+                line.put("Quantity", Double.parseDouble(entry.getValue()));
+                line.put("WarehouseCode", "01"); // Adjust warehouse code as needed
+                documentLines.put(line);
+            }
+
+            payload.put("DocumentLines", documentLines);
+
+            // 6. Send the request
+            sapCamelotApiConnector.sendRequestBody(conn, payload.toString());
+
+            // 7. Handle response
+            int responseCode = conn.getResponseCode();
+            if (responseCode == 201) {
+                JSONObject jsonResponse = sapCamelotApiConnector.getJsonResponse(conn);
+                modelMap.addAttribute("message", "Delivery checkup saved successfully in SAP. Reference: "
+                        + jsonResponse.optString("DocNum", "N/A"));
+
+                // Store items in delivery invoice for local reference
+                for (Map.Entry<String, String> entry : deliveredItems.entrySet()) {
+                    DeliveryItem item = new DeliveryItem();
+                    item.setCode(entry.getKey());
+                    item.setDeliveredQuantity(entry.getValue());
+                    item.setSentQuantity(sentItems.get(entry.getKey()));
+                    deliveryInvoice.getItems().put(entry.getKey(), item);
+                }
+
+                // Here you would typically save deliveryInvoice to your database
+                // deliveryService.save(deliveryInvoice);
+            } else {
+                String errorResponse = sapCamelotApiConnector.getErrorResponse(conn);
+                modelMap.addAttribute("message", "Error saving delivery checkup: " + errorResponse);
+                deliveryInvoice.setErrorMessages(errorResponse);
+            }
+
+        } catch (IOException | NumberFormatException ex) {
+            Logger.getLogger(SapCamelotDeliveryController.class.getName()).log(Level.SEVERE, null, ex);
+            modelMap.addAttribute("message", "An error occurred: " + ex.getMessage());
         }
 
-        DeliveryDao_V_3_1 dao = new DeliveryDao_V_3_1();
-        String result = dao.saveDeliveryChecking(invoiceId, supplier, invoiceNumber, deliveryItems);
-        return "redirect:deliveryDashboard_X.htm";
+        return "redirect:camelotDeliveryDashboard.htm";
     }
 
     private LinkedHashMap<String, String> decodeDeliveredItemsData(String data) {
