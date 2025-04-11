@@ -8,6 +8,7 @@ package SAP.Camelot.CamelotDelivery;
 import Delivery.DeliveryInvoice;
 import Service.DatabaseConnectionFactory;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -74,4 +75,48 @@ public class SapCamelotDeliveryDao {
         return duePurchaseOrders;
     }
 
+    DeliveryInvoice getPurchaseOrderForDeliveryChecking(String purchaseOrderNumber) {
+        DeliveryInvoice deliveryInvoice = new DeliveryInvoice();
+        String query = "SELECT "
+                + dbSchema + ".OPOR.\"DocNum\", "
+                + dbSchema + ".OPOR.\"CardCode\", "
+                + dbSchema + ".OPOR.\"CardName\", "
+                + dbSchema + ".OPOR.\"DocDate\", "
+                + dbSchema + ".POR1.\"ItemCode\", "
+                + dbSchema + ".POR1.\"Dscription\", "
+                + dbSchema + ".POR1.\"Quantity\", "
+                + dbSchema + ".POR1.\"Price\", "
+                + dbSchema + ".POR1.\"WhsCode\" "
+                + "FROM "
+                + dbSchema + ".OPOR "
+                + "JOIN "
+                + dbSchema + ".POR1 ON "
+                + dbSchema + ".OPOR.\"DocEntry\" = " + dbSchema + ".POR1.\"DocEntry\" "
+                + "WHERE "
+                + dbSchema + ".OPOR.\"DocNum\" = ?";
+
+        System.out.println("Query: " + query);
+
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+
+        try (Connection connection = databaseConnectionFactory.getSapHanaConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+
+            // Set the parameter for the prepared statement
+            preparedStatement.setString(1, purchaseOrderNumber);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    // Populate your DeliveryInvoice object here
+                    deliveryInvoice.setInvoiceId(resultSet.getString("DocNum"));
+                    deliveryInvoice.setSupplier(resultSet.getString("CardName"));
+                    deliveryInvoice.setInsertionDate(resultSet.getString("DocDate"));
+                    // Set other fields as needed
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(SapCamelotDeliveryDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return deliveryInvoice;
+    }
 }

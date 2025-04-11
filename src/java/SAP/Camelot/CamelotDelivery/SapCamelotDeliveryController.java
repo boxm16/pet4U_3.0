@@ -27,9 +27,11 @@ public class SapCamelotDeliveryController {
     }
 
     @RequestMapping(value = "/sapCamelotDeliveryInvoiceChecking.htm", method = RequestMethod.GET)
-    public String sapCamelotDeliveryInvoiceChecking(@RequestParam("invoiceId") String invoiceId, ModelMap modelMap) {
-        System.out.println("lapalupa "+invoiceId);
-        modelMap.addAttribute("selectedInvoice", invoiceId);
+    public String sapCamelotDeliveryInvoiceChecking(@RequestParam("invoiceId") String purchaseOrderNumber, ModelMap modelMap) {
+        SapCamelotDeliveryDao sampSapCamelotDeliveryDao = new SapCamelotDeliveryDao();
+        DeliveryInvoice deliveryInvoice = sampSapCamelotDeliveryDao.getPurchaseOrderForDeliveryChecking(purchaseOrderNumber);
+
+        modelMap.addAttribute("deliveryInvoice", deliveryInvoice);
         return "sap/camelot/delivery/sapCamelotDeliveryInvoiceChecking";
 
     }
