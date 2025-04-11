@@ -9,7 +9,6 @@ import Delivery.DeliveryDao;
 import Delivery.DeliveryInvoice;
 import Delivery.DeliveryItem;
 import SAP.SapCamelotApiConnector;
-import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -62,72 +61,61 @@ public class SapCamelotDeliveryController {
             @RequestParam(name = "invoiceNumber") String invoiceNumber,
             @RequestParam(name = "invoiceId") String invoiceId,
             @RequestParam(name = "supplier") String supplier,
-            ModelMap modelMap) {
+            ModelMap modelMap,
+            RedirectAttributes redirectAttributes) {
 
         try {
-            // 1. Prepare the delivery invoice object
-            DeliveryInvoice deliveryInvoice = new DeliveryInvoice();
-            deliveryInvoice.setInvoiceId(invoiceId);
-            deliveryInvoice.setSupplier(supplier);
-            deliveryInvoice.setNumber(invoiceNumber);
-
-            // 2. Parse the items data
+            // 1. Parse the received items data
             LinkedHashMap<String, String> deliveredItems = decodeDeliveredItemsData(deliveredItemsData);
             LinkedHashMap<String, String> sentItems = decodeDeliveredItemsData(sentItemsData);
 
-            // 3. Connect to SAP API
-            SapCamelotApiConnector sapCamelotApiConnector = new SapCamelotApiConnector();
-            String endPoint = "/InventoryGenEntries"; // Endpoint for creating items
-            String requestMethod = "POST";
+            // 2. Prepare SAP API request
+            SapCamelotApiConnector apiConnector = new SapCamelotApiConnector();
+            String endpoint = "/InventoryGenEntries"; // SAP endpoint for goods receipt
+            HttpURLConnection connection = apiConnector.createConnection(endpoint, "POST");
 
-            HttpURLConnection conn = sapCamelotApiConnector.createConnection(endPoint, requestMethod);
-            // 4. Prepare JSON payload for SAP
+            // 3. Build the JSON payload for SAP
             JSONObject payload = new JSONObject();
-            payload.put("Comments", "Delivery checkup for invoice " + invoiceNumber);
+            payload.put("Comments", "Delivery checkup for PO: " + invoiceNumber);
             payload.put("DocDate", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
 
             JSONArray documentLines = new JSONArray();
-
             for (Map.Entry<String, String> entry : deliveredItems.entrySet()) {
                 JSONObject line = new JSONObject();
                 line.put("ItemCode", entry.getKey());
                 line.put("Quantity", Double.parseDouble(entry.getValue()));
-                line.put("WarehouseCode", "01"); // Adjust warehouse code as needed
+                line.put("WarehouseCode", "01"); // Main warehouse
                 documentLines.put(line);
             }
-
             payload.put("DocumentLines", documentLines);
 
-            // 6. Send the request
-            sapCamelotApiConnector.sendRequestBody(conn, payload.toString());
+            // 4. Execute SAP API call
+            apiConnector.sendRequestBody(connection, payload.toString());
 
-            // 7. Handle response
-            int responseCode = conn.getResponseCode();
-            if (responseCode == 201) {
-                JSONObject jsonResponse = sapCamelotApiConnector.getJsonResponse(conn);
-                modelMap.addAttribute("message", "Delivery checkup saved successfully in SAP. Reference: "
-                        + jsonResponse.optString("DocNum", "N/A"));
+            // 5. Handle API response
+            int responseCode = connection.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_CREATED) { // 201
+                JSONObject response = apiConnector.getJsonResponse(connection);
+                String sapDocNum = response.getString("DocNum");
 
-                // Store items in delivery invoice for local reference
-                for (Map.Entry<String, String> entry : deliveredItems.entrySet()) {
-                    DeliveryItem item = new DeliveryItem();
-                    item.setCode(entry.getKey());
-                    item.setDeliveredQuantity(entry.getValue());
-                    item.setSentQuantity(sentItems.get(entry.getKey()));
-                    deliveryInvoice.getItems().put(entry.getKey(), item);
-                }
+                // Store success message
+                redirectAttributes.addFlashAttribute("successMessage",
+                        "Successfully created SAP Goods Receipt #" + sapDocNum);
 
-                // Here you would typically save deliveryInvoice to your database
-                // deliveryService.save(deliveryInvoice);
+                // Log the successful transaction
+                Logger.getLogger(getClass().getName()).info(
+                        "Created SAP delivery for PO " + invoiceNumber
+                        + ", SAP Doc: " + sapDocNum);
             } else {
-                String errorResponse = sapCamelotApiConnector.getErrorResponse(conn);
-                modelMap.addAttribute("message", "Error saving delivery checkup: " + errorResponse);
-                deliveryInvoice.setErrorMessages(errorResponse);
+                String error = apiConnector.getErrorResponse(connection);
+                redirectAttributes.addFlashAttribute("errorMessage",
+                        "SAP Error: " + error);
             }
 
-        } catch (IOException | NumberFormatException ex) {
-            Logger.getLogger(SapCamelotDeliveryController.class.getName()).log(Level.SEVERE, null, ex);
-            modelMap.addAttribute("message", "An error occurred: " + ex.getMessage());
+        } catch (Exception ex) {
+            redirectAttributes.addFlashAttribute("errorMessage",
+                    "System Error: " + ex.getMessage());
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
         }
 
         return "redirect:camelotDeliveryDashboard.htm";
