@@ -23,7 +23,15 @@
             }
             .invoice-btn:hover {
                 background-color: #45a049;
+                background: none;
+                border: 2px solid #4285f4;
+                color: #4285f4;
+                padding: 6px 12px;
+                border-radius: 20px;
+                font-weight: 500;
+                transition: all 0.3s;
             }
+
         </style>
     </head>
     <body>
@@ -56,7 +64,7 @@
                                     </td>
                                     <td>
                                         <button type="button"
-                                                onclick="window.location.href = 'sapCamelotDeliveryInvoiceChecking?invoiceId=${invoice.invoiceId}'">
+                                                onclick="window.location.href = 'sapCamelotDeliveryInvoiceChecking.htm?invoiceId=${invoice.invoiceId}'">
                                             ${invoice.invoiceId}
                                         </button>
                                     </td>
