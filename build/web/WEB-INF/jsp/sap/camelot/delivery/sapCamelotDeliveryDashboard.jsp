@@ -25,8 +25,8 @@
                             <th>PO Number</th>
                             <th>Supplier Name</th>
                             <th>Document Date</th>
-                            <th>Status</th>
-                            <th>Warehouse</th>
+
+
                         </tr>
                     </thead>
                     <tbody>
@@ -34,9 +34,8 @@
                             <tr>
                                 <td>${invoice.invoiceId}</td>
                                 <td>${invoice.supplier}</td>
-                                <td>${invoice.docDate}</td>
-                                <td>${invoice.docStatus}</td>
-                                <td>${invoice.whsCode}</td>
+                                <td>${invoice.insertionDate}</td>
+
                             </tr>
                         </c:forEach>
                     </tbody>
