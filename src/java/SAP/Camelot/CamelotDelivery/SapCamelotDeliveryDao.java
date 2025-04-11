@@ -62,7 +62,7 @@ public class SapCamelotDeliveryDao {
                 DeliveryInvoice purchaseOrderInvoice = new DeliveryInvoice();
                 purchaseOrderInvoice.setSupplier(supplierName);
                 purchaseOrderInvoice.setInvoiceId(resultSet.getString("DocNum"));
-
+                purchaseOrderInvoice.setInsertionDate(resultSet.getString("DocDate"));
                 ArrayList<DeliveryInvoice> deliveryInvoices = duePurchaseOrders.get(supplierName);
                 deliveryInvoices.add(purchaseOrderInvoice);
                 duePurchaseOrders.put(supplierName, deliveryInvoices);

@@ -20,6 +20,7 @@ public class SapCamelotDeliveryController {
         SapCamelotDeliveryDao sampSapCamelotDeliveryDao = new SapCamelotDeliveryDao();
         LinkedHashMap<String, ArrayList<DeliveryInvoice>> purchaseOrders = sampSapCamelotDeliveryDao.getDuePurchaseOrders();
 
+       modelMap.addAttribute("purchaseOrders", purchaseOrders);
         return "sap/camelot/delivery/sapCamelotDeliveryDashboard";
     }
 }
