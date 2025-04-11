@@ -33,6 +33,9 @@
                 <hr><hr><hr><hr>
                 <a href="camelotUnitOfMeasurementDashboard.htm"><h1>Unit Of Measurement Dashboard</h1></a>
                 <hr><hr><hr><hr>
+                <hr><hr><hr><hr>
+                <a href="camelotDeliveryDashboard.htm"><h1>Delivery Dashboard</h1></a>
+                <hr><hr><hr><hr>
 
 
             </center>

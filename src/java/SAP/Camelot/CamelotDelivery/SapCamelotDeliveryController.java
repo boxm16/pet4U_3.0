@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class SapCamelotDeliveryController {
 
-    @RequestMapping(value = "camelotItemsDashboard")
+    @RequestMapping(value = "camelotDeliveryDashboard")
     public String camelotItemsDashboard(ModelMap modelMap) {
 
         return "sap/camelot/delivery/sapCamelotDeliveryDashboard";
