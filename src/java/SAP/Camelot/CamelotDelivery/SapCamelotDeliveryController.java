@@ -26,7 +26,7 @@ public class SapCamelotDeliveryController {
         return "sap/camelot/delivery/sapCamelotDeliveryDashboard";
     }
 
-    @RequestMapping(value = "/sapCamelotDeliveryInvoiceChecking.htm", method = RequestMethod.POST)
+    @RequestMapping(value = "/sapCamelotDeliveryInvoiceChecking.htm", method = RequestMethod.GET)
     public String sapCamelotDeliveryInvoiceChecking(@RequestParam("invoiceId") String invoiceId, ModelMap modelMap) {
         System.out.println("lapalupa "+invoiceId);
         modelMap.addAttribute("selectedInvoice", invoiceId);

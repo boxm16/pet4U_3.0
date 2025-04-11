@@ -9,28 +9,19 @@
             th { background-color: #f2f2f2; }
             .supplier-header { background-color: #e6e6e6; margin-top: 20px; }
             .invoice-btn {
-                background-color: #4CAF50;
+                background-color: #52d83a;
                 border: none;
                 color: white;
                 padding: 6px 12px;
                 text-align: center;
                 text-decoration: none;
                 display: inline-block;
-                font-size: 14px;
+                font-size: 24px;
                 margin: 2px 1px;
                 cursor: pointer;
                 border-radius: 4px;
             }
-            .invoice-btn:hover {
-                background-color: #45a049;
-                background: none;
-                border: 2px solid #4285f4;
-                color: #4285f4;
-                padding: 6px 12px;
-                border-radius: 20px;
-                font-weight: 500;
-                transition: all 0.3s;
-            }
+            
 
         </style>
     </head>
