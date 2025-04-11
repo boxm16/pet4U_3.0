@@ -26,8 +26,8 @@ public class SAPApiClientX {
     private String SESSION_ID = "your-session-id"; // Replace with actual session ID // 🔹 SAP Business One API credentials
     private final String USERNAME = "scanner1";
     private final String PASSWORD = "1234";
-    // private final String COMPANY_DB = "PETCAMELOT_UAT2";
-    private final String COMPANY_DB = "TRAINING_PC";
+    private final String COMPANY_DB = "PETCAMELOT_UAT2";
+    //  private final String COMPANY_DB = "TRAINING_PC";
 
     public void push() {
         try {
