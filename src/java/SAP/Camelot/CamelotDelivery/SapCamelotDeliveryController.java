@@ -9,14 +9,13 @@ import Delivery.DeliveryDao;
 import Delivery.DeliveryInvoice;
 import Delivery.DeliveryItem;
 import SAP.SapCamelotApiConnector;
+import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
@@ -62,22 +61,27 @@ public class SapCamelotDeliveryController {
             @RequestParam(name = "invoiceNumber") String invoiceNumber,
             @RequestParam(name = "invoiceId") String invoiceId,
             @RequestParam(name = "supplier") String supplier,
-            ModelMap modelMap,
             RedirectAttributes redirectAttributes) {
 
         try {
-            // 1. Parse the received items data
+            // 1. Parse and validate input data
             LinkedHashMap<String, String> deliveredItems = decodeDeliveredItemsData(deliveredItemsData);
             LinkedHashMap<String, String> sentItems = decodeDeliveredItemsData(sentItemsData);
 
-            // 2. Prepare SAP API request
-            SapCamelotApiConnector apiConnector = new SapCamelotApiConnector();
-            String endpoint = "/InventoryGenEntries"; // SAP endpoint for goods receipt
-            HttpURLConnection connection = apiConnector.createConnection(endpoint, "POST");
+            if (deliveredItems.isEmpty()) {
+                System.out.println("❌ Error: No delivered items received");
+                redirectAttributes.addFlashAttribute("message", "Error: No items were marked as delivered");
+                return "redirect:camelotDeliveryDashboard.htm";
+            }
 
-            // 3. Build the JSON payload for SAP
+            // 2. Prepare SAP API connection
+            SapCamelotApiConnector apiConnector = new SapCamelotApiConnector();
+            String endpoint = "/InventoryGenEntries"; // Goods receipt endpoint
+            HttpURLConnection conn = apiConnector.createConnection(endpoint, "POST");
+
+            // 3. Build payload following same pattern as item creation
             JSONObject payload = new JSONObject();
-            payload.put("Comments", "Delivery checkup for PO: " + invoiceNumber);
+            payload.put("Comments", "Delivery for PO: " + invoiceNumber);
             payload.put("DocDate", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
 
             JSONArray documentLines = new JSONArray();
@@ -85,38 +89,44 @@ public class SapCamelotDeliveryController {
                 JSONObject line = new JSONObject();
                 line.put("ItemCode", entry.getKey());
                 line.put("Quantity", Double.parseDouble(entry.getValue()));
-                line.put("WarehouseCode", "01"); // Main warehouse
+                line.put("WarehouseCode", "01"); // Default warehouse
                 documentLines.put(line);
             }
             payload.put("DocumentLines", documentLines);
 
-            // 4. Execute SAP API call
-            apiConnector.sendRequestBody(connection, payload.toString());
+            // 4. Send request and handle response (same pattern as item creation)
+            apiConnector.sendRequestBody(conn, payload.toString());
 
-            // 5. Handle API response
-            int responseCode = connection.getResponseCode();
-            if (responseCode == HttpURLConnection.HTTP_CREATED) { // 201
-                JSONObject response = apiConnector.getJsonResponse(connection);
-                String sapDocNum = response.getString("DocNum");
-
-                // Store success message
-                redirectAttributes.addFlashAttribute("successMessage",
-                        "Successfully created SAP Goods Receipt #" + sapDocNum);
-
-                // Log the successful transaction
-                Logger.getLogger(getClass().getName()).info(
-                        "Created SAP delivery for PO " + invoiceNumber
-                        + ", SAP Doc: " + sapDocNum);
+            int responseCode = conn.getResponseCode();
+            if (responseCode == 201) {
+                JSONObject jsonResponse = apiConnector.getJsonResponse(conn);
+                System.out.println("✅ Delivery Saved Successfully!");
+                System.out.println("SAP Document: " + jsonResponse.toString());
+                redirectAttributes.addFlashAttribute("message",
+                        "Delivery saved successfully. SAP Doc: " + jsonResponse.optString("DocNum"));
             } else {
-                String error = apiConnector.getErrorResponse(connection);
-                redirectAttributes.addFlashAttribute("errorMessage",
-                        "SAP Error: " + error);
+                String errorResponse = apiConnector.getErrorResponse(conn);
+                System.out.println("❌ Error Saving Delivery: " + errorResponse);
+                redirectAttributes.addFlashAttribute("message",
+                        "Error saving delivery: " + errorResponse);
+                return "redirect:camelotDeliveryDashboard.htm";
             }
 
-        } catch (Exception ex) {
-            redirectAttributes.addFlashAttribute("errorMessage",
-                    "System Error: " + ex.getMessage());
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
+        } catch (NumberFormatException e) {
+            System.out.println("❌ Number Format Error: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("message",
+                    "Invalid quantity format: " + e.getMessage());
+            return "redirect:camelotDeliveryDashboard.htm";
+        } catch (IOException e) {
+            System.out.println("❌ API Communication Error: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("message",
+                    "Failed to connect to SAP: " + e.getMessage());
+            return "redirect:camelotDeliveryDashboard.htm";
+        } catch (Exception e) {
+            System.out.println("❌ Unexpected Error: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("message",
+                    "Unexpected error: " + e.getMessage());
+            return "redirect:camelotDeliveryDashboard.htm";
         }
 
         return "redirect:camelotDeliveryDashboard.htm";
