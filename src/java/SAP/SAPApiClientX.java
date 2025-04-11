@@ -26,11 +26,12 @@ public class SAPApiClientX {
     private String SESSION_ID = "your-session-id"; // Replace with actual session ID // 🔹 SAP Business One API credentials
     private final String USERNAME = "scanner1";
     private final String PASSWORD = "1234";
-    private final String COMPANY_DB = "PETCAMELOT_UAT2";
+    // private final String COMPANY_DB = "PETCAMELOT_UAT2";
+    private final String COMPANY_DB = "TRAINING_PC";
 
     public void push() {
         try {
-            
+
             this.SESSION_ID = loginToSAP();
             // Step 1: Assign UoM2 to the Item
             assignUoM2ToItem(ITEM_CODE);

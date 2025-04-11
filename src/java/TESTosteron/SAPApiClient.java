@@ -19,7 +19,8 @@ public class SAPApiClient {
     private final String BASE_URL = "https://192.168.0.183:50000/b1s/v2";
     private final String USERNAME = "scanner1";
     private final String PASSWORD = "1234";
-    private final String COMPANY_DB = "PETCAMELOT_UAT2";
+    //  private final String COMPANY_DB = "PETCAMELOT_UAT2";
+    private final String COMPANY_DB = "TRAINING_PC";
 
     public void push() {
         try {
@@ -141,7 +142,7 @@ public class SAPApiClient {
 
     // 🔹 Utility: Read JSON Response
     public JSONObject getJsonResponse(HttpURLConnection conn) throws IOException {
-      
+
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream(), StandardCharsets.UTF_8))) {
             StringBuilder response = new StringBuilder();
             String line;
