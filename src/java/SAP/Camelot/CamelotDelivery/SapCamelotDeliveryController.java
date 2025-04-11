@@ -28,8 +28,9 @@ public class SapCamelotDeliveryController {
 
     @RequestMapping(value = "/sapCamelotDeliveryInvoiceChecking.htm", method = RequestMethod.POST)
     public String handleInvoiceSelection(@RequestParam("invoiceId") String invoiceId, ModelMap modelMap) {
-        // Process the selected invoice
+        System.out.println("lapalupa");
         modelMap.addAttribute("selectedInvoice", invoiceId);
-        return "sapCamelotDeliveryInvoiceChecking"; // or whatever view you want to show nextD
+        return "sap/camelot/delivery/sapCamelotDeliveryInvoiceChecking";
+
     }
 }
