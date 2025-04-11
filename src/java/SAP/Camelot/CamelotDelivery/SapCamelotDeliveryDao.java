@@ -6,6 +6,7 @@
 package SAP.Camelot.CamelotDelivery;
 
 import Delivery.DeliveryInvoice;
+import Delivery.DeliveryItem;
 import Service.DatabaseConnectionFactory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -106,16 +107,33 @@ public class SapCamelotDeliveryDao {
             preparedStatement.setString(1, purchaseOrderNumber);
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                boolean isFirstRow = true;
+
                 while (resultSet.next()) {
-                    // Populate your DeliveryInvoice object here
-                    deliveryInvoice.setInvoiceId(resultSet.getString("DocNum"));
-                    deliveryInvoice.setSupplier(resultSet.getString("CardName"));
-                    deliveryInvoice.setInsertionDate(resultSet.getString("DocDate"));
-                    // Set other fields as needed
+                    if (isFirstRow) {
+                        // Set header information only once
+                        deliveryInvoice.setInvoiceId(resultSet.getString("DocNum"));
+                        deliveryInvoice.setNumber(resultSet.getString("DocNum"));
+                        deliveryInvoice.setSupplier(resultSet.getString("CardName"));
+                        deliveryInvoice.setInsertionDate(resultSet.getString("DocDate"));
+                        isFirstRow = false;
+                    }
+
+                    // Create and populate item for each row
+                    DeliveryItem item = new DeliveryItem();
+                    item.setCode(resultSet.getString("ItemCode"));
+                    item.setDescription(resultSet.getString("Dscription"));
+                    item.setQuantity(resultSet.getString("Quantity"));
+                    item.setPrice(resultSet.getBigDecimal("Price"));
+                  
+
+                    // Add item to the invoice's LinkedHashMap
+                    deliveryInvoice.getItems().put(item.getCode(), item);
                 }
             }
         } catch (SQLException ex) {
             Logger.getLogger(SapCamelotDeliveryDao.class.getName()).log(Level.SEVERE, null, ex);
+            deliveryInvoice.setErrorMessages("Error retrieving purchase order: " + ex.getMessage());
         }
         return deliveryInvoice;
     }

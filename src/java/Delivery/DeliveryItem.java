@@ -6,12 +6,15 @@
 package Delivery;
 
 import BasicModel.Item;
+import java.math.BigDecimal;
 
 public class DeliveryItem extends Item {
 
     private String altercode;
     private String sentQuantity;
     private String deliveredQuantity;
+
+    private BigDecimal price;
 
     public String getAltercode() {
         return altercode;
@@ -36,7 +39,13 @@ public class DeliveryItem extends Item {
     public void setDeliveredQuantity(String deliveredQuantity) {
         this.deliveredQuantity = deliveredQuantity;
     }
-    
-    
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
 
 }
