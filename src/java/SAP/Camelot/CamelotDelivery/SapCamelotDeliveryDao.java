@@ -32,17 +32,13 @@ public class SapCamelotDeliveryDao {
         LinkedHashMap<String, ArrayList<DeliveryInvoice>> duePurchaseOrders = new LinkedHashMap<>();
 
         String query = "SELECT "
-                + dbSchema + ".OPOR.\"DocNum\",  "
+                + dbSchema + ".OPOR.\"DocNum\", "
                 + dbSchema + ".OPOR.\"CardCode\", "
                 + dbSchema + ".OPOR.\"CardName\", "
                 + dbSchema + ".OPOR.\"DocDate\", "
-                + dbSchema + ".OPOR.\"DocStatus\", " // Added DocStatus field
-                + dbSchema + ".POR1.\"WhsCode\" "
-                + "FROM  "
-                + dbSchema + ".OPOR   "
-                + "JOIN  "
-                + dbSchema + ".POR1 ON "
-                + dbSchema + ".OPOR.\"DocEntry\" = " + dbSchema + ".POR1.\"DocEntry\"";
+                + dbSchema + ".OPOR.\"DocStatus\" "
+                + "FROM "
+                + dbSchema + ".OPOR";
         System.out.println("Query: " + query);
 
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
