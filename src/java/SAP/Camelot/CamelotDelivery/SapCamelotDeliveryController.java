@@ -11,6 +11,8 @@ import java.util.LinkedHashMap;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class SapCamelotDeliveryController {
@@ -20,7 +22,14 @@ public class SapCamelotDeliveryController {
         SapCamelotDeliveryDao sampSapCamelotDeliveryDao = new SapCamelotDeliveryDao();
         LinkedHashMap<String, ArrayList<DeliveryInvoice>> duePurchaseOrders = sampSapCamelotDeliveryDao.getDuePurchaseOrders();
 
-       modelMap.addAttribute("duePurchaseOrders", duePurchaseOrders);
+        modelMap.addAttribute("duePurchaseOrders", duePurchaseOrders);
         return "sap/camelot/delivery/sapCamelotDeliveryDashboard";
+    }
+
+    @RequestMapping(value = "/sapCamelotDeliveryInvoiceChecking.htm", method = RequestMethod.POST)
+    public String handleInvoiceSelection(@RequestParam("invoiceId") String invoiceId, ModelMap modelMap) {
+        // Process the selected invoice
+        modelMap.addAttribute("selectedInvoice", invoiceId);
+        return "sapCamelotDeliveryInvoiceChecking"; // or whatever view you want to show nextD
     }
 }

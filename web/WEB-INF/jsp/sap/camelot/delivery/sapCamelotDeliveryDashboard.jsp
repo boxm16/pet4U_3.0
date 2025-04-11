@@ -22,7 +22,7 @@
         <h1>Due Purchase Orders by Supplier</h1>
 
         <c:if test="${not empty duePurchaseOrders}">
-            <form id="invoiceForm" action="sapDelivery.htm" method="post">
+            <form id="invoiceForm" action="sapCamelotDeliveryInvoiceChecking.htm" method="POST">
                 <input type="hidden" id="selectedInvoice" name="invoiceId" value="">
 
                 <c:forEach var="entry" items="${duePurchaseOrders}">
