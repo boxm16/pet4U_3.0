@@ -123,7 +123,7 @@ public class SapCamelotDeliveryDao {
                     DeliveryItem item = new DeliveryItem();
                     item.setCode(resultSet.getString("ItemCode"));
                     item.setDescription(resultSet.getString("Dscription"));
-                    item.setSentQuantity(resultSet.getString("Quantity"));
+                    item.setQuantity(resultSet.getString("Quantity"));
                     item.setPrice(resultSet.getBigDecimal("Price"));
 
                     // Add item to the invoice's LinkedHashMap
