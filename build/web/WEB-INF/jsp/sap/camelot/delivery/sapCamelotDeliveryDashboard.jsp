@@ -22,8 +22,8 @@
                 <table>
                     <thead>
                         <tr>
+                            <th>Select</th>
                             <th>PO Number</th>
-                            <th>Supplier Name</th>
                             <th>Document Date</th>
 
 
@@ -32,8 +32,15 @@
                     <tbody>
                         <c:forEach var="invoice" items="${entry.value}">
                             <tr>
+                                <td>
+                                    <input type="checkbox" 
+                                           name="selectedInvoices" 
+                                           value="${invoice.invoiceId}" 
+                                           id="invoice_${invoice.invoiceId}">
+                                    <label for="invoice_${invoice.invoiceId}">${invoice.invoiceId}</label>
+                                </td>
                                 <td>${invoice.invoiceId}</td>
-                                <td>${invoice.supplier}</td>
+
                                 <td>${invoice.insertionDate}</td>
 
                             </tr>
