@@ -5,7 +5,9 @@
  */
 package SAP.Camelot.CamelotDelivery;
 
+import Delivery.DeliveryDao;
 import Delivery.DeliveryInvoice;
+import Delivery.DeliveryItem;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import org.springframework.stereotype.Controller;
@@ -30,6 +32,11 @@ public class SapCamelotDeliveryController {
     public String sapCamelotDeliveryInvoiceChecking(@RequestParam("invoiceId") String purchaseOrderNumber, ModelMap modelMap) {
         SapCamelotDeliveryDao sampSapCamelotDeliveryDao = new SapCamelotDeliveryDao();
         DeliveryInvoice deliveryInvoice = sampSapCamelotDeliveryDao.getPurchaseOrderForDeliveryChecking(purchaseOrderNumber);
+       
+        DeliveryDao deliveryDao = new DeliveryDao();
+        ArrayList<DeliveryItem> pet4UItemsRowByRow = deliveryDao.getPet4UItemsRowByRow();
+
+        modelMap.addAttribute("pet4UItemsRowByRow", pet4UItemsRowByRow);
 
         modelMap.addAttribute("deliveryInvoice", deliveryInvoice);
         return "sap/camelot/delivery/sapCamelotDeliveryInvoiceChecking";
