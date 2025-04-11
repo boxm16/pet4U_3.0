@@ -46,7 +46,7 @@ public class SapCamelotOrderController {
             // Line 1
             JSONObject line1 = new JSONObject();
             line1.put("ItemCode", ITEM_CODE); // Item Code
-            line1.put("Quantity", 10); // Quantity
+            line1.put("Quantity", 120); // Quantity
             line1.put("UnitPrice", 50.0); // Unit Price (adjusted for purchase)
             documentLines.put(line1);
 

@@ -147,7 +147,7 @@ public class DeliveryDao_V_3_1 {
         return true;
     }
 
-    String saveDeliveryChecking(String invoiceId, String supplier, String invoiceNumber, ArrayList<DeliveryItem> deliveryItems) {
+    public String saveDeliveryChecking(String invoiceId, String supplier, String invoiceNumber, ArrayList<DeliveryItem> deliveryItems) {
         LocalDateTime idItem = LocalDateTime.now();
         try {
             DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
