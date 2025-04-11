@@ -5,6 +5,9 @@
  */
 package SAP.Camelot.CamelotDelivery;
 
+import Delivery.DeliveryInvoice;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +17,8 @@ public class SapCamelotDeliveryController {
 
     @RequestMapping(value = "camelotDeliveryDashboard")
     public String camelotItemsDashboard(ModelMap modelMap) {
+        SapCamelotDeliveryDao sampSapCamelotDeliveryDao = new SapCamelotDeliveryDao();
+        LinkedHashMap<String, ArrayList<DeliveryInvoice>> purchaseOrders = sampSapCamelotDeliveryDao.getDuePurchaseOrders();
 
         return "sap/camelot/delivery/sapCamelotDeliveryDashboard";
     }
