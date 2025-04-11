@@ -8,50 +8,64 @@
             th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
             th { background-color: #f2f2f2; }
             .supplier-header { background-color: #e6e6e6; margin-top: 20px; }
+            .invoice-link { 
+                color: #0066cc; 
+                text-decoration: none; 
+                cursor: pointer;
+            }
+            .invoice-link:hover {
+                text-decoration: underline;
+            }
         </style>
     </head>
     <body>
         <h1>Due Purchase Orders by Supplier</h1>
 
         <c:if test="${not empty duePurchaseOrders}">
-            <c:forEach var="entry" items="${duePurchaseOrders}">
-                <div class="supplier-header">
-                    <h2>Supplier: ${entry.key}</h2>
-                </div>
+            <form id="invoiceForm" action="sapDelivery.htm" method="post">
+                <input type="hidden" id="selectedInvoice" name="invoiceId" value="">
 
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Select</th>
-                            <th>PO Number</th>
-                            <th>Document Date</th>
+                <c:forEach var="entry" items="${duePurchaseOrders}">
+                    <div class="supplier-header">
+                        <h2>${entry.key}</h2>
+                    </div>
 
-
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <c:forEach var="invoice" items="${entry.value}">
+                    <table>
+                        <thead>
                             <tr>
-                                <td>
-                                    <input type="checkbox" 
-                                           name="selectedInvoices" 
-                                           value="${invoice.invoiceId}" 
-                                           id="invoice_${invoice.invoiceId}">
-                                    <label for="invoice_${invoice.invoiceId}">${invoice.invoiceId}</label>
-                                </td>
-                                <td>${invoice.invoiceId}</td>
-
-                                <td>${invoice.insertionDate}</td>
-
+                                <th>Invoice Number</th>
+                                <th>Document Date</th>
                             </tr>
-                        </c:forEach>
-                    </tbody>
-                </table>
-            </c:forEach>
+                        </thead>
+                        <tbody>
+                            <c:forEach var="invoice" items="${entry.value}">
+                                <tr>
+                                    <td>
+                                        <a class="invoice-link" 
+                                           onclick="document.getElementById('selectedInvoice').value = '${invoice.invoiceId}';
+                                                   document.getElementById('invoiceForm').submit();">
+                                            ${invoice.invoiceId}
+                                        </a>
+                                    </td>
+                                    <td>${invoice.insertionDate}</td>
+                                </tr>
+                            </c:forEach>
+                        </tbody>
+                    </table>
+                </c:forEach>
+            </form>
         </c:if>
 
         <c:if test="${empty duePurchaseOrders}">
             <p>No due purchase orders found.</p>
         </c:if>
+
+        <script>
+            // Alternative JavaScript function if you prefer
+            function submitInvoice(invoiceId) {
+                document.getElementById('selectedInvoice').value = invoiceId;
+                document.getElementById('invoiceForm').submit();
+            }
+        </script>
     </body>
 </html>
