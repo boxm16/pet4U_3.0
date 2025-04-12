@@ -135,7 +135,7 @@ public class SapCamelotDeliveryController {
             int responseCode = conn.getResponseCode();
             if (responseCode == 201) {
                 JSONObject response = apiConnector.getJsonResponse(conn);
-                String docNum = response.getString("DocNum");
+                String docNum = response.has("DocNum") ? String.valueOf(response.get("DocNum")) : "UNKNOWN";
                 System.out.println("🎉 Success! GRPO created: " + docNum);
                 redirectAttributes.addFlashAttribute("message",
                         "Goods Receipt posted successfully! SAP GRPO #: " + docNum);
