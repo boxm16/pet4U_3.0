@@ -39,9 +39,9 @@ public class SapCamelotDeliveryController {
     }
 
     @RequestMapping(value = "/sapCamelotDeliveryInvoiceChecking.htm", method = RequestMethod.GET)
-    public String sapCamelotDeliveryInvoiceChecking(@RequestParam("invoiceId") String purchaseOrderNumber, ModelMap modelMap) {
+    public String sapCamelotDeliveryInvoiceChecking(@RequestParam("invoiceId") String invoiceId, ModelMap modelMap) {
         SapCamelotDeliveryDao sampSapCamelotDeliveryDao = new SapCamelotDeliveryDao();
-        DeliveryInvoice deliveryInvoice = sampSapCamelotDeliveryDao.getPurchaseOrderForDeliveryChecking(purchaseOrderNumber);
+        DeliveryInvoice deliveryInvoice = sampSapCamelotDeliveryDao.getPurchaseOrderForDeliveryChecking(invoiceId);
         modelMap.addAttribute("deliveryInvoice", deliveryInvoice);
 
         DeliveryDao deliveryDao = new DeliveryDao();
@@ -101,7 +101,7 @@ public class SapCamelotDeliveryController {
                 line.put("ItemCode", entry.getKey());
                 line.put("Quantity", Double.parseDouble(entry.getValue()));
                 line.put("WarehouseCode", "AX-BAR");
-                line.put("BaseEntry", id);
+                line.put("BaseEntry", invoiceId);
                 line.put("BaseType", "22");
                 documentLines.put(line);
             }

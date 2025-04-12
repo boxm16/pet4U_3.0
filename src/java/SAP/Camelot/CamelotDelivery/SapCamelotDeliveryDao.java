@@ -98,7 +98,7 @@ public class SapCamelotDeliveryDao {
                 + dbSchema + ".POR1 ON "
                 + dbSchema + ".OPOR.\"DocEntry\" = " + dbSchema + ".POR1.\"DocEntry\" "
                 + "WHERE "
-                + dbSchema + ".OPOR.\"DocNum\" = ?";
+                + dbSchema + ".OPOR.\"DocEntry\" = ?";
 
         // System.out.println("Query: " + query);
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();

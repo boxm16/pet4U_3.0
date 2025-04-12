@@ -59,7 +59,7 @@
                                         <button 
                                             type="button" 
                                             class="invoice-btn"
-                                            onclick="window.open('sapCamelotDeliveryInvoiceChecking.htm?invoiceId=${invoice.number}', '_blank')">
+                                            onclick="window.open('sapCamelotDeliveryInvoiceChecking.htm?invoiceId=${invoice.invoiceId}', '_blank')">
                                             ${invoice.number}
                                         </button>
                                     </td>
