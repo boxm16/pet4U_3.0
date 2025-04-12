@@ -162,58 +162,38 @@ public class SapCamelotDeliveryDao {
                 + "ORDER BY " + dbSchema + ".OPDN.\"CardName\", " + dbSchema + ".OPDN.\"DocDate\" DESC";
 
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+        Connection connection = databaseConnectionFactory.getSapHanaConnection();
 
-        try (Connection connection = databaseConnectionFactory.getSapHanaConnection();
-                Statement statement = connection.createStatement();
-                ResultSet resultSet = statement.executeQuery(query)) {
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
 
             while (resultSet.next()) {
                 String supplierName = resultSet.getString("CardName");
-
-                // Initialize supplier entry if not exists
-                goodsReceipts.computeIfAbsent(supplierName, k -> new ArrayList<>());
-
-                // Create or find existing DeliveryInvoice for this GRPO
-                DeliveryInvoice grpo = findOrCreateGRPO(
-                        goodsReceipts.get(supplierName),
-                        resultSet.getString("DocEntry")
-                );
-
-                // Set header information (only once per GRPO)
-                if (grpo.getNumber() == null) {
-                    grpo.setInvoiceId(resultSet.getString("DocEntry"));
-                    grpo.setNumber(resultSet.getString("DocNum"));
-                    grpo.setSupplier(supplierName);
-                    grpo.setInsertionDate(resultSet.getString("DocDate"));
-
-                    grpo.setWarehouseCode(resultSet.getString("WhsCode"));
-
+                if (goodsReceipts.containsKey(supplierName)) {
+                    //do nothing
+                } else {
+                    goodsReceipts.put(supplierName, new ArrayList<>());
                 }
+                DeliveryInvoice purchaseOrderInvoice = new DeliveryInvoice();
+                purchaseOrderInvoice.setSupplier(supplierName);
 
-                // Add line item
-                DeliveryItem item = new DeliveryItem();
-                item.setCode(resultSet.getString("ItemCode"));
-                item.setQuantity(String.valueOf(resultSet.getDouble("Quantity")));
+                purchaseOrderInvoice.setInvoiceId(resultSet.getString("DocEntry"));
+                purchaseOrderInvoice.setNumber(resultSet.getString("DocNum"));
+                purchaseOrderInvoice.setInsertionDate(resultSet.getString("DocDate"));
+                ArrayList<DeliveryInvoice> deliveryInvoices = goodsReceipts.get(supplierName);
+                deliveryInvoices.add(purchaseOrderInvoice);
+                goodsReceipts.put(supplierName, deliveryInvoices);
 
-                grpo.getItems().put(item.getCode(), item);
             }
+            resultSet.close();
+            statement.close();
+            connection.close();
         } catch (SQLException ex) {
             Logger.getLogger(SapCamelotDeliveryDao.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return goodsReceipts;
-    }
-
-// Helper method to find existing GRPO or create new one
-    private DeliveryInvoice findOrCreateGRPO(ArrayList<DeliveryInvoice> list, String docEntry) {
-        return list.stream()
-                .filter(inv -> docEntry.equals(inv.getInvoiceId()))
-                .findFirst()
-                .orElseGet(() -> {
-                    DeliveryInvoice newInv = new DeliveryInvoice();
-                    list.add(newInv);
-                    return newInv;
-                });
     }
 
 }
