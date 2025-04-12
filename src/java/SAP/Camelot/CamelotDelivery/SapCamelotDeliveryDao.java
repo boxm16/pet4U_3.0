@@ -61,8 +61,9 @@ public class SapCamelotDeliveryDao {
                 }
                 DeliveryInvoice purchaseOrderInvoice = new DeliveryInvoice();
                 purchaseOrderInvoice.setSupplier(supplierName);
-                purchaseOrderInvoice.setId(resultSet.getString("DocEntry"));
-                purchaseOrderInvoice.setInvoiceId(resultSet.getString("DocNum"));
+
+                purchaseOrderInvoice.setInvoiceId(resultSet.getString("DocEntry"));
+                purchaseOrderInvoice.setNumber(resultSet.getString("DocNum"));
                 purchaseOrderInvoice.setInsertionDate(resultSet.getString("DocDate"));
                 ArrayList<DeliveryInvoice> deliveryInvoices = duePurchaseOrders.get(supplierName);
                 deliveryInvoices.add(purchaseOrderInvoice);
@@ -81,6 +82,7 @@ public class SapCamelotDeliveryDao {
     DeliveryInvoice getPurchaseOrderForDeliveryChecking(String purchaseOrderNumber) {
         DeliveryInvoice deliveryInvoice = new DeliveryInvoice();
         String query = "SELECT "
+                + dbSchema + ".OPOR.\"DocEntry\", "
                 + dbSchema + ".OPOR.\"DocNum\", "
                 + dbSchema + ".OPOR.\"CardCode\", "
                 + dbSchema + ".OPOR.\"CardName\", "
@@ -113,8 +115,10 @@ public class SapCamelotDeliveryDao {
                 while (resultSet.next()) {
                     if (isFirstRow) {
                         // Set header information only once
-                        deliveryInvoice.setInvoiceId(resultSet.getString("DocNum"));
+
+                        deliveryInvoice.setInvoiceId(resultSet.getString("DocEntry"));
                         deliveryInvoice.setNumber(resultSet.getString("DocNum"));
+
                         deliveryInvoice.setSupplier(resultSet.getString("CardName"));
                         deliveryInvoice.setInsertionDate(resultSet.getString("DocDate"));
                         isFirstRow = false;

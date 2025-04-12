@@ -21,7 +21,7 @@
                 cursor: pointer;
                 border-radius: 4px;
             }
-            
+
 
         </style>
     </head>
@@ -40,6 +40,7 @@
                             <tr>
                                 <th>Select</th>
                                 <th>Document Id</th>
+                                <th>Document Number</th>
                                 <th>Document Date</th>
                             </tr>
                         </thead>
@@ -53,10 +54,11 @@
                                                id="invoice_${invoice.invoiceId}">
                                         <label for="invoice_${invoice.invoiceId}"></label>
                                     </td>
+                                    <td>${invoice.invoiceId}</td>
                                     <td>
                                         <button type="button" class="invoice-btn"
                                                 onclick="window.location.href = 'sapCamelotDeliveryInvoiceChecking.htm?invoiceId=${invoice.invoiceId}'">
-                                            ${invoice.invoiceId}
+                                            ${invoice.number}
                                         </button>
                                     </td>
                                     <td>${invoice.insertionDate}</td>
