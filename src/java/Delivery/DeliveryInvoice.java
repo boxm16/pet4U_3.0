@@ -83,4 +83,12 @@ public class DeliveryInvoice {
         this.warehouseCode = warehouseCode;
     }
 
+    public String getBaseEntry() {
+        return baseEntry;
+    }
+
+    public void setBaseEntry(String baseEntry) {
+        this.baseEntry = baseEntry;
+    }
+
 }
