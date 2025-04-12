@@ -56,8 +56,10 @@
                                     </td>
                                     <td>${invoice.invoiceId}</td>
                                     <td>
-                                        <button type="button" class="invoice-btn"
-                                                onclick="window.location.href = 'sapCamelotDeliveryInvoiceChecking.htm?invoiceId=${invoice.invoiceNumber}'">
+                                        <button 
+                                            type="button" 
+                                            class="invoice-btn"
+                                            onclick="window.open('sapCamelotDeliveryInvoiceChecking.htm?invoiceId=${invoice.invoiceNumber}', '_blank')">
                                             ${invoice.number}
                                         </button>
                                     </td>
