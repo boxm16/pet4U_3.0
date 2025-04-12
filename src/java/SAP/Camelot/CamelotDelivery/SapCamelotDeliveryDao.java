@@ -150,15 +150,8 @@ public class SapCamelotDeliveryDao {
                 + dbSchema + ".OPDN.\"CardName\", "
                 + dbSchema + ".OPDN.\"DocDate\", "
                 + dbSchema + ".OPDN.\"DocStatus\", "
-                + dbSchema + ".OPDN.\"Comments\", "
-                + dbSchema + ".PDN1.\"ItemCode\", "
-                + dbSchema + ".PDN1.\"Quantity\", "
-                + dbSchema + ".PDN1.\"WhsCode\", "
-                + dbSchema + ".PDN1.\"BaseEntry\", "
-                + dbSchema + ".PDN1.\"BaseType\" "
+                + dbSchema + ".OPDN.\"Comments\" "
                 + "FROM " + dbSchema + ".OPDN "
-                + "JOIN " + dbSchema + ".PDN1 ON "
-                + dbSchema + ".OPDN.\"DocEntry\" = " + dbSchema + ".PDN1.\"DocEntry\" "
                 + "ORDER BY " + dbSchema + ".OPDN.\"CardName\", " + dbSchema + ".OPDN.\"DocDate\" DESC";
 
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
