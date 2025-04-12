@@ -99,10 +99,10 @@
                                                 ${po.number}
                                             </button>
                                         </td>
-                                        <td><fmt:formatDate value="${po.insertionDate}" pattern="yyyy-MM-dd"/></td>
-                                <td>${po.status}</td>
-                                </tr>
-                            </c:forEach>
+                                        <td>${po.insertionDate}</td>
+                                        <td>${po.status}</td>
+                                    </tr>
+                                </c:forEach>
                             </tbody>
                         </table>
                     </c:forEach>
@@ -145,9 +145,9 @@
                                             </c:if>
                                         </td>
                                         <td>${gr.items.size()} items</td>
-                                        <td><fmt:formatDate value="${gr.insertionDate}" pattern="HH:mm"/></td>
-                                </tr>
-                            </c:forEach>
+                                        <td>${gr.insertionDate}</td>
+                                    </tr>
+                                </c:forEach>
                             </tbody>
                         </table>
                     </c:forEach>
