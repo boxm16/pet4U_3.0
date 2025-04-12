@@ -92,6 +92,7 @@ public class SapCamelotDeliveryDao {
                 + dbSchema + ".POR1.\"Quantity\", "
                 + dbSchema + ".POR1.\"Price\", "
                 + dbSchema + ".POR1.\"WhsCode\" "
+                + dbSchema + ".POR1.\"LineNum\" " // ← THIS IS THE CRITICAL ADDITION
                 + "FROM "
                 + dbSchema + ".OPOR "
                 + "JOIN "
@@ -114,24 +115,20 @@ public class SapCamelotDeliveryDao {
 
                 while (resultSet.next()) {
                     if (isFirstRow) {
-                        // Set header information only once
-
                         deliveryInvoice.setInvoiceId(resultSet.getString("DocEntry"));
                         deliveryInvoice.setNumber(resultSet.getString("DocNum"));
-
                         deliveryInvoice.setSupplier(resultSet.getString("CardName"));
                         deliveryInvoice.setInsertionDate(resultSet.getString("DocDate"));
                         isFirstRow = false;
                     }
 
-                    // Create and populate item for each row
                     DeliveryItem item = new DeliveryItem();
                     item.setCode(resultSet.getString("ItemCode"));
                     item.setDescription(resultSet.getString("Dscription"));
                     item.setQuantity(resultSet.getString("Quantity"));
                     item.setPrice(resultSet.getBigDecimal("Price"));
+                    item.setBaseLine(resultSet.getInt("LineNum")); // ← POPULATE THE BASE LINE
 
-                    // Add item to the invoice's LinkedHashMap
                     deliveryInvoice.getItems().put(item.getCode(), item);
                 }
             }

@@ -13,6 +13,7 @@ public class DeliveryItem extends Item {
     private String altercode;
     private String sentQuantity;
     private String deliveredQuantity;
+    private int baseLine; 
 
     private BigDecimal price;
 
@@ -47,5 +48,15 @@ public class DeliveryItem extends Item {
     public void setPrice(BigDecimal price) {
         this.price = price;
     }
+
+    public int getBaseLine() {
+        return baseLine;
+    }
+
+    public void setBaseLine(int baseLine) {
+        this.baseLine = baseLine;
+    }
+    
+    
 
 }

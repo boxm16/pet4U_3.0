@@ -11,6 +11,7 @@ public class DeliveryInvoice {
     private LinkedHashMap<String, DeliveryItem> items;
     private String errorMessages;
     private String supplier;
+    private String warehouseCode;
 
     public DeliveryInvoice() {
         this.errorMessages = "";
@@ -72,5 +73,15 @@ public class DeliveryInvoice {
     public void setInvoiceId(String invoiceId) {
         this.invoiceId = invoiceId;
     }
+
+    public String getWarehouseCode() {
+        return warehouseCode;
+    }
+
+    public void setWarehouseCode(String warehouseCode) {
+        this.warehouseCode = warehouseCode;
+    }
+    
+    
 
 }
