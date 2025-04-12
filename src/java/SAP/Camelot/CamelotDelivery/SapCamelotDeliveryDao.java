@@ -91,7 +91,7 @@ public class SapCamelotDeliveryDao {
                 + dbSchema + ".POR1.\"Dscription\", "
                 + dbSchema + ".POR1.\"Quantity\", "
                 + dbSchema + ".POR1.\"Price\", "
-                + dbSchema + ".POR1.\"WhsCode\" "
+                + dbSchema + ".POR1.\"WhsCode\", "
                 + dbSchema + ".POR1.\"LineNum\" " // ← THIS IS THE CRITICAL ADDITION
                 + "FROM "
                 + dbSchema + ".OPOR "
