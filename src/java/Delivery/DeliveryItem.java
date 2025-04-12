@@ -14,6 +14,7 @@ public class DeliveryItem extends Item {
     private String sentQuantity;
     private String deliveredQuantity;
     private int baseLine; 
+    
 
     private BigDecimal price;
 

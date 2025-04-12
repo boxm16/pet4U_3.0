@@ -34,8 +34,10 @@ public class SapCamelotDeliveryController {
     public String camelotDeliveryDashboard(ModelMap modelMap) {
         SapCamelotDeliveryDao sampSapCamelotDeliveryDao = new SapCamelotDeliveryDao();
         LinkedHashMap<String, ArrayList<DeliveryInvoice>> duePurchaseOrders = sampSapCamelotDeliveryDao.getDuePurchaseOrders();
+        LinkedHashMap<String, ArrayList<DeliveryInvoice>> todaysGoodsReceipts = sampSapCamelotDeliveryDao.getGoodsReceipts();
 
         modelMap.addAttribute("duePurchaseOrders", duePurchaseOrders);
+        modelMap.addAttribute("todaysGoodsReceipts", todaysGoodsReceipts);
         return "sap/camelot/delivery/sapCamelotDeliveryDashboard";
     }
 

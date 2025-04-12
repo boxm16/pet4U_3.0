@@ -1,13 +1,46 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
     <head>
-        <title>Due Purchase Orders</title>
+        <title>Purchase Orders and Goods Receipts</title>
         <style>
-            table { border-collapse: collapse; width: 100%; }
-            th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-            th { background-color: #f2f2f2; }
-            .supplier-header { background-color: #e6e6e6; margin-top: 20px; }
+            body {
+                font-family: Arial, sans-serif;
+                margin: 20px;
+            }
+            .container {
+                display: flex;
+                gap: 20px;
+            }
+            .column {
+                flex: 1;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                padding: 15px;
+                background-color: #f9f9f9;
+            }
+            table {
+                border-collapse: collapse;
+                width: 100%;
+                margin-top: 10px;
+            }
+            th, td {
+                border: 1px solid #ddd;
+                padding: 8px;
+                text-align: left;
+            }
+            th {
+                background-color: #f2f2f2;
+                position: sticky;
+                top: 0;
+            }
+            .section-header {
+                background-color: #e6e6e6;
+                padding: 10px;
+                margin: -15px -15px 15px -15px;
+                border-radius: 5px 5px 0 0;
+            }
             .invoice-btn {
                 background-color: #52d83a;
                 border: none;
@@ -16,64 +49,113 @@
                 text-align: center;
                 text-decoration: none;
                 display: inline-block;
-                font-size: 24px;
+                font-size: 16px;
                 margin: 2px 1px;
                 cursor: pointer;
                 border-radius: 4px;
             }
-
-
+            .goods-receipt-btn {
+                background-color: #4285f4;
+            }
+            .no-data {
+                text-align: center;
+                padding: 20px;
+                color: #666;
+            }
         </style>
     </head>
     <body>
-        <h1>Due Purchase Orders by Supplier</h1>
+        <h1>Purchase Orders and Goods Receipts</h1>
+        <div class="container">
+            <!-- Left Column - Due Purchase Orders -->
+            <div class="column">
+                <div class="section-header">
+                    <h2>Due Purchase Orders</h2>
+                </div>
 
-        <c:if test="${not empty duePurchaseOrders}">
-            <form id="invoiceForm" method="post">
-                <c:forEach var="entry" items="${duePurchaseOrders}">
-                    <div class="supplier-header">
-                        <h2>${entry.key}</h2>
-                    </div>
-
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Select</th>
-                                <th>Document Id</th>
-                                <th>Document Number</th>
-                                <th>Document Date</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <c:forEach var="invoice" items="${entry.value}">
+                <c:if test="${not empty duePurchaseOrders}">
+                    <c:forEach var="entry" items="${duePurchaseOrders}">
+                        <h3>${entry.key}</h3>
+                        <table>
+                            <thead>
                                 <tr>
-                                    <td>
-                                        <input type="checkbox" 
-                                               name="selectedInvoices" 
-                                               value="${invoice.invoiceId}" 
-                                               id="invoice_${invoice.invoiceId}">
-                                        <label for="invoice_${invoice.invoiceId}"></label>
-                                    </td>
-                                    <td>${invoice.invoiceId}</td>
-                                    <td>
-                                        <button 
-                                            type="button" 
-                                            class="invoice-btn"
-                                            onclick="window.open('sapCamelotDeliveryInvoiceChecking.htm?invoiceId=${invoice.invoiceId}', '_blank')">
-                                            ${invoice.number}
-                                        </button>
-                                    </td>
-                                    <td>${invoice.insertionDate}</td>
+                                    <th>Select</th>
+                                    <th>PO Number</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <c:forEach var="po" items="${entry.value}">
+                                    <tr>
+                                        <td>
+                                            <input type="checkbox" 
+                                                   name="selectedPOs" 
+                                                   value="${po.invoiceId}">
+                                        </td>
+                                        <td>
+                                            <button type="button" class="invoice-btn"
+                                                    onclick="window.open('sapCamelotDeliveryInvoiceChecking.htm?invoiceId=${po.invoiceId}', '_blank')">
+                                                ${po.number}
+                                            </button>
+                                        </td>
+                                        <td><fmt:formatDate value="${po.insertionDate}" pattern="yyyy-MM-dd"/></td>
+                                <td>${po.status}</td>
                                 </tr>
                             </c:forEach>
-                        </tbody>
-                    </table>
-                </c:forEach>
-            </form>
-        </c:if>
+                            </tbody>
+                        </table>
+                    </c:forEach>
+                </c:if>
+                <c:if test="${empty duePurchaseOrders}">
+                    <div class="no-data">No due purchase orders found</div>
+                </c:if>
+            </div>
 
-        <c:if test="${empty duePurchaseOrders}">
-            <p>No due purchase orders found.</p>
-        </c:if>
+            <!-- Right Column - Today's Goods Receipts -->
+            <div class="column">
+                <div class="section-header">
+                    <h2>Today's Goods Receipts (<fmt:formatDate value="<%=new java.util.Date()%>" pattern="yyyy-MM-dd"/>)</h2>
+                </div>
+
+                <c:if test="${not empty todaysGoodsReceipts}">
+                    <c:forEach var="entry" items="${todaysGoodsReceipts}">
+                        <h3>${entry.key}</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>GR Number</th>
+                                    <th>PO Reference</th>
+                                    <th>Items</th>
+                                    <th>Time</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <c:forEach var="gr" items="${entry.value}">
+                                    <tr>
+                                        <td>
+                                            <button type="button" class="invoice-btn goods-receipt-btn"
+                                                    onclick="window.open('goodsReceiptDetails.htm?docEntry=${gr.invoiceId}', '_blank')">
+                                                ${gr.number}
+                                            </button>
+                                        </td>
+                                        <td>
+                                            <c:if test="${not empty gr.baseEntry}">
+                                                PO: ${gr.baseEntry}
+                                            </c:if>
+                                        </td>
+                                        <td>${gr.items.size()} items</td>
+                                        <td><fmt:formatDate value="${gr.insertionDate}" pattern="HH:mm"/></td>
+                                </tr>
+                            </c:forEach>
+                            </tbody>
+                        </table>
+                    </c:forEach>
+                </c:if>
+                <c:if test="${empty todaysGoodsReceipts}">
+                    <div class="no-data">No goods receipts today</div>
+                </c:if>
+            </div>
+        </div>
     </body>
 </html>
