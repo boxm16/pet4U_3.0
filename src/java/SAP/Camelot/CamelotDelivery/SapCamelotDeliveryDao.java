@@ -42,7 +42,7 @@ public class SapCamelotDeliveryDao {
                 + dbSchema + ".OPOR.\"DocStatus\" "
                 + "FROM "
                 + dbSchema + ".OPOR";
-        System.out.println("Query: " + query);
+      //  System.out.println("Query: " + query);
 
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
         Connection connection = databaseConnectionFactory.getSapHanaConnection();
@@ -96,7 +96,7 @@ public class SapCamelotDeliveryDao {
                 + "WHERE "
                 + dbSchema + ".OPOR.\"DocNum\" = ?";
 
-        System.out.println("Query: " + query);
+       // System.out.println("Query: " + query);
 
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
 
