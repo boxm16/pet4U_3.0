@@ -60,7 +60,7 @@ public class SapCamelotDeliveryController {
             @RequestParam(name = "sentItems") String sentItemsData,
             @RequestParam(name = "deliveredItems") String deliveredItemsData,
             @RequestParam(name = "invoiceNumber") String invoiceNumber,
-            @RequestParam(name = "id") String id,
+            @RequestParam(name = "invoiceId") String invoiceId,
             @RequestParam(name = "supplier") String supplierCode,
             RedirectAttributes redirectAttributes) {
 
