@@ -61,73 +61,89 @@ public class SapCamelotDeliveryController {
             @RequestParam(name = "deliveredItems") String deliveredItemsData,
             @RequestParam(name = "invoiceNumber") String invoiceNumber,
             @RequestParam(name = "invoiceId") String invoiceId,
-            @RequestParam(name = "supplier") String supplierCode, // SAP Vendor ID (CardCode)
+            @RequestParam(name = "supplier") String supplierCode,
             RedirectAttributes redirectAttributes) {
-        System.out.println("saveSapGoodsReceipt: Fired");
+
+        System.out.println("🔥 saveSapGoodsReceipt: Method started");
+        System.out.println("📦 Inputs - Invoice: " + invoiceNumber + ", Supplier: " + supplierCode);
+
         try {
             // 1. Parse and validate input data
+            System.out.println("🔍 Parsing delivered items...");
             Map<String, String> deliveredItems = decodeDeliveredItemsData(deliveredItemsData);
             Map<String, String> sentItems = decodeDeliveredItemsData(sentItemsData);
 
             if (deliveredItems.isEmpty()) {
+                System.out.println("❌ Error: No delivered items found!");
                 redirectAttributes.addFlashAttribute("message", "Error: No items marked as delivered");
                 return "redirect:camelotDeliveryDashboard.htm";
             }
+            System.out.println("✅ Delivered Items: " + deliveredItems);
 
             // 2. Prepare SAP B1 API connection
-            SapCamelotApiConnector apiConnector = new SapCamelotApiConnector(); // Your SAP B1 API helper
-            String endpoint = "/PurchaseDeliveryNotes"; // SAP B1 GRPO endpoint
+            System.out.println("🔌 Connecting to SAP B1 API...");
+            SapCamelotApiConnector apiConnector = new SapCamelotApiConnector();
+            String endpoint = "/PurchaseDeliveryNotes";
             HttpURLConnection conn = apiConnector.createConnection(endpoint, "POST");
 
-            // 3. Build payload for SAP B1 Goods Receipt PO (GRPO)
+            // 3. Build payload
+            System.out.println("📝 Building payload...");
             JSONObject payload = new JSONObject();
-            payload.put("CardCode", supplierCode); // Mandatory: Vendor ID
-            payload.put("DocDate", new SimpleDateFormat("yyyy-MM-dd").format(new Date())); // Mandatory
-            payload.put("TaxDate", new SimpleDateFormat("yyyy-MM-dd").format(new Date())); // Mandatory
-            payload.put("DocDueDate", new SimpleDateFormat("yyyy-MM-dd").format(new Date())); // Mandatory
+            payload.put("CardCode", supplierCode);
+            payload.put("DocDate", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+            payload.put("TaxDate", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+            payload.put("DocDueDate", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
             payload.put("Comments", "Goods Receipt for PO: " + invoiceNumber);
 
-            // 4. Add document lines (items received)
             JSONArray documentLines = new JSONArray();
             for (Map.Entry<String, String> entry : deliveredItems.entrySet()) {
                 JSONObject line = new JSONObject();
-                line.put("ItemCode", entry.getKey()); // Mandatory: SAP Item Code
-                line.put("Quantity", Double.parseDouble(entry.getValue())); // Mandatory
-                line.put("WarehouseCode", "01"); // Mandatory: Default warehouse
-                line.put("BaseEntry", invoiceId); // Optional: Link to original PO (if known)
-                line.put("BaseType", "22"); // 22 = Purchase Order (for PO linking)
+                line.put("ItemCode", entry.getKey());
+                line.put("Quantity", Double.parseDouble(entry.getValue()));
+                line.put("WarehouseCode", "01");
+                line.put("BaseEntry", invoiceId);
+                line.put("BaseType", "22");
                 documentLines.put(line);
             }
             payload.put("DocumentLines", documentLines);
 
-            // 5. Send request to SAP B1
+            System.out.println("📦 Payload: " + payload.toString(2)); // Pretty-print JSON
+
+            // 4. Send request
+            System.out.println("🚀 Sending request to SAP B1...");
             apiConnector.sendRequestBody(conn, payload.toString());
 
-            // 6. Handle response
+            // 5. Handle response
             int responseCode = conn.getResponseCode();
-            if (responseCode == 201) { // 201 = Created
+            if (responseCode == 201) {
                 JSONObject response = apiConnector.getJsonResponse(conn);
-                String docNum = response.getString("DocNum"); // SAP GRPO document number
+                String docNum = response.getString("DocNum");
+                System.out.println("🎉 Success! GRPO created: " + docNum);
                 redirectAttributes.addFlashAttribute("message",
                         "Goods Receipt posted successfully! SAP GRPO #: " + docNum);
             } else {
                 String error = apiConnector.getErrorResponse(conn);
+                System.out.println("❌ SAP Error (HTTP " + responseCode + "): " + error);
                 redirectAttributes.addFlashAttribute("message",
                         "SAP Error: " + error);
                 return "redirect:camelotDeliveryDashboard.htm";
             }
 
         } catch (JSONException e) {
+            System.out.println("❌ JSON Error: " + e.getMessage());
             redirectAttributes.addFlashAttribute("message",
                     "Invalid JSON payload: " + e.getMessage());
         } catch (IOException e) {
+            System.out.println("❌ IO Error: " + e.getMessage());
             redirectAttributes.addFlashAttribute("message",
                     "SAP API connection failed: " + e.getMessage());
         } catch (Exception e) {
+            System.out.println("❌ Unexpected Error: " + e.getMessage());
             redirectAttributes.addFlashAttribute("message",
                     "Unexpected error: " + e.getMessage());
         }
 
+        System.out.println("🏁 Method completed.");
         return "redirect:camelotDeliveryDashboard.htm";
     }
 
