@@ -100,7 +100,7 @@
                                             </button>
                                         </td>
                                         <td>${po.insertionDate}</td>
-                                        <td>${po.status}</td>
+                                       
                                     </tr>
                                 </c:forEach>
                             </tbody>
