@@ -56,141 +56,140 @@ public class SapCamelotDeliveryController {
 
     }
 
-   @RequestMapping(value = "saveSapGoodsReceipt", method = RequestMethod.POST)
-public String saveSapGoodsReceipt(
-        @RequestParam(name = "sentItems") String sentItemsData,
-        @RequestParam(name = "deliveredItems") String deliveredItemsData,
-        @RequestParam(name = "baseLines") String baseLinesData, // Added BaseLines parameter
-        @RequestParam(name = "invoiceNumber") String invoiceNumber,
-        @RequestParam(name = "invoiceId") String invoiceId,
-        @RequestParam(name = "supplier") String supplierCode,
-        RedirectAttributes redirectAttributes) {
+    @RequestMapping(value = "saveSapGoodsReceipt", method = RequestMethod.POST)
+    public String saveSapGoodsReceipt(
+            @RequestParam(name = "sentItems") String sentItemsData,
+            @RequestParam(name = "deliveredItems") String deliveredItemsData,
+            @RequestParam(name = "baseLines") String baseLinesData, // Added BaseLines parameter
+            @RequestParam(name = "invoiceNumber") String invoiceNumber,
+            @RequestParam(name = "invoiceId") String invoiceId,
+            @RequestParam(name = "supplier") String supplierCode,
+            RedirectAttributes redirectAttributes) {
 
-    System.out.println("🔥 saveSapGoodsReceipt: Method started");
-    System.out.println("📦 Inputs - Invoice: " + invoiceNumber + ", Supplier: " + supplierCode);
+        System.out.println("🔥 saveSapGoodsReceipt: Method started");
+        System.out.println("📦 Inputs - Invoice: " + invoiceNumber + ", Supplier: " + supplierCode);
 
-    try {
-        // 1. Parse and validate input data
-        System.out.println("🔍 Parsing delivered items...");
-        Map<String, String> deliveredItems = decodeDeliveredItemsData(deliveredItemsData);
-        Map<String, String> sentItems = decodeDeliveredItemsData(sentItemsData);
-        Map<String, String> baseLines = decodeDeliveredItemsData(baseLinesData); // Parse BaseLines
+        try {
+            // 1. Parse and validate input data
+            System.out.println("🔍 Parsing delivered items...");
+            Map<String, String> deliveredItems = decodeDeliveredItemsData(deliveredItemsData);
+            Map<String, String> sentItems = decodeDeliveredItemsData(sentItemsData);
+            Map<String, String> baseLines = decodeDeliveredItemsData(baseLinesData); // Parse BaseLines
 
-        if (deliveredItems.isEmpty()) {
-            System.out.println("❌ Error: No delivered items found!");
-            redirectAttributes.addFlashAttribute("message", "Error: No items marked as delivered");
-            return "redirect:camelotDeliveryDashboard.htm";
-        }
-        System.out.println("✅ Delivered Items: " + deliveredItems);
+            if (deliveredItems.isEmpty()) {
+                System.out.println("❌ Error: No delivered items found!");
+                redirectAttributes.addFlashAttribute("message", "Error: No items marked as delivered");
+                return "redirect:camelotDeliveryDashboard.htm";
+            }
+            System.out.println("✅ Delivered Items: " + deliveredItems);
 
-        // 2. Prepare SAP B1 API connection
-        System.out.println("🔌 Connecting to SAP B1 API...");
-        SapCamelotApiConnector apiConnector = new SapCamelotApiConnector();
-        String endpoint = "/PurchaseDeliveryNotes";
-        HttpURLConnection conn = apiConnector.createConnection(endpoint, "POST");
+            // 2. Prepare SAP B1 API connection
+            System.out.println("🔌 Connecting to SAP B1 API...");
+            SapCamelotApiConnector apiConnector = new SapCamelotApiConnector();
+            String endpoint = "/PurchaseDeliveryNotes";
+            HttpURLConnection conn = apiConnector.createConnection(endpoint, "POST");
 
-        // 3. Build payload with all required fields
-        System.out.println("📝 Building payload...");
-        JSONObject payload = new JSONObject();
-        payload.put("CardCode", supplierCode);
-        payload.put("DocDate", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
-        payload.put("TaxDate", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
-        payload.put("DocDueDate", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
-        payload.put("Comments", "Goods Receipt for PO: " + invoiceNumber);
-        payload.put("DocObjectCode", "oPurchaseDeliveryNotes"); // Required field
+            // 3. Build payload with all required fields
+            System.out.println("📝 Building payload...");
+            JSONObject payload = new JSONObject();
+            payload.put("CardCode", supplierCode);
+            payload.put("DocDate", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+            payload.put("TaxDate", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+            payload.put("DocDueDate", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+            payload.put("Comments", "Goods Receipt for PO: " + invoiceNumber);
+            payload.put("DocObjectCode", "oPurchaseDeliveryNotes"); // Required field
 
-        // Add currency information to prevent exchange rate errors
-        payload.put("DocCurrency", "EUR"); // Set your local currency
-        payload.put("DocRate", 1.0); // Default rate for local currency
+            // Add currency information to prevent exchange rate errors
+            payload.put("DocCurrency", "EUR"); // Set your local currency
+            payload.put("DocRate", 1.0); // Default rate for local currency
 
-        JSONArray documentLines = new JSONArray();
-        for (Map.Entry<String, String> entry : deliveredItems.entrySet()) {
-            String itemCode = entry.getKey();
-            JSONObject line = new JSONObject();
-            line.put("ItemCode", itemCode);
-            line.put("Quantity", Double.parseDouble(entry.getValue()));
-            line.put("WarehouseCode", "AX-BAR");
-            
-            // Critical PO linking information
-            line.put("BaseEntry", invoiceId); // PO DocEntry
-            line.put("BaseType", "22"); // 22 = Purchase Order
-            line.put("BaseLine", baseLines.get(itemCode)); // PO Line Number
-            
-            // Additional recommended fields
-            line.put("AccountCode", "_SYS00000000001"); // Default inventory account
-            line.put("CostingCode", "PROJ001"); // If using projects
-            
-            documentLines.put(line);
-        }
-        payload.put("DocumentLines", documentLines);
+            JSONArray documentLines = new JSONArray();
+            for (Map.Entry<String, String> entry : deliveredItems.entrySet()) {
+                String itemCode = entry.getKey();
+                JSONObject line = new JSONObject();
+                line.put("ItemCode", itemCode);
+                line.put("Quantity", Double.parseDouble(entry.getValue()));
+                line.put("WarehouseCode", "AX-BAR");
 
-        System.out.println("📦 Payload: " + payload.toString(2)); // Pretty-print JSON
+                // Critical PO linking information
+                line.put("BaseEntry", invoiceId); // PO DocEntry
+                line.put("BaseType", "22"); // 22 = Purchase Order
+                line.put("BaseLine", baseLines.get(itemCode)); // PO Line Number
 
-        // 4. Send request with enhanced error handling
-        System.out.println("🚀 Sending request to SAP B1...");
-        apiConnector.sendRequestBody(conn, payload.toString());
+                // Additional recommended fields
+                //  line.put("AccountCode", "_SYS00000000001"); // Default inventory account
+                // line.put("CostingCode", "PROJ001"); // If using projects
+                documentLines.put(line);
+            }
+            payload.put("DocumentLines", documentLines);
 
-        // 5. Handle response with detailed logging
-        int responseCode = conn.getResponseCode();
-        if (responseCode == 201) {
-            JSONObject response = apiConnector.getJsonResponse(conn);
-            String docNum = response.getString("DocNum");
-            System.out.println("🎉 Success! GRPO created: " + docNum);
+            System.out.println("📦 Payload: " + payload.toString(2)); // Pretty-print JSON
+
+            // 4. Send request with enhanced error handling
+            System.out.println("🚀 Sending request to SAP B1...");
+            apiConnector.sendRequestBody(conn, payload.toString());
+
+            // 5. Handle response with detailed logging
+            int responseCode = conn.getResponseCode();
+            if (responseCode == 201) {
+                JSONObject response = apiConnector.getJsonResponse(conn);
+                String docNum = response.getString("DocNum");
+                System.out.println("🎉 Success! GRPO created: " + docNum);
+                redirectAttributes.addFlashAttribute("message",
+                        "Goods Receipt posted successfully! SAP GRPO #: " + docNum);
+
+                // Log full response for debugging
+                System.out.println("📄 Full SAP Response: " + response.toString());
+            } else {
+                String error = apiConnector.getErrorResponse(conn);
+                System.out.println("❌ SAP Error (HTTP " + responseCode + "): " + error);
+
+                // Additional debug info
+                System.out.println("🔧 Request Details:");
+                System.out.println("URL: " + conn.getURL());
+                System.out.println("Headers: " + conn.getRequestProperties());
+
+                redirectAttributes.addFlashAttribute("message",
+                        "SAP Error: " + error);
+                return "redirect:camelotDeliveryDashboard.htm";
+            }
+
+        } catch (JSONException e) {
+            System.out.println("❌ JSON Error: " + e.getMessage());
             redirectAttributes.addFlashAttribute("message",
-                    "Goods Receipt posted successfully! SAP GRPO #: " + docNum);
-            
-            // Log full response for debugging
-            System.out.println("📄 Full SAP Response: " + response.toString());
-        } else {
-            String error = apiConnector.getErrorResponse(conn);
-            System.out.println("❌ SAP Error (HTTP " + responseCode + "): " + error);
-            
-            // Additional debug info
-            System.out.println("🔧 Request Details:");
-            System.out.println("URL: " + conn.getURL());
-            System.out.println("Headers: " + conn.getRequestProperties());
-            
+                    "Invalid JSON payload: " + e.getMessage());
+        } catch (IOException e) {
+            System.out.println("❌ IO Error: " + e.getMessage());
+            System.out.println("🛠️ StackTrace: " + Arrays.toString(e.getStackTrace()));
             redirectAttributes.addFlashAttribute("message",
-                    "SAP Error: " + error);
-            return "redirect:camelotDeliveryDashboard.htm";
+                    "SAP API connection failed: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("❌ Unexpected Error: " + e.getMessage());
+            System.out.println("🛠️ StackTrace: " + Arrays.toString(e.getStackTrace()));
+            redirectAttributes.addFlashAttribute("message",
+                    "Unexpected error: " + e.getMessage());
         }
 
-    } catch (JSONException e) {
-        System.out.println("❌ JSON Error: " + e.getMessage());
-        redirectAttributes.addFlashAttribute("message",
-                "Invalid JSON payload: " + e.getMessage());
-    } catch (IOException e) {
-        System.out.println("❌ IO Error: " + e.getMessage());
-        System.out.println("🛠️ StackTrace: " + Arrays.toString(e.getStackTrace()));
-        redirectAttributes.addFlashAttribute("message",
-                "SAP API connection failed: " + e.getMessage());
-    } catch (Exception e) {
-        System.out.println("❌ Unexpected Error: " + e.getMessage());
-        System.out.println("🛠️ StackTrace: " + Arrays.toString(e.getStackTrace()));
-        redirectAttributes.addFlashAttribute("message",
-                "Unexpected error: " + e.getMessage());
+        System.out.println("🏁 Method completed.");
+        return "redirect:camelotDeliveryDashboard.htm";
     }
-
-    System.out.println("🏁 Method completed.");
-    return "redirect:camelotDeliveryDashboard.htm";
-}
 
 // Helper method to parse key-value pairs from comma-separated strings
-private Map<String, String> decodeDeliveredItemsData(String data) {
-    Map<String, String> result = new LinkedHashMap<>();
-    if (data == null || data.isEmpty()) {
-        return result;
-    }
-    
-    String[] pairs = data.split(",");
-    for (String pair : pairs) {
-        if (!pair.isEmpty()) {
-            String[] keyValue = pair.split(":");
-            if (keyValue.length == 2) {
-                result.put(keyValue[0], keyValue[1]);
+    private Map<String, String> decodeDeliveredItemsData(String data) {
+        Map<String, String> result = new LinkedHashMap<>();
+        if (data == null || data.isEmpty()) {
+            return result;
+        }
+
+        String[] pairs = data.split(",");
+        for (String pair : pairs) {
+            if (!pair.isEmpty()) {
+                String[] keyValue = pair.split(":");
+                if (keyValue.length == 2) {
+                    result.put(keyValue[0], keyValue[1]);
+                }
             }
         }
+        return result;
     }
-    return result;
-}
 }
