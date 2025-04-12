@@ -12,6 +12,7 @@ public class DeliveryInvoice {
     private String errorMessages;
     private String supplier;
     private String warehouseCode;
+    private String baseEntry;
 
     public DeliveryInvoice() {
         this.errorMessages = "";
@@ -81,7 +82,5 @@ public class DeliveryInvoice {
     public void setWarehouseCode(String warehouseCode) {
         this.warehouseCode = warehouseCode;
     }
-    
-    
 
 }
