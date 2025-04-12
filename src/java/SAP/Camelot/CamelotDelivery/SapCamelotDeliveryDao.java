@@ -27,7 +27,7 @@ public class SapCamelotDeliveryDao {
     private String dbSchema;
 
     public SapCamelotDeliveryDao() {
-        this.dbSchema = "TRAINING_PC";
+     //   this.dbSchema = "TRAINING_PC";
         this.dbSchema = "PETCAMELOT_UAT2";
     }
 

@@ -63,7 +63,7 @@ public class SapCamelotDeliveryController {
             @RequestParam(name = "invoiceId") String invoiceId,
             @RequestParam(name = "supplier") String supplierCode, // SAP Vendor ID (CardCode)
             RedirectAttributes redirectAttributes) {
-
+        System.out.println("saveSapGoodsReceipt: Fired");
         try {
             // 1. Parse and validate input data
             Map<String, String> deliveredItems = decodeDeliveredItemsData(deliveredItemsData);
