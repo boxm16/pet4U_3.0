@@ -27,7 +27,7 @@ public class SapCamelotDeliveryDao {
     private String dbSchema;
 
     public SapCamelotDeliveryDao() {
-     //   this.dbSchema = "TRAINING_PC";
+        //   this.dbSchema = "TRAINING_PC";
         this.dbSchema = "PETCAMELOT_UAT2";
     }
 
@@ -35,6 +35,7 @@ public class SapCamelotDeliveryDao {
         LinkedHashMap<String, ArrayList<DeliveryInvoice>> duePurchaseOrders = new LinkedHashMap<>();
 
         String query = "SELECT "
+                + dbSchema + ".OPOR.\"DocEntry\", "
                 + dbSchema + ".OPOR.\"DocNum\", "
                 + dbSchema + ".OPOR.\"CardCode\", "
                 + dbSchema + ".OPOR.\"CardName\", "
@@ -42,7 +43,7 @@ public class SapCamelotDeliveryDao {
                 + dbSchema + ".OPOR.\"DocStatus\" "
                 + "FROM "
                 + dbSchema + ".OPOR";
-      //  System.out.println("Query: " + query);
+        //  System.out.println("Query: " + query);
 
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
         Connection connection = databaseConnectionFactory.getSapHanaConnection();
@@ -60,6 +61,7 @@ public class SapCamelotDeliveryDao {
                 }
                 DeliveryInvoice purchaseOrderInvoice = new DeliveryInvoice();
                 purchaseOrderInvoice.setSupplier(supplierName);
+                purchaseOrderInvoice.setId(resultSet.getString("DocEntry"));
                 purchaseOrderInvoice.setInvoiceId(resultSet.getString("DocNum"));
                 purchaseOrderInvoice.setInsertionDate(resultSet.getString("DocDate"));
                 ArrayList<DeliveryInvoice> deliveryInvoices = duePurchaseOrders.get(supplierName);
@@ -96,8 +98,7 @@ public class SapCamelotDeliveryDao {
                 + "WHERE "
                 + dbSchema + ".OPOR.\"DocNum\" = ?";
 
-       // System.out.println("Query: " + query);
-
+        // System.out.println("Query: " + query);
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
 
         try (Connection connection = databaseConnectionFactory.getSapHanaConnection();
