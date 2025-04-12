@@ -100,7 +100,7 @@ public class SapCamelotDeliveryController {
                 JSONObject line = new JSONObject();
                 line.put("ItemCode", entry.getKey());
                 line.put("Quantity", Double.parseDouble(entry.getValue()));
-                line.put("WarehouseCode", "01");
+                line.put("WarehouseCode", "AX-BAR");
                 line.put("BaseEntry", invoiceId);
                 line.put("BaseType", "22");
                 documentLines.put(line);
