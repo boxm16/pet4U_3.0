@@ -412,7 +412,7 @@ public class DeliveryDao_V_3_1 {
             PreparedStatement invoiceInsertionPreparedStatement = connection.prepareStatement("INSERT INTO delivery_title (invoice_id, id, number,supplier, note) VALUES(?,?,?,?,?);");
             PreparedStatement deliveredItemsInPreparedStatement = connection.prepareStatement("INSERT INTO delivery_data (delivery_id, item_code, sent, delivered, baseLine) VALUES (?,?,?,?,?);");
 
-            System.out.println("Starting INSERTION: ....");
+            System.out.println("Starting  SAP TEMPO SAVE INSERTION: ....");
 
             invoiceInsertionPreparedStatement.setString(1, invoiceId);
             invoiceInsertionPreparedStatement.setString(2, idItem.toString());
