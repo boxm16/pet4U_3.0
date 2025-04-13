@@ -246,8 +246,6 @@ public class SapCamelotDeliveryController {
 
         modelMap.addAttribute("pet4UItemsRowByRow", pet4UItemsRowByRow);
 
-        String saveButton = "<button class=\"btn-primary\" onclick=\"requestRouter('saveSapGoodsReceipt.htm')\"><H1>Save Delivery Checking IN SAP</H1></button>";
-        modelMap.addAttribute("saveButton", saveButton);
         return "sap/camelot/delivery/goodsReceiptDisplay";
 
     }
@@ -285,5 +283,35 @@ public class SapCamelotDeliveryController {
         SapCamelotDeliveryDao dao = new SapCamelotDeliveryDao();
         String result = dao.saveSaTempoDeliveryChecking(invoiceNumber, supplierCode, invoiceNumber, deliveryItems);
         return "redirect:camelotDeliveryDashboardX.htm";
+    }
+
+    @RequestMapping(value = "sapCamelotTempoDeliveryInvoiceChecking", method = RequestMethod.POST)
+    public String sapCamelotTempoDeliveryInvoiceChecking(@RequestParam(name = "invoiceId") String invoiceId, ModelMap modelMap) {
+        SapCamelotDeliveryDao dao = new SapCamelotDeliveryDao();
+        DeliveryInvoice deliveryInvoice = dao.getSapCamelotTempoDeliveryInvoice(invoiceId);
+
+        DeliveryDao deliveryDao = new DeliveryDao();
+        ArrayList<DeliveryItem> pet4UItemsRowByRow = deliveryDao.getPet4UItemsRowByRow();
+
+        modelMap.addAttribute("pet4UItemsRowByRow", pet4UItemsRowByRow);
+
+        LinkedHashMap<String, DeliveryItem> deliveryItems = deliveryInvoice.getItems();
+        for (DeliveryItem deliveryItem : pet4UItemsRowByRow) {
+            String code = deliveryItem.getCode();
+            if (deliveryItems.containsKey(code)) {
+                DeliveryItem di = deliveryItems.get(code);
+                di.setDescription(deliveryItem.getDescription());
+                deliveryItems.put(code, di);
+            }
+        }
+        deliveryInvoice.setItems(deliveryItems);
+
+        String tempoSaveButton = "<button class=\"btn-danger\" onclick=\"requestRouter('rewriteDeliveryChecking.htm')\"><H1>ΠΡΟΣΟΡΙΝΗ ΑΠΟΘΗΚΕΥΣΗ</H1></button>";
+        modelMap.addAttribute("saveButton", tempoSaveButton);
+
+        String saveButton = "<button class=\"btn-danger\" onclick=\"requestRouter('saveSapGoodsReceipt.htm')\"><H1>Save Delivery Checking IN SAP</H1></button>";
+        modelMap.addAttribute("saveButton", saveButton);
+        modelMap.addAttribute("deliveryInvoice", deliveryInvoice);
+        return "sap/camelot/delivery/sapCamelotDeliveryInvoiceChecking";
     }
 }
