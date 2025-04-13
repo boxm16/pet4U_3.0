@@ -11,7 +11,6 @@ import java.sql.Statement;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.stereotype.Repository;
@@ -404,8 +403,7 @@ public class DeliveryDao_V_3_1 {
 
     ////------SAP VERSION---------
     public String saveSAPDeliveryChecking(String invoiceId, String supplier, String invoiceNumber, ArrayList<DeliveryItem> deliveryItems) {
-        String idItem = UUID.randomUUID().toString(); // Better ID generation
-
+        LocalDateTime idItem = LocalDateTime.now();
         try (Connection connection = new DatabaseConnectionFactory().getMySQLConnection();
                 PreparedStatement invoiceInsertionPreparedStatement = connection.prepareStatement(
                         "INSERT INTO delivery_title (invoice_id, id, number, supplier, note) VALUES (?, ?, ?, ?, ?);");
@@ -417,7 +415,7 @@ public class DeliveryDao_V_3_1 {
 
             // Insert invoice title
             invoiceInsertionPreparedStatement.setString(1, invoiceId);
-            invoiceInsertionPreparedStatement.setString(2, idItem);
+            invoiceInsertionPreparedStatement.setString(2, idItem.toString());
             invoiceInsertionPreparedStatement.setString(3, invoiceNumber);
             invoiceInsertionPreparedStatement.setString(4, supplier);
             invoiceInsertionPreparedStatement.setString(5, " "); // Note field
