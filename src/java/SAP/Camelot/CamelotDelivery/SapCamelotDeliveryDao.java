@@ -119,7 +119,7 @@ public class SapCamelotDeliveryDao {
                     if (isFirstRow) {
                         deliveryInvoice.setInvoiceId(resultSet.getString("DocEntry"));
                         deliveryInvoice.setNumber(resultSet.getString("DocNum"));
-                        deliveryInvoice.setSupplier(resultSet.getString("CardName"));
+                        deliveryInvoice.setSupplier(resultSet.getString("CardCode"));
                         deliveryInvoice.setInsertionDate(resultSet.getString("DocDate"));
                         isFirstRow = false;
                     }

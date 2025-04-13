@@ -66,7 +66,7 @@ public class SapCamelotDeliveryController {
         ArrayList<DeliveryItem> pet4UItemsRowByRow = deliveryDao.getPet4UItemsRowByRow();
 
         modelMap.addAttribute("pet4UItemsRowByRow", pet4UItemsRowByRow);
-        String tempoSaveButton = "<button class=\"btn-primary\" onclick=\"requestRouter('temporSaveCheckUp.htm')\"><H1>ΠΡΟΣΟΡΙΝΗ ΑΠΟΘΗΚΕΥΣΗ</H1></button>";
+        String tempoSaveButton = "<button class=\"btn-primary\" onclick=\"requestRouter('tempoSaveCheckUp.htm')\"><H1>ΠΡΟΣΟΡΙΝΗ ΑΠΟΘΗΚΕΥΣΗ</H1></button>";
         modelMap.addAttribute("tempoSaveButton", tempoSaveButton);
 
         String saveButton = "<button class=\"btn-danger\" onclick=\"requestRouter('saveSapGoodsReceipt.htm')\"><H1>Save IN SAP-ΠΡΟΣΟΧΗ - ΜΗ ΑΝΑΤΡΕΨΗΜΟ</H1></button>";
@@ -251,8 +251,8 @@ public class SapCamelotDeliveryController {
     }
 
     //-----------------temporary storing----------------
-    @RequestMapping(value = "temporSaveCheckUp", method = RequestMethod.POST)
-    public String saveCheckUp(@RequestParam(name = "sentItems") String sentItemsData,
+    @RequestMapping(value = "tempoSaveCheckUp", method = RequestMethod.POST)
+    public String tempoSaveCheckUp(@RequestParam(name = "sentItems") String sentItemsData,
             @RequestParam(name = "deliveredItems") String deliveredItemsData,
             @RequestParam(name = "baseLines") String baseLinesData, // Added BaseLines parameter
             @RequestParam(name = "invoiceNumber") String invoiceNumber,
