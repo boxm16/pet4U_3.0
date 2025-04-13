@@ -184,6 +184,12 @@ public class SapCamelotDeliveryController {
 
                 // Log full response for debugging
                 System.out.println("📄 Full SAP Response: " + response.toString());
+                if (dao.tempoExist(invoiceId)) {
+                    rewriteAndCloseDeliveryChecking(sentItemsData, deliveredItemsData, baseLinesData, invoiceNumber, invoiceId, supplierCode);
+                } else {
+
+                }
+
             } else {
                 String error = apiConnector.getErrorResponse(conn);
                 System.out.println("❌ SAP Error (HTTP " + responseCode + "): " + error);
@@ -283,7 +289,7 @@ public class SapCamelotDeliveryController {
         }
 
         SapCamelotDeliveryDao dao = new SapCamelotDeliveryDao();
-        String result = dao.saveSapTempoDeliveryChecking(invoiceId, supplierCode, invoiceNumber, deliveryItems);
+        String result = dao.saveSapTempoDeliveryChecking(invoiceId, supplierCode, invoiceNumber, deliveryItems, "open");
         return "redirect:camelotDeliveryDashboardX.htm";
     }
 
@@ -344,7 +350,36 @@ public class SapCamelotDeliveryController {
         }
         SapCamelotDeliveryDao dao = new SapCamelotDeliveryDao();
         String deleteResult = dao.deleteDeliveryChecking(invoiceId);
-        String result = dao.saveSapTempoDeliveryChecking(invoiceId, supplierCode, invoiceNumber, deliveryItems);
+        String result = dao.saveSapTempoDeliveryChecking(invoiceId, supplierCode, invoiceNumber, deliveryItems, "open");
+        return "redirect:camelotDeliveryDashboardX.htm";
+    }
+
+    public String rewriteAndCloseDeliveryChecking(@RequestParam(name = "sentItems") String sentItemsData,
+            @RequestParam(name = "deliveredItems") String deliveredItemsData,
+            @RequestParam(name = "baseLines") String baseLinesData, // Added BaseLines parameter
+            @RequestParam(name = "invoiceNumber") String invoiceNumber,
+            @RequestParam(name = "invoiceId") String invoiceId,
+            @RequestParam(name = "supplier") String supplierCode) {
+        DeliveryInvoice deliveryInvoice = new DeliveryInvoice();
+
+        deliveryInvoice.setNumber(invoiceNumber);
+
+        Map<String, String> deliveredItems = decodeDeliveredItemsData(deliveredItemsData);
+        Map<String, String> sentItems = decodeDeliveredItemsData(sentItemsData);
+        Map<String, String> baseLines = decodeDeliveredItemsData(baseLinesData); // Parse BaseLines
+
+        ArrayList<DeliveryItem> deliveryItems = new ArrayList<>();
+        for (Map.Entry<String, String> deliveredItemsEntry : deliveredItems.entrySet()) {
+            DeliveryItem deliveryItem = new DeliveryItem();
+            deliveryItem.setCode(deliveredItemsEntry.getKey());
+            deliveryItem.setDeliveredQuantity(deliveredItemsEntry.getValue());
+            deliveryItem.setSentQuantity(sentItems.get(deliveredItemsEntry.getKey()));
+            deliveryItem.setBaseLine(Integer.parseInt(baseLines.get(deliveredItemsEntry.getKey())));
+            deliveryItems.add(deliveryItem);
+        }
+        SapCamelotDeliveryDao dao = new SapCamelotDeliveryDao();
+        String deleteResult = dao.deleteDeliveryChecking(invoiceId);
+        String result = dao.saveSapTempoDeliveryChecking(invoiceId, supplierCode, invoiceNumber, deliveryItems, "closed");
         return "redirect:camelotDeliveryDashboardX.htm";
     }
 

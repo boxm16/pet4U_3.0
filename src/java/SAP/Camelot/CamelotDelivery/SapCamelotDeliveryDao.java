@@ -366,7 +366,7 @@ public class SapCamelotDeliveryDao {
     }
 
     ////------SAP VERSION---------
-    public String saveSapTempoDeliveryChecking(String invoiceId, String supplier, String invoiceNumber, ArrayList<DeliveryItem> deliveryItems) {
+    public String saveSapTempoDeliveryChecking(String invoiceId, String supplier, String invoiceNumber, ArrayList<DeliveryItem> deliveryItems, String status) {
         LocalDateTime idItem = LocalDateTime.now();
         try (Connection connection = new DatabaseConnectionFactory().getMySQLConnection();
                 PreparedStatement invoiceInsertionPreparedStatement = connection.prepareStatement(
@@ -383,7 +383,7 @@ public class SapCamelotDeliveryDao {
             invoiceInsertionPreparedStatement.setString(3, invoiceNumber);
             invoiceInsertionPreparedStatement.setString(4, supplier);
             invoiceInsertionPreparedStatement.setString(5, " "); // Note field
-            invoiceInsertionPreparedStatement.setString(6, "open"); // Note field
+            invoiceInsertionPreparedStatement.setString(6, status); // Note field
             invoiceInsertionPreparedStatement.addBatch();
 
             // Insert delivery items
@@ -441,6 +441,7 @@ public class SapCamelotDeliveryDao {
 
         return deliveryInvoices;
     }
+
     DeliveryInvoice getSapCamelotTempoDeliveryInvoice(String invoiceId) {
         DeliveryInvoice deliveryInvoice = new DeliveryInvoice();
 
@@ -485,7 +486,7 @@ public class SapCamelotDeliveryDao {
 
         return deliveryInvoice;
     }
-    
+
     public String deleteDeliveryChecking(String invoiceId) {
 
         String sql = "DELETE  FROM delivery_data WHERE delivery_id='" + invoiceId + "';";
@@ -510,6 +511,10 @@ public class SapCamelotDeliveryDao {
         }
 
         return "Delivery Checking with id" + invoiceId + "deleted";
+    }
+
+    boolean tempoExist(String invoiceId) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
