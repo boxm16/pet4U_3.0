@@ -309,6 +309,7 @@ public class SapCamelotDeliveryController {
         String tempoSaveButton = "<button class=\"btn-danger\" onclick=\"requestRouter('rewriteTempoDeliveryChecking.htm')\"><H1>ΠΡΟΣΟΡΙΝΗ ΑΠΟΘΗΚΕΥΣΗ</H1></button>";
         modelMap.addAttribute("saveButton", tempoSaveButton);
 
+        
         String saveButton = "<button class=\"btn-danger\" onclick=\"requestRouter('saveSapGoodsReceipt.htm')\"><H1>Save Delivery Checking IN SAP</H1></button>";
         modelMap.addAttribute("saveButton", saveButton);
         modelMap.addAttribute("deliveryInvoice", deliveryInvoice);
