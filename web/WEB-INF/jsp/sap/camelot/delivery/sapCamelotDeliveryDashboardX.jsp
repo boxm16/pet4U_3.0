@@ -69,88 +69,89 @@
         </style>
     </head>
     <body>
-        <h1>Purchase Orders and Goods Receipts</h1>
-        <div class="container">
-            <!-- Left Column - Due Purchase Orders -->
-            <div class="column">
-                <div class="section-header">
-                    <h2>Due Purchase Orders</h2>
-                    <a href="camelotDeliveryDashboardX.htm"> <h3>Due Purchase Orders</h3></a>
-                </div>
-
-                <c:if test="${not empty duePurchaseOrders}">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Supplier</th>
-                                <th>PO Number</th>
-                                <th>Date</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <c:forEach var="po" items="${duePurchaseOrders}">
-                                <tr>
-                                    <td class="supplier-cell">${po.supplier}</td>
-                                    <td>
-                                        <button type="button" class="invoice-btn"
-                                                onclick="window.open('sapCamelotDeliveryInvoiceChecking.htm?invoiceId=${po.invoiceId}', '_blank')">
-                                            ${po.number}
-                                        </button>
-                                    </td>
-                                    <td>${po.insertionDate}</td>
-                                </tr>
-                            </c:forEach>
-                        </tbody>
-                    </table>
-                </c:if>
-                <c:if test="${empty duePurchaseOrders}">
-                    <div class="no-data">No due purchase orders found</div>
-                </c:if>
+    <center> <h1>Purchase Orders and Goods Receipts</h1>
+        <a href="createPurchaseOrder.htm"> <h3>Due Purchase Orders</h3></a>
+    </center>
+    <div class="container">
+        <!-- Left Column - Due Purchase Orders -->
+        <div class="column">
+            <div class="section-header">
+                <h2>Due Purchase Orders</h2>
             </div>
 
-            <!-- Right Column - Today's Goods Receipts -->
-            <div class="column">
-                <div class="section-header">
-                    <h2>Today's Goods Receipts (<fmt:formatDate value="<%=new java.util.Date()%>" pattern="yyyy-MM-dd"/>)</h2>
-                </div>
-
-                <c:if test="${not empty todaysGoodsReceipts}">
-                    <table>
-                        <thead>
+            <c:if test="${not empty duePurchaseOrders}">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Supplier</th>
+                            <th>PO Number</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <c:forEach var="po" items="${duePurchaseOrders}">
                             <tr>
-                                <th>Supplier</th>
-                                <th>GR Number</th>
-                                <th>PO Reference</th>
-                                <th>Items</th>
-                                <th>Time</th>
+                                <td class="supplier-cell">${po.supplier}</td>
+                                <td>
+                                    <button type="button" class="invoice-btn"
+                                            onclick="window.open('sapCamelotDeliveryInvoiceChecking.htm?invoiceId=${po.invoiceId}', '_blank')">
+                                        ${po.number}
+                                    </button>
+                                </td>
+                                <td>${po.insertionDate}</td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            <c:forEach var="gr" items="${todaysGoodsReceipts}">
-                                <tr>
-                                    <td class="supplier-cell">${gr.supplier}</td>
-                                    <td>
-                                        <button type="button" class="invoice-btn goods-receipt-btn"
-                                                onclick="window.open('showGoodsReceipt.htm?invoiceId=${gr.invoiceId}', '_blank')">
-                                            ${gr.number}
-                                        </button>
-                                    </td>
-                                    <td>
-                                        <c:if test="${not empty gr.baseEntry}">
-                                            PO: ${gr.baseEntry}
-                                        </c:if>
-                                    </td>
-                                    <td>${gr.items.size()} items</td>
-                                    <td>${gr.insertionDate}</td>
-                                </tr>
-                            </c:forEach>
-                        </tbody>
-                    </table>
-                </c:if>
-                <c:if test="${empty todaysGoodsReceipts}">
-                    <div class="no-data">No goods receipts today</div>
-                </c:if>
-            </div>
+                        </c:forEach>
+                    </tbody>
+                </table>
+            </c:if>
+            <c:if test="${empty duePurchaseOrders}">
+                <div class="no-data">No due purchase orders found</div>
+            </c:if>
         </div>
-    </body>
+
+        <!-- Right Column - Today's Goods Receipts -->
+        <div class="column">
+            <div class="section-header">
+                <h2>Today's Goods Receipts (<fmt:formatDate value="<%=new java.util.Date()%>" pattern="yyyy-MM-dd"/>)</h2>
+            </div>
+
+            <c:if test="${not empty todaysGoodsReceipts}">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Supplier</th>
+                            <th>GR Number</th>
+                            <th>PO Reference</th>
+                            <th>Items</th>
+                            <th>Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <c:forEach var="gr" items="${todaysGoodsReceipts}">
+                            <tr>
+                                <td class="supplier-cell">${gr.supplier}</td>
+                                <td>
+                                    <button type="button" class="invoice-btn goods-receipt-btn"
+                                            onclick="window.open('showGoodsReceipt.htm?invoiceId=${gr.invoiceId}', '_blank')">
+                                        ${gr.number}
+                                    </button>
+                                </td>
+                                <td>
+                                    <c:if test="${not empty gr.baseEntry}">
+                                        PO: ${gr.baseEntry}
+                                    </c:if>
+                                </td>
+                                <td>${gr.items.size()} items</td>
+                                <td>${gr.insertionDate}</td>
+                            </tr>
+                        </c:forEach>
+                    </tbody>
+                </table>
+            </c:if>
+            <c:if test="${empty todaysGoodsReceipts}">
+                <div class="no-data">No goods receipts today</div>
+            </c:if>
+        </div>
+    </div>
+</body>
 </html>
