@@ -281,7 +281,7 @@ public class SapCamelotDeliveryController {
         }
 
         SapCamelotDeliveryDao dao = new SapCamelotDeliveryDao();
-        String result = dao.saveSapTempoDeliveryChecking(invoiceNumber, supplierCode, invoiceNumber, deliveryItems);
+        String result = dao.saveSapTempoDeliveryChecking(invoiceId, supplierCode, invoiceNumber, deliveryItems);
         return "redirect:camelotDeliveryDashboardX.htm";
     }
 
@@ -343,7 +343,7 @@ public class SapCamelotDeliveryController {
         SapCamelotDeliveryDao dao = new SapCamelotDeliveryDao();
         String deleteResult = dao.deleteDeliveryChecking(invoiceId);
         String result = dao.saveSapTempoDeliveryChecking(invoiceId, supplierCode, invoiceNumber, deliveryItems);
-        return "redirect:deliveryDashboard_X.htm";
+        return "redirect:sapCamelotdeliveryDashboardX.htm";
     }
 
 }
