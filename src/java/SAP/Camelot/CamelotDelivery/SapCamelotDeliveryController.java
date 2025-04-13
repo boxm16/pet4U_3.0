@@ -126,7 +126,7 @@ public class SapCamelotDeliveryController {
             }
 
             Date adjustedDate = calendar.getTime();
-            Double exchangeRate = dao.getExchangeRate(currency, today);
+            Double exchangeRate = dao.getExchangeRate(currency, adjustedDate); // ✅
 
             if (exchangeRate == null) {
                 System.out.println("❌ Exchange rate for " + currency + " not found!");
