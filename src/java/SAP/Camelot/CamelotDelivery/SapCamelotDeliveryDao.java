@@ -254,4 +254,77 @@ public class SapCamelotDeliveryDao {
         return goodsReceipt;
     }
 
+    ArrayList<DeliveryInvoice> getDuePurchaseOrdersX() {
+        ArrayList<DeliveryInvoice> duePurchaseOrders = new ArrayList<>();
+
+        String query = "SELECT "
+                + dbSchema + ".OPOR.\"DocEntry\", "
+                + dbSchema + ".OPOR.\"DocNum\", "
+                + dbSchema + ".OPOR.\"CardCode\", "
+                + dbSchema + ".OPOR.\"CardName\", "
+                + dbSchema + ".OPOR.\"DocDate\", "
+                + dbSchema + ".OPOR.\"DocStatus\" "
+                + "FROM "
+                + dbSchema + ".OPOR "
+                + "ORDER BY " + dbSchema + ".OPOR.\"DocDate\" DESC"; // Order by date descending (newest first)
+
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+
+        try (Connection connection = databaseConnectionFactory.getSapHanaConnection();
+                Statement statement = connection.createStatement();
+                ResultSet resultSet = statement.executeQuery(query)) {
+
+            while (resultSet.next()) {
+                DeliveryInvoice purchaseOrderInvoice = new DeliveryInvoice();
+                purchaseOrderInvoice.setSupplier(resultSet.getString("CardName"));
+                purchaseOrderInvoice.setInvoiceId(resultSet.getString("DocEntry"));
+                purchaseOrderInvoice.setNumber(resultSet.getString("DocNum"));
+                purchaseOrderInvoice.setInsertionDate(resultSet.getString("DocDate"));
+
+                duePurchaseOrders.add(purchaseOrderInvoice);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(SapCamelotDeliveryDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return duePurchaseOrders;
+    }
+
+    ArrayList<DeliveryInvoice> getGoodsReceiptsX() {
+        ArrayList<DeliveryInvoice> goodsReceipts = new ArrayList<>();
+
+        String query = "SELECT "
+                + dbSchema + ".OPDN.\"DocEntry\", "
+                + dbSchema + ".OPDN.\"DocNum\", "
+                + dbSchema + ".OPDN.\"CardCode\", "
+                + dbSchema + ".OPDN.\"CardName\", "
+                + dbSchema + ".OPDN.\"DocDate\", "
+                + dbSchema + ".OPDN.\"DocStatus\", "
+                + dbSchema + ".OPDN.\"Comments\" "
+                + "FROM " + dbSchema + ".OPDN "
+                + "ORDER BY " + dbSchema + ".OPDN.\"DocDate\" DESC";  // Order by date descending (newest first)
+
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+
+        try (Connection connection = databaseConnectionFactory.getSapHanaConnection();
+                Statement statement = connection.createStatement();
+                ResultSet resultSet = statement.executeQuery(query)) {
+
+            while (resultSet.next()) {
+                DeliveryInvoice goodsReceipt = new DeliveryInvoice();
+                goodsReceipt.setSupplier(resultSet.getString("CardName"));
+                goodsReceipt.setInvoiceId(resultSet.getString("DocEntry"));
+                goodsReceipt.setNumber(resultSet.getString("DocNum"));
+                goodsReceipt.setInsertionDate(resultSet.getString("DocDate"));
+              //  goodsReceipt.setComments(resultSet.getString("Comments"));
+
+                goodsReceipts.add(goodsReceipt);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(SapCamelotDeliveryDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return goodsReceipts;
+    }
+
 }

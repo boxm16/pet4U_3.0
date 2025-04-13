@@ -41,6 +41,17 @@ public class SapCamelotDeliveryController {
         return "sap/camelot/delivery/sapCamelotDeliveryDashboard";
     }
 
+    @RequestMapping(value = "camelotDeliveryDashboardX")
+    public String camelotDeliveryDashboardX(ModelMap modelMap) {
+        SapCamelotDeliveryDao sampSapCamelotDeliveryDao = new SapCamelotDeliveryDao();
+        ArrayList<DeliveryInvoice> duePurchaseOrders = sampSapCamelotDeliveryDao.getDuePurchaseOrdersX();
+        ArrayList<DeliveryInvoice> todaysGoodsReceipts = sampSapCamelotDeliveryDao.getGoodsReceiptsX();
+
+        modelMap.addAttribute("duePurchaseOrders", duePurchaseOrders);
+        modelMap.addAttribute("todaysGoodsReceipts", todaysGoodsReceipts);
+        return "sap/camelot/delivery/sapCamelotDeliveryDashboardX";
+    }
+
     @RequestMapping(value = "/sapCamelotDeliveryInvoiceChecking.htm", method = RequestMethod.GET)
     public String sapCamelotDeliveryInvoiceChecking(@RequestParam("invoiceId") String invoiceId, ModelMap modelMap) {
         SapCamelotDeliveryDao sampSapCamelotDeliveryDao = new SapCamelotDeliveryDao();
@@ -194,8 +205,8 @@ public class SapCamelotDeliveryController {
         }
         return result;
     }
-    
-     @RequestMapping(value = "/showGoodsReceipt.htm", method = RequestMethod.GET)
+
+    @RequestMapping(value = "/showGoodsReceipt.htm", method = RequestMethod.GET)
     public String showGoodsReceipt(@RequestParam("invoiceId") String invoiceId, ModelMap modelMap) {
         SapCamelotDeliveryDao sampSapCamelotDeliveryDao = new SapCamelotDeliveryDao();
         DeliveryInvoice deliveryInvoice = sampSapCamelotDeliveryDao.getGoodsReceipt(invoiceId);
