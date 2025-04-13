@@ -60,11 +60,7 @@
                         <h5><span class="badge badge-primary">GRPO #: ${deliveryInvoice.number}</span></h5>
                     </div>
                 </div>
-                <c:if test="${not empty deliveryInvoice.poNumber}">
-                    <div class="mt-2">
-                        <h5><span class="badge badge-dark">PO #: ${deliveryInvoice.poNumber}</span></h5>
-                    </div>
-                </c:if>
+              
             </div>
 
             <div class="search-container text-center">
