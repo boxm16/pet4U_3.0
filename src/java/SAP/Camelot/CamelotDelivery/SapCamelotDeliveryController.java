@@ -285,7 +285,7 @@ public class SapCamelotDeliveryController {
         return "redirect:camelotDeliveryDashboardX.htm";
     }
 
-    @RequestMapping(value = "sapCamelotTempoDeliveryInvoiceChecking", method = RequestMethod.POST)
+    @RequestMapping(value = "sapCamelotTempoDeliveryInvoiceChecking", method = RequestMethod.GET)
     public String sapCamelotTempoDeliveryInvoiceChecking(@RequestParam(name = "invoiceId") String invoiceId, ModelMap modelMap) {
         SapCamelotDeliveryDao dao = new SapCamelotDeliveryDao();
         DeliveryInvoice deliveryInvoice = dao.getSapCamelotTempoDeliveryInvoice(invoiceId);
