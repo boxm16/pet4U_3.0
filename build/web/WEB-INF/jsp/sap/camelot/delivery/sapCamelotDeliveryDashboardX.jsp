@@ -91,7 +91,7 @@
                                         <th>Select</th>
                                         <th>PO Number</th>
                                         <th>Date</th>
-                                        <th>Status</th>
+                                       
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -109,7 +109,7 @@
                                             </button>
                                         </td>
                                         <td>${po.insertionDate}</td>
-                                        <td>${po.status}</td>
+                                       
                                     </tr>
                                 <c:if test="${empty duePurchaseOrders[status.index + 1] or duePurchaseOrders[status.index + 1].supplier ne currentSupplier}">
                                     </tbody>
