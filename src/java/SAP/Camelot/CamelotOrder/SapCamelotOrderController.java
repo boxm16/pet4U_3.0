@@ -85,11 +85,16 @@ public class SapCamelotOrderController {
             }
 
         } catch (IOException ex) {
-            Logger.getLogger(SapCamelotOrderController.class.getName()).log(Level.SEVERE, null, ex);
-            modelMap.addAttribute("message", "An error occurred: " + ex.getMessage());
-        } catch (Exception ex) {
-            Logger.getLogger(SapCamelotOrderController.class.getName()).log(Level.SEVERE, "Exception occurred", ex);
-            modelMap.addAttribute("message", "Purchase Order may have been created but an error occurred while processing the response.");
+            if (ex.getMessage().contains("HeadersTooLarge")
+                    || ex.getClass().getSimpleName().contains("HeadersTooLarge")) {
+                // Specific handling for header size issues
+                Logger.getLogger(SapCamelotOrderController.class.getName()).log(Level.SEVERE, "Headers too large", ex);
+                modelMap.addAttribute("message", "Request failed due to oversized headers. Please contact support.");
+            } else {
+                // Regular IO exception handling
+                Logger.getLogger(SapCamelotOrderController.class.getName()).log(Level.SEVERE, null, ex);
+                modelMap.addAttribute("message", "An error occurred: " + ex.getMessage());
+            }
         }
         return "redirect:camelotDeliveryDashboardX.htm";
     }
