@@ -86,6 +86,6 @@ public class SapCamelotOrderController {
             Logger.getLogger(SapCamelotOrderController.class.getName()).log(Level.SEVERE, null, ex);
             modelMap.addAttribute("message", "An error occurred: " + ex.getMessage());
         }
-        return "/sap/sapDashboard";
+        return "redirect:camelotDeliveryDashboardX.htm";
     }
 }

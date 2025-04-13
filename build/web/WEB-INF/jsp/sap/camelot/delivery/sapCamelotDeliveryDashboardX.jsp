@@ -75,6 +75,7 @@
             <div class="column">
                 <div class="section-header">
                     <h2>Due Purchase Orders</h2>
+                    <a href="camelotDeliveryDashboardX.htm"> <h3>Due Purchase Orders</h3></a>
                 </div>
 
                 <c:if test="${not empty duePurchaseOrders}">
