@@ -92,7 +92,7 @@ public class SapCamelotDeliveryController {
             if (deliveredItems.isEmpty()) {
                 System.out.println("❌ Error: No delivered items found!");
                 redirectAttributes.addFlashAttribute("message", "Error: No items marked as delivered");
-                return "redirect:camelotDeliveryDashboard.htm";
+                return "redirect:camelotDeliveryDashboardX.htm";
             }
             System.out.println("✅ Delivered Items: " + deliveredItems);
 
@@ -164,7 +164,7 @@ public class SapCamelotDeliveryController {
 
                 redirectAttributes.addFlashAttribute("message",
                         "SAP Error: " + error);
-                return "redirect:camelotDeliveryDashboard.htm";
+                return "redirect:camelotDeliveryDashboardX.htm";
             }
 
         } catch (JSONException e) {
@@ -184,7 +184,7 @@ public class SapCamelotDeliveryController {
         }
 
         System.out.println("🏁 Method completed.");
-        return "redirect:camelotDeliveryDashboard.htm";
+        return "redirect:camelotDeliveryDashboardX.htm";
     }
 
 // Helper method to parse key-value pairs from comma-separated strings
