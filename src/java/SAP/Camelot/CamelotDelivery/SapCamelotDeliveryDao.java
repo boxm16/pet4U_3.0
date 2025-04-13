@@ -316,9 +316,12 @@ public class SapCamelotDeliveryDao {
 
             while (resultSet.next()) {
                 String string = resultSet.getString("DocDate");
+                String cleanedDate = string.split("\\.")[0];
+
+                // Define expected format
                 try {
 
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
                     LocalDate dbDate = LocalDate.parse(string, formatter);
                     LocalDate today = LocalDate.now();
