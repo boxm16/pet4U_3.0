@@ -14,6 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -325,6 +326,41 @@ public class SapCamelotDeliveryDao {
         }
 
         return goodsReceipts;
+    }
+
+    public Double getExchangeRate(String currency, Date docDate) {
+        String query = "SELECT \"Rate\" FROM ORTT WHERE \"Currency\" = ? AND \"RateDate\" = ?";
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+
+        try (Connection connection = databaseConnectionFactory.getSapHanaConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+
+            preparedStatement.setString(1, currency);
+            preparedStatement.setDate(2, new java.sql.Date(docDate.getTime()));
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs.next()) {
+                return rs.getDouble("Rate");
+            }
+        } catch (SQLException e) {
+            System.out.println("❌ Failed to fetch exchange rate: " + e.getMessage());
+        }
+        return null;
+    }
+
+    public String getSupplierCurrency(String cardCode) {
+        String query = "SELECT \"Currency\" FROM OCRD WHERE \"CardCode\" = ?";
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+        try (Connection connection = databaseConnectionFactory.getSapHanaConnection();
+                PreparedStatement ps = connection.prepareStatement(query)) {
+            ps.setString(1, cardCode);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getString("Currency");
+            }
+        } catch (SQLException e) {
+            System.out.println("❌ Failed to fetch supplier currency: " + e.getMessage());
+        }
+        return "EUR"; // Default fallback
     }
 
 }

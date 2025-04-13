@@ -14,6 +14,7 @@ import java.net.HttpURLConnection;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -81,6 +82,7 @@ public class SapCamelotDeliveryController {
 
         System.out.println("🔥 saveSapGoodsReceipt: Method started");
         System.out.println("📦 Inputs - Invoice: " + invoiceNumber + ", Supplier: " + supplierCode);
+        SapCamelotDeliveryDao dao = new SapCamelotDeliveryDao();
 
         try {
             // 1. Parse and validate input data
@@ -113,8 +115,28 @@ public class SapCamelotDeliveryController {
             payload.put("DocObjectCode", "oPurchaseDeliveryNotes"); // Required field
 
             // Add currency information to prevent exchange rate errors
-            payload.put("DocCurrency", "EUR"); // Set your local currency
-            payload.put("DocRate", 1.0); // Default rate for local currency
+            String currency = dao.getSupplierCurrency(supplierCode);
+            Date today = new Date(); // Or use PO date
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(today);
+
+// Check if today is Sunday (Calendar.SUNDAY = 1)
+            if (calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
+                calendar.add(Calendar.DAY_OF_MONTH, -1); // Go back 1 day
+            }
+
+            Date adjustedDate = calendar.getTime();
+            Double exchangeRate = dao.getExchangeRate(currency, today);
+
+            if (exchangeRate == null) {
+                System.out.println("❌ Exchange rate for " + currency + " not found!");
+                redirectAttributes.addFlashAttribute("message", "Exchange rate for " + currency + " not found.");
+                return "redirect:camelotDeliveryDashboardX.htm";
+            }
+
+// Set dynamic currency and rate
+            payload.put("DocCurrency", currency);
+            payload.put("DocRate", exchangeRate);
 
             JSONArray documentLines = new JSONArray();
             for (Map.Entry<String, String> entry : deliveredItems.entrySet()) {
