@@ -69,7 +69,7 @@ public class SapCamelotDeliveryController {
         String tempoSaveButton = "<button class=\"btn-primary\" onclick=\"requestRouter('temporSaveCheckUp.htm')\"><H1>ΠΡΟΣΟΡΙΝΗ ΑΠΟΘΗΚΕΥΣΗ</H1></button>";
         modelMap.addAttribute("tempoSaveButton", tempoSaveButton);
 
-        String saveButton = "<button class=\"btn-danger\" onclick=\"requestRouter('saveSapGoodsReceipt.htm')\"><H1>Save Delivery Checking IN SAP</H1></button>";
+        String saveButton = "<button class=\"btn-danger\" onclick=\"requestRouter('saveSapGoodsReceipt.htm')\"><H1>Save IN SAP-ΠΡΟΣΟΧΗ - ΜΗ ΑΝΑΤΡΕΨΗΜΟ</H1></button>";
         modelMap.addAttribute("saveButton", saveButton);
         return "sap/camelot/delivery/sapCamelotDeliveryInvoiceChecking";
 
@@ -306,13 +306,12 @@ public class SapCamelotDeliveryController {
         }
         deliveryInvoice.setItems(deliveryItems);
 
-        String tempoSaveButton = "<button class=\"btn-danger\" onclick=\"requestRouter('rewriteTempoDeliveryChecking.htm')\"><H1>ΠΡΟΣΟΡΙΝΗ ΑΠΟΘΗΚΕΥΣΗ</H1></button>";
+        String tempoSaveButton = "<button class=\"btn-primary\" onclick=\"requestRouter('rewriteTempoDeliveryChecking.htm')\"><H1>ΠΡΟΣΟΡΙΝΗ ΑΠΟΘΗΚΕΥΣΗ</H1></button>";
         modelMap.addAttribute("tempoSaveButton", tempoSaveButton);
 
-        
-        String saveButton = "<button class=\"btn-danger\" onclick=\"requestRouter('saveSapGoodsReceipt.htm')\"><H1>Save Delivery Checking IN SAP</H1></button>";
+        String saveButton = "<button class=\"btn-danger\" onclick=\"requestRouter('saveSapGoodsReceipt.htm')\"><H1>Save IN SAP-ΠΡΟΣΟΧΗ - ΜΗ ΑΝΑΤΡΕΨΗΜΟ</H1></button>";
         modelMap.addAttribute("saveButton", saveButton);
-       
+
         modelMap.addAttribute("deliveryInvoice", deliveryInvoice);
         return "sap/camelot/delivery/sapCamelotDeliveryInvoiceChecking";
     }
