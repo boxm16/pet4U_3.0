@@ -194,4 +194,21 @@ public class SapCamelotDeliveryController {
         }
         return result;
     }
+    
+     @RequestMapping(value = "/showGoodsReceipt.htm", method = RequestMethod.GET)
+    public String showGoodsReceipt(@RequestParam("invoiceId") String invoiceId, ModelMap modelMap) {
+        SapCamelotDeliveryDao sampSapCamelotDeliveryDao = new SapCamelotDeliveryDao();
+        DeliveryInvoice deliveryInvoice = sampSapCamelotDeliveryDao.getGoodsReceipt(invoiceId);
+        modelMap.addAttribute("deliveryInvoice", deliveryInvoice);
+
+        DeliveryDao deliveryDao = new DeliveryDao();
+        ArrayList<DeliveryItem> pet4UItemsRowByRow = deliveryDao.getPet4UItemsRowByRow();
+
+        modelMap.addAttribute("pet4UItemsRowByRow", pet4UItemsRowByRow);
+
+        String saveButton = "<button class=\"btn-primary\" onclick=\"requestRouter('saveSapGoodsReceipt.htm')\"><H1>Save Delivery Checking IN SAP</H1></button>";
+        modelMap.addAttribute("saveButton", saveButton);
+        return "sap/camelot/delivery/goodsReceiptDisplay";
+
+    }
 }

@@ -189,4 +189,69 @@ public class SapCamelotDeliveryDao {
         return goodsReceipts;
     }
 
+    public DeliveryInvoice getGoodsReceipt(String invoiceId) {
+        DeliveryInvoice goodsReceipt = new DeliveryInvoice();
+        String query = "SELECT "
+                + dbSchema + ".OPDN.\"DocEntry\", "
+                + dbSchema + ".OPDN.\"DocNum\", "
+                + dbSchema + ".OPDN.\"CardCode\", "
+                + dbSchema + ".OPDN.\"CardName\", "
+                + dbSchema + ".OPDN.\"DocDate\", "
+                + dbSchema + ".PDN1.\"ItemCode\", "
+                + dbSchema + ".PDN1.\"Dscription\", "
+                + dbSchema + ".PDN1.\"Quantity\", "
+                + dbSchema + ".PDN1.\"Price\", "
+                + dbSchema + ".PDN1.\"WhsCode\", "
+                + dbSchema + ".PDN1.\"BaseEntry\", " // Original PO DocEntry
+                + dbSchema + ".PDN1.\"BaseLine\", " // Original PO LineNum
+                + dbSchema + ".PDN1.\"LineNum\", " // GRPO LineNum
+                + dbSchema + ".OPOR.\"DocNum\" AS \"PONum\" " // Original PO Document Number
+                + "FROM "
+                + dbSchema + ".OPDN " // Goods Receipt (GRPO) header table
+                + "JOIN "
+                + dbSchema + ".PDN1 ON " // Goods Receipt (GRPO) lines table
+                + dbSchema + ".OPDN.\"DocEntry\" = " + dbSchema + ".PDN1.\"DocEntry\" "
+                + "LEFT JOIN "
+                + dbSchema + ".OPOR ON " // Purchase Order table
+                + dbSchema + ".PDN1.\"BaseEntry\" = " + dbSchema + ".OPOR.\"DocEntry\" "
+                + "WHERE "
+                + dbSchema + ".OPDN.\"DocEntry\" = ?";  // Filter by GRPO DocEntry (primary key)
+
+        DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+
+        try (Connection connection = databaseConnectionFactory.getSapHanaConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+
+            preparedStatement.setString(1, invoiceId);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                boolean isFirstRow = true;
+
+                while (resultSet.next()) {
+                    if (isFirstRow) {
+                        goodsReceipt.setInvoiceId(resultSet.getString("DocEntry"));
+                        goodsReceipt.setNumber(resultSet.getString("DocNum"));
+                        goodsReceipt.setSupplier(resultSet.getString("CardName"));
+                        goodsReceipt.setInsertionDate(resultSet.getString("DocDate"));
+                        isFirstRow = false;
+                    }
+
+                    DeliveryItem item = new DeliveryItem();
+                    item.setCode(resultSet.getString("ItemCode"));
+                    item.setDescription(resultSet.getString("Dscription"));
+                    item.setQuantity(resultSet.getString("Quantity"));
+                    item.setPrice(resultSet.getBigDecimal("Price"));
+                    item.setBaseLine(resultSet.getInt("BaseLine")); // Original PO line number
+                    //    item.setGrpoLineNum(resultSet.getInt("LineNum")); // GRPO line number
+
+                    goodsReceipt.getItems().put(item.getCode(), item);
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(SapCamelotDeliveryDao.class.getName()).log(Level.SEVERE, null, ex);
+            goodsReceipt.setErrorMessages("Error retrieving goods receipt: " + ex.getMessage());
+        }
+        return goodsReceipt;
+    }
+
 }

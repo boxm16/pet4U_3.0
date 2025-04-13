@@ -135,7 +135,7 @@
                                     <tr>
                                         <td>
                                             <button type="button" class="invoice-btn goods-receipt-btn"
-                                                    onclick="window.open('goodsReceiptDetails.htm?docEntry=${gr.invoiceId}', '_blank')">
+                                                    onclick="window.open('showGoodsReceipt.htm?invoiceId=${gr.invoiceId}', '_blank')">
                                                 ${gr.number}
                                             </button>
                                         </td>
