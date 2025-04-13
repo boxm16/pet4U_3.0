@@ -6,7 +6,6 @@
 package SAP.Camelot.CamelotDelivery;
 
 import Delivery.DeliveryDao;
-import Delivery.DeliveryDao_V_3_1;
 import Delivery.DeliveryInvoice;
 import Delivery.DeliveryItem;
 import SAP.SapCamelotApiConnector;
@@ -48,9 +47,12 @@ public class SapCamelotDeliveryController {
         SapCamelotDeliveryDao sampSapCamelotDeliveryDao = new SapCamelotDeliveryDao();
         ArrayList<DeliveryInvoice> duePurchaseOrders = sampSapCamelotDeliveryDao.getDuePurchaseOrdersX();
         ArrayList<DeliveryInvoice> todaysGoodsReceipts = sampSapCamelotDeliveryDao.getGoodsReceiptsX();
+        ArrayList<DeliveryInvoice> tempos = sampSapCamelotDeliveryDao.getAllOpenSapTempoDeliveryInvoices();
 
         modelMap.addAttribute("duePurchaseOrders", duePurchaseOrders);
         modelMap.addAttribute("todaysGoodsReceipts", todaysGoodsReceipts);
+        modelMap.addAttribute("tempos", tempos);
+
         return "sap/camelot/delivery/sapCamelotDeliveryDashboardX";
     }
 
@@ -280,8 +282,8 @@ public class SapCamelotDeliveryController {
             deliveryItems.add(deliveryItem);
         }
 
-        DeliveryDao_V_3_1 dao = new DeliveryDao_V_3_1();
-        String result = dao.saveSAPDeliveryChecking(invoiceNumber, supplierCode, invoiceNumber, deliveryItems);
+        SapCamelotDeliveryDao dao = new SapCamelotDeliveryDao();
+        String result = dao.saveSaTempoDeliveryChecking(invoiceNumber, supplierCode, invoiceNumber, deliveryItems);
         return "redirect:camelotDeliveryDashboardX.htm";
     }
 }

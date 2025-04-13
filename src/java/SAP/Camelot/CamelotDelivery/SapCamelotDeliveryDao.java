@@ -13,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedHashMap;
@@ -362,6 +363,83 @@ public class SapCamelotDeliveryDao {
             System.out.println("❌ Failed to fetch supplier currency: " + e.getMessage());
         }
         return "EUR"; // Default fallback
+    }
+
+    ////------SAP VERSION---------
+    public String saveSaTempoDeliveryChecking(String invoiceId, String supplier, String invoiceNumber, ArrayList<DeliveryItem> deliveryItems) {
+        LocalDateTime idItem = LocalDateTime.now();
+        try (Connection connection = new DatabaseConnectionFactory().getMySQLConnection();
+                PreparedStatement invoiceInsertionPreparedStatement = connection.prepareStatement(
+                        "INSERT INTO delivery_title (invoice_id, id, number, supplier, note , status) VALUES (?, ?, ?, ?, ?, ?);");
+                PreparedStatement deliveredItemsPreparedStatement = connection.prepareStatement(
+                        "INSERT INTO delivery_data (delivery_id, item_code, sent, delivered, baseLine) VALUES (?, ?, ?, ?, ?);")) {
+            connection.setAutoCommit(false); // Begin transaction
+
+            System.out.println("🚚 Starting SAP Delivery Save Insertion...");
+
+            // Insert invoice title
+            invoiceInsertionPreparedStatement.setString(1, invoiceId);
+            invoiceInsertionPreparedStatement.setString(2, idItem.toString());
+            invoiceInsertionPreparedStatement.setString(3, invoiceNumber);
+            invoiceInsertionPreparedStatement.setString(4, supplier);
+            invoiceInsertionPreparedStatement.setString(5, " "); // Note field
+            invoiceInsertionPreparedStatement.setString(6, "open"); // Note field
+            invoiceInsertionPreparedStatement.addBatch();
+
+            // Insert delivery items
+            for (DeliveryItem deliveryItem : deliveryItems) {
+                deliveredItemsPreparedStatement.setString(1, invoiceId);
+                deliveredItemsPreparedStatement.setString(2, deliveryItem.getCode());
+                deliveredItemsPreparedStatement.setString(3, deliveryItem.getSentQuantity());
+                deliveredItemsPreparedStatement.setString(4, deliveryItem.getDeliveredQuantity());
+                deliveredItemsPreparedStatement.setInt(5, deliveryItem.getBaseLine());
+                deliveredItemsPreparedStatement.addBatch();
+            }
+
+            // Execute batch inserts
+            invoiceInsertionPreparedStatement.executeBatch();
+            deliveredItemsPreparedStatement.executeBatch();
+            connection.commit(); // Commit transaction
+
+            System.out.println("✅ SAP Delivery Batch Insertion Complete.");
+            return "SUCCESS";
+
+        } catch (SQLException ex) {
+            Logger.getLogger(SapCamelotDeliveryDao.class.getName()).log(Level.SEVERE, "❌ Database error during SAP delivery insertion", ex);
+            return "ERROR: " + ex.getMessage();
+        }
+    }
+
+    public ArrayList<DeliveryInvoice> getAllOpenSapTempoDeliveryInvoices() {
+        ArrayList<DeliveryInvoice> deliveryInvoices = new ArrayList<>();
+
+        String sql = "SELECT * FROM delivery_title where status='open' ;";
+        ResultSet resultSet;
+
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            Connection connection = databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+
+            resultSet = statement.executeQuery(sql);
+            while (resultSet.next()) {
+                DeliveryInvoice deliveryInvoice = new DeliveryInvoice();
+                deliveryInvoice.setInvoiceId(resultSet.getString("invoice_id"));
+                deliveryInvoice.setId(resultSet.getString("id"));
+                deliveryInvoice.setSupplier(resultSet.getString("supplier"));
+                deliveryInvoice.setNumber(resultSet.getString("number"));
+
+                deliveryInvoices.add(deliveryInvoice);
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(SapCamelotDeliveryDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return deliveryInvoices;
     }
 
 }
