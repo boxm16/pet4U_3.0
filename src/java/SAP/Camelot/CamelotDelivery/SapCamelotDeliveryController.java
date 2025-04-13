@@ -116,27 +116,29 @@ public class SapCamelotDeliveryController {
 
             // Add currency information to prevent exchange rate errors
             String currency = dao.getSupplierCurrency(supplierCode);
-            Date today = new Date(); // Or use PO date
+
+// Get today's or adjusted date
             Calendar calendar = Calendar.getInstance();
-            calendar.setTime(today);
-
-// Check if today is Sunday (Calendar.SUNDAY = 1)
+            calendar.setTime(new Date());
             if (calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
-                calendar.add(Calendar.DAY_OF_MONTH, -1); // Go back 1 day
+                calendar.add(Calendar.DAY_OF_MONTH, -1);
             }
-
             Date adjustedDate = calendar.getTime();
-            Double exchangeRate = dao.getExchangeRate(currency, adjustedDate); // ✅
 
-            if (exchangeRate == null) {
-                System.out.println("❌ Exchange rate for " + currency + " not found!");
-                redirectAttributes.addFlashAttribute("message", "Exchange rate for " + currency + " not found.");
-                return "redirect:camelotDeliveryDashboardX.htm";
+            if (!"EUR".equalsIgnoreCase(currency)) {
+                Double exchangeRate = dao.getExchangeRate(currency, adjustedDate);
+                if (exchangeRate == null) {
+                    System.out.println("❌ Exchange rate for " + currency + " not found!");
+                    redirectAttributes.addFlashAttribute("message", "Exchange rate for " + currency + " not found.");
+                    return "redirect:camelotDeliveryDashboardX.htm";
+                }
+                payload.put("DocCurrency", currency);
+                payload.put("DocRate", exchangeRate);
+            } else {
+                // Local currency — set default values
+                payload.put("DocCurrency", "EUR");
+                payload.put("DocRate", 1.0);
             }
-
-// Set dynamic currency and rate
-            payload.put("DocCurrency", currency);
-            payload.put("DocRate", exchangeRate);
 
             JSONArray documentLines = new JSONArray();
             for (Map.Entry<String, String> entry : deliveredItems.entrySet()) {
