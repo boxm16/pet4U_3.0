@@ -334,7 +334,7 @@ public class SapCamelotDeliveryDao {
                         goodsReceipt.setInvoiceId(resultSet.getString("DocEntry"));
                         goodsReceipt.setNumber(resultSet.getString("DocNum"));
                         goodsReceipt.setInsertionDate(resultSet.getString("DocDate"));
-                        goodsReceipt.setReferencedPO(resultSet.getString("referencedPO"));
+                        goodsReceipt.setReferencedPO(resultSet.getString("ReferencedPO"));
 
 //  goodsReceipt.setComments(resultSet.getString("Comments"));
                         goodsReceipts.add(goodsReceipt);
