@@ -323,7 +323,7 @@ public class SapCamelotDeliveryDao {
 
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-                    LocalDate dbDate = LocalDate.parse(string, formatter);
+                    LocalDate dbDate = LocalDate.parse(cleanedDate, formatter);
                     LocalDate today = LocalDate.now();
 
                     if (dbDate.equals(today)) {
