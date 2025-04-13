@@ -55,7 +55,7 @@
                 color: white;
                 padding: 6px 12px;
                 text-align: center;
-                font-size: 16px;
+                font-size: 26px;
                 margin: 2px 1px;
                 cursor: pointer;
                 border-radius: 4px;
@@ -174,7 +174,6 @@
                             <th>Supplier</th>
                             <th>GR Number</th>
                             <th>PO Ref</th>
-
                             <th>Time</th>
                         </tr>
                     </thead>
@@ -194,9 +193,7 @@
                                         ${gr.referencedPO}
                                     </button>
                                 </td>
-                                <td><c:if test="${not empty gr.baseEntry}">PO: ${gr.baseEntry}</c:if></td>
-
-                                    <td>${gr.insertionDate}</td>
+                                <td>${gr.insertionDate}</td>
                             </tr>
                         </c:forEach>
                     </tbody>
