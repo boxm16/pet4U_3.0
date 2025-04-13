@@ -329,7 +329,8 @@ public class SapCamelotDeliveryDao {
     }
 
     public Double getExchangeRate(String currency, Date docDate) {
-        String query = "SELECT \"Rate\" FROM ORTT WHERE \"Currency\" = ? AND \"RateDate\" = ?";
+        String query = "SELECT \"Rate\" FROM "
+                + dbSchema + ".ORTT WHERE " + dbSchema + ".ORTT.\"Currency\" = ? AND " + dbSchema + ".ORTT.\"RateDate\" = ?";
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
 
         try (Connection connection = databaseConnectionFactory.getSapHanaConnection();
