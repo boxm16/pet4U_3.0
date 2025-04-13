@@ -343,7 +343,7 @@ public class SapCamelotDeliveryController {
         SapCamelotDeliveryDao dao = new SapCamelotDeliveryDao();
         String deleteResult = dao.deleteDeliveryChecking(invoiceId);
         String result = dao.saveSapTempoDeliveryChecking(invoiceId, supplierCode, invoiceNumber, deliveryItems);
-        return "redirect:sapCamelotdeliveryDashboardX.htm";
+        return "redirect:sapCamelotDeliveryDashboardX.htm";
     }
 
 }
