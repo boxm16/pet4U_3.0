@@ -67,7 +67,7 @@ public class SapCamelotDeliveryController {
         String tempoSaveButton = "<button class=\"btn-primary\" onclick=\"requestRouter('temporSaveCheckUp.htm')\"><H1>ΠΡΟΣΟΡΙΝΗ ΑΠΟΘΗΚΕΥΣΗ</H1></button>";
         modelMap.addAttribute("tempoSaveButton", tempoSaveButton);
 
-        String saveButton = "<button class=\"btn-primary\" onclick=\"requestRouter('saveSapGoodsReceipt.htm')\"><H1>Save Delivery Checking IN SAP</H1></button>";
+        String saveButton = "<button class=\"btn-danger\" onclick=\"requestRouter('saveSapGoodsReceipt.htm')\"><H1>Save Delivery Checking IN SAP</H1></button>";
         modelMap.addAttribute("saveButton", saveButton);
         return "sap/camelot/delivery/sapCamelotDeliveryInvoiceChecking";
 
@@ -267,7 +267,9 @@ public class SapCamelotDeliveryController {
         Map<String, String> deliveredItems = decodeDeliveredItemsData(deliveredItemsData);
         Map<String, String> sentItems = decodeDeliveredItemsData(sentItemsData);
         Map<String, String> baseLines = decodeDeliveredItemsData(baseLinesData); // Parse BaseLines
-
+        System.out.println("dI:" + deliveredItems.size());
+        System.out.println("sI:" + sentItems.size());
+        System.out.println("bl" + baseLines.size());
         ArrayList<DeliveryItem> deliveryItems = new ArrayList<>();
         for (Map.Entry<String, String> deliveredItemsEntry : deliveredItems.entrySet()) {
             DeliveryItem deliveryItem = new DeliveryItem();
@@ -279,7 +281,7 @@ public class SapCamelotDeliveryController {
         }
 
         DeliveryDao_V_3_1 dao = new DeliveryDao_V_3_1();
-        String result = dao.saveSAPDeliveryChecking(invoiceId, supplierCode, invoiceNumber, deliveryItems);
-        return "redirect:deliveryDashboard_X.htm";
+        String result = dao.saveSAPDeliveryChecking(invoiceNumber, supplierCode, invoiceNumber, deliveryItems);
+        return "redirect:camelotDeliveryDashboardX.htm";
     }
 }
