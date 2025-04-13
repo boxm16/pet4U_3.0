@@ -174,7 +174,7 @@
                             <th>Supplier</th>
                             <th>GR Number</th>
                             <th>PO Ref</th>
-                            <th>Items</th>
+
                             <th>Time</th>
                         </tr>
                     </thead>
@@ -185,12 +185,18 @@
                                 <td>
                                     <button class="invoice-btn goods-receipt-btn"
                                             onclick="window.open('showGoodsReceipt.htm?invoiceId=${gr.invoiceId}', '_blank')">
+                                        ${gr.number}
+                                    </button>
+                                </td>
+                                <td>
+                                    <button class="invoice-btn goods-receipt-btn"
+                                            onclick="window.open('showGoodsReceipt.htm?invoiceId=${gr.invoiceId}', '_blank')">
                                         ${gr.referencedPO}
                                     </button>
                                 </td>
                                 <td><c:if test="${not empty gr.baseEntry}">PO: ${gr.baseEntry}</c:if></td>
-                                <td>${gr.items.size()} items</td>
-                                <td>${gr.insertionDate}</td>
+
+                                    <td>${gr.insertionDate}</td>
                             </tr>
                         </c:forEach>
                     </tbody>
