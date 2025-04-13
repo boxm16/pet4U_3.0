@@ -266,8 +266,8 @@ public class SapCamelotDeliveryDao {
                 + dbSchema + ".OPOR.\"DocStatus\" "
                 + "FROM "
                 + dbSchema + ".OPOR "
-                + "ORDER BY " + dbSchema + ".OPOR.\"DocDate\" DESC"; // Order by date descending (newest first)
-
+                + "WHERE " + dbSchema + ".OPOR.\"DocStatus\" = 'O' "
+                + "ORDER BY " + dbSchema + ".OPOR.\"DocDate\" DESC";
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
 
         try (Connection connection = databaseConnectionFactory.getSapHanaConnection();
@@ -316,7 +316,7 @@ public class SapCamelotDeliveryDao {
                 goodsReceipt.setInvoiceId(resultSet.getString("DocEntry"));
                 goodsReceipt.setNumber(resultSet.getString("DocNum"));
                 goodsReceipt.setInsertionDate(resultSet.getString("DocDate"));
-              //  goodsReceipt.setComments(resultSet.getString("Comments"));
+                //  goodsReceipt.setComments(resultSet.getString("Comments"));
 
                 goodsReceipts.add(goodsReceipt);
             }
