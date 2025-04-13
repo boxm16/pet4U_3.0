@@ -366,7 +366,7 @@ public class SapCamelotDeliveryDao {
     }
 
     ////------SAP VERSION---------
-    public String saveSaTempoDeliveryChecking(String invoiceId, String supplier, String invoiceNumber, ArrayList<DeliveryItem> deliveryItems) {
+    public String saveSapTempoDeliveryChecking(String invoiceId, String supplier, String invoiceNumber, ArrayList<DeliveryItem> deliveryItems) {
         LocalDateTime idItem = LocalDateTime.now();
         try (Connection connection = new DatabaseConnectionFactory().getMySQLConnection();
                 PreparedStatement invoiceInsertionPreparedStatement = connection.prepareStatement(

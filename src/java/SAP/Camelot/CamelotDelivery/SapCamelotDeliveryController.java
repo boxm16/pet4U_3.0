@@ -281,7 +281,7 @@ public class SapCamelotDeliveryController {
         }
 
         SapCamelotDeliveryDao dao = new SapCamelotDeliveryDao();
-        String result = dao.saveSaTempoDeliveryChecking(invoiceNumber, supplierCode, invoiceNumber, deliveryItems);
+        String result = dao.saveSapTempoDeliveryChecking(invoiceNumber, supplierCode, invoiceNumber, deliveryItems);
         return "redirect:camelotDeliveryDashboardX.htm";
     }
 
@@ -319,6 +319,7 @@ public class SapCamelotDeliveryController {
     @RequestMapping(value = "rewriteTempoDeliveryChecking", method = RequestMethod.POST)
     public String rewriteDeliveryChecking(@RequestParam(name = "sentItems") String sentItemsData,
             @RequestParam(name = "deliveredItems") String deliveredItemsData,
+            @RequestParam(name = "baseLines") String baseLinesData, // Added BaseLines parameter
             @RequestParam(name = "invoiceNumber") String invoiceNumber,
             @RequestParam(name = "invoiceId") String invoiceId,
             @RequestParam(name = "supplier") String supplierCode) {
@@ -328,6 +329,7 @@ public class SapCamelotDeliveryController {
 
         Map<String, String> deliveredItems = decodeDeliveredItemsData(deliveredItemsData);
         Map<String, String> sentItems = decodeDeliveredItemsData(sentItemsData);
+        Map<String, String> baseLines = decodeDeliveredItemsData(baseLinesData); // Parse BaseLines
 
         ArrayList<DeliveryItem> deliveryItems = new ArrayList<>();
         for (Map.Entry<String, String> deliveredItemsEntry : deliveredItems.entrySet()) {
@@ -335,11 +337,12 @@ public class SapCamelotDeliveryController {
             deliveryItem.setCode(deliveredItemsEntry.getKey());
             deliveryItem.setDeliveredQuantity(deliveredItemsEntry.getValue());
             deliveryItem.setSentQuantity(sentItems.get(deliveredItemsEntry.getKey()));
+            deliveryItem.setBaseLine(Integer.parseInt(baseLines.get(deliveredItemsEntry.getKey())));
             deliveryItems.add(deliveryItem);
         }
         SapCamelotDeliveryDao dao = new SapCamelotDeliveryDao();
         String deleteResult = dao.deleteDeliveryChecking(invoiceId);
-        String result = dao.saveSaTempoDeliveryChecking(invoiceNumber, supplierCode, invoiceNumber, deliveryItems);
+        String result = dao.saveSapTempoDeliveryChecking(invoiceNumber, supplierCode, invoiceNumber, deliveryItems);
         return "redirect:deliveryDashboard_X.htm";
     }
 
