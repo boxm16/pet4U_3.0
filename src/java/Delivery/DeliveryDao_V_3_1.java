@@ -428,7 +428,7 @@ public class DeliveryDao_V_3_1 {
                 deliveredItemsInPreparedStatement.setString(2, deliveryItem.getCode());
                 deliveredItemsInPreparedStatement.setString(3, deliveryItem.getSentQuantity());
                 deliveredItemsInPreparedStatement.setString(4, deliveryItem.getDeliveredQuantity());
-                deliveredItemsInPreparedStatement.setInt(4, deliveryItem.getBaseLine());
+                deliveredItemsInPreparedStatement.setInt(5, deliveryItem.getBaseLine());
 
                 deliveredItemsInPreparedStatement.addBatch();
 
