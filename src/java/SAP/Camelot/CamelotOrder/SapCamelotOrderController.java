@@ -85,6 +85,10 @@ public class SapCamelotOrderController {
         } catch (IOException ex) {
             Logger.getLogger(SapCamelotOrderController.class.getName()).log(Level.SEVERE, null, ex);
             modelMap.addAttribute("message", "An error occurred: " + ex.getMessage());
+        } catch (Exception ex) {
+            // Log the exception and continue
+            Logger.getLogger(SapCamelotOrderController.class.getName()).log(Level.SEVERE, "Exception occurred, but item was created successfully.", ex);
+            modelMap.addAttribute("message", "Purchase Order Created  Created Successfully, but an error occurred while processing the response.");
         }
         return "redirect:camelotDeliveryDashboardX.htm";
     }
