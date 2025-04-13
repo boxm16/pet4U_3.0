@@ -532,8 +532,26 @@ public class SapCamelotDeliveryDao {
         return "Delivery Checking with id" + invoiceId + "deleted";
     }
 
-    boolean tempoExist(String invoiceId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean tempoExist(String invoiceId) {
+        try (Connection connection = new DatabaseConnectionFactory().getMySQLConnection();
+                PreparedStatement checkInvoicePreparedStatement = connection.prepareStatement(
+                        "SELECT COUNT(*) FROM delivery_title WHERE invoice_id = ?;")) {
+
+            System.out.println("🔍 Checking if tempo delivery exists for invoice ID: " + invoiceId);
+
+            checkInvoicePreparedStatement.setString(1, invoiceId);
+            ResultSet resultSet = checkInvoicePreparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                int count = resultSet.getInt(1);
+                return count > 0;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(SapCamelotDeliveryDao.class.getName()).log(Level.SEVERE, "❌ Database error during tempo delivery check", ex);
+        }
+
+        return false; // Default return if an error occurs or no record is found
     }
 
 }
