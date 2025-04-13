@@ -320,7 +320,7 @@ public class SapCamelotDeliveryDao {
                 + "GR.\"DocDate\", "
                 + "GR.\"DocStatus\", "
                 + "GR.\"Comments\" "
-                + "ORDER BY \"RefPONum\", GR.\"CardName\", GR.\"DocDate\" DESC";
+                + "ORDER BY \"RefPONum\" DESC, GR.\"CardName\", GR.\"DocDate\" DESC";
 
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
 
