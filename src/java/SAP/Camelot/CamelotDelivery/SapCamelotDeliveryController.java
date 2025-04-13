@@ -156,7 +156,7 @@ public class SapCamelotDeliveryController {
                 // Critical PO linking information
                 line.put("BaseEntry", invoiceId); // PO DocEntry
                 line.put("BaseType", "22"); // 22 = Purchase Order
-              //  line.put("BaseLine", baseLines.get(itemCode)); // PO Line Number
+                line.put("BaseLine", baseLines.get(itemCode)); // PO Line Number
 
                 // Additional recommended fields
                 //  line.put("AccountCode", "_SYS00000000001"); // Default inventory account
