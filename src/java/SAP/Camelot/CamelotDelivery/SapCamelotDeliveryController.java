@@ -6,6 +6,7 @@
 package SAP.Camelot.CamelotDelivery;
 
 import Delivery.DeliveryDao;
+import Delivery.DeliveryDao_V_3_1;
 import Delivery.DeliveryInvoice;
 import Delivery.DeliveryItem;
 import SAP.SapCamelotApiConnector;
@@ -63,6 +64,8 @@ public class SapCamelotDeliveryController {
         ArrayList<DeliveryItem> pet4UItemsRowByRow = deliveryDao.getPet4UItemsRowByRow();
 
         modelMap.addAttribute("pet4UItemsRowByRow", pet4UItemsRowByRow);
+        String tempoSaveButton = "<button class=\"btn-primary\" onclick=\"requestRouter('temporSaveCheckUp.htm')\"><H1>ΠΡΟΣΟΡΙΝΗ ΑΠΟΘΗΚΕΥΣΗ</H1></button>";
+        modelMap.addAttribute("tempoSaveButton", tempoSaveButton);
 
         String saveButton = "<button class=\"btn-primary\" onclick=\"requestRouter('saveSapGoodsReceipt.htm')\"><H1>Save Delivery Checking IN SAP</H1></button>";
         modelMap.addAttribute("saveButton", saveButton);
@@ -245,5 +248,38 @@ public class SapCamelotDeliveryController {
         modelMap.addAttribute("saveButton", saveButton);
         return "sap/camelot/delivery/goodsReceiptDisplay";
 
+    }
+
+    //-----------------temporary storing----------------
+    @RequestMapping(value = "temporSaveCheckUp", method = RequestMethod.POST)
+    public String saveCheckUp(@RequestParam(name = "sentItems") String sentItemsData,
+            @RequestParam(name = "deliveredItems") String deliveredItemsData,
+            @RequestParam(name = "baseLines") String baseLinesData, // Added BaseLines parameter
+            @RequestParam(name = "invoiceNumber") String invoiceNumber,
+            @RequestParam(name = "invoiceId") String invoiceId,
+            @RequestParam(name = "supplier") String supplierCode,
+            RedirectAttributes redirectAttributes) {
+        DeliveryInvoice deliveryInvoice = new DeliveryInvoice();
+        deliveryInvoice.setInvoiceId(invoiceId);
+        deliveryInvoice.setSupplier(supplierCode);
+        deliveryInvoice.setNumber(invoiceNumber);
+
+        Map<String, String> deliveredItems = decodeDeliveredItemsData(deliveredItemsData);
+        Map<String, String> sentItems = decodeDeliveredItemsData(sentItemsData);
+        Map<String, String> baseLines = decodeDeliveredItemsData(baseLinesData); // Parse BaseLines
+
+        ArrayList<DeliveryItem> deliveryItems = new ArrayList<>();
+        for (Map.Entry<String, String> deliveredItemsEntry : deliveredItems.entrySet()) {
+            DeliveryItem deliveryItem = new DeliveryItem();
+            deliveryItem.setCode(deliveredItemsEntry.getKey());
+            deliveryItem.setDeliveredQuantity(deliveredItemsEntry.getValue());
+            deliveryItem.setSentQuantity(sentItems.get(deliveredItemsEntry.getKey()));
+            deliveryItem.setBaseLine(Integer.parseInt(baseLines.get(deliveredItemsEntry.getKey())));
+            deliveryItems.add(deliveryItem);
+        }
+
+        DeliveryDao_V_3_1 dao = new DeliveryDao_V_3_1();
+        String result = dao.saveSAPDeliveryChecking(invoiceId, supplierCode, invoiceNumber, deliveryItems);
+        return "redirect:deliveryDashboard_X.htm";
     }
 }

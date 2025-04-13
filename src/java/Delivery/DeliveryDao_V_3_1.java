@@ -401,4 +401,58 @@ public class DeliveryDao_V_3_1 {
         return items;
     }
 
+    ////------SAP VERSION---------
+    public String saveSAPDeliveryChecking(String invoiceId, String supplier, String invoiceNumber, ArrayList<DeliveryItem> deliveryItems) {
+        LocalDateTime idItem = LocalDateTime.now();
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            Connection connection = databaseConnectionFactory.getMySQLConnection();
+
+            connection.setAutoCommit(false);
+            PreparedStatement invoiceInsertionPreparedStatement = connection.prepareStatement("INSERT INTO delivery_title (invoice_id, id, number,supplier, note) VALUES(?,?,?,?,?);");
+            PreparedStatement deliveredItemsInPreparedStatement = connection.prepareStatement("INSERT INTO delivery_data (delivery_id, item_code, sent, delivered, baseLine) VALUES (?,?,?,?,?);");
+
+            System.out.println("Starting INSERTION: ....");
+
+            invoiceInsertionPreparedStatement.setString(1, invoiceId);
+            invoiceInsertionPreparedStatement.setString(2, idItem.toString());
+            invoiceInsertionPreparedStatement.setString(3, invoiceNumber);
+            invoiceInsertionPreparedStatement.setString(4, supplier);
+            invoiceInsertionPreparedStatement.setString(5, " ");
+
+            invoiceInsertionPreparedStatement.addBatch();
+
+            for (DeliveryItem deliveryItem : deliveryItems) {
+
+                deliveredItemsInPreparedStatement.setString(1, invoiceId);
+                deliveredItemsInPreparedStatement.setString(2, deliveryItem.getCode());
+                deliveredItemsInPreparedStatement.setString(3, deliveryItem.getSentQuantity());
+                deliveredItemsInPreparedStatement.setString(4, deliveryItem.getDeliveredQuantity());
+                deliveredItemsInPreparedStatement.setInt(4, deliveryItem.getBaseLine());
+
+                deliveredItemsInPreparedStatement.addBatch();
+
+            }
+
+            //Executing the batch
+            invoiceInsertionPreparedStatement.executeBatch();
+            deliveredItemsInPreparedStatement.executeBatch();
+
+            System.out.println(" Batch Insertion: DONE");
+
+            //Saving the changes
+            connection.commit();
+            //  deleteTripPeriodPreparedStatement.close();
+            // deleteTripVoucherPreparedStatement.close();
+            invoiceInsertionPreparedStatement.close();
+            deliveredItemsInPreparedStatement.close();
+            connection.close();
+            return "";
+        } catch (SQLException ex) {
+            Logger.getLogger(DeliveryDao.class.getName()).log(Level.SEVERE, null, ex);
+
+            return ex.getMessage();
+        }
+    }
+
 }

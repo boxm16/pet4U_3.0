@@ -40,7 +40,7 @@
     </head>
     <body>
     <center>
-        <h1>Delivery Checking</h1>
+        <h1>Delivery Receipt</h1>
         <h3>
             Ημερομηνία Παραστατικού: ${deliveryInvoice.insertionDate} 
             &nbsp;&nbsp;&nbsp; 

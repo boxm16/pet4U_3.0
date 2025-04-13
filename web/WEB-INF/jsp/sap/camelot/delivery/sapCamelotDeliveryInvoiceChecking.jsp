@@ -94,6 +94,8 @@
             </tbody>
         </table>
         <hr>
+        ${tempoSaveButton}
+        <hr><hr><hr><hr><hr><hr>
         ${saveButton}
         <form id="form" action="#" method="POST">
             <input hidden type="text" name="invoiceId" value="${deliveryInvoice.invoiceId}">
