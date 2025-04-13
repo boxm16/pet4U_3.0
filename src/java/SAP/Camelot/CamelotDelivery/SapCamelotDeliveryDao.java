@@ -485,5 +485,31 @@ public class SapCamelotDeliveryDao {
 
         return deliveryInvoice;
     }
+    
+    public String deleteDeliveryChecking(String invoiceId) {
+
+        String sql = "DELETE  FROM delivery_data WHERE delivery_id='" + invoiceId + "';";
+
+        String sql1 = "DELETE  FROM delivery_title "
+                + "WHERE invoice_id='" + invoiceId + "';";
+
+        try {
+            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
+            Connection connection = databaseConnectionFactory.getMySQLConnection();
+            Statement statement = connection.createStatement();
+
+            statement.executeUpdate(sql);
+            statement.executeUpdate(sql1);
+
+            statement.close();
+
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(SapCamelotDeliveryDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return "Delivery Checking with id" + invoiceId + "deleted";
+    }
 
 }

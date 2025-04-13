@@ -275,7 +275,7 @@ public class DeliveryDao_V_3_1 {
         return deliveryInvoice;
     }
 
-    String deleteDeliveryChecking(String invoiceId) {
+     String deleteDeliveryChecking(String invoiceId) {
 
         String sql = "DELETE  FROM delivery_data WHERE delivery_id='" + invoiceId + "';";
 
