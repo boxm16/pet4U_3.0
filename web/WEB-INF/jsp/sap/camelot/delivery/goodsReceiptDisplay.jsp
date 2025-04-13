@@ -1,208 +1,250 @@
 <%-- 
-    Document   : goodsReceiptView
-    Created on : [Current Date]
-    Author     : [Your Name]
-    Purpose    : Display-only view of Goods Receipt (GRPO) information with item lookup
+    Document   : deliveryInvoiceChecking
+    Created on : Jun 25, 2023, 6:30:28 PM
+    Author     : Michail Sitmalidis
 --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page import="java.util.LinkedHashMap"%>
 <%@page import="java.util.Map"%>
 <%@page import="Delivery.DeliveryItem"%>
+<%@page import="java.util.HashMap"%>
+<%@page import="Delivery.DeliveryInvoice"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Goods Receipt View</title>
+        <title>Delivery Invoice Checking</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <style>
-            .grpo-header {
-                background-color: #f8f9fa;
-                padding: 15px;
-                margin-bottom: 20px;
-                border-radius: 5px;
+            table, th, td {
+                border: 1px solid;
+                border-collapse: collapse;
             }
-            .table th {
+            td {
+                font-size: 20px;
+            }
+            th {
+                font-size: 30px;
+                font-weight: bold;
+                text-align: center;
+                background: #eee;
                 position: sticky;
-                top: 0;
-                background-color: #e9ecef;
+                top: 0px;
             }
-            .match {
-                background-color: #d4edda;
-            }
-            .short {
-                background-color: #fff3cd;
-            }
-            .over {
-                background-color: #f8d7da;
-            }
-            #descriptionDisplay {
-                display: none;
-                margin-top: 10px;
-            }
-            .search-container {
-                margin-bottom: 20px;
+            .po-line {
+                font-weight: bold;
+                color: #333;
             }
         </style>
     </head>
     <body>
-        <div class="container-fluid mt-3">
-            <div class="grpo-header text-center">
-                <h1>Goods Receipt (GRPO)</h1>
-                <div class="row">
-                    <div class="col-md-4">
-                        <h5><span class="badge badge-secondary">GRPO Date: ${deliveryInvoice.insertionDate}</span></h5>
-                    </div>
-                    <div class="col-md-4">
-                        <h5><span class="badge badge-info">Vendor: ${deliveryInvoice.supplier}</span></h5>
-                    </div>
-                    <div class="col-md-4">
-                        <h5><span class="badge badge-primary">GRPO #: ${deliveryInvoice.number}</span></h5>
-                    </div>
-                </div>
-              
-            </div>
+    <center>
+        <h1>Delivery Checking</h1>
+        <h3>
+            Ημερομηνία Παραστατικού: ${deliveryInvoice.insertionDate} 
+            &nbsp;&nbsp;&nbsp; 
+            Προμηθευτής: ${deliveryInvoice.supplier} 
+            &nbsp;&nbsp;&nbsp; 
+            Αριθμός Παραστατικού: ${deliveryInvoice.number}
+        </h3>
+        <hr>
 
-            <div class="search-container text-center">
-                <div class="input-group" style="max-width: 500px; margin: 0 auto;">
-                    <input type="text" class="form-control" id="itemLookup" placeholder="Scan item code or barcode..." onkeypress="handleItemLookup(event)">
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="button" onclick="clearLookup()">
-                            <i class="fas fa-times"></i>
-                        </button>
-                    </div>
-                </div>
-                <div id="descriptionDisplay" class="alert alert-info mt-2"></div>
-            </div>
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="7">
+                        <h3>  
+                            <center><input type="text" onkeypress="check(event, this)"></center>
+                            <center><p id="descriptionDisplay"></p></center>
+                        </h3>
+                    </th>
+                </tr>
 
-            <div class="table-responsive">
-                <table class="table table-bordered table-hover">
-                    <thead class="thead-light">
-                        <tr>
-                            <th>#</th>
-                            <th>Item Code</th>
-                            <th>Description</th>
-                            <th>Ordered Qty</th>
-                            <th>Received Qty</th>
-                            <th>Status</th>
+                <tr>
+                    <th>A/A</th>
+                    <th>Code</th>
+                    <th>Description</th>
+                    <th>Delivered</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                <%
+                    int x = 1;
+                    DeliveryInvoice deliveryInvoice = (DeliveryInvoice) request.getAttribute("deliveryInvoice");
+                    LinkedHashMap<String, DeliveryItem> items = deliveryInvoice.getItems();
+                    for (Map.Entry<String, DeliveryItem> deliveryItemEntry : items.entrySet()) {
+                        DeliveryItem item = deliveryItemEntry.getValue();
 
-                        </tr>
-                    </thead>
-                    <tbody>
+                        out.println("<tr>");
+                        out.println("<td>" + x + "</td>");
+                        out.println("<td style='padding-left: 5px;'>" + item.getCode() + "</td>");
+                        out.println("<td>" + item.getDescription() + "</td>");
+                        out.println("<td><input class='delivered' type='number' id='" + item.getCode() + "_delivered' value='" + item.getDeliveredQuantity() + "'></td>");
+                        out.println("</tr>");
+                        x++;
+                    }
+                %>
+            </tbody>
+        </table>
+        <hr>
+        ${saveButton}
+        <form id="form" action="#" method="POST">
+            <input hidden type="text" name="invoiceId" value="${deliveryInvoice.invoiceId}">
+            <input hidden type="text" name="supplier" value="${deliveryInvoice.supplier}">
+            <input hidden type="text" name="invoiceNumber" value="${deliveryInvoice.number}">
+            <input hidden type="text" id="deliveredItems" name="deliveredItems">
+            <input hidden type="text" id="sentItems" name="sentItems">
+            <input hidden type="text" id="baseLines" name="baseLines">
+        </form>
 
-                        <c:forEach items="${deliveryInvoice.items}" var="itemEntry" varStatus="loop">
-                            <%
-                                Map.Entry<String, DeliveryItem> itemEntry = (Map.Entry<String, DeliveryItem>) pageContext.getAttribute("itemEntry");
+    </center>
 
-                            %>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-                            <tr>
-                                <td>${loop.index + 1}</td>
-                                <td>${itemEntry.key}</td>
-                                <td>${item.description}</td>
-                                <td>${item.quantity}</td>
-                                <td>${item.deliveredQuantity}</td>
-                                <td>
-                                    <c:choose>
-                                        <c:when test="${item.quantity == item.deliveredQuantity}">
-                                            <span class="badge badge-success">Complete</span>
-                                        </c:when>
-                                        <c:when test="${item.quantity > item.deliveredQuantity}">
-                                            <span class="badge badge-warning">Short</span>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <span class="badge badge-danger">Over</span>
-                                        </c:otherwise>
-                                    </c:choose>
-                                </td>
-
-                            </tr>
-                        </c:forEach>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="text-center mt-3">
-                <a href="javascript:window.print()" class="btn btn-primary mr-2">
-                    <i class="fas fa-print"></i> Print
-                </a>
-                <a href="#" onclick="window.history.back()" class="btn btn-secondary">
-                    <i class="fas fa-arrow-left"></i> Back
-                </a>
-            </div>
-        </div>
-
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"></script>
-        <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-
-        <script type="text/javascript">
-                    // Item data from JSTL
-                    var items = {
-            <c:forEach items="${deliveryInvoice.items}" var="itemEntry">
-                        "${itemEntry.key}": {
-                            code: "${itemEntry.key}",
-                                    description: "${itemEntry.value.description}",
-                            quantity: "${itemEntry.value.quantity}",
-                                    deliveredQuantity: "${itemEntry.value.deliveredQuantity}",
-                            baseLine: "${itemEntry.value.baseLine}",
-                                    grpoLineNum: "${itemEntry.value.grpoLineNum}"
-                        },
-            </c:forEach>
-                    };
-
-                    // Additional items from pet4UItemsRowByRow if needed
-            <c:forEach items="${pet4UItemsRowByRow}" var="item">
-                    items["${item.altercode}"] = items["${item.altercode}"] || {
-                        code: "${item.code}",
-                        description: "${item.description}",
-                        quantity: "0",
-                        deliveredQuantity: "0",
-                        baseLine: "0",
-                        grpoLineNum: "0"
-                    };
-            </c:forEach>
-
-                    function handleItemLookup(event) {
-                        if (event.keyCode === 13) { // Enter key
-                            var lookupValue = document.getElementById("itemLookup").value.trim();
-                            var display = document.getElementById("descriptionDisplay");
-
-                            if (items[lookupValue]) {
-                                var item = items[lookupValue];
-                                display.innerHTML = "<strong>" + item.code + "</strong>: " + item.description +
-                                        "<br>Ordered: " + item.quantity +
-                                        ", Received: " + item.deliveredQuantity;
-                                display.className = "alert alert-success mt-2";
-                                display.style.display = "block";
-
-                                // Highlight the row
-                                var row = document.getElementById("row_" + item.code);
-                                if (row) {
-                                    row.style.backgroundColor = "#ffff99";
-                                    setTimeout(function () {
-                                        row.style.backgroundColor = "";
-                                    }, 2000);
-                                    row.scrollIntoView({behavior: "smooth", block: "center"});
+    <script type="text/javascript">
+                                class Item {
+                                    constructor(altercode, code, description) {
+                                        this.altercode = altercode;
+                                        this.code = code;
+                                        this.description = description;
+                                    }
                                 }
-                            } else {
-                                display.innerHTML = "Item not found: " + lookupValue;
-                                display.className = "alert alert-danger mt-2";
-                                display.style.display = "block";
-                            }
 
-                            // Clear the input after a delay
-                            setTimeout(function () {
-                                document.getElementById("itemLookup").value = "";
-                            }, 100);
-                        }
-                    }
+                                var items = new Array();
+        <c:forEach items="${pet4UItemsRowByRow}" var="item">
+                                var altercode = "${item.altercode}";
+                                var code = "${item.code}";
+                                var description = "${item.description}";
+                                var item = new Item(altercode, code, description);
+                                items[altercode] = item;
+        </c:forEach>
 
-                    function clearLookup() {
-                        document.getElementById("itemLookup").value = "";
-                        document.getElementById("descriptionDisplay").style.display = "none";
-                    }
-        </script>
-    </body>
+                                function check(event, input) {
+                                    if (event.keyCode === 13) {
+                                        var altercode = input.value;
+                                        console.log("altercode:" + altercode);
+                                        var item = items[altercode];
+                                        if (item == null) {
+                                            let unknownBarcodeX = document.getElementById(altercode + "_sent");
+                                            if (unknownBarcodeX == null) {
+                                                document.getElementById("descriptionDisplay").innerHTML = altercode + " : Unknown Barcode: " + altercode;
+                                                addRow(altercode, "Unknown Barcode: " + altercode);
+                                            } else {
+                                                let unknownBarcodeD = document.getElementById(altercode + "_delivered");
+                                                let v = unknownBarcodeD.value;
+                                                v++;
+                                                unknownBarcodeD.value = v;
+                                            }
+                                        } else {
+                                            var code = item.code;
+                                            console.log(code);
+                                            var description = item.description;
+                                            document.getElementById("descriptionDisplay").innerHTML = altercode + " : " + description;
+
+                                            let sent = document.getElementById(code + "_sent");
+                                            if (sent == null) {
+                                                addRow(item.code, item.description);
+                                            } else {
+                                                sent = sent.value * 1;
+                                            }
+
+                                            let delivered = document.getElementById(code + "_delivered").value * 1;
+                                            delivered++;
+                                            document.getElementById(code + "_delivered").value = delivered;
+
+                                            updateRowColor(code);
+                                        }
+                                        input.value = "";
+                                    }
+                                }
+
+                                function addRow(code, description) {
+                                    let table = document.getElementById("tableBody");
+                                    let row = document.createElement("tr");
+
+                                    let c1 = document.createElement("td");
+                                    let c2 = document.createElement("td");
+                                    let c3 = document.createElement("td");
+                                    let c4 = document.createElement("td");
+                                    let c5 = document.createElement("td");
+                                    let c6 = document.createElement("td");
+                                    let c7 = document.createElement("td");
+
+                                    c1.innerText = "----";
+                                    c2.innerText = code;
+                                    c3.innerText = description;
+                                    c4.innerHTML = "<input class='sent' type='number' id='" + code + "_sent' value='0' readonly>";
+                                    c5.innerHTML = "<input class='delivered' type='number' id='" + code + "_delivered' value='0'>";
+                                    c6.innerHTML = "<div id='" + code + "_colorDisplay'>____</div>";
+                                    c7.innerHTML = "<span class='po-line'>0</span>";
+
+                                    row.appendChild(c1);
+                                    row.appendChild(c2);
+                                    row.appendChild(c3);
+                                    row.appendChild(c4);
+                                    row.appendChild(c5);
+                                    row.appendChild(c6);
+                                    row.appendChild(c7);
+
+                                    table.appendChild(row);
+                                }
+
+                                function updateRowColor(code) {
+                                    let colorDisplay = document.getElementById(code + "_colorDisplay");
+                                    let sent = document.getElementById(code + "_sent").value * 1;
+                                    let delivered = document.getElementById(code + "_delivered").value * 1;
+                                    let diff = sent - delivered;
+
+                                    if (diff > 0) {
+                                        colorDisplay.style.backgroundColor = 'red';
+                                    } else if (diff < 0) {
+                                        colorDisplay.style.backgroundColor = 'yellow';
+                                    } else {
+                                        colorDisplay.style.backgroundColor = 'green';
+                                    }
+                                }
+
+                                function collectSentData() {
+                                    var returnValue = "";
+                                    var sentItems = document.querySelectorAll(".sent");
+                                    for (x = 0; x < sentItems.length; x++) {
+                                        let code = sentItems[x].id.replace("_sent", "");
+                                        returnValue += code + ":" + sentItems[x].value + ",";
+                                    }
+                                    return returnValue;
+                                }
+
+                                function collectDeliveredData() {
+                                    var returnValue = "";
+                                    var deliveredItems = document.querySelectorAll(".delivered");
+                                    for (x = 0; x < deliveredItems.length; x++) {
+                                        let code = deliveredItems[x].id.replace("_delivered", "");
+                                        returnValue += code + ":" + deliveredItems[x].value + ",";
+                                    }
+                                    return returnValue;
+                                }
+
+                                function collectBaseLines() {
+                                    var returnValue = "";
+                                    var rows = document.querySelectorAll("tbody tr");
+                                    for (var x = 0; x < rows.length; x++) {
+                                        var code = rows[x].cells[1].textContent.trim();
+                                        var baseLine = rows[x].cells[6].textContent.trim();
+                                        returnValue += code + ":" + baseLine + ",";
+                                    }
+                                    return returnValue;
+                                }
+
+                                function requestRouter(requestTarget) {
+                                    form.action = requestTarget;
+                                    document.getElementById("sentItems").value = collectSentData();
+                                    document.getElementById("deliveredItems").value = collectDeliveredData();
+                                    document.getElementById("baseLines").value = collectBaseLines();
+                                    form.submit();
+                                }
+    </script>
+</body>
 </html>
