@@ -173,6 +173,19 @@
                                     let table = document.getElementById("tableBody");
                                     let row = document.createElement("tr");
 
+                                    // Determine next baseLine number based on existing rows
+                                    let rows = table.getElementsByTagName("tr");
+                                    let maxBaseLine = -1;
+                                    for (let i = 0; i < rows.length; i++) {
+                                        let baseLineCell = rows[i].cells[6]; // 7th column = baseLine
+                                        let baseLineValue = parseInt(baseLineCell.textContent.trim());
+                                        if (!isNaN(baseLineValue) && baseLineValue > maxBaseLine) {
+                                            maxBaseLine = baseLineValue;
+                                        }
+                                    }
+                                    let newBaseLine = maxBaseLine + 1;
+
+                                    // Create all table cells
                                     let c1 = document.createElement("td");
                                     let c2 = document.createElement("td");
                                     let c3 = document.createElement("td");
@@ -187,8 +200,9 @@
                                     c4.innerHTML = "<input class='sent' type='number' id='" + code + "_sent' value='0' readonly>";
                                     c5.innerHTML = "<input class='delivered' type='number' id='" + code + "_delivered' value='0'>";
                                     c6.innerHTML = "<div id='" + code + "_colorDisplay'>____</div>";
-                                    c7.innerHTML = "<span class='po-line'>0</span>";
+                                    c7.innerHTML = "<span class='po-line'>" + newBaseLine + "</span>";
 
+                                    // Append cells to row
                                     row.appendChild(c1);
                                     row.appendChild(c2);
                                     row.appendChild(c3);
@@ -199,6 +213,7 @@
 
                                     table.appendChild(row);
                                 }
+
 
                                 function updateRowColor(code) {
                                     let colorDisplay = document.getElementById(code + "_colorDisplay");
