@@ -304,9 +304,11 @@ public class SapCamelotDeliveryDao {
                 + dbSchema + ".OPDN.\"CardName\", "
                 + dbSchema + ".OPDN.\"DocDate\", "
                 + dbSchema + ".OPDN.\"DocStatus\", "
-                + dbSchema + ".OPDN.\"Comments\" "
+                + dbSchema + ".OPDN.\"Comments\", "
+                + dbSchema + ".OPCH.\"DocNum\" AS \"ReferencedPO\" "
                 + "FROM " + dbSchema + ".OPDN "
-                + "ORDER BY " + dbSchema + ".OPDN.\"DocDate\" DESC";  // Order by date descending (newest first)
+                + "LEFT JOIN " + dbSchema + ".OPCH ON " + dbSchema + ".OPDN.\"BaseEntry\" = " + dbSchema + ".OPCH.\"DocEntry\" "
+                + "ORDER BY " + dbSchema + ".OPDN.\"DocDate\" DESC";
 
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
 
@@ -332,7 +334,9 @@ public class SapCamelotDeliveryDao {
                         goodsReceipt.setInvoiceId(resultSet.getString("DocEntry"));
                         goodsReceipt.setNumber(resultSet.getString("DocNum"));
                         goodsReceipt.setInsertionDate(resultSet.getString("DocDate"));
-                        //  goodsReceipt.setComments(resultSet.getString("Comments"));
+                 
+
+//  goodsReceipt.setComments(resultSet.getString("Comments"));
 
                         goodsReceipts.add(goodsReceipt);
                     }

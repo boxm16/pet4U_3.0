@@ -13,6 +13,7 @@ public class DeliveryInvoice {
     private String supplier;
     private String warehouseCode;
     private String baseEntry;
+    private String referencedPO;
 
     public DeliveryInvoice() {
         this.errorMessages = "";
@@ -89,6 +90,14 @@ public class DeliveryInvoice {
 
     public void setBaseEntry(String baseEntry) {
         this.baseEntry = baseEntry;
+    }
+
+    public String getReferencedPO() {
+        return referencedPO;
+    }
+
+    public void setReferencedPO(String referencedPO) {
+        this.referencedPO = referencedPO;
     }
 
 }

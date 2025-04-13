@@ -184,7 +184,7 @@
                                 <td>
                                     <button class="invoice-btn goods-receipt-btn"
                                             onclick="window.open('showGoodsReceipt.htm?invoiceId=${gr.invoiceId}', '_blank')">
-                                        ${gr.number}
+                                        ${gr.referencedPO}
                                     </button>
                                 </td>
                                 <td><c:if test="${not empty gr.baseEntry}">PO: ${gr.baseEntry}</c:if></td>
