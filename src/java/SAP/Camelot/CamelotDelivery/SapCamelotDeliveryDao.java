@@ -349,7 +349,7 @@ public class SapCamelotDeliveryDao {
     }
 
     public String getSupplierCurrency(String cardCode) {
-        String query = "SELECT \"Currency\" FROM OCRD WHERE \"CardCode\" = ?";
+        String query = "SELECT \"Currency\" FROM " + dbSchema + ".OCRD WHERE " + dbSchema + ".OCRD.\"CardCode\" = ?";
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
         try (Connection connection = databaseConnectionFactory.getSapHanaConnection();
                 PreparedStatement ps = connection.prepareStatement(query)) {
