@@ -153,10 +153,12 @@ public class SapCamelotDeliveryController {
                 line.put("Quantity", Double.parseDouble(entry.getValue()));
                 line.put("WarehouseCode", "AX-BAR");
 
-                // Critical PO linking information
-                line.put("BaseEntry", invoiceId); // PO DocEntry
-                line.put("BaseType", "22"); // 22 = Purchase Order
-                line.put("BaseLine", baseLines.get(itemCode)); // PO Line Number
+                if (!baseLines.get(itemCode).equals("-1")) {
+                    // Critical PO linking information
+                    line.put("BaseEntry", invoiceId); // PO DocEntry
+                    line.put("BaseType", "22"); // 22 = Purchase Order
+                    line.put("BaseLine", baseLines.get(itemCode)); // PO Line Number
+                }
 
                 // Additional recommended fields
                 //  line.put("AccountCode", "_SYS00000000001"); // Default inventory account
