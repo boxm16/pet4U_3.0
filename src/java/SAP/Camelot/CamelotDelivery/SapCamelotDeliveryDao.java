@@ -13,7 +13,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedHashMap;
@@ -313,14 +315,28 @@ public class SapCamelotDeliveryDao {
                 ResultSet resultSet = statement.executeQuery(query)) {
 
             while (resultSet.next()) {
-                DeliveryInvoice goodsReceipt = new DeliveryInvoice();
-                goodsReceipt.setSupplier(resultSet.getString("CardName"));
-                goodsReceipt.setInvoiceId(resultSet.getString("DocEntry"));
-                goodsReceipt.setNumber(resultSet.getString("DocNum"));
-                goodsReceipt.setInsertionDate(resultSet.getString("DocDate"));
-                //  goodsReceipt.setComments(resultSet.getString("Comments"));
+                String string = resultSet.getString("DocDate");
+                try {
 
-                goodsReceipts.add(goodsReceipt);
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+                    LocalDate dbDate = LocalDate.parse(string, formatter);
+                    LocalDate today = LocalDate.now();
+
+                    if (dbDate.equals(today)) {
+                        DeliveryInvoice goodsReceipt = new DeliveryInvoice();
+                        goodsReceipt.setSupplier(resultSet.getString("CardName"));
+                        goodsReceipt.setInvoiceId(resultSet.getString("DocEntry"));
+                        goodsReceipt.setNumber(resultSet.getString("DocNum"));
+                        goodsReceipt.setInsertionDate(resultSet.getString("DocDate"));
+                        //  goodsReceipt.setComments(resultSet.getString("Comments"));
+
+                        goodsReceipts.add(goodsReceipt);
+                    }
+                } catch (Exception e) {
+                    System.err.println("Error parsing date: " + e.getMessage());
+                }
+
             }
         } catch (SQLException ex) {
             Logger.getLogger(SapCamelotDeliveryDao.class.getName()).log(Level.SEVERE, null, ex);
