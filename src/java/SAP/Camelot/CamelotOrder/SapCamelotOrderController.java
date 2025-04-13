@@ -4,6 +4,8 @@ import SAP.SapController;
 import TESTosteron.SAPApiClient;
 import java.io.IOException;
 import java.net.HttpURLConnection;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.json.JSONArray;
@@ -17,8 +19,9 @@ public class SapCamelotOrderController {
 
     private final String BASE_URL = "https://192.168.0.183:50000/b1s/v2";
 
-
-    private final String ITEM_CODE = "1271";
+    private final String ITEM_CODE_1 = "1271";
+    private final String ITEM_CODE_2 = "1273";
+    private final String ITEM_CODE_3 = "1274";
 
     @RequestMapping(value = "createPurchaseOrder")
     public String createPurchaseOrder(ModelMap modelMap) {
@@ -37,15 +40,19 @@ public class SapCamelotOrderController {
             // JSON Payload for Purchase Order
             JSONObject payload = new JSONObject();
             payload.put("CardCode", "ΠΡΟ-000122"); // Supplier Code (changed from customer code)
-            payload.put("DocDate", "2025-02-01"); // Document Date
-            payload.put("DocDueDate", "2025-10-10"); // Due Date
+
+            LocalDate today = LocalDate.now();
+            LocalDate dueDate = today.plusDays(3);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            payload.put("DocDate", today.format(formatter));
+            payload.put("DocDueDate", dueDate.format(formatter));
 
             // Add Document Lines
             JSONArray documentLines = new JSONArray();
 
             // Line 1
             JSONObject line1 = new JSONObject();
-            line1.put("ItemCode", ITEM_CODE); // Item Code
+            line1.put("ItemCode", ITEM_CODE_1); // Item Code
             line1.put("Quantity", 10); // Quantity
             line1.put("UnitPrice", 50.0); // Unit Price (adjusted for purchase)
             documentLines.put(line1);
