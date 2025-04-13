@@ -27,17 +27,17 @@ import java.util.logging.Logger;
  * @author Michail Sitmalidis
  */
 public class SapCamelotDeliveryDao {
-
+    
     private String dbSchema;
-
+    
     public SapCamelotDeliveryDao() {
         //   this.dbSchema = "TRAINING_PC";
         this.dbSchema = "PETCAMELOT_UAT2";
     }
-
+    
     LinkedHashMap<String, ArrayList<DeliveryInvoice>> getDuePurchaseOrders() {
         LinkedHashMap<String, ArrayList<DeliveryInvoice>> duePurchaseOrders = new LinkedHashMap<>();
-
+        
         String query = "SELECT "
                 + dbSchema + ".OPOR.\"DocEntry\", "
                 + dbSchema + ".OPOR.\"DocNum\", "
@@ -51,11 +51,11 @@ public class SapCamelotDeliveryDao {
 
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
         Connection connection = databaseConnectionFactory.getSapHanaConnection();
-
+        
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
-
+            
             while (resultSet.next()) {
                 String supplierName = resultSet.getString("CardName");
                 if (duePurchaseOrders.containsKey(supplierName)) {
@@ -65,14 +65,14 @@ public class SapCamelotDeliveryDao {
                 }
                 DeliveryInvoice purchaseOrderInvoice = new DeliveryInvoice();
                 purchaseOrderInvoice.setSupplier(supplierName);
-
+                
                 purchaseOrderInvoice.setInvoiceId(resultSet.getString("DocEntry"));
                 purchaseOrderInvoice.setNumber(resultSet.getString("DocNum"));
                 purchaseOrderInvoice.setInsertionDate(resultSet.getString("DocDate"));
                 ArrayList<DeliveryInvoice> deliveryInvoices = duePurchaseOrders.get(supplierName);
                 deliveryInvoices.add(purchaseOrderInvoice);
                 duePurchaseOrders.put(supplierName, deliveryInvoices);
-
+                
             }
             resultSet.close();
             statement.close();
@@ -82,7 +82,7 @@ public class SapCamelotDeliveryDao {
         }
         return duePurchaseOrders;
     }
-
+    
     DeliveryInvoice getPurchaseOrderForDeliveryChecking(String purchaseOrderNumber) {
         DeliveryInvoice deliveryInvoice = new DeliveryInvoice();
         String query = "SELECT "
@@ -107,16 +107,16 @@ public class SapCamelotDeliveryDao {
 
         // System.out.println("Query: " + query);
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
-
+        
         try (Connection connection = databaseConnectionFactory.getSapHanaConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
             // Set the parameter for the prepared statement
             preparedStatement.setString(1, purchaseOrderNumber);
-
+            
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 boolean isFirstRow = true;
-
+                
                 while (resultSet.next()) {
                     if (isFirstRow) {
                         deliveryInvoice.setInvoiceId(resultSet.getString("DocEntry"));
@@ -125,7 +125,7 @@ public class SapCamelotDeliveryDao {
                         deliveryInvoice.setInsertionDate(resultSet.getString("DocDate"));
                         isFirstRow = false;
                     }
-
+                    
                     DeliveryItem item = new DeliveryItem();
                     item.setCode(resultSet.getString("ItemCode"));
                     item.setDescription(resultSet.getString("Dscription"));
@@ -146,7 +146,7 @@ public class SapCamelotDeliveryDao {
     //-------------------Good Receits----------------------------
     public LinkedHashMap<String, ArrayList<DeliveryInvoice>> getGoodsReceipts() {
         LinkedHashMap<String, ArrayList<DeliveryInvoice>> goodsReceipts = new LinkedHashMap<>();
-
+        
         String query = "SELECT "
                 + dbSchema + ".OPDN.\"DocEntry\", "
                 + dbSchema + ".OPDN.\"DocNum\", "
@@ -157,14 +157,14 @@ public class SapCamelotDeliveryDao {
                 + dbSchema + ".OPDN.\"Comments\" "
                 + "FROM " + dbSchema + ".OPDN "
                 + "ORDER BY " + dbSchema + ".OPDN.\"CardName\", " + dbSchema + ".OPDN.\"DocDate\" DESC";
-
+        
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
         Connection connection = databaseConnectionFactory.getSapHanaConnection();
-
+        
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
-
+            
             while (resultSet.next()) {
                 String supplierName = resultSet.getString("CardName");
                 if (goodsReceipts.containsKey(supplierName)) {
@@ -174,14 +174,14 @@ public class SapCamelotDeliveryDao {
                 }
                 DeliveryInvoice purchaseOrderInvoice = new DeliveryInvoice();
                 purchaseOrderInvoice.setSupplier(supplierName);
-
+                
                 purchaseOrderInvoice.setInvoiceId(resultSet.getString("DocEntry"));
                 purchaseOrderInvoice.setNumber(resultSet.getString("DocNum"));
                 purchaseOrderInvoice.setInsertionDate(resultSet.getString("DocDate"));
                 ArrayList<DeliveryInvoice> deliveryInvoices = goodsReceipts.get(supplierName);
                 deliveryInvoices.add(purchaseOrderInvoice);
                 goodsReceipts.put(supplierName, deliveryInvoices);
-
+                
             }
             resultSet.close();
             statement.close();
@@ -189,10 +189,10 @@ public class SapCamelotDeliveryDao {
         } catch (SQLException ex) {
             Logger.getLogger(SapCamelotDeliveryDao.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
         return goodsReceipts;
     }
-
+    
     public DeliveryInvoice getGoodsReceipt(String invoiceId) {
         DeliveryInvoice goodsReceipt = new DeliveryInvoice();
         String query = "SELECT "
@@ -222,15 +222,15 @@ public class SapCamelotDeliveryDao {
                 + dbSchema + ".OPDN.\"DocEntry\" = ?";  // Filter by GRPO DocEntry (primary key)
 
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
-
+        
         try (Connection connection = databaseConnectionFactory.getSapHanaConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-
+            
             preparedStatement.setString(1, invoiceId);
-
+            
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 boolean isFirstRow = true;
-
+                
                 while (resultSet.next()) {
                     if (isFirstRow) {
                         goodsReceipt.setInvoiceId(resultSet.getString("DocEntry"));
@@ -239,7 +239,7 @@ public class SapCamelotDeliveryDao {
                         goodsReceipt.setInsertionDate(resultSet.getString("DocDate"));
                         isFirstRow = false;
                     }
-
+                    
                     DeliveryItem item = new DeliveryItem();
                     item.setCode(resultSet.getString("ItemCode"));
                     item.setDescription(resultSet.getString("Dscription"));
@@ -257,10 +257,10 @@ public class SapCamelotDeliveryDao {
         }
         return goodsReceipt;
     }
-
+    
     ArrayList<DeliveryInvoice> getDuePurchaseOrdersX() {
         ArrayList<DeliveryInvoice> duePurchaseOrders = new ArrayList<>();
-
+        
         String query = "SELECT "
                 + dbSchema + ".OPOR.\"DocEntry\", "
                 + dbSchema + ".OPOR.\"DocNum\", "
@@ -273,30 +273,30 @@ public class SapCamelotDeliveryDao {
                 + "WHERE " + dbSchema + ".OPOR.\"DocStatus\" = 'O' "
                 + "ORDER BY " + dbSchema + ".OPOR.\"DocDate\" DESC";
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
-
+        
         try (Connection connection = databaseConnectionFactory.getSapHanaConnection();
                 Statement statement = connection.createStatement();
                 ResultSet resultSet = statement.executeQuery(query)) {
-
+            
             while (resultSet.next()) {
                 DeliveryInvoice purchaseOrderInvoice = new DeliveryInvoice();
                 purchaseOrderInvoice.setSupplier(resultSet.getString("CardName"));
                 purchaseOrderInvoice.setInvoiceId(resultSet.getString("DocEntry"));
                 purchaseOrderInvoice.setNumber(resultSet.getString("DocNum"));
                 purchaseOrderInvoice.setInsertionDate(resultSet.getString("DocDate"));
-
+                
                 duePurchaseOrders.add(purchaseOrderInvoice);
             }
         } catch (SQLException ex) {
             Logger.getLogger(SapCamelotDeliveryDao.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
         return duePurchaseOrders;
     }
-
+    
     ArrayList<DeliveryInvoice> getGoodsReceiptsX() {
         ArrayList<DeliveryInvoice> goodsReceipts = new ArrayList<>();
-
+        
         String query = "SELECT "
                 + dbSchema + ".OPDN.\"DocEntry\", "
                 + dbSchema + ".OPDN.\"DocNum\", "
@@ -309,57 +309,56 @@ public class SapCamelotDeliveryDao {
                 + "FROM " + dbSchema + ".OPDN "
                 + "LEFT JOIN " + dbSchema + ".OPCH ON " + dbSchema + ".OPDN.\"BaseEntry\" = " + dbSchema + ".OPCH.\"DocEntry\" "
                 + "ORDER BY " + dbSchema + ".OPDN.\"DocDate\" DESC";
-
+        
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
-
+        
         try (Connection connection = databaseConnectionFactory.getSapHanaConnection();
                 Statement statement = connection.createStatement();
                 ResultSet resultSet = statement.executeQuery(query)) {
-
+            
             while (resultSet.next()) {
                 String string = resultSet.getString("DocDate");
                 String cleanedDate = string.split("\\.")[0];
 
                 // Define expected format
                 try {
-
+                    
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-
+                    
                     LocalDate dbDate = LocalDate.parse(cleanedDate, formatter);
                     LocalDate today = LocalDate.now();
-
+                    
                     if (dbDate.equals(today)) {
                         DeliveryInvoice goodsReceipt = new DeliveryInvoice();
                         goodsReceipt.setSupplier(resultSet.getString("CardName"));
                         goodsReceipt.setInvoiceId(resultSet.getString("DocEntry"));
                         goodsReceipt.setNumber(resultSet.getString("DocNum"));
                         goodsReceipt.setInsertionDate(resultSet.getString("DocDate"));
-                 
+                        goodsReceipt.setReferencedPO("referencedPO");
 
 //  goodsReceipt.setComments(resultSet.getString("Comments"));
-
                         goodsReceipts.add(goodsReceipt);
                     }
                 } catch (Exception e) {
                     System.err.println("Error parsing date: " + e.getMessage());
                 }
-
+                
             }
         } catch (SQLException ex) {
             Logger.getLogger(SapCamelotDeliveryDao.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
         return goodsReceipts;
     }
-
+    
     public Double getExchangeRate(String currency, Date docDate) {
         String query = "SELECT \"Rate\" FROM "
                 + dbSchema + ".ORTT WHERE " + dbSchema + ".ORTT.\"Currency\" = ? AND " + dbSchema + ".ORTT.\"RateDate\" = ?";
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
-
+        
         try (Connection connection = databaseConnectionFactory.getSapHanaConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-
+            
             preparedStatement.setString(1, currency);
             preparedStatement.setDate(2, new java.sql.Date(docDate.getTime()));
             ResultSet rs = preparedStatement.executeQuery();
@@ -371,7 +370,7 @@ public class SapCamelotDeliveryDao {
         }
         return null;
     }
-
+    
     public String getSupplierCurrency(String cardCode) {
         String query = "SELECT \"Currency\" FROM " + dbSchema + ".OCRD WHERE " + dbSchema + ".OCRD.\"CardCode\" = ?";
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
@@ -426,24 +425,24 @@ public class SapCamelotDeliveryDao {
 
             System.out.println("✅ SAP Delivery Batch Insertion Complete.");
             return "SUCCESS";
-
+            
         } catch (SQLException ex) {
             Logger.getLogger(SapCamelotDeliveryDao.class.getName()).log(Level.SEVERE, "❌ Database error during SAP delivery insertion", ex);
             return "ERROR: " + ex.getMessage();
         }
     }
-
+    
     public ArrayList<DeliveryInvoice> getAllOpenSapTempoDeliveryInvoices() {
         ArrayList<DeliveryInvoice> deliveryInvoices = new ArrayList<>();
-
+        
         String sql = "SELECT * FROM delivery_title where status='open' ;";
         ResultSet resultSet;
-
+        
         try {
             DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
             Connection connection = databaseConnectionFactory.getMySQLConnection();
             Statement statement = connection.createStatement();
-
+            
             resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
                 DeliveryInvoice deliveryInvoice = new DeliveryInvoice();
@@ -451,33 +450,33 @@ public class SapCamelotDeliveryDao {
                 deliveryInvoice.setId(resultSet.getString("id"));
                 deliveryInvoice.setSupplier(resultSet.getString("supplier"));
                 deliveryInvoice.setNumber(resultSet.getString("number"));
-
+                
                 deliveryInvoices.add(deliveryInvoice);
             }
             resultSet.close();
             statement.close();
             connection.close();
-
+            
         } catch (SQLException ex) {
             Logger.getLogger(SapCamelotDeliveryDao.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
         return deliveryInvoices;
     }
-
+    
     DeliveryInvoice getSapCamelotTempoDeliveryInvoice(String invoiceId) {
         DeliveryInvoice deliveryInvoice = new DeliveryInvoice();
-
+        
         String sql = "SELECT * FROM delivery_title "
                 + "INNER JOIN delivery_data ON delivery_title.invoice_id=delivery_data.delivery_id "
                 + "WHERE invoice_id='" + invoiceId + "';";
         ResultSet resultSet;
-
+        
         try {
             DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
             Connection connection = databaseConnectionFactory.getMySQLConnection();
             Statement statement = connection.createStatement();
-
+            
             resultSet = statement.executeQuery(sql);
             int x = 0;
             LinkedHashMap<String, DeliveryItem> deliveryItems = new LinkedHashMap<>();
@@ -487,7 +486,7 @@ public class SapCamelotDeliveryDao {
                     deliveryInvoice.setId(resultSet.getString("id"));
                     deliveryInvoice.setSupplier(resultSet.getString("supplier"));
                     deliveryInvoice.setNumber(resultSet.getString("number"));
-
+                    
                 }
                 DeliveryItem deliveryItem = new DeliveryItem();
                 deliveryItem.setCode(resultSet.getString("item_code"));
@@ -496,66 +495,66 @@ public class SapCamelotDeliveryDao {
                 deliveryItem.setBaseLine(resultSet.getInt("baseLine"));
                 deliveryItems.put(resultSet.getString("item_code"), deliveryItem);
                 x++;
-
+                
             }
             deliveryInvoice.setItems(deliveryItems);
             resultSet.close();
             statement.close();
             connection.close();
-
+            
         } catch (SQLException ex) {
             Logger.getLogger(SapCamelotDeliveryDao.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
         return deliveryInvoice;
     }
-
+    
     public String deleteDeliveryChecking(String invoiceId) {
-
+        
         String sql = "DELETE  FROM delivery_data WHERE delivery_id='" + invoiceId + "';";
-
+        
         String sql1 = "DELETE  FROM delivery_title "
                 + "WHERE invoice_id='" + invoiceId + "';";
-
+        
         try {
             DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
             Connection connection = databaseConnectionFactory.getMySQLConnection();
             Statement statement = connection.createStatement();
-
+            
             statement.executeUpdate(sql);
             statement.executeUpdate(sql1);
-
+            
             statement.close();
-
+            
             connection.close();
-
+            
         } catch (SQLException ex) {
             Logger.getLogger(SapCamelotDeliveryDao.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
         return "Delivery Checking with id" + invoiceId + "deleted";
     }
-
+    
     public boolean tempoExist(String invoiceId) {
         try (Connection connection = new DatabaseConnectionFactory().getMySQLConnection();
                 PreparedStatement checkInvoicePreparedStatement = connection.prepareStatement(
                         "SELECT COUNT(*) FROM delivery_title WHERE invoice_id = ?;")) {
-
+            
             System.out.println("🔍 Checking if tempo delivery exists for invoice ID: " + invoiceId);
-
+            
             checkInvoicePreparedStatement.setString(1, invoiceId);
             ResultSet resultSet = checkInvoicePreparedStatement.executeQuery();
-
+            
             if (resultSet.next()) {
                 int count = resultSet.getInt(1);
                 return count > 0;
             }
-
+            
         } catch (SQLException ex) {
             Logger.getLogger(SapCamelotDeliveryDao.class.getName()).log(Level.SEVERE, "❌ Database error during tempo delivery check", ex);
         }
-
+        
         return false; // Default return if an error occurs or no record is found
     }
-
+    
 }
