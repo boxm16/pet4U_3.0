@@ -403,55 +403,46 @@ public class DeliveryDao_V_3_1 {
 
     ////------SAP VERSION---------
     public String saveSAPDeliveryChecking(String invoiceId, String supplier, String invoiceNumber, ArrayList<DeliveryItem> deliveryItems) {
-        LocalDateTime idItem = LocalDateTime.now();
-        try {
-            DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
-            Connection connection = databaseConnectionFactory.getMySQLConnection();
+        String idItem = UUID.randomUUID().toString(); // Better ID generation
 
-            connection.setAutoCommit(false);
-            PreparedStatement invoiceInsertionPreparedStatement = connection.prepareStatement("INSERT INTO delivery_title (invoice_id, id, number,supplier, note) VALUES(?,?,?,?,?);");
-            PreparedStatement deliveredItemsInPreparedStatement = connection.prepareStatement("INSERT INTO delivery_data (delivery_id, item_code, sent, delivered, baseLine) VALUES (?,?,?,?,?);");
+        try (Connection connection = new DatabaseConnectionFactory().getMySQLConnection();
+                PreparedStatement invoiceInsertionPreparedStatement = connection.prepareStatement(
+                        "INSERT INTO delivery_title (invoice_id, id, number, supplier, note) VALUES (?, ?, ?, ?, ?);");
+                PreparedStatement deliveredItemsPreparedStatement = connection.prepareStatement(
+                        "INSERT INTO delivery_data (delivery_id, item_code, sent, delivered, baseLine) VALUES (?, ?, ?, ?, ?);")) {
+            connection.setAutoCommit(false); // Begin transaction
 
-            System.out.println("Starting  SAP TEMPO SAVE INSERTION: ....");
+            System.out.println("🚚 Starting SAP Delivery Save Insertion...");
 
+            // Insert invoice title
             invoiceInsertionPreparedStatement.setString(1, invoiceId);
-            invoiceInsertionPreparedStatement.setString(2, idItem.toString());
+            invoiceInsertionPreparedStatement.setString(2, idItem);
             invoiceInsertionPreparedStatement.setString(3, invoiceNumber);
             invoiceInsertionPreparedStatement.setString(4, supplier);
-            invoiceInsertionPreparedStatement.setString(5, " ");
-
+            invoiceInsertionPreparedStatement.setString(5, " "); // Note field
             invoiceInsertionPreparedStatement.addBatch();
 
+            // Insert delivery items
             for (DeliveryItem deliveryItem : deliveryItems) {
-
-                deliveredItemsInPreparedStatement.setString(1, invoiceId);
-                deliveredItemsInPreparedStatement.setString(2, deliveryItem.getCode());
-                deliveredItemsInPreparedStatement.setString(3, deliveryItem.getSentQuantity());
-                deliveredItemsInPreparedStatement.setString(4, deliveryItem.getDeliveredQuantity());
-                deliveredItemsInPreparedStatement.setInt(5, deliveryItem.getBaseLine());
-
-                deliveredItemsInPreparedStatement.addBatch();
-
+                deliveredItemsPreparedStatement.setString(1, invoiceId);
+                deliveredItemsPreparedStatement.setString(2, deliveryItem.getCode());
+                deliveredItemsPreparedStatement.setString(3, deliveryItem.getSentQuantity());
+                deliveredItemsPreparedStatement.setString(4, deliveryItem.getDeliveredQuantity());
+                deliveredItemsPreparedStatement.setInt(5, deliveryItem.getBaseLine());
+                deliveredItemsPreparedStatement.addBatch();
             }
 
-            //Executing the batch
+            // Execute batch inserts
             invoiceInsertionPreparedStatement.executeBatch();
-            deliveredItemsInPreparedStatement.executeBatch();
+            deliveredItemsPreparedStatement.executeBatch();
+            connection.commit(); // Commit transaction
 
-            System.out.println(" Batch Insertion: DONE");
+            System.out.println("✅ SAP Delivery Batch Insertion Complete.");
+            return "SUCCESS";
 
-            //Saving the changes
-            connection.commit();
-            //  deleteTripPeriodPreparedStatement.close();
-            // deleteTripVoucherPreparedStatement.close();
-            invoiceInsertionPreparedStatement.close();
-            deliveredItemsInPreparedStatement.close();
-            connection.close();
-            return "";
         } catch (SQLException ex) {
-            Logger.getLogger(DeliveryDao.class.getName()).log(Level.SEVERE, null, ex);
-
-            return ex.getMessage();
+            Logger.getLogger(DeliveryDao.class.getName()).log(Level.SEVERE, "❌ Database error during SAP delivery insertion", ex);
+            return "ERROR: " + ex.getMessage();
         }
     }
 
