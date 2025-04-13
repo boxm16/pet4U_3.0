@@ -69,7 +69,7 @@ public class SapCamelotOrderController {
                 try {
                     JSONObject jsonResponse = sapApiClient.getJsonResponse(conn); // May throw HeadersTooLarge
                     System.out.println("✅ Purchase Order Created Successfully with all items!");
-                    modelMap.addAttribute("message", "Purchase Order created successfully. Details: " + jsonResponse.toString());
+                    modelMap.addAttribute("message", "Purchase Order created successfully. Details too large to expose here, but dont worry, its ok : ");
                 } catch (Exception headerEx) {
                     if (headerEx.getClass().getSimpleName().contains("HeadersTooLarge")) {
                         System.out.println("⚠️ PO created, but response headers too large. Skipping body parsing.");
