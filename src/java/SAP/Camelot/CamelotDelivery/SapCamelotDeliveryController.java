@@ -185,6 +185,7 @@ public class SapCamelotDeliveryController {
                 // Log full response for debugging
                 System.out.println("📄 Full SAP Response: " + response.toString());
                 if (dao.tempoExist(invoiceId)) {
+                    System.out.println("REWRITE AND CLOSE AND SAVE IN SAP");
                     rewriteAndCloseDeliveryChecking(sentItemsData, deliveredItemsData, baseLinesData, invoiceNumber, invoiceId, supplierCode);
                 } else {
 
