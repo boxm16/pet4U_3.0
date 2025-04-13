@@ -62,11 +62,9 @@
                 padding: 20px;
                 color: #666;
             }
-            .supplier-header {
-                margin-top: 20px;
-                padding: 8px;
-                background-color: #f0f0f0;
-                border-radius: 4px;
+            .supplier-cell {
+                font-weight: bold;
+                color: #333;
             }
         </style>
     </head>
@@ -80,42 +78,29 @@
                 </div>
 
                 <c:if test="${not empty duePurchaseOrders}">
-                    <c:set var="currentSupplier" value="" />
-                    <c:forEach var="po" items="${duePurchaseOrders}">
-                        <c:if test="${currentSupplier ne po.supplier}">
-                            <c:set var="currentSupplier" value="${po.supplier}" />
-                            <h3 class="supplier-header">${currentSupplier}</h3>
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Select</th>
-                                        <th>PO Number</th>
-                                        <th>Date</th>
-                                       
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    </c:if>
-                                    <tr>
-                                        <td>
-                                            <input type="checkbox" 
-                                                   name="selectedPOs" 
-                                                   value="${po.invoiceId}">
-                                        </td>
-                                        <td>
-                                            <button type="button" class="invoice-btn"
-                                                    onclick="window.open('sapCamelotDeliveryInvoiceChecking.htm?invoiceId=${po.invoiceId}', '_blank')">
-                                                ${po.number}
-                                            </button>
-                                        </td>
-                                        <td>${po.insertionDate}</td>
-                                       
-                                    </tr>
-                                <c:if test="${empty duePurchaseOrders[status.index + 1] or duePurchaseOrders[status.index + 1].supplier ne currentSupplier}">
-                                    </tbody>
-                            </table>
-                        </c:if>
-                    </c:forEach>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Supplier</th>
+                                <th>PO Number</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <c:forEach var="po" items="${duePurchaseOrders}">
+                                <tr>
+                                    <td class="supplier-cell">${po.supplier}</td>
+                                    <td>
+                                        <button type="button" class="invoice-btn"
+                                                onclick="window.open('sapCamelotDeliveryInvoiceChecking.htm?invoiceId=${po.invoiceId}', '_blank')">
+                                            ${po.number}
+                                        </button>
+                                    </td>
+                                    <td>${po.insertionDate}</td>
+                                </tr>
+                            </c:forEach>
+                        </tbody>
+                    </table>
                 </c:if>
                 <c:if test="${empty duePurchaseOrders}">
                     <div class="no-data">No due purchase orders found</div>
@@ -129,42 +114,37 @@
                 </div>
 
                 <c:if test="${not empty todaysGoodsReceipts}">
-                    <c:set var="currentSupplier" value="" />
-                    <c:forEach var="gr" items="${todaysGoodsReceipts}">
-                        <c:if test="${currentSupplier ne gr.supplier}">
-                            <c:set var="currentSupplier" value="${gr.supplier}" />
-                            <h3 class="supplier-header">${currentSupplier}</h3>
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>GR Number</th>
-                                        <th>PO Reference</th>
-                                        <th>Items</th>
-                                        <th>Time</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    </c:if>
-                                    <tr>
-                                        <td>
-                                            <button type="button" class="invoice-btn goods-receipt-btn"
-                                                    onclick="window.open('showGoodsReceipt.htm?invoiceId=${gr.invoiceId}', '_blank')">
-                                                ${gr.number}
-                                            </button>
-                                        </td>
-                                        <td>
-                                <c:if test="${not empty gr.baseEntry}">
-                                    PO: ${gr.baseEntry}
-                                </c:if>
-                                </td>
-                                <td>${gr.items.size()} items</td>
-                                <td>${gr.insertionDate}</td>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Supplier</th>
+                                <th>GR Number</th>
+                                <th>PO Reference</th>
+                                <th>Items</th>
+                                <th>Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <c:forEach var="gr" items="${todaysGoodsReceipts}">
+                                <tr>
+                                    <td class="supplier-cell">${gr.supplier}</td>
+                                    <td>
+                                        <button type="button" class="invoice-btn goods-receipt-btn"
+                                                onclick="window.open('showGoodsReceipt.htm?invoiceId=${gr.invoiceId}', '_blank')">
+                                            ${gr.number}
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <c:if test="${not empty gr.baseEntry}">
+                                            PO: ${gr.baseEntry}
+                                        </c:if>
+                                    </td>
+                                    <td>${gr.items.size()} items</td>
+                                    <td>${gr.insertionDate}</td>
                                 </tr>
-                                <c:if test="${empty todaysGoodsReceipts[status.index + 1] or todaysGoodsReceipts[status.index + 1].supplier ne currentSupplier}">
-                                    </tbody>
-                            </table>
-                        </c:if>
-                    </c:forEach>
+                            </c:forEach>
+                        </tbody>
+                    </table>
                 </c:if>
                 <c:if test="${empty todaysGoodsReceipts}">
                     <div class="no-data">No goods receipts today</div>
