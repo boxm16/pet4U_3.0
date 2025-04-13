@@ -469,7 +469,7 @@ public class SapCamelotDeliveryDao {
                 deliveryItem.setCode(resultSet.getString("item_code"));
                 deliveryItem.setQuantity(resultSet.getString("sent"));
                 deliveryItem.setDeliveredQuantity(resultSet.getString("delivered"));
-                deliveryItem.setBaseLine(resultSet.getInt("baseLines"));
+                deliveryItem.setBaseLine(resultSet.getInt("baseLine"));
                 deliveryItems.put(resultSet.getString("item_code"), deliveryItem);
                 x++;
 
