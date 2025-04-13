@@ -67,7 +67,6 @@
                             <th>#</th>
                             <th>Item Code</th>
                             <th>Description</th>
-                            <th>Ordered Qty</th>
                             <th>Received Qty</th>
                             <th>Status</th>
                             <th>PO Line</th>
@@ -79,23 +78,13 @@
                             <%
                                 Map.Entry<String, DeliveryItem> itemEntry = (Map.Entry<String, DeliveryItem>) pageContext.getAttribute("itemEntry");
                                 DeliveryItem item = itemEntry.getValue();
-                                int orderedQty = Integer.parseInt(item.getQuantity());
-                                int receivedQty = item.getDeliveredQuantity();
-                                String rowClass = "";
 
-                                if (orderedQty == receivedQty) {
-                                    rowClass = "match";
-                                } else if (orderedQty > receivedQty) {
-                                    rowClass = "short";
-                                } else {
-                                    rowClass = "over";
-                                }
+
                             %>
-                            <tr class="<%= rowClass%>">
+                            <tr >
                                 <td>${loop.index + 1}</td>
                                 <td>${itemEntry.key}</td>
                                 <td>${item.description}</td>
-                                <td>${item.quantity}</td>
                                 <td>${item.deliveredQuantity}</td>
                                 <td>
                                     <c:choose>

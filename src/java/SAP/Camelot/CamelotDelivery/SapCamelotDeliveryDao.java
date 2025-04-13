@@ -239,7 +239,7 @@ public class SapCamelotDeliveryDao {
                     DeliveryItem item = new DeliveryItem();
                     item.setCode(resultSet.getString("ItemCode"));
                     item.setDescription(resultSet.getString("Dscription"));
-                    item.setQuantity(resultSet.getString("Quantity"));
+                    item.setDeliveredQuantity(resultSet.getString("Quantity"));
                     item.setPrice(resultSet.getBigDecimal("Price"));
                     item.setBaseLine(resultSet.getInt("BaseLine")); // Original PO line number
                     //    item.setGrpoLineNum(resultSet.getInt("LineNum")); // GRPO line number
