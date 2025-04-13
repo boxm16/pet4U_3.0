@@ -88,16 +88,6 @@
             </tbody>
         </table>
         <hr>
-        ${saveButton}
-        <form id="form" action="#" method="POST">
-            <input hidden type="text" name="invoiceId" value="${deliveryInvoice.invoiceId}">
-            <input hidden type="text" name="supplier" value="${deliveryInvoice.supplier}">
-            <input hidden type="text" name="invoiceNumber" value="${deliveryInvoice.number}">
-            <input hidden type="text" id="deliveredItems" name="deliveredItems">
-            <input hidden type="text" id="sentItems" name="sentItems">
-            <input hidden type="text" id="baseLines" name="baseLines">
-        </form>
-
     </center>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
