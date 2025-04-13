@@ -46,25 +46,15 @@ public class SapCamelotOrderController {
             payload.put("DocDate", today.format(formatter));
             payload.put("DocDueDate", dueDate.format(formatter));
 
-            // Add Document Lines for all items
+            // Add Document Lines
             JSONArray documentLines = new JSONArray();
-
-            // Line 1 - Item 1
-            JSONObject line1 = createOrderLine(ITEM_CODE_1, 10, 50.0);
-            documentLines.put(line1);
-
-            // Line 2 - Item 2
-            JSONObject line2 = createOrderLine(ITEM_CODE_2, 15, 75.0); // Example quantity/price
-            documentLines.put(line2);
-
-            // Line 3 - Item 3
-            JSONObject line3 = createOrderLine(ITEM_CODE_3, 20, 100.0); // Example quantity/price
-            documentLines.put(line3);
-
+            documentLines.put(createOrderLine(ITEM_CODE_1, 10, 50.0));
+            documentLines.put(createOrderLine(ITEM_CODE_2, 15, 75.0));
+            documentLines.put(createOrderLine(ITEM_CODE_3, 20, 100.0));
             payload.put("DocumentLines", documentLines);
 
             try {
-                sapApiClient.applySSLBypass(conn);
+                sapApiClient.applySSLBypass(conn); // Optional
             } catch (Exception ex) {
                 Logger.getLogger(SapController.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -72,12 +62,22 @@ public class SapCamelotOrderController {
             // Send the request
             sapApiClient.sendRequestBody(conn, payload.toString());
 
-            // Check the response
+            // Get response code first
             int responseCode = conn.getResponseCode();
+
             if (responseCode == 201) {
-                JSONObject jsonResponse = sapApiClient.getJsonResponse(conn);
-                System.out.println("✅ Purchase Order Created Successfully with all items!");
-                modelMap.addAttribute("message", "Purchase Order Created Successfully with all items. Details: " + jsonResponse.toString());
+                try {
+                    JSONObject jsonResponse = sapApiClient.getJsonResponse(conn); // May throw HeadersTooLarge
+                    System.out.println("✅ Purchase Order Created Successfully with all items!");
+                    modelMap.addAttribute("message", "Purchase Order created successfully. Details: " + jsonResponse.toString());
+                } catch (Exception headerEx) {
+                    if (headerEx.getClass().getSimpleName().contains("HeadersTooLarge")) {
+                        System.out.println("⚠️ PO created, but response headers too large. Skipping body parsing.");
+                        modelMap.addAttribute("message", "Purchase Order created successfully, but response was too large to parse.");
+                    } else {
+                        throw headerEx; // Unknown issue? Bubble it up
+                    }
+                }
             } else {
                 String errorResponse = sapApiClient.getErrorResponse(conn);
                 System.out.println("❌ Error Creating Purchase Order: " + errorResponse);
@@ -87,15 +87,14 @@ public class SapCamelotOrderController {
         } catch (IOException ex) {
             if (ex.getMessage().contains("HeadersTooLarge")
                     || ex.getClass().getSimpleName().contains("HeadersTooLarge")) {
-                // Specific handling for header size issues
-                Logger.getLogger(SapCamelotOrderController.class.getName()).log(Level.SEVERE, "Headers too large", ex);
-                modelMap.addAttribute("message", "Request failed due to oversized headers. Please contact support.");
+                Logger.getLogger(SapCamelotOrderController.class.getName()).log(Level.WARNING, "⚠️ Headers too large, but PO might be created", ex);
+                modelMap.addAttribute("message", "Purchase Order may be created, but the response was too large.");
             } else {
-                // Regular IO exception handling
                 Logger.getLogger(SapCamelotOrderController.class.getName()).log(Level.SEVERE, null, ex);
                 modelMap.addAttribute("message", "An error occurred: " + ex.getMessage());
             }
         }
+
         return "redirect:camelotDeliveryDashboardX.htm";
     }
 
