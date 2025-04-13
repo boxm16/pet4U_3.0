@@ -305,13 +305,21 @@ public class SapCamelotDeliveryDao {
                 + dbSchema + ".OPDN.\"DocDate\", "
                 + dbSchema + ".OPDN.\"DocStatus\", "
                 + dbSchema + ".OPDN.\"Comments\", "
-                + "POR.\"DocNum\" AS \"RefPONum\" " // Add referenced PO number
+                + "STRING_AGG(DISTINCT POR.\"DocNum\", ', ') AS \"RefPONum\" "
                 + "FROM " + dbSchema + ".OPDN "
                 + "JOIN " + dbSchema + ".PDN1 ON "
                 + dbSchema + ".OPDN.\"DocEntry\" = " + dbSchema + ".PDN1.\"DocEntry\" "
                 + "JOIN " + dbSchema + ".OPOR POR ON "
                 + dbSchema + ".PDN1.\"BaseEntry\" = POR.\"DocEntry\" "
-                + "ORDER BY " + dbSchema + ".OPDN.\"CardName\", " + dbSchema + ".OPDN.\"DocDate\" DESC";
+                + "GROUP BY "
+                + dbSchema + ".OPDN.\"DocEntry\", "
+                + dbSchema + ".OPDN.\"DocNum\", "
+                + dbSchema + ".OPDN.\"CardCode\", "
+                + dbSchema + ".OPDN.\"CardName\", "
+                + dbSchema + ".OPDN.\"DocDate\", "
+                + dbSchema + ".OPDN.\"DocStatus\", "
+                + dbSchema + ".OPDN.\"Comments\" "
+                + "ORDER BY \"RefPONum\", " + dbSchema + ".OPDN.\"CardName\", " + dbSchema + ".OPDN.\"DocDate\" DESC";
 
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
 
