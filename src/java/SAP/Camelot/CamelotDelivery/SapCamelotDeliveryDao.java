@@ -329,6 +329,7 @@ public class SapCamelotDeliveryDao {
                     LocalDate today = LocalDate.now();
                     
                     if (dbDate.equals(today)) {
+                        System.out.println("----------------------"+resultSet.getString("ReferencedPO"));
                         DeliveryInvoice goodsReceipt = new DeliveryInvoice();
                         goodsReceipt.setSupplier(resultSet.getString("CardName"));
                         goodsReceipt.setInvoiceId(resultSet.getString("DocEntry"));
