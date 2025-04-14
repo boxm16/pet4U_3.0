@@ -254,6 +254,8 @@ public class SapCamelotDeliveryController {
         ArrayList<DeliveryItem> pet4UItemsRowByRow = deliveryDao.getPet4UItemsRowByRow();
 
         modelMap.addAttribute("pet4UItemsRowByRow", pet4UItemsRowByRow);
+        String cancelButton = "<button class=\"btn-danger\" onclick=\"requestRouter('cancelSapGoodsReceipt.htm')\"><H1>Save IN SAP-ΠΡΟΣΟΧΗ - ΜΗ ΑΝΑΤΡΕΨΗΜΟ</H1></button>";
+        modelMap.addAttribute("cancelButton", cancelButton);
 
         return "sap/camelot/delivery/goodsReceiptDisplay";
 
@@ -381,6 +383,68 @@ public class SapCamelotDeliveryController {
         SapCamelotDeliveryDao dao = new SapCamelotDeliveryDao();
         String deleteResult = dao.deleteDeliveryChecking(invoiceId);
         String result = dao.saveSapTempoDeliveryChecking(invoiceId, supplierCode, invoiceNumber, deliveryItems, "closed");
+        return "redirect:camelotDeliveryDashboardX.htm";
+    }
+
+    @RequestMapping(value = "cancelSapGoodsReceipt", method = RequestMethod.POST)
+    public String cancelSapGoodsReceipt(
+            @RequestParam(name = "invoiceId") String invoiceId, // The DocEntry of the GRPO you want to cancel
+            @RequestParam(name = "supplier") String supplierCode,
+            RedirectAttributes redirectAttributes) {
+
+        System.out.println("🔥 cancelSapGoodsReceipt: Method started");
+        System.out.println("📦 Inputs - Invoice ID: " + invoiceId + ", Supplier: " + supplierCode);
+
+        SapCamelotDeliveryDao dao = new SapCamelotDeliveryDao();
+
+        try {
+            // 1. Prepare SAP B1 API connection
+            System.out.println("🔌 Connecting to SAP B1 API...");
+            SapCamelotApiConnector apiConnector = new SapCamelotApiConnector();
+            String endpoint = "/PurchaseDeliveryNotes(" + invoiceId + ")/Cancel";  // Use the Cancel operation on the GRPO
+            HttpURLConnection conn = apiConnector.createConnection(endpoint, "POST");
+
+            // 2. Send request to cancel the Goods Receipt
+            System.out.println("🚀 Sending request to SAP B1 for cancellation...");
+            apiConnector.sendRequestBody(conn, "{}");  // Empty JSON body is typically fine for cancellation requests
+
+            // 3. Handle response with detailed logging
+            int responseCode = conn.getResponseCode();
+            if (responseCode == 204) {  // Success response for cancellation (204 No Content)
+                System.out.println("🎉 Success! Goods Receipt canceled: " + invoiceId);
+                redirectAttributes.addFlashAttribute("message",
+                        "Goods Receipt canceled successfully! SAP GRPO #: " + invoiceId);
+
+                // Log full response for debugging
+                System.out.println("📄 Full SAP Response: Cancellation successful");
+
+            } else {
+                String error = apiConnector.getErrorResponse(conn);
+                System.out.println("❌ SAP Error (HTTP " + responseCode + "): " + error);
+
+                // Additional debug info
+                System.out.println("🔧 Request Details:");
+                System.out.println("URL: " + conn.getURL());
+                System.out.println("Headers: " + conn.getRequestProperties());
+
+                redirectAttributes.addFlashAttribute("message", "SAP Error: " + error);
+                return "redirect:camelotDeliveryDashboardX.htm";
+            }
+
+        } catch (JSONException e) {
+            System.out.println("❌ JSON Error: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("message", "Invalid JSON payload: " + e.getMessage());
+        } catch (IOException e) {
+            System.out.println("❌ IO Error: " + e.getMessage());
+            System.out.println("🛠️ StackTrace: " + Arrays.toString(e.getStackTrace()));
+            redirectAttributes.addFlashAttribute("message", "SAP API connection failed: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("❌ Unexpected Error: " + e.getMessage());
+            System.out.println("🛠️ StackTrace: " + Arrays.toString(e.getStackTrace()));
+            redirectAttributes.addFlashAttribute("message", "Unexpected error: " + e.getMessage());
+        }
+
+        System.out.println("🏁 Method completed.");
         return "redirect:camelotDeliveryDashboardX.htm";
     }
 

@@ -40,7 +40,7 @@
     </head>
     <body>
     <center>
-        <h1>Delivery Receipt</h1>
+        <h1>Delivery Checking</h1>
         <h3>
             Ημερομηνία Παραστατικού: ${deliveryInvoice.insertionDate} 
             &nbsp;&nbsp;&nbsp; 
@@ -65,7 +65,10 @@
                     <th>A/A</th>
                     <th>Code</th>
                     <th>Description</th>
+                    <th>Sent</th>
                     <th>Delivered</th>
+                    <th>Alert</th>
+                    <th>PO Line</th>
                 </tr>
             </thead>
             <tbody id="tableBody">
@@ -80,14 +83,24 @@
                         out.println("<td>" + x + "</td>");
                         out.println("<td style='padding-left: 5px;'>" + item.getCode() + "</td>");
                         out.println("<td>" + item.getDescription() + "</td>");
+                        out.println("<td><input class='sent' type='number' id='" + item.getCode() + "_sent' value='" + item.getQuantity() + "' readonly></td>");
                         out.println("<td><input class='delivered' type='number' id='" + item.getCode() + "_delivered' value='" + item.getDeliveredQuantity() + "'></td>");
+                        out.println("<td><div id='" + item.getCode() + "_colorDisplay'>____</div></td>");
+                        out.println("<td class='po-line'>" + item.getBaseLine() + "</td>");
                         out.println("</tr>");
                         x++;
                     }
                 %>
             </tbody>
         </table>
-        <hr>
+
+        <hr><hr><hr><hr><hr><hr>
+        ${cancelButton}
+        <form id="form" action="#" method="POST">
+            <input hidden type="text" name="invoiceId" value="${deliveryInvoice.invoiceId}">
+            <input hidden type="text" name="supplier" value="${deliveryInvoice.supplier}">
+        </form>
+
     </center>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -169,7 +182,7 @@
                                     c4.innerHTML = "<input class='sent' type='number' id='" + code + "_sent' value='0' readonly>";
                                     c5.innerHTML = "<input class='delivered' type='number' id='" + code + "_delivered' value='0'>";
                                     c6.innerHTML = "<div id='" + code + "_colorDisplay'>____</div>";
-                                    c7.innerHTML = "<span class='po-line'>0</span>";
+                                    c7.innerHTML = "<span class='po-line'>-1</span>";
 
                                     row.appendChild(c1);
                                     row.appendChild(c2);
