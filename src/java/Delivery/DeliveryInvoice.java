@@ -14,6 +14,7 @@ public class DeliveryInvoice {
     private String warehouseCode;
     private String baseEntry;
     private String referencedPO;
+    private String status;
 
     public DeliveryInvoice() {
         this.errorMessages = "";
@@ -98,6 +99,14 @@ public class DeliveryInvoice {
 
     public void setReferencedPO(String referencedPO) {
         this.referencedPO = referencedPO;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
 }

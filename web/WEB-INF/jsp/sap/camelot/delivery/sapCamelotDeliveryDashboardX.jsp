@@ -80,6 +80,13 @@
                 font-weight: bold;
                 color: #333;
             }
+
+            /* Highlight canceled GRs */
+            .canceled-row {
+                background-color: #ffe6e6; /* light red */
+                color: #a10000;           /* dark red */
+                font-weight: bold;
+            }
         </style>
     </head>
     <body>
@@ -179,7 +186,7 @@
                     </thead>
                     <tbody>
                         <c:forEach var="gr" items="${todaysGoodsReceipts}">
-                            <tr>
+                            <tr class="${gr.canceled eq 'Y' ? 'canceled-row' : ''}">
                                 <td class="supplier-cell">${gr.supplier}</td>
                                 <td>
                                     <button class="invoice-btn goods-receipt-btn"

@@ -201,25 +201,27 @@ public class SapCamelotDeliveryDao {
                 + dbSchema + ".OPDN.\"CardCode\", "
                 + dbSchema + ".OPDN.\"CardName\", "
                 + dbSchema + ".OPDN.\"DocDate\", "
+                + dbSchema + ".OPDN.\"DocStatus\", " // <-- Added status field
+                + dbSchema + ".OPDN.\"CANCELED\", " // <-- Added canceled info
                 + dbSchema + ".PDN1.\"ItemCode\", "
                 + dbSchema + ".PDN1.\"Dscription\", "
                 + dbSchema + ".PDN1.\"Quantity\", "
                 + dbSchema + ".PDN1.\"Price\", "
                 + dbSchema + ".PDN1.\"WhsCode\", "
-                + dbSchema + ".PDN1.\"BaseEntry\", " // Original PO DocEntry
-                + dbSchema + ".PDN1.\"BaseLine\", " // Original PO LineNum
-                + dbSchema + ".PDN1.\"LineNum\", " // GRPO LineNum
-                + dbSchema + ".OPOR.\"DocNum\" AS \"PONum\" " // Original PO Document Number
+                + dbSchema + ".PDN1.\"BaseEntry\", "
+                + dbSchema + ".PDN1.\"BaseLine\", "
+                + dbSchema + ".PDN1.\"LineNum\", "
+                + dbSchema + ".OPOR.\"DocNum\" AS \"PONum\" "
                 + "FROM "
-                + dbSchema + ".OPDN " // Goods Receipt (GRPO) header table
+                + dbSchema + ".OPDN "
                 + "JOIN "
-                + dbSchema + ".PDN1 ON " // Goods Receipt (GRPO) lines table
+                + dbSchema + ".PDN1 ON "
                 + dbSchema + ".OPDN.\"DocEntry\" = " + dbSchema + ".PDN1.\"DocEntry\" "
                 + "LEFT JOIN "
-                + dbSchema + ".OPOR ON " // Purchase Order table
+                + dbSchema + ".OPOR ON "
                 + dbSchema + ".PDN1.\"BaseEntry\" = " + dbSchema + ".OPOR.\"DocEntry\" "
                 + "WHERE "
-                + dbSchema + ".OPDN.\"DocEntry\" = ?";  // Filter by GRPO DocEntry (primary key)
+                + dbSchema + ".OPDN.\"DocEntry\" = ?";
 
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
 
@@ -238,6 +240,18 @@ public class SapCamelotDeliveryDao {
                         goodsReceipt.setSupplier(resultSet.getString("CardName"));
                         goodsReceipt.setInsertionDate(resultSet.getString("DocDate"));
                         isFirstRow = false;
+
+                        String status = resultSet.getString("DocStatus");
+                        String canceled = resultSet.getString("CANCELED");
+
+                        if ("Y".equals(canceled)) {
+                            goodsReceipt.setStatus("CANCELED");// The document was canceled
+                        } else if ("O".equals(status)) {
+                            goodsReceipt.setStatus("OPEN"); // Open and active
+                        } else if ("C".equals(status)) {
+                            goodsReceipt.setStatus("CLOSED");  // Closed but not canceled
+                        }
+
                     }
 
                     DeliveryItem item = new DeliveryItem();
