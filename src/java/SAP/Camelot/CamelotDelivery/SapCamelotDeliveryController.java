@@ -254,7 +254,7 @@ public class SapCamelotDeliveryController {
         ArrayList<DeliveryItem> pet4UItemsRowByRow = deliveryDao.getPet4UItemsRowByRow();
 
         modelMap.addAttribute("pet4UItemsRowByRow", pet4UItemsRowByRow);
-        String cancelButton = "<button class=\"btn-danger\" onclick=\"requestRouter('cancelSapGoodsReceipt.htm')\"><H1>Save IN SAP-ΠΡΟΣΟΧΗ - ΜΗ ΑΝΑΤΡΕΨΗΜΟ</H1></button>";
+        String cancelButton = "<button class=\"btn-danger\" onclick=\"requestRouter('cancelSapGoodsReceipt.htm')\"><H1>CANCEL RECEIPT</H1></button>";
         modelMap.addAttribute("cancelButton", cancelButton);
 
         return "sap/camelot/delivery/goodsReceiptDisplay";
