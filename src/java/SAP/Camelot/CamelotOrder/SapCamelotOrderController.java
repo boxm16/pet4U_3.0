@@ -19,9 +19,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class SapCamelotOrderController {
 
     private final String BASE_URL = "https://192.168.0.183:50000/b1s/v2";
-    private final String ITEM_CODE_1 = "1271";
+    /* private final String ITEM_CODE_1 = "1271";
     private final String ITEM_CODE_2 = "1273";
     private final String ITEM_CODE_3 = "1274";
+    private final String SUPPLIER_CODE = "ΠΡΟ-000115";*/
+
+    private final String ITEM_CODE_1 = "1420";
+    private final String ITEM_CODE_2 = "1475";
+    private final String ITEM_CODE_3 = "1411";
+    private final String SUPPLIER_CODE = "ΠΡΟ-000032";
 
     @RequestMapping(value = "createPurchaseOrder")
     public String createPurchaseOrder(ModelMap modelMap) {
@@ -37,7 +43,7 @@ public class SapCamelotOrderController {
 
             // JSON Payload for Purchase Order
             JSONObject payload = new JSONObject();
-            payload.put("CardCode", "ΠΡΟ-000115"); // Supplier Code
+            payload.put("CardCode", SUPPLIER_CODE); // Supplier Code
 
             // Set dates
             LocalDate today = LocalDate.now();
