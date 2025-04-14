@@ -240,18 +240,6 @@ public class SapCamelotDeliveryDao {
                         goodsReceipt.setSupplier(resultSet.getString("CardName"));
                         goodsReceipt.setInsertionDate(resultSet.getString("DocDate"));
                         isFirstRow = false;
-
-                        String status = resultSet.getString("DocStatus");
-                        String canceled = resultSet.getString("CANCELED");
-                        System.out.println("SC: " + status + canceled);
-                        if ("Y".equals(canceled)) {
-                            goodsReceipt.setStatus("CANCELED");// The document was canceled
-                        } else if ("O".equals(status)) {
-                            goodsReceipt.setStatus("OPEN"); // Open and active
-                        } else if ("C".equals(status)) {
-                            goodsReceipt.setStatus("CLOSED");  // Closed but not canceled
-                        }
-
                     }
 
                     DeliveryItem item = new DeliveryItem();
@@ -318,6 +306,7 @@ public class SapCamelotDeliveryDao {
                 + "GR.\"CardName\", "
                 + "GR.\"DocDate\", "
                 + "GR.\"DocStatus\", "
+                + "GR.\"Canceled\", " // <-- NEW field
                 + "GR.\"Comments\", "
                 + "STRING_AGG(Ref.\"PONum\", ', ') AS \"RefPONum\" "
                 + "FROM " + dbSchema + ".OPDN GR "
@@ -333,6 +322,7 @@ public class SapCamelotDeliveryDao {
                 + "GR.\"CardName\", "
                 + "GR.\"DocDate\", "
                 + "GR.\"DocStatus\", "
+                + "GR.\"Canceled\", " // <-- GROUP BY this too
                 + "GR.\"Comments\" "
                 + "ORDER BY \"RefPONum\" DESC, GR.\"CardName\", GR.\"DocDate\" DESC";
 
@@ -362,7 +352,17 @@ public class SapCamelotDeliveryDao {
                         goodsReceipt.setNumber(resultSet.getString("DocNum"));
                         goodsReceipt.setInsertionDate(resultSet.getString("DocDate"));
                         goodsReceipt.setReferencedPO(resultSet.getString("RefPONum"));
-
+                        String canceled = resultSet.getString("Canceled");
+                        String docStatus = resultSet.getString("DocStatus");
+                        if ("Y".equalsIgnoreCase(canceled)) {
+                            goodsReceipt.setStatus("CANCELED");
+                        } else if ("O".equalsIgnoreCase(docStatus)) {
+                            goodsReceipt.setStatus("OPEN");
+                        } else if ("C".equalsIgnoreCase(docStatus)) {
+                            goodsReceipt.setStatus("CLOSED");
+                        } else {
+                            goodsReceipt.setStatus("UNKNOWN"); // fallback
+                        }
 //  goodsReceipt.setComments(resultSet.getString("Comments"));
                         goodsReceipts.add(goodsReceipt);
                     }
