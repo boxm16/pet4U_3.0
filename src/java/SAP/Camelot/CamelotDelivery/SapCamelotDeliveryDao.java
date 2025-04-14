@@ -243,7 +243,7 @@ public class SapCamelotDeliveryDao {
 
                         String status = resultSet.getString("DocStatus");
                         String canceled = resultSet.getString("CANCELED");
-
+                        System.out.println("SC: " + status + canceled);
                         if ("Y".equals(canceled)) {
                             goodsReceipt.setStatus("CANCELED");// The document was canceled
                         } else if ("O".equals(status)) {
