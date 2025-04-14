@@ -24,10 +24,11 @@ public class SapCamelotOrderController {
     private final String ITEM_CODE_3 = "1274";
     private final String SUPPLIER_CODE = "ΠΡΟ-000115";*/
 
-    private final String ITEM_CODE_1 = "1420";
-    private final String ITEM_CODE_2 = "1475";
-    private final String ITEM_CODE_3 = "1411";
-    private final String SUPPLIER_CODE = "ΠΡΟ-000032";
+    private final String ITEM_CODE_1 = "1216";
+    private final String ITEM_CODE_2 = "1217";
+    private final String ITEM_CODE_3 = "1215";
+    private final String ITEM_CODE_4 = "1219";
+    private final String SUPPLIER_CODE = "ΠΡΟ-000062";
 
     @RequestMapping(value = "createPurchaseOrder")
     public String createPurchaseOrder(ModelMap modelMap) {
@@ -57,6 +58,7 @@ public class SapCamelotOrderController {
             documentLines.put(createOrderLine(ITEM_CODE_1, 10, 50.0));
             documentLines.put(createOrderLine(ITEM_CODE_2, 15, 75.0));
             documentLines.put(createOrderLine(ITEM_CODE_3, 20, 100.0));
+            documentLines.put(createOrderLine(ITEM_CODE_4, 5, 100.0));
             payload.put("DocumentLines", documentLines);
 
             try {
