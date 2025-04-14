@@ -186,7 +186,7 @@
                     </thead>
                     <tbody>
                         <c:forEach var="gr" items="${todaysGoodsReceipts}">
-                            <tr class="${gr.canceled eq 'Y' ? 'canceled-row' : ''}">
+                            <tr class="${gr.status eq 'CANCELED' ? 'canceled-row' : ''}">
                                 <td class="supplier-cell">${gr.supplier}</td>
                                 <td>
                                     <button class="invoice-btn goods-receipt-btn"
