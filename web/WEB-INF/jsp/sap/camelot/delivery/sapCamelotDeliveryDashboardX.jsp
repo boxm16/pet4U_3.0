@@ -186,10 +186,11 @@
                     </thead>
                     <tbody>
                         <c:forEach var="gr" items="${todaysGoodsReceipts}">
-                            <tr class="${gr.status eq 'CANCELED' ? 'canceled-row' : ''}">
+                            <tr>
                                 <td class="supplier-cell">${gr.supplier}</td>
                                 <td>
                                     <button class="invoice-btn goods-receipt-btn"
+                                            style="background-color:${gr.status eq 'CANCELED' ? 'red' : ''}"
                                             onclick="window.open('showGoodsReceipt.htm?invoiceId=${gr.invoiceId}', '_blank')">
                                         ${gr.number}
                                     </button>
