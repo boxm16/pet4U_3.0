@@ -306,7 +306,7 @@ public class SapCamelotDeliveryDao {
                 + "GR.\"CardName\", "
                 + "GR.\"DocDate\", "
                 + "GR.\"DocStatus\", "
-                + "GR.\"Canceled\", " // <-- NEW field
+                + "GR.\"CANCELED\", " // <-- NEW field
                 + "GR.\"Comments\", "
                 + "STRING_AGG(Ref.\"PONum\", ', ') AS \"RefPONum\" "
                 + "FROM " + dbSchema + ".OPDN GR "
@@ -322,7 +322,7 @@ public class SapCamelotDeliveryDao {
                 + "GR.\"CardName\", "
                 + "GR.\"DocDate\", "
                 + "GR.\"DocStatus\", "
-                + "GR.\"Canceled\", " // <-- GROUP BY this too
+                + "GR.\"CANCELED\", " // <-- GROUP BY this too
                 + "GR.\"Comments\" "
                 + "ORDER BY \"RefPONum\" DESC, GR.\"CardName\", GR.\"DocDate\" DESC";
 
