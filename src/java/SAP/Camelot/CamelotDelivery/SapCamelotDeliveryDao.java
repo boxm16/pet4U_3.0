@@ -269,11 +269,24 @@ public class SapCamelotDeliveryDao {
                 + dbSchema + ".OPOR.\"CardCode\", "
                 + dbSchema + ".OPOR.\"CardName\", "
                 + dbSchema + ".OPOR.\"DocDate\", "
-                + dbSchema + ".OPOR.\"DocStatus\" "
-                + "FROM "
-                + dbSchema + ".OPOR "
+                + dbSchema + ".OPOR.\"DocStatus\", "
+                + "CASE "
+                + "WHEN EXISTS ( "
+                + "    SELECT 1 FROM " + dbSchema + ".POR1 "
+                + "    WHERE " + dbSchema + ".POR1.\"DocEntry\" = " + dbSchema + ".OPOR.\"DocEntry\" "
+                + "    AND " + dbSchema + ".POR1.\"OpenQty\" < " + dbSchema + ".POR1.\"Quantity\" "
+                + "    AND " + dbSchema + ".POR1.\"OpenQty\" > 0 "
+                + ") THEN 'Partially Delivered' "
+                + "WHEN EXISTS ( "
+                + "    SELECT 1 FROM " + dbSchema + ".POR1 "
+                + "    WHERE " + dbSchema + ".POR1.\"DocEntry\" = " + dbSchema + ".OPOR.\"DocEntry\" "
+                + "    AND " + dbSchema + ".POR1.\"OpenQty\" = " + dbSchema + ".POR1.\"Quantity\" "
+                + ") THEN 'Not Delivered' "
+                + "END AS \"DeliveryStatus\" "
+                + "FROM " + dbSchema + ".OPOR "
                 + "WHERE " + dbSchema + ".OPOR.\"DocStatus\" = 'O' "
                 + "ORDER BY " + dbSchema + ".OPOR.\"DocDate\" DESC";
+
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
 
         try (Connection connection = databaseConnectionFactory.getSapHanaConnection();
@@ -286,6 +299,7 @@ public class SapCamelotDeliveryDao {
                 purchaseOrderInvoice.setInvoiceId(resultSet.getString("DocEntry"));
                 purchaseOrderInvoice.setNumber(resultSet.getString("DocNum"));
                 purchaseOrderInvoice.setInsertionDate(resultSet.getString("DocDate"));
+                purchaseOrderInvoice.setStatus(resultSet.getString("DeliveryStatus"));
 
                 duePurchaseOrders.add(purchaseOrderInvoice);
             }
