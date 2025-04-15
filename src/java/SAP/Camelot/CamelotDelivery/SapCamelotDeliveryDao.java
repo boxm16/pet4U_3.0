@@ -273,9 +273,13 @@ public class SapCamelotDeliveryDao {
                 + "CASE WHEN EXISTS ( "
                 + "    SELECT 1 FROM " + dbSchema + ".POR1 "
                 + "    WHERE " + dbSchema + ".POR1.\"DocEntry\" = " + dbSchema + ".OPOR.\"DocEntry\" "
-                + "    AND " + dbSchema + ".POR1.\"OpenQty\" > 0 "
+                + "    AND ("
+                + "        (" + dbSchema + ".POR1.\"OpenQty\" < " + dbSchema + ".POR1.\"Quantity\" AND " + dbSchema + ".POR1.\"OpenQty\" > 0) " // Partially delivered (3/10)
+                + "        OR "
+                + "        (" + dbSchema + ".POR1.\"OpenQty\" = " + dbSchema + ".POR1.\"Quantity\") " // Not delivered at all (0/10)
+                + "    ) "
                 + ") THEN 'Partially Delivered' "
-                + "ELSE NULL " // or just remove this ELSE if you prefer no status
+                + "ELSE NULL " // No status if fully delivered
                 + "END AS \"DeliveryStatus\" "
                 + "FROM " + dbSchema + ".OPOR "
                 + "WHERE " + dbSchema + ".OPOR.\"DocStatus\" = 'O' "
