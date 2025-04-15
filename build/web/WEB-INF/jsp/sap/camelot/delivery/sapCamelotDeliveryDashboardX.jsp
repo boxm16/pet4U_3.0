@@ -119,9 +119,9 @@
                                 <td class="supplier-cell">${po.supplier}</td>
                                 <td>
                                     <button class="invoice-btn"
-                                            style="background-color:${gr.status eq 'Partially Delivered' ? '#AECA20' : ''}"
+                                            style="background-color:${po.status eq 'Partially Delivered' ? '#AECA20' : ''}"
                                             onclick="window.open('sapCamelotDeliveryInvoiceChecking.htm?invoiceId=${po.invoiceId}', '_blank')">
-                                        ${po.number}${gr.status}
+                                        ${po.number}${po.status}
                                     </button>
                                     
                                 </td>

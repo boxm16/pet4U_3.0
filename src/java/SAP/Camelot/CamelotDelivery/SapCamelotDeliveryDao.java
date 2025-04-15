@@ -302,7 +302,7 @@ public class SapCamelotDeliveryDao {
                 purchaseOrderInvoice.setInsertionDate(resultSet.getString("DocDate"));
                 purchaseOrderInvoice.setStatus(resultSet.getString("DocStatus"));
                 String deliveryStatus = resultSet.getString("DeliveryStatus");
-                if (deliveryStatus != null || !deliveryStatus.isEmpty()) {
+                if (deliveryStatus != null && !deliveryStatus.isEmpty()) {
                     purchaseOrderInvoice.setStatus(deliveryStatus);
                 }
                 duePurchaseOrders.add(purchaseOrderInvoice);
