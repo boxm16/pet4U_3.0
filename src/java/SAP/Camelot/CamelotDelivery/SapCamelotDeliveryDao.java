@@ -269,20 +269,14 @@ public class SapCamelotDeliveryDao {
                 + dbSchema + ".OPOR.\"CardCode\", "
                 + dbSchema + ".OPOR.\"CardName\", "
                 + dbSchema + ".OPOR.\"DocDate\", "
-                + dbSchema + ".OPOR.\"DocStatus\", "
-                + "CASE WHEN EXISTS ( "
-                + "    SELECT 1 FROM " + dbSchema + ".POR1 "
-                + "    WHERE " + dbSchema + ".POR1.\"DocEntry\" = " + dbSchema + ".OPOR.\"DocEntry\" "
-                + "    AND ("
-                + "        (" + dbSchema + ".POR1.\"OpenQty\" < " + dbSchema + ".POR1.\"Quantity\" AND " + dbSchema + ".POR1.\"OpenQty\" > 0) " // Partially delivered (3/10)
-                + "        OR "
-                + "        (" + dbSchema + ".POR1.\"OpenQty\" = " + dbSchema + ".POR1.\"Quantity\") " // Not delivered at all (0/10)
-                + "    ) "
-                + ") THEN 'Partially Delivered' "
-                + "ELSE NULL " // No status if fully delivered
-                + "END AS \"DeliveryStatus\" "
+                + dbSchema + ".OPOR.\"DocStatus\" "
                 + "FROM " + dbSchema + ".OPOR "
                 + "WHERE " + dbSchema + ".OPOR.\"DocStatus\" = 'O' "
+                + "AND NOT EXISTS ( "
+                + "    SELECT 1 FROM " + dbSchema + ".POR1 "
+                + "    WHERE " + dbSchema + ".POR1.\"DocEntry\" = " + dbSchema + ".OPOR.\"DocEntry\" "
+                + "    AND " + dbSchema + ".POR1.\"OpenQty\" > 0 "
+                + ") "
                 + "ORDER BY " + dbSchema + ".OPOR.\"DocDate\" DESC";
 
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
