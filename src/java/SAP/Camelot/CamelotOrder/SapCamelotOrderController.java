@@ -6,6 +6,10 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.json.JSONArray;
@@ -13,25 +17,39 @@ import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 
 public class SapCamelotOrderController {
 
     private final String BASE_URL = "https://192.168.0.183:50000/b1s/v2";
-    /* private final String ITEM_CODE_1 = "1271";
-    private final String ITEM_CODE_2 = "1273";
-    private final String ITEM_CODE_3 = "1274";
-    private final String SUPPLIER_CODE = "ΠΡΟ-000115";*/
 
-    private final String ITEM_CODE_1 = "1216";
-    private final String ITEM_CODE_2 = "1217";
-    private final String ITEM_CODE_3 = "1215";
-    private final String ITEM_CODE_4 = "1219";
-    private final String SUPPLIER_CODE = "ΠΡΟ-000062";
+// Sample supplier/item configurations
+    private static final Map<String, List<ItemLine>> SUPPLIER_ITEM_MAP = new HashMap<>();
+
+    static {
+        SUPPLIER_ITEM_MAP.put("ΠΡΟ-000062", Arrays.asList(
+                new ItemLine("1216", 10, 50.0),
+                new ItemLine("1217", 15, 75.0),
+                new ItemLine("1215", 20, 100.0),
+                new ItemLine("1219", 5, 100.0)
+        ));
+
+        SUPPLIER_ITEM_MAP.put("ΠΡΟ-000115", Arrays.asList(
+                new ItemLine("1271", 8, 60.0),
+                new ItemLine("1273", 12, 80.0),
+                new ItemLine("1274", 5, 90.0)
+        ));
+    }
 
     @RequestMapping(value = "createPurchaseOrder")
-    public String createPurchaseOrder(ModelMap modelMap) {
+    public String createPurchaseOrder(@RequestParam("supplierCode") String supplierCode, ModelMap modelMap) {
+        if (!SUPPLIER_ITEM_MAP.containsKey(supplierCode)) {
+            modelMap.addAttribute("message", "❌ Unknown supplier code: " + supplierCode);
+            return "redirect:camelotDeliveryDashboardX.htm";
+        }
+
         try {
             String purchaseOrderUrl = BASE_URL + "/PurchaseOrders";
             SAPApiClient sapApiClient = new SAPApiClient();
@@ -42,23 +60,21 @@ public class SapCamelotOrderController {
             conn.setRequestProperty("Cookie", "B1SESSION=" + sessionToken);
             conn.setDoOutput(true);
 
-            // JSON Payload for Purchase Order
+            // Prepare payload
             JSONObject payload = new JSONObject();
-            payload.put("CardCode", SUPPLIER_CODE); // Supplier Code
+            payload.put("CardCode", supplierCode);
 
-            // Set dates
             LocalDate today = LocalDate.now();
             LocalDate dueDate = today.plusDays(3);
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             payload.put("DocDate", today.format(formatter));
             payload.put("DocDueDate", dueDate.format(formatter));
 
-            // Add Document Lines
+            // Add lines for the given supplier
             JSONArray documentLines = new JSONArray();
-            documentLines.put(createOrderLine(ITEM_CODE_1, 10, 50.0));
-            documentLines.put(createOrderLine(ITEM_CODE_2, 15, 75.0));
-            documentLines.put(createOrderLine(ITEM_CODE_3, 20, 100.0));
-            documentLines.put(createOrderLine(ITEM_CODE_4, 5, 100.0));
+            for (ItemLine item : SUPPLIER_ITEM_MAP.get(supplierCode)) {
+                documentLines.put(createOrderLine(item));
+            }
             payload.put("DocumentLines", documentLines);
 
             try {
@@ -67,52 +83,72 @@ public class SapCamelotOrderController {
                 Logger.getLogger(SapController.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-            // Send the request
             sapApiClient.sendRequestBody(conn, payload.toString());
-
-            // Get response code first
             int responseCode = conn.getResponseCode();
 
             if (responseCode == 201) {
                 try {
-                    JSONObject jsonResponse = sapApiClient.getJsonResponse(conn); // May throw HeadersTooLarge
-                    System.out.println("✅ Purchase Order Created Successfully with all items!");
-                    modelMap.addAttribute("message", "Purchase Order created successfully. Details too large to expose here, but dont worry, its ok : ");
+                    JSONObject jsonResponse = sapApiClient.getJsonResponse(conn);
+                    System.out.println("✅ Purchase Order Created Successfully!");
+                    modelMap.addAttribute("message", "Purchase Order created successfully.");
                 } catch (Exception headerEx) {
                     if (headerEx.getClass().getSimpleName().contains("HeadersTooLarge")) {
-                        System.out.println("⚠️ PO created, but response headers too large. Skipping body parsing.");
-                        modelMap.addAttribute("message", "Purchase Order created successfully, but response was too large to parse.");
+                        System.out.println("⚠️ PO created, response headers too large.");
+                        modelMap.addAttribute("message", "PO created, but response too large to parse.");
                     } else {
-                        throw headerEx; // Unknown issue? Bubble it up
+                        throw headerEx;
                     }
                 }
             } else {
                 String errorResponse = sapApiClient.getErrorResponse(conn);
-                System.out.println("❌ Error Creating Purchase Order: " + errorResponse);
-                modelMap.addAttribute("message", "Error Creating Purchase Order: " + errorResponse);
+                System.out.println("❌ Error Creating PO: " + errorResponse);
+                modelMap.addAttribute("message", "Error Creating PO: " + errorResponse);
             }
 
         } catch (IOException ex) {
-            if (ex.getMessage().contains("HeadersTooLarge")
-                    || ex.getClass().getSimpleName().contains("HeadersTooLarge")) {
-                Logger.getLogger(SapCamelotOrderController.class.getName()).log(Level.WARNING, "⚠️ Headers too large, but PO might be created", ex);
-                modelMap.addAttribute("message", "Purchase Order may be created, but the response was too large.");
+            if (ex.getMessage().contains("HeadersTooLarge")) {
+                modelMap.addAttribute("message", "⚠️ PO may be created, but response was too large.");
             } else {
-                Logger.getLogger(SapCamelotOrderController.class.getName()).log(Level.SEVERE, null, ex);
-                modelMap.addAttribute("message", "An error occurred: " + ex.getMessage());
+                modelMap.addAttribute("message", "❌ Error occurred: " + ex.getMessage());
             }
+            Logger.getLogger(SapCamelotOrderController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return "redirect:camelotDeliveryDashboardX.htm";
     }
 
-    // Helper method to create order line items
-    private JSONObject createOrderLine(String itemCode, int quantity, double unitPrice) {
+    private JSONObject createOrderLine(ItemLine item) {
         JSONObject line = new JSONObject();
-        line.put("ItemCode", itemCode);
-        line.put("Quantity", quantity);
-        line.put("UnitPrice", unitPrice);
-        // You can add more line item properties if needed
+        line.put("ItemCode", item.getItemCode());
+        line.put("Quantity", item.getQuantity());
+        line.put("UnitPrice", item.getUnitPrice());
         return line;
     }
+
+// Simple helper class for item details
+    static class ItemLine {
+
+        private final String itemCode;
+        private final int quantity;
+        private final double unitPrice;
+
+        public ItemLine(String itemCode, int quantity, double unitPrice) {
+            this.itemCode = itemCode;
+            this.quantity = quantity;
+            this.unitPrice = unitPrice;
+        }
+
+        public String getItemCode() {
+            return itemCode;
+        }
+
+        public int getQuantity() {
+            return quantity;
+        }
+
+        public double getUnitPrice() {
+            return unitPrice;
+        }
+    }
+
 }

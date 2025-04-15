@@ -92,7 +92,9 @@
     <body>
     <center>
         <h1>Purchase Orders and Goods Receipts</h1>
-        <a href="createPurchaseOrder.htm"><h3>Create Due Purchase Order</h3></a>
+        <a href="createPurchaseOrder.htm?supplierCode=ΠΡΟ-000115"><h3>Create Due Purchase Order</h3></a>&nbsp;&nbsp;
+        <a href="createPurchaseOrder.htm?supplierCode=ΠΡΟ-000062"><h3>Create Due Purchase Order</h3></a>
+
     </center>
 
     <div class="container">
