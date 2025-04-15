@@ -146,25 +146,31 @@ public class SapCamelotDeliveryController {
             }
 
             JSONArray documentLines = new JSONArray();
+
             for (Map.Entry<String, String> entry : deliveredItems.entrySet()) {
                 String itemCode = entry.getKey();
+                double quantity = Double.parseDouble(entry.getValue());
+
+                if (quantity <= 0) {
+                    System.out.println("⚠️ Skipping item " + itemCode + " with 0 quantity");
+                    continue;
+                }
+
                 JSONObject line = new JSONObject();
                 line.put("ItemCode", itemCode);
-                line.put("Quantity", Double.parseDouble(entry.getValue()));
+                line.put("Quantity", quantity);
                 line.put("WarehouseCode", "AX-BAR");
 
-                if (!baseLines.get(itemCode).equals("-1")) {
-                    // Critical PO linking information
+                // Link to Purchase Order line if available
+                if (baseLines.containsKey(itemCode) && !"-1".equals(baseLines.get(itemCode))) {
                     line.put("BaseEntry", invoiceId); // PO DocEntry
-                    line.put("BaseType", "22"); // 22 = Purchase Order
+                    line.put("BaseType", "22");       // 22 = Purchase Order
                     line.put("BaseLine", baseLines.get(itemCode)); // PO Line Number
                 }
 
-                // Additional recommended fields
-                //  line.put("AccountCode", "_SYS00000000001"); // Default inventory account
-                // line.put("CostingCode", "PROJ001"); // If using projects
                 documentLines.put(line);
             }
+
             payload.put("DocumentLines", documentLines);
 
             System.out.println("📦 Payload: " + payload.toString(2)); // Pretty-print JSON
