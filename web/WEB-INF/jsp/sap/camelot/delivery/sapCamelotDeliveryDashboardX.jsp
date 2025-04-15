@@ -121,7 +121,7 @@
                                     <button class="invoice-btn"
                                             style="background-color:${po.status eq 'Partially Delivered' ? '#AECA20' : ''}"
                                             onclick="window.open('sapCamelotDeliveryInvoiceChecking.htm?invoiceId=${po.invoiceId}', '_blank')">
-                                        ${po.number}${po.status}
+                                        ${po.number}
                                     </button>
                                     
                                 </td>
