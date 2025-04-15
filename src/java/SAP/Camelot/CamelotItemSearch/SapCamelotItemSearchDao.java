@@ -8,6 +8,7 @@ package SAP.Camelot.CamelotItemSearch;
 import BasicModel.AltercodeContainer;
 import BasicModel.Item;
 import Service.DatabaseConnectionFactory;
+import static Service.StaticsDispatcher.dbSchema;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -51,8 +52,8 @@ public class SapCamelotItemSearchDao {
 
     private Item getItemByBarcode(Connection connection, String barcode) throws SQLException {
         String query = "SELECT t1.*, t2.* "
-                + "FROM \"PETCAMELOT_UAT2\".\"BYT_V_BARCODEDETAILS\" t1 "
-                + "JOIN \"PETCAMELOT_UAT2\".\"BYT_V_ITEMDETAILS\" t2 "
+                + "FROM \"" + dbSchema + "\".\"BYT_V_BARCODEDETAILS\" t1 "
+                + "JOIN \"" + dbSchema + "\".\"BYT_V_ITEMDETAILS\" t2 "
                 + "ON t1.\"ItemCode\" = t2.\"ItemCode\" "
                 + "WHERE t1.\"BarCode\" = ?";
 
@@ -65,8 +66,8 @@ public class SapCamelotItemSearchDao {
 
     private Item getItemByItemCode(Connection connection, String itemCode) throws SQLException {
         String query = "SELECT t1.*, t2.* "
-                + "FROM \"PETCAMELOT_UAT2\".\"BYT_V_BARCODEDETAILS\" t1 "
-                + "JOIN \"PETCAMELOT_UAT2\".\"BYT_V_ITEMDETAILS\" t2 "
+                + "FROM \"" + dbSchema + "\".\"BYT_V_BARCODEDETAILS\" t1 "
+                + "JOIN \"" + dbSchema + "\".\"BYT_V_ITEMDETAILS\" t2 "
                 + "ON t1.\"ItemCode\" = t2.\"ItemCode\" "
                 + "WHERE t1.\"ItemCode\" = ?";
 
@@ -122,9 +123,9 @@ public class SapCamelotItemSearchDao {
 
         try {
             // Query to fetch item details by ItemCode from tables
-            String query = "SELECT t1.\"ItemCode\", t1.\"ItemName\",  t1.\"CodeBars\"   "
-                    + "FROM \"PETCAMELOT_UAT2\".\"OITM\" t1 " // Items master table
-                    + "WHERE t1.\"ItemCode\" = ?";
+          String query = "SELECT t1.\"ItemCode\", t1.\"ItemName\", t1.\"CodeBars\" "
+             + "FROM \"" + dbSchema + "\".\"OITM\" t1 "
+             + "WHERE t1.\"ItemCode\" = ?";
 
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, itemCode);

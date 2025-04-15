@@ -13,6 +13,11 @@ public class StaticsDispatcher {
     private static boolean timerOn = false;
     private static String lastCamelotSnapshotDate = null;
 
+    public static final String dbSchema = "PETCAMELOT_UAT2";
+    // public static final String dbSchema = "TRAINING_PC";
+    public static String COMPANY_DB = "PETCAMELOT_UAT2";
+    // public static String COMPANY_DB = "TRAINING_PC";
+
     public static boolean isTimerOn() {
         return timerOn;
     }
@@ -28,6 +33,5 @@ public class StaticsDispatcher {
     public static void setLastCamelotSnapshotDate(String lastCamelotSnapshotDate) {
         StaticsDispatcher.lastCamelotSnapshotDate = lastCamelotSnapshotDate;
     }
-    
-    
+
 }

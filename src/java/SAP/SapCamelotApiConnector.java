@@ -1,5 +1,6 @@
 package SAP;
 
+import static Service.StaticsDispatcher.COMPANY_DB;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -22,8 +23,7 @@ public class SapCamelotApiConnector {
     private static String SESSION_ID = null; // Initialize as null
     private final String USERNAME = "scanner1";
     private final String PASSWORD = "1234";
-    private final String COMPANY_DB = "PETCAMELOT_UAT2";
-    // private final String COMPANY_DB = "TRAINING_PC";
+ 
 
     public SapCamelotApiConnector() {
         this.login();

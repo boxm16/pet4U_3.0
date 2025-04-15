@@ -22,8 +22,7 @@ public class SapController {
     private final String BASE_URL = "https://192.168.0.183:50000/b1s/v2";
     private final String USERNAME = "scanner1";
     private final String PASSWORD = "1234";
-    private final String COMPANY_DB = "PETCAMELOT_UAT2";
-    //private final String COMPANY_DB = "TRAINING_PC";
+
 
     @RequestMapping(value = "sapIndex")
     public String sapIndex() {

@@ -8,6 +8,7 @@ package SAP.Camelot.UnitOfMeasurement;
 import SAP.SapBasicModel.SapUnitOfMeasurement;
 import SAP.SapBasicModel.SapUnitOfMeasurementGroup;
 import Service.DatabaseConnectionFactory;
+import static Service.StaticsDispatcher.dbSchema;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -28,7 +29,7 @@ public class SapCamelotUnitOfMeasurementDao {
 
         try {
             Statement statement = connection.createStatement();
-            String query = "SELECT * FROM PETCAMELOT_UAT2.OUOM";
+            String query = "SELECT * FROM " + dbSchema + ".OUOM";
             ResultSet resultSet = statement.executeQuery(query);
 
             while (resultSet.next()) {
@@ -64,12 +65,11 @@ public class SapCamelotUnitOfMeasurementDao {
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = null;
-            String query = "SELECT * FROM  PETCAMELOT_UAT2.OUGP "
-                    + "INNER JOIN  PETCAMELOT_UAT2.UGP1 "
-                    + "ON  PETCAMELOT_UAT2.OUGP.\"UgpEntry\" = PETCAMELOT_UAT2.UGP1.\"UgpEntry\" "
-                    + "INNER JOIN  PETCAMELOT_UAT2.OUOM  "
-                    + "ON  PETCAMELOT_UAT2.UGP1.\"UomEntry\" = PETCAMELOT_UAT2.OUOM.\"UomEntry\" ; ";
-
+            String query = "SELECT * FROM " + dbSchema + ".OUGP "
+                    + "INNER JOIN " + dbSchema + ".UGP1 "
+                    + "ON " + dbSchema + ".OUGP.\"UgpEntry\" = " + dbSchema + ".UGP1.\"UgpEntry\" "
+                    + "INNER JOIN " + dbSchema + ".OUOM "
+                    + "ON " + dbSchema + ".UGP1.\"UomEntry\" = " + dbSchema + ".OUOM.\"UomEntry\"";
             resultSet = statement.executeQuery(query);
 
             while (resultSet.next()) {
@@ -107,12 +107,12 @@ public class SapCamelotUnitOfMeasurementDao {
 
         try {
             // Using prepared statement to prevent SQL injection
-            String query = "SELECT * FROM PETCAMELOT_UAT2.OUGP "
-                    + "INNER JOIN PETCAMELOT_UAT2.UGP1 "
-                    + "ON PETCAMELOT_UAT2.OUGP.\"UgpEntry\" = PETCAMELOT_UAT2.UGP1.\"UgpEntry\" "
-                    + "INNER JOIN PETCAMELOT_UAT2.OUOM "
-                    + "ON PETCAMELOT_UAT2.UGP1.\"UomEntry\" = PETCAMELOT_UAT2.OUOM.\"UomEntry\" "
-                    + "WHERE PETCAMELOT_UAT2.OUGP.\"UgpEntry\" = ?";
+            String query = "SELECT * FROM " + dbSchema + ".OUGP "
+                    + "INNER JOIN " + dbSchema + ".UGP1 "
+                    + "ON OUGP.\"UgpEntry\" = UGP1.\"UgpEntry\" "
+                    + "INNER JOIN " + dbSchema + ".OUOM "
+                    + "ON UGP1.\"UomEntry\" = OUOM.\"UomEntry\" "
+                    + "WHERE OUGP.\"UgpEntry\" = ?";
 
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setShort(1, Short.parseShort(ugpEntry)); // Convert String to short
@@ -152,7 +152,7 @@ public class SapCamelotUnitOfMeasurementDao {
 
         return unitOfMeasurementGroup;
     }
-    
+
     public short getNextUomGroupId() {
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
         Connection connection = databaseConnectionFactory.getSapHanaConnection();
@@ -160,7 +160,7 @@ public class SapCamelotUnitOfMeasurementDao {
         try {
             Statement statement = connection.createStatement();
             // SAP HANA SQL to get max ID and increment
-            String query = "SELECT COALESCE(MAX(\"UgpEntry\"), 0) + 1 FROM PETCAMELOT_UAT2.\"OUGP\"";
+            String query = "SELECT COALESCE(MAX(\"UgpEntry\"), 0) + 1 FROM " + dbSchema + ".\"OUGP\"";
             ResultSet resultSet = statement.executeQuery(query);
 
             if (resultSet.next()) {

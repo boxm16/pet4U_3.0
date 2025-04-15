@@ -11,6 +11,7 @@ import SAP.SapBasicModel.SapAltercodeContainer;
 import SAP.SapBasicModel.SapItem;
 import SAP.SapBasicModel.SapUnitOfMeasurement;
 import Service.DatabaseConnectionFactory;
+import static Service.StaticsDispatcher.dbSchema;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -31,23 +32,19 @@ public class SapCamelotItemDao {
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = null;
-            String query = "SELECT OITM.\"ItemCode\",  "
-                    + " OITM.\"ItemName\", OITM.\"CodeBars\",  "
-                    + " OITM.\"U_PickLocation\", "
-                    + " OBCD.\"BcdCode\",   "
-                    + " OUOM.\"UomEntry\",  "
-                    + " OUOM.\"UomCode\", "
-                    + " OUOM.\"UomName\", "
-                    + " UGP1.\"BaseQty\" "
-                    + "  FROM "
-                    + " PETCAMELOT_UAT2.\"OITM\" "
-                    + "  LEFT JOIN "
-                    + " PETCAMELOT_UAT2.OBCD ON PETCAMELOT_UAT2.OITM.\"ItemCode\" = PETCAMELOT_UAT2.OBCD.\"ItemCode\"  "
-                    + "  LEFT JOIN "
-                    + " PETCAMELOT_UAT2.OUOM ON OBCD.\"UomEntry\" = PETCAMELOT_UAT2.OUOM.\"UomEntry\"  "
-                    + "  LEFT JOIN "
-                    + " PETCAMELOT_UAT2.UGP1 ON OUOM.\"UomEntry\" = UGP1.\"UomEntry\" AND UGP1.\"UgpEntry\" = OITM.\"UgpEntry\" " + "  WHERE \n"
-                    + " PETCAMELOT_UAT2.OITM.\"ItemCode\" = '" + itemCode + "';";
+            String query = "SELECT OITM.\"ItemCode\", "
+                    + "OITM.\"ItemName\", OITM.\"CodeBars\", "
+                    + "OITM.\"U_PickLocation\", "
+                    + "OBCD.\"BcdCode\", "
+                    + "OUOM.\"UomEntry\", "
+                    + "OUOM.\"UomCode\", "
+                    + "OUOM.\"UomName\", "
+                    + "UGP1.\"BaseQty\" "
+                    + "FROM " + dbSchema + ".\"OITM\" "
+                    + "LEFT JOIN " + dbSchema + ".OBCD ON " + dbSchema + ".OITM.\"ItemCode\" = " + dbSchema + ".OBCD.\"ItemCode\" "
+                    + "LEFT JOIN " + dbSchema + ".OUOM ON OBCD.\"UomEntry\" = " + dbSchema + ".OUOM.\"UomEntry\" "
+                    + "LEFT JOIN " + dbSchema + ".UGP1 ON OUOM.\"UomEntry\" = UGP1.\"UomEntry\" AND UGP1.\"UgpEntry\" = OITM.\"UgpEntry\" "
+                    + "WHERE " + dbSchema + ".OITM.\"ItemCode\" = '" + itemCode + "';";
 
             resultSet = statement.executeQuery(query);
             int index = 0;
@@ -104,29 +101,28 @@ public class SapCamelotItemDao {
             Statement statement = connection.createStatement();
             ResultSet resultSet = null;
             String query = "SELECT "
-                    + " OITM.\"ItemCode\", "
-                    + " OITM.\"ItemName\", "
-                    + " OITM.\"CodeBars\", "
-                    + " OITM.\"U_PickLocation\", "
-                    + " OITM.\"ItmsGrpCod\", " // Added item group code
-                    + " OBCD.\"BcdCode\", "
-                    + " OBCD.\"BcdName\", "
-                    + " OUOM.\"UomEntry\", "
-                    + " OUOM.\"UomCode\", "
-                    + " OUOM.\"UomName\", "
-                    + " UGP1.\"BaseQty\", "
-                    + " OUGP.\"UgpEntry\", "
-                    + " OUGP.\"UgpCode\", "
-                    + " OUGP.\"UgpName\" "
-                    + "FROM "
-                    + " PETCAMELOT_UAT2.\"OITM\" "
-                    + " LEFT JOIN PETCAMELOT_UAT2.UGP1 ON OITM.\"UgpEntry\" = UGP1.\"UgpEntry\" "
-                    + " LEFT JOIN PETCAMELOT_UAT2.OUOM ON UGP1.\"UomEntry\" = OUOM.\"UomEntry\" "
-                    + " LEFT JOIN PETCAMELOT_UAT2.OBCD ON OITM.\"ItemCode\" = OBCD.\"ItemCode\" "
-                    + "     AND OUOM.\"UomEntry\" = OBCD.\"UomEntry\" "
-                    + " LEFT JOIN PETCAMELOT_UAT2.OUGP ON OITM.\"UgpEntry\" = OUGP.\"UgpEntry\" "
+                    + "OITM.\"ItemCode\", "
+                    + "OITM.\"ItemName\", "
+                    + "OITM.\"CodeBars\", "
+                    + "OITM.\"U_PickLocation\", "
+                    + "OITM.\"ItmsGrpCod\", "
+                    + "OBCD.\"BcdCode\", "
+                    + "OBCD.\"BcdName\", "
+                    + "OUOM.\"UomEntry\", "
+                    + "OUOM.\"UomCode\", "
+                    + "OUOM.\"UomName\", "
+                    + "UGP1.\"BaseQty\", "
+                    + "OUGP.\"UgpEntry\", "
+                    + "OUGP.\"UgpCode\", "
+                    + "OUGP.\"UgpName\" "
+                    + "FROM " + dbSchema + ".\"OITM\" "
+                    + "LEFT JOIN " + dbSchema + ".UGP1 ON OITM.\"UgpEntry\" = UGP1.\"UgpEntry\" "
+                    + "LEFT JOIN " + dbSchema + ".OUOM ON UGP1.\"UomEntry\" = OUOM.\"UomEntry\" "
+                    + "LEFT JOIN " + dbSchema + ".OBCD ON OITM.\"ItemCode\" = OBCD.\"ItemCode\" "
+                    + "    AND OUOM.\"UomEntry\" = OBCD.\"UomEntry\" "
+                    + "LEFT JOIN " + dbSchema + ".OUGP ON OITM.\"UgpEntry\" = OUGP.\"UgpEntry\" "
                     + "WHERE "
-                    + " OITM.\"ItemCode\" = '" + itemCode + "';";
+                    + "OITM.\"ItemCode\" = '" + itemCode + "';";
 
             resultSet = statement.executeQuery(query);
             int index = 0;
@@ -198,8 +194,6 @@ public class SapCamelotItemDao {
         return item;
     }
 
-    
-
     LinkedHashMap<String, SapItem> getAllItemsFromView() {
         LinkedHashMap<String, SapItem> items = new LinkedHashMap<>();
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
@@ -207,16 +201,18 @@ public class SapCamelotItemDao {
 
         try {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT BYT_V_ITEMDETAILS.\"ItemCode\" as ItemCode,"
+            String query = "SELECT "
+                    + "BYT_V_ITEMDETAILS.\"ItemCode\" as ItemCode, "
                     + "BYT_V_ITEMDETAILS.\"ItemName\" AS ItemName, "
                     + "BYT_V_ITEMDETAILS.\"PickLocation\" AS PickLocation, "
                     + "BYT_V_ITEMDETAILS.\"Stock\" as Stock, "
                     + "BYT_V_BARCODEDETAILS.\"BarCode\" as ALTERNATECODE, "
                     + "BYT_V_BARCODEDETAILS.\"UnitOfMeasurement\" as CODEDESCRIPTION "
-                    + " FROM PETCAMELOT_UAT2.BYT_V_ITEMDETAILS "
-                    + "JOIN PETCAMELOT_UAT2.BYT_V_BARCODEDETAILS "
-                    + "ON PETCAMELOT_UAT2.BYT_V_ITEMDETAILS.\"ItemCode\" = PETCAMELOT_UAT2.BYT_V_BARCODEDETAILS.\"ItemCode\" "
-                    + "ORDER BY BYT_V_ITEMDETAILS.\"ItemCode\"; ");
+                    + "FROM " + dbSchema + ".BYT_V_ITEMDETAILS "
+                    + "JOIN " + dbSchema + ".BYT_V_BARCODEDETAILS "
+                    + "ON " + dbSchema + ".BYT_V_ITEMDETAILS.\"ItemCode\" = " + dbSchema + ".BYT_V_BARCODEDETAILS.\"ItemCode\" "
+                    + "ORDER BY BYT_V_ITEMDETAILS.\"ItemCode\";";
+            ResultSet resultSet = statement.executeQuery(query);
 
             while (resultSet.next()) {
                 String code = resultSet.getString("ItemCode");
@@ -260,9 +256,10 @@ public class SapCamelotItemDao {
 
         try {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT PETCAMELOT_UAT2.OITB.\"ItmsGrpCod\" as ItemsGroupCode, "
-                    + " PETCAMELOT_UAT2.OITB.\"ItmsGrpNam\" as ItemsGroupName "
-                    + " FROM PETCAMELOT_UAT2.OITB  ; ");
+            String query = "SELECT " + dbSchema + ".OITB.\"ItmsGrpCod\" as ItemsGroupCode, "
+                    + dbSchema + ".OITB.\"ItmsGrpNam\" as ItemsGroupName "
+                    + "FROM " + dbSchema + ".OITB;";
+            ResultSet resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
                 itemsGroups.put(resultSet.getInt("ItemsGroupCode"), resultSet.getString("ItemsGroupName"));
             }
@@ -274,7 +271,5 @@ public class SapCamelotItemDao {
         }
         return itemsGroups;
     }
-
-   
 
 }

@@ -8,6 +8,7 @@ package SAP.Camelot.CamelotDelivery;
 import Delivery.DeliveryInvoice;
 import Delivery.DeliveryItem;
 import Service.DatabaseConnectionFactory;
+import static Service.StaticsDispatcher.dbSchema;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -28,11 +29,10 @@ import java.util.logging.Logger;
  */
 public class SapCamelotDeliveryDao {
 
-    private String dbSchema;
+   
 
     public SapCamelotDeliveryDao() {
-        //   this.dbSchema = "TRAINING_PC";
-        this.dbSchema = "PETCAMELOT_UAT2";
+      
     }
 
     LinkedHashMap<String, ArrayList<DeliveryInvoice>> getDuePurchaseOrders() {
