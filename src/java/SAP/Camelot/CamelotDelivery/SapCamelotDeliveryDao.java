@@ -269,14 +269,19 @@ public class SapCamelotDeliveryDao {
                 + dbSchema + ".OPOR.\"CardCode\", "
                 + dbSchema + ".OPOR.\"CardName\", "
                 + dbSchema + ".OPOR.\"DocDate\", "
-                + dbSchema + ".OPOR.\"DocStatus\" "
-                + "FROM " + dbSchema + ".OPOR "
-                + "WHERE " + dbSchema + ".OPOR.\"DocStatus\" = 'O' "
-                + "AND NOT EXISTS ( "
+                + dbSchema + ".OPOR.\"DocStatus\", "
+                + "CASE WHEN NOT EXISTS ("
                 + "    SELECT 1 FROM " + dbSchema + ".POR1 "
                 + "    WHERE " + dbSchema + ".POR1.\"DocEntry\" = " + dbSchema + ".OPOR.\"DocEntry\" "
-                + "    AND " + dbSchema + ".POR1.\"OpenQty\" > 0 "
-                + ") "
+                + "    AND " + dbSchema + ".POR1.\"OpenQty\" <> 0" // Changed from > 0 to <> 0 to catch negative values
+                + ") AND EXISTS ("
+                + "    SELECT 1 FROM " + dbSchema + ".POR1 "
+                + "    WHERE " + dbSchema + ".POR1.\"DocEntry\" = " + dbSchema + ".OPOR.\"DocEntry\" "
+                + ") THEN 'Fully Delivered' "
+                + "ELSE 'Not Fully Delivered' "
+                + "END AS \"DeliveryStatus\" "
+                + "FROM " + dbSchema + ".OPOR "
+                + "WHERE " + dbSchema + ".OPOR.\"DocStatus\" = 'O' "
                 + "ORDER BY " + dbSchema + ".OPOR.\"DocDate\" DESC";
 
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
