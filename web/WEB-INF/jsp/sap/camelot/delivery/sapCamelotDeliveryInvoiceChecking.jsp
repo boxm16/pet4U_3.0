@@ -158,31 +158,56 @@
                                         console.log("altercode:" + altercode);
                                         var item = items[altercode];
                                         if (item == null) {
-                                            let unknownBarcodeX = document.getElementById(altercode + "_sent");
-                                            if (unknownBarcodeX == null) {
-                                                document.getElementById("descriptionDisplay").innerHTML = altercode + " : Unknown Barcode: " + altercode;
-                                                addRow(altercode, "Unknown Barcode: " + altercode);
-                                            } else {
-                                                let unknownBarcodeD = document.getElementById(altercode + "_delivered");
-                                                let v = unknownBarcodeD.value;
-                                                v++;
-                                                unknownBarcodeD.value = v;
+                                            playBeep();
+                                            if (altercodeContainer != null) {
+                                                console.log("Something Wrong, Item is null, but barocede is not" + altercode);
                                             }
+
+
+                                            let unknownBarcodeSent = document.getElementById(altercode + "_sent");
+                                            let unknownBarcodeDelivered = document.getElementById(altercode + "_delivered");
+
+                                            if (unknownBarcodeSent == null) {
+                                                document.getElementById("descriptionDisplay").innerHTML = altercode + " : UNKNOWN ALTERCODE : " + altercode;
+                                                addRow(altercode, "UNKNOWN ALTERCODE " + altercode);
+                                                let unknownBarcodeDelivered = document.getElementById(altercode + "_delivered");
+                                                let v = unknownBarcodeDelivered.value;
+                                                v++;
+                                                unknownBarcodeDelivered.value = v;
+
+                                            } else {
+                                                let v = unknownBarcodeDelivered.value;
+                                                v++;
+                                                unknownBarcodeDelivered.value = v;
+                                            }
+                                            let colorDisplay = document.getElementById(altercode + "_colorDisplay");
+                                            colorDisplay.style.backgroundColor = 'yellow';
                                         } else {
                                             var code = item.code;
                                             console.log(code);
                                             var description = item.description;
                                             document.getElementById("descriptionDisplay").innerHTML = altercode + " : " + description;
-
+                                            //----------
+                                            if (altercodeContainer == null) {
+                                                console.log("Something Wrong, while Item is not null, barcode is null" + altercode);
+                                            }
+                                            //-------------
                                             let sent = document.getElementById(code + "_sent");
                                             if (sent == null) {
+                                                playBeep();
                                                 addRow(item.code, item.description);
                                             } else {
                                                 sent = sent.value * 1;
                                             }
 
                                             let delivered = document.getElementById(code + "_delivered").value * 1;
-                                            delivered++;
+
+                                            if (altercodeContainer.packageBarcode == "true") {
+                                                delivered += altercodeContainer.itemsInPackage * 1;
+                                            } else {
+                                                delivered++;
+                                            }
+
                                             document.getElementById(code + "_delivered").value = delivered;
 
                                             updateRowColor(code);
@@ -274,6 +299,23 @@
                                     document.getElementById("deliveredItems").value = collectDeliveredData();
                                     document.getElementById("baseLines").value = collectBaseLines();
                                     form.submit();
+                                }
+
+                                //-------------------
+                                //----------------------------
+                                function playBeep() {
+                                    let audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                                    let oscillator = audioCtx.createOscillator();
+                                    let gainNode = audioCtx.createGain();
+                                    oscillator.type = "sine"; // You can use 'square' for a harsher sound
+                                    oscillator.frequency.setValueAtTime(1000, audioCtx.currentTime); // 1000 Hz = Beep sound
+                                    gainNode.gain.setValueAtTime(1, audioCtx.currentTime);
+                                    oscillator.connect(gainNode);
+                                    gainNode.connect(audioCtx.destination);
+                                    oscillator.start();
+                                    setTimeout(() => {
+                                        oscillator.stop();
+                                    }, 500); // Beep duration: 500ms
                                 }
     </script>
 </body>
