@@ -1,5 +1,6 @@
 package Camelot.CamelotItem;
 
+import static Service.StaticsDispatcher.COMPANY_DB;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -19,7 +20,7 @@ public class CamelotItemPositionChangingSapApiClient {
     private final String BASE_URL = "https://192.168.0.183:50000/b1s/v2";
     private final String USERNAME = "scanner2";
     private final String PASSWORD = "1234";
-    private final String COMPANY_DB = "PETCAMELOT_UAT2";
+
 
     public String change(String itemCode, String position) {
         try {

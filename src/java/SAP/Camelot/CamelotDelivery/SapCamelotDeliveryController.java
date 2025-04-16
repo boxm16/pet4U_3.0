@@ -116,7 +116,7 @@ public class SapCamelotDeliveryController {
             payload.put("DocDate", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
             payload.put("TaxDate", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
             payload.put("DocDueDate", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
-            payload.put("Comments", "Goods Receipt for PO: " + invoiceNumber);
+            payload.put("Comments", "Goods Receipt for PO: " + invoiceNumber+" :CHEMI SHEQMNILI");
             payload.put("DocObjectCode", "oPurchaseDeliveryNotes"); // Required field
 
             // Add currency information to prevent exchange rate errors
