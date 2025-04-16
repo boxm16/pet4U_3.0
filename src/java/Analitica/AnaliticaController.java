@@ -48,7 +48,7 @@ public class AnaliticaController {
 
             if (item == null) {
                 model.addAttribute("code", code);
-                model.addAttribute("message", "No such code in Pet4u Database. <a href='/newSapCamelotItemCreationServant.htm'>Create New Code</a>");
+                model.addAttribute("message", "No such code in Pet4u Database. <a href='newSapCamelotItemCreationServant.htm'>Create New Code</a>");
                 return "analitica/itemAnalysisErrorPage";
             }
             model.addAttribute("item", item);
