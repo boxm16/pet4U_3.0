@@ -82,6 +82,9 @@
                     for (Map.Entry<String, DeliveryItem> deliveryItemEntry : items.entrySet()) {
                         DeliveryItem item = deliveryItemEntry.getValue();
                         Double itemsInPackage = item.getPackQuantity(); // Default value
+                        if (itemsInPackage == 0.0) {
+                            itemsInPackage = 1.0;
+                        }
                         out.println("<tr>");
 
                         out.println("<td>");
