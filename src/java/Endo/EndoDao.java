@@ -532,6 +532,7 @@ public class EndoDao {
                     item.setPosition("");
                 }
                 item.setAltercode(altercode);
+                item.setPackQuantity(resultSet.getDouble("PACK_QTY"));
                 items.put(altercode, item);
 
             }
@@ -975,70 +976,15 @@ public class EndoDao {
         }
         return allAltercodeContainers;
     }
-    
-    public LinkedHashMap<String, ArrayList<AltercodeContainer>> getAllAltercodeContainersByItemCode() {
-    LinkedHashMap<String, ArrayList<AltercodeContainer>> altercodeMap = new LinkedHashMap<>();
-    DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
-    Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
-    
-    try {
-        Statement statement = connection.createStatement();
-        // Modified query to include the item code (assuming it's available in the WH1 table)
-        // If the item code isn't directly available, you'll need to join with another table
-        ResultSet resultSet = statement.executeQuery(
-            "SELECT ALTERNATECODE, CODEDESCRIPTION, MAIN_BARCODE, IS_PACK_BC, PACK_QTY, ITEM_CODE " + 
-            "FROM WH1");
-
-        while (resultSet.next()) {
-            String altercode = resultSet.getString("ALTERNATECODE").trim();
-            String itemCode = resultSet.getString("ITEM_CODE").trim(); // Assuming this column exists
-            
-            AltercodeContainer altercodeContainer = new AltercodeContainer();
-            altercodeContainer.setAltercode(altercode);
-            
-            // Set description/status
-            altercodeContainer.setStatus(
-                resultSet.getString("CODEDESCRIPTION") == null ? 
-                "" : resultSet.getString("CODEDESCRIPTION").trim()
-            );
-            
-            // Set main barcode flag
-            String mainBarcode = resultSet.getString("MAIN_BARCODE");
-            if (mainBarcode != null) {
-                altercodeContainer.setMainBarcode(mainBarcode.equals(altercode));
-            }
-            
-            // Set package info
-            if (resultSet.getShort("IS_PACK_BC") == 1) {
-                altercodeContainer.setPackageBarcode(true);
-                altercodeContainer.setItemsInPackage(resultSet.getDouble("PACK_QTY"));
-            }
-            
-            // Add to the map
-            if (!altercodeMap.containsKey(itemCode)) {
-                altercodeMap.put(itemCode, new ArrayList<>());
-            }
-            altercodeMap.get(itemCode).add(altercodeContainer);
-        }
-        
-        resultSet.close();
-        statement.close();
-        connection.close();
-    } catch (SQLException ex) {
-        Logger.getLogger(EndoDao.class.getName()).log(Level.SEVERE, null, ex);
-    }
-    
-    return altercodeMap;
-}
 
     ArrayList<String> getLastEndoDeliveryInvoiceBindedsEndoApostolisIds(String id) {
 
         ArrayList<String> lastEndoDeliveryInvoiceBindedsEndoApostolisIds = new ArrayList<>();
 
         String sql = "SELECT * FROM pet4u_db.endo_delivery_binding "
-                + "WHERE endo_delivery_id = \""+id+"\";";
+                + "WHERE endo_delivery_id = \"" + id + "\";";
         ResultSet resultSet;
-        System.out.println("SE "+sql);
+        System.out.println("SE " + sql);
 
         try {
             DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();

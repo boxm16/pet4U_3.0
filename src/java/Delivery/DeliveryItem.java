@@ -13,8 +13,8 @@ public class DeliveryItem extends Item {
     private String altercode;
     private String sentQuantity;
     private String deliveredQuantity;
-    private int baseLine; 
-    
+    private int baseLine;
+    private double packQuantity;
 
     private BigDecimal price;
 
@@ -57,7 +57,13 @@ public class DeliveryItem extends Item {
     public void setBaseLine(int baseLine) {
         this.baseLine = baseLine;
     }
-    
-    
+
+    public double getPackQuantity() {
+        return packQuantity;
+    }
+
+    public void setPackQuantity(double packQuantity) {
+        this.packQuantity = packQuantity;
+    }
 
 }

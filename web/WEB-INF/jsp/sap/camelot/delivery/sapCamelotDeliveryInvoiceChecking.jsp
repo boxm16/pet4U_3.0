@@ -81,15 +81,7 @@
                     LinkedHashMap<String, DeliveryItem> items = deliveryInvoice.getItems();
                     for (Map.Entry<String, DeliveryItem> deliveryItemEntry : items.entrySet()) {
                         DeliveryItem item = deliveryItemEntry.getValue();
-                        Double itemsInPackage = 1.0; // Default value
-                        ArrayList<AltercodeContainer> altercodeContainers = item.getAltercodes();
-
-                        for (AltercodeContainer altercodeContainer : altercodeContainers) {
-                            if (altercodeContainer.isPackageBarcode()) {
-                                itemsInPackage = altercodeContainer.getItemsInPackage();
-                            }
-                        }
-
+                        Double itemsInPackage = item.getPackQuantity(); // Default value
                         out.println("<tr>");
 
                         out.println("<td>");
@@ -110,6 +102,10 @@
 
                         out.println("<td>");
                         out.println("<input class='delivered' type='number' id='" + item.getCode() + "_delivered' value='" + item.getDeliveredQuantity() + "'");
+                        out.println("</td>");
+
+                        out.println("<td>");
+                        out.println(itemsInPackage);
                         out.println("</td>");
 
                         out.println("<td>");
