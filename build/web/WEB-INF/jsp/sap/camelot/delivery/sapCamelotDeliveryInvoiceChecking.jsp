@@ -7,25 +7,23 @@
 <%@page import="java.util.LinkedHashMap"%>
 <%@page import="java.util.Map"%>
 <%@page import="Delivery.DeliveryItem"%>
-<%@page import="java.util.HashMap"%>
 <%@page import="Delivery.DeliveryInvoice"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Delivery  Checking</title>
+        <title>Delivery Invoice Checking</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
         <style>
             table, th, td {
-                border: 1px solid ;
+                border: 1px solid;
                 border-collapse: collapse;
             }
             td {
                 font-size: 20px;
             }
-            th{
+            th {
                 font-size: 30px;
                 font-weight: bold;
                 text-align: center;
@@ -33,23 +31,36 @@
                 position: sticky;
                 top: 0px;
             }
-
+            .po-line {
+                font-weight: bold;
+                color: #333;
+            }
+            .unknown-item {
+                background-color: #ffe6e6;
+            }
         </style>
     </head>
     <body>
     <center>
-        <h1>ΕΛΕΓΧΟΣ ΠΑΡΑΛΑΒΗΣ </h1>
+        <h1>Delivery Checking</h1>
+        <h3>
+            Ημερομηνία Παραστατικού: ${deliveryInvoice.insertionDate} 
+            &nbsp;&nbsp;&nbsp; 
+            Προμηθευτής: ${deliveryInvoice.supplier} 
+            &nbsp;&nbsp;&nbsp; 
+            Αριθμός Παραστατικού: ${deliveryInvoice.number}
+        </h3>
         <hr>
-        <button onclick="rechechAll()" class="btn-lg btn-warning">ReCheck All Items </button>
+        <button onclick="recheckAll()" class="btn-lg btn-warning">ReCheck All Items</button>
+        <hr>
 
-        <hr>
         <table>
             <thead>
                 <tr>
                     <th colspan="7">
                         <h3>  
-                            <center> <input type="text" onkeypress="check(event, this)"></center>
-                            <center> <p id="descriptionDisplay"></center>
+                            <center><input type="text" id="barcodeInput" onkeypress="checkBarcode(event, this)"></center>
+                            <center><p id="descriptionDisplay"></p></center>
                         </h3>
                     </th>
                 </tr>
@@ -61,60 +72,37 @@
                     <th>Sent</th>
                     <th>Delivered</th>
                     <th>Alert</th>
-                    <th>Remove</th>
+                    <th>PO Line</th>
                 </tr>
             </thead>
             <tbody id="tableBody">
                 <%
-
                     DeliveryInvoice deliveryInvoice = (DeliveryInvoice) request.getAttribute("deliveryInvoice");
                     LinkedHashMap<String, DeliveryItem> items = deliveryInvoice.getItems();
-
                     int x = 1;
                     for (Map.Entry<String, DeliveryItem> deliveryItemEntry : items.entrySet()) {
                         DeliveryItem item = deliveryItemEntry.getValue();
-
-                        out.println("<tr>");
-                        out.println("<td>");
-                        out.println(x);
-                        out.println("</td>");
-
-                        out.println("<td>");
-                        out.println("<a href='itemAnalysis.htm?code=" + item.getCode() + "' target='_blank'>" + item.getCode() + "</a>");
-                        out.println("</td>");
-
-                        out.println("<td style='padding-left: 5px; padding-left: 5px;'>");
-                        out.println("<a>" + item.getDescription() + "</a>");
-                        out.println("</td>");
-
-                        out.println("<td>");
-                        out.println("<input  class='sent' type='number' id='" + item.getCode() + "@sent' value='" + item.getSentQuantity() + "' readonly width='10px'>");
-                        out.println("</td>");
-
-                        out.println("<td>");
-                        out.println("<input class='delivered' type='number' id='" + item.getCode() + "@delivered' value='" + item.getDeliveredQuantity() + "'>");
-                        out.println("</td>");
-
-                        out.println("<td>");
-                        out.println("<dev id='" + item.getCode() + "@colorDisplay'>____</dev>");
-                        out.println("</td>");
-
-                        out.println("<td>");
-                        out.println("<button onclick=\"removeRow(this)\">Remove</button>");
-                        out.println("</td>");
-
-                        out.println("</tr>");
+                %>
+                <tr>
+                    <td><%=x%></td>
+                    <td><%=item.getCode()%></td>
+                    <td><%=item.getDescription()%></td>
+                    <td><input class="sent" type="number" id="<%=item.getCode()%>_sent" value="<%=item.getQuantity()%>" readonly></td>
+                    <td><input class="delivered" type="number" id="<%=item.getCode()%>_delivered" value="<%=item.getDeliveredQuantity()%>"></td>
+                    <td><div id="<%=item.getCode()%>_colorDisplay">____</div></td>
+                    <td class="po-line"><%=item.getBaseLine()%></td>
+                </tr>
+                <%
                         x++;
                     }
                 %>
             </tbody>
         </table>
-       
         <hr>
         ${tempoSaveButton}
-        <hr><hr><br><br><hr><hr>
+        <hr><hr><hr><hr><hr><hr>
         ${saveButton}
-        <hr>
+
         <!-- Bootstrap Modal -->
         <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -135,23 +123,23 @@
             </div>
         </div>
 
-        <hr>
         <form id="form" action="#" method="POST">
-            <input hidden type="text"  name="invoiceNumber" value="${deliveryInvoice.getNumber()}">
+            <input hidden type="text" name="invoiceId" value="${deliveryInvoice.invoiceId}">
+            <input hidden type="text" name="supplier" value="${deliveryInvoice.supplier}">
+            <input hidden type="text" name="invoiceNumber" value="${deliveryInvoice.number}">
             <input hidden type="text" id="deliveredItems" name="deliveredItems">
             <input hidden type="text" id="sentItems" name="sentItems">
+            <input hidden type="text" id="baseLines" name="baseLines">
         </form>
 
-
     </center>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
     <script type="text/javascript">
-
+                                // Item class to store product information
                                 class Item {
                                     constructor(altercode, code, description) {
                                         this.altercode = altercode;
@@ -160,265 +148,199 @@
                                     }
                                 }
 
-                                class AltercodeContainer {
-                                    constructor(altercode, packageBarcode, itemsInPackage) {
-                                        this.altercode = altercode;
-                                        this.packageBarcode = packageBarcode;
-                                        this.itemsInPackage = itemsInPackage;
-                                    }
-                                }
-
-
+                                // Initialize items array from JSTL
                                 var items = new Array();
         <c:forEach items="${pet4UItemsRowByRow}" var="item">
                                 var altercode = "${item.altercode}";
                                 var code = "${item.code}";
                                 var description = "${item.description}";
-                                var item = new Item(altercode, code, description);
-                                items[altercode] = item;
+                                items[altercode] = new Item(altercode, code, description);
         </c:forEach>
 
+                                // Main barcode checking function
+                                function checkBarcode(event, input) {
+                                    if (event.keyCode === 13) { // Enter key pressed
+                                        var barcode = input.value.trim();
+                                        console.log("Scanned barcode: " + barcode);
 
-
-
-                                var altercodeContainers = new Array();
-        <c:forEach items="${pet4UAllAltercodeContainers}" var="altercodeContainer">
-
-                                var altercodeBarcode = "${altercodeContainer.altercode}";
-                                var packageBarcode = "${altercodeContainer.packageBarcode}";
-                                var itemsInPackage = "${altercodeContainer.itemsInPackage}";
-                                var altercodeContainer = new AltercodeContainer(altercodeBarcode, packageBarcode, itemsInPackage);
-                                altercodeContainers[altercodeBarcode] = altercodeContainer;
-        </c:forEach>
-
-
-                                function check(event, input) {
-                                    if (event.keyCode === 13) {
-                                        var altercode = input.value.trim();
-                                        console.log("altercode:" + altercode);
-                                        var item = items[altercode];
-                                        var altercodeContainer = altercodeContainers[altercode];
+                                        var item = items[barcode];
                                         if (item == null) {
-                                            playBeep();
-                                            if (altercodeContainer != null) {
-                                                console.log("Something Wrong, Item is null, but barocede is not" + altercode);
-                                            }
-                                            let unknownBarcodeSent = document.getElementById(altercode + "@sent");
-                                            let unknownBarcodeDelivered = document.getElementById(altercode + "@delivered");
-                                            if (unknownBarcodeSent == null) {
-                                                document.getElementById("descriptionDisplay").innerHTML = altercode + " : NKNOWN ALTERCODE : " + altercode;
-                                                addRow(altercode, "UNKNOWN ALTERCODE " + altercode);
-                                                let unknownBarcodeDelivered = document.getElementById(altercode + "@delivered");
-                                                let v = unknownBarcodeDelivered.value;
-                                                v++;
-                                                unknownBarcodeDelivered.value = v;
-                                            } else {
-                                                let v = unknownBarcodeDelivered.value;
-                                                v++;
-                                                unknownBarcodeDelivered.value = v;
-                                            }
-
-                                            let colorDisplay = document.getElementById(altercode + "@colorDisplay");
-                                            colorDisplay.style.backgroundColor = 'yellow';
+                                            handleUnknownBarcode(barcode);
                                         } else {
-                                            var code = item.code;
-                                            console.log(code);
-                                            var description = item.description;
-                                            document.getElementById("descriptionDisplay").innerHTML = altercode + " : " + description;
-                                            //----------
-                                            if (altercodeContainer == null) {
-                                                console.log("Something Wrong, while Item is not null, barcode is null" + altercode);
-                                            }
-                                            //-------------
-
-                                            let sent = document.getElementById(code + "@sent");
-                                            if (sent == null) {
-                                                playBeep();
-                                                addRow(item.code, item.description);
-                                            } else {
-                                                sent = sent.value * 1; // here
-                                            }
-
-                                            let delivered = document.getElementById(code + "@delivered").value * 1;
-                                            if (altercodeContainer.packageBarcode == "true") {
-                                                delivered += altercodeContainer.itemsInPackage * 1;
-                                            } else {
-                                                delivered++;
-                                            }
-
-                                            document.getElementById(code + "@delivered").value = delivered;
-                                            let colorDisplay = document.getElementById(code + "@colorDisplay");
-                                            let diff = sent - delivered;
-                                            if (diff > 0) {
-                                                colorDisplay.style.backgroundColor = 'red';
-                                            }
-                                            if (diff < 0) {
-                                                colorDisplay.style.backgroundColor = 'yellow';
-                                            }
-                                            if (diff === 0) {
-                                                colorDisplay.style.backgroundColor = 'green';
-                                            }
+                                            handleKnownBarcode(item);
                                         }
 
-                                        input.value = "";
+                                        input.value = ""; // Clear the input field
+                                        input.focus(); // Keep focus on input
                                     }
                                 }
 
-                                function addRow(code, description) {
-                                    // Get the table body element in which you want to add row
-                                    let table = document.getElementById("tableBody");
-                                    // Create row element
-                                    let row = document.createElement("tr")
+                                function handleUnknownBarcode(barcode) {
+                                    playBeep();
+                                    document.getElementById("descriptionDisplay").innerHTML =
+                                            "Unknown Barcode: " + barcode;
 
-                                    // Create cells
-                                    let c1 = document.createElement("td")
-                                    let c2 = document.createElement("td")
-                                    let c3 = document.createElement("td")
-                                    let c4 = document.createElement("td")
-                                    let c5 = document.createElement("td")
-                                    let c6 = document.createElement("td")
-                                    let c7 = document.createElement("td")
-                                    // Insert data to cells
-                                    c1.innerText = "----";
-                                    c2.innerText = code;
-                                    c3.innerText = description;
-                                    c4.innerHTML = "<input class='sent' type='number' id='" + code + "@sent' value='0' readonly width='10px'>";
-                                    c5.innerHTML = "<input class='delivered' type='number' id='" + code + "@delivered' value='0'>";
-                                    c6.innerHTML = "<dev id='" + code + "@colorDisplay'>____</dev>";
-                                    c7.innerHTML = "<button onclick=\"removeRow(this)\">Remove</button>";
-                                    // Append cells to row
-                                    row.appendChild(c1);
-                                    row.appendChild(c2);
-                                    row.appendChild(c3);
-                                    row.appendChild(c4);
-                                    row.appendChild(c5);
-                                    row.appendChild(c6);
-                                    row.appendChild(c7);
-                                    // Append row to table body
-                                    table.appendChild(row)
+                                    // Check if this unknown barcode already exists in the table
+                                    let deliveredInput = document.getElementById(barcode + "_delivered");
+                                    if (deliveredInput == null) {
+                                        addRow(barcode, "UNKNOWN BARCODE: " + barcode, "-1");
+                                    }
+
+                                    // Increment delivered quantity
+                                    deliveredInput = document.getElementById(barcode + "_delivered");
+                                    deliveredInput.value = parseInt(deliveredInput.value) + 1;
+
+                                    // Mark with yellow background
+                                    let colorDisplay = document.getElementById(barcode + "_colorDisplay");
+                                    if (colorDisplay) {
+                                        colorDisplay.style.backgroundColor = 'yellow';
+                                    }
                                 }
 
-                                //---------------------------------
-                                //--------------------------------
-                                //---------------------------------
-                                function requestRouter(requestTarget) {
-                                    form.action = requestTarget;
-                                    let sent = collectSentData();
-                                    sentItems.value = sent;
-                                    let delivered = collectDeliveredData();
-                                    deliveredItems.value = delivered;
-                                    // console.log(data);
-                                    form.submit();
+                                function handleKnownBarcode(item) {
+                                    document.getElementById("descriptionDisplay").innerHTML =
+                                            item.altercode + " : " + item.description;
+
+                                    // Check if item exists in table
+                                    let sentInput = document.getElementById(item.code + "_sent");
+                                    if (sentInput == null) {
+                                        playBeep();
+                                        addRow(item.code, item.description, "-1");
+                                        sentInput = document.getElementById(item.code + "_sent");
+                                    }
+
+                                    // Increment delivered quantity
+                                    let deliveredInput = document.getElementById(item.code + "_delivered");
+                                    deliveredInput.value = parseInt(deliveredInput.value) + 1;
+
+                                    // Update row color
+                                    updateRowColor(item.code);
+                                }
+
+                                function addRow(code, description, baseLine) {
+                                    let table = document.getElementById("tableBody");
+                                    let row = document.createElement("tr");
+                                    if (description.includes("UNKNOWN")) {
+                                        row.classList.add("unknown-item");
+                                    }
+
+                                    row.innerHTML = `
+                <td>----</td>
+                <td>${code}</td>
+                <td>${description}</td>
+                <td><input class="sent" type="number" id="${code}_sent" value="0" readonly></td>
+                <td><input class="delivered" type="number" id="${code}_delivered" value="0"></td>
+                <td><div id="${code}_colorDisplay">____</div></td>
+                <td class="po-line">${baseLine}</td>
+            `;
+
+                                    table.appendChild(row);
+                                }
+
+                                function updateRowColor(code) {
+                                    let colorDisplay = document.getElementById(code + "_colorDisplay");
+                                    let sent = parseInt(document.getElementById(code + "_sent").value) || 0;
+                                    let delivered = parseInt(document.getElementById(code + "_delivered").value) || 0;
+                                    let diff = sent - delivered;
+
+                                    if (diff > 0) {
+                                        colorDisplay.style.backgroundColor = 'red';
+                                    } else if (diff < 0) {
+                                        colorDisplay.style.backgroundColor = 'yellow';
+                                    } else {
+                                        colorDisplay.style.backgroundColor = 'green';
+                                    }
+                                }
+
+                                function recheckAll() {
+                                    let deliveredInputs = document.querySelectorAll(".delivered");
+                                    deliveredInputs.forEach(input => {
+                                        let code = input.id.replace("_delivered", "");
+                                        updateRowColor(code);
+                                    });
+                                }
+
+                                function playBeep() {
+                                    // Simple beep sound
+                                    let audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                                    let oscillator = audioCtx.createOscillator();
+                                    oscillator.type = "sine";
+                                    oscillator.frequency.value = 800;
+                                    oscillator.connect(audioCtx.destination);
+                                    oscillator.start();
+                                    oscillator.stop(audioCtx.currentTime + 0.1);
                                 }
 
                                 function collectSentData() {
-                                    var returnValue = "";
-                                    var sentItems = document.querySelectorAll(".sent");
-                                    for (x = 0; x < sentItems.length; x++) {
-
-                                        returnValue += sentItems[x].id + ":" + sentItems[x].value + ",";
-                                    }
-                                    return returnValue;
+                                    let result = "";
+                                    document.querySelectorAll(".sent").forEach(input => {
+                                        let code = input.id.replace("_sent", "");
+                                        result += code + ":" + input.value + ",";
+                                    });
+                                    return result;
                                 }
 
                                 function collectDeliveredData() {
-                                    var returnValue = "";
-                                    var deliveredItems = document.querySelectorAll(".delivered");
-                                    for (x = 0; x < deliveredItems.length; x++) {
-
-                                        returnValue += deliveredItems[x].id + ":" + deliveredItems[x].value + ",";
-                                    }
-                                    return returnValue;
+                                    let result = "";
+                                    document.querySelectorAll(".delivered").forEach(input => {
+                                        let code = input.id.replace("_delivered", "");
+                                        result += code + ":" + input.value + ",";
+                                    });
+                                    return result;
                                 }
 
-
-                                function removeRow(button) {
-                                    // Get the parent row of the clicked button and remove it
-                                    let row = button.parentNode.parentNode;
-                                    row.parentNode.removeChild(row);
+                                function collectBaseLines() {
+                                    let result = "";
+                                    document.querySelectorAll("tbody tr").forEach(row => {
+                                        let code = row.cells[1].textContent;
+                                        let baseLine = row.cells[6].textContent;
+                                        result += code + ":" + baseLine + ",";
+                                    });
+                                    return result;
                                 }
 
-
-                                //---------------------------------
-                                function rechechAll() {
-                                    var deliveredItems = document.querySelectorAll(".delivered");
-                                    for (x = 0; x < deliveredItems.length; x++) {
-                                        let deliveredItem = deliveredItems[x];
-                                        const deliveredItemArrayed = deliveredItem.id.split("@");
-                                        let itemtemCode = deliveredItemArrayed[0];
-                                        let sent = document.getElementById(itemtemCode + "@sent");
-                                        if (sent == null) {
-                                            addRow(item.code, item.description);
-                                        } else {
-                                            sent = sent.value * 1;
-                                        }
-
-                                        let delivered = document.getElementById(itemtemCode + "@delivered").value * 1;
-                                        let colorDisplay = document.getElementById(itemtemCode + "@colorDisplay");
-                                        let diff = sent - delivered;
-                                        if (diff > 0) {
-                                            colorDisplay.style.backgroundColor = 'red';
-                                        }
-                                        if (diff < 0) {
-                                            colorDisplay.style.backgroundColor = 'yellow';
-                                        }
-                                        if (diff === 0) {
-                                            colorDisplay.style.backgroundColor = 'green';
-                                        }
-                                    }
+                                function requestRouter(requestTarget) {
+                                    document.getElementById("sentItems").value = collectSentData();
+                                    document.getElementById("deliveredItems").value = collectDeliveredData();
+                                    document.getElementById("baseLines").value = collectBaseLines();
+                                    document.getElementById("form").action = requestTarget;
+                                    document.getElementById("form").submit();
                                 }
 
-                                //-------------------
-                                //----------------------------
-                                function playBeep() {
-                                    let audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-                                    let oscillator = audioCtx.createOscillator();
-                                    let gainNode = audioCtx.createGain();
-                                    oscillator.type = "sine"; // You can use 'square' for a harsher sound
-                                    oscillator.frequency.setValueAtTime(1000, audioCtx.currentTime); // 1000 Hz = Beep sound
-                                    gainNode.gain.setValueAtTime(1, audioCtx.currentTime);
-                                    oscillator.connect(gainNode);
-                                    gainNode.connect(audioCtx.destination);
-                                    oscillator.start();
-                                    setTimeout(() => {
-                                        oscillator.stop();
-                                    }, 500); // Beep duration: 500ms
-                                }
-
-                                //----------------------------
                                 function saveAndUpload() {
-                                    if (deliveryOk()) {
-                                        // Show success modal
-                                        document.getElementById("modalMessage").innerHTML = "✅ Delivery is correct! You can proceed with the upload.";
-                                        document.getElementById("modalTitle").innerHTML = "Success!";
-                                        document.getElementById("modalHeader").style.backgroundColor = "green";
+                                    if (validateDelivery()) {
+                                        showModal("Success!", "✅ Delivery is correct! You can proceed with the upload.", "green");
                                     } else {
-                                        // Show error modal
-                                        document.getElementById("modalMessage").innerHTML = "⚠️ Sent and Delivered items do not match! Please check.";
-                                        document.getElementById("modalTitle").innerHTML = "Error!";
-                                        document.getElementById("modalHeader").style.backgroundColor = "red";
+                                        showModal("Error!", "⚠️ Sent and Delivered items do not match! Please check.", "red");
                                     }
-                                    $('#confirmationModal').modal('show'); // Show Bootstrap modal
                                 }
 
-                                function deliveryOk() {
-                                    var sentItems = document.querySelectorAll(".sent");
-                                    var deliveredItems = document.querySelectorAll(".delivered");
-
-                                    for (let i = 0; i < sentItems.length; i++) {
-                                        let sent = parseInt(sentItems[i].value) || 0;
-                                        let delivered = parseInt(deliveredItems[i].value) || 0;
+                                function validateDelivery() {
+                                    let allMatch = true;
+                                    document.querySelectorAll(".sent").forEach(sentInput => {
+                                        let code = sentInput.id.replace("_sent", "");
+                                        let sent = parseInt(sentInput.value) || 0;
+                                        let delivered = parseInt(document.getElementById(code + "_delivered").value) || 0;
 
                                         if (sent !== delivered) {
-                                            console.log("Mismatch found: " + sentItems[i].id + " → Sent: " + sent + ", Delivered: " + delivered);
-                                            return false; // 🚨 Mismatch found, return false
+                                            console.log("Mismatch found: " + code + " → Sent: " + sent + ", Delivered: " + delivered);
+                                            allMatch = false;
                                         }
-                                    }
-
-                                    console.log("All sent items match delivered items!");
-                                    return true; // ✅ Everything matches
+                                    });
+                                    return allMatch;
                                 }
-    </script>
 
+                                function showModal(title, message, color) {
+                                    document.getElementById("modalTitle").innerHTML = title;
+                                    document.getElementById("modalMessage").innerHTML = message;
+                                    document.getElementById("modalHeader").style.backgroundColor = color;
+                                    $('#confirmationModal').modal('show');
+                                }
+
+                                // Focus on barcode input when page loads
+                                window.onload = function () {
+                                    document.getElementById("barcodeInput").focus();
+                                };
+    </script>
 </body>
 </html>
