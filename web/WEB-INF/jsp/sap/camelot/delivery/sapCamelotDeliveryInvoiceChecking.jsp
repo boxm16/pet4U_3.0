@@ -3,6 +3,8 @@
     Created on : Jun 25, 2023, 6:30:28 PM
     Author     : Michail Sitmalidis
 --%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="BasicModel.AltercodeContainer"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page import="java.util.LinkedHashMap"%>
 <%@page import="java.util.Map"%>
@@ -67,6 +69,7 @@
                     <th>Description</th>
                     <th>Sent</th>
                     <th>Delivered</th>
+                    <th>Items In Package</th> <!-- New column -->
                     <th>Alert</th>
                     <th>PO Line</th>
                 </tr>
@@ -78,6 +81,14 @@
                     LinkedHashMap<String, DeliveryItem> items = deliveryInvoice.getItems();
                     for (Map.Entry<String, DeliveryItem> deliveryItemEntry : items.entrySet()) {
                         DeliveryItem item = deliveryItemEntry.getValue();
+                        Double itemsInPackage = 1.0; // Default value
+                        ArrayList<AltercodeContainer> altercodeContainers = item.getAltercodes();
+
+                        for (AltercodeContainer altercodeContainer : altercodeContainers) {
+                            if (altercodeContainer.isPackageBarcode()) {
+                                itemsInPackage = altercodeContainer.getItemsInPackage();
+                            }
+                        }
 
                         out.println("<tr>");
 

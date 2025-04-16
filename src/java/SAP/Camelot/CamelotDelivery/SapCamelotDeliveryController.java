@@ -61,19 +61,19 @@ public class SapCamelotDeliveryController {
 
     @RequestMapping(value = "/sapCamelotDeliveryInvoiceChecking.htm", method = RequestMethod.GET)
     public String sapCamelotDeliveryInvoiceChecking(@RequestParam("invoiceId") String invoiceId, ModelMap modelMap) {
-        SapCamelotDeliveryDao sampSapCamelotDeliveryDao = new SapCamelotDeliveryDao();
-        DeliveryInvoice deliveryInvoice = sampSapCamelotDeliveryDao.getPurchaseOrderForDeliveryChecking(invoiceId);
-        modelMap.addAttribute("deliveryInvoice", deliveryInvoice);
 
         EndoDao endoDao = new EndoDao();
         LinkedHashMap<String, DeliveryItem> pet4UItemsRowByRow = endoDao.getPet4UItemsRowByRow();
-
         ArrayList<Item> listValues = new ArrayList<Item>(pet4UItemsRowByRow.values());
         modelMap.addAttribute("pet4UItemsRowByRow", listValues);
 
-        ArrayList<AltercodeContainer> pet4UAllAltercodeContainers = endoDao.getAllAltercodeContainers();
-        System.out.println(pet4UAllAltercodeContainers.size());
-        modelMap.addAttribute("pet4UAllAltercodeContainers", pet4UAllAltercodeContainers);
+        LinkedHashMap<String, ArrayList<AltercodeContainer>> pet4UAllAltercodeContainers = endoDao.getAllAltercodeContainersByItemCode();
+        ArrayList<Map.Entry<String, ArrayList<AltercodeContainer>>> entryList = new ArrayList<>(pet4UAllAltercodeContainers.entrySet());
+        modelMap.addAttribute("pet4UAllAltercodeContainers", entryList);
+
+        SapCamelotDeliveryDao sampSapCamelotDeliveryDao = new SapCamelotDeliveryDao();
+        DeliveryInvoice deliveryInvoice = sampSapCamelotDeliveryDao.getPurchaseOrderForDeliveryChecking(invoiceId, pet4UAllAltercodeContainers);
+        modelMap.addAttribute("deliveryInvoice", deliveryInvoice);
 
         String tempoSaveButton = "<button class=\"btn-primary\" onclick=\"requestRouter('tempoSaveCheckUp.htm')\"><H1>ΠΡΟΣΟΡΙΝΗ ΑΠΟΘΗΚΕΥΣΗ</H1></button>";
         modelMap.addAttribute("tempoSaveButton", tempoSaveButton);
@@ -265,10 +265,9 @@ public class SapCamelotDeliveryController {
         DeliveryInvoice deliveryInvoice = sampSapCamelotDeliveryDao.getGoodsReceipt(invoiceId);
         modelMap.addAttribute("deliveryInvoice", deliveryInvoice);
 
-      //  DeliveryDao deliveryDao = new DeliveryDao();
-      //  ArrayList<DeliveryItem> pet4UItemsRowByRow = deliveryDao.getPet4UItemsRowByRow();
-
-     //   modelMap.addAttribute("pet4UItemsRowByRow", pet4UItemsRowByRow);
+        //  DeliveryDao deliveryDao = new DeliveryDao();
+        //  ArrayList<DeliveryItem> pet4UItemsRowByRow = deliveryDao.getPet4UItemsRowByRow();
+        //   modelMap.addAttribute("pet4UItemsRowByRow", pet4UItemsRowByRow);
         String cancelButton = "<button class=\"btn-danger\" onclick=\"requestRouter('cancelSapGoodsReceipt.htm')\"><H1>CANCEL RECEIPT</H1></button>";
         modelMap.addAttribute("cancelButton", cancelButton);
 
