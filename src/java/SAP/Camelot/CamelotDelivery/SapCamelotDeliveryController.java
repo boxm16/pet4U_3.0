@@ -72,6 +72,13 @@ public class SapCamelotDeliveryController {
 
         SapCamelotDeliveryDao sampSapCamelotDeliveryDao = new SapCamelotDeliveryDao();
         DeliveryInvoice deliveryInvoice = sampSapCamelotDeliveryDao.getPurchaseOrderForDeliveryChecking(invoiceId);
+
+        LinkedHashMap<String, DeliveryItem> items = deliveryInvoice.getItems();
+        for (Map.Entry<String, DeliveryItem> itemsEntry : items.entrySet()) {
+            DeliveryItem di = pet4UItemsRowByRow.get(itemsEntry.getKey());
+            double packQuantity = di.getPackQuantity();
+            itemsEntry.getValue().setPackQuantity(packQuantity);
+        }
         modelMap.addAttribute("deliveryInvoice", deliveryInvoice);
 
         String tempoSaveButton = "<button class=\"btn-primary\" onclick=\"requestRouter('tempoSaveCheckUp.htm')\"><H1>ΠΡΟΣΟΡΙΝΗ ΑΠΟΘΗΚΕΥΣΗ</H1></button>";
