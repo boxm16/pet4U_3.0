@@ -6,6 +6,7 @@
 package SAP.Camelot.CamelotDelivery;
 
 import BasicModel.AltercodeContainer;
+import BasicModel.Item;
 import Delivery.DeliveryDao;
 import Delivery.DeliveryInvoice;
 import Delivery.DeliveryItem;
@@ -64,15 +65,16 @@ public class SapCamelotDeliveryController {
         DeliveryInvoice deliveryInvoice = sampSapCamelotDeliveryDao.getPurchaseOrderForDeliveryChecking(invoiceId);
         modelMap.addAttribute("deliveryInvoice", deliveryInvoice);
 
-        DeliveryDao deliveryDao = new DeliveryDao();
-        ArrayList<DeliveryItem> pet4UItemsRowByRow = deliveryDao.getPet4UItemsRowByRow();
-      
         EndoDao endoDao = new EndoDao();
+        LinkedHashMap<String, DeliveryItem> pet4UItemsRowByRow = endoDao.getPet4UItemsRowByRow();
+
+        ArrayList<Item> listValues = new ArrayList<Item>(pet4UItemsRowByRow.values());
+        modelMap.addAttribute("pet4UItemsRowByRow", listValues);
+
         ArrayList<AltercodeContainer> pet4UAllAltercodeContainers = endoDao.getAllAltercodeContainers();
         System.out.println(pet4UAllAltercodeContainers.size());
         modelMap.addAttribute("pet4UAllAltercodeContainers", pet4UAllAltercodeContainers);
 
-        modelMap.addAttribute("pet4UItemsRowByRow", pet4UItemsRowByRow);
         String tempoSaveButton = "<button class=\"btn-primary\" onclick=\"requestRouter('tempoSaveCheckUp.htm')\"><H1>ΠΡΟΣΟΡΙΝΗ ΑΠΟΘΗΚΕΥΣΗ</H1></button>";
         modelMap.addAttribute("tempoSaveButton", tempoSaveButton);
 

@@ -508,7 +508,7 @@ public class EndoDao {
         return allBindedEndos;
     }
 
-    LinkedHashMap<String, DeliveryItem> getPet4UItemsRowByRow() {
+    public LinkedHashMap<String, DeliveryItem> getPet4UItemsRowByRow() {
         LinkedHashMap<String, DeliveryItem> items = new LinkedHashMap();
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
         Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();
