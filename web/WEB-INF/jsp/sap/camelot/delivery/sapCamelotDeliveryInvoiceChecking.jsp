@@ -252,7 +252,7 @@
                                     let c7 = document.createElement("td");
 
                                     c1.innerText = "----";
-                                    c2.innerText = "<a href='itemAnalysis.htm?code=" + code + "' target='_blank'>" + code + "</a>";
+                                    c2.innerHTML = "<a href='itemAnalysis.htm?code=" + code + "' target='_blank'>" + code + "</a>";
                                     c3.innerText = description;
                                     c4.innerHTML = "<input class='sent' type='number' id='" + code + "_sent' value='0' readonly>";
                                     c5.innerHTML = "<input class='delivered' type='number' id='" + code + "_delivered' value='0'>";
