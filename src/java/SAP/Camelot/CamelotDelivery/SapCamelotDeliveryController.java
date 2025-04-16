@@ -265,10 +265,10 @@ public class SapCamelotDeliveryController {
         DeliveryInvoice deliveryInvoice = sampSapCamelotDeliveryDao.getGoodsReceipt(invoiceId);
         modelMap.addAttribute("deliveryInvoice", deliveryInvoice);
 
-        DeliveryDao deliveryDao = new DeliveryDao();
-        ArrayList<DeliveryItem> pet4UItemsRowByRow = deliveryDao.getPet4UItemsRowByRow();
+      //  DeliveryDao deliveryDao = new DeliveryDao();
+      //  ArrayList<DeliveryItem> pet4UItemsRowByRow = deliveryDao.getPet4UItemsRowByRow();
 
-        modelMap.addAttribute("pet4UItemsRowByRow", pet4UItemsRowByRow);
+     //   modelMap.addAttribute("pet4UItemsRowByRow", pet4UItemsRowByRow);
         String cancelButton = "<button class=\"btn-danger\" onclick=\"requestRouter('cancelSapGoodsReceipt.htm')\"><H1>CANCEL RECEIPT</H1></button>";
         modelMap.addAttribute("cancelButton", cancelButton);
 
