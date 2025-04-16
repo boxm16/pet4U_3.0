@@ -31,10 +31,10 @@ public class SapCamelotOrderController {
     static {
 
         SUPPLIER_ITEM_MAP.put("ΠΡΟ-000117", Arrays.asList(
-                new ItemLine("90860", 10, 10.0),
-                new ItemLine("90822", 15, 11.0),
-                new ItemLine("90785", 20, 13.0),
-                new ItemLine("90990", 25, 12.0)
+                new ItemLine("91126", 10, 10.0),
+                new ItemLine("91164", 15, 11.0),
+                new ItemLine("91140", 20, 13.0),
+                new ItemLine("91188", 25, 12.0)
         ));
 
         SUPPLIER_ITEM_MAP.put("ΠΡΟ-000062", Arrays.asList(
