@@ -192,7 +192,7 @@
 
                                             if (unknownBarcodeSent == null) {
                                                 document.getElementById("descriptionDisplay").innerHTML = altercode + " : UNKNOWN ALTERCODE : " + altercode;
-                                                addRow(altercode, "UNKNOWN ALTERCODE " + altercode);
+                                                addRow("<a href='itemAnalysis.htm?code=" + altercode + "'>" + altercode + "</a>", "UNKNOWN ALTERCODE " + altercode);
                                                 let unknownBarcodeDelivered = document.getElementById(altercode + "_delivered");
                                                 let v = unknownBarcodeDelivered.value;
                                                 v++;
