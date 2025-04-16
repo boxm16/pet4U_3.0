@@ -320,7 +320,7 @@
                                     var rows = document.querySelectorAll("tbody tr");
                                     for (var x = 0; x < rows.length; x++) {
                                         var code = rows[x].cells[1].textContent.trim();
-                                        var baseLine = rows[x].cells[6].textContent.trim();
+                                        var baseLine = rows[x].cells[7].textContent.trim();
                                         returnValue += code + ":" + baseLine + ",";
                                     }
                                     return returnValue;
