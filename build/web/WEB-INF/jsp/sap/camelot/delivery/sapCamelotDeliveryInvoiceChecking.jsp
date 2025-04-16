@@ -143,6 +143,15 @@
                                     }
                                 }
 
+                                class AltercodeContainer {
+                                    constructor(altercode, packageBarcode, itemsInPackage) {
+                                        this.altercode = altercode;
+                                        this.packageBarcode = packageBarcode;
+                                        this.itemsInPackage = itemsInPackage;
+                                    }
+                                }
+
+
                                 var items = new Array();
         <c:forEach items="${pet4UItemsRowByRow}" var="item">
                                 var altercode = "${item.altercode}";
@@ -151,6 +160,9 @@
                                 var item = new Item(altercode, code, description);
                                 items[altercode] = item;
         </c:forEach>
+
+
+
 
                                 var altercodeContainers = new Array();
         <c:forEach items="${pet4UAllAltercodeContainers}" var="altercodeContainer">
@@ -161,7 +173,7 @@
                                 var altercodeContainer = new AltercodeContainer(altercodeBarcode, packageBarcode, itemsInPackage);
                                 altercodeContainers[altercodeBarcode] = altercodeContainer;
         </c:forEach>
-            
+
 
                                 function check(event, input) {
                                     if (event.keyCode === 13) {
