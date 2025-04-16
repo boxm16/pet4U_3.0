@@ -40,7 +40,7 @@
     </head>
     <body>
     <center>
-        <h1>Delivery Checking</h1>
+        <h1>Goods Receipt</h1>
         <h3>
             Ημερομηνία Παραστατικού: ${deliveryInvoice.insertionDate} 
             &nbsp;&nbsp;&nbsp; 
@@ -54,10 +54,7 @@
             <thead>
                 <tr>
                     <th colspan="7">
-                        <h3>  
-                            <center><input type="text" onkeypress="check(event, this)"></center>
-                            <center><p id="descriptionDisplay"></p></center>
-                        </h3>
+
                     </th>
                 </tr>
 
@@ -65,9 +62,9 @@
                     <th>A/A</th>
                     <th>Code</th>
                     <th>Description</th>
-                    <th>Sent</th>
+
                     <th>Delivered</th>
-                    <th>Alert</th>
+
                     <th>PO Line</th>
                 </tr>
             </thead>
@@ -83,9 +80,7 @@
                         out.println("<td>" + x + "</td>");
                         out.println("<td style='padding-left: 5px;'>" + item.getCode() + "</td>");
                         out.println("<td>" + item.getDescription() + "</td>");
-                        out.println("<td><input class='sent' type='number' id='" + item.getCode() + "_sent' value='" + item.getQuantity() + "' readonly></td>");
                         out.println("<td><input class='delivered' type='number' id='" + item.getCode() + "_delivered' value='" + item.getDeliveredQuantity() + "'></td>");
-                        out.println("<td><div id='" + item.getCode() + "_colorDisplay'>____</div></td>");
                         out.println("<td class='po-line'>" + item.getBaseLine() + "</td>");
                         out.println("</tr>");
                         x++;
@@ -108,28 +103,28 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
     <script type="text/javascript">
-                                class Item {
-                                    constructor(altercode, code, description) {
-                                        this.altercode = altercode;
-                                        this.code = code;
-                                        this.description = description;
-                                    }
-                                }
+        class Item {
+            constructor(altercode, code, description) {
+                this.altercode = altercode;
+                this.code = code;
+                this.description = description;
+            }
+        }
 
-                                var items = new Array();
+        var items = new Array();
         <c:forEach items="${pet4UItemsRowByRow}" var="item">
-                                var altercode = "${item.altercode}";
-                                var code = "${item.code}";
-                                var description = "${item.description}";
-                                var item = new Item(altercode, code, description);
-                                items[altercode] = item;
+        var altercode = "${item.altercode}";
+        var code = "${item.code}";
+        var description = "${item.description}";
+        var item = new Item(altercode, code, description);
+        items[altercode] = item;
         </c:forEach>
 
-                                function requestRouter(requestTarget) {
-                                    form.action = requestTarget;
+        function requestRouter(requestTarget) {
+            form.action = requestTarget;
 
-                                    form.submit();
-                                }
+            form.submit();
+        }
     </script>
 </body>
 </html>
