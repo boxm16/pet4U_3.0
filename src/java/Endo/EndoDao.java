@@ -931,7 +931,7 @@ public class EndoDao {
         return deliveryInvoice;
     }
 
-    ArrayList<AltercodeContainer> getAllAltercodeContainers() {
+    public ArrayList<AltercodeContainer> getAllAltercodeContainers() {
         ArrayList<AltercodeContainer> allAltercodeContainers = new ArrayList<>();
         DatabaseConnectionFactory databaseConnectionFactory = new DatabaseConnectionFactory();
         Connection connection = databaseConnectionFactory.getPet4UMicrosoftSQLConnection();

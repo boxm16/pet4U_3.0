@@ -5,9 +5,11 @@
  */
 package SAP.Camelot.CamelotDelivery;
 
+import BasicModel.AltercodeContainer;
 import Delivery.DeliveryDao;
 import Delivery.DeliveryInvoice;
 import Delivery.DeliveryItem;
+import Endo.EndoDao;
 import SAP.SapCamelotApiConnector;
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -64,6 +66,11 @@ public class SapCamelotDeliveryController {
 
         DeliveryDao deliveryDao = new DeliveryDao();
         ArrayList<DeliveryItem> pet4UItemsRowByRow = deliveryDao.getPet4UItemsRowByRow();
+      
+        EndoDao endoDao = new EndoDao();
+        ArrayList<AltercodeContainer> pet4UAllAltercodeContainers = endoDao.getAllAltercodeContainers();
+        System.out.println(pet4UAllAltercodeContainers.size());
+        modelMap.addAttribute("pet4UAllAltercodeContainers", pet4UAllAltercodeContainers);
 
         modelMap.addAttribute("pet4UItemsRowByRow", pet4UItemsRowByRow);
         String tempoSaveButton = "<button class=\"btn-primary\" onclick=\"requestRouter('tempoSaveCheckUp.htm')\"><H1>ΠΡΟΣΟΡΙΝΗ ΑΠΟΘΗΚΕΥΣΗ</H1></button>";
@@ -116,7 +123,7 @@ public class SapCamelotDeliveryController {
             payload.put("DocDate", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
             payload.put("TaxDate", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
             payload.put("DocDueDate", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
-            payload.put("Comments", "Goods Receipt for PO: " + invoiceNumber+" :CHEMI SHEQMNILI");
+            payload.put("Comments", "Goods Receipt for PO: " + invoiceNumber + " :CHEMI SHEQMNILI");
             payload.put("DocObjectCode", "oPurchaseDeliveryNotes"); // Required field
 
             // Add currency information to prevent exchange rate errors
