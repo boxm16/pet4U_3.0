@@ -48,8 +48,7 @@ public class AnaliticaController {
 
             if (item == null) {
                 model.addAttribute("code", code);
-                model.addAttribute("message", "No such code in Pet4u Database");
-
+                model.addAttribute("message", "No such code in Pet4u Database. <a href='/newSapCamelotItemCreationServant.htm'>Create New Code</a>");
                 return "analitica/itemAnalysisErrorPage";
             }
             model.addAttribute("item", item);
@@ -119,10 +118,10 @@ public class AnaliticaController {
             System.out.println("Analysis Done: " + LocalDateTime.now());
 
             LocalDate date = LocalDate.now();
-         //   LocalDate startDate = LocalDate.parse("2024-01-01");
+            //   LocalDate startDate = LocalDate.parse("2024-01-01");
             LocalDate nowDate = LocalDate.now();
             model.addAttribute("date", date);
-           // model.addAttribute("startDate", startDate);
+            // model.addAttribute("startDate", startDate);
             model.addAttribute("nowDate", nowDate);
             model.addAttribute("before10DaysDate", nowDate.minusDays(10));
             return "analitica/itemAnalysis";
