@@ -75,6 +75,7 @@
                         DeliveryItem item = deliveryItemEntry.getValue();
 
                         out.println("<tr>");
+                        
                         out.println("<td>");
                         out.println(x);
                         out.println("</td>");

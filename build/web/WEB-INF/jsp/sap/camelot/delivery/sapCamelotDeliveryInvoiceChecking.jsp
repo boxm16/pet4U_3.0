@@ -80,13 +80,35 @@
                         DeliveryItem item = deliveryItemEntry.getValue();
 
                         out.println("<tr>");
-                        out.println("<td>" + x + "</td>");
-                        out.println("<td style='padding-left: 5px;'>" + item.getCode() + "</td>");
-                        out.println("<td>" + item.getDescription() + "</td>");
-                        out.println("<td><input class='sent' type='number' id='" + item.getCode() + "_sent' value='" + item.getQuantity() + "' readonly></td>");
-                        out.println("<td><input class='delivered' type='number' id='" + item.getCode() + "_delivered' value='" + item.getDeliveredQuantity() + "'></td>");
-                        out.println("<td><div id='" + item.getCode() + "_colorDisplay'>____</div></td>");
-                        out.println("<td class='po-line'>" + item.getBaseLine() + "</td>");
+
+                        out.println("<td>");
+                        out.println(x);
+                        out.println("</td>");
+
+                        out.println("<td>");
+                        out.println("<a href='showDeltiaApostolisOfItem.htm?itemCode=" + item.getCode() + "' target='_blank'>" + item.getCode() + "</a>");
+                        out.println("</td>");
+
+                        out.println("<td style='padding-left: 5px; padding-left: 5px;'>");
+                        out.println("<a>" + item.getDescription() + "</a>");
+                        out.println("</td>");
+
+                        out.println("<td>");
+                        out.println("<input class='sent' type='number' id='" + item.getCode() + "_sent' value='" + item.getQuantity() + "' readonly>");
+                        out.println("</td>");
+
+                        out.println("<td>");
+                        out.println("<input class='delivered' type='number' id='" + item.getCode() + "_delivered' value='" + item.getDeliveredQuantity() + "'");
+                        out.println("</td>");
+
+                        out.println("<td>");
+                        out.println("<div id='" + item.getCode() + "_colorDisplay'>____</div>");
+                        out.println("</td>");
+
+                        out.println("<td class='po-line'>");
+                        out.println(item.getBaseLine());
+                        out.println("</td>");
+
                         out.println("</tr>");
                         x++;
                     }
