@@ -29,6 +29,14 @@ public class SapCamelotOrderController {
     private static final Map<String, List<ItemLine>> SUPPLIER_ITEM_MAP = new HashMap<>();
 
     static {
+
+        SUPPLIER_ITEM_MAP.put("ΠΡΟ-000117", Arrays.asList(
+                new ItemLine("90860", 10, 10.0),
+                new ItemLine("90822", 15, 11.0),
+                new ItemLine("90785", 20, 13.0),
+                new ItemLine("90990", 25, 12.0)
+        ));
+
         SUPPLIER_ITEM_MAP.put("ΠΡΟ-000062", Arrays.asList(
                 new ItemLine("1216", 10, 50.0),
                 new ItemLine("1217", 15, 75.0),

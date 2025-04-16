@@ -92,8 +92,9 @@
     <body>
     <center>
         <h1>Purchase Orders and Goods Receipts</h1>
-        <a href="createPurchaseOrder.htm?supplierCode=ΠΡΟ-000115"><h3>Create Purchase Order For LAVIOSA</h3></a>
-        <a href="createPurchaseOrder.htm?supplierCode=ΠΡΟ-000062"><h3>Create Purchase Order For CILESIZ</h3></a>
+        <a href="createPurchaseOrder.htm?supplierCode=ΠΡΟ-000115"><h3>Create Purchase Order For LINDO</h3></a>
+        <a href="createPurchaseOrder.htm?supplierCode=ΠΡΟ-000062"><h3>Create Purchase Order For CATZONE</h3></a>
+        <a href="createPurchaseOrder.htm?supplierCode=ΠΡΟ-000117"><h3>Create Purchase Order For PRIMORDIAL</h3></a>
 
     </center>
 
