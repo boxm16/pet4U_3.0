@@ -276,29 +276,31 @@ public class SapCamelotDeliveryDao {
         try (Connection connection = databaseConnectionFactory.getSapHanaConnection();
                 Statement statement = connection.createStatement();
                 ResultSet resultSet = statement.executeQuery(query)) {
+            while (resultSet.next()) {
+                String string = resultSet.getString("DocDate");
+                String cleanedDate = string.split("\\.")[0];
 
-            String string = resultSet.getString("DocDate");
-            String cleanedDate = string.split("\\.")[0];
+                // Define expected format
+                try {
 
-            // Define expected format
-            try {
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                    LocalDate dbDate = LocalDate.parse(cleanedDate, formatter);
+                    LocalDate today = LocalDate.now();
 
-                LocalDate dbDate = LocalDate.parse(cleanedDate, formatter);
-                LocalDate today = LocalDate.now();
+                    if (dbDate.equals(today)) {
+                        DeliveryInvoice purchaseOrderInvoice = new DeliveryInvoice();
+                        purchaseOrderInvoice.setSupplier(resultSet.getString("CardName"));
+                        purchaseOrderInvoice.setInvoiceId(resultSet.getString("DocEntry"));
+                        purchaseOrderInvoice.setNumber(resultSet.getString("DocNum"));
+                        purchaseOrderInvoice.setInsertionDate(resultSet.getString("DocDate"));
 
-                if (dbDate.equals(today)) {
-                    DeliveryInvoice purchaseOrderInvoice = new DeliveryInvoice();
-                    purchaseOrderInvoice.setSupplier(resultSet.getString("CardName"));
-                    purchaseOrderInvoice.setInvoiceId(resultSet.getString("DocEntry"));
-                    purchaseOrderInvoice.setNumber(resultSet.getString("DocNum"));
-                    purchaseOrderInvoice.setInsertionDate(resultSet.getString("DocDate"));
-
-                    duePurchaseOrders.add(purchaseOrderInvoice);
+                        duePurchaseOrders.add(purchaseOrderInvoice);
+                    }
+                } catch (Exception e) {
+                    System.err.println("Error parsing date: " + e.getMessage());
                 }
-            } catch (Exception e) {
-                System.err.println("Error parsing date: " + e.getMessage());
+
             }
         } catch (SQLException ex) {
             Logger.getLogger(SapCamelotDeliveryDao.class.getName()).log(Level.SEVERE, null, ex);
