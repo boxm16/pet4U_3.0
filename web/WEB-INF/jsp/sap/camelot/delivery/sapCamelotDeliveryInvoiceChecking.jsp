@@ -45,6 +45,15 @@
             td:nth-child(4) {
                 text-align: center;
             }
+            tr.highlight-red {
+                background-color: #ffcccc;
+            }
+            tr.highlight-yellow {
+                background-color: #ffffcc;
+            }
+            tr.highlight-green {
+                background-color: #ccffcc;
+            }
         </style>
     </head>
     <body>
@@ -78,7 +87,6 @@
                     <th>Delivered<br>Packages</th>
                     <th>Delivered<br>Items</th>
                     <th>Sent<br>Items</th>
-                    <th>Alert</th>
                     <th>PO Line</th>
                 </tr>
             </thead>
@@ -94,7 +102,7 @@
                         if (itemsInPackage == 0.0) {
                             itemsInPackage = 1.0;
                         }
-                        out.println("<tr>");
+                        out.println("<tr id='row_" + item.getCode() + "'>");
 
                         out.println("<td>");
                         out.println(x);
@@ -122,10 +130,6 @@
 
                         out.println("<td>");
                         out.println("<input class='sent' type='number' id='" + item.getCode() + "_sent' value='" + item.getQuantity() + "' readonly>");
-                        out.println("</td>");
-
-                        out.println("<td>");
-                        out.println("<div id='" + item.getCode() + "_colorDisplay'>____</div>");
                         out.println("</td>");
 
                         out.println("<td class='po-line'>");
@@ -174,7 +178,6 @@
                                     }
                                 }
 
-
                                 var items = new Array();
         <c:forEach items="${pet4UItemsRowByRow}" var="item">
                                 var altercode = "${item.altercode}";
@@ -184,19 +187,14 @@
                                 items[altercode] = item;
         </c:forEach>
 
-
-
-
                                 var altercodeContainers = new Array();
         <c:forEach items="${pet4UAllAltercodeContainers}" var="altercodeContainer">
-
                                 var altercodeBarcode = "${altercodeContainer.altercode}";
                                 var packageBarcode = "${altercodeContainer.packageBarcode}";
                                 var itemsInPackage = "${altercodeContainer.itemsInPackage}";
                                 var altercodeContainer = new AltercodeContainer(altercodeBarcode, packageBarcode, itemsInPackage);
                                 altercodeContainers[altercodeBarcode] = altercodeContainer;
         </c:forEach>
-
 
                                 function check(event, input) {
                                     if (event.keyCode === 13) {
@@ -208,7 +206,6 @@
                                             if (altercodeContainer != null) {
                                                 console.log("Something Wrong, Item is null, but barocede is not" + altercode);
                                             }
-
 
                                             let unknownBarcodeSent = document.getElementById(altercode + "_sent");
                                             let unknownBarcodeDelivered = document.getElementById(altercode + "_delivered");
@@ -226,18 +223,17 @@
                                                 v++;
                                                 unknownBarcodeDelivered.value = v;
                                             }
-                                            let colorDisplay = document.getElementById(altercode + "_colorDisplay");
-                                            colorDisplay.style.backgroundColor = 'yellow';
+                                            updateRowColor(altercode);
                                         } else {
                                             var code = item.code;
                                             console.log(code);
                                             var description = item.description;
                                             document.getElementById("descriptionDisplay").innerHTML = altercode + " : " + description;
-                                            //----------
+
                                             if (altercodeContainer == null) {
                                                 console.log("Something Wrong, while Item is not null, barcode is null" + altercode);
                                             }
-                                            //-------------
+
                                             let sent = document.getElementById(code + "_sent");
                                             if (sent == null) {
                                                 playBeep();
@@ -255,7 +251,6 @@
                                             }
 
                                             document.getElementById(code + "_delivered").value = delivered;
-
                                             updateRowColor(code);
                                         }
                                         input.value = "";
@@ -265,6 +260,7 @@
                                 function addRow(code, description) {
                                     let table = document.getElementById("tableBody");
                                     let row = document.createElement("tr");
+                                    row.id = "row_" + code;
 
                                     let c1 = document.createElement("td");
                                     let c2 = document.createElement("td");
@@ -281,9 +277,7 @@
                                     c4.innerHTML = "<input class='sent' type='number' id='" + code + "_sent' value='0' readonly>";
                                     c5.innerHTML = "<input class='delivered' type='number' id='" + code + "_delivered' value='0'>";
                                     c6.innerText = "1.0";
-
-                                    c7.innerHTML = "<div id='" + code + "_colorDisplay'>____</div>";
-                                    c8.innerHTML = "<span class='po-line'>-1</span>";
+                                    c7.innerHTML = "<span class='po-line'>-1</span>";
 
                                     row.appendChild(c1);
                                     row.appendChild(c2);
@@ -292,22 +286,26 @@
                                     row.appendChild(c5);
                                     row.appendChild(c6);
                                     row.appendChild(c7);
-                                    row.appendChild(c8);
                                     table.appendChild(row);
+
+                                    updateRowColor(code);
                                 }
 
                                 function updateRowColor(code) {
-                                    let colorDisplay = document.getElementById(code + "_colorDisplay");
-                                    let sent = document.getElementById(code + "_sent").value * 1;
-                                    let delivered = document.getElementById(code + "_delivered").value * 1;
-                                    let diff = sent - delivered;
+                                    const row = document.getElementById("row_" + code);
+                                    const sent = parseFloat(document.getElementById(code + "_sent").value) || 0;
+                                    const delivered = parseFloat(document.getElementById(code + "_delivered").value) || 0;
+                                    const diff = sent - delivered;
+
+                                    // Remove all highlight classes
+                                    row.classList.remove('highlight-red', 'highlight-yellow', 'highlight-green');
 
                                     if (diff > 0) {
-                                        colorDisplay.style.backgroundColor = 'red';
+                                        row.classList.add('highlight-red');
                                     } else if (diff < 0) {
-                                        colorDisplay.style.backgroundColor = 'yellow';
+                                        row.classList.add('highlight-yellow');
                                     } else {
-                                        colorDisplay.style.backgroundColor = 'green';
+                                        row.classList.add('highlight-green');
                                     }
                                 }
 
@@ -350,57 +348,47 @@
                                     form.submit();
                                 }
 
-                                //-------------------
-                                //----------------------------
                                 function playBeep() {
                                     let audioCtx = new (window.AudioContext || window.webkitAudioContext)();
                                     let oscillator = audioCtx.createOscillator();
                                     let gainNode = audioCtx.createGain();
-                                    oscillator.type = "sine"; // You can use 'square' for a harsher sound
-                                    oscillator.frequency.setValueAtTime(1000, audioCtx.currentTime); // 1000 Hz = Beep sound
+                                    oscillator.type = "sine";
+                                    oscillator.frequency.setValueAtTime(1000, audioCtx.currentTime);
                                     gainNode.gain.setValueAtTime(1, audioCtx.currentTime);
                                     oscillator.connect(gainNode);
                                     gainNode.connect(audioCtx.destination);
                                     oscillator.start();
                                     setTimeout(() => {
                                         oscillator.stop();
-                                    }, 500); // Beep duration: 500ms
+                                    }, 500);
                                 }
 
-                                // Add this function to handle the Enter key press in deliveredPackages fields
                                 function handlePackageEnter(event, input) {
                                     if (event.keyCode === 13) {
-                                        event.preventDefault(); // Prevent form submission
+                                        event.preventDefault();
 
-                                        // Get the current row
                                         const row = input.closest('tr');
-
-                                        // Get itemsInPackage value (from 4th cell)
                                         const itemsInPackage = parseFloat(row.cells[3].textContent) || 1;
-
-                                        // Calculate delivered items
                                         const deliveredPackages = parseFloat(input.value) || 0;
                                         const deliveredItems = itemsInPackage * deliveredPackages;
 
-                                        // Find the delivered field (5th cell's input)
                                         const deliveredField = row.querySelector('.delivered');
                                         if (deliveredField) {
                                             deliveredField.value = deliveredItems;
-                                            updateRowColor(deliveredField.id.replace('_delivered', ''));
+                                            const code = deliveredField.id.replace('_delivered', '');
+                                            updateRowColor(code);
                                         }
 
                                         moveToNextInput(input);
                                     }
                                 }
+
                                 function moveToNextInput(currentInput) {
-                                    // Get all input fields with class 'deliveredPackages'
                                     const inputs = document.querySelectorAll('.deliveredPackages');
                                     let nextInput = null;
 
-                                    // Find the current input in the list
                                     for (let i = 0; i < inputs.length; i++) {
                                         if (inputs[i] === currentInput) {
-                                            // If not the last input, get the next one
                                             if (i < inputs.length - 1) {
                                                 nextInput = inputs[i + 1];
                                             }
@@ -408,10 +396,9 @@
                                         }
                                     }
 
-                                    // If found next input, focus on it
                                     if (nextInput) {
                                         nextInput.focus();
-                                        nextInput.select(); // Optional: select the text for easy editing
+                                        nextInput.select();
                                     }
                                 }
     </script>
