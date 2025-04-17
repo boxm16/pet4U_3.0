@@ -55,7 +55,7 @@
         <table>
             <thead>
                 <tr>
-                    <th colspan="7">
+                    <th colspan="8">
                         <h3>  
                             <center><input type="text" onkeypress="check(event, this)"></center>
                             <center><p id="descriptionDisplay"></p></center>
@@ -116,9 +116,7 @@
                         out.println("<input class='sent' type='number' id='" + item.getCode() + "_sent' value='" + item.getQuantity() + "' readonly>");
                         out.println("</td>");
 
-                        out.println("<td>");
-                        out.println(itemsInPackage);
-                        out.println("</td>");
+                    
 
                         out.println("<td>");
                         out.println("<div id='" + item.getCode() + "_colorDisplay'>____</div>");
