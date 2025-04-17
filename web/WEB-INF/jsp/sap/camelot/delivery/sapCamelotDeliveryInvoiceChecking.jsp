@@ -47,22 +47,27 @@
                 text-align: center;
             }
             tr.highlight-red {
-                background-color: #ffcccc;
+                background-color: #ff6666;
             }
             tr.highlight-red input {
-                background-color: #ffb3b3;
+                background-color: #ff4d4d;
             }
             tr.highlight-yellow {
-                background-color: #ffffcc;
+                background-color: #ffff66;
             }
             tr.highlight-yellow input {
-                background-color: #ffff99;
+                background-color: #ffff33;
             }
             tr.highlight-green {
-                background-color: #ccffcc;
+                background-color: #66ff66;
             }
             tr.highlight-green input {
-                background-color: #99ff99;
+                background-color: #33ff33;
+            }
+            tr.highlight-red, 
+            tr.highlight-yellow,
+            tr.highlight-green {
+                color: #000;
             }
         </style>
     </head>
