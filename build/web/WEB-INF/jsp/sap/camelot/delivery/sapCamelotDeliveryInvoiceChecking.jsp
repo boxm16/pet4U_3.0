@@ -67,10 +67,10 @@
                     <th>A/A</th>
                     <th>Code</th>
                     <th>Description</th>
-                    <th>Delivered Packages</th>
-                    <th>Items In Package</th> <!-- New column -->
-                    <th>Delivered Items</th>
-                    <th>Sent Items</th>
+                    <th>Delivered<br>Packages</th>
+                    <th>Items In<br>Package</th> <!-- New column -->
+                    <th>Delivered<br>Items</th>
+                    <th>Sent<br>Items</th>
                     <th>Alert</th>
                     <th>PO Line</th>
                 </tr>
@@ -106,7 +106,7 @@
                         out.println("</td>");
 
                         out.println("<td>");
-                        out.println("X"+itemsInPackage);
+                        out.println("X" + itemsInPackage);
                         out.println("</td>");
                         out.println("<td>");
                         out.println("<input class='delivered' type='number' id='" + item.getCode() + "_delivered' value='" + item.getDeliveredQuantity() + "'");
