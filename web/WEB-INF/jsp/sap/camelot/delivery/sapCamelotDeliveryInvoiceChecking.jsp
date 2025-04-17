@@ -76,6 +76,7 @@
             </thead>
             <tbody id="tableBody">
                 <%
+                    
                     int x = 1;
                     DeliveryInvoice deliveryInvoice = (DeliveryInvoice) request.getAttribute("deliveryInvoice");
                     LinkedHashMap<String, DeliveryItem> items = deliveryInvoice.getItems();
