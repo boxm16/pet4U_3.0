@@ -284,10 +284,10 @@
                                     c1.innerText = "----";
                                     c2.innerHTML = "<a href='itemAnalysis.htm?code=" + code + "' target='_blank'>" + code + "</a>";
                                     c3.innerText = description;
-                                    c4.innerHTML = "<input class='deliveredPackages' type='number' id='" + code + "_sent' value='0'>";
-                                    c5.innerHTML = "<input class='delivered' type='number' id='" + code + "_delivered' value='0'>";
-                                    c6.innerHTML = "<input class='sent' type='number' id='" + code + "_sent' value='0' readonly>";
-                                    c7.innerText = "1.0";
+                                    c4.innerText = "1";
+                                    c5.innerHTML = "<input class='deliveredPackages' type='number' id='" + code + "_sent' value='0'>";
+                                    c6.innerHTML = "<input class='delivered' type='number' id='" + code + "_delivered' value='0'>";
+                                    c7.innerHTML = "<input class='sent' type='number' id='" + code + "_sent' value='0' readonly>";
                                     c8.innerHTML = "<span class='po-line'>-1</span>";
 
                                     row.appendChild(c1);
