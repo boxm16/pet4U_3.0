@@ -128,6 +128,7 @@ public class SapCamelotDeliveryDao {
                     item.setCode(resultSet.getString("ItemCode"));
                     item.setDescription(resultSet.getString("Dscription"));
                     item.setQuantity(resultSet.getString("Quantity"));
+                    item.setDeliveredQuantity("0.0");
                     item.setPrice(resultSet.getBigDecimal("Price"));
                     item.setBaseLine(resultSet.getInt("LineNum")); // ← POPULATE THE BASE LINE
                     deliveryInvoice.getItems().put(item.getCode(), item);
