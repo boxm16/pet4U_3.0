@@ -67,8 +67,8 @@
                     <th>A/A</th>
                     <th>Code</th>
                     <th>Description</th>
+                    <th>Items In<br>Package</th> 
                     <th>Delivered<br>Packages</th>
-                    <th>Items In<br>Package</th> <!-- New column -->
                     <th>Delivered<br>Items</th>
                     <th>Sent<br>Items</th>
                     <th>Alert</th>
@@ -102,12 +102,13 @@
                         out.println("</td>");
 
                         out.println("<td>");
-                        out.println("<input class='deliveredPackages' type='number' id='" + item.getCode() + "_deliveredPackages' value='0'>");
+                        out.println(itemsInPackage);
                         out.println("</td>");
 
                         out.println("<td>");
-                        out.println(itemsInPackage);
+                        out.println("<input class='deliveredPackages' type='number' id='" + item.getCode() + "_deliveredPackages' value='0'>");
                         out.println("</td>");
+
                         out.println("<td>");
                         out.println("<input class='delivered' type='number' id='" + item.getCode() + "_delivered' value='" + item.getDeliveredQuantity() + "'");
                         out.println("</td>");
@@ -115,8 +116,6 @@
                         out.println("<td>");
                         out.println("<input class='sent' type='number' id='" + item.getCode() + "_sent' value='" + item.getQuantity() + "' readonly>");
                         out.println("</td>");
-
-                    
 
                         out.println("<td>");
                         out.println("<div id='" + item.getCode() + "_colorDisplay'>____</div>");
