@@ -106,10 +106,10 @@
                         out.println("</td>");
 
                         out.println("<td>");
-                        out.println(itemsInPackage);
+                        out.println("X"+itemsInPackage);
                         out.println("</td>");
                         out.println("<td>");
-                        out.println("<input class='delivered' type='number' id='" + item.getCode() + "_delivered' value='X" + item.getDeliveredQuantity() + "'");
+                        out.println("<input class='delivered' type='number' id='" + item.getCode() + "_delivered' value='" + item.getDeliveredQuantity() + "'");
                         out.println("</td>");
 
                         out.println("<td>");
