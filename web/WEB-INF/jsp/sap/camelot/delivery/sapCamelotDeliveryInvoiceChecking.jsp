@@ -266,8 +266,10 @@
                                     c3.innerText = description;
                                     c4.innerHTML = "<input class='sent' type='number' id='" + code + "_sent' value='0' readonly>";
                                     c5.innerHTML = "<input class='delivered' type='number' id='" + code + "_delivered' value='0'>";
-                                    c6.innerHTML = "<div id='" + code + "_colorDisplay'>____</div>";
-                                    c7.innerHTML = "<span class='po-line'>-1</span>";
+                                    c6.innerText = "1";
+
+                                    c7.innerHTML = "<div id='" + code + "_colorDisplay'>____</div>";
+                                    c8.innerHTML = "<span class='po-line'>-1</span>";
 
                                     row.appendChild(c1);
                                     row.appendChild(c2);
@@ -276,7 +278,7 @@
                                     row.appendChild(c5);
                                     row.appendChild(c6);
                                     row.appendChild(c7);
-
+                                    row.appendChild(c8);
                                     table.appendChild(row);
                                 }
 
