@@ -96,6 +96,9 @@
             tr.highlight-green {
                 color: #000;
             }
+            input.delivered {
+                transition: background-color 0.3s ease;
+            }
         </style>
     </head>
     <body>
@@ -167,7 +170,7 @@
                         out.println("</td>");
 
                         out.println("<td>");
-                        out.println("<input class='delivered' type='number' id='" + item.getCode() + "_delivered' value='" + item.getDeliveredQuantity() + "'");
+                        out.println("<input class='delivered' type='number' id='" + item.getCode() + "_delivered' value='" + item.getDeliveredQuantity() + "' onkeypress='handleDeliveredEnter(event, this)' onblur='handleDeliveredBlur(this)'>");
                         out.println("</td>");
 
                         out.println("<td>");
@@ -436,6 +439,52 @@
                                             if (i < inputs.length - 1) {
                                                 nextInput = inputs[i + 1];
                                             }
+                                            break;
+                                        }
+                                    }
+
+                                    if (nextInput) {
+                                        nextInput.focus();
+                                        nextInput.select();
+                                    }
+                                }
+                                function handleDeliveredEnter(event, input) {
+                                    if (event.keyCode === 13) {
+                                        event.preventDefault();
+                                        updateRowFromDelivered(input);
+                                    }
+                                }
+
+                                function handleDeliveredBlur(input) {
+                                    updateRowFromDelivered(input);
+                                }
+
+                                function updateRowFromDelivered(input) {
+                                    const row = input.closest('tr');
+                                    const code = input.id.replace('_delivered', '');
+
+                                    // Calculate packages if needed (reverse calculation)
+                                    const itemsInPackage = parseFloat(row.cells[3].textContent) || 1;
+                                    const deliveredItems = parseFloat(input.value) || 0;
+                                    const deliveredPackages = deliveredItems / itemsInPackage;
+
+                                    // Update packages field if it's a whole number
+                                    if (Number.isInteger(deliveredPackages)) {
+                                        const packagesField = row.querySelector('.deliveredPackages');
+                                        packagesField.value = deliveredPackages;
+                                    }
+
+                                    updateRowColor(code);
+                                    moveToNextDeliveredInput(input);
+                                }
+
+                                function moveToNextDeliveredInput(currentInput) {
+                                    const inputs = document.querySelectorAll('.delivered');
+                                    let nextInput = null;
+
+                                    for (let i = 0; i < inputs.length; i++) {
+                                        if (inputs[i] === currentInput && i < inputs.length - 1) {
+                                            nextInput = inputs[i + 1];
                                             break;
                                         }
                                     }
