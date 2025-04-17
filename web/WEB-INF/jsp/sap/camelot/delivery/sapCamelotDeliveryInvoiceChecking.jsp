@@ -364,10 +364,27 @@
                                 function handlePackageEnter(event, input) {
                                     if (event.keyCode === 13) {
                                         event.preventDefault(); // Prevent form submission
+
+                                        // Get the current row
+                                        const row = input.closest('tr');
+
+                                        // Get itemsInPackage value (from 4th cell)
+                                        const itemsInPackage = parseFloat(row.cells[3].textContent) || 1;
+
+                                        // Calculate delivered items
+                                        const deliveredPackages = parseFloat(input.value) || 0;
+                                        const deliveredItems = itemsInPackage * deliveredPackages;
+
+                                        // Find the delivered field (5th cell's input)
+                                        const deliveredField = row.querySelector('.delivered');
+                                        if (deliveredField) {
+                                            deliveredField.value = deliveredItems;
+                                            updateRowColor(deliveredField.id.replace('_delivered', ''));
+                                        }
+
                                         moveToNextInput(input);
                                     }
                                 }
-
                                 function moveToNextInput(currentInput) {
                                     // Get all input fields with class 'deliveredPackages'
                                     const inputs = document.querySelectorAll('.deliveredPackages');
