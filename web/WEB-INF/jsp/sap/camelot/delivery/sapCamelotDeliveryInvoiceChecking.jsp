@@ -48,7 +48,6 @@
             }
             input[type="number"][readonly] {
                 font-weight: normal;
-                background-color: #f8f9fa;
                 cursor: default;
                 border: 1px solid #ced4da;
             }
@@ -60,6 +59,13 @@
             input[type="number"]::-webkit-outer-spin-button { 
                 opacity: 1;
                 height: 30px;
+            }
+
+            /* Make readonly inputs inherit row colors */
+            tr.highlight-red input[readonly],
+            tr.highlight-yellow input[readonly], 
+            tr.highlight-green input[readonly] {
+                background-color: inherit;
             }
             td:nth-child(4) {
                 text-align: center;
