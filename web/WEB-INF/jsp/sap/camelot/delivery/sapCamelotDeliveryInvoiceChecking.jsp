@@ -297,6 +297,7 @@
                                     row.appendChild(c5);
                                     row.appendChild(c6);
                                     row.appendChild(c7);
+                                    row.appendChild(c8);
                                     table.appendChild(row);
 
                                     updateRowColor(code);
