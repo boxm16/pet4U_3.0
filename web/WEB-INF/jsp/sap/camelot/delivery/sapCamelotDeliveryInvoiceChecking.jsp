@@ -42,6 +42,24 @@
                 text-align: center;
                 width: 100%;
                 background-color: inherit;
+                font-size: 22px;
+                font-weight: bold;
+                padding: 8px 4px;
+            }
+            input[type="number"][readonly] {
+                font-weight: normal;
+                background-color: #f8f9fa !important;
+                cursor: default;
+                border: 1px solid #ced4da;
+            }
+            input[type="number"]:focus {
+                box-shadow: 0 0 0 2px rgba(0,123,255,.25);
+                outline: none;
+            }
+            input[type="number"]::-webkit-inner-spin-button, 
+            input[type="number"]::-webkit-outer-spin-button { 
+                opacity: 1;
+                height: 30px;
             }
             td:nth-child(4) {
                 text-align: center;
@@ -51,18 +69,21 @@
             }
             tr.highlight-red input {
                 background-color: #ff4d4d;
+                color: #000;
             }
             tr.highlight-yellow {
                 background-color: #ffff66;
             }
             tr.highlight-yellow input {
                 background-color: #ffff33;
+                color: #000;
             }
             tr.highlight-green {
                 background-color: #66ff66;
             }
             tr.highlight-green input {
                 background-color: #33ff33;
+                color: #000;
             }
             tr.highlight-red, 
             tr.highlight-yellow,
