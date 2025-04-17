@@ -67,16 +67,17 @@
                     <th>A/A</th>
                     <th>Code</th>
                     <th>Description</th>
-                    <th>Sent</th>
-                    <th>Delivered</th>
+                    <th>Delivered Packages</th>
                     <th>Items In Package</th> <!-- New column -->
+                    <th>Delivered Items</th>
+                    <th>Sent Items</th>
                     <th>Alert</th>
                     <th>PO Line</th>
                 </tr>
             </thead>
             <tbody id="tableBody">
                 <%
-                    
+
                     int x = 1;
                     DeliveryInvoice deliveryInvoice = (DeliveryInvoice) request.getAttribute("deliveryInvoice");
                     LinkedHashMap<String, DeliveryItem> items = deliveryInvoice.getItems();
@@ -101,11 +102,18 @@
                         out.println("</td>");
 
                         out.println("<td>");
-                        out.println("<input class='sent' type='number' id='" + item.getCode() + "_sent' value='" + item.getQuantity() + "' readonly>");
+                        out.println("<input class='deliveredPackages' type='number' id='" + item.getCode() + "_deliveredPackages' value='0'>");
                         out.println("</td>");
 
                         out.println("<td>");
-                        out.println("<input class='delivered' type='number' id='" + item.getCode() + "_delivered' value='" + item.getDeliveredQuantity() + "'");
+                        out.println(itemsInPackage);
+                        out.println("</td>");
+                        out.println("<td>");
+                        out.println("<input class='delivered' type='number' id='" + item.getCode() + "_delivered' value='X" + item.getDeliveredQuantity() + "'");
+                        out.println("</td>");
+
+                        out.println("<td>");
+                        out.println("<input class='sent' type='number' id='" + item.getCode() + "_sent' value='" + item.getQuantity() + "' readonly>");
                         out.println("</td>");
 
                         out.println("<td>");
