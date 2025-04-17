@@ -38,6 +38,13 @@
                 font-weight: bold;
                 color: #333;
             }
+            input[type="number"] {
+                text-align: center;
+                width: 100%;
+            }
+            td:nth-child(4) {
+                text-align: center;
+            }
         </style>
     </head>
     <body>
