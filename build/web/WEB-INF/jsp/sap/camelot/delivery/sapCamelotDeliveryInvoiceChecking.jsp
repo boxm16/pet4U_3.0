@@ -260,6 +260,7 @@
                                     let c5 = document.createElement("td");
                                     let c6 = document.createElement("td");
                                     let c7 = document.createElement("td");
+                                    let c8 = document.createElement("td");
 
                                     c1.innerText = "----";
                                     c2.innerHTML = "<a href='itemAnalysis.htm?code=" + code + "' target='_blank'>" + code + "</a>";
