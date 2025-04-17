@@ -48,7 +48,7 @@
             }
             input[type="number"][readonly] {
                 font-weight: normal;
-                background-color: #f8f9fa !important;
+                background-color: #f8f9fa;
                 cursor: default;
                 border: 1px solid #ced4da;
             }
