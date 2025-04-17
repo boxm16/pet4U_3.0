@@ -172,245 +172,246 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
     <script type="text/javascript">
-        class Item {
-            constructor(altercode, code, description) {
-                this.altercode = altercode;
-                this.code = code;
-                this.description = description;
-            }
-        }
+                                class Item {
+                                    constructor(altercode, code, description) {
+                                        this.altercode = altercode;
+                                        this.code = code;
+                                        this.description = description;
+                                    }
+                                }
 
-        class AltercodeContainer {
-            constructor(altercode, packageBarcode, itemsInPackage) {
-                this.altercode = altercode;
-                this.packageBarcode = packageBarcode;
-                this.itemsInPackage = itemsInPackage;
-            }
-        }
+                                class AltercodeContainer {
+                                    constructor(altercode, packageBarcode, itemsInPackage) {
+                                        this.altercode = altercode;
+                                        this.packageBarcode = packageBarcode;
+                                        this.itemsInPackage = itemsInPackage;
+                                    }
+                                }
 
-        var items = new Array();
+                                var items = new Array();
         <c:forEach items="${pet4UItemsRowByRow}" var="item">
-        var altercode = "${item.altercode}";
-        var code = "${item.code}";
-        var description = "${item.description}";
-        var item = new Item(altercode, code, description);
-        items[altercode] = item;
+                                var altercode = "${item.altercode}";
+                                var code = "${item.code}";
+                                var description = "${item.description}";
+                                var item = new Item(altercode, code, description);
+                                items[altercode] = item;
         </c:forEach>
 
-        var altercodeContainers = new Array();
+                                var altercodeContainers = new Array();
         <c:forEach items="${pet4UAllAltercodeContainers}" var="altercodeContainer">
-        var altercodeBarcode = "${altercodeContainer.altercode}";
-        var packageBarcode = "${altercodeContainer.packageBarcode}";
-        var itemsInPackage = "${altercodeContainer.itemsInPackage}";
-        var altercodeContainer = new AltercodeContainer(altercodeBarcode, packageBarcode, itemsInPackage);
-        altercodeContainers[altercodeBarcode] = altercodeContainer;
+                                var altercodeBarcode = "${altercodeContainer.altercode}";
+                                var packageBarcode = "${altercodeContainer.packageBarcode}";
+                                var itemsInPackage = "${altercodeContainer.itemsInPackage}";
+                                var altercodeContainer = new AltercodeContainer(altercodeBarcode, packageBarcode, itemsInPackage);
+                                altercodeContainers[altercodeBarcode] = altercodeContainer;
         </c:forEach>
 
-        function check(event, input) {
-            if (event.keyCode === 13) {
-                var altercode = input.value;
-                console.log("altercode:" + altercode);
-                var item = items[altercode];
-                if (item == null) {
-                    playBeep();
-                    if (altercodeContainer != null) {
-                        console.log("Something Wrong, Item is null, but barocede is not" + altercode);
-                    }
+                                function check(event, input) {
+                                    if (event.keyCode === 13) {
+                                        var altercode = input.value;
+                                        console.log("altercode:" + altercode);
+                                        var item = items[altercode];
+                                        if (item == null) {
+                                            playBeep();
+                                            if (altercodeContainer != null) {
+                                                console.log("Something Wrong, Item is null, but barocede is not" + altercode);
+                                            }
 
-                    let unknownBarcodeSent = document.getElementById(altercode + "_sent");
-                    let unknownBarcodeDelivered = document.getElementById(altercode + "_delivered");
+                                            let unknownBarcodeSent = document.getElementById(altercode + "_sent");
+                                            let unknownBarcodeDelivered = document.getElementById(altercode + "_delivered");
 
-                    if (unknownBarcodeSent == null) {
-                        document.getElementById("descriptionDisplay").innerHTML = altercode + " : UNKNOWN ALTERCODE : " + altercode;
-                        addRow(altercode, "UNKNOWN ALTERCODE " + altercode);
-                        let unknownBarcodeDelivered = document.getElementById(altercode + "_delivered");
-                        let v = unknownBarcodeDelivered.value;
-                        v++;
-                        unknownBarcodeDelivered.value = v;
+                                            if (unknownBarcodeSent == null) {
+                                                document.getElementById("descriptionDisplay").innerHTML = altercode + " : UNKNOWN ALTERCODE : " + altercode;
+                                                addRow(altercode, "UNKNOWN ALTERCODE " + altercode);
+                                                let unknownBarcodeDelivered = document.getElementById(altercode + "_delivered");
+                                                let v = unknownBarcodeDelivered.value;
+                                                v++;
+                                                unknownBarcodeDelivered.value = v;
 
-                    } else {
-                        let v = unknownBarcodeDelivered.value;
-                        v++;
-                        unknownBarcodeDelivered.value = v;
-                    }
-                    updateRowColor(altercode);
-                } else {
-                    var code = item.code;
-                    console.log(code);
-                    var description = item.description;
-                    document.getElementById("descriptionDisplay").innerHTML = altercode + " : " + description;
-                    
-                    if (altercodeContainer == null) {
-                        console.log("Something Wrong, while Item is not null, barcode is null" + altercode);
-                    }
-                    
-                    let sent = document.getElementById(code + "_sent");
-                    if (sent == null) {
-                        playBeep();
-                        addRow(item.code, item.description);
-                    } else {
-                        sent = sent.value * 1;
-                    }
+                                            } else {
+                                                let v = unknownBarcodeDelivered.value;
+                                                v++;
+                                                unknownBarcodeDelivered.value = v;
+                                            }
+                                            updateRowColor(altercode);
+                                        } else {
+                                            var code = item.code;
+                                            console.log(code);
+                                            var description = item.description;
+                                            document.getElementById("descriptionDisplay").innerHTML = altercode + " : " + description;
 
-                    let delivered = document.getElementById(code + "_delivered").value * 1;
+                                            if (altercodeContainer == null) {
+                                                console.log("Something Wrong, while Item is not null, barcode is null" + altercode);
+                                            }
 
-                    if (altercodeContainer.packageBarcode == "true") {
-                        delivered += altercodeContainer.itemsInPackage * 1;
-                    } else {
-                        delivered++;
-                    }
+                                            let sent = document.getElementById(code + "_sent");
+                                            if (sent == null) {
+                                                playBeep();
+                                                addRow(item.code, item.description);
+                                            } else {
+                                                sent = sent.value * 1;
+                                            }
 
-                    document.getElementById(code + "_delivered").value = delivered;
-                    updateRowColor(code);
-                }
-                input.value = "";
-            }
-        }
+                                            let delivered = document.getElementById(code + "_delivered").value * 1;
 
-        function addRow(code, description) {
-            let table = document.getElementById("tableBody");
-            let row = document.createElement("tr");
-            row.id = "row_" + code;
+                                            if (altercodeContainer.packageBarcode == "true") {
+                                                delivered += altercodeContainer.itemsInPackage * 1;
+                                            } else {
+                                                delivered++;
+                                            }
 
-            let c1 = document.createElement("td");
-            let c2 = document.createElement("td");
-            let c3 = document.createElement("td");
-            let c4 = document.createElement("td");
-            let c5 = document.createElement("td");
-            let c6 = document.createElement("td");
-            let c7 = document.createElement("td");
-            let c8 = document.createElement("td");
+                                            document.getElementById(code + "_delivered").value = delivered;
+                                            updateRowColor(code);
+                                        }
+                                        input.value = "";
+                                    }
+                                }
 
-            c1.innerText = "----";
-            c2.innerHTML = "<a href='itemAnalysis.htm?code=" + code + "' target='_blank'>" + code + "</a>";
-            c3.innerText = description;
-            c4.innerHTML = "<input class='sent' type='number' id='" + code + "_sent' value='0' readonly>";
-            c5.innerHTML = "<input class='delivered' type='number' id='" + code + "_delivered' value='0'>";
-            c6.innerText = "1.0";
-            c7.innerHTML = "<span class='po-line'>-1</span>";
+                                function addRow(code, description) {
+                                    let table = document.getElementById("tableBody");
+                                    let row = document.createElement("tr");
+                                    row.id = "row_" + code;
 
-            row.appendChild(c1);
-            row.appendChild(c2);
-            row.appendChild(c3);
-            row.appendChild(c4);
-            row.appendChild(c5);
-            row.appendChild(c6);
-            row.appendChild(c7);
-            table.appendChild(row);
-            
-            updateRowColor(code);
-        }
+                                    let c1 = document.createElement("td");
+                                    let c2 = document.createElement("td");
+                                    let c3 = document.createElement("td");
+                                    let c4 = document.createElement("td");
+                                    let c5 = document.createElement("td");
+                                    let c6 = document.createElement("td");
+                                    let c7 = document.createElement("td");
+                                    let c8 = document.createElement("td");
 
-        function updateRowColor(code) {
-            const row = document.getElementById("row_" + code);
-            const sent = parseFloat(document.getElementById(code + "_sent").value) || 0;
-            const delivered = parseFloat(document.getElementById(code + "_delivered").value) || 0;
-            const diff = sent - delivered;
+                                    c1.innerText = "----";
+                                    c2.innerHTML = "<a href='itemAnalysis.htm?code=" + code + "' target='_blank'>" + code + "</a>";
+                                    c3.innerText = description;
+                                    c4.innerHTML = "<input class='deliveredPackages' type='number' id='" + code + "_sent' value='0'>";
+                                    c5.innerHTML = "<input class='delivered' type='number' id='" + code + "_delivered' value='0'>";
+                                    c6.innerHTML = "<input class='sent' type='number' id='" + code + "_sent' value='0' readonly>";
+                                    c7.innerText = "1.0";
+                                    c8.innerHTML = "<span class='po-line'>-1</span>";
 
-            // Remove all highlight classes
-            row.classList.remove('highlight-red', 'highlight-yellow', 'highlight-green');
-            
-            if (diff > 0) {
-                row.classList.add('highlight-red');
-            } else if (diff < 0) {
-                row.classList.add('highlight-yellow');
-            } else {
-                row.classList.add('highlight-green');
-            }
-        }
+                                    row.appendChild(c1);
+                                    row.appendChild(c2);
+                                    row.appendChild(c3);
+                                    row.appendChild(c4);
+                                    row.appendChild(c5);
+                                    row.appendChild(c6);
+                                    row.appendChild(c7);
+                                    table.appendChild(row);
 
-        function collectSentData() {
-            var returnValue = "";
-            var sentItems = document.querySelectorAll(".sent");
-            for (x = 0; x < sentItems.length; x++) {
-                let code = sentItems[x].id.replace("_sent", "");
-                returnValue += code + ":" + sentItems[x].value + ",";
-            }
-            return returnValue;
-        }
+                                    updateRowColor(code);
+                                }
 
-        function collectDeliveredData() {
-            var returnValue = "";
-            var deliveredItems = document.querySelectorAll(".delivered");
-            for (x = 0; x < deliveredItems.length; x++) {
-                let code = deliveredItems[x].id.replace("_delivered", "");
-                returnValue += code + ":" + deliveredItems[x].value + ",";
-            }
-            return returnValue;
-        }
+                                function updateRowColor(code) {
+                                    const row = document.getElementById("row_" + code);
+                                    const sent = parseFloat(document.getElementById(code + "_sent").value) || 0;
+                                    const delivered = parseFloat(document.getElementById(code + "_delivered").value) || 0;
+                                    const diff = sent - delivered;
 
-        function collectBaseLines() {
-            var returnValue = "";
-            var rows = document.querySelectorAll("tbody tr");
-            for (var x = 0; x < rows.length; x++) {
-                var code = rows[x].cells[1].textContent.trim();
-                var baseLine = rows[x].cells[7].textContent.trim();
-                returnValue += code + ":" + baseLine + ",";
-            }
-            return returnValue;
-        }
+                                    // Remove all highlight classes
+                                    row.classList.remove('highlight-red', 'highlight-yellow', 'highlight-green');
 
-        function requestRouter(requestTarget) {
-            form.action = requestTarget;
-            document.getElementById("sentItems").value = collectSentData();
-            document.getElementById("deliveredItems").value = collectDeliveredData();
-            document.getElementById("baseLines").value = collectBaseLines();
-            form.submit();
-        }
+                                    if (diff > 0) {
+                                        row.classList.add('highlight-red');
+                                    } else if (diff < 0) {
+                                        row.classList.add('highlight-yellow');
+                                    } else {
+                                        row.classList.add('highlight-green');
+                                    }
+                                }
 
-        function playBeep() {
-            let audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            let oscillator = audioCtx.createOscillator();
-            let gainNode = audioCtx.createGain();
-            oscillator.type = "sine";
-            oscillator.frequency.setValueAtTime(1000, audioCtx.currentTime);
-            gainNode.gain.setValueAtTime(1, audioCtx.currentTime);
-            oscillator.connect(gainNode);
-            gainNode.connect(audioCtx.destination);
-            oscillator.start();
-            setTimeout(() => {
-                oscillator.stop();
-            }, 500);
-        }
+                                function collectSentData() {
+                                    var returnValue = "";
+                                    var sentItems = document.querySelectorAll(".sent");
+                                    for (x = 0; x < sentItems.length; x++) {
+                                        let code = sentItems[x].id.replace("_sent", "");
+                                        returnValue += code + ":" + sentItems[x].value + ",";
+                                    }
+                                    return returnValue;
+                                }
 
-        function handlePackageEnter(event, input) {
-            if (event.keyCode === 13) {
-                event.preventDefault();
+                                function collectDeliveredData() {
+                                    var returnValue = "";
+                                    var deliveredItems = document.querySelectorAll(".delivered");
+                                    for (x = 0; x < deliveredItems.length; x++) {
+                                        let code = deliveredItems[x].id.replace("_delivered", "");
+                                        returnValue += code + ":" + deliveredItems[x].value + ",";
+                                    }
+                                    return returnValue;
+                                }
 
-                const row = input.closest('tr');
-                const itemsInPackage = parseFloat(row.cells[3].textContent) || 1;
-                const deliveredPackages = parseFloat(input.value) || 0;
-                const deliveredItems = itemsInPackage * deliveredPackages;
+                                function collectBaseLines() {
+                                    var returnValue = "";
+                                    var rows = document.querySelectorAll("tbody tr");
+                                    for (var x = 0; x < rows.length; x++) {
+                                        var code = rows[x].cells[1].textContent.trim();
+                                        var baseLine = rows[x].cells[7].textContent.trim();
+                                        returnValue += code + ":" + baseLine + ",";
+                                    }
+                                    return returnValue;
+                                }
 
-                const deliveredField = row.querySelector('.delivered');
-                if (deliveredField) {
-                    deliveredField.value = deliveredItems;
-                    const code = deliveredField.id.replace('_delivered', '');
-                    updateRowColor(code);
-                }
+                                function requestRouter(requestTarget) {
+                                    form.action = requestTarget;
+                                    document.getElementById("sentItems").value = collectSentData();
+                                    document.getElementById("deliveredItems").value = collectDeliveredData();
+                                    document.getElementById("baseLines").value = collectBaseLines();
+                                    form.submit();
+                                }
 
-                moveToNextInput(input);
-            }
-        }
+                                function playBeep() {
+                                    let audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                                    let oscillator = audioCtx.createOscillator();
+                                    let gainNode = audioCtx.createGain();
+                                    oscillator.type = "sine";
+                                    oscillator.frequency.setValueAtTime(1000, audioCtx.currentTime);
+                                    gainNode.gain.setValueAtTime(1, audioCtx.currentTime);
+                                    oscillator.connect(gainNode);
+                                    gainNode.connect(audioCtx.destination);
+                                    oscillator.start();
+                                    setTimeout(() => {
+                                        oscillator.stop();
+                                    }, 500);
+                                }
 
-        function moveToNextInput(currentInput) {
-            const inputs = document.querySelectorAll('.deliveredPackages');
-            let nextInput = null;
+                                function handlePackageEnter(event, input) {
+                                    if (event.keyCode === 13) {
+                                        event.preventDefault();
 
-            for (let i = 0; i < inputs.length; i++) {
-                if (inputs[i] === currentInput) {
-                    if (i < inputs.length - 1) {
-                        nextInput = inputs[i + 1];
-                    }
-                    break;
-                }
-            }
+                                        const row = input.closest('tr');
+                                        const itemsInPackage = parseFloat(row.cells[3].textContent) || 1;
+                                        const deliveredPackages = parseFloat(input.value) || 0;
+                                        const deliveredItems = itemsInPackage * deliveredPackages;
 
-            if (nextInput) {
-                nextInput.focus();
-                nextInput.select();
-            }
-        }
+                                        const deliveredField = row.querySelector('.delivered');
+                                        if (deliveredField) {
+                                            deliveredField.value = deliveredItems;
+                                            const code = deliveredField.id.replace('_delivered', '');
+                                            updateRowColor(code);
+                                        }
+
+                                        moveToNextInput(input);
+                                    }
+                                }
+
+                                function moveToNextInput(currentInput) {
+                                    const inputs = document.querySelectorAll('.deliveredPackages');
+                                    let nextInput = null;
+
+                                    for (let i = 0; i < inputs.length; i++) {
+                                        if (inputs[i] === currentInput) {
+                                            if (i < inputs.length - 1) {
+                                                nextInput = inputs[i + 1];
+                                            }
+                                            break;
+                                        }
+                                    }
+
+                                    if (nextInput) {
+                                        nextInput.focus();
+                                        nextInput.select();
+                                    }
+                                }
     </script>
 </body>
 </html>
