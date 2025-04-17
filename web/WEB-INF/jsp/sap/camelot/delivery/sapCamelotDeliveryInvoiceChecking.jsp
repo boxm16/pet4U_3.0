@@ -106,7 +106,7 @@
                         out.println("</td>");
 
                         out.println("<td>");
-                        out.println("<input class='deliveredPackages' type='number' id='" + item.getCode() + "_deliveredPackages' value='0'>");
+                        out.println("<input class='deliveredPackages' type='number' id='" + item.getCode() + "_deliveredPackages' value='0' onkeypress='handlePackageEnter(event, this)'>");
                         out.println("</td>");
 
                         out.println("<td>");
@@ -358,6 +358,37 @@
                                     setTimeout(() => {
                                         oscillator.stop();
                                     }, 500); // Beep duration: 500ms
+                                }
+
+                                // Add this function to handle the Enter key press in deliveredPackages fields
+                                function handlePackageEnter(event, input) {
+                                    if (event.keyCode === 13) {
+                                        event.preventDefault(); // Prevent form submission
+                                        moveToNextInput(input);
+                                    }
+                                }
+
+                                function moveToNextInput(currentInput) {
+                                    // Get all input fields with class 'deliveredPackages'
+                                    const inputs = document.querySelectorAll('.deliveredPackages');
+                                    let nextInput = null;
+
+                                    // Find the current input in the list
+                                    for (let i = 0; i < inputs.length; i++) {
+                                        if (inputs[i] === currentInput) {
+                                            // If not the last input, get the next one
+                                            if (i < inputs.length - 1) {
+                                                nextInput = inputs[i + 1];
+                                            }
+                                            break;
+                                        }
+                                    }
+
+                                    // If found next input, focus on it
+                                    if (nextInput) {
+                                        nextInput.focus();
+                                        nextInput.select(); // Optional: select the text for easy editing
+                                    }
                                 }
     </script>
 </body>
