@@ -358,14 +358,14 @@
                                             //--------------------
                                             const deliveredRow = document.getElementById(code + "_delivered").closest('tr');
                                             // Get items per package (default to 1 if not specified)
-                                            const itemsInPackage = parseFloat(row.cells[3].textContent) || 1;
+                                            const itemsInPackage = parseFloat(deliveredRow.cells[3].textContent) || 1;
                                             const deliveredItems = parseFloat(input.value) || 0;
 
                                             // Calculate complete packages (only counts full boxes)
                                             const deliveredPackages = Math.floor(deliveredItems / itemsInPackage);
 
                                             // Update packages field
-                                            const packagesField = row.querySelector('.deliveredPackages');
+                                            const packagesField = deliveredRow.querySelector('.deliveredPackages');
                                             packagesField.value = deliveredPackages;
                                             //--------------------
                                             updateRowColor(code);
