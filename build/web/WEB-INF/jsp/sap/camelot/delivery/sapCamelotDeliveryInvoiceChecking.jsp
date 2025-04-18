@@ -527,16 +527,16 @@
                                     const row = input.closest('tr');
                                     const code = input.id.replace('_delivered', '');
 
-                                    // Calculate packages if needed (reverse calculation)
+                                    // Get items per package (default to 1 if not specified)
                                     const itemsInPackage = parseFloat(row.cells[3].textContent) || 1;
                                     const deliveredItems = parseFloat(input.value) || 0;
-                                    const deliveredPackages = deliveredItems / itemsInPackage;
 
-                                    // Update packages field if it's a whole number
-                                    if (Number.isInteger(deliveredPackages)) {
-                                        const packagesField = row.querySelector('.deliveredPackages');
-                                        packagesField.value = deliveredPackages;
-                                    }
+                                    // Calculate packages using ceiling (round up to nearest whole package)
+                                    const deliveredPackages = Math.ceil(deliveredItems / itemsInPackage);
+
+                                    // Update packages field
+                                    const packagesField = row.querySelector('.deliveredPackages');
+                                    packagesField.value = deliveredPackages;
 
                                     updateRowColor(code);
                                     moveToNextDeliveredInput(input);
