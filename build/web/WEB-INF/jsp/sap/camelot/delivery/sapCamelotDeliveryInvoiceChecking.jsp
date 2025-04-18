@@ -254,323 +254,213 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
     <script type="text/javascript">
-                                class Item {
-                                    constructor(altercode, code, description) {
-                                        this.altercode = altercode;
-                                        this.code = code;
-                                        this.description = description;
-                                    }
-                                }
-
-                                class AltercodeContainer {
-                                    constructor(altercode, packageBarcode, itemsInPackage) {
-                                        this.altercode = altercode;
-                                        this.packageBarcode = packageBarcode;
-                                        this.itemsInPackage = itemsInPackage;
-                                    }
-                                }
-
-                                var items = new Array();
-        <c:forEach items="${pet4UItemsRowByRow}" var="item">
-                                var altercode = "${item.altercode}";
-                                var code = "${item.code}";
-                                var description = "${item.description}";
-                                var item = new Item(altercode, code, description);
-                                items[altercode] = item;
-        </c:forEach>
-
-                                var altercodeContainers = new Array();
-        <c:forEach items="${pet4UAllAltercodeContainers}" var="altercodeContainer">
-                                var altercodeBarcode = "${altercodeContainer.altercode}";
-                                var packageBarcode = "${altercodeContainer.packageBarcode}";
-                                var itemsInPackage = "${altercodeContainer.itemsInPackage}";
-                                var altercodeContainer = new AltercodeContainer(altercodeBarcode, packageBarcode, itemsInPackage);
-                                altercodeContainers[altercodeBarcode] = altercodeContainer;
-        </c:forEach>
-                                window.onload = function () {
-                                    // Existing row validation
-                                    const rows = document.querySelectorAll("tbody tr");
-                                    rows.forEach(row => {
-                                        const code = row.cells[1].textContent.trim();
-                                        if (code)
-                                            updateRowColor(code);
-                                    });
-
-                                    // Auto-focus barcode input (if needed)
-                                    document.querySelector("input[type='text']")?.focus();
-                                };
-
-                                function check(event, input) {
-                                    if (event.keyCode === 13) {
-                                        var altercode = input.value;
-                                        console.log("altercode:" + altercode);
-                                        var item = items[altercode];
-                                        if (item == null) {
-                                            playBeep();
-                                            if (altercodeContainer != null) {
-                                                console.log("Something Wrong, Item is null, but barocede is not" + altercode);
-                                            }
-
-                                            let unknownBarcodeSent = document.getElementById(altercode + "_sent");
-                                            let unknownBarcodeDelivered = document.getElementById(altercode + "_delivered");
-
-                                            if (unknownBarcodeSent == null) {
-                                                document.getElementById("descriptionDisplay").innerHTML = altercode + " : UNKNOWN ALTERCODE : " + altercode;
-                                                addRow(altercode, "UNKNOWN ALTERCODE " + altercode);
-                                                let unknownBarcodeDelivered = document.getElementById(altercode + "_delivered");
-                                                let v = unknownBarcodeDelivered.value;
-                                                v++;
-                                                unknownBarcodeDelivered.value = v;
-
-                                            } else {
-                                                let v = unknownBarcodeDelivered.value;
-                                                v++;
-                                                unknownBarcodeDelivered.value = v;
-                                            }
-                                            updateRowColor(altercode);
-                                        } else {
-                                            var code = item.code;
-                                            console.log(code);
-                                            var description = item.description;
-                                            document.getElementById("descriptionDisplay").innerHTML = altercode + " : " + description;
-
-                                            if (altercodeContainer == null) {
-                                                console.log("Something Wrong, while Item is not null, barcode is null" + altercode);
-                                            }
-
-                                            let sent = document.getElementById(code + "_sent");
-                                            if (sent == null) {
-                                                playBeep();
-                                                addRow(item.code, item.description);
-                                            } else {
-                                                sent = sent.value * 1;
-                                            }
-
-                                            let delivered = document.getElementById(code + "_delivered").value * 1;
-
-                                            if (altercodeContainer.packageBarcode == "true") {
-                                                delivered += altercodeContainer.itemsInPackage * 1;
-                                            } else {
-                                                delivered++;
-                                            }
-
-                                            document.getElementById(code + "_delivered").value = delivered;
-                                            updateRowColor(code);
+// Data structures
+                                const appData = {
+                                items: {},
+                                        altercodeContainers: {},
+                                        elements: {
+                                        tableBody: document.getElementById("tableBody"),
+                                                descriptionDisplay: document.getElementById("descriptionDisplay"),
+                                                barcodeInput: document.querySelector("input[type='text']"),
+                                                form: document.getElementById("form")
                                         }
-                                        input.value = "";
-                                    }
+                                };
+// Initialize data from JSP
+        <c:forEach items="${pet4UItemsRowByRow}" var="item">
+                                appData.items["${item.altercode}"] = {
+                                code: "${item.code}",
+                                        description: "${item.description}"
+                                        };
+        </c:forEach>
+
+        <c:forEach items="${pet4UAllAltercodeContainers}" var="altercodeContainer">
+                                appData.altercodeContainers["${altercodeContainer.altercode}"] = {
+                                packageBarcode: "${altercodeContainer.packageBarcode}" === "true",
+                                        itemsInPackage: parseInt("${altercodeContainer.itemsInPackage}") || 1
+                                        };
+        </c:forEach>
+
+// Core functions
+                                function updateRowColor(code) {
+                                const deliveredEl = document.getElementById(`${code}_delivered`);
+                                if (!deliveredEl) return;
+                                const sent = parseFloat(document.getElementById(`${code}_sent`).value) || 0;
+                                const delivered = parseFloat(deliveredEl.value) || 0;
+                                const diff = sent - delivered;
+                                // Remove all highlight classes first
+                                deliveredEl.classList.remove('highlight-red', 'highlight-yellow', 'highlight-green');
+                                // Add appropriate class
+                                if (diff > 0) {
+                                deliveredEl.classList.add('highlight-red');
+                                } else if (diff < 0) {
+                                deliveredEl.classList.add('highlight-yellow');
+                                } else {
+                                deliveredEl.classList.add('highlight-green');
+                                }
                                 }
 
                                 function addRow(code, description) {
-                                    let table = document.getElementById("tableBody");
-                                    let row = document.createElement("tr");
-                                    row.id = "row_" + code;
-
-                                    let c1 = document.createElement("td");
-                                    let c2 = document.createElement("td");
-                                    let c3 = document.createElement("td");
-                                    let c4 = document.createElement("td");
-                                    let c5 = document.createElement("td");
-                                    let c6 = document.createElement("td");
-                                    let c7 = document.createElement("td");
-                                    let c8 = document.createElement("td");
-
-                                    c1.innerText = "----";
-                                    c2.innerHTML = "<a href='itemAnalysis.htm?code=" + code + "' target='_blank'>" + code + "</a>";
-                                    c3.innerText = description;
-                                    c4.innerText = "1";
-                                    c5.innerHTML = "<input class='deliveredPackages' type='number' id='" + code + "_sent' value='0'>";
-                                    c6.innerHTML = "<input class='delivered' type='number' id='" + code + "_delivered' value='0'>";
-                                    c7.innerHTML = "<input class='sent' type='number' id='" + code + "_sent' value='0' readonly>";
-                                    c8.innerHTML = "<span class='po-line'>-1</span>";
-
-                                    row.appendChild(c1);
-                                    row.appendChild(c2);
-                                    row.appendChild(c3);
-                                    row.appendChild(c4);
-                                    row.appendChild(c5);
-                                    row.appendChild(c6);
-                                    row.appendChild(c7);
-                                    row.appendChild(c8);
-                                    table.appendChild(row);
-
-                                    updateRowColor(code);
+                                const rowHTML = `
+        <tr id="row_${code}">
+            <td>----</td>
+            <td><a href="itemAnalysis.htm?code=${code}" target="_blank">${code}</a></td>
+            <td style="padding-left: 5px;">${description}</td>
+            <td>1</td>
+            <td><input class="deliveredPackages" type="number" id="${code}_deliveredPackages" value="0"></td>
+            <td><input class="delivered" type="number" id="${code}_delivered" value="0"></td>
+            <td><input class="sent" type="number" id="${code}_sent" value="0" readonly></td>
+            <td class="po-line">-1</td>
+        </tr>
+    `;
+                                appData.elements.tableBody.insertAdjacentHTML('beforeend', rowHTML);
+                                updateRowColor(code);
                                 }
 
-                                function updateRowColor(code) {
-                                    const deliveredEl = document.getElementById(code + "_delivered");
-                                    if (!deliveredEl)
-                                        return; // safety check
+// Delivery calculation functions
+                                function updateDeliveryValues(code, increment = 1) {
+                                const deliveredEl = document.getElementById(`${code}_delivered`);
+                                if (!deliveredEl) return false;
+                                deliveredEl.value = (parseFloat(deliveredEl.value) || 0) + increment;
+                                updateRowColor(code);
+                                return true;
+                                }
 
-                                    const sent = parseFloat(document.getElementById(code + "_sent").value) || 0;
-                                    const delivered = parseFloat(deliveredEl.value) || 0;
-                                    const diff = sent - delivered;
+                                function handleQuantityInput(input, isPackageField) {
+                                const row = input.closest('tr');
+                                const code = input.id.replace(isPackageField ? '_deliveredPackages' : '_delivered', '');
+                                const itemsInPackage = parseFloat(row.cells[3].textContent) || 1;
+                                if (isPackageField) {
+                                // Package field changed - update items
+                                document.getElementById(`${code}_delivered`).value = (parseFloat(input.value) || 0) * itemsInPackage;
+                                } else {
+                                // Items field changed - update packages if whole number
+                                const packages = (parseFloat(input.value) || 0) / itemsInPackage;
+                                if (Number.isInteger(packages)) {
+                                document.getElementById(`${code}_deliveredPackages`).value = packages;
+                                }
+                                }
 
-                                    // Remove all highlight classes first
-                                    deliveredEl.classList.remove('highlight-red', 'highlight-yellow', 'highlight-green');
+                                updateRowColor(code);
+                                moveToNextField(input, isPackageField);
+                                }
 
-                                    // Add appropriate class based on comparison
-                                    if (diff > 0) {
-                                        deliveredEl.classList.add('highlight-red');
-                                    } else if (diff < 0) {
-                                        deliveredEl.classList.add('highlight-yellow');
-                                    } else {
-                                        deliveredEl.classList.add('highlight-green');
+// Navigation functions
+                                function moveToNextField(currentInput, isPackageField) {
+                                const inputs = document.querySelectorAll(isPackageField ? '.deliveredPackages' : '.delivered');
+                                for (let i = 0; i < inputs.length; i++) {
+                                if (inputs[i] === currentInput && i < inputs.length - 1) {
+                                inputs[i + 1].focus();
+                                inputs[i + 1].select();
+                                break;
+                                }
+                                }
+                                }
+
+// Event handlers
+                                function handleBarcodeInput(event) {
+                                if (event.keyCode !== 13) return;
+                                const altercode = event.target.value;
+                                const item = appData.items[altercode];
+                                const container = appData.altercodeContainers[altercode];
+                                if (!item) {
+                                playBeep();
+                                if (!document.getElementById(`${altercode}_delivered`)) {
+                                appData.elements.descriptionDisplay.textContent = `${altercode} : UNKNOWN ALTERCODE`;
+                                addRow(altercode, "UNKNOWN ALTERCODE");
+                                }
+                                updateDeliveryValues(altercode);
+                                } else {
+                                appData.elements.descriptionDisplay.textContent = `${altercode} : ${item.description}`;
+                                    const increment = container?.packageBarcode ? container.itemsInPackage : 1;
+                                    if (!updateDeliveryValues(item.code, increment)) {
+                                    playBeep();
+                                    addRow(item.code, item.description);
+                                    updateDeliveryValues(item.code, increment);
                                     }
-                                }
-
-
-                                function collectSentData() {
-                                    var returnValue = "";
-                                    var sentItems = document.querySelectorAll(".sent");
-                                    for (x = 0; x < sentItems.length; x++) {
-                                        let code = sentItems[x].id.replace("_sent", "");
-                                        returnValue += code + ":" + sentItems[x].value + ",";
                                     }
-                                    return returnValue;
-                                }
 
-                                function collectDeliveredData() {
-                                    var returnValue = "";
-                                    var deliveredItems = document.querySelectorAll(".delivered");
-                                    for (x = 0; x < deliveredItems.length; x++) {
-                                        let code = deliveredItems[x].id.replace("_delivered", "");
-                                        returnValue += code + ":" + deliveredItems[x].value + ",";
+                                    event.target.value = "";
+                                    event.preventDefault();
                                     }
-                                    return returnValue;
-                                }
 
-                                function collectBaseLines() {
-                                    var returnValue = "";
-                                    var rows = document.querySelectorAll("tbody tr");
-                                    for (var x = 0; x < rows.length; x++) {
-                                        var code = rows[x].cells[1].textContent.trim();
-                                        var baseLine = rows[x].cells[7].textContent.trim();
-                                        returnValue += code + ":" + baseLine + ",";
+// Form handling
+                                    function collectFormData() {
+                                    const data = {
+                                    sentItems: "",
+                                            deliveredItems: "",
+                                            baseLines: ""
+                                    };
+                                    document.querySelectorAll(".sent").forEach(el => {
+                                    data.sentItems += `${el.id.replace("_sent", "")}:${el.value},`;
+                                    });
+                                    document.querySelectorAll(".delivered").forEach(el => {
+                                    data.deliveredItems += `${el.id.replace("_delivered", "")}:${el.value},`;
+                                    });
+                                    document.querySelectorAll("tbody tr").forEach(row => {
+                                    data.baseLines += `${row.cells[1].textContent.trim()}:${row.cells[7].textContent.trim()},`;
+                                    });
+                                    return data;
                                     }
-                                    return returnValue;
-                                }
 
-                                function requestRouter(requestTarget) {
-                                    form.action = requestTarget;
-                                    document.getElementById("sentItems").value = collectSentData();
-                                    document.getElementById("deliveredItems").value = collectDeliveredData();
-                                    document.getElementById("baseLines").value = collectBaseLines();
-                                    form.submit();
-                                }
+                                    function requestRouter(requestTarget) {
+                                    const formData = collectFormData();
+                                    document.getElementById("sentItems").value = formData.sentItems;
+                                    document.getElementById("deliveredItems").value = formData.deliveredItems;
+                                    document.getElementById("baseLines").value = formData.baseLines;
+                                    appData.elements.form.action = requestTarget;
+                                    appData.elements.form.submit();
+                                    }
 
-                                function playBeep() {
-                                    let audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-                                    let oscillator = audioCtx.createOscillator();
-                                    let gainNode = audioCtx.createGain();
+// Utility functions
+                                    function playBeep() {
+                                    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                                    const oscillator = audioCtx.createOscillator();
+                                    const gainNode = audioCtx.createGain();
                                     oscillator.type = "sine";
                                     oscillator.frequency.setValueAtTime(1000, audioCtx.currentTime);
                                     gainNode.gain.setValueAtTime(1, audioCtx.currentTime);
                                     oscillator.connect(gainNode);
                                     gainNode.connect(audioCtx.destination);
                                     oscillator.start();
-                                    setTimeout(() => {
-                                        oscillator.stop();
-                                    }, 500);
-                                }
-
-                                function handlePackageEnter(event, input) {
-                                    if (event.keyCode === 13) {
-                                        event.preventDefault();
-
-                                        const row = input.closest('tr');
-                                        const itemsInPackage = parseFloat(row.cells[3].textContent) || 1;
-                                        const deliveredPackages = parseFloat(input.value) || 0;
-                                        const deliveredItems = itemsInPackage * deliveredPackages;
-
-                                        const deliveredField = row.querySelector('.delivered');
-                                        if (deliveredField) {
-                                            deliveredField.value = deliveredItems;
-                                            const code = deliveredField.id.replace('_delivered', '');
-                                            updateRowColor(code);
-                                        }
-
-                                        moveToNextInput(input);
-                                    }
-                                }
-
-                                function moveToNextInput(currentInput) {
-                                    const inputs = document.querySelectorAll('.deliveredPackages');
-                                    let nextInput = null;
-
-                                    for (let i = 0; i < inputs.length; i++) {
-                                        if (inputs[i] === currentInput) {
-                                            if (i < inputs.length - 1) {
-                                                nextInput = inputs[i + 1];
-                                            }
-                                            break;
-                                        }
+                                    setTimeout(() => oscillator.stop(), 500);
                                     }
 
-                                    if (nextInput) {
-                                        nextInput.focus();
-                                        nextInput.select();
-                                    }
-                                }
-                                function handleDeliveredEnter(event, input) {
-                                    if (event.keyCode === 13) {
-                                        event.preventDefault();
-                                        updateRowFromDelivered(input);
-                                    }
-                                }
-
-                                function handleDeliveredBlur(input) {
-                                    updateRowFromDelivered(input);
-                                }
-
-                                function updateRowFromDelivered(input) {
-                                    const row = input.closest('tr');
-                                    const code = input.id.replace('_delivered', '');
-
-                                    // Calculate packages if needed (reverse calculation)
-                                    const itemsInPackage = parseFloat(row.cells[3].textContent) || 1;
-                                    const deliveredItems = parseFloat(input.value) || 0;
-                                    const deliveredPackages = deliveredItems / itemsInPackage;
-
-                                    // Update packages field if it's a whole number
-                                    if (Number.isInteger(deliveredPackages)) {
-                                        const packagesField = row.querySelector('.deliveredPackages');
-                                        packagesField.value = deliveredPackages;
-                                    }
-
-                                    updateRowColor(code);
-                                    moveToNextDeliveredInput(input);
-                                }
-
-                                function moveToNextDeliveredInput(currentInput) {
-                                    const inputs = document.querySelectorAll('.delivered');
-                                    let nextInput = null;
-
-                                    for (let i = 0; i < inputs.length; i++) {
-                                        if (inputs[i] === currentInput && i < inputs.length - 1) {
-                                            nextInput = inputs[i + 1];
-                                            break;
-                                        }
-                                    }
-
-                                    if (nextInput) {
-                                        nextInput.focus();
-                                        nextInput.select();
-                                    }
-                                }
-                                function hideLoadingOverlay() {
+                                    function hideLoadingOverlay() {
                                     const overlay = document.getElementById('loading-overlay');
                                     overlay.style.opacity = '0';
-                                    setTimeout(() => {
-                                        overlay.style.display = 'none';
-                                    }, 500); // Match this with the CSS transition duration
-                                }
+                                    setTimeout(() => overlay.style.display = 'none', 500);
+                                    }
 
-                                // When everything is fully loaded
-                                window.addEventListener('load', function () {
-                                    // Add a small delay to ensure everything is really ready
+// Initialization
+                                    function initializePage() {
+                                    // Set up event listeners
+                                    appData.elements.barcodeInput.addEventListener('keypress', handleBarcodeInput);
+                                    document.addEventListener('keypress', function(e) {
+                                    if (e.target.classList.contains('deliveredPackages')) {
+                                    handleQuantityInput(e.target, true);
+                                    } else if (e.target.classList.contains('delivered')) {
+                                    handleQuantityInput(e.target, false);
+                                    }
+                                    });
+                                    document.addEventListener('blur', function(e) {
+                                    if (e.target.classList.contains('delivered')) {
+                                    handleQuantityInput(e.target, false);
+                                    }
+                                    }, true);
+                                    // Validate existing rows
+                                    document.querySelectorAll("tbody tr").forEach(row => {
+                                    const code = row.cells[1].textContent.trim();
+                                    if (code) updateRowColor(code);
+                                    });
+                                    // Focus barcode input
+                                    appData.elements.barcodeInput?.focus();
+                                    }
+
+// Start the application
+                                    window.addEventListener('load', function() {
+                                    initializePage();
                                     setTimeout(hideLoadingOverlay, 300);
-                                });
+                                    });
     </script>
 </body>
 </html>
