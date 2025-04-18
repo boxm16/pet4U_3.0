@@ -356,6 +356,7 @@
 
                                             document.getElementById(code + "_delivered").value = delivered;
                                             //--------------------
+                                            const row = input.closest('tr');
                                             // Get items per package (default to 1 if not specified)
                                             const itemsInPackage = parseFloat(row.cells[3].textContent) || 1;
                                             const deliveredItems = parseFloat(input.value) || 0;
