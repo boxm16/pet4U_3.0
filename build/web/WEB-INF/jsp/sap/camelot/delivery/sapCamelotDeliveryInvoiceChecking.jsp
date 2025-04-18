@@ -531,8 +531,8 @@
                                     const itemsInPackage = parseFloat(row.cells[3].textContent) || 1;
                                     const deliveredItems = parseFloat(input.value) || 0;
 
-                                    // Calculate packages using ceiling (round up to nearest whole package)
-                                    const deliveredPackages = Math.ceil(deliveredItems / itemsInPackage);
+                                    // Calculate complete packages (only counts full boxes)
+                                    const deliveredPackages = Math.floor(deliveredItems / itemsInPackage);
 
                                     // Update packages field
                                     const packagesField = row.querySelector('.deliveredPackages');
