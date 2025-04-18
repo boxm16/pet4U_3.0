@@ -359,10 +359,9 @@
                                             const deliveredRow = document.getElementById(code + "_delivered").closest('tr');
                                             // Get items per package (default to 1 if not specified)
                                             const itemsInPackage = parseFloat(deliveredRow.cells[3].textContent) || 1;
-                                            const deliveredItems = parseFloat(input.value) || 0;
 
                                             // Calculate complete packages (only counts full boxes)
-                                            const deliveredPackages = Math.floor(deliveredItems / itemsInPackage);
+                                            const deliveredPackages = Math.floor(delivered / itemsInPackage);
 
                                             // Update packages field
                                             const packagesField = deliveredRow.querySelector('.deliveredPackages');
