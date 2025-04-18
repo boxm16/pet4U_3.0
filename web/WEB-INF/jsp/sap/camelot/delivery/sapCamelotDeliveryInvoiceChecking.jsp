@@ -355,6 +355,18 @@
                                             }
 
                                             document.getElementById(code + "_delivered").value = delivered;
+                                            //--------------------
+                                            // Get items per package (default to 1 if not specified)
+                                            const itemsInPackage = parseFloat(row.cells[3].textContent) || 1;
+                                            const deliveredItems = parseFloat(input.value) || 0;
+
+                                            // Calculate complete packages (only counts full boxes)
+                                            const deliveredPackages = Math.floor(deliveredItems / itemsInPackage);
+
+                                            // Update packages field
+                                            const packagesField = row.querySelector('.deliveredPackages');
+                                            packagesField.value = deliveredPackages;
+                                            //--------------------
                                             updateRowColor(code);
                                         }
                                         input.value = "";
