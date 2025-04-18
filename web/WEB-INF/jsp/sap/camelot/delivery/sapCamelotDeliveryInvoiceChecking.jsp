@@ -393,21 +393,39 @@
 
                                 function updateRowColor(code) {
                                     const row = document.getElementById("row_" + code);
-                                    const sent = parseFloat(document.getElementById(code + "_sent").value) || 0;
-                                    const delivered = parseFloat(document.getElementById(code + "_delivered").value) || 0;
+                                    const sentEl = document.getElementById(code + "_sent");
+                                    const deliveredEl = document.getElementById(code + "_delivered");
+
+                                    if (!row || !sentEl || !deliveredEl)
+                                        return; // safety check
+
+                                    const sent = parseFloat(sentEl.value) || 0;
+                                    const delivered = parseFloat(deliveredEl.value) || 0;
+
+                                    const classMap = {
+                                        red: 'highlight-red',
+                                        yellow: 'highlight-yellow',
+                                        green: 'highlight-green'
+                                    };
+
                                     const diff = sent - delivered;
 
-                                    // Remove all highlight classes
-                                    row.classList.remove('highlight-red', 'highlight-yellow', 'highlight-green');
-
+                                    let newClass = '';
                                     if (diff > 0) {
-                                        row.classList.add('highlight-red');
+                                        newClass = classMap.red;
                                     } else if (diff < 0) {
-                                        row.classList.add('highlight-yellow');
+                                        newClass = classMap.yellow;
                                     } else {
-                                        row.classList.add('highlight-green');
+                                        newClass = classMap.green;
+                                    }
+
+                                    // Only change class if needed
+                                    if (!row.classList.contains(newClass)) {
+                                        row.classList.remove(...Object.values(classMap));
+                                        row.classList.add(newClass);
                                     }
                                 }
+
 
                                 function collectSentData() {
                                     var returnValue = "";
