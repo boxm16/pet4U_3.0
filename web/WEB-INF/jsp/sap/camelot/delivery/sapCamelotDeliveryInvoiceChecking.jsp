@@ -241,6 +241,31 @@
                                 altercodeContainers[altercodeBarcode] = altercodeContainer;
         </c:forEach>
 
+                                // Automatically check all rows on page load
+                                window.onload = function () {
+                                    const rows = document.querySelectorAll("tbody tr");
+                                    rows.forEach(row => {
+                                        const code = row.cells[1].textContent.trim(); // Extract code from 2nd column
+                                        if (code) {
+                                            updateRowColor(code); // Reuse existing validation logic
+                                        }
+                                    });
+                                };
+
+                                // Optional: Force focus on the barcode input field for quick scanning
+                                window.onload = function () {
+                                    // Existing row validation
+                                    const rows = document.querySelectorAll("tbody tr");
+                                    rows.forEach(row => {
+                                        const code = row.cells[1].textContent.trim();
+                                        if (code)
+                                            updateRowColor(code);
+                                    });
+
+                                    // Auto-focus barcode input (if needed)
+                                    document.querySelector("input[type='text']")?.focus();
+                                };
+
                                 function check(event, input) {
                                     if (event.keyCode === 13) {
                                         var altercode = input.value;
