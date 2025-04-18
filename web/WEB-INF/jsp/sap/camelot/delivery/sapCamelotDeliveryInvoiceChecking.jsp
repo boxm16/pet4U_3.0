@@ -61,12 +61,22 @@
                 height: 30px;
             }
 
-            /* Make readonly inputs inherit row colors */
-            tr.highlight-red input[readonly],
-            tr.highlight-yellow input[readonly], 
-            tr.highlight-green input[readonly] {
-                background-color: inherit;
+
+
+            /* Add these new styles */
+            .delivered.highlight-red {
+                background-color: #ff4d4d !important;
+                color: #000;
             }
+            .delivered.highlight-yellow {
+                background-color: #ffff33 !important;
+                color: #000;
+            }
+            .delivered.highlight-green {
+                background-color: #33ff33 !important;
+                color: #000;
+            }
+
             td:nth-child(4) {
                 text-align: center;
             }
@@ -91,11 +101,7 @@
                 background-color: #33ff33;
                 color: #000;
             }
-            tr.highlight-red, 
-            tr.highlight-yellow,
-            tr.highlight-green {
-                color: #000;
-            }
+
             input.delivered {
                 transition: background-color 0.3s ease;
             }
@@ -136,20 +142,6 @@
                 0% { transform: rotate(0deg); }
                 100% { transform: rotate(360deg); }
             }
-
-            .input-red {
-                background-color: #ff4d4d !important;
-                color: #000;
-            }
-            .input-yellow {
-                background-color: #ffff33 !important;
-                color: #000;
-            }
-            .input-green {
-                background-color: #33ff33 !important;
-                color: #000;
-            }
-
         </style>
     </head>
     <body>
@@ -405,29 +397,27 @@
                                     updateRowColor(code);
                                 }
 
-                                function updateDeliveredColor(code) {
-                                    const deliveredInput = document.getElementById(code + "_delivered");
-                                    const sentInput = document.getElementById(code + "_sent");
+                                function updateRowColor(code) {
+                                    const deliveredEl = document.getElementById(code + "_delivered");
+                                    if (!deliveredEl)
+                                        return; // safety check
 
-                                    if (!deliveredInput || !sentInput)
-                                        return;
-
-                                    const sent = parseFloat(sentInput.value) || 0;
-                                    const delivered = parseFloat(deliveredInput.value) || 0;
+                                    const sent = parseFloat(document.getElementById(code + "_sent").value) || 0;
+                                    const delivered = parseFloat(deliveredEl.value) || 0;
                                     const diff = sent - delivered;
 
-                                    // Clear old styles
-                                    deliveredInput.classList.remove("input-red", "input-yellow", "input-green");
+                                    // Remove all highlight classes first
+                                    deliveredEl.classList.remove('highlight-red', 'highlight-yellow', 'highlight-green');
 
+                                    // Add appropriate class based on comparison
                                     if (diff > 0) {
-                                        deliveredInput.classList.add("input-red");
+                                        deliveredEl.classList.add('highlight-red');
                                     } else if (diff < 0) {
-                                        deliveredInput.classList.add("input-yellow");
+                                        deliveredEl.classList.add('highlight-yellow');
                                     } else {
-                                        deliveredInput.classList.add("input-green");
+                                        deliveredEl.classList.add('highlight-green');
                                     }
                                 }
-
 
 
                                 function collectSentData() {
