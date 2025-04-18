@@ -528,6 +528,7 @@
                                     if (event.keyCode === 13) {
                                         event.preventDefault();
                                         updateRowFromDelivered(input);
+                                        moveToNextDeliveredInput(input);
                                     }
                                 }
 
@@ -551,7 +552,7 @@
                                     packagesField.value = deliveredPackages;
 
                                     updateRowColor(code);
-                                    moveToNextDeliveredInput(input);
+
                                 }
 
                                 function moveToNextDeliveredInput(currentInput) {
