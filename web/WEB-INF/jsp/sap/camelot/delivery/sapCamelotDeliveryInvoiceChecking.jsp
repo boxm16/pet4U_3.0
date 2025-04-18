@@ -136,6 +136,20 @@
                 0% { transform: rotate(0deg); }
                 100% { transform: rotate(360deg); }
             }
+
+            .input-red {
+                background-color: #ff4d4d !important;
+                color: #000;
+            }
+            .input-yellow {
+                background-color: #ffff33 !important;
+                color: #000;
+            }
+            .input-green {
+                background-color: #33ff33 !important;
+                color: #000;
+            }
+
         </style>
     </head>
     <body>
@@ -391,40 +405,29 @@
                                     updateRowColor(code);
                                 }
 
-                                function updateRowColor(code) {
-                                    const row = document.getElementById("row_" + code);
-                                    const sentEl = document.getElementById(code + "_sent");
-                                    const deliveredEl = document.getElementById(code + "_delivered");
+                                function updateDeliveredColor(code) {
+                                    const deliveredInput = document.getElementById(code + "_delivered");
+                                    const sentInput = document.getElementById(code + "_sent");
 
-                                    if (!row || !sentEl || !deliveredEl)
-                                        return; // safety check
+                                    if (!deliveredInput || !sentInput)
+                                        return;
 
-                                    const sent = parseFloat(sentEl.value) || 0;
-                                    const delivered = parseFloat(deliveredEl.value) || 0;
-
-                                    const classMap = {
-                                        red: 'highlight-red',
-                                        yellow: 'highlight-yellow',
-                                        green: 'highlight-green'
-                                    };
-
+                                    const sent = parseFloat(sentInput.value) || 0;
+                                    const delivered = parseFloat(deliveredInput.value) || 0;
                                     const diff = sent - delivered;
 
-                                    let newClass = '';
-                                    if (diff > 0) {
-                                        newClass = classMap.red;
-                                    } else if (diff < 0) {
-                                        newClass = classMap.yellow;
-                                    } else {
-                                        newClass = classMap.green;
-                                    }
+                                    // Clear old styles
+                                    deliveredInput.classList.remove("input-red", "input-yellow", "input-green");
 
-                                    // Only change class if needed
-                                    if (!row.classList.contains(newClass)) {
-                                        row.classList.remove(...Object.values(classMap));
-                                        row.classList.add(newClass);
+                                    if (diff > 0) {
+                                        deliveredInput.classList.add("input-red");
+                                    } else if (diff < 0) {
+                                        deliveredInput.classList.add("input-yellow");
+                                    } else {
+                                        deliveredInput.classList.add("input-green");
                                     }
                                 }
+
 
 
                                 function collectSentData() {
