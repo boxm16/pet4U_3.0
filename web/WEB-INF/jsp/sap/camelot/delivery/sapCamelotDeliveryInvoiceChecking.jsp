@@ -311,15 +311,9 @@
                 logs: [],
                 // Unconditional logging (for events like scans)
                 log: function (action, itemCode, oldValue, newValue) {
-                    const entry = {
-                        timestamp: new Date().toISOString(),
-                        action: action,
-                        itemCode: itemCode,
-                        oldValue: oldValue,
-                        newValue: newValue
-                    };
+                    const timestamp = new Date().toISOString(); // Define timestamp first
+                    const entry = new LogEntry(timestamp, action, itemCode, oldValue, newValue);
                     this.logs.push(entry);
-
                     console.groupCollapsed(`%c[LOG] ${timestamp} ${action}: ${itemCode} (Changed)`,
                             'color: green; font-weight: bold');
                     console.log('Old Value:', oldValue);
@@ -332,13 +326,7 @@
                     // Only log if value actually changed
                     if (oldValue !== newValue) {
                         const timestamp = new Date().toISOString();
-                        const entry = {
-                            timestamp: timestamp,
-                            action: action,
-                            itemCode: itemCode,
-                            oldValue: oldValue,
-                            newValue: newValue
-                        };
+                        const entry = new LogEntry(timestamp, action, itemCode, oldValue, newValue);
                         this.logs.push(entry);
 
                         console.groupCollapsed(`%c[LOG] ${timestamp} ${action}: ${itemCode} (Changed)`,
@@ -350,7 +338,8 @@
                     }
                     console.log(`[INFO] ${action}: ${itemCode} (No change)`);
                     return false; // No log created
-                },
+                }
+                ,
 
                 prepareForSubmit: function () {
                     if (this.logs.length > 0) {
@@ -362,7 +351,8 @@
                         this.logs = [];
                     }
                 }
-            };
+            }
+            ;
 
             window.onload = function () {
                 // Auto-focus barcode input (if needed)
