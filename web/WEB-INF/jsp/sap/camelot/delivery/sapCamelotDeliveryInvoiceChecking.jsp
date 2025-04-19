@@ -60,6 +60,10 @@
                 opacity: 1;
                 height: 30px;
             }
+            input[type="number"] {
+                user-select: all; /* Allows text selection */
+                -webkit-user-select: all; /* For Safari */
+            }
 
 
 
@@ -292,7 +296,22 @@
             window.onload = function () {
                 // Auto-focus barcode input (if needed)
                 document.querySelector("input[type='text']")?.focus();
+                // Setup input selection
+                setupInputSelection();
             };
+
+            function setupInputSelection() {
+                const inputs = document.querySelectorAll('input[type="number"]');
+                inputs.forEach(input => {
+                    input.addEventListener('dblclick', function () {
+                        this.select();
+                    });
+                    input.addEventListener('focus', function () {
+                        this.select();
+                    });
+                });
+            }
+
 
             function check(event, input) {
                 if (event.keyCode === 13) {
@@ -411,6 +430,7 @@
                 table.appendChild(row);
 
                 updateRowColor(code);
+                setupInputSelection();
             }
 
             function updateRowColor(code) {
