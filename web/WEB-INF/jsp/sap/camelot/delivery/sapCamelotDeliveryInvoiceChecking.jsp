@@ -385,8 +385,8 @@
             function check(event, input) {
                 if (event.keyCode === 13) {
                     var altercode = input.value;
-                    backgroundLogger.log("SCAN", altercode, "", "");
                     var item = items[altercode];
+                    var altercodeContainer = altercodeContainers[altercode]; // 
                     if (item == null) {
                         backgroundLogger.log("UNKNOWN_SCAN", altercode, "", "");
                         playBeep();
