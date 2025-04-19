@@ -307,52 +307,27 @@
 
 
 
-            const backgroundLogger = {
-                logs: [],
-                // Unconditional logging (for events like scans)
-                log: function (action, itemCode, oldValue, newValue) {
-                    const timestamp = new Date().toISOString(); // Define timestamp first
-                    const entry = new LogEntry(timestamp, action, itemCode, oldValue, newValue);
-                    this.logs.push(entry);
-                    console.groupCollapsed(`%c[LOG] ${timestamp} ${action}: ${itemCode}`,
-                            'color: green; font-weight: bold');
-                    console.log('Time Stamp:', timestamp);
-                    console.log('Action:', action);
-                    console.log('Old Value:', oldValue);
-                    console.log('New Value:', newValue);
-                    console.groupEnd();
-                    return true;
-                },
+            logIfChanged: function (action, itemCode, oldValue, newValue) {
+                // Normalize values
+                const normalize = val => {
+                    if (val === null || val === undefined || val === '')
+                        return '';
+                    return isNaN(val) ? String(val) : Number(val);
+                };
 
-                logIfChanged: function (action, itemCode, oldValue, newValue) {
-                    // Convert to numbers if they look like numbers, otherwise compare as strings
-                    const oldNum = isNumeric(oldValue) ? Number(oldValue) : oldValue;
-                    const newNum = isNumeric(newValue) ? Number(newValue) : newValue;
+                const normOld = normalize(oldValue);
+                const normNew = normalize(newValue);
 
-                    // Compare numbers if both are numbers, otherwise compare strings
-                    const changed = (typeof oldNum === 'number' && typeof newNum === 'number')
-                            ? oldNum !== newNum
-                            : String(oldValue) !== String(newValue);
+                const changed = normOld !== normNew;
 
-                    if (changed) {
-                        return this.log(action, itemCode, oldValue, newValue);
-                    }
-                    console.log(`[INFO] No change detected for ${itemCode}`);
-                    return false;
-                },
-
-                prepareForSubmit: function () {
-                    if (this.logs.length > 0) {
-                        const logInput = document.createElement('input');
-                        logInput.type = 'hidden';
-                        logInput.name = 'logEntries';
-                        logInput.value = JSON.stringify(this.logs);
-                        document.getElementById('form').appendChild(logInput);
-                        this.logs = [];
-                    }
+                if (changed) {
+                    return this.log(action, itemCode, oldValue, newValue);
                 }
+
+                console.log(`[INFO] No change detected for ${itemCode}:`, {normOld, normNew});
+                return false;
             }
-            ;
+
 
             window.onload = function () {
                 // Auto-focus barcode input (if needed)
@@ -360,10 +335,6 @@
                 // Setup input selection
                 setupInputSelection();
             };
-            
-            function isNumeric(value) {
-                return !isNaN(parseFloat(value)) && isFinite(value);
-            }
 
             function setupInputSelection() {
                 const inputs = document.querySelectorAll('input[type="number"]');
