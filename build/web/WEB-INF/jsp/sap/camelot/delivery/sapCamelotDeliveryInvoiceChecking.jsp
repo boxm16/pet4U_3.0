@@ -308,35 +308,30 @@
             const backgroundLogger = {
                 logs: [],
 
-                log: function (action, itemCode, oldValue, newValue) {
-                    const timestamp = new Date().toISOString();
-                    const entry = {
-                        timestamp: timestamp,
-                        action: action,
-                        itemCode: itemCode,
-                        oldValue: oldValue,
-                        newValue: newValue
-                    };
-                    this.logs.push(entry);
-                    // Enhanced console output
-                    console.groupCollapsed(`%c[LOG] ${timestamp} ${action}: ${itemCode}`,
-                            'color: blue; font-weight: bold');
-                    console.log('Old Value:', oldValue);
-                    console.log('New Value:', newValue);
-                    console.log('Full Entry:', entry);
-                    console.groupEnd();
+                // Simple logging function - only logs if values differ
+                logIfChanged: function (action, itemCode, oldValue, newValue) {
+                    if (oldValue !== newValue) {
+                        const entry = {
+                            timestamp: new Date().toISOString(),
+                            action: action,
+                            itemCode: itemCode,
+                            oldValue: oldValue,
+                            newValue: newValue
+                        };
+                        this.logs.push(entry);
+                        console.log(`[LOG] Change detected: ${action} for ${itemCode} (${oldValue}→${newValue})`);
+                        return true;
+                    }
+                    return false;
                 },
 
                 prepareForSubmit: function () {
-                    // Convert logs to hidden input before form submission
                     if (this.logs.length > 0) {
                         const logInput = document.createElement('input');
                         logInput.type = 'hidden';
                         logInput.name = 'logEntries';
                         logInput.value = JSON.stringify(this.logs);
                         document.getElementById('form').appendChild(logInput);
-
-                        // Clear logs after preparing for submission
                         this.logs = [];
                     }
                 }
@@ -568,8 +563,8 @@
                     const newValue = event.target.value;
                     const code = input.id.replace('_deliveredPackages', '');
 
-                    backgroundLogger.log("PACKAGE_CHANGE", code, oldValue, newValue);
-
+                    // Log if changed (but don't affect logic flow)
+                    backgroundLogger.logIfChanged("PACKAGE_CHANGE", code, oldValue, newValue);
 
                     event.preventDefault();
 
@@ -613,7 +608,8 @@
                     const newValue = event.target.value;
                     const code = input.id.replace('_delivered', '');
 
-                    backgroundLogger.log("QTY_CHANGE", code, oldValue, newValue);
+                    // Log if changed (but don't affect logic flow)
+                    backgroundLogger.logIfChanged("PACKAGE_CHANGE", code, oldValue, newValue);
 
                     event.preventDefault();
                     updateRowFromDelivered(input);
@@ -626,7 +622,9 @@
                 const newValue = input.value; // Or get updated value if different
                 const code = input.id.replace('_delivered', '');
 
-                backgroundLogger.log("QTY_BLUR", code, oldValue, newValue);
+                // Log if changed (but don't affect logic flow)
+                backgroundLogger.logIfChanged("PACKAGE_CHANGE", code, oldValue, newValue);
+
                 updateRowFromDelivered(input);
             }
 
