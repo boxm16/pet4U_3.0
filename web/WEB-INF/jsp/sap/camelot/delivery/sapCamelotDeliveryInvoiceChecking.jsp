@@ -325,24 +325,21 @@
                 },
 
                 logIfChanged: function (action, itemCode, oldValue, newValue) {
-                    // Only log if value actually changed
-                    if (oldValue !== newValue) {
-                        const timestamp = new Date().toISOString();
-                        const entry = new LogEntry(timestamp, action, itemCode, oldValue, newValue);
-                        this.logs.push(entry);
+                    // Convert both values to numbers if they look numeric
+                    const numOld = isNaN(oldValue) ? oldValue : Number(oldValue);
+                    const numNew = isNaN(newValue) ? newValue : Number(newValue);
 
-                        console.groupCollapsed(`%c[LOG] ${timestamp} ${action}: ${itemCode}`,
-                                'color: green; font-weight: bold');
-                        console.log('Time Stamp:', timestamp);
-                        console.log('Action:', action);
-                        console.log('Old Value:', oldValue);
-                        console.log('New Value:', newValue);
-                        console.groupEnd();
-                        return true; // Indicate that a log was created
+                    // Compare both as numbers if both are numeric, otherwise as strings
+                    const changed = (typeof numOld === 'number' && typeof numNew === 'number')
+                            ? numOld !== numNew
+                            : String(oldValue) !== String(newValue);
+
+                    if (changed) {
+                        return this.log(action, itemCode, oldValue, newValue);
                     }
-                    return false; // No log created
-                }
-                ,
+                    console.log(`[INFO] No change detected for ${itemCode}`);
+                    return false;
+                },
 
                 prepareForSubmit: function () {
                     if (this.logs.length > 0) {
