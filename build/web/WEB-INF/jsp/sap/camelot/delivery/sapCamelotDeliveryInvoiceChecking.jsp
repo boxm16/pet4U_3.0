@@ -318,7 +318,13 @@
                         newValue: newValue
                     };
                     this.logs.push(entry);
-                    console.log(`[LOG] ${timestamp} ${action}: ${itemCode} (${oldValue}→${newValue})`);
+                    // Enhanced console output
+                    console.groupCollapsed(`%c[LOG] ${timestamp} ${action}: ${itemCode}`,
+                            'color: blue; font-weight: bold');
+                    console.log('Old Value:', oldValue);
+                    console.log('New Value:', newValue);
+                    console.log('Full Entry:', entry);
+                    console.groupEnd();
                 },
 
                 prepareForSubmit: function () {
