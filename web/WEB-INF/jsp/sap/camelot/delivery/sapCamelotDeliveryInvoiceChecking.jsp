@@ -305,9 +305,10 @@
                 }
             }
 
+
+
             const backgroundLogger = {
                 logs: [],
-
                 // Unconditional logging (for events like scans)
                 log: function (action, itemCode, oldValue, newValue) {
                     const entry = {
@@ -318,17 +319,37 @@
                         newValue: newValue
                     };
                     this.logs.push(entry);
-                    console.log(`[LOG] Event: ${action} for ${itemCode} (${oldValue}→${newValue})`);
+
+                    console.groupCollapsed(`%c[LOG] ${timestamp} ${action}: ${itemCode} (Changed)`,
+                            'color: green; font-weight: bold');
+                    console.log('Old Value:', oldValue);
+                    console.log('New Value:', newValue);
+                    console.groupEnd();
                     return true;
                 },
 
-                // Conditional logging (only when values change)
                 logIfChanged: function (action, itemCode, oldValue, newValue) {
+                    // Only log if value actually changed
                     if (oldValue !== newValue) {
-                        return this.log(action, itemCode, oldValue, newValue);
+                        const timestamp = new Date().toISOString();
+                        const entry = {
+                            timestamp: timestamp,
+                            action: action,
+                            itemCode: itemCode,
+                            oldValue: oldValue,
+                            newValue: newValue
+                        };
+                        this.logs.push(entry);
+
+                        console.groupCollapsed(`%c[LOG] ${timestamp} ${action}: ${itemCode} (Changed)`,
+                                'color: green; font-weight: bold');
+                        console.log('Old Value:', oldValue);
+                        console.log('New Value:', newValue);
+                        console.groupEnd();
+                        return true; // Indicate that a log was created
                     }
-                    console.log(`[INFO] No change: ${action} for ${itemCode}`);
-                    return false;
+                    console.log(`[INFO] ${action}: ${itemCode} (No change)`);
+                    return false; // No log created
                 },
 
                 prepareForSubmit: function () {
@@ -338,10 +359,10 @@
                         logInput.name = 'logEntries';
                         logInput.value = JSON.stringify(this.logs);
                         document.getElementById('form').appendChild(logInput);
+                        this.logs = [];
                     }
                 }
             };
-
 
             window.onload = function () {
                 // Auto-focus barcode input (if needed)
