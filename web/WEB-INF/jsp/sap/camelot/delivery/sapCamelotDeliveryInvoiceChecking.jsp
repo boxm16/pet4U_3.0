@@ -317,6 +317,7 @@
                     console.groupCollapsed(`%c[LOG] ${timestamp} ${action}: ${itemCode}`,
                             'color: green; font-weight: bold');
                     console.log('Time Stamp:', timestamp);
+                    console.log('Item Code', itemCode);
                     console.log('Action:', action);
                     console.log('Old Value:', oldValue);
                     console.log('New Value:', newValue);
@@ -638,7 +639,7 @@
                     const code = input.id.replace('_delivered', '');
 
                     // Log if changed (but don't affect logic flow)
-                    backgroundLogger.logIfChanged("PACKAGE_CHANGE", code, oldValue, newValue);
+                    backgroundLogger.logIfChanged("ITEM_CHANGE", code, oldValue, newValue);
 
                     event.preventDefault();
                     updateRowFromDelivered(input);
