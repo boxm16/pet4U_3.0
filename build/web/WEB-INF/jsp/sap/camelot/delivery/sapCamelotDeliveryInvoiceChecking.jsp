@@ -314,8 +314,10 @@
                     const timestamp = new Date().toISOString(); // Define timestamp first
                     const entry = new LogEntry(timestamp, action, itemCode, oldValue, newValue);
                     this.logs.push(entry);
-                    console.groupCollapsed(`%c[LOG] ${timestamp} ${action}: ${itemCode} (Changed)`,
+                    console.groupCollapsed(`%c[LOG] ${timestamp} ${action}: ${itemCode}`,
                             'color: green; font-weight: bold');
+                    console.log('Time Stamp:', timestamp);
+                    console.log('Action:', action);
                     console.log('Old Value:', oldValue);
                     console.log('New Value:', newValue);
                     console.groupEnd();
@@ -329,14 +331,15 @@
                         const entry = new LogEntry(timestamp, action, itemCode, oldValue, newValue);
                         this.logs.push(entry);
 
-                        console.groupCollapsed(`%c[LOG] ${timestamp} ${action}: ${itemCode} (Changed)`,
+                        console.groupCollapsed(`%c[LOG] ${timestamp} ${action}: ${itemCode}`,
                                 'color: green; font-weight: bold');
+                        console.log('Time Stamp:', timestamp);
+                        console.log('Action:', action);
                         console.log('Old Value:', oldValue);
                         console.log('New Value:', newValue);
                         console.groupEnd();
                         return true; // Indicate that a log was created
                     }
-                    console.log(`[INFO] ${action}: ${itemCode} (No change)`);
                     return false; // No log created
                 }
                 ,
