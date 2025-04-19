@@ -293,6 +293,50 @@
             var altercodeContainer = new AltercodeContainer(altercodeBarcode, packageBarcode, itemsInPackage);
             altercodeContainers[altercodeBarcode] = altercodeContainer;
         </c:forEach>
+
+            // Add this after your AltercodeContainer class
+            class LogEntry {
+                constructor(timestamp, action, itemCode, oldValue, newValue) {
+                    this.timestamp = timestamp || new Date().toISOString();
+                    this.action = action;
+                    this.itemCode = itemCode;
+                    this.oldValue = oldValue;
+                    this.newValue = newValue;
+                }
+            }
+
+            const backgroundLogger = {
+                logs: [],
+
+                log: function (action, itemCode, oldValue, newValue) {
+                    const timestamp = new Date().toISOString();
+                    const entry = {
+                        timestamp: timestamp,
+                        action: action,
+                        itemCode: itemCode,
+                        oldValue: oldValue,
+                        newValue: newValue
+                    };
+                    this.logs.push(entry);
+                    console.log(`[LOG] ${timestamp} ${action}: ${itemCode} (${oldValue}→${newValue})`);
+                },
+
+                prepareForSubmit: function () {
+                    // Convert logs to hidden input before form submission
+                    if (this.logs.length > 0) {
+                        const logInput = document.createElement('input');
+                        logInput.type = 'hidden';
+                        logInput.name = 'logEntries';
+                        logInput.value = JSON.stringify(this.logs);
+                        document.getElementById('form').appendChild(logInput);
+
+                        // Clear logs after preparing for submission
+                        this.logs = [];
+                    }
+                }
+            };
+
+
             window.onload = function () {
                 // Auto-focus barcode input (if needed)
                 document.querySelector("input[type='text']")?.focus();
@@ -316,9 +360,10 @@
             function check(event, input) {
                 if (event.keyCode === 13) {
                     var altercode = input.value;
-                    console.log("altercode:" + altercode);
+                    backgroundLogger.log("SCAN", altercode, "", "");
                     var item = items[altercode];
                     if (item == null) {
+                        backgroundLogger.log("UNKNOWN_SCAN", altercode, "", "");
                         playBeep();
                         if (altercodeContainer != null) {
                             console.log("Something Wrong, Item is null, but barocede is not" + altercode);
@@ -342,8 +387,8 @@
                         }
                         updateRowColor(altercode);
                     } else {
+                        backgroundLogger.log("ITEM_SCAN", item.code, "", altercode);
                         var code = item.code;
-                        console.log(code);
                         var description = item.description;
                         document.getElementById("descriptionDisplay").innerHTML = altercode + " : " + description;
 
@@ -513,6 +558,13 @@
 
             function handlePackageEnter(event, input) {
                 if (event.keyCode === 13) {
+                    const oldValue = input.value;
+                    const newValue = event.target.value;
+                    const code = input.id.replace('_deliveredPackages', '');
+
+                    backgroundLogger.log("PACKAGE_CHANGE", code, oldValue, newValue);
+
+
                     event.preventDefault();
 
                     const row = input.closest('tr');
@@ -551,6 +603,12 @@
             }
             function handleDeliveredEnter(event, input) {
                 if (event.keyCode === 13) {
+                    const oldValue = input.value;
+                    const newValue = event.target.value;
+                    const code = input.id.replace('_delivered', '');
+
+                    backgroundLogger.log("QTY_CHANGE", code, oldValue, newValue);
+
                     event.preventDefault();
                     updateRowFromDelivered(input);
                     moveToNextDeliveredInput(input);
@@ -558,6 +616,11 @@
             }
 
             function handleDeliveredBlur(input) {
+                const oldValue = input.value;
+                const newValue = input.value; // Or get updated value if different
+                const code = input.id.replace('_delivered', '');
+
+                backgroundLogger.log("QTY_BLUR", code, oldValue, newValue);
                 updateRowFromDelivered(input);
             }
 
@@ -609,6 +672,9 @@
                 // Add a small delay to ensure everything is really ready
                 setTimeout(hideLoadingOverlay, 300);
             });
+
+
+
     </script>
 </body>
 </html>
