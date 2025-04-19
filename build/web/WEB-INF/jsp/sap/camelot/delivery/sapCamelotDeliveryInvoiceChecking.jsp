@@ -308,20 +308,26 @@
             const backgroundLogger = {
                 logs: [],
 
-                // Simple logging function - only logs if values differ
+                // Unconditional logging (for events like scans)
+                log: function (action, itemCode, oldValue, newValue) {
+                    const entry = {
+                        timestamp: new Date().toISOString(),
+                        action: action,
+                        itemCode: itemCode,
+                        oldValue: oldValue,
+                        newValue: newValue
+                    };
+                    this.logs.push(entry);
+                    console.log(`[LOG] Event: ${action} for ${itemCode} (${oldValue}→${newValue})`);
+                    return true;
+                },
+
+                // Conditional logging (only when values change)
                 logIfChanged: function (action, itemCode, oldValue, newValue) {
                     if (oldValue !== newValue) {
-                        const entry = {
-                            timestamp: new Date().toISOString(),
-                            action: action,
-                            itemCode: itemCode,
-                            oldValue: oldValue,
-                            newValue: newValue
-                        };
-                        this.logs.push(entry);
-                        console.log(`[LOG] Change detected: ${action} for ${itemCode} (${oldValue}→${newValue})`);
-                        return true;
+                        return this.log(action, itemCode, oldValue, newValue);
                     }
+                    console.log(`[INFO] No change: ${action} for ${itemCode}`);
                     return false;
                 },
 
@@ -332,7 +338,6 @@
                         logInput.name = 'logEntries';
                         logInput.value = JSON.stringify(this.logs);
                         document.getElementById('form').appendChild(logInput);
-                        this.logs = [];
                     }
                 }
             };
