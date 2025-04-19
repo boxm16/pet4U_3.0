@@ -374,8 +374,12 @@
                     input.addEventListener('focus', function () {
                         this.select();
                     });
+                    // Initialize old value tracking
+                    input.setAttribute("data-old", input.value);
                 });
             }
+
+
 
 
             function check(event, input) {
@@ -579,8 +583,11 @@
 
             function handlePackageEnter(event, input) {
                 if (event.keyCode === 13) {
-                    const oldValue = input.value;
-                    const newValue = event.target.value;
+                    const oldValue = input.getAttribute("data-old") || input.defaultValue;
+                    const newValue = input.value;
+                    input.setAttribute("data-old", newValue);
+
+
                     const code = input.id.replace('_deliveredPackages', '');
 
                     // Log if changed (but don't affect logic flow)
@@ -624,8 +631,10 @@
             }
             function handleDeliveredEnter(event, input) {
                 if (event.keyCode === 13) {
-                    const oldValue = input.value;
-                    const newValue = event.target.value;
+                    const oldValue = input.getAttribute("data-old") || input.defaultValue;
+                    const newValue = input.value;
+                    input.setAttribute("data-old", newValue);
+
                     const code = input.id.replace('_delivered', '');
 
                     // Log if changed (but don't affect logic flow)
@@ -638,8 +647,9 @@
             }
 
             function handleDeliveredBlur(input) {
-                const oldValue = input.value;
-                const newValue = input.value; // Or get updated value if different
+                const oldValue = input.getAttribute("data-old") || input.defaultValue;
+                const newValue = input.value;
+                input.setAttribute("data-old", newValue);
                 const code = input.id.replace('_delivered', '');
 
                 // Log if changed (but don't affect logic flow)
