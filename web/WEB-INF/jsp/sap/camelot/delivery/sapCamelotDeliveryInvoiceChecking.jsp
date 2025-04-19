@@ -314,7 +314,8 @@
                     const timestamp = new Date().toISOString(); // Define timestamp first
                     const entry = new LogEntry(timestamp, action, itemCode, oldValue, newValue);
                     this.logs.push(entry);
-                    console.groupCollapsed(`%c[LOG] ${timestamp} ${action}: ${itemCode}`,
+                    console.groupCollapsed('%c[LOG] ' + timestamp + ' ' + action + ': ' + itemCode +
+                            ' | Old: ' + oldValue + ' → New: ' + newValue,
                             'color: green; font-weight: bold');
                     console.log('Time Stamp:', timestamp);
                     console.log('Item Code', itemCode);
