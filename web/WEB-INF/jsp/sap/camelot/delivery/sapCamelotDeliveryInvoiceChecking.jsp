@@ -325,13 +325,13 @@
                 },
 
                 logIfChanged: function (action, itemCode, oldValue, newValue) {
-                    // Convert both values to numbers if they look numeric
-                    const numOld = isNaN(oldValue) ? oldValue : Number(oldValue);
-                    const numNew = isNaN(newValue) ? newValue : Number(newValue);
+                    // Convert to numbers if they look like numbers, otherwise compare as strings
+                    const oldNum = isNumeric(oldValue) ? Number(oldValue) : oldValue;
+                    const newNum = isNumeric(newValue) ? Number(newValue) : newValue;
 
-                    // Compare both as numbers if both are numeric, otherwise as strings
-                    const changed = (typeof numOld === 'number' && typeof numNew === 'number')
-                            ? numOld !== numNew
+                    // Compare numbers if both are numbers, otherwise compare strings
+                    const changed = (typeof oldNum === 'number' && typeof newNum === 'number')
+                            ? oldNum !== newNum
                             : String(oldValue) !== String(newValue);
 
                     if (changed) {
@@ -360,6 +360,10 @@
                 // Setup input selection
                 setupInputSelection();
             };
+            
+            function isNumeric(value) {
+                return !isNaN(parseFloat(value)) && isFinite(value);
+            }
 
             function setupInputSelection() {
                 const inputs = document.querySelectorAll('input[type="number"]');
