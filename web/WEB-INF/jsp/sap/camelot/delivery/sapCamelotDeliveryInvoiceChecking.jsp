@@ -416,22 +416,23 @@
             function updateRowColor(code) {
                 const deliveredEl = document.getElementById(code + "_delivered");
                 if (!deliveredEl)
-                    return; // safety check
+                    return;
 
-                const sent = parseFloat(document.getElementById(code + "_sent").value) || 0;
+                // Cache elements if called frequently
+                const sentEl = document.getElementById(code + "_sent");
+                const sent = parseFloat(sentEl.value) || 0;
                 const delivered = parseFloat(deliveredEl.value) || 0;
                 const diff = sent - delivered;
 
-                // Remove all highlight classes first
-                deliveredEl.classList.remove('highlight-red', 'highlight-yellow', 'highlight-green');
+                // Determine new class in one step
+                const newClass = diff > 0 ? 'highlight-red' :
+                        diff < 0 ? 'highlight-yellow' : 'highlight-green';
 
-                // Add appropriate class based on comparison
-                if (diff > 0) {
-                    deliveredEl.classList.add('highlight-red');
-                } else if (diff < 0) {
-                    deliveredEl.classList.add('highlight-yellow');
-                } else {
-                    deliveredEl.classList.add('highlight-green');
+                // Only update if class actually needs to change
+                if (!deliveredEl.classList.contains(newClass)) {
+                    // Replace all highlight classes in one operation
+                    deliveredEl.className = deliveredEl.className
+                            .replace(/\bhighlight-\w+/g, '') + ' ' + newClass;
                 }
             }
 
